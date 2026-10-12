@@ -1,0 +1,101 @@
+# M2.S4.T7.C24.2D1 · duration_track · Duration Track
+indiannica_eng_maths4_ch12 · indiannica_eng_maths4_ch12_v2 v2 (active) · "Time" · segment M2.S4 "Durations and Dates" · topic M2.S4.T7 "How Long It Takes, and What Time It Will Be" · printed p.144 to p.145
+
+> Runtime supplies the standard chrome (bands, zones, header, runs box, slot + pad, bubble, phase bar, type scale, content colours, sounds, finished/idle/restart). `scaffold` puts each phase's concept, teach line, hint ladder, closing line and items into tool.tsx; they are not repeated here. Build the working area and the mechanics.
+
+## What it is
+**Description:** Plant a start flag and an end flag on a track of the day and hop between them, stopping at 12 noon when they are either side of it. Hop a duration forward or back.
+**Why:** Find how long something takes from its start and its end, across 12 noon as well, and find an end time or an earlier time from a duration.
+**Look:** A long time track marked in hours with a tall 12 noon post, a start flag and an end flag, a hopper, and a clock face above.
+**Context:** Grade 4, and the chapter's step from reading one time to reasoning about two. An adult sees a subtraction, and a child who subtracts times like whole numbers gets answers that look right and are not, because an hour is sixty minutes, not a hundred. Counting on from the start to the next hour and then on to the end avoids that, and it is the page's own method. The page never finds the time between two times across noon, though its exercises ask for several. Across noon, the hour that matters is 12 noon, where the label changes, so this tool makes the hopper stop there, exactly as the page counts on to the next hour.
+**For the child:** Plant the start flag and the end flag. Hop to the next hour first. If the flags are either side of noon, stop at 12 noon. Add the hops. To go back, turn the hopper round.
+**Teaching notes:** Time parts of the school day from the class timetable before the tool is opened, counting on round a clock face. The section opens on an exam from 9:30 a.m. to 12 noon, asks how long it lasts, and never says. Counting on, it is two hours thirty minutes, and it is worth finishing with the class. The section's two worked examples count on to the next hour and then on, and neither crosses noon, though the exercises that follow ask for several durations that do. Use the same move with 12 noon as the hour counted to: count on to 12 noon, then on through the afternoon, and add. Six of this tool's twelve items cross noon. Watch the answers that should end in p.m.: a count that passes noon changes the label, forward or back. Two of the exercise's times count backwards, which neither worked example in the section does, and the back switch is there for those. The Critical Thinking box asks for a number of minutes before noon, so change the minutes into hours and minutes first.
+**Placement:** Elaborate
+**Also mounted in:** M2.S4.T7
+
+## Look
+**Chrome:** dim #9AA4AC · ink #2B2B2B · rule #C9BCA6 · panel #F2E4CE · paper #FFFDF7 · accent #5B6770
+**Voice:** rate 0.92, pitch 1.06 · figure: None
+
+## Stage (tool-specific layout)
+Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Duration Track' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the hops made against the hops this count needs, two numbers in ink, the first climbing by one as each hop lands and the second fixed once both flags, or a flag and a card, are set. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The clock face stands at the top left of the working area, 180 across centred at 170,316, and follows the hopper, its hands turning as each hop lands. The duration card tray sits beside it, 300 by 110 at 290,226, holding cards that give a duration in hours and minutes, the hours in vermilion and the minutes in deep blue. The back switch sits under the tray, 160 by 56 at 290,350. The zoom lens stands at the top right, 440 by 150 at 700,226, and widens any stretch of the track so its five-minute ticks can be counted. The time track runs across the lower half, 1056 by 60 at 80,560, from the left-hand midnight post to the right-hand one, one hour to every 44, sky blue from midnight to noon and amber from noon to midnight, with a near-black hour post at every hour and a tick every five minutes. The 12 noon post, at 608, is drawn taller than the others, rising to 440 under a small sun. The start flag and the end flag are planted on the track by time, each on a near-black pole with its time and a.m. or p.m. on its pennant. The hopper hops above the track in three kinds of hop: a short hop of minutes on to the next hour post, whole-hour hops from post to post, and a last hop of minutes on to the end flag. Each hop is drawn as a green arc from landing to landing, between 470 and 560, with its length written on it. When the flags stand either side of noon, the noon post is a stop the hopper cannot jump: it lands on 12 noon, the hops before the post are totalled in a green box just left of it and the hops after it in a box just right of it, and the two boxes are added. The total bar runs under the track, 1056 by 60 at 80,650, adding the hops, with the hours of the total in vermilion and its minutes in deep blue, and carrying sixty minutes as one hour, the carried hour drawn in wine. A pale flag can stand on the track to show where a child's answer would be. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve keys three across, the ten digits, a colon and a clear key, with keys reading a.m., p.m., hours and minutes over it. The answer slot takes a duration as hours and minutes in two boxes, or a time with a colon and a label box, whichever the question asks for, and a time with no label will not settle. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The hour hand, every hour tile and hour cell, the hours column, and the hours of a time the stage splits into hours and minutes are vermilion. The minute hand, every minute tile and minute cell, the minutes column and the minutes of a split time are deep blue. The second hand, every second cell and the seconds column are reddish purple. The a.m. half of the day, from midnight to noon, is sky blue on every strip, timeline and track, and the p.m. half, from noon to midnight, is amber, so the label changes where the colour does. Time counted between a start and an end, every hop and total on a track, and the days counted between two dates are green. An hour or a minute carried or broken, with the digits it strikes and rewrites, is wine. A calendar day, week or year picked out or ticked, a month on its bar and a day tile are olive. The days left over beyond whole weeks, and the twenty-ninth of February in a leap year, are yellow outlined in near-black. Chrome never borrows one of those and none of them is ever used for chrome: every clock rim, minute mark, clock number, hub, rule, tick, post, bracket, guide line and panel edge is near-black. Every reading survives with the colour taken away, because an hour hand is told from a minute hand by its length, a column by its heading, a half of the day by its label, and a counted day from one left out by being filled rather than outlined, before any of them is told by a colour. A figure that goes down by one is struck through once with the new figure written above it, and never rubbed out. The hopper counts on or back from a flag and does not take one time from another as whole numbers, so no hop on this stage is a hundred minutes long, and a hop of minutes that meets an hour post is seen to cross it. Where the flags stand either side of noon, the hopper lands on 12 noon before going on, which is the page's own count on to the next hour with 12 noon as that hour.
+
+## Opening (first frame of every mount)
+Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the start flag and the end flag stand in the same morning or the same evening, with the hopper waiting at the start flag and the total bar empty. On the second the start flag stands in the morning and the end flag in the afternoon, and the tall noon post is lit under its sun. On the third a start flag stands on the track with a duration card beside it, and the end flag is in the hopper's hand. On the fourth an end flag stands on the track with a duration card beside it, and the hopper faces back along the track. The running count at the top left holds the hops made against the hops this count needs, and the answer slot and the pad stand empty down the right. One thing moves, once: the hopper, or the noon post, or the duration card, or the back switch, gives one slow pulse while the voice asks where the next hour is. That pulse is the only invitation, and a finger on it is the whole way in.
+
+## Phases (what each mount shows and does; the words are in tool.tsx)
+
+### 1 · Counting on to the next hour
+**Screen:** the start and end flags planted in the same morning or evening, with the hopper at the start flag
+**Does:** hops from the start flag to the next hour post, then whole hours, then on to the end flag, and adds the hops
+**Win:** the hops are drawn over the track with their lengths, and the total bar writes the duration
+**Feels:** the hour posts break the stretch into pieces that are easy to count, and the pieces add up
+**Goal:** a duration is found by counting on from the start to the next hour, then on to the end, and adding the parts
+**Observe:** The hops landed on the next hour post, then on each whole hour, then on the end flag, and the total bar added them.
+**Wrong (each is a traceback on the working area):**
+- takes 648 from 905 as whole numbers and answers two hours fifty-seven minutes for a journey from 6:48 a.m. to 9:05 a.m. → the hopper runs from the start flag: twelve minutes on to the seven o'clock post, two whole-hour hops to nine, and five minutes on to the end flag. The total bar adds twelve minutes, two hours and five minutes, two hours seventeen minutes, and the child's answer is laid beside it, forty minutes longer, and stays in the slot, nothing marked.
+- reads the first hop as forty-eight minutes, the minutes of the start time, instead of the twelve left to seven o'clock, and answers two hours fifty-three minutes. → the zoom lens widens the stretch from the start flag to the seven o'clock post, and its ticks are counted from 6:48, two minutes to 6:50 and ten more to seven: twelve. The first hop is drawn again with twelve on it, and the child's answer stays in the slot beside the new total.
+**Misconception to break:** Taking 648 from 905 as whole numbers and answering 2 hours 57 minutes, as if an hour had a hundred minutes.
+
+### 2 · Across twelve noon
+**Screen:** the start flag in the morning, the end flag in the afternoon, and the noon post lit
+**Does:** hops from the start to 12 noon, then on through the afternoon to the end flag, and adds the part before noon to the part after it
+**Win:** the part before noon and the part after it are written either side of the noon post, and their sum is the duration
+**Feels:** noon is a stop on the way, and the stretch is two pieces that each stay in one half of the day
+**Goal:** across noon, count on to 12 noon, then on through the afternoon, and add the two parts
+**Observe:** The hopper would not jump the noon post, and the part before noon and the part after it were written either side of it.
+**Wrong (each is a traceback on the working area):**
+- takes 3:25 away from 9:50 because three looks smaller than nine, and answers six hours twenty-five minutes for a stall open from 9:50 a.m. to 3:25 p.m. → both flags are planted, the start in the sky blue half and the end in the amber half, with the noon post lit between them. The hopper hops ten minutes to ten o'clock and two hours to 12 noon and stops on the post, then three hours and twenty-five minutes on to the end flag. The two green boxes add to five hours thirty-five minutes, and the child's answer stays in the slot beside the total.
+- answers two hours five minutes for a picnic from 11:20 a.m. to 2:05 p.m., counting only the part after noon. → the hopper stops on the noon post, and the box to its left fills with the part before noon, forty minutes, which the child's answer left out. The box to the right fills with two hours five minutes, and the two slide down into the total bar: two hours forty-five minutes, beside the child's answer in the slot.
+**Misconception to break:** Taking 3:25 away from 9:50 because three looks smaller than nine, and answering 6 hours 25 minutes.
+
+### 3 · From a start and a duration
+**Screen:** a start flag and a duration card, with the end flag in the hopper's hand
+**Does:** hops the hours of the duration, then its minutes, crossing an hour post or the noon post where it must, and plants the end flag
+**Win:** the end flag settles, and its time is written with a.m. or p.m.
+**Feels:** the duration is a set of hops, and where the last one lands says both the time and its half of the day
+**Goal:** a start time and a duration give the end time, counting on the hours and then the minutes
+**Observe:** The end flag landed once the hours and then the minutes were hopped, and its pennant took the label of the half it stood in.
+**Wrong (each is a traceback on the working area):**
+- adds the minutes to make eighty-five and writes 1:85 p.m. for three hours thirty-five minutes after 10:50 a.m. → the zoom lens widens the hour after 1:50 p.m., and the hopper's last hop reaches the two o'clock post after ten minutes, with twenty-five of the thirty-five still to go. The hop goes on past the post to 2:25 p.m. An hour on the clock above holds sixty marks, so no time on it reads eighty-five minutes past one, and the child's answer stays in the slot.
+- keeps the a.m. of the start and writes 2:25 a.m. for three hours thirty-five minutes after 10:50 a.m. → the hopper's hours cross the noon post, which lights, and the end flag's pennant is written in the amber half as 2:25 p.m. A pale flag stands in the sky blue half at 2:25 a.m., at night, and the child's answer stays in the slot.
+**Misconception to break:** Adding the minutes to make 85 and writing 1:85 p.m., instead of crossing two o'clock.
+
+### 4 · Counting back
+**Screen:** an end flag and a duration card, with the hopper turned to face back along the track
+**Does:** hops back the hours, then the minutes, crossing an hour post or the noon post where it must, and plants the start flag
+**Win:** the start flag settles, and its time is written with a.m. or p.m.
+**Feels:** going back is the same hops the other way, and crossing noon backwards turns the label back to a.m.
+**Goal:** counting back the hours and then the minutes from a time gives the time before it
+**Observe:** Hopping back, the flag landed in the morning half after the hopper crossed the noon post.
+**Wrong (each is a traceback on the working area):**
+- keeps p.m. after counting back past noon, and writes 10:15 p.m. for two hours fifty minutes before 1:05 p.m. → the hopper turns and hops back two whole hours, over the noon post, which lights, to 11:05 a.m. in the sky blue half, then five minutes back to the eleven o'clock post and forty-five more to 10:15 a.m. A pale flag shows the child's 10:15 p.m. late in the amber half, and the child's answer stays in the slot.
+- takes forty-five from 720 as whole numbers and writes 6:75 a.m. for forty-five minutes before 7:20 a.m. → the zoom lens widens the hour before 7:20 a.m., and the hopper hops back twenty minutes to the seven o'clock post and twenty-five more to 6:35 a.m. An hour on the clock above holds sixty marks, so no time on it reads seventy-five minutes past six, and the child's answer stays in the slot.
+- counts forward from noon instead of back, and writes 2:50 p.m. for the time one hundred and seventy minutes before noon. → the back switch lights and the hopper faces back along the track. The card writes one hundred and seventy minutes as two hours fifty minutes, sixty and sixty and fifty, and the hopper hops back two hours to 10:00 a.m. and fifty minutes more to 9:10 a.m. A pale flag shows the child's 2:50 p.m. on the other side of the noon post, and the child's answer stays in the slot.
+**Misconception to break:** Keeping p.m. after counting back past noon, and writing 10:15 p.m.
+
+## Delight
+The second phase, the moment the hopper lands on 12 noon. It stops on top of the tall post under the sun, the part before noon is written in its green box on the left, and the next hop leaves the post over amber track. When the last hop lands on the end flag, the two green boxes slide down into the total bar and add, and if their minutes come to sixty or more an hour rolls up in wine and joins the hours. It can be run as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.
+
+**General miss line:** Hop to the next hour first, and stop at noon if the flags are either side of it.
+
+## Answer key
+The duration of something is the time from its start to its end. To find it, count on from the start to the next hour, then whole hours, then the minutes on to the end, and add the parts, carrying sixty minutes as an hour. When the start and the end are in the same hour, the duration is the difference of the minutes. When the start is in the morning and the end in the afternoon of the same day, count on to 12 noon, then on through the afternoon, and add the two parts. A start time and a duration give the end time: count on the hours, then the minutes, and write a.m. or p.m. for the half of the day the end falls in. Counting back the hours and then the minutes from a time gives the time before it, and a count back past 12 noon changes p.m. to a.m.
+
+## Student controls
+- **Time track**: runs from one midnight to the next, with an hour post every hour and the 12 noon post drawn taller
+- **Start flag**: planted at the start time
+- **End flag**: planted at the end time, or placed by the hopper when a duration is hopped
+- **Hopper**: hops on to the next hour, then whole hours, then the minutes, drawing each hop with its length
+- **Noon stop**: makes the hopper land on 12 noon before going on when the flags are either side of it
+- **Duration card**: laid at a flag, so the hopper hops its hours and then its minutes
+- **Back switch**: turns the hopper to count back from a given time
+- **Total bar**: adds the hops, carrying sixty minutes as one hour
+
+## State fields (getState, a resume contract)
+phase, startFlag, endFlag, hops, noonStop, durationCard, direction, total, complete
+
+## Textbook (this topic)
+**Pages:** 144, 145
+**Key terms:** duration, start time, end time, noon
+The time between a start and an end is found by counting on to the next hour and then on, through twelve noon when the times are either side of it, and a start and a duration give the end. Forty-five minutes. Twenty-five minutes bring it to eleven o'clock, and twenty more reach 11:20, so add the two parts. Five hours thirty minutes. Count on to 12 noon, three hours twenty minutes, then on to 2:10 p.m., two hours ten minutes, and add. At 8:15 p.m. Two hours bring it to 7:50 p.m., and twenty-five minutes more cross eight o'clock to 8:15 p.m. 1:40 p.m. One hour back is 2:20 p.m., and forty minutes further back is 1:40 p.m.

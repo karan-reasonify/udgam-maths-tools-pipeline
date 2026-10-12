@@ -1,0 +1,368 @@
+{
+  "versions": {
+    "r1": {
+      "runtime": "51eb13b5126c",
+      "mascot": "6349bb6d59f7",
+      "note": "the head of 2026-09-22: two answer boxes (ch 5), stacked fractions SLOT_FRACTION/SLOT_MIXED (ch 7), the point key (ch 8)",
+      "frozenAt": "2026-09-22T16:58:00.853Z",
+      "bytes": 154277
+    },
+    "r2": {
+      "runtime": "cb844c2999da",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-22T19:12:59.998Z",
+      "bytes": 154774
+    },
+    "r3": {
+      "runtime": "1fa9ccc1bcf2",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T07:33:27.311Z",
+      "bytes": 155230
+    },
+    "r4": {
+      "runtime": "31fba75d77f9",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T09:17:35.244Z",
+      "bytes": 155652
+    },
+    "r5": {
+      "runtime": "52c045f785a2",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T09:20:47.125Z",
+      "bytes": 156398
+    },
+    "r6": {
+      "runtime": "51482a50195f",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T11:55:26.185Z",
+      "bytes": 157286
+    },
+    "r7": {
+      "runtime": "328159244a07",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T11:59:09.038Z",
+      "bytes": 158054
+    },
+    "r8": {
+      "runtime": "2fb561ffbd80",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T12:06:54.155Z",
+      "bytes": 159469
+    },
+    "r9": {
+      "runtime": "6209ae44881c",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T13:05:52.193Z",
+      "bytes": 161477
+    },
+    "r10": {
+      "runtime": "8c5ee7c534d1",
+      "mascot": "6349bb6d59f7",
+      "note": "lang contract: Spoken type (en/hi/gu), lineFor, per-language pickVoice, UI_STRINGS chrome translations; additive, no chapter pinned",
+      "frozenAt": "2026-09-23T13:18:01.799Z",
+      "bytes": 168905
+    },
+    "r11": {
+      "runtime": "d14bcf2ebeff",
+      "mascot": "6349bb6d59f7",
+      "note": "baked-voice clip loader (TOOL_VOICE/TOOL_VOICE_BASE, Web Audio, content-addressed files); additive, gated on a tool declaring TOOL_VOICE (none do yet)",
+      "frozenAt": "2026-09-23T13:43:38.324Z",
+      "bytes": 175916
+    },
+    "r12": {
+      "runtime": "f6db90915a2e",
+      "mascot": "6349bb6d59f7",
+      "note": "r11 minus the fetch() clip loader: baked voice is inline data: URIs only (host contract admits no network API); r11 fails port and should not be pinned",
+      "frozenAt": "2026-09-23T15:28:38.564Z",
+      "bytes": 175101
+    },
+    "r13": {
+      "runtime": "99e63f53aeab",
+      "mascot": "6349bb6d59f7",
+      "note": "lang: per-tool TR table (keyed by the English line), Hindi/Gujarati number words (wordsIn) and speech (speakableIn), । splits bubble pieces, lang + tx to Work; English path unchanged",
+      "frozenAt": "2026-09-23T16:54:44.402Z",
+      "bytes": 181930
+    },
+    "r14": {
+      "runtime": "7301994556d8",
+      "mascot": "6349bb6d59f7",
+      "note": "r13 + header tool name/phase concept and summary concepts through the tool's TR table",
+      "frozenAt": "2026-09-23T16:58:05.020Z",
+      "bytes": 181961
+    },
+    "r15": {
+      "runtime": "953c33c86e53",
+      "mascot": "6349bb6d59f7",
+      "note": "baked-or-silent decided per language: hi/gu speak only from TOOL_VOICE clips, English keeps the device voice (English voice checks stay valid)",
+      "frozenAt": "2026-09-23T17:22:49.049Z",
+      "bytes": 182344
+    },
+    "r16": {
+      "runtime": "32d3765ba61a",
+      "mascot": "6349bb6d59f7",
+      "note": "every tap starts the Web Audio context for a baked voice (a browser suspends it until a tap in the frame)",
+      "frozenAt": "2026-09-23T17:47:18.451Z",
+      "bytes": 182576
+    },
+    "r17": {
+      "runtime": "b9fd8ded39f1",
+      "mascot": "6349bb6d59f7",
+      "note": "Work's api.say lines go through the tool's TR table (translated text and baked clips in hi/gu)",
+      "frozenAt": "2026-09-23T18:12:34.955Z",
+      "bytes": 182727
+    },
+    "r18": {
+      "runtime": "bf761de61a58",
+      "mascot": "6349bb6d59f7",
+      "note": "the answer slot's text goes through the tool's TR and format() gets { lang, tx }; Thumb gets lang and tx (summary thumbnails and chosen words in hi/gu)",
+      "frozenAt": "2026-09-23T19:23:14.811Z",
+      "bytes": 183297
+    },
+    "r19": {
+      "runtime": "44685c306c22",
+      "mascot": "6349bb6d59f7",
+      "note": "a two-box slot's label and unit go through the tool's TR (hi/gu); English path unchanged",
+      "frozenAt": "2026-09-23T19:27:01.993Z",
+      "bytes": 183335
+    },
+    "r20": {
+      "runtime": "6c814f73e92d",
+      "mascot": "6349bb6d59f7",
+      "note": "Gujarati 78 and 88 spelled correctly (અઠ્યોતેર, અઠ્યાસી) in GU_0_99",
+      "frozenAt": "2026-09-23T19:39:49.353Z",
+      "bytes": 183335
+    },
+    "r21": {
+      "runtime": "d74adefba913",
+      "mascot": "6349bb6d59f7",
+      "note": "voice clips may be files: TOOL_VOICE value = inline data: URI (local) or a <sha1>.ogg name fetched from TOOL_VOICE_BASE (published ship copy; the runtime's only network call, port allows exactly it); in-flight de-dupe",
+      "frozenAt": "2026-09-24T07:21:10.212Z",
+      "bytes": 184405
+    },
+    "r22": {
+      "runtime": "958cd10125ab",
+      "mascot": "6349bb6d59f7",
+      "note": "classroom mode: props.classroom (a teacher paces, a tap on the bubble goes on, sound starts off, hints and win/closing/summary lines wait, your-turn ring, no score shown); additive, off by default; the host's muted prop acts on a change, not at mount",
+      "frozenAt": "2026-10-07T10:45:28.223Z",
+      "bytes": 192351
+    },
+    "r23": {
+      "runtime": "07ea784975d5",
+      "mascot": "6349bb6d59f7",
+      "note": "classroom r23: explore (a classroom's free play between phases), classroom also read from additionalProps, no dead tap (a line's end parks only when a done follows), bubble keeps focus on Enter/Space + ArrowRight/PageDown keys, Say it again on the summary carries on and at an open question replays only the question, hints go out in order one per tap, jump clears the pending advance, the your-turn ring has its own timer",
+      "frozenAt": "2026-10-07T11:15:37.523Z",
+      "bytes": 196486
+    },
+    "r24": {
+      "runtime": "ad554c85333c",
+      "mascot": "6349bb6d59f7",
+      "note": "r24 = r23 + a big near-black arrow (44x60) that blinks hard and a blinking frame round the bubble, so a waiting tap is seen from the last bench; clash with the text is checked",
+      "frozenAt": "2026-10-07T11:16:52.244Z",
+      "bytes": 197142
+    },
+    "r25": {
+      "runtime": "9a2a3f26ebde",
+      "mascot": "6349bb6d59f7",
+      "note": "r25 = r24 without the blinking frame: only the big arrow blinks, the bubble and its words stay steady",
+      "frozenAt": "2026-10-07T11:21:04.992Z",
+      "bytes": 196841
+    },
+    "r26": {
+      "runtime": "08c1eea6e09c",
+      "mascot": "6349bb6d59f7",
+      "note": "r26 = r25 + side-by-side answer boxes: tool.sideBySide draws SLOT_FRACTION/SLOT_MIXED as [3] / [10]; parts SLOT_DECIMAL is a decimal as [2] . [9] (judgeSlotDecimal, decimalPartsOf, toolApi.answer takes '2.9', '.' steps to the decimal box); opt-in, default stays stacked",
+      "frozenAt": "2026-10-07T11:49:10.589Z",
+      "bytes": 202816
+    },
+    "r27": {
+      "runtime": "b9aabd438608",
+      "mascot": "6349bb6d59f7",
+      "note": "board layout (opt-in board:true): top question bar + Answer key, whole-card working area, answer panel slides in from the right; Skin primitive for generated object pictures (images.tsx); hint pill; answerOpen prop",
+      "frozenAt": "2026-10-07T13:30:47.167Z",
+      "bytes": 214590
+    },
+    "r28": {
+      "runtime": "cb3d828d9574",
+      "mascot": "6349bb6d59f7",
+      "note": "r28 = r27 + the start page (opt-in StartArt / START_HOOK): tool name, art, hook, mascot, Start key over the whole stage, silent until Start; AI mode skips it",
+      "frozenAt": "2026-10-07T13:38:26.804Z",
+      "bytes": 220319
+    },
+    "r29": {
+      "runtime": "349102b47b09",
+      "mascot": "6349bb6d59f7",
+      "note": "r29 = r28 + Skin fit='stretch' (a tile keeps its bevel, never cropped) and props.skins=false (the plain shapes alone, for the skins-fallback check)",
+      "frozenAt": "2026-10-07T14:22:50.856Z",
+      "bytes": 220928
+    },
+    "r30": {
+      "runtime": "82436e16440b",
+      "mascot": "6349bb6d59f7",
+      "note": "r30 = r29 + SILENT: no speech at all (printed and timed bubble only, no baked clips, no Tap to start), phase.steps + api.did (act-driven instructions on the demo stage), sfx cut/settle/trade/cheer, mascot hops and nods, classroom no longer mutes; the arrow and bubble tap are unchanged",
+      "frozenAt": "2026-10-07T15:12:20.405Z",
+      "bytes": 229245
+    },
+    "r31": {
+      "runtime": "dfb390449f2d",
+      "mascot": "6349bb6d59f7",
+      "note": "r31 = r30 + THEME (opt-in tool theme, or TOOL_THEME chosen by the image agent from the slot's object): colours the keypad, Answer, Start and Close keys, the answer panel and the answer box edge",
+      "frozenAt": "2026-10-07T15:16:32.345Z",
+      "bytes": 231218
+    },
+    "r32": {
+      "runtime": "d8248e62694b",
+      "mascot": "6349bb6d59f7",
+      "note": "r32 = r31 + the header reset returns to the start page (tools with one), Start key centred by measured width, taller centred word keys in the board panel, toolApi.check performs a guide step (never the tool's own check hook), __tool.did, classroom comments fixed",
+      "frozenAt": "2026-10-07T16:17:31.605Z",
+      "bytes": 233330
+    },
+    "r33": {
+      "runtime": "cebb04b63ed9",
+      "mascot": "6349bb6d59f7",
+      "note": "r33 = r32 + the last guide act's result stays on the board (phase.stepHold, 1600 ms) before the question opens, Escape never clears a locked answer, Free play / Play again / start title / invite ring take the tool theme, more room for hi/gu start hook and summary headings",
+      "frozenAt": "2026-10-07T17:43:39.583Z",
+      "bytes": 234790
+    },
+    "r34": {
+      "runtime": "0a02c300a3a3",
+      "mascot": "6349bb6d59f7",
+      "note": "r34 = r33 + the ACTION-DRIVEN lesson: a hint shows at once UNDER the pinned instruction (a wrong act on a guide step shows steps[k].hint via api.did(otherName); a wrong answer shows its ladder rung) and stays until the child acts again; the classroom holds are gone (no taps for a hint, a right answer, a closing line, the summary rows or exploring); the arrow pages long lines only and a tap on the bubble is the teacher's skip",
+      "frozenAt": "2026-10-08T06:42:36.238Z",
+      "bytes": 238902
+    },
+    "r35": {
+      "runtime": "5b18d71a1f71",
+      "mascot": "6349bb6d59f7",
+      "note": "r35 = r34 + the header key is a manual HINT key (lightbulb, label Hint / संकेत / સંકેત): a guide step's hint, or the ladder rung for an open question, stronger on each press; with nothing to hint it shows the lines again",
+      "frozenAt": "2026-10-08T06:55:31.806Z",
+      "bytes": 240444
+    },
+    "r36": {
+      "runtime": "b9a40b5b7a47",
+      "mascot": "6349bb6d59f7",
+      "note": "r36 = r35 + a built-in 'Type your answer, then press Enter.' line (UI.typeIt, en/hi/gu) shown under the pinned instruction when the Answer key is tapped or a first digit is typed, cleared by Close, a wrong answer's hint, a right answer or the next question",
+      "frozenAt": "2026-10-08T07:11:04.183Z",
+      "bytes": 241847
+    },
+    "r37": {
+      "runtime": "6427992aa778",
+      "mascot": "6349bb6d59f7",
+      "note": "r37 = r36 + classroom skip fixes: a tap skips a celebration or a closing line at once (nudge order: parked page, celebration next, reading end, piece), the 1.4 s walk can be skipped, win/closing/summary/free lines and Work's api.say never park (only instruction lines page), and a hint is never dropped (drawn alone when no two-part layout fits)",
+      "frozenAt": "2026-10-08T07:19:34.720Z",
+      "bytes": 242975
+    },
+    "r38": {
+      "runtime": "26568d76c812",
+      "mascot": "6349bb6d59f7",
+      "note": "r38: party popper + confetti when a phase completes; free play between phases left by one Next phase key (AskBar mode next / classic key); toolApi.next() leaves it; getState party/freeBetween",
+      "frozenAt": "2026-10-08T07:37:23.805Z",
+      "bytes": 251720
+    },
+    "r39": {
+      "runtime": "0df90b247830",
+      "mascot": "6349bb6d59f7",
+      "note": "r39 = r37 + the PARTY: a party popper and confetti (the tool's THEME colours, ~2.3 s) when the 3 questions of a phase are done, a pop before the chime, bigger after the last phase; the walk to the next phase waits for the party; getState().party. NO free play between phases (owner, 2026-10-08): free play is the summary page's. (r38 tried a Next phase key and was dropped)",
+      "frozenAt": "2026-10-08T07:57:26.585Z",
+      "bytes": 249364
+    },
+    "r40": {
+      "runtime": "ebfd6ed7e386",
+      "mascot": "6349bb6d59f7",
+      "note": "r40 = r39 + the party goes off at the RIGHT ANSWER of a phase's last question (pop, chime, confetti), not when the win animation is over (winMs can be 5 s); the walk to the next phase still waits for the party; confetti palette: the tool's pink and butter plus mint and orange, never browns or white",
+      "frozenAt": "2026-10-08T08:16:32.314Z",
+      "bytes": 249983
+    },
+    "r41": {
+      "runtime": "0ee0c401852c",
+      "mascot": "6349bb6d59f7",
+      "note": "r41 = r40 + fixes from the visual and play reviews: hi/gu hint band and bubble lines get a 1.38 em pitch (no touching lines; a layout counts only when its block fits); the built-in 'type your answer' line is a neutral grey band and reads 'Choose your answer.' on a choice question; poppers clear of the bubble corner and the phase pills; a nopark line's pieces (win, closing, summary, Work's say) are read for their reading time in a classroom (they were flashed for 30 ms); a miss never shows a weaker hint than the Hint key already brought; the confetti ends on a restart, a dot or a skip; a tap on something inert in the working area (strip, card, empty board, disabled key) or a typed digit during a guide step shows the step's hint (a wrong act)",
+      "frozenAt": "2026-10-08T09:43:02.585Z",
+      "bytes": 253079
+    },
+    "r42": {
+      "runtime": "f7fe318c16ca",
+      "mascot": "6349bb6d59f7",
+      "note": "r42 = r41 + hi/gu bubble: pitch 1.45 em, 6 units of room above the first line, band pad 4, no band-less layout (a pair that does not fit is the tool's to shorten); the win line is read to its END (paceNext waits while a line is still being read, 6 s more at most, a classroom skip still goes at once); a transparent floor rect under Work so a tap on EMPTY board is an inert tap (a wrong act in a guide step)",
+      "frozenAt": "2026-10-08T10:22:48.428Z",
+      "bytes": 254365
+    },
+    "r43": {
+      "runtime": "6bb63190fae6",
+      "mascot": "6349bb6d59f7",
+      "note": "r43 = r42 + hi/gu hint layout: the first line sits at least 12 units under the bubble's top (topOf 12, the ink rises ~8 over y0), so a three-line pair falls back to the hint alone and the tool shortens it to 1 + 1 lines",
+      "frozenAt": "2026-10-08T10:32:06.361Z",
+      "bytes": 254509
+    },
+    "r44": {
+      "runtime": "991a8e39a4ce",
+      "mascot": "6349bb6d59f7",
+      "note": "r44 = r43 + a SIMPLE summary page (owner): the bubble says one plain line, UI.summaryLine 'Here is the summary of what you have learned.' (hi, gu translated); the phases' learned lines are no longer read out one by one, no summary row blinks (summaryRow stays -1), the tool's FINISH_LINE is not shown on the summary; finished still goes 5 s after the page opens",
+      "frozenAt": "2026-10-08T10:57:15.693Z",
+      "bytes": 254189
+    },
+    "r45": {
+      "runtime": "7226a963c153",
+      "mascot": "6349bb6d59f7",
+      "note": "r45 = r44 + the NEXT KEY (opt-in tool.nextKey; navigable mounts only): nothing moves on by itself after a right answer; a Next key (Next / Next phase; the last phase's opens the summary) appears where the Answer key was once the celebration is over; tap, Enter and toolApi.next() press it; props.autoNext keeps the timers (scripted runs); getState().nextKey",
+      "frozenAt": "2026-10-08T11:34:38.179Z",
+      "bytes": 257652
+    },
+    "r46": {
+      "runtime": "7c264232f349",
+      "mascot": "6349bb6d59f7",
+      "note": "r46 = r44 + the NEXT KEY (opt-in tool.nextKey; navigable mounts only): nothing moves on by itself after a right answer; a Next key (Next / Next phase; the last phase's opens the summary) takes the Answer key's place once the celebration is over (a phase's last question: once the party is over, the closing line read meanwhile); tap, Enter and toolApi.next() press it; props.autoNext keeps the timers (scripted runs); getState().nextKey. r45 was this before the key moved up to the party's end: never pin it",
+      "frozenAt": "2026-10-08T11:36:05.811Z",
+      "bytes": 258014
+    },
+    "r47": {
+      "runtime": "c1e6676e0411",
+      "mascot": "6349bb6d59f7",
+      "note": "r47 = r44 + the NEXT KEY (opt-in tool.nextKey; navigable mounts only): nothing moves on by itself after a right answer; a blinking Next key (Next / Next phase; the last phase's opens the summary) takes the Answer key's place once the celebration is over (a phase's last question: once the party is over, the closing line read meanwhile); tap, Enter and toolApi.next() press it; props.autoNext keeps the timers (scripted runs); getState().nextKey. r45 and r46 are earlier drafts of it: never pin them",
+      "frozenAt": "2026-10-08T11:41:46.077Z",
+      "bytes": 259209
+    },
+    "r48": {
+      "runtime": "d664867e8244",
+      "mascot": "6349bb6d59f7",
+      "note": "r48 = r44 + the NEXT KEY (opt-in tool.nextKey; navigable mounts only): nothing moves on by itself after a right answer; a blinking Next key (Next / Next phase; the last phase's opens the summary) takes the Answer key's place once the celebration is over (a phase's last question: once the party is over, the closing line read meanwhile); tap, Enter and toolApi.next() press it; props.autoNext keeps the timers (scripted runs); getState().nextKey. r45-r47 are earlier drafts of it: never pin them",
+      "frozenAt": "2026-10-08T11:42:44.915Z",
+      "bytes": 259502
+    },
+    "r49": {
+      "runtime": "e1478f85b4e0",
+      "mascot": "6349bb6d59f7",
+      "note": "r49 = r48 + CARD ANSWER (opt-in tool.cardAnswer, board layout): the answer is given ON the Fraction / Decimal card (blinking, a tap opens the keypad, the digits fill its boxes part-1/part-2), Yes/No keys blink in the question bar, the Answer key blinks on any other question, a where-to-tap line under the instruction, drawer without the slot (a Close key in its place); api.openAnswer/closeAnswer/pickPart/cardReady, BlinkRing; getState().answerOn",
+      "frozenAt": "2026-10-08T12:42:21.557Z",
+      "bytes": 265485
+    },
+    "r50": {
+      "runtime": "1311fc507661",
+      "mascot": "6349bb6d59f7",
+      "note": "r50 = r48 + CARD ANSWER (opt-in tool.cardAnswer, board layout): the answer is given ON the Fraction / Decimal card (it blinks, a tap opens the keypad, the digits fill its boxes part-1/part-2), Yes/No keys blink in the question bar, the Answer key blinks on any other question, a built-in where-to-tap line (hint kind type) under the instruction, a drawer without the slot (a Close key in its place); api.openAnswer/closeAnswer/pickPart/cardReady, BlinkRing; getState().answerOn/cardReady/hintKind. r49 was this without hintKind: never pin it",
+      "frozenAt": "2026-10-08T12:49:41.368Z",
+      "bytes": 265544
+    },
+    "r51": {
+      "runtime": "3830f3566185",
+      "mascot": "6349bb6d59f7",
+      "note": "r51 = r48 + CARD ANSWER (opt-in tool.cardAnswer, board layout: answer ON the Fraction/Decimal card, blinking; Yes/No keys in the question bar; blinking Answer key otherwise; where-to-tap line; drawer without the slot; no keypad for a choice answer; no digit past a not-ready card) + the Next key 0.5 s sooner and not waiting for the win line, labelled Summary after the last phase, stale-key fix for a classroom skip; getState().answerOn/cardReady/hintKind. r45-r50 are drafts: never pin them",
+      "frozenAt": "2026-10-08T13:32:26.206Z",
+      "bytes": 266864
+    },
+    "r52": {
+      "runtime": "e564a962d4bc",
+      "mascot": "6349bb6d59f7",
+      "note": "r52 = r48 + CARD ANSWER (opt-in tool.cardAnswer, board layout: answer ON the Fraction/Decimal card, blinking; Yes/No keys in the question bar; blinking Answer key otherwise; where-to-tap line; drawer without the slot; no keypad for a choice answer; no digit past a card whose picture still wants an act) + the Next key 0.5 s sooner and not waiting for the win line, labelled Summary after the last phase, stale-key fix for a classroom skip; getState().answerOn/cardReady/hintKind. r45-r51 are drafts: never pin them",
+      "frozenAt": "2026-10-08T13:40:41.867Z",
+      "bytes": 267041
+    }
+  }
+}

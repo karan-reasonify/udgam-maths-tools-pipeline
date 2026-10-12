@@ -1,0 +1,22 @@
+---
+name: gen-tools
+description: Make the 2D tools of an Udgam maths chapter of any class (or one slot) from the lpv2 plan by the runbook udgam_maths_claude.md - one builder agent per slot, check, maths / visual / play reviewers, upload audit, report; upload only on the user's word. Use whenever asked to make, start, continue, remake or review tools for an Udgam chapter or slot of any class (e.g. "make tools for class 4 udgam chapter 2", "make tools for class 3 udgam chapter 1", "make the tool for M1.S1.T2.C4"), or when /gen-tools is invoked. Arguments - <class> <publication|school> <chapter> [SLOT_ID] [lean] (lean = fewer reviewers, fewer tokens).
+argument-hint: <class> <publication|school> <chapter> [SLOT_ID] [lean]
+---
+
+# Make Udgam maths tools (any class)
+
+The same as `.claude/commands/gen-tools.md`; both are shortcuts into the runbook.
+
+1. Read `udgam_maths_claude.md` (the runbook) and follow its flow, steps 0 to 8, for the class and chapter
+   named in the request (the class number is `<N>`: 3, 4, 5, ...). Step 0 starts with the class folder: if
+   `class<N>/` does not exist, run `node classctl.mjs new --class <N>` and tell the user the defaults it prints
+   (children's age, plan ids, textbook folder, viewer port, agent prefix, skin libraries). With a SLOT_ID, make
+   only that slot ("make ONE tool"). With `lean`, use the lean mode (step 5: the maths reviewer on every tool;
+   visual and play only where a tool brings something new); without it, the full mode. The agents are
+   `<pfx>-tool-builder` and the rest, `<pfx>` being the class's `agentPrefix` (`udgam` for class 4,
+   `udgam<N>` otherwise).
+2. If class, publication or school, or chapter is missing, ask for it. "udgam" means publication
+   indiannica. A concept id such as `M1.S1.T2.C4` names the slot `M1.S1.T2.C4.2D1`.
+3. Stop at the report (step 8). Upload (step 10) only when the user says so. A remake of an already built
+   chapter (the runbook's REMAKE section) and a `classctl sync --apply` also wait for the user's word.

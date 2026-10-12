@@ -1,0 +1,382 @@
+diff --git a/udgam_maths_claude.md b/udgam_maths_claude.md
+index 171abac..cc10749 100644
+--- a/udgam_maths_claude.md  (the real file)
++++ b/udgam_maths_claude.md  (the staged proposal)
+@@ -1,25 +1,33 @@
+-# Udgam Class 4 maths: 2D tool runbook (for Claude Code)
++# Udgam maths: 2D tool runbook (for Claude Code), for any class
+ 
+-The one file to follow when making the 2D tools of an Udgam (publication indiannica) Class 4 maths
+-chapter from its lpv2 plan. It says **what runs, in what order, who does it, and when to stop for the
+-user.** The rules for a tool live in `class4/docs/` (BUILD_CARD, LAYOUT, CHECKS); this file does not
+-repeat them.
++<!-- classctl:runbook-v1 -->
++
++The one file to follow when making the 2D tools of an Udgam (publication indiannica) maths chapter of **any
++class** (3, 4, 5, ...) from its lpv2 plan. It says **what runs, in what order, who does it, and when to stop
++for the user.** The rules for a tool live in `class<N>/docs/` (BUILD_CARD, LAYOUT, CHECKS, PATTERNS); this
++file does not repeat them.
++
++Throughout: `<N>` is the class number in the request, `class<N>/` its folder (its own CLI, lib, runtime,
++docs, viewer and tools), `<pfx>` its agent prefix (`agentPrefix` in `class<N>/pipeline.config.json`: class 4
++is `udgam`, every other class `udgam<N>`) and its chapter ids read `indiannica_eng_maths<N>_ch<n>`. The
++folders are kept in step by `classctl.mjs` (next to this file), never by copying by hand.
+ 
+ ## The one line
+ 
+ ```
+-according to @udgam_maths_claude.md make tools for class 4 udgam chapter 2
++according to @udgam_maths_claude.md make tools for class <N> udgam chapter <n>
+ ```
+ 
+ Variants, same flow:
+-- `... chapter 2 lean`: **lean mode**, fewer tokens (step 5): the maths reviewer on every tool, the visual
++- `... chapter <n> lean`: **lean mode**, fewer tokens (step 5): the maths reviewer on every tool, the visual
+   reviewer and play tester only where a tool brings something new. Without `lean` it is the full mode.
+-- `make ONE tool for class 4 udgam chapter 2 [M1.S1.T2.C4]`: one slot only (add `lean` the same way).
+-- `continue chapter 2`: pick up where the chapter stands (`node cli.mjs status --ch 2`).
+-- `review round for chapter 2: <answers>`: apply the user's review answers (step 9).
+-- `upload chapter 2`: step 10, only when the user says it.
++- `make ONE tool for class <N> udgam chapter <n> [M1.S1.T2.C4]`: one slot only (add `lean` the same way).
++- `continue chapter <n> of class <N>`: pick up where the chapter stands (`node cli.mjs status --ch <n>`).
++- `review round for chapter <n> of class <N>: <answers>`: apply the user's review answers (step 9).
++- `upload chapter <n> of class <N>`: step 10, only when the user says it.
++- `remake chapter <n> of class <N>`: the REMAKE path below, only when the user says it.
+ 
+-`/gen-tools 4 udgam 2 [SLOT_ID] [lean]` is a shortcut into this same flow.
++`/gen-tools <N> udgam <n> [SLOT_ID] [lean]` is a shortcut into this same flow.
+ 
+ ## Non-negotiables
+ 
+@@ -36,72 +44,114 @@ Variants, same flow:
+    edited). A finished chapter moves forward only when the user asks for it.
+ 4. **A general rule goes into the pipeline, not one tool.** When a review answer applies to every tool
+    (as "corrections end on the whole answer" did), put it in the docs, the runtime or a check, log it
+-   in §7, and apply it to all tools of the chapter.
++   in §7, and apply it to all tools of the chapter. When it applies to every class, it goes into the class
++   that is being worked on and reaches the others through `classctl sync` (non-negotiable 10).
+ 5. **Ask about real doubts; don't assume.** Batch them into one question with a recommended option. When
+-   the user answers "do what suits class 4", choose on pedagogy and state each choice in one line.
++   the user answers "do what suits class <N>", choose on pedagogy and state each choice in one line.
+ 6. **Token rules.** Read only what a step names. Never read `slot.json`, `plan.json`, previews,
+-   `.build/`, `output-preview/`, `runtime/mascot.tsx` or PDFs (deny rules enforce most of them).
++   `.build/`, `output-preview/`, `runtime/mascot.tsx`, `voice.tsx`, `images.tsx` or PDFs (deny rules enforce most
++   of them).
+ 7. **Never touch, and never read, another chapter's tools.** The read fence refuses it (one session,
+-   one chapter) and `class4/docs/PATTERNS.md` holds every pattern a builder used to copy out of a
++   one chapter) and `class<N>/docs/PATTERNS.md` holds every pattern a builder used to copy out of a
+    finished tool. A deliberate cross-chapter look is `node cli.mjs fence --off`, then `--on` again.
+-8. **Real input only through `class4/lib/check/playkit.mjs`** (one headless Chrome per agent). The
++   **Never touch another class's folder either:** a session works in `class<N>/` only (the builder agents
++   say so), and slot ids repeat across classes.
++8. **Real input only through `class<N>/lib/check/playkit.mjs`** (one headless Chrome per agent). The
+    shared Playwright browser is off limits in parallel work; builders step on each other there.
+-9. **Every tool speaks three languages: English, Hindi, Gujarati** (from 2026-09-23; chapters 1-5 were
+-   retrofitted). The tool's English stays exactly as the checks read it and gets a `TR` table keyed by the
+-   English (`docs/PATTERNS.md` §11); the voice is baked: `node cli.mjs voice <slot> --ch <n>` writes the
+-   generated `voice.tsx` (Google TTS, about $0.15 a tool). A chapter needs runtime **r21 or later**
+-   (step 2: r21 is the one that can load clip files). **Never pin r11** (an older, unguarded clip loader
+-   that fails `port`). `voice.tsx` is about 1 MB of base64: never read it, never edit it. **Publishing:**
+-   the host's hard limit is 1 MB a tool and the clips alone are 1-2 MB, so `publish` writes a **ship
+-   copy** (the way NCERT ships): each clip becomes a `<sha1>.ogg` file in `<chapter>/2dtool/_voice/`, the
+-   tool keeps a text -> file index and `TOOL_VOICE_BASE` (about 240 KB), and the local tool stays inline.
+-   `publish --upload` puts the clips up first and verifies them over the public URL.
+-
+-## Agents (`.claude/agents/`)
++9. **Know whether the chapter's runtime is VOICED (legacy) or SILENT.** `node cli.mjs runtime status` names
++   each chapter's pin; a runtime is silent when its source has `SILENT_VOICE`
++   (`grep -c SILENT_VOICE class<N>/runtime/frozen/<rN>/runtime.tsx`: a count, never read the file). Class 4's
++   chapters 1-14 are pinned to r21, a voiced runtime; class 5 is silent from r30; a class made by
++   `classctl new` has the silent or voiced head of its source class. Every tool speaks **three languages on
++   screen: English, Hindi, Gujarati**: its English stays exactly as the checks read it and a `TR` table, keyed
++   by the English, carries the translation (`docs/PATTERNS.md` §11). What differs:
++   - **Voiced runtime (legacy; class 4):** the lesson is spoken. The English uses the device voice; the
++     Hindi and Gujarati speech is **baked**: `node cli.mjs voice <slot> --ch <n>` writes the generated
++     `voice.tsx` (Google TTS, about $0.15 a tool). The chapter needs runtime **r21 or later** (r21 can load
++     clip files); **never pin r11** (an older, unguarded clip loader that fails `port`). `voice.tsx` is about
++     1 MB of base64: never read it, never edit it. **Publishing:** the host's hard limit is 1 MB a tool and the
++     clips alone are 1-2 MB, so `publish` writes a **ship copy** (the way NCERT ships): each clip becomes a
++     `<sha1>.ogg` file in `<chapter>/2dtool/_voice/`, the tool keeps a text -> file index and
++     `TOOL_VOICE_BASE` (about 240 KB), and the local tool stays inline. `publish --upload` puts the clips
++     up first and verifies them over the public URL.
++   - **Silent runtime (class 5, and classes made from it):** nothing is spoken; sound effects only. The
++     bubble prints every line and is the guide: guide `steps` with a hint each, `api.did(...)` at every
++     click, the Hint key, one sentence a bubble page; the lesson moves on when the child acts (PATTERNS §9b).
++     Nothing is baked: `voice` only says so, `check`'s `tr-coverage` proves the printed Hindi and Gujarati,
++     and `publish` reads "silent: no clips". A voiced tool's builder agent reads the legacy voiced section
++     of PATTERNS and the voice steps below; a silent one follows the new style. Never mix the two in one
++     chapter.
++10. **Code moves between classes with `classctl`, never by hand, and only on the user's word.**
++    `node classctl.mjs status` shows each class, its runtime head, how many code files differ from the
++    newest class and the last sync. `node classctl.mjs sync --from <M> --to <N>` is a **dry run** (it lists
++    every file NEW / CHANGED / MERGED / CONFLICT / IDENTICAL / SKIPPED and writes nothing); `--apply` first
++    backs up the target's code and needs the user's word. A sync never touches `work/`, `output-preview/`,
++    `runtime/frozen/`, a chapter's pin, `.fence.json`, `assets/`, the caches, `.env` or `config.json`, and keeps
++    the target's own `BUILD_CARD.md` §7. Read `CLASSCTL.md` before a sync. A sync can carry code that does
++    not fit a class's pinned chapters (a silent class's checks into a voiced class): read the dry run's
++    "review before --apply" and "capability" notes and ask.
++
++## Agents (`.claude/agents/`, named `<pfx>-<role>`)
+ 
+ | agent | when | does | edits |
+ |---|---|---|---|
+-| `udgam-tool-builder` | step 4, one per slot, in parallel; step 5b (language pass) by SendMessage | builds `tool.tsx` until `check` passes, reports; then adds the Hindi/Gujarati `TR` table and bakes the voice | its slot's `tool.tsx` (and the generated `voice.tsx`) only |
+-| `udgam-maths-reviewer` | step 5, per tool | maths, textbook method, giveaways, corrections, plan fidelity | nothing |
+-| `udgam-visual-reviewer` | step 5, per tool | contact sheets of every state, summary, free play vs LAYOUT | nothing (makes PNGs) |
+-| `udgam-play-tester` | step 5, per tool | real mouse, finger and keys through every control and path | nothing (makes PNGs) |
+-| `udgam-upload-auditor` | step 7, per chapter | output files vs the live plan, host emulator, dry run | nothing |
+-| `udgam-image-agent` | step 5c, optional, per tool: only when the brief's Description/For the child/Look/Student controls name a concrete everyday object that is shared, cut, counted or measured | writes `images.json`, runs `node cli.mjs images make`, views the pictures | nothing in `tool.tsx` (writes `images.json`; the CLI writes `images.tsx`) |
+-
+-Models (the `model:` line of each agent file, to keep tokens down): the builder runs on Opus; the three
+-reviewers on Sonnet; the auditor on Haiku. Which reviewers run depends on the mode (step 5: full or
+-lean); in both, re-run a reviewer only after a real change.
++| `<pfx>-tool-builder` | step 4, one per slot, in parallel; step 5b (language pass) by SendMessage | builds `tool.tsx` until `check` passes, reports; then adds the Hindi/Gujarati `TR` table (and, on a voiced runtime, bakes the voice) | its slot's `tool.tsx` (and the generated `voice.tsx`) only |
++| `<pfx>-maths-reviewer` | step 5, per tool | maths, textbook method, giveaways, corrections, plan fidelity | nothing |
++| `<pfx>-visual-reviewer` | step 5, per tool | contact sheets of every state, summary, free play vs LAYOUT | nothing (makes PNGs) |
++| `<pfx>-play-tester` | step 5, per tool | real mouse, finger and keys through every control and path | nothing (makes PNGs) |
++| `<pfx>-upload-auditor` | step 7, per chapter | output files vs the live plan, host emulator, dry run | nothing |
++| `<pfx>-image-agent` | step 5c, optional, per tool: only when the brief's Description/For the child/Look/Student controls name a concrete everyday object that is shared, cut, counted or measured | writes `images.json`, runs `node cli.mjs images make`, views the pictures | nothing in `tool.tsx` (writes `images.json`; the CLI writes `images.tsx`) |
++
++The agent files are generated from `_templates/agents/*.md.tpl` by `classctl` (`new` and `sync`), so they are
++the same for every class except the class number, the prefix and the age band. Models (the `model:` line of
++each agent file, to keep tokens down): the builder runs on Opus; the three reviewers on Sonnet; the auditor
++on Haiku. Which reviewers run depends on the mode (step 5: full or lean); in both, re-run a reviewer only
++after a real change.
+ 
+ The reviewers report `must-fix`, `should-fix` or `question`. The main session decides: it sends
+ must-fix and should-fix items to the tool's builder (SendMessage to that builder; it knows its code) or
+ makes a one-line fix itself, and it batches the questions for the user. Reviewers never fix.
+ 
+-## The flow for a chapter (main session, in `class4/`)
+-
+-**0. Pre-flight.** `node cli.mjs doctor`. The DB must say `ok`. If it refuses, the error names this
+-machine's IP: tell the user that IP must be whitelisted and stop; build from a saved plan only if they say
+-so (`fetch --plan-file`).
+-
+-**1. Fetch.** `node cli.mjs fetch --class 4 --pub udgam --ch <n>`. Show the mount table (slot id, tool,
++## The flow for a chapter (main session, in `class<N>/`)
++
++**0. Pre-flight.**
++- *The class folder.* From the maths_pipeline root: `node classctl.mjs status`. If `class<N>/` does **not
++  exist**, run `node classctl.mjs new --class <N>` (add `--from <M>` to copy a class other than the newest;
++  `--dry-run` first if in doubt) and **tell the user the defaults it prints**: the children's age (class + 4
++  to + 6 years), the plan ids (`indiannica_eng_maths<N>_ch<n>`), the textbook folder (and whether it exists:
++  classctl never creates it), the viewer port, the agent prefix, the skin libraries, and that
++  `node_modules` is linked to the source class's. It also lists the `permissions.deny` rules the new class
++  needs in `.claude/settings.json`: it only **proposes** them (`--wire` adds them), so tell the user and let
++  them decide. The new folder has its own config, agents, runtime head
++  (no frozen snapshot until `runtime freeze`), docs with a fresh §7, and no work. If `class<N>/` exists but
++  is behind the newest class (`status` shows how many files differ), say so and offer a `classctl sync`
++  (non-negotiable 10); do not sync unasked.
++- *The database.* In `class<N>/`: `node cli.mjs doctor`. The DB must say `ok`. If it refuses, the error names
++  this machine's IP: tell the user that IP must be whitelisted and stop; build from a saved plan only if
++  they say so (`fetch --plan-file`).
++
++**1. Fetch.** `node cli.mjs fetch --class <N> --pub udgam --ch <n>`. Show the mount table (slot id, tool,
+ phases). Confirm it is the right chapter. Say which plan version is live, and which runtime the chapter
+ was pinned to (fetch pins a new chapter to the head of that day; it never re-pins an existing one).
+ 
+ **2. Read the chapter once.** Skim each slot's `brief.md` headings (not whole briefs). Using the chapter
+-notes below, list what this chapter needs that the runtime does not have yet (for example a decimal
+-point or a second answer box on the pad). **A missing input or a new screen element is the user's
+-decision:** ask once, with a recommended option, before any builder starts; log the answer in §7,
+-build it into the head runtime, then `node cli.mjs runtime freeze` and `runtime pin --ch <n>` so it is
+-**this chapter's** runtime. Only this chapter is re-checked; no other chapter moves, and no other
+-chapter's tools are read. A new runtime name is scanned against this chapter's tools and any chapter
+-sharing the pin (`node cli.mjs runtime status`), not against every chapter that ever existed. Small drawing needs (a clock face, coins,
+-fraction bars) are the tool's own: builders draw them in the working area.
++notes below (or, for a class without notes, the plan and the textbook pages the briefs name), list what
++this chapter needs that the runtime does not have yet (for example a decimal point or a second answer box
++on the pad). **A missing input or a new screen element is the user's decision:** ask once, with a
++recommended option, before any builder starts; log the answer in §7, build it into the head runtime,
++then `node cli.mjs runtime freeze` and `runtime pin --ch <n>` so it is **this chapter's** runtime. Only
++this chapter is re-checked; no other chapter moves, and no other chapter's tools are read. A new runtime
++name is scanned against this chapter's tools and any chapter sharing the pin (`node cli.mjs runtime status`),
++not against every chapter that ever existed. Small drawing needs (a clock face, coins, fraction bars) are
++the tool's own: builders draw them in the working area. Settle whether the chapter is on a voiced or a
++silent runtime (non-negotiable 9) now.
+ 
+ **3. Scaffold** every slot: `node cli.mjs scaffold <slot_id> --ch <n>` (an existing `tool.tsx` is work in
+ progress: keep it).
+ 
+-**4. Build.** Launch one `udgam-tool-builder` per slot, all in one message, in the background. The prompt:
+-the chapter number, the slot id, the tool's name, the chapter's notes row, any §7 decision from step 2,
+-and "report as your agent file says". Don't wait idle: while they build, nothing else runs in Chrome.
++**4. Build.** Launch one `<pfx>-tool-builder` per slot, all in one message, in the background. The prompt:
++the class and chapter number, the slot id, the tool's name, the chapter's notes row, any §7 decision from
++step 2, and "report as your agent file says". Don't wait idle: while they build, nothing else runs in Chrome.
+ 
+ **5. As each builder reports:**
+ - read its report; `node cli.mjs status --ch <n>` shows the check is fresh;
+@@ -118,32 +168,36 @@ and "report as your agent file says". Don't wait idle: while they build, nothing
+   reviewer only if its finding needed a real change.
+ 
+ **5b. Language pass (Hindi and Gujarati).** When a tool's English is final (its reviewers are clean),
+-SendMessage its builder "language pass": its agent file says how (TR table, `tx` in Work and Thumb,
+-`node cli.mjs voice <slot> --ch <n>`, the `shots --lang hi|gu` fit sheets, `check` on 0 FAIL 0 WARN).
+-The chapter must be pinned to **r21 or later** (`runtime pin --ch <n> --version <latest>`, then this step
+-covers every tool of it). Run the builders of a chapter in parallel; Google TTS answers 429 when they all
+-bake at once: the `voice` re-run picks up from its cache, nothing is billed twice. Ready means: every
+-tool has a TR table, `voice` reports no line without an entry, both fit sheets are clean, `check` is
+-63/0/0. Lines built at run time stay silent in hi/gu: the builder lists them and the main session
+-tells the user. A native speaker should read the first translations (terms, Gujarati especially).
++SendMessage its builder "language pass": its agent file says how. In both flows the tool gets its `TR` table,
++`tx` in `Work` and `Thumb`, the `shots --lang hi|gu` fit sheets, and `check` on 0 FAIL 0 WARN.
++- *Voiced runtime:* the chapter must be pinned to **r21 or later** (`runtime pin --ch <n> --version <latest>`,
++  then this step covers every tool of it); the builder also runs `node cli.mjs voice <slot> --ch <n>`.
++  Run the builders of a chapter in parallel; Google TTS answers 429 when they all bake at once: the `voice`
++  re-run picks up from its cache, nothing is billed twice. Ready means: every tool has a TR table, `voice`
++  reports no line without an entry, both fit sheets are clean, `check` is 63/0/0. Lines built at run time stay
++  silent in hi/gu: the builder lists them and the main session tells the user.
++- *Silent runtime:* nothing is baked; `check`'s `tr-coverage` row lists any printed line still missing and
++  must pass. Lines built at run time show English in hi/gu unless TR has that exact line: the builder lists
++  them and the main session tells the user.
++A native speaker should read the first translations (terms, Gujarati especially).
+ 
+ **5c. Image pass (optional).** Only for a tool whose brief names a concrete everyday object the child shares, cuts,
+-counts or measures (`docs/IMAGES.md` §2; often the answer is no skin). Launch `udgam-image-agent` with the chapter
+-number and the slot id. The pictures go in `<slot>/images.tsx` (generated by `node cli.mjs images make`, never read or
+-edited; class 5's library is reused free, read-only). Then SendMessage the builder to draw `<Skin>` over its plain
+-shapes (`docs/PATTERNS.md` §13); `check` proves `skin-keys` and `skins-fallback`. `Skin` is in the head runtime from
++counts or measures (`docs/IMAGES.md` §2; often the answer is no skin). Launch `<pfx>-image-agent` with the class and
++chapter number and the slot id. The pictures go in `<slot>/images.tsx` (generated by `node cli.mjs images make`, never read or
++edited; the skin libraries named in the class's config are reused free, read-only). Then SendMessage the builder to draw `<Skin>` over its plain
++shapes (`docs/PATTERNS.md`, the skins section); `check` proves `skin-keys` and `skins-fallback`. `Skin` is in the head runtime from
+ 2026-10-07: a chapter pinned before that first needs `runtime freeze` + `runtime pin --ch <n>` on the user's word
+ (non-negotiable 3); a chapter fetched later has it from its first pin.
+ 
+ **6. Chapter-wide pass.** When every tool is in: `node cli.mjs check` for each (fresh, on the final
+ runtime and checker; it ports on a pass), one after another with `C4_CHROME_POOL=4`.
+ 
+-**7. Audit.** Launch `udgam-upload-auditor` for the chapter (live dry run for every tool).
++**7. Audit.** Launch `<pfx>-upload-auditor` for the chapter (live dry run for every tool).
+ 
+ **8. Clean and report.** `node cli.mjs clean <slot_id> --ch <n>` for each (keeps the source; removes PNGs,
+ `.build/` and the preview HTML, which is only `check`'s own page). From chapter 2 there is no HTML
+ deliverable: the user reviews the TSX + JSON pair in the viewer. Start it in the background
+-(`node cli.mjs view`, http://localhost:5183) and report to the user:
++(`node cli.mjs view`; the port is `viewerPort` in the class's config, class 4 http://localhost:5183) and report to the user:
+ - a table: tool (linked to its `output-preview/<chapter_id>/<slot_id>/<slot_id>.tsx`) · what the child does,
+   in one line;
+ - what changed from the plan and why, per tool (short);
+@@ -158,7 +212,34 @@ that tool's builder. Then steps 6 to 8 again.
+ --upload` (md5-verified). If the dry run listed `lp2_media` rows to update, ask, then `--apply`. Report
+ the live URLs.
+ 
+-## Chapter notes (Udgam Class 4: what each chapter's tools will need)
++## Remake: a chapter that is already built, made again on a newer pipeline (only on the user's word)
++
++Remaking is a re-pin plus new tools. It is never done by a sync and never started unasked. Example: class 4
++chapter 3, built voiced on r21, made again in the silent, board-layout style of class 5. One chapter per
++session; no other chapter moves (non-negotiables 3 and 7).
++1. The user names the chapter ("remake class 4 chapter 3"). Ask whether the old tools stay live until the
++   new ones are published (the default: yes).
++2. The class needs the newer code and runtime. `node classctl.mjs status`; if class `<N>` is behind, a `sync`
++   first (dry run, the user's word, non-negotiable 10). Then `node cli.mjs runtime freeze` and
++   `node cli.mjs runtime pin --ch <n>` (the user's word; log the row in BUILD_CARD §7). A chapter marked
++   sealed (`runtime status`) is unsealed only on the user's word.
++3. **Set each slot's old source aside for reference**, inside the slot's own folder: `tool.tsx` ->
++   `tool.legacy.tsx`. A voiced chapter's `voice.tsx` -> `voice.tsx.off` (a silent runtime fails a stale
++   voice; never read or edit it). The checks, `scaffold`, `port` and `clean` never read `*.legacy.tsx`;
++   the slot's builder may read its own `tool.legacy.tsx` (the maths, the numbers, the translations) and
++   nothing of another chapter.
++4. `node cli.mjs scaffold <slot_id> --ch <n>` makes a fresh `tool.tsx`; then steps 3 to 9 as for any chapter.
++5. The live copies stay in the bucket until step 10 (`publish` keeps a backup of each live copy). The first
++   `check` of a slot re-ports over its local `output-preview` pair; copy the pair aside first if the old
++   one should stay in the viewer.
++
++## Chapter notes
++
++For a class with no notes of its own, the plan and the textbook pages the briefs name are the notes: read
++the briefs' headings once (step 2), list what the runtime lacks, ask once. Class 4's notes follow as the
++model of what to write down.
++
++### Class 4 (Udgam Class 4: what each chapter's tools will need)
+ 
+ | ch | chapter | the picture and the method | answers and input | watch for |
+ |---|---|---|---|---|
+@@ -179,7 +260,7 @@ the live URLs.
+ 
+ Chapters 5, 7, 8, 11, 12 and 13 all ask for an answer the 12-key pad cannot type. Settle the input
+ (a decimal point key, a fraction key, or two answer boxes) with the user **before** the first of them.
+-The runtime already has all three, and `class4/docs/PATTERNS.md` shows each one in use: two answer
++The runtime already has all three, and `class<N>/docs/PATTERNS.md` shows each one in use: two answer
+ boxes (`parts: [{ label, unit? }, ...]` with `answer: [a, b]`), stacked fraction boxes (`SLOT_FRACTION`,
+ `SLOT_MIXED`) and the point key (`pointKey: true`). Read PATTERNS.md, never the chapter that introduced
+ them. A two-part answer in 11, 12 or 13 uses the boxes; money in 13 uses the point key.
+@@ -188,8 +269,8 @@ A new runtime feature goes into the head, is frozen, and is pinned to **your** c
+ (non-negotiable 3). Its new top-level names must not collide with a tool of your chapter or of any
+ chapter sharing your pin (`node cli.mjs runtime status` lists them): scan those tools for top-level
+ declarations, item fields (`parts` was a ch 1 tool's own item field) and Work props before the edit.
+-Announce a runtime or lib edit to the other chapter sessions before and after ("settled"): `lib/` and
+-the checks are still shared by every chapter, and only the runtime is pinned.
++Announce a runtime or lib edit to the other chapter sessions of the class before and after ("settled"):
++`lib/` and the checks are still shared by every chapter of the class, and only the runtime is pinned.
+ 
+ ## Lessons from chapter 1 (so no builder repeats them)
+ 
+@@ -209,25 +290,27 @@ the checks are still shared by every chapter, and only the runtime is pinned.
+   dot. The host emulator now declares them too, and `host-names` fails a tool that uses one bare.
+ - Every mount walks phase to phase as NCERT; `finished` comes only from the summary page, 5 s after it
+   opens. A tool's shared field never overrides the runtime's `complete` (true only once `finished` went).
+-- (ch 2) The voice never repeats itself. The user heard it: one hint for every question of a phase, and a
++- (ch 2, voiced) The voice never repeats itself. The user heard it: one hint for every question of a phase, and a
+   teach that restated question 1 before question 1 said it again. Each question gets its own `miss`, and
+   the teach stops before the first question's words (`voice-no-repeat`). A played probe then heard the
+   three questions of a phase end on one instruction: only the first says it in full, the others in their
+   own words. Win lines and answer sentences are the tool's own; the maths reviewer reads them for repeats.
++  (On a silent runtime the same rule is `bubble-no-repeat`: the bubble never shows a line twice in a phase.)
+ 
+ ## Lessons from the language work (so no builder repeats them)
+ 
+ - `TR` is keyed by the English **byte for byte**; change an English line and its key is stale (the
+-  `voice` command lists lines with no entry, but not a key that matches nothing).
+-- The voice bakes only what it can enumerate: `api.say("...")` **literals**, the plan's lines and
++  `voice` command lists lines with no entry, and on a silent runtime `tr-coverage` does, but neither
++  finds a key that matches nothing).
++- *(voiced)* The voice bakes only what it can enumerate: `api.say("...")` **literals**, the plan's lines and
+   the items' `say`/`ask`/`miss`. A template or a `say()` wrapper is silent in hi/gu: write a literal per
+-  case.
+-- Baked voice is inline `data:` clips in the LOCAL `voice.tsx` (preview, checks and the viewer read one
++  case. *(silent)* A line built at run time shows English in hi/gu unless TR has that exact line.
++- *(voiced)* Baked voice is inline `data:` clips in the LOCAL `voice.tsx` (preview, checks and the viewer read one
+   self-contained file; `port` allows 4 MB for it) and separate `<sha1>.ogg` files when PUBLISHED (the
+   ship copy: the runtime's one `fetch(voiceBase() + uri)` reads them; `port` allows exactly that call).
+   Baked-or-silent is decided **per language**: hi/gu speak only from clips, English keeps the device
+   voice (so the English voice checks stay valid).
+-- A voiced tool's dry run (`publish <slot> --ch N`) shows the ship copy: the `files` line reads "N KB
++- *(voiced)* A voiced tool's dry run (`publish <slot> --ch N`) shows the ship copy: the `files` line reads "N KB
+   (ship copy; M KB with the clips inline)" and the `voice` line "N clip files: k to upload, j already in
+   the bucket". `REFUSED ... over the 1024 KB hard limit` means the ship copy is still too big. The
+   first upload of a chapter's clips also proves the CDN serves them (same CORS headers as the tool).
+@@ -245,15 +328,18 @@ the checks are still shared by every chapter, and only the runtime is pinned.
+ 
+ | what | where |
+ |---|---|
+-| rules for a tool, procedure, runtime API, decisions | `class4/docs/BUILD_CARD.md` |
+-| every pattern a tool uses (read this, never another chapter) | `class4/docs/PATTERNS.md` |
+-| the final layout | `class4/docs/LAYOUT.md` |
+-| what `check` proves | `class4/docs/CHECKS.md` |
+-| the runtime a chapter is built on | `class4/work/<chapter_id>/runtime.json` -> `class4/runtime/frozen/<rN>/` |
+-| the head runtime (where a new feature is written) | `class4/runtime/runtime.tsx` |
+-| the reference tool (ch 1 only, and only from a ch 1 session) | `class4/work/indiannica_eng_maths4_ch1/M1.S1.T2.C4.2D1/tool.tsx` |
+-| a slot's work | `class4/work/<chapter_id>/<slot_id>/` (brief.md, tool.tsx, status.json, preview) |
+-| the upload pair | `class4/output-preview/<chapter_id>/<slot_id>/<slot_id>.tsx` + `.json` |
+-| real input for testing | `class4/lib/check/playkit.mjs` |
+-| Hindi and Gujarati (TR table, baked voice) | `class4/docs/PATTERNS.md` §11 · `node cli.mjs voice` (`lib/build/voice.mjs`) · `<slot>/voice.tsx` (generated, never read) |
+-| CLI (in `class4/`) | `doctor` · `list` · `fetch` · `scaffold` · `preview` · `check` · `shots` · `clean` · `status` · `port` · `publish` · `runtime` · `fence` · `view` · `voice` |
++| rules for a tool, procedure, runtime API, decisions | `class<N>/docs/BUILD_CARD.md` |
++| every pattern a tool uses (read this, never another chapter) | `class<N>/docs/PATTERNS.md` |
++| the final layout | `class<N>/docs/LAYOUT.md` |
++| what `check` proves | `class<N>/docs/CHECKS.md` |
++| the runtime a chapter is built on | `class<N>/work/<chapter_id>/runtime.json` -> `class<N>/runtime/frozen/<rN>/` |
++| the head runtime (where a new feature is written) | `class<N>/runtime/runtime.tsx` |
++| the reference tool (class 4 ch 1 only, and only from a class 4 ch 1 session) | `class4/work/indiannica_eng_maths4_ch1/M1.S1.T2.C4.2D1/tool.tsx` |
++| a slot's work | `class<N>/work/<chapter_id>/<slot_id>/` (brief.md, tool.tsx, status.json, preview) |
++| the upload pair | `class<N>/output-preview/<chapter_id>/<slot_id>/<slot_id>.tsx` + `.json` |
++| real input for testing | `class<N>/lib/check/playkit.mjs` |
++| Hindi and Gujarati (TR table; baked voice on a voiced runtime) | `class<N>/docs/PATTERNS.md` §11 · `node cli.mjs voice` (voiced only) · `<slot>/voice.tsx` (generated, never read) |
++| the class folders and their config | `class<N>/pipeline.config.json` (class, textbooks, viewerPort, agentPrefix, skinLibraries) |
++| carrying code between classes, a new class | `node classctl.mjs status \| sync \| new \| restore \| rootdocs` · `classctl.manifest.json` · `CLASSCTL.md` |
++| the agent templates | `_templates/agents/*.md.tpl` (the files in `.claude/agents/` are generated from them) |
++| CLI (in `class<N>/`) | `doctor` · `list` · `fetch` · `scaffold` · `preview` · `check` · `shots` · `clean` · `status` · `port` · `publish` · `runtime` · `fence` · `view` · `voice` · `images` |

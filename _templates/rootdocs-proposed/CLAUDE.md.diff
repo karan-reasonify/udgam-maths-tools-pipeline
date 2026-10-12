@@ -1,0 +1,65 @@
+diff --git a/CLAUDE.md b/CLAUDE.md
+index 4122c0f..1a79cb9 100644
+--- a/CLAUDE.md  (the real file)
++++ b/CLAUDE.md  (the staged proposal)
+@@ -1,29 +1,38 @@
+-# maths_pipeline: Udgam Class 4 maths tools
++# maths_pipeline: Udgam maths tools, one pipeline folder per class (`class4/`, `class5/`, ...)
+ 
+-- Everything lives in `class4/`. Read `class4/docs/BUILD_CARD.md` (procedure) and `class4/docs/LAYOUT.md`
+-  (the final layout); `class4/docs/CHECKS.md` says what `check` proves; `class4/docs/PATTERNS.md` shows how a
+-  tool uses the runtime (read it instead of another chapter's tool). The order of work is in `class4/README.md`.
+-- To make a chapter's tools, follow **`udgam_maths_claude.md`** (the runbook): "according to
+-  @udgam_maths_claude.md make tools for class 4 udgam chapter N" (add `lean` for fewer tokens: the maths
+-  reviewer on every tool, visual and play only where a tool brings something new), or `/gen-tools 4 udgam N [SLOT_ID] [lean]`.
+-  It uses the agents in `.claude/agents/`: `udgam-tool-builder` (one per slot) and four that only report:
+-  `udgam-maths-reviewer`, `udgam-visual-reviewer`, `udgam-play-tester`, `udgam-upload-auditor`.
+-- CLI (run in `class4/`): `doctor | list | fetch | scaffold | preview | check | shots | clean | status | port |
+-  publish | runtime | fence | view | voice` (`check` ports on a pass; `publish` is a dry run unless `--upload`;
+-  `runtime freeze|pin|seal|status` is the per-chapter runtime; `voice <slot>` bakes the Hindi and Gujarati
+-  speech into the generated `voice.tsx`).
+-- **Three languages (from 2026-09-23):** every tool also runs in Hindi and Gujarati: its English stays as it is
+-  and a `TR` table (keyed by the English) carries the translation; the voice is baked into `voice.tsx`
+-  (`PATTERNS.md` §11, runbook step 5b, non-negotiable 9). A chapter needs runtime r21 or later; never pin
+-  r11. `voice.tsx` is generated base64: never read or edit it.
+-- Stage now: **pipeline v1**, set from the reference tool `M1.S1.T2.C4.2D1` (chapter 1). Chapters are made one
+-  after another; **publish only after every chapter is made, and only on the user's word**.
++- Each class has its own folder `class<N>/` (CLI, lib, runtime, docs, viewer, tools). Read
++  `class<N>/docs/BUILD_CARD.md` (procedure) and `class<N>/docs/LAYOUT.md` (the final layout);
++  `class<N>/docs/CHECKS.md` says what `check` proves; `class<N>/docs/PATTERNS.md` shows how a tool uses the
++  runtime (read it instead of another chapter's tool). The order of work is in `class<N>/README.md`.
++- To make a chapter's tools, follow **`udgam_maths_claude.md`** (the runbook, the same for every class):
++  "according to @udgam_maths_claude.md make tools for class <N> udgam chapter <n>" (add `lean` for fewer
++  tokens), or `/gen-tools <N> udgam <n> [SLOT_ID] [lean]`. If `class<N>/` does not exist the runbook makes it
++  (`node classctl.mjs new --class <N>`) and tells the owner the defaults used. It uses the agents in
++  `.claude/agents/`, named by the class's `agentPrefix` (`udgam` for class 4, `udgam<N>` for the rest):
++  `<pfx>-tool-builder` (one per slot) and five that only report: `-maths-reviewer`, `-visual-reviewer`,
++  `-play-tester`, `-upload-auditor`, `-image-agent` (generated from `_templates/agents/`).
++- CLI (run in `class<N>/`): `doctor | list | fetch | scaffold | preview | check | shots | clean | status | port |
++  publish | runtime | fence | view | voice | images` (`check` ports on a pass; `publish` is a dry run unless
++  `--upload`; `runtime freeze|pin|seal|status` is the per-chapter runtime).
++- **Carrying code between classes: `node classctl.mjs`** (in this folder; read `CLASSCTL.md`). `status` shows each
++  class; `sync --from <M> --to <N>` is a dry run until `--apply` (then it backs up the target first) and never
++  touches `work/`, `output-preview/`, `runtime/frozen/`, pins, `.fence.json`, `assets/` or the target's own
++  BUILD_CARD §7; `new --class <N>` makes a class folder from the newest class's code. Never copy code between
++  class folders by hand, and run a `sync --apply` only on the owner's word.
++- **Voiced or silent runtime.** A chapter's pinned runtime either speaks (voiced, legacy: class 4, pinned r21,
++  Hindi and Gujarati baked into the generated `voice.tsx`) or is silent (the runtime has `SILENT_VOICE`: class
++  5 from r30; the bubble is the guide, a `TR` table carries the printed Hindi and Gujarati). The runbook's
++  non-negotiable 9 says what each means; never read or edit `voice.tsx` (generated base64); never pin class
++  4's r11.
++- Stage now: **pipeline v1**, set from the reference tool `M1.S1.T2.C4.2D1` (class 4, chapter 1). Chapters are made
++  one after another; **publish only after every chapter of a class is made, and only on the user's word**.
+ - **Each chapter builds on its own runtime.** `work/<chapter_id>/runtime.json` pins a frozen snapshot in
+-  `class4/runtime/frozen/<rN>/`; `class4/runtime/runtime.tsx` is the head, where a new feature is written.
++  `class<N>/runtime/frozen/<rN>/`; `class<N>/runtime/runtime.tsx` is the head, where a new feature is written.
+   A head edit reaches a chapter only through `node cli.mjs runtime freeze` + `runtime pin --ch N` + a
+   re-check of that chapter, with a decision logged in the build card. No other chapter is ever restaled.
+-- **One session, one chapter.** A read fence refuses another chapter's `work/`; every pattern a builder
+-  needs is in `class4/docs/PATTERNS.md`. A deliberate look: `node cli.mjs fence --off`, then `--on`.
++- **One session, one chapter, one class.** A read fence refuses another chapter's `work/`; every pattern a
++  builder needs is in `class<N>/docs/PATTERNS.md`. A deliberate look: `node cli.mjs fence --off`, then `--on`.
++  Slot ids repeat across classes: work only in your class's folder.
+ - The LP comes from lpv2 (`lp2_*` tables). Env precedence: process > `.env` > `Python-backend/.env`. The
+   GCS key is `config.json`. Never open `.env` or `config.json`; they hold secrets.
+ - Token rules: build card + layout + the slot's `brief.md` + `tool.tsx` only; edit, never rewrite; let `check`

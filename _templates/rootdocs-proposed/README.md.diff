@@ -1,0 +1,32 @@
+diff --git a/README.md b/README.md
+index 9765772..5efa907 100644
+--- a/README.md  (the real file)
++++ b/README.md  (the staged proposal)
+@@ -1,15 +1,20 @@
+-# maths_pipeline: Udgam Class 4 maths tools
++# maths_pipeline: Udgam maths tools, one pipeline folder per class
+ 
+-**Stage: pipeline v1.** The layout, controls, voice, modes and checks were settled on one reference tool
+-(chapter 1, `M1.S1.T2.C4.2D1` Place Value Builder) and every tool is now built the same way. Chapters are
++**Stage: pipeline v1.** The layout, controls, modes and checks were settled on one reference tool
++(class 4, chapter 1, `M1.S1.T2.C4.2D1` Place Value Builder) and every tool is built the same way. Chapters are
+ made one after another; publishing comes after every chapter is made.
+ 
+-Start at [`class4/README.md`](class4/README.md): setup, the order of work for a chapter, and where
+-everything is.
++Start at the class's own README, for example [`class4/README.md`](class4/README.md): setup, the order of work for
++a chapter, and where everything is. To make a chapter's tools follow [`udgam_maths_claude.md`](udgam_maths_claude.md)
++(the same runbook for every class). To carry the code of one class to another, or to make a new class folder,
++use [`classctl.mjs`](classctl.mjs) (read [`CLASSCTL.md`](CLASSCTL.md)).
+ 
+ | path | what |
+ |---|---|
+-| `class4/` | the Class 4 pipeline: CLI, runtime, docs, tools in progress |
++| `class4/`, `class5/`, ... | one pipeline per class: CLI, runtime, docs, tools in progress (`class4/` also hosts the class 5 chapter 9 work) |
++| `classctl.mjs`, `classctl.manifest.json`, `CLASSCTL.md` | `status`, `sync` (code between classes, dry run first), `new --class N`, `restore`, `rootdocs`; tests in `classctl.test.mjs` |
++| `_templates/agents/` | the agent files every class gets (`.claude/agents/<prefix>-*.md` are generated from them) |
++| `_backups/` | what `classctl` saves before it changes a class (made on `--apply`) |
+ | `.env`, `config.json` | secrets (DB, GCS key); `Python-backend/.env` fills in anything `.env` lacks |
+-| `textbooks/class-4-udgam/` | the book (the plan already carries each topic's text); `textbooks/mascot.png` is the mascot |
++| `textbooks/` | the books (the plan already carries each topic's text); `textbooks/mascot.png` is the mascot |
+ | `_archive/icse6_corpus.zip` | the replaced ICSE Class 6 pipeline |

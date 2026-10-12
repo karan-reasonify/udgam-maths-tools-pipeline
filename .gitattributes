@@ -1,0 +1,13 @@
+# Keep every byte exactly as it was written. The checks hash each tool's source (tool.tsx + its pinned runtime), and the
+# pipeline's own files use LF or CRLF on purpose, so a clone with core.autocrlf (the Git for Windows default) must NEVER
+# rewrite line endings: that would make every finished tool read "source changed since its last check".
+* -text
+*.png binary
+*.webp binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.ogg binary
+*.zip binary
+*.pdf binary

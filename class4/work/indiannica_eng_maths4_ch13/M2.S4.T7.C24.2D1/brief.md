@@ -1,0 +1,100 @@
+# M2.S4.T7.C24.2D1 · shop_divider · Shop Divider
+indiannica_eng_maths4_ch13 · indiannica_eng_maths4_ch13_v2 v2 (active) · "Money" · segment M2.S4 "Multiplying and Dividing Money" · topic M2.S4.T7 "The Cost of One, and How Many" · printed p.156 to p.158
+
+> Runtime supplies the standard chrome (bands, zones, header, runs box, slot + pad, bubble, phase bar, type scale, content colours, sounds, finished/idle/restart). `scaffold` puts each phase's concept, teach line, hint ladder, closing line and items into tool.tsx; they are not repeated here. Build the working area and the mechanics.
+
+## What it is
+**Description:** Share a total cost equally to find the cost of one, find a ticket's price from what was spent, pay out a price again and again to find how many can be bought, and keep the money left over.
+**Why:** Divide whole rupees to find the cost of one or how many can be bought, keep the money left over, and give every answer in the unit the question asks for.
+**Look:** A shop counter with a till on the left and a shelf on the right, a question card at the top, and a share mat and a buy lane between them.
+**Context:** Grade 4, the chapter's recap and the dividing half of its last section. An adult sees shopping sums. What is actually being settled is what each division answers. Dividing a total cost by the number of things gives the cost of one, which is money. Dividing money by the price of one gives how many can be bought, which is a number of things, and the remainder is money too little for one more. The closing ticket table asks for the price of one ticket and then the total spent, which adds what was spent and not one ticket from each row. Every division in the chapter divides a whole number of rupees, and this tool divides nothing else.
+**For the child:** Share the total to find the cost of one. Divide the money by the price to find how many. The money left is the remainder. Say rupees or things in every answer.
+**Teaching notes:** Run a tuck shop with a price list in whole rupees and a purse of play money for each pair before the tool is opened, and have them multiply back to check every answer. Then use the tool to keep the unit of each answer in view. Dividing a total cost by the number of things gives the cost of one, in rupees. Dividing money by a price gives how many can be bought, a number of things, and the remainder is money too little for one more. Every division in the chapter divides a whole number of rupees; none divides an amount with paise, and this tool claims nothing more. The closing ticket table asks for the price of one ticket in each row and then the total spent, which adds what was spent. The book's own answer labels each price with the buyer's name, but it is the price of one ticket. The vocabulary box asks for flashcards with definitions and never gives any, so give the plain meanings. Currency is the money a country uses, in notes and coins. A note is paper money and a coin is metal money. To buy is to pay money for something. A bill lists the things bought and their prices. Cost is the price to be paid. The self-assessment's first line, identifying notes and coins, is practised nowhere in the chapter; the Money Tray's first phase, which sorts them by value, is the nearest.
+**Placement:** Consolidate
+**Also mounted in:** M2.S4.T7
+
+## Look
+**Chrome:** dim #9AA4AC · ink #2B2B2B · rule #C9BCA6 · panel #F2E4CE · paper #FFFDF7 · accent #5B6770
+**Voice:** rate 0.92, pitch 1.06 · figure: None
+
+## Stage (tool-specific layout)
+Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Shop Divider' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: on the first phase the piles filled against the things the total is shared among, and on the second the rows priced against the rows of the table, two numbers in ink, the first climbing by one as each pile or row is done and the second fixed at what this phase holds. On the third and fourth phases it carries the things paid for alone, one number climbing by one as the lane pays out each price, with no second number beside it, because how many is the question being asked. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The question card runs across the top of the working area, 1086 by 76 at 64,214, saying what is known and what is asked, with its last words, the thing asked for, underlined in near-black. The till stands at the left, 260 by 420 at 64,302, holding a whole number of rupees as play notes and coins sorted by value, with its amount written under it in deep blue. The share mat stands beside it, 520 by 250 at 340,302, laying out as many empty piles as there are things, in rows of up to six, and dealing the till's money onto them a round at a time, changing a note for smaller notes and coins of the same total whenever the notes will not go round, until every pile holds the same; one pile's amount is written under it in deep blue. The division frame stands at the right, 280 by 250 at 870,302, writing the same division in full, one digit brought down at a time, its quotient in deep blue when it is money and in sky blue when it counts things. On the second phase a ticket table replaces the mat and the frame, 810 by 250 at 340,302: a row for each group of tickets, with columns for tickets bought, amount spent and price of one ticket, the last blank until it is found, and a total line under the amount spent column only. Tapping a row opens the share mat over the table for that row alone. The buy lane runs along the foot, 620 by 150 at 340,570: a price tag at its left, and the things paid for standing in a counted row beside it in rows of ten. Each tap pays the price out of the till into the lane and sets one thing on the shelf, and the lane stops when what is left in the till is less than the price. The money left tray sits at the right end of the lane, 180 by 150 at 970,570, holding what the lane could not spend, written under it in reddish purple. A check control on the tray multiplies back and adds the money left. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across, with a unit strip under it reading rupees and things, and the answer slot will not close on a number whose unit is not the one the question asks for. On the fourth phase the slot is split in two, the left half marked things in sky blue and the right half marked rupees left in reddish purple, and each half takes its own number. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The rupees of every amount, the rupees column and the value printed on every note and coin are deep blue. The paise of every amount, the paise column and every cell standing for paise are green. The dot between rupees and paise is vermilion, a clear round dot, and wherever amounts stand in columns it sits on a near-black dotted line. A rupee carried from the paise, and a rupee broken into a hundred paise with the digits it rewrites, are amber. The change handed back, the money left and a remainder are reddish purple, so money coming back is never mistaken for a cost. A count of things, a number multiplied by, how many notes of one value or how many can be bought, is sky blue, because a count of things is not money. The zeros that fill the paise column of a whole-rupee amount in column working are grey. Every play note is one plain pale blue rectangle and every play coin one plain steel disc, all notes one size and all coins one size, each printed with its value and nothing else. No coin below one rupee is drawn anywhere: paise are shaded cells on a strip ruled into a hundred in ten blocks of ten, so a full strip is exactly one rupee. Chrome never borrows one of those and none of them is ever used for chrome: every column rule, dotted line, tick, bracket, strike line, bill rule and panel edge is near-black. Every reading survives with the colour taken away, because a digit is told apart by the column it stands in, a carry by the circle it sits in, a count by the box beside the times sign or the slot marked things, and the change or money left by the tray or line that holds it, before any of them is told by a colour. Grey never means faint: a zero in a paise column is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. A rupees figure that goes down by one is struck through once with the new figure written above it, and never rubbed out. Every amount in the till is a whole number of rupees, because every division in this chapter divides whole rupees, and on the first two phases every total shares out exactly among its things, so no pile is ever asked to hold paise. The unit printed in the answer slot is the unit the question card's last words ask for, and it does not change to fit an answer.
+
+## Opening (first frame of every mount)
+Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the question card gives a number of things and their total cost, the till holds that total, and the share mat and the division frame stand empty. On the second the ticket table stands in the mat's place, rows of tickets bought and amounts spent with the price column blank and the total line empty. On the third a price tag stands at the head of the buy lane, the till holds the money and the row on the shelf is empty. On the fourth the till holds an amount the price will not divide exactly, and the answer slot is split in two, things and rupees left. The running count at the top left holds the piles or rows done, or the things paid for, and the answer slot and the pad stand empty down the right. One thing moves, once: the question card's last words, or the blank price column, or the price tag, or the split slot, gives one slow pulse while the voice asks what the question is asking for. That pulse is the only invitation, and a finger on it is the whole way in.
+
+## Phases (what each mount shows and does; the words are in tool.tsx)
+
+### 1 · The cost of one
+**Screen:** a question card giving a number of things and their total cost, with the share mat and the frame empty
+**Does:** shares the total into as many equal piles as there are things, then works the division in the frame and reads one pile
+**Win:** every pile holds the same amount, and the frame's answer matches one pile, in rupees
+**Feels:** the total is dealt out fairly, and one share is the price of one thing
+**Goal:** when each thing costs the same, the cost of one is the total cost divided by the number of things
+**Observe:** Every pile held the same amount, and one pile matched the frame's answer, in rupees.
+**Wrong (each is a traceback on the working area):**
+- multiplies Rs 522 by six and writes Rs 3132, which is the cost of thirty-six lunch boxes, not one. → the share mat lays out six piles and deals the till's Rs 522 onto them until each holds eighty-seven rupees. The child's Rs 3132 is set beside the till, and the frame shows what it is: the cost of thirty-six lunch boxes at eighty-seven rupees each. The child's number stays in the slot.
+- writes eighty-seven lunch boxes, giving the cost of one as a number of things. → the unit strip under the slot lights rupees, the unit the question card's last words ask for, and one pile on the mat is lit with its amount under it in deep blue, eighty-seven rupees in notes and coins. The frame's quotient turns deep blue, money, and the child's eighty-seven stays in the slot.
+**Misconception to break:** Multiplying 522 by 6, which gives the cost of 36 lunch boxes, not one.
+
+### 2 · The price of one ticket
+**Screen:** a ticket table with the tickets bought and the amount spent in each row, and the price column blank
+**Does:** divides each row's amount spent by its tickets, writes the price of one, then adds the amounts spent for the total
+**Win:** each price settles in its row, and the total spent lands under the amounts spent, not under the prices
+**Feels:** the amount spent paid for every ticket in the row, and one ticket is one share of it
+**Goal:** the price of one ticket is the amount spent divided by the number of tickets, and the total spent adds what was spent
+**Observe:** Each price of one ticket settled in its row, and the total spent landed under the amounts spent.
+**Wrong (each is a traceback on the working area):**
+- gives the amount spent in a row, Rs 858, as the price of one ticket. → the share mat opens over the row and deals its Rs 858 into six piles, one for each ticket bought, and every pile holds one hundred and forty-three rupees. That amount settles in the price column, and the child's Rs 858 stays in the slot.
+- adds one ticket from each row, Rs 143 and Rs 70, and calls Rs 213 the total spent. → the total line lights under the amount spent column, not under the prices, and the two amounts spent slide down into it: Rs 858 and Rs 560 make Rs 1418. The child's Rs 213 is shown for what it is, the cost of one ticket from each row, two tickets where fourteen were bought, and it stays in the slot.
+**Misconception to break:** Adding one ticket from each row, Rs 143 and Rs 70, and calling Rs 213 the total spent.
+
+### 3 · How many can be bought
+**Screen:** a price tag, the till holding an amount, and an empty row on the shelf
+**Does:** pays the price out again and again, or divides in the frame, and counts the things bought
+**Win:** the row of things stands complete, and its count lands in the answer slot marked things
+**Feels:** each payment buys one thing, so counting the payments counts the things
+**Goal:** how many things an amount buys is the money divided by the price of one, and the answer is a number of things
+**Observe:** The lane paid the price out once for each thing on the shelf, and the count landed in the slot marked things.
+**Wrong (each is a traceback on the working area):**
+- writes Rs 163, as if the number of notebooks were money. → the unit strip under the slot lights things, the unit the question card's last words ask for, and the frame's quotient turns sky blue. The lane pays nine rupees out for each notebook, first at walking pace and then ten at a time, and the notebooks stand on the shelf in rows of ten, sixteen full rows and three more, with nothing left in the till. The child's Rs 163 stays in the slot.
+- multiplies Rs 1467 by the price of nine and writes thirteen thousand two hundred and three notebooks. → the lane pays out nine rupees for each notebook, and the child's number is set beside the till: each notebook costs nine rupees, so there cannot be more notebooks than rupees, and the till holds only one thousand four hundred and sixty-seven. The frame then divides, and the child's number stays in the slot.
+**Misconception to break:** Writing Rs 163, as if the answer were money.
+
+### 4 · Money left over
+**Screen:** a till whose amount does not divide exactly by the price, with one slot for things and one for money left
+**Does:** divides, puts the quotient in the things slot and the remainder in the money slot, then multiplies back and adds to check
+**Win:** both slots fill, and the things times the price, with the money left added, rebuild the money in the till
+**Feels:** the rupees left are real money, just too few to buy another
+**Goal:** the remainder is the money left over, too little to buy one more
+**Observe:** What stayed in the tray was less than the price, and the lane would not pay for one more.
+**Wrong (each is a traceback on the working area):**
+- writes two hundred and sixty-six pencils and stops, dropping the one rupee left. → the right half of the split slot, rupees left, lights in reddish purple beside the child's answer, and the money left tray is lit with one rupee coin in it. The check runs: six times two hundred and sixty-six is one thousand five hundred and ninety-six, and the one rupee left makes one thousand five hundred and ninety-seven. The child's answer stays in the slot.
+- counts the rupee left as one more pencil and writes two hundred and sixty-seven. → the lane tries to pay six rupees for one more pencil and finds one rupee in the till, and the price tag lights beside it, six against one. No pencil is set on the shelf, the rupee stays in the money left tray, and the child's two hundred and sixty-seven stays in the slot.
+**Misconception to break:** Dropping the Rs 1 left, or counting it as one more pencil.
+
+## Delight
+The fourth phase, the moment the check control runs. Every thing on the shelf turns back into its price, one after another, each price flying back into the till, and last the money left tips in from its tray. The till fills to exactly the amount it began with, not a rupee over and not a rupee short, and its amount under it lights. It can be run as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.
+
+**General miss line:** Read the question card again. Is the answer rupees, or things?
+
+## Answer key
+When each thing costs the same, the cost of one is the total cost divided by the number of things, and it is money. The price of one ticket is the amount spent divided by the number of tickets, and the total spent adds the amounts spent, not one ticket from each row. How many things an amount buys is the money divided by the price of one, and the answer is a number of things. In such a division the remainder is the money left over, too little to buy one more. Every division in this chapter divides a whole number of rupees. Multiply back and add the money left to check. The chapter's six words mean this. Currency is the money a country uses, in notes and coins. A note is paper money and a coin is metal money. To buy is to pay money for something. A bill lists the things bought and their prices. Cost is the price to be paid.
+
+## Student controls
+- **Question card**: says what is known and what is asked
+- **Till**: holds a whole number of rupees in notes and coins
+- **Share mat**: splits an amount into equal piles, one for each thing
+- **Division frame**: writes the same division in full beside the mat
+- **Ticket table**: holds tickets bought and amounts spent, with a blank price column and a total line
+- **Buy lane**: pays the price of one out again and again until too little is left
+- **Money left tray**: keeps the rupees left over
+- **Answer slot**: carries the unit asked for, rupees or things
+
+## State fields (getState, a resume contract)
+phase, amount, price, things, piles, tickets, spent, left, unit, complete
+
+## Textbook (this topic)
+**Pages:** 156, 157, 158
+**Key terms:** divide, cost, quotient, remainder
+Dividing a total cost finds the cost of one, dividing the money by a price finds how many can be bought, and the remainder is the money left over. Seventy rupees. The total cost is shared equally among the seven kites, so divide four hundred and ninety by seven. Ninety rupees. Divide what was spent by the number of tickets. The amount spent is still five hundred and forty rupees; the price of one is a different question. Thirty. Divide the money by the price of one. The answer is a number of toys, not an amount of money. Twelve pens, with four rupees left. Eight twelves are ninety-six. The remainder is money too little for one more pen.

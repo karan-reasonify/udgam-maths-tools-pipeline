@@ -1,0 +1,91 @@
+{
+  "$comment": "classctl manifest: what `sync` and `new` copy between class folders, and what they never touch. Entries are matched in order (first match wins) against paths relative to a class folder, with / separators. See CLASSCTL.md.",
+  "version": 1,
+
+  "sourceClass": "newest",
+  "classDirPattern": "^class(\\d+)$",
+  "ageBand": { "from": 4, "to": 6 },
+  "legacyAgentPrefix": { "4": "udgam" },
+  "defaultAgentPrefix": "udgam{{N}}",
+  "textbooksTemplate": "C:/Users/Karan Shah/Desktop/reasonify/maths_lp/textbooks/class-{{N}}-udgam",
+  "chapterIdTemplate": "indiannica_eng_maths{{N}}_ch<n>",
+  "viewerPort": { "base": 5175, "perClass": 2, "step": 2 },
+  "agents": { "dir": ".claude/agents", "templates": "_templates/agents", "suffix": ".md.tpl" },
+
+  "code": [
+    { "glob": "cli.mjs", "category": "code" },
+    { "glob": "pipeline.config.json", "category": "code", "mode": "config-merge" },
+    { "glob": "package.json", "category": "code", "mode": "json-merge", "keepTarget": ["name", "description", "version"] },
+    { "glob": "package-lock.json", "category": "code", "mode": "lock", "why": "belongs to the target's node_modules" },
+    { "glob": "pipeline.config.example.json", "category": "code", "mode": "skip", "why": "an example of a class config (the unified code's reference); `new` writes the real one, and its literal class names must not be rewritten" },
+    { "glob": "viewer/README.md", "category": "code", "why": "a glob without a slash matches the basename at any depth, so the class README's tail rule below would catch this one: it is plain code (first match wins)" },
+    { "glob": "README.md", "category": "code", "mode": "tail", "tail": "readme" },
+    { "glob": "lib/**", "category": "code" },
+    { "glob": "runtime/runtime.tsx", "category": "code", "subst": false, "why": "the head runtime is frozen byte for byte into every class's snapshots; its comments name class4/docs and must not be rewritten per class" },
+    { "glob": "runtime/skeleton.tsx", "category": "code" },
+    { "glob": "runtime/mascot.tsx", "category": "code", "generated": true },
+    { "glob": "viewer/public/bundle.*", "category": "code", "generated": true, "subst": false },
+    { "glob": "viewer/**", "category": "code" },
+    { "glob": "docs/BUILD_CARD.md", "category": "docs", "mode": "tail", "tail": "buildcard" },
+    { "glob": "docs/PORTING_TO_*.md", "category": "docs", "mode": "skip", "why": "a note written for one class" },
+    { "glob": "docs/**", "category": "docs" }
+  ],
+
+  "tails": {
+    "readme": {
+      "markers": ["^<!-- classctl:notes -->"],
+      "afterLastFence": true,
+      "about": "README.md: the part above the class notes is code and is synced; the class notes (after the marker, or after the last ``` block) stay the target's"
+    },
+    "buildcard": {
+      "markers": ["^## 7\\."],
+      "about": "docs/BUILD_CARD.md: sections 1-6 are neutral and synced; section 7 (decisions log) and 8 (open questions) are the target's own"
+    }
+  },
+
+  "neverTouch": [
+    "work/**",
+    "output-preview/**",
+    "runtime/frozen/**",
+    ".fence.json",
+    "node_modules/**",
+    ".images-cache/**",
+    ".voice-cache/**",
+    ".build/**",
+    "assets/**",
+    ".classctl/**",
+    "*.tmp.mjs"
+  ],
+
+  "classKeys": ["defaults.class", "textbooks", "viewerPort", "agentPrefix", "skinLibraries"],
+
+  "substitutions": {
+    "enabled": true,
+    "textExt": [".mjs", ".md", ".json", ".ts", ".tsx", ".css", ".html", ".js", ".map"],
+    "skipGlobs": ["package-lock.json"],
+    "rules": [
+      { "find": "\\bclass{{SRC}}\\b", "replace": "class{{DST}}" },
+      { "find": "maths{{SRC}}_ch", "replace": "maths{{DST}}_ch" }
+    ],
+    "lint": ["\\bClass {{SRC}}\\b", "\\bclass{{SRC}}\\b", "\\bmaths{{SRC}}\\b", "\\budgam{{SRC}}\\b"]
+  },
+
+  "runbook": {
+    "marker": "classctl:runbook-v1",
+    "files": ["udgam_maths_claude.md", "CLAUDE.md"]
+  },
+
+  "rootDocs": [
+    "CLAUDE.md",
+    "udgam_maths_claude.md",
+    "README.md",
+    ".claude/commands/gen-tools.md",
+    ".claude/skills/gen-tools/SKILL.md",
+    ".claude/skills/build-tool/SKILL.md"
+  ],
+
+  "wiring": {
+    "settings": ".claude/settings.json",
+    "about": "`new` clones the source class's permissions.deny rules (./class<SRC>/...) for the new class"
+  }
+}

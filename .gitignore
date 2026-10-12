@@ -1,0 +1,56 @@
+# What git leaves out of the Udgam maths pipeline. A clone needs: `npm install` in each class folder, its own
+# `.env` and `config.json` (see .env.example, config.example.json and README.md "After a clone"), nothing else.
+# Kept in git on purpose: the code (class*/lib, cli.mjs, runtime/runtime.tsx, runtime/frozen/** = the immutable
+# runtimes every chapter is pinned to, viewer sources, docs), each tool's source and its records in work/
+# (tool.tsx, voice.tsx, images.tsx/json, brief.md, slot.json, status.json, runtime.json, mounts.md), the root runbook,
+# classctl, _templates/, .claude/ (agents, skills, commands, hook, settings.json) and the mascot (mascot.png).
+
+# ---- secrets and machine state: never commit ----
+.env
+.env.*
+!.env.example
+config.json
+.fence.json
+.claude/settings.local.json
+.claude/*.lock
+
+# ---- installed or rebuilt by a command (npm install; node cli.mjs view; node cli.mjs check/port) ----
+node_modules
+class*/viewer/public/bundle.*
+.build
+class*/output-preview/
+
+# ---- local caches: a clone makes its own (TTS clips, raw Gemini pictures and their cost ledger, sync bases) ----
+class*/.voice-cache/
+class*/.images-cache/
+class*/.classctl/
+
+# ---- made again by every run inside work/ ----
+class*/work/**/plan.json
+class*/work/**/*.preview.html
+class*/work/**/*.png
+class*/work/**/*.jpg
+class*/work/**/*.jpeg
+class*/work/**/*.webp
+class*/work/**/*.gif
+class*/work/**/voice.tsx.off
+class*/work/**/pack/
+class*/work/**/readlist.md
+
+# ---- third-party material, backups and scratch ----
+*.pdf
+_archive/
+_backups/
+_regression*/
+_unify-work/
+.playwright-mcp/
+*.tmp
+*.tmp.mjs
+*.log
+NUL
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.jpeg
+/textbooks

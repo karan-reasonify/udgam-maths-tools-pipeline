@@ -1,0 +1,33 @@
+# Preflight: what tools are failed on (build it right the first time)
+
+Read this FIRST and whole; it is one page. Each rule names the check row that decides it (`docs/CHECKS.md` has the row). A number here is
+a pointer: **the check decides**, so if a number and a check ever differ, the check is right. Rules marked *(silent)* are for a
+SILENT runtime (the bubble is the guide, nothing is spoken; `readlist.md` says which your chapter is); on a VOICED runtime read
+`PATTERNS.md` §9v for the voice rules instead. A rule about a feature (guide steps, Next key, card answer) applies only when the pinned runtime has it.
+
+## The lesson *(silent)*
+1. **One sentence, one bubble page.** Every instruction and every hint (a step's `say` and `hint`, a question's `say`, every `miss` and ladder rung) is ONE sentence that fits ONE page (`one-page`: English FAILS, Hindi and Gujarati WARN). A hint is at most 80 characters (the check decides), about 40 when its instruction takes two lines (`hint-fit`). Each piece at most 20 words and 110 characters, no en or em dash (`voice-lines`). No line twice in a phase, a near copy counts (`bubble-no-repeat`).
+2. **Hindi and Gujarati: ONE instruction line + ONE hint line.** The bubble holds the pinned instruction and the hint under it; in hi/gu each should take one bubble line (`hint-fit` warns by name, `hint-lines-clear` reads the ink: three lines touch the outline). Shorten the TR line, never the English one the checks read.
+3. **The ladder says more each time.** `miss`, `ladder[0]`, `ladder[1]` all different, none the answer (`hint-ladder`, `hint-ladder-monotonic`). The hint shows under the pinned instruction and stays until the child acts; `Work` never says something over it (`hint-pinned`).
+4. **Win and closing lines.** A win line (`api.say`) is ONE sentence, or the question gets a `winMs` that covers its reading time (`classroom-pieces` decides: about 2.4 s a short sentence, 68 ms a character). Closing lines stay short. `learned` starts "You learned" and is at most 72 characters (`learned-lines`).
+5. **Guide steps** (when the teach lines are acts): `steps: [{ say, on, hint }]`, ONE click on ONE control a step, a hint each (unique in the phase, not its own `say`). `api.did(name)` at EVERY click on a control or piece; register `api.onEnter` so Enter, `toolApi.check()` and `solve()` perform the step; make an act safe to start twice (`guide-steps`).
+6. **Controls are the runtime's** (`Hit`, `Key`, `RoundControl`, or `control(id, label)` spread on a piece), each with a `data-control` id, labelled, at least 72 x 72 (`finger-boxes`, `no-crowding`). Everything else in the working area is plain: no `onClick` without a `data-control`, never a tool rect with an `onClick` over the floor (`guide-steps-real-wrong` clicks inert points, the empty board and digits for real at every step). Name a step's button after its act.
+7. **Opt-ins.** Keep the skeleton's `board: true` and `nextKey: true` (`board-panel`, `board-fit`, `next-key`): nothing moves on by itself, so `Work` never advances or resets the picture on a timer. A tool whose questions take fraction or decimal answers also sets `cardAnswer: true` (once, on the tool) and draws the card as PATTERNS §9e says (`card-answer`).
+8. **No free play between phases.** Free play opens only from the summary page (`no-free-between-phases`); in free play `item` is the last question, so read `stage === "free"` before any per-question flag.
+
+## The picture and the maths
+9. **Before the first answer nothing prints the answer**: not a value, a total, a reference, a step, a hint, a ladder rung, a teach line (`answer-not-echoed`; the maths reviewer reads the rest). **After a miss** the traceback redraws the maths and ends on the whole right answer, inside `pointerEvents="none"`, unmarked: no red, no cross, no word "wrong" (`wrong-is-unmarked`, `miss-shows-answer`).
+10. **Exactly three questions a phase** (`score-honesty`); use the plan's `qid` where a plan question fits.
+11. **Text and zones.** No text below the floor, 28 stage units (`type-floor`); contrast (`text-contrast`); working-area labels at most 4 words (`labels-short`); nothing leaves its zone, overlaps or leaves the stage (`zones`, `no-overlap`, `on-stage`).
+12. **Pictures: your own shapes, plus `<Skin>`** (`no-raster-in-tool`, `no-raster`, no emoji). Every `<Skin name>` exists in `images.tsx` and the plain drawing under it is the whole drawing (`skin-keys`, `skins-fallback`). Never read or edit `images.tsx`.
+13. **Host scope** (`host-scope`, `host-names`): no `export default function`, no storage or network, no bare `Image`, `File`, `Lock` or `Infinity`; a shared field is never named `key`; no helper named like the runtime's (`words`, `indian`...); drawing helpers inside `Work` are called, `{Sheet()}`, never mounted, `<Sheet/>`.
+14. **Indian commas from 1,000** everywhere, bubble lines included (`indian()`; the reviewers read it).
+
+## The three languages
+15. **`TR` for EVERY printed string** (`tr-coverage`): `TOOL_NAME`, each `concept`, steps' `say` and `hint`, `ladder`, `closing`, `learned`, each item's `say` / `ask` / `miss`, choice and `parts` labels, `FREE_LINE`, `START_HOOK`, each `api.say("...")` literal, and every word `Work`, `Thumb` and `format` draw (through `tx`). A line built at run time shows English in hi/gu unless TR has that exact line: write a literal per case. Keep hi/gu labels about as short as the English (`shots --lang hi|gu` shows the fit). Write TR when the English is final; an English edit after that changes its TR key in the same edit.
+
+## The inner loop (the order that costs least)
+16. While building run `node cli.mjs check <slot> --ch N --no-render` (seconds, no browser; the source and maths rows; it never certifies or ports). Fix every FAIL, then run ONE full `node cli.mjs check <slot> --ch N` (`C4_CHROME_POOL=2`; `CHECKS.md` says how long). A few rows exist only in a full run (`zones`, `hint-lines-clear`, `guide-steps-real-wrong`, `next-key`, `card-answer`, `phase-party`, `text-contrast`): fix what it names and run the full check again, but never chase a visual by repeated full checks. Use `shots` while building only for a layout question a row cannot answer (one sheet at a time), plus the one look at the ask and wrong sheets before you report.
+
+## Not yours
+17. Never run `clean`, `port` (a full `check` ports on a pass), `publish`, an upload or `voice` (silent: nothing to bake). Never edit the runtime, the checks, the docs, `voice.tsx`, `images.tsx` or another slot; never read another chapter. A `runtime-pin` FAIL, or a runtime gap, goes in your report. Never `sed -i` a tool file (it strips CRLF): use Edit.

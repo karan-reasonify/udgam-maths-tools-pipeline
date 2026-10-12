@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Udgam tool viewer</title>
+<link rel="icon" href="data:,">
+<style>
+  /* always light: the class viewer shown below has no dark mode, so a dark bar over it clashes and hides the buttons */
+  :root {
+    color-scheme: light;
+    --bg: #f6f7f9; --panel: #ffffff; --border: #e2e5ea; --btn-border: #b8c0cc; --chrome: #e4e9f0; --chrome-border: #c5cdd9; --ink: #1c2128; --muted: #5b6573; --accent: #2563eb;
+    --pass: #1a7f37; --warn: #9a6700; --fail: #cf222e; --stale: #8250df; --none: #8b949e;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { background: var(--bg); color: var(--ink); font-size: 14px; display: flex; flex-direction: column; }
+
+  header { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 13px 18px; background: var(--chrome); border-bottom: 1px solid var(--chrome-border); box-shadow: 0 1px 3px rgba(16, 24, 40, .1); }
+  h1 { font-size: 17px; margin: 0 4px 0 0; font-weight: 700; white-space: nowrap; }
+  label.pick { display: flex; align-items: center; gap: 8px; color: #3f4856; font-size: 13px; font-weight: 600; }
+  select, button.btn { font: inherit; font-size: 14px; font-weight: 600; color: var(--ink); background: var(--panel); border: 1px solid var(--btn-border); border-radius: 8px; padding: 7px 10px; min-height: 36px; }
+  select { max-width: 190px; min-width: 110px; }
+  #selClass { max-width: 125px; min-width: 100px; }
+  #selChapter { max-width: 240px; min-width: 170px; }
+  select:disabled, button.btn:disabled { opacity: .45; }
+  button.btn { cursor: pointer; }
+  button.btn:hover:not(:disabled) { background: var(--bg); }
+  :is(select, button, a):focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .spacer { flex: 1; }
+
+  /* previous / next tool: a bordered, accent-coloured group with the position in the middle */
+  .stepper { display: inline-flex; align-items: stretch; min-height: 36px; border: 1.5px solid var(--accent); border-radius: 8px; overflow: hidden; background: var(--panel); }
+  .step { display: inline-flex; align-items: center; gap: 7px; padding: 0 14px; border: 0; background: color-mix(in srgb, var(--accent) 10%, var(--panel)); color: var(--accent); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .step .arrow { font-size: 18px; line-height: 1; }
+  .step:hover:not(:disabled) { background: var(--accent); color: #fff; }
+  .step:disabled { opacity: .4; cursor: default; }
+  .step-count { display: inline-flex; align-items: center; padding: 0 14px; font-size: 13px; font-weight: 600; white-space: nowrap; color: var(--ink); border-left: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); border-right: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+  .nav { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+  .nav[hidden] { display: none; }
+  .muted { color: var(--muted); }
+  .small { font-size: 12px; }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip { font-size: 11.5px; padding: 1px 7px; border-radius: 999px; border: 1px solid currentColor; background: var(--panel); }
+  .chip.pass { color: var(--pass); } .chip.warn { color: var(--warn); } .chip.fail { color: var(--fail); }
+  .chip.stale { color: var(--stale); } .chip.unchecked { color: var(--none); }
+  a.link { color: var(--accent); text-decoration: none; font-size: 12.5px; font-weight: 600; }
+  #totals { font-weight: 600; color: #3f4856; }
+  a.link:hover { text-decoration: underline; }
+
+  .icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 0; border: 1px solid var(--btn-border); border-radius: 8px; background: var(--panel); color: var(--muted); cursor: pointer; }
+  .icon-btn:hover { background: var(--bg); color: var(--ink); }
+  .icon-btn.active { color: var(--accent); }
+  .icon-btn[hidden] { display: none; }
+
+  main { flex: 1; display: flex; min-height: 0; }
+  .stage { flex: 1; position: relative; min-width: 0; min-height: 0; }
+  iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: var(--bg); }
+
+  /* the left panel: the class's tools, same look as the class viewer's own list */
+  .rail { flex: none; width: 280px; overflow-y: auto; padding: 8px; background: var(--chrome); border-right: 1px solid var(--chrome-border); }
+  .rail[hidden] { display: none; }
+  .rail-chapter { margin-bottom: 14px; }
+  .rail-chapter-title { font-size: 11.5px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: #3f4856; padding: 4px 8px 2px; }
+  .rail-chapter-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; padding: 0 8px 6px; font-size: 11.5px; font-weight: 600; color: #3f4856; }
+  .tool-item { display: flex; align-items: flex-start; gap: 8px; width: 100%; padding: 7px 8px; border: 0; border-radius: 6px; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+  .tool-item:hover:not(:disabled) { background: #d6dde8; }
+  .tool-item.selected { background: var(--panel); box-shadow: inset 3px 0 0 var(--accent), 0 1px 2px rgba(16, 24, 40, .14); }
+  .tool-item:disabled { opacity: .5; cursor: default; }
+  .tool-item:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .badge { flex: none; width: 9px; height: 9px; margin-top: 5px; border-radius: 50%; background: var(--none); }
+  .badge.pass { background: var(--pass); } .badge.warn { background: var(--warn); } .badge.fail { background: var(--fail); }
+  .badge.stale { background: transparent; box-shadow: inset 0 0 0 2px var(--stale); }
+  .badge.unchecked { background: transparent; box-shadow: inset 0 0 0 2px var(--none); }
+  .tool-title { display: block; font-size: 13.5px; font-weight: 600; }
+  .tool-item.selected .tool-title { font-weight: 700; }
+  .tool-id { display: block; font-size: 11px; color: var(--muted); font-family: ui-monospace, Consolas, monospace; }
+  .note { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; background: var(--bg); }
+  .note > div { max-width: 640px; }
+  .note pre { text-align: left; white-space: pre-wrap; background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-size: 12px; }
+  .note.hidden { display: none; }
+  .spin { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; vertical-align: -2px; margin-right: 8px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .spin { animation: none; } }
+  @media (max-width: 1500px) { #totals { display: none; } }
+  @media (max-width: 1280px) { .step .lbl { display: none; } }
+  @media (max-width: 720px) { header { padding: 10px 12px; } select { max-width: 100%; flex: 1; } .rail { width: 210px; } }
+</style>
+</head>
+<body>
+<header>
+  <button class="icon-btn active" id="btnRail" type="button" aria-pressed="true" aria-label="Hide tool list" title="Hide tool list" hidden>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="16" rx="2" /><line x1="9" y1="4" x2="9" y2="20" /><rect id="railShade" x="3" y="4" width="6" height="16" fill="currentColor" stroke="none" opacity="0.25" />
+    </svg>
+  </button>
+  <h1>Udgam Tools</h1>
+  <label class="pick">class <select id="selClass" aria-label="Class"></select></label>
+  <span class="nav" id="nav" hidden>
+    <label class="pick">chapter <select id="selChapter" aria-label="Chapter" disabled></select></label>
+    <span class="stepper" role="group" aria-label="Step through the tools">
+      <button class="step" id="btnPrev" type="button" title="Previous tool" aria-label="Previous tool" disabled><span class="arrow" aria-hidden="true">&#8592;</span><span class="lbl">Previous</span></button>
+      <span class="step-count" id="stepCount" aria-live="polite"></span>
+      <button class="step" id="btnNext" type="button" title="Next tool" aria-label="Next tool" disabled><span class="lbl">Next</span><span class="arrow" aria-hidden="true">&#8594;</span></button>
+    </span>
+  </span>
+  <button class="btn" id="btnRefresh" title="Reload the lists and the tool (after a check or port)" disabled>&#8635; Refresh</button>
+  <span class="spacer"></span>
+  <span class="nav" id="navMeta" hidden>
+    <span class="muted small" id="totals"></span>
+    <span class="chips" id="chips"></span>
+  </span>
+  <a class="link" id="ownTab" target="_blank" rel="noopener" title="Open this class's viewer in its own tab" hidden>own tab &#8599;</a>
+</header>
+<main>
+  <aside class="rail" id="rail" aria-label="Tools" hidden></aside>
+  <div class="stage">
+    <iframe id="frame" title="Tool viewer" allow="autoplay"></iframe>
+    <div class="note" id="note"><div><span class="spin"></span>Looking for classes&hellip;</div></div>
+  </div>
+</main>
+
+<script>
+"use strict";
+/* One page for every class. The hub's server (viewhub.mjs) finds the classes and starts a class's own viewer on its
+   port; this page embeds that viewer and drives it with postMessage:
+     hub -> viewer   { type: "udgam-viewer:select", chapterId, id }
+     viewer -> hub   { type: "udgam-viewer:ready" } once it has mounted,  { type: "udgam-viewer:selected", chapterId, id }
+                     when the child picks a tool inside the viewer.
+   Until a viewer says "ready" (a class viewer without hub support never does) the page shows only the Class dropdown,
+   Refresh and the viewer itself: no chapter dropdown, tool list or arrows, and no tool in the link or the tab title,
+   because the hub cannot know which tool that viewer is showing. */
+const $ = (id) => document.getElementById(id);
+const sel = { cls: $("selClass"), ch: $("selChapter") };
+const rail = $("rail");
+const frame = $("frame"), note = $("note");
+const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch { /* storage blocked: the page still works */ } } };
+
+const S = { classes: [], cls: null, meta: null, tools: [], chapterId: "all", toolKey: null, frameClass: null, ready: false, loadToken: 0, railOpen: store.get("hub.rail") !== "0" };
+
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const j = async (url, init) => { const r = await fetch(url, init); const b = await r.json().catch(() => ({})); if (!r.ok) throw new Error(b.error || `HTTP ${r.status}`); return b; };
+
+function showNote(html) { note.innerHTML = `<div>${html}</div>`; note.classList.remove("hidden"); }
+function hideNote() { note.classList.add("hidden"); }
+
+function chapterLabel(c) {
+  const name = c.number == null ? c.chapterId : `Chapter ${c.number}`;
+  return `${name}${c.title ? ` · ${c.title}` : ""}${c.ported < c.slots ? ` (${c.ported}/${c.slots})` : ""}`;
+}
+const keyOf = (t) => `${t.chapterId}/${t.id}`;
+const currentTool = () => S.tools.find((t) => keyOf(t) === S.toolKey) ?? null;
+const visibleTools = () => S.tools.filter((t) => S.chapterId === "all" || t.chapterId === S.chapterId);
+const selectable = (t) => t.hasTsx && t.hasJson;
+
+/* ---- the dropdowns, the tool list and the header ---------------------------------------------------- */
+
+function fillClasses() {
+  sel.cls.innerHTML = S.classes.map((c) => {
+    const tag = !c.installed ? " — run npm install" : c.running ? " ●" : "";
+    return `<option value="${c.class}">Class ${c.class}${tag}</option>`;
+  }).join("");
+  if (S.cls != null) sel.cls.value = String(S.cls);
+}
+
+function fillChapters() {
+  const chapters = S.meta?.chapters ?? [];
+  sel.ch.innerHTML = `<option value="all">All Chapters (${chapters.length})</option>` + chapters.map((c) => `<option value="${esc(c.chapterId)}">${esc(chapterLabel(c))}</option>`).join("");
+  sel.ch.value = S.chapterId;
+  sel.ch.title = sel.ch.selectedOptions[0]?.text ?? "";
+}
+
+const chipsHtml = (checks) => Object.entries(checks).filter(([, n]) => n).map(([k, n]) => `<span class="chip ${k}" title="${k}">${n} ${k}</span>`).join("");
+
+/* the left panel: the tools of the chosen chapter, or of every chapter under their headings */
+function renderRail() {
+  const list = visibleTools();
+  const chapters = (S.meta?.chapters ?? []).filter((c) => S.chapterId === "all" || c.chapterId === S.chapterId);
+  rail.innerHTML = list.length ? chapters.map((c) => {
+    const ts = list.filter((t) => t.chapterId === c.chapterId);
+    if (!ts.length) return "";
+    return `<div class="rail-chapter"><div class="rail-chapter-title" title="${esc(c.chapterId)}">${esc(c.number == null ? c.chapterId : `Chapter ${c.number}`)}${c.title ? ` · ${esc(c.title)}` : ""}</div>`
+      + `<div class="rail-chapter-sub"><span>${c.ported} of ${c.slots} ported</span>${chipsHtml(c.checks)}</div>`
+      + ts.map((t) => `<button type="button" class="tool-item" data-key="${esc(keyOf(t))}"${selectable(t) ? "" : " disabled"}>`
+        + `<span class="badge ${esc(t.checkState || "unchecked")}" title="${esc(t.checkState || "unchecked")}"></span>`
+        + `<span><span class="tool-title">${esc(t.title ?? t.id)}</span><span class="tool-id">${esc(t.id)}</span></span></button>`).join("")
+      + "</div>";
+  }).join("") : `<p class="muted small" style="padding:8px">no tools ported yet</p>`;
+  markSelected();
+}
+
+function markSelected() {
+  for (const b of rail.querySelectorAll(".tool-item")) {
+    const on = b.dataset.key === S.toolKey;
+    b.classList.toggle("selected", on);
+    if (on) { b.setAttribute("aria-current", "true"); if (!rail.hidden) b.scrollIntoView({ block: "nearest" }); } else b.removeAttribute("aria-current");
+  }
+}
+
+function fillHeaderTotals() {
+  const m = S.meta;
+  $("totals").textContent = m ? `${m.totals.ported} of ${m.totals.slots} ported` : "";
+  $("totals").title = m ? `${m.totals.chapters} chapter${m.totals.chapters === 1 ? "" : "s"} · ${m.totals.ported} of ${m.totals.slots} tools ported` : "";
+  $("chips").innerHTML = m ? chipsHtml(m.totals.checks) : "";
+}
+
+function syncControls() {
+  const list = visibleTools().filter(selectable);
+  const i = list.findIndex((t) => keyOf(t) === S.toolKey);
+  const live = S.ready && S.frameClass === S.cls; // the viewer in the frame is this class's and takes the hub's selection
+  $("nav").hidden = $("navMeta").hidden = $("btnRail").hidden = !live;
+  rail.hidden = !live || !S.railOpen;
+  const open = S.railOpen, label = open ? "Hide tool list" : "Show tool list";
+  $("btnRail").classList.toggle("active", open);
+  $("btnRail").setAttribute("aria-pressed", String(open));
+  $("btnRail").setAttribute("aria-label", label); $("btnRail").title = label;
+  $("railShade").style.display = open ? "" : "none";
+  sel.ch.disabled = !S.meta;
+  $("stepCount").textContent = i >= 0 ? `Tool ${i + 1} of ${list.length}` : "";
+  $("btnPrev").disabled = i <= 0;
+  $("btnNext").disabled = i < 0 || i >= list.length - 1;
+  $("btnRefresh").disabled = S.cls == null;
+}
+
+function writeHash() {
+  const live = S.ready && S.frameClass === S.cls;
+  const t = live ? currentTool() : null;
+  const h = S.cls == null ? "" : `#/${S.cls}${t ? `/${t.chapterId}/${t.id}` : live && S.chapterId !== "all" ? `/${S.chapterId}` : ""}`;
+  if (location.hash !== h) history.replaceState(null, "", h || location.pathname);
+  if (S.cls != null) store.set("hub.last", JSON.stringify({ cls: S.cls, chapterId: S.chapterId, toolKey: S.toolKey }));
+  const c = S.classes.find((x) => x.class === S.cls);
+  document.title = S.cls == null ? "Udgam tool viewer" : `Class ${S.cls}${t ? ` — ${t.title ?? t.id}` : ""} — Udgam tools`;
+  const own = $("ownTab");
+  if (c) { own.href = `http://${location.hostname}:${c.port}/`; own.hidden = false; } else own.hidden = true;
+}
+
+/* ---- the embedded viewer -------------------------------------------------------------------------- */
+
+const frameOrigin = () => { const c = S.classes.find((x) => x.class === S.frameClass); return c ? `http://${location.hostname}:${c.port}` : null; };
+
+function postSelection() {
+  const t = currentTool();
+  const o = frameOrigin();
+  if (!t || !o || !S.ready) return;
+  frame.contentWindow.postMessage({ type: "udgam-viewer:select", chapterId: t.chapterId, id: t.id }, o);
+}
+
+function loadFrame(cls) {
+  const c = S.classes.find((x) => x.class === cls);
+  S.frameClass = cls; S.ready = false;
+  const t = currentTool();
+  frame.src = `http://${location.hostname}:${c.port}/?embed=1${t ? `&ch=${encodeURIComponent(t.chapterId)}&tool=${encodeURIComponent(t.id)}` : ""}`;
+}
+
+window.addEventListener("message", (e) => {
+  const o = frameOrigin();
+  if (!o || e.origin !== o || e.source !== frame.contentWindow || !e.data || typeof e.data !== "object") return;
+  if (e.data.type === "udgam-viewer:ready") {
+    S.ready = true;
+    syncControls(); writeHash(); postSelection();
+  } else if (e.data.type === "udgam-viewer:selected") {
+    const t = S.tools.find((x) => x.chapterId === e.data.chapterId && x.id === e.data.id);
+    if (t && keyOf(t) !== S.toolKey) { S.toolKey = keyOf(t); if (S.chapterId !== "all") S.chapterId = t.chapterId; sel.ch.value = S.chapterId; renderRail(); writeHash(); syncControls(); }
+  }
+});
+
+/* ---- choosing ------------------------------------------------------------------------------------- */
+
+async function chooseClass(n, want = {}) {
+  const token = ++S.loadToken;
+  S.cls = n; S.meta = null; S.tools = []; S.ready = false;
+  sel.cls.value = String(n); fillChapters(); renderRail(); fillHeaderTotals(); syncControls(); writeHash();
+  const c = S.classes.find((x) => x.class === n);
+  if (!c.installed) { showNote(`<h3>Class ${n} is not installed</h3><p class="muted">Run this once, then press Refresh:</p><pre>cd ${esc(c.folder)}\nnpm install</pre>`); return; }
+  showNote(`<span class="spin"></span>Starting the class ${n} viewer${c.running ? "" : " (first start builds it: a few seconds)"}&hellip;`);
+  try {
+    await j(`/api/classes/${n}/start`, { method: "POST" });
+    const [meta, tools] = await Promise.all([j(`/api/classes/${n}/meta`), j(`/api/classes/${n}/tools`)]);
+    if (token !== S.loadToken) return; // the user moved on to another class meanwhile
+    S.meta = meta; S.tools = tools;
+    c.running = true; fillClasses();
+    const chapterIds = new Set(meta.chapters.map((x) => x.chapterId));
+    S.chapterId = want.chapterId && chapterIds.has(want.chapterId) ? want.chapterId : "all";
+    const first = visibleTools().find(selectable);
+    const wanted = S.tools.find((t) => keyOf(t) === want.toolKey && selectable(t));
+    S.toolKey = wanted ? keyOf(wanted) : first ? keyOf(first) : null;
+    if (S.chapterId === "all" && wanted) S.chapterId = "all";
+    fillChapters(); renderRail(); fillHeaderTotals(); writeHash();
+    hideNote();
+    if (!S.tools.length) showNote(`<h3>Class ${n}: no tools ported yet</h3><p class="muted">A tool appears here once its <code>check</code> passes (it ports on a pass). Press Refresh then.</p>`);
+    else loadFrame(n);
+    syncControls();
+  } catch (e) {
+    if (token !== S.loadToken) return;
+    showNote(`<h3>Class ${n} viewer did not start</h3><pre>${esc(e.message)}</pre>`);
+    syncControls();
+  }
+}
+
+function chooseTool(key) {
+  S.toolKey = key; writeHash(); syncControls(); markSelected();
+  if (S.frameClass === S.cls) postSelection(); else loadFrame(S.cls);
+}
+
+sel.cls.addEventListener("change", () => chooseClass(Number(sel.cls.value)));
+sel.ch.addEventListener("change", () => {
+  S.chapterId = sel.ch.value;
+  sel.ch.title = sel.ch.selectedOptions[0]?.text ?? "";
+  const first = visibleTools().find(selectable);
+  S.toolKey = first ? keyOf(first) : null;
+  renderRail();
+  chooseTool(S.toolKey);
+});
+rail.addEventListener("click", (e) => { const b = e.target.closest("button[data-key]"); if (b && !b.disabled) chooseTool(b.dataset.key); });
+$("btnRail").addEventListener("click", () => { S.railOpen = !S.railOpen; store.set("hub.rail", S.railOpen ? "1" : "0"); syncControls(); markSelected(); });
+for (const [id, d] of [["btnPrev", -1], ["btnNext", 1]]) {
+  $(id).addEventListener("click", () => {
+    const list = visibleTools().filter(selectable);
+    const t = list[list.findIndex((x) => keyOf(x) === S.toolKey) + d];
+    if (t) chooseTool(keyOf(t));
+  });
+}
+$("btnRefresh").addEventListener("click", async () => {
+  S.classes = await j("/api/classes").catch(() => S.classes); fillClasses();
+  frame.removeAttribute("src"); S.frameClass = null;
+  chooseClass(S.cls, { chapterId: S.chapterId, toolKey: S.toolKey });
+});
+
+/* ---- start ---------------------------------------------------------------------------------------- */
+
+(async function init() {
+  try { S.classes = await j("/api/classes"); } catch (e) { showNote(`<h3>The hub could not list classes</h3><pre>${esc(e.message)}</pre>`); return; }
+  if (!S.classes.length) { showNote("<h3>No class folders found</h3><p class=\"muted\">Expected <code>class&lt;N&gt;/pipeline.config.json</code> next to <code>viewhub.mjs</code>.</p>"); return; }
+  fillClasses();
+  // a link  #/5/<chapterId>/<toolId>  wins, then the last choice in this browser, then the newest class
+  const [, hc, hch, htool] = location.hash.split("/");
+  let last = {}; try { last = JSON.parse(store.get("hub.last") || "{}"); } catch { /* ignore */ }
+  const has = (n) => S.classes.some((c) => c.class === n);
+  const n = has(Number(hc)) ? Number(hc) : has(last.cls) ? last.cls : S.classes[S.classes.length - 1].class;
+  const fromHash = Number(hc) === n;
+  const want = fromHash ? { chapterId: hch, toolKey: hch && htool ? `${hch}/${htool}` : null } : n === last.cls ? { chapterId: last.chapterId, toolKey: last.toolKey } : {};
+  chooseClass(n, want);
+})();
+window.addEventListener("hashchange", () => { /* a pasted link in the same tab */
+  const [, hc, hch, htool] = location.hash.split("/");
+  if (S.classes.some((c) => c.class === Number(hc)) && (Number(hc) !== S.cls || (htool && `${hch}/${htool}` !== S.toolKey))) {
+    if (Number(hc) !== S.cls) chooseClass(Number(hc), { chapterId: hch, toolKey: htool ? `${hch}/${htool}` : null });
+    else if (S.tools.some((t) => keyOf(t) === `${hch}/${htool}`)) chooseTool(`${hch}/${htool}`);
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+{
+  "versions": {
+    "r1": {
+      "runtime": "51eb13b5126c",
+      "mascot": "6349bb6d59f7",
+      "note": "the head of 2026-09-22: two answer boxes (ch 5), stacked fractions SLOT_FRACTION/SLOT_MIXED (ch 7), the point key (ch 8)",
+      "frozenAt": "2026-09-22T16:58:00.853Z",
+      "bytes": 154277
+    },
+    "r2": {
+      "runtime": "cb844c2999da",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-22T19:12:59.998Z",
+      "bytes": 154774
+    },
+    "r3": {
+      "runtime": "1fa9ccc1bcf2",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T07:33:27.311Z",
+      "bytes": 155230
+    },
+    "r4": {
+      "runtime": "31fba75d77f9",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T09:17:35.244Z",
+      "bytes": 155652
+    },
+    "r5": {
+      "runtime": "52c045f785a2",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T09:20:47.125Z",
+      "bytes": 156398
+    },
+    "r6": {
+      "runtime": "51482a50195f",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T11:55:26.185Z",
+      "bytes": 157286
+    },
+    "r7": {
+      "runtime": "328159244a07",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T11:59:09.038Z",
+      "bytes": 158054
+    },
+    "r8": {
+      "runtime": "2fb561ffbd80",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T12:06:54.155Z",
+      "bytes": 159469
+    },
+    "r9": {
+      "runtime": "6209ae44881c",
+      "mascot": "6349bb6d59f7",
+      "note": "",
+      "frozenAt": "2026-09-23T13:05:52.193Z",
+      "bytes": 161477
+    },
+    "r10": {
+      "runtime": "8c5ee7c534d1",
+      "mascot": "6349bb6d59f7",
+      "note": "lang contract: Spoken type (en/hi/gu), lineFor, per-language pickVoice, UI_STRINGS chrome translations; additive, no chapter pinned",
+      "frozenAt": "2026-09-23T13:18:01.799Z",
+      "bytes": 168905
+    },
+    "r11": {
+      "runtime": "d14bcf2ebeff",
+      "mascot": "6349bb6d59f7",
+      "note": "baked-voice clip loader (TOOL_VOICE/TOOL_VOICE_BASE, Web Audio, content-addressed files); additive, gated on a tool declaring TOOL_VOICE (none do yet)",
+      "frozenAt": "2026-09-23T13:43:38.324Z",
+      "bytes": 175916
+    },
+    "r12": {
+      "runtime": "f6db90915a2e",
+      "mascot": "6349bb6d59f7",
+      "note": "r11 minus the fetch() clip loader: baked voice is inline data: URIs only (host contract admits no network API); r11 fails port and should not be pinned",
+      "frozenAt": "2026-09-23T15:28:38.564Z",
+      "bytes": 175101
+    },
+    "r13": {
+      "runtime": "99e63f53aeab",
+      "mascot": "6349bb6d59f7",
+      "note": "lang: per-tool TR table (keyed by the English line), Hindi/Gujarati number words (wordsIn) and speech (speakableIn), । splits bubble pieces, lang + tx to Work; English path unchanged",
+      "frozenAt": "2026-09-23T16:54:44.402Z",
+      "bytes": 181930
+    },
+    "r14": {
+      "runtime": "7301994556d8",
+      "mascot": "6349bb6d59f7",
+      "note": "r13 + header tool name/phase concept and summary concepts through the tool's TR table",
+      "frozenAt": "2026-09-23T16:58:05.020Z",
+      "bytes": 181961
+    },
+    "r15": {
+      "runtime": "953c33c86e53",
+      "mascot": "6349bb6d59f7",
+      "note": "baked-or-silent decided per language: hi/gu speak only from TOOL_VOICE clips, English keeps the device voice (English voice checks stay valid)",
+      "frozenAt": "2026-09-23T17:22:49.049Z",
+      "bytes": 182344
+    },
+    "r16": {
+      "runtime": "32d3765ba61a",
+      "mascot": "6349bb6d59f7",
+      "note": "every tap starts the Web Audio context for a baked voice (a browser suspends it until a tap in the frame)",
+      "frozenAt": "2026-09-23T17:47:18.451Z",
+      "bytes": 182576
+    },
+    "r17": {
+      "runtime": "b9fd8ded39f1",
+      "mascot": "6349bb6d59f7",
+      "note": "Work's api.say lines go through the tool's TR table (translated text and baked clips in hi/gu)",
+      "frozenAt": "2026-09-23T18:12:34.955Z",
+      "bytes": 182727
+    },
+    "r18": {
+      "runtime": "bf761de61a58",
+      "mascot": "6349bb6d59f7",
+      "note": "the answer slot's text goes through the tool's TR and format() gets { lang, tx }; Thumb gets lang and tx (summary thumbnails and chosen words in hi/gu)",
+      "frozenAt": "2026-09-23T19:23:14.811Z",
+      "bytes": 183297
+    },
+    "r19": {
+      "runtime": "44685c306c22",
+      "mascot": "6349bb6d59f7",
+      "note": "a two-box slot's label and unit go through the tool's TR (hi/gu); English path unchanged",
+      "frozenAt": "2026-09-23T19:27:01.993Z",
+      "bytes": 183335
+    },
+    "r20": {
+      "runtime": "6c814f73e92d",
+      "mascot": "6349bb6d59f7",
+      "note": "Gujarati 78 and 88 spelled correctly (અઠ્યોતેર, અઠ્યાસી) in GU_0_99",
+      "frozenAt": "2026-09-23T19:39:49.353Z",
+      "bytes": 183335
+    },
+    "r21": {
+      "runtime": "d74adefba913",
+      "mascot": "6349bb6d59f7",
+      "note": "voice clips may be files: TOOL_VOICE value = inline data: URI (local) or a <sha1>.ogg name fetched from TOOL_VOICE_BASE (published ship copy; the runtime's only network call, port allows exactly it); in-flight de-dupe",
+      "frozenAt": "2026-09-24T07:21:10.212Z",
+      "bytes": 184405
+    }
+  }
+}

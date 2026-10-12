@@ -1,0 +1,99 @@
+# M1.S1.T2.C4.2D1 · borrow_mat · Borrow Mat
+indiannica_eng_maths4_ch3 · indiannica_eng_maths4_ch3_v1 v1 (active) · "Subtraction" · segment M1.S1 "Naming the Parts" · topic M1.S1.T2 "Three Names, and a Trade From the Left" · printed p.27 to p.30
+
+> Runtime supplies the standard chrome (bands, zones, header, runs box, slot + pad, bubble, phase bar, type scale, content colours, sounds, finished/idle/restart). `scaffold` puts each phase's concept, teach line, hint ladder, closing line and items into tool.tsx; they are not repeated here. Build the working area and the mechanics.
+
+## What it is
+**Description:** Take a long number off another on a column mat, and watch where the ten comes from when a column cannot pay.
+**Why:** Take one long number off another on a column mat, and find out where the ten comes from when a column has not got enough to give.
+**Look:** A ruled mat with a heading over every column, the greater number above the smaller one with a rule between them, and a tray of bundles beside it.
+**Context:** Grade 4, the first working topic of the subtraction chapter. An adult sees a column sum being filled in, which a child could do on squared paper. What is actually being settled is the direction of a trade. When a column cannot pay, the ten is fetched from the column on its left and that column is left one less, and a child who reaches the other way, or who enlarges the digit and never reduces anything, gets a wrong answer by a method that looks perfectly right on the line.
+**For the child:** Put the greater number on top and line the two up by their right ends. Name the three rows before you start. Work the ones column first, then move left. If a column cannot pay, reach to the column on its left and take a ten. Strike that digit down by one before you carry on.
+**Teaching notes:** Set the first subtraction out on squared paper by hand before the tool is opened, one digit to a square, with the column headings written in before any digit goes in. Then use the tool for the thing paper cannot do: stop at the first column that cannot pay and ask, before anybody reaches, which way the hand is going to go. Get the answer said in two halves every time, because only one of them costs anything. The ten arrives here, and the column on the left is left one less. A child who says only the first half will enlarge a digit and reduce nothing, and the working will look right the whole way down. Untie a real bundle with the tray for the first few trades, so that ten is a quantity that moved rather than a mark that was written. Keep the ones first control locked until the direction is automatic. The regrouping question about taking eight tens from a three digit number is worth doing on the mat and then with straws: three hundreds, three tens and eight ones become two hundreds, thirteen tens and eight ones, and thirteen tens less eight tens is five tens. Use the naming control on every working and insist on the words, because the finding topic later on cannot be asked for without them.
+**Placement:** Explore
+**Also mounted in:** M1.S1.T2
+
+## Look
+**Chrome:** dim #9AA4AC · ink #2B2B2B · rule #C9BCA6 · panel #F2E4CE · paper #FFFDF7 · accent #5B6770
+**Voice:** rate 0.92, pitch 1.06 · figure: None
+
+## Stage (tool-specific layout)
+Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Borrow Mat' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the columns settled against the columns the mat is ruled for, two numbers in ink, the first climbing by one as each column closes and the second fixed at the width of the mat, with the count of columns that have had to fetch a ten standing beside them. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The mat sits across the top of the working area, 800 by 370 at 207,202. Along its top runs a trade band 68 tall, empty until a trade is made and never scrolled; under that, headings 44 tall; under those, the minuend row and the subtrahend row, each of cells 84 tall, with the minus sign standing 40 to the left of the lower row; then a rule 6 tall running the full width of the mat; then the difference row 84 tall beneath it. The columns are ruled 128 wide under their headings and drawn from the right, so the ones column is always the rightmost and a five column mat is this same mat with its leftmost column left unruled. A number arrives as a strip of digit cards drawn joined into one piece, each card 96 by 76 sitting centred in its column, so a strip slides as a whole and no single digit can be pulled out of it. A strip may be dropped anywhere along the mat, including where its right end hangs over open columns, and the heading standing over each of its digits is read out afresh as it moves. A column that is tapped lights the full height of both upper rows and writes its answer in green under the rule; with the ones first control locked, only the rightmost unsettled column will light at all, and a column tapped out of turn names the column that has to settle before it and gives nothing else away. Where the digit above is smaller than the digit below, the column refuses to close and its two digits are held lit. A reach made to the column on the LEFT strikes that column's digit through once with a single stroke, writes its new and smaller value in rose small above it in the trade band, and draws the ten arriving in the trade band over the column that could not pay, in vermilion, with a short arrow running from the lending column to the receiving one, left to right and never the other way. A reach made to the right instead springs back with nothing marked, the proper lending column on the left lights, and the arrow is redrawn the right way round. The bundle tray runs along the foot of the working area, 1086 by 112 at 64,598, holding bundles of ten drawn as ten countable things under one visible tie and loose things beside them; untying a bundle for a column lays out exactly ten separate things and leaves the empty tie lying where the bundle stood. Replay trades dims every column that paid on its own and walks the finished working again showing only the columns that traded, in the order they traded in. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a column answer or a whole difference is asked for, and on the first phase a word pad of the mat's own words, ones, tens, hundreds, thousands, ten thousands, lakhs, minuend, subtrahend and difference, so that a row can be named and a column called with one press. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: the greater number standing on top is deep blue, the number being taken away is amber, the answer under the rule is green, the ten lifted out of the column on the left is vermilion, a digit rewritten after the trade has been made is rose, and a zero that is only holding a place open is grey. Chrome never borrows one of those and none of them is ever used for chrome, and every one of the readings survives with the colour taken away, because a column is told by the heading written above it before it is ever told by a colour, and a column that has lent is told by the single strike through its digit and by the smaller value written small above it. A struck lending digit is never rubbed out and never redrawn whole: the stroke through it and the smaller value above it stay on the mat until the working is cleared, because that pair is the half of the trade that actually cost something.
+
+## Opening (first frame of every mount)
+Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a finished subtraction stands on the mat with its difference already under the rule and three naming plates lying unplaced on the ledge. On the second the mat stands empty with two rows ruled and waiting, and two loose digit strips lie side by side on the ledge below it, neither of them on the mat at all. On the third a five column mat holds two strips home in their columns with the ones column lit, its upper digit smaller than the digit under it, and every other column still closed. On the fourth the mat stands six columns wide with a six digit strip on each of its two rows and the answer row empty from end to end. The running count at the top left holds the columns settled against the columns the mat is ruled for, with the trade count beside them, and the answer slot and the pad stand empty down the right. One thing moves, once: the first naming plate, or the greater of the two loose strips, or the lit ones column, or the rightmost column of the six, gives one slow pulse while the voice asks for the two numbers to be read as they stand. That pulse is the only invitation, and a finger on it is the whole way in.
+
+## Phases (what each mount shows and does; the words are in tool.tsx)
+
+### 1 · Three names for the three numbers
+**Screen:** a finished subtraction on the mat with the naming control waiting
+**Does:** labels the row on top, the row under it and the answer, then reads it out
+**Win:** all three labels land on the right rows and the working is read aloud
+**Feels:** three rows, three names, and the names belong to the rows rather than to the numbers standing in them
+**Goal:** the three rows of a written subtraction can be named
+**Observe:** The column that lent kept its digit, struck through once, with a smaller value written above it.
+**Wrong (each is a traceback on the working area):**
+- calls the answer under the rule the subtrahend, because it is the lowest row on the mat. → the rule is drawn heavier and the two rows above it lift a little together while each is read out as a number that was there before any working started; the row below the rule stays down and is read out as what the working made. The child's plate stays exactly where it was put, so the two readings can be held against each other, and nothing is cleared.
+- lays the three plates on the rows in the order the three words were heard, working from the bottom row upwards. → the working is read aloud row by row from the top, the row being read lighting as it goes, and every plate stays exactly where the child put it; where a plate names a row that the reading does not match, that plate and that row are ringed in amber and stay ringed. No plate is ever moved for the child.
+**Misconception to break:** Calling the answer the subtrahend, or calling the number on top the difference.
+
+### 2 · The smaller number comes off the greater one
+**Screen:** two loose number strips beside an empty mat with two rows waiting
+**Does:** chooses which strip goes on top, then tries it the other way round
+**Win:** the greater strip settles on the upper row and the swapped attempt runs out of things to take
+**Feels:** swapping the two numbers over does not give a different answer, it gives no answer at all
+**Goal:** the greater number goes on top and the two cannot be swapped
+**Observe:** The ten always arrived from the same side, on a five column mat and on a six column one alike.
+**Wrong (each is a traceback on the working area):**
+- puts the strip that was read out first on top, because the chapter before this one let two numbers be swapped over. → the pair is worked on the mat exactly as the child laid it, from the ones leftwards, and the first column with less above than below is held lit with both digits showing and the reach refused because the column on its left has nothing left to lend either. The same pair is then laid the other way up on a second mat below the first, worked through to 45,255, and both mats are left standing together.
+- keeps the smaller number on top and takes the smaller digit from the greater one in each column, so that every column pays. → each column is read out in the order it is written, the upper digit named first and the lower one second, and every column the child turned round is ringed amber and read again as it stands. The answer the child built stays under the rule, the same pair is worked the right way up beside it, and the check by addition is run on both: only one of the two totals lands back on the number the working started from.
+**Misconception to break:** Putting 34,081 on top because it was read out first, the way two numbers being added may be swapped.
+
+### 3 · A column that cannot pay borrows from its left
+**Screen:** a ones column whose upper digit is smaller than the one below it
+**Does:** reaches to the column on the left, strikes its digit down by one and takes the ten
+**Win:** the lending column is struck and rewritten one less, and the ten arrives on its right
+**Feels:** the column that lends is left standing one less, and the ten that arrives is exactly what that column gave up
+**Goal:** a ten is fetched from the column on the left, which is left one less
+**Observe:** The mat would not open a column until the column on its right had settled.
+**Wrong (each is a traceback on the working area):**
+- reaches to the column on the RIGHT for the ten, because that is the column just finished and it looks like the one with something to spare. → the drag springs back with nothing marked and nothing cleared. The column on the LEFT lights instead, the arrow is drawn again running from it to the column that could not pay, and the two columns are read out by what each is worth, so that the column on the left is heard to be worth ten of the column beside it and the column on the right is heard to be worth a tenth of it. The refused reach stays drawn as a faint line so that the two directions can be seen at once.
+- writes a bigger digit over the one above and takes the lower digit from that, leaving every other column standing exactly as it was. → the enlarged digit the child wrote stays exactly where it is. The whole upper row is then counted out in the bundle tray, bundles and loose things together, and it comes to more than the number the working began with, with the extra ten lit in the tray. The lending column is left untouched and unstruck throughout, so what is showing is a ten with nowhere to have come from.
+**Misconception to break:** Fetching the ten from the column on the right instead of the column on the left.
+
+### 4 · Work from the ones and go leftwards
+**Screen:** the mat grown to six columns with two six digit strips on it
+**Does:** settles the ones and moves left one column at a time to the end
+**Win:** the last column on the left settles, the tally stops and no new rule was needed
+**Feels:** six columns, three of them trading and three paying on their own, and not one new thing to learn
+**Goal:** a long subtraction is the same work with more columns
+**Observe:** Growing the mat from five columns to six added steps and no new rule at all.
+**Wrong (each is a traceback on the working area):**
+- works the leftmost column first and travels rightwards, the way a number is read out. → every answer the child wrote stays under the rule exactly where it was put. The ones first control then locks itself, the same pair is worked again from the right with one column lighting at a time, and the two runs stand one under the other with the order of work numbered beside each column; the columns where a later trade changed a digit that had already been used are ringed amber in the first run and stay ringed.
+- fetches a ten in every column after the first one that needed it, as though a trade once begun had to carry on to the end. → the columns are opened again one at a time from the right with both of their digits lit, and each column that can pay on its own closes with the trade band above it left completely empty while the trade count holds still. The trades the child wrote where nothing was needed stay drawn where they are, and the difference the mat builds stands under the one the child built so the two can be read against each other column by column.
+**Misconception to break:** Starting at the leftmost column, which hides every trade that is still to come.
+
+## Delight
+The third phase, at the moment the reach lands. The two halves of the trade are drawn as one movement rather than two: the stroke goes through the lending digit and the smaller value appears above it at the very instant the ten lands in the trade band over the column that could not pay, joined by the little arrow running left to right. Drag the ten back out of the receiving column and the whole thing runs backwards, the stroke lifting off the lending digit and the digit standing whole again, so the trade can be made and unmade as often as a finger likes. Nothing else on the mat moves while it happens and the voice says nothing at all.
+
+**General miss line:** Reach the other way. A ten only ever comes out of the column on the left.
+
+## Answer key
+The greater number goes on top and the smaller one under it, lined up by their right ends so each digit stands in the column of its own place. The greater number is the minuend, the number taken away is the subtrahend, and the answer under the rule is the difference. Work the ones column first and go leftwards. Where the digit above is smaller than the digit below, fetch a ten from the column on its left: that column is left one less than it was, and the ten arrives in the column that could not pay. A five digit or six digit number needs no new rule, only more columns.
+
+## Student controls
+- **Digit strips**: lays each number on the mat with its right end in the ones column
+- **Name the parts**: labels the three rows as the minuend, the subtrahend and the difference
+- **Ones first**: locks the working order so the rightmost column settles first
+- **Reach left**: fetches a ten from the column on the left and strikes that digit down by one
+- **Bundle tray**: unties a bundle of ten into ten loose things so the trade can be counted
+- **Trade tally**: counts how many columns had to fetch a ten in this working
+- **Replay trades**: walks the finished working again showing only the trades
+
+## State fields (getState, a resume contract)
+phase, columns, minuend, subtrahend, columnDone, trades, difference, tradeCount, complete
+
+## Textbook (this topic)
+**Pages:** 27, 28, 29, 30
+**Key terms:** minuend, subtrahend, difference, regrouping
+The three parts of a subtraction are named, and long numbers are subtracted column by column with regrouping. The greater number you start with is the minuend. The number taken away from it is the subtrahend. The answer is the difference. Naming them makes it easy to say what a question is asking for. There is not enough there to take it from. So the greater number goes on top and the smaller one goes under it. Swapping them does not give the same answer, the way swapping two numbers being added does. It can lend. Take one from the column on its left, and that column is left one less. What it lent arrives here as ten, which is plenty. This trade is called regrouping. The ones, because a trade made there changes the column on its left. Then the tens, then the hundreds, and so on to the end of the number. A five digit or six digit number is no harder, only longer.

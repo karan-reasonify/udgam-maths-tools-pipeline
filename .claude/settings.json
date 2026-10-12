@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./config.json)",
+      "Read(./_archive/**)",
+      "Read(./class4/node_modules/**)",
+      "Read(./class4/runtime/mascot.tsx)",
+      "Read(./class4/runtime/frozen/**)",
+      "Read(./class4/output-preview/**)",
+      "Read(./class4/.build/**)",
+      "Read(./class4/work/**/plan.json)",
+      "Read(./class4/work/**/slot.json)",
+      "Read(./class4/work/**/*.preview.html)",
+      "Read(./class4/work/**/.build/**)",
+      "Read(./class5/node_modules/**)",
+      "Read(./class5/runtime/mascot.tsx)",
+      "Read(./class5/runtime/frozen/**)",
+      "Read(./class5/output-preview/**)",
+      "Read(./class5/.build/**)",
+      "Read(./class5/.voice-cache/**)",
+      "Read(./class5/work/**/plan.json)",
+      "Read(./class5/work/**/slot.json)",
+      "Read(./class5/work/**/*.preview.html)",
+      "Read(./class5/work/**/.build/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Grep|Glob|Bash|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/chapter-fence.mjs\""
+          }
+        ]
+      }
+    ]
+  }
+}
