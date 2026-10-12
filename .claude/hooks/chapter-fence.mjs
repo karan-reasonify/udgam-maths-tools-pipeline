@@ -31,7 +31,25 @@ try {
     .filter(Boolean).join("\n");
   if (!text) process.exit(0);
 
-  const { fenceRead } = await import(new URL("../../class4/lib/core/fence.mjs", import.meta.url));
+  const { fenceRead, readFence } = await import(new URL("../../class4/lib/core/fence.mjs", import.meta.url));
+
+  /* A generated bundle is not source (1-2 MB: the runtime and the tool inlined). A read of it stays in the session's context and
+     is paid for again on every later call; one session spent about 320 KB of its context on preview.html alone. settings.json
+     denies it too, but a hook does not depend on path syntax. Tools and the CLI make and read these files themselves (node,
+     not these tools), so only a model's Read/Grep, or a shell reader, is refused. `fence --off` is the deliberate look. */
+  const BUNDLE = /(?:[\\/]\.build(?:[\\/]|$)|(?:[\\/]|\bM\d+\.S\d+\.T\d+\.C\d+\.2D\d+)[^\s"'|;&]*\.preview\.html\b|[\\/][\w.-]+\.preview\.html\b)/i;
+  const SHELL_READER = /\b(cat|head|tail|sed|awk|grep|egrep|rg|less|more|cut|strings|od|nl|type|Get-Content|gc|Select-String|sls)\b/i;
+  /* a picture in .build/ (hintframe-*.png, contrast-*.png) is what the visual reviewer is told to look at: only text bundles are refused */
+  const isPicture = /\.(png|jpe?g)$/i.test(text.trim());
+  const bundleHit = tool === "Read" ? BUNDLE.test(text) && !isPicture : tool === "Grep" ? BUNDLE.test(text) : tool === "Bash" ? BUNDLE.test(text) && SHELL_READER.test(text) : false;
+  if (bundleHit && !(readFence().off || String(process.env.C4_FENCE || "").toLowerCase() === "off")) {
+    process.stderr.write(
+      "Bulk file: this is a generated bundle (preview.html or .build/), not source. Reading it fills the context for every later call.\n" +
+      "Read instead: the tool's tool.tsx (by range), the rows `node cli.mjs check <slot> --ch <n>` prints, docs/PATTERNS.md and BUILD_CARD.md section 4 for the runtime API, `node cli.mjs shots` for a picture.\n" +
+      "A deliberate look: node cli.mjs fence --off (then --on again).\n");
+    process.exit(2);
+  }
+
   const r = fenceRead(input.session_id, text);
   if (r.allow) process.exit(0);
 

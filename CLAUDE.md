@@ -4,9 +4,11 @@
   `class<N>/docs/BUILD_CARD.md` (procedure) and `class<N>/docs/LAYOUT.md` (the final layout);
   `class<N>/docs/CHECKS.md` says what `check` proves; `class<N>/docs/PATTERNS.md` shows how a tool uses the
   runtime (read it instead of another chapter's tool). The order of work is in `class<N>/README.md`.
-- To make a chapter's tools, follow **`udgam_maths_claude.md`** (the runbook, the same for every class):
-  "according to @udgam_maths_claude.md make tools for class <N> udgam chapter <n>" (add `lean` for fewer
-  tokens), or `/gen-tools <N> udgam <n> [SLOT_ID] [lean]`. If `class<N>/` does not exist the runbook makes it
+- To make a chapter's tools, follow **`udgam_maths_claude.md`** (the runbook, the same for every class). It is read
+  on demand, never auto-loaded: the owner types `according to @udgam_maths_claude.md make tools for class <N> udgam chapter <n>`
+  (the `@` attaches it to that prompt; add `lean` for fewer tokens), or `/gen-tools <N> udgam <n> [SLOT_ID] [lean]`
+  reads it. Do not write the `@` in this file outside a code span: Claude Code would import the whole 35 KB runbook into
+  every session, build or not. If `class<N>/` does not exist the runbook makes it
   (`node classctl.mjs new --class <N>`) and tells the owner the defaults used. It uses the agents in
   `.claude/agents/`, named by the class's `agentPrefix` (`udgam` for class 4, `udgam<N>` for the rest):
   `<pfx>-tool-builder` (one per slot) and five that only report: `-maths-reviewer`, `-visual-reviewer`,
@@ -44,4 +46,10 @@
   rewrites; its inner loop is `check --no-render`, then one full `check`. Reviewers run in a staged order (maths, then the language
   pass, then visual + play once) and the visual reviewer works from the review pack (`node cli.mjs shots <slot> --pack`: every
   frame at full 1600x900 in en, hi, gu; `--changed` on a re-review looks only at what changed). `clean --ch N` tidies at the end.
+- Session hygiene (measured: `node usage.mjs session`; what a role loads: `node usage.mjs static --class <N>`). A session re-reads
+  its whole context on every call, so what a big read leaves in it is paid for on every later call. Never read a generated
+  bundle (`*.preview.html`, `.build/`: the `chapter-fence` hook refuses it; `fence --off` is the deliberate look); read the
+  source, a `check` row, a docs section or a `Grep -n` hit instead. Read a big file (`tool.tsx`, a log, a diff) by range, and
+  hand a long read-and-report job to an agent so only its report lands here. One task per session: a chapter build, a viewer
+  change and a git push are three sessions, not one.
 - The old ICSE Class 6 pipeline is in `_archive/icse6_corpus.zip`; do not open it.

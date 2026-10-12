@@ -50,7 +50,10 @@ Variants, same flow:
    the user answers "do what suits class <N>", choose on pedagogy and state each choice in one line.
 6. **Token rules.** Read only what a step names. Never read `slot.json`, `plan.json`, previews,
    `.build/`, `output-preview/`, `runtime/mascot.tsx`, `voice.tsx`, `images.tsx` or PDFs (deny rules enforce most
-   of them).
+   of them; a hook also refuses `*.preview.html` and `.build/`). Every byte a session reads stays in its context and is
+   paid for again on every later call, so the main session does not read tool sources, sheets or logs itself: the agent
+   that owns the slot reads them and its report (at most 40 lines) is what lands here. Measure with `node usage.mjs`
+   (`session`: provider-reported tokens of a transcript; `static`: what each role loads before it starts).
 7. **Never touch, and never read, another chapter's tools.** The read fence refuses it (one session,
    one chapter) and `class<N>/docs/PATTERNS.md` holds every pattern a builder used to copy out of a
    finished tool. A deliberate cross-chapter look is `node cli.mjs fence --off`, then `--on` again.
@@ -386,4 +389,5 @@ Announce a runtime or lib edit to the other chapter sessions of the class before
 | the class folders and their config | `class<N>/pipeline.config.json` (class, textbooks, viewerPort, agentPrefix, skinLibraries) |
 | carrying code between classes, a new class | `node classctl.mjs status \| sync \| new \| restore \| rootdocs` · `classctl.manifest.json` · `CLASSCTL.md` |
 | the agent templates | `_templates/agents/*.md.tpl` (the files in `.claude/agents/` are generated from them) |
+| tokens: what a session or a role costs | `node usage.mjs session [FILE.jsonl]` · `node usage.mjs static --class <N> [--ch <n>]` (pipeline root; prices in `usage.pricing.json`) |
 | CLI (in `class<N>/`) | `doctor` · `list` · `fetch` · `scaffold` · `preview` · `check` · `shots` · `clean` · `status` · `port` · `publish` · `runtime` · `fence` · `view` · `voice` · `images` |

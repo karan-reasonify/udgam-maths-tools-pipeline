@@ -26,6 +26,11 @@ The child is {{AGE}} years old; the host mounts one phase at a time on a fixed 1
    already proved by the chapter that introduced it.
 6. `{{DIR}}/docs/CHECKS.md`: the ROW of a check that fails or that PREFLIGHT names (`grep -n "| <check-id> |"
    {{DIR}}/docs/CHECKS.md`), not a whole read.
+**Read each file once, then by range.** `tool.tsx` is 46 to 105 KB and every byte you read stays in your context for every
+later call. Read it whole once (at the start, or after a resume), then find code with `Grep -n` and `Read` only the lines you
+are about to change (`offset`, `limit`). `Edit` fails loudly when it did not apply, so never re-read a file to confirm an
+edit; re-read a region only when a `check` row names its line. The same holds for `brief.md` and the docs. The generated
+bundle (`*.preview.html`, `.build/`) is not source: a hook refuses it, `check` and `shots` read it for you.
 **Never another chapter.** Your chapter builds on its own pinned runtime
 (`work/<chapter_id>/runtime.json` -> `runtime/frozen/<rN>/`), so no finished tool of another chapter can
 tell you anything PATTERNS.md does not, and reading one is refused by the read fence. If a pattern you
