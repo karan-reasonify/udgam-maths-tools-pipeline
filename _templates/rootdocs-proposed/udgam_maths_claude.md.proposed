@@ -171,7 +171,9 @@ else runs in Chrome.
 order and the timing change, so each look happens ONCE, on the tool as it will ship, and no look is dropped. The
 order for a tool: **5** maths reviewer on the final English, the builder fixes -> **5c** image pass (if any) -> **5b**
 language pass -> **5d** visual reviewer and play tester, once.
-- read its report; `node cli.mjs status --ch <n>` shows the check is fresh;
+- read its report; `node cli.mjs status --ch <n>` shows the check is fresh. A builder stops after 6 full `check` runs
+  (per build, and per fix message) and reports a blocker with the failing rows: decide whether to send it on (SendMessage),
+  raise its limit in the message, or fix the cause yourself (often a runtime gap, which is step 2's route);
 - **the maths reviewer first**, alone, on the final English tool (no check reads giveaways in words, the
   misconception or the textbook's method). Sort its findings: must-fix and should-fix go back to the builder in
   one message, questions go to the user's list; repeat until it is clean. Re-run it only if a finding needed a

@@ -171,6 +171,10 @@ endings as they are.
   chapter is pinned to a frozen runtime, and moving it is the main session's decision, not a build step.
 - A `runtime-pin` FAIL is never fixed in `tool.tsx`. Report it to the main session.
 - Never port by hand, publish, upload or clean.
+- **Bounded rounds.** At most 6 FULL `check` runs per build (and 6 more for each fix message); the quick `--no-render` check is
+  not counted, nor is a re-run after machine load (`C4_CHROME_POOL=1`). If the 6th still has a FAIL, stop and report the failing
+  rows, what you tried and your best guess, instead of running a 7th: the main session decides whether to send you on, raise
+  the limit or fix a runtime gap.
 
 ## Report (to the main session, at most 40 lines)
 Preview path · one line per phase (what the child does) · the check summary · every departure from the

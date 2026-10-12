@@ -40,6 +40,7 @@ One session, 2026-10-12 08:51-11:03 UTC (a mixed viewer-hub, class 5 chapter 5 r
 | `CLAUDE.md`: the `@udgam_maths_claude.md` mention no longer imports the runbook | expected: every session loads 5.6 KB, not 39.8 KB (-34 KB, about -8.5 K tokens a call). **Not yet observed**: check at the next session start that the runbook is gone from the loaded project instructions. The runbook is still read by `/gen-tools` or by the owner's own `@` |
 | `chapter-fence` hook refuses `*.preview.html` and the text files in `.build/` (Read, Grep, shell readers); pictures in `.build/` (hintframe, contrast) stay readable; `fence --off` lifts it | stops the largest measured context leak; `check` and `shots` still read them in node |
 | builder template (and the class 4 and 5 agent files): read each file once, then by range | no re-read of a 46-105 KB `tool.tsx` to confirm an edit |
+| builder: at most 6 full `check` runs per build and per fix message, then a blocker report (runbook step 5 says what the main session does with it) | bounds the worst case of a build; the quick check is not counted. Raise it in the SendMessage if a tool needs more |
 | runbook non-negotiable 6 + CLAUDE.md "Session hygiene" | long reads go to the agent that owns the slot; one task per session |
 | `usage.mjs`, `usage.pricing.json`, this file; `rootdocs-proposed/` refreshed so `classctl rootdocs` cannot undo the above | measurement, and no silent revert |
 
@@ -53,7 +54,7 @@ the checks, the runtime and every frozen snapshot, LAYOUT read whole, the review
 ## Remaining opportunities (each needs the owner's word or a measurement first)
 1. Run `node usage.mjs session` after the next chapter; it gives the first per-tool numbers. Compare builder sessions before
    tuning anything else.
-2. The builder has no cap on check/fix rounds. A cap (for example report a blocker after six full checks) bounds the worst case.
+2. (Done: the 6-round cap. Tune the number after the first per-tool measurements.)
 3. Class 5's agent files are an older, leaner generation than the templates (the templates add a voiced-runtime note, ~1.7 KB). Do not
    `sync --only agents` into class 5 unless that note is wanted; a silent/voiced switch in the template would remove the drift.
 4. BUILD_CARD sections 2, 3 and 5 (main-session procedure, publish contract) are read by every builder (~6 KB); a builder-only
