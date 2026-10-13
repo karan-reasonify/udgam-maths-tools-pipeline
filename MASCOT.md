@@ -1,5 +1,7 @@
 # The robot mascot: functions, capabilities and reactions
 
+> **Note (2026-10-13):** this file is about the old robot, drawn in Manim for video. The mascot inside the tools is now **Kiko** (`kiko.svg`, see `CLAUDE.md`); `mascot_robot.py` is not used by the pipeline.
+
 `mascot_robot.py` (next to this file) draws the Singularity robot from scratch in **Manim** and animates it for
 video. Nothing is an image: every part is a vector computed from numbers, so it stays sharp at any size, can be
 re-posed on every frame, and renders with a transparent background.

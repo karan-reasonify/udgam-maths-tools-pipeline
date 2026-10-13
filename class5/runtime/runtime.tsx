@@ -1283,6 +1283,12 @@ const CSS = `
 @keyframes c4hop{0%{transform:translateY(0)}35%{transform:translateY(-24px) rotate(-2deg)}70%{transform:translateY(0) scale(1.03,.97)}100%{transform:none}}
 .c4-nod{transform-box:fill-box;transform-origin:50% 100%;animation:c4nod .6s ease-in-out 1}
 @keyframes c4nod{0%,100%{transform:none}30%{transform:rotate(-4deg)}65%{transform:rotate(3deg)}}
+.c4-cheer{transform-box:fill-box;transform-origin:50% 100%;animation:c4cheer 2.1s ease-in-out 1}
+@keyframes c4cheer{0%{transform:none}8%{transform:scale(1.05,.93)}24%{transform:translateY(-26px) scale(.98,1.03) rotate(-3deg)}38%{transform:scale(1.05,.94)}54%{transform:translateY(-32px) scale(.98,1.03) rotate(3deg)}68%{transform:scale(1.05,.94)}84%{transform:translateY(-38px) scale(.98,1.03) rotate(-2deg)}96%{transform:scale(1.04,.95)}100%{transform:none}}
+.c4-cheer1{transform-box:fill-box;transform-origin:50% 100%;animation:c4cheer1 .85s ease-out 1}
+@keyframes c4cheer1{0%{transform:none}12%{transform:scale(1.05,.93)}40%{transform:translateY(-26px) scale(.98,1.03) rotate(-2deg)}70%{transform:scale(1.04,.95)}100%{transform:none}}
+.c4-twinkle{transform-box:fill-box;transform-origin:center;animation:c4twinkle 1.1s ease-in-out 2 both}
+@keyframes c4twinkle{0%{transform:scale(0) rotate(0);opacity:0}35%{transform:scale(1.15) rotate(45deg);opacity:1}70%{transform:scale(.8) rotate(90deg);opacity:1}100%{transform:scale(1.1) rotate(135deg);opacity:0}}
 .c4-px{animation:c4px 1.9s cubic-bezier(.2,.7,.4,1) both}
 .c4-py{animation:c4py 1.9s cubic-bezier(.3,0,.5,1) both}
 .c4-pr{transform-box:fill-box;transform-origin:center;animation:c4pr 1.9s linear both,c4pf 1.9s ease-in both}
@@ -1300,7 +1306,7 @@ const CSS = `
 @keyframes c4nextblink{0%,100%{stroke-opacity:1}50%{stroke-opacity:.08}}
 [data-control="next-key"] .c4-face{animation:c4nextface .9s ease-in-out infinite}
 @keyframes c4nextface{0%,100%{filter:brightness(1)}50%{filter:brightness(1.3)}}
-@media (prefers-reduced-motion:reduce){[data-control="next-key"] .c4-face{animation:none}.c4-pulse,.c4-caret,.c4-talk,.c4-hop,.c4-nod,.c4-ring,.c4-cue,.c4-nextblink,.c4-px,.c4-py,.c4-pr,.c4-flash{animation:none}.c4-ctl .c4-body{transition:none}.c4-fill{transition:none}}
+@media (prefers-reduced-motion:reduce){[data-control="next-key"] .c4-face{animation:none}.c4-pulse,.c4-caret,.c4-talk,.c4-hop,.c4-nod,.c4-cheer,.c4-cheer1,.c4-twinkle,.c4-ring,.c4-cue,.c4-nextblink,.c4-px,.c4-py,.c4-pr,.c4-flash{animation:none}.c4-ctl .c4-body{transition:none}.c4-fill{transition:none}}
 `;
 
 /* the runtime's OWN chrome text (never a tool's content) in the three shipped languages. A tool never
@@ -1731,6 +1737,9 @@ function StartPage({ C, name, hook, Art, UI, lang, tx, onStart, mascotOk, onMasc
    (a press cuts what is left of it) */
 const NEXT_EARLY_MS = 500;
 const PARTY_MS = 2300;   /* how long a party is on show */
+/* r54: where the party's sparkles twinkle round the cheering mascot (only when the mascot has a cheering pose) */
+const SPARKS = [{ x: 62, y: 752, s: 1, d: 0.05 }, { x: 96, y: 722, s: 1, d: 0.12 }, { x: 166, y: 716, s: 0.8, d: 0.27 }, { x: 226, y: 812, s: 0.8, d: 0.2 },
+  { x: 40, y: 806, s: 0.8, d: 0.35 }, { x: 44, y: 866, s: 0.7, d: 0.42 }, { x: 222, y: 868, s: 0.7, d: 0.3 }];
 
 /* THE PARTY (r38): a small celebration when a phase is complete. The mascot pops a party popper and confetti and streamers
    burst up across the card for about two seconds, in the tool's own palette (its THEME when it has one); the last phase
@@ -1774,6 +1783,12 @@ function Party({ C, big, n }: any) {
           </g>
         );
       })}
+      {(typeof MASCOT_CHEER === "string" && MASCOT_CHEER ? SPARKS : []).map((s, k) => (
+        <g key={"s" + k} transform={`translate(${s.x},${s.y}) scale(${s.s * (big ? 1.25 : 1)})`}>
+          <polygon className="c4-twinkle" style={{ animationDelay: s.d + "s" } as any} points="0,-16 4.5,-4.5 16,0 4.5,4.5 0,16 -4.5,4.5 -16,0 -4.5,-4.5"
+            fill={pal[2 + (k % 2)]} stroke={shade(pal[2 + (k % 2)], 0.25)} strokeWidth={1.5} strokeLinejoin="round" />
+        </g>
+      ))}
       {parts.map((p, k) => (
         <g key={k} transform={`translate(${p.o.x},${p.o.y})`}>
           <g className="c4-px" style={{ ["--dx" as any]: p.dx + "px", animationDelay: p.dl + "s" } as any}>
@@ -1794,17 +1809,23 @@ function Party({ C, big, n }: any) {
 
 /* the mascot says every line the tool speaks: it bobs only while a line is being spoken and is
    still otherwise. If its picture ever fails to decode, the drawn speaking dot stands in. */
-function Mascot({ C, speaking, react, ok, onFail }: any) {
+function Mascot({ C, speaking, react, ok, onFail, cheerOn, onCheerFail }: any) {
   const m = MASCOT_BOX;
   /* r30: no voice, so no talking bob; one hop when an answer is right or a phase ends, one nod after a miss (a new key
      restarts the one-shot animation) */
   const mood = react && react.kind ? "c4-" + react.kind : undefined;
+  /* r54: while the party plays (or for 900 ms after any right answer) the mascot CHEERS: the cheering picture (arms up, happy eyes: MASCOT_CHEER) replaces the standing one
+     and c4-cheer jumps it three times (c4-cheer1 once). The same <image data-role="mascot">, so every mascot check still sees one mascot. A cheering
+     picture that fails to decode leaves the standing one (the drawn dot is for the standing picture only). After the party the
+     class stays (the animation does not replay) and the standing picture is back. */
+  const cheerSrc = typeof MASCOT_CHEER === "string" ? MASCOT_CHEER : "";
+  const cheering = !!(cheerOn && cheerSrc && react && (react.kind === "cheer" || react.kind === "cheer1"));
   return (
     <g data-zone="voice">
       <line x1={m.x + 8} y1={m.y + m.h - 2} x2={m.x + m.w - 8} y2={m.y + m.h - 2} stroke={C.rule} strokeWidth={3} strokeLinecap="round" />
       {ok ? (
-        <image key={"m" + ((react && react.n) || 0)} data-role="mascot" className={speaking ? "c4-talk" : mood} href={MASCOT_IMAGE} x={m.x} y={m.y} width={m.w} height={m.h}
-          preserveAspectRatio="xMidYMax meet" aria-hidden="true" pointerEvents="none" onError={onFail} />
+        <image key={"m" + ((react && react.n) || 0)} data-role="mascot" className={speaking ? "c4-talk" : mood} href={cheering ? cheerSrc : MASCOT_IMAGE} data-pose={cheering ? "cheer" : undefined} x={m.x} y={m.y} width={m.w} height={m.h}
+          preserveAspectRatio="xMidYMax meet" aria-hidden="true" pointerEvents="none" onError={cheering ? onCheerFail : onFail} />
       ) : (
         <g data-role="mascot-drawn">
           {speaking && <circle cx={m.x + m.w / 2} cy={820} r={40} fill="none" stroke={C.accent} strokeWidth={5} />}
@@ -1847,7 +1868,7 @@ function PhaseDot({ C, k, N, x, w, now, done, fill = 1, navigable, onGo, UI }: a
   );
 }
 
-function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, done, onGo, mascotOk, onMascotFail, UI, onBubble, cue, board, lang, hintType }: any) {
+function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, done, onGo, mascotOk, onMascotFail, UI, onBubble, cue, board, lang, hintType, cheerOn, onCheerFail }: any) {
   const b = Z.bubble;
   /* board layout: the line reads as the hint pill, the same box with an accent edge (nothing else moves: the arrow's
      offsets, the bar and the mascot are the classic ones) */
@@ -1892,7 +1913,7 @@ function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, don
   const pitch = Z.bar.w / Math.max(N, 1);
   return (
     <g>
-      <Mascot C={C} speaking={speaking} react={react} ok={mascotOk} onFail={onMascotFail} />
+      <Mascot C={C} speaking={speaking} react={react} ok={mascotOk} onFail={onMascotFail} cheerOn={cheerOn} onCheerFail={onCheerFail} />
       <g data-zone="bubble">
         <path d={`M ${b.x} ${b.y + 30} L ${b.x - 18} ${b.y + 44} L ${b.x} ${b.y + 58} Z`} fill="#FFFFFF" stroke={edge} strokeWidth={edgeW} />
         <rect x={b.x} y={b.y} width={b.w} height={b.h} rx={24} fill="#FFFFFF" stroke={edge} strokeWidth={edgeW} filter="url(#fShadowSoft)" />
@@ -2201,7 +2222,17 @@ function ToolFrame({ props, tool }: any) {
   const voice = useVoice(mutedRef, langRef, { rate: 0.92, pitch: 1.06, ...(tool.VOICE || {}) }, holdRef);
   const [mascotOk, setMascotOk] = useState(true);
   const mascotRef = useRef(true);
-  /* the mascot does not talk (r30): it hops when an answer is right or a phase ends, and nods after a miss */
+  const [cheerOk, setCheerOk] = useState(true);   /* r54: false when the cheering picture does not decode: the standing one stays */
+  /* r54: a SMALL cheer on every right answer: the cheering picture for 900 ms and one jump (c4-cheer1); at a phase's last question the
+     party's long cheer takes over. None under reduced motion. */
+  const [quick, setQuick] = useState<any>({ n: 0, on: false });
+  const quickNow = () => { if (reducedMotion()) return; setQuick((q: any) => ({ n: q.n + 1, on: true })); };
+  useEffect(() => {
+    if (!quick.on) return;
+    const t = setTimeout(() => setQuick((q: any) => ({ ...q, on: false })), 900);
+    return () => clearTimeout(t);
+  }, [quick.n]);
+  /* the mascot does not talk (r30): it cheers when an answer is right (r54: a small cheer, a long one with the party at a phase's end) and nods after a miss */
   const [react, setReact] = useState<any>({ kind: "", n: 0 });
   const mascotDo = (kind: string) => setReact((r: any) => ({ kind, n: r.n + 1 }));
   /* the party (r38/r39): a small celebration when the 3 questions of a phase are done (a bigger one after the last phase); none
@@ -2209,7 +2240,7 @@ function ToolFrame({ props, tool }: any) {
      There is no free play between phases: free play is the summary page's, after the last. */
   const [party, setParty] = useState<any>({ n: 0, big: false, on: false });
   const partyAt = useRef(0);   /* when the last party began (0: none): the walk to the next phase waits for it */
-  const partyNow = (big: boolean) => { if (reducedMotion()) return; partyAt.current = Date.now(); setParty((p: any) => ({ n: p.n + 1, big, on: true })); };
+  const partyNow = (big: boolean) => { if (reducedMotion()) return; partyAt.current = Date.now(); setParty((p: any) => ({ n: p.n + 1, big, on: true })); mascotDo("cheer"); };
   useEffect(() => {
     if (!party.on) return;
     const t = setTimeout(() => setParty((p: any) => ({ ...p, on: false })), PARTY_MS);
@@ -2392,6 +2423,12 @@ function ToolFrame({ props, tool }: any) {
       im.onload = () => { if (!im.naturalWidth) mascotFail(); };
       im.onerror = mascotFail;
       im.src = MASCOT_IMAGE;
+      if (typeof MASCOT_CHEER === "string" && MASCOT_CHEER) {
+        const cm = new Img();
+        cm.onload = () => { if (!cm.naturalWidth) setCheerOk(false); };
+        cm.onerror = () => setCheerOk(false);
+        cm.src = MASCOT_CHEER;
+      }
     } catch (e) { /* a probe that cannot run says nothing about the picture */ }
   }, []);
 
@@ -2656,7 +2693,7 @@ function ToolFrame({ props, tool }: any) {
     emit("answer_checked", { phase: L.n, item: L.i + 1, correct: ok, value, tries: L.tries + (ok ? 0 : 1), conceptId: L.phase.conceptId });
     if (ok) {
       sfx.correct(); /* the +5 lands where the correct sound plays, so they never disagree */
-      mascotDo("hop");
+      mascotDo("cheer1"); quickNow();
       /* r40: the PARTY goes off at the RIGHT ANSWER of a phase's last question (the 3 questions are done), not when the win
          animation is over (a tool's winMs can be 5 s): a pop, the chime a moment later (plain timers: clearLater must not swallow
          them), and the confetti. Bigger after the last phase, whose summary follows when the win is over. */
@@ -3215,7 +3252,7 @@ function ToolFrame({ props, tool }: any) {
             freePlay={!!tool.freePlay} onFree={freePlay} onAgain={playAgain} Thumb={tool.Thumb} UI={UI} lang={lang} TR={tool.TR} />
         )}
         <Footer C={C} line={voice.line} hint={hintText} speaking={voice.speaking} react={react} n={n} N={N} i={i} total={items.length}
-          navigable={navigable} done={done} onGo={goPhase} mascotOk={mascotOk} onMascotFail={mascotFail} UI={UI}
+          navigable={navigable} done={done} onGo={goPhase} mascotOk={mascotOk} onMascotFail={mascotFail} cheerOn={(party.on || quick.on) && cheerOk} onCheerFail={() => setCheerOk(false)} UI={UI}
           onBubble={classroom ? nudge : undefined} cue={voice.held} board={board} lang={lang} hintType={!!hintText && hintKind.current === "type"} />
         {party.on && <Party key={party.n} C={C} big={party.big} n={party.n} />}
         {rz && <rect className="c4-ring" x={rz.x - 6} y={rz.y - 6} width={rz.w + 12} height={rz.h + 12} rx={24}

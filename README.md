@@ -16,7 +16,7 @@ use [`classctl.mjs`](classctl.mjs) (read [`CLASSCTL.md`](CLASSCTL.md)).
 | `_templates/agents/` | the agent files every class gets (`.claude/agents/<prefix>-*.md` are generated from them) |
 | `_backups/` | what `classctl` saves before it changes a class (made on `--apply`) |
 | `.env`, `config.json` | secrets (DB, GCS key); never in git. `.env.example` and `config.example.json` show what to fill in; `Python-backend/.env` (the author's machine only) fills in anything `.env` lacks |
-| `textbooks/` | the books (the plan already carries each topic's text; the PDFs are not in git); `textbooks/mascot.png` is the mascot |
+| `textbooks/` | the books (the plan already carries each topic's text; the PDFs are not in git); the mascot is Kiko: `kiko.svg` in this folder (`mascot.png`, the old robot, is kept: runtimes r1 to r52 were made from it) |
 | `_archive/icse6_corpus.zip` | the replaced ICSE Class 6 pipeline (not in git) |
 | `.gitignore`, `.gitattributes` | what git leaves out (secrets, `node_modules`, caches, `output-preview/`, PNG sheets, preview pages, PDFs, backups) and `* -text`: line endings are never rewritten, because the checks hash each tool's source |
 

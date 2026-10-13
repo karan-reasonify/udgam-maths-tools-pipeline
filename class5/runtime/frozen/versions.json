@@ -363,6 +363,20 @@
       "note": "r52 = r48 + CARD ANSWER (opt-in tool.cardAnswer, board layout: answer ON the Fraction/Decimal card, blinking; Yes/No keys in the question bar; blinking Answer key otherwise; where-to-tap line; drawer without the slot; no keypad for a choice answer; no digit past a card whose picture still wants an act) + the Next key 0.5 s sooner and not waiting for the win line, labelled Summary after the last phase, stale-key fix for a classroom skip; getState().answerOn/cardReady/hintKind. r45-r51 are drafts: never pin them",
       "frozenAt": "2026-10-08T13:40:41.867Z",
       "bytes": 267041
+    },
+    "r53": {
+      "runtime": "e564a962d4bc",
+      "mascot": "67eb6b94e05f",
+      "note": "r53 = r52 with a new mascot: KIKO (kiko.svg, the hooded character) in place of the robot PNG; 229x420 WebP, 25 KB inline. The runtime code is unchanged (same hash as r52); only mascot.tsx differs. No chapter is pinned to it yet: new chapters get it from fetch, class 5 ch 5 stays on r52",
+      "frozenAt": "2026-10-13T08:32:51.750Z",
+      "bytes": 241959
+    },
+    "r54": {
+      "runtime": "ad7c2251095e",
+      "mascot": "12437387baf3",
+      "note": "r54 = r53 + Kiko CHEERS: MASCOT_CHEER (arms up, happy eyes; 21 KB) shows with the party (c4-cheer: three jumps, 7 twinkling sparkles in Party) and for 0.9 s after any right answer (c4-cheer1, replaces the hop); same <image data-role=mascot> with data-pose=cheer; a cheer picture that fails to decode leaves the standing one; none under reduced motion; caps.cheer; phase-party asserts the pose. r53 has Kiko standing only: never pin it for a new chapter",
+      "frozenAt": "2026-10-13T09:23:12.849Z",
+      "bytes": 267326
     }
   }
 }

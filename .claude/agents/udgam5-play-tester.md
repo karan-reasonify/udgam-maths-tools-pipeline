@@ -88,7 +88,7 @@ plain; vary it.
    that reads wrong in Hindi or Gujarati.
 6. **The ending** (runtime r40; play with `motion: true`, the party is skipped under reduced motion): press things DURING the
    celebration: a phase dot, the restart key, the Hint key, Escape, the teacher's skip in a classroom: the party ends at once
-   and never runs on into the next phase, and controls still work (it takes no pointer events). The summary page (r44) says
+   and never runs on into the next phase, and controls still work (it takes no pointer events). From r54 the mascot also cheers (`data-pose="cheer"` on its `<image data-role="mascot">`) with the party and for about 0.9 s after any right answer: answer fast, press a phase dot or Escape during it, and report a mascot that stays in the cheering pose, replays after the party, or jumps while the lesson is not celebrating. The summary page (r44) says
    one line on the bubble and reads no row and rings none; report a row that blinks or a line that changes by itself, and tap
    the bubble there in a classroom (nothing may change). The last phase's bigger party starts at its last right answer, before
    the summary page, which sends `finished` 5 s after it opens; Free play (every free control), Play again, and `finished` is

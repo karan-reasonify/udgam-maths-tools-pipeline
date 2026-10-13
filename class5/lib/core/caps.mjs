@@ -33,6 +33,7 @@ export function capsOf(runtimeSrc) {
     hint: /setHintText/.test(r),                         /* r34: pinned instruction + hint band */
     hintKey: /const askHint\b/.test(r),                  /* r35: the header's Hint key */
     party: /const PARTY_MS\b/.test(r),                   /* r39/r40: the phase party */
+    cheer: /MASCOT_CHEER/.test(r),                       /* r54: the mascot cheers (its cheering picture MASCOT_CHEER) at the party and a little at every right answer */
     freeGuard: /function Party\b/.test(r),               /* r38+: the guard that free play is the summary page's only */
     steps: /guideSteps/.test(r),                         /* r30: phase.steps (guide steps) */
     theme: /TOOL_THEME/.test(r),                         /* r31: the keypad THEME (images.tsx TOOL_THEME) */

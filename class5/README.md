@@ -65,7 +65,7 @@ A key may be left out: the default is derived from `defaults.class` (written N b
 | `runtime` | `runtime/runtime.tsx` | the head runtime, where a new feature is written |
 | `skeleton` | `runtime/skeleton.tsx` | the new-style skeleton, used when the chapter's pinned runtime is silent |
 | `legacySkeleton` | `lib/build/skeleton.voiced.tsx` | the old skeleton, used when the pinned runtime is voiced |
-| `workDir`, `outDir`, `textbooks`, `mascot`, `bundled` | (required) | folders, the textbook folder, the mascot PNG, libraries `port` inlines |
+| `workDir`, `outDir`, `textbooks`, `mascot`, `bundled` | (required) | folders, the textbook folder, the mascot picture (`../kiko.svg`, or a PNG), libraries `port` inlines |
 | `classDir` | `class<N>` | how messages, the sidecar's `build.runtime` and the docs name this folder |
 | `agentPrefix` | `udgam<N>` | the agents of this class are `.claude/agents/<agentPrefix>-tool-builder.md` ... (`doctor` prints the name) |
 | `ageBand` | `<N+4>-<N+6>` | the children's age the prompts name (class 4: 8-10, class 5: 9-11) |
@@ -93,7 +93,7 @@ tree ships them empty and `classctl` merges a class's own rows in.
   runtime/               shared by every tool of the chapters that pin it
     runtime.tsx          the HEAD: the chrome and the machinery; a new feature is written here, then frozen
     frozen/<rN>/         immutable snapshots, named by each chapter's work/<chapter_id>/runtime.json (a class keeps its own)
-    mascot.tsx           GENERATED from textbooks/mascot.png (node cli.mjs mascot); never edit or read
+    mascot.tsx           GENERATED from kiko.svg (node cli.mjs mascot); never edit or read
     skeleton.tsx         the template `scaffold` fills for a silent runtime (full new style)
   lib/                   the CLI's modules, by step
     core/                env (config + secrets + the class helpers), caps (what a pinned runtime can do), args, work, pin, fence, chrome, png

@@ -35,7 +35,7 @@
  *                         <slot>/voice.tsx (Google Cloud TTS, cached in .voice-cache/; English keeps the device voice).
  *                         A SILENT runtime (r30+): says there is nothing to bake and exits; `check` (tr-coverage) proves
  *                         the printed Hindi and Gujarati. --force still bakes it, for reference only
- *   node cli.mjs mascot   [--src png] [--height 420]            regenerate runtime/mascot.tsx
+ *   node cli.mjs mascot   [--src svg|png] [--height 420]        regenerate runtime/mascot.tsx (config `mascot`: ../kiko.svg, Kiko)
  *   node cli.mjs images   make <MEDIA_ID> [--ch N] [--force] [--only key] [--dry] [--model name]
  *                         skins (docs/IMAGES.md): reads <slot>/images.json (written by the image agent), makes only
  *                         what the library and the raw cache lack (this class's, then the config's skinLibraries,
@@ -325,7 +325,7 @@ async function doVoice() {
 
 function doMascot() {
   const r = makeMascot({ ...(a.src ? { src: path.resolve(String(a.src)) } : {}), ...(a.height ? { height: Number(a.height) } : {}) });
-  console.log(`mascot ${rel(r.out)}  ${r.size.w}x${r.size.h} WebP · ${kb(r.bytes).trim()} inline (from ${rel(r.source)}, art ${r.art.w}x${r.art.h})`);
+  console.log(`mascot ${rel(r.out)}  ${r.size.w}x${r.size.h} WebP · ${kb(r.bytes).trim()} inline${r.cheerBytes ? ` + cheering pose ${kb(r.cheerBytes).trim()}` : ""} (from ${rel(r.source)}, art ${r.stand.w}x${r.stand.h}, cut to ${r.art.w}x${r.art.h})`);
 }
 
 /* why a slot is NOT cleaned ("" = go ahead): its sheets may be all that shows what is wrong with a tool that has not passed,

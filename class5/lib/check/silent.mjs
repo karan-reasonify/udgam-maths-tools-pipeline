@@ -455,7 +455,7 @@ export function judgeClassroom(r, ctx = {}) {
    waits for it), with no "free" stage on the way. Returns problems; the last one is what the builder can do. */
 const PARTY_SOON = 1200;   /* "within about 1 s": the 60 ms sampling and a DevTools round trip ride on top */
 const PARTY_HINT = "builder: nothing to write; the party is the runtime's and starts at the right answer of the phase's last question (a FAIL is a runtime matter; THEME colours it)";
-export function judgePhaseParty(rec, reducedRuns = [], N = 0) {
+export function judgePhaseParty(rec, reducedRuns = [], N = 0, cheer = false) {
   const bad = [];
   if (!rec || rec.error) return [`the party run failed (${rec && rec.error})`, PARTY_HINT];
   const ps = rec.phases || [];
@@ -468,12 +468,23 @@ export function judgePhaseParty(rec, reducedRuns = [], N = 0) {
     const b = p.box;
     if (!b || b.x < -1 || b.y < -1 || b.x + b.w > 1601 || b.y + b.h > 901) bad.push(`${tag}: the party left the 1600 x 900 stage (${JSON.stringify(b)})`);
     if (p.pointerEvents !== "none") bad.push(`${tag}: the party takes pointer events (pointer-events ${JSON.stringify(p.pointerEvents)})`);
+    if (cheer) {   /* r54: the mascot has a cheering pose: it shows while the party is drawn and is gone with it */
+      if (p.cheerMs === null || p.cheerMs === undefined) bad.push(`${tag}: the mascot never showed its cheering pose (data-pose "cheer") while the party was drawn`);
+      else if (p.cheerMs > 500) bad.push(`${tag}: the mascot's cheering pose came ${p.cheerMs} ms after the party began (want with it)`);
+      if (p.poseEnd === "cheer") bad.push(`${tag}: the mascot was still in its cheering pose when the party ended`);
+    }
     if (p.lifeMs === null || p.lifeMs === undefined || p.lifeMs > 3000 || p.lifeMs < 1200) bad.push(`${tag}: the party was on for ${p.lifeMs} ms (want about 2.3 s, gone by 3 s)`);
     if (!p.last) {
       if (p.nextAfterPartyMs === null || p.nextAfterPartyMs === undefined) bad.push(`${tag}: the next phase never began`);
       else if (p.nextAfterPartyMs < 2200) bad.push(`${tag}: the next phase began ${p.nextAfterPartyMs} ms after the party appeared (the walk must wait for it, about 2.3 s)`);
       if ((p.stages || []).some((x) => /^free@/.test(x))) bad.push(`${tag}: the stage was "free" between the phase and the next one (${(p.stages || []).join(" > ")})`);
     }
+  }
+  if (cheer && rec.quick) {   /* r54: the small cheer after an ordinary right answer: the cheering pose for about 0.9 s, then standing */
+    const q = rec.quick;
+    if (q.seenMs === null || q.seenMs === undefined) bad.push("the mascot did not show its cheering pose (data-pose \"cheer\") within 6 s of an ordinary right answer");
+    else if (q.backMs === null || q.backMs === undefined) bad.push("the mascot stayed in its cheering pose after an ordinary right answer (want about 0.9 s)");
+    else if (q.backMs - q.seenMs < 500 || q.backMs - q.seenMs > 1800) bad.push(`the small cheer after an ordinary right answer lasted ${q.backMs - q.seenMs} ms (want about 0.9 s)`);
   }
   const drawn = reducedRuns.filter((r) => r.probe && r.probe.party);
   if (drawn.length) bad.push(`a party was drawn under reduced motion in ${drawn.map((r) => r.key).slice(0, 3).join(", ")}`);

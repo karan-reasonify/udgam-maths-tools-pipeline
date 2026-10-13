@@ -30,6 +30,7 @@
   5 from r30; the bubble is the guide, a `TR` table carries the printed Hindi and Gujarati). The runbook's
   non-negotiable 9 says what each means; never read or edit `voice.tsx` (generated base64); never pin class
   4's r11.
+- **The mascot is Kiko** (`kiko.svg` in this folder, since 2026-10-13), not `mascot.png`. Every class's `pipeline.config.json` `mascot` is `../kiko.svg`; `node cli.mjs mascot` (in `class<N>/`) renders it to the inline WebP in `runtime/mascot.tsx` (never read it). Frozen runtimes never change: class 5's r1-r52 and all of class 4's keep the old robot, **r53 is the first with Kiko**, and a chapter has Kiko only when it is pinned to r53 or later (a class made by `classctl new` starts from the newest head, so it has it). **From r54 Kiko CHEERS**: a second picture (`MASCOT_CHEER`, made by the same `node cli.mjs mascot` from the SVG's own layers: arms up, happy eyes) shows with the party (three jumps, sparkles) and for 0.9 s after any right answer; `phase-party` asserts it, and a PNG mascot simply has no cheer.
 - Stage now: **pipeline v1**, set from the reference tool `M1.S1.T2.C4.2D1` (class 4, chapter 1). Chapters are made
   one after another; **publish only after every chapter of a class is made, and only on the user's word**.
 - **Each chapter builds on its own runtime.** `work/<chapter_id>/runtime.json` pins a frozen snapshot in

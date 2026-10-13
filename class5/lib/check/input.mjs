@@ -744,8 +744,8 @@ export async function partyDotInput({ base }) {
 async function partyRun(url) {
   return cdpSession(url, async (s) => {
     if (!(await s.until("!!(window.toolApi && window.__tool)", 20000))) return { error: "the tool did not mount" };
-    const st = () => s.ev("(() => { const g = window.toolApi.getState(); return { stage: g.stage, phase: g.phase, phases: g.phases, item: g.item, items: g.items, step: g.step, party: g.party }; })()");
-    const PB = `(() => { const z = document.querySelector('[data-zone="party"]'); const g = window.toolApi.getState(); const o = { stage: g.stage, phase: g.phase, party: !!g.party };
+    const st = () => s.ev("(() => { const g = window.toolApi.getState(); return { stage: g.stage, phase: g.phase, phases: g.phases, item: g.item, items: g.items, step: g.step, party: g.party }; })()"); let quick = null;   /* r54: the small cheer after phase 1's first right answer */
+    const PB = `(() => { const z = document.querySelector('[data-zone="party"]'); const g = window.toolApi.getState(); const m = document.querySelector('image[data-role="mascot"]'); const o = { stage: g.stage, phase: g.phase, party: !!g.party, pose: m ? (m.getAttribute("data-pose") || "") : null };
       if (!z) return o; const svg = document.querySelector("svg.c4"); const inv = svg.getScreenCTM().inverse(), r = z.getBoundingClientRect(), a = svg.createSVGPoint(), b = svg.createSVGPoint();
       a.x = r.left; a.y = r.top; b.x = r.right; b.y = r.bottom; const A = a.matrixTransform(inv), B = b.matrixTransform(inv);
       const pop = Array.from(z.children).filter((c) => c.firstElementChild && c.firstElementChild.tagName === "polygon").map((c) => { const q = c.getBoundingClientRect(), p = svg.createSVGPoint(), p2 = svg.createSVGPoint(); p.x = q.left; p.y = q.top; p2.x = q.right; p2.y = q.bottom; const P = p.matrixTransform(inv), P2 = p2.matrixTransform(inv); return { x: Math.round(P.x), y: Math.round(P.y), w: Math.round(P2.x - P.x), h: Math.round(P2.y - P.y) }; });
@@ -756,32 +756,49 @@ async function partyRun(url) {
     for (let guard = 0; guard < N; guard++) {
       await s.until("['ask', 'demo'].includes(window.toolApi.getState().stage)", 25000);
       const g0 = await st(), p0 = g0.phase, last = p0 === N;
+      /* r54: the SMALL cheer: phase 1's right answer before the last question puts the mascot in its cheering pose for about 0.9 s */
+      if (p0 === 1 && g0.items > 1) {
+        await s.ev(`window.toolApi.gotoStep(${g0.step - (g0.item - 1) + (g0.items - 2)})`);
+        await s.until("window.toolApi.getState().stage === 'ask'", 8000);
+        await s.wait(300);
+        const q0 = Date.now();
+        await s.ev("window.__tool.solve()");
+        let qs = null, qb = null;
+        while (Date.now() - q0 < 6000) {
+          const pz = await s.ev(`(() => { const m = document.querySelector('image[data-role="mascot"]'); return m ? (m.getAttribute("data-pose") || "") : null; })()`);
+          if (pz === "cheer" && qs === null) qs = Date.now() - q0;
+          if (qs !== null && pz !== "cheer") { qb = Date.now() - q0; break; }
+          await s.wait(50);
+        }
+        quick = { seenMs: qs, backMs: qb };
+        await s.until("['ask', 'demo'].includes(window.toolApi.getState().stage)", 15000);
+      }
       await s.ev(`window.toolApi.gotoStep(${g0.step - (g0.item - 1) + (g0.items - 1)})`);
       await s.until("window.toolApi.getState().stage === 'ask'", 8000);
       await s.wait(300);
       const t0 = Date.now(), stages = [];
       await s.ev("window.__tool.solve()");
-      let seenAt = null, goneAt = null, nextAt = null, box = null, pe = null, stateParty = false, seenStage = null, poppers = null;
+      let seenAt = null, goneAt = null, nextAt = null, box = null, pe = null, stateParty = false, seenStage = null, poppers = null, cheerAt = null, poseEnd = null;
       while (Date.now() - t0 < 25000) {
         const b = await s.ev(PB);
         const tag = b.stage + "@" + b.phase;
         if (stages[stages.length - 1] !== tag) stages.push(tag);
         if (b.zone) {
           if (seenAt === null) { seenAt = Date.now(); pe = b.pe; seenStage = b.stage; poppers = b.pop || null; }
-          stateParty = stateParty || b.party;
+          stateParty = stateParty || b.party; if (b.pose === "cheer" && cheerAt === null) cheerAt = Date.now();
           box = box ? { x: Math.min(box.x, b.x), y: Math.min(box.y, b.y), x2: Math.max(box.x2, b.x2), y2: Math.max(box.y2, b.y2) } : { x: b.x, y: b.y, x2: b.x2, y2: b.y2 };
-        } else if (seenAt !== null && goneAt === null) goneAt = Date.now();
+        } else if (seenAt !== null && goneAt === null) { goneAt = Date.now(); poseEnd = b.pose; }
         if (!last && b.phase !== p0 && nextAt === null) nextAt = Date.now();
         if ((last ? goneAt !== null : nextAt !== null && (goneAt !== null || b.zone !== true))) break;
         await s.wait(60);
       }
       phases.push({ phase: p0, last, seenMs: seenAt === null ? null : seenAt - t0, lifeMs: seenAt !== null && goneAt !== null ? goneAt - seenAt : null,
-        nextAfterPartyMs: seenAt !== null && nextAt !== null ? nextAt - seenAt : null, stages, seenStage, stateParty, pointerEvents: pe, poppers,
+        nextAfterPartyMs: seenAt !== null && nextAt !== null ? nextAt - seenAt : null, stages, seenStage, stateParty, pointerEvents: pe, poppers, cheerMs: seenAt !== null && cheerAt !== null ? cheerAt - seenAt : null, poseEnd,
         box: box && { x: Math.round(box.x), y: Math.round(box.y), w: Math.round(box.x2 - box.x), h: Math.round(box.y2 - box.y) } });
       if (last) break;
       await s.until(`window.toolApi.getState().phase !== ${p0}`, 15000);
     }
-    return { phases, logs: s.logs.slice(0, 3) };
+    return { phases, quick, logs: s.logs.slice(0, 3) };
   }, { label: "party", timeout: 240000, reducedMotion: false });
 }
 

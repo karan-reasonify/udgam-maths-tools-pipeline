@@ -212,7 +212,7 @@ three jobs:
   press Enter." (`UI.typeIt`); on a choice question (`choices: [...]`) it brings "Choose your answer."
   (`UI.pickIt`): the child picks, nothing is typed. Both are drawn in a NEUTRAL band (grey bar, no accent), so they
   never look like a hint (`choice-answer-line`). Nothing to write: they are the runtime's, in all three languages.
-- **Win.** A right answer gets the tool's own short line (`api.say("...")`) and the correct sound; the mascot hops;
+- **Win.** A right answer gets the tool's own short line (`api.say("...")`) and the correct sound; the mascot cheers (r54: Kiko's cheering picture and one jump for about 0.9 s; before r54 a hop);
   the next question follows the celebration (`winMs`) by itself.
   **A win line is read, never cut (r41):** a win line, a closing line and a summary row never park, so in a classroom
   each of their pieces stays on the bubble for its reading time (`readMs`: 2.4 s, or 68 ms a character when longer).
@@ -323,7 +323,7 @@ function Work({ stage, step, stepOn, api, ... }: any) {
 ## 9c. The phase party (runtime r39; at the right answer from r40)
 
 Nothing to write: AT the right answer of a phase's last question (r40; not at the phase end, so a long `winMs` never
-delays it), the runtime plays a pop and the win chime, the mascot hops and the party bursts from the mascot
+delays it), the runtime plays a pop and the win chime, the mascot cheers (r54: Kiko swaps to its cheering picture, arms up and happy eyes, and jumps three times while gold and orange sparkles twinkle round it; before r54 it hops) and the party bursts from the mascot
 (`data-zone="party"`, `getState().party`) for 2.3 s, in the tool's pink and butter with a mint and an orange (no browns,
 no white); the last phase's party is bigger, from both sides, over the win picture, and the summary opens `winMs`
 later. The next phase starts by itself once the party has had its time (1.4 s after the closing line, at least 2.45 s

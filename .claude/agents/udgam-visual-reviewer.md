@@ -78,7 +78,7 @@ Look at each PNG (they are in the slot's folder). Use `--full --phase n --state 
    press Enter." and, on a choice question, "Choose your answer." (r41) sit in a NEUTRAL band with a grey bar, never
    the accent band a hint wears. The popper cones (r41) stand beside the bubble, never on it or on the phase pills
    (one at the mascot's side; the last phase's second at the right, above the pills). The party frames: festive in the tool's
-   colours, nothing important hidden for long, nothing past the stage's edge.
+   colours, nothing important hidden for long, nothing past the stage's edge. From r54 the mascot (Kiko) is in its CHEERING picture in them (arms up, happy eyes, gold and orange sparkles round it, the popper cone at its raised hand): judge that it reads as a cheer at its size, that the sparkles stay clear of the bubble and the pills, and that nothing of Kiko is cut off at its box.
 7. **Consistent with the other tools**: the runtime's header, footer, pad and phase bar untouched; the
    working area's style matches the reference tool's (rounded toy pieces, one shadow, warm chrome).
 8. **Appeal**: would a 8-year-old poke at it for 30 seconds with no question on the screen?

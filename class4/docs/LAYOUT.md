@@ -210,13 +210,17 @@ Each is 56 across with a 72-unit finger box; 72 apart, so the boxes tile and nev
 
 ## 5. The footer
 
-- **Mascot** (`textbooks/mascot.png`, carried inside the tool as a 390 x 420 WebP, about 50 KB, so the
-  preview, staging and production paint the same bytes; nothing is fetched). It stands on a ground line
-  and **does not talk** (the lesson is silent): it **hops** once when an answer is right or a phase ends and
-  **nods** once after a miss (`c4-hop`, `c4-nod`, still under reduced motion), and is still otherwise. If its
+- **Mascot** (**Kiko**: `kiko.svg` at the pipeline root, its name plate and white backdrop taken out, rendered to a 229 x 420 WebP of about 25 KB and carried inside the tool, so the
+  preview, staging and production paint the same bytes; nothing is fetched). It stands on a ground line (tall and narrow: about 87 x 160 in its 204 x 160 box)
+  and **does not talk** (the lesson is silent): it **cheers** when an answer is right (r54: its cheering picture and one jump for 0.9 s; a hop before r54), for the party's 2.3 s (r54: three jumps, sparkles round it) and
+  **nods** once after a miss (`c4-cheer1`, `c4-cheer`, `c4-nod`, and `c4-hop` before r54; all still under reduced motion), and is still otherwise. If its
   picture ever fails to decode, a drawn dot stands in. It is drawn straight from the inline WebP, as the
   NCERT tools do; only the `<image>`'s error or a probe through `window.Image` drops it (never the bare
   name `Image`: the host declares a lucide icon of that name in the tool's scope).
+  **The cheering pose (r54):** a second picture, `MASCOT_CHEER` (about 21 KB), made from the same SVG with the arms raised and the eyes
+  two happy arcs, cut to the same box as the standing picture so the swap never moves Kiko. It takes the place of the standing picture on the
+  same `<image data-role="mascot" data-pose="cheer">` while the party plays and for 0.9 s after any other right answer; if it fails to decode
+  the standing picture stays. A PNG mascot has none (`MASCOT_CHEER` is empty and nothing changes).
 - **Bubble: the guide.** The line of the moment, printed, numbers as words. Every instruction and every hint is
   ONE page (one sentence that fits; r35), so nothing pages by a timer. After a wrong act or answer the instruction
   stays **pinned** on top (`data-role="instruction"`) and the **hint** sits under it in a tinted band with an accent
@@ -252,9 +256,9 @@ Each is 56 across with a 72-unit finger box; 72 apart, so the boxes tile and nev
 
 Every mount walks phase to phase, as the NCERT tools do (a phase 2 mount plays 2, 3, 4). **At the right answer of a
 phase's last question** (r40; r39 waited for the phase end, which a long `winMs` delayed by seconds) the runtime
-celebrates: a pop (+220 ms) and the chime (+420 ms), the mascot hops, and **the party** (`data-zone="party"`,
+celebrates: a pop (+220 ms) and the chime (+420 ms), the mascot cheers (r54; a hop before), and **the party** (`data-zone="party"`,
 `getState().party`: confetti, streamers and a party popper from the mascot, in the tool's pink and butter with a mint
-and an orange, 2.3 s, no text, no pointer events, never past the stage's edge, none under reduced motion); the last
+and an orange, 2.3 s, with gold and orange sparkles twinkling round the cheering mascot (r54), no text, no pointer events, never past the stage's edge, none under reduced motion); the last
 phase's party is bigger, from both sides, over the win picture, and the summary opens `winMs` later. After the
 celebration the bubble shows the closing line and the next phase starts by itself: **1.4 s after the line, and never
 before the party has had its time** (at least 2.45 s from its start). There is **no free play between phases** (built as r38, dropped on the owner's word): free play

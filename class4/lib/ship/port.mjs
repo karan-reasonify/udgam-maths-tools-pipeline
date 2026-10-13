@@ -249,7 +249,7 @@ ${silent
     sounds: silent ? "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves"
       : "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
     mascotPoses: {},
-    mascot: { inline: true, type: "image/webp", width: m.MASCOT_SIZE && m.MASCOT_SIZE.w, height: m.MASCOT_SIZE && m.MASCOT_SIZE.h, source: "textbooks/mascot.png", fallback: "drawn speaking dot" },
+    mascot: { inline: true, type: "image/webp", width: m.MASCOT_SIZE && m.MASCOT_SIZE.w, height: m.MASCOT_SIZE && m.MASCOT_SIZE.h, source: path.basename(String(CONFIG.mascot || "kiko.svg")), fallback: "drawn speaking dot" },
     voiceLines: (w.voiceLines || []).map((l) => ({ en: l })),
     build: { source: hash, runtime: runtimeVersion ? `${CLASS_DIR}/runtime/frozen/${runtimeVersion}/runtime.tsx` : `${CLASS_DIR}/runtime/runtime.tsx`, runtimeVersion: runtimeVersion || null, library: `@use-gesture/react@${version("@use-gesture/react")}`, builtAt: new Date().toISOString(),
       checks: st.checks, tsxBytes: Buffer.byteLength(tsx), tsxMd5: md5(Buffer.from(tsx)) },
