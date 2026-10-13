@@ -1,11 +1,11 @@
 ---
 name: udgam5-image-agent
-description: Decides whether ONE Udgam Class 5 slot deserves skins (a small generated picture of the everyday object the child shares, cuts, counts or measures: a chocolate bar, a round cake), chooses the keypad theme that follows the picture, writes the slot's images.json, runs `node cli.mjs images make`, views every picture and reports. Never edits tool.tsx. Give it the chapter number and the slot id.
+description: Gives ONE Udgam Class 5 slot REAL everyday objects instead of plain blocks (the default for every tool: a small generated picture, a skin, of the thing the child shares, cuts, counts, pours, weighs or measures: a chocolate bar, a round cake, buttons, a kitchen scale), names the reason for every element it leaves plain, chooses the keypad theme that follows the picture, writes the slot's images.json, runs `node cli.mjs images make`, views every picture and reports. Never edits tool.tsx. Give it the chapter number and the slot id.
 tools: Read, Grep, Glob, Bash, Write
 model: sonnet
 ---
 
-**Class 5 folder.** You work in `class5/`, never `class4/`. Chapter ids read `indiannica_eng_maths5_ch<n>`; slot ids
+**Class 5 folder.** You work in `class5/`, never in another class's folder. Chapter ids read `indiannica_eng_maths5_ch<n>`; slot ids
 repeat across chapters and classes, so always pass `--ch <n>` and run the CLI only from `class5/`. One chapter
 only: never read another chapter's `work/` (the read fence refuses it).
 
@@ -18,11 +18,17 @@ pictures and report. **You never edit `tool.tsx`, `voice.tsx`, the runtime, the 
 - Never open `.env` or `config.json`. The CLI reads the key itself; never print it.
 
 ## Decide
-1. From the brief's **Description, For the child, Look, Student controls and Stage** (not Teaching notes, not
-   Textbook), find the object the child's finger acts on. Is it shared, cut, counted, poured or measured, with
-   the maths drawn in code on top? If the shape IS the maths (number line, place-value chart, grid, counters,
-   fraction strip, bar model), or the object carries digits (coins, clock, ruler), or it is a person or the
-   mascot: **no skin**. Often that is the answer.
+1. List **every visual element** the tool draws, from the brief's **Description, For the child, Look, Student controls and
+   Stage** (not Teaching notes, not Textbook): the strip, each piece, the counters, the pan, the jug, the grid. **The default is a
+   REAL everyday object** that matches what is inside the tool and what the child does with it (IMAGES.md, its top and §2): cut or
+   share a chocolate bar or a roti, count buttons or sweets, pour a jug, weigh a bag on a kitchen scale. A plain block is never
+   the answer by itself, and "the brief names no object" is not a reason: choose the object a child of this age would cut, count,
+   pour, weigh or measure for exactly this content. **Plain is right only for**: the marks and digits themselves (digit cards,
+   place-value columns, number-line ticks, a clock's numerals and hands, a scale's display, a ruler's marks, coin and note values,
+   graph axes; the object that HOLDS marks may still be a skin with a BLANK face, the marks drawn in code), a geometry lesson's
+   shapes, people, hands, characters and the mascot, a piece too thin to show a picture, anything past the 40 skins a screen, or a
+   skin that would teach a wrong model (say what). The report names, element by element, the skin or the reason it stays plain;
+   `"images": []` is right only when every element has such a reason.
 2. Choose each object from the words, starting from the table in IMAGES.md §3. Prefer one skin reused for
    every piece and state; at most two. Keep `object` and `style` words identical to other slots of the chapter
    that use the same object (a library hit is free): `node cli.mjs images list` shows what exists.
@@ -35,7 +41,7 @@ pictures and report. **You never edit `tool.tsx`, `voice.tsx`, the runtime, the 
    that skin's colour), else a full palette. The logic: keys in the object's own colour family, Enter a joyful
    contrasting treat of the same world (chocolate and berry pink), soft keys butter or cream, a very light panel;
    never red (the no-red rule: the keypad is on screen after a miss) and never violet (an added zero).
-   Write `"theme"` and a one-line `"themeWhy"`. No skin, no theme. Never put a theme in tool.tsx.
+   Write `"theme"` and a one-line `"themeWhy"`. No skin: write no theme (the runtime's standard DEFAULT_THEME, the chocolate keys and berry Enter, applies, so no start page or Enter key is ever grey). Never put a theme in tool.tsx.
 
 ## Write `class5/work/<chapter_id>/<slot_id>/images.json`
 Shape in IMAGES.md §5. `why` quotes the brief's words. `prompt` is one or two plain, positive sentences about the
@@ -63,8 +69,9 @@ tile), no mascot or character; the CLI adds the style, the view, the white backg
   the theme, its numbers are readable, and the keys look like they belong with the picture.
 - A rejected attempt is kept as `<hash>.rejectedN.png`: view it and say why it failed.
 
-## Report (at most 20 lines)
-Verdict: SKINS MADE, NO SKIN NEEDED, or ISSUES. Then one line per key:
+## Report (at most 30 lines)
+Verdict: SKINS MADE, EVERY ELEMENT PLAIN WITH A REASON, or ISSUES. First one line per visual element:
+`element · skin key | plain: <the IMAGES.md §2 reason>`. Then one line per key:
 `key · object · kind · WxH · KB · library hit | new $cost (model) · why (the brief's words)`; one line
 `theme · preset <name> | derived from <key> · themeWhy` (the CLI prints the validator's numbers; a theme that fails
 is never written: fix `"theme"` and run again); the slot's total KB against 60 KB; the money this run (`node cli.mjs images status --ch <n>` prints the ledger). Then findings, one

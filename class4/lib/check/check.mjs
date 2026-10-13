@@ -427,7 +427,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   const firstLine = stepSays(P1)[0] || [...(m.OPENING || []), ...(P1.says || [])].find(Boolean) || it1.say || it1.ask || "";
   /* the reset key goes back to the start page from r32 (`backToStart`): a runtime with it is asked to prove it */
   const SP = hasStart ? await startPageInput({ base, poolSize: Math.min(Number(process.env.C4_CHROME_POOL) || 4, 3), first: bubblePieces(firstLine, m)[0] || "",
-    backToStart: caps.backToStart, silent: silentRt }).catch((e) => ({ ok: false, bad: [String(e && e.message)], detail: "" })) : null;
+    backToStart: caps.backToStart, silent: silentRt, defaultTheme: caps.defaultTheme }).catch((e) => ({ ok: false, bad: [String(e && e.message)], detail: "" })) : null;
   /* guide steps by a real mouse: one click on the first step's control of each steps phase moves it on (2026-10-08) */
   const SC = stepPhases.length ? await stepClickInput({ base, phases: stepPhases.map((p) => p.n), poolSize: Math.min(Number(process.env.C4_CHROME_POOL) || 4, 3) })
     .catch((e) => ({ rows: [], bad: [String(e && e.message)], notes: [] })) : null;

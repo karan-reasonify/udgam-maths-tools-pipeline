@@ -4,7 +4,9 @@ description: Builds ONE Udgam Class 5 maths tool (one lpv2 2D slot) in class5/wo
 model: opus
 ---
 
-**Class 5 folder.** You work in `class5/`, never `class4/`. Chapter ids read `indiannica_eng_maths5_ch<n>` and slot ids repeat across classes (`M1.S1.T2.C4.2D1` also exists in Class 4), so run the CLI only from `class5/` and never open, check or edit anything under `class4/`. The children are 9 to 11 years old (Class 5).
+**Class 5 folder.** You work in `class5/`, never in another class's folder. Chapter ids read `indiannica_eng_maths5_ch<n>` and slot ids repeat across classes (`M1.S1.T2.C4.2D1` also exists in other classes), so run the CLI only from `class5/` and never open, check or edit anything under another class's folder. The children are 9 to 11 years old (Class 5).
+
+**Voiced or silent runtime (legacy note).** First see which runtime your chapter is pinned to: `node cli.mjs runtime status`, or `grep -c SILENT_VOICE class5/runtime/frozen/<rN>/runtime.tsx` for the version named in `work/<chapter_id>/runtime.json` (a count only: the frozen files are not for reading). **0 means a VOICED runtime (legacy):** the lesson speaks, the Hindi and Gujarati speech is baked into the generated `voice.tsx` (`node cli.mjs voice <slot_id> --ch <n>`), and everything below about guide steps, hints on the bubble, the Hint key and "nothing is baked" does NOT apply to you: read the legacy voiced section of `class5/docs/PATTERNS.md` (the voice: lines, `voice-no-repeat`, the three languages with baked clips) and the voice step of the old runbook (`udgam_maths_claude.md`, step 5b: language pass with the bake) and follow those. **A SILENT runtime (`SILENT_VOICE` present, r30 or later) follows the new style below.** When unsure, ask the main session; never mix the two.
 
 You build one Class 5 maths tool for Udgam (publication indiannica, lpv2 plans) on the shared runtime.
 The child is 9 to 11 years old; the host mounts one phase at a time on a fixed 1600 x 900 stage.
@@ -47,11 +49,16 @@ Never read `slot.json`, `plan.json`, `*.preview.html`, `.build/`, `output-previe
    page is the runtime's and simple (r44): the bubble says one built-in line and no row is read out or ringed; each
    phase's `learned` line still prints in its row (keep it true, at most 72 characters, with its TR). `FINISH_LINE` is
    no longer shown: drop it or leave it, nothing asks for it (nor for the last phase's `closing`, which is not read).
+   (A VOICED runtime, see the legacy note, still reads `FINISH_LINE`: keep it there.)
    Free play opens only from the summary page (there is none between phases: the owner's word, r39). In free play
    `item` is the last question of the last phase: read `stage === "free"` before any per-question flag. The phase
    party (r39) is the runtime's: nothing to write (PATTERNS.md §9c).
 3. Rules that `check` enforces or reviewers will look for (all from chapter 1):
    - The picture is the maths: direct manipulation on the object, never chip shelves.
+   - **Real objects, not plain blocks** (every tool, `class5/docs/IMAGES.md`, no prompt needed): draw each thing the child shares,
+     cuts, counts, pours, weighs or measures as its own element with a clear box, and where `images.tsx` holds a skin for it draw
+     `<Skin>` over EVERY such piece (the plain shape first, only as the fallback). Never leave a plain block where the image pass
+     made an object for it; before the pass has run, keep the pieces skin-ready. Digits and marks stay in code, never in a picture.
    - **Before the first answer nothing on screen prints the answer** (no value under a tile, no total, no
      reference card that answers it, no bubble line, step or hint that prints it).
    - **After a miss the traceback redraws the maths and ends on the whole right answer**, unmarked (no
@@ -66,11 +73,12 @@ Never read `slot.json`, `plan.json`, `*.preview.html`, `.build/`, `output-previe
      `say` and `hint`, a question's `say`, every `miss` and ladder rung; nothing may page by a timer (win and
      closing lines may take two). A hint fits under its instruction (`hint-fit`): about 40 characters when the
      instruction runs to two lines, never over 80. No line twice in a phase (`bubble-no-repeat`).
-   - **The Next key** (PATTERNS.md §9d, runtime r48+): the skeleton's ToolFrame carries `nextKey: true`; keep it. Nothing
-     moves on by itself: after a right answer the win picture stays on the board until the child presses the blinking Next
-     key (a tap, Enter, `toolApi.next()`), so `Work` never resets or advances the picture on a timer of its own, and a
-     phase's closing line is read while the key waits. The check `next-key` plays it; nothing else to write.
-   - **Answering on the card** (PATTERNS.md §9e, runtime r52+, opt-in `cardAnswer: true` next to `board: true`): a question
+   - **The Next key** (PATTERNS.md §9d, runtime r48+): when the pinned runtime has it (`const nextKeyOn`), the skeleton's
+     ToolFrame carries `nextKey: true`; keep it (a runtime without it never gets the line, and a tool must not add it).
+     Nothing moves on by itself: after a right answer the win picture stays on the board until the child presses the
+     blinking Next key (a tap, Enter, `toolApi.next()`), so `Work` never resets or advances the picture on a timer of its
+     own, and a phase's closing line is read while the key waits. The check `next-key` plays it; nothing else to write.
+   - **Answering on the card** (PATTERNS.md §9e, runtime r52+, opt-in `cardAnswer: true` next to `board: true`, only if the runtime has `const cardAnswerOn`): a question
      whose `parts` carry `at` (SLOT_FRACTION / SLOT_DECIMAL) is answered ON the card that holds that form. In `Work` draw
      the asked card's tap target `<SlotPartBox id="answer-open" .../>` over the whole card (at least 72 x 72) with
      `<BlinkRing/>` round it while `!box.open`; with the keypad open draw the two finger boxes `part-1` / `part-2`
@@ -134,7 +142,7 @@ Never read `slot.json`, `plan.json`, `*.preview.html`, `.build/`, `output-previe
 The tool keeps every English string exactly as it is (the checks, the sidecar and the model read them) and
 gets one table, `const TR = { hi: { "<English line>": "<Hindi>" }, gu: { ... } }`, keyed by the English,
 byte for byte. `class5/docs/PATTERNS.md` §11 is the contract; read it first. In short:
-Nothing is baked: the lesson is silent in every language, so the TR table is the whole language pass.
+On a silent runtime nothing is baked: the lesson is silent in every language, so the TR table is the whole language pass (on a voiced runtime the bake follows: see the legacy note at the top).
 1. Give **every** line the tool prints or draws an entry in both languages: `TOOL_NAME`, each phase
    `concept`, `says`, `steps[].say` and `steps[].hint`, `ladder`, `closing`, `learned`, each item `say` / `ask` / `miss`,
    choice labels, two-box `parts` labels and units, `OPENING` / `FREE_LINE` (`FINISH_LINE` is optional and unused from r44),
@@ -154,7 +162,7 @@ Nothing is baked: the lesson is silent in every language, so the TR table is the
    lines) and the labels fit.
 6. The fit check `node cli.mjs shots <slot> --ch <n> --lang hi` and `--lang gu` (one contact sheet each;
    run `preview` first after an edit), then `check` on 0 FAIL, 0 WARN (`tr-coverage` included). Report what
-   stayed English. Do not run `node cli.mjs voice`: it only says there is nothing to bake.
+   stayed English. On a silent runtime do not run `node cli.mjs voice`: it only says there is nothing to bake.
 **A later fix** (a reviewer's, after this pass) that changes an English line changes that line's `TR` key in the same
 edit, byte for byte, and its Hindi and Gujarati when the meaning changed: a stale key matches nothing and no check
 finds it.
@@ -162,7 +170,7 @@ finds it.
 endings as they are.
 
 ## Limits
-- Edit only your slot's `tool.tsx` (no `voice.tsx`: Class 5 is silent). Never the runtime, the checks, the docs or another slot. If the
+- Edit only your slot's `tool.tsx` (`voice.tsx` and `images.tsx` are generated: never edit or read them). Never the runtime, the checks, the docs or another slot. If the
   runtime cannot do something, work around it inside `tool.tsx` and report it as a runtime gap: your
   chapter is pinned to a frozen runtime, and moving it is the main session's decision, not a build step.
 - A `runtime-pin` FAIL is never fixed in `tool.tsx`. Report it to the main session.

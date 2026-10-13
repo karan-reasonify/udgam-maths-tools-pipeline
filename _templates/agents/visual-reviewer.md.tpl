@@ -80,8 +80,15 @@ Look at each PNG (they are in the slot's folder). Use `--full --phase n --state 
    (one at the mascot's side; the last phase's second at the right, above the pills). The party frames: festive in the tool's
    colours, nothing important hidden for long, nothing past the stage's edge. From r54 the mascot (Kiko) is in its CHEERING picture in them (arms up, happy eyes, gold and orange sparkles round it, the popper cone at its raised hand): judge that it reads as a cheer at its size, that the sparkles stay clear of the bubble and the pills, and that nothing of Kiko is cut off at its box.
 7. **Consistent with the other tools**: the runtime's header, footer, pad and phase bar untouched; the
-   working area's style matches the reference tool's (rounded toy pieces, one shadow, warm chrome).
+   working area's style matches the reference tool's (rounded toy pieces, one shadow, warm chrome). The header's three buttons are the owner's picture (a cream glossy
+   disc on a tan rim: a yellow bulb, a blue speaker with orange waves, a green refresh arrow; a plain outline icon, or one cut off, is a
+   must-fix). The start page's Start key and the Enter / Answer
+   key wear the theme's berry colours (a tool with no skin: the runtime's standard), never the chrome's grey: a grey Start key is a must-fix.
 8. **Appeal**: would a {{AGE_LOW}}-year-old poke at it for 30 seconds with no question on the screen?
+9. **Real objects, not plain blocks** (`{{DIR}}/docs/IMAGES.md`): every piece the child shares, cuts, counts, pours, weighs or measures
+   shows as its real object (a chocolate bar, a roti, buttons, a jug, a scale) where the image pass made one. A plain block there is
+   a should-fix, and a must-fix when the skin exists in `images.tsx` and is not drawn. A plain block where the content calls for an
+   object and the pass gave no reason is a question. Digits and marks stay in code: no digit or letter inside a picture.
 
 ## Report (at most 25 lines)
 Verdict: CLEAN or ISSUES. One line per finding:

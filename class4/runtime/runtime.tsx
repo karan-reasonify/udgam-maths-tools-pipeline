@@ -911,6 +911,16 @@ function Defs({ C }: any) {
       {shadow("fShadowSoft", 3, 3, 0.14)}
       {shadow("fLift", 14, 10, 0.24)}
       {shadow("fBtnDown", 1, 1.5, 0.18)}
+      {/* the header's three buttons (head of 2026-10-13, the owner's picture): a cream disc on a tan bevelled rim, a bulb, a speaker, a refresh arrow */}
+      {g("hcRim", "#E6D5B3", "#BFA37A")}
+      {g("hcBulb", "#FFE56B", "#F2A100")}
+      {g("hcBase", "#8A90B0", "#5A5F80")}
+      <radialGradient id="hcFace" cx="38%" cy="30%" r="80%">
+        <stop offset="0" stopColor="#FFFEF9" /><stop offset="0.55" stopColor="#F8EDD6" /><stop offset="1" stopColor="#EBD9B8" />
+      </radialGradient>
+      <linearGradient id="hcSpk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#7CC4FF" /><stop offset="1" stopColor="#2E78D6" /></linearGradient>
+      <linearGradient id="hcWave" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#FFD24D" /><stop offset="1" stopColor="#F08A00" /></linearGradient>
+      <linearGradient id="hcGrn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#8EE07C" /><stop offset="1" stopColor="#2F9A41" /></linearGradient>
     </defs>
   );
 }
@@ -1012,7 +1022,13 @@ let SKINS = true;
    reaches the controls the child presses. { key, enter, soft: [top, bottom, edge, ink], panel: [top, bottom], slot: edge }.
    key = the digit keys; enter = Enter, Answer, Start; soft = rub out, Close, point. Without it the chrome's own colours. */
 let THEME: any = null;
-const toneInk = (tone: string, d: string) => (THEME && tone && THEME[tone] ? THEME[tone][3] : d);
+/* DEFAULT_THEME (head of 2026-10-13): the keys, Enter / Answer / Start, answer panel and answer-box edge of a tool with NO theme of
+   its own (no skin, so no TOOL_THEME). It is the chocolate preset (lib/images/theme.mjs, the owner's pick), so every start page and
+   every Enter key is the same berry family and never the chrome's grey accent; a tool with skins keeps the theme its image agent
+   chose from the object. A tool never hard-codes a THEME (name your own const TB_THEME if you must override). */
+const DEFAULT_THEME: any = { key: ["#A45E3C", "#7A3F22", "#4E2410", "#FFF3DC"], enter: ["#E0408F", "#BE1F78", "#8C0F55", "#FFFFFF"],
+  soft: ["#FFE29A", "#F7C25A", "#C48E1F", "#5B3410"], panel: ["#FFF1D6", "#F3D9A8"], slot: "#7A3F22" };
+const toneInk =(tone: string, d: string) => (THEME && tone && THEME[tone] ? THEME[tone][3] : d);
 const slotEdge = (C: any) => (THEME && THEME.slot) || C.accent;
 
 /* screen point -> stage point, through the svg the event happened in */
@@ -1222,6 +1238,82 @@ function RoundControl({ id, cx, cy, C, onClick, children, label }: any) {
   );
 }
 
+/* the header's three controls (head of 2026-10-13, the owner's picture): a cream glossy disc on a tan bevelled rim, with its own
+   coloured icon on it. Pure SVG. Same contract as RoundControl: the data-control id, the aria label, the 56-unit face, the 72-unit
+   finger box and the press-down; RoundControl itself is unchanged (a tool may use it). The colours are fixed art, not the tool's. */
+function HeaderControl({ id, cx, cy, onClick, children, label }: any) {
+  const p = usePress(onClick || (() => {}));
+  return (
+    <g className={"c4-ctl" + (p.down ? " is-down" : "")} data-control={id} role="button" aria-label={label || id} tabIndex={0}
+      {...p.bind()} onKeyDown={p.keys}>
+      <circle cx={cx} cy={cy} r={HIT / 2} fill="transparent" />
+      <g transform={`translate(${cx},${cy})`}>
+        <circle cx={0} cy={4} r={28} fill="#C2A67C" />
+        <g className="c4-body" style={{ transform: `translateY(${p.down ? 4 : 0}px)` } as any}>
+          <circle className="c4-face" cx={0} cy={0} r={28} fill="url(#hcRim)" stroke="#B39A72" strokeWidth={1.2} />
+          <circle cx={0} cy={0} r={24.2} fill="url(#hcFace)" stroke="#E9DBBE" strokeWidth={0.8} />
+          <ellipse cx={-12.5} cy={-13.5} rx={6.6} ry={2.6} transform="rotate(-38 -12.5 -13.5)" fill="#FFFFFF" opacity={0.9} />
+          <circle cx={-17.6} cy={-6.2} r={1.3} fill="#FFFFFF" opacity={0.8} />
+          <path d="M -19 12 A 22 22 0 0 0 14 19" fill="none" stroke="#D9C49C" strokeWidth={1.6} strokeLinecap="round" opacity={0.7} />
+          {children}
+        </g>
+      </g>
+    </g>
+  );
+}
+/* the hint key's bulb: a yellow glass with a brown outline, a screw base, five rays (icons are drawn in a 48-unit box on 0,0) */
+function IconBulb() {
+  const ray = (x1: number, y1: number, x2: number, y2: number, k: string) => (
+    <g key={k} strokeLinecap="round">
+      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#C98400" strokeWidth={3.8} />
+      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#FFCB2E" strokeWidth={2.2} />
+    </g>
+  );
+  return (
+    <g>
+      {ray(0, -21, 0, -17, "t")}{ray(-14.5, -16.2, -11.8, -13.3, "tl")}{ray(14.5, -16.2, 11.8, -13.3, "tr")}{ray(-20.5, -4, -16.5, -4, "l")}{ray(20.5, -4, 16.5, -4, "r")}
+      <path d="M -6.6 8 C -6.6 3 -10.6 0.5 -10.6 -5.5 A 10.6 10.6 0 0 1 10.6 -5.5 C 10.6 0.5 6.6 3 6.6 8 Z" fill="url(#hcBulb)" stroke="#6B3D1A" strokeWidth={1.7} strokeLinejoin="round" />
+      <path d="M -3 7 C -3.4 3 -2 1 0 -1 C 2 1 3.4 3 3 7" fill="none" stroke="#D98A00" strokeWidth={1.1} strokeLinecap="round" opacity={0.75} />
+      <ellipse cx={-4.6} cy={-8.2} rx={2.6} ry={4} transform="rotate(25 -4.6 -8.2)" fill="#FFFFFF" opacity={0.75} />
+      <rect x={-6.4} y={7.6} width={12.8} height={3.8} rx={1.6} fill="url(#hcBase)" stroke="#2E3350" strokeWidth={1.5} />
+      <rect x={-6} y={11.4} width={12} height={3.8} rx={1.6} fill="url(#hcBase)" stroke="#2E3350" strokeWidth={1.5} />
+      <path d="M -3.2 15.2 h 6.4 a 1.2 1.2 0 0 1 -1.2 2.4 h -4 a 1.2 1.2 0 0 1 -1.2 -2.4 z" fill="#4C506E" stroke="#2E3350" strokeWidth={1.4} strokeLinejoin="round" />
+    </g>
+  );
+}
+/* the sound key's speaker: a blue cone with orange waves; muted, a grey cross where the waves were (never red: the header stays on screen after a miss) */
+function IconSpeaker({ on }: any) {
+  const wave = (d: string, w: number, k: string) => (
+    <g key={k} fill="none" strokeLinecap="round">
+      <path d={d} stroke="#C4700A" strokeWidth={w + 1.8} />
+      <path d={d} stroke="url(#hcWave)" strokeWidth={w} />
+    </g>
+  );
+  return (
+    <g>
+      <path d="M -19 -4.6 h 6.6 l 10.2 -9.6 v 28.4 l -10.2 -9.6 h -6.6 z" fill="url(#hcSpk)" stroke="#1D3F78" strokeWidth={1.9} strokeLinejoin="round" />
+      <path d="M -17.4 -3 h 6 l 9 -8.4" fill="none" stroke="#FFFFFF" strokeWidth={1.3} strokeLinecap="round" opacity={0.6} />
+      {on ? [wave("M 4.8 -6.2 a 9 9 0 0 1 0 12.4", 3.4, "w1"), wave("M 10.6 -11.6 a 16 16 0 0 1 0 23.2", 3.8, "w2")] : (
+        <g fill="none" strokeLinecap="round">
+          <path d="M 6 -6 L 17 6 M 17 -6 L 6 6" stroke="#6F695A" strokeWidth={5.6} />
+          <path d="M 6 -6 L 17 6 M 17 -6 L 6 6" stroke="#B7B0A0" strokeWidth={3} />
+        </g>
+      )}
+    </g>
+  );
+}
+/* the restart key's refresh arrow (also "back to the start" on a later phase): a green ring open at the top right, its head pointing on */
+function IconRefresh() {
+  return (
+    <g>
+      <path d="M 10.42 4.86 A 11.5 11.5 0 1 1 3.93 -10.8" fill="none" stroke="#1E6A31" strokeWidth={8.4} strokeLinecap="round" />
+      <path d="M 10.42 4.86 A 11.5 11.5 0 1 1 3.93 -10.8" fill="none" stroke="url(#hcGrn)" strokeWidth={5.4} strokeLinecap="round" />
+      <path d="M -9.6 -4.6 A 11.5 11.5 0 0 1 -1 -11.2" fill="none" stroke="#FFFFFF" strokeWidth={1.5} strokeLinecap="round" opacity={0.55} />
+      <path d="M 15.7 -6.5 L 5.4 -17.2 L 1 -5 Z" fill="url(#hcGrn)" stroke="#1E6A31" strokeWidth={2.4} strokeLinejoin="round" />
+    </g>
+  );
+}
+
 /* icons: 48-unit box centred on 0,0, bold round strokes */
 const ICON = { fill: "none", strokeWidth: 4.5, strokeLinecap: "round", strokeLinejoin: "round" } as any;
 /* a lightbulb for the header's Hint key (r35): the glass, its neck and the base, bold round strokes like the other icons */
@@ -1376,9 +1468,9 @@ function Header({ C, name, title, soundOn, onAgain, onSound, onRestart, UI, toSt
       <text x={dotX + 22} y={53} fontSize={T.label} fontWeight={500} fill={C.accent}>{shown}</text>
       {/* the three header controls, the same in every Class 4 tool and in both modes; 72 apart, so
           their finger boxes tile and never overlap */}
-      <RoundControl id="again" label={UI.again} cx={1388} cy={40} C={C} onClick={onAgain}><IconHint c={C.ink} /></RoundControl>
-      <RoundControl id="sound" label={soundOn ? UI.soundOff : UI.soundOn} cx={1460} cy={40} C={C} onClick={onSound}><IconSound c={C.ink} on={soundOn} /></RoundControl>
-      <RoundControl id="restart" label={toStart ? UI.toStart : UI.restart} cx={1532} cy={40} C={C} onClick={onRestart}><IconRestart c={C.ink} /></RoundControl>
+      <HeaderControl id="again" label={UI.again} cx={1388} cy={40} onClick={onAgain}><IconBulb /></HeaderControl>
+      <HeaderControl id="sound" label={soundOn ? UI.soundOff : UI.soundOn} cx={1460} cy={40} onClick={onSound}><IconSpeaker on={soundOn} /></HeaderControl>
+      <HeaderControl id="restart" label={toStart ? UI.toStart : UI.restart} cx={1532} cy={40} onClick={onRestart}><IconRefresh /></HeaderControl>
     </g>
   );
 }
@@ -1561,7 +1653,11 @@ function Pad({ C, enabled, digitsOff, onKey, choices, onChoice, point, pointOff,
   const gap = 12;
   const quiet = mix(C.ink, C.panel, 0.5);
   if (choices && choices.length) {
-    const cols = 2, rows = Math.ceil(choices.length / cols);
+    /* a long word ("hundredth", "thousandth": 9 to 10 letters at the label size) does not fit a half-width key (164 on the board),
+       so up to four keys stand in ONE full-width column, each still at least HIT tall; short words, or more keys, keep two columns */
+    const longest = Math.max(...choices.map((c: any) => Math.max(...wrapText(lineFor(c.label, lang, TR), 10).slice(0, 2).map((s: string) => s.length))));
+    const tooWide = longest * T.label * 0.6 + 24 > (Z.pad.w - gap) / 2;
+    const cols = tooWide && choices.length <= 4 && (Z.pad.h - EDGE - gap * (choices.length - 1)) / choices.length >= HIT ? 1 : 2, rows = Math.ceil(choices.length / cols);
     /* the board layout's panel is tall (390): word keys are taller (up to 150) and the group sits in the middle of it, so a
        two-key question does not leave the lower half of the panel empty. The classic pad keeps its own sizes. */
     const cw = (Z.pad.w - gap) / cols, ch = Math.min(BOARD ? 150 : 110, (Z.pad.h - EDGE - gap * (rows - 1)) / rows);
@@ -1644,7 +1740,9 @@ function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, on
      place, each ringed and blinking until one is tapped; mode "card" (the answer is given on a card of the picture) and an
      idle bar of such a tool (`quiet`) draw no key at all */
   const nCh = mode === "choices" ? (choices || []).length : 0;
-  const cw = 150, cgap = 14;
+  /* a long word ("thousandth", 10 letters) needs a wider key: 150 for Yes / No, up to 236 so the word sits at the label size */
+  const longest = nCh ? Math.max(...(choices || []).map((c: any) => lineFor(c.label, lang, TR).length)) : 0;
+  const cw = Math.min(236, Math.max(150, Math.ceil(longest * T.label * 0.6 + 28))), cgap = 14;
   const kw = nCh ? nCh * cw + (nCh - 1) * cgap : 264, kh = 72, kx = x0 + bw - kw - 10, ky = Z.ask.y + (Z.ask.h - kh) / 2;
   const noKey = mode === "card" || (quiet && mode === "off");
   const room = (noKey ? x0 + bw - 10 : kx) - x0 - 40;
@@ -1676,7 +1774,7 @@ function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, on
         <Key id={next ? "next-key" : mode === "enter" ? "answer-enter" : "answer-open"} label={label} x={kx} y={ky} w={kw} h={kh} C={C}
           tone={next || mode === "enter" || !open ? "enter" : "soft"} primary={live && (next || !open)} disabled={!live} onClick={onKey}>
           {/* a long Next label (Gujarati "Next phase", 11 letters) is set one size down, so it never touches the key's edge */}
-          <text y={next && String(label).length > 10 ? 11 : 14} textAnchor="middle" fontSize={next && String(label).length > 10 ? T.label : T.prompt} fontWeight={600} fill={!live ? mix(C.ink, C.panel, 0.5) : open && !next ? toneInk("soft", C.ink) : toneInk("enter", "#FFFFFF")}>{label}</text>
+          <text y={next && String(label).length > 10 ? 11 : 14} textAnchor="middle" fontSize={next && String(label).length > 10 ? T.label : T.prompt} fontWeight={600} fill={!live ? mix(C.ink, C.panel, 0.5) : open && !next && !(mode === "enter" && THEME && THEME.enter) ? toneInk("soft", C.ink) : toneInk("enter", "#FFFFFF")}>{label}</text>
         </Key>
       )}
       {next && <NextBlink x={kx} y={ky} w={kw} h={kh} C={C} />}
@@ -2149,8 +2247,9 @@ function ToolFrame({ props, tool }: any) {
   const board = !!tool.board;
   if (board || BOARD) setLayout(board);
   SKINS = P.skins !== false;
-  /* the tool's own THEME, else the one the image agent chose from the slot's object (images.tsx: TOOL_THEME), else none */
-  THEME = tool.THEME || (typeof TOOL_THEME !== "undefined" ? (TOOL_THEME as any) : null) || null;
+  /* the tool's own THEME, else the one the image agent chose from the slot's object (images.tsx: TOOL_THEME), else the standard
+     DEFAULT_THEME, so no start page or Enter key is ever the chrome's grey */
+  THEME = tool.THEME || (typeof TOOL_THEME !== "undefined" ? (TOOL_THEME as any) : null) || DEFAULT_THEME;
   const phases = tool.PHASES || [];
   const N = Math.max(phases.length, 1);
   const [mountPhase] = useState<number | null>(() => {

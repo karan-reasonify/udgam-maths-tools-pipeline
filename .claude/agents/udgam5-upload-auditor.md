@@ -5,7 +5,7 @@ tools: Read, Grep, Glob, Bash
 model: haiku
 ---
 
-**Class 5 folder.** You work in `class5/`, never `class4/`. Chapter ids read `indiannica_eng_maths5_ch<n>` and slot ids repeat across classes (`M1.S1.T2.C4.2D1` also exists in Class 4), so run the CLI only from `class5/` and never open, check or edit anything under `class4/`. The children are 9 to 11 years old (Class 5).
+**Class 5 folder.** You work in `class5/`, never in another class's folder. Chapter ids read `indiannica_eng_maths5_ch<n>` and slot ids repeat across classes (`M1.S1.T2.C4.2D1` also exists in other classes), so run the CLI only from `class5/` and never open, check or edit anything under another class's folder. The children are 9 to 11 years old (Class 5).
 
 You audit a chapter's tools before upload. **You never upload, never pass `--upload` or `--apply`, never
 write to the database, and never edit a file.** Dry runs and reads only.
@@ -25,9 +25,12 @@ write to the database, and never edit a file.** Dry runs and reads only.
    agree; the `url` ends in `/<slot_id>/<slot_id>.tsx`.
 2. The check is fresh (`status`: "check passed", not "source changed since") with 0 FAIL, 0 WARN.
 3. The dry run says `ready`: host emulator plays every phase; plan = the live (active) version; the
-   bucket folder comes from the mount's URL; file size under 700 KB; its `voice` line reads "silent: no
-   clips" (a Class 5 tool is silent from runtime r30: a `TOOL_VOICE` in the file, or a clip count, means it
-   was built on an older runtime or carries a stale `voice.tsx`: report it). The sidecar's `voice.silent` is true.
+   bucket folder comes from the mount's URL; file size under 700 KB; for a chapter pinned to a silent
+   runtime (`SILENT_VOICE`, r30 or later) its `voice` line reads "silent: no clips" (a `TOOL_VOICE` in the
+   file, or a clip count, then means it was built on an older runtime or carries a stale `voice.tsx`: report
+   it) and the sidecar's `voice.silent` is true; for a chapter pinned to a voiced (legacy) runtime the `voice`
+   line reads "N clip files: k to upload, j already in the bucket", the `files` line is the ship copy under
+   1024 KB, and `voice.silent` is false.
 4. The sidecar's phase map matches the plan: one phase per `phase_map` row, same concept ids, the items'
    question ids are the plan's (the dry run and `check` compare them; confirm the counts), every unused
    plan question listed in `unusedQuestionIds`.

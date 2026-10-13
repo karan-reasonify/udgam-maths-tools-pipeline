@@ -129,7 +129,7 @@ without a start page, AI mode and the agent's `toolApi.reset()` keep the phase r
   at label size if a translation needs them), a Spoken value with a `TR` entry in Hindi and Gujarati. It is printed, not
   spoken, and never states an answer.
 - The page is the tool's face: the same card, rule and shadow as the canvas, the mascot on its ground line at the left,
-  the same toy Start key as the pad's Enter. `check` proves it (`start-page`).
+  the same toy Start key as the pad's Enter, in the tool's THEME Enter colours: a tool with skins wears the theme its image agent chose from the object, a tool with none the runtime's standard `DEFAULT_THEME` (berry, never the chrome's grey), so every start page looks alike. `check` proves it (`start-page`: the Start key wears the theme's Enter gradient, saturated and not red).
 
 ## 2. Header
 
@@ -139,10 +139,12 @@ accent colour. On the right, three round controls, **the same in every tool and 
 | control | centre | does |
 |---|---|---|
 | Hint (lightbulb; `data-control="again"`) | 1388, 40 | "Hint" (r35), fully manual: while a guide step waits it shows that step's hint; at an open question the first press shows the first rung (the item's miss), each further press the stronger one (ladder[0], then ladder[1], never beyond); with nothing to hint (a win, a closing line, the summary, free play, the pad locked) it shows the lines again |
-| sound (speaker, a slash when off) | 1460, 40 | switches the sound effects off and on (§8); there is no voice |
-| restart (anticlockwise arrow) | 1532, 40 | starts this phase again and re-arms `finished` ("Start this phase again"); in a mount that shows a start page (§1c, r32) it is "Back to the start": the start page again, a clean slate, the lesson waiting for Start. `toolApi.reset()` is always the phase restart |
+| sound (a blue speaker with orange waves; muted, a grey cross where the waves were) | 1460, 40 | switches the sound effects off and on (§8); there is no voice |
+| restart (a green refresh arrow) | 1532, 40 | starts this phase again and re-arms `finished` ("Start this phase again"); in a mount that shows a start page (§1c, r32) it is "Back to the start": the start page again, a clean slate, the lesson waiting for Start. `toolApi.reset()` is always the phase restart |
 
 Each is 56 across with a 72-unit finger box; 72 apart, so the boxes tile and never overlap.
+
+**The look (head of 2026-10-13, the owner's picture):** each is a cream glossy disc on a tan bevelled rim with a soft underside and a highlight, carrying its own coloured icon: a **yellow lightbulb** (brown outline, grey screw base, five rays), a **blue speaker with orange sound waves**, a **green circular refresh arrow**. Pure SVG drawn by the runtime's `HeaderControl` (the colours are fixed art, never the tool's; `RoundControl` is unchanged for a tool that spreads it). Muted shows a grey cross, never red (the header is on screen after a miss). The data-control ids, the aria labels, the 56-unit face, the 72-unit finger box and the press-down are the same as before. A chapter has this look only when its pinned runtime is r55 or later of class 5, r23 or later of class 4 (`grep -c HeaderControl runtime/frozen/<rN>/runtime.tsx`).
 
 ## 3. The working area (what a tool draws)
 

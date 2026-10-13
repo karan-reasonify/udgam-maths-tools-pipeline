@@ -31,6 +31,16 @@
   non-negotiable 9 says what each means; never read or edit `voice.tsx` (generated base64); never pin class
   4's r11.
 - **The mascot is Kiko** (`kiko.svg` in this folder, since 2026-10-13), not `mascot.png`. Every class's `pipeline.config.json` `mascot` is `../kiko.svg`; `node cli.mjs mascot` (in `class<N>/`) renders it to the inline WebP in `runtime/mascot.tsx` (never read it). Frozen runtimes never change: class 5's r1-r52 and all of class 4's keep the old robot, **r53 is the first with Kiko**, and a chapter has Kiko only when it is pinned to r53 or later (a class made by `classctl new` starts from the newest head, so it has it). **From r54 Kiko CHEERS**: a second picture (`MASCOT_CHEER`, made by the same `node cli.mjs mascot` from the SVG's own layers: arms up, happy eyes) shows with the party (three jumps, sparkles) and for 0.9 s after any right answer; `phase-party` asserts it, and a PNG mascot simply has no cheer.
+- **Pictures are real objects, not plain blocks (the default for every class and chapter; no prompt has to ask).** Whatever a tool lets
+  the child share, cut, count, pour, weigh or measure is a real everyday object that matches the content and the operation (a chocolate
+  bar, a roti, buttons, a jug, a kitchen scale), made by the image pass (runbook step 5c, `class<N>/docs/IMAGES.md`), and the builder
+  draws `<Skin>` over every such piece. A plain block needs a stated reason: digits and marks, a geometry lesson's shapes, people and
+  the mascot, a piece too thin to show a picture or past 40 skins a screen, or a skin that would teach a wrong model.
+- **Standard look, in every class (from class 4 r23, class 5 r55 on; the head of 2026-10-13):** the header's three buttons are the owner's
+  picture (a cream glossy disc on a tan rim: yellow bulb, blue speaker with orange waves, green refresh arrow; `HeaderControl`, LAYOUT §2);
+  every start page and Enter / Answer / Start key wears a theme's berry colours (`DEFAULT_THEME` when a tool has no skins), never the chrome's
+  grey (`check`'s `start-page` row proves it); word-choice keys fit a long word. A chapter gets them by `runtime freeze` + `runtime pin --ch N`
+  on the owner's word; a finished chapter is not restaled. Classes 4 and 5 carry the same code and docs (a new class copies class 5).
 - Stage now: **pipeline v1**, set from the reference tool `M1.S1.T2.C4.2D1` (class 4, chapter 1). Chapters are made
   one after another; **publish only after every chapter of a class is made, and only on the user's word**.
 - **Each chapter builds on its own runtime.** `work/<chapter_id>/runtime.json` pins a frozen snapshot in

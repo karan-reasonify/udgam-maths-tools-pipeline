@@ -55,6 +55,10 @@ Never read `slot.json`, `plan.json`, `*.preview.html`, `.build/`, `output-previe
    party (r39) is the runtime's: nothing to write (PATTERNS.md §9c).
 3. Rules that `check` enforces or reviewers will look for (all from chapter 1):
    - The picture is the maths: direct manipulation on the object, never chip shelves.
+   - **Real objects, not plain blocks** (every tool, `{{DIR}}/docs/IMAGES.md`, no prompt needed): draw each thing the child shares,
+     cuts, counts, pours, weighs or measures as its own element with a clear box, and where `images.tsx` holds a skin for it draw
+     `<Skin>` over EVERY such piece (the plain shape first, only as the fallback). Never leave a plain block where the image pass
+     made an object for it; before the pass has run, keep the pieces skin-ready. Digits and marks stay in code, never in a picture.
    - **Before the first answer nothing on screen prints the answer** (no value under a tile, no total, no
      reference card that answers it, no bubble line, step or hint that prints it).
    - **After a miss the traceback redraws the maths and ends on the whole right answer**, unmarked (no

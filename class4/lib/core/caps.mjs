@@ -37,6 +37,7 @@ export function capsOf(runtimeSrc) {
     freeGuard: /function Party\b/.test(r),               /* r38+: the guard that free play is the summary page's only */
     steps: /guideSteps/.test(r),                         /* r30: phase.steps (guide steps) */
     theme: /TOOL_THEME/.test(r),                         /* r31: the keypad THEME (images.tsx TOOL_THEME) */
+    defaultTheme: /const DEFAULT_THEME\b/.test(r),       /* class 4 r23 / class 5 r55: a tool with no theme wears the standard one, so no Start key is grey */
     skin: /function Skin\b/.test(r),                     /* r29: object skins */
     cueBig: /c4-cue-big/.test(r),
     explore: /exploreOf|keepFocus/.test(r),

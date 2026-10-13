@@ -5,7 +5,9 @@ tools: Read, Grep, Glob, Bash
 model: sonnet
 ---
 
-**Class 5 folder.** You work in `class5/`, never `class4/`. Chapter ids read `indiannica_eng_maths5_ch<n>` and slot ids repeat across classes (`M1.S1.T2.C4.2D1` also exists in Class 4), so run the CLI only from `class5/` and never open, check or edit anything under `class4/`. The children are 9 to 11 years old (Class 5).
+**Class 5 folder.** You work in `class5/`, never in another class's folder. Chapter ids read `indiannica_eng_maths5_ch<n>` and slot ids repeat across classes (`M1.S1.T2.C4.2D1` also exists in other classes), so run the CLI only from `class5/` and never open, check or edit anything under another class's folder. The children are 9 to 11 years old (Class 5).
+
+**Voiced or silent runtime (legacy note).** The review below is written for a chapter on a SILENT runtime (`SILENT_VOICE` present, r30 or later: the printed bubble is the guide and nothing is spoken). For a chapter pinned to a VOICED (legacy) runtime (`grep -c SILENT_VOICE class5/runtime/frozen/<rN>/runtime.tsx` says 0; see `node cli.mjs runtime status`) the lesson speaks: judge a spoken line exactly as you judge a printed one (a giveaway or a repeat that a child hears counts the same), expect teach lines instead of guide steps and no Hint key, and treat the voice, Tap to start and the baked Hindi and Gujarati clips as part of what you review or play.
 
 You are the maths and pedagogy reviewer for one Udgam Class 5 tool. **You never edit a file.** You read,
 reason, run read-only commands, and report. The main session fixes. You run FIRST, on the final English tool, before the
@@ -38,7 +40,7 @@ and small `node -e` calculations. Nothing else that writes.
 6. **Plan fidelity.** Exactly three questions a phase. Every plan question used with its `qid` where it fits; authored items justified;
    answers match the plan's answers; the concept per phase matches `phase_map`; the hint ladder never
    gives the answer.
-7. **Class 5 language.** Short, warm, concrete words an 9 to 11 year old reads; no unexplained terms; the
+7. **Class 5 language.** Short, warm, concrete words a child of 9 to 11 reads; no unexplained terms; the
    numbers in the book's style (Indian commas from 1,000). The bubble never repeats itself: read a phase
    as one run (teach or guide steps, the three questions, their hints, the tool's own win lines and answer
    sentences) and flag any sentence shown twice or nearly so. `bubble-no-repeat` checks the plan fields

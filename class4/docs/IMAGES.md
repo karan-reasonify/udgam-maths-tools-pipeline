@@ -1,9 +1,17 @@
-# IMAGES: skins for the objects a tool shares
+# IMAGES: real objects instead of plain blocks (skins)
 
-A tool draws its maths as plain SVG. When a slot's words name a real object that is shared, cut, counted,
-poured or measured (a chocolate bar, a round cake), the **image agent** (`.claude/agents/<agentPrefix>-image-agent.md`; the prefix is the class's config key `agentPrefix`)
-asks for a small picture of that object, and the tool wears it as a **skin**: the tool's own geometry (the exact
+A tool draws its maths as plain SVG. The **image agent** (`.claude/agents/<agentPrefix>-image-agent.md`; the prefix is the class's config key `agentPrefix`)
+asks for a small picture of the real object a drawn thing stands for (a chocolate bar, a round cake), and the tool wears it as a **skin**: the tool's own geometry (the exact
 equal cuts, the shading, the labels, the counts) is drawn in code over the picture, or clipped from it.
+
+**The default, for every class, chapter and slot (owner's rule, 2026-10-13): real objects, not plain blocks.** Wherever a tool draws a
+THING the child shares, cuts, counts, pours, weighs, measures, lifts, drags or builds with (a strip, bar, block, tile, piece, cell,
+counter, bead, sheet, jug, pan, bag, ribbon), that thing is a **real everyday object that matches what is inside the tool and what
+the child does with it**: cut or share, a chocolate bar, a roti, a cake; count or group, buttons, beads, sweets; pour, a jug of milk;
+weigh, a bag of rice on a kitchen scale; measure a length, a ribbon or a pencil. The image pass (runbook step 5c) therefore runs for
+**every tool**, whether or not a prompt says so, and its question is **"which real object?"**, not "does this deserve a skin?". A plain
+coloured block is the exception: §2 lists the only reasons, and the agent names the reason for every plain element in its report.
+Nobody has to ask for this in a prompt; a builder never ships a plain block where the pass made an object for it.
 
 **The picture never carries the maths.** Image models cannot draw ten exactly equal parts or reliable digits, and
 no check reads pixels. A skin is the object's look and nothing else.
@@ -22,18 +30,34 @@ user's word; one fetched new gets it with its first pin. On an older pin a tool 
 | warm (browns, creams, caramels, golden oranges) so the tool's blue and green tints read on it | red, blue or green (they fight the content colours) |
 | small: a data URI of 1 to 25 KB (a piece at most 12 KB) | a photo, a PNG, anything over 25 KB |
 
-## 2. When to make one, and when not
+## 2. Which elements get an object, and which stay plain
 
-Make a skin only when **all** of these hold:
-- the slot's words name a concrete everyday object (or a strip/circle the child cuts and shares, where a familiar
-  object makes the whole feel real);
-- the child acts on that object: shares, cuts, counts, pours or measures it;
-- the maths is carried by code geometry (equal pieces, sectors, shading, a level, a count).
+Go through **every visual element the tool draws** (the strip, each piece, the pan, the jug, the counters, the sheet) and give each
+one of two answers. **The default is a real object** (a skin) whenever all of these hold:
+- the element stands for a real thing or a quantity of real things (a whole to share, pieces, a count of objects, a container, a
+  length, a weight), whatever plain shape it has now (a strip, a bar, a grid cell, a counter, a block);
+- the child acts on it, or it carries the lesson's picture (shares, cuts, counts, pours, weighs, measures, lifts, drags);
+- the maths stays in code on top (equal pieces, sectors, shading, a level, a count, every mark and digit).
 
-Never make one for: number lines, place-value charts, grids, dot arrays, counters, bar models and fraction strips
-where **the shape is the maths**; people, hands, characters, the mascot; anything that carries text or digits
-(coins, notes, clocks, rulers, scales, calendars, price tags: their marks are maths, so they are drawn); a
-background or decoration. **Often the right answer is no skin at all**: write `"images": []` and say why.
+The object is chosen to **match what is inside the tool and what the operation is** (§3), even when the brief names none: a
+"strip the child cuts" is a chocolate bar, a share bar a ribbon or a tray, "ten counters" ten buttons or sweets, a weighing tool a
+kitchen scale with a bag on the pan.
+
+**Plain is right only for these** (name the reason for each plain element in the report):
+- **the marks and digits themselves**: digit cards, place-value columns and their headings, number-line ticks, the numerals and hands
+  of a clock, the display and dial of a scale, a ruler's marks, coin and note values, graph axes. The object that HOLDS the marks may
+  still be a skin with its face left BLANK and the marks drawn over it in code (a kitchen scale with an empty display, a jug with no
+  scale lines): prompt it "blank face, no marks, no numbers"; if the picture shows any mark or digit, one re-make, then plain;
+- **the subject of a geometry lesson** (an angle, a polygon, a net, a circle's centre and radius): the shape is what is studied;
+- **people, hands, characters, the mascot**, a background, decoration;
+- a piece **too thin to show a picture** (a hundredth, a thousandth sliver) or beyond the **40 skins a screen** the `skins` check
+  allows: skin the pieces the child acts on and draw the rest plain (a hundred-cell grid: skin the whole it comes from and the pieces
+  lifted out of it; a "sheet" kind or a higher cap is an open question, BUILD_CARD §8);
+- a skin that would **teach a wrong model** (say what: a chocolate tile behind a place-value digit makes every digit look like one
+  equal piece of a whole).
+
+Any other plain block is a fault of the pass, not a decision. `"images": []` is right only when every element is one of the above,
+and the report says which, element by element.
 
 ## 3. Choosing the object: the brief's words decide
 
@@ -45,16 +69,23 @@ Read these fields of `brief.md`, in this order: **Description**, **For the child
 |---|---|---|
 | chocolate, a bar to share, break into pieces | one square piece of milk chocolate | tile |
 | "a strip" the child cuts into equal parts, no material named | one square piece of milk chocolate (say why) | tile |
-| "paper strip", fraction strip, bar model, tape diagram, number strip | none: draw it | - |
+| "paper strip", fraction strip, bar model, tape diagram | one square piece of milk chocolate (a share bar), or a satin ribbon for a length (say why) | tile or strip |
+| number strip of digit cards, a place-value chart | none: drawn (digits are the maths) | - |
 | a tray of sweets cut into equal pieces (barfi, chikki) | one piece of barfi or chikki | tile |
-| tiles, a floor, a hundred-chart of tiles | one tile (terracotta, wood) | tile |
+| tiles, a floor, a hundred-chart or a grid of equal cells | one tile or square of the object (terracotta, a biscuit, a barfi) per cell, up to 40 on a screen | tile |
+| counters, dots, beads, tokens, "n of them", an array | one button, bead or sweet | tile |
+| weigh, a scale, "kg", "g", a weight on a pan | a kitchen scale body with a BLANK display (drawn once) and one bag of rice or sugar on the pan; the display and every number in code | tile |
+| a jug, glass, bottle, "pour", litres | a jug or glass with NO scale lines (drawn once); the level and the marks in code | tile |
+| a length, "measure", ribbon, rope, string, a pencil | a satin ribbon or a jute rope (strip), or a pencil (tile); a ruler's marks are code | strip or tile |
 | cake, slices, a circle cut into equal sectors | round golden sponge cake with a crust ring | disc |
 | pizza | round golden sponge cake (pizza is red, with toppings and slice lines) | disc |
 | roti, chapati, paratha (shared, torn) | roti | disc |
 | ribbon, rope, string, a length cut into parts | a satin ribbon or a jute rope, warm colour | strip |
-| coins, notes, clock, ruler, calendar, money | none: drawn (they carry digits) | - |
+| coins, notes, price tags, clock, ruler, calendar, money | none: drawn (their value or marks are the digits) | - |
 
-Start from this table and extend it in the same spirit; a new row is a one-line addition here.
+Start from this table and extend it in the same spirit; a new row is a one-line addition here. **Where the words name no object,
+still choose one**: the everyday object a child of this age would cut, count, pour, weigh or measure for exactly this content and
+operation, and say why in the image's `why`. "No object named" is never a reason for plain blocks.
 
 **Prefer the smallest set.** One skin reused for every piece and state; **at most 2 skins a slot** (the CLI
 refuses a third). Two slots asking for the same object, kind and style share one generated picture (a library
@@ -173,6 +204,12 @@ The logic of every theme: keys in the **object's own colour family**; Enter a **
 treat of the same world** (chocolate and raspberry); soft keys a light butter or cream; the panel a very light tint.
 No `theme` but skins: the CLI derives one from the first skin and says so (a theme always follows an image).
 
+**No skin: no `theme` is written, and the runtime's standard `DEFAULT_THEME` applies** (class 4 r23, class 5 r55 and later): the chocolate
+keys and the berry Enter, so every start page and every Enter / Answer / Start key is in the same berry family and never the chrome's
+grey accent (the owner, 2026-10-13: a start page with a grey Start key beside tools with a berry one). A pinned runtime without
+`DEFAULT_THEME` (`grep -c DEFAULT_THEME runtime/frozen/<rN>/runtime.tsx`) keeps the chrome's own keys for a tool with no skin.
+`check`'s `start-page` row fails a Start key that is grey, pale or red on a runtime that has it.
+
 **The validator** (`validateTheme`; `images make` refuses to write a theme that fails, with the reasons): each tone's
 ink at least 4.5:1 against the mean of its two face colours; the key face at least 1.6:1 off the panel; key and
 enter faces saturation at least 0.35 (never pale); Enter's hue at least 20 degrees from the keys'; the panel's
@@ -182,7 +219,7 @@ saturation over 0.5, lightness 0.25 to 0.75, with a 3-degree margin on the hue),
 after a miss (`wrong-is-unmarked`) and a red key reads as "error" to a child. (The first chocolate Enter, a
 raspberry `#E5486B` at hue 348, failed this in all four phases.)
 `images sheet` draws a mini answer panel, keypad, Answer and Close keys in the theme beside the skins, with these
-numbers. **Class 4** is not part of this: its runtime has no THEME, and its emit never writes `TOOL_THEME`.
+numbers. A chapter has the theme when its pinned runtime reads one (`grep -c TOOL_THEME runtime/frozen/<rN>/runtime.tsx`: class 4 from r22 on; r21 and older do not, and an older pin gets no `TOOL_THEME`).
 
 ## 9. Review (the agent does this every run)
 

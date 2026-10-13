@@ -398,6 +398,10 @@ async function startRun(url, how, { backToStart = false } = {}) {
         phase: a.phase, played: (a.played || []).length, complete: !!a.complete, restartLabel: r ? r.getAttribute("aria-label") : null }; })()`);
     const out = { how, before: await snap() };
     out.geometry = await s.ev("window.__geometry()");
+    /* the Start key's face: the theme's Enter gradient (gTenter), never the chrome's grey accent (gAccent) */
+    out.startKey = await s.ev(`(() => { const f = document.querySelector('[data-control="start"] .c4-face'); if (!f) return null;
+      const m = /url\\(#([^)]+)\\)/.exec(f.getAttribute("fill") || ""), g = m ? document.getElementById(m[1]) : null;
+      return { fill: f.getAttribute("fill"), grad: m ? m[1] : null, stops: g ? Array.from(g.querySelectorAll("stop")).map((x) => x.getAttribute("stop-color")) : [] }; })()`);
     if (how === "geometry") return out;
     await s.wait(3000);
     out.waited = await snap();
@@ -436,8 +440,11 @@ async function startRun(url, how, { backToStart = false } = {}) {
    `backToStart`: the runtime has the reset key that goes back to the start page (r32): the click row must show it;
    `silent`: the runtime's lesson is silent (r30+): speech after Start is a fault. A voiced runtime that has a start
    page (r28, r29) speaks its first line once Start is pressed, so only speech BEFORE Start is judged there. */
-export function judgeStart(rows, first = "", { backToStart = false, silent = true } = {}) {
+export function judgeStart(rows, first = "", { backToStart = false, silent = true, defaultTheme = false } = {}) {
   const b = [];
+  const hsl = (hex) => { const m = /^#?([0-9a-f]{6})$/i.exec(String(hex || "")); if (!m) return null; const n = parseInt(m[1], 16), R = (n >> 16) / 255, G = ((n >> 8) & 255) / 255, B = (n & 255) / 255,
+    mx = Math.max(R, G, B), mn = Math.min(R, G, B), l = (mx + mn) / 2, d = mx - mn, s = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1)); let h = 0;
+    if (d) { h = mx === R ? ((G - B) / d) % 6 : mx === G ? (B - R) / d + 2 : (R - G) / d + 4; h = (h * 60 + 360) % 360; } return { h, s, l }; };
   const box = (t) => t.ink || t.box;
   const over = (A, B) => Math.min(A.x + A.w, B.x + B.w) - Math.max(A.x, B.x) > 2 && Math.min(A.y + A.h, B.y + B.h) - Math.max(A.y, B.y) > 2;
   const norm = (x) => String(x || "").replace(/\s+/g, " ").trim();
@@ -457,6 +464,17 @@ export function judgeStart(rows, first = "", { backToStart = false, silent = tru
       const key = g.controls.find((c) => c.id === "start");
       if (!key || key.box.w < 71 || key.box.h < 71 || key.role !== "button" || key.tab !== "0" || !key.label) b.push(`${tag}: the Start key is not a labelled, focusable 72 x 72 button`);
       g.images.filter((im) => im.role !== "mascot" && im.role !== "skin").forEach((im) => b.push(`${tag}: a picture on the start page that is neither the mascot nor a skin`));
+    }
+    /* a runtime with DEFAULT_THEME (class 4 r23, class 5 r55): every start page wears a theme's Enter colours, so no Start key is the
+       chrome's grey; the faces are saturated (at least 0.35) and never red (the owner, 2026-10-13: "all start pages should look alike") */
+    if (defaultTheme && r.how === "click") {
+      const sk = r.startKey;
+      if (!sk || sk.grad !== "gTenter") b.push(`${tag}: the Start key is painted ${sk ? JSON.stringify(sk.fill) : "nowhere"}, not with the theme's Enter colours (url(#gTenter)): it must wear the tool's theme or the runtime's DEFAULT_THEME, never the chrome's grey accent`);
+      else (sk.stops || []).forEach((c) => {
+        const x = hsl(c);
+        if (!x || x.s < 0.35) b.push(`${tag}: the Start key's colour ${c} is grey or pale (saturation ${x ? x.s.toFixed(2) : "?"}, want at least 0.35)`);
+        else if ((x.h >= 345 || x.h <= 15) && x.s > 0.5 && x.l >= 0.25 && x.l <= 0.75) b.push(`${tag}: the Start key's colour ${c} reads as red (no red on the page: a red key reads as an error)`);
+      });
     }
     if (r.how !== "geometry") {
       const w = r.waited || {};
@@ -683,7 +701,11 @@ export function measureHintFrame(fr, img, bubble = { x: 254, y: 748, w: 656, h: 
   }
   const d = Math.abs(fr.ctm.d || 1), u = (px) => +(px / d).toFixed(1);
   const tx0 = Math.max(X(bubble.x + 6), X(Math.min(...lines.map((l) => l.x0))) - 2), tx1 = Math.min(X(bubble.x + bubble.w - 6), X(Math.max(...lines.map((l) => l.x1))) + 2);
-  const frac = (py) => { let n = 0; for (let px = tx0; px <= tx1; px++) if (ink(img.at(px, py))) n++; return n / Math.max(1, tx1 - tx0 + 1); };
+  /* the OUTLINE is found by its distance from white alone: with no THEME the hint bar is the accent and the outline is
+     shade(accent, 0.1), a few units apart, so `ink` (which ignores the bar's colour) never saw the outline and the block
+     measured the bubble's own border (142 units in every frame, 2026-10-13, ch 8 board tools with no skin and no theme) */
+  const edge = (c) => Math.hypot(255 - c[0], 255 - c[1], 255 - c[2]) > 80;
+  const frac = (py) => { let n = 0; for (let px = tx0; px <= tx1; px++) if (edge(img.at(px, py))) n++; return n / Math.max(1, tx1 - tx0 + 1); };
   const by0 = Y(bubble.y), by1 = Y(bubble.y + bubble.h);
   let oTop = by0 - 1, oBot = by1 + 1, on = false;
   for (let py = Math.max(0, by0 - 4); py <= by0 + 8; py++) if (frac(py) >= 0.97) { oTop = py; on = true; } else if (on) break;
@@ -1156,7 +1178,7 @@ export function judgeCardAnswer(rec) {
 }
 
 /* the start page of a tool that has one: English by tap and by Enter, Hindi and Gujarati for fit */
-export async function startPageInput({ base, poolSize = 2, first = "", backToStart = false, silent = true }) {
+export async function startPageInput({ base, poolSize = 2, first = "", backToStart = false, silent = true, defaultTheme = false }) {
   const q = "?phase=1&probe=1&startpage=1";
   const jobs = [
     () => startRun(`${base}${q}`, "click", { backToStart }),
@@ -1168,7 +1190,7 @@ export async function startPageInput({ base, poolSize = 2, first = "", backToSta
   const bad = res.filter((r) => !r.ok).map((r) => r.error.message);
   const rows = res.filter((r) => r.ok && !r.value.error).map((r) => r.value);
   res.filter((r) => r.ok && r.value.error).forEach((r) => bad.push(r.value.error));
-  if (rows.length) bad.push(...judgeStart(rows, first, { backToStart, silent }));
+  if (rows.length) bad.push(...judgeStart(rows, first, { backToStart, silent, defaultTheme }));
   return { ok: !bad.length, bad, detail: `the start page, by a real mouse and Enter${silent ? " (the lesson is silent)" : ""}: it opens first with no line on the bubble and nothing begun, still so after 3 s, nothing of the tool shows behind it, it fits in English, Hindi and Gujarati, and Start brings the tool's first line onto the bubble within 2 s; ${backToStart ? "after a played question the reset key (\"Back to the start\") brings the page back with a clean slate and Start works again" : "back to the start not asked (this runtime's reset key restarts the phase: before r32)"}` };
 }
 
