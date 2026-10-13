@@ -86,6 +86,108 @@
   @media (max-width: 1500px) { #totals { display: none; } }
   @media (max-width: 1280px) { .step .lbl { display: none; } }
   @media (max-width: 720px) { header { padding: 10px 12px; } select { max-width: 100%; flex: 1; } .rail { width: 210px; } }
+  /* ---- Preview | Editor (editor.js) ---------------------------------------------------------------- */
+  .views { display: inline-flex; padding: 3px; gap: 2px; border: 1px solid var(--btn-border); border-radius: 9px; background: var(--panel); }
+  .views button { display: inline-flex; align-items: center; gap: 7px; min-height: 30px; padding: 0 12px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .views button:hover { color: var(--ink); }
+  .views button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+  .views .count { min-width: 20px; padding: 0 6px; border-radius: 999px; background: #f5b400; color: #1c2128; font-size: 12px; font-weight: 700; text-align: center; }
+  .views .count[hidden] { display: none; }
+  #editor { display: none; flex: 1; min-height: 0; }
+  body.editor-on #editor { display: flex; }
+  body.editor-on main, body.editor-on .preview-only, body.editor-on #nav, body.editor-on #navMeta, body.editor-on #btnRail, body.editor-on #btnRefresh, body.editor-on #ownTab { display: none !important; }
+  .btn.sm, .icon-btn.sm { min-height: 28px; height: 28px; padding: 0 8px; font-size: 12.5px; width: auto; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.primary:hover:not(:disabled) { background: #1d4ed8; }
+  .btn.publish { background: var(--pass); border-color: var(--pass); color: #fff; }
+  .btn.publish:hover:not(:disabled) { background: #116329; }
+  .btn .spin, .icon-btn .spin { margin-right: 4px; }
+  .ed-empty { flex: 1; display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; }
+  .ed-empty > div { max-width: 620px; }
+  .ed-queue { width: 330px; display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+  .ed-qhead { display: flex; align-items: center; gap: 6px; padding: 12px 12px 8px; }
+  .ed-title { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #3f4856; }
+  .ed-qhead .ed-title { flex: 1; }
+  .ed-filter-btn { gap: 4px; }
+  .ed-count { min-width: 18px; padding: 0 5px; border-radius: 999px; background: #f5b400; color: #1c2128; font-size: 11.5px; font-weight: 700; }
+  .ed-pick { padding: 0 12px 10px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid var(--chrome-border); }
+  .ed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ed-sel { max-width: none; min-width: 0; width: 100%; font-size: 13px; padding: 6px 8px; }
+  .ed-hint { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid #e3b341; border-radius: 8px; background: #fff8e1; color: #7a5200; font-size: 12.5px; font-weight: 600; }
+  .ed-hint span { flex: 1; }
+  .ed-qlist { flex: 1; overflow-y: auto; padding: 8px; }
+  .ed-item { margin-bottom: 4px; }
+  .ed-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+  .tag { display: inline-flex; align-items: center; gap: 3px; padding: 1px 7px; border-radius: 999px; font-size: 11.5px; font-weight: 700; border: 1px solid currentColor; background: var(--panel); white-space: nowrap; }
+  .tag.warn { color: var(--warn); } .tag.ok { color: var(--pass); } .tag.err { color: var(--fail); } .tag.info { color: var(--accent); } .tag.muted { color: var(--muted); }
+  .ed-main { flex: 1; min-width: 0; display: flex; flex-direction: column; min-height: 0; }
+  .ed-top { flex: none; max-height: 52%; overflow-y: auto; border-bottom: 1px solid var(--border); background: var(--panel); }
+  .ed-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 14px 18px 10px; position: sticky; top: 0; background: var(--panel); z-index: 1; }
+  .ed-head > div:first-child { flex: 1 1 300px; }
+  .ed-h1 { font-size: 19px; font-weight: 700; }
+  .ed-meta { font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .ed-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ed-actions .btn { font-size: 13.5px; }
+  .issue { margin: 0 18px 10px; padding: 8px 12px; border-radius: 8px; font-size: 13px; border: 1px solid; }
+  .issue.err { color: var(--fail); border-color: #f1aeb5; background: #fff5f5; }
+  .issue.info { color: #1f4fbf; border-color: #b6ccf7; background: #f3f7ff; }
+  .ed-fb { padding: 0 18px 12px; display: flex; flex-direction: column; gap: 12px; }
+  .fb-item { display: flex; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); }
+  .fb-n { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .fb-text { font-size: 14.5px; white-space: pre-wrap; }
+  .fb-meta { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+  .fb-shot { display: inline-block; margin-top: 8px; }
+  .fb-shot img { display: block; max-width: min(100%, 580px); max-height: 340px; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  .fb-missing { margin-top: 8px; font-size: 12.5px; color: var(--warn); }
+  .fb-note { font-size: 13px; color: var(--muted); margin: 6px 0; }
+  .ed-run { margin: 0 18px 14px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); }
+  .ed-run-h { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 13.5px; }
+  pre.cmd { margin: 6px 0; padding: 10px; border-radius: 8px; background: #1c2128; color: #e6edf3; font-size: 12.5px; white-space: pre-wrap; word-break: break-all; cursor: copy; }
+  .ed-split { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; }
+  .ed-pane { display: flex; flex-direction: column; min-width: 0; min-height: 0; border-right: 1px solid var(--border); }
+  .ed-pane:last-child { border-right: 0; }
+  .ed-pane-head { display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 6px 14px; background: var(--chrome); border-bottom: 1px solid var(--chrome-border); }
+  .ed-pane-body { flex: 1; min-height: 0; overflow: auto; background: var(--panel); }
+  .ed-pane-body .ed-empty h3 { font-size: 16px; }
+  .ed-pane-body .ed-empty p { font-size: 13.5px; }
+  .seg { display: inline-flex; padding: 2px; border: 1px solid var(--btn-border); border-radius: 7px; background: var(--panel); }
+  .seg-btn { border: 0; background: transparent; border-radius: 5px; padding: 3px 8px; font: inherit; font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer; }
+  .seg-btn[aria-pressed="true"] { background: var(--accent); color: #fff; }
+  .diff { font-family: ui-monospace, Consolas, monospace; font-size: 12px; line-height: 1.5; }
+  .diff-row { display: flex; }
+  .diff-row[data-k="+"] { background: #e6ffec; } .diff-row[data-k="-"] { background: #ffebe9; } .diff-row[data-k="@"] { background: var(--chrome); color: var(--muted); }
+  .diff-gut { flex: none; width: 22px; text-align: center; color: var(--muted); user-select: none; }
+  .diff-txt { white-space: pre-wrap; word-break: break-all; padding-right: 8px; }
+  .ed-renders { display: flex; flex-direction: column; gap: 8px; padding: 8px; background: var(--bg); }
+  .mini { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+  .mini-label { display: flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 700; padding: 2px 4px 4px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--none); } .dot.ready { background: var(--pass); }
+  .mini-box { flex: 1; min-height: 80px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 8px; background: #fff; overflow: hidden; }
+  .mini-fit { position: relative; overflow: hidden; }
+  .mini-fit iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: top left; background: #fff; }
+  .ed-scrim { position: fixed; inset: 0; background: rgba(16, 24, 40, .35); z-index: 50; }
+  .ed-dialog { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 51; width: min(460px, calc(100vw - 32px)); max-height: calc(100vh - 40px); overflow: auto; padding: 16px 18px; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 12px 40px rgba(16, 24, 40, .25); }
+  .ed-dialog.wide { width: min(760px, calc(100vw - 32px)); }
+  .ed-dialog.sm { width: min(380px, calc(100vw - 32px)); }
+  .ed-dtitle { font-size: 16px; font-weight: 700; }
+  .ed-dhead { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .ed-dact { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+  .ed-frow { display: flex; gap: 10px; margin-top: 10px; }
+  .ed-frow label { display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; font-weight: 600; color: #3f4856; }
+  .ed-frow input, .ed-frow select { font: inherit; font-size: 13px; padding: 6px 8px; border: 1px solid var(--btn-border); border-radius: 7px; max-width: none; min-height: 32px; }
+  .ed-switch { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13px; }
+  .ed-log { max-height: 60vh; overflow: auto; padding: 10px; border-radius: 8px; background: #1c2128; color: #e6edf3; font-family: ui-monospace, Consolas, monospace; font-size: 12px; }
+  .log-row { white-space: pre-wrap; word-break: break-word; } .log-row.err { color: #ff9b9b; }
+  .ed-pbar { display: flex; gap: 6px; margin: 8px 0; }
+  .ed-pbar input { flex: 1; font: inherit; font-size: 13px; padding: 5px 8px; border: 1px solid var(--btn-border); border-radius: 7px; }
+  .ed-plist { max-height: 46vh; overflow: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .ed-prow { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .ed-prow:last-child { border-bottom: 0; } .ed-prow.off { opacity: .55; cursor: default; }
+  #edToasts { position: fixed; right: 16px; bottom: 16px; z-index: 60; display: flex; flex-direction: column; gap: 8px; }
+  .ed-toast { max-width: 420px; padding: 10px 14px; border-radius: 9px; background: #1c2128; color: #fff; font-size: 13.5px; font-weight: 600; box-shadow: 0 6px 20px rgba(16, 24, 40, .25); }
+  .ed-toast.ok { background: #116329; } .ed-toast.err { background: #a40e26; } .ed-toast.warn { background: #7a5200; }
+  @media (max-width: 1100px) { .ed-split { grid-template-columns: 1fr; } .ed-queue { width: 280px; } }
+  @media (max-width: 720px) { #editor { flex-direction: column; } .ed-queue { width: auto; max-height: 45vh; } .ed-top { max-height: none; } .ed-split { min-height: 70vh; } }
 </style>
 </head>
 <body>
@@ -96,7 +198,11 @@
     </svg>
   </button>
   <h1>Udgam Tools</h1>
-  <label class="pick">class <select id="selClass" aria-label="Class"></select></label>
+  <span class="views" role="group" aria-label="Page">
+    <button type="button" data-view="preview" aria-pressed="true">Preview</button>
+    <button type="button" data-view="editor" aria-pressed="false">Editor <span class="count" id="edBadge" hidden></span></button>
+  </span>
+  <label class="pick preview-only">class <select id="selClass" aria-label="Class"></select></label>
   <span class="nav" id="nav" hidden>
     <label class="pick">chapter <select id="selChapter" aria-label="Chapter" disabled></select></label>
     <span class="stepper" role="group" aria-label="Step through the tools">
@@ -120,6 +226,8 @@
     <div class="note" id="note"><div><span class="spin"></span>Looking for classes&hellip;</div></div>
   </div>
 </main>
+<section id="editor" aria-label="Editor"></section>
+<div id="edToasts" aria-live="polite"></div>
 
 <script>
 "use strict";
@@ -224,6 +332,7 @@ function syncControls() {
 }
 
 function writeHash() {
+  if (document.body.classList.contains("editor-on")) return; // the Editor owns the link and the title while it is shown
   const live = S.ready && S.frameClass === S.cls;
   const t = live ? currentTool() : null;
   const h = S.cls == null ? "" : `#/${S.cls}${t ? `/${t.chapterId}/${t.id}` : live && S.chapterId !== "all" ? `/${S.chapterId}` : ""}`;
@@ -350,5 +459,6 @@ window.addEventListener("hashchange", () => { /* a pasted link in the same tab *
   }
 });
 </script>
+<script src="/editor.js"></script>
 </body>
 </html>

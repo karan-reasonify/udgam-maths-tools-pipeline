@@ -14,8 +14,12 @@
  *   - starts a class's viewer when you pick that class (`node cli.mjs view --port <its port>` in that folder;
  *     one that is already running, e.g. started by hand, is simply used) and stops the ones it started on exit,
  *   - passes the class's /api/meta and /api/tools through (a page on one port cannot read another port),
- *   - serves viewer-hub/index.html.
- * Nothing here writes to a class, uploads, or runs a check. Never reads .env or config.json.
+ *   - serves viewer-hub/index.html,
+ *   - and the Editor (viewer-hub/editor.js + editor-api.mjs, /api/feedback/*): educator feedback -> fix -> publish.
+ * The viewer side writes nothing. The Editor writes only on a click: the fix prompt and baseline in a slot's
+ * work/<ch>/<id>/_feedback/, a feedback row's status, and `node cli.mjs publish` from its confirm dialog. The hub
+ * never reads .env or config.json itself: the database and the GCS key are read by a child (viewer-hub/feedback.mjs)
+ * through the class's own lib.
  * No dependencies: node:http, node:child_process, node:fs (Node 18+).
  */
 import fs from "node:fs";
@@ -23,9 +27,11 @@ import path from "node:path";
 import http from "node:http";
 import { spawn, exec } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { makeEditorApi } from "./viewer-hub/editor-api.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PAGE = path.join(HERE, "viewer-hub", "index.html");
+const EDITOR_JS = path.join(HERE, "viewer-hub", "editor.js");
 
 const args = process.argv.slice(2);
 const opt = (name) => { const i = args.indexOf(`--${name}`); return i < 0 ? undefined : (args[i + 1]?.startsWith("--") || i + 1 >= args.length ? true : args[i + 1]); };
@@ -127,6 +133,8 @@ function hostOk(req) {
   return true;
 }
 
+const editorApi = makeEditorApi({ discoverClasses, ensureRunning, send });
+
 const server = http.createServer(async (req, res) => {
   try {
     if (!hostOk(req)) return send(res, 403, { error: "forbidden" });
@@ -134,6 +142,9 @@ const server = http.createServer(async (req, res) => {
     const parts = url.pathname.split("/").filter(Boolean);
 
     if (req.method === "GET" && url.pathname === "/") return send(res, 200, fs.readFileSync(PAGE, "utf8"), "text/html; charset=utf-8");
+
+    if (req.method === "GET" && url.pathname === "/editor.js") return send(res, 200, fs.readFileSync(EDITOR_JS, "utf8"), "text/javascript; charset=utf-8");
+    if (url.pathname.startsWith("/api/feedback/")) return await editorApi(req, res, url);
 
     if (req.method === "GET" && url.pathname === "/api/classes") {
       const list = discoverClasses();

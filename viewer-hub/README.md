@@ -50,10 +50,34 @@ brings the newer one. Change the viewer in the newest class and carry it with `c
   viewer's bundle: a few seconds. A large class takes a second or two to list its tools (every tool's check freshness is read).
 - **Passes through** the class's `/api/meta` and `/api/tools` (a page on one port cannot read another port), and nothing else:
   no check, hostsim, port or publish route goes through the hub; those are the class viewer's own buttons.
-- **Never** uploads, publishes, edits a class, or reads `.env` / `config.json`. It listens on `127.0.0.1` only, answers only a
-  `localhost` Host header, and a POST only from its own page.
+- **Never** uploads, publishes, edits a class, or reads `.env` / `config.json` on the Preview page; the Editor (below) writes only
+  on a click. It listens on `127.0.0.1` only, answers only a `localhost` Host header, and a POST only from its own page.
 - **Each class is shown by its own viewer**, so a tool is always rendered with that class's own host template and the runtime
   it is pinned to, and the hub never needs to know how a class differs from another.
+
+## The Editor (educator feedback -> fix -> publish)
+
+The header's **Preview | Editor** switch (`#editor` links straight to it; the badge counts the tools waiting) opens the same
+feedback loop as Tool_Pipeline's preview Editor, run on THIS pipeline:
+
+- **Review queue**: the pending rows of the `toolfeedback` table (what educators file from the Content-Validator) for every chapter
+  that has a `class<N>/work/<chapter_id>/` folder, filtered by board, medium, publication, subject, std and chapter, and in the
+  filter popup by date and teacher. Copy puts every filtered item (with its screenshot) on the clipboard.
+- **Mark solved / Mark chapter solved**: sets those rows' `status` to `resolved`, no publish (a confirm first).
+- **Apply feedback in the IDE / In a terminal**: writes `work/<ch>/<id>/_feedback/REVISE_PROMPT.md` (the feedback, the downloaded
+  screenshots, the udgam steps: edit `tool.tsx` -> `check`, which ports on a pass; never publish), snapshots the baseline
+  (`_feedback/tool.before.tsx` + `port.before.tsx`, write-once) and hands a Claude Code session to you, started at the pipeline root.
+- **Diff + Before / After**: `tool.tsx` against the baseline, and the ported tool before and after, rendered with the class
+  viewer's own libraries and host template, at Mobile / Web / Smartboard and in EN / हिं / ગુ. Both follow the disk every 3 s.
+- **Discard** puts `tool.tsx` (and the ported pair) back from the baseline. **Approve & publish** and **Publish local changes**
+  open one dialog: tick tools, **Dry run** (`node cli.mjs publish <chapter_id>/<id>`, writes nothing) or **Publish**
+  (`--upload`; `--apply` only when its own box is ticked). Each tool that ships has its feedback resolved and its baseline cleared.
+  The log streams into the Logs dialog and survives a reload.
+
+The database and the GCS key are read by `viewer-hub/feedback.mjs`, a child process that uses the class's own lib (so the class's
+`.env` / `Python-backend/.env` and `config.json`, exactly as `node cli.mjs doctor` reports them); the hub process never reads them.
+`UDGAM_FEEDBACK_FIXTURE=<rows.json> node viewhub.mjs` reads (and resolves into) a JSON file of rows instead of the database, for
+trying the page without production data.
 
 ## How the page drives the class viewer
 
@@ -74,3 +98,6 @@ When embedded (`?embed=1`) the viewer hides its own header title, totals and lef
 |---|---|
 | `viewhub.mjs` (pipeline root) | the server: discovers classes, starts their viewers, passes meta and tools through |
 | `viewer-hub/index.html` | the page (plain HTML + JS, no build step) |
+| `viewer-hub/editor.js` | the Editor page (plain JS, served at `/editor.js`) |
+| `viewer-hub/editor-api.mjs` | the Editor's routes, `/api/feedback/*` (queue, screenshot, tool, render, prepare, discard, resolve, publish) |
+| `viewer-hub/feedback.mjs` | the child that reads and resolves `toolfeedback` rows and fetches screenshots through the class lib |
