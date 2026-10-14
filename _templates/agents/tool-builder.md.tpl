@@ -67,6 +67,9 @@ Never read `slot.json`, `plan.json`, `*.preview.html`, `.build/`, `output-previe
      not, or that key never blinks; (2) the summary `Thumb` reads the question as the `it` prop (r24) or
      `PHASES[n - 1].items[result.last.item]` (`last.item` is the INDEX, never the item), a multi-part `last.value` through
      `slotPartsOf` and every word through `tx` (`summary-thumbs` fails a blank or English thumbnail).
+   - **The wide keypad is the default for a new tool** (r26: the scaffold writes `bigPad: true` beside `board: true`, PATTERNS 9g): the answer
+     panel is 556 wide and the picture has x 64 to 964 while it is open. Keep it when the picture fits; when `check`'s `board-fit` says
+     something runs under the panel (a strip of ten, a chart of seven columns), set `bigPad: false` for that tool and say so in the report.
    - **A decimal answer is written ON the Decimal card where the picture has one** (`parts: SLOT_DECIMAL`, the point drawn, the zero in
      front typed, an empty whole box a real miss); the point key only where typing the point is the lesson. During guide steps the pinned
      question bar names no number the picture does not show ("this weight"), and a question that needs rungs of its own carries

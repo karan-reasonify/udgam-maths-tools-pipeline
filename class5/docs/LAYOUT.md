@@ -51,6 +51,8 @@ no Tap to start cover: the lesson is silent (§8).
 
 ## 1b. The board layout (runtime r27, opt-in: `board: true`)
 
+**A wide keypad (runtime r26, written by `scaffold` beside `board: true` in every new tool: `bigPad: true`, `false` when the picture needs the width; the owner, 2026-10-14: "there is empty space left of the keypad, increase its size").** A tool whose picture is small (a bar of cards, a row of digits) leaves room beside the panel: with `bigPad: true` the drawer, its answer slot and its keypad are wider (drawer x 980 to 1536, 556 wide; slot and pad x 996, 524 wide; the keys grow with the pad box) and the working area, while the panel is open, is 900 wide instead of 1086 (so the picture must fit in x 64 to 964). Use it only when the picture fits there: `check`'s `board-fit` judges the narrower area for a tool that asks for it. Every other board tool keeps the standard 340-wide panel.
+
 A tool opts in the way it opts in to `sideBySide`; every other tool keeps §1 exactly. The stage, header, canvas,
 footer (mascot, bubble, phase bar) and summary page are the same. What changes is the card:
 

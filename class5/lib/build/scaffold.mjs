@@ -15,7 +15,7 @@
  *     page a line, Work reports every act with api.did). Every line it prints is printed, never spoken.
  *   - a VOICED runtime (r21 and before): lib/build/skeleton.voiced.tsx (config `legacySkeleton`; it lives under lib/ so a code sync carries it), the old skeleton, so a
  *     chapter built on a frozen voiced runtime can still be scaffolded the way it always was.
- * A skeleton may carry `//#if <capability>` ... `//#endif` line pairs (board, startPage, steps, hint, theme, skin): the
+ * A skeleton may carry `//#if <capability>` ... `//#endif` line pairs (board, bigPad, startPage, steps, hint, theme, skin): the
  * block stays when the runtime has the capability and is dropped, with its two marker lines, when it has not.
  */
 import fs from "node:fs";

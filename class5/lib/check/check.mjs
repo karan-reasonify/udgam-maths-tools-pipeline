@@ -334,7 +334,9 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   /* a tool that opts in with `board: true` (runtime r27) is laid out on the board layout: its zones, its answer panel
      and its raster rule differ (comments are stripped first: the skeleton's note about the flag is not the flag) */
   const board = /\bboard\s*:\s*true/.test(tool.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, "")) && caps.board;
-  const ZS = board ? ZONES_BOARD : ZONES;
+  /* r26: a tool with `bigPad: true` has the wider panel: its drawer, slot and pad boxes (and the working area's edge) move left */
+  const bigPad = board && !!caps.bigPad && /\bbigPad\s*:\s*true/.test(tool.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, ""));
+  const ZS = board ? (bigPad ? { ...ZONES_BOARD, drawer: { x: 974, y: 198, w: 568, h: 540 }, slot: { x: 980, y: 204, w: 556, h: 122 }, pad: { x: 980, y: 316, w: 556, h: 422 } } : ZONES_BOARD) : ZONES;
   const runs = [];
   for (let n = 1; n <= N; n++) {
     runs.push({ key: `ask${n}`, n, url: `${base}?phase=${n}&muted=1&probe=1&drive=ask`, budget: 40000 });

@@ -207,6 +207,12 @@ function %%COMPONENT%%(props: any) {
          whole card until the child taps Answer, the answer box and keypad in a panel that slides in from the right */
       board: true,
 //#endif
+//#if bigPad
+      /* the wide keypad (LAYOUT.md §1b, PATTERNS.md 9g; the owner: "empty space left of the keypad, increase its size"): the answer
+         panel is 556 wide and the picture has x 64 to 964 while it is open. Keep it when the picture fits there; set it to false (or
+         delete it) when the picture needs the full 1086 width: `check`'s board-fit names what runs under the panel. */
+      bigPad: true,
+//#endif
 //#if nextKey
       /* the Next key (PATTERNS.md 9d): nothing moves on by itself; after a right answer the win picture waits for the child's tap on
          the blinking Next key (the question bar's right end; the classic layout: the answer slot's place). Delete to keep the timers. */

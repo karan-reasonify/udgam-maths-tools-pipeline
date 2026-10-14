@@ -436,6 +436,10 @@ Nothing here is written by a tool except `api.answerReady`; each part is the run
   cheer and its jumps end at once on a teacher's skip or a phase change; a `pad: "enter"` question never gets the keypad panel,
   before or after a miss; a tool that locks the pad in the commit a question opens never shows the tap line.
 
+## 9g. A wide keypad (runtime r26: `bigPad: true`, with `board: true`; the DEFAULT of every new tool)
+
+One more flag in the `ToolFrame` tool object, beside `board: true`: `bigPad: true`. While the answer panel is open it is 556 wide (the standard one is 372) and the working area 900 wide (the standard one 1086); the keys, the answer slot and the Close key take their size from the panel, so nothing else is written. `scaffold` writes it into every new tool on a runtime that has it (the skeleton's `//#if bigPad` block): keep it when the picture fits x 64 to 964 (a bar of digit cards, a number with a point, word cards, a row of pieces); set `bigPad: false` for a picture that needs the full width (a strip of ten, a chart of seven columns) and say so in the report. A tool already built without it keeps the standard panel until someone adds the line. `Work` reads its width from the `w` it is given, as always: draw the picture inside x 64 to 964 and `check` (`board-fit`) judges it.
+
 ## 9v. The voice (voiced runtimes: no `const SILENT_VOICE = true`, Class 4's frozen r1-r21)
 
 _A chapter whose pinned runtime still speaks follows this section; a silent runtime (r30+) follows §9 and §9b. `check` runs `voice-no-repeat` (voiced) or `bubble-no-repeat` (silent) by what the pinned runtime's source contains._

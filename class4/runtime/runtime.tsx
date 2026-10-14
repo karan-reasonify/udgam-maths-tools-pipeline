@@ -59,11 +59,23 @@ const ZBOARD: any = {
   drawer: { x: 1164, y: 202, w: 372, h: 528 },
 };
 const BOARD_OPEN_W = 1086;   /* the working area's width with the panel open: the classic width */
+/* r26, BIG PAD (opt-in: `bigPad: true` in the tool object, with `board: true`; the owner, 2026-10-14: "there is empty space left of the
+   keypad, increase its size"): a tool whose picture is small leaves room beside the panel, so the panel and its keys are wider and the
+   working area gives that room up while it is open. The keys derive their size from the pad box, so they grow with it. */
+const ZBOARD_BIG: any = {
+  slot: { x: 996, y: 218, w: 524, h: 92 },
+  pad: { x: 996, y: 324, w: 524, h: 390 },
+  drawer: { x: 980, y: 202, w: 556, h: 528 },
+};
+const BOARD_OPEN_W_BIG = 900;   /* 64 + 900 = 964, a 16-unit gap to the drawer at 980 */
 let BOARD = false;
-function setLayout(board: boolean) {
+let BIGPAD = false;
+function setLayout(board: boolean, big: boolean = false) {
   const src: any = board ? ZBOARD : ZCLASSIC;
   for (const k of Object.keys(src)) { if (!(Z as any)[k]) (Z as any)[k] = {}; Object.assign((Z as any)[k], src[k]); }
+  if (board && big) for (const k of Object.keys(ZBOARD_BIG)) Object.assign((Z as any)[k], ZBOARD_BIG[k]);
   BOARD = board;
+  BIGPAD = !!(board && big);
 }
 /* the mascot stands in the voice zone but below the working-area floor (730), so it never
    covers a card; its feet are on the ground line */
@@ -2296,7 +2308,7 @@ function ToolFrame({ props, tool }: any) {
   /* the layout is the tool's own choice (board: true), fixed for the life of the mount; every zone box below is
      read after this line */
   const board = !!tool.board;
-  if (board || BOARD) setLayout(board);
+  if (board || BOARD) setLayout(board, !!tool.bigPad);
   SKINS = P.skins !== false;
   /* the tool's own THEME, else the one the image agent chose from the slot's object (images.tsx: TOOL_THEME), else the standard
      DEFAULT_THEME, so no start page or Enter key is ever the chrome's grey */
@@ -3211,7 +3223,7 @@ function ToolFrame({ props, tool }: any) {
   const alwaysOpen = (P.answerOpen ?? (P.additionalProps && P.additionalProps.answerOpen)) === true;
   const panelOpen = board && !(cardAnswerOn && item.choices) && !(item.pad === "enter" && !captured && !alwaysOpen) && (openWanted || captured || alwaysOpen) && !locked && (stage === "ask" || (stage === "free" && captured));
   const slide = useSlide(panelOpen ? 1 : 0);
-  const workW = board ? Math.round(ZBOARD.work.w - (ZBOARD.work.w - BOARD_OPEN_W) * slide) : W.w;
+  const workW = board ? Math.round(ZBOARD.work.w - (ZBOARD.work.w - (BIGPAD ? BOARD_OPEN_W_BIG : BOARD_OPEN_W)) * slide) : W.w;
   /* the hint goes with whatever it was about: a right act or a right answer (stepNo / stage change), the next question or
      phase (i, idx, run). A miss changes none of these, so its hint stays. */
   useEffect(() => { setHintText(""); }, [stage, i, idx, run, stepNo]);
