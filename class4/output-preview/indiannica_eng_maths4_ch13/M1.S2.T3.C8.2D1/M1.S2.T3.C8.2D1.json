@@ -1,0 +1,1196 @@
+{
+  "slotId": "M1.S2.T3.C8.2D1",
+  "mediaId": "M1.S2.T3.C8.2D1",
+  "toolId": "money_tray",
+  "title": "Money Tray",
+  "component": "M1.S2.T3.C8.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch13",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch13_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_13/2dtool/M1.S2.T3.C8.2D1/M1.S2.T3.C8.2D1.tsx",
+  "description": "Sort notes and coins by the value printed on them, count a group of one value by multiplying, add the groups to a total, and lay the total against a price or another amount.",
+  "conceptIds": [
+    "M1.S2.T3.C8",
+    "M1.S2.T3.C9",
+    "M1.S2.T3.C10",
+    "M1.S2.T3.C11"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Sort notes and coins by their value, count each group by multiplying, add the groups, and decide whether the total is enough or which amount is more.",
+    "look": "A counting tray of value slots across the canvas, a heap of notes and coins above it, a sum rail along its foot, and a price card with an enough gauge at the right.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Money Tray' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the pieces sorted against the pieces in the heap, two numbers in ink, the first climbing by one as each note or coin settles in its slot and the second fixed at the size of the heap. On the second phase it carries the notes counted against the notes in the slot, and on the third and fourth the groups added against the groups filled. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The heap lies across the top of the working area, 700 by 96 at 64,214, every piece separate and none overlapping. The tray stands under it, 700 by 280 at 64,322, as two rows of value slots, each slot 110 by 128: notes of ten, twenty, fifty, one hundred, two hundred and five hundred rupees along the top row, and coins of one, two, five, ten and twenty rupees along the bottom, each slot labelled with its value in deep blue. A piece dropped in settles only in the slot for its value; dropped anywhere else it slides back to the heap with its value lit. A slot shows up to ten pieces fanned, and past ten it ties them in stacks of ten with a near-black band, so twenty-seven coins read as two tied stacks and seven loose. Under each filled slot a small group card gives the count in sky blue and the group's amount in deep blue, and tapping it opens the group reader, a strip 700 by 44 at 64,606, which writes the whole line: seven notes of two hundred rupees, seven times two hundred, make one thousand four hundred rupees. The sum rail runs along the foot, 700 by 60 at 64,660, taking each group's amount as a deep blue bar drawn to one scale, laid end to end, with the running total written at its right hand end; it takes a group's amount and never its count. At the right, the price card stands 370 by 88 at 780,214, and the enough gauge under it, 370 by 250 at 780,318, lays the total as a deep blue bar under the price's bar, both starting from one near-black line and drawn to the same scale. The gauge reads short when the total's bar stops before the price's end, exactly enough when the two ends meet, and more than enough when it runs past. The second tray folds out under the gauge, 370 by 150 at 780,580, holding another amount as its own groups; with two trays out, the gauge lays the two totals as two bars and reads which holds more, or neither when their ends meet. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever an amount or a count is asked for, with a unit tag under the slot reading rupees, filled in beside the number and never left off. On the first phase a word pad sits over it with a key for each of the two lots being compared and a key reading the same, and on the fourth it carries keys reading short, exactly enough, more than enough and neither. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The rupees of every amount, the rupees column and the value printed on every note and coin are deep blue. The paise of every amount, the paise column and every cell standing for paise are green. The dot between rupees and paise is vermilion, a clear round dot, and wherever amounts stand in columns it sits on a near-black dotted line. A rupee carried from the paise, and a rupee broken into a hundred paise with the digits it rewrites, are amber. The change handed back, the money left and a remainder are reddish purple, so money coming back is never mistaken for a cost. A count of things, a number multiplied by, how many notes of one value or how many can be bought, is sky blue, because a count of things is not money. The zeros that fill the paise column of a whole-rupee amount in column working are grey. Every play note is one plain pale blue rectangle and every play coin one plain steel disc, all notes one size and all coins one size, each printed with its value and nothing else. No coin below one rupee is drawn anywhere: paise are shaded cells on a strip ruled into a hundred in ten blocks of ten, so a full strip is exactly one rupee. Chrome never borrows one of those and none of them is ever used for chrome: every column rule, dotted line, tick, bracket, strike line, bill rule and panel edge is near-black. Every reading survives with the colour taken away, because a digit is told apart by the column it stands in, a carry by the circle it sits in, a count by the box beside the times sign or the slot marked things, and the change or money left by the tray or line that holds it, before any of them is told by a colour. Grey never means faint: a zero in a paise column is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. A rupees figure that goes down by one is struck through once with the new figure written above it, and never rubbed out. The gauge's bars are drawn to one scale for the value of the money and never for the number of pieces, so a heap of many small coins can make a short bar and one note a long one. Stacks of ten are tied only inside a slot, where every piece has one value.",
+    "finish": "The card shows the tray the child filled, each group's count and amount under its slot, the total on the sum rail, and the gauge's last reading.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "every piece sits in its own slot, and the larger amount glows, on the note or on the coins",
+        "does": "sorts every piece into the slot for its value, then sets one note beside a handful of coins and decides which is worth more",
+        "goal": "each note and coin is worth the value printed on it, and more pieces need not mean more money",
+        "says": "Put each piece in the slot for its value. Which is worth more, the one note or the coins?",
+        "check": "Away from the screen: which is more money, five coins of two rupees or one note of twenty rupees?",
+        "feels": "the printed value decides, and neither the number of pieces nor paper against metal does",
+        "hands": "Tip a class bank of play notes and coins onto a desk and sort it by the value printed on each piece. Then hold up one note of fifty rupees in one hand and eight coins of five rupees in the other, and ask which hand holds more money. Count the coins in fives aloud and set them beside the note.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: what value is printed on each piece? Second rung, the phase's: what is the whole handful worth? Third rung: the heap is cut to one note and two coins, and the child finds what the coins make before the larger heap comes back. The word pad and the number pad stay open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "a bigger handful looks like more money, and counting pieces is quicker than reading values.",
+            "move": "chooses the purse with six coins of ten rupees over the one with a single note of one hundred, because it holds more pieces.",
+            "screen": "the six coins drop into the ten rupee slot and the note into the hundred rupee slot, and the group card under the coins reads six coins of ten rupees making sixty rupees. The gauge lays both lots as bars from one line, and the coins' bar stops well short of the note's. The child's choice stays lit on the word pad, nothing marked."
+          },
+          {
+            "why": "on this tray the notes run up to five hundred and the coins stop at twenty, so paper looks worth more than metal whatever is printed on it.",
+            "move": "says a note of ten rupees is worth more than a coin of twenty rupees, because it is a note.",
+            "screen": "both pieces drop into their slots, the coin into the slot marked twenty and the note into the slot marked ten, and their printed values light in deep blue. The gauge lays the coin's bar twice as long as the note's, and the child's choice stays on the word pad beside it."
+          }
+        ],
+        "screen": "a small heap of notes and coins tipped out above the empty tray",
+        "soWhat": "Each note and coin is worth the value printed on it. A coin and a note of the same value are worth the same.",
+        "concept": "The value of each note and coin"
+      },
+      {
+        "n": 2,
+        "win": "the reader writes the count times the value, and the group's amount glows under the slot",
+        "does": "counts the notes, multiplies by their value, and writes the group's amount",
+        "goal": "many notes of one value are counted by multiplying the number of notes by the value",
+        "says": "How many notes are there, and what is each one worth? How much is the whole group?",
+        "check": "How much money is twelve notes of twenty rupees? Say the count and the value first.",
+        "feels": "a group of one value is that value again and again, so the count says how many times",
+        "hands": "Give each group a bundle of eight notes of fifty rupees. Count the notes, then lay them down one at a time while the class says the running total in fifties. Write eight times fifty beside the last total, and ask why the two agree.",
+        "tries": "First rung, from the item: how many notes are in the slot? Second rung, the phase's: what is each one worth? Third rung: the slot is cut to three notes, laid down one at a time along the rail, before the larger group comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "two numbers stand in the question, and adding is the first thing to try with two numbers.",
+            "move": "adds nine and fifty and writes fifty-nine rupees for nine notes of fifty.",
+            "screen": "the group reader lays the nine notes along the sum rail one at a time, each adding a bar of fifty, and the running total climbs fifty, one hundred, one hundred and fifty, and on to four hundred and fifty. The child's fifty-nine is drawn as a bar beside the rail and ends partway along the second note. The child's number stays in the slot."
+          },
+          {
+            "why": "counting the notes is the first thing done, and it feels like the answer to how much.",
+            "move": "answers nine, the number of notes, when the question asks for the money.",
+            "screen": "the group card under the slot lights its count, nine, in sky blue, and the unit tag under the answer slot lights rupees in deep blue beside the child's nine. The reader then writes nine notes of fifty rupees, nine times fifty, make four hundred and fifty rupees, and the child's nine stays in the slot."
+          }
+        ],
+        "screen": "one slot holding several notes of one value, with its group reader empty",
+        "soWhat": "Many notes of one value are counted by multiplying the number of notes by the value.",
+        "concept": "Counting a group of one note"
+      },
+      {
+        "n": 3,
+        "win": "the running total grows with each group and settles at the end of the rail",
+        "does": "reads each group's amount and slides the groups onto the sum rail one at a time",
+        "goal": "a total is found by working out each group's value first and then adding the groups",
+        "says": "Find what each group is worth first. Then add the groups together.",
+        "check": "Find the total of four notes of fifty rupees, three coins of ten rupees and two coins of two rupees.",
+        "feels": "a group is only ready to add once its count has been turned into rupees",
+        "hands": "Fill an envelope with three notes of one hundred rupees, five notes of ten rupees and four coins of two rupees. Groups sort it, write each group's value on a slip, and only then add the slips. Ask what the slips would have said if the pieces had been counted without looking at their values.",
+        "tries": "First rung, from the item: what is the first group worth? Second rung, the phase's: has every group been turned into rupees? Third rung: the tray is cut to two groups, and the child finds each amount before sliding either onto the rail. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the values are the numbers printed large on the slots, and the counts under them are easy to leave behind.",
+            "move": "adds one of each value, two hundred, twenty and five, and writes Rs 225, as if each group held one piece.",
+            "screen": "the group cards light their counts in sky blue, three, four and six, and each group slides onto the sum rail whole: six hundred, then eighty, then thirty, the total climbing to seven hundred and ten. The child's two hundred and twenty-five is laid as a bar beside the rail, ending partway along the first group, and the child's number stays in the slot."
+          },
+          {
+            "why": "the counts are the numbers the child made while sorting, and adding what was just counted feels like finishing the job.",
+            "move": "adds the counts, three, four and six, and writes thirteen rupees.",
+            "screen": "the sum rail refuses the sky blue counts: each one slides up to the rail and back to its card. The thirteen pieces are then lit in their slots, three notes of two hundred, four notes of twenty and six coins of five, three different values, and each group's amount goes onto the rail in deep blue instead. The child's thirteen stays in the slot beside the total."
+          }
+        ],
+        "screen": "three or four slots filled with groups of different values, and the sum rail empty",
+        "soWhat": "Find what each group is worth first, then add the groups.",
+        "concept": "Adding the groups"
+      },
+      {
+        "n": 4,
+        "win": "the gauge settles on its reading, and two equal trays sit level with neither more",
+        "does": "finds the total, lays it against the price and reads the gauge, then sets two trays side by side and says which holds more",
+        "goal": "a total is compared with a price or with another amount, exactly enough is enough, and when two amounts are the same neither is more",
+        "says": "Is the money short of the price, exactly enough, or more?",
+        "check": "One friend has four notes of fifty rupees and another has ten notes of twenty rupees. Who has more money?",
+        "feels": "the gauge does not care how the money is made up, only how far its bar reaches",
+        "hands": "Write a price of three hundred rupees on a card. Give one group exactly three hundred rupees in mixed play money, another two hundred and eighty and a third three hundred and fifty, and each group says short, exactly enough or more than enough. Then give two groups the same amount in different notes, and ask which has more.",
+        "tries": "First rung, from the item: what is the total? Second rung, the phase's: where does the total's bar end against the price's? Third rung: the tray is cut to one note laid against a price card of the same value, and the child reads the gauge before the larger tray comes back. The word pad and the number pad stay open.",
+        "wrong": [
+          {
+            "why": "enough can sound like having some to spare, and a purse emptied to nothing feels like falling short.",
+            "move": "says no, the money is not enough, because nothing will be left over after paying three hundred and fifty rupees.",
+            "screen": "the gauge lays the total, three hundred and fifty rupees, under the price's bar, and the two ends meet at the same mark with no gap and no overhang. The gauge's word settles on exactly enough, the key reading exactly enough lights on the pad, and the child's no stays where it was pressed."
+          },
+          {
+            "why": "a handful of six pieces looks like plenty, and counting the pieces is quicker than adding their values.",
+            "move": "decides six pieces must be enough for a book of two hundred and fifty rupees, without finding their total.",
+            "screen": "the two notes of one hundred and the four coins of ten go into their slots, the rail adds two hundred and forty, and the gauge lays that bar under the price's. It stops ten rupees short of the price's end, the gap bracketed in near-black, and the child's answer stays on the pad beside it."
+          },
+          {
+            "why": "the question asks who has more, which sounds as though one of them must, and sixteen notes are more notes.",
+            "move": "names the child with sixteen notes of one hundred rupees as having more money than the child with eight notes of two hundred.",
+            "screen": "both trays fold out and the gauge lays two bars, one thousand six hundred rupees each, whose ends meet at the same mark. The gauge's word turns to neither, the key reading neither lights, and the child's choice stays on the pad beside it."
+          }
+        ],
+        "screen": "a filled tray with a price card beside it, the enough gauge waiting, and a second tray ready",
+        "soWhat": "Exactly enough is enough, and when two amounts are the same, neither is more.",
+        "concept": "Is it enough?"
+      }
+    ],
+    "delight": "The fourth phase, when a tray of eight notes of two hundred rupees is set against a tray of sixteen notes of one hundred. The two bars grow on the gauge side by side and their ends meet exactly. Then the notes themselves move: each note of two hundred rupees slides out, and two notes of one hundred rupees from the other tray pair up beside it, eight pairs in a row with not one note left over on either side, and the gauge's word turns to neither. It can be tried with any two trays as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a small heap of notes and coins lies tipped out above the empty tray. On the second one slot already holds a group of notes of one value, with its group card blank. On the third three or four slots hold groups of different values, and the sum rail along the foot is empty. On the fourth a filled tray stands with a price card beside it and the enough gauge at rest, and a second tray waits folded under the gauge. The running count at the top left holds the pieces sorted against the pieces in the heap, and the answer slot and the pad stand empty down the right. One thing moves, once: the heap, or the filled slot, or the first group, or the price card, gives one slow pulse while the voice asks what each piece is worth. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any heap of notes and coins, with the group reader, the sum rail and the enough gauge open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the value of each note and coin, counting a group by multiplying, adding the groups, and deciding whether a total is enough or which amount is more.",
+    "voiceLines": [
+      "A heap of notes and coins and a row of slots. What is each piece worth?",
+      "Put each piece in the slot for its value. Which is worth more, the one note or the coins?",
+      "How many notes are there, and what is each one worth? How much is the whole group?",
+      "Find what each group is worth first. Then add the groups together.",
+      "Is the money short of the price, exactly enough, or more?",
+      "A new heap. Sort it by value before you count anything.",
+      "Free play. Any heap, with the reader, the rail and the gauge open.",
+      "Read the value on each piece again, and count the group, not the pile.",
+      "Every piece in its slot, every group counted, and every total laid against the price."
+    ],
+    "observations": [
+      {
+        "why": "The bar is drawn for value, and six coins of ten rupees are worth sixty rupees while the note is worth a hundred.",
+        "soWhat": "Money is counted by value, not by pieces, so more pieces need not mean more money.",
+        "observe": "The six coins made a shorter bar on the gauge than the one note."
+      },
+      {
+        "why": "Every note in the slot has the same value, so the group is that value again for each note.",
+        "soWhat": "Many notes of one value are counted by multiplying the number of notes by the value.",
+        "observe": "The group reader wrote the count beside the value, and the amount matched laying the value down that many times."
+      },
+      {
+        "why": "Counts of different notes are counts of different things, but their amounts are all rupees.",
+        "soWhat": "Find what each group is worth first, then add the groups.",
+        "observe": "The sum rail took each group's amount, and would not take a count."
+      },
+      {
+        "why": "The same amount covers the price with nothing short, and two equal amounts leave neither one ahead.",
+        "soWhat": "Exactly enough is enough, and when two amounts are the same, neither is more.",
+        "observe": "When the two ends met, the gauge read exactly enough, and two equal trays read neither."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a small heap of notes and coins tipped out above the empty tray",
+        "win": "every piece sits in its own slot, and the larger amount glows, on the note or on the coins",
+        "traceback": "Every piece drops into the slot for its value, the reader writes the coins' count times their value, and the gauge lays both lots as bars from one line; the larger one glows and reads more.",
+        "ladder": [
+          "What value is printed on each piece?",
+          "Is a note always worth more than a coin?",
+          "Count the coins two rupees at a time.",
+          "How much money is in each group?",
+          "Work out the money in each group, then compare the two."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "one slot holding several notes of one value, with its group reader empty",
+        "win": "the reader writes the count times the value, and the group's amount glows under the slot",
+        "traceback": "The pieces are laid along the rail one at a time while the total climbs, the child's number is drawn as a bar beside the rail, and the reader writes count times value and the amount.",
+        "ladder": [
+          "How many notes are in the slot?",
+          "The tied stack holds 10 notes. What are those worth?",
+          "Is 27 the number of coins, or the money?",
+          "What is each one worth?",
+          "Lay the value down once for each piece, and keep adding."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "three or four slots filled with groups of different values, and the sum rail empty",
+        "win": "the running total grows with each group and settles at the end of the rail",
+        "traceback": "The group cards write each amount, every group slides onto the rail whole while the total climbs to the answer, and the child's number is drawn as a bar beside the rail.",
+        "ladder": [
+          "What is the first group worth?",
+          "What do the three notes of Rs 20 make?",
+          "How many coins of each kind are there?",
+          "Has every group been turned into rupees?",
+          "Do the multiplying inside each group first. The adding comes last."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a filled tray with a price card beside it, the enough gauge waiting, and a second tray ready",
+        "win": "the gauge settles on its reading, and two equal trays sit level with neither more",
+        "traceback": "Every group slides onto the rail, and the gauge lays the total under the price (or the two totals, note for note) from one line and reads short, exactly enough or neither.",
+        "ladder": [
+          "What is the total?",
+          "Six pieces tell you nothing yet. What do the two notes make, and what do the four coins?",
+          "More notes need not mean more money. What does each child have?",
+          "Where does the total's bar end against the other bar?",
+          "Set the two amounts side by side. Which is larger, or are they the same?"
+        ]
+      }
+    ]
+  },
+  "model": {
+    "notes": [
+      10,
+      20,
+      50,
+      100,
+      200,
+      500
+    ],
+    "coins": [
+      1,
+      2,
+      5,
+      10,
+      20
+    ],
+    "stackOf": 10,
+    "tray": {
+      "noteSlot": [
+        110,
+        128
+      ],
+      "coinSlot": [
+        132,
+        128
+      ],
+      "rows": [
+        "notes",
+        "coins"
+      ]
+    },
+    "colours": {
+      "rupees": "#0072B2",
+      "count": "#56B4E9",
+      "note": "pale blue",
+      "coin": "steel",
+      "rules": "#2B2B2B"
+    },
+    "rail": "one question at a time the full rail is the group's or the groups' whole amount; its bars carry no amount until the answer",
+    "gauge": "drawn after the answer only: the price (or the first amount) over the total, both from one near-black line, to one scale",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T3.C8:ML1",
+        "kind": "which",
+        "heap": [
+          {
+            "k": "coin",
+            "v": 10
+          },
+          {
+            "k": "coin",
+            "v": 10
+          },
+          {
+            "k": "note",
+            "v": 100
+          },
+          {
+            "k": "coin",
+            "v": 10
+          },
+          {
+            "k": "coin",
+            "v": 10
+          },
+          {
+            "k": "coin",
+            "v": 10
+          },
+          {
+            "k": "coin",
+            "v": 10
+          }
+        ],
+        "lots": [
+          "note",
+          "coin"
+        ],
+        "near": "coins",
+        "winMs": 3400,
+        "answer": "note"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T3.C8:1",
+        "kind": "which",
+        "heap": [
+          {
+            "k": "note",
+            "v": 10
+          },
+          {
+            "k": "coin",
+            "v": 20
+          }
+        ],
+        "lots": [
+          "coin",
+          "note"
+        ],
+        "near": "note",
+        "winMs": 3000,
+        "answer": "coin"
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T3.C8:2",
+        "kind": "which",
+        "heap": [
+          {
+            "k": "coin",
+            "v": 2
+          },
+          {
+            "k": "coin",
+            "v": 2
+          },
+          {
+            "k": "coin",
+            "v": 2
+          },
+          {
+            "k": "note",
+            "v": 20
+          },
+          {
+            "k": "coin",
+            "v": 2
+          },
+          {
+            "k": "coin",
+            "v": 2
+          },
+          {
+            "k": "coin",
+            "v": 2
+          },
+          {
+            "k": "coin",
+            "v": 2
+          },
+          {
+            "k": "coin",
+            "v": 2
+          }
+        ],
+        "lots": [
+          "coin",
+          "note"
+        ],
+        "near": "coins",
+        "winMs": 3400,
+        "answer": "note"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T3.C9:ML2",
+        "kind": "group",
+        "group": {
+          "v": 50,
+          "k": "note",
+          "n": 9
+        },
+        "near": 59,
+        "winMs": 3600,
+        "answer": 450
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T3.C9:3",
+        "kind": "group",
+        "group": {
+          "v": 500,
+          "k": "note",
+          "n": 14
+        },
+        "near": 514,
+        "winMs": 3400,
+        "answer": 7000
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T3.C9:4",
+        "kind": "group",
+        "group": {
+          "v": 5,
+          "k": "coin",
+          "n": 27
+        },
+        "near": 27,
+        "winMs": 3600,
+        "answer": 135
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T3.C10:ML3",
+        "kind": "total",
+        "near": 225,
+        "winMs": 3600,
+        "groups": [
+          {
+            "v": 200,
+            "k": "note",
+            "n": 3
+          },
+          {
+            "v": 20,
+            "k": "note",
+            "n": 4
+          },
+          {
+            "v": 5,
+            "k": "coin",
+            "n": 6
+          }
+        ],
+        "answer": 710
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T3.C10:5",
+        "kind": "total",
+        "near": 280,
+        "winMs": 3600,
+        "groups": [
+          {
+            "v": 200,
+            "k": "note",
+            "n": 1
+          },
+          {
+            "v": 50,
+            "k": "note",
+            "n": 1
+          },
+          {
+            "v": 20,
+            "k": "note",
+            "n": 3
+          },
+          {
+            "v": 10,
+            "k": "note",
+            "n": 3
+          }
+        ],
+        "answer": 340
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T3.C10:7",
+        "kind": "total",
+        "near": 60,
+        "winMs": 3400,
+        "groups": [
+          {
+            "v": 10,
+            "k": "coin",
+            "n": 30
+          },
+          {
+            "v": 2,
+            "k": "coin",
+            "n": 30
+          }
+        ],
+        "answer": 360
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T3.C11:ML4",
+        "kind": "enough",
+        "price": 350,
+        "what": "class trip",
+        "near": "short",
+        "winMs": 3800,
+        "groups": [
+          {
+            "v": 200,
+            "k": "note",
+            "n": 1
+          },
+          {
+            "v": 20,
+            "k": "note",
+            "n": 5
+          },
+          {
+            "v": 5,
+            "k": "coin",
+            "n": 10
+          }
+        ],
+        "answer": "exact"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T3.C11:6",
+        "kind": "enough",
+        "price": 250,
+        "what": "book",
+        "near": "more",
+        "winMs": 3800,
+        "groups": [
+          {
+            "v": 100,
+            "k": "note",
+            "n": 2
+          },
+          {
+            "v": 10,
+            "k": "coin",
+            "n": 4
+          }
+        ],
+        "answer": "short"
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T3.C11:8",
+        "kind": "who",
+        "near": "second",
+        "winMs": 3800,
+        "groups": [
+          {
+            "v": 200,
+            "k": "note",
+            "n": 8
+          }
+        ],
+        "other": [
+          {
+            "v": 100,
+            "k": "note",
+            "n": 16
+          }
+        ],
+        "answer": "neither"
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: Every piece drops into the slot for its value, the reader writes the coins' count times their value, and the gauge lays both lots as bars from one line; the larger one glows and reads more.",
+      "Phase 2: The pieces are laid along the rail one at a time while the total climbs, the child's number is drawn as a bar beside the rail, and the reader writes count times value and the amount.",
+      "Phase 3: The group cards write each amount, every group slides onto the rail whole while the total climbs to the answer, and the child's number is drawn as a bar beside the rail.",
+      "Phase 4: Every group slides onto the rail, and the gauge lays the total under the price (or the two totals, note for note) from one line and reads short, exactly enough or neither."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A heap of notes and coins and a row of slots. What is each piece worth?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every piece in its slot, every group counted, and every total laid against the price.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T3.C8:ML1",
+            "worked": false,
+            "kind": "which",
+            "planQuestion": "One purse holds a Rs 100 note. Another holds six Rs 10 coins. Which purse has more money?",
+            "question": {
+              "en": "One purse holds a note of Rs 100. Another holds six coins of Rs 10. Which purse has more money?"
+            },
+            "ask": {
+              "en": "Which purse has more money?"
+            },
+            "answer": "note",
+            "planAnswer": "The purse with the Rs 100 note, because six Rs 10 coins make only Rs 60",
+            "choices": [
+              "note",
+              "coins",
+              "same"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T3.C8:1",
+            "worked": false,
+            "kind": "which",
+            "planQuestion": "Which is worth more, a Rs 20 coin or a Rs 10 note?",
+            "question": {
+              "en": "Which is worth more, a coin of Rs 20 or a note of Rs 10?"
+            },
+            "ask": {
+              "en": "Which is worth more?"
+            },
+            "answer": "coin",
+            "planAnswer": "The Rs 20 coin. A coin or a note is worth the value printed on it",
+            "choices": [
+              "coin",
+              "note",
+              "same"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T3.C8:2",
+            "worked": false,
+            "kind": "which",
+            "planQuestion": "Which is more money, eight Rs 2 coins or one Rs 20 note?",
+            "question": {
+              "en": "Which is more money, eight coins of Rs 2 or one note of Rs 20?"
+            },
+            "ask": {
+              "en": "Which is more money?"
+            },
+            "answer": "note",
+            "planAnswer": "The Rs 20 note. Eight Rs 2 coins make only Rs 16",
+            "choices": [
+              "coins",
+              "note",
+              "same"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T3.C9:ML2",
+            "worked": false,
+            "kind": "group",
+            "planQuestion": "How much money is 9 notes of Rs 50?",
+            "question": {
+              "en": "How much money is 9 notes of Rs 50?"
+            },
+            "ask": {
+              "en": "9 notes, each Rs 50. Total?"
+            },
+            "answer": 450,
+            "planAnswer": "Rs 450",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T3.C9:3",
+            "worked": false,
+            "kind": "group",
+            "planQuestion": "How much is 14 notes of Rs 500?",
+            "question": {
+              "en": "What are 14 notes of Rs 500 worth?"
+            },
+            "ask": {
+              "en": "14 notes, each Rs 500. Total?"
+            },
+            "answer": 7000,
+            "planAnswer": "Rs 7000, because 14 times 500 is 7000",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T3.C9:4",
+            "worked": false,
+            "kind": "group",
+            "planQuestion": "A money box holds 27 coins of Rs 5. How much money is that?",
+            "question": {
+              "en": "A money box holds 27 coins of Rs 5. How much money is that?"
+            },
+            "ask": {
+              "en": "27 coins, each Rs 5. Total?"
+            },
+            "answer": 135,
+            "planAnswer": "Rs 135, because 27 times 5 is 135",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T3.C10:ML3",
+            "worked": false,
+            "kind": "total",
+            "planQuestion": "A cash box holds 3 notes of Rs 200, 4 notes of Rs 20 and 6 coins of Rs 5. How much money is in it?",
+            "question": {
+              "en": "A cash box holds 3 notes of Rs 200, 4 notes of Rs 20 and 6 coins of Rs 5. How much money is in it?"
+            },
+            "ask": {
+              "en": "How much money in all?"
+            },
+            "answer": 710,
+            "planAnswer": "Rs 710",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T3.C10:5",
+            "worked": false,
+            "kind": "total",
+            "planQuestion": "Find the total: one Rs 200 note, one Rs 50 note, three Rs 20 notes and three Rs 10 notes.",
+            "question": {
+              "en": "Find the total of these notes: one of Rs 200, one of Rs 50, three of Rs 20 and three of Rs 10."
+            },
+            "ask": {
+              "en": "What is the total?"
+            },
+            "answer": 340,
+            "planAnswer": "Rs 340. The groups are Rs 200, Rs 50, Rs 60 and Rs 30",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T3.C10:7",
+            "worked": false,
+            "kind": "total",
+            "planQuestion": "A box holds 60 coins. Half of them are Rs 10 coins and the rest are Rs 2 coins. How much money is in the box?",
+            "question": {
+              "en": "A box holds 60 coins. Half of them are coins of Rs 10, and the rest are coins of Rs 2. What are they all worth?"
+            },
+            "ask": {
+              "en": "How much in the box?"
+            },
+            "answer": 360,
+            "planAnswer": "Rs 360. Thirty coins of Rs 10 make Rs 300 and thirty coins of Rs 2 make Rs 60. The question asks for money, not coins",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T3.C11:ML4",
+            "worked": false,
+            "kind": "enough",
+            "planQuestion": "A class trip costs Rs 350. A child brings one Rs 200 note, five Rs 20 notes and ten Rs 5 coins. Is that enough?",
+            "question": {
+              "en": "A class trip costs Rs 350. A child brings one note of Rs 200, five notes of Rs 20 and ten coins of Rs 5. Is that enough?"
+            },
+            "ask": {
+              "en": "Is it enough for the trip?"
+            },
+            "answer": "exact",
+            "planAnswer": "Yes, exactly enough. The money comes to Rs 350, the same as the price",
+            "choices": [
+              "short",
+              "exact",
+              "more"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T3.C11:6",
+            "worked": false,
+            "kind": "enough",
+            "planQuestion": "A book costs Rs 250. A child has two Rs 100 notes and four Rs 10 coins. Is that enough?",
+            "question": {
+              "en": "A book costs Rs 250. A child has two notes of Rs 100 and four coins of Rs 10. Is it enough for the book?"
+            },
+            "ask": {
+              "en": "Is it enough for the book?"
+            },
+            "answer": "short",
+            "planAnswer": "No. The money comes to Rs 240, which is Rs 10 short of the price",
+            "choices": [
+              "short",
+              "exact",
+              "more"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T3.C11:8",
+            "worked": false,
+            "kind": "who",
+            "planQuestion": "One child has 8 notes of Rs 200. Another has 16 notes of Rs 100. Who has more money?",
+            "question": {
+              "en": "One child has 8 notes of Rs 200. Another has 16 notes of Rs 100. Who has more money?"
+            },
+            "ask": {
+              "en": "Who has more money?"
+            },
+            "answer": "neither",
+            "planAnswer": "Neither. Both have Rs 1600",
+            "choices": [
+              "first",
+              "second",
+              "neither"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "money_tray",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "money_tray",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "The value of each note and coin",
+        "conceptId": "M1.S2.T3.C8",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C8:ML1",
+          "M1.S2.T3.C8:1",
+          "M1.S2.T3.C8:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Counting a group of one note",
+        "conceptId": "M1.S2.T3.C9",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C9:ML2",
+          "M1.S2.T3.C9:3",
+          "M1.S2.T3.C9:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Adding the groups",
+        "conceptId": "M1.S2.T3.C10",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C10:ML3",
+          "M1.S2.T3.C10:5",
+          "M1.S2.T3.C10:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Is it enough?",
+        "conceptId": "M1.S2.T3.C11",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C11:ML4",
+          "M1.S2.T3.C11:6",
+          "M1.S2.T3.C11:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "money_tray"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T3.C8.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A heap of notes and coins and a row of slots. What is each piece worth?"
+    },
+    {
+      "en": "Put each piece in the slot for its value. Which is worth more, the one note or the coins?"
+    },
+    {
+      "en": "How many notes are there, and what is each one worth? How much is the whole group?"
+    },
+    {
+      "en": "Find what each group is worth first. Then add the groups together."
+    },
+    {
+      "en": "Is the money short of the price, exactly enough, or more?"
+    },
+    {
+      "en": "A new heap. Sort it by value before you count anything."
+    },
+    {
+      "en": "Free play. Any heap, with the reader, the rail and the gauge open."
+    },
+    {
+      "en": "Read the value on each piece again, and count the group, not the pile."
+    },
+    {
+      "en": "Every piece in its slot, every group counted, and every total laid against the price."
+    }
+  ],
+  "build": {
+    "source": "761a4308:1431939",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-25T07:32:02.558Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-25T07:32:02.299Z"
+    },
+    "tsxBytes": 1422917,
+    "tsxMd5": "added5d4c10176fa95eddd68c83abe81"
+  }
+}

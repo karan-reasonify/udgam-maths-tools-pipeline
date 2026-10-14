@@ -1,0 +1,1295 @@
+{
+  "slotId": "M2.S4.T7.C24.2D1",
+  "mediaId": "M2.S4.T7.C24.2D1",
+  "toolId": "shop_divider",
+  "title": "Shop Divider",
+  "component": "M2.S4.T7.C24.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch13",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch13_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_13/2dtool/M2.S4.T7.C24.2D1/M2.S4.T7.C24.2D1.tsx",
+  "description": "Share a total cost equally to find the cost of one, find a ticket's price from what was spent, pay out a price again and again to find how many can be bought, and keep the money left over.",
+  "conceptIds": [
+    "M2.S4.T7.C24",
+    "M2.S4.T7.C25",
+    "M2.S4.T7.C26",
+    "M2.S4.T7.C27"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Divide whole rupees to find the cost of one or how many can be bought, keep the money left over, and give every answer in the unit the question asks for.",
+    "look": "A shop counter with a till on the left and a shelf on the right, a question card at the top, and a share mat and a buy lane between them.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Shop Divider' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: on the first phase the piles filled against the things the total is shared among, and on the second the rows priced against the rows of the table, two numbers in ink, the first climbing by one as each pile or row is done and the second fixed at what this phase holds. On the third and fourth phases it carries the things paid for alone, one number climbing by one as the lane pays out each price, with no second number beside it, because how many is the question being asked. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The question card runs across the top of the working area, 1086 by 76 at 64,214, saying what is known and what is asked, with its last words, the thing asked for, underlined in near-black. The till stands at the left, 260 by 420 at 64,302, holding a whole number of rupees as play notes and coins sorted by value, with its amount written under it in deep blue. The share mat stands beside it, 520 by 250 at 340,302, laying out as many empty piles as there are things, in rows of up to six, and dealing the till's money onto them a round at a time, changing a note for smaller notes and coins of the same total whenever the notes will not go round, until every pile holds the same; one pile's amount is written under it in deep blue. The division frame stands at the right, 280 by 250 at 870,302, writing the same division in full, one digit brought down at a time, its quotient in deep blue when it is money and in sky blue when it counts things. On the second phase a ticket table replaces the mat and the frame, 810 by 250 at 340,302: a row for each group of tickets, with columns for tickets bought, amount spent and price of one ticket, the last blank until it is found, and a total line under the amount spent column only. Tapping a row opens the share mat over the table for that row alone. The buy lane runs along the foot, 620 by 150 at 340,570: a price tag at its left, and the things paid for standing in a counted row beside it in rows of ten. Each tap pays the price out of the till into the lane and sets one thing on the shelf, and the lane stops when what is left in the till is less than the price. The money left tray sits at the right end of the lane, 180 by 150 at 970,570, holding what the lane could not spend, written under it in reddish purple. A check control on the tray multiplies back and adds the money left. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across, with a unit strip under it reading rupees and things, and the answer slot will not close on a number whose unit is not the one the question asks for. On the fourth phase the slot is split in two, the left half marked things in sky blue and the right half marked rupees left in reddish purple, and each half takes its own number. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The rupees of every amount, the rupees column and the value printed on every note and coin are deep blue. The paise of every amount, the paise column and every cell standing for paise are green. The dot between rupees and paise is vermilion, a clear round dot, and wherever amounts stand in columns it sits on a near-black dotted line. A rupee carried from the paise, and a rupee broken into a hundred paise with the digits it rewrites, are amber. The change handed back, the money left and a remainder are reddish purple, so money coming back is never mistaken for a cost. A count of things, a number multiplied by, how many notes of one value or how many can be bought, is sky blue, because a count of things is not money. The zeros that fill the paise column of a whole-rupee amount in column working are grey. Every play note is one plain pale blue rectangle and every play coin one plain steel disc, all notes one size and all coins one size, each printed with its value and nothing else. No coin below one rupee is drawn anywhere: paise are shaded cells on a strip ruled into a hundred in ten blocks of ten, so a full strip is exactly one rupee. Chrome never borrows one of those and none of them is ever used for chrome: every column rule, dotted line, tick, bracket, strike line, bill rule and panel edge is near-black. Every reading survives with the colour taken away, because a digit is told apart by the column it stands in, a carry by the circle it sits in, a count by the box beside the times sign or the slot marked things, and the change or money left by the tray or line that holds it, before any of them is told by a colour. Grey never means faint: a zero in a paise column is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. A rupees figure that goes down by one is struck through once with the new figure written above it, and never rubbed out. Every amount in the till is a whole number of rupees, because every division in this chapter divides whole rupees, and on the first two phases every total shares out exactly among its things, so no pile is ever asked to hold paise. The unit printed in the answer slot is the unit the question card's last words ask for, and it does not change to fit an answer.",
+    "finish": "The card shows the last division the child worked, its answer in the unit the question asked for, and the check that multiplies back to the money in the till.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "every pile holds the same amount, and the frame's answer matches one pile, in rupees",
+        "does": "shares the total into as many equal piles as there are things, then works the division in the frame and reads one pile",
+        "goal": "when each thing costs the same, the cost of one is the total cost divided by the number of things",
+        "says": "The total cost is shared among the things. What does one cost?",
+        "check": "Away from the screen: eight torches cost Rs 736. What does one torch cost? Say the unit.",
+        "feels": "the total is dealt out fairly, and one share is the price of one thing",
+        "hands": "Put Rs 96 of play money on a desk, a fifty rupee note, two twenty rupee notes and six one rupee coins, and say it is the cost of four toys that each cost the same. A child deals it onto four plates, changing notes for smaller ones when they will not go round, until every plate holds the same. Ask whether one plate is rupees or toys.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: how many things share the total? Second rung, the phase's: what does one pile hold? Third rung: the mat is cut to a total of twenty rupees shared among four things, and the child deals it before the larger total comes back. The number pad and the unit strip stay open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "a price and a number of things stand in the question together, and multiplying a price by a number of things is the move just practised.",
+            "move": "multiplies Rs 522 by six and writes Rs 3132, which is the cost of thirty-six lunch boxes, not one.",
+            "screen": "the share mat lays out six piles and deals the till's Rs 522 onto them until each holds eighty-seven rupees. The child's Rs 3132 is set beside the till, and the frame shows what it is: the cost of thirty-six lunch boxes at eighty-seven rupees each. The child's number stays in the slot."
+          },
+          {
+            "why": "the question talks about lunch boxes, and the frame's answer is a bare number with nothing to say what it counts.",
+            "move": "writes eighty-seven lunch boxes, giving the cost of one as a number of things.",
+            "screen": "the unit strip under the slot lights rupees, the unit the question card's last words ask for, and one pile on the mat is lit with its amount under it in deep blue, eighty-seven rupees in notes and coins. The frame's quotient turns deep blue, money, and the child's eighty-seven stays in the slot."
+          }
+        ],
+        "screen": "a question card giving a number of things and their total cost, with the share mat and the frame empty",
+        "soWhat": "When each thing costs the same, the cost of one is the total cost divided by the number of things.",
+        "concept": "The cost of one"
+      },
+      {
+        "n": 2,
+        "win": "each price settles in its row, and the total spent lands under the amounts spent, not under the prices",
+        "does": "divides each row's amount spent by its tickets, writes the price of one, then adds the amounts spent for the total",
+        "goal": "the price of one ticket is the amount spent divided by the number of tickets, and the total spent adds what was spent",
+        "says": "Is the price of one ticket the same as the amount spent?",
+        "check": "Five tickets cost Rs 435. What is the price of one ticket, and what was spent?",
+        "feels": "the amount spent paid for every ticket in the row, and one ticket is one share of it",
+        "hands": "Make flashcards for the chapter's six vocabulary words, with a plain meaning on the back of each, such as: a bill lists the things bought and their prices, and cost is the price to be paid. Then draw a ticket table on the board with two rows, tickets bought and amount spent, and a blank column headed price of one ticket. Fill the column by dividing, and ask what the total spent should add.",
+        "tries": "First rung, from the item: how many tickets did this row buy? Second rung, the phase's: is the price of one ticket the amount spent? Third rung: the table is cut to one row of two tickets for sixty rupees, and the child finds one ticket's price before the other rows come back. The number pad and the unit strip stay open.",
+        "wrong": [
+          {
+            "why": "the amount spent is the only money printed in the row, so it looks like the price.",
+            "move": "gives the amount spent in a row, Rs 858, as the price of one ticket.",
+            "screen": "the share mat opens over the row and deals its Rs 858 into six piles, one for each ticket bought, and every pile holds one hundred and forty-three rupees. That amount settles in the price column, and the child's Rs 858 stays in the slot."
+          },
+          {
+            "why": "the prices were just found and are the newest numbers in the table, so adding them looks like the next step.",
+            "move": "adds one ticket from each row, Rs 143 and Rs 70, and calls Rs 213 the total spent.",
+            "screen": "the total line lights under the amount spent column, not under the prices, and the two amounts spent slide down into it: Rs 858 and Rs 560 make Rs 1418. The child's Rs 213 is shown for what it is, the cost of one ticket from each row, two tickets where fourteen were bought, and it stays in the slot."
+          }
+        ],
+        "screen": "a ticket table with the tickets bought and the amount spent in each row, and the price column blank",
+        "soWhat": "The price of one ticket is the amount spent divided by the tickets; the total spent adds the amounts spent.",
+        "concept": "The price of one ticket"
+      },
+      {
+        "n": 3,
+        "win": "the row of things stands complete, and its count lands in the answer slot marked things",
+        "does": "pays the price out again and again, or divides in the frame, and counts the things bought",
+        "goal": "how many things an amount buys is the money divided by the price of one, and the answer is a number of things",
+        "says": "The answer is a number of what, rupees or things?",
+        "check": "A balloon costs Rs 6. How many can be bought for Rs 138? Say the unit.",
+        "feels": "each payment buys one thing, so counting the payments counts the things",
+        "hands": "Price a sticker at Rs 4 and give a pair Rs 48 in play money. One pays four rupees at a time to the shopkeeper while the other lines up a sticker for each payment. Count the stickers, then write forty-eight divided by four, and ask what the twelve counts.",
+        "tries": "First rung, from the item: what is the price of one? Second rung, the phase's: is the answer rupees or things? Third rung: the till is cut to twenty rupees and a price of five, and the child pays it out one thing at a time before the larger amount comes back. The number pad and the unit strip stay open.",
+        "wrong": [
+          {
+            "why": "the division was worked on rupees, so its answer seems to be rupees too.",
+            "move": "writes Rs 163, as if the number of notebooks were money.",
+            "screen": "the unit strip under the slot lights things, the unit the question card's last words ask for, and the frame's quotient turns sky blue. The lane pays nine rupees out for each notebook, first at walking pace and then ten at a time, and the notebooks stand on the shelf in rows of ten, sixteen full rows and three more, with nothing left in the till. The child's Rs 163 stays in the slot."
+          },
+          {
+            "why": "there is an amount of money and a price in the question, and multiplying by a price is how the cost of many was found.",
+            "move": "multiplies Rs 1467 by the price of nine and writes thirteen thousand two hundred and three notebooks.",
+            "screen": "the lane pays out nine rupees for each notebook, and the child's number is set beside the till: each notebook costs nine rupees, so there cannot be more notebooks than rupees, and the till holds only one thousand four hundred and sixty-seven. The frame then divides, and the child's number stays in the slot."
+          }
+        ],
+        "screen": "a price tag, the till holding an amount, and an empty row on the shelf",
+        "soWhat": "How many things an amount buys is the money divided by the price of one, and the answer counts things.",
+        "concept": "How many can be bought"
+      },
+      {
+        "n": 4,
+        "win": "both slots fill, and the things times the price, with the money left added, rebuild the money in the till",
+        "does": "divides, puts the quotient in the things slot and the remainder in the money slot, then multiplies back and adds to check",
+        "goal": "the remainder is the money left over, too little to buy one more",
+        "says": "Some money is left. Is it enough for one more?",
+        "check": "Mangoes cost Rs 9 each. How many can be bought for Rs 100, and how much is left?",
+        "feels": "the rupees left are real money, just too few to buy another",
+        "hands": "Price a pencil at Rs 6 and give a pair Rs 45 in play money. They buy pencils six rupees at a time until they cannot buy another, then count the pencils and the rupees left. Write forty-five divided by six, and ask which number is pencils and which is money.",
+        "tries": "First rung, from the item: how much is left in the till? Second rung, the phase's: is that enough for one more? Third rung: the till is cut to seventeen rupees and a price of five, and the child pays out until the lane stops before the larger amount comes back. The number pad and both halves of the slot stay open.",
+        "wrong": [
+          {
+            "why": "the quotient answers the first question, and a single rupee looks too small to count as an answer.",
+            "move": "writes two hundred and sixty-six pencils and stops, dropping the one rupee left.",
+            "screen": "the right half of the split slot, rupees left, lights in reddish purple beside the child's answer, and the money left tray is lit with one rupee coin in it. The check runs: six times two hundred and sixty-six is one thousand five hundred and ninety-six, and the one rupee left makes one thousand five hundred and ninety-seven. The child's answer stays in the slot."
+          },
+          {
+            "why": "something is left over, and it feels like the start of one more pencil.",
+            "move": "counts the rupee left as one more pencil and writes two hundred and sixty-seven.",
+            "screen": "the lane tries to pay six rupees for one more pencil and finds one rupee in the till, and the price tag lights beside it, six against one. No pencil is set on the shelf, the rupee stays in the money left tray, and the child's two hundred and sixty-seven stays in the slot."
+          }
+        ],
+        "screen": "a till whose amount does not divide exactly by the price, with one slot for things and one for money left",
+        "soWhat": "In a how-many division, the remainder is the money left over, too little to buy one more.",
+        "concept": "Money left over"
+      }
+    ],
+    "delight": "The fourth phase, the moment the check control runs. Every thing on the shelf turns back into its price, one after another, each price flying back into the till, and last the money left tips in from its tray. The till fills to exactly the amount it began with, not a rupee over and not a rupee short, and its amount under it lights. It can be run as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the question card gives a number of things and their total cost, the till holds that total, and the share mat and the division frame stand empty. On the second the ticket table stands in the mat's place, rows of tickets bought and amounts spent with the price column blank and the total line empty. On the third a price tag stands at the head of the buy lane, the till holds the money and the row on the shelf is empty. On the fourth the till holds an amount the price will not divide exactly, and the answer slot is split in two, things and rupees left. The running count at the top left holds the piles or rows done, or the things paid for, and the answer slot and the pad stand empty down the right. One thing moves, once: the question card's last words, or the blank price column, or the price tag, or the split slot, gives one slow pulse while the voice asks what the question is asking for. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any whole-rupee amount and any price, with the share mat, the buy lane and the ticket table open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the cost of one, the price of one ticket, how many can be bought, and the money left over.",
+    "voiceLines": [
+      "A till of rupees and a shelf of things. What is the question asking for?",
+      "The total cost is shared among the things. What does one cost?",
+      "Is the price of one ticket the same as the amount spent?",
+      "The answer is a number of what, rupees or things?",
+      "Some money is left. Is it enough for one more?",
+      "A new question. Say what the answer counts before you divide.",
+      "Free play. Any whole rupee amount and any price, with the mat, the lane and the table open.",
+      "Read the question card again. Is the answer rupees, or things?",
+      "Every cost of one found, every count of things given, and every rupee left kept."
+    ],
+    "observations": [
+      {
+        "why": "The total cost was shared equally among the things, so one pile is what one thing costs.",
+        "soWhat": "When each thing costs the same, the cost of one is the total cost divided by the number of things.",
+        "observe": "Every pile held the same amount, and one pile matched the frame's answer, in rupees."
+      },
+      {
+        "why": "The amount spent in a row paid for all its tickets, and the total spent adds what every row paid.",
+        "soWhat": "The price of one ticket is the amount spent divided by the tickets; the total spent adds the amounts spent.",
+        "observe": "Each price of one ticket settled in its row, and the total spent landed under the amounts spent."
+      },
+      {
+        "why": "Each payment buys one thing, so the number of payments is the number of things.",
+        "soWhat": "How many things an amount buys is the money divided by the price of one, and the answer counts things.",
+        "observe": "The lane paid the price out once for each thing on the shelf, and the count landed in the slot marked things."
+      },
+      {
+        "why": "The remainder is money that is too little to buy another thing.",
+        "soWhat": "In a how-many division, the remainder is the money left over, too little to buy one more.",
+        "observe": "What stayed in the tray was less than the price, and the lane would not pay for one more."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a question card giving a number of things and their total cost, with the share mat and the frame empty",
+        "win": "every pile holds the same amount, and the frame's answer matches one pile, in rupees",
+        "traceback": "The mat deals the till onto the piles to the end, one pile is lit with its amount, and the frame writes the division down to the cost of one.",
+        "ladder": [
+          "Six boxes share the Rs 522, so one box costs less than the total. Share it, do not multiply.",
+          "Deal the Rs 465 into five equal piles. One pile pays for one cap.",
+          "Rs 3,006 has zeros in it. Keep dealing until the till is empty.",
+          "What does one pile hold?",
+          "Try a small one: Rs 20 shared by 4 is Rs 5 each. Share this total the same way."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a ticket table with the tickets bought and the amount spent in each row, and the price column blank",
+        "win": "each price settles in its row, and the total spent lands under the amounts spent, not under the prices",
+        "traceback": "The row opens on the mat and its amount is dealt to one pile a ticket; the price settles in its row, and the total line adds the amounts spent.",
+        "ladder": [
+          "Add what every row spent. One ticket from each row is not the total.",
+          "The Rs 332 paid for all 4 tickets. One ticket is only one share of it.",
+          "Try 7 tickets at your price. Does it make the bill's Rs 861?",
+          "Which is more: what one ticket costs, or what all the tickets cost together?",
+          "Try a small row: 2 tickets for Rs 60 cost Rs 30 each. Share this row the same way."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a price tag, the till holding an amount, and an empty row on the shelf",
+        "win": "the row of things stands complete, and its count lands in the answer slot marked things",
+        "traceback": "The lane pays the price out, a hundred, then ten, then one at a time, the things stand in rows of ten, and the frame writes the count.",
+        "ladder": [
+          "Count what the lane buys, one price at a time.",
+          "Try your kites at Rs 7 each. Do they cost Rs 1,582?",
+          "Each kind of coin makes one row. Find what each row is worth, then add the rows.",
+          "Is the answer a number of rupees, or a number of things?",
+          "Try a small one: Rs 20 buys 4 things at Rs 5 each. Now look again at what this one asks."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a till whose amount does not divide exactly by the price, with one slot for things and one for money left",
+        "win": "both slots fill, and the things times the price, with the money left added, rebuild the money in the till",
+        "traceback": "The lane pays out until it stops, what is left drops into the money left tray, the frame writes the count and the remainder, and the check multiplies back.",
+        "ladder": [
+          "What the lane could not spend is part of the answer too.",
+          "4 times the erasers, plus the rupees left, must make Rs 150 again.",
+          "Any pack not fully paid for does not count.",
+          "Put the money left beside the price. Which is bigger?",
+          "Try a small one: Rs 19 at Rs 5 each buys 3, with Rs 4 left. Now this till."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "money": "whole rupees only: Rs 100 notes, Rs 10 notes and Rs 1 coins (no paise anywhere)",
+    "till": {
+      "x": 0,
+      "y": 86,
+      "w": 280,
+      "h": 348,
+      "rows": [
+        "Rs 100",
+        "Rs 10",
+        "Rs 1"
+      ]
+    },
+    "mat": {
+      "x": 296,
+      "y": 86,
+      "w": 504,
+      "h": 348,
+      "piles": "one a thing, a ten-frame of notes a row"
+    },
+    "table": {
+      "x": 296,
+      "y": 96,
+      "w": 504,
+      "columns": [
+        "tickets",
+        "spent",
+        "one ticket"
+      ],
+      "total": "under spent only"
+    },
+    "lane": {
+      "tags": [
+        1,
+        10,
+        100
+      ],
+      "shelf": "rows of ten, ten rows a square"
+    },
+    "frame": {
+      "x": 816,
+      "y": 86,
+      "w": 270,
+      "h": 310,
+      "layout": "long division, quotient on top"
+    },
+    "tray": {
+      "x": 816,
+      "y": 404,
+      "w": 270,
+      "h": 122
+    },
+    "units": {
+      "rupees": "Rs before the number",
+      "things": "a box named for the things",
+      "left": "pencils | Rs left"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T7.C24:ML1",
+        "kind": "share",
+        "things": 6,
+        "total": 522,
+        "short": "boxes",
+        "unit": "rupees",
+        "thumb": "one lunch box",
+        "near": 3132,
+        "winMs": 2800,
+        "card": [
+          [
+            "6 lunch boxes",
+            "n"
+          ],
+          [
+            "cost Rs 522",
+            "m"
+          ],
+          [
+            "one box: Rs ?",
+            "q"
+          ]
+        ],
+        "answer": 87
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T7.C24:1",
+        "kind": "share",
+        "things": 5,
+        "total": 465,
+        "short": "caps",
+        "unit": "rupees",
+        "thumb": "one cap",
+        "near": 2325,
+        "winMs": 2800,
+        "card": [
+          [
+            "5 caps",
+            "n"
+          ],
+          [
+            "cost Rs 465",
+            "m"
+          ],
+          [
+            "one cap: Rs ?",
+            "q"
+          ]
+        ],
+        "answer": 93
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T7.C24:2",
+        "kind": "share",
+        "things": 9,
+        "total": 3006,
+        "short": "chairs",
+        "unit": "rupees",
+        "thumb": "one chair",
+        "near": 27054,
+        "winMs": 2800,
+        "card": [
+          [
+            "9 chairs",
+            "n"
+          ],
+          [
+            "cost Rs 3,006",
+            "m"
+          ],
+          [
+            "one chair: Rs ?",
+            "q"
+          ]
+        ],
+        "answer": 334
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T7.C25:ML2",
+        "kind": "tickets",
+        "target": "total",
+        "rows": [
+          {
+            "n": 6,
+            "spent": 858
+          },
+          {
+            "n": 8,
+            "spent": 560
+          }
+        ],
+        "unit": "rupees",
+        "thumb": "spent in all",
+        "near": 213,
+        "winMs": 2800,
+        "card": [
+          [
+            "6 for Rs 858",
+            "m"
+          ],
+          [
+            "8 for Rs 560",
+            "m"
+          ],
+          [
+            "total spent: Rs ?",
+            "q"
+          ]
+        ],
+        "answer": 1418
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T7.C25:3",
+        "kind": "tickets",
+        "target": "price",
+        "rows": [
+          {
+            "n": 4,
+            "spent": 332
+          }
+        ],
+        "unit": "rupees",
+        "thumb": "one ticket",
+        "near": 332,
+        "winMs": 2800,
+        "card": [
+          [
+            "4 tickets",
+            "n"
+          ],
+          [
+            "Rs 332 spent",
+            "m"
+          ],
+          [
+            "one ticket: Rs ?",
+            "q"
+          ]
+        ],
+        "answer": 83
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T7.C25:4",
+        "kind": "tickets",
+        "target": "price",
+        "rows": [
+          {
+            "n": 7,
+            "spent": 861
+          }
+        ],
+        "unit": "rupees",
+        "thumb": "one ticket",
+        "near": 861,
+        "winMs": 2800,
+        "card": [
+          [
+            "bill: 7 tickets",
+            "n"
+          ],
+          [
+            "Rs 861 spent",
+            "m"
+          ],
+          [
+            "one ticket: Rs ?",
+            "q"
+          ]
+        ],
+        "answer": 123
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T7.C26:ML3",
+        "kind": "buy",
+        "price": 9,
+        "money": 1467,
+        "noun": "notebooks",
+        "one": "notebook",
+        "unit": "things",
+        "near": "13203",
+        "winMs": 2800,
+        "parts": [
+          {
+            "label": "notebooks"
+          }
+        ],
+        "card": [
+          [
+            "notebook Rs 9",
+            "m"
+          ],
+          [
+            "Rs 1,467 to spend",
+            "m"
+          ],
+          [
+            "notebooks: ?",
+            "q"
+          ]
+        ],
+        "answer": [
+          163
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T7.C26:5",
+        "kind": "buy",
+        "price": 7,
+        "money": 1582,
+        "noun": "kites",
+        "one": "kite",
+        "unit": "things",
+        "near": "11074",
+        "winMs": 2800,
+        "parts": [
+          {
+            "label": "kites"
+          }
+        ],
+        "card": [
+          [
+            "kite Rs 7",
+            "m"
+          ],
+          [
+            "Rs 1,582 to spend",
+            "m"
+          ],
+          [
+            "kites: ?",
+            "q"
+          ]
+        ],
+        "answer": [
+          226
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T7.C26:7",
+        "kind": "coins",
+        "coins": 18,
+        "kinds": [
+          10,
+          5,
+          2
+        ],
+        "unit": "rupees",
+        "thumb": "in the box",
+        "near": 6,
+        "winMs": 2800,
+        "card": [
+          [
+            "18 coins",
+            "n"
+          ],
+          [
+            "Rs 10, 5, 2",
+            "m"
+          ],
+          [
+            "same number each",
+            "i"
+          ],
+          [
+            "money: Rs ?",
+            "q"
+          ]
+        ],
+        "answer": 102
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T7.C27:ML4",
+        "kind": "left",
+        "price": 6,
+        "money": 1597,
+        "noun": "pencils",
+        "one": "pencil",
+        "near": "266|0",
+        "winMs": 2800,
+        "parts": [
+          {
+            "label": "pencils"
+          },
+          {
+            "label": "Rs left"
+          }
+        ],
+        "card": [
+          [
+            "pencil Rs 6",
+            "m"
+          ],
+          [
+            "Rs 1,597 to spend",
+            "m"
+          ],
+          [
+            "pencils: ?",
+            "q"
+          ],
+          [
+            "left: Rs ?",
+            "q"
+          ]
+        ],
+        "answer": [
+          266,
+          1
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T7.C27:6",
+        "kind": "left",
+        "price": 4,
+        "money": 150,
+        "noun": "erasers",
+        "one": "eraser",
+        "near": "37|0",
+        "winMs": 2800,
+        "parts": [
+          {
+            "label": "erasers"
+          },
+          {
+            "label": "Rs left"
+          }
+        ],
+        "card": [
+          [
+            "eraser Rs 4",
+            "m"
+          ],
+          [
+            "Rs 150 to spend",
+            "m"
+          ],
+          [
+            "erasers: ?",
+            "q"
+          ],
+          [
+            "left: Rs ?",
+            "q"
+          ]
+        ],
+        "answer": [
+          37,
+          2
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T7.C27:8",
+        "kind": "left",
+        "price": 12,
+        "money": 500,
+        "noun": "packs",
+        "one": "pack",
+        "near": "42|0",
+        "winMs": 2800,
+        "parts": [
+          {
+            "label": "packs"
+          },
+          {
+            "label": "Rs left"
+          }
+        ],
+        "card": [
+          [
+            "juice pack Rs 12",
+            "m"
+          ],
+          [
+            "Rs 500 to spend",
+            "m"
+          ],
+          [
+            "packs: ?",
+            "q"
+          ],
+          [
+            "left: Rs ?",
+            "q"
+          ]
+        ],
+        "answer": [
+          41,
+          8
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The mat deals the till onto the piles to the end, one pile is lit with its amount, and the frame writes the division down to the cost of one.",
+      "Phase 2: The row opens on the mat and its amount is dealt to one pile a ticket; the price settles in its row, and the total line adds the amounts spent.",
+      "Phase 3: The lane pays the price out, a hundred, then ten, then one at a time, the things stand in rows of ten, and the frame writes the count.",
+      "Phase 4: The lane pays out until it stops, what is left drops into the money left tray, the frame writes the count and the remainder, and the check multiplies back."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A till of rupees and a shelf of things. What is the question asking for?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every cost of one found, every count of things given, and every rupee left kept.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T7.C24:ML1",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "6 lunch boxes cost Rs 522. What does one lunch box cost?",
+            "question": {
+              "en": "6 lunch boxes cost Rs 522. What does one lunch box cost?"
+            },
+            "ask": {
+              "en": "Cost of one lunch box?"
+            },
+            "answer": 87,
+            "planAnswer": "Rs 87",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T7.C24:1",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "5 caps cost Rs 465. What does one cap cost?",
+            "question": {
+              "en": "5 caps cost Rs 465. Find the cost of one cap."
+            },
+            "ask": {
+              "en": "Cost of one cap?"
+            },
+            "answer": 93,
+            "planAnswer": "Rs 93, because 465 divided by 5 is 93",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T7.C24:2",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "9 chairs cost Rs 3006. What does one chair cost?",
+            "question": {
+              "en": "Now 9 chairs cost Rs 3,006. What is the price of one chair?"
+            },
+            "ask": {
+              "en": "Price of one chair?"
+            },
+            "answer": 334,
+            "planAnswer": "Rs 334, because 3006 divided by 9 is 334",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T7.C25:ML2",
+            "worked": false,
+            "kind": "tickets",
+            "planQuestion": "A ticket table has two rows. In one, 6 tickets were bought for Rs 858. In the other, 8 tickets were bought for Rs 560. Find the price of one ticket in each row, and the total spent.",
+            "question": {
+              "en": "In one row, 6 tickets cost Rs 858. In the other, 8 tickets cost Rs 560. Find each row's price of one ticket, then the total spent."
+            },
+            "ask": {
+              "en": "Total spent?"
+            },
+            "answer": 1418,
+            "planAnswer": "Rs 143 and Rs 70 for one ticket, and Rs 1418 spent in all",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T7.C25:3",
+            "worked": false,
+            "kind": "tickets",
+            "planQuestion": "4 tickets cost Rs 332. What is the price of one ticket?",
+            "question": {
+              "en": "4 tickets cost Rs 332. What is one ticket's price?"
+            },
+            "ask": {
+              "en": "Price of one ticket?"
+            },
+            "answer": 83,
+            "planAnswer": "Rs 83, because 332 divided by 4 is 83",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T7.C25:4",
+            "worked": false,
+            "kind": "tickets",
+            "planQuestion": "A bill for 7 tickets shows Rs 861 spent. What is the cost of one ticket? Say what the bill lists and what cost means.",
+            "question": {
+              "en": "A bill shows Rs 861 spent on 7 tickets. What does one ticket cost?"
+            },
+            "ask": {
+              "en": "Cost of one ticket?"
+            },
+            "answer": 123,
+            "planAnswer": "Rs 123. The bill lists the things bought and their prices, and cost is the price to be paid, here for one ticket",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T7.C26:ML3",
+            "worked": false,
+            "kind": "buy",
+            "planQuestion": "A notebook costs Rs 9. How many notebooks can be bought for Rs 1467?",
+            "question": {
+              "en": "A notebook costs Rs 9. How many notebooks can Rs 1,467 buy?"
+            },
+            "ask": {
+              "en": "How many notebooks?"
+            },
+            "answer": [
+              163
+            ],
+            "planAnswer": "163 notebooks",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T7.C26:5",
+            "worked": false,
+            "kind": "buy",
+            "planQuestion": "A kite costs Rs 7. How many kites can be bought for Rs 1582?",
+            "question": {
+              "en": "Kites are Rs 7 each, and the till holds Rs 1,582. How many kites?"
+            },
+            "ask": {
+              "en": "How many kites?"
+            },
+            "answer": [
+              226
+            ],
+            "planAnswer": "226 kites, because 1582 divided by 7 is 226. The answer is a number of kites, not rupees",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T7.C26:7",
+            "worked": false,
+            "kind": "coins",
+            "planQuestion": "A box holds 18 coins, with equal numbers of Rs 10, Rs 5 and Rs 2 coins. How much money is in the box?",
+            "question": {
+              "en": "A box holds 18 coins, the same number each of Rs 10, Rs 5 and Rs 2. How much money is in it?"
+            },
+            "ask": {
+              "en": "Money in the box?"
+            },
+            "answer": 102,
+            "planAnswer": "Rs 102. There are 6 coins of each kind, so Rs 60, Rs 30 and Rs 12",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T7.C27:ML4",
+            "worked": false,
+            "kind": "left",
+            "planQuestion": "Pencils cost Rs 6 each. How many can be bought for Rs 1597, and how much money is left?",
+            "question": {
+              "en": "Pencils cost Rs 6 each. How many can Rs 1,597 buy, and how much money is left?"
+            },
+            "ask": {
+              "en": "Pencils and money left?"
+            },
+            "answer": [
+              266,
+              1
+            ],
+            "planAnswer": "266 pencils, with Rs 1 left",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T7.C27:6",
+            "worked": false,
+            "kind": "left",
+            "planQuestion": "Erasers cost Rs 4 each. How many can be bought for Rs 150, and how much is left?",
+            "question": {
+              "en": "Erasers are Rs 4 each and the till holds Rs 150. How many erasers, and what is left?"
+            },
+            "ask": {
+              "en": "Erasers and money left?"
+            },
+            "answer": [
+              37,
+              2
+            ],
+            "planAnswer": "37 erasers, with Rs 2 left, because 4 times 37 is 148",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T7.C27:8",
+            "worked": false,
+            "kind": "left",
+            "planQuestion": "Juice packs cost Rs 12 each. How many can be bought for Rs 500, and how much money is left?",
+            "question": {
+              "en": "Juice packs cost Rs 12 each. How many packs does Rs 500 pay for, and what stays in the till?"
+            },
+            "ask": {
+              "en": "Packs and money left?"
+            },
+            "answer": [
+              41,
+              8
+            ],
+            "planAnswer": "41 packs, with Rs 8 left, because 12 times 41 is 492",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "shop_divider",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "shop_divider",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "The cost of one",
+        "conceptId": "M2.S4.T7.C24",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C24:ML1",
+          "M2.S4.T7.C24:1",
+          "M2.S4.T7.C24:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "The price of one ticket",
+        "conceptId": "M2.S4.T7.C25",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C25:ML2",
+          "M2.S4.T7.C25:3",
+          "M2.S4.T7.C25:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "How many can be bought",
+        "conceptId": "M2.S4.T7.C26",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C26:ML3",
+          "M2.S4.T7.C26:5",
+          "M2.S4.T7.C26:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Money left over",
+        "conceptId": "M2.S4.T7.C27",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C27:ML4",
+          "M2.S4.T7.C27:6",
+          "M2.S4.T7.C27:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "shop_divider"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T7.C24.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A till of rupees and a shelf of things. What is the question asking for?"
+    },
+    {
+      "en": "The total cost is shared among the things. What does one cost?"
+    },
+    {
+      "en": "Is the price of one ticket the same as the amount spent?"
+    },
+    {
+      "en": "The answer is a number of what, rupees or things?"
+    },
+    {
+      "en": "Some money is left. Is it enough for one more?"
+    },
+    {
+      "en": "A new question. Say what the answer counts before you divide."
+    },
+    {
+      "en": "Free play. Any whole rupee amount and any price, with the mat, the lane and the table open."
+    },
+    {
+      "en": "Read the question card again. Is the answer rupees, or things?"
+    },
+    {
+      "en": "Every cost of one found, every count of things given, and every rupee left kept."
+    }
+  ],
+  "build": {
+    "source": "79774254:1797359",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-25T07:38:40.949Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-25T07:38:40.356Z"
+    },
+    "tsxBytes": 1797184,
+    "tsxMd5": "07e83e88c9fa1bc3d24b65e510a2db15"
+  }
+}

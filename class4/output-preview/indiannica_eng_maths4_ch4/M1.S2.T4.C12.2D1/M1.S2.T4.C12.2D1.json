@@ -1,0 +1,976 @@
+{
+  "slotId": "M1.S2.T4.C12.2D1",
+  "mediaId": "M1.S2.T4.C12.2D1",
+  "toolId": "table_builder",
+  "title": "Table Builder",
+  "component": "M1.S2.T4.C12.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch4",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch4_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_4/2dtool/M1.S2.T4.C12.2D1/M1.S2.T4.C12.2D1.tsx",
+  "description": "Build a table past ten one row at a time by adding, never by looking it up, then stand it beside another table and read the pattern.",
+  "conceptIds": [
+    "M1.S2.T4.C12",
+    "M1.S2.T4.C13",
+    "M1.S2.T4.C14",
+    "M1.S2.T4.C15"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Build the tables past ten by adding rather than by remembering, and find the patterns that let you rebuild any row you forget.",
+    "look": "An empty table of ten rows with only its first row written in, a running count down the side and a rail below that holds two tables level.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Table Builder' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the rows filled against the rows the table is ruled for, two numbers in ink, the first climbing by one as each row is added and the second fixed at the length of the table. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The table stands down the left of the working area, 360 by 528 at 64,202: ten rows 48 tall, each ruled into a row count at its left in a narrow band 72 wide and a product cell 288 wide beside it, with only the top product cell written in when the mount comes up. There is no lookup control anywhere on this stage. The only control that fills a row is add a row, and it draws the addition as a visible step: an arrow leaves the product above, the table's own number is written on the arrow itself, and the new product lands in the cell below. The running count strip runs down the far side of the table at 432,202, 56 wide, and each of its marks lands level with the row it counts, so the number of times taken and the row it made stay tied together and neither can be read without the other. The compare rail opens to the right of the table, 560 by 528 at 508,202, holding a second finished table with its rows level with the first and a clear channel 64 wide between the two columns of products. Light a pair lights the two products standing at one level, writes what links them in the channel between, and moves a row at a time under a finger drawn down the rail. The even check opens under whichever table is finished, 1086 by 132 at 64,608, as two trays marked odd and even with the last digit of every product lit on the table above; a product dropped into the wrong tray is pushed straight back out and returns to its row rather than being cleared. The steps counter takes the place of the compare rail when it is open, 560 by 528 at 508,202, and works one product twice in two columns standing side by side, once with the table open so that each column of the multiplicand is one fact from it, and once with the multiplier split into a ones row and a tens row in rose that are then added, with every line of writing numbered down its own margin and the two totals of those margins written at the foot. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a row, a product or a count of steps is asked for, and on the second and third phases a choice pad holding the tables themselves and the words odd and even, so that a table can be brought onto the rail and a last digit sorted with one press. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: the number being multiplied is deep blue, the number it is multiplied by is amber, and the product standing under the rule is green; a digit carried into the next column is vermilion and is always drawn small and inside a ring set above the column it is joining, never in the margin and never under the rule; a partial product row made by one place of the multiplier is rose; and a zero that is only holding a place open, or a step that is skipped, is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a column is told by the heading written above it before it is ever told by a colour, and a carried digit by being small and by sitting in a ring above the column it is going into.",
+    "finish": "The card shows the table the child built, its rows still numbered, standing beside whichever table it doubles.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the table fills from the top and the running count keeps pace with the rows",
+        "does": "adds the number again for each row and watches the column fill downwards",
+        "goal": "every row of a table is the row above with the same number added once more",
+        "says": "Add the same number once more for every row. Never look a row up.",
+        "check": "The table of fifteen has 45 in its third row. Build the fourth and the fifth rows without looking anything up.",
+        "feels": "slow, and every row arrives out of the one above it rather than out of memory",
+        "hands": "Give each child a long paper strip and one number between eleven and sixteen. Write the number at the top and build every row under it by adding, never by recalling, saying the running count out loud as each row lands. Time how long the strip takes and keep it pinned up for the next session.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which number is this table built on? Second rung, the phase's: what is added to the row above to make the next one? Third rung: the table is cut to three rows and the child builds those three by adding, with the arrow drawn for the first of them. The number pad stays open behind all three.",
+        "wrong": [
+          {
+            "why": "two numbers run down a table, the row count and the products, and the one nearest the hand is the one that has just changed.",
+            "move": "adds the row count to the row above instead of the table's own number, so that the table of fourteen runs 14, then 16, then 19.",
+            "screen": "the row the child filled is emptied and the step is drawn again as an arrow off the row above it, with the table's own number written on the arrow itself, and the row count is moved out to the far side of the strip where it cannot be reached by accident. The child's row is redrawn faintly beside the rebuilt one so the two can be read together."
+          },
+          {
+            "why": "the early rows of any table are old ground, and a tool that fills one row at a time looks slow when the answer is already in the head.",
+            "move": "asks for the rest of the table to be filled in at once, because the first few rows are already known by heart.",
+            "screen": "the rows the child already holds stay filled exactly as they were given, and the steps between them are drawn in afterwards, each arrow carrying the table's own number, so that the rows known by heart are seen to be the same additions. The tool then stops at the first row the child did not have, with only the arrow off the row above it offered."
+          }
+        ],
+        "screen": "an empty table of ten rows with the number itself in the first row and no lookup anywhere",
+        "soWhat": "Build a table by adding the same number once more for every row.",
+        "concept": "A table is repeated addition written down"
+      },
+      {
+        "n": 2,
+        "win": "every pair of rows lights as a double and the rail names the pattern",
+        "does": "reads the two rows that sit level and says how the one on the right was made",
+        "goal": "the table of twelve is the table of six doubled, and sixteen is eight doubled",
+        "says": "Read the two rows that sit level with each other. What has happened to the one on the left?",
+        "check": "8 x 7 = 56. What is 16 x 7, and what did you do to 56 to get there?",
+        "feels": "a whole table arrives without a single row of it being added",
+        "hands": "Pin two finished paper strips side by side on the wall, the table of six and the table of twelve, with their rows level. Read the two products that sit level and ask what has happened to the one on the left. Then do the same with the table of eight and the table of sixteen, and ask whether it is the same thing happening twice.",
+        "tries": "First rung, from the item: which number is the smaller table built on? Second rung, the phase's: what has been done to that number to make the other one? Third rung: the rail is cut to three rows of each table and the child reads the three level pairs in turn. The choice pad stays open.",
+        "wrong": [
+          {
+            "why": "adding is what built the table in the first place, so adding is the move already in the hand, and adding six to a row of six is a true step in that table even though it is the wrong one here.",
+            "move": "adds the smaller table's number to its product instead of doubling it, so that 42 in the table of six is read as 48 rather than 84.",
+            "screen": "the two products standing level are lit together and read out, and the arrow between them is drawn as a second copy of the left hand product landing on top of itself rather than as a step along the table. The child's answer stays in the slot while the rail counts both readings out and shows which row of the table of six 48 actually is."
+          },
+          {
+            "why": "two things standing level look as though both of them have to be changed, and the row count is sitting right there in the same movement of the hand.",
+            "move": "doubles the row count as well as the product and reads the answer off the wrong row.",
+            "screen": "the row counts of the two tables are drawn out to the far edges of the rail and held still while the products alone are lit, and a finger drawn down the channel shows the one row count standing beside both tables at every level. The row the child read from is left lit in amber beside the row they were sent to."
+          }
+        ],
+        "screen": "the compare rail holding two finished tables side by side with their rows level",
+        "soWhat": "The table of twelve is the table of six doubled, and the table of sixteen is the table of eight doubled, row for row.",
+        "concept": "One table can be built from another"
+      },
+      {
+        "n": 3,
+        "win": "every product lands in the even tray and an odd answer dropped in is pushed straight back out",
+        "does": "reads the last digit of every product and sorts them into odd and even",
+        "goal": "a table built on an even number has every product even",
+        "says": "Look at the last digit of every answer. Could any of them be odd?",
+        "check": "Someone says 14 x 7 comes to 99. What is wrong with that before any working is looked at, and what is the real product?",
+        "feels": "the last digit on its own says whether an answer could possibly belong to this table",
+        "hands": "Read the last digit of every product on a finished strip out loud and nothing else, so that the products themselves are never said. Do it once with a table built on an even number and once with a table built on an odd one, and ask what is different about the two lists.",
+        "tries": "First rung, from the item: what is the last digit of the answer that was given? Second rung, the phase's: what must the last digit of any product in this table be? Third rung: the check is cut to the first three products of the table and the child sorts those three. The choice pad of odd and even stays open.",
+        "wrong": [
+          {
+            "why": "the row count is the number that keeps changing, so it looks like the one that decides, and odd taken odd times has come out odd before now.",
+            "move": "sorts by the multiplier rather than by the product, so an odd row count sends an even answer into the odd tray.",
+            "screen": "the row counts are covered over on the strip and only the products are left standing, each with its last digit lit, and the products are then offered to the trays one at a time with nothing else in view. The child's earlier sorting is left drawn faintly under the tray it went into, and 16 x 9 is worked out in the open beside it as 144."
+          },
+          {
+            "why": "a rule that held for the last table looks like a rule about tables, and the even tray has been the right answer every time so far.",
+            "move": "carries the rule across to a table built on an odd number and pushes every odd product in it back out.",
+            "screen": "the odd table is stood beside the even one on the rail with both sets of last digits lit, and the two lists are read down together, so the odd table is heard running odd, even, odd, even while the even table does not change at all. The products the child pushed back are returned to the rows they came from."
+          }
+        ],
+        "screen": "a finished table with the even check open beneath it and two empty trays",
+        "soWhat": "Every product of a table built on an even number is even, so an odd answer there is wrong with no checking at all.",
+        "concept": "An even number gives an even product"
+      },
+      {
+        "n": 4,
+        "win": "the table side finishes in fewer steps and both sides land on the same product",
+        "does": "works it both ways and counts the steps each route took",
+        "goal": "a table past ten turns a two digit multiplier into one fact for each column",
+        "says": "Count the steps each way took. Which of them would you rather write out?",
+        "check": "Find 507 x 12 using the table of twelve, and say how many column steps it took.",
+        "feels": "the same answer twice, and one of the two routes took noticeably less writing",
+        "hands": "Work 412 x 13 twice on paper. Once with the table of thirteen open, taking one fact from it for each column of 412. Once with the multiplier split into a ones row and a tens row that are then added. Both should come to 5356. Count the lines of writing each way took, and count the addition at the end as a line like any other.",
+        "tries": "First rung, from the item: how many columns does the multiplicand have? Second rung, the phase's: how many facts does the table hand you for each of those columns? Third rung: the counter is cut to a two digit multiplicand and the child works both routes on that. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "every multiplier up to now has been one digit long, and two digits sitting side by side look like two of those, to be used one after the other.",
+            "move": "uses the 1 and the 3 of the multiplier as two separate single digit multipliers and multiplies by each of them in turn.",
+            "screen": "the multiplier is drawn out as its places, the tens part written in full as 10 and the ones part as 3, so that the 13 is seen to be one number made of a ten and a three and not two multipliers at all. Both routes are then worked side by side, the child's and the table's, and the first column where the two part is lit amber and stays lit."
+          },
+          {
+            "why": "the multiplying feels like the work and the adding at the end feels like tidying up afterwards, so it slips out of the count without being decided against.",
+            "move": "counts the steps of the two routes but counts the adding of the two rows as no step at all.",
+            "screen": "the two routes stand side by side with every line of writing numbered down its own margin, the addition of the two rows numbered like any other line, and the total of each margin written at its foot. The child's count stays exactly where it was written, beside the one the counter made."
+          }
+        ],
+        "screen": "the same product worked twice, once with the table open and once with the multiplier split",
+        "soWhat": "A table past ten turns a two digit multiplier into one fact for each column, instead of two rows that then have to be added.",
+        "concept": "A bigger table means fewer steps"
+      }
+    ],
+    "delight": "The second phase, the first time the compare rail brings a second table alongside. The two tables do not slide into place past one another. The rail lifts the rows of the table already standing and threads the new table's rows in between them, so that for a moment every row of six has a row of twelve resting on it. Then they separate into two columns with their rows dead level, and a finger drawn down the channel between them lights one level pair after another, each pair reading itself out as a number and its double. Draw the finger back up the rail and the pairs unlight in the same order they came.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase an empty table of ten numbered rows stands on the canvas with only its own number written into the top row, and there is no lookup anywhere on the bench to fill the rest of it from. On the second two finished tables stand on the compare rail with their rows dead level and no pair lit yet. On the third a finished table stands with the even check open beneath it and two empty trays waiting below that. On the fourth one product is set out twice, once beside an open table past ten and once with its multiplier split into a ones row and a tens row, and neither route has been worked. The running count at the top left holds the rows filled against the rows the table is ruled for, and the answer slot and the pad stand empty down the right. One thing moves, once: the empty row under the number, or the first level pair, or the even tray, or the shorter of the two routes, gives one slow pulse while the voice asks for the next row. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any table from eleven to sixteen built by adding, the compare rail holding any two of them, and the even check open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on building a table by adding, reading one table off another, checking an even product and using a table past ten.",
+    "voiceLines": [
+      "An empty table, and one number written into its top row. Every row after it is made by adding.",
+      "Add the same number once more for every row. Never look a row up.",
+      "Read the two rows that sit level with each other. What has happened to the one on the left?",
+      "Look at the last digit of every answer. Could any of them be odd?",
+      "Count the steps each way took. Which of them would you rather write out?",
+      "Another table to build. There is nothing in this tool to look a row up in.",
+      "Free play. Any table past ten, with the compare rail and the even check open.",
+      "Empty that row and build it again as a step off the row above it.",
+      "You built every row by adding, and then read a whole table straight off another one."
+    ],
+    "observations": [
+      {
+        "why": "Taking a number one more time is that number added once more, so the row count and the number of times taken are one count, not two.",
+        "soWhat": "A row you cannot remember can be rebuilt from the row beside it instead of waited for.",
+        "observe": "Every row of the table was the row above it with the same number added, and the count down the side went up by one each time."
+      },
+      {
+        "why": "Twelve is six taken twice, so taking twelve any number of times is taking six that many times and then doubling what comes out.",
+        "soWhat": "A whole table can be read off a table already held, which is why the table of sixteen costs nothing once the table of eight is in.",
+        "observe": "With the table of six standing beside the table of twelve, every product on the right was the product level with it on the left, doubled."
+      },
+      {
+        "why": "An even number is made of twos and stays made of twos however many times it is taken, while an odd number only comes out even when it is taken an even number of times.",
+        "soWhat": "An odd answer claimed for a table built on an even number is wrong before any working is looked at.",
+        "observe": "Every product in the table of fourteen ended in an even digit, while the table of fifteen ran odd, even, odd, even all the way down."
+      },
+      {
+        "why": "A table past ten makes a two digit multiplier one fact for each column of the multiplicand, instead of two rows of its own that are each worked in full and then added.",
+        "soWhat": "A table learnt past ten is a shorter piece of writing every time it is used.",
+        "observe": "412 x 13 took three column steps with the table of thirteen open, and more than that when the multiplier was split into a ones row and a tens row that then had to be added."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "an empty table of ten rows with the number itself in the first row and no lookup anywhere",
+        "win": "the table fills from the top and the running count keeps pace with the rows",
+        "traceback": "The missed row is emptied and built again as an arrow off the row above carrying the table's own number, down to the last row asked; the child's row stays faintly beside it.",
+        "ladder": [
+          "Each row down adds the same amount. How much is it in the table of fourteen?",
+          "Look at the arrow off the row above. Which number is written on it?",
+          "From 45, how many more fifteens does it take to reach 75?",
+          "What is added to the row above to make the next one?",
+          "Start from the row above and add the table's own number, one row at a time."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the compare rail holding two finished tables side by side with their rows level",
+        "win": "every pair of rows lights as a double and the rail names the pattern",
+        "traceback": "The level pair lights, a second copy of the left product lands beside the first and the doubled product is written in; the row the child's number belongs to is lit in amber.",
+        "ladder": [
+          "How many sixes make twelve? Look at 42 with that in mind.",
+          "Read row 3 of both tables. How did 24 become 48?",
+          "Slide to row 2. What was done to 12 to give 24?",
+          "What was done to the small table's number to make the big table's number?",
+          "Slide down the rail and read three level pairs in turn. How does each right one grow?"
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a finished table with the even check open beneath it and two empty trays",
+        "win": "every product lands in the even tray and an odd answer dropped in is pushed straight back out",
+        "traceback": "The row counts are covered and every product is offered to the trays one at a time; the hidden or claimed product is worked out in the open and sorted.",
+        "ladder": [
+          "What is the last digit of every product in this table?",
+          "What is the last digit of 99, and of every product of 14?",
+          "What is the last digit of 15? And of 30?",
+          "What must the last digit of any product in this table be?",
+          "Drag three products into the trays by their last digits. Where do they land?"
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the same product worked twice, once with the table open and once with the multiplier split",
+        "win": "the table side finishes in fewer steps and both sides land on the same product",
+        "traceback": "The multiplier is split into its tens and ones, then both routes are worked side by side: one table fact a column with its carry, and the two rose rows added, ending on the same product.",
+        "ladder": [
+          "Thirteen is one number, not a one and a three. Which row of its table goes with the 2?",
+          "Twelve stays whole. Which row of the table of twelve goes with the 7?",
+          "Sixteen stays whole. Start with the 8: which row of the table of sixteen is it?",
+          "How many facts does the table hand you for each digit on top?",
+          "Work the ones digit first, then the tens, then the hundreds, carrying as you go."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "rowsRuled": 10,
+    "rowHeight": 48,
+    "tablesPastTen": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "colours": {
+      "multiplied": "deep blue",
+      "multiplier": "amber",
+      "product": "green",
+      "carry": "vermilion",
+      "partialProduct": "rose",
+      "placeHolder": "grey"
+    },
+    "trays": [
+      "odd",
+      "even"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T4.C12:ML1",
+        "kind": "build",
+        "n": 14,
+        "upto": 4,
+        "answer": "14, 28, 42, 56",
+        "winMs": 2400
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T4.C12:1",
+        "kind": "build",
+        "n": 11,
+        "upto": 4,
+        "answer": "11, 22, 33, 44",
+        "winMs": 2400
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T4.C12:2",
+        "kind": "row",
+        "n": 15,
+        "given": 3,
+        "target": 75,
+        "answer": 5,
+        "winMs": 2600
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T4.C13:ML2",
+        "kind": "double",
+        "small": 6,
+        "big": 12,
+        "row": 7,
+        "answer": 84,
+        "winMs": 2600
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T4.C13:3",
+        "kind": "double",
+        "small": 8,
+        "big": 16,
+        "row": 6,
+        "answer": 96,
+        "winMs": 2600
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T4.C13:4",
+        "kind": "double",
+        "small": 6,
+        "big": 12,
+        "row": 9,
+        "answer": 108,
+        "winMs": 2600
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T4.C14:ML3",
+        "kind": "parity",
+        "q": "canOdd",
+        "n": 16,
+        "hide": 8,
+        "answer": "no",
+        "winMs": 3400
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T4.C14:5",
+        "kind": "claim",
+        "n": 14,
+        "row": 6,
+        "claim": 99,
+        "answer": "99 is odd",
+        "winMs": 3400
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T4.C14:6",
+        "kind": "parity",
+        "q": "allEven",
+        "n": 15,
+        "answer": "no",
+        "winMs": 3400
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T4.C15:ML4",
+        "kind": "steps",
+        "a": 412,
+        "b": 13,
+        "answer": 5356,
+        "winMs": 4200
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T4.C15:7",
+        "kind": "steps",
+        "a": 507,
+        "b": 12,
+        "answer": 6084,
+        "winMs": 4200
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T4.C15:8",
+        "kind": "steps",
+        "a": 1428,
+        "b": 16,
+        "answer": 22848,
+        "winMs": 4800
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The missed row is emptied and built again as an arrow off the row above carrying the table's own number, down to the last row asked; the child's row stays faintly beside it.",
+      "Phase 2: The level pair lights, a second copy of the left product lands beside the first and the doubled product is written in; the row the child's number belongs to is lit in amber.",
+      "Phase 3: The row counts are covered and every product is offered to the trays one at a time; the hidden or claimed product is worked out in the open and sorted.",
+      "Phase 4: The multiplier is split into its tens and ones, then both routes are worked side by side: one table fact a column with its carry, and the two rose rows added, ending on the same product."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "An empty table, and one number written into its top row. Every row after it is made by adding.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "You built every row by adding, and then read a whole table straight off another one.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T4.C12:ML1",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Build the first four rows of the table of fourteen by repeated addition.",
+            "question": {
+              "en": "Build the first four rows of the table of fourteen by repeated addition."
+            },
+            "ask": {
+              "en": "Add 14 for each row, to row 4"
+            },
+            "answer": "14, 28, 42, 56",
+            "planAnswer": "14, 28, 42 and 56",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T4.C12:1",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Build the first four rows of the table of eleven by repeated addition.",
+            "question": {
+              "en": "Build the first four rows of the table of eleven by repeated addition."
+            },
+            "ask": {
+              "en": "Add 11 for each row, to row 4"
+            },
+            "answer": "11, 22, 33, 44",
+            "planAnswer": "11, 22, 33 and 44",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T4.C12:2",
+            "worked": false,
+            "kind": "row",
+            "planQuestion": "In the table of fifteen the third row is 45. Which row holds 75?",
+            "question": {
+              "en": "In the table of fifteen the third row is 45. Which row holds 75?"
+            },
+            "ask": {
+              "en": "Which row holds 75?"
+            },
+            "answer": 5,
+            "planAnswer": "The fifth row, because 45 + 15 = 60 and 60 + 15 = 75",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T4.C13:ML2",
+            "worked": false,
+            "kind": "double",
+            "planQuestion": "The table of six gives 6 x 7 = 42. What is 12 x 7, and why?",
+            "question": {
+              "en": "The table of six gives 6 × 7 = 42. What is 12 × 7, and why?"
+            },
+            "ask": {
+              "en": "What is 12 × 7?"
+            },
+            "answer": 84,
+            "planAnswer": "84, because every product in the table of twelve is double the product in the same row of the table of six",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T4.C13:3",
+            "worked": false,
+            "kind": "double",
+            "planQuestion": "The table of eight gives 8 x 6 = 48. What is 16 x 6?",
+            "question": {
+              "en": "The table of eight gives 8 × 6 = 48. What is 16 × 6?"
+            },
+            "ask": {
+              "en": "What is 16 × 6?"
+            },
+            "answer": 96,
+            "planAnswer": "96, because the table of sixteen is the table of eight doubled",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T4.C13:4",
+            "worked": false,
+            "kind": "double",
+            "planQuestion": "6 x 9 = 54. Use it to find 12 x 9, and say what you did to get there.",
+            "question": {
+              "en": "6 × 9 = 54. Use it to find 12 × 9, and say what you did to get there."
+            },
+            "ask": {
+              "en": "What is 12 × 9?"
+            },
+            "answer": 108,
+            "planAnswer": "108, by doubling 54",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T4.C14:ML3",
+            "worked": false,
+            "kind": "parity",
+            "planQuestion": "Without working it out, say whether 16 x 9 can end in an odd digit.",
+            "question": {
+              "en": "Without working it out, say whether 16 × 9 can end in an odd digit."
+            },
+            "ask": {
+              "en": "Can 16 × 9 be odd?"
+            },
+            "answer": "no",
+            "planAnswer": "No. 16 is even, so every product in its table is even, and 16 x 9 = 144",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T4.C14:5",
+            "worked": false,
+            "kind": "claim",
+            "planQuestion": "A child says 14 x 7 comes to 99. Why can that be wrong before you check any working?",
+            "question": {
+              "en": "A child says 14 × 7 comes to 99. Why can that be wrong before you check any working?"
+            },
+            "ask": {
+              "en": "14 × 7 = 99? Why not?"
+            },
+            "answer": "99 is odd",
+            "planAnswer": "Because 14 is even, so every product in its table is even, and 99 is odd. The product is 98",
+            "choices": [
+              "99 is odd",
+              "7 is odd",
+              "99 is even"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T4.C14:6",
+            "worked": false,
+            "kind": "parity",
+            "planQuestion": "Is every product in the table of fifteen even?",
+            "question": {
+              "en": "Is every product in the table of fifteen even?"
+            },
+            "ask": {
+              "en": "All products of 15 even?"
+            },
+            "answer": "no",
+            "planAnswer": "No. 15 is odd, so its products are odd and even by turns, such as 15, 30 and 45",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T4.C15:ML4",
+            "worked": false,
+            "kind": "steps",
+            "planQuestion": "Find 412 x 13 using the table of thirteen, and say how many steps it took.",
+            "question": {
+              "en": "Find 412 × 13 using the table of thirteen, and say how many steps it took."
+            },
+            "ask": {
+              "en": "Find 412 × 13"
+            },
+            "answer": 5356,
+            "planAnswer": "5356, in three steps, one for each column of the multiplicand",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T4.C15:7",
+            "worked": false,
+            "kind": "steps",
+            "planQuestion": "Find 507 x 12 using the table of twelve.",
+            "question": {
+              "en": "Find 507 × 12 using the table of twelve."
+            },
+            "ask": {
+              "en": "Find 507 × 12"
+            },
+            "answer": 6084,
+            "planAnswer": "6084",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T4.C15:8",
+            "worked": false,
+            "kind": "steps",
+            "planQuestion": "Find 1428 x 16 using the table of sixteen.",
+            "question": {
+              "en": "Find 1,428 × 16 using the table of sixteen."
+            },
+            "ask": {
+              "en": "Find 1,428 × 16"
+            },
+            "answer": 22848,
+            "planAnswer": "22,848",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "table_builder",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "table_builder",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "A table is repeated addition written down",
+        "conceptId": "M1.S2.T4.C12",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C12:ML1",
+          "M1.S2.T4.C12:1",
+          "M1.S2.T4.C12:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "One table can be built from another",
+        "conceptId": "M1.S2.T4.C13",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C13:ML2",
+          "M1.S2.T4.C13:3",
+          "M1.S2.T4.C13:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "An even number gives an even product",
+        "conceptId": "M1.S2.T4.C14",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C14:ML3",
+          "M1.S2.T4.C14:5",
+          "M1.S2.T4.C14:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A bigger table means fewer steps",
+        "conceptId": "M1.S2.T4.C15",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C15:ML4",
+          "M1.S2.T4.C15:7",
+          "M1.S2.T4.C15:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "tableOf",
+    "rows",
+    "v",
+    "runningCount"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, tableOf, rows, v, runningCount",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "table_builder"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T4.C12.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "An empty table, and one number written into its top row. Every row after it is made by adding."
+    },
+    {
+      "en": "Add the same number once more for every row. Never look a row up."
+    },
+    {
+      "en": "Read the two rows that sit level with each other. What has happened to the one on the left?"
+    },
+    {
+      "en": "Look at the last digit of every answer. Could any of them be odd?"
+    },
+    {
+      "en": "Count the steps each way took. Which of them would you rather write out?"
+    },
+    {
+      "en": "Another table to build. There is nothing in this tool to look a row up in."
+    },
+    {
+      "en": "Free play. Any table past ten, with the compare rail and the even check open."
+    },
+    {
+      "en": "Empty that row and build it again as a step off the row above it."
+    },
+    {
+      "en": "You built every row by adding, and then read a whole table straight off another one."
+    }
+  ],
+  "build": {
+    "source": "9b9ae9f3:1588793",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-24T08:27:45.542Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-24T07:33:45.156Z"
+    },
+    "tsxBytes": 1588186,
+    "tsxMd5": "c6d24038da7cef5e2190014c760121a2"
+  }
+}

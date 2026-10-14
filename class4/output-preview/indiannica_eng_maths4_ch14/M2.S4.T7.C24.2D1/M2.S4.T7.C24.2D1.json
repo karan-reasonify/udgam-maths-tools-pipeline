@@ -1,0 +1,1351 @@
+{
+  "slotId": "M2.S4.T7.C24.2D1",
+  "mediaId": "M2.S4.T7.C24.2D1",
+  "toolId": "key_chooser",
+  "title": "Key Chooser",
+  "component": "M2.S4.T7.C24.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch14",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch14_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_14/2dtool/M2.S4.T7.C24.2D1/M2.S4.T7.C24.2D1.tsx",
+  "description": "Try keys against every number of a data set, see what each one leaves over and how many symbols it needs, choose one that fits, and ask the finished pictograph what its data can answer.",
+  "conceptIds": [
+    "M2.S4.T7.C24",
+    "M2.S4.T7.C25",
+    "M2.S4.T7.C26",
+    "M2.S4.T7.C27"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Choose a key that turns every number into whole symbols, or whole symbols and a half, without needing too many, then draw the pictograph and ask it what its data can answer.",
+    "look": "A data card and a key dial at the left, a checker board that lays each number out in symbols, a symbol count at the top, and question cards, a can do list and word cards along the foot.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only. 'Key Chooser' sits in ink at the far left, with a small dot set clear of the name by measuring it. The phase title sits beside the dot on the same line, then the host's navigation, and again, sound and restart stand as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the symbol count, every symbol the trial key would need across the whole card, a half counted as a half, in ink. Beside it are the rows lit against the rows on the card. The symbol count changes whenever the dial turns, and it is recounted row by row as the checker lays each row out. Nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The data card stands at the left of the working area, 230 by 330 at 64,212. It lists up to six named numbers, each on a line 48 tall with 6 between, from 220. The key dial sits under it, 230 by 90 at 64,556, and turns through trial keys. The set key control sits at the foot, 230 by 60 at 64,660, and unlocks only when every row lights. The checker board fills the rest, 840 by 440 at 306,212, with up to six rows, each 56 tall with 8 between, from 226. Each row has its name in a cell 110 wide, then its symbols from 426, each 36 wide with 6 between, up to fifteen, and a tag 80 wide at 1060. For each number the checker lays out whole symbols one key's worth at a time, and the number on the card goes down by the key as each one lands. When nothing is left, the row lights. When exactly half the key is left, the checker lays the left half of the symbol last, and the row lights. When anything else is left, the leftover stands loose in the tag in amber, and the row stays unlit. No part of a symbol other than a half is ever offered. A row that needs more than fifteen symbols runs on off the board's right edge, torn off there, with its symbol count written under its name. On the fourth phase the board becomes the finished pictograph. A title strip 600 by 44 and a key box 230 by 44 at 916,212 run along its top, both outlined blanks until filled. The rows move down to start at 266. The data card folds to its heading, and six word cards stand in its place, each 230 by 44 with 6 between. They read data, tally marks, pictograph, symbol, title and key, and each turns over to show what it means. The foot band runs under the board, 840 by 66 at 306,662. It holds the question stack at the left and the tray headed not in this data beside it. At the right stands the can do list of the chapter's three statements, each with a tick box. Down the right of the canvas the question sits above the answer slot at 1186,250 (356 by 92), which holds what the child has given. That rectangle is the same on every phase and is never animated in or out. Under it is the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a number is asked for, with a key for a half beside them. A word pad carries the card's own row names and the words fits, does not fit, too many, most, least, same and not in this data. The footer runs 758 to 900. The voice caption sits at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling. The phase bar sits at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, taken from its pictures. Every upright tally mark is deep blue, and every fifth mark, drawn across the four before it, is vermilion. Every pictograph symbol, whole or half, in the key and in the rows, is green, except where the rows are named by colour. There each row's symbols wear that row's own colour: red, green, blue, yellow or purple. The key's symbol there is plain grey, which stands for one symbol of any colour and is used for nothing else. Amber is what a row, a column or a tally stands for once it is read, and so are the numbers in a table and the numbers a side ruler writes. Amber too is what half a symbol stands for, what a key leaves over, and a small round counter for one thing counted. A total of every row is reddish purple, and so is a thing a total counts more than once, such as a stop two routes share. The row a question asks about is marked by a pale sky blue band laid behind its symbols, never over them. So is the stretch by which one row or tally reaches beyond another. Chrome never borrows one of those, and none of them is ever used for chrome. Every table rule, row line, belt, route line, bracket, outlined blank and card edge is near-black, and titles, row names, headings and the wording of every key are near-black type. Every reading survives with the colour taken away. A fifth mark lies across and not upright, and a half symbol is the left half of the whole. A row's number sits beyond its end, a total sits in its own bar or cell, and a band lies behind a row rather than on it. No amount is ever drawn as a length of colour: an amount on this stage is symbols, marks, counters or a written number. A blank waiting for the child is an empty outlined box, never a faded copy of its answer. A key is never set while any row is unlit. A card goes to the tray headed not in this data only when nothing on the finished pictograph bears on its question.",
+    "finish": "The card shows the data card with the key the child set, every row lit, the pictograph drawn with its title and key, and the question cards answered, with the one the data could not answer set aside.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "every row lights as whole symbols and the set key control unlocks",
+        "does": "sets a trial key and watches each number laid out in whole symbols, checking every row",
+        "goal": "a key that turns every number into whole symbols fits the data",
+        "says": "Try this key on every number. Does each one come out in whole symbols?",
+        "check": "Data of twelve, eighteen and thirty. Does a key of six give whole symbols for every number?",
+        "feels": "the key is laid against every number in turn, and the set key control waits until every row lights",
+        "hands": "Before the tool is opened, give each group a data card and let them try three keys, writing how many symbols each row would need and what each key leaves over. Choosing a key is asked twice in the chapter and taught nowhere. So take the route the chapter's own pictographs show: every key on its pages turns its data into whole symbols, or whole symbols and a half. Check a key against every number in turn, not only the largest. The opening page's airports have around fifteen hundred, nine hundred, six hundred, five hundred and four hundred flights a day. A key of one hundred gives fifteen, nine, six, five and four symbols. Call each airport by its city.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: what does the key leave over from this number? Second rung, the phase's: has every number been checked? Third rung: the card is cut to two numbers, and the child tries the key on both. The number keys and the dial stay open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the largest number feels like the hardest to fit, so if it fits the rest seem sure to.",
+            "move": "tries a key of three hundred on the first and largest number, sees fifteen hundred make five whole symbols, and sets it.",
+            "screen": "the checker lays out every row, not only the first. Fifteen hundred, nine hundred and six hundred light. Five hundred stands at one symbol with two hundred loose in its tag, and four hundred at one with one hundred loose, and both stay unlit. The set key control stays locked."
+          },
+          {
+            "why": "a key equal to the smallest number makes the shortest row exactly one symbol, which looks tidy.",
+            "move": "chooses the smallest number in the data as the key, one hundred and fifty points, so that player gets one symbol.",
+            "screen": "the checker lays out every row. Three hundred and one hundred and fifty light. The two rows of two hundred leave fifty loose, two hundred and fifty leaves one hundred, and three hundred and fifty leaves fifty. Half of one hundred and fifty is seventy-five, so all four stay unlit."
+          }
+        ],
+        "screen": "a data card of four numbers, the key dial set to a trial key, and the checker board empty",
+        "soWhat": "A key that turns every number into whole symbols fits the data. Check every number, not only the first.",
+        "concept": "A key that fits the data"
+      },
+      {
+        "n": 2,
+        "win": "the leftover folds into a half symbol and the row lights, and a leftover that is not a half stays loose",
+        "does": "compares what is left over with half the key, and closes the row with a half symbol when they match",
+        "goal": "a key may leave a half symbol, when exactly half the key is left over",
+        "says": "What is left over? Is it exactly half of the key?",
+        "check": "With a key of four, how many symbols show twenty-two?",
+        "feels": "what is left over is laid against half the key, and either it matches or it stays loose",
+        "hands": "Take the opening page's airports again with a key of two hundred. Nine hundred is four symbols and one hundred over, and one hundred is exactly half the key, so that row ends in a half. Every row fits that way, so two hundred fits as well as one hundred. Then try five hundred, where nine hundred leaves four hundred over, which is not half of five hundred. The chapter draws a half as the left half of the whole, and it draws no other part of a symbol.",
+        "tries": "First rung, from the item: what is left over? Second rung, the phase's: is that exactly half of the key? Third rung: the card is cut to one number with a small leftover, and the child lays it against the folded symbol. The number keys stay open.",
+        "wrong": [
+          {
+            "why": "a leftover smaller than the key looks too small to draw.",
+            "move": "drops the five left over from thirty-five and draws three symbols for a key of ten.",
+            "screen": "the checker lays three tens and stands the five at the row's end. The five is laid against the key's symbol folded down its middle, and the two match. A half symbol closes the row, which lights, and the running count shows three and a half. The child's three stays in the slot."
+          },
+          {
+            "why": "a half was right a moment ago, and it is the only part of a symbol there is.",
+            "move": "draws a half for any leftover, so eighty with a key of thirty ends in a half.",
+            "screen": "a half symbol is laid at the end of eighty's row, and the checker writes what it stands for, fifteen, beside the loose twenty. The two do not match, so the half comes back off and the twenty stays loose. The row stays unlit."
+          },
+          {
+            "why": "the first phase lit rows of whole symbols, and a half looks like the key failing.",
+            "move": "turns down a key that leaves exactly half over, sure that a key that fits gives whole symbols only.",
+            "screen": "the leftover is laid against the folded symbol, and the two match. The half closes the row and the row lights. With every row lit, the set key control unlocks, and the child's choice stays on the dial."
+          }
+        ],
+        "screen": "a data card where one number leaves something over, with the checker holding it at the row's end",
+        "soWhat": "A key may leave a half symbol, when what is left over is exactly half the key.",
+        "concept": "When a half is needed"
+      },
+      {
+        "n": 3,
+        "win": "the rows shrink back inside the board and the symbol count drops to a number worth drawing",
+        "does": "reads the symbol count, then turns the dial to a larger key that still fits every number",
+        "goal": "too small a key gives too many symbols to draw, even when it fits",
+        "says": "It fits, but how many symbols is that? Try a bigger key.",
+        "check": "Data of four hundred and six hundred. Which key fits and is quick to draw, ten or one hundred?",
+        "feels": "the rows shrink as the key grows, and the count of symbols falls to something a hand could draw",
+        "hands": "Take the opening page's airports with a key of ten flights. The key fits every number, and the busiest airport alone needs one hundred and fifty symbols. Ask who would draw that. Then try larger keys that still fit. A key of one hundred gives fifteen, nine, six, five and four, and a key of two hundred fits too, with halves. More than one key can fit, so choose one that keeps the rows short enough to draw.",
+        "tries": "First rung, from the item: how many symbols would this key need? Second rung, the phase's: is there a larger key that still fits? Third rung: the card is cut to two numbers, and the child tries two keys and compares the counts. The number keys and the dial stay open.",
+        "wrong": [
+          {
+            "why": "a small key gives whole symbols everywhere, and whole symbols have been the aim.",
+            "move": "chooses the smallest key that fits, five, for three hundred, five hundred and four hundred and fifty visitors.",
+            "screen": "the checker lays out sixty, one hundred and ninety symbols, and every row runs off the board's right edge. The symbol count reads two hundred and fifty. The child's key stays on the dial."
+          },
+          {
+            "why": "a bigger key gives shorter rows, and shorter rows were the point.",
+            "move": "turns straight to a large key, two hundred, and does not check it.",
+            "screen": "the checker lays out every row. Three hundred and five hundred each end in a half and light. Four hundred and fifty stands at two symbols with fifty loose, which is not half of two hundred, and stays unlit. The set key control stays locked."
+          }
+        ],
+        "screen": "a data card of large numbers with a small trial key, the rows running off the edge of the board",
+        "soWhat": "Too small a key gives too many symbols. Choose one that fits every number and keeps the rows short.",
+        "concept": "Too many symbols"
+      },
+      {
+        "n": 4,
+        "win": "each answer lands on its card, the card the data cannot answer is set aside, and the list is ticked",
+        "does": "answers each card from the pictograph, sets aside a card the data cannot answer, and ticks the can do list",
+        "goal": "a finished pictograph answers questions about its own data, and nothing else",
+        "says": "Can the pictures answer this one? What does the data hold?",
+        "check": "A pictograph shows books read by four friends. Can it tell who reads fastest?",
+        "feels": "each card either lights what answers it on the pictograph, or finds nothing there and is set aside",
+        "hands": "Draw the closing box's points with the class. A key of fifty gives four, five, six, seven, three and four symbols, and a key of one hundred fits as well, with halves. Its three questions ask about the game itself, which the points cannot answer. Do not answer them. Set them aside as not in this data, and ask who scored the most, who the least and which two scored the same. Then tick the can do list against work done, and make the five flashcards and one more for key. The title is the heading that says what a pictograph shows, and the key says what one symbol stands for.",
+        "tries": "First rung, from the item: what does the title say the data is? Second rung, the phase's: does anything on the pictograph bear on this question? Third rung: the stack is cut to two cards, one the data can answer and one it cannot, and the child sorts them. The number keys and the word pad stay open.",
+        "wrong": [
+          {
+            "why": "the pictograph is about the teams, so a question about a team seems to belong to it.",
+            "move": "tries to answer how many players a team has from the pictures.",
+            "screen": "the card is laid on the pictograph and nothing on it lights: the title says points, and the key says points. The card slides into the tray headed not in this data, with those words across it."
+          },
+          {
+            "why": "the most was found by its symbols, and the count came along with it.",
+            "move": "gives seven as the most, the number of symbols, when the question asks for points.",
+            "screen": "the row is read with the key, seven times twenty-five, and one hundred and seventy-five lands in its tag. The running count shows the seven symbols, and the child's seven stays in the slot."
+          },
+          {
+            "why": "the pictograph shows each team's points, and a difference is written nowhere on it.",
+            "move": "sets aside a card asking how many more points one team scored than another, thinking how many more is not in the data.",
+            "screen": "the card is laid on the pictograph, and both rows light. The stretch by which the longer row passes the shorter, four symbols, is banded sky blue and read with the key: one hundred. The card is answered and stays out of the tray."
+          }
+        ],
+        "screen": "the finished pictograph with its title and key, a stack of question cards, and the can do list",
+        "soWhat": "A pictograph answers questions about its own data, such as the most, the least, the same and how many more.",
+        "concept": "Asking the pictograph questions"
+      }
+    ],
+    "delight": "The third phase, while the dial turns. With each new key every row is laid out afresh in one quick sweep from its left edge. The rows are seen shrinking as the key grows and stretching as it shrinks. A row whose leftover stops fitting lets its loose tag drop from its end, and catches it up again when a key fits it. It runs as often as a finger likes, nothing is marked either way, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the data card stands at the left with four named numbers, the key dial set to a trial key, and the checker board empty. On the second a data card stands where one number leaves something over, with the checker holding it at that row's end. On the third a card of large numbers stands with a small trial key set, and the rows already run off the board's edge. On the fourth the finished pictograph stands with its title and key, the question cards are stacked at its foot, and the can do list waits unticked. The running count at the top left holds the symbol count, with the rows lit beside it, and the answer slot and the pad stand empty down the right. One thing moves, once: the key dial, or the leftover at a row's end, or the symbol count, or the top question card, gives one slow pulse while the voice asks its question. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any data set of up to six numbers and any trial key, with the checker, the symbol count, the question cards, the can do list and the word cards all open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on keys that fit, keys that leave a half, keys that are too small, and the questions a finished pictograph can and cannot answer.",
+    "voiceLines": [
+      "A card of numbers and a key dial. Which key turns every number into symbols?",
+      "Try this key on every number. Does each one come out in whole symbols?",
+      "What is left over? Is it exactly half of the key?",
+      "It fits, but how many symbols is that? Try a bigger key.",
+      "Can the pictures answer this one? What does the data hold?",
+      "Another data card. Try the key on every number before you set it.",
+      "Free play. Any numbers and any key, with the checker and the cards open.",
+      "Check every number again, and read what the key leaves over.",
+      "A key checked against every number, the pictograph drawn, and its questions asked."
+    ],
+    "observations": [
+      {
+        "why": "The key went exactly into three numbers and left something other than a half in the other two.",
+        "soWhat": "A key fits when every number becomes whole symbols, or whole symbols and a half, so check every number.",
+        "observe": "Three rows lit under a trial key and two stayed unlit, each with a loose leftover in its tag."
+      },
+      {
+        "why": "A half symbol stands for half the key, and the chapter's pictographs draw no other part of a symbol.",
+        "soWhat": "A key may leave a half. A key that leaves any other part makes a row that whole and half symbols cannot draw.",
+        "observe": "A leftover of exactly half the key folded into a half symbol, and a leftover of any other size stayed loose."
+      },
+      {
+        "why": "A small key takes many symbols to make each number, and a larger one takes fewer.",
+        "soWhat": "Too small a key gives too many symbols to draw, even when it fits.",
+        "observe": "The rows ran off the board under a small key and drew back inside it when the dial turned to a larger key that still fitted."
+      },
+      {
+        "why": "The pictograph holds only the numbers on its card, and that card asked about something else.",
+        "soWhat": "A finished pictograph answers questions about its own data, and nothing else.",
+        "observe": "The cards about the most, the least and the same were answered, and one card went to the tray headed not in this data."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a data card of four numbers, the key dial set to a trial key, and the checker board empty",
+        "win": "every row lights as whole symbols and the set key control unlocks",
+        "traceback": "The checker lays out every row in turn with the question's key; a row with anything left over stays unlit, and the board ends on fits or does not fit.",
+        "ladder": [
+          "What does the key leave over from each number?",
+          "Lay the key along each row. Is anything left at the end?",
+          "Check the last number too, not only the first two.",
+          "Has every number been checked?",
+          "Try the key on two numbers first, then on the rest."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a data card where one number leaves something over, with the checker holding it at the row's end",
+        "win": "the leftover folds into a half symbol and the row lights, and a leftover that is not a half stays loose",
+        "traceback": "The row is laid out in whole symbols, the leftover is laid against half the key, and a half symbol closes the row only when the two match.",
+        "ladder": [
+          "Look at the end of the row for 35. How much is loose there?",
+          "How many are left once the whole symbols are laid?",
+          "With 30, what does 80 leave over?",
+          "Halve the key. Does the leftover match that half?",
+          "Lay the leftover against the key's symbol folded in two."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a data card of large numbers with a small trial key, the rows running off the edge of the board",
+        "win": "the rows shrink back inside the board and the symbol count drops to a number worth drawing",
+        "traceback": "Every row is laid out under the key and runs off the board with its count written under its name; the symbol count shows the total, then the better key is set and the rows draw back.",
+        "ladder": [
+          "How many symbols would this key need?",
+          "Read the count under each name, then add them.",
+          "Turn the dial. Which key keeps every row short?",
+          "Is there a larger key that still fits?",
+          "Try two keys and compare how many symbols each one needs."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the finished pictograph with its title and key, a stack of question cards, and the can do list",
+        "win": "each answer lands on its card, the card the data cannot answer is set aside, and the list is ticked",
+        "traceback": "The row the question asks about is banded and read with the key until its value lands in its tag, or the card finds nothing on the pictograph and slides into the tray headed not in this data.",
+        "ladder": [
+          "The question asks for points. What is one symbol worth?",
+          "Find the two rows of the same length. Read one of them with the key.",
+          "What does the title say the data is?",
+          "Does anything on the pictograph bear on this question?",
+          "Read the title and the key. Is that what the question asks about?"
+        ]
+      }
+    ]
+  },
+  "model": {
+    "rowsMax": 5,
+    "shownMax": 14,
+    "freeDial": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      10,
+      15,
+      20,
+      25,
+      30,
+      50,
+      100
+    ],
+    "freeCards": [
+      {
+        "title": "Points",
+        "rows": [
+          [
+            "Team A",
+            30
+          ],
+          [
+            "Team B",
+            45
+          ],
+          [
+            "Team C",
+            60
+          ],
+          [
+            "Team D",
+            15
+          ]
+        ]
+      },
+      {
+        "title": "Visitors",
+        "rows": [
+          [
+            "Day 1",
+            300
+          ],
+          [
+            "Day 2",
+            500
+          ],
+          [
+            "Day 3",
+            450
+          ]
+        ]
+      },
+      {
+        "title": "Laps",
+        "rows": [
+          [
+            "Ganga",
+            150
+          ],
+          [
+            "Yamuna",
+            250
+          ],
+          [
+            "Kaveri",
+            100
+          ],
+          [
+            "Narmada",
+            200
+          ]
+        ]
+      },
+      {
+        "title": "Boats",
+        "rows": [
+          [
+            "Group A",
+            15
+          ],
+          [
+            "Group B",
+            24
+          ],
+          [
+            "Group C",
+            6
+          ],
+          [
+            "Group D",
+            15
+          ],
+          [
+            "Group E",
+            21
+          ]
+        ]
+      },
+      {
+        "title": "Tickets",
+        "rows": [
+          [
+            "A",
+            700
+          ],
+          [
+            "B",
+            400
+          ],
+          [
+            "C",
+            900
+          ]
+        ]
+      }
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T7.C24:ML1",
+        "kind": "fit",
+        "title": "Points",
+        "rows": [
+          [
+            "Team A",
+            30
+          ],
+          [
+            "Team B",
+            45
+          ],
+          [
+            "Team C",
+            60
+          ],
+          [
+            "Team D",
+            15
+          ]
+        ],
+        "key": 15,
+        "dial": [
+          5,
+          10,
+          15,
+          20,
+          30
+        ],
+        "answer": "fits",
+        "near": "nofit"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T7.C24:1",
+        "kind": "fit",
+        "title": "Data",
+        "rows": [
+          [
+            "A",
+            12
+          ],
+          [
+            "B",
+            20
+          ],
+          [
+            "C",
+            8
+          ]
+        ],
+        "key": 4,
+        "dial": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "answer": "fits",
+        "near": "nofit"
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T7.C24:2",
+        "kind": "fit",
+        "title": "Data",
+        "rows": [
+          [
+            "A",
+            12
+          ],
+          [
+            "B",
+            18
+          ],
+          [
+            "C",
+            20
+          ]
+        ],
+        "key": 6,
+        "dial": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "answer": "nofit",
+        "near": "fits"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T7.C25:ML2",
+        "kind": "half",
+        "title": "Data",
+        "rows": [
+          [
+            "A",
+            20
+          ],
+          [
+            "B",
+            50
+          ],
+          [
+            "C",
+            35
+          ]
+        ],
+        "key": 10,
+        "dial": [
+          5,
+          10,
+          20
+        ],
+        "focus": 2,
+        "answer": "s3h",
+        "near": "s3"
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T7.C25:3",
+        "kind": "half",
+        "title": "Data",
+        "rows": [
+          [
+            "A",
+            18
+          ]
+        ],
+        "key": 4,
+        "dial": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "focus": 0,
+        "answer": "s4h",
+        "near": "s4"
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T7.C25:4",
+        "kind": "which",
+        "title": "Data",
+        "rows": [
+          [
+            "A",
+            60
+          ],
+          [
+            "B",
+            90
+          ],
+          [
+            "C",
+            80
+          ]
+        ],
+        "start": 30,
+        "dial": [
+          20,
+          30
+        ],
+        "answer": 20,
+        "near": 30
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T7.C26:ML3",
+        "kind": "good",
+        "title": "Visitors",
+        "rows": [
+          [
+            "Day 1",
+            300
+          ],
+          [
+            "Day 2",
+            500
+          ],
+          [
+            "Day 3",
+            450
+          ]
+        ],
+        "key": 5,
+        "dial": [
+          5,
+          10,
+          25,
+          50,
+          100
+        ],
+        "answer": "many",
+        "near": "good"
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T7.C26:5",
+        "kind": "total",
+        "title": "Data",
+        "rows": [
+          [
+            "A",
+            80
+          ],
+          [
+            "B",
+            120
+          ],
+          [
+            "C",
+            40
+          ]
+        ],
+        "key": 2,
+        "dial": [
+          2,
+          4,
+          10,
+          20,
+          40
+        ],
+        "answer": 120,
+        "near": 60
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T7.C26:6",
+        "kind": "better",
+        "title": "Tickets",
+        "rows": [
+          [
+            "A",
+            700
+          ],
+          [
+            "B",
+            400
+          ],
+          [
+            "C",
+            900
+          ]
+        ],
+        "start": 10,
+        "dial": [
+          10,
+          100
+        ],
+        "answer": 100,
+        "near": 10
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T7.C27:ML4",
+        "kind": "read",
+        "reads": "most",
+        "target": [
+          0
+        ],
+        "card": "top team?",
+        "pict": {
+          "title": "Points scored",
+          "unit": "points",
+          "key": 25,
+          "rows": [
+            [
+              "Team A",
+              7
+            ],
+            [
+              "Team B",
+              5
+            ],
+            [
+              "Team C",
+              3
+            ],
+            [
+              "Team D",
+              5
+            ]
+          ]
+        },
+        "answer": 175,
+        "near": 7
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T7.C27:7",
+        "kind": "read",
+        "reads": "same",
+        "target": [
+          0,
+          3
+        ],
+        "card": "same two?",
+        "pict": {
+          "title": "Boats made",
+          "unit": "boats",
+          "key": 3,
+          "rows": [
+            [
+              "Group A",
+              5
+            ],
+            [
+              "Group B",
+              8
+            ],
+            [
+              "Group C",
+              2
+            ],
+            [
+              "Group D",
+              5
+            ],
+            [
+              "Group E",
+              7
+            ]
+          ]
+        },
+        "answer": 15,
+        "near": 5
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T7.C27:8",
+        "kind": "notin",
+        "about": "speed",
+        "card": "fastest?",
+        "pict": {
+          "title": "Laps run",
+          "unit": "laps",
+          "key": 50,
+          "rows": [
+            [
+              "Ganga",
+              3
+            ],
+            [
+              "Yamuna",
+              5
+            ],
+            [
+              "Kaveri",
+              2
+            ],
+            [
+              "Narmada",
+              4
+            ]
+          ]
+        },
+        "answer": "none",
+        "near": "yamuna"
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The checker lays out every row in turn with the question's key; a row with anything left over stays unlit, and the board ends on fits or does not fit.",
+      "Phase 2: The row is laid out in whole symbols, the leftover is laid against half the key, and a half symbol closes the row only when the two match.",
+      "Phase 3: Every row is laid out under the key and runs off the board with its count written under its name; the symbol count shows the total, then the better key is set and the rows draw back.",
+      "Phase 4: The row the question asks about is banded and read with the key until its value lands in its tag, or the card finds nothing on the pictograph and slides into the tray headed not in this data."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A card of numbers and a key dial. Which key turns every number into symbols?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "A key checked against every number, and a pictograph asked its questions.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T7.C24:ML1",
+            "worked": false,
+            "kind": "fit",
+            "planQuestion": "Points scored by four teams are 30, 45, 60 and 15. Would a key of one symbol for 15 points work?",
+            "question": {
+              "en": "Points scored by four teams are 30, 45, 60 and 15. Would a key of one symbol for 15 points work?"
+            },
+            "ask": {
+              "en": "Does a key of 15 fit?"
+            },
+            "answer": "fits",
+            "planAnswer": "Yes. It gives 2, 3, 4 and 1 symbols, all whole",
+            "choices": [
+              "fits",
+              "nofit"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T7.C24:1",
+            "worked": false,
+            "kind": "fit",
+            "planQuestion": "The data is 12, 20 and 8. Does a key of 4 give whole symbols for every number?",
+            "question": {
+              "en": "The data is 12, 20 and 8. What about a key of 4?"
+            },
+            "ask": {
+              "en": "Does a key of 4 fit?"
+            },
+            "answer": "fits",
+            "planAnswer": "Yes: 3, 5 and 2 symbols",
+            "choices": [
+              "fits",
+              "nofit"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T7.C24:2",
+            "worked": false,
+            "kind": "fit",
+            "planQuestion": "The data is 12, 18 and 20. Does a key of 6 give whole symbols for every number?",
+            "question": {
+              "en": "The data is 12, 18 and 20. Try a key of 6 the same way."
+            },
+            "ask": {
+              "en": "Does a key of 6 fit?"
+            },
+            "answer": "nofit",
+            "planAnswer": "No. 12 and 18 give 2 and 3 symbols, but 20 is 3 symbols with 2 left over",
+            "choices": [
+              "fits",
+              "nofit"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T7.C25:ML2",
+            "worked": false,
+            "kind": "half",
+            "planQuestion": "The data is 20, 50 and 35, and the key is 10. How many symbols does each number need?",
+            "question": {
+              "en": "The data is 20, 50 and 35, and the key is 10. How many symbols does 35 need?"
+            },
+            "ask": {
+              "en": "Symbols for 35?"
+            },
+            "answer": "s3h",
+            "planAnswer": "2, 5, and 3 and a half",
+            "choices": [
+              "s3",
+              "s4",
+              "s3h"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T7.C25:3",
+            "worked": false,
+            "kind": "half",
+            "planQuestion": "With a key of 4, how many symbols show 18?",
+            "question": {
+              "en": "With a key of 4, how many symbols show 18?"
+            },
+            "ask": {
+              "en": "Symbols for 18?"
+            },
+            "answer": "s4h",
+            "planAnswer": "4 and a half: 16 is 4 symbols, and the 2 left over is half of 4",
+            "choices": [
+              "s4h",
+              "s4",
+              "s5"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T7.C25:4",
+            "worked": false,
+            "kind": "which",
+            "planQuestion": "The data is 60, 90 and 80. Which key fits, 30 or 20?",
+            "question": {
+              "en": "The data is 60, 90 and 80. The dial holds two keys. Which one fits every number?"
+            },
+            "ask": {
+              "en": "Which key fits?"
+            },
+            "answer": 20,
+            "planAnswer": "20. It gives 3, 4 and a half, and 4 symbols. With 30, 80 leaves 20 over, which is neither a whole symbol nor half of 30",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T7.C26:ML3",
+            "worked": false,
+            "kind": "good",
+            "planQuestion": "A fair counted 300, 500 and 450 visitors on three days. A key of 5 fits every number. Is it a good key?",
+            "question": {
+              "en": "A fair counted 300, 500 and 450 visitors on three days. A key of 5 fits every number. Is it a good key?"
+            },
+            "ask": {
+              "en": "Is 5 a good key?"
+            },
+            "answer": "many",
+            "planAnswer": "No. It needs 60, 100 and 90 symbols, far too many to draw. A key of 50 gives 6, 10 and 9",
+            "choices": [
+              "good",
+              "many"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T7.C26:5",
+            "worked": false,
+            "kind": "total",
+            "planQuestion": "The data is 80, 120 and 40. A key of 2 fits. How many symbols would it need in all, and what is a better key?",
+            "question": {
+              "en": "This card fits a key of 2 as well. How many symbols does the whole card need with this key?"
+            },
+            "ask": {
+              "en": "Symbols in all?"
+            },
+            "answer": 120,
+            "planAnswer": "120 symbols, far too many. A key of 20 gives 4, 6 and 2",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T7.C26:6",
+            "worked": false,
+            "kind": "better",
+            "planQuestion": "The data is 700, 400 and 900 tickets. Which is the better key, 10 or 100?",
+            "question": {
+              "en": "The data is 700, 400 and 900 tickets. The dial holds two keys, and both fit. Which is the better key?"
+            },
+            "ask": {
+              "en": "Which is the better key?"
+            },
+            "answer": 100,
+            "planAnswer": "100. It gives 7, 4 and 9 symbols. A key of 10 fits too, but gives 70, 40 and 90, far too many",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T7.C27:ML4",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A pictograph of points scored by four teams, one symbol for 25 points, holds 7 symbols for Team A, 5 for Team B, 3 for Team C and 5 for Team D. Which team scored the most, which the fewest, and which two the same? Can it tell how many players each team has?",
+            "question": {
+              "en": "Points scored by four teams, one symbol for 25 points. How many points did the top team score?"
+            },
+            "ask": {
+              "en": "Top team's points?"
+            },
+            "answer": 175,
+            "planAnswer": "Team A the most, 175; Team C the fewest, 75; Teams B and D the same, 125 each. It cannot tell how many players a team has",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T7.C27:7",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A pictograph of paper boats made by five groups has one boat symbol for 3 boats. It holds 5 symbols for Group A, 8 for B, 2 for C, 5 for D and 7 for E. Which group made the most, which the fewest, and which two made the same number?",
+            "question": {
+              "en": "Five groups made paper boats, and each symbol stands for 3 boats. Two groups made the same number. How many boats did each make?"
+            },
+            "ask": {
+              "en": "How many boats each?"
+            },
+            "answer": 15,
+            "planAnswer": "Group B the most, 24; Group C the fewest, 6; Groups A and D the same, 15 each",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T7.C27:8",
+            "worked": false,
+            "kind": "notin",
+            "planQuestion": "Four houses ran laps: Ganga 150, Yamuna 250, Kaveri 100 and Narmada 200. Choose a key that gives whole symbols, say how many symbols each house gets, and say which house ran the most. Can the pictograph say how fast anyone ran?",
+            "question": {
+              "en": "Four houses ran laps, and the key is 50 laps. Who ran the fastest?"
+            },
+            "ask": {
+              "en": "Who ran fastest?"
+            },
+            "answer": "none",
+            "planAnswer": "A key of 50 gives 3, 5, 2 and 4 symbols. Yamuna ran the most, 250 laps. The pictograph cannot say how fast anyone ran, because speed is not in its data",
+            "choices": [
+              "yamuna",
+              "ganga",
+              "narmada",
+              "none"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "key_chooser",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "key_chooser",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "A key that fits the data",
+        "conceptId": "M2.S4.T7.C24",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C24:ML1",
+          "M2.S4.T7.C24:1",
+          "M2.S4.T7.C24:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "When a half is needed",
+        "conceptId": "M2.S4.T7.C25",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C25:ML2",
+          "M2.S4.T7.C25:3",
+          "M2.S4.T7.C25:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Too many symbols",
+        "conceptId": "M2.S4.T7.C26",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C26:ML3",
+          "M2.S4.T7.C26:5",
+          "M2.S4.T7.C26:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Asking the pictograph questions",
+        "conceptId": "M2.S4.T7.C27",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C27:ML4",
+          "M2.S4.T7.C27:7",
+          "M2.S4.T7.C27:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "key_chooser"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T7.C24.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A card of numbers and a key dial. Which key turns every number into symbols?"
+    },
+    {
+      "en": "Try this key on every number. Does each one come out in whole symbols?"
+    },
+    {
+      "en": "What is left over? Is it exactly half of the key?"
+    },
+    {
+      "en": "It fits, but how many symbols is that? Try a bigger key."
+    },
+    {
+      "en": "Can the pictures answer this one? What does the data hold?"
+    },
+    {
+      "en": "Another data card. Try the key on every number before you set it."
+    },
+    {
+      "en": "Free play. Any numbers and any key, with the checker and the cards open."
+    },
+    {
+      "en": "Check every number again, and read what the key leaves over."
+    },
+    {
+      "en": "A key checked against every number, the pictograph drawn, and its questions asked."
+    }
+  ],
+  "build": {
+    "source": "da379e22:1457130",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-25T08:49:50.230Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-25T08:49:49.765Z"
+    },
+    "tsxBytes": 1456516,
+    "tsxMd5": "d03323d9187683c9dcba89c33002d9e2"
+  }
+}

@@ -1,0 +1,1353 @@
+{
+  "slotId": "M2.S3.T4.C12.2D1",
+  "mediaId": "M2.S3.T4.C12.2D1",
+  "toolId": "pictograph_reader",
+  "title": "Pictograph Reader",
+  "component": "M2.S3.T4.C12.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch14",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch14_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_14/2dtool/M2.S3.T4.C12.2D1/M2.S3.T4.C12.2D1.tsx",
+  "description": "Turn the key card to see what one symbol stands for, read each row as its symbols times the key, compare the rows, and light only the row a question asks about.",
+  "conceptIds": [
+    "M2.S3.T4.C12",
+    "M2.S3.T4.C13",
+    "M2.S3.T4.C14",
+    "M2.S3.T4.C15"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Read what one symbol stands for from the key, turn each row into a number, compare the rows, and answer a question from the row it asks about.",
+    "look": "A pictograph board with a title strip, a key card that starts face down, a compare rail beside it and a row lamp.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only. 'Pictograph Reader' sits in ink at the far left, with a small dot set clear of the name by measuring it. The phase title sits beside the dot on the same line, then the host's navigation, and again, sound and restart stand as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the symbols counted in the row being read, one number in ink, and beside it the rows read against the rows on the board. The first climbs by one as each symbol is counted, shows a half for a half symbol, and starts again when a new row is tapped. The rows read climb by one as each row's number lands. The number a row stands for is never written here, and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The pictograph board fills the left of the working area, 840 by 440 at 64,212. Its title strip runs along its top, 840 by 44, and says what the data is about in near-black type. Below it stand up to six rows, each 56 tall with 8 between, from 268 to 644. Each row has its name in a cell 150 wide at the left, then its symbols from 226, each 48 wide with 10 between, up to ten. A row holds at most one half symbol, the left half of the whole, and it comes last. The row's number is written with its unit in a tag 90 wide just beyond the row's last symbol. When the rows name colours, each row's symbols are that row's colour and the key's symbol is plain grey; otherwise every symbol is green. The key card stands at the top right, 220 by 150 at 924,212, and starts face down. Until it is turned, a tapped row counts its symbols into the running count and its tag stays an empty outlined box. Turned, it shows one whole symbol, and half a symbol where the board uses one, each with what it stands for. The row reader then takes the key's value once under each symbol of a tapped row in amber, and half of it under a half symbol. The row's number then lands in its tag. The compare rail stands under the key card, 220 by 290 at 924,376. It has up to six places, one above another from the largest number at the top, each 40 tall with 10 between. Two equal numbers share one place, side by side under one near-black bracket. The row lamp sits in the name column: a tap on a row's name lays the pale sky blue band behind that row alone and dims every other row. The all-rows control stands at the lower right, 200 by 56 at 924,672. It adds every row and writes the sum in reddish purple in the strip under the board, 840 by 56 at 64,668, labelled as the total for all the rows. That strip is the one place a sum of rows is written, and it never touches a single row. Down the right of the canvas the question sits above the answer slot at 1186,250 (356 by 92), which holds what the child has given. That rectangle is the same on every phase and is never animated in or out. Under it is the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a number is asked for, with a key for a half beside them. A word pad carries the board's own row names, so a row is answered by its name, and the words most, least, same and total. The footer runs 758 to 900. The voice caption sits at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling. The phase bar sits at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, taken from its pictures. Every upright tally mark is deep blue, and every fifth mark, drawn across the four before it, is vermilion. Every pictograph symbol, whole or half, in the key and in the rows, is green, except where the rows are named by colour. There each row's symbols wear that row's own colour: red, green, blue, yellow or purple. The key's symbol there is plain grey, which stands for one symbol of any colour and is used for nothing else. Amber is what a row, a column or a tally stands for once it is read, and so are the numbers in a table and the numbers a side ruler writes. Amber too is what half a symbol stands for, what a key leaves over, and a small round counter for one thing counted. A total of every row is reddish purple, and so is a thing a total counts more than once, such as a stop two routes share. The row a question asks about is marked by a pale sky blue band laid behind its symbols, never over them. So is the stretch by which one row or tally reaches beyond another. Chrome never borrows one of those, and none of them is ever used for chrome. Every table rule, row line, belt, route line, bracket, outlined blank and card edge is near-black, and titles, row names, headings and the wording of every key are near-black type. Every reading survives with the colour taken away. A fifth mark lies across and not upright, and a half symbol is the left half of the whole. A row's number sits beyond its end, a total sits in its own bar or cell, and a band lies behind a row rather than on it. No amount is ever drawn as a length of colour: an amount on this stage is symbols, marks, counters or a written number. A blank waiting for the child is an empty outlined box, never a faded copy of its answer. A question about one row is answered from that row's tag, and never from the all-rows strip. The strip answers a question only when the question asks for every row together.",
+    "finish": "The card shows the pictograph the child read with every row's number written, the rows in order on the compare rail, and the one row the last question asked about still lit.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the key card turns and every row can now take a number, with the title telling what it counts",
+        "does": "tries to give the lit row a number, then turns the key card and reads the title",
+        "goal": "the key says what one symbol stands for, and the title says what the data is about",
+        "says": "How many does this row stand for? What do you need to know first?",
+        "check": "A row has four pictures and no key. Can you say how many things it shows?",
+        "feels": "the pictures are only pictures until the key card turns, and then every row can become a number",
+        "hands": "Before the tool is opened, pin a pictograph of books read by four groups on the wall, with its key covered by a sticky note. Ask how many books one group read, and let the class find that nobody can say. Lift the note. Then read the title and ask what the chart is about. The chapter defines the key in one passing sentence and names the title only in a label beside its kites. So say both aloud: the key says what one symbol stands for, and the title says what the data is about.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: what does the key card say? Second rung, the phase's: what is this pictograph about? Third rung: the board is cut to one row of two symbols with the key turned, and the child reads that one row. The number keys stay open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the symbols are there to be counted, and a count feels like an answer.",
+            "move": "gives the number of symbols as the answer, three apples, while the key card is still face down.",
+            "screen": "the running count holds the three symbols, and the row's tag stays an empty outlined box. The key card gives one slow pulse. Once it is turned, the row reader takes its value under each symbol and the tag fills. The child's three stays in the slot."
+          },
+          {
+            "why": "the key card is the only place a number is printed, and it sits beside every row alike.",
+            "move": "reads the key's number as every row's number, so a key of ten makes every row ten.",
+            "screen": "the row reader takes the ten under the first symbol only, and the tag reads ten. It then carries on under each symbol in turn, and the tag climbs to thirty for a row of three. The child's ten stays beside it."
+          },
+          {
+            "why": "the row names are groups, and a group sounds like a number of children.",
+            "move": "reads a chart of books read by four groups as a count of children, because the rows are groups of children.",
+            "screen": "the title strip lights, and its words are set beside the child's answer. Each row's tag writes its unit, books, after its number, and the child's answer stays in the slot."
+          }
+        ],
+        "screen": "a pictograph with its title strip showing and its key card face down, and one row lit",
+        "soWhat": "The key says what one symbol stands for, and the title says what the data is about.",
+        "concept": "The key says what one symbol stands for"
+      },
+      {
+        "n": 2,
+        "win": "the key's value is added once under each symbol and the row's number lands at the end of the row",
+        "does": "counts the symbols in the row, then takes the key once for each symbol",
+        "goal": "a row is its symbols counted and the key taken that many times",
+        "says": "Count the symbols. Then use the key for each one.",
+        "check": "One picture stands for five cars. How many cars do eight pictures show?",
+        "feels": "the same amount under every symbol, climbing along the row to the number at its end",
+        "hands": "Give each pair a row of paper symbols, a key card and a heap of counters. Under each symbol they lay the key's worth of counters, then count the counters. After two or three rows, ask whether the counters were needed, and write the row as its symbols times the key.",
+        "tries": "First rung, from the item: how many symbols are in the row? Second rung, the phase's: what does each one stand for? Third rung: the row is cut to two symbols, and the child writes the key under each and adds. The number keys stay open.",
+        "wrong": [
+          {
+            "why": "there are two numbers to use, and adding is the first way the hand knows to join two numbers.",
+            "move": "adds the key to the count, giving thirteen for seven umbrellas at six each.",
+            "screen": "the row reader takes six under the first symbol, then six more under the second, and on down the row, the running sum written under each symbol in amber. It reaches forty-two at the seventh symbol. The child's thirteen stays in the slot."
+          },
+          {
+            "why": "the key card's symbol is the same picture, drawn at the same size, near the row.",
+            "move": "counts the key card's own symbol as one of the row's, so seven symbols are read as eight.",
+            "screen": "the row reader rings each of the row's symbols as it counts and stops at the row's last one. The key card's symbol is never ringed. The running count holds seven, and the tag fills with forty-two beside the child's forty-eight."
+          }
+        ],
+        "screen": "the pictograph with its key card turned and one row lit, its number box empty",
+        "soWhat": "Count the symbols in the row, then take the key that many times.",
+        "concept": "Symbols times the key"
+      },
+      {
+        "n": 3,
+        "win": "the rows line up in order on the rail and the two equal rows stand level",
+        "does": "stands the rows on the compare rail and names the most, the least and the two that are the same",
+        "goal": "with one key for every row, the rows are compared by their numbers or by their symbols",
+        "says": "Which row is the longest? Which is the shortest? Are two the same?",
+        "check": "Rows of five, eight and five symbols share one key. Which two rows are the same?",
+        "feels": "with one key for every row and one size for every symbol, a longer row is a bigger number, and the rail puts them in order",
+        "hands": "Read a pictograph with the class for the most, the least and the two rows that are the same. The chapter's kites pictograph draws every kite yellow, even in the rows for red, blue, green and purple kites, so read it by its row names. Its worked line comparing red with green is garbled; ask how many fewer red kites were sold than green, which is four. Then show two charts side by side with different keys, and ask whether the longer row must stand for more.",
+        "tries": "First rung, from the item: which row has the most symbols? Second rung, the phase's: do all the rows use the same key? Third rung: the board is cut to two rows, and the child places both on the rail. The number keys and the row names stay open.",
+        "wrong": [
+          {
+            "why": "the longest row was found by its symbols, and the count of them came along with it.",
+            "move": "gives nine as the most visitors, the number of symbols, instead of ninety.",
+            "screen": "the rows stand on the rail by their numbers, ninety at the top. The running count shows that row's nine symbols, and its tag shows ninety. The child's nine stays in the slot."
+          },
+          {
+            "why": "on a well drawn chart the longest row is the most, and this row is the longest.",
+            "move": "calls the row that reaches furthest the most, on a chart drawn by hand with the pictures of one row drawn larger.",
+            "screen": "the card's rows are redrawn on the board at one size from the same edge, and the row of five large pictures comes out shorter than the row of seven. The rail puts the seven row's number above the five row's. The card stays beside the board."
+          },
+          {
+            "why": "on one chart more symbols has always meant more, and here the two rows sit side by side.",
+            "move": "compares rows from two charts with different keys by their symbols, calling six symbols more than four.",
+            "screen": "each row is read with its own key, six fives and four tens. Thirty and forty take their places on the rail, forty above. The two key cards stand beside their rows."
+          }
+        ],
+        "screen": "every row read and numbered, with the compare rail empty beside the board",
+        "soWhat": "With one key for every row, compare by numbers or by symbols. With different keys, compare only the numbers.",
+        "concept": "Most, least and the same"
+      },
+      {
+        "n": 4,
+        "win": "the answer lands beside the one lit row, and the all-rows sum sits apart under the board as the total",
+        "does": "lights the row the question names, reads it, and sees what the all-rows control gives instead",
+        "goal": "a question about one row is answered from that row, and every row added gives the total for all of them",
+        "says": "Which row does the question ask about? Read that one.",
+        "check": "Four rows stand for twelve, eighteen, fifteen and nine. How many does the third row show?",
+        "feels": "one row lit and the rest dimmed, and the sum of every row kept in its own place under the board",
+        "hands": "Ask questions from a wall pictograph, some about one row and some about every row, and sort the question cards into two piles. That is the question the book's own answer key gets wrong once. The exercise asks how many students visited the monuments, a row of three heads at three students each, which is nine students, and the key prints the total of every row. Mark nine right, and have the class say what the key's number counts. Add every row when a question asks for all of them together, and say what the sum counts. It counts each thing once only when each thing sits in one row.",
+        "tries": "First rung, from the item: which row does the question name? Second rung, the phase's: does it ask about one row, or about all of them? Third rung: the board is cut to two rows, one lit, and the child reads the lit one. The number keys stay open.",
+        "wrong": [
+          {
+            "why": "adding every row has been right for how many in all, and this question has a how many in it too.",
+            "move": "adds every row and gives one hundred and five when the question asks how many chose chess.",
+            "screen": "the row lamp lights the chess row alone and dims the rest. Its three faces are counted and read with the key, and fifteen lands in its tag. The all-rows sum, one hundred and five, sits apart in the strip under the board, labelled as the total for all the rows. The child's answer stays in the slot."
+          },
+          {
+            "why": "the rows are close together, and the eye settles on the row it last looked at.",
+            "move": "reads the row next to the one the question names.",
+            "screen": "the row lamp lights the named row. The row the child read is outlined, and its name is set beside the name on the question card. The lit row is then read, and its number lands in its tag."
+          },
+          {
+            "why": "reading only the row asked has just been learnt, and a club's name sits on the card.",
+            "move": "gives one club's number when the question asks how many children are in the four clubs together.",
+            "screen": "the question card's word together is underlined. The all-rows control adds every row, twelve, eighteen, fifteen and nine, and fifty-four lands in the strip, labelled as the total for all the rows. Each child here is in one club, so the sum counts each child once."
+          }
+        ],
+        "screen": "the whole pictograph, a question card naming one row, the row lamp and the all-rows control",
+        "soWhat": "Read only the row a question asks about. Add every row only when it asks for all of them.",
+        "concept": "Read only the row asked"
+      }
+    ],
+    "delight": "The second phase, once a row's number has landed. Any symbol in that row can then be tapped. It opens like a paper packet to show what it stands for inside, the key's worth of small amber counters, then folds shut again. A half symbol opens to show half as many. It runs as often as a finger likes, nothing is marked either way, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the pictograph board stands with its title strip showing, its key card face down, and one row lit. On the second the key card is turned, and one row is lit with its tag an empty outlined box. On the third every row is read and numbered, and the compare rail stands empty beside the board. On the fourth the whole pictograph stands with every tag empty, a question card naming one row sits in the slot, and the all-rows control waits under the rail. The running count at the top left holds the symbols counted in the row being read, with the rows read beside it. The answer slot and the pad stand empty down the right. One thing moves, once: the face-down key card, or the lit row, or the largest number, or the row the question names, gives one slow pulse while the voice asks what one picture stands for. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any pictograph of up to six rows and any key, with the key card, the compare rail, the row lamp and the all-rows control all open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on what the key and the title say, a row as its symbols times the key, the most, the least and the same, and reading only the row a question asks about.",
+    "voiceLines": [
+      "A pictograph, and its key card face down. What does one picture stand for?",
+      "How many does this row stand for? What do you need to know first?",
+      "Count the symbols. Then use the key for each one.",
+      "Which row is the longest? Which is the shortest? Are two the same?",
+      "Which row does the question ask about? Read that one.",
+      "Another question. Which row does it ask about?",
+      "Free play. Any pictograph and any key, with the lamp and the rail open.",
+      "Count the symbols again, and take the key once for each one.",
+      "Every row read with its key, the rows compared, and only the row asked read."
+    ],
+    "observations": [
+      {
+        "why": "A symbol stands for a number only through the key.",
+        "soWhat": "Read the key first, because the same pictures stand for different numbers under different keys.",
+        "observe": "With the key face down, the row could be counted in symbols, and its tag stayed empty."
+      },
+      {
+        "why": "Every symbol in the row stands for the same amount.",
+        "soWhat": "A row is its symbols counted and the key taken that many times.",
+        "observe": "The key's value was written once under each symbol, and the row's number was the last of them."
+      },
+      {
+        "why": "With one key for every row, the same symbols make the same number.",
+        "soWhat": "When every row uses the same key, the rows can be compared by their symbols as well as by their numbers.",
+        "observe": "Two rows with the same number of symbols shared one place on the rail."
+      },
+      {
+        "why": "The question named one row, and the sum of every row answers a different question.",
+        "soWhat": "Read only the row a question asks about, and add every row when the question asks for all of them.",
+        "observe": "The lit row's number landed in its tag, and the sum of every row sat apart under the board."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a pictograph with its title strip showing and its key card face down, and one row lit",
+        "win": "the key card turns and every row can now take a number, with the title telling what it counts",
+        "traceback": "Each key card turns, each row is read with its key written under every symbol as a running sum, and each row's number lands in its tag.",
+        "ladder": [
+          "Pictures are not apples yet. Each chart has its own card for what one picture is worth.",
+          "Counting gives pictures, not fish. What would say how many fish one picture is?",
+          "The key card gives the worth of one cup picture. Is that what the chart is about?",
+          "What is this pictograph about?",
+          "Turn the key card first. Then read one row at a time."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the pictograph with its key card turned and one row lit, its number box empty",
+        "win": "the key's value is added once under each symbol and the row's number lands at the end of the row",
+        "traceback": "The asked row is lit and read: the key is added under each symbol as a running sum until the row's number lands in its tag.",
+        "ladder": [
+          "The key counts once for every picture, not once for the row. How many pictures are in June?",
+          "That adds the key only once. Every picture in the row brings its own share.",
+          "Those two numbers were added. How many times does park A use the key?",
+          "What does each one stand for?",
+          "Write the key under each picture, then add them all up."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "every row read and numbered, with the compare rail empty beside the board",
+        "win": "the rows line up in order on the rail and the two equal rows stand level",
+        "traceback": "Every row stands on the compare rail with its number, largest at the top, then the asked row is lit and read with its key until its number lands in its tag.",
+        "ladder": [
+          "That is how many pictures, not how many visitors. Use the key on the longest row.",
+          "Which two rows are just as long as each other? Read one of them with the key.",
+          "The shortest row has the fewest. What is each of its pictures worth?",
+          "Do all the rows use the same key?",
+          "Put the rows side by side on the rail, then read the one you need."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the whole pictograph, a question card naming one row, the row lamp and the all-rows control",
+        "win": "the answer lands beside the one lit row, and the all-rows sum sits apart under the board as the total",
+        "traceback": "Only the asked row is lit and read with its key until its number lands in its tag; the total for all the rows sits apart in the strip under the board.",
+        "ladder": [
+          "Adding every row counts every sport, not just one.",
+          "Is that the pears row, or a row beside it? Light the pears row.",
+          "The first box is one club. The second box counts every club, not one.",
+          "Does it ask about one row, or about all of them?",
+          "Light just that row, count its pictures, then use the key."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "boards": {
+      "apples1": {
+        "title": "Chart 1: Apples Picked",
+        "sym": "apple",
+        "unit": "apples",
+        "key": 2,
+        "rows": [
+          {
+            "name": "Asha",
+            "n": 3
+          }
+        ]
+      },
+      "apples2": {
+        "title": "Chart 2: Apples Picked",
+        "sym": "apple",
+        "unit": "apples",
+        "key": 10,
+        "rows": [
+          {
+            "name": "Ravi",
+            "n": 3
+          }
+        ]
+      },
+      "fish": {
+        "title": "Fish Caught by Three Boats",
+        "sym": "fish",
+        "unit": "fish",
+        "key": null,
+        "rows": [
+          {
+            "name": "Boat A",
+            "n": 4
+          },
+          {
+            "name": "Boat B",
+            "n": 6
+          },
+          {
+            "name": "Boat C",
+            "n": 3
+          }
+        ]
+      },
+      "tea": {
+        "title": "Cups of Tea Sold This Week",
+        "sym": "cup",
+        "unit": "cups",
+        "key": 10,
+        "rows": [
+          {
+            "name": "Mon",
+            "n": 5
+          },
+          {
+            "name": "Tue",
+            "n": 3
+          },
+          {
+            "name": "Wed",
+            "n": 6
+          },
+          {
+            "name": "Thu",
+            "n": 4
+          }
+        ]
+      },
+      "umbrellas": {
+        "title": "Umbrellas Sold",
+        "sym": "umbrella",
+        "unit": "umbrellas",
+        "key": 6,
+        "rows": [
+          {
+            "name": "May",
+            "n": 4
+          },
+          {
+            "name": "June",
+            "n": 7
+          },
+          {
+            "name": "July",
+            "n": 5
+          }
+        ]
+      },
+      "shells": {
+        "title": "Shells Collected",
+        "sym": "shell",
+        "unit": "shells",
+        "key": 3,
+        "rows": [
+          {
+            "name": "Anu",
+            "n": 5
+          },
+          {
+            "name": "Dev",
+            "n": 8
+          },
+          {
+            "name": "Mira",
+            "n": 6
+          }
+        ]
+      },
+      "cars": {
+        "title": "Cars in Three Car Parks",
+        "sym": "car",
+        "unit": "cars",
+        "key": 5,
+        "rows": [
+          {
+            "name": "Park A",
+            "n": 9
+          },
+          {
+            "name": "Park B",
+            "n": 6
+          },
+          {
+            "name": "Park C",
+            "n": 7
+          }
+        ]
+      },
+      "fair": {
+        "title": "Visitors to the Book Fair",
+        "sym": "person",
+        "unit": "visitors",
+        "key": 10,
+        "rows": [
+          {
+            "name": "Mon",
+            "n": 6
+          },
+          {
+            "name": "Tue",
+            "n": 9
+          },
+          {
+            "name": "Wed",
+            "n": 4
+          },
+          {
+            "name": "Thu",
+            "n": 6
+          }
+        ]
+      },
+      "leaves": {
+        "title": "Leaves Collected",
+        "sym": "leaf",
+        "unit": "leaves",
+        "key": 4,
+        "rows": [
+          {
+            "name": "Group A",
+            "n": 5,
+            "rail": "A"
+          },
+          {
+            "name": "Group B",
+            "n": 8,
+            "rail": "B"
+          },
+          {
+            "name": "Group C",
+            "n": 3,
+            "rail": "C"
+          },
+          {
+            "name": "Group D",
+            "n": 5,
+            "rail": "D"
+          }
+        ]
+      },
+      "bowls": {
+        "title": "Bowls of Rice Served",
+        "sym": "bowl",
+        "unit": "bowls",
+        "key": 8,
+        "rows": [
+          {
+            "name": "Mon",
+            "n": 3
+          },
+          {
+            "name": "Tue",
+            "n": 6
+          },
+          {
+            "name": "Wed",
+            "n": 5
+          },
+          {
+            "name": "Thu",
+            "n": 2
+          }
+        ]
+      },
+      "sports": {
+        "title": "Sport Each Child Chose",
+        "sym": "face",
+        "unit": "children",
+        "key": 5,
+        "rows": [
+          {
+            "name": "Swimming",
+            "n": 6
+          },
+          {
+            "name": "Chess",
+            "n": 3
+          },
+          {
+            "name": "Skating",
+            "n": 4
+          },
+          {
+            "name": "Football",
+            "n": 8
+          }
+        ]
+      },
+      "fruit": {
+        "title": "Fruit Sold at a Stall",
+        "sym": "basket",
+        "unit": "fruits",
+        "key": 6,
+        "rows": [
+          {
+            "name": "Apples",
+            "n": 5
+          },
+          {
+            "name": "Pears",
+            "n": 2
+          },
+          {
+            "name": "Plums",
+            "n": 7
+          },
+          {
+            "name": "Figs",
+            "n": 4
+          }
+        ]
+      },
+      "clubs": {
+        "title": "Children in Four Clubs",
+        "sym": "face",
+        "unit": "children",
+        "key": 3,
+        "rows": [
+          {
+            "name": "Art",
+            "n": 4
+          },
+          {
+            "name": "Music",
+            "n": 6
+          },
+          {
+            "name": "Dance",
+            "n": 5
+          },
+          {
+            "name": "Science",
+            "n": 3
+          }
+        ]
+      }
+    },
+    "freeCharts": [
+      "tea",
+      "umbrellas",
+      "shells",
+      "cars",
+      "fair",
+      "leaves",
+      "bowls",
+      "sports",
+      "fruit",
+      "clubs"
+    ],
+    "freeKeys": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      10
+    ],
+    "layout": {
+      "w": 840,
+      "first": 56,
+      "pitch": 88,
+      "rowH": 80,
+      "sx": 182,
+      "step": 58,
+      "sym": 48,
+      "keyX": 860,
+      "keyW": 220,
+      "railY": 204,
+      "place": 52,
+      "stripY": 446
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T4.C12:ML1",
+        "kind": "twokeys",
+        "charts": [
+          "apples1",
+          "apples2"
+        ],
+        "faceDown": true,
+        "parts": [
+          {
+            "label": "Asha"
+          },
+          {
+            "label": "Ravi"
+          }
+        ],
+        "answer": [
+          6,
+          30
+        ],
+        "near": "3|3",
+        "winMs": 3000
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T4.C12:1",
+        "kind": "nokey",
+        "charts": [
+          "fish"
+        ],
+        "lit": 0,
+        "answer": "no",
+        "near": "yes",
+        "winMs": 2200
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T4.C12:2",
+        "kind": "title",
+        "charts": [
+          "tea"
+        ],
+        "faceDown": true,
+        "answer": "title",
+        "near": "key",
+        "winMs": 2400
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T4.C13:ML2",
+        "kind": "times",
+        "charts": [
+          "umbrellas"
+        ],
+        "row": 1,
+        "lit": 1,
+        "answer": 42,
+        "near": 13,
+        "winMs": 2800
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T4.C13:3",
+        "kind": "times",
+        "charts": [
+          "shells"
+        ],
+        "row": 1,
+        "lit": 1,
+        "answer": 24,
+        "near": 11,
+        "winMs": 2800
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T4.C13:4",
+        "kind": "times",
+        "charts": [
+          "cars"
+        ],
+        "row": 0,
+        "lit": 0,
+        "answer": 45,
+        "near": 14,
+        "winMs": 3000
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T4.C14:ML3",
+        "kind": "most",
+        "charts": [
+          "fair"
+        ],
+        "rail": true,
+        "answer": 90,
+        "near": 9,
+        "winMs": 3000
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T4.C14:5",
+        "kind": "same",
+        "charts": [
+          "leaves"
+        ],
+        "rail": true,
+        "answer": 20,
+        "near": 5,
+        "winMs": 3200
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T4.C14:6",
+        "kind": "least",
+        "charts": [
+          "bowls"
+        ],
+        "rail": true,
+        "answer": 16,
+        "near": 2,
+        "winMs": 3000
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T4.C15:ML4",
+        "kind": "one",
+        "charts": [
+          "sports"
+        ],
+        "row": 1,
+        "allRows": true,
+        "answer": 15,
+        "near": 105,
+        "winMs": 3000
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T4.C15:7",
+        "kind": "one",
+        "charts": [
+          "fruit"
+        ],
+        "row": 1,
+        "allRows": true,
+        "answer": 12,
+        "near": 30,
+        "winMs": 3000
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T4.C15:8",
+        "kind": "both",
+        "charts": [
+          "clubs"
+        ],
+        "row": 2,
+        "allRows": true,
+        "parts": [
+          {
+            "label": "dance"
+          },
+          {
+            "label": "together"
+          }
+        ],
+        "answer": [
+          15,
+          54
+        ],
+        "near": "15|15",
+        "winMs": 3600
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: Each key card turns, each row is read with its key written under every symbol as a running sum, and each row's number lands in its tag.",
+      "Phase 2: The asked row is lit and read: the key is added under each symbol as a running sum until the row's number lands in its tag.",
+      "Phase 3: Every row stands on the compare rail with its number, largest at the top, then the asked row is lit and read with its key until its number lands in its tag.",
+      "Phase 4: Only the asked row is lit and read with its key until its number lands in its tag; the total for all the rows sits apart in the strip under the board."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A pictograph, and its key card face down. What does one picture stand for?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every row read with its key, the rows compared, and only the row asked read.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T4.C12:ML1",
+            "worked": false,
+            "kind": "twokeys",
+            "planQuestion": "Two pictographs each show a row of 3 apple pictures. The first key says one apple picture stands for 2 apples. The second says one apple picture stands for 10 apples. How many apples does each row show?",
+            "question": {
+              "en": "Two pictographs each show a row of 3 apple pictures. Their keys are different. Turn each key card. How many apples does each row show?"
+            },
+            "ask": {
+              "en": "Apples in each row?"
+            },
+            "answer": [
+              6,
+              30
+            ],
+            "planAnswer": "6 apples in the first row and 30 in the second",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T4.C12:1",
+            "worked": false,
+            "kind": "nokey",
+            "planQuestion": "A pictograph has rows of fish pictures but no key. Can you tell how many fish one row shows?",
+            "question": {
+              "en": "This pictograph has rows of fish pictures. Can you tell how many fish one row shows?"
+            },
+            "ask": {
+              "en": "Can you tell the fish in a row?"
+            },
+            "answer": "no",
+            "planAnswer": "No. Without the key you cannot tell what one fish picture stands for",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T4.C12:2",
+            "worked": false,
+            "kind": "title",
+            "planQuestion": "A pictograph is titled Cups of Tea Sold This Week, and its key reads one cup picture for 10 cups. What does the title tell you, and what does the key tell you?",
+            "question": {
+              "en": "This pictograph is titled Cups of Tea Sold This Week. Its key reads one cup picture for 10 cups. Which one tells you what the data is about?"
+            },
+            "ask": {
+              "en": "Which tells what it is about?"
+            },
+            "answer": "title",
+            "planAnswer": "The title says what the data is about, the cups of tea sold this week. The key says one cup picture stands for 10 cups",
+            "choices": [
+              "title",
+              "key"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T4.C13:ML2",
+            "worked": false,
+            "kind": "times",
+            "planQuestion": "In a pictograph of umbrellas sold, one umbrella picture stands for 6 umbrellas. The row for June holds 7 umbrella pictures. How many umbrellas were sold in June?",
+            "question": {
+              "en": "In a pictograph of umbrellas sold, one umbrella picture stands for 6 umbrellas. The row for June holds 7 umbrella pictures. How many umbrellas were sold in June?"
+            },
+            "ask": {
+              "en": "Umbrellas sold in June?"
+            },
+            "answer": 42,
+            "planAnswer": "42 umbrellas",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T4.C13:3",
+            "worked": false,
+            "kind": "times",
+            "planQuestion": "One shell picture stands for 3 shells. A row holds 8 shell pictures. How many shells does it show?",
+            "question": {
+              "en": "One shell picture stands for 3 shells. The lit row holds 8 shell pictures. How many shells does it show?"
+            },
+            "ask": {
+              "en": "Shells in the lit row?"
+            },
+            "answer": 24,
+            "planAnswer": "24 shells, because 8 x 3 = 24",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T4.C13:4",
+            "worked": false,
+            "kind": "times",
+            "planQuestion": "One car picture stands for 5 cars. The rows for three car parks hold 9, 6 and 7 car pictures. How many cars are in each car park?",
+            "question": {
+              "en": "One car picture stands for 5 cars. Car parks A, B and C hold 9, 6 and 7 pictures. How many cars are in car park A?"
+            },
+            "ask": {
+              "en": "Cars in car park A?"
+            },
+            "answer": 45,
+            "planAnswer": "45, 30 and 35 cars",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T4.C14:ML3",
+            "worked": false,
+            "kind": "most",
+            "planQuestion": "A pictograph of visitors to a book fair has the key one person picture for 10 visitors. Monday holds 6 pictures, Tuesday 9, Wednesday 4 and Thursday 6. Which day had the most visitors, which the fewest, and which two days had the same number?",
+            "question": {
+              "en": "A pictograph shows visitors to a book fair, one person picture for 10 visitors. Monday holds 6 pictures, Tuesday 9, Wednesday 4 and Thursday 6. How many visitors came on the busiest day?"
+            },
+            "ask": {
+              "en": "Visitors on the busiest day?"
+            },
+            "answer": 90,
+            "planAnswer": "Tuesday the most, 90; Wednesday the fewest, 40; Monday and Thursday the same, 60 each",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T4.C14:5",
+            "worked": false,
+            "kind": "same",
+            "planQuestion": "One leaf picture stands for 4 leaves. Groups A, B, C and D hold 5, 8, 3 and 5 leaf pictures. Which two groups collected the same number of leaves, and how many each?",
+            "question": {
+              "en": "One leaf picture stands for 4 leaves. Groups A, B, C and D hold 5, 8, 3 and 5 leaf pictures. Two groups collected the same number. How many leaves did each of those two collect?"
+            },
+            "ask": {
+              "en": "Leaves in each equal row?"
+            },
+            "answer": 20,
+            "planAnswer": "Groups A and D, 20 leaves each",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T4.C14:6",
+            "worked": false,
+            "kind": "least",
+            "planQuestion": "One bowl picture stands for 8 bowls of rice served. Monday holds 3 bowl pictures, Tuesday 6, Wednesday 5 and Thursday 2. On which day were the most bowls served, and on which the fewest?",
+            "question": {
+              "en": "One bowl picture stands for 8 bowls of rice served. Monday holds 3 bowl pictures, Tuesday 6, Wednesday 5 and Thursday 2. How many bowls were served on the day with the fewest?"
+            },
+            "ask": {
+              "en": "Bowls on the day with fewest?"
+            },
+            "answer": 16,
+            "planAnswer": "Tuesday the most, 48 bowls; Thursday the fewest, 16 bowls",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T4.C15:ML4",
+            "worked": false,
+            "kind": "one",
+            "planQuestion": "A pictograph shows the sport each child in a class chose, one face for 5 children: swimming 6 faces, chess 3, skating 4 and football 8. How many children chose chess?",
+            "question": {
+              "en": "A pictograph shows the sport each child in a class chose, one face for 5 children. Swimming has 6 faces, chess 3, skating 4 and football 8. How many children chose chess?"
+            },
+            "ask": {
+              "en": "How many chose chess?"
+            },
+            "answer": 15,
+            "planAnswer": "15 children",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T4.C15:7",
+            "worked": false,
+            "kind": "one",
+            "planQuestion": "A pictograph of fruit sold at a stall, one fruit picture for 6 fruits, holds 5 pictures for apples, 2 for pears, 7 for plums and 4 for figs. How many pears were sold?",
+            "question": {
+              "en": "A pictograph of fruit sold at a stall has one fruit picture for 6 fruits. It holds 5 pictures for apples, 2 for pears, 7 for plums and 4 for figs. How many pears were sold?"
+            },
+            "ask": {
+              "en": "How many pears were sold?"
+            },
+            "answer": 12,
+            "planAnswer": "12 pears. Read only the pears row: 2 x 6 = 12",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T4.C15:8",
+            "worked": false,
+            "kind": "both",
+            "planQuestion": "A pictograph of four clubs, one face for 3 children, holds 4 faces for art, 6 for music, 5 for dance and 3 for science. Each child is in one club. How many children are in the dance club, and how many are in the four clubs together?",
+            "question": {
+              "en": "A pictograph of four clubs has one face for 3 children. It holds 4 faces for art, 6 for music, 5 for dance and 3 for science. Each child is in one club. How many children are in the dance club, and how many are in the four clubs together?"
+            },
+            "ask": {
+              "en": "Dance club, then all four clubs?"
+            },
+            "answer": [
+              15,
+              54
+            ],
+            "planAnswer": "15 in the dance club, and 54 in all, because 12 + 18 + 15 + 9 = 54",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "pictograph_reader",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "pictograph_reader",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "The key says what one symbol stands for",
+        "conceptId": "M2.S3.T4.C12",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M2.S3.T4.C12:ML1",
+          "M2.S3.T4.C12:1",
+          "M2.S3.T4.C12:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Symbols times the key",
+        "conceptId": "M2.S3.T4.C13",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M2.S3.T4.C13:ML2",
+          "M2.S3.T4.C13:3",
+          "M2.S3.T4.C13:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Most, least and the same",
+        "conceptId": "M2.S3.T4.C14",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M2.S3.T4.C14:ML3",
+          "M2.S3.T4.C14:5",
+          "M2.S3.T4.C14:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Read only the row asked",
+        "conceptId": "M2.S3.T4.C15",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M2.S3.T4.C15:ML4",
+          "M2.S3.T4.C15:7",
+          "M2.S3.T4.C15:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "rows",
+    "b",
+    "row",
+    "a",
+    "x",
+    "keyShown",
+    "keyValue",
+    "b",
+    "ci",
+    "compared",
+    "r",
+    "litRow",
+    "total",
+    "sym",
+    "unit"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, rows, b, row, a, x, keyShown, keyValue, b, ci, compared, r, litRow, total, sym, unit",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "pictograph_reader"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T4.C12.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A pictograph, and its key card face down. What does one picture stand for?"
+    },
+    {
+      "en": "How many does this row stand for? What do you need to know first?"
+    },
+    {
+      "en": "Count the symbols. Then use the key for each one."
+    },
+    {
+      "en": "Which row is the longest? Which is the shortest? Are two the same?"
+    },
+    {
+      "en": "Which row does the question ask about? Read that one."
+    },
+    {
+      "en": "Another question. Which row does it ask about?"
+    },
+    {
+      "en": "Free play. Any pictograph and any key, with the lamp and the rail open."
+    },
+    {
+      "en": "Count the symbols again, and take the key once for each one."
+    },
+    {
+      "en": "Every row read with its key, the rows compared, and only the row asked read."
+    }
+  ],
+  "build": {
+    "source": "a72c08f9:1847917",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-25T10:34:16.923Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-25T10:34:16.615Z"
+    },
+    "tsxBytes": 1848946,
+    "tsxMd5": "d34192d4eea2fe9a5a333efe6adc5c40"
+  }
+}

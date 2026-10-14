@@ -1,0 +1,984 @@
+{
+  "slotId": "M1.S1.T2.C4.2D1",
+  "mediaId": "M1.S1.T2.C4.2D1",
+  "toolId": "place_value_builder",
+  "title": "Place Value Builder",
+  "component": "M1.S1.T2.C4.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch1",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch1_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_1/2dtool/M1.S1.T2.C4.2D1/M1.S1.T2.C4.2D1.tsx",
+  "description": "Drop tokens onto a mat until ten of them bundle, and watch a new place open on the chart.",
+  "conceptIds": [
+    "M1.S1.T2.C4",
+    "M1.S1.T2.C5",
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Build numbers bigger than any you have written before, and watch a new place open when there is nowhere left to put the extra one.",
+    "look": "A chart of place value columns with a tray of numbered tokens below it, and the number you have built written out above.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Place Value Builder' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the number as it stands, its digits in their period colours, redrawn every time a token lands or a bundle carries left, with the number of columns the chart now has written small beside it in ink. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The chart sits across the top of the working area, 1086 by 300 at 64,202: ruled columns 120 wide under headings 44 tall, the ones column pinned at the far right so that every new column opens to the left and no digit already written ever moves, four columns at the first sight of it and as many as seven by the end. Each column carries its place name in its heading, ones, tens, hundreds, thousands, ten thousands, lakhs and ten lakhs, and holds its tokens stacked from the floor of the column upwards, never more than nine of them standing. Under the chart a tray 1086 by 132 at 64,516 holds four stacks of token tiles: a one is a square 36 by 36, a ten a strip of ten of those squares standing on end at 36 by 72, a hundred a block ruled ten by ten at 72 by 72, and a thousand that same block drawn as a cube, each with its number printed on its face so a tile can be read as well as counted. A tenth token dropped into a column ties itself with a drawn band, turns into one tile of the next size and travels left along a carry lane 12 tall that runs under the column headings; at walking pace that takes one slow breath per column, so a cascade across four full columns is four of them in a row. The period bands lie behind the columns, ones deep blue over three places, thousands green over two and lakhs vermilion over two, each named above the headings, and a comma is written 40 tall in the gap between two columns, never inside one. A reading strip 1086 by 66 at the foot of the working area spells the number out in words one period at a time, each period in its own band colour. The number line, when it is opened, takes the tray's rectangle: a ruled strip with labelled ticks at the hundreds either side of the built number and the number itself dropped on it as an amber pin. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a number is asked for, and on the third and fourth phases a word pad of place and period names, ones, tens, hundreds, thousands, ten thousands, lakhs and ten lakhs, with thousands and lakhs doubling as the period names, so a new column can be named with one press. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: a digit takes the colour of its period, deep blue in the ones period, green in the thousands and vermilion in the lakhs, and rose in the millions where the international chart reaches; a digit under discussion, or the one that decides a comparison, is amber; a zero holding a place open is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a place is told by its column heading and a period by its band before either is told by its colour.",
+    "finish": "The card shows the largest number the child built, its chart with the period bands, and that number written out in words.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "a new column opens on the left and catches the carry",
+        "does": "adds a single one token and watches every column turn over",
+        "goal": "the four nines roll over together and a fifth place opens",
+        "says": "Add one more. Watch every column, not just the last one.",
+        "check": "Away from the screen: what is one more than the greatest three digit number, and how many digits has your answer?",
+        "feels": "four columns all turn over together, and the chart itself has to get wider",
+        "hands": "Write the greatest four digit number on paper, add one to it by hand and let the answer be wrong before it is corrected. Then set out four saucers in a row with nine buttons in each, drop one more button into the saucer at the right, and trade ten for one of the next saucer along until the last saucer is full too.",
+        "tries": "A miss is answered three ways at once and none of them is the number. First rung, from the item's own miss line: how many tokens are in the ones column now? Second rung, the phase's: what happens to a column the moment it reaches ten? Third rung: the chart is cut to two columns holding nine and nine and the child adds one to that. The pad stays open behind all three.",
+        "wrong": [
+          {
+            "why": "adding one has always touched the last digit and nothing else, which is true of every number the child has met so far.",
+            "move": "turns over the ones column only and leaves the other three nines standing.",
+            "screen": "the ten ones in the ones column bundle and the bundled token travels left, and the tens column is shown already holding nine; the running count holds still while that column is counted out to ten, one token at a time, and then bundles too. The child's number stays in the answer slot beside the chart."
+          },
+          {
+            "why": "the chart has four columns, and a chart with four columns has held every answer up to now.",
+            "move": "says the answer must still be a four digit number.",
+            "screen": "the last carry token is left sitting hard against the left edge of the chart with no column under it, and it stays there, not moving and not fading, while the four headings are read out from the right and run out. Nothing is cleared."
+          }
+        ],
+        "screen": "the chart holding the greatest four digit number in four full columns",
+        "soWhat": "When the last place is full, adding one more opens a new place.",
+        "concept": "One more than the biggest four digit number"
+      },
+      {
+        "n": 2,
+        "win": "the counter reaches the target and the thousands column holds ten bundled tokens",
+        "does": "drags tokens until the counter reads the target number",
+        "goal": "a big number is still built from ones, tens, hundreds and thousands",
+        "says": "Build it with the tokens you have. How many thousand tokens did that take?",
+        "check": "How many thousand rupee notes would you need to make ten thousand?",
+        "feels": "ten tiles of the biggest kind you have, and they turn into one thing with a new name",
+        "hands": "Put out real money with nothing bigger than a hundred rupee note on the table and ask for ten thousand five hundred twelve to be counted out. Let the child find out for themselves how many notes ten thousand takes before anything is switched on.",
+        "tries": "First rung, from the item: what is the biggest tile in the tray? Second rung, the phase's: how many of those make one of the place to its left? Third rung: the target is cut back to a five digit number with zeros in its lower places, so only the thousands column has to be filled. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "every other place in the number has a tile of its own, so this place ought to have one too.",
+            "move": "hunts the tray for a ten thousand tile.",
+            "screen": "the four stacks lift in turn and name themselves, one, ten, one hundred, one thousand, and no fifth stack appears; then ten thousand tiles gather in the thousands column, bundle, and carry left into the ten thousands, where they land as one token. The child's answer stays in the answer slot."
+          },
+          {
+            "why": "the tiles go in fast and the number is written up at the top left, not under the hand that is dropping them.",
+            "move": "drops thousand tiles past the target and keeps going.",
+            "screen": "the chart counts its own thousands column out loud, one token lifting at a time, and the built number and the target number are laid one under the other in the same chart with their columns aligned, so the column holding too much shows itself. No token is taken out for the child."
+          }
+        ],
+        "screen": "an empty chart with the token tray full beneath it",
+        "soWhat": "A big number is still built out of ones, tens, hundreds and thousands.",
+        "concept": "Showing a big number with tokens"
+      },
+      {
+        "n": 3,
+        "win": "the lakhs and then the ten lakhs columns appear and are named",
+        "does": "adds one more token at each ceiling and names the place that opens",
+        "goal": "every rollover opens exactly one more place to the left",
+        "says": "One more again. What is this new place called?",
+        "check": "One more than the greatest five digit number is one lakh. How many places has it, and what are they called?",
+        "feels": "the chart keeps opening one more room on the left, and the room always has a name",
+        "hands": "Write the greatest five digit number on paper, add one and say the answer out loud. Do the same with the greatest six digit number. Write both answers one under the other and count their places, not their zeros.",
+        "tries": "First rung, from the item: which column did the last token land in? Second rung, the phase's: what is written in that column's heading? Third rung: the headings are lit one at a time from the right and the child reads along until the lit one. The word pad of place names stays open.",
+        "wrong": [
+          {
+            "why": "five zeros in a row look like the number of thousands, and counting zeros has given the right answer often enough before.",
+            "move": "calls one lakh ten thousand, counting the zeros instead of the places.",
+            "screen": "the columns are read from the right, one heading lighting at a time, ones, tens, hundreds, thousands, ten thousands, lakhs, and the one token stops in the column whose heading is lit last. The child's name for it stays in the answer slot beside the chart's."
+          },
+          {
+            "why": "the new number looks far bigger than the one before it, so one extra column seems too small a change to explain it.",
+            "move": "expects two new columns to open at once.",
+            "screen": "the cascade runs again slowly and the single carry token coming out of the leftmost column is followed by a thin ink line to the one new column that opens to catch it; then the headings are counted along and come out one more than before."
+          }
+        ],
+        "screen": "the chart at the greatest five digit number, then the greatest six",
+        "soWhat": "Every rollover opens exactly one new place, and that place has its own name.",
+        "concept": "The chart grows a new place each time"
+      },
+      {
+        "n": 4,
+        "win": "the number is spelled out in words and matches what the child said",
+        "does": "places the commas and then reads the number one period at a time",
+        "goal": "commas mark the periods, and the periods are how a number is read",
+        "says": "Read it in chunks, not digit by digit. Say the name of each chunk.",
+        "check": "Put the commas into a six digit number of your own and read it to me in chunks.",
+        "feels": "six digits that were a mouthful turn into three short chunks you can say",
+        "hands": "Find a large number on a bill or in a newspaper, copy its digits onto paper without the commas, and have the child put the commas in and read the number aloud in chunks.",
+        "tries": "First rung, from the item: count three digits in from the right. Second rung, the phase's: how many digits go in the next group? Third rung: the period bands are switched on first and the child writes one comma at each band edge. The word pad of period names stays open.",
+        "wrong": [
+          {
+            "why": "the first comma went in after three digits, so every comma after it looks as though it should do the same.",
+            "move": "groups the digits in threes all the way along.",
+            "screen": "the comma the child wrote stays exactly where it was put, and the period bands slide in behind the columns, three places, then two, then two, so the bands and the commas sit on the stage disagreeing with each other; then the band edges are counted out from the right. Nothing is erased."
+          },
+          {
+            "why": "reading left to right one symbol at a time is how reading works everywhere else on a page.",
+            "move": "reads the number digit by digit, naming each symbol in turn.",
+            "screen": "the digits of one period lift together as a single piece and the reading strip writes that period and its name, then the next; each period stays lit until its name has been said, and the strip ends with three chunks where the child read six symbols."
+          }
+        ],
+        "screen": "a six digit number in the chart with the period bands behind it",
+        "soWhat": "Commas mark the periods, and the periods are how a number is read.",
+        "concept": "Commas split a number into periods"
+      }
+    ],
+    "delight": "The first phase, the moment the extra one token lands. All four nines turn over to zeros in turn, right to left, each one sending a bundled token left along the carry lane, and the last carry arrives at the edge of the chart with nowhere to go. It waits there a beat. Then the chart draws itself one column wider, the heading writes itself as ten thousands, and the token settles into the new column. Nothing else moves and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the chart stands four columns wide with nine tokens in every one of them, the greatest four digit number already built, and a single loose one token waits on the tray below. On the second the chart is ruled and empty and the tray is full, four stacks of tiles marked one, ten, one hundred and one thousand. On the third the chart stands five columns wide and full of nines. On the fourth a six digit number is already in the chart with the three period bands lying behind it and not one comma written yet. The running count at the top left holds the number as it stands, and the answer slot and the pad wait empty down the right. One thing moves, once: the loose one token on the tray, or the first empty column, or the gap where the first comma will go, gives one slow pulse while the voice says there is one more to drop in. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any tokens, any number as far as ten lakh, with the periods, the commas and the number line switched on or off. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on building numbers past four digits, naming the places and marking the periods.",
+    "voiceLines": [
+      "A chart, a tray of tokens, and one more to drop in.",
+      "Add one more. Watch every column, not just the last one.",
+      "Build it with the tokens you have. How many thousand tokens did that take?",
+      "One more again. What is this new place called?",
+      "Read it in chunks, not digit by digit. Say the name of each chunk.",
+      "Same chart. It may not be the same width any more.",
+      "Free play. Any tokens, any number, commas on or off.",
+      "Lay them in again, slowly. Watch what leaves the column.",
+      "You grew the chart three times, and named every place that opened."
+    ],
+    "observations": [
+      {
+        "why": "Ten of anything in one column is exactly one of the column to its left.",
+        "soWhat": "A column never holds ten, so it hands the ten on and empties.",
+        "observe": "Nine ones and one more left the ones column with nothing standing in it."
+      },
+      {
+        "why": "The last carry had no column to land in, so a place opened to catch it.",
+        "soWhat": "A number grows a new place when the places it has have run out of room.",
+        "observe": "Every column turned over at once and the chart came out one column wider."
+      },
+      {
+        "why": "There is no ten thousand tile in the tray, only a thousand.",
+        "soWhat": "Ten thousand is ten thousands, which is what the new place is named after.",
+        "observe": "The thousands column took ten tokens before anything was worth ten thousand."
+      },
+      {
+        "why": "A comma marks where one period ends and the next begins.",
+        "soWhat": "A number is read one period at a time, each with its own name.",
+        "observe": "The commas turned six digits into three short chunks to say."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the chart holding the greatest four digit number in four full columns",
+        "win": "a new column opens on the left and catches the carry",
+        "traceback": "The token drops again, slowly: each full column ties its ten and carries it left, and the new place opens.",
+        "ladder": [
+          "How many tokens are in the ones column now?",
+          "Which columns are full, and which one is not?",
+          "Which column does a ten land in?",
+          "What happens to a column the moment it reaches ten?",
+          "Watch it slowly. Count each column up to ten."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "an empty chart with the token tray full beneath it",
+        "win": "the counter reaches the target and the thousands column holds ten bundled tokens",
+        "traceback": "The target is laid under the chart and every place that does not match yet is lit; a count replays ten thousands bundling.",
+        "ladder": [
+          "What is the biggest tile in the tray?",
+          "How many can one column hold before it bundles?",
+          "Which places have nothing in them?",
+          "How many of those make one of the place to its left?",
+          "Look at your number and the target, one column at a time."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the chart at the greatest five digit number, then the greatest six",
+        "win": "the lakhs and then the ten lakhs columns appear and are named",
+        "traceback": "The one drops again, slowly, and the headings light from the right up to the place that opens.",
+        "ladder": [
+          "Count the places from the right. Which comes after ten thousands?",
+          "Which place comes after lakhs?",
+          "How many nines will turn over?",
+          "What is written in the next heading to the left?",
+          "Read the headings from the right, one at a time."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a six digit number in the chart with the period bands behind it",
+        "win": "the number is spelled out in words and matches what the child said",
+        "traceback": "The period bands slide in and each band edge is counted out where a comma belongs; a numeral is written back into the chart.",
+        "ladder": [
+          "Count three digits in from the right.",
+          "Which three digits make the ones period?",
+          "Which period does eighty-nine belong to?",
+          "How many digits go in the next group?",
+          "Look at the bands. Write one comma at each band edge."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "columnWidth": 150,
+    "places": [
+      "ones",
+      "tens",
+      "hundreds",
+      "thousands",
+      "ten thousands",
+      "lakhs",
+      "ten lakhs"
+    ],
+    "periods": [
+      {
+        "name": "ones",
+        "places": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "thousands",
+        "places": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "lakhs",
+        "places": [
+          5,
+          6
+        ]
+      }
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C4:ML1",
+        "kind": "predict",
+        "start": 9999,
+        "add": "one",
+        "answer": 10000,
+        "winMs": 1400
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "kind": "predict",
+        "start": 9899,
+        "add": "one",
+        "answer": 9900,
+        "winMs": 1400
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "kind": "predict",
+        "start": 9990,
+        "add": "ten",
+        "answer": 10000,
+        "winMs": 1400
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "kind": "build",
+        "start": 0,
+        "answer": 10512,
+        "pad": "enter",
+        "winMs": 1800
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T2.C5:ML2",
+        "kind": "count",
+        "start": 10512,
+        "answer": 10,
+        "winMs": 5600
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "kind": "build",
+        "start": 0,
+        "answer": 11007,
+        "pad": "enter",
+        "winMs": 1800
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:ML3",
+        "kind": "place",
+        "start": 99999,
+        "add": "one",
+        "answer": "lakhs",
+        "winMs": 1600
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "kind": "place",
+        "start": 999999,
+        "add": "one",
+        "answer": "ten lakhs",
+        "winMs": 1600
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T2.C6:5",
+        "kind": "predict",
+        "start": 999999,
+        "add": "one",
+        "answer": 1000000,
+        "winMs": 1400
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T2.C7:ML4",
+        "kind": "commas",
+        "start": 738000,
+        "answer": 738000,
+        "pad": "enter",
+        "winMs": 3600
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T2.C7:7",
+        "kind": "commas",
+        "start": 456923,
+        "answer": 456923,
+        "pad": "enter",
+        "winMs": 3600
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T2.C7:8",
+        "kind": "numeral",
+        "start": 0,
+        "answer": 89890,
+        "winMs": 4200
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The token drops again, slowly: each full column ties its ten and carries it left, and the new place opens.",
+      "Phase 2: The target is laid under the chart and every place that does not match yet is lit; a count replays ten thousands bundling.",
+      "Phase 3: The one drops again, slowly, and the headings light from the right up to the place that opens.",
+      "Phase 4: The period bands slide in and each band edge is counted out where a comma belongs; a numeral is written back into the chart."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A chart, a tray of tokens, and one more to drop in.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "You grew the chart three times, and named every place that opened.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C4:ML1",
+            "worked": false,
+            "kind": "predict",
+            "planQuestion": "The chart holds 9999 and one more token is dropped in. What does the counter read now?",
+            "question": {
+              "en": "The chart holds 9999 again. Type what one more will make, then drop it in."
+            },
+            "ask": {
+              "en": "What will it read?"
+            },
+            "answer": 10000,
+            "planAnswer": "10,000, and a fifth place has opened to hold it",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "predict",
+            "planQuestion": null,
+            "question": {
+              "en": "Now it holds 9899. What will one more make?"
+            },
+            "ask": {
+              "en": "What will it read?"
+            },
+            "answer": 9900,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "predict",
+            "planQuestion": null,
+            "question": {
+              "en": "It holds 9990, and this time a ten drops in. What will it read?"
+            },
+            "ask": {
+              "en": "A ten drops in. It reads?"
+            },
+            "answer": 10000,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "build",
+            "planQuestion": null,
+            "question": {
+              "en": "Build 10,512 with the tokens, then press enter."
+            },
+            "ask": {
+              "en": "Build 10,512"
+            },
+            "answer": 10512,
+            "planAnswer": null,
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T2.C5:ML2",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "How many thousand tokens does it take to build 10,512?",
+            "question": {
+              "en": "How many thousand tokens did that take?"
+            },
+            "ask": {
+              "en": "Thousand tiles in 10,000?"
+            },
+            "answer": 10,
+            "planAnswer": "Ten, because there is no single token worth ten thousand",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "build",
+            "planQuestion": null,
+            "question": {
+              "en": "Build 11,007 with the tokens."
+            },
+            "ask": {
+              "en": "Build 11,007"
+            },
+            "answer": 11007,
+            "planAnswer": null,
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C6:ML3",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "The chart holds 99,999 and one more token is added. Which place opens, and what is the number called?",
+            "question": {
+              "en": "The chart holds 99,999. Pick the place that will open, then drop the one in."
+            },
+            "ask": {
+              "en": "Which place opens?"
+            },
+            "answer": "lakhs",
+            "planAnswer": "The lakhs place opens, and the number is one lakh",
+            "choices": [
+              "ones",
+              "tens",
+              "hundreds",
+              "thousands",
+              "ten thousands",
+              "lakhs",
+              "ten lakhs"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "place",
+            "planQuestion": null,
+            "question": {
+              "en": "Now it holds 9,99,999. Which place will open this time?"
+            },
+            "ask": {
+              "en": "Which place opens?"
+            },
+            "answer": "ten lakhs",
+            "planAnswer": null,
+            "choices": [
+              "ones",
+              "tens",
+              "hundreds",
+              "thousands",
+              "ten thousands",
+              "lakhs",
+              "ten lakhs"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T2.C6:5",
+            "worked": false,
+            "kind": "predict",
+            "planQuestion": "What is one more than 9,99,999?",
+            "question": {
+              "en": "It holds 9,99,999 again. What is one more?"
+            },
+            "ask": {
+              "en": "What will it read?"
+            },
+            "answer": 1000000,
+            "planAnswer": "10,00,000, which is read as ten lakh",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T2.C7:ML4",
+            "worked": false,
+            "kind": "commas",
+            "planQuestion": "Put the commas into 738000 and then read the number aloud.",
+            "question": {
+              "en": "Tap between the columns to put the commas into this number, then press enter."
+            },
+            "ask": {
+              "en": "Put in the commas"
+            },
+            "answer": "7,38,000",
+            "planAnswer": "7,38,000, read as seven lakh thirty-eight thousand",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T2.C7:7",
+            "worked": false,
+            "kind": "commas",
+            "planQuestion": "Mark the periods in 456923 and write the number in words.",
+            "question": {
+              "en": "Now mark the periods in this number."
+            },
+            "ask": {
+              "en": "Put in the commas"
+            },
+            "answer": "4,56,923",
+            "planAnswer": "4,56,923, four lakh fifty-six thousand nine hundred twenty-three",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T2.C7:8",
+            "worked": false,
+            "kind": "numeral",
+            "planQuestion": "Write eighty-nine thousand eight hundred ninety in numerals.",
+            "question": {
+              "en": "Write eighty-nine thousand eight hundred ninety in numerals."
+            },
+            "ask": {
+              "en": "Write it in numerals"
+            },
+            "answer": 89890,
+            "planAnswer": "89,890",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S1.T2.C4:1",
+    "M1.S1.T2.C4:2",
+    "M1.S1.T2.C5:3",
+    "M1.S1.T2.C5:4",
+    "M1.S1.T2.C6:6"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "place_value_builder",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "place_value_builder",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "One more than the biggest four digit number",
+        "conceptId": "M1.S1.T2.C4",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C4:ML1",
+          "M1.S1.T2.C4.2D1:p1_2",
+          "M1.S1.T2.C4.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Showing a big number with tokens",
+        "conceptId": "M1.S1.T2.C5",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C4.2D1:p2_1",
+          "M1.S1.T2.C5:ML2",
+          "M1.S1.T2.C4.2D1:p2_3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "The chart grows a new place each time",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C6:ML3",
+          "M1.S1.T2.C4.2D1:p3_2",
+          "M1.S1.T2.C6:5"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Commas split a number into periods",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C7:ML4",
+          "M1.S1.T2.C7:7",
+          "M1.S1.T2.C7:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "columns",
+    "tokens",
+    "periodsShown",
+    "commasShown",
+    "lineOpen"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, columns, tokens, periodsShown, commasShown, lineOpen, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "place_value_builder"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C4.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A chart, a tray of tokens, and one more to drop in."
+    },
+    {
+      "en": "Add one more. Watch every column, not just the last one."
+    },
+    {
+      "en": "Build it with the tokens you have. How many thousand tokens did that take?"
+    },
+    {
+      "en": "One more again. What is this new place called?"
+    },
+    {
+      "en": "Read it in chunks, not digit by digit. Say the name of each chunk."
+    },
+    {
+      "en": "Same chart. It may not be the same width any more."
+    },
+    {
+      "en": "Free play. Any tokens, any number, commas on or off."
+    },
+    {
+      "en": "Lay them in again, slowly. Watch what leaves the column."
+    },
+    {
+      "en": "You grew the chart three times, and named every place that opened."
+    }
+  ],
+  "build": {
+    "source": "c04aeb74:186805",
+    "runtime": "class4/runtime/runtime.tsx",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-22T13:46:03.404Z",
+    "checks": {
+      "pass": 61,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-22T13:46:03.206Z"
+    },
+    "tsxBytes": 180962,
+    "tsxMd5": "57ef8e6854e6c17b0560eed4553d3392"
+  }
+}

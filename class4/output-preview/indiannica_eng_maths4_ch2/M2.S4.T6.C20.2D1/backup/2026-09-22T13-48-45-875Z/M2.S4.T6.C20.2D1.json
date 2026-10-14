@@ -1,0 +1,1191 @@
+{
+  "slotId": "M2.S4.T6.C20.2D1",
+  "mediaId": "M2.S4.T6.C20.2D1",
+  "toolId": "word_problem_workshop",
+  "title": "Word Problem Workshop",
+  "component": "M2.S4.T6.C20.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch2",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch2_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_2/2dtool/M2.S4.T6.C20.2D1/M2.S4.T6.C20.2D1.tsx",
+  "description": "A problem in sentences, with every number liftable, and a mat that only takes the ones the question needs.",
+  "conceptIds": [
+    "M2.S4.T6.C20",
+    "M2.S4.T6.C21",
+    "M2.S4.T6.C22",
+    "M2.S4.T6.C23"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Turn a problem written in sentences into a column sum, using only the numbers that answer what was asked.",
+    "look": "A short problem at the top with every number liftable, and an empty column mat waiting underneath it.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Word Problem Workshop' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: how many numbers are down on the mat against how many the question needs, two numbers side by side in ink, with the words of the chosen question card printed small underneath them once a card has been picked; on the third phase it carries the numbers that have been turned down as well, and on the fourth it marks which of the addends on the mat was built rather than lifted. Nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The problem board is 1086 by 156 at 64,202, the sentences set large on the paper colour with every number in them drawn as a card 130 by 56 standing proud of its line; a card lifted out leaves a ruled dash in the gap so the sentence still reads, and a card pushed back settles into the dash and fills it. On the second phase the board carries a table in the same rectangle instead, a heading row and three ruled rows 40 tall, and a whole row lifts off it as one piece. The question row is three cards 330 by 64 at 64,368, at 442,368 and at 820,368, each holding one plain wording of what might be being asked, and until one of them is picked no number card will lift at all. The column mat is 620 by 230 at 64,444: a heading row 34 tall of six ruled cells reading L, TTh, Th, H, T and O, a carry strip 32 tall above it where a carried digit stands small and vermilion over the column it is being added into, addend rows 48 tall that grow downward as cards land, a rule 4 tall under the last addend, and the sum row under the rule with its digits in green. A card lands on the mat by its right hand end, so a four digit addend under a five digit one leaves its left hand column standing empty rather than closing the gap up. The build bay is 380 by 230 at 716,444 and stays shut and outlined until the fourth phase, when it opens with two rows of its own, the printed amount above and the amount it is more by below, and drops the built card out of its foot with a drawn edge, so an addend that was made is told from an addend that was lifted for the rest of the sum. A number turned down dims in its sentence to the grey this chapter keeps for something holding a place and bringing nothing, which is exactly what that number is doing, and it keeps its outline so it can still be read and pointed at. The answer sentence strip is 1086 by 48 at 64,682, blank until the sum row is full, and it then writes the finished sum back into a sentence that answers the question card word for word. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever the sum has to be written, with a strip of unit words under them, tickets, people, books, crates and litres among them, because the answer sentence has to name what was counted. On the third phase one further key greys a number in its sentence, and on the fourth the build bay borrows the number keys while the described amount is worked out and hands them back when its card drops. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: a number being added is deep blue, the sum under the rule is green, a carried digit is vermilion and always drawn small above the column it is being added into, a rounded number and any estimated sum are rose, the digit under discussion or the one that is missing is amber, and a zero holding a place open is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a column is told by the heading over it before it is told by its band, and a carry is told by being small and sitting above the rule.",
+    "finish": "The card shows the problem the child worked with its numbers sorted, the spare one still greyed, and the answer written as a sentence.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the mat holds two addends and the answer is written back into a sentence",
+        "does": "picks the question card, lifts both numbers down and adds the columns",
+        "goal": "the amounts being put together come down onto the mat as addends",
+        "says": "Say what you are being asked for before you touch a number.",
+        "check": "Read me the problem, then tell me what it wants without saying any of its numbers.",
+        "feels": "a paragraph turns into two numbers, one under the other, and the sentences stop mattering",
+        "hands": "Read the problem aloud, turn the page face down, and ask the child to say what is being asked for in their own words before the page is turned back over.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: what does your question card say? Second rung, the phase's: which two amounts does it put together? Third rung: the problem is cut to its question sentence alone with both number cards showing, and the child says which of them comes down. The pad stays open behind all three.",
+        "wrong": [
+          {
+            "why": "the numbers are the part a sum needs, so the sentences look like the part that can be skipped.",
+            "move": "takes the numbers down in the order the sentences print them without ever saying what the question asks.",
+            "screen": "the question cards lift together and the last sentence of the problem lights on the board, while every number card goes back up into the sentence it came from; no card will lift again until a question card has been picked. Nothing is marked and nothing is cleared."
+          },
+          {
+            "why": "the two numbers begin together on the line in the sentences, and beginning together is what lining up looks like.",
+            "move": "lines a four digit addend up with a five digit one by their left ends, so every column is out by a place.",
+            "screen": "the heading over every digit of the shorter card is named as it slides, and the card carries on sliding right until its last digit stands in the ones column, leaving its left hand column standing empty. The rule and the sum row stay empty while it moves, so nothing is added until the places agree."
+          }
+        ],
+        "screen": "a two sentence problem with two numbers in it and an empty mat",
+        "soWhat": "Say what is being asked, find the amounts being put together, line them up by their right ends and add the columns from the ones.",
+        "concept": "A word problem hides a column sum"
+      },
+      {
+        "n": 2,
+        "win": "all three rows sit on the mat and none of them is left behind",
+        "does": "taps each row down in turn and adds the three addends",
+        "goal": "each row of a table is one addend",
+        "says": "Read the table across. Each row is one addend.",
+        "check": "How many addends is a table of three years, and how would you know if you had missed one?",
+        "feels": "a table turns into a column of addends, and the rows are suddenly the thing worth counting",
+        "hands": "Copy the table onto paper with a ruler, then rewrite it as a column of numbers with the places lined up, and count the rows of the table against the addends in the column.",
+        "tries": "First rung, from the item: how many rows does the table have? Second rung, the phase's: how many cards are standing on your mat? Third rung: the table is cut to two rows and both are brought down before the third is put back. The pad stays open and nothing already on the mat is taken away.",
+        "wrong": [
+          {
+            "why": "a table read downwards ends wherever the eye stops, and two addends is what most of the sums so far have had.",
+            "move": "brings the first two rows down, works the sum and stops, leaving the third row up in the table.",
+            "screen": "the running count reads the rows that are down against the rows in the table and the two numbers do not agree; the rows that have come down are ruled through on the board while the row still up there keeps its full ink, so the one that was left behind is the only dark row on the table."
+          },
+          {
+            "why": "everything inside a table looks like part of the table, and a year is written in digits exactly as a count is.",
+            "move": "brings a heading down onto the mat as though it were an amount to add.",
+            "screen": "the row lifts whole and parts in the air above the mat: the heading half turns and settles on the mat's left margin as a label, and the amount half comes down into the columns by its right hand end, so each row gives one label and one addend and there is nowhere for a second number from that row to go."
+          }
+        ],
+        "screen": "a table of three rows with the mat empty beneath it",
+        "soWhat": "Each row of a table gives one addend, and every row has to come down before the sum is worked.",
+        "concept": "A table is a list of addends"
+      },
+      {
+        "n": 3,
+        "win": "the spare number dims in its sentence and the mat holds only two addends",
+        "does": "greys the spare number and takes down only the two that are needed",
+        "goal": "a number can be printed and still have no job in the question",
+        "says": "One of these numbers has no job here. Which one?",
+        "check": "Point at the number in this problem you did not use, and tell me what it was there for.",
+        "feels": "a number can be perfectly true and still have no work to do in this sum",
+        "hands": "Read a problem with a pencil in hand, underline every number that answers the question, draw a light box round any number that does not, and say out loud what the boxed number is there for.",
+        "tries": "First rung, from the item: what does your question card ask for? Second rung, the phase's: does this number help to answer it? Third rung: the problem is read back one sentence at a time with only that sentence's number liftable, so each is judged on its own. Nothing greyed is ever deleted.",
+        "wrong": [
+          {
+            "why": "the number is printed in the problem, and until now everything printed in a problem has been needed.",
+            "move": "adds the hall's seating capacity in along with the two counts of people who came.",
+            "screen": "the question card stays lit and each number card is held up against it in turn with the sentence it came from printed underneath; the capacity card is the only one whose sentence says what the hall could hold rather than who came in, and it settles back into its place in grey. The child's total stays in the slot beside the new one."
+          },
+          {
+            "why": "a number with no job looks like a mistake, and a mistake is a thing to rub out.",
+            "move": "deletes the spare number off the board so the problem looks tidy.",
+            "screen": "the number comes back into its sentence in grey with its outline still drawn round it, and the whole problem is read through once with it standing there; grey is the colour this chapter keeps for something holding a place and bringing nothing to the sum, which is precisely the job that number is doing."
+          }
+        ],
+        "screen": "a three number problem where one number answers nothing",
+        "soWhat": "Work out what is being asked first, take down only the numbers that answer it, and leave the spare one where it is.",
+        "concept": "Not every number printed is needed"
+      },
+      {
+        "n": 4,
+        "win": "a new card appears on the mat carrying the amount that was never printed",
+        "does": "opens the build bay, works the described amount out and brings it down",
+        "goal": "a described amount is worked out before it can be added",
+        "says": "That day is described, not printed. Build it first.",
+        "check": "The second day had a thousand more visitors than the first. What is the first sum you would do, and what is the second?",
+        "feels": "a number the problem needs is nowhere on the page, and you make it yourself before you can use it",
+        "hands": "Read the sentence that describes the second amount and write it out as its own small sum on a separate line, finished and underlined, before the main sum is started at all.",
+        "tries": "First rung, from the item: which day is printed and which day is only described? Second rung, the phase's: what would you add to the printed one to get the other? Third rung: the build bay opens with the printed amount already in its upper row, so only the amount it is more by has to be found. The mat keeps whatever is already on it.",
+        "wrong": [
+          {
+            "why": "the two increases are the last numbers the problem mentions, so the sum that uses them feels like the last sum there is to do.",
+            "move": "adds the thousand more and the hundred more onto the first day's total and hands that in as the answer for both days.",
+            "screen": "the build bay shows what came out of it standing on a card of its own, and that card goes up onto the mat beside the first day's card so that two day cards are lying there, each with its own total printed on it; the mat plainly has two rows to add, and the child's number is printed beside the second of them. Nothing is marked."
+          },
+          {
+            "why": "every number used so far has been printed on the board, so a number that is needed ought to be somewhere there to find.",
+            "move": "hunts the board for the second day's figure, waiting for it to be printed somewhere among the sentences.",
+            "screen": "every number card on the board lifts a little and sets down again, and the sentence that describes the amount underlines itself word by word; the build bay then opens with its two empty rows and the words more than standing between them, so the place where the missing number has to be made is drawn rather than said."
+          }
+        ],
+        "screen": "a problem where one day is described as so many more than another",
+        "soWhat": "An amount described as so many more than another has to be built first, and only then can it go into the sum that was asked for.",
+        "concept": "Sometimes an addend has to be built first"
+      }
+    ],
+    "delight": "The fourth phase, the moment the described amount is built. The sentence that describes it lights word by word as the build bay fills, the printed day going into the upper row and the amount it is more by into the lower, and the small sum works itself there in its own columns. Then the card drops out of the foot of the bay with a drawn edge, rises back up to the board and settles into the sentence where the description was standing, so the problem can be read straight through with every number now printed in it. Nothing else moves and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a two sentence problem is printed across the board with its two numbers standing proud of the lines as cards, the row of question cards is face up beneath it, and the column mat below is ruled under its headings and empty. On the second the board carries a table of three rows in place of the sentences, ruled and complete, with the mat empty under it. On the third the problem runs to three numbers and all three stand proud, one of which answers nothing. On the fourth the build bay is drawn beside the mat with its two rows empty and the words more than standing between them, and one of the amounts in the problem is described in a sentence rather than printed as a card. The running count at the top left is empty and the slot and the pad stand empty down the right. One thing moves, once: the row of question cards gives one slow lift while the voice asks what the question is actually asking for. That lift is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "A bank of problems in sentences, in tables and with described amounts, with a bay for writing your own. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on turning sentences and tables into sums, leaving the spare number out and building an addend.",
+    "voiceLines": [
+      "Read it through first. What is the question actually asking for?",
+      "Say what you are being asked for before you touch a number.",
+      "Read the table across. Each row is one addend.",
+      "One of these numbers has no job here. Which one?",
+      "That day is described, not printed. Build it first.",
+      "A new problem. Say what is being asked before you touch a number.",
+      "Free play. Sentences, tables, described amounts, and a bay for writing your own.",
+      "Read the problem again, one sentence at a time, with your question card showing.",
+      "Every problem turned into a sum, and the numbers you turned down are still there to see."
+    ],
+    "observations": [
+      {
+        "why": "The question says which amounts are being put together, and only those amounts are addends.",
+        "soWhat": "Choosing the numbers is a step of its own, and it comes before any adding.",
+        "observe": "Picking the question card sorted the numbers before a single one had been lifted."
+      },
+      {
+        "why": "A table is a list with one addend to a row, and a column sum does not know where its addends came from.",
+        "soWhat": "Every way of writing a problem ends at the same column mat.",
+        "observe": "A table came down as three addends and the mat looked exactly like the mat the sentences made."
+      },
+      {
+        "why": "A number is printed because it is true, not because the question needs it.",
+        "soWhat": "I can turn a number down and still say afterwards why I turned it down.",
+        "observe": "The spare number stayed on the board in grey and the answer was right without it."
+      },
+      {
+        "why": "That day was described as so many more than the day before, so it had to be built before it could be used.",
+        "soWhat": "Some of the numbers a problem needs are made rather than found.",
+        "observe": "One of the addends on the mat was never printed anywhere in the problem."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a two sentence problem with two numbers in it and an empty mat",
+        "win": "the mat holds two addends and the answer is written back into a sentence",
+        "traceback": "The question line lights and the right question card goes up; both numbers come down onto the mat by their right ends (a shorter one slides right, heading by heading, until its last digit stands under O); the columns add from the ones, each carry travelling up over the next column; the answer sentence is written back into the problem.",
+        "ladder": [
+          "What does your question card say?",
+          "Check the ones column. Did a ten carry over to the tens?",
+          "Add the ones again. Did a ten carry over?",
+          "Which two amounts does it put together?",
+          "Read only the last sentence. Which numbers does it need?"
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a table of three rows with the mat empty beneath it",
+        "win": "all three rows sit on the mat and none of them is left behind",
+        "traceback": "The right question card goes up; the rows already down are ruled through on the table while each row still up lights and comes down, label to the margin and amount into the columns; the three addends add from the ones with the carries travelling; the answer sentence is written beside the table.",
+        "ladder": [
+          "How many rows does the table have?",
+          "How many rows does the table have?",
+          "How many rows does the table have?",
+          "How many cards are standing on your mat?",
+          "Count the rows in the table. Then count the rows on your mat."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a three number problem where one number answers nothing",
+        "win": "the spare number dims in its sentence and the mat holds only two addends",
+        "traceback": "The right question card goes up; the spare number goes back up into its sentence (its line lit) and turns grey with its outline kept; only the two needed numbers stand on the mat and add from the ones; the answer sentence is written back into the problem.",
+        "ladder": [
+          "What does your question card ask for?",
+          "What does your question card ask for?",
+          "What does your question card ask for?",
+          "Does this number help to answer it?",
+          "Read one sentence at a time. Does its number answer your question card?"
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a problem where one day is described as so many more than another",
+        "win": "a new card appears on the mat carrying the amount that was never printed",
+        "traceback": "The right question card goes up; the build bay takes the printed amount and the amount it is more by, works the described amount in its own columns and drops it into the sentence as a built card with a drawn edge; every addend comes down, the columns add from the ones, and the answer sentence is written back.",
+        "ladder": [
+          "Which day is printed and which day is only described?",
+          "Which day is printed and which day is only described?",
+          "Which day is printed and which day is only described?",
+          "What would you add to the printed one to get the other?",
+          "Start from the printed amount. Add the amount it is more by."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "mat": {
+      "columns": [
+        "L",
+        "TTh",
+        "Th",
+        "H",
+        "T",
+        "O"
+      ],
+      "alignsBy": "the right hand end (ones under ones)",
+      "maxAddends": 4
+    },
+    "questionCardFirst": "no number card lifts until the card that says what is asked is picked",
+    "problems": [
+      {
+        "qid": "M2.S4.T6.C20:ML1",
+        "questionCards": [
+          "Both days together",
+          "How many more?",
+          "Sunday only"
+        ],
+        "asked": "Both days together",
+        "needs": [
+          "sat",
+          "sun"
+        ],
+        "spare": null,
+        "described": [],
+        "answerSentence": "{n} tickets were sold over the two days.",
+        "workedByAChild": false
+      },
+      {
+        "qid": "M2.S4.T6.C20:1",
+        "questionCards": [
+          "Morning only",
+          "All the crates",
+          "How many more?"
+        ],
+        "asked": "All the crates",
+        "needs": [
+          "mor",
+          "aft"
+        ],
+        "spare": null,
+        "described": [],
+        "answerSentence": "{n} crates were loaded in all.",
+        "workedByAChild": false
+      },
+      {
+        "qid": "M2.S4.T6.C20:2",
+        "questionCards": [
+          "The men only",
+          "How many more?",
+          "All the people"
+        ],
+        "asked": "All the people",
+        "needs": [
+          "men",
+          "wom"
+        ],
+        "spare": null,
+        "described": [],
+        "answerSentence": "The village has {n} people.",
+        "workedByAChild": false
+      },
+      {
+        "qid": "M2.S4.T6.C21:ML2",
+        "questionCards": [
+          "First two years",
+          "The third year",
+          "All three years"
+        ],
+        "asked": "All three years",
+        "needs": [
+          "y1",
+          "y2",
+          "y3"
+        ],
+        "spare": null,
+        "described": [],
+        "answerSentence": "{n} saplings were raised in the three years.",
+        "workedByAChild": false
+      },
+      {
+        "qid": "M2.S4.T6.C21:3",
+        "questionCards": [
+          "All three months",
+          "April and May",
+          "June only"
+        ],
+        "asked": "All three months",
+        "needs": [
+          "apr",
+          "may",
+          "jun"
+        ],
+        "spare": null,
+        "described": [],
+        "answerSentence": "{n} books were borrowed in the three months.",
+        "workedByAChild": false
+      },
+      {
+        "qid": "M2.S4.T6.C21:4",
+        "questionCards": [
+          "The biggest month",
+          "All three months",
+          "First two months"
+        ],
+        "asked": "All three months",
+        "needs": [
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "spare": null,
+        "described": [],
+        "answerSentence": "{n} bricks were made in the three months.",
+        "workedByAChild": false
+      },
+      {
+        "qid": "M2.S4.T6.C22:ML3",
+        "questionCards": [
+          "Seats in the hall",
+          "Empty seats",
+          "People who came in"
+        ],
+        "asked": "People who came in",
+        "needs": [
+          "adu",
+          "chi"
+        ],
+        "spare": "cap",
+        "described": [],
+        "answerSentence": "{n} people came in that evening.",
+        "workedByAChild": false
+      },
+      {
+        "qid": "M2.S4.T6.C22:5",
+        "questionCards": [
+          "Travelled that day",
+          "Seats on the bus",
+          "How many more?"
+        ],
+        "asked": "Travelled that day",
+        "needs": [
+          "mor",
+          "eve"
+        ],
+        "spare": "cap",
+        "described": [],
+        "answerSentence": "{n} passengers travelled that day.",
+        "workedByAChild": false
+      },
+      {
+        "qid": "M2.S4.T6.C22:6",
+        "questionCards": [
+          "Seats in the hall",
+          "Empty seats",
+          "People who came in"
+        ],
+        "asked": "People who came in",
+        "needs": [
+          "adu",
+          "chi"
+        ],
+        "spare": "cap",
+        "described": [],
+        "answerSentence": "{n} people came in that evening.",
+        "workedByAChild": true
+      },
+      {
+        "qid": "M2.S4.T6.C23:ML4",
+        "questionCards": [
+          "Second day only",
+          "How many more?",
+          "Both days together"
+        ],
+        "asked": "Both days together",
+        "needs": [
+          "m1",
+          "w1",
+          "m2",
+          "w2"
+        ],
+        "spare": null,
+        "described": [
+          {
+            "id": "m2",
+            "text": "a thousand more",
+            "builtFrom": "m1",
+            "more": 1000
+          },
+          {
+            "id": "w2",
+            "text": "a hundred more",
+            "builtFrom": "w1",
+            "more": 100
+          }
+        ],
+        "answerSentence": "{n} people came over the two days.",
+        "workedByAChild": false
+      },
+      {
+        "qid": "M2.S4.T6.C23:7",
+        "questionCards": [
+          "Both days together",
+          "Saturday only",
+          "How many more?"
+        ],
+        "asked": "Both days together",
+        "needs": [
+          "fri",
+          "sat"
+        ],
+        "spare": null,
+        "described": [
+          {
+            "id": "sat",
+            "text": "a thousand more than Friday",
+            "builtFrom": "fri",
+            "more": 1000
+          }
+        ],
+        "answerSentence": "{n} spectators came over the two days.",
+        "workedByAChild": false
+      },
+      {
+        "qid": "M2.S4.T6.C23:8",
+        "questionCards": [
+          "March only",
+          "All three months",
+          "How many more?"
+        ],
+        "asked": "All three months",
+        "needs": [
+          "jan",
+          "feb",
+          "mar"
+        ],
+        "spare": null,
+        "described": [
+          {
+            "id": "feb",
+            "text": "a hundred more than that",
+            "builtFrom": "jan",
+            "more": 100
+          },
+          {
+            "id": "mar",
+            "text": "a thousand more than February",
+            "builtFrom": "feb",
+            "more": 1000
+          }
+        ],
+        "answerSentence": "{n} books were lent over the three months.",
+        "workedByAChild": false
+      }
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T6.C20:ML1",
+        "kind": "sum",
+        "near": 106130,
+        "winMs": 5200,
+        "answer": 21845
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T6.C20:1",
+        "kind": "sum",
+        "near": 13513,
+        "winMs": 5200,
+        "answer": 13523
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T6.C20:2",
+        "kind": "sum",
+        "near": 9923,
+        "winMs": 5200,
+        "answer": 9933
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T6.C21:ML2",
+        "kind": "table",
+        "near": 44415,
+        "winMs": 5600,
+        "answer": 74823
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T6.C21:3",
+        "kind": "table",
+        "near": 5405,
+        "winMs": 5600,
+        "answer": 6713
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T6.C21:4",
+        "kind": "table",
+        "near": 59535,
+        "winMs": 5600,
+        "answer": 78917
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T6.C22:ML3",
+        "kind": "spare",
+        "near": 8825,
+        "winMs": 5600,
+        "answer": 3825
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T6.C22:5",
+        "kind": "spare",
+        "near": 6274,
+        "winMs": 5600,
+        "answer": 6214
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T6.C22:6",
+        "kind": "why",
+        "near": "carefully",
+        "winMs": 6400,
+        "answer": "find"
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T6.C23:ML4",
+        "kind": "build",
+        "near": 12060,
+        "winMs": 8200,
+        "answer": 23020
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T6.C23:7",
+        "kind": "build",
+        "near": 22345,
+        "winMs": 6600,
+        "answer": 43690
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T6.C23:8",
+        "kind": "build",
+        "near": 38924,
+        "winMs": 7400,
+        "answer": 39024
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The question line lights and the right question card goes up; both numbers come down onto the mat by their right ends (a shorter one slides right, heading by heading, until its last digit stands under O); the columns add from the ones, each carry travelling up over the next column; the answer sentence is written back into the problem.",
+      "Phase 2: The right question card goes up; the rows already down are ruled through on the table while each row still up lights and comes down, label to the margin and amount into the columns; the three addends add from the ones with the carries travelling; the answer sentence is written beside the table.",
+      "Phase 3: The right question card goes up; the spare number goes back up into its sentence (its line lit) and turns grey with its outline kept; only the two needed numbers stand on the mat and add from the ones; the answer sentence is written back into the problem.",
+      "Phase 4: The right question card goes up; the build bay takes the printed amount and the amount it is more by, works the described amount in its own columns and drops it into the sentence as a built card with a drawn edge; every addend comes down, the columns add from the ones, and the answer sentence is written back."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Read it through first. What is the question actually asking for?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every problem turned into a sum, and the numbers you turned down are still there to see.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T6.C20:ML1",
+            "worked": false,
+            "kind": "sum",
+            "planQuestion": "A fair sold 12,480 tickets on Saturday and 9,365 tickets on Sunday. How many tickets were sold over the two days?",
+            "question": {
+              "en": "A fair sold 12,480 tickets on Saturday. It sold 9,365 tickets on Sunday. How many tickets were sold over the two days?"
+            },
+            "ask": {
+              "en": "Tickets in all?"
+            },
+            "answer": 21845,
+            "planAnswer": "21,845 tickets",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T6.C20:1",
+            "worked": false,
+            "kind": "sum",
+            "planQuestion": "A depot loaded 7,205 crates in the morning and 6,318 crates in the afternoon. How many crates in all?",
+            "question": {
+              "en": "A depot loaded 7,205 crates in the morning. It loaded 6,318 crates in the afternoon. How many crates in all?"
+            },
+            "ask": {
+              "en": "Crates in all?"
+            },
+            "answer": 13523,
+            "planAnswer": "13,523 crates",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T6.C20:2",
+            "worked": false,
+            "kind": "sum",
+            "planQuestion": "A village has 4,806 men and 5,127 women. What is its population?",
+            "question": {
+              "en": "A village has 4,806 men, and 5,127 women. What is its population?"
+            },
+            "ask": {
+              "en": "Population?"
+            },
+            "answer": 9933,
+            "planAnswer": "9,933 people",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T6.C21:ML2",
+            "worked": false,
+            "kind": "table",
+            "planQuestion": "A nursery raised 18,240 saplings in the first year, 26,175 in the second and 30,408 in the third. What is the total?",
+            "question": {
+              "en": "In its first year, a nursery raised 18,240 saplings. It raised 26,175 in the second year, and 30,408 in the third. What is the total?"
+            },
+            "ask": {
+              "en": "Total saplings?"
+            },
+            "answer": 74823,
+            "planAnswer": "74,823 saplings",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T6.C21:3",
+            "worked": false,
+            "kind": "table",
+            "planQuestion": "A table shows 2,140 books borrowed in April, 3,265 in May and 1,308 in June. What is the total?",
+            "question": {
+              "en": "A table shows books borrowed. April had 2,140, May had 3,265, and June had 1,308. What is the total?"
+            },
+            "ask": {
+              "en": "Total books?"
+            },
+            "answer": 6713,
+            "planAnswer": "6,713 books",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T6.C21:4",
+            "worked": false,
+            "kind": "table",
+            "planQuestion": "A factory made 31,470 bricks in one month, 28,065 in the next and 19,382 in the third. How many bricks over the three months?",
+            "question": {
+              "en": "In the first month, a factory made 31,470 bricks. It made 28,065 in the next, and 19,382 in the third. How many bricks over the three months?"
+            },
+            "ask": {
+              "en": "Total bricks?"
+            },
+            "answer": 78917,
+            "planAnswer": "78,917 bricks",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T6.C22:ML3",
+            "worked": false,
+            "kind": "spare",
+            "planQuestion": "A hall seats 5,000 people. One evening 1,640 adults and 2,185 children came in. How many people came in?",
+            "question": {
+              "en": "A hall seats 5,000 people. One evening, 1,640 adults came in, with 2,185 children. How many people came in?"
+            },
+            "ask": {
+              "en": "How many came in?"
+            },
+            "answer": 3825,
+            "planAnswer": "3,825 people, and the seating capacity is not needed",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T6.C22:5",
+            "worked": false,
+            "kind": "spare",
+            "planQuestion": "A bus can carry 60 passengers. On one day 3,418 passengers travelled on the morning route and 2,796 on the evening route. How many travelled that day?",
+            "question": {
+              "en": "A bus can carry 60 passengers. One day, 3,418 passengers rode in the morning, and 2,796 in the evening. How many travelled that day?"
+            },
+            "ask": {
+              "en": "How many rode?"
+            },
+            "answer": 6214,
+            "planAnswer": "6,214 passengers. The 60 seats are not needed",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T6.C22:6",
+            "worked": false,
+            "kind": "why",
+            "planQuestion": "A child solved a problem by using all three of its printed numbers and got a total far larger than the answer. What should the child have done first?",
+            "question": {
+              "en": "A child solved a problem using all three of its printed numbers. The total came out far larger than the answer. What should the child have done first?"
+            },
+            "ask": {
+              "en": "What should come first?"
+            },
+            "answer": "find",
+            "planAnswer": "Worked out what the question was asking, and then taken down only the numbers that answer it, leaving the spare one where it was",
+            "choices": [
+              "find",
+              "carefully",
+              "left",
+              "round"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T6.C23:ML4",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "At a health camp, 9,340 men and 1,620 women came on the first day. On the second day a thousand more men and a hundred more women came than on the first. How many people came over the two days?",
+            "question": {
+              "en": "At a health camp on the first day, 9,340 men came, with 1,620 women. On the second day, a thousand more men came, and a hundred more women. How many people came over the two days?"
+            },
+            "ask": {
+              "en": "People in 2 days?"
+            },
+            "answer": 23020,
+            "planAnswer": "23,020 people",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T6.C23:7",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "A stadium counted 21,345 spectators on Friday. On Saturday a thousand more came than on Friday. How many came over the two days?",
+            "question": {
+              "en": "On Friday, a stadium counted 21,345 spectators. On Saturday, a thousand more came than on Friday. How many came over the two days?"
+            },
+            "ask": {
+              "en": "Came in 2 days?"
+            },
+            "answer": 43690,
+            "planAnswer": "43,690 spectators, because Saturday was 22,345",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T6.C23:8",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "A library lent 12,608 books in January, a hundred more than that in February, and a thousand more than February in March. How many books were lent over the three months?",
+            "question": {
+              "en": "A library lent 12,608 books in January. In February it lent a hundred more than that. In March it lent a thousand more than February. How many books were lent over the three months?"
+            },
+            "ask": {
+              "en": "Books in 3 months?"
+            },
+            "answer": 39024,
+            "planAnswer": "39,024 books, because February was 12,708 and March was 13,708",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "word_problem_workshop",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "word_problem_workshop",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "A word problem hides a column sum",
+        "conceptId": "M2.S4.T6.C20",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S4.T6.C20:ML1",
+          "M2.S4.T6.C20:1",
+          "M2.S4.T6.C20:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "A table is a list of addends",
+        "conceptId": "M2.S4.T6.C21",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S4.T6.C21:ML2",
+          "M2.S4.T6.C21:3",
+          "M2.S4.T6.C21:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Not every number printed is needed",
+        "conceptId": "M2.S4.T6.C22",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S4.T6.C22:ML3",
+          "M2.S4.T6.C22:5",
+          "M2.S4.T6.C22:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Sometimes an addend has to be built first",
+        "conceptId": "M2.S4.T6.C23",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S4.T6.C23:ML4",
+          "M2.S4.T6.C23:7",
+          "M2.S4.T6.C23:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "problem",
+    "question",
+    "liftedNumbers",
+    "id",
+    "greyed",
+    "id",
+    "builtAddends",
+    "sum",
+    "told",
+    "answerSentence"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, phase, problem, question, liftedNumbers, id, greyed, id, builtAddends, sum, told, answerSentence, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "word_problem_workshop"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T6.C20.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Read it through first. What is the question actually asking for?"
+    },
+    {
+      "en": "Say what you are being asked for before you touch a number."
+    },
+    {
+      "en": "Read the table across. Each row is one addend."
+    },
+    {
+      "en": "One of these numbers has no job here. Which one?"
+    },
+    {
+      "en": "That day is described, not printed. Build it first."
+    },
+    {
+      "en": "A new problem. Say what is being asked before you touch a number."
+    },
+    {
+      "en": "Free play. Sentences, tables, described amounts, and a bay for writing your own."
+    },
+    {
+      "en": "Read the problem again, one sentence at a time, with your question card showing."
+    },
+    {
+      "en": "Every problem turned into a sum, and the numbers you turned down are still there to see."
+    }
+  ],
+  "build": {
+    "source": "02bc140a:202716",
+    "runtime": "class4/runtime/runtime.tsx",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-22T11:46:54.421Z",
+    "checks": {
+      "pass": 59,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-22T11:46:54.323Z"
+    },
+    "tsxBytes": 194610,
+    "tsxMd5": "4b458d8c2fbad865531e53f28617db11"
+  }
+}

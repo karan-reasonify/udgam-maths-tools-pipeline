@@ -1,0 +1,1444 @@
+{
+  "slotId": "M1.S2.T4.C12.2D1",
+  "mediaId": "M1.S2.T4.C12.2D1",
+  "toolId": "edge_walker",
+  "title": "Edge Walker",
+  "component": "M1.S2.T4.C12.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch9_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_9/2dtool/M1.S2.T4.C12.2D1/M1.S2.T4.C12.2D1.tsx",
+  "description": "Walk round a figure side by side adding every length, find a side with no label from the sides facing it, and find a missing side from the perimeter.",
+  "conceptIds": [
+    "M1.S2.T4.C12",
+    "M1.S2.T4.C13",
+    "M1.S2.T4.C14",
+    "M1.S2.T4.C15"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Walk all the way round a figure adding every side once, and find any side that is missing before the walk can finish.",
+    "look": "A figure with its sides labelled, a small walker at one corner, a string coiled beside it, and a running sum at the top left of the canvas.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Edge Walker' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the running sum, the one number this tool builds: the lengths of the sides walked so far added in ink, climbing by one side's length at each step, with the sides walked against the sides of the figure written small beside it, so a skipped side shows. On the fourth phase it carries the given sides taken off against the sides given, and the length left is read in the bay, not here. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The figure board fills the left of the working area, 700 by 440 at 64,214, with one figure drawn to scale in deep blue, each side's length written in amber beside it in centimetres or metres, and a side with no label carrying an empty amber label box at its true length. The walker, a small round vermilion marker, stands at one corner, and each tap sends it along one side, which lights amber as it goes while its length drops into the running sum. The string lies coiled at the foot of the board, and the string control lays it tight round the whole boundary, lifts it off and straightens it along a near-black ruler 700 by 56 at 64,666, where it reaches a mark that can be set beside the sum. Labelling one side of a rectangle lights the side opposite it with the same length. The facing-sides bracket stands at the right, 370 by 220 at 780,214, and works on a stepped shape whose corners are all square. It takes the sides that run the same way as the missing one along one side of the shape, lays them end to end as amber bars in one row with the missing side as an empty bar, and lays the long side facing them as one bar in the row beneath, both rows starting from the same near-black line, so the missing length is the space left at the end of the top row. Sides running the other way dim while it works. The missing-side bay stands under the bracket, 370 by 200 at 780,450: it lays the perimeter written in a figure's middle as one long amber bar and takes the given sides off it one at a time as bars laid end to end along it, until one length is left. The times-four key sits at 780,666, 180 by 56, and lights only on a figure whose four sides are all equal; pressed, it writes the four equal sides added one under another beside the product, so the adding it replaces is never hidden. The opposite-sides control sits beside it, 180 by 56 at 970,666. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across on every phase, because every answer here is a length. A unit tag under the slot reads centimetres or metres, whichever the figure carries, and is filled in with the number, never left off. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The figure being studied, every line, segment, ray, side, outline, circle, angle arm and visible edge of a solid, is deep blue. Every point, end point, corner dot, vertex dot and the centre dot of a circle is vermilion. A length being measured, walked, added or named, and every angle arc and square corner mark, is amber. The unit squares that cover an area, the flood inside a closed figure and a face of a solid being counted are green. A line of symmetry or a mirror line is reddish purple and always dotted. The second thing set beside the first, a fold being tried, a mirror image, the other half of a fold, a chord that is not a diameter and the larger angle between clock hands, is sky blue. A hidden edge of a solid is grey and dashed, and grey is used for nothing else. Chrome never borrows one of those and none of them is ever used for chrome: every grid line, ruler tick, bracket, guide line and table rule is near-black. Every reading survives with the colour taken away, because a point is a round dot, a line carries an arrowhead at each end, a ray a dot and one arrowhead and a segment a dot at each end, a measured length carries its number, a hidden edge is dashed and a line of symmetry is dotted, before any of them is told by a colour. A dotted line always means a true line of symmetry or a mirror line, and a fold being tried is drawn solid until it is kept, so nothing else on any stage of this chapter is ever dotted. Every figure is drawn to scale with its labels, and every stepped figure closes up exactly, so wherever one long side faces a run of shorter ones, the shorter ones add up to it, across and upright alike. A triangle drawn with a square corner carries only lengths that can make one, such as three, four and five. A side with no label is drawn at its true length, so it can be seen before it is known.",
+    "finish": "The card shows the figure the child walked round, every side labelled, the one they found lit, and the sum standing beside the straightened string.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the walker gets home, the sum stops at the perimeter, and the straightened string reaches the same mark on the ruler",
+        "does": "lights the opposite sides, walks the walker round side by side, then lays the string",
+        "goal": "the perimeter is every side of the boundary added once",
+        "says": "Walk all the way round. Add each side as you go. Does the string agree?",
+        "check": "Away from the screen: measure the length and breadth of a book, and find how far it is all the way round.",
+        "feels": "the walk goes round once, and every side takes one turn in the sum",
+        "hands": "Measure a desk's length and breadth with a ruler and write both on the board. Ask how far it is all the way round. A child lays a string round the desk's edge, marks where it meets itself and straightens it against a metre scale. Then add all four sides, each once, and compare the sum with the string.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: how many sides has the figure? Second rung, the phase's: which sides has the walker not walked yet? Third rung: the figure is cut to a small rectangle, three by two, and the walker goes round it before the larger figure comes back. The number pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "only two numbers are printed on the figure, and adding every number that is printed feels like adding every side.",
+            "move": "adds only the two labelled sides of the rectangle, giving forty for a frame twenty-five by fifteen.",
+            "screen": "the walker walks the first two sides and the sum stands at forty with the walker only half way round, at the opposite corner. The opposite-sides control lights the two unlabelled sides with the same lengths, the walker walks on, and the sum reaches eighty as it gets home. The child's forty stays in the slot beside the half way mark."
+          },
+          {
+            "why": "the squares are the plainest things on squared paper to count, and both numbers come off the same drawing.",
+            "move": "counts the squares inside a shape on squared paper when asked how far it is round the edge, giving five for a shape whose boundary is twelve.",
+            "screen": "the walker goes round the outside one square's edge at a time, each edge lighting amber as the sum climbs to twelve, while the five squares inside are lit green and left alone. The child's five stays in the slot beside the green squares, and the twelve stands beside the amber edge."
+          }
+        ],
+        "screen": "a rectangle with two of its sides labelled, the walker at one corner and the sum empty",
+        "soWhat": "The perimeter is the length all the way round, every side of the boundary added once.",
+        "concept": "Add every side"
+      },
+      {
+        "n": 2,
+        "win": "the adding and the times-four answer land side by side on the same number",
+        "does": "walks the square once, adding, then presses times four and compares",
+        "goal": "a figure with four equal sides has a perimeter of four times its side",
+        "says": "Add the four sides. Now try four times one side. Is it the same?",
+        "check": "A square has sides of seven centimetres. Find its perimeter by adding, then by four times the side. Do they agree?",
+        "feels": "four equal sides is one side said four times",
+        "hands": "Draw a square of side six on squared paper. Walk a finger round it, adding six at each side. Ask how many sixes were added, and write four sixes beside the sum. Then ask whether four times one side works for a rectangle that is not a square, and let the class find that it does not, because its sides are not all equal.",
+        "tries": "First rung, from the item: how long is each side of the square? Second rung, the phase's: how many sides does the walker cross to get home? Third rung: the square is cut to a side of two, and the walker's four steps are written out as twos beside the times-four key. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "a rectangle is described by two numbers, a length and a breadth, and two sounds like the right count of sides to use.",
+            "move": "gives a square's perimeter as its side times two, writing eighteen for a tile of side nine.",
+            "screen": "the walker walks the square side by side, each nine dropping into the sum, and it stands at eighteen with the walker only half way round, at the opposite corner. It walks on and the sum climbs to thirty-six as it gets home, and the times-four key writes four nines beside it. The child's eighteen stays in the slot beside the half way mark."
+          },
+          {
+            "why": "four belongs with a square, and adding it is the quickest thing to do with a four.",
+            "move": "adds four to the side instead of multiplying by four, writing thirteen for a square of side nine.",
+            "screen": "the times-four key shows its adding: nine, and nine, and nine, and nine, written one under another beside the square's four sides, each side lighting as its nine is written. Nine and four is written beside the stack, one side and a little more, and both stay drawn with the child's answer in the slot."
+          }
+        ],
+        "screen": "a square with one side labelled and the times-four key waiting",
+        "soWhat": "A square's four sides are equal, so its perimeter is four times its side.",
+        "concept": "Four equal sides"
+      },
+      {
+        "n": 3,
+        "win": "the missing length drops onto the side, the walker walks on, and the sum takes all six sides",
+        "does": "opens the facing-sides bracket, reads the missing length off, then lets the walker finish",
+        "goal": "every side belongs to the perimeter, and a side with no label is found from the sides facing it",
+        "says": "This side has no label. Which sides face it? Stack them and find it.",
+        "check": "An L-shape has a left side of eleven and a bottom of nine. From the top, go across five, down a side with no label, across four and down seven. How long is the missing side?",
+        "feels": "a side with no number on it is still a side, and the sides facing it know how long it is",
+        "hands": "Cut an L-shape out of card with every corner square, and label every side but one upright side. Stand the short upright pieces on one side against the long upright side facing them, with a ruler laid across the steps, and ask what the unlabelled piece must be. Then do the same across. Point out that the exercise's own fully labelled U-shape and upside-down T close up this way across, their pieces along the top adding up to the bottom.",
+        "tries": "First rung, from the item: which side has no label? Second rung, the phase's: which sides run the same way as it, and which long side faces them? Third rung: the figure is cut to an L with small whole sides, and the bracket stacks the short sides against the long one before the child reads the gap. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the numbers printed on a figure look like the whole list of its sides, and the exercise's own L-shape gives forty-five this way when its perimeter is fifty-two.",
+            "move": "adds only the printed numbers on the L-shape and stops, giving twenty-nine for a boundary of thirty-four.",
+            "screen": "the walker stops at the side with no label and will not step along it; the sum holds at the sides already walked, and the unlabelled side stays lit with its empty label box. The facing-sides bracket opens and lays the three and the empty side end to end above the eight they face, and the missing five is read off the space left. Only then does the walker go on, and the sum reaches thirty-four beside the child's twenty-nine, both standing."
+          },
+          {
+            "why": "the bracket's rule is to take short sides from the long side facing them, and nine and six are a long side and a short side sitting right there on the figure.",
+            "move": "takes the missing upright side from sides that run across, writing three, which is nine less six.",
+            "screen": "the missing side is lit, upright, and the bracket lights only the sides that run the same way as it, the upright three on the right and the eight on the left facing it, while the sides running across dim. Laid end to end above the eight, the upright three and the empty bar leave a space of five. The child's three stays in the slot, and the sides across are then stacked on their own to show three and six making nine, a true fact about a different pair of sides."
+          }
+        ],
+        "screen": "an L-shape with every side labelled but one upright side, the walker stopped beside it",
+        "soWhat": "Every side belongs to the perimeter, labelled or not; on a stepped shape, the short sides along one side add up to the long side facing them.",
+        "concept": "A side with no label still counts"
+      },
+      {
+        "n": 4,
+        "win": "one length is left in the bay, it slides onto the blank side, and the walker's sum matches the middle",
+        "does": "takes each given side off the perimeter in the missing-side bay until one length is left",
+        "goal": "a missing side is the perimeter less every side that is given",
+        "says": "The whole way round is written in the middle. Take off the sides you can see.",
+        "check": "A triangle has a perimeter of thirty centimetres and two sides of twelve and eight. What is the third side?",
+        "feels": "the whole way round is known, so the missing piece is whatever the others leave",
+        "hands": "Write a perimeter in the middle of a four-sided figure drawn on the board, and label three of its sides. Cut a strip of paper as long as the perimeter and tear off a piece as long as each given side, one at a time. Ask what the last piece is, and hold it against the blank side.",
+        "tries": "First rung, from the item: what is written in the middle? Second rung, the phase's: what do the given sides add up to? Third rung: the figure is cut to a triangle with a small perimeter, and the bay takes off one given side at a time with the length left written after each. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "every perimeter so far has been found by adding, and adding is what the numbers round a boundary seem to be for.",
+            "move": "adds the given sides to the perimeter instead of taking them away, writing eighty-seven for a field of fifty.",
+            "screen": "the bay lays the perimeter as one long bar of fifty and lays the three given sides along it end to end, ten, fifteen and twelve, leaving a gap at the end that measures thirteen. The child's eighty-seven is drawn as a bar beside it, far longer than the whole boundary, and both stay drawn, nothing marked."
+          },
+          {
+            "why": "one side is missing and one side is taken away, which sounds like a fair swap.",
+            "move": "takes away only one of the given sides, writing forty for a field whose other two sides were given too.",
+            "screen": "the forty is slid onto the blank side and the walker walks the whole boundary: ten, fifteen, twelve and forty make seventy-seven, and the fifty written in the middle stands unmatched beside the sum. The bay then takes off the other two given sides one at a time, and the length left shrinks to thirteen, with the child's forty still in the slot."
+          }
+        ],
+        "screen": "a figure with its perimeter written in the middle and one side left blank",
+        "soWhat": "A missing side is the perimeter less every side that is given.",
+        "concept": "A side from the perimeter"
+      }
+    ],
+    "delight": "The third phase, the moment the bracket closes on the side with no label. The short sides lift off the figure as amber bars and lay themselves end to end, the long side facing them lies down in the row beneath, and the empty bar at the end of the top row stretches until its end sits exactly over the end of the long bar, where it stops by itself with its length written in. Then it flies back to the figure and drops onto the unlabelled side, and the walker, which has been waiting there, steps along it and on round to home. It can be replayed as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a rectangle lies on the board with two sides labelled, its length and its breadth, the walker standing at its lower left corner and the sum empty. On the second a square lies with one side labelled and the times-four key drawn unlit below the board. On the third an L-shape lies with every side labelled but one upright side, the walker already stopped at the top of that side and the facing-sides bracket folded shut beside the board. On the fourth a four-sided figure lies with its perimeter written in its middle, three sides labelled and the fourth blank, and the missing-side bay open at the right. The running count at the top left holds the sum, empty, and the answer slot and the pad stand empty down the right. One thing moves, once: the walker, or the times-four key, or the empty label on the unlabelled side, or the perimeter in the middle, gives one slow pulse while the voice asks how far it is all the way round. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any figure on the board, labelled or not, with the walker, the string, the facing-sides bracket and the missing-side bay open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on adding every side, squares and triangles whose sides are all equal, stepped shapes with a side left unlabelled, and a missing side from the perimeter.",
+    "voiceLines": [
+      "A figure with its sides labelled and a walker at one corner. How far is it all the way round?",
+      "Walk all the way round. Add each side as you go. Does the string agree?",
+      "Add the four sides. Now try four times one side. Is it the same?",
+      "This side has no label. Which sides face it? Stack them and find it.",
+      "The whole way round is written in the middle. Take off the sides you can see.",
+      "A new figure. Count its sides before the walker sets off.",
+      "Free play. Any figure, labelled or not, with the walker, the string and the bracket open.",
+      "Walk it again from the same corner, and say each side as you add it.",
+      "Every side walked once, every missing side found, and every sum matching the string."
+    ],
+    "observations": [
+      {
+        "why": "Walking round adds each side once, and the string is those same sides laid end to end.",
+        "soWhat": "The perimeter is one length, the whole boundary, however it is measured.",
+        "observe": "The walker's sum and the straightened string reached the same mark on the ruler."
+      },
+      {
+        "why": "A square's four sides are equal, so adding them is adding one length four times.",
+        "soWhat": "A square's perimeter is four times its side, and the shortcut works because the four sides are equal.",
+        "observe": "The times-four key and the walker's adding landed on the same number for every square."
+      },
+      {
+        "why": "On a stepped shape the short sides along one side reach exactly as far as the long side facing them, because the figure closes up.",
+        "soWhat": "Every side counts, labelled or not, and on a stepped shape a missing side is found from the sides facing it.",
+        "observe": "The walker would not go on at the side with no label, and the bracket found it from the sides facing it."
+      },
+      {
+        "why": "The perimeter is all the sides together, so whatever the given sides do not cover is the one that is missing.",
+        "soWhat": "A missing side is the perimeter less every side that is given.",
+        "observe": "Taking the given sides off the perimeter left exactly the blank side's length."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a rectangle with two of its sides labelled, the walker at one corner and the sum empty",
+        "win": "the walker gets home, the sum stops at the perimeter, and the straightened string reaches the same mark on the ruler",
+        "traceback": "The walker walks every side of the boundary, the lengths stack up in the column, and the column ends on the perimeter.",
+        "ladder": [
+          "Two sides of this frame carry no number yet.",
+          "Count the sides of this triangle, then add every one.",
+          "Half of sixty gives the width. This mat has four sides.",
+          "Which sides has the walker not walked yet?",
+          "Walk a small rectangle, three by two, and count every side once."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a square with one side labelled and the times-four key waiting",
+        "win": "the adding and the times-four answer land side by side on the same number",
+        "traceback": "The walker walks all four equal sides, the column stacks them, and the times key lays the same side out four times.",
+        "ladder": [
+          "All four sides of this tile are the same length.",
+          "Count the sides of a square, then add that many twelves.",
+          "This triangle has three equal sides, not four.",
+          "How many sides does the walker cross to get home?",
+          "Try a square of side two and see what four twos make."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "an L-shape with every side labelled but one upright side, the walker stopped beside it",
+        "win": "the missing length drops onto the side, the walker walks on, and the sum takes all six sides",
+        "traceback": "The bracket stacks the short sides against the side facing them, the missing length drops onto the figure, and the walker finishes the round.",
+        "ladder": [
+          "The walker will not step along a side it does not know.",
+          "Which upright side faces the blank one?",
+          "Three sides go down this staircase, and one of them is blank.",
+          "Which sides run the same way as it, and which long side faces them?",
+          "The short sides along one side add up to the long side facing them."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a figure with its perimeter written in the middle and one side left blank",
+        "win": "one length is left in the bay, it slides onto the blank side, and the walker's sum matches the middle",
+        "traceback": "The bay lays the perimeter out as one bar, takes each given side off it, and the length left drops onto the blank side.",
+        "ladder": [
+          "The three sides you can see are part of the fifty.",
+          "The two marked sides do not reach the whole boundary.",
+          "Only one of the three given sides has come off.",
+          "What do the given sides add up to?",
+          "Take off one side at a time and watch what is left."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "board": {
+      "x": 0,
+      "y": 0,
+      "w": 660,
+      "h": 380
+    },
+    "plot": {
+      "x": 66,
+      "y": 64,
+      "w": 528,
+      "h": 258
+    },
+    "band": {
+      "x": 0,
+      "y": 392,
+      "w": 660,
+      "h": 136
+    },
+    "col": {
+      "x": 676,
+      "y": 0,
+      "w": 150,
+      "h": 380
+    },
+    "key": {
+      "x": 862,
+      "w": 200,
+      "h": 72,
+      "ys": [
+        40,
+        136,
+        232
+      ]
+    },
+    "figs": {
+      "f1a": {
+        "unit": "cm",
+        "pts": [
+          [
+            0,
+            15
+          ],
+          [
+            25,
+            15
+          ],
+          [
+            25,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "lens": [
+          25,
+          15,
+          25,
+          15
+        ],
+        "show": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "opp": true,
+        "ruler": true
+      },
+      "f1b": {
+        "unit": "cm",
+        "pts": [
+          [
+            0,
+            3.4218
+          ],
+          [
+            7,
+            3.4218
+          ],
+          [
+            2.0714,
+            0
+          ]
+        ],
+        "lens": [
+          7,
+          6,
+          4
+        ],
+        "show": [
+          1,
+          1,
+          1
+        ],
+        "ruler": true
+      },
+      "f1c": {
+        "unit": "cm",
+        "pts": [
+          [
+            0,
+            30
+          ],
+          [
+            60,
+            30
+          ],
+          [
+            60,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "lens": [
+          60,
+          30,
+          60,
+          30
+        ],
+        "show": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "opp": true,
+        "ruler": true
+      },
+      "f2a": {
+        "unit": "cm",
+        "pts": [
+          [
+            0,
+            9
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            9,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "lens": [
+          9,
+          9,
+          9,
+          9
+        ],
+        "show": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "equal": true
+      },
+      "f2b": {
+        "unit": "cm",
+        "pts": [
+          [
+            0,
+            12
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "lens": [
+          12,
+          12,
+          12,
+          12
+        ],
+        "show": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "equal": true
+      },
+      "f2c": {
+        "unit": "cm",
+        "pts": [
+          [
+            0,
+            6.9282
+          ],
+          [
+            8,
+            6.9282
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "lens": [
+          8,
+          8,
+          8
+        ],
+        "show": [
+          1,
+          0,
+          0
+        ],
+        "equal": true
+      },
+      "f3a": {
+        "unit": "cm",
+        "pts": [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            9,
+            8
+          ]
+        ],
+        "lens": [
+          8,
+          3,
+          5,
+          6,
+          3,
+          9
+        ],
+        "show": [
+          1,
+          1,
+          0,
+          1,
+          1,
+          1
+        ],
+        "miss": 2,
+        "brk": {
+          "face": 0,
+          "run": [
+            4
+          ]
+        }
+      },
+      "f3b": {
+        "unit": "cm",
+        "pts": [
+          [
+            0,
+            9
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            14,
+            5
+          ],
+          [
+            14,
+            9
+          ]
+        ],
+        "lens": [
+          9,
+          6,
+          5,
+          8,
+          4,
+          14
+        ],
+        "show": [
+          1,
+          1,
+          0,
+          1,
+          1,
+          1
+        ],
+        "miss": 2,
+        "brk": {
+          "face": 0,
+          "run": [
+            4
+          ]
+        }
+      },
+      "f3c": {
+        "unit": "cm",
+        "pts": [
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            12,
+            7
+          ]
+        ],
+        "lens": [
+          7,
+          4,
+          2,
+          4,
+          3,
+          4,
+          2,
+          12
+        ],
+        "show": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1
+        ],
+        "miss": 4,
+        "brk": {
+          "face": 0,
+          "run": [
+            2,
+            6
+          ]
+        }
+      },
+      "f4a": {
+        "unit": "m",
+        "pts": [
+          [
+            0,
+            12
+          ],
+          [
+            15,
+            12
+          ],
+          [
+            15,
+            0
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "lens": [
+          15,
+          12,
+          10,
+          13
+        ],
+        "show": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "miss": 3,
+        "perim": 50
+      },
+      "f4b": {
+        "unit": "cm",
+        "pts": [
+          [
+            0,
+            5.71278
+          ],
+          [
+            11,
+            5.71278
+          ],
+          [
+            6.954545,
+            0
+          ]
+        ],
+        "lens": [
+          11,
+          7,
+          9
+        ],
+        "show": [
+          1,
+          0,
+          1
+        ],
+        "miss": 1,
+        "perim": 27
+      },
+      "f4c": {
+        "unit": "cm",
+        "pts": [
+          [
+            0,
+            6
+          ],
+          [
+            16,
+            6
+          ],
+          [
+            16,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        "lens": [
+          16,
+          6,
+          8,
+          10
+        ],
+        "show": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "miss": 1,
+        "perim": 40
+      }
+    },
+    "free": [
+      "f1a",
+      "f2a",
+      "f3a",
+      "f4a"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T4.C12:ML1",
+        "kind": "walk",
+        "fig": "f1a",
+        "answer": 80,
+        "near": 40,
+        "winMs": 3200
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T4.C12:1",
+        "kind": "walk",
+        "fig": "f1b",
+        "answer": 17,
+        "near": 10,
+        "winMs": 3200
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T4.C12:2",
+        "kind": "walk",
+        "fig": "f1c",
+        "answer": 180,
+        "near": 90,
+        "winMs": 3200
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T4.C13:ML2",
+        "kind": "walk",
+        "fig": "f2a",
+        "answer": 36,
+        "near": 18,
+        "winMs": 3200
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T4.C13:3",
+        "kind": "walk",
+        "fig": "f2b",
+        "answer": 48,
+        "near": 24,
+        "winMs": 3200
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T4.C13:4",
+        "kind": "walk",
+        "fig": "f2c",
+        "answer": 24,
+        "near": 32,
+        "winMs": 3200
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T4.C14:ML3",
+        "kind": "walk",
+        "fig": "f3a",
+        "answer": 34,
+        "near": 29,
+        "winMs": 3600
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T4.C14:5",
+        "kind": "walk",
+        "fig": "f3b",
+        "answer": 46,
+        "near": 41,
+        "winMs": 3600
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T4.C14:6",
+        "kind": "walk",
+        "fig": "f3c",
+        "answer": 38,
+        "near": 34,
+        "winMs": 3600
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T4.C15:ML4",
+        "kind": "bay",
+        "fig": "f4a",
+        "answer": 13,
+        "near": 87,
+        "winMs": 3600
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T4.C15:7",
+        "kind": "bay",
+        "fig": "f4b",
+        "answer": 7,
+        "near": 18,
+        "winMs": 3600
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T4.C15:8",
+        "kind": "bay",
+        "fig": "f4c",
+        "answer": 6,
+        "near": 24,
+        "winMs": 3600
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The walker walks every side of the boundary, the lengths stack up in the column, and the column ends on the perimeter.",
+      "Phase 2: The walker walks all four equal sides, the column stacks them, and the times key lays the same side out four times.",
+      "Phase 3: The bracket stacks the short sides against the side facing them, the missing length drops onto the figure, and the walker finishes the round.",
+      "Phase 4: The bay lays the perimeter out as one bar, takes each given side off it, and the length left drops onto the blank side."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A figure with its sides labelled, and a walker waiting at one corner.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every side walked once, every missing side found, and every sum matching the string.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T4.C12:ML1",
+            "worked": false,
+            "kind": "walk",
+            "planQuestion": "A photo frame is twenty-five centimetres long and fifteen centimetres wide. How far is it all the way round?",
+            "question": {
+              "en": "A photo frame is twenty-five centimetres long and fifteen centimetres wide. How far is it all the way round?"
+            },
+            "ask": {
+              "en": "Perimeter in cm"
+            },
+            "answer": 80,
+            "planAnswer": "Eighty centimetres",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T4.C12:1",
+            "worked": false,
+            "kind": "walk",
+            "planQuestion": "A triangle has sides of four, six and seven centimetres. Find its perimeter.",
+            "question": {
+              "en": "A triangle has sides of four, six and seven centimetres. Find its perimeter."
+            },
+            "ask": {
+              "en": "Perimeter in cm"
+            },
+            "answer": 17,
+            "planAnswer": "Seventeen centimetres",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T4.C12:2",
+            "worked": false,
+            "kind": "walk",
+            "planQuestion": "A rectangular mat is sixty centimetres long, and its width is half its length. Find its perimeter.",
+            "question": {
+              "en": "A mat is sixty centimetres long and its width is half that. What is its perimeter?"
+            },
+            "ask": {
+              "en": "Perimeter in cm"
+            },
+            "answer": 180,
+            "planAnswer": "One hundred eighty centimetres: the width is thirty, and sixty, thirty, sixty and thirty make one hundred eighty",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T4.C13:ML2",
+            "worked": false,
+            "kind": "walk",
+            "planQuestion": "A square tile has sides of nine centimetres. What is its perimeter?",
+            "question": {
+              "en": "A square tile has sides of nine centimetres. What is its perimeter?"
+            },
+            "ask": {
+              "en": "Perimeter in cm"
+            },
+            "answer": 36,
+            "planAnswer": "Thirty-six centimetres",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T4.C13:3",
+            "worked": false,
+            "kind": "walk",
+            "planQuestion": "A square has sides of twelve centimetres. What is its perimeter?",
+            "question": {
+              "en": "A square has sides of twelve centimetres. Find the length all the way round."
+            },
+            "ask": {
+              "en": "Perimeter in cm"
+            },
+            "answer": 48,
+            "planAnswer": "Forty-eight centimetres, four times twelve",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T4.C13:4",
+            "worked": false,
+            "kind": "walk",
+            "planQuestion": "An equilateral triangle, a triangle with all three sides equal, has sides of eight centimetres. What is its perimeter?",
+            "question": {
+              "en": "An equilateral triangle has all three sides equal. Each side is eight centimetres. How long is its boundary?"
+            },
+            "ask": {
+              "en": "Perimeter in cm"
+            },
+            "answer": 24,
+            "planAnswer": "Twenty-four centimetres, eight added three times",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T4.C14:ML3",
+            "worked": false,
+            "kind": "walk",
+            "planQuestion": "An L-shape has a left side of eight centimetres. From its top, go across three, down a side with no label, across six and down three. Then go back along the bottom, nine. Find the perimeter.",
+            "question": {
+              "en": "An L-shape has six sides, and one upright side carries no label. Find the perimeter."
+            },
+            "ask": {
+              "en": "Perimeter in cm"
+            },
+            "answer": 34,
+            "planAnswer": "Thirty-four centimetres; the side with no label is five centimetres",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T4.C14:5",
+            "worked": false,
+            "kind": "walk",
+            "planQuestion": "An L-shape has a left side of thirteen centimetres and a bottom of ten. From the top of the left side, go across four, down a side with no label, across six and down eight. Find the missing side and the perimeter.",
+            "question": {
+              "en": "Another L-shape has a left side of nine centimetres. One of its upright sides is blank. What is the perimeter?"
+            },
+            "ask": {
+              "en": "Perimeter in cm"
+            },
+            "answer": 46,
+            "planAnswer": "The missing side is five, because it and the eight face the thirteen. The perimeter is forty-six centimetres",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T4.C14:6",
+            "worked": false,
+            "kind": "walk",
+            "planQuestion": "A staircase shape has a left side of ten centimetres and a bottom of nine. From the top, it steps down to the right: across two, down four, across three, down a step with no label, across four, and down two. Find the missing step and the perimeter.",
+            "question": {
+              "en": "A staircase shape has eight sides. One step going down has no number on it. Give the length all the way round."
+            },
+            "ask": {
+              "en": "Perimeter in cm"
+            },
+            "answer": 38,
+            "planAnswer": "The missing step is four, because four, the missing step and two face the ten. The perimeter is thirty-eight centimetres",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T4.C15:ML4",
+            "worked": false,
+            "kind": "bay",
+            "planQuestion": "A four-sided field has a perimeter of fifty metres. Three of its sides are ten, fifteen and twelve metres. How long is the fourth side?",
+            "question": {
+              "en": "A four-sided field has a perimeter of fifty metres. Three of its sides are ten, fifteen and twelve metres. How long is the fourth side?"
+            },
+            "ask": {
+              "en": "Missing side in m"
+            },
+            "answer": 13,
+            "planAnswer": "Thirteen metres",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T4.C15:7",
+            "worked": false,
+            "kind": "bay",
+            "planQuestion": "A triangle has a perimeter of twenty-seven centimetres. Two of its sides are nine and eleven centimetres. Find the third side.",
+            "question": {
+              "en": "The perimeter of this triangle is written in its middle. Two of its sides are marked. Find the third side."
+            },
+            "ask": {
+              "en": "Missing side in cm"
+            },
+            "answer": 7,
+            "planAnswer": "Seven centimetres, because twenty-seven less twenty is seven",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T4.C15:8",
+            "worked": false,
+            "kind": "bay",
+            "planQuestion": "A rectangle has a perimeter of forty centimetres. Three of its sides are fourteen, six and fourteen centimetres. How long is the fourth side?",
+            "question": {
+              "en": "This four-sided shape has a perimeter of forty centimetres. Three of its sides are marked on the figure. Find the side that is left."
+            },
+            "ask": {
+              "en": "Missing side in cm"
+            },
+            "answer": 6,
+            "planAnswer": "Six centimetres, the same as the side opposite it, because forty less thirty-four is six",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "edge_walker",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "edge_walker",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Add every side",
+        "conceptId": "M1.S2.T4.C12",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C12:ML1",
+          "M1.S2.T4.C12:1",
+          "M1.S2.T4.C12:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Four equal sides",
+        "conceptId": "M1.S2.T4.C13",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C13:ML2",
+          "M1.S2.T4.C13:3",
+          "M1.S2.T4.C13:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "A side with no label still counts",
+        "conceptId": "M1.S2.T4.C14",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C14:ML3",
+          "M1.S2.T4.C14:5",
+          "M1.S2.T4.C14:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A side from the perimeter",
+        "conceptId": "M1.S2.T4.C15",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C15:ML4",
+          "M1.S2.T4.C15:7",
+          "M1.S2.T4.C15:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "figure",
+    "walkerAt",
+    "walked",
+    "sum",
+    "a",
+    "b",
+    "stringLaid",
+    "missingSide",
+    "null",
+    "perimeterGiven",
+    "null"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, figure, walkerAt, walked, sum, a, b, stringLaid, missingSide, null, perimeterGiven, null",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "edge_walker"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T4.C12.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A figure with its sides labelled and a walker at one corner. How far is it all the way round?"
+    },
+    {
+      "en": "Walk all the way round. Add each side as you go. Does the string agree?"
+    },
+    {
+      "en": "Add the four sides. Now try four times one side. Is it the same?"
+    },
+    {
+      "en": "This side has no label. Which sides face it? Stack them and find it."
+    },
+    {
+      "en": "The whole way round is written in the middle. Take off the sides you can see."
+    },
+    {
+      "en": "A new figure. Count its sides before the walker sets off."
+    },
+    {
+      "en": "Free play. Any figure, labelled or not, with the walker, the string and the bracket open."
+    },
+    {
+      "en": "Walk it again from the same corner, and say each side as you add it."
+    },
+    {
+      "en": "Every side walked once, every missing side found, and every sum matching the string."
+    }
+  ],
+  "build": {
+    "source": "9fa4ca33:199005",
+    "runtime": "class4/runtime/frozen/r8/runtime.tsx",
+    "runtimeVersion": "r8",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-23T12:22:57.904Z",
+    "checks": {
+      "pass": 63,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-23T12:22:54.360Z"
+    },
+    "tsxBytes": 184414,
+    "tsxMd5": "8a6f51d0f444cb574a49faa5c61b856f"
+  }
+}

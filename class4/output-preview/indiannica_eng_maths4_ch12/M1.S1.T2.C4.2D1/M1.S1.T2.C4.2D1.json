@@ -1,0 +1,1135 @@
+{
+  "slotId": "M1.S1.T2.C4.2D1",
+  "mediaId": "M1.S1.T2.C4.2D1",
+  "toolId": "minute_clock",
+  "title": "Minute Clock",
+  "component": "M1.S1.T2.C4.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch12",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch12_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_12/2dtool/M1.S1.T2.C4.2D1/M1.S1.T2.C4.2D1.tsx",
+  "description": "Read and set an analog clock to the exact minute. Count in fives to the last number the minute hand has passed, then the marks, and read the hour the hour hand has passed.",
+  "conceptIds": [
+    "M1.S1.T2.C4",
+    "M1.S1.T2.C5",
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Read an analog clock to the exact minute, and set its two hands for any time, knowing where each hand has to point.",
+    "look": "A large clock face with sixty marks and two hands, a digital readout beside it, and a ring of fives round the face that can be shown or hidden.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Minute Clock' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the clocks read or set against the clocks this phase holds, two numbers in ink, the first climbing by one as each time is written or each pair of hands settles, and the second fixed at what this phase holds. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The clock face fills the left of the working area, a disc 480 across centred at 330,466, on the panel colour with a near-black rim: the twelve numbers upright in their usual places, sixty minute marks round the rim and a longer mark at every number. The minute hand is long and deep blue and reaches the marks; the hour hand is short, thicker and vermilion; both turn from one near-black hub. The fives ring sits just outside the rim, 512 across, writing five, ten, fifteen and on to sixty beside the long marks in deep blue, and it can be shown or hidden. The counting arc runs round inside the rim from the twelve and follows the minute hand, lighting in deep blue a block of five marks at a time up to the last number the hand has passed, then the marks after it one at a time. The digital readout stands at the top of the right half, 300 by 110 at 640,226, with a sliding cover. The words card lies under it, 480 by 80 at 640,356, reading the time as minutes past the hour or minutes to the next hour. The magnifier stands under that, 480 by 200 at 640,456: the space between two numbers spread wide, its four small lines drawn tall and its five spaces numbered one to five as they are counted. The hour finder is drawn on the face: it rings the number the hour hand has passed in filled vermilion and outlines the number it is moving towards in near-black. To draw a time, the minute hand is dragged and snaps to the nearest mark, and the hour hand is dragged freely while a pale ghost shows where it belongs for the minutes set, thirty degrees for each hour and half a degree for each minute past it. Where a child has set the minute hand, a pale ghost of it can show where that hand belongs. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve keys three across, the ten digits, a colon and a clear key, and the answer slot holds a time as the hour, a colon and two places for the minutes, both places drawn on every time so that a minute below ten is written with a nought in front. On the second and third phases the slot takes a number of minutes alone, with the word minutes under it. Where a phase asks for a clock to be drawn, the slot shows the written time and the hands on the face are the answer. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The hour hand, every hour tile and hour cell, the hours column, and the hours of a time the stage splits into hours and minutes are vermilion. The minute hand, every minute tile and minute cell, the minutes column and the minutes of a split time are deep blue. The second hand, every second cell and the seconds column are reddish purple. The a.m. half of the day, from midnight to noon, is sky blue on every strip, timeline and track, and the p.m. half, from noon to midnight, is amber, so the label changes where the colour does. Time counted between a start and an end, every hop and total on a track, and the days counted between two dates are green. An hour or a minute carried or broken, with the digits it strikes and rewrites, is wine. A calendar day, week or year picked out or ticked, a month on its bar and a day tile are olive. The days left over beyond whole weeks, and the twenty-ninth of February in a leap year, are yellow outlined in near-black. Chrome never borrows one of those and none of them is ever used for chrome: every clock rim, minute mark, clock number, hub, rule, tick, post, bracket, guide line and panel edge is near-black. Every reading survives with the colour taken away, because an hour hand is told from a minute hand by its length, a column by its heading, a half of the day by its label, and a counted day from one left out by being filled rather than outlined, before any of them is told by a colour. A figure that goes down by one is struck through once with the new figure written above it, and never rubbed out. Every hand on this stage is drawn exactly for its time, so the hour hand stands on a number only when the minutes are nought, and the minute hand points exactly at a mark. A reading of the book's printed faces within one minute is accepted, because those faces are drawn up to a mark away from the times their text gives them.",
+    "finish": "The card shows the last clock the child set, both hands drawn exactly, with the time in figures and in words underneath.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the two clocks agree, and the time is written under both in figures and in words",
+        "does": "reads the figures, drags the hands until the clock with hands shows the same time, then uncovers the words card",
+        "goal": "a digital clock shows the time in figures and an analog clock shows it with hands, and both can show the same time to the exact minute",
+        "says": "This clock shows the time in figures. Can you make the clock with hands show it too?",
+        "check": "Away from the screen: a digital clock shows 4:10. Where do the two hands of a clock with hands point?",
+        "feels": "two clocks tell the same moment, one in figures and one by where its hands point",
+        "hands": "Stand a digital clock or a phone showing the time beside the wall clock, and ask the class to read both and say whether they agree. Then write 4:10 on the board and have each child set it on a paper plate clock. Compare where the hour hands went: on the four, just before it, or just past it.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which figures are the hour, and which are the minutes? Second rung, the phase's: which number does the minute hand point at for these minutes? Third rung: the time is cut to an o'clock, the minute hand on the twelve and the hour hand on a number, before the full time comes back. The pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the figures show a five, and the numbers on the face look as if they mean what they say.",
+            "move": "points the minute hand at the five for 9:05, taking the five in the figures as the number the hand should point at.",
+            "screen": "the words card reads the child's hands back, twenty-five past nine, under the readout's five past nine. The fives ring shows its numbers, five beside the one and twenty-five beside the five, and a pale ghost of the minute hand settles on the one. The child's hand stays on the five beside it, nothing marked."
+          },
+          {
+            "why": "at nine o'clock the hour hand sits on the nine, and five minutes seems too little to move it.",
+            "move": "draws the hour hand for 9:05 exactly on the nine, or just short of it, as if nine o'clock had not quite come.",
+            "screen": "the pale ghost of the hour hand settles two and a half degrees past the nine, and the hour finder rings the nine as passed and outlines the ten. The minute hand is swept back to the twelve and on again to the one, and the ghost is seen to leave the nine as it goes. The child's hour hand stays where it was set, beside the ghost."
+          }
+        ],
+        "screen": "the analog clock and the digital readout side by side, the readout showing a time and the clock's hands waiting at twelve",
+        "soWhat": "A digital clock shows the time in figures and an analog clock shows it with hands, and both can show the same time to the exact minute.",
+        "concept": "Digital and analog"
+      },
+      {
+        "n": 2,
+        "win": "five spaces light between each pair of numbers, and sixty light round the whole face as one hour",
+        "does": "counts the spaces between the two numbers, then steps the minute hand on one mark at a time while a count of minutes rises",
+        "goal": "the space between two numbers has five equal parts, and the minute hand takes one minute to move from one mark to the next",
+        "says": "Count the spaces from one number to the next. How long does the hand take to cross one space?",
+        "check": "How many minutes does the minute hand take to go from the eight to the twelve?",
+        "feels": "the space between two numbers is five small steps, and every step takes one minute",
+        "hands": "Hold up a paper plate clock and point to the space between the one and the two. Ask how many small spaces there are, then count them together while a child moves the minute hand one mark at a time, and ask how long the hand took. Then count round the whole plate in fives, pointing at each number, up to sixty.",
+        "tries": "First rung, from the item: how many spaces are there between two numbers? Second rung, the phase's: how long does the hand take to cross one space? Third rung: the magnifier is cut to one stretch, from one number to the next, and the child counts its spaces before the longer stretch comes back. The pad stays open.",
+        "wrong": [
+          {
+            "why": "the lines are what is drawn between the numbers, and counting what is drawn feels like counting minutes.",
+            "move": "counts the four small lines between two numbers as four minutes, and says the hand takes twelve minutes from the four to the seven.",
+            "screen": "the magnifier spreads the space between the four and the five, and its five spaces light and are numbered one to five, the last ending on the long mark at the five. The minute hand then steps from the four to the seven one mark at a time while the count of minutes climbs by one at each mark, to fifteen, and the child's twelve stays in the slot beside it."
+          },
+          {
+            "why": "the numbers are the large marks on the face, and passing one feels like one step.",
+            "move": "says three minutes from the four to the seven, because the hand passed three numbers.",
+            "screen": "the magnifier opens on each stretch in turn, four to five, five to six and six to seven, and each lights five spaces. The three stretches stand side by side as three blocks of five, fifteen spaces in all, and the child's three stays in the slot beside the count."
+          }
+        ],
+        "screen": "the magnifier over the space between the one and the two, with the minute hand resting on the one",
+        "soWhat": "Each small mark is one minute, and there are five of them from one number to the next.",
+        "concept": "Each small mark is a minute"
+      },
+      {
+        "n": 3,
+        "win": "the fives light up to that number, the marks after it light one by one, and the minutes are written",
+        "does": "counts in fives round to the last number the hand has passed, counts the marks after it, then sets the minute hand for a written time",
+        "goal": "the minutes are counted in fives to the last number the minute hand has passed, and then mark by mark",
+        "says": "Count in fives to the last number the hand has passed. Now count the marks after it.",
+        "check": "The minute hand is three marks past the eight. How many minutes past the hour is that?",
+        "feels": "the numbers on the face stand for fives, and only the marks after the last one count in ones",
+        "hands": "Set a paper plate clock with its minute hand three marks past the seven. Have the class count in fives round to the seven aloud, five, ten, up to thirty-five, then in ones for the marks after it, and write the minutes on the board. Then set the hand exactly on the nine and ask how many minutes that is, and why it is not nine.",
+        "tries": "First rung, from the item: which number has the minute hand just passed? Second rung, the phase's: how many minutes does that number stand for? Third rung: the hand is set exactly on a number, and the child counts the fives to it before the marks after it come back. The pad stays open.",
+        "wrong": [
+          {
+            "why": "the number beside the hand is the one the eye meets, and it is a small number that looks like minutes.",
+            "move": "reads the six as six minutes, adds the four marks after it, and answers ten minutes past the hour.",
+            "screen": "the fives ring shows its numbers, and thirty stands beside the six. The counting arc runs from the twelve in blocks of five, five, ten and on to thirty at the six, then lights the four marks after it one at a time to thirty-four. The child's ten stays in the slot beside the arc's count."
+          },
+          {
+            "why": "the hand stands nearer the seven than the six, so the seven looks like the number it belongs to.",
+            "move": "counts in fives up to the seven, which the hand is heading for, adds the four marks, and answers thirty-nine.",
+            "screen": "the counting arc stops its fives at the six, the last number the hand has passed, and the fives ring lights thirty there. The stretch from the six to the seven is lit mark by mark, and it stops at the fourth mark, one short of the seven. The child's thirty-nine stays in the slot beside it."
+          },
+          {
+            "why": "the hand points straight at a number, and a hand on a number looks as if it is showing that number.",
+            "move": "writes 3:09 for a clock whose minute hand is on the nine and whose hour hand is three quarters of the way from the three to the four.",
+            "screen": "the fives ring lights forty-five beside the nine, and the counting arc runs round in nine blocks of five to meet the hand. The words card reads a quarter to four, the readout's cover slides back on 3:45, and the child's 3:09 stays in the slot."
+          }
+        ],
+        "screen": "the minute hand set a few marks past a number, with the fives ring hidden",
+        "soWhat": "Count in fives to the last number the minute hand has passed, then count the marks after it.",
+        "concept": "Counting on from the last number"
+      },
+      {
+        "n": 4,
+        "win": "the number behind the hour hand lights, the time is written with that hour, and the words card reads minutes to the next hour",
+        "does": "reads the minutes, taps the number the hour hand has passed, then drags both hands to draw a written time",
+        "goal": "the hour is the number the hour hand has passed, not the number it is moving towards",
+        "says": "The hour hand is nearly at the next number. Which number has it passed?",
+        "check": "The hour hand is just short of the eleven, and the minute hand is two marks past the eleven. What time is it?",
+        "feels": "late in an hour the hour hand is nearly at the next number, and it still has not arrived",
+        "hands": "Draw a clock at twenty to six on the board, its hour hand two thirds of the way from the five to the six, and ask which hour it shows. Let the class argue, then draw six o'clock beside it and ask what the hour hand had to do to get there. Write both times, 5:40 and 6:00.",
+        "tries": "First rung, from the item: which number has the hour hand passed? Second rung, the phase's: has the minute hand reached the twelve yet? Third rung: the clock is cut to a time early in the hour, with the hour hand just past a number, before the late time comes back. The pad and the hands stay open.",
+        "wrong": [
+          {
+            "why": "the hour hand is nearer the four than the three, and the nearer number looks like the hour.",
+            "move": "reads the hour as four because the hour hand is almost on the four, and writes 4:58.",
+            "screen": "the hour finder rings the three as the number passed and outlines the four, and the magnifier spreads the space between the three and the four, where the hour hand's tip is seen one degree short of the four. The minute hand is run on two marks to the twelve, and only then does the hour hand touch the four. The child's 4:58 stays in the slot, nothing marked."
+          },
+          {
+            "why": "six is the only hour in a quarter to six, so it goes in front of the colon.",
+            "move": "writes 6:45 for a quarter to six, taking the hour named in the words as the hour the hand has passed.",
+            "screen": "the clock is set to a quarter to six, the minute hand on the nine and the hour hand three quarters of the way from the five to the six. The hour finder rings the five and outlines the six, and the words card reads fifteen minutes to six. The child's 6:45 is set as a pale second pair of hands, whose hour hand sits three quarters of the way past the six, and both stay side by side."
+          },
+          {
+            "why": "the time begins with eight, and the eight is where an eight o'clock hand goes.",
+            "move": "draws the hour hand for 8:50 right on the eight, where it stands at eight o'clock.",
+            "screen": "the pale ghost of the hour hand settles five degrees short of the nine, five sixths of the way from the eight. The minute hand is swept back from the ten to the twelve and the ghost slides back to the eight with it, so the fifty minutes are seen to have carried the hour hand along. The child's hand stays on the eight beside the ghost."
+          }
+        ],
+        "screen": "a clock late in an hour, with the hour hand almost on the next number",
+        "soWhat": "The hour is the number the hour hand has passed, not the one it is nearly at.",
+        "concept": "The hour the hand has passed"
+      }
+    ],
+    "delight": "The fourth phase, when the minute hand is dragged once all the way round. The hour hand creeps after it the whole time, so slowly that it seems to stand still, and the hour finder's filled ring stays on the number behind it through fifty-nine minutes. The moment the minute hand reaches the twelve, the hour hand touches the next number and the filled ring hops onto it, not a moment before. Dragging back sends both hands back together. It can be tried as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the digital readout shows a time in figures beside the clock, whose two hands wait together at the twelve, and the words card lies face down. On the second the magnifier stands over the space between the one and the two, with the minute hand resting on the one and the count of minutes at nought. On the third the minute hand stands a few marks past a number, with the fives ring hidden and the counting arc unlit. On the fourth the clock shows a time late in an hour, its hour hand almost on the next number, with the hour finder dark and the readout covered. The running count at the top left holds the clocks read or set against the clocks this phase holds, and the answer slot and the pad stand empty down the right. One thing moves, once: the minute hand, or the magnifier, or the tip of the minute hand, or the hour hand, gives one slow pulse while the voice asks where each hand is pointing. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any time on the clock, with the readout, the fives ring, the counting arc, the magnifier, the hour finder and the words card all open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on digital and analog clocks, counting the marks, counting on from the last number passed, and reading and drawing the hour hand.",
+    "voiceLines": [
+      "A clock with two hands, and a clock with figures. Where is each hand pointing?",
+      "This clock shows the time in figures. Can you make the clock with hands show it too?",
+      "Count the spaces from one number to the next. How long does the hand take to cross one space?",
+      "Count in fives to the last number the hand has passed. Now count the marks after it.",
+      "The hour hand is nearly at the next number. Which number has it passed?",
+      "A new clock. Find the minute hand before you read anything.",
+      "Free play. Any time on the clock, with the ring, the arc, the magnifier and the hour finder open.",
+      "Count the fives again, up to the last number the minute hand has passed.",
+      "Minutes counted in fives and then marks, and the hour read from the number the hand has passed."
+    ],
+    "observations": [
+      {
+        "why": "Both clocks tell one time; one writes the hours and minutes as figures and the other shows them with two hands.",
+        "soWhat": "A digital clock shows the time in figures and an analog clock shows it with hands, and both can show the same time to the exact minute.",
+        "observe": "The clock with hands settled on the same time as the figures, and the words card read it aloud."
+      },
+      {
+        "why": "Four small lines split the space between two numbers into five equal parts, and the hand takes one minute to cross each.",
+        "soWhat": "Each small mark is one minute, and there are five of them from one number to the next.",
+        "observe": "Five spaces lit between the one and the two, and sixty lit round the whole face as the minute hand went once round."
+      },
+      {
+        "why": "Each number stands for five minutes more than the one before it, so the last number passed gives the fives and the marks after it give the ones.",
+        "soWhat": "Count in fives to the last number the minute hand has passed, then count the marks after it.",
+        "observe": "The arc lit in fives up to the six, thirty, and then one mark at a time to thirty-four."
+      },
+      {
+        "why": "The hour hand moves half a degree a minute, and it reaches the four only as the minute hand reaches the twelve.",
+        "soWhat": "The hour is the number the hour hand has passed, not the one it is nearly at.",
+        "observe": "At fifty-eight minutes past three the hour hand stood one degree short of the four, and the hour finder rang the three."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the analog clock and the digital readout side by side, the readout showing a time and the clock's hands waiting at twelve",
+        "win": "the two clocks agree, and the time is written under both in figures and in words",
+        "traceback": "The words card reads the child's hands back, the fives ring shows, pale hands sweep from the o'clock to the time, the hour finder rings the hour passed, and the readout and words card end on the time.",
+        "ladder": [
+          "Which figures are the hour, and which are the minutes?",
+          "The hour comes first in figures, then the minutes after it.",
+          "The minute hand is on the five. How many minutes does the five stand for?",
+          "Which number does the minute hand point at for these minutes?",
+          "Think of the o'clock first, with the minute hand on the twelve. Then count on the minutes."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the magnifier over the space between the one and the two, with the minute hand resting on the one",
+        "win": "five spaces light between each pair of numbers, and sixty light round the whole face as one hour",
+        "traceback": "The magnifier numbers the five spaces between two numbers, then the minute hand steps on one mark at a time, the arc lighting in fives, while a count of minutes climbs to the answer.",
+        "ladder": [
+          "How many spaces are there between two numbers?",
+          "Twelve numbers stand round the face. How many minutes lie between one number and the next?",
+          "Seven numbers go by, but that is not seven minutes. Count the spaces, not the numbers.",
+          "How long does the hand take to cross one space?",
+          "Count the spaces between two numbers first. Then count on five for every number the hand passes."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the minute hand set a few marks past a number, with the fives ring hidden",
+        "win": "the fives light up to that number, the marks after it light one by one, and the minutes are written",
+        "traceback": "The fives ring shows, the counting arc lights a block of five at a time to the last number passed and then each mark after it, and the readout uncovers the time.",
+        "ladder": [
+          "Which number has the minute hand just passed?",
+          "What does the ten stand for, counting in fives?",
+          "Count in fives from the twelve. Where do you stop?",
+          "How many minutes does that number stand for?",
+          "Count the fives only, up to that number. Then add the small marks one at a time."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a clock late in an hour, with the hour hand almost on the next number",
+        "win": "the number behind the hour hand lights, the time is written with that hour, and the words card reads minutes to the next hour",
+        "traceback": "The hour finder rings the number passed and outlines the next, the magnifier spreads the hour hand's tip, the minute hand runs on to the twelve before the hour hand touches the next number, and the clock ends on the right time with its readout and words.",
+        "ladder": [
+          "Your time is the pale pair of hands. Has four o'clock come yet?",
+          "The pale hands show what you wrote. A quarter to six comes before six o'clock. Which hour is it still?",
+          "Where is the hour hand a few minutes before one o'clock?",
+          "Has the minute hand reached the twelve yet?",
+          "Think of the same hour just after the o'clock, with the hour hand just past a number."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "clock": {
+      "centre": [
+        334,
+        466
+      ],
+      "radius": 214,
+      "marks": 60,
+      "numbers": 12,
+      "fivesRing": "5, 10, 15 ... 60 beside the long marks"
+    },
+    "minuteHand": "drags round the face and snaps to the nearest of the 60 marks; the hour hand turns with it, half a degree a minute, and passes to the next hour at the twelve",
+    "hourHand": "drags freely; a pale ghost shows where it settles: h + m/60 for the hour nearest the drop, so it stands on a number only at an o'clock",
+    "answers": "a time is typed as hours and minutes in two boxes; a drawn time is read off the hands exactly (h:mm); a pointed minute is the mark the minute hand is on",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C4:ML1",
+        "kind": "set",
+        "t": [
+          9,
+          5
+        ],
+        "start": [
+          12,
+          0
+        ],
+        "pad": "enter",
+        "answer": "9:05",
+        "near": "9:25",
+        "winMs": 2800
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T2.C4:1",
+        "kind": "read",
+        "t": [
+          11,
+          20
+        ],
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          11,
+          20
+        ],
+        "near": "11|4",
+        "winMs": 2600
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": null,
+        "kind": "read",
+        "t": [
+          7,
+          25
+        ],
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          7,
+          25
+        ],
+        "near": "7|5",
+        "winMs": 2600
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T2.C5:ML2",
+        "kind": "span",
+        "from": 4,
+        "to": 7,
+        "t": [
+          11,
+          20
+        ],
+        "parts": [
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          15
+        ],
+        "near": 12,
+        "winMs": 3400
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T2.C5:2",
+        "kind": "round",
+        "from": 12,
+        "t": [
+          1,
+          0
+        ],
+        "parts": [
+          {
+            "label": "marks"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          60,
+          60
+        ],
+        "near": "48|48",
+        "winMs": 5600
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T2.C5:3",
+        "kind": "span",
+        "from": 2,
+        "to": 9,
+        "t": [
+          11,
+          10
+        ],
+        "parts": [
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          35
+        ],
+        "near": 7,
+        "winMs": 4600
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:ML3",
+        "kind": "count",
+        "t": [
+          2,
+          34
+        ],
+        "parts": [
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          34
+        ],
+        "near": 10,
+        "winMs": 3000
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T2.C6:4",
+        "kind": "count",
+        "t": [
+          8,
+          52
+        ],
+        "parts": [
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          52
+        ],
+        "near": 12,
+        "winMs": 3200
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T2.C6:5",
+        "kind": "point",
+        "t": [
+          6,
+          18
+        ],
+        "start": [
+          6,
+          0
+        ],
+        "pad": "enter",
+        "answer": 18,
+        "near": 15,
+        "winMs": 2600
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T2.C7:ML4",
+        "kind": "read",
+        "t": [
+          3,
+          58
+        ],
+        "hourTap": true,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          3,
+          58
+        ],
+        "near": "4|58",
+        "winMs": 2800
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T2.C7:8",
+        "kind": "read",
+        "t": [
+          5,
+          45
+        ],
+        "hourTap": true,
+        "wordsUp": true,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          5,
+          45
+        ],
+        "near": "6|45",
+        "winMs": 5000
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T2.C7:7",
+        "kind": "set",
+        "t": [
+          12,
+          56
+        ],
+        "start": [
+          6,
+          0
+        ],
+        "pad": "enter",
+        "answer": "12:56",
+        "near": "11:56",
+        "winMs": 2800
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The words card reads the child's hands back, the fives ring shows, pale hands sweep from the o'clock to the time, the hour finder rings the hour passed, and the readout and words card end on the time.",
+      "Phase 2: The magnifier numbers the five spaces between two numbers, then the minute hand steps on one mark at a time, the arc lighting in fives, while a count of minutes climbs to the answer.",
+      "Phase 3: The fives ring shows, the counting arc lights a block of five at a time to the last number passed and then each mark after it, and the readout uncovers the time.",
+      "Phase 4: The hour finder rings the number passed and outlines the next, the magnifier spreads the hour hand's tip, the minute hand runs on to the twelve before the hour hand touches the next number, and the clock ends on the right time with its readout and words."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A clock with two hands, and a clock with figures. Where is each hand pointing?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Minutes counted in fives and then marks, and the hour read from the number the hand has passed.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C4:ML1",
+            "worked": false,
+            "kind": "set",
+            "planQuestion": "A clock with no hands shows 9:05 in figures. What kind of clock is it, and where do the hands of an analog clock point at the same time?",
+            "question": {
+              "en": "This is a digital clock, and it reads 9:05. Drag the minute hand and the hour hand to show it."
+            },
+            "ask": {
+              "en": "Set the hands to 9:05"
+            },
+            "answer": "9:05",
+            "planAnswer": "It is a digital clock. On an analog clock the minute hand points at the one, and the hour hand is just past the nine",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T2.C4:1",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "An analog clock and a digital clock both show twenty past eleven. What does the digital clock show?",
+            "question": {
+              "en": "An analog clock and a digital clock both show twenty past eleven. What does the digital clock show?"
+            },
+            "ask": {
+              "en": "The time now?"
+            },
+            "answer": [
+              11,
+              20
+            ],
+            "planAnswer": "11:20",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "read",
+            "planQuestion": null,
+            "question": {
+              "en": "Now read the clock with hands. Write its time as the digital clock would show it."
+            },
+            "ask": {
+              "en": "Write this time in figures"
+            },
+            "answer": [
+              7,
+              25
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T2.C5:ML2",
+            "worked": false,
+            "kind": "span",
+            "planQuestion": "How many minutes does the minute hand take to move from the four to the seven?",
+            "question": {
+              "en": "How many minutes does the minute hand take to move from the four to the seven?"
+            },
+            "ask": {
+              "en": "Minutes from the 4 to the 7?"
+            },
+            "answer": [
+              15
+            ],
+            "planAnswer": "Fifteen minutes",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T2.C5:2",
+            "worked": false,
+            "kind": "round",
+            "planQuestion": "How many small marks does the minute hand pass in going once round the face, and how long does that take?",
+            "question": {
+              "en": "The minute hand goes once round the face. How many small marks does it pass, and how many minutes?"
+            },
+            "ask": {
+              "en": "Marks and minutes?"
+            },
+            "answer": [
+              60,
+              60
+            ],
+            "planAnswer": "Sixty marks, which take sixty minutes, or one hour",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T2.C5:3",
+            "worked": false,
+            "kind": "span",
+            "planQuestion": "The minute hand moves from the two to the nine. How many minutes pass?",
+            "question": {
+              "en": "The minute hand moves from the two to the nine. How many minutes pass?"
+            },
+            "ask": {
+              "en": "Minutes from the 2 to the 9?"
+            },
+            "answer": [
+              35
+            ],
+            "planAnswer": "Thirty-five minutes, because seven stretches of five marks are thirty-five marks",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C6:ML3",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "The minute hand points at the fourth small mark after the six. How many minutes past the hour is it?",
+            "question": {
+              "en": "The minute hand points at the fourth small mark after the six. How many minutes past the hour is it?"
+            },
+            "ask": {
+              "en": "Minutes past the hour?"
+            },
+            "answer": [
+              34
+            ],
+            "planAnswer": "Thirty-four minutes past the hour",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T2.C6:4",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "The minute hand is two marks past the ten. How many minutes past the hour is it?",
+            "question": {
+              "en": "Now the minute hand is two marks past the ten. Read the minutes the same way."
+            },
+            "ask": {
+              "en": "Minutes past the hour now?"
+            },
+            "answer": [
+              52
+            ],
+            "planAnswer": "Fifty-two minutes: the ten stands for fifty, and two marks more make fifty-two",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T2.C6:5",
+            "worked": false,
+            "kind": "point",
+            "planQuestion": "Where does the minute hand point at 6:18?",
+            "question": {
+              "en": "Where does the minute hand point at 6:18? Drag it there."
+            },
+            "ask": {
+              "en": "Show 6:18"
+            },
+            "answer": 18,
+            "planAnswer": "At the third small mark after the three, because the three stands for fifteen minutes and three marks more make eighteen",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T2.C7:ML4",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "The minute hand points at the third small mark after the eleven, and the hour hand is just before the four. What time is it?",
+            "question": {
+              "en": "The minute hand points at the third small mark after the eleven. The hour hand is just before the four. What time is it?"
+            },
+            "ask": {
+              "en": "Read the time"
+            },
+            "answer": [
+              3,
+              58
+            ],
+            "planAnswer": "3:58, which is two minutes to four",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T2.C7:8",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A clock shows a quarter to six. A child writes the time as 6:45. What should it be, and why?",
+            "question": {
+              "en": "A clock shows a quarter to six. A child writes the time as 6:45. What should it be?"
+            },
+            "ask": {
+              "en": "The right time?"
+            },
+            "answer": [
+              5,
+              45
+            ],
+            "planAnswer": "5:45. A quarter to six is fifteen minutes before six o'clock, so the hour hand has passed the five and not yet reached the six",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T2.C7:7",
+            "worked": false,
+            "kind": "set",
+            "planQuestion": "Set a clock to 12:56. Where do the two hands point?",
+            "question": {
+              "en": "Set the clock to 12:56. Drag both hands to where they point."
+            },
+            "ask": {
+              "en": "Set the hands to 12:56"
+            },
+            "answer": "12:56",
+            "planAnswer": "The minute hand points at the first small mark after the eleven. The hour hand is between the twelve and the one, almost at the one, because one o'clock has not yet come",
+            "madeOn": "working area"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S1.T2.C7:6"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "minute_clock",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "minute_clock",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Digital and analog",
+        "conceptId": "M1.S1.T2.C4",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C4:ML1",
+          "M1.S1.T2.C4:1",
+          "M1.S1.T2.C4.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Each small mark is a minute",
+        "conceptId": "M1.S1.T2.C5",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C5:ML2",
+          "M1.S1.T2.C5:2",
+          "M1.S1.T2.C5:3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Counting on from the last number",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C6:ML3",
+          "M1.S1.T2.C6:4",
+          "M1.S1.T2.C6:5"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "The hour the hand has passed",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C7:ML4",
+          "M1.S1.T2.C7:8",
+          "M1.S1.T2.C7:7"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "hour",
+    "minute",
+    "readoutCovered",
+    "fivesRing",
+    "arcCount",
+    "n",
+    "hourPassed",
+    "p",
+    "drawnHands",
+    "thumb",
+    "h",
+    "from",
+    "from"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, phase, hour, minute, readoutCovered, fivesRing, arcCount, n, hourPassed, p, drawnHands, thumb, h, from, from",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "minute_clock"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C4.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A clock with two hands, and a clock with figures. Where is each hand pointing?"
+    },
+    {
+      "en": "This clock shows the time in figures. Can you make the clock with hands show it too?"
+    },
+    {
+      "en": "Count the spaces from one number to the next. How long does the hand take to cross one space?"
+    },
+    {
+      "en": "Count in fives to the last number the hand has passed. Now count the marks after it."
+    },
+    {
+      "en": "The hour hand is nearly at the next number. Which number has it passed?"
+    },
+    {
+      "en": "A new clock. Find the minute hand before you read anything."
+    },
+    {
+      "en": "Free play. Any time on the clock, with the ring, the arc, the magnifier and the hour finder open."
+    },
+    {
+      "en": "Count the fives again, up to the last number the minute hand has passed."
+    },
+    {
+      "en": "Minutes counted in fives and then marks, and the hour read from the number the hand has passed."
+    }
+  ],
+  "build": {
+    "source": "a97a491c:1632756",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-24T18:36:14.505Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-24T18:36:14.014Z"
+    },
+    "tsxBytes": 1627958,
+    "tsxMd5": "3d5984d0ccd2adc66977212d81a21db3"
+  }
+}

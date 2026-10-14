@@ -1,0 +1,1143 @@
+{
+  "slotId": "M2.S3.T7.C24.2D1",
+  "mediaId": "M2.S3.T7.C24.2D1",
+  "toolId": "fold_and_mirror",
+  "title": "Fold and Mirror",
+  "component": "M2.S3.T7.C24.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch9_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_9/2dtool/M2.S3.T7.C24.2D1/M2.S3.T7.C24.2D1.tsx",
+  "description": "Fold a figure along a line to test whether its halves match, count its lines of symmetry, and place a mirror image the same distance behind an upright mirror line.",
+  "conceptIds": [
+    "M2.S3.T7.C24",
+    "M2.S3.T7.C25",
+    "M2.S3.T7.C26",
+    "M2.S3.T7.C27"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Fold a figure to find out whether its halves match, and stand it by a mirror to see where its image goes.",
+    "look": "A paper figure on a table with a fold line across it, a tally beside it, and a mirror bay on squared paper at the right.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Fold and Mirror' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the folds kept against the folds tried, two numbers in ink, the first climbing by one only when a fold matches and is kept and the second with every fold made. In the mirror bay it carries the corners placed against the corners of the shape, and on the fourth phase the letters sorted against the letters tried. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The table fills the left of the working area, 600 by 470 at 64,214, on the panel colour, and holds up to three paper figures side by side, each drawn as a flat deep blue shape with its own tally card under it. The fold line is drawn solid in sky blue while it is being tried, and it can be dragged and turned to any position across a figure. The fold control turns one side of the paper over onto the other along it, the turned half drawn sky blue: where the halves match exactly, the fold sets hard, the line is redrawn dotted in reddish purple and kept, and the tally takes one; where any part sticks out past the other half, the overhang glows sky blue, the line stays solid and the paper opens back out by itself. The mirror bay stands at the right, 470 by 470 at 680,214, on near-black squared paper, with an upright mirror line drawn dotted in reddish purple down its middle. A shape placed on one side sends a thin amber string from each of its corners straight across to the mirror line, counting squares, and on by the same number of squares beyond it, and the image is drawn in sky blue at the ends of the strings, turned the other way round. The lying mirror waits at the foot of the bay and can be laid across it, and when it is, the strings run straight up or down to it instead. The letter tray runs along the foot of the working area, 1086 by 40 at 64,690, holding the twenty-six capitals in one plain face without tails or serifs; a letter dragged beside a mirror has its image drawn behind the mirror line, and with both mirrors open its two images stand side by side. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is a word pad wherever a fold or a pair is judged, with keys reading yes, no, line of symmetry and not a line of symmetry, and two keys naming the mirror, upright or lying across. It is twelve number keys three across wherever lines are counted or squares from the mirror line are asked for, and the letter tray itself wherever letters are sorted. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The figure being studied, every line, segment, ray, side, outline, circle, angle arm and visible edge of a solid, is deep blue. Every point, end point, corner dot, vertex dot and the centre dot of a circle is vermilion. A length being measured, walked, added or named, and every angle arc and square corner mark, is amber. The unit squares that cover an area, the flood inside a closed figure and a face of a solid being counted are green. A line of symmetry or a mirror line is reddish purple and always dotted. The second thing set beside the first, a fold being tried, a mirror image, the other half of a fold, a chord that is not a diameter and the larger angle between clock hands, is sky blue. A hidden edge of a solid is grey and dashed, and grey is used for nothing else. Chrome never borrows one of those and none of them is ever used for chrome: every grid line, ruler tick, bracket, guide line and table rule is near-black. Every reading survives with the colour taken away, because a point is a round dot, a line carries an arrowhead at each end, a ray a dot and one arrowhead and a segment a dot at each end, a measured length carries its number, a hidden edge is dashed and a line of symmetry is dotted, before any of them is told by a colour. A dotted line always means a true line of symmetry or a mirror line, and a fold being tried is drawn solid until it is kept, so nothing else on any stage of this chapter is ever dotted. A dotted line on this stage always means a true line of symmetry or a mirror line, and a fold being tried is always solid, so a line is never shown as known to work before it has been folded. The mirror stands upright unless the question lays it across, as one printed exercise does, and then the lying mirror is drawn across the bay and named.",
+    "finish": "The card shows the figures the child folded with every kept fold drawn dotted, and the letters sorted into the two rows beside the upright mirror.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the halves lie exactly together, the fold sets hard, and the line is kept as a line of symmetry",
+        "does": "sets the fold line, folds, and looks for any part that sticks out",
+        "goal": "a fold is a line of symmetry only when one half fits exactly over the other",
+        "says": "Fold it along your line. Does every part fit, or does something stick out?",
+        "check": "Look again at the temple on the chapter's opening page. Seen from the front, where would you fold a drawing of it so the halves match?",
+        "feels": "a fold keeps only if nothing at all sticks out",
+        "hands": "Fold a sheet of paper in half, cut a shape along the open edge and unfold it. Ask where the fold is and why the halves match. Then cut a shape from an unfolded sheet, fold it through what looks like its middle, and look for any part that sticks out.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: does any part stick out after the fold? Second rung, the phase's: where would the fold have to be for the halves to meet? Third rung: the figure is cut to a plain square and folded across its middle before the harder figure comes back. The word pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "a line that crosses the whole figure looks as though it divides it fairly, and the eye does not measure the two parts.",
+            "move": "calls a line across a rectangle near its top a line of symmetry, because it runs right across the figure.",
+            "screen": "the fold is made along the child's line, the thin top strip turning down onto the rest, and the long part below sticks out past it and glows sky blue. The line stays solid, the paper opens back out, and the true fold across the middle is then tried and kept, drawn dotted. The child's answer stays in the slot, nothing marked."
+          },
+          {
+            "why": "the N has an upright stroke on each side, and two matching strokes look like two matching halves.",
+            "move": "folds a capital N down its middle and calls the fold a line of symmetry, because each half has one upright stroke.",
+            "screen": "the fold is made down the middle of the N, and the slanting stroke of the turned half lands crossing the other half's slant instead of lying on it, both glowing sky blue where they miss. The line stays solid, the paper opens back out, and the child's answer stays in the slot."
+          }
+        ],
+        "screen": "a paper figure on the table with the fold line lying across it",
+        "soWhat": "A fold is a line of symmetry only when one half fits exactly over the other.",
+        "concept": "Folding so the halves match"
+      },
+      {
+        "n": 2,
+        "win": "the square's tally stops at four, the rectangle's at two with its diagonal turned away, and the letter's at none",
+        "does": "tries folds down, across and corner to corner on each figure and reads the tallies",
+        "goal": "a figure can have one line of symmetry, several, or none, and each is found by folding",
+        "says": "Try every fold you can. How many lines does each one keep?",
+        "check": "How many lines of symmetry does a capital H have? Fold a paper one to check.",
+        "feels": "a figure keeps every fold that matches and no others, and some keep none at all",
+        "hands": "Give each group a paper square, a long paper rectangle and a cut-out capital F. Ask them to find every fold that makes matching halves, and to mark each one with a dotted pencil line. Ask why the rectangle's corner to corner fold does not work when the square's does.",
+        "tries": "First rung, from the item: which folds have you tried? Second rung, the phase's: have you tried the folds from corner to corner? Third rung: the figure is cut to the square, and the fold line is turned a step at a time while the tally keeps count. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the diagonal cuts the rectangle into two triangles of exactly the same size, and a square's diagonals both work.",
+            "move": "counts a long rectangle's diagonal as a line of symmetry and says it has four, like a square.",
+            "screen": "the fold is made along the diagonal and the turned triangle lands with two corners sticking out past the other half, both glowing sky blue, and the line stays solid. The square beside it folds along its diagonal and matches, so the two diagonal folds are seen side by side. The rectangle's tally stays at two and the child's four stays in the slot."
+          },
+          {
+            "why": "folds down and across are the ones a hand makes first, and a slanting fold does not feel like a fold of the same kind.",
+            "move": "stops after the upright and across folds and misses the slanting ones.",
+            "screen": "the fold line is turned a step at a time round the square, and at each slanting position where the halves meet, the fold sets and is kept, the tally climbing past two to four. The child's count stays in the slot beside the tally, nothing marked."
+          }
+        ],
+        "screen": "a square, a long rectangle and a capital letter F side by side, each with an empty tally",
+        "soWhat": "A figure can have one line of symmetry, several or none; a rectangle that is not a square has two, and a square has four.",
+        "concept": "More than one line, or none"
+      },
+      {
+        "n": 3,
+        "win": "every corner of the image lands at the end of its string and the image stands turned the other way round",
+        "does": "runs a string from each corner to the mirror line, carries it on the same distance, and places the image",
+        "goal": "an image sits the same distance behind the mirror line as the object, turned the other way round",
+        "says": "How far is this corner from the mirror? Go the same distance behind it.",
+        "check": "On squared paper, draw an upright mirror line and a dot five squares to its left. Where does the image of the dot go?",
+        "feels": "every corner goes as far behind the line as it stood in front, so the near side stays near and the far side stays far",
+        "hands": "Stand a mirror upright on a line drawn across squared paper. Put a counter three squares in front of it and ask how far behind the mirror its image seems to be. Then draw a shape with one corner close to the line and one far from it, and place its image corner by corner, counting squares from the line each time.",
+        "tries": "First rung, from the item: how many squares is this corner from the mirror line? Second rung, the phase's: how many squares behind the line must its image be? Third rung: the shape is cut to a single dot, and its string is run across before the whole shape comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "an image in a mirror seems to sit on the glass, and the distance behind it cannot be touched.",
+            "move": "draws the image right up against the mirror line, or at a different distance from it than the shape.",
+            "screen": "a string runs from each corner of the shape straight across to the mirror line and on by the same number of squares beyond it, the squares counted aloud on each side. The image is drawn at the ends of the strings in sky blue, and the child's image stays where it was placed, its corners short of the string ends."
+          },
+          {
+            "why": "sliding a shape across is the simplest way to put it on the other side, and it keeps the shape looking the right way round.",
+            "move": "slides the shape across the line without turning it round, so the image faces the same way as the shape.",
+            "screen": "the strings run from each corner, and the corner nearest the mirror lands nearest it on the other side while the farthest lands farthest, so the image comes out turned the other way round. The child's slid copy stays beside it, and the corner that stood nearest the mirror is lit in it, now sitting farthest from the line."
+          }
+        ],
+        "screen": "a shape on squared paper beside an upright mirror line, with the distance strings coiled",
+        "soWhat": "A mirror image sits the same distance behind the mirror line as the shape is in front of it, turned the other way round.",
+        "concept": "Behind the mirror line"
+      },
+      {
+        "n": 4,
+        "win": "the sorted letters settle in two rows, and the lying mirror moves some of them from one row to the other",
+        "does": "places letters beside the upright mirror one at a time and sorts them into same and turned, then tries the lying mirror",
+        "goal": "a letter looks the same in an upright mirror only if it has an upright line of symmetry",
+        "says": "Does it look the same in the mirror? Now try the other mirror.",
+        "check": "Which of the capital letters H, K, O and W look the same in an upright mirror? Which look the same in a mirror lying across?",
+        "feels": "which letters match depends on which way the mirror stands",
+        "hands": "Write the capital letters large on cards. Hold each beside an upright mirror and sort them into two piles, looks the same and faces the other way. Then lay the mirror flat under each card and sort again. Ask which letters changed piles, and why the question has to say which mirror.",
+        "tries": "First rung, from the item: which mirror is the question about? Second rung, the phase's: does the letter have a line of symmetry running the same way as that mirror? Third rung: the tray is cut to two letters, A and B, and each is tried in both mirrors before the rest come back. The letter tray and the word pad stay open.",
+        "wrong": [
+          {
+            "why": "the box asking for these letters never says which mirror it means, so any letter that looked the same in any mirror seems to belong.",
+            "move": "names the letters that look the same without saying which mirror, mixing B and C, which match in a mirror lying across, with A and M, which match in an upright one.",
+            "screen": "each of the child's letters is set beside the upright mirror and then above the lying mirror, and its two images are drawn side by side. The letters settle into two rows headed upright and lying across, A and M in one and B and C in the other, and the child's list stays in the slot with the mirror keys lit beside it."
+          },
+          {
+            "why": "turning a card round is how a letter is usually flipped in the hand, and N comes through that unchanged.",
+            "move": "says N looks the same in an upright mirror, because it looks the same turned half way round.",
+            "screen": "N is set beside the upright mirror and its image is drawn behind the line point for point, facing the other way. The child's N turned half way round is drawn beside it, the two stand plainly different, and nothing is marked."
+          }
+        ],
+        "screen": "the letter tray beside the upright mirror, with the lying mirror set aside",
+        "soWhat": "In an upright mirror, a letter looks the same only if it has an upright line of symmetry: in plain capitals, A, H, I, M, O, T, U, V, W, X and Y. In a mirror lying across, B, C, D, E, H, I, K, O and X do.",
+        "concept": "Letters that look the same in a mirror"
+      }
+    ],
+    "delight": "The second phase, the moment the fold line is turned onto the square's diagonal. The paper turns over along it, one triangle lying down exactly onto the other with not a hair showing, the fold sets and the line turns from solid to dotted. Drag the same line onto the long rectangle's diagonal and fold, and two corners swing out past the other half and glow, the line stays solid, and the paper opens back out by itself. The two diagonals can be tried one after the other as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a paper figure lies on the table with a solid fold line lying across it and its tally card empty. On the second a square, a long rectangle and a capital F lie side by side on the table, each with its own empty tally card, and the fold line rests on the square. On the third a shape stands on the squared paper of the mirror bay, to the left of the upright mirror line, drawn dotted, with a string coiled at each of its corners. On the fourth the letter tray stands open along the foot, the upright mirror stands in the bay and the lying mirror waits at the bay's foot. The running count at the top left holds the folds kept against the folds tried, and the answer slot and the pad stand empty down the right. One thing moves, once: the fold line, or the square's tally card, or the corner nearest the mirror, or the first letter in the tray, gives one slow pulse while the voice asks whether the halves will fit. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any figure, any fold, and any shape or letter in the mirror bay, with the upright mirror and the lying mirror both open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on folds that match, figures with several lines of symmetry or none, images the same distance behind a mirror line, and letters in an upright mirror.",
+    "voiceLines": [
+      "A paper shape and a fold line across it. Will the two halves fit?",
+      "Fold it along your line. Does every part fit, or does something stick out?",
+      "Try every fold you can. How many lines does each one keep?",
+      "How far is this corner from the mirror? Go the same distance behind it.",
+      "Does it look the same in the mirror? Now try the other mirror.",
+      "A new shape. Guess its folds, then test every one.",
+      "Free play. Any shape, any fold, any letter, with both mirrors open.",
+      "Open it out and fold again slowly, watching for anything that sticks out.",
+      "Every fold tested, every image placed at its distance, and the mirror named for every letter."
+    ],
+    "observations": [
+      {
+        "why": "One half has to fit exactly over the other for the fold to be a line of symmetry.",
+        "soWhat": "A line of symmetry is found by folding, and a line that only looks central may not be one.",
+        "observe": "A fold set hard only when nothing stuck out past the other half."
+      },
+      {
+        "why": "Each fold that lays one half exactly on the other is kept, and different figures have different numbers of those.",
+        "soWhat": "A figure can have several lines of symmetry, one, or none, and a rectangle that is not a square does not fold along its diagonal.",
+        "observe": "The square kept four folds, the long rectangle two, and the capital F none."
+      },
+      {
+        "why": "The image of each point sits as far behind the line as the point is in front, straight across.",
+        "soWhat": "A mirror image is the same distance behind the mirror line as the object, turned the other way round.",
+        "observe": "Every string ran the same number of squares behind the mirror line as in front of it."
+      },
+      {
+        "why": "An upright mirror swaps left and right, and a mirror lying across swaps top and bottom.",
+        "soWhat": "Which letters look the same depends on which way the mirror stands, so a question about them must say which mirror.",
+        "observe": "Some letters moved from one row to the other when the lying mirror took the upright mirror's place."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a paper figure on the table with the fold line lying across it",
+        "win": "the halves lie exactly together, the fold sets hard, and the line is kept as a line of symmetry",
+        "traceback": "the fold is made along the line, any part that sticks out glows, and the fold that keeps is left standing",
+        "ladder": [
+          "Fold it first, then look along every edge of the paper.",
+          "Which fold would put the left half exactly on the right half?",
+          "A part that sticks out means the halves did not fit.",
+          "Where would the fold have to be for the halves to meet?",
+          "Turn the line a little and fold again. Watch the edges as they land."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a square, a long rectangle and a capital letter F side by side, each with an empty tally",
+        "win": "the square's tally stops at four, the rectangle's at two with its diagonal turned away, and the letter's at none",
+        "traceback": "the line is turned round the figure, every fold that matches is kept dotted, and the tally is left at the count",
+        "ladder": [
+          "Which way have you not laid the line yet?",
+          "Fold the F down its middle and watch the arms.",
+          "The corner fold left corners sticking outside. Try the straight folds.",
+          "Have you tried the folds from corner to corner?",
+          "Tap a shape to move the line onto it, then turn the line right round."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a shape on squared paper beside an upright mirror line, with the distance strings coiled",
+        "win": "every corner of the image lands at the end of its string and the image stands turned the other way round",
+        "traceback": "each string runs across to the mirror line and the same number of squares beyond it, and the image is drawn at their ends",
+        "ladder": [
+          "Count the squares from the dot across to the line.",
+          "Walk the string from each corner across to the line.",
+          "Look at the letter on the right. Which way does its arm point?",
+          "How many squares behind the line must its image be?",
+          "Count the squares in front, then count the same number behind."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the letter tray beside the upright mirror, with the lying mirror set aside",
+        "win": "the sorted letters settle in two rows, and the lying mirror moves some of them from one row to the other",
+        "traceback": "every letter is stood by the mirror with its image beside it, and they settle into a row that matches and a row that turns",
+        "ladder": [
+          "Watch the image of each letter as it stands by the mirror.",
+          "Fold each letter down its middle and see if the halves meet.",
+          "Look at both images of the letter and see which one matches.",
+          "Does the letter have a line of symmetry running the same way as that mirror?",
+          "Tap a letter to stand it by the mirror and watch its image."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "figures": {
+      "tee": {
+        "corners": 8,
+        "lines": 1
+      },
+      "front": {
+        "corners": 5,
+        "lines": 1
+      },
+      "ell": {
+        "corners": 6,
+        "lines": 0
+      },
+      "plus": {
+        "corners": 12,
+        "lines": 4
+      },
+      "eff": {
+        "corners": 10,
+        "lines": 0
+      },
+      "slab": {
+        "corners": 4,
+        "lines": 2
+      },
+      "square": {
+        "corners": 4,
+        "lines": 4
+      }
+    },
+    "folds": [
+      "vmid",
+      "hmid",
+      "dia1",
+      "dia2",
+      "voff",
+      "hoff"
+    ],
+    "table1": {
+      "x": 60,
+      "y": 24,
+      "w": 680,
+      "h": 480,
+      "centre": [
+        400,
+        250
+      ],
+      "scale": 1.7
+    },
+    "table2": {
+      "x": 16,
+      "y": 20,
+      "w": 1054,
+      "h": 388,
+      "centres": [
+        190,
+        543,
+        896
+      ],
+      "row": 165,
+      "scale": 0.85,
+      "figures": [
+        "plus",
+        "slab",
+        "eff"
+      ]
+    },
+    "bay": {
+      "x": 143,
+      "y": 28,
+      "squares": 40,
+      "cols": 20,
+      "rows": 11,
+      "mirror": 543
+    },
+    "dot": {
+      "at": [
+        383,
+        228
+      ],
+      "squaresInFront": 4
+    },
+    "triangle": {
+      "at": [
+        [
+          423,
+          148
+        ],
+        [
+          343,
+          228
+        ],
+        [
+          383,
+          308
+        ]
+      ],
+      "squaresInFront": [
+        3,
+        5,
+        4
+      ]
+    },
+    "letters": {
+      "A": {
+        "upright": true,
+        "lying": false
+      },
+      "B": {
+        "upright": false,
+        "lying": true
+      },
+      "C": {
+        "upright": false,
+        "lying": true
+      },
+      "D": {
+        "upright": false,
+        "lying": true
+      },
+      "E": {
+        "upright": false,
+        "lying": true
+      },
+      "H": {
+        "upright": true,
+        "lying": true
+      },
+      "K": {
+        "upright": false,
+        "lying": true
+      },
+      "O": {
+        "upright": true,
+        "lying": true
+      },
+      "R": {
+        "upright": false,
+        "lying": false
+      },
+      "U": {
+        "upright": true,
+        "lying": false
+      },
+      "V": {
+        "upright": true,
+        "lying": false
+      }
+    },
+    "freePlay": {
+      "figures": [
+        "square",
+        "slab",
+        "plus"
+      ]
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T7.C24:ML1",
+        "kind": "fold",
+        "fig": "tee",
+        "start": "vmid",
+        "answer": "yes",
+        "near": "no",
+        "winMs": 2600
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T7.C24:1",
+        "kind": "fold",
+        "fig": "front",
+        "start": "hmid",
+        "answer": "mid",
+        "near": "corner",
+        "winMs": 3000
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T7.C24:2",
+        "kind": "fold",
+        "fig": "ell",
+        "start": "vmid",
+        "answer": "no",
+        "near": "yes",
+        "winMs": 2600
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T7.C25:ML2",
+        "kind": "count",
+        "at": 0,
+        "answer": 4,
+        "near": 2,
+        "winMs": 3400
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T7.C25:3",
+        "kind": "count",
+        "at": 2,
+        "answer": 0,
+        "near": 1,
+        "winMs": 3000
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T7.C25:4",
+        "kind": "count",
+        "at": 1,
+        "answer": 2,
+        "near": 4,
+        "winMs": 3400
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T7.C26:ML3",
+        "kind": "place",
+        "pad": "enter",
+        "answer": "4:0",
+        "near": "1:0",
+        "winMs": 3200
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T7.C26:5",
+        "kind": "tri",
+        "parts": [
+          {
+            "label": "nearest"
+          },
+          {
+            "label": "farthest"
+          }
+        ],
+        "answer": [
+          3,
+          5
+        ],
+        "near": "4|5",
+        "winMs": 3400
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T7.C26:6",
+        "kind": "rr",
+        "answer": "no",
+        "near": "yes",
+        "winMs": 3000
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T7.C27:ML4",
+        "kind": "pick",
+        "pad": "enter",
+        "tray": [
+          "A",
+          "B",
+          "D",
+          "V"
+        ],
+        "answer": "AV",
+        "near": "AB",
+        "winMs": 3400
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T7.C27:7",
+        "kind": "pick",
+        "pad": "enter",
+        "tray": [
+          "C",
+          "H",
+          "K",
+          "O",
+          "U"
+        ],
+        "answer": "HOU",
+        "near": "HO",
+        "winMs": 3400
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T7.C27:8",
+        "kind": "which",
+        "letter": "E",
+        "answer": "lying",
+        "near": "upright",
+        "winMs": 3200
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: the fold is made along the line, any part that sticks out glows, and the fold that keeps is left standing",
+      "Phase 2: the line is turned round the figure, every fold that matches is kept dotted, and the tally is left at the count",
+      "Phase 3: each string runs across to the mirror line and the same number of squares beyond it, and the image is drawn at their ends",
+      "Phase 4: every letter is stood by the mirror with its image beside it, and they settle into a row that matches and a row that turns"
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A paper shape and a fold line across it. Will the two halves fit?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every fold tested, every image placed at its distance, and the mirror named for every letter.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T7.C24:ML1",
+            "worked": false,
+            "kind": "fold",
+            "planQuestion": "A paper cut-out of the capital letter T is folded along an upright line down the middle of its stem. Do the halves match?",
+            "question": {
+              "en": "A paper letter T is folded down the middle of its stem. Do the halves match?"
+            },
+            "ask": {
+              "en": "Do the halves match?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes. The left half fits exactly over the right half, so the fold is a line of symmetry",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T7.C24:1",
+            "worked": false,
+            "kind": "fold",
+            "planQuestion": "A building seen from the front has a left half that matches its right half exactly. Where is its line of symmetry?",
+            "question": {
+              "en": "A temple front stands on the table. Lay the fold on its line of symmetry."
+            },
+            "ask": {
+              "en": "Where does it fold?"
+            },
+            "answer": "mid",
+            "planAnswer": "One upright line straight down the middle of the front",
+            "choices": [
+              "mid",
+              "across",
+              "corner",
+              "none"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T7.C24:2",
+            "worked": false,
+            "kind": "fold",
+            "planQuestion": "A shape is folded along a line, and one corner sticks out past the other half. Is the fold a line of symmetry?",
+            "question": {
+              "en": "Fold this shape along the line that lies across it. Is that fold a line of symmetry?"
+            },
+            "ask": {
+              "en": "A line of symmetry?"
+            },
+            "answer": "no",
+            "planAnswer": "No, because the halves do not fit exactly over each other",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T7.C25:ML2",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A plus sign has four arms of equal length and equal width. How many lines of symmetry does it have?",
+            "question": {
+              "en": "Here is a plus sign. Count the folds it keeps."
+            },
+            "ask": {
+              "en": "Folds it keeps?"
+            },
+            "answer": 4,
+            "planAnswer": "Four: one upright, one across, and two slanting ones through the corners where the arms meet",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T7.C25:3",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "How many lines of symmetry does the capital letter F have?",
+            "question": {
+              "en": "Move the line onto the capital F. Fold it every way, and count what stays."
+            },
+            "ask": {
+              "en": "How many folds?"
+            },
+            "answer": 0,
+            "planAnswer": "None. No fold makes one half fit exactly over the other",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T7.C25:4",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A long rectangle is folded corner to corner along its diagonal. Do the halves match, and how many lines of symmetry does it have?",
+            "question": {
+              "en": "Fold the long rectangle from corner to corner. Then count every fold it keeps."
+            },
+            "ask": {
+              "en": "Lines of symmetry?"
+            },
+            "answer": 2,
+            "planAnswer": "No, the corners stick out. It has two lines of symmetry, one down its middle and one across its middle",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T7.C26:ML3",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "On squared paper, a dot sits four squares to the left of an upright mirror line. Where does its image sit?",
+            "question": {
+              "en": "A dot stands four squares in front of the mirror line. Put its image where it belongs."
+            },
+            "ask": {
+              "en": "Place the image"
+            },
+            "answer": "4:0",
+            "planAnswer": "Four squares to the right of the mirror line, level with the dot",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T7.C26:5",
+            "worked": false,
+            "kind": "tri",
+            "planQuestion": "A triangle stands to the left of an upright mirror line. Its nearest corner is three squares from the line and its farthest is five. How far from the line are those corners in the image?",
+            "question": {
+              "en": "This triangle stands in front of the mirror line. How far behind it will each corner land?"
+            },
+            "ask": {
+              "en": "Squares behind?"
+            },
+            "answer": [
+              3,
+              5
+            ],
+            "planAnswer": "Three squares and five squares, on the right of the line, so the image faces the other way",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T7.C26:6",
+            "worked": false,
+            "kind": "rr",
+            "planQuestion": "Two copies of the capital letter R stand on either side of an upright mirror line, both facing the same way. Is one the reflection of the other?",
+            "question": {
+              "en": "Two letter R shapes stand either side of the mirror line. Is one the mirror image of the other?"
+            },
+            "ask": {
+              "en": "Is it the image?"
+            },
+            "answer": "no",
+            "planAnswer": "No. In an upright mirror the image of R faces the other way, so a reflection would be turned round",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T7.C27:ML4",
+            "worked": false,
+            "kind": "pick",
+            "planQuestion": "Which of the capital letters A, B, D and V look the same in an upright mirror?",
+            "question": {
+              "en": "Stand each of these letters by the upright mirror. Pick the ones that look the same."
+            },
+            "ask": {
+              "en": "Which look the same?"
+            },
+            "answer": "AV",
+            "planAnswer": "A and V. Each has an upright line of symmetry, while B and D face the other way in the mirror",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T7.C27:7",
+            "worked": false,
+            "kind": "pick",
+            "planQuestion": "Which of the capital letters C, H, K, O and U look the same in an upright mirror?",
+            "question": {
+              "en": "Here are five more letters. Which of them look the same by the upright mirror?"
+            },
+            "ask": {
+              "en": "Which ones match?"
+            },
+            "answer": "HOU",
+            "planAnswer": "H, O and U, which each have an upright line of symmetry",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T7.C27:8",
+            "worked": false,
+            "kind": "which",
+            "planQuestion": "The capital letter E is held beside an upright mirror, and then above a mirror lying flat under it. In which mirror does it look the same?",
+            "question": {
+              "en": "Lay the second mirror under the letter E. In which mirror does E look the same?"
+            },
+            "ask": {
+              "en": "Which mirror?"
+            },
+            "answer": "lying",
+            "planAnswer": "In the mirror lying flat under it, because E has a line of symmetry across its middle. In the upright mirror it faces the other way",
+            "choices": [
+              "upright",
+              "lying"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "fold_and_mirror",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "fold_and_mirror",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Folding so the halves match",
+        "conceptId": "M2.S3.T7.C24",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S3.T7.C24:ML1",
+          "M2.S3.T7.C24:1",
+          "M2.S3.T7.C24:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "More than one line, or none",
+        "conceptId": "M2.S3.T7.C25",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S3.T7.C25:ML2",
+          "M2.S3.T7.C25:3",
+          "M2.S3.T7.C25:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Behind the mirror line",
+        "conceptId": "M2.S3.T7.C26",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S3.T7.C26:ML3",
+          "M2.S3.T7.C26:5",
+          "M2.S3.T7.C26:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Letters that look the same in a mirror",
+        "conceptId": "M2.S3.T7.C27",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S3.T7.C27:ML4",
+          "M2.S3.T7.C27:7",
+          "M2.S3.T7.C27:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "figure",
+    "foldLine",
+    "foldsKept",
+    "length",
+    "mirrorShape",
+    "imageCorners",
+    "letter",
+    "mirrorKind"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, figure, foldLine, foldsKept, length, mirrorShape, imageCorners, letter, mirrorKind",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "fold_and_mirror"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T7.C24.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A paper shape and a fold line across it. Will the two halves fit?"
+    },
+    {
+      "en": "Fold it along your line. Does every part fit, or does something stick out?"
+    },
+    {
+      "en": "Try every fold you can. How many lines does each one keep?"
+    },
+    {
+      "en": "How far is this corner from the mirror? Go the same distance behind it."
+    },
+    {
+      "en": "Does it look the same in the mirror? Now try the other mirror."
+    },
+    {
+      "en": "A new shape. Guess its folds, then test every one."
+    },
+    {
+      "en": "Free play. Any shape, any fold, any letter, with both mirrors open."
+    },
+    {
+      "en": "Open it out and fold again slowly, watching for anything that sticks out."
+    },
+    {
+      "en": "Every fold tested, every image placed at its distance, and the mirror named for every letter."
+    }
+  ],
+  "build": {
+    "source": "9369752b:207149",
+    "runtime": "class4/runtime/frozen/r4/runtime.tsx",
+    "runtimeVersion": "r4",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-23T11:30:12.805Z",
+    "checks": {
+      "pass": 63,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-23T11:30:12.640Z"
+    },
+    "tsxBytes": 195760,
+    "tsxMd5": "07126c73c2fccf4368d8fda97a79db33"
+  }
+}

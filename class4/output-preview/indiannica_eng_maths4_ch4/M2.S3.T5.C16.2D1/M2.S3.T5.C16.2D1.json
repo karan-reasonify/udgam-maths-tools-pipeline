@@ -1,0 +1,989 @@
+{
+  "slotId": "M2.S3.T5.C16.2D1",
+  "mediaId": "M2.S3.T5.C16.2D1",
+  "toolId": "partial_product_workshop",
+  "title": "Partial Product Workshop",
+  "component": "M2.S3.T5.C16.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch4",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch4_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_4/2dtool/M2.S3.T5.C16.2D1/M2.S3.T5.C16.2D1.tsx",
+  "description": "Split the multiplier into place cards, open one rose row for each card, watch the holding zeros arrive under the columns, and add the rows.",
+  "conceptIds": [
+    "M2.S3.T5.C16",
+    "M2.S3.T5.C17",
+    "M2.S3.T5.C18",
+    "M2.S3.T5.C19"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Use a multiplier of two or three digits one place at a time, and put the partial products back together into one answer.",
+    "look": "The multiplier standing whole above a row of empty place cards, with rose rows opening beneath them and a rule waiting under those.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Partial Product Workshop' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: how many place cards are down and how many rows are open, two numbers side by side in ink, so a card that greys and closes its row can be read there without counting the chart over; on the last phase it carries the short fact being used and how many zeros are following it, written in words. Nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The multiplier bar runs along the top of the working area, 1086 by 76 at 64,202, with the whole multiplier standing in it in amber and inert until the split control at its right hand end is pressed. Under it the card rail, 1086 by 84 at 64,290, takes one place card 150 by 64 at a pitch of 190, laid out with the ones card at the right, then the tens, then the hundreds, each card carrying its place name printed small along its foot; the whole multiplier stays lit in the bar above them as their total, so a card is read as a part before it is read as a number. Below the rail the chart runs 1086 by 240 at 64,386: a heading row 36 tall of seven ruled cells reading TL, L, TTh, Th, H, T and O, a carry strip 34 tall above the heading row where a carried digit stands small and vermilion over the column it is being added into, the multiplicand row 56 tall in deep blue, and under it the partial product rows 56 tall in rose, one below the next, each with the place of the multiplier that made it named in the margin at its left. A row is always built from its right hand end and the two kinds of zero are laid down at different moments and in different colours: the holding zeros walk into their columns first and grey, one into the ones column for a tens row and two into the ones and the tens columns for a hundreds row, and only then are the digits of the short fact written in beside them in rose, its own zeros included. The rule is 4 tall and closes under the last rose row only when the add the rows control is pressed, with the product row 56 tall in green beneath it. A place card holding a zero dims when it is touched and its row in the chart closes to a thin grey line with the word skipped printed along it, and the rows under that line do not move up, because a skipped row is not a missing place. The swap panel is 1086 by 88 at 64,638, showing the two numbers in their present arrangement with an arrow between them; pressing it lifts them past each other, closes every open row, and leaves one short fact standing in the chart with its zeros opening to the right of it one at a time. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a row or a product has to be written, with a thirteenth key that writes a holding zero and puts it down in grey rather than in rose, so the child says which kind of zero is being written before writing it. On the third phase a strip of three place words, ones, tens and hundreds, sits under the keys, because the place a row belongs to is named before that row is opened. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: the number being multiplied is deep blue, the number it is multiplied by is amber, the product under the rule is green, a digit carried into the next column is vermilion and is always drawn small above the column it joins, a partial product row made by one place of the multiplier is rose, and a zero holding a place open or a step that is skipped is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a column is told by the heading over it before it is told by its band, a carry is told by being small and sitting above the rule, and a row is told by the place named in the margin beside it.",
+    "finish": "The card shows the longest product the child worked, its rose rows still open with their places named and the rule closed under them.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the cards hold the tens and the ones and the whole multiplier stays lit above them",
+        "does": "splits the multiplier into its tens and its ones and lays the cards out",
+        "goal": "the multiplier is split by place into cards before anything is multiplied",
+        "says": "Split the multiplier by place first. Nothing gets multiplied until the cards are down.",
+        "check": "Away from the screen: write 4213 x 32 and say, before you multiply anything at all, how many rows the working will have and what each of them will be.",
+        "feels": "the multiplier looks like the easy number and the multiplicand like the awkward one, and it is the easy one that has to come apart",
+        "hands": "Write the multiplier on a paper slip, tear the slip between its digits, and write what each piece is worth on the back of it before either piece is allowed near the sum.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which of the two numbers is the multiplier? Second rung, the phase's: what is each card worth, read together with its place name? Third rung: the multiplier is cut to two digits with its place names printed under it, and the cards are laid down by the tool while the child reads them out. The pad stays open behind all three.",
+        "wrong": [
+          {
+            "why": "the chapter split the number on top the last time it split anything, on page forty-two, and the long number is the one that looks as though it needs breaking.",
+            "move": "splits the multiplicand instead of the multiplier, breaking 5632 into 5000, 600, 30 and 2 and leaving 23 standing whole.",
+            "screen": "the two splits are laid out side by side on the chart and both are worked to the end. Splitting the multiplicand opens four rows, 1,15,000 and 13,800 and 690 and 46, and every one of them still wanted a two digit multiplier, which is the job that was too big to begin with. Splitting the multiplier opens two, 16,896 and 1,12,640, and each of those is a single digit multiplication the child already owns. Both sets add to 1,29,536, both are left standing, and neither is marked."
+          },
+          {
+            "why": "a card is made by tearing the number between its digits, and the digit torn off looks like the number written on its face.",
+            "move": "reads the digits of the multiplier as they are printed, so 23 becomes a card holding 2 and a card holding 3, and the rows come to 11,264 and 16,896 for a total of 28,160.",
+            "screen": "the place names slide up under the two cards and the tens card is read aloud as two tens; its face rewrites itself from 2 to 20 while the ones card is left exactly as it is. The row that card had opened empties and is built again from its right hand end, the grey zero walking into the ones column first, and it comes to 1,12,640. The child's answer stays in the slot."
+          }
+        ],
+        "screen": "a two digit multiplier sitting whole with empty place cards below it",
+        "soWhat": "The multiplier is split by place before anything is multiplied, so the number of rows is settled before the first digit is worked.",
+        "concept": "A long multiplier is used one place at a time"
+      },
+      {
+        "n": 2,
+        "win": "every row fills in rose with a zero holding each of its right hand columns open and the rows add to the product",
+        "does": "works each place into its own row, then closes the rule and adds the rows",
+        "goal": "one partial product per place, and the partial products are added together",
+        "says": "One row for each card. Then add the rows together, and nothing is left over.",
+        "check": "The tens row of 658 x 151 is 32,900. Where did each of its two zeros come from, and which column does the row start in?",
+        "feels": "a row that ends in two zeros looks like a mistake, and then the two zeros turn out to have come from two different places",
+        "hands": "Work the same product twice on squared paper, the ones row in one colour and the tens row in another, and put a ring round the digit at the right hand end of each row before either row is added to anything.",
+        "tries": "First rung, from the item: which column does that row start in? Second rung, the phase's: which of the zeros at its end was put there to hold a column open, and which one came out of the short fact? Third rung: the row is built again from its right hand end with the holding zeros walking in grey before the short fact is worked above them. The pad stays open and nothing already written is taken away.",
+        "wrong": [
+          {
+            "why": "the short fact really was 5632 x 2 and its answer really is 11,264, and a zero that nobody said out loud is a zero that does not get written.",
+            "move": "leaves the holding zero off the tens row, writing 5632 x 2 as 11,264 under the ones row, and adds 16,896 and 11,264 to hand in 28,160.",
+            "screen": "the chart headings light one at a time from the ones and the tens row is put back where it belongs, its right hand digit standing in the tens column rather than in the ones. The grey zero then walks into the ones column underneath it, holding open the one place that row was never going to fill, and the row reads 1,12,640. Nothing is cleared and the answer stays in the slot."
+          },
+          {
+            "why": "the rule was learnt by counting the zeros at the end of a row, and this row has two of them, so one of them looks like a slip.",
+            "move": "rubs a zero off the tens row of 658 x 151, because the rule heard was that a tens row ends in one zero and this row ended in two, so 32,900 is handed in as 3290 and the three rows add to 69,748.",
+            "screen": "the tens row is drawn again from its right hand end with its two zeros put down a moment apart. The grey one walks into the ones column first, because that column is being held open and nothing is going into it. Then the short fact is worked above the row, 658 x 5 = 3290, and its own zero comes down in rose and lands beside the grey one. Two zeros stand side by side in two colours, and the headings are read across so the row is seen to begin in the tens column, which is the only thing the rule was ever about."
+          }
+        ],
+        "screen": "the workshop with one rose row open for each place card and a rule under them",
+        "soWhat": "Each row starts one column further left than the row above it, with a zero holding the ones column open for a tens row and zeros holding the ones and the tens open for a hundreds row. A row is read by the column it starts in and never by counting the zeros at its end.",
+        "concept": "Each place gives one row, and the rows are added"
+      },
+      {
+        "n": 3,
+        "win": "the zero card greys, its row closes unworked and the rows that remain add to the product",
+        "does": "greys the zero card, closes its row and works only the rows that are left",
+        "goal": "a place of the multiplier that holds a zero is skipped rather than worked",
+        "says": "One of these cards holds nothing. Would a row built from it change the total?",
+        "check": "1025 x 205 is worked in two rows rather than three. Which row is not there, and which column does the row after it begin in?",
+        "feels": "a step you are allowed to leave out feels like cheating, right up until you look at what that step would have added",
+        "hands": "Write the multiplier out with its place names underneath, cross through any place that holds a zero, and count the rows you are going to need before a single one of them is ruled.",
+        "tries": "First rung, from the item: which place of the multiplier holds a zero? Second rung, the phase's: what would that row have added if it had been written? Third rung: the place names are printed under the multiplier and the child names each place aloud before its card is touched, with the zero card refusing to open a row at all. The pad stays open.",
+        "wrong": [
+          {
+            "why": "every place has had a row of its own since the method began, and leaving one out feels like leaving something undone.",
+            "move": "works the zero place as a row anyway, writing 3134 x 0 as a line of zeros with a holding zero behind it, and adds it in with the rest.",
+            "screen": "the two workings stand side by side with a rule closed under each, and both add to 6,42,470. The row of zeros is then greyed and closed to a thin line with the word skipped printed along it, and the shorter working is the one left standing. The rows below the closed line do not move up. Neither working is marked."
+          },
+          {
+            "why": "the row that was skipped was taken to be the place that was skipped, so the next row moved into the empty line and took that line's column along with it.",
+            "move": "skips the zero place and then moves the hundreds row up into the tens column, so 3134 x 200 is written as 62,680 with one holding zero instead of 6,26,800 with two, and the total comes to 78,350 instead of 6,42,470.",
+            "screen": "the places of the multiplier are named along the chart headings and the two hundred is read out as two hundreds, which is still a hundreds place whether or not the tens above it was ever worked. The hundreds row is built again from its right hand end, two grey zeros walking into the ones and the tens columns before the short fact 3134 x 2 = 6268 is written in above them, and the row reads 6,26,800 beginning in the hundreds column. The skipped line stays closed where it was."
+          }
+        ],
+        "screen": "a three digit multiplier with a zero in its tens place and three empty rows waiting",
+        "soWhat": "A place of the multiplier holding a zero is a step that is skipped rather than worked, and the places above it keep their own columns, because a skipped row is not a missing place.",
+        "concept": "A zero place is a step you skip"
+      },
+      {
+        "n": 4,
+        "win": "the swap lands, one short fact is worked and the zeros follow it without a single row being opened",
+        "does": "rearranges the two numbers and uses the zeros instead of splitting by place",
+        "goal": "a round number is handled by its zeros rather than split into places, and swapping is allowed because it leaves the product alone",
+        "says": "That number is all zeros after its first digit. Would you really split it into places?",
+        "check": "You have 2000 and 365 to multiply. Which of them goes into the multiplier position, what is the short fact, and how many zeros follow it?",
+        "feels": "swapping the two numbers feels as though it has to change something, and the only thing it changes is how much writing there is",
+        "hands": "Write the two numbers on two slips, count the zeros at the end of each of them, and put the slip carrying the zeros underneath before anybody multiplies anything.",
+        "tries": "First rung, from the item: which of your two numbers is all zeros after its first digit? Second rung, the phase's: what short fact is left once those zeros have been set aside? Third rung: the swap is made by the tool and the zeros open one at a time to the right of the short fact while the chart headings are named. Nothing is marked and the pad stays open.",
+        "wrong": [
+          {
+            "why": "the rule from the first phase says split the multiplier by place, and a rule that has worked every single time looks as though it has no exceptions in it.",
+            "move": "splits the round number by place anyway, laying four cards for 7000 and opening four rows, three of which hold nothing.",
+            "screen": "the four cards go down and three of them grey the instant their place names are read, because those places hold nothing; the fourth card turns out to be 7000 itself, which is the whole number and not a part of it. The rows close back to one line, the short fact 140 x 7 = 980 is worked in it, and the three zeros of 7000 open to its right one at a time, leaving 9,80,000. Nothing is cleared."
+          },
+          {
+            "why": "the longest number has gone on top every time so far, and the word swap sounds like moving the awkward number out of the working rather than into it.",
+            "move": "reads the swap as getting the round number out of the multiplier position, so 7000 goes on top and 140 is split into a hundreds card and a tens card.",
+            "screen": "the two arrangements are worked side by side to the end. With 7000 on top, the multiplier 140 still comes apart by place and two long rows, 2,80,000 and 7,00,000, have to be written and then added. With 140 on top, the multiplier 7000 is never split at all: one short fact, 140 x 7 = 980, with the three zeros of 7000 opening after it, finishes the job in a single row. Both land on 9,80,000, and the zeros are only able to do that work from where the multiplier stands."
+          }
+        ],
+        "screen": "a round number standing where the multiplier goes, with the swap control lit beside it",
+        "soWhat": "A round number is handled by its own zeros and is never split by place, and swapping is what puts it into the multiplier position where those zeros can be used.",
+        "concept": "A round multiplier is better swapped than split"
+      }
+    ],
+    "delight": "The second phase, the moment the tens row of 658 x 151 is built. The grey zero walks into the ones column and stands there alone for a beat with the rest of the row still empty, because that column is only being held open. Then the short fact is worked above it, 658 x 5 = 3290, and its digits come down into the row from the right, so its own zero lands in rose immediately to the left of the grey one. Two zeros end up side by side in two colours, arriving from two different places a moment apart, and the row reads 32,900. Nothing else moves and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a two digit multiplier stands whole and amber in its bar with the card rail empty beneath it and the chart ruled under its headings, the multiplicand already written in deep blue along its columns. On the second the cards are down and one rose row is open under each of them, every row empty and every one of them still flush with the ones column, so the shifting has not happened yet and can be watched when it does. On the third a three digit multiplier stands with a zero in the middle of it and three rows wait open below, one of which is never going to be worked. On the fourth a number that is all zeros after its first digit is standing in the multiplier position with the swap panel lit beneath the chart. The running count at the top left is empty and the slot and the pad stand empty down the right. One thing moves, once: the split control at the right of the multiplier bar on the first three phases, or the arrow in the swap panel on the last, gives one slow pulse while the voice says the multiplier is standing whole. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any multiplicand up to four digits with any multiplier up to three, the place cards, the holding zeros and the swap open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on splitting the multiplier by place, adding the rows, skipping a zero place and rearranging a round number.",
+    "voiceLines": [
+      "The multiplier is standing whole. Nothing moves until it comes apart.",
+      "Split the multiplier by place first. Nothing gets multiplied until the cards are down.",
+      "One row for each card. Then add the rows together, and nothing is left over.",
+      "One of these cards holds nothing. Would a row built from it change the total?",
+      "That number is all zeros after its first digit. Would you really split it into places?",
+      "A new multiplier. Count its places before you count anything else.",
+      "Free play. Any multiplicand, any multiplier, the cards, the holding zeros and the swap all open.",
+      "Lay the cards down again and read which column each row begins in.",
+      "You split every multiplier by place, closed the row a zero never needed, and let a round number work through its own zeros."
+    ],
+    "observations": [
+      {
+        "why": "Each place of the multiplier does its own job, and the places can be counted while the multiplier is still standing whole.",
+        "soWhat": "I can say how long a working is going to be by looking at the multiplier, before I begin it.",
+        "observe": "The multiplier came apart into cards and the number of rows was settled before a single digit had been multiplied."
+      },
+      {
+        "why": "The right hand zero was walked in to hold the ones column open. The left hand one came out of the short fact 658 x 5 = 3290 and has nothing to do with the place.",
+        "soWhat": "I read a row by the column it starts in, never by counting the zeros at its end, because a short fact can finish on a zero of its own.",
+        "observe": "The tens row of 658 x 151 came out as 32,900, which ends in two zeros, and the row above it ended in none."
+      },
+      {
+        "why": "Taking the number no tens of times adds nothing at all, so there is nothing for that row to bring.",
+        "soWhat": "A zero in the multiplier is a step I skip rather than work, and the row after it still starts in its own column.",
+        "observe": "The card holding a zero greyed, its row closed without being worked, and the total did not move."
+      },
+      {
+        "why": "Swapping never changes a product, and a round number's zeros can only do the work from where the multiplier stands.",
+        "soWhat": "A round number is handled by its own zeros and never split by place, and the swap is what puts it where those zeros are any use.",
+        "observe": "7000 went into the multiplier position and one short fact with its zeros finished the whole thing in a single row."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a two digit multiplier sitting whole with empty place cards below it",
+        "win": "the cards hold the tens and the ones and the whole multiplier stays lit above them",
+        "traceback": "The multiplier splits into its place cards again; the heading over each digit lights and each card is read as its place value, so 3 tens becomes × 30; it ends on every card showing its whole value under the lit multiplier.",
+        "ladder": [
+          "Which column is the 3 of 32 standing in?",
+          "Read the 4 of 46 together with the name of its column.",
+          "Each digit of 235 gives one card. How many digits are there?",
+          "What is each card worth, read together with its place name?",
+          "Look at the heading over that digit. A digit in the tens column counts tens, not ones."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the workshop with one rose row open for each place card and a rule under them",
+        "win": "every row fills in rose with a zero holding each of its right hand columns open and the rows add to the product",
+        "traceback": "The headings light from the ones; the tens row is built again from its right hand end, its grey holding zero walking into the ones column before the short fact comes down; the rule closes and the rows are added column by column, carries small above, ending on the whole product.",
+        "ladder": [
+          "The tens row holds 3,124 × 20. Which column must its zero keep open?",
+          "The 1 in 14 is one ten. Did its row start in the tens column?",
+          "Look at the tens row of 4,318 × 26. Is a grey zero holding its ones column?",
+          "Which zero in that row is only holding a column open?",
+          "Build the tens row again from its right hand end. Its holding zero goes in first."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a three digit multiplier with a zero in its tens place and three empty rows waiting",
+        "win": "the zero card greys, its row closes unworked and the rows that remain add to the product",
+        "traceback": "The ones row is built, the zero card greys and its row closes to a thin line marked skipped, and the hundreds row is built again with its grey holding zeros so it begins in the hundreds column; the rows are added, ending on the whole product.",
+        "ladder": [
+          "The 3 in 304 is 3 hundreds. Which column does its row begin in?",
+          "Skipping the tens row never moves the hundreds row. Where does that row begin?",
+          "Which card of 506 holds nothing at all?",
+          "What would that row have added if it had been written?",
+          "Name each place before you touch its card. The hundreds row still starts in the hundreds column."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a round number standing where the multiplier goes, with the swap control lit beside it",
+        "win": "the swap lands, one short fact is worked and the zeros follow it without a single row being opened",
+        "traceback": "The two numbers swap so the round one is the multiplier; its zeros walk down into the ones, tens and hundreds columns one at a time while the headings light; then the short fact is worked and its digits come down beside them, ending on the whole product in one row.",
+        "ladder": [
+          "Count the zeros of 3,000. Did every one of them reach the row?",
+          "The short fact ends in zeros of its own. Did all the zeros of 4,000 come down too?",
+          "Once 2,000 is the multiplier, how many zeros follow the short fact?",
+          "What short fact is left once those zeros have been set aside?",
+          "Swap them so the round number is the multiplier. Its zeros go straight down into the row."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "columns": [
+      "O",
+      "T",
+      "H",
+      "Th",
+      "TTh",
+      "L",
+      "TL"
+    ],
+    "columnWidth": 96,
+    "places": [
+      "ones",
+      "tens",
+      "hundreds",
+      "thousands",
+      "ten thousands",
+      "lakhs",
+      "ten lakhs"
+    ],
+    "colours": {
+      "multiplicand": "#0072B2",
+      "multiplier": "#E69F00",
+      "partialRow": "#CC79A7",
+      "product": "#009E73",
+      "carry": "#D55E00",
+      "holdingZero": "#767676"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T5.C16:ML1",
+        "kind": "split",
+        "a": 4213,
+        "b": 32,
+        "answer": 30,
+        "winMs": 2800
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T5.C16:1",
+        "kind": "split",
+        "a": 5142,
+        "b": 46,
+        "answer": 40,
+        "winMs": 2800
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T5.C16:2",
+        "kind": "rows",
+        "a": null,
+        "b": 235,
+        "answer": 3,
+        "winMs": 2600
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T5.C17:ML2",
+        "kind": "product",
+        "a": 3124,
+        "b": 23,
+        "answer": 71852,
+        "winMs": 5600
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T5.C17:3",
+        "kind": "product",
+        "a": 2132,
+        "b": 14,
+        "answer": 29848,
+        "winMs": 5600
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T5.C17:4",
+        "kind": "product",
+        "a": 4318,
+        "b": 26,
+        "answer": 112268,
+        "winMs": 5600
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T5.C18:ML3",
+        "kind": "product",
+        "a": 2143,
+        "b": 304,
+        "answer": 651472,
+        "winMs": 6400
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T5.C18:5",
+        "kind": "product",
+        "a": 1256,
+        "b": 203,
+        "answer": 254968,
+        "winMs": 6400
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T5.C18:6",
+        "kind": "rows",
+        "a": 3241,
+        "b": 506,
+        "answer": 2,
+        "winMs": 2200
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T5.C19:ML4",
+        "kind": "swap",
+        "a": 3000,
+        "b": 214,
+        "answer": 642000,
+        "winMs": 4600
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T5.C19:7",
+        "kind": "swap",
+        "a": 4000,
+        "b": 125,
+        "answer": 500000,
+        "winMs": 4600
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T5.C19:8",
+        "kind": "swap",
+        "a": 2000,
+        "b": 365,
+        "answer": 730000,
+        "winMs": 4600
+      }
+    ],
+    "freePlay": [
+      [
+        5632,
+        23
+      ],
+      [
+        658,
+        151
+      ],
+      [
+        3134,
+        205
+      ],
+      [
+        7000,
+        140
+      ],
+      [
+        4213,
+        32
+      ]
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The multiplier splits into its place cards again; the heading over each digit lights and each card is read as its place value, so 3 tens becomes × 30; it ends on every card showing its whole value under the lit multiplier.",
+      "Phase 2: The headings light from the ones; the tens row is built again from its right hand end, its grey holding zero walking into the ones column before the short fact comes down; the rule closes and the rows are added column by column, carries small above, ending on the whole product.",
+      "Phase 3: The ones row is built, the zero card greys and its row closes to a thin line marked skipped, and the hundreds row is built again with its grey holding zeros so it begins in the hundreds column; the rows are added, ending on the whole product.",
+      "Phase 4: The two numbers swap so the round one is the multiplier; its zeros walk down into the ones, tens and hundreds columns one at a time while the headings light; then the short fact is worked and its digits come down beside them, ending on the whole product in one row."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "The multiplier is standing whole. Nothing moves until it comes apart.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "You split every multiplier by place and closed the rows a zero never needed. Then round numbers worked through their own zeros.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T5.C16:ML1",
+            "worked": false,
+            "kind": "split",
+            "planQuestion": "The multiplier in 4213 x 32 has two digits. How is it split, and what does each part do?",
+            "question": {
+              "en": "The multiplier in 4,213 × 32 has two digits. Tap it to split it by place. What is the tens card worth?"
+            },
+            "ask": {
+              "en": "The tens card is worth?"
+            },
+            "answer": 30,
+            "planAnswer": "32 splits into 30 and 2, and each part multiplies 4213 in its own row",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T5.C16:1",
+            "worked": false,
+            "kind": "split",
+            "planQuestion": "How is the multiplier in 5142 x 46 split by place, and what does each part multiply?",
+            "question": {
+              "en": "How is the multiplier in 5,142 × 46 split by place? Split it, then say what the tens card is worth."
+            },
+            "ask": {
+              "en": "The tens card is worth?"
+            },
+            "answer": 40,
+            "planAnswer": "Into 40 and 6, and each part multiplies 5142 in its own row",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T5.C16:2",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "How many partial products does a multiplier of 235 give, and which places do they come from?",
+            "question": {
+              "en": "How many partial products does a multiplier of 235 give? Type it, then tap the multiplier to see."
+            },
+            "ask": {
+              "en": "How many rows?"
+            },
+            "answer": 3,
+            "planAnswer": "Three, one from the ones, one from the tens and one from the hundreds",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T5.C17:ML2",
+            "worked": false,
+            "kind": "product",
+            "planQuestion": "Multiply 3124 by 23 by adding the partial products.",
+            "question": {
+              "en": "Multiply 3,124 by 23. Build each card's row, then add the rows."
+            },
+            "ask": {
+              "en": "What do the rows add to?"
+            },
+            "answer": 71852,
+            "planAnswer": "71,852",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T5.C17:3",
+            "worked": false,
+            "kind": "product",
+            "planQuestion": "Multiply 2132 by 14.",
+            "question": {
+              "en": "Multiply 2,132 by 14."
+            },
+            "ask": {
+              "en": "What do the rows add to?"
+            },
+            "answer": 29848,
+            "planAnswer": "29,848",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T5.C17:4",
+            "worked": false,
+            "kind": "product",
+            "planQuestion": "Multiply 4318 by 26, and say what each partial product is.",
+            "question": {
+              "en": "Multiply 4,318 by 26. Read each partial product as its row fills."
+            },
+            "ask": {
+              "en": "What do the rows add to?"
+            },
+            "answer": 112268,
+            "planAnswer": "1,12,268, from 25,908 for the ones place and 86,360 for the tens place",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T5.C18:ML3",
+            "worked": false,
+            "kind": "product",
+            "planQuestion": "Multiply 2143 by 304.",
+            "question": {
+              "en": "Multiply 2,143 by 304. Work the cards in order, and let the zero card close its row."
+            },
+            "ask": {
+              "en": "What do the rows add to?"
+            },
+            "answer": 651472,
+            "planAnswer": "6,51,472, and the tens place needs no step at all",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T5.C18:5",
+            "worked": false,
+            "kind": "product",
+            "planQuestion": "Multiply 1256 by 203.",
+            "question": {
+              "en": "Multiply 1,256 by 203."
+            },
+            "ask": {
+              "en": "What do the rows add to?"
+            },
+            "answer": 254968,
+            "planAnswer": "2,54,968, and the tens place is skipped",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T5.C18:6",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "A child working 3241 x 506 opened three rows. How many were needed, and why?",
+            "question": {
+              "en": "A child working 3,241 × 506 opened three rows. How many rows were needed? Type it, then tap the zero card."
+            },
+            "ask": {
+              "en": "How many rows were needed?"
+            },
+            "answer": 2,
+            "planAnswer": "Two, because the tens place of the multiplier holds a zero and that step is skipped rather than worked",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T5.C19:ML4",
+            "worked": false,
+            "kind": "swap",
+            "planQuestion": "Find 3000 x 214 in the shortest way you can.",
+            "question": {
+              "en": "Find 3,000 × 214 in the shortest way you can."
+            },
+            "ask": {
+              "en": "What is the product?"
+            },
+            "answer": 642000,
+            "planAnswer": "6,42,000, by handling 3000 through its zeros instead of splitting it",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T5.C19:7",
+            "worked": false,
+            "kind": "swap",
+            "planQuestion": "Find 4000 x 125 in the shortest way, and say why you are allowed to rearrange it.",
+            "question": {
+              "en": "Find 4,000 × 125 in the shortest way. Think about why you may swap them."
+            },
+            "ask": {
+              "en": "What is the product?"
+            },
+            "answer": 500000,
+            "planAnswer": "5,00,000, because swapping never changes a product, so 125 x 4 = 500 is worked and the three zeros of 4000 follow",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T5.C19:8",
+            "worked": false,
+            "kind": "swap",
+            "planQuestion": "A mill packs 2000 bags of flour a day. How many bags in 365 days, and which of the two numbers would you let the zeros work for?",
+            "question": {
+              "en": "A mill packs 2,000 bags of flour a day. How many bags in 365 days? Let the zeros do the work."
+            },
+            "ask": {
+              "en": "How many bags?"
+            },
+            "answer": 730000,
+            "planAnswer": "7,30,000 bags, letting the three zeros of 2000 do the work instead of splitting it into places",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "partial_product_workshop",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "partial_product_workshop",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "A long multiplier is used one place at a time",
+        "conceptId": "M2.S3.T5.C16",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C16:ML1",
+          "M2.S3.T5.C16:1",
+          "M2.S3.T5.C16:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Each place gives one row, and the rows are added",
+        "conceptId": "M2.S3.T5.C17",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C17:ML2",
+          "M2.S3.T5.C17:3",
+          "M2.S3.T5.C17:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "A zero place is a step you skip",
+        "conceptId": "M2.S3.T5.C18",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C18:ML3",
+          "M2.S3.T5.C18:5",
+          "M2.S3.T5.C18:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A round multiplier is better swapped than split",
+        "conceptId": "M2.S3.T5.C19",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C19:ML4",
+          "M2.S3.T5.C19:7",
+          "M2.S3.T5.C19:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "multiplicand",
+    "multiplier",
+    "placeCards",
+    "c",
+    "place",
+    "digit",
+    "read",
+    "state"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, phase, multiplicand, multiplier, placeCards, c, place, digit, read, state",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "partial_product_workshop"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T5.C16.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "The multiplier is standing whole. Nothing moves until it comes apart."
+    },
+    {
+      "en": "Split the multiplier by place first. Nothing gets multiplied until the cards are down."
+    },
+    {
+      "en": "One row for each card. Then add the rows together, and nothing is left over."
+    },
+    {
+      "en": "One of these cards holds nothing. Would a row built from it change the total?"
+    },
+    {
+      "en": "That number is all zeros after its first digit. Would you really split it into places?"
+    },
+    {
+      "en": "A new multiplier. Count its places before you count anything else."
+    },
+    {
+      "en": "Free play. Any multiplicand, any multiplier, the cards, the holding zeros and the swap all open."
+    },
+    {
+      "en": "Lay the cards down again and read which column each row begins in."
+    },
+    {
+      "en": "You split every multiplier by place, closed the row a zero never needed, and let a round number work through its own zeros."
+    }
+  ],
+  "build": {
+    "source": "9f24da7b:1832690",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-24T08:28:44.355Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-24T07:37:18.838Z"
+    },
+    "tsxBytes": 1836528,
+    "tsxMd5": "7a201ba652531bdb52ff02c327106283"
+  }
+}

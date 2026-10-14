@@ -1,0 +1,1190 @@
+{
+  "slotId": "M1.S2.T3.C8.2D1",
+  "mediaId": "M1.S2.T3.C8.2D1",
+  "toolId": "tally_board",
+  "title": "Tally Board",
+  "component": "M1.S2.T3.C8.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch14",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch14_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_14/2dtool/M1.S2.T3.C8.2D1/M1.S2.T3.C8.2D1.tsx",
+  "description": "Draw one tally mark for each answer as it comes, draw every fifth mark across the four before it, read a tally in fives, and compare the rows of a tally chart.",
+  "conceptIds": [
+    "M1.S2.T3.C8",
+    "M1.S2.T3.C9",
+    "M1.S2.T3.C10",
+    "M1.S2.T3.C11"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Record each answer with one tally mark as it comes, draw every fifth mark across the four before it, read a tally in fives, and compare the rows of a tally chart.",
+    "look": "A tally chart drawn as a board, with a belt of answer cards along its top, a pen for each row, and a compare bar at its foot.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only. 'Tally Board' sits in ink at the far left, with a small dot set clear of the name by measuring it. The phase title sits beside the dot on the same line, then the host's navigation, and again, sound and restart stand as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the marks drawn, or the rows read, against what this phase holds, two numbers in ink. The first climbs by one as each mark is drawn or each row's number drops into its column. The second is fixed at the cards on the belt or the rows on the chart. Nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The belt runs along the top of the working area, 1072 by 76 at 64,212. Answer cards, each 110 by 60 with the answer's name on it, arrive from the right one at a time and wait at the belt's left end. The tally chart fills the middle, up to six rows, each 50 tall with 4 between, from 300 to 620. It has three columns: the name, 200 wide at 64; the tally marks, 640 wide at 264; and the number, 120 wide at 904. Tapping a row draws one short upright mark in it, deep blue, 6 wide and 40 tall, 14 from the mark before. The waiting card turns face down and moves one place along the belt, so a marked card shows face down. Every fifth tap in a row draws its mark in vermilion across the four standing, from the foot of the first to the top of the fourth. The bundle closes with a soft ring, and the next mark starts a new bundle 22 further along. A row holds up to eight bundles and four single marks. The counting finger rides above whichever row is tapped. It lights each bundle in turn, writing five, ten, fifteen over the bundle it has just passed, then lights each single mark in ones. The row's number then drops into the number column in amber. The total cell stands beside the foot of the number column, 110 by 50 at 1034,570, and adds the number column in reddish purple. It is labelled answers, or children when each child gave one answer. The compare bar lies along the foot, 840 by 100 at 64,630, in two lanes 46 tall. Two rows dragged into it are laid one under the other, bundle under bundle and mark under mark from the same left edge. The marks one row has beyond the other are banded sky blue and counted. Down the right of the canvas the question sits above the answer slot at 1186,250 (356 by 92), which holds what the child has given. That rectangle is the same on every phase and is never animated in or out. Under it is the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a count is asked for. A word pad carries the chart's own row names and the words bundle, more, fewer and in all. The footer runs 758 to 900. The voice caption sits at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling. The phase bar sits at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, taken from its pictures. Every upright tally mark is deep blue, and every fifth mark, drawn across the four before it, is vermilion. Every pictograph symbol, whole or half, in the key and in the rows, is green, except where the rows are named by colour. There each row's symbols wear that row's own colour: red, green, blue, yellow or purple. The key's symbol there is plain grey, which stands for one symbol of any colour and is used for nothing else. Amber is what a row, a column or a tally stands for once it is read, and so are the numbers in a table and the numbers a side ruler writes. Amber too is what half a symbol stands for, what a key leaves over, and a small round counter for one thing counted. A total of every row is reddish purple, and so is a thing a total counts more than once, such as a stop two routes share. The row a question asks about is marked by a pale sky blue band laid behind its symbols, never over them. So is the stretch by which one row or tally reaches beyond another. Chrome never borrows one of those, and none of them is ever used for chrome. Every table rule, row line, belt, route line, bracket, outlined blank and card edge is near-black, and titles, row names, headings and the wording of every key are near-black type. Every reading survives with the colour taken away. A fifth mark lies across and not upright, and a half symbol is the left half of the whole. A row's number sits beyond its end, a total sits in its own bar or cell, and a band lies behind a row rather than on it. No amount is ever drawn as a length of colour: an amount on this stage is symbols, marks, counters or a written number. A blank waiting for the child is an empty outlined box, never a faded copy of its answer. A mark is never drawn anywhere but in a row, and never without its card turning. The pen never draws a fifth mark upright. Where the child draws a mark by hand, it stays exactly as drawn, and the pen's own bundle is drawn beside it rather than over it.",
+    "finish": "The card shows the tally chart the child made from the belt, every fifth mark drawn across, with its number column, its total and the two rows they compared.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the belt empties, every card is turned, and the marks in the rows match the cards",
+        "does": "taps the row for each card as it arrives and watches its mark drawn and the card turn over",
+        "goal": "one mark is drawn for each answer as it comes, so each answer gets one mark and none is left to count later",
+        "says": "Where does this answer go? One mark for each answer.",
+        "check": "Away from the screen: tally the colours of ten pencils, one mark as each comes out of the tin.",
+        "feels": "one card, one tap, one mark, and a marked card lies face down on the belt",
+        "hands": "Before the tool is opened, send groups to the school gate or a window with clipboards for ten minutes. They draw one mark for each car, bike, bus and person walking as it passes. Back in class, read out a list of answers one at a time, and have the class mark each as it comes. Ask why marking as it comes is safer than going back through the list once for each name.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which row does this answer belong to? Second rung, the phase's: has every card been turned over? Third rung: the belt is cut to four cards and two rows, and the child marks each as it comes. The number keys stay open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "counting one pet at a time feels tidy, and every pass through the list is a fresh chance to skip one.",
+            "move": "goes back through the list once for each pet, misses a cat on the way, and gives the cat row one mark.",
+            "screen": "the belt runs the six cards again one at a time, and each card turns face down as its mark is redrawn in its row. The cat row comes to two marks beside the child's one, and the cat card that was passed over lifts a little as it turns."
+          },
+          {
+            "why": "copying from a list means keeping a place with the eye, and a place is easy to lose.",
+            "move": "copies a list of nine answers into the chart and loses one, so the bus row has three marks where the list has four.",
+            "screen": "the list is laid on the belt as nine cards, and each turns face down as its mark is drawn. The bus row comes to four marks, and the running count comes to nine, one for each card. The child's row of three stays beside it."
+          }
+        ],
+        "screen": "an empty tally chart with a row for each answer and a belt of answer cards along the top",
+        "soWhat": "One mark is drawn for each answer as it comes, so each answer gets one mark and none is left to count later.",
+        "concept": "One mark for each"
+      },
+      {
+        "n": 2,
+        "win": "the mark falls across the four, the bundle closes with a ring, and the next mark starts a new bundle",
+        "does": "draws the fifth mark across the four, then carries on marking into a new bundle",
+        "goal": "every fifth mark is drawn across the four before it, making a bundle of five",
+        "says": "Four marks are standing. Where does the fifth one go?",
+        "check": "Draw tally marks for twelve. How many marks lie across?",
+        "feels": "four marks standing and the fifth lying across them, closed off and easy to see as five",
+        "hands": "Draw four upright marks on the board and ask where the fifth goes. The page's first sentence on tally marks calls them upright strokes, and its next sentence lays every fifth one across the four, as its worked chart does. Teach the two sentences together, and call each one a mark: four short uprights, and the fifth drawn across them from corner to corner. Then show seventeen together, bundle by bundle, leaving a small gap before each new bundle.",
+        "tries": "First rung, from the item: how many marks are standing in this bundle? Second rung, the phase's: where does the fifth mark go? Third rung: the row is cut to four standing marks, and the child draws the fifth. The number keys stay open.",
+        "wrong": [
+          {
+            "why": "every mark so far has stood upright, and a fifth looks like just one more of the same.",
+            "move": "draws the fifth mark upright beside the four, so the row is a line of single marks with no bundles.",
+            "screen": "the child's upright fifth mark stays where it was drawn. Beside the row the pen draws the same five again, four standing and the fifth laid across them in vermilion, and the bundle closes with its ring. The two stand side by side."
+          },
+          {
+            "why": "the crossing mark looks like a line drawn to close a group, not like a mark that is counted.",
+            "move": "draws five upright marks and then crosses them with a sixth, so each bundle holds six.",
+            "screen": "the counting finger reads the child's first bundle mark by mark and reaches six, writing it over the bundle. The pen then draws a bundle of five beside it, four standing and one across, and the finger reads that one as five."
+          },
+          {
+            "why": "the next mark goes beside the last one, and a gap looks like wasted room.",
+            "move": "starts the next mark inside the closed bundle, with no gap, so two bundles run together.",
+            "screen": "the pen redraws the row with a small gap before each new bundle, and the child's row stands above it with its marks run together. The finger then reads the pen's row in fives."
+          }
+        ],
+        "screen": "a row with four marks standing and a fifth answer card arriving on the belt",
+        "soWhat": "Every fifth mark is drawn across the four before it, making a bundle of five.",
+        "concept": "The fifth mark crosses the four"
+      },
+      {
+        "n": 3,
+        "win": "each bundle lights as it is counted and the row's number drops into the number column",
+        "does": "runs the counting finger along each row, counting the bundles in fives and then the single marks",
+        "goal": "a tally is read by counting its bundles in fives and then the marks left over",
+        "says": "Count the bundles in fives. Then count on the marks left over.",
+        "check": "A tally shows three bundles and four more marks. How many is that?",
+        "feels": "the bundles go by in fives, and the last few marks are counted on in ones",
+        "hands": "Hand out strips with tallies drawn on them, and have pairs read each one aloud: five, ten, fifteen for the bundles, then sixteen, seventeen for the marks left over. Ask what each bundle is worth before anyone counts. Then give a long row and ask why counting one mark at a time is slower, and easier to lose.",
+        "tries": "First rung, from the item: how many bundles are there? Second rung, the phase's: what is each bundle worth? Third rung: the row is cut to one bundle and two marks, and the child counts them. The number keys stay open.",
+        "wrong": [
+          {
+            "why": "the four uprights are what stand out, and the mark lying across looks like a line through them.",
+            "move": "counts each bundle as four, reading only the upright marks, so four bundles and three read as nineteen.",
+            "screen": "the counting finger lights each bundle whole, the fifth mark with it, and writes five, ten, fifteen, twenty over the bundles. It then counts on the single marks to twenty-three. The child's nineteen stays in the slot."
+          },
+          {
+            "why": "counting in fives has a rhythm, and the rhythm carries on past the last bundle.",
+            "move": "carries on counting in fives over the single marks, so two bundles and three read as twenty-five.",
+            "screen": "the finger lights the two bundles with five and ten, then stops. It lights each single mark in ones, eleven, twelve, thirteen, and the row's number drops in as thirteen beside the child's twenty-five."
+          },
+          {
+            "why": "counting in ones feels safe, and a long row of marks has nothing in it to hold the place.",
+            "move": "counts a long row one mark at a time, loses the place, and counts one bundle twice, so three bundles and one read as twenty-one.",
+            "screen": "the finger lights each bundle once, leaving a small tick over it as it passes, and says five, ten, fifteen, then sixteen for the single mark. No bundle is lit twice. The child's twenty-one stays beside the sixteen."
+          }
+        ],
+        "screen": "a finished tally chart with its number column empty and the counting finger waiting",
+        "soWhat": "A tally is read by counting the bundles in fives and then the marks left over in ones.",
+        "concept": "Reading a tally in fives"
+      },
+      {
+        "n": 4,
+        "win": "the marks beyond the shorter row light, their count lands in the answer slot, and the total fills",
+        "does": "lines two rows up on the compare bar, counts the marks one row has beyond the other, then totals the chart",
+        "goal": "how many more is the smaller count taken from the larger, and the total adds every row",
+        "says": "How many more chose this one? Line the rows up and look at what is left.",
+        "check": "Nine chose kites and six chose tops. How many more chose kites?",
+        "feels": "two rows lined up from the same edge, and the difference sitting in plain view at the end of the longer one",
+        "hands": "Put two rows of a class tally side by side and ask how many more chose one than the other. Line them up from the same edge and count what the longer row has left. One exercise question is worded as how many children like one flavour more than another. A list of favourites cannot say which children prefer what, so ask how many more children chose it, and take the smaller count from the larger. Add a chart up for the number of children only when each child gave one answer, and say so whenever the class does it.",
+        "tries": "First rung, from the item: which row is longer? Second rung, the phase's: what is left when the shorter row runs out? Third rung: the compare bar is cut to one bundle against one bundle and two marks, and the child counts what is left. The number keys stay open.",
+        "wrong": [
+          {
+            "why": "the question names cricket first, and cricket's number is the one the eye finds.",
+            "move": "answers how many more children chose cricket than kabaddi with sixteen, the number who chose cricket.",
+            "screen": "the two rows are laid in the compare bar, bundle under bundle. The kabaddi lane runs out at nine, and the seven marks the cricket lane has beyond it are banded sky blue and counted. The child's sixteen stays in the slot."
+          },
+          {
+            "why": "the question names two rows, and joining two numbers has always meant adding them.",
+            "move": "adds the two rows for how many more, giving twenty-five for sixteen and nine.",
+            "screen": "the compare bar lines the two rows up, and only the marks beyond the shorter one are banded. Seven is written on the band, and the child's twenty-five stays beside it."
+          },
+          {
+            "why": "every chart added so far came to the number of children, because each child gave one answer.",
+            "move": "adds a chart in which each child named two games, and calls the forty answers forty children.",
+            "screen": "the total cell adds the number column and is labelled answers. The belt's cards are then grouped by the child who gave them, two to each child, and the children come to twenty."
+          }
+        ],
+        "screen": "a tally chart with its numbers written, a question card, and the compare bar at the foot",
+        "soWhat": "How many more is the smaller count taken from the larger. The rows add up to the children when each gave one answer.",
+        "concept": "A tally chart and how many more"
+      }
+    ],
+    "delight": "The second phase, whenever a bundle closes. For a moment the five marks of that bundle lift and fan out into the five answer cards that made them, face up, each with its name. Then they fold back down into the bundle. On a finished row a tap on any bundle does the same. It runs as often as a finger likes, nothing is marked either way, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the tally chart stands empty, a row for each answer with its name written, and the belt holds its answer cards face up at the right. On the second one row stands with four upright marks in it, and a fifth card waits at the head of the belt. On the third a finished chart stands with its number column empty and the counting finger resting at the left of the first row. On the fourth a chart stands with its numbers written, a question card sits in the slot, and the compare bar waits at the foot with both lanes empty. The running count at the top left holds the marks drawn or the rows read against what this phase holds, and the answer slot and the pad stand empty down the right. One thing moves, once: the card at the head of the belt, or the fifth card, or the counting finger, or the compare bar, gives one slow pulse while the voice asks where the answer goes. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any list of answers on the belt and up to six rows, with the counting finger, the compare bar and the total all open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on one mark for each answer, the fifth mark drawn across the four, reading a tally in fives, and comparing the rows of a tally chart for how many more and how many in all.",
+    "voiceLines": [
+      "Answer cards are coming along the belt. One mark for each, as it comes.",
+      "Where does this answer go? One mark for each answer.",
+      "Four marks are standing. Where does the fifth one go?",
+      "Count the bundles in fives. Then count on the marks left over.",
+      "How many more chose this one? Line the rows up and look at what is left.",
+      "Another chart. Every fifth mark goes across the four before it.",
+      "Free play. Any answers on the belt, with the finger and the compare bar open.",
+      "Count the bundles in fives again, then count on the marks left over.",
+      "Every answer marked once, every bundle closed, and every row read in fives."
+    ],
+    "observations": [
+      {
+        "why": "One tap draws one mark and turns one card, so no answer is marked twice or passed over.",
+        "soWhat": "A tally records each answer the moment it comes, so each answer gets one mark and none is left to count later.",
+        "observe": "Every card on the belt turned over as its mark was drawn, and the marks in the rows came to the cards on the belt."
+      },
+      {
+        "why": "Crossing the four closes a group of five that the eye takes in at once.",
+        "soWhat": "Every fifth mark is drawn across the four before it, so a tally falls into fives.",
+        "observe": "The fifth mark in every bundle lay across the other four, and the next mark started a new bundle."
+      },
+      {
+        "why": "Each bundle holds five, and the marks after the last bundle are fewer than five.",
+        "soWhat": "A tally is read in fives for the bundles, then in ones for the marks left over.",
+        "observe": "The finger said five, ten, fifteen over the bundles, then counted the single marks in ones."
+      },
+      {
+        "why": "The two rows were lined up from the same edge, bundle under bundle.",
+        "soWhat": "How many more is the smaller count taken from the larger.",
+        "observe": "In the compare bar the shorter row ran out, and the marks the longer row had left were banded and counted."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "an empty tally chart with a row for each answer and a belt of answer cards along the top",
+        "win": "the belt empties, every card is turned, and the marks in the rows match the cards",
+        "traceback": "The belt runs its cards again one at a time; each card's mark is redrawn in its row beside the child's marks (on a chart already marked, each card's own mark lights and is counted), and each row's number is written.",
+        "ladder": [
+          "Did every cat card go into the cat row?",
+          "Check the milk row. Is a milk card marked somewhere else?",
+          "Count all the marks in every row together, each one once.",
+          "Each card makes one mark in its own row.",
+          "Look at each card in turn. Is its mark in the row with its name?"
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a row with four marks standing and a fifth answer card arriving on the belt",
+        "win": "the mark falls across the four, the bundle closes with a ring, and the next mark starts a new bundle",
+        "traceback": "The child's row stays as drawn; below it the pen draws the same number again, four standing and the fifth across, and reads it in fives.",
+        "ladder": [
+          "How many marks are standing in each bundle?",
+          "Draw 14 on the row first, then count what you made.",
+          "Look at your row and count only the marks lying across.",
+          "The fifth mark lies across the marks standing before it.",
+          "Leave a gap after each bundle, then start the next one."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a finished tally chart with its number column empty and the counting finger waiting",
+        "win": "each bundle lights as it is counted and the row's number drops into the number column",
+        "traceback": "The finger lights each bundle whole and writes its running count in fives below it, counts on the single marks in ones, and the row's number drops in.",
+        "ladder": [
+          "Did you count the mark lying across in each bundle?",
+          "Did any bundle get counted twice? Step the finger once over each.",
+          "After the bundles, the single marks go on in ones.",
+          "What is each bundle worth?",
+          "Step the finger along. Say five, ten, fifteen at the bundles, then go on in ones."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a tally chart with its numbers written, a question card, and the compare bar at the foot",
+        "win": "the marks beyond the shorter row light, their count lands in the answer slot, and the total fills",
+        "traceback": "The two rows are laid in the compare bar from one edge and the marks past the shorter row are banded and counted; for a total, the total cell adds the number column row by row.",
+        "ladder": [
+          "Which cricket marks have no kabaddi mark beside them?",
+          "Where does the papaya lane run out? Count the orange marks after it.",
+          "Add the number of every row, the small ones too.",
+          "Read each row's number in the chart first.",
+          "For how many more, count only the marks past the shorter row. For in all, add every row."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "mark": {
+      "width": 9,
+      "height": 52,
+      "pitch": 20,
+      "bundleGap": 44
+    },
+    "columns": {
+      "name": [
+        0,
+        190
+      ],
+      "tally": [
+        190,
+        810
+      ],
+      "number": [
+        810,
+        940
+      ]
+    },
+    "colours": {
+      "upright": "deep blue #0072B2",
+      "across": "vermilion #D55E00",
+      "number": "amber #E69F00",
+      "total": "reddish purple #CC79A7",
+      "band": "sky blue #56B4E9"
+    },
+    "freePlay": {
+      "kind": "free",
+      "head": "Pet",
+      "rows": [
+        "dog",
+        "cat",
+        "rabbit"
+      ]
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T3.C8:ML1",
+        "kind": "belt",
+        "head": "Pet",
+        "rows": [
+          "dog",
+          "cat",
+          "rabbit"
+        ],
+        "cards": [
+          0,
+          1,
+          0,
+          2,
+          0,
+          1
+        ],
+        "pad": "enter",
+        "answer": [
+          3,
+          2,
+          1
+        ],
+        "near": "r:4-1-1",
+        "winMs": 2400
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T3.C8:1",
+        "kind": "belt",
+        "head": "Drink",
+        "rows": [
+          "milk",
+          "tea",
+          "juice"
+        ],
+        "cards": [
+          1,
+          0,
+          0,
+          2,
+          1,
+          0,
+          2,
+          0
+        ],
+        "pad": "enter",
+        "answer": [
+          4,
+          2,
+          2
+        ],
+        "near": "r:3-2-3",
+        "winMs": 2400
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T3.C8:2",
+        "kind": "belt",
+        "given": true,
+        "head": "Way to school",
+        "rows": [
+          "bus",
+          "car",
+          "bike",
+          "walk"
+        ],
+        "cards": [
+          0,
+          1,
+          0,
+          3,
+          0,
+          2,
+          1,
+          0,
+          3
+        ],
+        "answer": 9,
+        "near": 8,
+        "winMs": 2200
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T3.C9:ML2",
+        "kind": "build",
+        "target": 17,
+        "start": 4,
+        "pad": "enter",
+        "answer": 17,
+        "near": "t:17",
+        "winMs": 2600
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T3.C9:3",
+        "kind": "split",
+        "target": 14,
+        "parts": [
+          {
+            "label": "bundles"
+          },
+          {
+            "label": "singles"
+          }
+        ],
+        "answer": [
+          2,
+          4
+        ],
+        "near": [
+          0,
+          14
+        ],
+        "winMs": 2400
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T3.C9:4",
+        "kind": "across",
+        "target": 20,
+        "answer": 4,
+        "near": 5,
+        "winMs": 2400
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T3.C10:ML3",
+        "kind": "read",
+        "head": "Seen",
+        "rows": [
+          {
+            "name": "birds",
+            "b": 4,
+            "s": 3
+          }
+        ],
+        "answer": 23,
+        "near": 19,
+        "winMs": 2600
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T3.C10:5",
+        "kind": "read",
+        "head": "Seen",
+        "rows": [
+          {
+            "name": "kites",
+            "b": 3,
+            "s": 1
+          }
+        ],
+        "answer": 16,
+        "near": 21,
+        "winMs": 2600
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T3.C10:6",
+        "kind": "read",
+        "head": "Vehicle",
+        "rows": [
+          {
+            "name": "cars",
+            "b": 2,
+            "s": 2
+          },
+          {
+            "name": "buses",
+            "b": 1,
+            "s": 3
+          },
+          {
+            "name": "bikes",
+            "b": 3,
+            "s": 4
+          }
+        ],
+        "parts": [
+          {
+            "label": "cars"
+          },
+          {
+            "label": "buses"
+          },
+          {
+            "label": "bikes"
+          }
+        ],
+        "answer": [
+          12,
+          8,
+          19
+        ],
+        "near": [
+          20,
+          20,
+          35
+        ],
+        "winMs": 3400
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T3.C11:ML4",
+        "kind": "compare",
+        "head": "Sport",
+        "pair": [
+          0,
+          2
+        ],
+        "answer": 7,
+        "near": 16,
+        "winMs": 2400,
+        "rows": [
+          {
+            "name": "cricket",
+            "b": 3,
+            "s": 1
+          },
+          {
+            "name": "football",
+            "b": 2,
+            "s": 3
+          },
+          {
+            "name": "kabaddi",
+            "b": 1,
+            "s": 4
+          },
+          {
+            "name": "badminton",
+            "b": 2,
+            "s": 0
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T3.C11:7",
+        "kind": "compare",
+        "head": "Fruit",
+        "pair": [
+          2,
+          1
+        ],
+        "answer": 8,
+        "near": 15,
+        "winMs": 2400,
+        "rows": [
+          {
+            "name": "guava",
+            "b": 2,
+            "s": 1
+          },
+          {
+            "name": "papaya",
+            "b": 1,
+            "s": 2
+          },
+          {
+            "name": "orange",
+            "b": 3,
+            "s": 0
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T3.C11:8",
+        "kind": "total",
+        "head": "Snack",
+        "answer": 50,
+        "near": 44,
+        "winMs": 2400,
+        "rows": [
+          {
+            "name": "samosa",
+            "b": 3,
+            "s": 3
+          },
+          {
+            "name": "idli",
+            "b": 2,
+            "s": 4
+          },
+          {
+            "name": "poha",
+            "b": 1,
+            "s": 1
+          },
+          {
+            "name": "dhokla",
+            "b": 2,
+            "s": 2
+          }
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The belt runs its cards again one at a time; each card's mark is redrawn in its row beside the child's marks (on a chart already marked, each card's own mark lights and is counted), and each row's number is written.",
+      "Phase 2: The child's row stays as drawn; below it the pen draws the same number again, four standing and the fifth across, and reads it in fives.",
+      "Phase 3: The finger lights each bundle whole and writes its running count in fives below it, counts on the single marks in ones, and the row's number drops in.",
+      "Phase 4: The two rows are laid in the compare bar from one edge and the marks past the shorter row are banded and counted; for a total, the total cell adds the number column row by row."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Answer cards are coming along the belt. One mark for each, as it comes.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every answer marked once, every bundle closed, and every row read in fives.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T3.C8:ML1",
+            "worked": false,
+            "kind": "belt",
+            "planQuestion": "Six children say their favourite pet, one at a time: dog, cat, dog, rabbit, dog, cat. Make a tally for each pet.",
+            "question": {
+              "en": "Six children name their favourite pet. Tap the row for each card. Press Enter when every card is marked."
+            },
+            "ask": {
+              "en": "Tally the pets"
+            },
+            "answer": "dog 3, cat 2, rabbit 1",
+            "planAnswer": "Dog 3 marks, cat 2 marks and rabbit 1 mark",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T3.C8:1",
+            "worked": false,
+            "kind": "belt",
+            "planQuestion": "Eight answers come in: tea, milk, milk, juice, tea, milk, juice, milk. How many marks go in each row?",
+            "question": {
+              "en": "Eight children choose a drink. Mark their cards the same way."
+            },
+            "ask": {
+              "en": "Tally the drinks"
+            },
+            "answer": "milk 4, tea 2, juice 2",
+            "planAnswer": "Milk 4, tea 2 and juice 2",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T3.C8:2",
+            "worked": false,
+            "kind": "belt",
+            "planQuestion": "A tally chart holds 9 marks in all, one for each answer. How many answers were collected?",
+            "question": {
+              "en": "Children said how they come to school, and each answer got its mark. How many answers were collected?"
+            },
+            "ask": {
+              "en": "How many answers?"
+            },
+            "answer": 9,
+            "planAnswer": "9 answers, one for each mark",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T3.C9:ML2",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Show 17 in tally marks.",
+            "question": {
+              "en": "Show 17 in tally marks. Tap beside the marks to stand one up, or tap on them to lay one across. Then press Enter."
+            },
+            "ask": {
+              "en": "Show 17 in tally marks"
+            },
+            "answer": 17,
+            "planAnswer": "Three bundles of five and 2 more marks",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T3.C9:3",
+            "worked": false,
+            "kind": "split",
+            "planQuestion": "How many bundles of five and how many single marks show 14?",
+            "question": {
+              "en": "Now think of 14. How many bundles of five and how many single marks does it take?"
+            },
+            "ask": {
+              "en": "14 in bundles and singles"
+            },
+            "answer": [
+              2,
+              4
+            ],
+            "planAnswer": "Two bundles and 4 single marks",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T3.C9:4",
+            "worked": false,
+            "kind": "across",
+            "planQuestion": "Draw tally marks for 20. How many marks are drawn across?",
+            "question": {
+              "en": "Draw tally marks for 20. How many of the marks lie across?"
+            },
+            "ask": {
+              "en": "Marks across for 20?"
+            },
+            "answer": 4,
+            "planAnswer": "4, one in each of the four bundles of five",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T3.C10:ML3",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A row shows four bundles and 3 single marks. How many is that?",
+            "question": {
+              "en": "This row shows four bundles and 3 single marks. Tap the finger to step it along. How many marks is that?"
+            },
+            "ask": {
+              "en": "How many birds?"
+            },
+            "answer": 23,
+            "planAnswer": "23",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T3.C10:5",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A row shows three bundles and 1 single mark. How many is that?",
+            "question": {
+              "en": "Here is a row of three bundles and 1 single mark. How many kites does it show?"
+            },
+            "ask": {
+              "en": "How many kites?"
+            },
+            "answer": 16,
+            "planAnswer": "16",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T3.C10:6",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A tally of vehicles at a gate shows cars two bundles and 2 marks, buses one bundle and 3 marks, and bikes three bundles and 4 marks. Write each count.",
+            "question": {
+              "en": "A tally of vehicles at a gate. Write the count for the cars, the buses and the bikes."
+            },
+            "ask": {
+              "en": "Count each vehicle"
+            },
+            "answer": [
+              12,
+              8,
+              19
+            ],
+            "planAnswer": "Cars 12, buses 8 and bikes 19",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T3.C11:ML4",
+            "worked": false,
+            "kind": "compare",
+            "planQuestion": "A tally chart of favourite sports shows cricket three bundles and 1 mark, football two bundles and 3 marks, kabaddi one bundle and 4 marks, and badminton two bundles. Each child chose one sport. Which sport was chosen least, how many more children chose cricket than kabaddi, and how many children are there in all?",
+            "question": {
+              "en": "A class chose their favourite sports. Drag cricket and kabaddi down into the compare bar. How many more children chose cricket than kabaddi?"
+            },
+            "ask": {
+              "en": "How many more chose cricket?"
+            },
+            "answer": 7,
+            "planAnswer": "Kabaddi was chosen least; 7 more children chose cricket than kabaddi; 48 children in all",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T3.C11:7",
+            "worked": false,
+            "kind": "compare",
+            "planQuestion": "A tally chart of fruit chosen shows guava two bundles and 1 mark, papaya one bundle and 2 marks, and orange three bundles. How many more children chose orange than papaya?",
+            "question": {
+              "en": "Another class chose fruit. How many more chose orange than papaya?"
+            },
+            "ask": {
+              "en": "How many more chose orange?"
+            },
+            "answer": 8,
+            "planAnswer": "8 more, because orange shows 15 and papaya 7",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T3.C11:8",
+            "worked": false,
+            "kind": "total",
+            "planQuestion": "A tally chart of snacks shows samosa three bundles and 3 marks, idli two bundles and 4 marks, poha one bundle and 1 mark, and dhokla two bundles and 2 marks. Each child chose one snack. Which snack was chosen least, and how many children were asked in all?",
+            "question": {
+              "en": "Each child chose one snack. How many children were asked in all?"
+            },
+            "ask": {
+              "en": "Children in all?"
+            },
+            "answer": 50,
+            "planAnswer": "Poha, chosen by 6; 50 children in all, because 18 + 14 + 6 + 12 = 50",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "tally_board",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "tally_board",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "One mark for each",
+        "conceptId": "M1.S2.T3.C8",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C8:ML1",
+          "M1.S2.T3.C8:1",
+          "M1.S2.T3.C8:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "The fifth mark crosses the four",
+        "conceptId": "M1.S2.T3.C9",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C9:ML2",
+          "M1.S2.T3.C9:3",
+          "M1.S2.T3.C9:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Reading a tally in fives",
+        "conceptId": "M1.S2.T3.C10",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C10:ML3",
+          "M1.S2.T3.C10:5",
+          "M1.S2.T3.C10:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A tally chart and how many more",
+        "conceptId": "M1.S2.T3.C11",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C11:ML4",
+          "M1.S2.T3.C11:7",
+          "M1.S2.T3.C11:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "rows",
+    "answers",
+    "fk",
+    "null",
+    "bundles",
+    "q",
+    "compared",
+    "r",
+    "null",
+    "finger"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, rows, answers, fk, null, bundles, q, compared, r, null, finger",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "tally_board"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T3.C8.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Answer cards are coming along the belt. One mark for each, as it comes."
+    },
+    {
+      "en": "Where does this answer go? One mark for each answer."
+    },
+    {
+      "en": "Four marks are standing. Where does the fifth one go?"
+    },
+    {
+      "en": "Count the bundles in fives. Then count on the marks left over."
+    },
+    {
+      "en": "How many more chose this one? Line the rows up and look at what is left."
+    },
+    {
+      "en": "Another chart. Every fifth mark goes across the four before it."
+    },
+    {
+      "en": "Free play. Any answers on the belt, with the finger and the compare bar open."
+    },
+    {
+      "en": "Count the bundles in fives again, then count on the marks left over."
+    },
+    {
+      "en": "Every answer marked once, every bundle closed, and every row read in fives."
+    }
+  ],
+  "build": {
+    "source": "353b7cb6:1502579",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-25T10:07:10.863Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-25T10:07:09.947Z"
+    },
+    "tsxBytes": 1500669,
+    "tsxMd5": "c41d4566efe2afe70001c8dd444763ce"
+  }
+}

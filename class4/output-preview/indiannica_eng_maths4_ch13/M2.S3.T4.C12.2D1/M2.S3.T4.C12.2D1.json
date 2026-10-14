@@ -1,0 +1,1124 @@
+{
+  "slotId": "M2.S3.T4.C12.2D1",
+  "mediaId": "M2.S3.T4.C12.2D1",
+  "toolId": "bill_maker",
+  "title": "Bill Maker",
+  "component": "M2.S3.T4.C12.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch13",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch13_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_13/2dtool/M2.S3.T4.C12.2D1/M2.S3.T4.C12.2D1.tsx",
+  "description": "Set prices on a bill with every dot in one line, carry each hundred paise as one rupee, fill a whole-rupee price's paise column with two zeros, and total the bill at its foot.",
+  "conceptIds": [
+    "M2.S3.T4.C12",
+    "M2.S3.T4.C13",
+    "M2.S3.T4.C14",
+    "M2.S3.T4.C15"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Put prices on a bill with every dot in one line, carry each hundred paise as one rupee, and total the bill at its foot.",
+    "look": "A bill slip down the middle of the canvas with its dotted line between rupees and paise, a shop shelf of price cards beside it, and a carry circle over the rupees column.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Bill Maker' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the lines priced against the lines this bill needs, two numbers in ink, the first climbing by one as each price card snaps onto its line and the second fixed at what this phase holds. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The shop shelf stands at the left of the working area, 300 by 500 at 64,214, holding price cards, each 260 by 56, with the thing's name in ink and its price written with a dot. The bill slip stands in the middle, 440 by 500 at 384,214, on the panel colour: the word Bill at its head, then a line for each thing bought, the thing's name at the left and a price column at the right, 220 wide, split by the near-black dotted line into rupees on its left and paise on its right, with the headings Rs and p above it outside the working. Carry circles sit in a row over the rupees column, one over each place, empty until something is carried. A near-black rule crosses the column under the last line, and the Total line sits under the rule. A price card dragged onto a line snaps so that its dot lands on the dotted line, rupees under rupees and paise under paise; a card set down with its dot off the line springs back to the shelf with the dotted line lit, and a pale outline of where it was set stays standing on the slip. A whole-rupee price snaps in with two zeros in its paise column, grey and at full weight. The paise box stands at the right, 280 by 120 at 870,214, and shows the paise column's sum as a number of paise before anything is carried. When that sum is a hundred or more, each hundred gathers into a full strip of a hundred cells, rolls up into one rupee and drops into the carry circle over the rupees, and only what is left, as two digits, goes down into the paise column. The add control sits under the paise box, 280 by 60 at 870,350, and works the paise column first and the rupees with the carry second, and the answer line carries the dotted line on down, so the dot of the total lands under the dots above it. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across with a dot key, and the answer slot prints Rs before the number and holds exactly two places after the dot, so a paise sum of three digits has nowhere to be written but the carry circle. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The rupees of every amount, the rupees column and the value printed on every note and coin are deep blue. The paise of every amount, the paise column and every cell standing for paise are green. The dot between rupees and paise is vermilion, a clear round dot, and wherever amounts stand in columns it sits on a near-black dotted line. A rupee carried from the paise, and a rupee broken into a hundred paise with the digits it rewrites, are amber. The change handed back, the money left and a remainder are reddish purple, so money coming back is never mistaken for a cost. A count of things, a number multiplied by, how many notes of one value or how many can be bought, is sky blue, because a count of things is not money. The zeros that fill the paise column of a whole-rupee amount in column working are grey. Every play note is one plain pale blue rectangle and every play coin one plain steel disc, all notes one size and all coins one size, each printed with its value and nothing else. No coin below one rupee is drawn anywhere: paise are shaded cells on a strip ruled into a hundred in ten blocks of ten, so a full strip is exactly one rupee. Chrome never borrows one of those and none of them is ever used for chrome: every column rule, dotted line, tick, bracket, strike line, bill rule and panel edge is near-black. Every reading survives with the colour taken away, because a digit is told apart by the column it stands in, a carry by the circle it sits in, a count by the box beside the times sign or the slot marked things, and the change or money left by the tray or line that holds it, before any of them is told by a colour. Grey never means faint: a zero in a paise column is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. A rupees figure that goes down by one is struck through once with the new figure written above it, and never rubbed out. Every price on the slip sits with its dot on the one dotted line, so rupees can only stand under rupees. The carry circle takes one rupee for each full hundred paise and nothing smaller, and a carried rupee stays in its circle after the rupees are added, so the working can be read afterwards.",
+    "finish": "The card shows the last bill the child made, every price on its line with the dots in a column, each carry in its circle, and the total at the foot.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the dots stand in one straight line, and each column adds on its own",
+        "does": "drags each price onto a line so its dot lands on the dotted line, then adds the paise column and the rupees column",
+        "goal": "amounts are added in columns with the dots in one straight line, so rupees sit under rupees and paise under paise",
+        "says": "Put each price on the bill. Where must the dots sit?",
+        "check": "Away from the screen: write Rs 125.40 under Rs 32.15 with the dots in one line, and add them.",
+        "feels": "once every dot sits on one line, each column holds only one kind of money",
+        "hands": "Write Rs 214.35 and Rs 43.20 on the board one under the other, first lined up at their left edges and then with their dots in one column. Ask the class to add each version and to say which digits were added to which. Then circle the dots in the second version and draw a line down through them.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: where is each price's dot? Second rung, the phase's: which digits stand under the rupees of the first price? Third rung: the slip is cut to two prices with the same number of rupee digits, and the child adds them before the longer price comes back. The number pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "writing starts at the left of a line, and the two prices look like two rows of digits to be stacked.",
+            "move": "starts both prices at the left edge, so the five of fifty-two stands under the three of three hundred and fourteen and the dots do not line up.",
+            "screen": "the Rs 52.60 card springs back from where the child set it, and the dotted line lights, with a pale outline left standing where the card was, its dot one place left of the line. The card then snaps in with its dot on the line, fifty-two under the fourteen of three hundred and fourteen, and the outline stays standing beside it."
+          },
+          {
+            "why": "the digits come out of the adding one column at a time, and the dot is not a digit, so nothing in the adding writes it.",
+            "move": "adds every column correctly and writes the total with no dot, 36685, which reads as thirty-six thousand six hundred and eighty-five rupees.",
+            "screen": "the dotted line runs on down through the answer line and lights there, and the child's digits are laid across it: the eight and the five fall to the right of the line in green, and three hundred and sixty-six stands to its left in deep blue. The vermilion dot drops onto the line between them, and the child's number stays in the slot."
+          }
+        ],
+        "screen": "an empty bill slip with its dotted line, and two price cards on the shelf",
+        "soWhat": "Line up the dots, and rupees fall under rupees and paise under paise.",
+        "concept": "Rupees under rupees, paise under paise"
+      },
+      {
+        "n": 2,
+        "win": "a hundred paise roll up into the carry circle as one rupee, and the paise column shows only what is left",
+        "does": "adds the paise, sees the sum pass a hundred, carries one rupee, writes the rest, and adds the rupees with the carry",
+        "goal": "when the paise add to a hundred or more, each hundred is carried as one rupee and only the paise left are written",
+        "says": "The paise come to more than a hundred. What happens to the hundred?",
+        "check": "Add Rs 24.80 and Rs 13.40. What is written in the paise column, and what is carried?",
+        "feels": "a hundred paise are too many for the paise column, so they go and join the rupees",
+        "hands": "Shade eighty cells on one paper strip and forty on another. Ask a child to shade the same hundred and twenty cells onto fresh strips, filling one before starting the next: one strip fills and twenty cells are left. Swap the full strip for a rupee coin, then write the sum in columns, twenty in the paise column and one rupee carried.",
+        "tries": "First rung, from the item: what do the paise add up to? Second rung, the phase's: is that more than a hundred? Third rung: the slip is cut to two prices whose paise make just over a hundred, and the child carries before the larger sum comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the paise sum is one number, and splitting a number that has just been made feels wrong.",
+            "move": "writes all of one hundred and forty in the paise column and gets Rs 175.140.",
+            "screen": "the paise box shows one hundred and forty paise, and a hundred of its cells gather into a full strip that rolls up into one rupee and drops into the carry circle, leaving forty below. The child's three places after the dot are laid on the answer line, and the third has no place to stand. The rupees are added again with the carry, and the child's answer stays in the slot."
+          },
+          {
+            "why": "once the forty is written the paise column looks finished, and the small one in the carry circle is easy to leave behind.",
+            "move": "carries the rupee from one hundred and forty paise but forgets to add it, and writes Rs 175.40.",
+            "screen": "the carry circle over the rupees column glows amber with its one still in it, and the rupees column is added again with the circle's rupee travelling down into the sum: one hundred and twenty-eight and forty-seven make one hundred and seventy-five, and one more makes one hundred and seventy-six. The child's answer stays in the slot beside it."
+          }
+        ],
+        "screen": "two prices on the slip whose paise add to more than a hundred, with the carry circle empty",
+        "soWhat": "Each hundred paise is carried as one rupee, and only the paise left are written, as two digits.",
+        "concept": "A hundred paise carry one rupee"
+      },
+      {
+        "n": 3,
+        "win": "two zeros fill the paise column, the rupees stay in line, and the sum comes out right",
+        "does": "places the whole-rupee price, fills its paise column with two zeros, and adds",
+        "goal": "in column working, an amount with no paise gets two zeros in its paise column, so its rupees stay in the rupees column",
+        "says": "This price has no paise. What goes in its paise column?",
+        "check": "Add Rs 48 and Rs 21.35 in columns. What goes in the paise column for the forty-eight?",
+        "feels": "the grey zeros hold the paise column open, so the rupees cannot slip across the dot",
+        "hands": "Write Rs 35 and Rs 12.50 on the board and ask the class to add them in columns. If anyone sets the thirty-five under the fifty paise, fill its paise column with two zeros, 35.00, and add again. Then write the answer in a sentence, Rs 47.50, and point out that a whole amount in a sentence, such as Rs 35, is written with no dot: the zeros belong to the column working.",
+        "tries": "First rung, from the item: which price has no paise? Second rung, the phase's: what goes in its paise column? Third rung: the slip is cut to one short whole-rupee price under one short price with paise, and the child fills the empty paise places before adding. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "a number with no dot is lined up at the right like any whole number, and there it lands under the paise.",
+            "move": "writes the twenty-nine of Rs 29 under the paise and adds twenty-nine paise, so rupees are added to paise and the sum comes out as Rs 63.74.",
+            "screen": "the Rs 29 card springs back from under the paise, its outline left standing there, and snaps in again with grey zeros filling its paise column and its twenty-nine under the sixty-three. The paise column adds forty-five and nothing, the rupees add to ninety-two, and the child's Rs 63.74 stays in the slot beside the new line."
+          },
+          {
+            "why": "with nothing written under the forty-five, the paise column looks as if it needs no adding.",
+            "move": "adds the rupees and stops at Rs 92, leaving off the forty-five paise because the whole-rupee price seemed to have no paise to add.",
+            "screen": "the two zeros in the whole-rupee price's paise column light grey, and the paise column is added with them, forty-five and nothing making forty-five, which goes down into the answer line in green. The answer line then reads rupees, dot and paise all filled, and the child's Rs 92 stays in the slot."
+          }
+        ],
+        "screen": "a price with paise already on the slip, and a whole-rupee price card waiting on the shelf",
+        "soWhat": "In column working, an amount with no paise gets two zeros in its paise column. In a sentence it is written with no dot, as Rs 29.",
+        "concept": "Two zeros when there are no paise"
+      },
+      {
+        "n": 4,
+        "win": "the total lands at the foot of the bill under the rule",
+        "does": "writes each thing and its price on a line of the bill, adds the columns with every carry, and writes the total at the foot",
+        "goal": "a bill lists each thing bought with its price, and the total is added at the foot",
+        "says": "Write each thing and its price. What goes at the foot of the bill?",
+        "check": "Make a bill for a ruler at Rs 18.50, glue at Rs 26.75 and a notebook at Rs 45. What goes at the foot?",
+        "feels": "a bill is a column of prices with one sum at its foot, however many lines it has",
+        "hands": "Set up a class shop with priced packets. One child buys three things and writes the bill: the word Bill at the top, one thing and its price to a line, the dots in one column, a rule, and the total at the foot. A second child checks it by adding the prices in a different order.",
+        "tries": "First rung, from the item: has every price been written on the bill? Second rung, the phase's: what did the paise column carry? Third rung: the bill is cut to two lines, and the child totals them before the other lines come back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "a bill of three lines has a lot to add, and the carry is made in one column and needed in the other.",
+            "move": "forgets the rupee carried from the paise and writes Rs 270.65 at the foot of the bill.",
+            "screen": "the paise box shows one hundred and sixty-five paise, a full strip rolls up into the carry circle, and sixty-five goes down. The rupees column is then added with the circle's rupee travelling down into it, and the Total line reads the new sum beside the child's Rs 270.65, which stays in the slot."
+          },
+          {
+            "why": "the carries met before this one were each a single rupee, so one feels like what a carry is.",
+            "move": "carries one rupee when the paise of four prices come to two hundred and eighty, and writes Rs 298.80.",
+            "screen": "the paise box shows two hundred and eighty paise, and two full strips fill one after the other, each rolling up into a rupee, so the carry circle reads two. Eighty goes down into the paise column, the rupees are added with both carried rupees, and the child's answer stays in the slot beside the new total."
+          }
+        ],
+        "screen": "a shop shelf of three or four priced things and an empty bill slip",
+        "soWhat": "A bill lists each thing bought and its price, one to a line, and the total goes at the foot.",
+        "concept": "Making a bill"
+      }
+    ],
+    "delight": "The second phase, the moment the paise box passes a hundred. The cells of the paise sum pour into a strip, filling it block by block until it holds exactly a hundred, and the full strip curls up into one rupee that rises and drops into the carry circle, while the paise left slide down into the paise column as two green digits. When the sum passes two hundred, two strips fill and curl up one after the other, and the carry circle reads two. The add can be undone and run again as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the bill slip is empty, its dotted line drawn down the price column, and two price cards stand on the shelf. On the second two prices already stand on the slip with their dots in line, the paise box empty and the carry circle open. On the third one price with paise stands on the slip and a whole-rupee price card waits on the shelf. On the fourth the shelf holds three or four priced things and the bill slip is empty down to its rule. The running count at the top left holds the lines priced against the lines this bill needs, and the answer slot and the pad stand empty down the right. One thing moves, once: a price card, or the paise box, or the whole-rupee card, or the first line of the slip, gives one slow pulse while the voice asks where each dot belongs. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any prices on any number of lines, with the carry circle and the total open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on lining up the dots, carrying a hundred paise, whole-rupee prices in column working, and making bills.",
+    "voiceLines": [
+      "An empty bill and a shelf of prices. Where does each dot belong?",
+      "Put each price on the bill. Where must the dots sit?",
+      "The paise come to more than a hundred. What happens to the hundred?",
+      "This price has no paise. What goes in its paise column?",
+      "Write each thing and its price. What goes at the foot of the bill?",
+      "A new bill. Look at every dot before you add.",
+      "Free play. Any prices on any lines, with the carry circle and the total open.",
+      "Lay the prices again with the dots in line, and add the paise first.",
+      "Every dot in one line, every hundred paise carried, and every bill totalled at its foot."
+    ],
+    "observations": [
+      {
+        "why": "With the dots in one line, the rupees of every price stand in one column and the paise in another.",
+        "soWhat": "Line up the dots, and rupees fall under rupees and paise under paise.",
+        "observe": "Every card snapped with its dot on the dotted line, and each column added on its own."
+      },
+      {
+        "why": "A hundred paise are one rupee, so they belong with the rupees and cannot stay in a column of two digits.",
+        "soWhat": "Each hundred paise is carried as one rupee, and only the paise left are written, as two digits.",
+        "observe": "Each time the paise passed a hundred, a full strip rolled into the carry circle as one rupee."
+      },
+      {
+        "why": "The zeros fill the paise places, so the price's rupees cannot slide into the paise column.",
+        "soWhat": "In column working, an amount with no paise gets two zeros in its paise column.",
+        "observe": "The whole-rupee card came in with grey zeros under the paise, and its rupees stayed under the rupees."
+      },
+      {
+        "why": "A bill is a list of prices added in one column, so its total is a sum like any other.",
+        "soWhat": "A bill lists each thing bought and its price, one to a line, and the total goes at the foot.",
+        "observe": "The total landed under the rule, with each carry still in its circle above it."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "an empty bill slip with its dotted line, and two price cards on the shelf",
+        "win": "the dots stand in one straight line, and each column adds on its own",
+        "traceback": "The dotted line lights; a shorter price set with its dot off the line springs back and snaps in with its dot on the line; the paise and then the rupees go down, and the dot drops into the total.",
+        "ladder": [
+          "Where does the dot go in the total?",
+          "How many places come after the dot?",
+          "Set the dot of Rs 71.20 on the dotted line.",
+          "Which digits stand under the rupees of the first price?",
+          "Add the paise first, then the rupees."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "two prices on the slip whose paise add to more than a hundred, with the carry circle empty",
+        "win": "a hundred paise roll up into the carry circle as one rupee, and the paise column shows only what is left",
+        "traceback": "The paise box shows the paise sum; each full strip of a hundred rolls up into the carry circle as one rupee; the paise left go down, and the rupees are added with the carried rupee.",
+        "ladder": [
+          "What do the paise add up to?",
+          "Did a rupee go into the carry circle?",
+          "After the carry, what is left in the paise column?",
+          "Are the paise a hundred or more?",
+          "A full strip of a hundred paise is one rupee. Carry it."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a price with paise already on the slip, and a whole-rupee price card waiting on the shelf",
+        "win": "two zeros fill the paise column, the rupees stay in line, and the sum comes out right",
+        "traceback": "The whole-rupee card snaps in with two grey zeros in its paise column; the zeros light, the paise and the rupees are added, and the total lands under the rule.",
+        "ladder": [
+          "Which price has no paise?",
+          "Where do the 74 rupees stand?",
+          "Did the 13 go under the paise?",
+          "What fills the paise places of a whole-rupee price?",
+          "Put the whole rupees under the rupees, then add."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a shop shelf of three or four priced things and an empty bill slip",
+        "win": "the total lands at the foot of the bill under the rule",
+        "traceback": "Every price goes on its line; the paise box fills its strips, each full strip rolls into the carry circle, and the rupees are added with every carry to the total at the foot.",
+        "ladder": [
+          "Has every price been written on the bill?",
+          "The cap has no paise. What fills its paise column?",
+          "How many full hundreds do the paise make?",
+          "What did the paise column carry?",
+          "Add two prices first, then add the next one to that."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "shelf": {
+      "x": 0,
+      "y": 12,
+      "w": 300,
+      "h": 500,
+      "cardX": 20,
+      "cardY": 66,
+      "pitch": 88
+    },
+    "card": {
+      "w": 260,
+      "h": 76,
+      "dot": 196,
+      "digit": 22
+    },
+    "slip": {
+      "x": 316,
+      "y": 12,
+      "w": 464,
+      "h": 500,
+      "lineX": 678,
+      "pitch": 42,
+      "near": 30,
+      "row0": 120,
+      "rowH": 72,
+      "snap": 32
+    },
+    "carryCircle": {
+      "x": 648,
+      "y": 94,
+      "r": 24
+    },
+    "paiseBox": {
+      "x": 806,
+      "y": 12,
+      "w": 280,
+      "h": 224,
+      "strip": {
+        "w": 240,
+        "h": 30,
+        "cells": 100,
+        "blocks": 10
+      }
+    },
+    "add": {
+      "x": 806,
+      "y": 260,
+      "w": 280,
+      "h": 80
+    },
+    "free": {
+      "bill": [
+        "145.50",
+        "89.75",
+        "110",
+        "36.40",
+        "57.45"
+      ],
+      "names": [
+        "lunch box",
+        "water bottle",
+        "cap",
+        "pencil pouch",
+        "crayons"
+      ],
+      "lines": 4
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T4.C12:ML1",
+        "kind": "bill",
+        "bill": [
+          "314.25",
+          "52.60"
+        ],
+        "names": [
+          "school bag",
+          "torch"
+        ],
+        "pre": [],
+        "mis": "36685",
+        "winMs": 3800,
+        "answer": "366.85"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T4.C12:1",
+        "kind": "bill",
+        "bill": [
+          "42.30",
+          "25.40"
+        ],
+        "names": [
+          "storybook",
+          "paints"
+        ],
+        "pre": [],
+        "mis": "67.7",
+        "winMs": 3800,
+        "answer": "67.70"
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T4.C12:2",
+        "kind": "bill",
+        "bill": [
+          "506.15",
+          "71.20"
+        ],
+        "names": [
+          "shoes",
+          "socks"
+        ],
+        "pre": [],
+        "mis": "57735",
+        "winMs": 3800,
+        "answer": "577.35"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T4.C13:ML2",
+        "kind": "bill",
+        "bill": [
+          "128.65",
+          "47.75"
+        ],
+        "names": [
+          "football",
+          "pump"
+        ],
+        "pre": [
+          0,
+          1
+        ],
+        "mis": "175.40",
+        "winMs": 5200,
+        "answer": "176.40"
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T4.C13:3",
+        "kind": "bill",
+        "bill": [
+          "38.85",
+          "16.45"
+        ],
+        "names": [
+          "jam",
+          "bread"
+        ],
+        "pre": [
+          0,
+          1
+        ],
+        "mis": "54.30",
+        "winMs": 5200,
+        "answer": "55.30"
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T4.C13:4",
+        "kind": "bill",
+        "bill": [
+          "249.95",
+          "150.05"
+        ],
+        "names": [
+          "lamp",
+          "bulbs"
+        ],
+        "pre": [
+          0,
+          1
+        ],
+        "mis": "399.00",
+        "winMs": 5200,
+        "answer": "400.00"
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T4.C14:ML3",
+        "kind": "bill",
+        "bill": [
+          "63.45",
+          "29"
+        ],
+        "names": [
+          "cup",
+          "plate"
+        ],
+        "pre": [
+          0
+        ],
+        "mis": "63.74",
+        "winMs": 3800,
+        "answer": "92.45"
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T4.C14:5",
+        "kind": "bill",
+        "bill": [
+          "74",
+          "18.35"
+        ],
+        "names": [
+          "ball",
+          "juice"
+        ],
+        "pre": [
+          1
+        ],
+        "mis": "19.09",
+        "winMs": 3800,
+        "answer": "92.35"
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T4.C14:6",
+        "kind": "bill",
+        "bill": [
+          "56.20",
+          "13"
+        ],
+        "names": [
+          "towel",
+          "comb"
+        ],
+        "pre": [
+          0
+        ],
+        "mis": "56.33",
+        "winMs": 3800,
+        "answer": "69.20"
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T4.C15:ML4",
+        "kind": "bill",
+        "bill": [
+          "145.50",
+          "89.75",
+          "36.40"
+        ],
+        "names": [
+          "lunch box",
+          "water bottle",
+          "pencil pouch"
+        ],
+        "pre": [],
+        "mis": "270.65",
+        "winMs": 5600,
+        "answer": "271.65"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T4.C15:7",
+        "kind": "bill",
+        "bill": [
+          "65.50",
+          "42.75",
+          "110"
+        ],
+        "names": [
+          "kite",
+          "thread",
+          "cap"
+        ],
+        "pre": [],
+        "mis": "109.35",
+        "winMs": 5600,
+        "answer": "218.25"
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T4.C15:8",
+        "kind": "bill",
+        "bill": [
+          "84.60",
+          "132.85",
+          "24.90",
+          "57.45"
+        ],
+        "names": [
+          "notebooks",
+          "geometry box",
+          "pen",
+          "crayons"
+        ],
+        "pre": [],
+        "mis": "298.80",
+        "winMs": 6400,
+        "answer": "299.80"
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The dotted line lights; a shorter price set with its dot off the line springs back and snaps in with its dot on the line; the paise and then the rupees go down, and the dot drops into the total.",
+      "Phase 2: The paise box shows the paise sum; each full strip of a hundred rolls up into the carry circle as one rupee; the paise left go down, and the rupees are added with the carried rupee.",
+      "Phase 3: The whole-rupee card snaps in with two grey zeros in its paise column; the zeros light, the paise and the rupees are added, and the total lands under the rule.",
+      "Phase 4: Every price goes on its line; the paise box fills its strips, each full strip rolls into the carry circle, and the rupees are added with every carry to the total at the foot."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "An empty bill and a shelf of prices. Where does each dot belong?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every dot in one line, every hundred paise carried, and every bill totalled at its foot.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T4.C12:ML1",
+            "worked": false,
+            "kind": "bill",
+            "planQuestion": "Add Rs 314.25 and Rs 52.60.",
+            "question": {
+              "en": "Add Rs 314.25, and Rs 52.60."
+            },
+            "ask": {
+              "en": "Add Rs 314.25 and Rs 52.60"
+            },
+            "answer": "366.85",
+            "planAnswer": "Rs 366.85",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T4.C12:1",
+            "worked": false,
+            "kind": "bill",
+            "planQuestion": "Add Rs 42.30 and Rs 25.40.",
+            "question": {
+              "en": "Now Rs 42.30, and Rs 25.40."
+            },
+            "ask": {
+              "en": "Rs 42.30 and Rs 25.40"
+            },
+            "answer": "67.70",
+            "planAnswer": "Rs 67.70",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T4.C12:2",
+            "worked": false,
+            "kind": "bill",
+            "planQuestion": "Add Rs 506.15 and Rs 71.20.",
+            "question": {
+              "en": "Next, Rs 506.15, with Rs 71.20."
+            },
+            "ask": {
+              "en": "Rs 506.15 with Rs 71.20"
+            },
+            "answer": "577.35",
+            "planAnswer": "Rs 577.35. The 71 stands under the 06 of 506, with the dots in one line",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T4.C13:ML2",
+            "worked": false,
+            "kind": "bill",
+            "planQuestion": "Add Rs 128.65 and Rs 47.75.",
+            "question": {
+              "en": "Add Rs 128.65 and Rs 47.75."
+            },
+            "ask": {
+              "en": "Add Rs 128.65 and Rs 47.75"
+            },
+            "answer": "176.40",
+            "planAnswer": "Rs 176.40",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T4.C13:3",
+            "worked": false,
+            "kind": "bill",
+            "planQuestion": "Add Rs 38.85 and Rs 16.45.",
+            "question": {
+              "en": "Now Rs 38.85, and Rs 16.45."
+            },
+            "ask": {
+              "en": "Rs 38.85 and Rs 16.45"
+            },
+            "answer": "55.30",
+            "planAnswer": "Rs 55.30. The paise make 130, so 30 is written and 1 rupee is carried",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T4.C13:4",
+            "worked": false,
+            "kind": "bill",
+            "planQuestion": "Add Rs 249.95 and Rs 150.05.",
+            "question": {
+              "en": "Last, Rs 249.95, and Rs 150.05."
+            },
+            "ask": {
+              "en": "Rs 249.95 and Rs 150.05"
+            },
+            "answer": "400.00",
+            "planAnswer": "Rs 400.00, which is Rs 400. The paise make exactly 100, so 00 goes in the paise column and 1 rupee is carried",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T4.C14:ML3",
+            "worked": false,
+            "kind": "bill",
+            "planQuestion": "Add Rs 63.45 and Rs 29 in columns.",
+            "question": {
+              "en": "Work in columns. Add Rs 63.45 and Rs 29."
+            },
+            "ask": {
+              "en": "Add Rs 63.45 and Rs 29"
+            },
+            "answer": "92.45",
+            "planAnswer": "Rs 92.45",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T4.C14:5",
+            "worked": false,
+            "kind": "bill",
+            "planQuestion": "Add Rs 74 and Rs 18.35 in columns.",
+            "question": {
+              "en": "Now Rs 74 and Rs 18.35."
+            },
+            "ask": {
+              "en": "Rs 74 and Rs 18.35"
+            },
+            "answer": "92.35",
+            "planAnswer": "Rs 92.35. In column working, Rs 74 is written 74.00, with two zeros in the paise column",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T4.C14:6",
+            "worked": false,
+            "kind": "bill",
+            "planQuestion": "A child adds Rs 56.20 and Rs 13 and gets Rs 56.33. What went wrong, and what is the sum?",
+            "question": {
+              "en": "A child adds Rs 56.20 and Rs 13, and gets Rs 56.33. What went wrong, and what is the sum?"
+            },
+            "ask": {
+              "en": "Add Rs 56.20 and Rs 13"
+            },
+            "answer": "69.20",
+            "planAnswer": "The 13 was written under the paise. In column working Rs 13 is 13.00, with two zeros in the paise column, and the sum is Rs 69.20",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T4.C15:ML4",
+            "worked": false,
+            "kind": "bill",
+            "planQuestion": "Make a bill: a lunch box for Rs 145.50, a water bottle for Rs 89.75 and a pencil pouch for Rs 36.40. What is the total?",
+            "question": {
+              "en": "Make a bill. A lunch box is Rs 145.50, and a water bottle Rs 89.75. A pencil pouch is Rs 36.40. What is the total?"
+            },
+            "ask": {
+              "en": "Total of the bill?"
+            },
+            "answer": "271.65",
+            "planAnswer": "Rs 271.65",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T4.C15:7",
+            "worked": false,
+            "kind": "bill",
+            "planQuestion": "Make a bill: a kite for Rs 65.50, a reel of thread for Rs 42.75 and a cap for Rs 110. What is the total?",
+            "question": {
+              "en": "A kite is Rs 65.50, and a reel of thread Rs 42.75. A cap is Rs 110. Total the bill at its foot."
+            },
+            "ask": {
+              "en": "Total at the foot?"
+            },
+            "answer": "218.25",
+            "planAnswer": "Rs 218.25. The paise make 125, so 25 is written and 1 rupee is carried; the cap is written 110.00 in the column",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T4.C15:8",
+            "worked": false,
+            "kind": "bill",
+            "planQuestion": "Make a bill: notebooks for Rs 84.60, a geometry box for Rs 132.85, a pen for Rs 24.90 and crayons for Rs 57.45. What is the total?",
+            "question": {
+              "en": "Notebooks are Rs 84.60, and a geometry box Rs 132.85. A pen is Rs 24.90, and crayons Rs 57.45. What does the bill come to?"
+            },
+            "ask": {
+              "en": "What does the bill come to?"
+            },
+            "answer": "299.80",
+            "planAnswer": "Rs 299.80. The paise make 280, so 80 is written and 2 rupees are carried",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "bill_maker",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "bill_maker",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Rupees under rupees, paise under paise",
+        "conceptId": "M2.S3.T4.C12",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M2.S3.T4.C12:ML1",
+          "M2.S3.T4.C12:1",
+          "M2.S3.T4.C12:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "A hundred paise carry one rupee",
+        "conceptId": "M2.S3.T4.C13",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M2.S3.T4.C13:ML2",
+          "M2.S3.T4.C13:3",
+          "M2.S3.T4.C13:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Two zeros when there are no paise",
+        "conceptId": "M2.S3.T4.C14",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M2.S3.T4.C14:ML3",
+          "M2.S3.T4.C14:5",
+          "M2.S3.T4.C14:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Making a bill",
+        "conceptId": "M2.S3.T4.C15",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M2.S3.T4.C15:ML4",
+          "M2.S3.T4.C15:7",
+          "M2.S3.T4.C15:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "lines",
+    "prices",
+    "c",
+    "c",
+    "paiseSum",
+    "carry",
+    "total"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, lines, prices, c, c, paiseSum, carry, total",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "bill_maker"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T4.C12.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "An empty bill and a shelf of prices. Where does each dot belong?"
+    },
+    {
+      "en": "Put each price on the bill. Where must the dots sit?"
+    },
+    {
+      "en": "The paise come to more than a hundred. What happens to the hundred?"
+    },
+    {
+      "en": "This price has no paise. What goes in its paise column?"
+    },
+    {
+      "en": "Write each thing and its price. What goes at the foot of the bill?"
+    },
+    {
+      "en": "A new bill. Look at every dot before you add."
+    },
+    {
+      "en": "Free play. Any prices on any lines, with the carry circle and the total open."
+    },
+    {
+      "en": "Lay the prices again with the dots in line, and add the paise first."
+    },
+    {
+      "en": "Every dot in one line, every hundred paise carried, and every bill totalled at its foot."
+    }
+  ],
+  "build": {
+    "source": "07c2358a:1472852",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-25T07:33:24.764Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-25T07:33:24.469Z"
+    },
+    "tsxBytes": 1470411,
+    "tsxMd5": "c0a85348031aaa556c67722174470746"
+  }
+}

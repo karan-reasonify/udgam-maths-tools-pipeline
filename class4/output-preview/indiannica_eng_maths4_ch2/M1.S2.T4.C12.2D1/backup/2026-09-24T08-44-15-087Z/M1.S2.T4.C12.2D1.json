@@ -1,0 +1,1072 @@
+{
+  "slotId": "M1.S2.T4.C12.2D1",
+  "mediaId": "M1.S2.T4.C12.2D1",
+  "toolId": "missing_digit_detective",
+  "title": "Missing Digit Detective",
+  "component": "M1.S2.T4.C12.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch2",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch2_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_2/2dtool/M1.S2.T4.C12.2D1/M1.S2.T4.C12.2D1.tsx",
+  "description": "A finished sum with digits hidden under cards, and the only way in is the column on the far right.",
+  "conceptIds": [
+    "M1.S2.T4.C12",
+    "M1.S2.T4.C13",
+    "M1.S2.T4.C14",
+    "M1.S2.T4.C15"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find the digits somebody has hidden in a finished sum, using nothing but the column each one sits in.",
+    "look": "A completed column sum with small cards over some of its digits, and a reasoning strip that opens under whichever column is tapped.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Missing Digit Detective' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the cards lifted against the cards lying on the sum, two numbers in ink, the first climbing by one as each hidden digit is found; on the fourth phase it carries instead the columns checked forwards against the columns in the sum. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The mat sits across the top of the working area, 800 by 320 at 207,202: a circle band 56 tall along its top with one circle 48 across over every column but the ones, then headings 40 tall, then two addend rows of cells 68 tall, then a rule 6 tall, then the answer row 68 tall beneath it, with the columns 120 wide. A cover card is 96 by 76 and lies on top of an addend digit with a lift tab drawn at its corner, so it reads as something laid down rather than as an empty square; no cover card is ever laid on the answer row, and the answer digits stay in green all the way through. Tapping a column opens the reasoning strip beneath the mat, 1086 by 128 at 64,538: the known digits of that column drawn again in deep blue and set apart from each other, the gap drawn as an amber square, the answer digit in green under a short rule of its own, and any digit standing in the circle above brought down into the strip in vermilion beside the rest. A column tapped before the column to its right is settled is refused: the strip does not open, the column that has to come first is lit with its heading named, and not one digit of the refused column is shown. Settling a column whose total passes nine sends its carry up into the circle above the next column by itself, where it stays in sight for the rest of the sum. The too small light rings an answer digit in amber wherever it is smaller than a digit standing above it, and writes that reading out in words underneath. The forward check band runs 1086 by 56 at 64,674: the completed sum is added again from the ones, one column at a time, its total laid under the answer that was printed with the two rules aligned, each agreeing column ticked in green as it is passed and the first column that parts them, if there is one, lit amber and left lit. The build your own bay takes the reasoning strip's rectangle and holds a blank mat, a pad and a stack of cover cards. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a hidden digit is asked for, and on the third and fourth phases a choice pad of large keys in the same rectangle, reading carried and not carried on the third and agrees and does not agree on the fourth, so that a reading can be given as well as a digit. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: a number being added is deep blue, the answer standing under the rule is green, a digit carried into the next column is vermilion, a rounded number is rose, the digit under discussion or the one that is missing is amber, and a zero that is only holding a place open is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a column is told by the heading written above it before it is ever told by a colour, and a carried digit by being small and by sitting above the column it is going into.",
+    "finish": "The card shows the hardest sum the child completed, with the digits they found still lit and the forward check standing beside it.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the card lifts and the column reads correctly in both directions",
+        "does": "works out the only digit that makes the column come out right",
+        "goal": "a column with one digit missing has only one digit that fits",
+        "says": "The answer is showing. Work backwards to the digit that is hidden.",
+        "check": "Away from the screen: a ones column adds two and a hidden digit, the answer digit is eight and nothing is carried. What was hidden?",
+        "feels": "the answer is showing all along, so the hidden digit has nowhere to hide",
+        "hands": "Write a correct column sum on paper, cover one digit of the top number with a small square of card, and hand it to somebody else to find. Then swap over and do it again with a different column covered.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: what is showing in this column? Second rung, the phase's: what does the column have to come to? Third rung: the column is left on the mat on its own with its known digit drawn in tokens and the answer drawn in tokens beside it. The number pad stays open behind all three.",
+        "wrong": [
+          {
+            "why": "the answer digit is the only number showing in that column, and a square that wants a number takes the number nearest to hand.",
+            "move": "writes the answer digit into the covered square.",
+            "screen": "the reasoning strip opens under the column with its three squares drawn well apart, the two above the rule and the answer under it, the known digit in deep blue and the gap in amber; the column is then read out as one sentence, this and the gap make the answer, with the child's digit still standing where it was put."
+          },
+          {
+            "why": "a column has only ten digits that could go in it, and trying them is quicker than thinking about them.",
+            "move": "tries digits one after another until one of them is accepted.",
+            "screen": "the strip stands the tokens of the known digit in the column beside the tokens the answer calls for, both stacks countable at a glance, so the space between the two stacks is the digit that is missing. Nothing is cleared and no digit is refused."
+          }
+        ],
+        "screen": "a ones column showing one digit, a covered card and the answer digit",
+        "soWhat": "With the answer and all but one digit of a column known, the missing digit is fixed.",
+        "concept": "A column can be read backwards"
+      },
+      {
+        "n": 2,
+        "win": "the ones column settles and a carry appears above the column to its left",
+        "does": "taps a middle column, is told which column comes first, and starts at the ones",
+        "goal": "the ones column is the only one nothing can carry into",
+        "says": "Start at the ones. Nothing can carry into it.",
+        "check": "Why can a missing digit in the hundreds column not be found before the tens column has been settled?",
+        "feels": "one column can be read straight away and every other one has to wait its turn",
+        "hands": "Take a sum with three digits covered and ask which one can be found first. Do not let anything be written down until that question has been answered out loud and the reason given.",
+        "tries": "First rung, from the item: which column is furthest to the right? Second rung, the phase's: what could be arriving in this column that you do not know about yet? Third rung: every column but the ones is covered over and only that one is left to be read. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the left is where reading begins, and one gap looks as good a place to begin as another.",
+            "move": "taps the leftmost covered column first, because its gap looks the easiest to fill.",
+            "screen": "the column is refused, the strip does not open, and the column that has to be settled first is lit with its heading named; the covered digit stays covered and nothing whatever about the refused column is given away."
+          },
+          {
+            "why": "the column is finished, so it looks as though there is nothing left in it to take along.",
+            "move": "settles the ones column and moves left without taking anything with it.",
+            "screen": "the tokens of the settled ones column are counted out and ten of them tie and walk left into the circle above the tens, where the carried digit stays in vermilion while the tens column is read again with it standing in place; the digit the child gave stays in the answer slot beside the reading."
+          }
+        ],
+        "screen": "a sum with cards in three columns and every column tappable",
+        "soWhat": "Nothing can carry into the ones column, so it is the only column that can be read on its own.",
+        "concept": "Start at the ones here too"
+      },
+      {
+        "n": 3,
+        "win": "the too small light comes on and the carry is drawn into the next circle",
+        "does": "works out what the column really came to and where the rest went",
+        "goal": "an answer digit smaller than the digits above it means a carry left",
+        "says": "The answer digit looks too small. Where did the rest of it go?",
+        "check": "A column adds eight and seven and the answer digit is five. What happened in that column, and what went left?",
+        "feels": "the answer digit is smaller than the numbers that made it, and that is the clue rather than the trouble",
+        "hands": "Write a column where seven and five are added and the answer digit is two, and ask whether that can possibly be right. Let the argument run for a while before you settle it.",
+        "tries": "First rung, from the item: is the answer digit bigger or smaller than the digits above it? Second rung, the phase's: what does a column keep when it passes nine? Third rung: the column is filled with tokens and the child ties ten of them and reads what is left. The choice pad stays open.",
+        "wrong": [
+          {
+            "why": "adding has always made things bigger, so an answer smaller than what went into it looks like a mistake on the page.",
+            "move": "says the sum has been printed wrong, because the answer digit is smaller than both digits above it.",
+            "screen": "the column is filled with its tokens and counted: they pass nine, ten of them tie and walk left into the circle above the next column, and what is left standing in the column is exactly the answer digit that was printed. The child's verdict stays in the answer slot beside it."
+          },
+          {
+            "why": "the column in front of you can be made to work on its own, and the small digit sitting above it is easy to look past.",
+            "move": "finds a digit that makes the column come out without allowing for the carry coming into it.",
+            "screen": "the circle above the column is lit and its digit is drawn down into the reasoning strip with the rest, and the column is counted again with everything that is standing in it; the two readings stand one under the other and what lies between them is the carried digit itself."
+          }
+        ],
+        "screen": "a tens column whose answer digit is smaller than both digits above it",
+        "soWhat": "An answer digit smaller than a digit above it means the column passed nine and a carry left it.",
+        "concept": "A carry explains an answer that looks too small"
+      },
+      {
+        "n": 4,
+        "win": "the two answers stand together and agree, column by column",
+        "does": "adds the whole sum forwards against the answer that was printed",
+        "goal": "a finished hunt is only finished once it has been added forwards",
+        "says": "Now add the whole thing forwards. Does it come to the answer that was printed?",
+        "check": "You have filled every gap in a sum. What do you do before you say that it is finished?",
+        "feels": "the hunt is over and the sum still has to be added the ordinary way",
+        "hands": "Once every covered digit has been found, write the completed sum out fresh on clean paper and add it the ordinary way. Hold it against the answer that was printed before anybody is allowed to say they have finished.",
+        "tries": "First rung, from the item: which column does the forward check begin at? Second rung, the phase's: what must the total it builds come to? Third rung: the sum is cut to two columns and the child adds those two forwards against the printed answer. The choice pad stays open.",
+        "wrong": [
+          {
+            "why": "every column was reasoned out one at a time, so working the same columns again looks like doing the whole job twice.",
+            "move": "lifts the last card and calls the hunt finished without adding anything forwards.",
+            "screen": "the mat works the completed sum forwards from the ones, one column at a time, and lays its total under the answer that was printed with the two rules aligned; every column that agrees is ticked in green as it is passed, and the first column that parts them, if there is one, is lit amber and stays lit."
+          },
+          {
+            "why": "reading a column backwards worked the first time, so doing it again looks like a check.",
+            "move": "checks by reading the columns backwards a second time, the same way the digits were found.",
+            "screen": "the same digit comes out a second time and is set beside the first, then the sum is added forwards and the column where the total parts from the printed answer is lit; the two backward readings and the one forward reading are all left standing on the stage together."
+          }
+        ],
+        "screen": "every card lifted and the forward check waiting",
+        "soWhat": "A digit you found is only right once the whole sum has been added forwards to the printed answer.",
+        "concept": "Adding it forwards is the check"
+      }
+    ],
+    "delight": "The third phase, the moment the answer digit is read against the digits above it. The two digits above the rule light deep blue and the answer digit under it stays green, and the too small light draws an amber ring around that answer digit and holds it. Then a single vermilion token lifts out of the column and settles in the circle above the column to its left, and the column reads its true total for a beat before closing back to the one digit that was printed. The digit that looked wrong is the digit that proves the carry. Nothing else moves and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a single finished ones column stands on the mat with one digit showing, one cover card lying over the digit beside it, and the answer digit in place under the rule. On the second a whole sum stands with cards in three of its columns, every column able to be tapped and none of them settled. On the third a tens column is showing whose answer digit is smaller than both of the digits above it. On the fourth every card has been lifted, the completed sum stands whole, and the forward check waits beside it. The running count at the top left holds the cards lifted against the cards lying on the sum, and the answer slot and the pad stand empty down the right. One thing moves, once: the cover card in the ones column, or the answer digit that looks too small, or the forward check control, gives one slow pulse while the voice says that the ones column is the way in. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any sum, any digits covered, with the reasoning strip, the too small light and the forward check open, and a build your own bay. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on reading a column backwards, starting at the ones and allowing for a carry.",
+    "voiceLines": [
+      "A finished sum with some digits hidden. The ones column is the way in.",
+      "The answer is showing. Work backwards to the digit that is hidden.",
+      "Start at the ones. Nothing can carry into it.",
+      "The answer digit looks too small. Where did the rest of it go?",
+      "Now add the whole thing forwards. Does it come to the answer that was printed?",
+      "Another sum, more cards. The same way in.",
+      "Free play. Cover any digits you like, in any sum, and hand it over.",
+      "Read the column again, and say what is known before you say what is missing.",
+      "You found every hidden digit, and then you added the whole thing forwards."
+    ],
+    "observations": [
+      {
+        "why": "No column can carry into the ones, so nothing can arrive in it from the right.",
+        "soWhat": "The ones column is always the way into a sum with digits hidden in it.",
+        "observe": "The ones column could be read with nothing else on the mat settled."
+      },
+      {
+        "why": "Until the column on its right is settled, nobody knows whether a carry is coming in.",
+        "soWhat": "The order is not politeness; that column genuinely cannot be read yet.",
+        "observe": "A middle column tapped first was told which column came before it and nothing else."
+      },
+      {
+        "why": "A column that passes nine keeps only its right hand digit.",
+        "soWhat": "The size of the answer digit says that the column traded, before any hidden digit is worked out.",
+        "observe": "An answer digit smaller than a digit above it meant a carry had left the column."
+      },
+      {
+        "why": "Settling a column fixes what it carried out of itself.",
+        "soWhat": "The hunt moves left one column at a time, exactly the way a forward sum does.",
+        "observe": "Every digit that was found made the column to its left readable."
+      },
+      {
+        "why": "A carry allowed for in the wrong place can still make one column come out.",
+        "soWhat": "The forward check is the only thing that reads the whole sum at once.",
+        "observe": "A digit that looked right in its own column was caught by adding forwards."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a ones column showing one digit, a covered card and the answer digit",
+        "win": "the card lifts and the column reads correctly in both directions",
+        "traceback": "The strip opens under the column: the seen digit in tokens beside the tokens the answer calls for, and the gap is counted out until the column reads right.",
+        "ladder": [
+          "What is showing in this column?",
+          "The answer digit is the total. What is the gap from four up to nine?",
+          "The hidden digit comes first here. What goes with two to make eight?",
+          "What does the column have to come to?",
+          "Count on from the digit you can see to the answer digit."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a sum with cards in three columns and every column tappable",
+        "win": "the ones column settles and a carry appears above the column to its left",
+        "traceback": "The ones column is counted out in tokens: ten tie and walk into the circle above the tens, what is left is the answer digit, and the gap shows the digit that fits.",
+        "ladder": [
+          "Which column is furthest to the right?",
+          "Which column can nothing be carried into?",
+          "The answer digit is smaller than nine. What does that tell you?",
+          "What could be arriving in this column that you do not know about yet?",
+          "Only one column has nothing arriving from its right. Start there."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a tens column whose answer digit is smaller than both digits above it",
+        "win": "the too small light comes on and the carry is drawn into the next circle",
+        "traceback": "The column is filled with its tokens, the carried one included: ten tie and walk left into the next circle, and what is left is the printed answer digit.",
+        "ladder": [
+          "Is the answer digit bigger or smaller than the digits above it?",
+          "What do eight, seven and the carried one come to?",
+          "Can six and eight fit in one digit?",
+          "What does a column keep when it passes nine?",
+          "Count the whole column. Tie up ten and see what is left."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "every card lifted and the forward check waiting",
+        "win": "the two answers stand together and agree, column by column",
+        "traceback": "The sum is added forwards with the child's digits and the first column that parts is lit amber; then the right digits go on the cards and every column agrees.",
+        "ladder": [
+          "Which column does the forward check begin at?",
+          "What does the column with the card have to come to?",
+          "Which hidden digit did you find first?",
+          "What must the total it builds come to?",
+          "Add the ones first, then the tens, and carry as you go."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "columnWidth": 120,
+    "headings": [
+      "O",
+      "T",
+      "H",
+      "Th"
+    ],
+    "places": [
+      "ones",
+      "tens",
+      "hundreds",
+      "thousands"
+    ],
+    "mat": {
+      "x": 143,
+      "y": 0,
+      "w": 800,
+      "h": 322
+    },
+    "strip": {
+      "x": 0,
+      "y": 336,
+      "w": 1086,
+      "h": 128
+    },
+    "colours": {
+      "added": "deep blue",
+      "answer": "green",
+      "carried": "vermilion",
+      "missing": "amber"
+    },
+    "order": "cards are found from the ones leftwards; each carry sits in the circle above the column it goes into",
+    "freeSums": [
+      {
+        "a": 4557,
+        "b": 2768,
+        "sum": 7325
+      },
+      {
+        "a": 3675,
+        "b": 2471,
+        "sum": 6146
+      },
+      {
+        "a": 2348,
+        "b": 1527,
+        "sum": 3875
+      },
+      {
+        "a": 4769,
+        "b": 2385,
+        "sum": 7154
+      },
+      {
+        "a": 5638,
+        "b": 1774,
+        "sum": 7412
+      }
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T4.C12:ML1",
+        "kind": "col",
+        "k": 0,
+        "a": 6,
+        "b": null,
+        "cin": 0,
+        "s": 9,
+        "answer": 3,
+        "near": 9,
+        "winMs": 2800
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T4.C12:1",
+        "kind": "col",
+        "k": 0,
+        "a": 4,
+        "b": null,
+        "cin": 0,
+        "s": 9,
+        "answer": 5,
+        "near": 9,
+        "winMs": 2800
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T4.C12:2",
+        "kind": "col",
+        "k": 2,
+        "a": null,
+        "b": 2,
+        "cin": 0,
+        "s": 8,
+        "answer": 6,
+        "near": 8,
+        "winMs": 2800
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T4.C13:ML2",
+        "kind": "sum",
+        "A": 2348,
+        "B": 1527,
+        "S": 3875,
+        "cover": [
+          "b0",
+          "a1",
+          "b2"
+        ],
+        "answer": 7,
+        "near": 3,
+        "winMs": 3200
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T4.C13:3",
+        "kind": "first",
+        "A": 4769,
+        "B": 2385,
+        "S": 7154,
+        "cover": [
+          "a0",
+          "b1",
+          "a2"
+        ],
+        "answer": "ones",
+        "near": "hundreds",
+        "pad": "enter",
+        "winMs": 4000
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T4.C13:4",
+        "kind": "sum",
+        "A": 3529,
+        "B": 1645,
+        "S": 5174,
+        "cover": [
+          "b0",
+          "a1",
+          "b2"
+        ],
+        "answer": 5,
+        "near": 4,
+        "winMs": 3200
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T4.C14:ML3",
+        "kind": "small",
+        "k": 1,
+        "a": 6,
+        "b": 9,
+        "cin": 1,
+        "s": 6,
+        "answer": 16,
+        "near": 15,
+        "winMs": 3600
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T4.C14:5",
+        "kind": "small",
+        "k": 1,
+        "a": 8,
+        "b": 7,
+        "cin": 1,
+        "s": 6,
+        "answer": "yes",
+        "near": "no",
+        "winMs": 3600
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T4.C14:6",
+        "kind": "small",
+        "k": 0,
+        "a": 6,
+        "b": 8,
+        "cin": 0,
+        "s": 4,
+        "answer": 14,
+        "near": 4,
+        "winMs": 3600
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T4.C15:ML4",
+        "kind": "check",
+        "A": 4557,
+        "B": 2768,
+        "S": 7325,
+        "cover": [
+          "a1",
+          "b2"
+        ],
+        "answer": "5, 7",
+        "near": "6, 8",
+        "winMs": 4400
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T4.C15:7",
+        "kind": "check",
+        "A": 3675,
+        "B": 2471,
+        "S": 6146,
+        "cover": [
+          "a1"
+        ],
+        "answer": 7,
+        "near": 4,
+        "winMs": 4400
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T4.C15:8",
+        "kind": "check",
+        "A": 5638,
+        "B": 1774,
+        "S": 7412,
+        "cover": [
+          "a2",
+          "b1"
+        ],
+        "answer": "7, 6",
+        "near": "8, 7",
+        "winMs": 4400
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The strip opens under the column: the seen digit in tokens beside the tokens the answer calls for, and the gap is counted out until the column reads right.",
+      "Phase 2: The ones column is counted out in tokens: ten tie and walk into the circle above the tens, what is left is the answer digit, and the gap shows the digit that fits.",
+      "Phase 3: The column is filled with its tokens, the carried one included: ten tie and walk left into the next circle, and what is left is the printed answer digit.",
+      "Phase 4: The sum is added forwards with the child's digits and the first column that parts is lit amber; then the right digits go on the cards and every column agrees."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A finished sum with some digits hidden. The ones column is the way in.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "You found every hidden digit, and then you added the whole thing forwards.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T4.C12:ML1",
+            "worked": false,
+            "kind": "col",
+            "planQuestion": "In a ones column, 6 plus a hidden digit gives an answer digit of 9 and nothing is carried. What is the hidden digit?",
+            "question": {
+              "en": "In a ones column, 6 plus a hidden digit gives an answer digit of 9 and nothing is carried. What is the hidden digit?"
+            },
+            "ask": {
+              "en": "What is the hidden digit?"
+            },
+            "answer": 3,
+            "planAnswer": "3",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T4.C12:1",
+            "worked": false,
+            "kind": "col",
+            "planQuestion": "In a ones column, 4 plus a hidden digit gives an answer digit of 9 and nothing is carried. What is the hidden digit?",
+            "question": {
+              "en": "In a ones column, 4 plus a hidden digit gives an answer digit of 9 and nothing is carried. Which digit is hiding?"
+            },
+            "ask": {
+              "en": "What is the hidden digit?"
+            },
+            "answer": 5,
+            "planAnswer": "5",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T4.C12:2",
+            "worked": false,
+            "kind": "col",
+            "planQuestion": "In a hundreds column, a hidden digit plus 2 gives an answer digit of 8 and nothing is carried. What is the hidden digit?",
+            "question": {
+              "en": "In a hundreds column, a hidden digit plus 2 gives an answer digit of 8 and nothing is carried. Which digit fits there?"
+            },
+            "ask": {
+              "en": "What is the hidden digit?"
+            },
+            "answer": 6,
+            "planAnswer": "6",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T4.C13:ML2",
+            "worked": false,
+            "kind": "sum",
+            "planQuestion": "The ones column reads 8 plus a hidden digit and the answer digit is 5. What is the hidden digit, and what else has happened?",
+            "question": {
+              "en": "The ones column reads 8 plus a hidden digit and the answer digit is 5. What is the hidden digit, and what else has happened?"
+            },
+            "ask": {
+              "en": "Hidden ones digit?"
+            },
+            "answer": 7,
+            "planAnswer": "7, and 1 ten has been carried into the tens column",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T4.C13:3",
+            "worked": false,
+            "kind": "first",
+            "planQuestion": "Which column of a hidden digit sum can always be worked out first, and why?",
+            "question": {
+              "en": "Which column of a hidden digit sum can always be worked out first, and why? Tap it, then press enter."
+            },
+            "ask": {
+              "en": "Which column first?"
+            },
+            "answer": "ones",
+            "planAnswer": "The ones column, because nothing can carry into it, so it is the only column that can be read on its own",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T4.C13:4",
+            "worked": false,
+            "kind": "sum",
+            "planQuestion": "The ones column reads 9 plus a hidden digit and the answer digit is 4. Find the hidden digit and say what is carried.",
+            "question": {
+              "en": "The ones column reads 9 plus a hidden digit and the answer digit is 4. Find the hidden digit, then watch what is carried."
+            },
+            "ask": {
+              "en": "Hidden ones digit?"
+            },
+            "answer": 5,
+            "planAnswer": "5, and 1 ten is carried, because 9 + 5 = 14",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T4.C14:ML3",
+            "worked": false,
+            "kind": "small",
+            "planQuestion": "In a tens column, 6 and 9 are added with 1 carried in, and the answer digit is 6. Where did the rest go?",
+            "question": {
+              "en": "In a tens column, 6 and 9 are added with 1 carried in, and the answer digit is 6. Type what the column really came to."
+            },
+            "ask": {
+              "en": "What did the column come to?"
+            },
+            "answer": 16,
+            "planAnswer": "The column came to 16, so 6 was written and 1 hundred was carried",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T4.C14:5",
+            "worked": false,
+            "kind": "small",
+            "planQuestion": "A tens column holds 8 and 7 with 1 carried in, and the answer digit is 6. Is that possible?",
+            "question": {
+              "en": "A tens column holds 8 and 7 with 1 carried in, and only a 6 is written below. Is that possible?"
+            },
+            "ask": {
+              "en": "Can 6 be right?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes. The column comes to 16, so 6 is written and 1 hundred is carried",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T4.C14:6",
+            "worked": false,
+            "kind": "small",
+            "planQuestion": "A child says a column adding 6 and 8 cannot have an answer digit of 4. What has the child forgotten?",
+            "question": {
+              "en": "A child says a column adding 6 and 8 cannot have an answer digit of 4. What has the child forgotten? Type the real total of that column."
+            },
+            "ask": {
+              "en": "What did the column come to?"
+            },
+            "answer": 14,
+            "planAnswer": "That the column comes to 14, so 4 is written and 1 is carried out of the column into the next one",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T4.C15:ML4",
+            "worked": false,
+            "kind": "check",
+            "planQuestion": "Find both hidden digits and then check: 45_7 + 2_68 = 7325.",
+            "question": {
+              "en": "Find both hidden digits, starting nearer the ones. Then press enter to add the sum forwards."
+            },
+            "ask": {
+              "en": "Both hidden digits?"
+            },
+            "answer": "5, 7",
+            "planAnswer": "The tens digit of the first number is 5 and the hundreds digit of the second is 7, so 4557 + 2768 = 7325",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T4.C15:7",
+            "worked": false,
+            "kind": "check",
+            "planQuestion": "Find the hidden digit and check by adding forwards: 36_5 + 2471 = 6146.",
+            "question": {
+              "en": "Only one digit is hidden here. Find it, then press enter to check."
+            },
+            "ask": {
+              "en": "What is the hidden digit?"
+            },
+            "answer": 7,
+            "planAnswer": "7, and adding 3675 + 2471 forwards gives 6146",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T4.C15:8",
+            "worked": false,
+            "kind": "check",
+            "planQuestion": "Find both hidden digits and check by adding forwards: 5_38 + 17_4 = 7412.",
+            "question": {
+              "en": "Two digits are hidden again. Find them both, then check the sum forwards."
+            },
+            "ask": {
+              "en": "Both hidden digits?"
+            },
+            "answer": "7, 6",
+            "planAnswer": "The hundreds digit of the first number is 6 and the tens digit of the second is 7, so 5638 + 1774 = 7412",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "missing_digit_detective",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "missing_digit_detective",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "A column can be read backwards",
+        "conceptId": "M1.S2.T4.C12",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C12:ML1",
+          "M1.S2.T4.C12:1",
+          "M1.S2.T4.C12:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Start at the ones here too",
+        "conceptId": "M1.S2.T4.C13",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C13:ML2",
+          "M1.S2.T4.C13:3",
+          "M1.S2.T4.C13:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "A carry explains an answer that looks too small",
+        "conceptId": "M1.S2.T4.C14",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C14:ML3",
+          "M1.S2.T4.C14:5",
+          "M1.S2.T4.C14:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Adding it forwards is the check",
+        "conceptId": "M1.S2.T4.C15",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C15:ML4",
+          "M1.S2.T4.C15:7",
+          "M1.S2.T4.C15:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "columns",
+    "covered",
+    "found",
+    "carries",
+    "k",
+    "null",
+    "columnSettled",
+    "checked",
+    "n",
+    "openColumn",
+    "null"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, phase, columns, covered, found, carries, k, null, columnSettled, checked, n, openColumn, null, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "missing_digit_detective"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T4.C12.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A finished sum with some digits hidden. The ones column is the way in."
+    },
+    {
+      "en": "The answer is showing. Work backwards to the digit that is hidden."
+    },
+    {
+      "en": "Start at the ones. Nothing can carry into it."
+    },
+    {
+      "en": "The answer digit looks too small. Where did the rest of it go?"
+    },
+    {
+      "en": "Now add the whole thing forwards. Does it come to the answer that was printed?"
+    },
+    {
+      "en": "Another sum, more cards. The same way in."
+    },
+    {
+      "en": "Free play. Cover any digits you like, in any sum, and hand it over."
+    },
+    {
+      "en": "Read the column again, and say what is known before you say what is missing."
+    },
+    {
+      "en": "You found every hidden digit, and then you added the whole thing forwards."
+    }
+  ],
+  "build": {
+    "source": "8d49762b:1471595",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-24T07:33:40.113Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-24T07:33:39.448Z"
+    },
+    "tsxBytes": 1470857,
+    "tsxMd5": "6ee50ea0dfeb75e2205ca7f41ef6f9be"
+  }
+}

@@ -1,0 +1,1069 @@
+{
+  "slotId": "M1.S2.T3.C8.2D1",
+  "mediaId": "M1.S2.T3.C8.2D1",
+  "toolId": "worth_of_a_digit",
+  "title": "What a Digit Is Worth",
+  "component": "M1.S2.T3.C8.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch1",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch1_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_1/2dtool/M1.S2.T3.C8.2D1/M1.S2.T3.C8.2D1.tsx",
+  "description": "Tap one digit and see two answers at once: the digit itself, and what it is worth where it sits.",
+  "conceptIds": [
+    "M1.S2.T3.C8",
+    "M1.S2.T3.C9",
+    "M1.S2.T3.C10",
+    "M1.S2.T3.C11"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find out why the same digit, written five times in one number, is worth five different amounts.",
+    "look": "A number sitting in a place value chart, with cards that lift out of it to show what each digit is worth.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'What a Digit Is Worth' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the digits split so far against the digits in the number, two numbers in ink, the first climbing by one each time a digit is tapped and the second fixed at the length of the number; on the third and fourth phases it holds instead the running total of the addends read so far, which arrives at the number itself as the last one is read. It is never a score. The working area is 1086 by 528 at 64,202. A ruled chart 840 by 200 sits across the top of the working area at 187,202: columns 120 wide under headings 44 tall, one digit 64 tall to a column, with the period bands lying behind them, ones deep blue over three places, thousands green over two and lakhs vermilion over two. Under it the card band, 1086 by 200 at 64,426, is where the cards drop, each pair hanging directly under its own column. A tapped digit lifts a little out of its column and lays down two cards: the face value card 118 by 96 holding the digit exactly as it is written, and the place value card 196 by 96 holding what it is worth, with a multiplication sign 28 tall between them and the place named small underneath, so the pair reads as one sentence. Show all lays every pair down at once, so the face value cards read the same digit all the way along the band while the place value cards every one differ. A digit dragged out of its column travels with its face value card stuck to it and leaves its place value card behind; as it lands a fresh place value card is written under it and the old one is left standing hollow in the column it came from, and no column is ever left holding two digits. A zero lays down a face value card reading zero and a grey place value card with nothing on it but a zero, and that card slides out of the row on its own when the number is expanded. Expand lifts the place value cards out of the band into one row 1086 by 84 at 64,646, in place order from the left with plus signs 28 tall between them; collapse drops each addend back under its own column and folds it into the chart as one digit. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a number or a worth is asked for, and on the first phase a word pad of the two names, face value and place value, so that the child answers with the name as well as the number. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: a digit takes the colour of its period, deep blue in the ones period, green in the thousands and vermilion in the lakhs, and rose in the millions where the international chart reaches; a digit under discussion, or the one that decides a comparison, is amber; a zero holding a place open is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a place is told by its column heading and a period by its band before either is told by its colour.",
+    "finish": "The card shows the number the child worked on, all its digits split into face and place value, and its expanded form underneath.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "all the face value cards read the same digit",
+        "does": "taps each digit in turn and reads its face value card",
+        "goal": "the face value of a digit is the digit itself, wherever it sits",
+        "says": "Tap them one at a time. Is the face value the same every time?",
+        "check": "Away from the screen: write any digit you like anywhere in any number. What is its face value?",
+        "feels": "the same digit five times over, and the first answer is the same five times over",
+        "hands": "Write a number whose digits are all the same on a strip of paper, cut it into single digits and lay them out loose. Ask what each one is. Then stick them back in their columns on a drawn chart and ask what each one is worth.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: read the card with the bare digit on it. Second rung, the phase's: is that card the same under every digit? Third rung: the chart is cut to two columns holding the same digit twice and the child reads both face value cards. The word pad stays open behind all three.",
+        "wrong": [
+          {
+            "why": "the question sounds like what is it worth, and the column heading is the loudest thing on the chart.",
+            "move": "gives five hundred as the face value of the five standing in the hundreds place.",
+            "screen": "the two cards under that digit are laid down one at a time with a pause between them, the face value card first with the bare digit on it and the heading above the column covered while it is read, then the place value card with the heading uncovered. The child's answer stays in the answer slot beside the pair."
+          },
+          {
+            "why": "the digits sit in different columns, and different columns have meant different answers for the whole of the last topic.",
+            "move": "taps one digit, reads its card and says the others will be different.",
+            "screen": "the other four digits are tapped in turn and only their face value cards come down, one after another, until five cards stand in a row across the band all reading the same digit."
+          }
+        ],
+        "screen": "a number whose digits are all the same, sitting in the chart",
+        "soWhat": "The face value of a digit is the digit itself, wherever it sits.",
+        "concept": "The digit you see, and what the digit is worth"
+      },
+      {
+        "n": 2,
+        "win": "the place value cards all differ while the face value cards do not",
+        "does": "reads the place value cards down the row and drags one digit to another column",
+        "goal": "place value is the face value multiplied by the value of the place",
+        "says": "Now read the other cards. What changed when you moved it?",
+        "check": "A digit is worth four thousand. Which column is it standing in, and what digit is it?",
+        "feels": "one digit picked up and put down a column along, and its worth jumps ten times",
+        "hands": "Write the same digit on two sticky notes and move one of them from the tens column of a drawn chart to the thousands column, saying out loud what it is worth in each place before and after it is moved.",
+        "tries": "First rung, from the item: which column is that digit standing in? Second rung, the phase's: what is one of that column worth? Third rung: only that column and its heading are left lit and the child reads the multiplication written under it. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "face value and place value are taught in the same breath, and the digit is the answer already in the mouth.",
+            "move": "answers with the digit itself when the place value is asked for.",
+            "screen": "that digit lifts out of the chart on its own and is set down again in its column with the heading showing above it and the rest of the number dimmed, and its two cards are laid side by side under it, the same digit on the left and what it is worth on the right, with the multiplication between them read out. Nothing is cleared."
+          },
+          {
+            "why": "the digit itself did not change, so nothing about it looks as though it should have changed.",
+            "move": "drags a digit into a new column and keeps its old worth.",
+            "screen": "the old place value card is left standing hollow in the column it came from while a new one is written under the digit in its new column; both cards stay on the stage together and the two column headings above them light in turn."
+          }
+        ],
+        "screen": "the same number with every digit split into its two cards",
+        "soWhat": "Place value is the face value multiplied by the value of the place it sits in.",
+        "concept": "Where a digit sits decides what it is worth"
+      },
+      {
+        "n": 3,
+        "win": "the addends add back to the number still shown above them",
+        "does": "expands the number and reads the row of addends aloud",
+        "goal": "the expanded form is the place values written out and added",
+        "says": "Read the row out loud. Add them up in your head.",
+        "check": "Write your own house number or a page number in expanded form, and read it out.",
+        "feels": "a number that was one thing turns into a row of things that add back to it",
+        "hands": "Write a five digit number on paper, write each digit's worth on its own slip, lay the slips in a row with plus signs drawn between them and add them up out loud.",
+        "tries": "First rung, from the item: what is this digit worth where it is standing? Second rung, the phase's: how many addends should the row have? Third rung: the chart is cut to three columns and the child expands those three. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the digits are what is written in the number, so the digits look like what the row should hold.",
+            "move": "writes the face values in the row, so the sum is a handful of small numbers.",
+            "screen": "the row the child wrote stays where it is and under it the same digits each drop their place value card into a second row; the two rows sit one above the other with the number still in the chart above both, and the column headings light along the second row."
+          },
+          {
+            "why": "the zero adds nothing to the sum, so it looks as though it is needed nowhere at all.",
+            "move": "leaves the zero out of the number as well as out of the row.",
+            "screen": "the row is collapsed back into the chart with the zero's column left empty and the digits to its right slide along into the gap, so the number comes out one place shorter; then the grey zero is put back and the digits move out again to their own columns."
+          }
+        ],
+        "screen": "the chart with the expand control lit",
+        "soWhat": "The expanded form is the place values written out and added.",
+        "concept": "Adding up the worths gives the expanded form"
+      },
+      {
+        "n": 4,
+        "win": "the chart fills and the number matches the row above it",
+        "does": "drops each addend into its own column and reads the number that forms",
+        "goal": "rebuilding the standard form is how an expanded form is checked",
+        "says": "Put each one back where it came from. What number did you make?",
+        "check": "An expanded form has no thousands addend in it at all. What goes in the thousands column?",
+        "feels": "the row folds back up and the number that comes out is the one you began with",
+        "hands": "Hand the child a row of addends written on slips, out of order, with a blank chart beside them, and have them put every slip into its own column before a single digit is written.",
+        "tries": "First rung, from the item: which place does this addend name? Second rung, the phase's: is any column still standing empty? Third rung: the row is cut to three addends with one place missing between them and the child fills that chart. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "a row with plus signs in it is a sum, and a sum is something you add.",
+            "move": "adds the addends as loose numbers in their head and loses a place on the way.",
+            "screen": "each addend travels to the column it names and sets its digit down there, one at a time from the left, the heading lighting as it lands; where no addend names a column, a grey zero drops into it. The child's number stays in the answer slot beside the one the chart built."
+          },
+          {
+            "why": "the row lists the digits already, so writing them down in that order looks like the whole job.",
+            "move": "writes the digits side by side in the order of the row and skips the empty places.",
+            "screen": "the columns are ruled empty and each addend is asked for its place before its digit, so a column that no addend names is left visibly open; a grey zero then falls into every open column while the digits already placed stay exactly where they are."
+          }
+        ],
+        "screen": "a row of addends with the chart beneath it empty",
+        "soWhat": "Rebuilding the standard form is the only check an expanded form has.",
+        "concept": "Rolling the expanded form back into one number"
+      }
+    ],
+    "delight": "The first phase, the moment show all is pressed on the number whose digits are all the same. Five identical digits stay exactly where they are while ten cards drop under them in one movement: the upper row reads the same digit five times over, and the row beneath it reads five completely different amounts, each one ten times the one to its right. Nothing else moves and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a number whose digits are all the same sits in the chart, one digit to a column, the period bands lying behind it and every column headed. On the second the same number is already split, every digit standing above its own pair of cards. On the third the chart holds a number with a zero in it and the expand control is lit beside it. On the fourth a row of addends lies across the foot of the working area with plus signs between them and the chart above is ruled and empty. The running count at the top left is empty and the answer slot and the pad stand empty down the right. One thing moves, once: the digit in the highest place, or the expand control, or the first addend of the row, gives one slow pulse while the voice says that every digit in this number is worth something different. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any number of up to six digits, any digit tapped, and the expanded row left open beside the chart. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on face value, place value, and moving between the expanded and the standard form.",
+    "voiceLines": [
+      "One number, and every digit in it is worth something different. Tap one.",
+      "Tap them one at a time. Is the face value the same every time?",
+      "Now read the other cards. What changed when you moved it?",
+      "Read the row out loud. Add them up in your head.",
+      "Put each one back where it came from. What number did you make?",
+      "Another number. The same two questions about every digit.",
+      "Free play. Any number, any digit, the row of addends left open.",
+      "Put the digit back in its column and read the heading first.",
+      "You said what each digit is, and what each digit is worth."
+    ],
+    "observations": [
+      {
+        "why": "The face value is the digit exactly as it is written.",
+        "soWhat": "Where a digit sits makes no difference at all to its face value.",
+        "observe": "Every face value card under a number of all the same digit read the same."
+      },
+      {
+        "why": "Each one is the digit multiplied by the value of its own column.",
+        "soWhat": "Where a digit sits is the whole of what it is worth.",
+        "observe": "The place value cards under those same digits were all different."
+      },
+      {
+        "why": "Every place is worth ten of the place to its right.",
+        "soWhat": "Moving a digit one place changes what it is worth without changing the digit.",
+        "observe": "A digit dragged one column to the left came back worth ten times as much."
+      },
+      {
+        "why": "Zero of any place at all is zero, so there is nothing to add.",
+        "soWhat": "A zero holds its place open and adds nothing to the number.",
+        "observe": "The zero's card was grey and empty and fell out of the row of addends."
+      },
+      {
+        "why": "They are that number's own place values and nothing else.",
+        "soWhat": "Collapsing the row back into the chart is how an expanded form is checked.",
+        "observe": "The addends added back to exactly the number that had been sitting above them."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a number whose digits are all the same, sitting in the chart",
+        "win": "all the face value cards read the same digit",
+        "traceback": "That digit's cards come down one at a time: the face value card with its heading covered, then the place value card.",
+        "ladder": [
+          "Read the card with the bare digit on it.",
+          "Read the card with the bare digit on it.",
+          "Did the digit itself change when it moved?",
+          "Is that card the same under every digit?",
+          "Look at just two of the same digit. Read both face value cards."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the same number with every digit split into its two cards",
+        "win": "the place value cards all differ while the face value cards do not",
+        "traceback": "The digit lifts and sets down with the rest dimmed; the headings light from the ones up while its worth grows ten times a step.",
+        "ladder": [
+          "Which column is that digit standing in?",
+          "Which column is that digit standing in?",
+          "Which column is that digit standing in?",
+          "What is one of that column worth?",
+          "Read the heading above it. Multiply the digit by the value of that place."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the chart with the expand control lit",
+        "win": "the addends add back to the number still shown above them",
+        "traceback": "The child's row stays; under it each digit drops its place value card into a second row while the headings light along it.",
+        "ladder": [
+          "What is this digit worth where it is standing?",
+          "What is this digit worth where it is standing?",
+          "What is this digit worth where it is standing?",
+          "How many addends should the row have?",
+          "Does your row add back to the number in the chart?"
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a row of addends with the chart beneath it empty",
+        "win": "the chart fills and the number matches the row above it",
+        "traceback": "Each addend travels to the column it names, from the left, its heading lighting; a grey zero drops into every open column.",
+        "ladder": [
+          "Which place does this addend name?",
+          "Which place does this addend name?",
+          "Which place does this addend name?",
+          "Is any column still standing empty?",
+          "An empty place still needs a digit to hold it open."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "columnWidth": 150,
+    "places": [
+      "ones",
+      "tens",
+      "hundreds",
+      "thousands",
+      "ten thousands",
+      "lakhs"
+    ],
+    "periods": [
+      {
+        "name": "ones",
+        "places": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "thousands",
+        "places": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "lakhs",
+        "places": [
+          5
+        ]
+      }
+    ],
+    "cards": {
+      "face": {
+        "y": 190,
+        "h": 62,
+        "w": 96
+      },
+      "placeValue": {
+        "y": 286,
+        "h": 62,
+        "w": 144
+      },
+      "row": {
+        "y": 376,
+        "h": 64
+      },
+      "secondRow": {
+        "y": 460,
+        "h": 62
+      }
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T3.C8:ML1",
+        "kind": "face",
+        "number": 55555,
+        "place": 2,
+        "answer": 5,
+        "winMs": 1900
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T3.C8:1",
+        "kind": "face",
+        "number": 914680,
+        "place": 5,
+        "answer": 9,
+        "winMs": 1900
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T3.C8:2",
+        "kind": "swap",
+        "number": 55555,
+        "pair": [
+          3,
+          1
+        ],
+        "answer": "no",
+        "winMs": 1900
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T3.C9:ML2",
+        "kind": "worth",
+        "number": 74057,
+        "place": 3,
+        "answer": 4000,
+        "winMs": 1600
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T3.C9:3",
+        "kind": "worth",
+        "number": 914680,
+        "place": 5,
+        "answer": 900000,
+        "winMs": 1600
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T3.C9:4",
+        "kind": "worth",
+        "number": 74057,
+        "place": 2,
+        "answer": 0,
+        "winMs": 1600
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T3.C10:ML3",
+        "kind": "expand",
+        "number": 84536,
+        "answer": "80,000 + 4,000 + 500 + 30 + 6",
+        "pad": "enter",
+        "winMs": 1900
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T3.C10:5",
+        "kind": "expand",
+        "number": 47250,
+        "answer": "40,000 + 7,000 + 200 + 50",
+        "pad": "enter",
+        "winMs": 1900
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T3.C10:6",
+        "kind": "expand",
+        "number": 752953,
+        "answer": "7,00,000 + 50,000 + 2,000 + 900 + 50 + 3",
+        "pad": "enter",
+        "winMs": 1900
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T3.C11:ML4",
+        "kind": "fold",
+        "form": "plus",
+        "parts": [
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "answer": 456923,
+        "winMs": 2000
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T3.C11:7",
+        "kind": "fold",
+        "form": "times",
+        "parts": [
+          [
+            7,
+            5
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "answer": 782965,
+        "winMs": 2000
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T3.C11:8",
+        "kind": "fold",
+        "form": "times",
+        "parts": [
+          [
+            6,
+            5
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            9,
+            1
+          ]
+        ],
+        "answer": 680490,
+        "winMs": 2400
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: That digit's cards come down one at a time: the face value card with its heading covered, then the place value card.",
+      "Phase 2: The digit lifts and sets down with the rest dimmed; the headings light from the ones up while its worth grows ten times a step.",
+      "Phase 3: The child's row stays; under it each digit drops its place value card into a second row while the headings light along it.",
+      "Phase 4: Each addend travels to the column it names, from the left, its heading lighting; a grey zero drops into every open column."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "One number, and every digit in it is worth something different. Tap one.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "You said what each digit is, and what each digit is worth.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T3.C8:ML1",
+            "worked": false,
+            "kind": "face",
+            "planQuestion": "In 55,555, what is the face value of the five standing in the hundreds place?",
+            "question": {
+              "en": "In 55,555, what is the face value of the five standing in the hundreds place?"
+            },
+            "ask": {
+              "en": "Hundreds digit: face value?"
+            },
+            "answer": 5,
+            "planAnswer": "Five, the same as every other five in the number",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T3.C8:1",
+            "worked": false,
+            "kind": "face",
+            "planQuestion": "What is the face value of 9 in 9,14,680?",
+            "question": {
+              "en": "What is the face value of 9 in 9,14,680?"
+            },
+            "ask": {
+              "en": "Face value of the 9?"
+            },
+            "answer": 9,
+            "planAnswer": "Nine",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T3.C8:2",
+            "worked": false,
+            "kind": "swap",
+            "planQuestion": "Two of the digits in 55,555 are swapped over. Do their face values change?",
+            "question": {
+              "en": "Two of the digits in 55,555 are swapped over. Tap a marked one to swap them. Do their face values change?"
+            },
+            "ask": {
+              "en": "Do their face values change?"
+            },
+            "answer": "no",
+            "planAnswer": "No. A face value is the digit itself, wherever it happens to sit",
+            "choices": [
+              "no",
+              "yes"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T3.C9:ML2",
+            "worked": false,
+            "kind": "worth",
+            "planQuestion": "In 74,057, what is the place value of 4?",
+            "question": {
+              "en": "In 74,057, what is the place value of 4?"
+            },
+            "ask": {
+              "en": "Place value of the 4?"
+            },
+            "answer": 4000,
+            "planAnswer": "4000",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T3.C9:3",
+            "worked": false,
+            "kind": "worth",
+            "planQuestion": "What is the place value of 9 in 9,14,680?",
+            "question": {
+              "en": "What is the place value of 9 in 9,14,680?"
+            },
+            "ask": {
+              "en": "Place value of the 9?"
+            },
+            "answer": 900000,
+            "planAnswer": "9,00,000",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T3.C9:4",
+            "worked": false,
+            "kind": "worth",
+            "planQuestion": "What is the place value of 0 in 74,057?",
+            "question": {
+              "en": "What is the place value of the hundreds digit in 74,057?"
+            },
+            "ask": {
+              "en": "Hundreds digit: place value?"
+            },
+            "answer": 0,
+            "planAnswer": "0. The place value of zero is zero in any place at all",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T3.C10:ML3",
+            "worked": false,
+            "kind": "expand",
+            "planQuestion": "Write 84,536 in expanded form.",
+            "question": {
+              "en": "Write 84,536 in expanded form. Move one card of each digit down into the row, then press enter."
+            },
+            "ask": {
+              "en": "Expand 84,536"
+            },
+            "answer": "80,000 + 4,000 + 500 + 30 + 6",
+            "planAnswer": "80,000 + 4000 + 500 + 30 + 6",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T3.C10:5",
+            "worked": false,
+            "kind": "expand",
+            "planQuestion": "Write 47,250 in expanded form.",
+            "question": {
+              "en": "Write 47,250 in expanded form."
+            },
+            "ask": {
+              "en": "Expand 47,250"
+            },
+            "answer": "40,000 + 7,000 + 200 + 50",
+            "planAnswer": "40,000 + 7000 + 200 + 50",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T3.C10:6",
+            "worked": false,
+            "kind": "expand",
+            "planQuestion": "Write 7,52,953 in expanded form.",
+            "question": {
+              "en": "Write 7,52,953 in expanded form."
+            },
+            "ask": {
+              "en": "Expand 7,52,953"
+            },
+            "answer": "7,00,000 + 50,000 + 2,000 + 900 + 50 + 3",
+            "planAnswer": "7,00,000 + 50,000 + 2000 + 900 + 50 + 3",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T3.C11:ML4",
+            "worked": false,
+            "kind": "fold",
+            "planQuestion": "Which number is 4,00,000 + 50,000 + 6000 + 900 + 20 + 3?",
+            "question": {
+              "en": "4,00,000 plus 50,000 plus 6,000 plus 900 plus 20 plus 3. Which number is that?"
+            },
+            "ask": {
+              "en": "Which number?"
+            },
+            "answer": 456923,
+            "planAnswer": "4,56,923",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T3.C11:7",
+            "worked": false,
+            "kind": "fold",
+            "planQuestion": "Write 7 x 1,00,000 + 8 x 10,000 + 2 x 1000 + 9 x 100 + 6 x 10 + 5 x 1 in standard form.",
+            "question": {
+              "en": "7 times 1,00,000, 8 times 10,000, 2 times 1,000, 9 times 100, 6 times 10 and 5 times 1. Write it in standard form."
+            },
+            "ask": {
+              "en": "Standard form?"
+            },
+            "answer": 782965,
+            "planAnswer": "7,82,965",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T3.C11:8",
+            "worked": false,
+            "kind": "fold",
+            "planQuestion": "Write 6 x 1,00,000 + 8 x 10,000 + 4 x 100 + 9 x 10 in standard form.",
+            "question": {
+              "en": "6 times 1,00,000, 8 times 10,000, 4 times 100 and 9 times 10. Write it in standard form."
+            },
+            "ask": {
+              "en": "Standard form?"
+            },
+            "answer": 680490,
+            "planAnswer": "6,80,490. The thousands and the ones places are empty, so zeros hold them open",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "worth_of_a_digit",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "worth_of_a_digit",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "The digit you see, and what the digit is worth",
+        "conceptId": "M1.S2.T3.C8",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C8:ML1",
+          "M1.S2.T3.C8:1",
+          "M1.S2.T3.C8:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Where a digit sits decides what it is worth",
+        "conceptId": "M1.S2.T3.C9",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C9:ML2",
+          "M1.S2.T3.C9:3",
+          "M1.S2.T3.C9:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Adding up the worths gives the expanded form",
+        "conceptId": "M1.S2.T3.C10",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C10:ML3",
+          "M1.S2.T3.C10:5",
+          "M1.S2.T3.C10:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Rolling the expanded form back into one number",
+        "conceptId": "M1.S2.T3.C11",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C11:ML4",
+          "M1.S2.T3.C11:7",
+          "M1.S2.T3.C11:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "tappedDigit",
+    "null",
+    "showAll",
+    "expanded",
+    "addends",
+    "pt",
+    "focusDigit",
+    "d",
+    "focusPlace",
+    "focusK"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, tappedDigit, null, showAll, expanded, addends, pt, focusDigit, d, focusPlace, focusK, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "worth_of_a_digit"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T3.C8.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "One number, and every digit in it is worth something different. Tap one."
+    },
+    {
+      "en": "Tap them one at a time. Is the face value the same every time?"
+    },
+    {
+      "en": "Now read the other cards. What changed when you moved it?"
+    },
+    {
+      "en": "Read the row out loud. Add them up in your head."
+    },
+    {
+      "en": "Put each one back where it came from. What number did you make?"
+    },
+    {
+      "en": "Another number. The same two questions about every digit."
+    },
+    {
+      "en": "Free play. Any number, any digit, the row of addends left open."
+    },
+    {
+      "en": "Put the digit back in its column and read the heading first."
+    },
+    {
+      "en": "You said what each digit is, and what each digit is worth."
+    }
+  ],
+  "build": {
+    "source": "170f0cb2:194690",
+    "runtime": "class4/runtime/runtime.tsx",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-22T06:56:48.650Z",
+    "checks": {
+      "pass": 59,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-22T06:56:48.545Z"
+    },
+    "tsxBytes": 189677,
+    "tsxMd5": "f93a1611aef1d3b2f6ac5f58ae5740e8"
+  }
+}

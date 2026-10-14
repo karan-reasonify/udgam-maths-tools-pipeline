@@ -1,0 +1,1081 @@
+{
+  "slotId": "M1.S2.T4.C12.2D1",
+  "mediaId": "M1.S2.T4.C12.2D1",
+  "toolId": "time_unit_ladder",
+  "title": "Time Unit Ladder",
+  "component": "M1.S2.T4.C12.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch12",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch12_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_12/2dtool/M1.S2.T4.C12.2D1/M1.S2.T4.C12.2D1.tsx",
+  "description": "Watch the second hand go round once, set the exchanges between days, hours, minutes and seconds, and step tiles down the ladder to change a time into a smaller unit.",
+  "conceptIds": [
+    "M1.S2.T4.C12",
+    "M1.S2.T4.C13",
+    "M1.S2.T4.C14",
+    "M1.S2.T4.C15"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Know how many of each unit of time make the next, and change days, hours or minutes into a smaller unit, with the part already there added on.",
+    "look": "A ladder of four rungs, day, hour, minute and second, with tiles on the rungs, and a clock with a thin second hand beside it.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Time Unit Ladder' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the tiles opened against the tiles this phase lays out, two numbers in ink, the first climbing by one as each tile opens and the second fixed at what this phase holds. On the first phase it counts the laps of the second hand against the laps asked for, and on the second the tags filled against three. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The ladder stands at the left of the working area, 600 by 460 at 76,222, with four rungs one above another, each 560 wide and 90 tall, labelled at their left ends from the top: day, hour, minute and second. Day tiles are olive, hour tiles and cells vermilion, minute tiles and cells deep blue, and second cells reddish purple. Between each pair of rungs, at the right end, sits an exchange tag, 80 by 40, blank until it is filled: twenty-four between day and hour, sixty between hour and minute, and sixty between minute and second. A time is loaded as tiles on its rungs, one tile for each unit. The step down control, 160 by 56 at 700,226, opens every tile on a rung into cells on the rung below: an hour tile opens into a bar of sixty minute cells in six rows of ten, a minute tile into sixty second cells the same way, and a day tile into twenty-four hour cells in two rows of ten and four more. Past three bars on a rung, each full bar folds into a neat stack at the rung's right end with the number of bars written beside it. As the tiles open, the multiplication for the whole rung is written beside it in ink, the number of tiles times the exchange, with the total after it. The side bay, 200 by 200 at 880,226, holds any tiles already in the smaller unit until the slide control under it, 200 by 56 at 880,436, brings them in beside the opened cells. The add bar runs under the ladder, 600 by 44 at 76,686, and writes the total of the rung it is set on. The second hand clock stands at the lower right, a face 200 across centred at 1010,610, with a vermilion hour hand, a deep blue minute hand and a thin reddish purple second hand. It ticks one mark a second, counts its ticks beside it, and steps the minute hand on one mark at the end of each lap. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve keys three across, the ten digits and two keys that clear and go back, with a unit strip under the slot reading days, hours, minutes and seconds, and the answer slot will not settle a number until the unit the question asks for is chosen. On the second phase a word pad of the four unit names sits over it for ordering the rungs. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The hour hand, every hour tile and hour cell, the hours column, and the hours of a time the stage splits into hours and minutes are vermilion. The minute hand, every minute tile and minute cell, the minutes column and the minutes of a split time are deep blue. The second hand, every second cell and the seconds column are reddish purple. The a.m. half of the day, from midnight to noon, is sky blue on every strip, timeline and track, and the p.m. half, from noon to midnight, is amber, so the label changes where the colour does. Time counted between a start and an end, every hop and total on a track, and the days counted between two dates are green. An hour or a minute carried or broken, with the digits it strikes and rewrites, is wine. A calendar day, week or year picked out or ticked, a month on its bar and a day tile are olive. The days left over beyond whole weeks, and the twenty-ninth of February in a leap year, are yellow outlined in near-black. Chrome never borrows one of those and none of them is ever used for chrome: every clock rim, minute mark, clock number, hub, rule, tick, post, bracket, guide line and panel edge is near-black. Every reading survives with the colour taken away, because an hour hand is told from a minute hand by its length, a column by its heading, a half of the day by its label, and a counted day from one left out by being filled rather than outlined, before any of them is told by a colour. A figure that goes down by one is struck through once with the new figure written above it, and never rubbed out. A bar of sixty cells is drawn as six rows of ten and a day's hour cells as two rows of ten and four, so no bar on this stage can be read as a hundred. Tiles already in the smaller unit are not multiplied: they wait in the side bay and are slid in and added.",
+    "finish": "The card shows the ladder with the child's last time opened down its rungs, the multiplication and the added part written beside it, and the answer with its unit.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "sixty ticks are counted, and the minute hand steps on exactly one mark",
+        "does": "starts the second hand and counts its ticks for one whole lap, watching the minute hand",
+        "goal": "the second hand moves one mark each second and goes round once a minute, so one minute is sixty seconds",
+        "says": "Watch the thin hand go all the way round. How many ticks is that? What did the minute hand do?",
+        "check": "Away from the screen: the second hand goes round twice. How many seconds is that, and how many minutes?",
+        "feels": "one lap of the thin hand is sixty ticks, and the long hand creeps one mark for it",
+        "hands": "Watch a real second hand go round once with the class counting each tick aloud, and stop at sixty. Ask what the minute hand did while that happened. Then run it for two laps and ask how many seconds passed.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: how many marks are there round the face? Second rung, the phase's: how long does the second hand take to pass one mark? Third rung: the clock is cut to one stretch from one number to the next, five ticks, before the whole lap comes back. The pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the numbers are what stand out on a face, and counting them is quicker than counting marks.",
+            "move": "counts the twelve numbers as the second hand passes them, and says one lap is twelve seconds.",
+            "screen": "the second hand is run again from the twelve, and the tick count beside the clock climbs by one at every mark, reaching five at the one, ten at the two, and sixty back at the twelve. The minute hand steps on one mark as the lap ends, and the child's twelve stays in the slot beside the count."
+          },
+          {
+            "why": "the minute hand is read in fives from the numbers, so its steps seem to go from number to number.",
+            "move": "says one lap of the second hand moves the minute hand on to the next number, five minutes.",
+            "screen": "the second hand runs one lap and the tick count writes sixty, and the minute hand's move is lit: one small mark and no further. A second lap steps it one more mark, and the child's answer stays in the slot beside the two marks."
+          }
+        ],
+        "screen": "the clock with three hands, the thin second hand at the twelve, and a count of ticks at nought",
+        "soWhat": "The second hand goes round once every minute, so one minute is sixty seconds.",
+        "concept": "The second hand"
+      },
+      {
+        "n": 2,
+        "win": "the rungs settle as day, hour, minute and second, and twenty-four, sixty and sixty fill the tags",
+        "does": "orders the rungs from the largest unit at the top to the smallest at the bottom, then fills each exchange tag",
+        "goal": "sixty seconds make a minute, sixty minutes make an hour and twenty-four hours make a day, with the second the smallest and the hour the largest of the three",
+        "says": "How many of the smaller unit make one of the bigger one?",
+        "check": "Which is larger, an hour or a minute? How many of the smaller make the larger?",
+        "feels": "each unit is a bundle of the one below it, and the day's bundle is a different size from the others",
+        "hands": "Write four cards, day, hour, minute and second, and have four children stand holding them in order from the largest to the smallest. Between each pair the class says how many of the smaller make one of the larger, and writes it on a slip held between them.",
+        "tries": "First rung, from the item: which of these units is the smallest? Second rung, the phase's: how many of the smaller unit make one of the next? Third rung: the ladder is cut to two rungs, minute and second, and the child fills their one tag before the other rungs come back. The word pad and the number pad stay open.",
+        "wrong": [
+          {
+            "why": "sixty is said twice going up the ladder, so it sounds like the number for every step.",
+            "move": "uses sixty for every step, and says a day is sixty hours.",
+            "screen": "the child's sixty is set on the tag between day and hour, and a day tile is stepped down: its cells fill two rows of ten and four more, and the rung stops there at twenty-four, with the child's tag still reading sixty beside the count. The child's answer stays in the slot, nothing marked."
+          },
+          {
+            "why": "sixty looks bigger than one, and the size of a number is easy to take for the size of the unit.",
+            "move": "puts the second above the minute, because sixty seconds is a bigger number than one minute.",
+            "screen": "one minute tile is set on the minute rung and stepped down, and it opens into sixty second cells, each far smaller than the tile. The sixty cells are laid back over the minute tile and fill it exactly, and the child's order stays set out beside the ladder."
+          }
+        ],
+        "screen": "the ladder with its four rungs in a jumble and the three exchange tags blank",
+        "soWhat": "Sixty seconds make a minute, sixty minutes make an hour, and twenty-four hours make a day.",
+        "concept": "Sixty, sixty and twenty-four"
+      },
+      {
+        "n": 3,
+        "win": "every tile opens into the rung below, and the multiplication and the total are written beside it",
+        "does": "steps the tiles down, watches each open into the smaller unit, and writes the multiplication for the whole row",
+        "goal": "a larger unit is changed into a smaller one by multiplying by the number between their rungs",
+        "says": "Each of these breaks into how many of the next? So how many are there in all?",
+        "check": "How many hours are there in six days? And how many minutes in six hours?",
+        "feels": "every tile on the rung opens into the same number of cells, so a row of tiles is one multiplication",
+        "hands": "Draw three large squares on the board for three hours, and fill one with six rows of ten dots while the class counts. Ask how many dots the other two hold without drawing them, and write three times sixty. Then ask how many hours are in two days, and write two times twenty-four.",
+        "tries": "First rung, from the item: which rung are the tiles on, and which rung is below it? Second rung, the phase's: how many cells does one tile open into? Third rung: the row is cut to one tile, and the child opens it and counts its cells before the full row comes back. The pad and the unit strip stay open.",
+        "wrong": [
+          {
+            "why": "hours and minutes both use sixty, and the day's twenty-four is the one exchange on the ladder that differs.",
+            "move": "multiplies nine days by sixty and answers five hundred and forty hours.",
+            "screen": "the nine day tiles step down one at a time, and each opens into two rows of ten hour cells and four more, twenty-four and no more. The multiplication beside the rung is written nine times twenty-four, and the total two hundred and sixteen. The child's five hundred and forty stays in the slot beside it."
+          },
+          {
+            "why": "a metre is a hundred centimetres, and a hundred is the round number that comes to mind for how many small units make a big one.",
+            "move": "writes three hours as three hundred minutes, as if an hour were a hundred minutes the way a metre is a hundred centimetres.",
+            "screen": "the three hour tiles step down, and each opens into a bar of sixty minute cells in six rows of ten, not ten rows of ten. The three bars make one hundred and eighty. The child's three hundred is laid beside them in bars of sixty and runs to five bars, which is five hours, and the child's number stays in the slot."
+          }
+        ],
+        "screen": "a row of tiles on one rung, with the rung below empty",
+        "soWhat": "To change a larger unit into a smaller one, multiply by the number of small units in one large one.",
+        "concept": "Larger to smaller: multiply"
+      },
+      {
+        "n": 4,
+        "win": "the two groups of minutes join into one row, and the total is written in minutes",
+        "does": "steps the hour tiles down, slides the side bay's minutes in, and writes the total with its unit",
+        "goal": "a time in two units is changed into the smaller unit by changing the larger part and adding the part already there",
+        "says": "Break the hours into minutes first. Now, what about the minutes that were already there?",
+        "check": "Change four hours twenty minutes into minutes. What did you multiply, and what did you add?",
+        "feels": "the hours need changing and the minutes do not, so the two parts are treated differently",
+        "hands": "Write two hours twenty minutes on the board and change it into minutes with the class in two steps: the hours into minutes first, sixty and sixty, then the twenty that were minutes already added on. Ask why the twenty were not multiplied. Then write one hour thirty minutes and ask someone to say it as minutes aloud.",
+        "tries": "First rung, from the item: which part of the time is in the larger unit? Second rung, the phase's: what happens to the part already in the smaller unit? Third rung: the time is cut to one hour and a few minutes, and the child opens the hour and slides the minutes in before the larger time comes back. The pad and the unit strip stay open.",
+        "wrong": [
+          {
+            "why": "the multiplying is the work, and once it is done the small part looks as if it has been dealt with.",
+            "move": "leaves out the eighteen minutes and answers three hundred minutes for five hours eighteen minutes.",
+            "screen": "the five hour tiles open into five bars of sixty, three hundred cells, and the side bay's eighteen minute tiles glow and slide in beside them. The add bar writes three hundred and eighteen, and the child's three hundred stays in the slot beside it."
+          },
+          {
+            "why": "one hour thirty looks like one and thirty side by side, and a one in front of thirty makes a hundred and thirty.",
+            "move": "writes one hour thirty minutes as one hundred and thirty minutes, reading the time as a whole number.",
+            "screen": "the hour tile opens into one bar of sixty, and the thirty from the side bay slide in beside it: ninety. The child's one hundred and thirty is laid beside it in bars of sixty, two full bars and ten more, which is two hours ten minutes, and the child's number stays in the slot."
+          },
+          {
+            "why": "a time of sixty or more minutes is often turned into hours and minutes, and that move is easy to make when the question asks for something else.",
+            "move": "for eighty-five minutes in seconds, writes one hour twenty-five minutes, changing the time up the ladder instead of down.",
+            "screen": "the child's answer is built first: sixty of the eighty-five minute cells gather into one hour tile that rises a rung, and the twenty-five left over stay on the minute rung as minutes, which is what going up the ladder gives. The unit strip then lights seconds, the unit the question asks for, and the eighty-five minutes step down instead, each opening into sixty second cells: eighty-five times sixty, five thousand one hundred seconds. The child's answer stays in the slot."
+          }
+        ],
+        "screen": "a time loaded as hour tiles and minute tiles, with the minute tiles waiting in the side bay",
+        "soWhat": "For a time in two units, change the larger unit, then add the part already in the smaller unit.",
+        "concept": "Two units into one"
+      }
+    ],
+    "delight": "The third phase, when one day tile is stepped down twice. It opens into twenty-four hour cells, and stepping those down opens each into a bar of sixty minute cells, until the minute rung is lined with folded stacks and the multiplication beside it reads twenty-four times sixty, one thousand four hundred and forty minutes, all out of one small olive tile. It can be run as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the clock beside the ladder shows its thin second hand at the twelve and the tick count at nought, and the ladder stands dim. On the second the four rungs lie in a jumble at the foot of the ladder and the three exchange tags between the rung places are blank. On the third a row of tiles stands on one rung with the rung below it empty. On the fourth hour tiles stand on the hour rung and minute tiles wait in the side bay. The running count at the top left holds the tiles opened against the tiles this phase lays out, and the answer slot and the pad stand empty down the right. One thing moves, once: the second hand, or the rung marked day, or the first tile, or the side bay, gives one slow pulse while the voice asks how many of each unit make the next. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any tiles on any rung, the step down control, the side bay, the add bar and the second hand clock all open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the second hand, the three exchanges, changing a larger unit into a smaller one, and changing two units into one.",
+    "voiceLines": [
+      "A ladder of units, from days down to seconds. How many of each make the next?",
+      "Watch the thin hand go all the way round. How many ticks is that? What did the minute hand do?",
+      "How many of the smaller unit make one of the bigger one?",
+      "Each of these breaks into how many of the next? So how many are there in all?",
+      "Break the hours into minutes first. Now, what about the minutes that were already there?",
+      "A new time. Say its unit before you step anything down.",
+      "Free play. Any tiles on any rung, with the step down, the side bay and the second hand open.",
+      "Open one tile and count what is inside it.",
+      "Each tile opened into the right number, the part already there added on, and each answer given its unit."
+    ],
+    "observations": [
+      {
+        "why": "The second hand moves one mark each second and there are sixty marks round the face, so one lap is one minute.",
+        "soWhat": "The second hand goes round once every minute, so one minute is sixty seconds.",
+        "observe": "Sixty ticks were counted in one lap, and the minute hand stepped on exactly one mark."
+      },
+      {
+        "why": "Each unit is made of a number of the unit below it, and the day's number is twenty-four, not sixty.",
+        "soWhat": "Sixty seconds make a minute, sixty minutes make an hour, and twenty-four hours make a day.",
+        "observe": "The rungs settled with the day at the top and the second at the foot, and the tags read twenty-four, sixty and sixty."
+      },
+      {
+        "why": "Every tile on a rung is one of the same unit, so each opens into the number on the tag below it.",
+        "soWhat": "To change a larger unit into a smaller one, multiply by the number of small units in one large one.",
+        "observe": "Each tile on the rung opened into the same number of cells, and the multiplication beside the rung gave the total."
+      },
+      {
+        "why": "Those minutes were minutes already, so they needed no changing.",
+        "soWhat": "For a time in two units, change the larger unit, then add the part already in the smaller unit.",
+        "observe": "The side bay's minutes slid in beside the opened hours and were added, not opened."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the clock with three hands, the thin second hand at the twelve, and a count of ticks at nought",
+        "win": "sixty ticks are counted, and the minute hand steps on exactly one mark",
+        "traceback": "The second hand runs its laps again with a tick count that climbs mark by mark (5 at the one, 60 back at the twelve), and the minute hand's one-mark step is lit.",
+        "ladder": [
+          "The twelve numbers are not the seconds. There are small marks between them too.",
+          "Look closely at the end of the lap. Did the minute hand jump to the next number?",
+          "Take it one lap at a time. What does each lap add?",
+          "How long does the second hand take to pass each small mark?",
+          "Count the small marks from 12 to 1. Each number on the face is that many marks further on."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the ladder with its four rungs in a jumble and the three exchange tags blank",
+        "win": "the rungs settle as day, hour, minute and second, and twenty-four, sixty and sixty fill the tags",
+        "traceback": "A tile of the bigger unit opens into cells of the smaller one (60 seconds fill a minute, 24 hours fill a day), and the right answer is drawn beside the child's own ladder.",
+        "ladder": [
+          "Which unit takes longest to go by?",
+          "Sixty seconds sounds like a lot. Is it longer than one minute, or just the same?",
+          "Not every tag is the same. Count the hours from one midnight to the next.",
+          "Think of one big unit opened up. How many smaller ones fill it?",
+          "Think of the clock. The slower a hand moves, the bigger the unit it counts."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a row of tiles on one rung, with the rung below empty",
+        "win": "every tile opens into the rung below, and the multiplication and the total are written beside it",
+        "traceback": "The tiles step down one at a time, each opening into one bar of the rung below, the cells are counted bar by bar, and the multiplication is written with its total.",
+        "ladder": [
+          "Look at the tag under the hour rung. Is an hour really a hundred minutes?",
+          "A day is not sixty hours. Which number sits between the day and the hour?",
+          "A minute tile opens into one bar. How many seconds fill a bar?",
+          "How many cells does one tile open into?",
+          "Open the row and count one bar of cells. Every tile gives a bar just the same."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a time loaded as hour tiles and minute tiles, with the minute tiles waiting in the side bay",
+        "win": "the two groups of minutes join into one row, and the total is written in minutes",
+        "traceback": "The larger unit's tiles open into bars on the rung below, the part already in the smaller unit slides in beside them from the box at the side, and the add bar writes the total in the smaller unit.",
+        "ladder": [
+          "Where did the 18 minutes in the box at the side go?",
+          "The 25 seconds are seconds already.",
+          "Every minute opens into a bar of sixty seconds. Count the bars, then the rest.",
+          "What happens to the part already in the smaller unit?",
+          "Step the larger tiles down first. Then slide the other part in beside them and add the two."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "units": [
+      "day",
+      "hour",
+      "minute",
+      "second"
+    ],
+    "exchange": [
+      24,
+      60,
+      60
+    ],
+    "ladder": {
+      "x": 140,
+      "w": 596,
+      "rungH": 92,
+      "rows": [
+        {
+          "unit": "day",
+          "y": 10
+        },
+        {
+          "unit": "hour",
+          "y": 128
+        },
+        {
+          "unit": "minute",
+          "y": 246
+        },
+        {
+          "unit": "second",
+          "y": 364
+        }
+      ]
+    },
+    "bar": {
+      "cellsPerRow": 10,
+      "minuteBarRows": 6,
+      "dayBarRows": [
+        10,
+        10,
+        4
+      ],
+      "foldAfter": 3
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T4.C12:1",
+        "kind": "lap",
+        "laps": 1,
+        "answer": 60,
+        "near": 12,
+        "winMs": 2600,
+        "thumb": [
+          "1 lap",
+          "60 seconds"
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": null,
+        "kind": "step",
+        "laps": 1,
+        "answer": 1,
+        "near": 5,
+        "forms": [
+          "1 mark",
+          "one mark"
+        ],
+        "winMs": 2600,
+        "thumb": [
+          "1 lap",
+          "1 mark"
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T4.C12:ML1",
+        "kind": "laps",
+        "laps": 3,
+        "parts": [
+          {
+            "label": "seconds"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          180,
+          3
+        ],
+        "near": "36|15",
+        "winMs": 3000,
+        "thumb": [
+          "180 seconds",
+          "3 marks"
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T4.C13:2",
+        "kind": "largest",
+        "answer": "hour",
+        "near": "second",
+        "forms": [
+          "hour is the largest",
+          "hour is largest"
+        ],
+        "winMs": 2400,
+        "thumb": [
+          "largest",
+          "an hour"
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T4.C13:ML2",
+        "kind": "order",
+        "pad": "enter",
+        "answer": "day,hour,minute,second",
+        "near": "day,hour,second,minute",
+        "winMs": 3000,
+        "forms": [
+          "second, minute, hour, day",
+          "day, hour, minute, second",
+          "day,hour,minute,second"
+        ],
+        "thumb": [
+          "top: day",
+          "foot: second"
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": null,
+        "kind": "day",
+        "answer": 24,
+        "near": 60,
+        "winMs": 2600,
+        "thumb": [
+          "1 day",
+          "24 hours"
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T4.C14:3",
+        "kind": "multiply",
+        "from": 1,
+        "n": 3,
+        "answer": 180,
+        "near": 300,
+        "winMs": 2800,
+        "childBars": true,
+        "thumb": [
+          "3 × 60",
+          "180 minutes"
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T4.C14:ML3",
+        "kind": "multiply",
+        "from": 0,
+        "n": 9,
+        "answer": 216,
+        "near": 540,
+        "winMs": 2800,
+        "thumb": [
+          "9 × 24",
+          "216 hours"
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T4.C14:4",
+        "kind": "multiply",
+        "from": 2,
+        "n": 14,
+        "answer": 840,
+        "near": 1400,
+        "winMs": 2800,
+        "thumb": [
+          "14 × 60",
+          "840 seconds"
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T4.C15:ML4",
+        "kind": "two",
+        "from": 1,
+        "n": 5,
+        "extra": 18,
+        "answer": 318,
+        "near": 300,
+        "winMs": 2800,
+        "thumb": [
+          "5 × 60 + 18",
+          "318 minutes"
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T4.C15:6",
+        "kind": "two",
+        "from": 2,
+        "n": 9,
+        "extra": 25,
+        "answer": 565,
+        "near": 925,
+        "winMs": 2800,
+        "thumb": [
+          "9 × 60 + 25",
+          "565 seconds"
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T4.C15:8",
+        "kind": "unit",
+        "from": 2,
+        "n": 4,
+        "extra": 5,
+        "answer": "245 seconds",
+        "near": "245 minutes",
+        "forms": [
+          "245 seconds",
+          "245"
+        ],
+        "winMs": 2800,
+        "thumb": [
+          "4 × 60 + 5",
+          "245 seconds"
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The second hand runs its laps again with a tick count that climbs mark by mark (5 at the one, 60 back at the twelve), and the minute hand's one-mark step is lit.",
+      "Phase 2: A tile of the bigger unit opens into cells of the smaller one (60 seconds fill a minute, 24 hours fill a day), and the right answer is drawn beside the child's own ladder.",
+      "Phase 3: The tiles step down one at a time, each opening into one bar of the rung below, the cells are counted bar by bar, and the multiplication is written with its total.",
+      "Phase 4: The larger unit's tiles open into bars on the rung below, the part already in the smaller unit slides in beside them from the box at the side, and the add bar writes the total in the smaller unit."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Days, hours, minutes and seconds. How many of each make the next? First, the clock.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Each tile opened into the right number, the part already there added on, and each answer given its unit.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T4.C12:1",
+            "worked": false,
+            "kind": "lap",
+            "planQuestion": "How many seconds are there in one minute, and which hand of a clock counts them?",
+            "question": {
+              "en": "How many seconds are there in one minute? Count the marks the thin hand passes."
+            },
+            "ask": {
+              "en": "Seconds in one minute?"
+            },
+            "answer": 60,
+            "planAnswer": "Sixty seconds, counted by the thin second hand",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "step",
+            "planQuestion": null,
+            "question": {
+              "en": "This time watch the blue minute hand. After one lap of the thin hand, how many marks has it moved?"
+            },
+            "ask": {
+              "en": "Minute hand: how many marks?"
+            },
+            "answer": 1,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T4.C12:ML1",
+            "worked": false,
+            "kind": "laps",
+            "planQuestion": "The second hand goes round the clock three times. How many seconds pass, and how far does the minute hand move?",
+            "question": {
+              "en": "The second hand goes round the clock three times. How many seconds pass, and how far does the minute hand move?"
+            },
+            "ask": {
+              "en": "After 3 laps?"
+            },
+            "answer": [
+              180,
+              3
+            ],
+            "planAnswer": "One hundred and eighty seconds pass, and the minute hand moves three marks, which is three minutes",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T4.C13:2",
+            "worked": false,
+            "kind": "largest",
+            "planQuestion": "Which is the largest of these units: a minute, an hour or a second?",
+            "question": {
+              "en": "Which is the largest of these units: a minute, an hour or a second?"
+            },
+            "ask": {
+              "en": "The largest unit?"
+            },
+            "answer": "hour",
+            "planAnswer": "An hour",
+            "choices": [
+              "minute",
+              "hour",
+              "second"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T4.C13:ML2",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Put these units in order from the smallest to the largest: an hour, a second, a day, a minute. Say how many of each make the next.",
+            "question": {
+              "en": "Put these units in order from the smallest to the largest: an hour, a second, a day, a minute."
+            },
+            "ask": {
+              "en": "Order the rungs, smallest at the foot."
+            },
+            "answer": "day,hour,minute,second",
+            "planAnswer": "A second, a minute, an hour, a day. Sixty seconds make a minute, sixty minutes make an hour, and twenty-four hours make a day",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "day",
+            "planQuestion": null,
+            "question": {
+              "en": "Two tags now read 60. The top tag is still empty. How many hours make one day?"
+            },
+            "ask": {
+              "en": "Hours in one day?"
+            },
+            "answer": 24,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T4.C14:3",
+            "worked": false,
+            "kind": "multiply",
+            "planQuestion": "How many minutes are there in 3 hours?",
+            "question": {
+              "en": "How many minutes are there in 3 hours?"
+            },
+            "ask": {
+              "en": "3 hours in minutes?"
+            },
+            "answer": 180,
+            "planAnswer": "180 minutes",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T4.C14:ML3",
+            "worked": false,
+            "kind": "multiply",
+            "planQuestion": "How many hours are there in 9 days?",
+            "question": {
+              "en": "Now the top rung. How many hours do 9 days make?"
+            },
+            "ask": {
+              "en": "9 days in hours?"
+            },
+            "answer": 216,
+            "planAnswer": "216 hours",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T4.C14:4",
+            "worked": false,
+            "kind": "multiply",
+            "planQuestion": "How many seconds are there in 14 minutes?",
+            "question": {
+              "en": "And 14 minutes: how many seconds is that?"
+            },
+            "ask": {
+              "en": "14 minutes in seconds?"
+            },
+            "answer": 840,
+            "planAnswer": "840 seconds",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T4.C15:ML4",
+            "worked": false,
+            "kind": "two",
+            "planQuestion": "Change 5 hours 18 minutes into minutes.",
+            "question": {
+              "en": "Change 5 hours 18 minutes into minutes."
+            },
+            "ask": {
+              "en": "5 hours 18 minutes in minutes?"
+            },
+            "answer": 318,
+            "planAnswer": "318 minutes",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T4.C15:6",
+            "worked": false,
+            "kind": "two",
+            "planQuestion": "Change 9 minutes 25 seconds into seconds.",
+            "question": {
+              "en": "This time it is 9 minutes 25 seconds. How many seconds is that in all?"
+            },
+            "ask": {
+              "en": "9 minutes 25 seconds in seconds?"
+            },
+            "answer": 565,
+            "planAnswer": "565 seconds",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T4.C15:8",
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": "A song lasts 4 minutes 5 seconds. A child changes it and writes 245 minutes. What should the answer be?",
+            "question": {
+              "en": "A song lasts 4 minutes 5 seconds. Which of these shows it in seconds?"
+            },
+            "ask": {
+              "en": "Which is right?"
+            },
+            "answer": "245 seconds",
+            "planAnswer": "245 seconds. The minutes were changed into seconds, so the answer is in seconds, not minutes",
+            "choices": [
+              "245 minutes",
+              "240 seconds",
+              "245 seconds",
+              "540 seconds"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S2.T4.C14:5",
+    "M1.S2.T4.C15:7"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "time_unit_ladder",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "time_unit_ladder",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "The second hand",
+        "conceptId": "M1.S2.T4.C12",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C12:1",
+          "M1.S2.T4.C12.2D1:p1_2",
+          "M1.S2.T4.C12:ML1"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Sixty, sixty and twenty-four",
+        "conceptId": "M1.S2.T4.C13",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C13:2",
+          "M1.S2.T4.C13:ML2",
+          "M1.S2.T4.C12.2D1:p2_3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Larger to smaller: multiply",
+        "conceptId": "M1.S2.T4.C14",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C14:3",
+          "M1.S2.T4.C14:ML3",
+          "M1.S2.T4.C14:4"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Two units into one",
+        "conceptId": "M1.S2.T4.C15",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C15:ML4",
+          "M1.S2.T4.C15:6",
+          "M1.S2.T4.C15:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "time_unit_ladder"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T4.C12.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A ladder of units, from days down to seconds. How many of each make the next?"
+    },
+    {
+      "en": "Watch the thin hand go all the way round. How many ticks is that? What did the minute hand do?"
+    },
+    {
+      "en": "How many of the smaller unit make one of the bigger one?"
+    },
+    {
+      "en": "Each of these breaks into how many of the next? So how many are there in all?"
+    },
+    {
+      "en": "Break the hours into minutes first. Now, what about the minutes that were already there?"
+    },
+    {
+      "en": "A new time. Say its unit before you step anything down."
+    },
+    {
+      "en": "Free play. Any tiles on any rung, with the step down, the side bay and the second hand open."
+    },
+    {
+      "en": "Open one tile and count what is inside it."
+    },
+    {
+      "en": "Each tile opened into the right number, the part already there added on, and each answer given its unit."
+    }
+  ],
+  "build": {
+    "source": "c342f3be:1540451",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-24T18:41:45.585Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-24T18:41:44.561Z"
+    },
+    "tsxBytes": 1536226,
+    "tsxMd5": "c0ab370087f1d392c3e2d875513acf2e"
+  }
+}

@@ -1,0 +1,1080 @@
+{
+  "slotId": "M1.S2.T3.C8.2D1",
+  "mediaId": "M1.S2.T3.C8.2D1",
+  "toolId": "share_out_bench",
+  "title": "Share Out Bench",
+  "component": "M1.S2.T3.C8.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch7",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch7_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_7/2dtool/M1.S2.T3.C8.2D1/M1.S2.T3.C8.2D1.tsx",
+  "description": "Split a pile into equal bowls, collect as many bowls as the fraction asks for, and keep the rest in sight.",
+  "conceptIds": [
+    "M1.S2.T3.C8",
+    "M1.S2.T3.C9",
+    "M1.S2.T3.C10",
+    "M1.S2.T3.C11"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Take a fraction of a pile by splitting it into equal bowls and collecting some of them, and keep the bowls you did not take where you can see them.",
+    "look": "A pile on the left, a row of bowls on the right, a tray above them and the words of the question running across the top.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Share Out Bench' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the tokens dealt against the tokens the pile began with, two numbers in ink, the first climbing a round at a time as the bowls fill and the second fixed at the size of the pile. On the last two phases it carries the count on the tray and the count still on the bench, one above the other and never one without the other. Nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The pile occupies 420 by 396 at 64,202, identical countable tokens laid in neat separated rows, at most a hundred and forty-four of them and never overlapping. The bowl rail runs 560 by 150 at 520,448, holding up to twelve drawn bowls, and the tray sits above it, 560 by 150 at 520,282. The fraction being taken is drawn at 520,202, upper number over a level rule over lower number. Setting the lower number opens exactly that many bowls and no more; deal out then animates the pile sharing itself, one token into each open bowl per round, round after round, until the pile is empty and every bowl holds the same, with what one bowl holds printed under each bowl as it settles. A pile that will not divide evenly is refused before the first round rather than left with a heel in it, and the bench says which lower numbers this pile will take. Setting the upper number lifts that many full bowls up onto the tray along a drawn path; the bowls left behind keep their fill, their count and their full size on the bench and are never faded or cleared. Both ways splits the area under the bench into two working lines 1086 by 56, at 64,598 and at 64,662, the upper one dividing first and the lower one multiplying first, each writing its steps as they happen; the largest number to appear on either line is ringed, and the two lines finish on the same answer on the same tick. The question strip runs 1086 by 40 across the top of the canvas at 64,150, holding the words of the problem, and the underline control lets the child draw the underline under the part being asked for themselves rather than being shown it. The answer bay is 240 by 150 at 1100,282 and takes a drag from the tray or from the bench; the pile the question did not ask for is handed back with nothing marked and the underlined words are read out again without the number being given away. The leftover check draws the tray count and the bench count side by side and adds them against the pile the bench started with. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a count is asked for, with a strip of unit words under them, pencils, kites, sweets, mangoes, books and children among them, because an answer that names nothing has not answered a word problem yet. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: the parts a fraction counts are deep blue, the parts of that same whole which it leaves are amber, a whole shown entire or a bracket spanning one whole is green, a second writing of an amount already on the stage is rose, the greater of two fractions one of the chapter's rules can settle is vermilion, and a pair neither rule settles is sky blue. Chrome never borrows one of those and none of them is ever used for chrome. Every reading survives with the colour taken away, because a part is told from the rest by the drawn cut between them and by the label under it before it is ever told by a fill, and every cut, score line, cell edge and guide line is near-black. A fraction is drawn everywhere with its upper number above a level horizontal line and its lower number below, both upright and centred; the line is never slanted and the two numbers are never set side by side. The bowls that were not lifted are furniture, not scenery. They are drawn at the same size and the same fill as the bowls on the tray, because half the questions this bench serves want that second count and nothing in the arithmetic says which half.",
+    "finish": "The card shows the last pile dealt out, the tray beside the bench with both counts written up, and the question strip with its underline still showing.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the bowls fill evenly with nothing left over and the pile is empty",
+        "does": "reads the fraction, opens the bowls it asks for and deals the pile out",
+        "goal": "a fraction of a number means splitting it and keeping some of the parts",
+        "says": "This fraction is being taken of the whole pile. How many bowls do you need?",
+        "check": "What does 1/6 of 36 ask you to do? Say the instruction in your own words before you work anything out.",
+        "feels": "the word of turns out to be an instruction, and the number underneath the line is the one that carries it out",
+        "hands": "Count out forty-two counters into one heap. Put seven bowls on the table and deal the heap round and round the bowls, one counter to a bowl each time, until the heap is gone. Count what one bowl holds, then lift two bowls away from the rest and count what is in your hands.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which number of your fraction is written below the line? Second rung, the phase's: how many bowls does that number ask you to open? Third rung: the bench is cut to a pile of twelve with a fraction in quarters, and the child opens the bowls and deals before the larger pile comes back. The number pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "of is a small word carrying an instruction, and taking away is the operation this year has spent the most time on.",
+            "move": "reads the word of as a signal to take away and works out forty-two take away seven.",
+            "screen": "the word of is underlined on the question strip and the bench draws what each reading would do, side by side and neither marked. Taking seven away leaves thirty-five tokens in one heap with no bowl opened at all and no way for the two of the fraction to do anything; opening seven bowls and dealing fills each with six, and the two lifts two of them onto the tray for twelve. Both readings stay on the stage and the child's answer stays in the slot."
+          },
+          {
+            "why": "the upper number is met first and looks like the number in charge, and nothing about two bowls looks wrong until the lifting starts.",
+            "move": "opens two bowls rather than seven, because the two is the number read first.",
+            "screen": "the bench deals the pile into the two bowls the child opened and each one fills with twenty-one, printed underneath. The fraction above the bench is then read from the bottom up with the lower number lit, it asks for seven bowls, and the rail plainly has two; the lift is refused with nothing marked and the two full bowls are left standing exactly as the child filled them while seven empty bowls are drawn open beside them."
+          }
+        ],
+        "screen": "a pile of counters with a fraction written above the empty bowls",
+        "soWhat": "Between a fraction and a number, of means split that number into as many equal parts as the lower number says and keep as many of them as the upper number says.",
+        "concept": "What of means here"
+      },
+      {
+        "n": 2,
+        "win": "both lines land on the same answer and the larger middle number on the other line is ringed",
+        "does": "works it by dividing first, then runs the other order and compares",
+        "goal": "dividing before multiplying keeps the numbers small",
+        "says": "Try it both ways round. Which one keeps the numbers small enough to do in your head?",
+        "check": "Find 4/7 of 63, and tell me what number the other order would have handed you to divide.",
+        "feels": "both roads arrive at the same place and only one of them can be walked in your head",
+        "hands": "On squared paper write out both orders for the same question, one under the other, and work them both: sixty-four divided by eight and then multiplied by three on the first line, three multiplied by sixty-four and then divided by eight on the second. Ring the largest number that appears anywhere on each line and compare the two rings.",
+        "tries": "First rung, from the item: what does one bowl hold? Second rung, the phase's: how many bowls does the upper number ask you to lift? Third rung: the bench is cut to a pile of twenty-four in eighths so that both orders can be run without either line leaving the tables. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "multiplying is the more comfortable of the two operations, so it is the one the hand reaches for, and nothing in the question says which comes first.",
+            "move": "multiplies by the upper number first and then loses the thread inside the larger division.",
+            "screen": "both working lines run together and neither is marked. The multiply-first line is followed through to the end and lands on twenty-four, exactly where the divide-first line lands, so the order is never called wrong; the ring closes on the hundred and ninety-two it had to carry through its middle, and the eight the other line carried is ringed beside it. Both lines stay written out in full."
+          },
+          {
+            "why": "the division is the harder half and finishing it feels like finishing the question, and eight is a number the working has just produced.",
+            "move": "divides the pile by the lower number and hands in what one bowl holds, without lifting anything onto the tray.",
+            "screen": "the fraction above the bench is read from the bottom up with each number lit as its job is named, the eight opening the bowls and the three lifting them. The eight the child wrote stays in the slot and the bench then lifts three bowls onto the tray one at a time with the running tray count climbing eight, sixteen, twenty-four, and the five bowls not lifted stay full on the bench behind it."
+          }
+        ],
+        "screen": "the same pile with both working lines open, one above the other",
+        "soWhat": "Divide the whole number by the lower number first and then multiply by the upper number, because the same answer arrives through much smaller numbers.",
+        "concept": "Divide first, then multiply"
+      },
+      {
+        "n": 3,
+        "win": "both numbers are written up and add back to the pile the bench started with",
+        "does": "counts the tray, then counts what is still on the bench",
+        "goal": "the bowls that were not lifted are an answer too",
+        "says": "You have taken your share. Count what is still sitting on the bench.",
+        "check": "A farmer picks 96 mangoes and 3/8 of them are ripe. Tell me both numbers, and say which of the two the bench had to be counted for.",
+        "feels": "the bowls nobody lifted were standing there the whole time, already holding the other answer",
+        "hands": "Deal seventy-two counters into nine bowls and lift five of the bowls onto a tray. Before anything is written down, ask for two counts rather than one: how many counters are on the tray, and how many are still on the table. Then add the two back together and check against the heap you started with.",
+        "tries": "First rung, from the item: how many bowls went up onto the tray? Second rung, the phase's: how many bowls are still sitting on the bench, and what is in each of them? Third rung: the bench is cut to a pile of twelve in thirds so both counts can be made by eye before the larger pile returns. Nothing already counted is cleared.",
+        "wrong": [
+          {
+            "why": "the fraction was what the question made a fuss about, so finding it feels like the end of the work rather than the middle of it.",
+            "move": "writes forty and stops, when the question asked how many there were of each colour.",
+            "screen": "the question strip stays lit above the bench with both of its asks underlined, and the tray and the bench are counted separately with each count written up under the thing it counted, forty on the tray and thirty-two on the bench. The child's forty stays in the slot and the leftover check adds the two counts against the seventy-two the bench began with. Nothing is cleared."
+          },
+          {
+            "why": "nine bowls take five away and leave four, which is a true count of something standing on the bench, and it is arrived at without touching a single token.",
+            "move": "counts the bowls left rather than what is in them, and answers four.",
+            "screen": "the four bowls left are lifted clear of the rail and emptied out onto the bench, where the tokens in them are counted one at a time up to thirty-two, with the count under each bowl still reading eight. The child's four is left in the slot and the two numbers are printed one above the other with what each of them counts written beside it, four bowls and thirty-two pencils."
+          }
+        ],
+        "screen": "the tray loaded and the bench still holding the bowls nobody took",
+        "soWhat": "The share taken and what is left are two different numbers, and putting them back together gives the whole number the bench began with.",
+        "concept": "One share found, the other still waiting"
+      },
+      {
+        "n": 4,
+        "win": "the bay accepts the pile the question asked for and the other pile stays drawn beside it",
+        "does": "reads the strip again and sends either the tray or the bench to the bay",
+        "goal": "the answer written down is the one the question asked for",
+        "says": "Read the question once more. Does it want what you took, or what is left?",
+        "check": "A jar holds 84 sweets and 5/12 are given away. Underline what a question would have to ask for you to answer forty-nine.",
+        "feels": "the arithmetic was right the whole way through and the answer was still the wrong one of the two piles",
+        "hands": "Read a word problem aloud with a pencil in hand and underline the words that say what is being asked for, before any number is touched. Work it out, then read the underline again and say out loud which of your two numbers it is pointing at. Do it on one question that wants the share and one that wants what is left.",
+        "tries": "First rung, from the item: what words did you underline on the strip? Second rung, the phase's: is the tray what they are pointing at, or the bench? Third rung: the question is cut to its last sentence alone with both counts already standing, so only the choosing is left to do. Nothing in the bay is ever marked right or wrong.",
+        "wrong": [
+          {
+            "why": "the number that took effort to find feels like the answer, and the last thing written down is the thing handed in.",
+            "move": "writes eighteen, the number the working produced, when the question asked how many kites were left.",
+            "screen": "the answer bay returns the tray with nothing marked and re-reads the underlined words of the question without saying any number. The eighteen stays exactly where the child put it, the three bowls nobody lifted are counted out on the bench to twenty-seven, and the two counts stand side by side under the question strip with the underline still drawn above them."
+          },
+          {
+            "why": "both counts are true and both are standing on the bench, so giving both looks safer than choosing between them.",
+            "move": "hands in both numbers together and leaves whoever reads it to pick the one that was wanted.",
+            "screen": "the underline is drawn again under the words of the question, one word at a time, and the bay accepts one pile only. The pile the underline is pointing at lights on the bench and the other stays drawn beside it, unmarked and uncleared, so both are still countable while the single answer is written. The two counts are then read back as a pair, the eighteen that went and the twenty-seven that stayed."
+          }
+        ],
+        "screen": "the question strip with the asked-for part underlined and the answer bay empty",
+        "soWhat": "Read the question again before the answer is written down, because it may want the share, or what is left, or both of them.",
+        "concept": "Checking the answer against the question"
+      }
+    ],
+    "delight": "The second phase, the moment both ways is pressed. The two working lines run at once and in step, not one after the other: the upper line divides sixty-four by eight, writes the eight, multiplies by three and writes twenty-four, while the lower line multiplies three by sixty-four, writes a hundred and ninety-two in the middle of itself, and then has to take that back down by eight. The ring closes around the hundred and ninety-two as it is written, and the two answers land on their lines on the very same tick, both reading twenty-four. Neither line is marked and neither is called the wrong way round; the only difference on the stage is the size of the number each of them had to carry. Nothing else moves and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the pile stands whole at the left with the fraction drawn above the bench and the bowl rail on the right completely empty, not one bowl opened. On the second the pile is already dealt out and the two working lines are drawn under the bench, both blank, one labelled for dividing first and one for multiplying first. On the third the tray above the rail is loaded and the bowls nobody lifted are still standing full on the bench beside it. On the fourth the question strip across the top carries the words of the problem with the underline control drawn but nothing underlined yet, and the answer bay beside the tray is empty. The running count at the top left holds the tokens dealt against the tokens in the pile, and the answer slot and the pad stand empty down the right. One thing moves, once: the pile, or the first empty working line, or the fullest bowl left on the bench, or the words of the question, gives one slow pulse while the voice asks what this fraction is being taken of. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any pile up to a hundred and forty-four and any fraction whose lower number divides it, with both working lines and the leftover check switched on or off. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on reading the word of, dividing before multiplying, finding the share and what is left, and answering the question that was actually asked.",
+    "voiceLines": [
+      "A pile on the left and empty bowls on the right. The lower number says how many bowls.",
+      "This fraction is being taken of the whole pile. How many bowls do you need?",
+      "Try it both ways round. Which one keeps the numbers small enough to do in your head?",
+      "You have taken your share. Count what is still sitting on the bench.",
+      "Read the question once more. Does it want what you took, or what is left?",
+      "A new pile and a new fraction. How many bowls does this one open?",
+      "Free play. Any pile, any fraction that divides it, with both working lines and the leftover check.",
+      "Deal the pile out again, one round at a time, and count what a single bowl is holding.",
+      "Every pile shared out, and the bowls nobody lifted still standing where they were filled."
+    ],
+    "observations": [
+      {
+        "why": "The lower number says how the pile is divided and the upper number says how many of those parts are collected.",
+        "soWhat": "The same two jobs the two numbers do on a drawn whole are the jobs they do on a pile of separate things.",
+        "observe": "The lower number opened the bowls and the upper number lifted them, and the two jobs never swapped over."
+      },
+      {
+        "why": "The two operations may be done in either order, but only one order keeps every number inside the times tables a nine year old holds.",
+        "soWhat": "Divide first because it is easier, not because the other order is wrong.",
+        "observe": "Dividing first and multiplying first landed on the same answer, and one line carried a three digit number through its middle."
+      },
+      {
+        "why": "What is left is the whole number take away the share collected, and it exists whether the question asks for it or not.",
+        "soWhat": "Work out the second number every time, so that a question asking for it finds it already standing there.",
+        "observe": "The bowls nobody lifted held forty into thirty-two on one question and were the answer on the next."
+      },
+      {
+        "why": "The bench can only produce the two numbers; which of them answers the question is decided by the words above the bench.",
+        "soWhat": "Underline what is being asked for before a single token is moved.",
+        "observe": "One answer was wrong with every step of its arithmetic right."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a pile of counters with a fraction written above the empty bowls",
+        "win": "the bowls fill evenly with nothing left over and the pile is empty",
+        "traceback": "The bench opens a bowl for each part the lower number names, deals the pile out round by round, lifts as many bowls as the upper number says and writes the share under the tray.",
+        "ladder": [
+          "Which number of your fraction is written below the line?",
+          "Deal the whole pile out, then lift only as many bowls as the upper number says.",
+          "A quarter means four equal bowls. What does just one of them hold?",
+          "How many bowls does that number ask you to open?",
+          "Think small: a quarter of 8 means 4 bowls of 2, and one bowl lifted."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the same pile with both working lines open, one above the other",
+        "win": "both lines land on the same answer and the larger middle number on the other line is ringed",
+        "traceback": "Both working lines are written out in step, dividing first and multiplying first, until they land on the same share, with the big number the multiply line had to carry ringed.",
+        "ladder": [
+          "The share is what three bowls hold together. The multiply line starts with 64 times 3.",
+          "One bowl holds only part of the share. Two bowls go up to the tray.",
+          "Four bowls go up, not one. The lower line has to carry 63 fours.",
+          "How many bowls does the upper number ask you to lift?",
+          "Think small: for 3 eighths of 16, divide first. 16 ÷ 8 is 2, and 3 bowls of 2 make 6."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the tray loaded and the bench still holding the bowls nobody took",
+        "win": "both numbers are written up and add back to the pile the bench started with",
+        "traceback": "The share is lifted, the tray and the bench are counted on lines of their own, and the two counts are added back against the pile the bench began with.",
+        "ladder": [
+          "Count the pencils inside the bowls, not the bowls themselves.",
+          "Every bench bowl holds as many as a tray bowl. How many bowls stayed down?",
+          "The walkers went up to the tray. Who is still standing on the bench?",
+          "How many bowls are still sitting on the bench, and what is in each of them?",
+          "Think small: one third of 12 is 4, so 8 stay on the bench."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the question strip with the asked-for part underlined and the answer bay empty",
+        "win": "the bay accepts the pile the question asked for and the other pile stays drawn beside it",
+        "traceback": "Both piles are counted on their own lines and the one the question is pointing at is ringed; nothing is marked and nothing is cleared.",
+        "ladder": [
+          "The kites that were sold went up to the tray. Which kites is the question about?",
+          "Given away means up on the tray. The jar keeps the bowls on the bench.",
+          "This one wants two numbers: the story books and all the others.",
+          "Does the question point at the tray, or at the bench?",
+          "Say the last sentence of the question to yourself. Then count only that pile."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "pile": {
+      "x": 0,
+      "y": 164,
+      "w": 200,
+      "h": 240,
+      "maxTokens": 144
+    },
+    "bench": {
+      "x": 214,
+      "pitch": 72,
+      "bowls": 12,
+      "trayY": 4,
+      "railY": 176,
+      "rowH": 156,
+      "maxPerBowl": 12
+    },
+    "lines": [
+      350,
+      410,
+      470
+    ],
+    "fraction": {
+      "x": 0,
+      "y": 0,
+      "w": 200,
+      "h": 156,
+      "drawn": "stacked"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T3.C8:ML1",
+        "kind": "of",
+        "pile": 42,
+        "num": 2,
+        "den": 7,
+        "want": "share",
+        "winMs": 3800,
+        "answer": 12
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T3.C8:1",
+        "kind": "of",
+        "pile": 36,
+        "num": 1,
+        "den": 6,
+        "want": "share",
+        "winMs": 3800,
+        "answer": 6
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T3.C8:2",
+        "kind": "of",
+        "pile": 28,
+        "num": 1,
+        "den": 4,
+        "want": "share",
+        "winMs": 3800,
+        "answer": 7
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T3.C9:ML2",
+        "kind": "order",
+        "pile": 64,
+        "num": 3,
+        "den": 8,
+        "want": "other",
+        "winMs": 5000,
+        "parts": [
+          {
+            "label": "share"
+          },
+          {
+            "label": "multiply"
+          }
+        ],
+        "answer": [
+          24,
+          192
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T3.C9:3",
+        "kind": "order",
+        "pile": 54,
+        "num": 2,
+        "den": 9,
+        "want": "share",
+        "winMs": 4600,
+        "answer": 12
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T3.C9:4",
+        "kind": "order",
+        "pile": 63,
+        "num": 4,
+        "den": 7,
+        "want": "other",
+        "winMs": 5000,
+        "parts": [
+          {
+            "label": "share"
+          },
+          {
+            "label": "multiply"
+          }
+        ],
+        "answer": [
+          36,
+          252
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T3.C10:ML3",
+        "kind": "count",
+        "pile": 72,
+        "num": 5,
+        "den": 9,
+        "want": "both",
+        "winMs": 4800,
+        "tray": "red",
+        "bench": "blue",
+        "take": "gPointer",
+        "rest": "gHundred",
+        "parts": [
+          {
+            "label": "red"
+          },
+          {
+            "label": "blue"
+          }
+        ],
+        "answer": [
+          40,
+          32
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T3.C10:5",
+        "kind": "count",
+        "pile": 96,
+        "num": 3,
+        "den": 8,
+        "want": "both",
+        "winMs": 4800,
+        "tray": "ripe",
+        "bench": "not ripe",
+        "parts": [
+          {
+            "label": "ripe"
+          },
+          {
+            "label": "not ripe"
+          }
+        ],
+        "answer": [
+          36,
+          60
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T3.C10:6",
+        "kind": "count",
+        "pile": 40,
+        "num": 3,
+        "den": 5,
+        "want": "rest",
+        "winMs": 4800,
+        "tray": "walk",
+        "bench": "bus",
+        "answer": 16
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T3.C11:ML4",
+        "kind": "check",
+        "pile": 45,
+        "num": 2,
+        "den": 5,
+        "want": "rest",
+        "winMs": 4800,
+        "tray": "sold",
+        "bench": "left",
+        "answer": 27
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T3.C11:7",
+        "kind": "check",
+        "pile": 84,
+        "num": 5,
+        "den": 12,
+        "want": "rest",
+        "winMs": 4800,
+        "tray": "given away",
+        "bench": "in the jar",
+        "answer": 49
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T3.C11:8",
+        "kind": "check",
+        "pile": 132,
+        "num": 7,
+        "den": 11,
+        "want": "both",
+        "winMs": 4800,
+        "tray": "story",
+        "bench": "other",
+        "parts": [
+          {
+            "label": "story"
+          },
+          {
+            "label": "other"
+          }
+        ],
+        "answer": [
+          84,
+          48
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The bench opens a bowl for each part the lower number names, deals the pile out round by round, lifts as many bowls as the upper number says and writes the share under the tray.",
+      "Phase 2: Both working lines are written out in step, dividing first and multiplying first, until they land on the same share, with the big number the multiply line had to carry ringed.",
+      "Phase 3: The share is lifted, the tray and the bench are counted on lines of their own, and the two counts are added back against the pile the bench began with.",
+      "Phase 4: Both piles are counted on their own lines and the one the question is pointing at is ringed; nothing is marked and nothing is cleared."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A pile on the left and empty bowls on the right. The lower number says how many bowls.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every pile shared out, and the bowls nobody lifted still standing where they were filled.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T3.C8:ML1",
+            "worked": false,
+            "kind": "of",
+            "planQuestion": "What does 2/7 of 42 ask you to do, and what is the answer?",
+            "question": {
+              "en": "What does 2/7 of 42 ask you to do, and what is the answer?"
+            },
+            "ask": {
+              "en": "Two sevenths of 42?"
+            },
+            "answer": 12,
+            "planAnswer": "It asks you to split 42 into seven equal groups and keep two of them, which is 12",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T3.C8:1",
+            "worked": false,
+            "kind": "of",
+            "planQuestion": "What does 1/6 of 36 mean, and what is it?",
+            "question": {
+              "en": "What does 1/6 of 36 mean, and what is it?"
+            },
+            "ask": {
+              "en": "One sixth of 36?"
+            },
+            "answer": 6,
+            "planAnswer": "It means splitting 36 into six equal groups and keeping one of them, which is 6",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T3.C8:2",
+            "worked": false,
+            "kind": "of",
+            "planQuestion": "Find 1/4 of 28.",
+            "question": {
+              "en": "Find 1/4 of 28."
+            },
+            "ask": {
+              "en": "A quarter of 28?"
+            },
+            "answer": 7,
+            "planAnswer": "7",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T3.C9:ML2",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Find 3/8 of 64, dividing before you multiply, and say what the other order would have given you to work with.",
+            "question": {
+              "en": "Find 3/8 of 64, dividing before you multiply. Then say what the other order would have given you to work with."
+            },
+            "ask": {
+              "en": "Share? And the multiply line's middle?"
+            },
+            "answer": [
+              24,
+              192
+            ],
+            "planAnswer": "24, and the other order would have asked for 192 divided by 8",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T3.C9:3",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Find 2/9 of 54, and say which step you did first.",
+            "question": {
+              "en": "Now take 2/9 of 54. Deal first, and watch which line fills in."
+            },
+            "ask": {
+              "en": "Two ninths of 54?"
+            },
+            "answer": 12,
+            "planAnswer": "12, and dividing fifty-four by nine came first",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T3.C9:4",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Find 4/7 of 63, and say what number the other order would have made you divide.",
+            "question": {
+              "en": "Find 4/7 of 63. Which number would multiplying first have made you divide?"
+            },
+            "ask": {
+              "en": "Share? And what multiply first divides?"
+            },
+            "answer": [
+              36,
+              252
+            ],
+            "planAnswer": "36, and the other order would have made you divide 252",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T3.C10:ML3",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A box holds 72 pencils. 5/9 of them are red and the rest are blue. How many are there of each colour?",
+            "question": {
+              "en": "A box holds 72 pencils. 5/9 of them are red and the rest are blue. How many are there of each colour?"
+            },
+            "ask": {
+              "en": "Red pencils? Blue pencils?"
+            },
+            "answer": [
+              40,
+              32
+            ],
+            "planAnswer": "40 red pencils and 32 blue ones",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T3.C10:5",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A farmer picks 96 mangoes and 3/8 of them are ripe. How many are ripe, and how many are not?",
+            "question": {
+              "en": "A farmer picks 96 mangoes and 3/8 of them are ripe. How many are ripe, and how many are not?"
+            },
+            "ask": {
+              "en": "How many ripe? How many not?"
+            },
+            "answer": [
+              36,
+              60
+            ],
+            "planAnswer": "36 are ripe and 60 are not",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T3.C10:6",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "In a class of 40 children, 3/5 walk to school and the rest come by bus. How many come by bus?",
+            "question": {
+              "en": "In a class of 40 children, 3/5 walk to school and the rest come by bus. How many come by bus?"
+            },
+            "ask": {
+              "en": "How many come by bus?"
+            },
+            "answer": 16,
+            "planAnswer": "16 come by bus, because 24 walk",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T3.C11:ML4",
+            "worked": false,
+            "kind": "check",
+            "planQuestion": "A shop has 45 kites and sells 2/5 of them. The question asks how many kites are left. What is the answer?",
+            "question": {
+              "en": "A shop has 45 kites and sells 2/5 of them. The question asks how many kites are left. What is the answer?"
+            },
+            "ask": {
+              "en": "How many kites are left?"
+            },
+            "answer": 27,
+            "planAnswer": "27 kites are left",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T3.C11:7",
+            "worked": false,
+            "kind": "check",
+            "planQuestion": "A jar holds 84 sweets and 5/12 of them are given away. How many sweets are still in the jar?",
+            "question": {
+              "en": "A jar holds 84 sweets and 5/12 of them are given away. How many sweets are still in the jar?"
+            },
+            "ask": {
+              "en": "Sweets still in the jar?"
+            },
+            "answer": 49,
+            "planAnswer": "49 sweets, because 35 were given away",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T3.C11:8",
+            "worked": false,
+            "kind": "check",
+            "planQuestion": "A library has 132 books and 7/11 of them are story books. How many are story books, and how many are not?",
+            "question": {
+              "en": "A library has 132 books and 7/11 of them are story books. How many are story books, and how many are not?"
+            },
+            "ask": {
+              "en": "Story books? Other books?"
+            },
+            "answer": [
+              84,
+              48
+            ],
+            "planAnswer": "84 are story books and 48 are not",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "share_out_bench",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "share_out_bench",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "What of means here",
+        "conceptId": "M1.S2.T3.C8",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C8:ML1",
+          "M1.S2.T3.C8:1",
+          "M1.S2.T3.C8:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Divide first, then multiply",
+        "conceptId": "M1.S2.T3.C9",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C9:ML2",
+          "M1.S2.T3.C9:3",
+          "M1.S2.T3.C9:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "One share found, the other still waiting",
+        "conceptId": "M1.S2.T3.C10",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C10:ML3",
+          "M1.S2.T3.C10:5",
+          "M1.S2.T3.C10:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Checking the answer against the question",
+        "conceptId": "M1.S2.T3.C11",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C11:ML4",
+          "M1.S2.T3.C11:7",
+          "M1.S2.T3.C11:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "pile",
+    "numerator",
+    "lifted",
+    "denominator",
+    "open",
+    "bowls",
+    "perBowl",
+    "per",
+    "tray",
+    "per",
+    "leftOnBench",
+    "per",
+    "answered"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, pile, numerator, lifted, denominator, open, bowls, perBowl, per, tray, per, leftOnBench, per, answered",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "share_out_bench"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T3.C8.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A pile on the left and empty bowls on the right. The lower number says how many bowls."
+    },
+    {
+      "en": "This fraction is being taken of the whole pile. How many bowls do you need?"
+    },
+    {
+      "en": "Try it both ways round. Which one keeps the numbers small enough to do in your head?"
+    },
+    {
+      "en": "You have taken your share. Count what is still sitting on the bench."
+    },
+    {
+      "en": "Read the question once more. Does it want what you took, or what is left?"
+    },
+    {
+      "en": "A new pile and a new fraction. How many bowls does this one open?"
+    },
+    {
+      "en": "Free play. Any pile, any fraction that divides it, with both working lines and the leftover check."
+    },
+    {
+      "en": "Deal the pile out again, one round at a time, and count what a single bowl is holding."
+    },
+    {
+      "en": "Every pile shared out, and the bowls nobody lifted still standing where they were filled."
+    }
+  ],
+  "build": {
+    "source": "37ba0d75:1681720",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-24T09:34:09.692Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-24T09:34:09.204Z"
+    },
+    "tsxBytes": 1685025,
+    "tsxMd5": "551e228325f6ecba2162712621359172"
+  }
+}

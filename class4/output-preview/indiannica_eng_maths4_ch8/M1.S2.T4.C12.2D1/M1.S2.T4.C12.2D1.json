@@ -1,0 +1,1134 @@
+{
+  "slotId": "M1.S2.T4.C12.2D1",
+  "mediaId": "M1.S2.T4.C12.2D1",
+  "toolId": "say_it_bar",
+  "title": "Say It Bar",
+  "component": "M1.S2.T4.C12.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch8_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_8/2dtool/M1.S2.T4.C12.2D1/M1.S2.T4.C12.2D1.tsx",
+  "description": "Cut a number at its point, name the two halves, and build the sentence that reads it aloud.",
+  "conceptIds": [
+    "M1.S2.T4.C12",
+    "M1.S2.T4.C13",
+    "M1.S2.T4.C14",
+    "M1.S2.T4.C15"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the question bar with its Answer key, the running count, the working area (the whole card until Answer is tapped) and the answer panel that slides in from the right; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1472,
+        528
+      ],
+      "phaseWithPanel": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        64,
+        104,
+        1472,
+        88
+      ],
+      "slot": [
+        1180,
+        218,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        324,
+        340,
+        390
+      ],
+      "drawer": [
+        1164,
+        202,
+        372,
+        528
+      ],
+      "layout": "board: the question and the Answer key in a bar on top; the working area is the whole card until the child taps Answer, when the answer box and keypad slide in from the right and the area narrows to 1086",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Cut a number where its dot is, name what each side is doing, and build the sentence that reads the whole thing aloud.",
+    "look": "A number lying along a bar with its point standing between the halves, a sentence builder under it and a second reading lane below that.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Say It Bar' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the sentences finished against the sentences this phase lays out, two numbers in ink, the first climbing by one as each sentence reaches its last word and the second fixed at however many this phase holds. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The bar lies across the top of the working area, 1080 by 120 at 64,220, carrying one number in digit cards 84 wide, the cards to the left of the point deep blue and those to the right of it green, with the point drawn as a standing divider 16 wide and the full height of the bar, in vermilion, resting on the baseline of the digits and never floating above or below it. Cut at the point slides the two halves 40 apart along the bar and drops a label under each, the whole number part on the left and the decimal part on the right, each label read out as what its side is counting: whole ones to the left, pieces smaller than one to the right. The sentence builder stands under the bar, four slots in a row at 64,390, each 250 by 90 with 12 between them, taking in order the whole number part, the joining word, the decimal part read as though it were a whole number, and the place name of its last digit. The slots fill left to right and the place name slot refuses any name that does not match the digits standing to the right of the point: the refusal springs the name back with nothing marked, and count the places runs along those digits from the point outwards, lighting and numbering them one at a time. The everyday lane runs the same four slots again at 64,500, with the word point in the joining slot and the digits after the point shown one at a time rather than as a number. The hearing bay runs along the foot of the working area, 1080 by 110 at 64,610: a sentence arrives in it already built, the place name at its end lights first, and that many empty places are drawn to the right of a point above the bay for the child to fill from the left, with any place the heard digits do not reach left drawn open until a grey zero is put into it. Say it again reads the finished sentence back with its last word lit. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a number is asked for, and beside them the place name tray, three keys reading tenths, hundredths and thousandths, with the joining keys and the word point under them, so that a whole sentence can be built by press as well as by drag. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: a digit standing to the left of the point is deep blue, a digit standing to the right of it is green, and the point itself is vermilion between them on every phase without exception, because a chapter whose whole subject is one dot cannot afford a frame where the dot has to be hunted for. A part standing for tenths is amber, one standing for hundredths is rose, one standing for thousandths is sky blue, and a zero that is only holding a place open is grey, whether it was written in on the left of a short numerator or printed on the end of a measurement. Chrome never borrows one of those and none of them is ever used for chrome, and every one of the readings survives with the colour taken away, because a place is told by the heading written over it before it is ever told by a colour, a filling zero is told by the short arrow running inward from the point, and a zero printed on the end is told by the place counter that lights it. Grey never means faint: such a zero is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. The two readings are never drawn mixed. A lane carries either the word and with its decimal part read as one number, or the word point with its digits read singly, and a slot filled from the other lane's tray springs back with both lanes left standing, because half of one reading and half of the other is the sentence that hides which place the last digit is in.",
+    "finish": "The card shows the number the child read, cut at its point with both halves named, and the sentence they built standing under it.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "both labels land, the left half lit as whole ones and the right half as pieces smaller than one",
+        "does": "cuts the bar at the point and drops a label on each half",
+        "goal": "the two parts of a decimal are named and each is doing its own job",
+        "says": "Cut it where the dot is. What is each side counting?",
+        "check": "Away from the screen: write a decimal of your own and draw a line through its point. Say what each side counts.",
+        "feels": "one dot, and everything on one side of it is whole things while everything on the other side is pieces",
+        "hands": "Write a decimal large on the board and draw a vertical line straight down through its point. Ask what the digits on the left are counting and what the digits on the right are counting, and write those two answers under the two halves rather than saying them. Then cover one half at a time with a sheet of paper and ask what is left standing each time.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: where is the dot in this number? Second rung, the phase's: which side of it counts whole ones? Third rung: the bar is cut to one digit either side and the child drops both labels. The word pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "every number read aloud before this chapter was one run of digits, and the dot is the smallest mark on the line.",
+            "move": "reads the whole thing straight through as one long number and loses the dot somewhere in the middle.",
+            "screen": "the bar cuts itself at the point and the two halves slide apart along the bar with the standing divider left between them, and each half is read out on its own with its label dropping under it. The number the child said stays written in the slot, and a card carrying that number with no point in it at all is laid under the bar so the two can be read against each other."
+          },
+          {
+            "why": "the digits on the right look exactly like the digits on the left and nothing about their shape says they are counting something smaller.",
+            "move": "labels the right hand half as though its digits counted whole ones too, so a decimal part of three digits is read as hundreds.",
+            "screen": "the right hand half is carried down to the grid and the strip, where its digits are laid out as pieces smaller than one and take up less than a single whole between them. The child's label stays exactly where it was dropped, the whole number part is drawn out beside it in whole ones, and the two sit on the stage together at their real sizes."
+          }
+        ],
+        "screen": "a number lying along the bar with the point standing between its halves",
+        "soWhat": "A decimal has two parts separated by the point, the whole number part on the left and the decimal part on the right.",
+        "concept": "The point divides the number in two"
+      },
+      {
+        "n": 2,
+        "win": "both lanes read the same number, one with the word and, one with the word point",
+        "does": "drops the joining word in, then runs the everyday lane and compares the two",
+        "goal": "the point is read as the word and, with the everyday reading allowed beside it",
+        "says": "What word goes where the dot is? Now try the everyday way.",
+        "check": "Read a decimal of your own aloud in both ways, and say which word took the place of the dot each time.",
+        "feels": "two readings, both of them allowed, and each one has to be said all the way through",
+        "hands": "Read a decimal aloud twice, once with the word and and the decimal part said as one number, and once with the word point and the digits said one at a time. Have the class write down which reading they heard each time. Then read a third one badly on purpose, mixing the two, and ask what went wrong and what the number could now be.",
+        "tries": "First rung, from the item: which word is standing in the joining slot? Second rung, the phase's: which reading does that word belong to? Third rung: the bar is cut to one digit after the point and the child runs both lanes on it. The joining keys stay open.",
+        "wrong": [
+          {
+            "why": "prices are read that way out loud all the time, and each half of the mixture is a piece of a reading the chapter has actually taught.",
+            "move": "says the word point and then reads the decimal part as one whole number, mixing the two readings into one.",
+            "screen": "both lanes run the number as it stands, the upper with the word and and the decimal part as one number, the lower with the word point and the digits singly, and the child's reading is written on a third line under them exactly as it was said. The place name that each proper reading ends on is lit, and the mixed line is left with nothing lit at its end."
+          },
+          {
+            "why": "the word and is used that way in ordinary speech about whole numbers, and it has just been handed over as the word for the point.",
+            "move": "puts the word and in the middle of the whole number part as well, so the joining word turns up twice in one sentence.",
+            "screen": "the sentence is read back with each slot lighting as it is spoken, and the joining slot lights alone on the word and while the whole number part is read out of a single slot. The child's sentence stays standing underneath, with both of its ands drawn in, and the point on the bar is lit against the one that is doing that job."
+          }
+        ],
+        "screen": "the sentence builder with the joining slot empty between the two parts",
+        "soWhat": "The word and stands for the point in the proper reading, and the word point stands for it in the everyday one.",
+        "concept": "Saying the point out loud"
+      },
+      {
+        "n": 3,
+        "win": "the place name lands and the counted digits light from the point outwards to match it",
+        "does": "counts the digits after the point, then chooses the place name for the last one",
+        "goal": "the last word of the sentence names the place the last digit sits in",
+        "says": "Count what is after the dot. Which place does the last one sit in?",
+        "check": "Read a number with three digits after the point aloud. Which word does the reading end on, and which digit chose it?",
+        "feels": "the sentence ends on the place of the last digit, and the count that finds it starts at the dot",
+        "hands": "Read a number with three digits after the point aloud, slowly, and stop hard on the last word. Ask what would change if one digit were rubbed off the end, and let the class hear the last word change with it. Then write four numbers on cards with different numbers of places and have them sorted by the word their reading ends on.",
+        "tries": "First rung, from the item: how many digits are after the dot? Second rung, the phase's: which of them is the last one? Third rung: the number is cut to two digits after the point and the child counts and names. The place name tray stays open.",
+        "wrong": [
+          {
+            "why": "the first digit after the point is the one the eye reaches first and the tenths place is the one named earliest in the chapter.",
+            "move": "names the place of the FIRST digit after the point and ends the sentence on tenths.",
+            "screen": "count the places runs from the point outwards with each digit lighting and being numbered as it is passed, and the count holds on the last digit at the far end. The child's name stays in the slot, the name the count calls for is offered from the tray beside it, and both names are left standing under the same number."
+          },
+          {
+            "why": "a number is read from the left and counting from the left is how every count so far has gone, and on a number with one digit in front of the point the two counts can land on the same digit.",
+            "move": "counts the places from the left hand end of the whole number, so the count starts before the point.",
+            "screen": "the place chart slides in behind the number with the point column drawn in it, and the counting is run twice: once from the left hand end of the number, which stops in the whole number part, and once from the point outwards. Both runs stay drawn with their counts written above the digits, and the number is then given two digits in front of the point instead of one, where the two runs plainly part."
+          }
+        ],
+        "screen": "the sentence built as far as the decimal part, with the place name slot waiting",
+        "soWhat": "The last word of the sentence names the place the last digit sits in.",
+        "concept": "Naming the last digit's place"
+      },
+      {
+        "n": 4,
+        "win": "every place is filled, with a zero taking the place the digits heard did not reach",
+        "does": "reads the place name, lays out the empty places, then fills them from the left",
+        "goal": "the place name says how many digits the decimal part needs",
+        "says": "The last word tells you how many places. Fill them in from the left.",
+        "check": "Write forty-one and six hundredths as a decimal, and say how many places the last word asked for.",
+        "feels": "the last word settles how many places there are before there is a single digit to put in them",
+        "hands": "One child reads a card aloud using the place name at the end while the rest write what they hear on small boards. Compare the boards before the card is shown. Ask where the boards disagreed and whether the trouble was the reading or the number of digits after the point. Then say an amount whose digits do not fill the places the last word calls for, and let them find the gap.",
+        "tries": "First rung, from the item: what is the last word of the sentence? Second rung, the phase's: how many places does that word ask for? Third rung: the bay is cut to an amount ending in tenths and the child lays out the places before writing anything. The number pad and the place name tray stay open.",
+        "wrong": [
+          {
+            "why": "eighty-five is two digits and there are two digits to write, so the number seems to have filled the places it was given.",
+            "move": "writes seven and eighty-five thousandths with two places after the point, giving seven point eight five.",
+            "screen": "the last word of the heard sentence lights and three empty places are drawn to the right of the point, and the child's two digits are walked into the two places furthest from the point, leaving the place nearest the point drawn open. The child's number stays written underneath, and the number the places call for is read back with its last digit in the thousandths place."
+          },
+          {
+            "why": "a place is empty and a zero is a spare digit, so it seems to belong wherever there is room for it, and the right hand end is where a digit usually gets added.",
+            "move": "fills the third place by hanging a zero on the right hand end of the eighty-five instead of on its left.",
+            "screen": "both numbers are built out to three places and read back by their last digits, the child's ending in the thousandths place with an eight standing in the tenths, and the proper one with the eight in the hundredths. A short arrow is drawn running inward from the point to the place that was actually empty, which is the one nearest the point and on the LEFT of the digits, and the two numbers stand together with the grey zero walked across into that place."
+          }
+        ],
+        "screen": "a spoken sentence in the hearing bay with its last word lit and the places drawn empty",
+        "soWhat": "The place name at the end says how many digits the decimal part must have.",
+        "concept": "Writing one down from what you hear"
+      }
+    ],
+    "delight": "The third phase, when the place name lands. The name settles into the last slot and the digits to the right of the point light back the other way, one at a time from the point outwards, with the count drawn over each as it lights, and the last of them holds lit under the name that has just been chosen. Pull a digit off the end of the number and the whole thing runs again on its own: the count is one shorter, the name in the slot lifts out and the tray offers the name that now fits. The sentence can be lengthened and shortened as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a number lies along the bar in one piece with the point standing between its halves and two blank labels lying on the ledge below it. On the second the bar is already cut and labelled and the sentence builder stands under it with the joining slot empty between the two parts. On the third the sentence is built as far as the decimal part and only the place name slot is waiting, with the digits after the point drawn and uncounted. On the fourth the upper lane is empty and a sentence already built lies in the hearing bay with its last word lit and a row of empty places drawn to the right of a point. The running count at the top left holds the sentences finished against the sentences this phase lays out, and the answer slot and the pad stand empty down the right. One thing moves, once: the standing point, or the empty joining slot, or the last digit after the point, or the lit last word of the heard sentence, gives one slow pulse while the voice asks what each side of the dot is counting. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any number on the bar, either lane, with the hearing bay open and the place name tray loaded. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on naming the two parts, saying the point, naming the last digit's place, and writing a decimal down from the words that were heard.",
+    "voiceLines": [
+      "A number along a bar, with a dot standing in the middle of it. Cut it there.",
+      "Cut it where the dot is. What is each side counting?",
+      "What word goes where the dot is? Now try the everyday way.",
+      "Count what is after the dot. Which place does the last one sit in?",
+      "The last word tells you how many places. Fill them in from the left.",
+      "Another number. Read the whole part first and say the dot after it.",
+      "Free play. Any number on the bar, either lane, with the hearing bay open.",
+      "Count the digits after the dot again, and leave the last word until last.",
+      "Every sentence built to its last word, and every last word doing a job."
+    ],
+    "observations": [
+      {
+        "why": "The last word names the place of the last digit, so it is fixed by how many digits there are.",
+        "soWhat": "The last word of the sentence is not a decoration; it is the word that says how long the decimal part is.",
+        "observe": "The place name slot would not take a name that did not match the digits counted after the point."
+      },
+      {
+        "why": "One reading uses the word and with the decimal part read as a whole number, and the other uses the word point with the digits read singly.",
+        "soWhat": "Both readings are allowed, and each one has to be said whole rather than half and half.",
+        "observe": "Both lanes read the same number and neither of them was the correct one."
+      },
+      {
+        "why": "The place name settles how many places there are before there is anything to put in them.",
+        "soWhat": "Writing a decimal down from words starts with the number of places, not with the digits.",
+        "observe": "The heard sentence gave its last word first and its digits second, which is the opposite of the writing order."
+      },
+      {
+        "why": "The sentence had already said how many places there were, so the place existed before anything filled it.",
+        "soWhat": "A short decimal part is filled out with a zero on the left of the digits, between them and the point.",
+        "observe": "A place the heard digits did not reach stayed drawn and open until a zero went into it."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a number lying along the bar with the point standing between its halves",
+        "win": "both labels land, the left half lit as whole ones and the right half as pieces smaller than one",
+        "traceback": "The bar opens at the point and each half gets its name and its number: whole ones on the left, pieces smaller than one on the right.",
+        "ladder": [
+          "Where is the dot in this number?",
+          "Where do the whole ones stop?",
+          "What is on each side of the dot?",
+          "Which side counts whole ones?",
+          "Wholes on one side, pieces on the other."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the sentence builder with the joining slot empty between the two parts",
+        "win": "both lanes read the same number, one with the word and, one with the word point",
+        "traceback": "Both readings stand under the bar with the right word lit in each gap, each reading whole from start to end.",
+        "ladder": [
+          "Which word goes in each gap?",
+          "Do not mix the two readings.",
+          "Read it with your word in it.",
+          "Which reading is that word from?",
+          "Only one ends on a place name."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the sentence built as far as the decimal part, with the place name slot waiting",
+        "win": "the place name lands and the counted digits light from the point outwards to match it",
+        "traceback": "The count runs from the point outwards, digit by digit, and the place of the last one drops into the sentence's last slot.",
+        "ladder": [
+          "How many digits follow the dot?",
+          "Count again, from the dot out.",
+          "Only the digits after the dot count.",
+          "Which digit after the dot is the last one?",
+          "The count stops at the last one."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a spoken sentence in the hearing bay with its last word lit and the places drawn empty",
+        "win": "every place is filled, with a zero taking the place the digits heard did not reach",
+        "traceback": "The places the last word asks for are drawn, the heard digits walk in from the right, and a grey zero fills the place left open.",
+        "ladder": [
+          "What place does it end on?",
+          "The six must reach that place.",
+          "Count your number's places.",
+          "How many places does it ask for?",
+          "Tap the last word to see them."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "places": [
+      "tenths",
+      "hundredths",
+      "thousandths"
+    ],
+    "readings": [
+      "proper",
+      "everyday"
+    ],
+    "warmUp": {
+      "1": {
+        "kind": "split",
+        "num": "62.48"
+      },
+      "2": {
+        "kind": "join",
+        "num": "6.2",
+        "reads": [
+          "whole",
+          "single"
+        ],
+        "lanes": [
+          0,
+          1
+        ],
+        "holes": [
+          {
+            "lane": 0,
+            "slot": 1
+          },
+          {
+            "lane": 1,
+            "slot": 1
+          }
+        ],
+        "cards": [
+          "and",
+          "point"
+        ]
+      },
+      "3": {
+        "kind": "place",
+        "num": "9.35",
+        "cards": [
+          "tenths",
+          "hundredths",
+          "thousandths"
+        ]
+      },
+      "4": {
+        "kind": "write",
+        "heard": {
+          "whole": 3,
+          "part": 5,
+          "place": "hundredths"
+        }
+      }
+    },
+    "card": {
+      "w": 124,
+      "h": 131
+    },
+    "point": {
+      "w": 28,
+      "colour": "vermilion"
+    },
+    "freeNumbers": [
+      "4.7",
+      "12.56",
+      "0.309",
+      "8.25",
+      "31.4",
+      "6.072"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T4.C12:ML1",
+        "kind": "split",
+        "num": "45.317",
+        "parts": [
+          {
+            "label": "whole"
+          },
+          {
+            "label": "decimal"
+          }
+        ],
+        "answer": [
+          45,
+          317
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T4.C12:1",
+        "kind": "split",
+        "num": "13.9",
+        "parts": [
+          {
+            "label": "whole"
+          },
+          {
+            "label": "decimal"
+          }
+        ],
+        "answer": [
+          13,
+          9
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T4.C12:2",
+        "kind": "side",
+        "num": "6.24",
+        "pad": "enter",
+        "answer": "decimal"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T4.C13:ML2",
+        "kind": "join",
+        "num": "8.64",
+        "reads": [
+          "whole",
+          "single"
+        ],
+        "lanes": [
+          0,
+          1
+        ],
+        "holes": [
+          {
+            "lane": 0,
+            "slot": 1
+          },
+          {
+            "lane": 1,
+            "slot": 1
+          }
+        ],
+        "cards": [
+          "point",
+          "and"
+        ],
+        "pad": "enter",
+        "answer": "and point",
+        "near": "point and"
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T4.C13:3",
+        "kind": "join",
+        "num": "2.7",
+        "reads": [
+          "whole",
+          "single"
+        ],
+        "lanes": [
+          1
+        ],
+        "holes": [
+          {
+            "lane": 1,
+            "slot": 1
+          },
+          {
+            "lane": 1,
+            "slot": 2
+          }
+        ],
+        "cards": [
+          "and",
+          "point",
+          "seven",
+          "seven tenths"
+        ],
+        "pad": "enter",
+        "answer": "point seven",
+        "near": "point seven tenths"
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T4.C13:4",
+        "kind": "join",
+        "num": "5.3",
+        "reads": [
+          "whole",
+          "single"
+        ],
+        "lanes": [
+          0
+        ],
+        "holes": [
+          {
+            "lane": 0,
+            "slot": 1
+          }
+        ],
+        "cards": [
+          "point",
+          "dot",
+          "and"
+        ],
+        "pad": "enter",
+        "answer": "and",
+        "near": "point"
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T4.C14:ML3",
+        "kind": "place",
+        "num": "56.204",
+        "cards": [
+          "tenths",
+          "hundredths",
+          "thousandths"
+        ],
+        "pad": "enter",
+        "answer": "thousandths"
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T4.C14:5",
+        "kind": "place",
+        "num": "30.45",
+        "cards": [
+          "tenths",
+          "hundredths",
+          "thousandths"
+        ],
+        "pad": "enter",
+        "answer": "hundredths"
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T4.C14:6",
+        "kind": "place",
+        "num": "0.608",
+        "cards": [
+          "tenths",
+          "hundredths",
+          "thousandths"
+        ],
+        "pad": "enter",
+        "answer": "thousandths"
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T4.C15:ML4",
+        "kind": "write",
+        "heard": {
+          "whole": 7,
+          "part": 85,
+          "place": "thousandths"
+        },
+        "answer": "7.085"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T4.C15:7",
+        "kind": "write",
+        "heard": {
+          "whole": 41,
+          "part": 6,
+          "place": "hundredths"
+        },
+        "wrongEnd": true,
+        "answer": "41.06"
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T4.C15:8",
+        "kind": "write",
+        "heard": {
+          "whole": 26,
+          "part": 45,
+          "place": "hundredths"
+        },
+        "answer": "26.45"
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The bar opens at the point and each half gets its name and its number: whole ones on the left, pieces smaller than one on the right.",
+      "Phase 2: Both readings stand under the bar with the right word lit in each gap, each reading whole from start to end.",
+      "Phase 3: The count runs from the point outwards, digit by digit, and the place of the last one drops into the sentence's last slot.",
+      "Phase 4: The places the last word asks for are drawn, the heard digits walk in from the right, and a grey zero fills the place left open."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A number along a bar, with a dot standing in the middle of it. Cut it there.",
+    "onFreePlay": "Free play. Tap New number for another one, cut it at the dot and count its places.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Every sentence built to its last word, and every last word doing a job.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T4.C12:ML1",
+            "worked": false,
+            "kind": "split",
+            "planQuestion": "In 45.317, which digits make the whole number part and which make the decimal part?",
+            "question": {
+              "en": "Type both parts of this number."
+            },
+            "ask": {
+              "en": "Parts of this number"
+            },
+            "answer": [
+              45,
+              317
+            ],
+            "planAnswer": "45 is the whole number part and 317 is the decimal part",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T4.C12:1",
+            "worked": false,
+            "kind": "split",
+            "planQuestion": "In 13.9, name the whole number part and name the decimal part.",
+            "question": {
+              "en": "Now split 13.9."
+            },
+            "ask": {
+              "en": "Parts of 13.9"
+            },
+            "answer": [
+              13,
+              9
+            ],
+            "planAnswer": "13 is the whole number part and 9 is the decimal part",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T4.C12:2",
+            "worked": false,
+            "kind": "side",
+            "planQuestion": "Which part of a decimal counts pieces smaller than one?",
+            "question": {
+              "en": "Which part counts less than one?"
+            },
+            "ask": {
+              "en": "Smaller than one?"
+            },
+            "answer": "decimal",
+            "planAnswer": "The decimal part, which is written to the right of the point",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T4.C13:ML2",
+            "worked": false,
+            "kind": "join",
+            "planQuestion": "Read 8.64 aloud in the proper way, and then in the everyday way.",
+            "question": {
+              "en": "Fill the gap in both readings."
+            },
+            "ask": {
+              "en": "Fill both gaps"
+            },
+            "answer": "and point",
+            "planAnswer": "Eight and sixty-four hundredths, or eight point six four",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T4.C13:3",
+            "worked": false,
+            "kind": "join",
+            "planQuestion": "Read 2.7 aloud in the everyday way.",
+            "question": {
+              "en": "Build its everyday reading now."
+            },
+            "ask": {
+              "en": "Everyday reading"
+            },
+            "answer": "point seven",
+            "planAnswer": "Two point seven",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T4.C13:4",
+            "worked": false,
+            "kind": "join",
+            "planQuestion": "Which word takes the place of the point when a decimal is read in the proper way?",
+            "question": {
+              "en": "What joins the proper reading?"
+            },
+            "ask": {
+              "en": "The joining word"
+            },
+            "answer": "and",
+            "planAnswer": "The word and",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T4.C14:ML3",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "Read 56.204 aloud in the proper way.",
+            "question": {
+              "en": "Which word ends this reading?"
+            },
+            "ask": {
+              "en": "The last word"
+            },
+            "answer": "thousandths",
+            "planAnswer": "Fifty-six and two hundred four thousandths",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T4.C14:5",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "Read 30.45 aloud in the proper way.",
+            "question": {
+              "en": "Now end this number's reading."
+            },
+            "ask": {
+              "en": "End the sentence"
+            },
+            "answer": "hundredths",
+            "planAnswer": "Thirty and forty-five hundredths",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T4.C14:6",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "Read 0.608 aloud in the proper way.",
+            "question": {
+              "en": "Where does its last digit sit?"
+            },
+            "ask": {
+              "en": "Name that place"
+            },
+            "answer": "thousandths",
+            "planAnswer": "Six hundred eight thousandths",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T4.C15:ML4",
+            "worked": false,
+            "kind": "write",
+            "planQuestion": "Write seven and eighty-five thousandths as a decimal.",
+            "question": {
+              "en": "Write what you read in digits."
+            },
+            "ask": {
+              "en": "From words to digits"
+            },
+            "answer": "7.085",
+            "planAnswer": "7.085",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T4.C15:7",
+            "worked": false,
+            "kind": "write",
+            "planQuestion": "Write forty-one and six hundredths as a decimal.",
+            "question": {
+              "en": "Now write the new sentence."
+            },
+            "ask": {
+              "en": "Write this one"
+            },
+            "answer": "41.06",
+            "planAnswer": "41.06",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T4.C15:8",
+            "worked": false,
+            "kind": "write",
+            "planQuestion": "A rate is read out as twenty-six and forty-five hundredths rupees. Write it as a decimal, and say how many decimal places it needs.",
+            "question": {
+              "en": "Do the same for this sentence."
+            },
+            "ask": {
+              "en": "The last one"
+            },
+            "answer": "26.45",
+            "planAnswer": "26.45, and it needs two decimal places",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "say_it_bar",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "say_it_bar",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "The point divides the number in two",
+        "conceptId": "M1.S2.T4.C12",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C12:ML1",
+          "M1.S2.T4.C12:1",
+          "M1.S2.T4.C12:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Saying the point out loud",
+        "conceptId": "M1.S2.T4.C13",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C13:ML2",
+          "M1.S2.T4.C13:3",
+          "M1.S2.T4.C13:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Naming the last digit's place",
+        "conceptId": "M1.S2.T4.C14",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C14:ML3",
+          "M1.S2.T4.C14:5",
+          "M1.S2.T4.C14:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Writing one down from what you hear",
+        "conceptId": "M1.S2.T4.C15",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C15:ML4",
+          "M1.S2.T4.C15:7",
+          "M1.S2.T4.C15:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "number",
+    "null",
+    "cut",
+    "sentenceSlots",
+    "halfTapped",
+    "null",
+    "placesLaidOut",
+    "out",
+    "counted",
+    "heardSentence"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), number, null, cut, sentenceSlots, halfTapped, null, placesLaidOut, out, counted, heardSentence",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "say_it_bar"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T4.C12.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A number along a bar, with a dot standing in the middle of it. Cut it there."
+    },
+    {
+      "en": "Cut it where the dot is. What is each side counting?"
+    },
+    {
+      "en": "What word goes where the dot is? Now try the everyday way."
+    },
+    {
+      "en": "Count what is after the dot. Which place does the last one sit in?"
+    },
+    {
+      "en": "The last word tells you how many places. Fill them in from the left."
+    },
+    {
+      "en": "Another number. Read the whole part first and say the dot after it."
+    },
+    {
+      "en": "Free play. Any number on the bar, either lane, with the hearing bay open."
+    },
+    {
+      "en": "Count the digits after the dot again, and leave the last word until last."
+    },
+    {
+      "en": "Every sentence built to its last word, and every last word doing a job."
+    }
+  ],
+  "build": {
+    "source": "be449317:388706",
+    "runtime": "class4/runtime/frozen/r26/runtime.tsx",
+    "runtimeVersion": "r26",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-14T14:40:18.157Z",
+    "checks": {
+      "pass": 85,
+      "warn": 0,
+      "fail": 0,
+      "info": 2,
+      "at": "2026-10-14T14:40:17.928Z"
+    },
+    "tsxBytes": 328013,
+    "tsxMd5": "6886059b2365d8c54fe14c6b1ea9c165"
+  }
+}

@@ -1,0 +1,1102 @@
+{
+  "slotId": "M2.S3.T4.C12.2D1",
+  "mediaId": "M2.S3.T4.C12.2D1",
+  "toolId": "compare_and_order",
+  "title": "Compare and Order",
+  "component": "M2.S3.T4.C12.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch1",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch1_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_1/2dtool/M2.S3.T4.C12.2D1/M2.S3.T4.C12.2D1.tsx",
+  "description": "Two numbers line up in one chart and the first place where they differ lights up and settles it.",
+  "conceptIds": [
+    "M2.S3.T4.C12",
+    "M2.S3.T4.C13",
+    "M2.S3.T4.C14",
+    "M2.S3.T4.C15"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Work out which of two numbers is more, and find the one place that decides it.",
+    "look": "Two numbers stacked in one chart with their columns lined up, and a rail of number cards to sort underneath.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Compare and Order' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the places compared so far against the places in the numbers, two numbers in ink, the first climbing one column at a time as the walker steps and stopping dead the moment a pair disagrees; on the third and fourth phases it carries the cards settled in the rail against the cards on it. Nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The shared chart sits across the top of the working area, 880 by 300 at 190,202: seven columns 120 wide under headings 44 tall, and two rows of cells 96 tall with a gap of 20 between them, the upper number and the lower. Every digit takes its own period colour and the period bands lie behind both rows at once, so the two numbers share their periods as well as their columns. A number with fewer digits leaves its high columns ruled and empty instead of shifting right, which is the whole of the first phase. A digit count badge 92 by 52 sits at the right end of each row, its count written in ink and each digit of that row ringed as it is counted. The walker is an amber band 120 wide and the full height of both rows that stands over one column pair at a time and steps from the leftmost column rightwards; every pair it leaves behind dims to grey, and the pair it halts on holds amber while every column to the right of it greys out together and stays that way. The sign is written 64 tall in a box 96 by 96 at 76,300, level with the gap between the two rows, so it reads between them. Under the chart the rail runs 1086 by 160 at 64,540: an outlined groove with four or five slots 200 wide, and number cards 180 by 84 in ink on the paper colour, each carrying its own digit count badge in the corner and lying loose above the groove until it is dragged in. The order setting is a switch 200 by 56 at the right end of the rail reading smallest first or biggest first, and the rail draws an arrow along its length pointing the way the numbers are to grow. A card dropped into a slot that breaks the order is not sprung back; it settles, and the rail simply will not close. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across where the two numbers are set, and elsewhere a choice pad of large keys in the same rectangle: on the first two phases the three signs, greater than, less than and equals, drawn large; on the third and fourth the number cards themselves as keys, in the order they lie on the rail, so a card can be chosen without being dragged. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: a digit takes the colour of its period, deep blue in the ones period, green in the thousands and vermilion in the lakhs, and rose in the millions where the international chart reaches; a digit under discussion, or the one that decides a comparison, is amber; a zero holding a place open is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a place is told by its column heading and a period by its band before either is told by its colour.",
+    "finish": "The card shows the pair the child compared with its deciding place still lit, and the set they ordered, shown both ways.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the sign is right and the digits were never compared",
+        "does": "counts the digits of each and gives the sign without reading them",
+        "goal": "counting digits can settle a comparison on its own",
+        "says": "Do not read them yet. Just count how long each one is.",
+        "check": "Away from the screen: one number has six digits and another has five. Which is greater, and do you need to see them?",
+        "feels": "you have the answer and you still have not read either number",
+        "hands": "Write two numbers of different lengths on paper, cover them with your hand so that only their lengths show, and ask which is bigger before either one has been read.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: how many digits has the top number? Second rung, the phase's: how many has the bottom one? Third rung: the digits of both numbers are covered and only their lengths are left showing. The sign keys stay open behind all three.",
+        "wrong": [
+          {
+            "why": "comparing from the left is a real rule, and the leftmost digits are the first thing the eye lands on.",
+            "move": "picks the four digit number because its leading digit is the larger one.",
+            "screen": "the empty high columns of the shorter number rule themselves in grey and both digit count badges fill, ringing each digit as they count it, so the shorter row is seen to stop one whole column short of the other. The child's choice stays in the answer slot."
+          },
+          {
+            "why": "half a rule feels like the whole rule when the answer arrives quickly enough.",
+            "move": "counts the digits of one number and reads the digits of the other.",
+            "screen": "both badges are filled one after the other, the second counting slowly with every digit ringed as it goes, and the two counts are set side by side under the chart with nothing else on the stage lit."
+          }
+        ],
+        "screen": "a four digit and a five digit number stacked in the chart",
+        "soWhat": "More digits always means a greater number, and nothing else needs checking.",
+        "concept": "More digits means a bigger number"
+      },
+      {
+        "n": 2,
+        "win": "the deciding place lights and everything right of it greys out",
+        "does": "steps the walker right until a pair disagrees",
+        "goal": "the first place where the digits differ decides it",
+        "says": "Keep stepping. Stop the moment they are different.",
+        "check": "Two six digit numbers agree in their first three places. Which place do you look at next?",
+        "feels": "column after column agrees and then suddenly one does not, and it is over",
+        "hands": "Write two numbers of the same length one under the other with their columns lined up, and cross off the matching digits from the left with a pencil until a pair does not match.",
+        "tries": "First rung, from the item: do these two digits match? Second rung, the phase's: which column is the walker standing on? Third rung: both numbers are cut to their first three columns and the child steps the walker across those. The sign keys stay open.",
+        "wrong": [
+          {
+            "why": "adding and subtracting both begin at the right, so comparing looks as though it ought to begin there too.",
+            "move": "decides on the ones digit, reading the two numbers from the right.",
+            "screen": "the walker runs from the left instead, one column at a time, each agreeing pair dimming as it passes; it halts at the first pair that differs and everything to the right of it, the ones digit included, greys out together. The child's answer stays in the answer slot."
+          },
+          {
+            "why": "the walker stopping has meant the answer every time, and it is easy to press stop one column early.",
+            "move": "stops the walker on the first pair that agrees and gives the sign there.",
+            "screen": "the walker steps back onto that pair and the two digits lift and lay one exactly over the other; then it carries on rightwards by itself until it reaches a pair that will not lie flat, and holds there."
+          }
+        ],
+        "screen": "two six digit numbers stacked, sharing their first digit",
+        "soWhat": "The first place from the left where the digits differ decides the comparison.",
+        "concept": "Same digit count, so compare from the left"
+      },
+      {
+        "n": 3,
+        "win": "the rail closes with the numbers running smallest to greatest",
+        "does": "splits them by length, then orders each group smallest first",
+        "goal": "sorting by digit count first turns one long job into two short ones",
+        "says": "Sort them by how long they are before you read any of them.",
+        "check": "You have five numbers, three with five digits and two with six. Which three do you order first, and where do the other two go?",
+        "feels": "two piles by length, and each pile is a far easier job than the four were",
+        "hands": "Write four numbers of mixed lengths on four cards, deal them out face up, and have the child sort them into two piles by length before reading any of them.",
+        "tries": "First rung, from the item: how many digits has each card? Second rung, the phase's: which cards are the short ones? Third rung: the long cards are lifted clear and the child orders the two short ones. The card keys stay open.",
+        "wrong": [
+          {
+            "why": "the leading digit has decided every comparison so far, so it looks as though it will decide these as well.",
+            "move": "orders all four cards on their leading digits alone, mixing the long ones in with the short.",
+            "screen": "each card's digit count badge fills in the groove, and the cards separate into two groups along the rail, the short ones together and the long ones together, without the order inside either group being touched. Nothing is lifted off the rail."
+          },
+          {
+            "why": "reading a list begins with the most important thing, and the biggest number looks like the most important thing here.",
+            "move": "puts the largest card first and calls it smallest first.",
+            "screen": "the arrow along the rail draws itself again from the low end to the high end while the words smallest first stay lit on the switch, and the cards already in the groove are read out along the arrow in the order they are lying."
+          }
+        ],
+        "screen": "four cards in the rail, two short numbers and two long ones",
+        "soWhat": "Split a set by digit count first, then order inside each group.",
+        "concept": "Smallest first is ascending order"
+      },
+      {
+        "n": 4,
+        "win": "the rail closes with the numbers running greatest to smallest",
+        "does": "switches the setting and rebuilds the rail the other way round",
+        "goal": "descending is the same order read the other way",
+        "says": "Same cards, other way round. Which one goes first now?",
+        "check": "You have put five numbers smallest first. How do you write them biggest first without comparing anything again?",
+        "feels": "the same four cards, read from the other end, and the job is already done",
+        "hands": "Take the ordered row of cards from the last activity and have the child read it aloud from the other end, then lay it out again in that new order without sorting anything a second time.",
+        "tries": "First rung, from the item: which card is the biggest? Second rung, the phase's: which end of the rail does it go to now? Third rung: two cards only are left on the rail and the child lays those two the new way. The card keys stay open and no card is taken away.",
+        "wrong": [
+          {
+            "why": "the last order came out of sorting, so a new order looks as though it must come out of sorting again.",
+            "move": "sorts the whole set again from scratch and produces the ascending order twice over.",
+            "screen": "the rail keeps the cards the child has laid and lifts the ascending order it already held into a second row above them, then walks a pointer along that old order from its far end, card by card, dropping each into the next free slot below. Both rows stay on the rail together."
+          },
+          {
+            "why": "the switch changed the rule, so the rail looks as though it has changed with it.",
+            "move": "switches the setting and expects the rail to be right without a card being moved.",
+            "screen": "the arrow along the rail turns round while every card stays exactly where it is, so the cards now run against the arrow; the card at each end is ringed and the rail stays open."
+          }
+        ],
+        "screen": "the rail holding the set the child has just put in ascending order",
+        "soWhat": "Descending is the ascending order turned round, not a fresh sort.",
+        "concept": "Biggest first is descending order"
+      }
+    ],
+    "delight": "The second phase, the step where the walker stops. It has been dimming pairs to grey one column at a time, and on the column where the digits differ it stops dead and holds amber; then every column to its right, all four of them, goes grey together in one movement and the sign writes itself in the box between the two rows. Every greyed digit is still perfectly readable and not one of them matters any more. Nothing else moves and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a four digit number and a five digit number sit one above the other in one shared chart, their ones standing under each other, with the shorter number's high column ruled and empty. On the second two six digit numbers are stacked the same way, sharing the digit in their highest place, and the walker is parked to the left of the chart. On the third four number cards lie loose above the rail, two short and two long, and the rail is set to smallest first. On the fourth the same four cards sit in the rail in the order the child has just put them, with the setting switch beside them. The running count at the top left is empty and the answer slot and the pad stand empty down the right. One thing moves, once: the digit count badge beside the upper number, or the walker, or the first loose card, gives one slow pulse while the voice asks how long each number is. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any two numbers to compare and any set of cards to drag into either order, with the walker on or off. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on comparing pairs and on ordering sets in both directions.",
+    "voiceLines": [
+      "Two numbers, one chart. Count how long each one is before you read it.",
+      "Do not read them yet. Just count how long each one is.",
+      "Keep stepping. Stop the moment they are different.",
+      "Sort them by how long they are before you read any of them.",
+      "Same cards, other way round. Which one goes first now?",
+      "Two more. Count first, read second.",
+      "Free play. Any two numbers, any cards, either order.",
+      "The walker goes again, from the left. Say stop when they differ.",
+      "One place decided it, and everything after it could be greyed out."
+    ],
+    "observations": [
+      {
+        "why": "One number had more digits than the other, and that settles it on its own.",
+        "soWhat": "Counting the digits first can finish the job without reading a single digit.",
+        "observe": "The comparison was finished before either number had been read."
+      },
+      {
+        "why": "Those three places agreed, so none of them could decide anything.",
+        "soWhat": "Only the first place from the left where the digits differ decides it.",
+        "observe": "The walker dimmed three pairs before it stopped anywhere."
+      },
+      {
+        "why": "Once a higher place has decided it, no lower place can change the answer.",
+        "soWhat": "The digits after the deciding place do not matter, whatever they happen to be.",
+        "observe": "Everything to the right of the deciding place greyed out and stayed grey."
+      },
+      {
+        "why": "Every long number is greater than every short one, whatever their digits say.",
+        "soWhat": "Splitting a set by digit count turns one long ordering into two small ones.",
+        "observe": "Sorting the cards by length first left only two short jobs to do."
+      },
+      {
+        "why": "It is the same order, walked the other way.",
+        "soWhat": "Putting a list in order once gives both orders at no extra cost.",
+        "observe": "Descending was the ascending rail read from the other end."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a four digit and a five digit number stacked in the chart",
+        "win": "the sign is right and the digits were never compared",
+        "traceback": "The shorter row's empty columns rule in grey, both badges count their digits one ring at a time, the two counts sit side by side, and the right sign writes itself.",
+        "ladder": [
+          "How many digits has the top number?",
+          "Count the digits in each row first.",
+          "The top number is the biggest with four digits. How many digits has the bottom one?",
+          "How many digits has the bottom one?",
+          "Look at the counts only. Which row is longer?"
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "two six digit numbers stacked, sharing their first digit",
+        "win": "the deciding place lights and everything right of it greys out",
+        "traceback": "The walker runs again from the left, dimming each pair that matches; it holds at the first pair that differs, every column after it greys out, and the right sign writes itself.",
+        "ladder": [
+          "Do these two digits match?",
+          "Do these two digits match?",
+          "Which pair does the walker reach first?",
+          "Which column is the walker standing on?",
+          "Look at the first three columns only. Where do they first differ?"
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "four cards in the rail, two short numbers and two long ones",
+        "win": "the rail closes with the numbers running smallest to greatest",
+        "traceback": "Each card's badge fills and the short and long cards part into two groups, or the arrow redraws; then the cards are laid in the right order.",
+        "ladder": [
+          "How many digits has each card?",
+          "They all have five digits. Which place tells them apart?",
+          "Look at the lakhs digit of each card first.",
+          "Which cards are the short ones?",
+          "Put the short cards first, then order each group."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the rail holding the set the child has just put in ascending order",
+        "win": "the rail closes with the numbers running greatest to smallest",
+        "traceback": "The arrow turns round with the cards where they lie, or the old order lifts above the rail; then the cards are laid in the right order, read from its far end.",
+        "ladder": [
+          "Which card is the biggest?",
+          "Increasing means smallest first. Check the switch, then the cards.",
+          "Two cards look almost the same. Which place tells them apart?",
+          "Which end of the rail does the biggest go to now?",
+          "Read the smallest first order from the other end."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "columns": [
+      "O",
+      "T",
+      "H",
+      "Th",
+      "TTh",
+      "L"
+    ],
+    "placeNames": [
+      "ones",
+      "tens",
+      "hundreds",
+      "thousands",
+      "ten thousands",
+      "lakhs"
+    ],
+    "columnWidth": 120,
+    "periods": [
+      {
+        "name": "ones",
+        "places": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "thousands",
+        "places": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "lakhs",
+        "places": [
+          5
+        ]
+      }
+    ],
+    "rows": [
+      "top",
+      "bottom"
+    ],
+    "signBox": {
+      "x": 12,
+      "y": 148,
+      "s": 96
+    },
+    "signs": [
+      "greater",
+      "less",
+      "equal"
+    ],
+    "rail": {
+      "slotPitch": {
+        "four": 220,
+        "five": 212
+      },
+      "cardHeight": 96
+    },
+    "settings": [
+      "smallest",
+      "biggest"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T4.C12:ML1",
+        "kind": "sign",
+        "top": 8424,
+        "bottom": 39526,
+        "answer": "less",
+        "winMs": 3600
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T4.C12:1",
+        "kind": "sign",
+        "top": 50361,
+        "bottom": 160972,
+        "answer": "less",
+        "winMs": 3600
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T4.C12:2",
+        "kind": "yesno",
+        "top": 9999,
+        "bottom": 10000,
+        "answer": "no",
+        "winMs": 3600
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T4.C13:ML2",
+        "kind": "sign",
+        "walk": true,
+        "top": 938769,
+        "bottom": 917654,
+        "answer": "greater",
+        "winMs": 4200
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T4.C13:4",
+        "kind": "sign",
+        "walk": true,
+        "top": 992364,
+        "bottom": 993695,
+        "answer": "less",
+        "winMs": 4200
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T4.C13:3",
+        "kind": "sign",
+        "walk": true,
+        "top": 96321,
+        "bottom": 75632,
+        "answer": "greater",
+        "winMs": 4200
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T4.C14:ML3",
+        "kind": "order",
+        "cards": [
+          63215,
+          402365,
+          23651,
+          523691
+        ],
+        "dir": "smallest",
+        "sw": "smallest",
+        "start": "loose",
+        "pad": "enter",
+        "winMs": 2400,
+        "answer": "23,651; 63,215; 4,02,365; 5,23,691"
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T4.C14:5",
+        "kind": "order",
+        "cards": [
+          65781,
+          20549,
+          19680,
+          54187
+        ],
+        "dir": "smallest",
+        "sw": "smallest",
+        "start": "loose",
+        "pad": "enter",
+        "winMs": 2400,
+        "answer": "19,680; 20,549; 54,187; 65,781"
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T4.C14:6",
+        "kind": "order",
+        "cards": [
+          396452,
+          209586,
+          817492,
+          618045
+        ],
+        "dir": "smallest",
+        "sw": "smallest",
+        "start": "loose",
+        "pad": "enter",
+        "winMs": 2400,
+        "answer": "2,09,586; 3,96,452; 6,18,045; 8,17,492"
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T4.C15:ML4",
+        "kind": "order",
+        "cards": [
+          236589,
+          569874,
+          741230,
+          441296
+        ],
+        "dir": "biggest",
+        "sw": "smallest",
+        "swLive": true,
+        "start": "rail",
+        "pad": "enter",
+        "winMs": 2400,
+        "answer": "7,41,230; 5,69,874; 4,41,296; 2,36,589"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T4.C15:8",
+        "kind": "order",
+        "cards": [
+          235000,
+          179800,
+          100000,
+          235185,
+          197750
+        ],
+        "dir": "smallest",
+        "sw": "biggest",
+        "swLive": true,
+        "start": "loose",
+        "pad": "enter",
+        "winMs": 2600,
+        "answer": "1,00,000; 1,79,800; 1,97,750; 2,35,000; 2,35,185"
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T4.C15:7",
+        "kind": "order",
+        "cards": [
+          23658,
+          78965,
+          63254,
+          78966
+        ],
+        "dir": "biggest",
+        "sw": "smallest",
+        "swLive": true,
+        "start": "loose",
+        "pad": "enter",
+        "winMs": 2400,
+        "answer": "78,966; 78,965; 63,254; 23,658"
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The shorter row's empty columns rule in grey, both badges count their digits one ring at a time, the two counts sit side by side, and the right sign writes itself.",
+      "Phase 2: The walker runs again from the left, dimming each pair that matches; it holds at the first pair that differs, every column after it greys out, and the right sign writes itself.",
+      "Phase 3: Each card's badge fills and the short and long cards part into two groups, or the arrow redraws; then the cards are laid in the right order.",
+      "Phase 4: The arrow turns round with the cards where they lie, or the old order lifts above the rail; then the cards are laid in the right order, read from its far end."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Two numbers, one chart. Count how long each one is before you read it.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "One place decided it, and everything after it could be greyed out.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T4.C12:ML1",
+            "worked": false,
+            "kind": "sign",
+            "planQuestion": "Which is greater, 8424 or 39,526?",
+            "question": {
+              "en": "Which is greater, 8,424 or 39,526? Count the digits, then pick the sign."
+            },
+            "ask": {
+              "en": "Which sign goes between?"
+            },
+            "answer": "less",
+            "planAnswer": "39,526, and no digits had to be compared",
+            "choices": [
+              "greater",
+              "less",
+              "equal"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T4.C12:1",
+            "worked": false,
+            "kind": "sign",
+            "planQuestion": "Which is greater, 50,361 or 1,60,972?",
+            "question": {
+              "en": "Which is greater, 50,361 or 1,60,972? Pick the sign that goes between them."
+            },
+            "ask": {
+              "en": "Which sign goes between?"
+            },
+            "answer": "less",
+            "planAnswer": "1,60,972, because it has six digits and the other has five",
+            "choices": [
+              "greater",
+              "less",
+              "equal"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T4.C12:2",
+            "worked": false,
+            "kind": "yesno",
+            "planQuestion": "One number has five digits and another has four. Can the four digit one ever be greater?",
+            "question": {
+              "en": "One number has five digits and another has four. Can the four digit one ever be greater?"
+            },
+            "ask": {
+              "en": "Can 4 digits ever beat 5?"
+            },
+            "answer": "no",
+            "planAnswer": "No. More digits always means a greater number",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T4.C13:ML2",
+            "worked": false,
+            "kind": "sign",
+            "planQuestion": "Which is greater, 9,38,769 or 9,17,654?",
+            "question": {
+              "en": "Which is greater, 9,38,769 or 9,17,654? Step the walker, then pick the sign."
+            },
+            "ask": {
+              "en": "Which sign goes between?"
+            },
+            "answer": "greater",
+            "planAnswer": "9,38,769",
+            "choices": [
+              "greater",
+              "less",
+              "equal"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T4.C13:4",
+            "worked": false,
+            "kind": "sign",
+            "planQuestion": "Compare 992364 and 993695 using the correct sign.",
+            "question": {
+              "en": "Compare 9,92,364 and 9,93,695 using the correct sign."
+            },
+            "ask": {
+              "en": "Which sign goes between?"
+            },
+            "answer": "less",
+            "planAnswer": "9,92,364 < 9,93,695. The thousands place decides it",
+            "choices": [
+              "greater",
+              "less",
+              "equal"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T4.C13:3",
+            "worked": false,
+            "kind": "sign",
+            "planQuestion": "Compare 96321 and 75632 using the correct sign.",
+            "question": {
+              "en": "Compare 96,321 and 75,632 using the correct sign."
+            },
+            "ask": {
+              "en": "Which sign goes between?"
+            },
+            "answer": "greater",
+            "planAnswer": "96,321 > 75,632",
+            "choices": [
+              "greater",
+              "less",
+              "equal"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T4.C14:ML3",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Put 63,215 and 4,02,365 and 23,651 and 5,23,691 in ascending order.",
+            "question": {
+              "en": "Put these four cards in ascending order, smallest first. Then press enter."
+            },
+            "ask": {
+              "en": "Ascending: smallest first"
+            },
+            "answer": "smallest: 23,651; 63,215; 4,02,365; 5,23,691",
+            "planAnswer": "23,651; 63,215; 4,02,365; 5,23,691",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T4.C14:5",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Write 65,781 and 20,549 and 19,680 and 54,187 in ascending order.",
+            "question": {
+              "en": "Write these four in ascending order."
+            },
+            "ask": {
+              "en": "Ascending: smallest first"
+            },
+            "answer": "smallest: 19,680; 20,549; 54,187; 65,781",
+            "planAnswer": "19,680; 20,549; 54,187; 65,781",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T4.C14:6",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Write 3,96,452 and 2,09,586 and 8,17,492 and 6,18,045 in ascending order.",
+            "question": {
+              "en": "Now these four, in ascending order."
+            },
+            "ask": {
+              "en": "Ascending: smallest first"
+            },
+            "answer": "smallest: 2,09,586; 3,96,452; 6,18,045; 8,17,492",
+            "planAnswer": "2,09,586; 3,96,452; 6,18,045; 8,17,492",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T4.C15:ML4",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Write 2,36,589 and 5,69,874 and 7,41,230 and 4,41,296 in descending order.",
+            "question": {
+              "en": "Write these four in descending order. Then press enter."
+            },
+            "ask": {
+              "en": "Descending: biggest first"
+            },
+            "answer": "biggest: 7,41,230; 5,69,874; 4,41,296; 2,36,589",
+            "planAnswer": "7,41,230; 5,69,874; 4,41,296; 2,36,589",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T4.C15:8",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Five salaries are 2,35,000 and 1,79,800 and 1,00,000 and 2,35,185 and 1,97,750. Put them in increasing order.",
+            "question": {
+              "en": "Five salaries are on the cards. Put them in increasing order."
+            },
+            "ask": {
+              "en": "Increasing order"
+            },
+            "answer": "smallest: 1,00,000; 1,79,800; 1,97,750; 2,35,000; 2,35,185",
+            "planAnswer": "1,00,000; 1,79,800; 1,97,750; 2,35,000; 2,35,185",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T4.C15:7",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Write 23,658 and 78,965 and 63,254 and 78,966 in descending order.",
+            "question": {
+              "en": "Write these four in descending order."
+            },
+            "ask": {
+              "en": "Descending: biggest first"
+            },
+            "answer": "biggest: 78,966; 78,965; 63,254; 23,658",
+            "planAnswer": "78,966; 78,965; 63,254; 23,658",
+            "madeOn": "working area"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a phase mount scores its own 3 items: maxScore 15",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onNext",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; that phase only; no auto advance; finished once at its end; the summary page on phase 4 only.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "compare_and_order",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "compare_and_order",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "More digits means a bigger number",
+        "conceptId": "M2.S3.T4.C12",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M2.S3.T4.C12:ML1",
+          "M2.S3.T4.C12:1",
+          "M2.S3.T4.C12:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Same digit count, so compare from the left",
+        "conceptId": "M2.S3.T4.C13",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M2.S3.T4.C13:ML2",
+          "M2.S3.T4.C13:4",
+          "M2.S3.T4.C13:3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Smallest first is ascending order",
+        "conceptId": "M2.S3.T4.C14",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M2.S3.T4.C14:ML3",
+          "M2.S3.T4.C14:5",
+          "M2.S3.T4.C14:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Biggest first is descending order",
+        "conceptId": "M2.S3.T4.C15",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M2.S3.T4.C15:ML4",
+          "M2.S3.T4.C15:8",
+          "M2.S3.T4.C15:7"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "upper",
+    "top",
+    "lower",
+    "bot",
+    "digitCounts",
+    "walkerAt",
+    "walker",
+    "decidedAt",
+    "dec",
+    "sign",
+    "typed",
+    "cards",
+    "null",
+    "railOrder",
+    "null",
+    "ci",
+    "null",
+    "setting",
+    "null"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, upper, top, lower, bot, digitCounts, walkerAt, walker, decidedAt, dec, sign, typed, cards, null, railOrder, null, ci, null, setting, null",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "compare_and_order"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T4.C12.2D1.DONE",
+    "fires": "once per mount, one-shot guarded and re-armed by restart, Play again or entering a phase: at the end of a phase mount before the last; otherwise from the summary page, after its lines are spoken plus 3 s (45 s backstop), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Two numbers, one chart. Count how long each one is before you read it."
+    },
+    {
+      "en": "Do not read them yet. Just count how long each one is."
+    },
+    {
+      "en": "Keep stepping. Stop the moment they are different."
+    },
+    {
+      "en": "Sort them by how long they are before you read any of them."
+    },
+    {
+      "en": "Same cards, other way round. Which one goes first now?"
+    },
+    {
+      "en": "Two more. Count first, read second."
+    },
+    {
+      "en": "Free play. Any two numbers, any cards, either order."
+    },
+    {
+      "en": "The walker goes again, from the left. Say stop when they differ."
+    },
+    {
+      "en": "One place decided it, and everything after it could be greyed out."
+    }
+  ],
+  "build": {
+    "source": "7d5dc332:197952",
+    "runtime": "class4/runtime/runtime.tsx",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-21T19:03:35.113Z",
+    "checks": {
+      "pass": 58,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-21T19:03:34.931Z"
+    },
+    "tsxBytes": 192435,
+    "tsxMd5": "a9807d9a59d65c368958c2b762f3db83"
+  }
+}

@@ -1,0 +1,1020 @@
+{
+  "slotId": "M2.S4.T7.C24.2D1",
+  "mediaId": "M2.S4.T7.C24.2D1",
+  "toolId": "rounding_line",
+  "title": "Rounding Number Line",
+  "component": "M2.S4.T7.C24.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch1",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch1_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_1/2dtool/M2.S4.T7.C24.2D1/M2.S4.T7.C24.2D1.tsx",
+  "description": "A number line that zooms until the two nearest round numbers sit either side, and asks which is closer.",
+  "conceptIds": [
+    "M2.S4.T7.C24",
+    "M2.S4.T7.C25",
+    "M2.S4.T7.C26",
+    "M2.S4.T7.C27"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Swap a number for a rounder one that is near enough, and work out when that is a bad idea.",
+    "look": "A number line with your number marked on it and the two nearest round numbers waiting at either end.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Rounding Number Line' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the number being rounded and, under it, the place it is being rounded to, both in ink, with the two candidate multiples beside them; on the third phase it holds the three answers in a column as they are made, and on the fourth it carries the quantity and what the quantity is for, because nothing in the judgement bay is counted. Nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. A place picker of three keys 200 by 64 runs along the top of the working area at 64,214, 284,214 and 504,214, reading nearest ten, nearest hundred and nearest thousand, the chosen one sitting proud of the other two; stack all three, 180 by 64, sits at 764,214 and snap, 180 by 64, at 970,214. The line itself is a ruled 880 at 156,400 with a tick 4 by 48 at each end and a label plate 180 by 56 centred under each end at 66,420 and 946,420, carrying the two candidate multiples. The halfway tick stands at the midpoint, 4 by 72, with a small diamond at its head and the halfway value printed above it. The marker is a drawn pin 36 by 76 standing on the line at the number's own place with the number printed on its head; it is the one thing on the stage that never moves while the line zooms, because the zoom is drawn as the ends coming in towards it. The two distance bars lie under the line at y 490, 20 tall, running from the foot of the marker out to each end with their lengths printed at their middles, and the shorter of the two fills amber the moment both are drawn. The rule strip is 700 by 96 at 156,530: the number printed across it in ruled place columns, the rounding place shaded amber, and one single box closed round the whole of what stands to its right, however many digits that is, with what that box holds printed under it as one number in words and the threshold, five or more, fifty or more, five hundred or more, printed beside it. The answer plate is 220 by 96 at 886,530. On the third phase the line is drawn three times, 660 long at 136,268, 136,402 and 136,536, each with its own end plates 140 by 48 and its own answer plate 200 by 56 at x 900, and the three markers stand very nearly one above another, because the number has not moved and only the zoom has. On the fourth phase the quantity card is 1086 by 140 at 64,214 and the two argument cards are 520 by 300 at 64,378 and 630,378, headed round it and keep it, each with room for a reason; that bay has no answer key, so neither card is ever marked and the marker never snaps there. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across on the first three phases, with a thirteenth key that writes a run of zeros so a rounded answer can be finished in one press; on the fourth it is a choice pad of two large keys, round it and keep it, with a strip of reason words under them, and nothing pressed on that pad is ever marked right or wrong. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: the ones period is deep blue, the thousands period green, the lakhs period vermilion and the millions period rose; whatever settles the answer on this stage is amber; a zero that is only holding a place open is grey; and chrome never borrows one of them, so the stage still reads with the colour taken away.",
+    "finish": "The card shows one number rounded all three ways on its line, and the judgement the child made about a number that should not be rounded.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the marker lands on the nearer ten and the rule strip agrees",
+        "does": "reads the ones digit, compares the distances and snaps the marker",
+        "goal": "the ones digit alone decides rounding to the nearest ten",
+        "says": "Which end is your number closer to? Look before you count.",
+        "check": "Away from the screen: which two tens is your house number between, and which of them is it nearer to?",
+        "feels": "you can see which end is nearer before anybody has said a word about digits",
+        "hands": "Draw a line on paper, write the ten below the number at one end and the ten above it at the other, mark the middle, and let the child put a finger on the number and walk it to each end, counting the steps out loud both ways.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which two tens sit either side of it? Second rung, the phase's: which bar is shorter? Third rung: the line is zoomed until the two ends are a hand's width apart and the child points at the nearer end before writing anything down. The pad stays open behind all three.",
+        "wrong": [
+          {
+            "why": "the place being rounded to is the tens place, so the tens digit looks like the one to read.",
+            "move": "reads the tens digit instead of the ones digit and rounds the number down.",
+            "screen": "the rounding place shades amber on the rule strip and the box to its right closes round the ones digit alone, with what it holds printed under it; on the line the two distance bars fill outward from the foot of the marker and the shorter one fills amber. The child's answer stays in the slot beside them."
+          },
+          {
+            "why": "only the tens digit was said to change, so the rest of the number looks as though it should be left alone.",
+            "move": "writes the rounded answer with the ones digit left exactly as it was.",
+            "screen": "the child's answer is given its own marker and dropped onto the line: it lands somewhere between the two ends rather than on either of them, and the two end plates light as the only two places an answer can sit. The ones place then rolls down to a grey zero and that marker slides the rest of the way onto the end."
+          }
+        ],
+        "screen": "the line zoomed so that two neighbouring tens sit at its ends",
+        "soWhat": "Rounding to the nearest ten is taking the nearer of the two tens either side, and the ones digit is how you tell which.",
+        "concept": "Rounding to the nearest ten"
+      },
+      {
+        "n": 2,
+        "win": "the whole two digit remainder is highlighted, not just one digit",
+        "does": "covers the hundreds digit, reads what is left and snaps",
+        "goal": "for hundreds you read the two digits to the right as one number",
+        "says": "Cover the hundreds. Read what is left as one number, not two.",
+        "check": "Cover the hundreds digit here. What number is left, and is it more than halfway to the next hundred?",
+        "feels": "two digits stop being two digits and turn into one number that is either side of halfway",
+        "hands": "Cover the hundreds digit with a thumb, read out loud what is left to the right of it as one number, and only then say which hundred the number is nearer to.",
+        "tries": "First rung, from the item: what does the box to the right of the amber place hold? Second rung, the phase's: is that number past halfway? Third rung: the strip is cut to the last two digits with the halfway value labelled beside them, and the child says over or under. The pad stays open.",
+        "wrong": [
+          {
+            "why": "the nearest ten was settled by the single digit next door, so the nearest hundred looks as though it works the same way.",
+            "move": "reads only the tens digit and rounds the number down.",
+            "screen": "the box on the rule strip opens wider until it holds both digits to the right of the amber place, and what they make together is printed under it as one number in words with the threshold beside it; on the line the bars fill and the shorter one fills amber. The child's answer stays in the slot."
+          },
+          {
+            "why": "the rule for tens was one digit against five, so two digits look like that same rule done twice.",
+            "move": "reads the two digits to the right as two separate numbers and measures each against five.",
+            "screen": "the two digits slide together inside one box and are read out as a single number; the halfway tick on the line takes a label saying what it stands for, and the marker is shown standing past that tick or short of it, with nothing said about digits at all."
+          }
+        ],
+        "screen": "the line zoomed to two neighbouring hundreds",
+        "soWhat": "For hundreds I read everything to the right of the hundreds place as one number and measure it against halfway.",
+        "concept": "Rounding to the nearest hundred"
+      },
+      {
+        "n": 3,
+        "win": "the three answers stand together and none of them is crossed out",
+        "does": "rounds to the nearest thousand and compares all three answers",
+        "goal": "one number can round three different ways and all three are right",
+        "says": "Three answers from one number. Are any of them wrong?",
+        "check": "You rounded a number and got a different answer from your friend. What is the first thing to ask each other?",
+        "feels": "three answers out of one number, and being asked to cross one out and finding you cannot",
+        "hands": "Round one number to the nearest ten, hundred and thousand on three lines ruled under each other on one sheet, and write the three answers in a column so they can be read down together.",
+        "tries": "First rung, from the item: how many digits stand to the right of the thousands place? Second rung, the phase's: what number do they make together, and is it past halfway? Third rung: only the thousands line is left on the stage with both ends labelled. The pad stays open and none of the earlier answers is taken away.",
+        "wrong": [
+          {
+            "why": "a number with something in it looks like a number to go up on, and going up is what the rule has mostly done so far.",
+            "move": "rounds up to the next thousand because the hundreds place is not empty.",
+            "screen": "the lowest line zooms until the two thousands sit at its ends and the marker is left standing near the left one; the box on the rule strip closes round all three digits to the right of the amber place and prints them as one number, with the halfway value printed at the halfway tick. The bars fill and the left one is plainly the shorter."
+          },
+          {
+            "why": "one number has had one answer every time until now, so three answers look like two mistakes and a success.",
+            "move": "says two of the three answers must be wrong, because they do not agree.",
+            "screen": "the three lines stack and a line drops from each marker to the one below it and stands very nearly upright, because the number is the same on all three and only the zoom is different, while the three answers stay where they landed; each answer then takes its own label, to the nearest ten, to the nearest hundred, to the nearest thousand, and not one of them is crossed out."
+          }
+        ],
+        "screen": "the same number rounded three ways, stacked",
+        "soWhat": "One number rounds three different ways, and an answer only means something once you say what it was rounded to.",
+        "concept": "Rounding to the nearest thousand"
+      },
+      {
+        "n": 4,
+        "win": "the reason is given and it is about the use, not about the digits",
+        "does": "decides whether the number should be rounded and gives a reason",
+        "goal": "whether to round depends on what the number is for",
+        "says": "Ask what this number is for before you round it.",
+        "check": "Name one number in this house that must never be rounded, and say what would go wrong if it were.",
+        "feels": "the rule works perfectly and you still should not use it",
+        "hands": "Take a bill or a timetable from the kitchen, read out three numbers on it, and ask of each one whether rounding it would matter, and to whom it would matter.",
+        "tries": "This bay has no answer key, so the ladder asks rather than narrows. First rung, from the item: who uses this number? Second rung, the phase's: what do they do with it? Third rung: the same quantity is put in two places, on a poster and on a ticket, and the child answers for each of them. Both argument cards stay open and neither is ever marked.",
+        "wrong": [
+          {
+            "why": "the number is there, the rule works on it perfectly, and nothing on the page says to stop.",
+            "move": "rounds the school's starting time to the nearest ten minutes because the rule allows it.",
+            "screen": "the bay does not snap and nothing is marked. The rounded time is printed on a card beside the true one and the morning is drawn along the foot of the bay in three small frames, the gate, the bell and a child arriving at the rounded time; both cards stay side by side and the argument card is left open."
+          },
+          {
+            "why": "the number is big enough to look like an estimate, and a rounder number is easier to hold on to.",
+            "move": "rounds the count of bones in the body to the nearest hundred and reads the rounded figure back as the fact.",
+            "screen": "the two figures are printed one under the other and a row of small bones is drawn beside each, counted along in tens, so the gap between the two counts is drawn rather than stated. The child's reason card stays open and neither figure is crossed out."
+          }
+        ],
+        "screen": "the judgement bay holding a real quantity and two arguments",
+        "soWhat": "Whether to round depends on what the number is for, and a number somebody has to act on is left alone.",
+        "concept": "When rounding a number would be wrong"
+      }
+    ],
+    "delight": "The third phase, the moment the third answer lands. The three lines fold together into one, at the widest of the three zooms, and the three markers slide into a single pin, because they were the same number all along. The three answers then come down onto that one line as three separate ticks, each keeping its own label: two of them in close beside the pin and the third right out at the end of the line. One pin, three ticks, and nothing to choose between them. Nothing else moves and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first two phases the line is already drawn across the working area, zoomed so that the two candidate multiples sit at its ends with their labels under them, the halfway tick standing between them, the marker for the number already on the line where the number belongs, and the two distance bars ruled but unfilled. On the third the line is drawn three times, one under another, and the top two carry the answers made on the earlier phases while the lowest stands empty. On the fourth there is no line at all: the judgement bay is up with its quantity printed on a card, a line under it saying who uses that number, and two argument cards face up and blank. The running count at the top left is empty and the slot and the pad stand empty down the right. One thing moves, once: the marker on the first three phases, or the quantity card on the fourth, gives one slow pulse while the voice asks which end is nearer. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any number, any rounding place, with the judgement bay open alongside. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on rounding three ways and on judging when a number should be left alone.",
+    "voiceLines": [
+      "Your number is on the line. Which end is it nearer?",
+      "Which end is your number closer to? Look before you count.",
+      "Cover the hundreds. Read what is left as one number, not two.",
+      "Three answers from one number. Are any of them wrong?",
+      "Ask what this number is for before you round it.",
+      "The same number. A different place to round it to.",
+      "Free play. Any number, any place, and the judgement bay open.",
+      "Look at the two ends again, and at the mark halfway between them.",
+      "You took the nearer one every time, and then asked whether to take it at all."
+    ],
+    "observations": [
+      {
+        "why": "The two candidates sit at the ends of the line and the marker sits where the number is.",
+        "soWhat": "Rounding is choosing the nearer of two round numbers, and the rule only describes that choice.",
+        "observe": "The marker was plainly nearer one end before a single digit had been read."
+      },
+      {
+        "why": "Everything standing to the right of the rounding place is one number, however many digits it has.",
+        "soWhat": "I read the whole of what is to the right of the place, not the digit next door to it.",
+        "observe": "Rounding to the nearest hundred read two digits at once, and to the nearest thousand it read three."
+      },
+      {
+        "why": "Each answer is the nearer multiple of a different size.",
+        "soWhat": "A rounded number means nothing until you say what it was rounded to.",
+        "observe": "One number gave three different answers and not one of them was crossed out."
+      },
+      {
+        "why": "Whether to round depends on what the number is for, and the number cannot say that.",
+        "soWhat": "Some questions about a number are settled by its use and not by its digits.",
+        "observe": "The judgement bay took an answer and gave none back."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the line zoomed so that two neighbouring tens sit at its ends",
+        "win": "the marker lands on the nearer ten and the rule strip agrees",
+        "traceback": "The tens place shades amber, a box closes round the ones digit, and the distance bars fill from the pin; the shorter one turns amber.",
+        "ladder": [
+          "Which two tens sit either side of it?",
+          "Which two tens sit either side of it?",
+          "Which two tens sit either side of it?",
+          "Which bar is shorter?",
+          "Put your finger on the nearer end before you write anything."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the line zoomed to two neighbouring hundreds",
+        "win": "the whole two digit remainder is highlighted, not just one digit",
+        "traceback": "The hundreds place shades amber, the box widens to hold both digits after it as one number, halfway is labelled and the bars fill.",
+        "ladder": [
+          "What does the box to the right of the shaded place hold?",
+          "What does the box to the right of the shaded place hold?",
+          "What does the box to the right of the shaded place hold?",
+          "Is that number halfway or more?",
+          "Read the last two digits as one number. Is it fifty or more?"
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the same number rounded three ways, stacked",
+        "win": "the three answers stand together and none of them is crossed out",
+        "traceback": "The bottom line gets its halfway label, the box closes round all three digits after the thousands place, the bars fill, and a line drops from each pin.",
+        "ladder": [
+          "How many digits stand to the right of the thousands place?",
+          "How many digits stand to the right of the thousands place?",
+          "How many digits stand to the right of the thousands place?",
+          "What number do they make together? Is it halfway or more?",
+          "Look only at the bottom line. Which end is nearer to the pin?"
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the judgement bay holding a real quantity and two arguments",
+        "win": "the reason is given and it is about the use, not about the digits",
+        "traceback": "The rounded value shows on the quantity card and the Round it card draws what that would mean; nothing is crossed out.",
+        "ladder": [
+          "Who uses this number?",
+          "Who uses this number?",
+          "Who uses this number?",
+          "What do they do with it?",
+          "Picture it on a poster, then on a ticket. Does it still work?"
+        ]
+      }
+    ]
+  },
+  "model": {
+    "singleLine": {
+      "x0": 118,
+      "x1": 968,
+      "y": 196,
+      "head": 46,
+      "bar": 212,
+      "lab": 270,
+      "plate": 286,
+      "strip": 376
+    },
+    "stack": {
+      "x0": 180,
+      "x1": 830,
+      "ys": [
+        64,
+        184,
+        304
+      ],
+      "strip": 412,
+      "places": [
+        10,
+        100,
+        1000
+      ],
+      "ans": 900
+    },
+    "strip": {
+      "cw": 84,
+      "h": 104,
+      "right": 622,
+      "note": 658
+    },
+    "halfwayRule": "the halfway number rounds up",
+    "colours": {
+      "pin": "bead",
+      "settles": "ten (amber)",
+      "periods": [
+        "hundred",
+        "one",
+        "pointer"
+      ]
+    },
+    "freeNumbers": [
+      7552,
+      32768,
+      43211,
+      478965,
+      32529,
+      64250,
+      5045,
+      90999,
+      12500
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T7.C24:ML1",
+        "kind": "round",
+        "n": 32768,
+        "place": 10,
+        "winMs": 2800,
+        "answer": 32770
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T7.C24:1",
+        "kind": "round",
+        "n": 7552,
+        "place": 10,
+        "winMs": 2800,
+        "answer": 7550
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T7.C24:2",
+        "kind": "round",
+        "n": 32529,
+        "place": 10,
+        "hide": true,
+        "winMs": 2800,
+        "answer": 32530
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T7.C25:ML2",
+        "kind": "round",
+        "n": 32768,
+        "place": 100,
+        "winMs": 2800,
+        "answer": 32800
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T7.C25:3",
+        "kind": "round",
+        "n": 7552,
+        "place": 100,
+        "winMs": 2800,
+        "answer": 7600
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T7.C25:4",
+        "kind": "round",
+        "n": 32529,
+        "place": 100,
+        "hide": true,
+        "winMs": 2800,
+        "answer": 32500
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T7.C26:ML3",
+        "kind": "stack",
+        "n": 43211,
+        "place": 1000,
+        "winMs": 3000,
+        "answer": 43000
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T7.C26:5",
+        "kind": "stack",
+        "n": 478965,
+        "place": 1000,
+        "winMs": 3000,
+        "answer": 479000
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T7.C26:6",
+        "kind": "stack",
+        "n": 7552,
+        "place": 1000,
+        "earlier": true,
+        "hide": true,
+        "winMs": 5200,
+        "answer": 8000
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T7.C27:ML4",
+        "kind": "judge",
+        "icon": "clock",
+        "show": "8:25",
+        "rounded": "8:30",
+        "to": 10,
+        "what": "school starts",
+        "use": "act",
+        "late": "5 minutes late",
+        "winMs": 2600,
+        "answer": "no"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T7.C27:7",
+        "kind": "judge",
+        "icon": "bone",
+        "show": "206",
+        "rounded": "200",
+        "to": 100,
+        "what": "bones in a body",
+        "use": "exact",
+        "lost": "6 bones missing",
+        "winMs": 2600,
+        "answer": "no"
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T7.C27:8",
+        "kind": "judge",
+        "icon": "crowd",
+        "show": "1,875",
+        "rounded": "2,000",
+        "to": 1000,
+        "what": "people in a hall",
+        "use": "sense",
+        "winMs": 2600,
+        "answer": "yes"
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The tens place shades amber, a box closes round the ones digit, and the distance bars fill from the pin; the shorter one turns amber.",
+      "Phase 2: The hundreds place shades amber, the box widens to hold both digits after it as one number, halfway is labelled and the bars fill.",
+      "Phase 3: The bottom line gets its halfway label, the box closes round all three digits after the thousands place, the bars fill, and a line drops from each pin.",
+      "Phase 4: The rounded value shows on the quantity card and the Round it card draws what that would mean; nothing is crossed out."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Your number is on the line. Which end is it nearer?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "You took the nearer one every time, and then asked whether to take it at all.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T7.C24:ML1",
+            "worked": false,
+            "kind": "round",
+            "planQuestion": "Round 32,768 to the nearest ten.",
+            "question": {
+              "en": "Round 32,768 to the nearest ten."
+            },
+            "ask": {
+              "en": "Nearest 10 to 32,768?"
+            },
+            "answer": 32770,
+            "planAnswer": "32,770",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T7.C24:1",
+            "worked": false,
+            "kind": "round",
+            "planQuestion": "Round 7552 to the nearest ten.",
+            "question": {
+              "en": "Round 7,552 to the nearest ten."
+            },
+            "ask": {
+              "en": "Nearest 10 to 7,552?"
+            },
+            "answer": 7550,
+            "planAnswer": "7550",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T7.C24:2",
+            "worked": false,
+            "kind": "round",
+            "planQuestion": "Round 32,529 to the nearest ten.",
+            "question": {
+              "en": "Round 32,529 to the nearest ten."
+            },
+            "ask": {
+              "en": "Nearest 10 to 32,529?"
+            },
+            "answer": 32530,
+            "planAnswer": "32,530",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T7.C25:ML2",
+            "worked": false,
+            "kind": "round",
+            "planQuestion": "Round 32,768 to the nearest hundred.",
+            "question": {
+              "en": "Round 32,768 to the nearest hundred."
+            },
+            "ask": {
+              "en": "Nearest 100 to 32,768?"
+            },
+            "answer": 32800,
+            "planAnswer": "32,800",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T7.C25:3",
+            "worked": false,
+            "kind": "round",
+            "planQuestion": "Round 7552 to the nearest hundred.",
+            "question": {
+              "en": "Round 7,552 to the nearest hundred."
+            },
+            "ask": {
+              "en": "Nearest 100 to 7,552?"
+            },
+            "answer": 7600,
+            "planAnswer": "7600",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T7.C25:4",
+            "worked": false,
+            "kind": "round",
+            "planQuestion": "Round 32,529 to the nearest hundred.",
+            "question": {
+              "en": "Round 32,529 to the nearest hundred."
+            },
+            "ask": {
+              "en": "Nearest 100 to 32,529?"
+            },
+            "answer": 32500,
+            "planAnswer": "32,500. The two digits to the right are twenty-nine, which is under fifty",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T7.C26:ML3",
+            "worked": false,
+            "kind": "stack",
+            "planQuestion": "Round 43,211 to the nearest thousand.",
+            "question": {
+              "en": "Round 43,211 to the nearest thousand."
+            },
+            "ask": {
+              "en": "Nearest 1,000 to 43,211?"
+            },
+            "answer": 43000,
+            "planAnswer": "43,000",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T7.C26:5",
+            "worked": false,
+            "kind": "stack",
+            "planQuestion": "Round 4,78,965 to the nearest thousand.",
+            "question": {
+              "en": "Round 4,78,965 to the nearest thousand."
+            },
+            "ask": {
+              "en": "Nearest 1,000 to 4,78,965?"
+            },
+            "answer": 479000,
+            "planAnswer": "4,79,000",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T7.C26:6",
+            "worked": false,
+            "kind": "stack",
+            "planQuestion": "Round 7552 to the nearest thousand.",
+            "question": {
+              "en": "Round 7,552 to the nearest thousand."
+            },
+            "ask": {
+              "en": "Nearest 1,000 to 7,552?"
+            },
+            "answer": 8000,
+            "planAnswer": "8000. The three digits to the right are five hundred fifty-two, which is over five hundred",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T7.C27:ML4",
+            "worked": false,
+            "kind": "judge",
+            "planQuestion": "A school begins at half past eight. Should that be rounded to the nearest ten minutes?",
+            "question": {
+              "en": "A school begins at twenty-five past eight. Should that be rounded to the nearest ten minutes?"
+            },
+            "ask": {
+              "en": "Round it, or keep it?"
+            },
+            "answer": "no",
+            "planAnswer": "No, because somebody has to act on it and a rounded start makes you late",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T7.C27:7",
+            "worked": false,
+            "kind": "judge",
+            "planQuestion": "The human body has 206 bones. Should that be rounded to the nearest hundred?",
+            "question": {
+              "en": "The human body has 206 bones. Should that be rounded to the nearest hundred?"
+            },
+            "ask": {
+              "en": "Round it, or keep it?"
+            },
+            "answer": "no",
+            "planAnswer": "No. It is an exact count, and saying two hundred would state something untrue",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T7.C27:8",
+            "worked": false,
+            "kind": "judge",
+            "planQuestion": "There were 1875 people in an auditorium. Can that be rounded to the nearest thousand?",
+            "question": {
+              "en": "There were 1,875 people in a hall. Can that be rounded to the nearest thousand?"
+            },
+            "ask": {
+              "en": "Round it, or keep it?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes, to 2000. A crowd size is used to get a sense of how many, not to count heads",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a phase mount scores its own 3 items: maxScore 15",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onNext",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; that phase only; no auto advance; finished once at its end; the summary page on phase 4 only.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "rounding_line",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "rounding_line",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Rounding to the nearest ten",
+        "conceptId": "M2.S4.T7.C24",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C24:ML1",
+          "M2.S4.T7.C24:1",
+          "M2.S4.T7.C24:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Rounding to the nearest hundred",
+        "conceptId": "M2.S4.T7.C25",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C25:ML2",
+          "M2.S4.T7.C25:3",
+          "M2.S4.T7.C25:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Rounding to the nearest thousand",
+        "conceptId": "M2.S4.T7.C26",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C26:ML3",
+          "M2.S4.T7.C26:5",
+          "M2.S4.T7.C26:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "When rounding a number would be wrong",
+        "conceptId": "M2.S4.T7.C27",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C27:ML4",
+          "M2.S4.T7.C27:7",
+          "M2.S4.T7.C27:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "kind",
+    "value",
+    "quantity",
+    "whenRounded",
+    "rounded",
+    "rounded",
+    "judgement",
+    "answer"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, kind, value, quantity, whenRounded, rounded, rounded, judgement, answer, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "rounding_line"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T7.C24.2D1.DONE",
+    "fires": "once per mount, one-shot guarded and re-armed by restart, Play again or entering a phase: at the end of a phase mount before the last; otherwise from the summary page, after its lines are spoken plus 3 s (45 s backstop), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Your number is on the line. Which end is it nearer?"
+    },
+    {
+      "en": "Which end is your number closer to? Look before you count."
+    },
+    {
+      "en": "Cover the hundreds. Read what is left as one number, not two."
+    },
+    {
+      "en": "Three answers from one number. Are any of them wrong?"
+    },
+    {
+      "en": "Ask what this number is for before you round it."
+    },
+    {
+      "en": "The same number. A different place to round it to."
+    },
+    {
+      "en": "Free play. Any number, any place, and the judgement bay open."
+    },
+    {
+      "en": "Look at the two ends again, and at the mark halfway between them."
+    },
+    {
+      "en": "You took the nearer one every time, and then asked whether to take it at all."
+    }
+  ],
+  "build": {
+    "source": "c7ce1319:195030",
+    "runtime": "class4/runtime/runtime.tsx",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-21T19:06:50.067Z",
+    "checks": {
+      "pass": 58,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-21T19:06:49.900Z"
+    },
+    "tsxBytes": 188370,
+    "tsxMd5": "bd20f9042f383c53da375ef274c664ce"
+  }
+}

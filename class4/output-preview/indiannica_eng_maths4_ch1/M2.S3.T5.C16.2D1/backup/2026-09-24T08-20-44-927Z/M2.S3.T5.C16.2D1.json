@@ -1,0 +1,1055 @@
+{
+  "slotId": "M2.S3.T5.C16.2D1",
+  "mediaId": "M2.S3.T5.C16.2D1",
+  "toolId": "digit_lab",
+  "title": "Digit Lab",
+  "component": "M2.S3.T5.C16.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch1",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch1_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_1/2dtool/M2.S3.T5.C16.2D1/M2.S3.T5.C16.2D1.tsx",
+  "description": "A rack of digit cards that will not let a zero stand at the front of a number.",
+  "conceptIds": [
+    "M2.S3.T5.C16",
+    "M2.S3.T5.C17",
+    "M2.S3.T5.C18",
+    "M2.S3.T5.C19"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Build the biggest and the smallest number you can from a handful of digit cards, and find out where a zero is allowed to go.",
+    "look": "A rack of digit cards along the bottom and a row of empty slots above it waiting to be filled.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Digit Lab' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the card slots filled against the card slots the target asks for, two numbers in ink, the first climbing by one as each card lands and dropping back by one when a card is lifted out again; on the fourth phase it carries the steps taken instead, up and down counted separately, so a step back is never shown as a step undone. The working area is 1086 by 528 at 64,202. The target strip runs across the top of the working area, 1086 by 56 at 64,202, one line in ink saying the greatest or the smallest and how many places the number must have, with the places drawn as that many small empty boxes at its right end so the target can be counted as well as read. Under it the card slots, up to six of them, 120 wide by 150 tall with a gap of 18, laid as one row at 64,274 and each carrying its place name in small ink underneath, so a card dropped in can be read for what it is worth as well as for what it is; the leading slot is drawn with a heavier outline than the rest. The stepper is a strip 1086 by 72 at 64,448: two round controls 72 across at its centre, one up and one down, with the number one less written to their left and the number one more to their right as each is made. The rack runs along the foot, 1086 by 182 at 64,548, holding the digit cards face up at 96 by 126 each, the digit 72 tall in ink on the paper colour, and a card lifted out leaves its outline behind in the rack so the set given stays countable. Sort the rack slides the cards still in it into increasing or decreasing order without lifting any of them. A zero dropped into the leading slot is refused: the outline shakes twice, a note 300 by 64 writes itself in the strip directly beneath saying that a number cannot begin with zero, and the zero then slides sideways along the row into the second slot by itself, any cards already standing to its right stepping one place along to let it in, so the number keeps all of its places. Repeat a card is a control 180 by 56 at the right end of the rack; pressing it and then a card lays an identical card beside it in the rack, drawn with a doubled outline so a clone is never mistaken for a card that was given. A step across a row of nines turns each nine over to a zero in turn, right to left, and the last carry opens one more card slot at the leading end if it has to. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a number is asked for, and on the third phase a choice pad of the rack's own cards as large keys in the same rectangle, so the card to be repeated can be chosen with one press instead of being dragged. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: a digit takes the colour of its period, deep blue in the ones period, green in the thousands and vermilion in the lakhs, and rose in the millions where the international chart reaches; a digit under discussion, or the one that decides a comparison, is amber; a zero holding a place open is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a place is told by its column heading and a period by its band before either is told by its colour.",
+    "finish": "The card shows the greatest and the smallest number the child built from the same set, with the zero's place marked on the smaller one.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the slots fill in decreasing order and the target strip clears",
+        "does": "drags the largest card to the leftmost slot and carries on down",
+        "goal": "decreasing order puts the largest digit where it is worth the most",
+        "says": "Which card is worth most at the front? Put that one first.",
+        "check": "Away from the screen: you have the cards seven, two and nine. Which goes at the front, and why that one?",
+        "feels": "one card decides most of the answer, and it is the one at the front",
+        "hands": "Write six digits on six pieces of card, shuffle them face down, and have the child lay them out to make the biggest number they can, saying out loud why each card goes where it goes.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which card in the rack is the largest? Second rung, the phase's: which slot is worth the most? Third rung: the rack is cut to three cards with three slots and the child builds the greatest from those. The pad stays open behind all three.",
+        "wrong": [
+          {
+            "why": "counting starts small, and the cards come to hand in the order they happen to lie in the rack.",
+            "move": "builds from the smallest card upward and fills the leftmost slot last.",
+            "screen": "the number the child built stays in the card slots and a second row of the same cards is laid under it in decreasing order; the two rows are read out place by place from the left, the place names under the slots lighting as each pair is read. Neither row is taken away."
+          },
+          {
+            "why": "worth the most and last place have both been said about digits, and the ones place is where counting ends.",
+            "move": "puts the largest card in the last slot because it is worth the most.",
+            "screen": "that same card is carried along the row from the right to the left one slot at a time, and the place name under each slot lights with what the card would be worth standing there, the number growing as it travels."
+          }
+        ],
+        "screen": "six cards in the rack and six empty slots above",
+        "soWhat": "Decreasing order from the left gives the greatest number.",
+        "concept": "The greatest number you can make from given digits"
+      },
+      {
+        "n": 2,
+        "win": "the zero settles into the second slot and the number keeps all its places",
+        "does": "tries the zero in the leading slot, is refused, and moves it along",
+        "goal": "a zero cannot lead, so it takes the second place",
+        "says": "Try the zero at the front. Read out loud what you made.",
+        "check": "Why is a number written with a zero at the front not really a six digit number?",
+        "feels": "the one card you were surest about is the one card that is not allowed there",
+        "hands": "Give the child a set of digit cards with a zero among them, ask for the smallest number, and let them put the zero at the front. Then read out loud what they have made and count its places.",
+        "tries": "First rung, from the item: what did the leading slot say? Second rung, the phase's: which is the smallest card that is not a zero? Third rung: the leading slot is filled for the child and only the rest of the row is left open. The pad stays open.",
+        "wrong": [
+          {
+            "why": "increasing order says the smallest digit goes first, and zero is the smallest digit there is.",
+            "move": "puts the zero at the front and reads the result as a six digit number.",
+            "screen": "the leading slot shakes twice and writes its reason underneath, then the zero slides into the second slot on its own; the places are counted from the right and where the zero had been standing the count comes up one short and the leading place name goes dark. The child's number stays in the answer slot."
+          },
+          {
+            "why": "the zero is what caused the trouble, so the far end of the row looks like the safest place to put it.",
+            "move": "sends the zero all the way to the end of the row to be rid of it.",
+            "screen": "the number built that way is laid under the number with the zero in the second slot and the two are compared place by place from the left, the first place where they differ lighting amber. Both rows stay on the stage."
+          }
+        ],
+        "screen": "the same cards, with the target strip now asking for the smallest",
+        "soWhat": "Zero cannot lead, so the smallest digit that is not zero goes first and the zero takes the second place.",
+        "concept": "The smallest number, and where zero has to go"
+      },
+      {
+        "n": 3,
+        "win": "the repeated digit is the largest one and the number is the greatest possible",
+        "does": "clones one card and arranges all six",
+        "goal": "the digit you repeat decides whether you get the greatest or the smallest",
+        "says": "You are one card short. Which one would you use twice?",
+        "check": "You need the smallest number and you are one card short. Which card would you use twice?",
+        "feels": "there are not enough cards, and you are allowed to make another one",
+        "hands": "Give five cards and ask for a number with six places. Wait through the complaint that there are not enough cards, and then ask which card they would write down twice.",
+        "tries": "First rung, from the item: how many places does the strip ask for? Second rung, the phase's: how many cards are in the rack? Third rung: the target is cut to four places with three cards, so one repeat fills it, and the child chooses which. The card keys stay open.",
+        "wrong": [
+          {
+            "why": "the rack has an order of its own and the first card is the one nearest the hand.",
+            "move": "repeats the first card in the rack rather than the largest one.",
+            "screen": "the clone is laid beside its card with its doubled outline, the row is built, and the number it makes is set under the number the largest card would have made; the two are compared place by place from the left with the first place that differs lighting amber. Neither number is removed."
+          },
+          {
+            "why": "five cards fill five slots, and a row that has used every card looks like a row that is done.",
+            "move": "leaves the sixth card slot empty and reads the number as finished.",
+            "screen": "the small boxes at the end of the target strip are counted out against the card slots holding a card, and the one empty slot is left ringed with its place name lit beneath it; the repeat control lights and nothing else on the stage moves."
+          }
+        ],
+        "screen": "five cards in the rack but six slots waiting above",
+        "soWhat": "The digit you repeat decides whether you get the greatest number or the smallest.",
+        "concept": "Repeating a digit to fill more places"
+      },
+      {
+        "n": 4,
+        "win": "both neighbours are read out and a row of nines rolls over correctly",
+        "does": "steps up once and down once and reads both neighbours",
+        "goal": "the successor is one more and the predecessor is one less",
+        "says": "Step up once, then down twice. Where did you land?",
+        "check": "What is one less than the smallest six digit number, and how many digits has your answer?",
+        "feels": "one step up and a whole row of nines turns over under your hand",
+        "hands": "Write a number ending in a run of nines on paper, ask for one more, then ask for one less, and have both neighbours written in on either side of it.",
+        "tries": "First rung, from the item: which way along the strip does one more go? Second rung, the phase's: which place does it change first? Third rung: a two place number ending in a nine is put into the slots and the child steps it up once. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the two words are learnt together and sound alike, and both of them mean a neighbour.",
+            "move": "gives the predecessor when the successor was asked for.",
+            "screen": "the number is laid on a short ruled strip with its two neighbours drawn either side of it, the one less at its left and the one more at its right, and the step the child took is walked out along the strip so its direction can be seen. The child's number stays in the answer slot."
+          },
+          {
+            "why": "one more has always touched the last place and left the rest of the number alone.",
+            "move": "steps up from a row of nines and changes only the last digit.",
+            "screen": "the step is taken again slowly: each nine turns over to a zero in turn from the right, handing one on to the place at its left, and when the run of nines is used up a new card slot opens at the leading end to catch the last carry."
+          }
+        ],
+        "screen": "a finished number with a stepper beside it",
+        "soWhat": "The successor is one more and the predecessor is one less, wherever the nines are.",
+        "concept": "One more and one less"
+      }
+    ],
+    "delight": "The second phase, the moment the zero is dropped into the leading slot. The slot refuses it: the outline shakes twice and the reason writes itself out underneath in words. Then the zero slides sideways along the row into the second slot on its own, and the leading slot is left standing open with its heavier outline, waiting for a card that is not a zero. Nothing is taken off the stage, nothing is marked, and the row still holds as many places as it did before. The voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase six digit cards lie face up in the rack along the foot of the working area and six empty card slots wait above them, with the target strip across the top asking for the greatest and saying how many places. On the second the same six cards are back in the rack, the card slots are empty again, the strip now asks for the smallest, and the zero card sits in the rack looking like any other. On the third only five cards lie in the rack with six card slots waiting, so one slot must go unfilled unless a card is cloned. On the fourth a finished number stands in the card slots with the stepper parked beside it. The running count at the top left holds the slots filled against the slots wanted, and the answer slot and the pad stand empty down the right. One thing moves, once: the largest card in the rack, or the zero card, or the empty sixth slot, or the stepper's up control, gives one slow pulse while the voice says to read the strip first. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any cards, any number of places, with the repeat control unlocked and the stepper free to run. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on building the greatest and smallest numbers and on stepping by one.",
+    "voiceLines": [
+      "A rack of cards and a row of empty slots. Read the strip first.",
+      "Which card is worth most at the front? Put that one first.",
+      "Try the zero at the front. Read out loud what you made.",
+      "You are one card short. Which one would you use twice?",
+      "Step up once, then down twice. Where did you land?",
+      "Same cards, a different target. Read the strip again.",
+      "Free play. Any cards, any number of places, repeat what you like.",
+      "Lay the cards back in the rack and sort them before you build again.",
+      "You found the one place a zero is not allowed to stand."
+    ],
+    "observations": [
+      {
+        "why": "The largest digit ends up where the places are worth the most.",
+        "soWhat": "Which digit goes at the front matters more than all the others together.",
+        "observe": "Laying the cards in decreasing order gave the greatest number every time."
+      },
+      {
+        "why": "A number written with a zero at the front has quietly lost a place.",
+        "soWhat": "Zero can go anywhere in a number except at the very front.",
+        "observe": "The leading slot would not take the zero, and it said why."
+      },
+      {
+        "why": "Nothing was thrown away; the cards only shuffled along by one.",
+        "soWhat": "The smallest number puts the smallest digit that is not zero first, and the zero next.",
+        "observe": "The zero moved along one slot and the number still had all its places."
+      },
+      {
+        "why": "The repeated digit takes a front place, where it is worth the most.",
+        "soWhat": "Which digit you repeat decides whether you get the greatest number or the smallest.",
+        "observe": "One card short of the places wanted, repeating the largest card beat every rearrangement."
+      },
+      {
+        "why": "Each nine has nowhere to go but back to zero, and it hands one on to its left.",
+        "soWhat": "The successor of a number full of nines is one place longer than it was.",
+        "observe": "One step up from a row of nines turned every one of them over at once."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "six cards in the rack and six empty slots above",
+        "win": "the slots fill in decreasing order and the target strip clears",
+        "traceback": "The row stays: the biggest card's worth grows slot by slot to the front, then the whole right row is laid under it and read pair by pair.",
+        "ladder": [
+          "Which card in the rack is the largest?",
+          "Which card should stand in the front slot?",
+          "Is the biggest card in the front slot?",
+          "Which slot is worth the most?",
+          "Take the biggest card left each time, and fill the slots from the left."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the same cards, with the target strip now asking for the smallest",
+        "win": "the zero settles into the second slot and the number keeps all its places",
+        "traceback": "The row stays: a leading zero shakes and the places are counted one short, then the whole right row is laid under, the first difference amber.",
+        "ladder": [
+          "What did the front slot say about zero?",
+          "Can the zero stand in the front slot?",
+          "Which card that is not zero is the smallest?",
+          "Which is the smallest card that is not a zero?",
+          "After the front card, lay the rest from the smallest up."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "five cards in the rack but six slots waiting above",
+        "win": "the repeated digit is the largest one and the number is the greatest possible",
+        "traceback": "The target boxes are counted against the filled slots, then the whole right row is laid under the child's, the first difference amber.",
+        "ladder": [
+          "How many places does the strip ask for?",
+          "Which card would you want two of?",
+          "For the smallest number, which card would you want twice?",
+          "How many cards are in the rack, and how many slots?",
+          "Would a big card or a small card help most if you had two?"
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a finished number with a stepper beside it",
+        "win": "both neighbours are read out and a row of nines rolls over correctly",
+        "traceback": "The number comes back, the child's number is ringed on its side of the stepper, and the step is taken again slowly, card by card from the right.",
+        "ladder": [
+          "Is the successor one more or one less?",
+          "Is the predecessor one more or one less?",
+          "Which cards change when you take one away from all those zeros?",
+          "Which place does it change first?",
+          "Start at the ones card. A nine going up, or a zero going down, passes one to the left."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "places": [
+      "ones",
+      "tens",
+      "hundreds",
+      "thousands",
+      "ten thousands",
+      "lakhs",
+      "ten lakhs"
+    ],
+    "periods": [
+      "ones",
+      "thousands",
+      "lakhs"
+    ],
+    "slot": {
+      "w": 130,
+      "h": 150,
+      "pitch": 150
+    },
+    "card": {
+      "w": 118,
+      "h": 138
+    },
+    "rackScale": 0.72,
+    "leadingSlotNote": "Zero cannot lead",
+    "stepper": {
+      "key": 88,
+      "box": 280
+    },
+    "freePlay": {
+      "rack": "the ten digit cards, each as often as you like",
+      "places": [
+        2,
+        6
+      ]
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T5.C16:ML1",
+        "kind": "build",
+        "goal": "greatest",
+        "cards": [
+          3,
+          0,
+          2,
+          6,
+          5,
+          9
+        ],
+        "places": 6,
+        "answer": 965320,
+        "pad": "enter",
+        "winMs": 2600
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T5.C16:1",
+        "kind": "build",
+        "goal": "greatest",
+        "cards": [
+          8,
+          6,
+          7,
+          3,
+          4
+        ],
+        "places": 5,
+        "answer": 87643,
+        "pad": "enter",
+        "winMs": 2600
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T5.C16:2",
+        "kind": "build",
+        "goal": "greatest",
+        "cards": [
+          5,
+          6,
+          3,
+          2,
+          8
+        ],
+        "places": 5,
+        "answer": 86532,
+        "pad": "enter",
+        "winMs": 2600
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T5.C17:ML2",
+        "kind": "build",
+        "goal": "smallest",
+        "cards": [
+          3,
+          0,
+          2,
+          6,
+          5,
+          9
+        ],
+        "places": 6,
+        "answer": 203569,
+        "pad": "enter",
+        "winMs": 2600
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T5.C17:3",
+        "kind": "build",
+        "goal": "smallest",
+        "cards": [
+          4,
+          5,
+          8,
+          0,
+          1
+        ],
+        "places": 5,
+        "answer": 10458,
+        "pad": "enter",
+        "winMs": 2600
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T5.C17:4",
+        "kind": "build",
+        "goal": "smallest",
+        "cards": [
+          4,
+          0,
+          8,
+          9,
+          1,
+          2
+        ],
+        "places": 6,
+        "answer": 102489,
+        "pad": "enter",
+        "winMs": 2600
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T5.C18:ML3",
+        "kind": "build",
+        "goal": "greatest",
+        "cards": [
+          5,
+          0,
+          7,
+          8,
+          3
+        ],
+        "places": 6,
+        "answer": 887530,
+        "pad": "enter",
+        "winMs": 2600
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T5.C18:5",
+        "kind": "build",
+        "goal": "greatest",
+        "cards": [
+          7,
+          9,
+          5,
+          4
+        ],
+        "places": 5,
+        "answer": 99754,
+        "pad": "enter",
+        "winMs": 2600
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T5.C18:6",
+        "kind": "build",
+        "goal": "smallest",
+        "cards": [
+          5,
+          0,
+          7,
+          8,
+          3
+        ],
+        "places": 6,
+        "answer": 300578,
+        "pad": "enter",
+        "winMs": 2600
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T5.C19:ML4",
+        "kind": "step",
+        "start": 14917,
+        "dir": "up",
+        "answer": 14918,
+        "winMs": 3400
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T5.C19:7",
+        "kind": "step",
+        "start": 105654,
+        "dir": "down",
+        "answer": 105653,
+        "winMs": 3400
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T5.C19:8",
+        "kind": "step",
+        "start": 100000,
+        "dir": "down",
+        "answer": 99999,
+        "winMs": 3600
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The row stays: the biggest card's worth grows slot by slot to the front, then the whole right row is laid under it and read pair by pair.",
+      "Phase 2: The row stays: a leading zero shakes and the places are counted one short, then the whole right row is laid under, the first difference amber.",
+      "Phase 3: The target boxes are counted against the filled slots, then the whole right row is laid under the child's, the first difference amber.",
+      "Phase 4: The number comes back, the child's number is ringed on its side of the stepper, and the step is taken again slowly, card by card from the right."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A rack of cards and a row of empty slots. Read the strip first.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "You found the one place a zero is not allowed to stand.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T5.C16:ML1",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Make the greatest number using 3, 0, 2, 6, 5 and 9, each card once.",
+            "question": {
+              "en": "Make the greatest number using 3, 0, 2, 6, 5 and 9, each card once. Then press enter."
+            },
+            "ask": {
+              "en": "Make the greatest"
+            },
+            "answer": 965320,
+            "planAnswer": "9,65,320",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T5.C16:1",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Make the greatest number using 8, 6, 7, 3 and 4.",
+            "question": {
+              "en": "Make the greatest number using 8, 6, 7, 3 and 4."
+            },
+            "ask": {
+              "en": "Make the greatest"
+            },
+            "answer": 87643,
+            "planAnswer": "87,643",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T5.C16:2",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Rearrange the digits of 56,328 to make the greatest five digit number.",
+            "question": {
+              "en": "Rearrange the digits of 56,328 to make the greatest five digit number."
+            },
+            "ask": {
+              "en": "Greatest from 56,328"
+            },
+            "answer": 86532,
+            "planAnswer": "86,532",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T5.C17:ML2",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Make the smallest number using the same six cards, each once.",
+            "question": {
+              "en": "Now make the smallest number using the same six cards, each once. Then press enter."
+            },
+            "ask": {
+              "en": "Make the smallest"
+            },
+            "answer": 203569,
+            "planAnswer": "2,03,569",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T5.C17:3",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Make the smallest number using 4, 5, 8, 0 and 1.",
+            "question": {
+              "en": "Make the smallest number using 4, 5, 8, 0 and 1."
+            },
+            "ask": {
+              "en": "Make the smallest"
+            },
+            "answer": 10458,
+            "planAnswer": "10,458. The zero cannot lead, so it takes the second place",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T5.C17:4",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Make the smallest number using 4, 0, 8, 9, 1 and 2.",
+            "question": {
+              "en": "Make the smallest number using 4, 0, 8, 9, 1 and 2."
+            },
+            "ask": {
+              "en": "Make the smallest"
+            },
+            "answer": 102489,
+            "planAnswer": "1,02,489",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T5.C18:ML3",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Using 5, 0, 7, 8 and 3, make the greatest six digit number.",
+            "question": {
+              "en": "Using 5, 0, 7, 8 and 3, make the greatest six digit number."
+            },
+            "ask": {
+              "en": "Greatest with 6 places"
+            },
+            "answer": 887530,
+            "planAnswer": "8,87,530",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T5.C18:5",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Using 7, 9, 5 and 4, make the greatest five digit number by repeating one digit.",
+            "question": {
+              "en": "Using 7, 9, 5 and 4, make the greatest five digit number by repeating one digit."
+            },
+            "ask": {
+              "en": "Greatest with 5 places"
+            },
+            "answer": 99754,
+            "planAnswer": "99,754",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T5.C18:6",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Using 5, 0, 7, 8 and 3, make the smallest six digit number.",
+            "question": {
+              "en": "Using 5, 0, 7, 8 and 3, make the smallest six digit number."
+            },
+            "ask": {
+              "en": "Smallest with 6 places"
+            },
+            "answer": 300578,
+            "planAnswer": "3,00,578. The smallest digit is repeated and the zeros follow the three",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T5.C19:ML4",
+            "worked": false,
+            "kind": "step",
+            "planQuestion": "What are the successor and the predecessor of 14,917?",
+            "question": {
+              "en": "What is the successor of 14,917? Type it, then use the stepper to check."
+            },
+            "ask": {
+              "en": "Successor of this number?"
+            },
+            "answer": 14918,
+            "planAnswer": "The successor is 14,918 and the predecessor is 14,916",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T5.C19:7",
+            "worked": false,
+            "kind": "step",
+            "planQuestion": "Write the predecessor and the successor of 1,05,654.",
+            "question": {
+              "en": "What is the predecessor of 1,05,654? Type it, then check with the stepper."
+            },
+            "ask": {
+              "en": "Predecessor of 1,05,654?"
+            },
+            "answer": 105653,
+            "planAnswer": "The predecessor is 1,05,653 and the successor is 1,05,655",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T5.C19:8",
+            "worked": false,
+            "kind": "step",
+            "planQuestion": "Write the predecessor of the smallest six digit number.",
+            "question": {
+              "en": "Write the predecessor of the smallest six digit number."
+            },
+            "ask": {
+              "en": "Predecessor of the smallest 6 digit number?"
+            },
+            "answer": 99999,
+            "planAnswer": "99,999, because the smallest six digit number is 1,00,000",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "digit_lab",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "digit_lab",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "The greatest number you can make from given digits",
+        "conceptId": "M2.S3.T5.C16",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C16:ML1",
+          "M2.S3.T5.C16:1",
+          "M2.S3.T5.C16:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "The smallest number, and where zero has to go",
+        "conceptId": "M2.S3.T5.C17",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C17:ML2",
+          "M2.S3.T5.C17:3",
+          "M2.S3.T5.C17:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Repeating a digit to fill more places",
+        "conceptId": "M2.S3.T5.C18",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C18:ML3",
+          "M2.S3.T5.C18:5",
+          "M2.S3.T5.C18:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "One more and one less",
+        "conceptId": "M2.S3.T5.C19",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C19:ML4",
+          "M2.S3.T5.C19:7",
+          "M2.S3.T5.C19:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "target",
+    "placesWanted",
+    "rack",
+    "c",
+    "c",
+    "slots",
+    "repeated",
+    "c",
+    "c",
+    "clones",
+    "c"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, phase, target, placesWanted, rack, c, c, slots, repeated, c, c, clones, c",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "digit_lab"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T5.C16.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A rack of cards and a row of empty slots. Read the strip first."
+    },
+    {
+      "en": "Which card is worth most at the front? Put that one first."
+    },
+    {
+      "en": "Try the zero at the front. Read out loud what you made."
+    },
+    {
+      "en": "You are one card short. Which one would you use twice?"
+    },
+    {
+      "en": "Step up once, then down twice. Where did you land?"
+    },
+    {
+      "en": "Same cards, a different target. Read the strip again."
+    },
+    {
+      "en": "Free play. Any cards, any number of places, repeat what you like."
+    },
+    {
+      "en": "Lay the cards back in the rack and sort them before you build again."
+    },
+    {
+      "en": "You found the one place a zero is not allowed to stand."
+    }
+  ],
+  "build": {
+    "source": "b31d71d2:199789",
+    "runtime": "class4/runtime/runtime.tsx",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-22T13:56:52.618Z",
+    "checks": {
+      "pass": 61,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-22T13:56:50.706Z"
+    },
+    "tsxBytes": 193702,
+    "tsxMd5": "ba5bbb14e32c5727857fbe9448d4e356"
+  }
+}

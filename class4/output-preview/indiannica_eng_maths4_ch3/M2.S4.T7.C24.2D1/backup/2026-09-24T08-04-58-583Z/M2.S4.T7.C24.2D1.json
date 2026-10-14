@@ -1,0 +1,1048 @@
+{
+  "slotId": "M2.S4.T7.C24.2D1",
+  "mediaId": "M2.S4.T7.C24.2D1",
+  "toolId": "estimate_gap",
+  "title": "Estimate Gap",
+  "component": "M2.S4.T7.C24.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch3",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch3_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_3/2dtool/M2.S4.T7.C24.2D1/M2.S4.T7.C24.2D1.tsx",
+  "description": "Round both numbers first, take one from the other the fast way, and measure how far that answer sits from the worked one.",
+  "conceptIds": [
+    "M2.S4.T7.C24",
+    "M2.S4.T7.C25",
+    "M2.S4.T7.C26",
+    "M2.S4.T7.C27"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Get a quick answer by rounding both numbers first, then use it to decide whether the answer you worked out can be right.",
+    "look": "A stage split down the middle, the exact working in columns on one side and the rounded numbers on the other, with a bar drawn between the two answers.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Estimate Gap' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: how many of the two numbers have been rounded against how many there are, two numbers side by side in ink, and under them the place both are going to, written in words rather than in figures; on the last two phases it carries the two answers, the estimated one in rose above the worked one in green. Nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The working area is split down the middle at x 607 by one ruled line that runs its whole height, and the two sides never borrow each other's room. The place picker runs along the top, three keys 180 by 48 at 64,202, at 258,202 and at 452,202, reading nearest hundred, nearest thousand and nearest ten thousand, with the chosen one standing proud of the other two; it moves both numbers as one piece, and an attempt to send them to different places lights both strips and asks again rather than doing it. The exact side is 520 by 214 at 64,266: a trade strip 32 tall across its top where a lending digit is struck through once with its smaller value written above it and the ten it lent is drawn arriving in the column it went to, a heading row 34 tall of six ruled cells reading L, TTh, Th, H, T and O, the greater number 48 tall in deep blue, the number being taken away 48 tall in amber with a minus to the left of its row, a rule 4 tall, and the answer row 48 tall in green. The estimate side is the same rectangle at 630,266 with no columns drawn in it at all, which is the whole point of it: the two rounded numbers are printed large in rose one under the other with their trailing zeros in grey, a rule is drawn under the lower one, and the estimated answer stands in rose beneath the rule. A number line strip 470 by 52 runs under each rounded number, at 654,396 and at 654,460, stretched so that the two nearest multiples of the chosen place sit on label plates at its ends with a halfway tick 4 by 36 between them and its value printed above it, and a drawn pin marking the number where it belongs on the line; the shorter of the two distances from the pin fills amber the moment both are drawn, so the nearer end is seen before a single digit is read. The gap bar is 1086 by 72 at 64,530, drawn only when both answers are standing: it runs along a line drawn from nothing up to the worked answer, touches both answers, and carries how far apart they are printed at its middle, in ink rather than in either answer's colour so that neither answer owns it. The judge bay is 1086 by 64 at 64,620, a slot 420 wide at its left holding an answer somebody else has written, room beside it for the estimate to build, and two keys at its right reading could be right and go back and work it again; the bay never marks the written answer, it draws the bar and asks which of the two the child would go back to. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across, with a thirteenth key that writes a run of zeros so a rounded number or an estimate can be finished in one press. On the third phase a strip of three place words, hundred, thousand and ten thousand, sits under the keys, because the place both numbers are going to is named before either of them moves. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: the greater number on top is deep blue, the number being taken away is amber, the answer under the rule is green, the ten lifted out of a column is vermilion and is always drawn small above the column it arrives in, a digit rewritten after the trade has been made is rose, and a zero holding a place open is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a column is told by the heading over it before it is told by its band, and a trade is told by the strike through the lending digit and by the smaller value written above it.",
+    "finish": "The card shows one pair estimated and worked exactly, side by side, with the gap between the two answers still drawn and labelled.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the estimate lands without a single column being written",
+        "does": "rounds both numbers and takes one rounded number off the other",
+        "goal": "the rounding happens before anything is taken away",
+        "says": "Round each number first, then take away. Not the other way round.",
+        "check": "Estimate 8,470 take 3,620 to the nearest thousand. Which did you do first, the rounding or the taking away?",
+        "feels": "the taking away turns out to be the easy half, and all of the work is in the rounding that comes first",
+        "hands": "Write the two numbers on squared paper, write the rounded number under each one, and only then draw the minus and take one rounded number off the other.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which of your two numbers is already rounded? Second rung, the phase's: which two thousands is the other one sitting between? Third rung: the estimate side is cut to one number and its strip, and that number is rounded on its own before the other comes back. The pad stays open behind all three.",
+        "wrong": [
+          {
+            "why": "rounding once at the end is less work than rounding twice at the beginning, and the answer is the thing the question seems to be about.",
+            "move": "works the exact subtraction first and rounds the answer afterwards, handing that in as the estimate.",
+            "screen": "the two roads are drawn side by side on the estimate side with the order of their steps numbered beside them. On 5,623 and 2,365, rounding first gives 6,000 and 2,000 for an estimate of 4,000, while working first gives 3,258 and rounding that afterwards gives 3,000. Both are printed, neither is crossed out, and the question's own wording is lit above them."
+          },
+          {
+            "why": "the first number was the one being worked on, and the second looked ready to use just as it was.",
+            "move": "rounds the greater number, leaves the smaller one standing exactly as it is, and takes that off the rounded one.",
+            "screen": "the number line strip opens under the number that was left alone, stretched so that the two nearest thousands sit on plates at its ends with the number pinned between them; the estimate side takes rounded numbers only, so that number waits out on its strip until it is sent to one end or the other. On 6,987 and 5,698 the pin on the second strip stands nearer the upper end, so it goes to 6,000 and the estimate is 1,000 against a worked answer of 1,289. Nothing already written is cleared."
+          }
+        ],
+        "screen": "two numbers with the estimate side empty and the place already set",
+        "soWhat": "Round both numbers first and then take one rounded number off the other, which needs no columns at all because they both end in zeros.",
+        "concept": "Round first, then take away"
+      },
+      {
+        "n": 2,
+        "win": "the gap bar is drawn short and labelled, and both answers stay standing",
+        "does": "runs the gap bar and reads how far apart the two answers are",
+        "goal": "the estimate sits near the exact difference rather than on it",
+        "says": "Put the two answers beside each other. How far apart are they?",
+        "check": "Your estimate is 1,000 and your worked answer is 728. Is your estimate wrong, and would you say the same if the worked answer had been 13,860?",
+        "feels": "near is what was asked for, and then a pair turns up where near is not very near at all",
+        "hands": "Work the subtraction exactly on the left of a page and estimate it on the right, then rule a line between the two answers and write on that line how far apart they are.",
+        "tries": "First rung, from the item: were you asked for a worked answer or a quick one? Second rung, the phase's: how far apart are your two answers, and how big is the answer they are measuring? Third rung: the gap bar is laid along the length of the worked answer, so the distance is read against the size of the number it belongs to. Both answers stay on the stage.",
+        "wrong": [
+          {
+            "why": "an answer that does not match the right answer has been a wrong answer every time until now.",
+            "move": "calls the estimate wrong because it does not equal the worked answer.",
+            "screen": "the two answers drop onto one number line together, the worked 3,133 and the estimated 3,000 that 7,899 and 4,766 give, and the space between them is drawn and labelled 133; the line runs the whole length of the worked answer, so the gap is seen against what was being measured rather than on its own. The two rounding moves are printed beside it, 7,899 going up by 101 and 4,766 going up by 234, and 234 less 101 is the 133 that was left over. Both answers stay standing."
+          },
+          {
+            "why": "every pair worked so far has come out close, and a thing that has always happened stops being watched.",
+            "move": "decides from one close pair that an estimate always lands near, and stops looking at the gap at all.",
+            "screen": "the pair 10,900 and 10,172 is loaded beside the one just finished and both gap bars are run at once. The first is 133 long against a worked answer of 3,133. The second is 272 long against a worked answer of 728, because the greater number was pushed up by 100 and the smaller was pulled down by 172, and 100 and 172 together are the 272. Neither bar is marked right or wrong and both stay drawn."
+          }
+        ],
+        "screen": "both sides finished with the gap bar waiting between them",
+        "soWhat": "An estimate is meant to land near the worked answer and not on it, and how near it lands depends on which way each of the two numbers was rounded.",
+        "concept": "Close, not equal"
+      },
+      {
+        "n": 3,
+        "win": "the picker moves both strips together and the two rounded numbers land at the same place",
+        "does": "tries to round the second to a different place, then sets them both together",
+        "goal": "rounding to different places makes the estimate useless",
+        "says": "One went to the nearest thousand. Can the other go somewhere else?",
+        "check": "Round 7,480 and 2,360 both to the nearest thousand and estimate. Now tell me why sending one of them to the nearest hundred instead would spoil it.",
+        "feels": "one pair of numbers and two different estimates, and both of them survive",
+        "hands": "Round the same pair to the nearest hundred on one line and to the nearest thousand on the line underneath, and read the two estimates straight down the page.",
+        "tries": "First rung, from the item: what place are both of your numbers going to? Second rung, the phase's: which two round numbers of that size is each one sitting between? Third rung: the picker is cut to one place and both strips stretch to match it together, so neither can be sent anywhere on its own. The place words stay open under the pad.",
+        "wrong": [
+          {
+            "why": "rounding is the job that was asked for, and one round number looks about as useful as another.",
+            "move": "sends the greater number to the nearest thousand and the smaller one to the nearest hundred, taking each to whichever place looks tidiest.",
+            "screen": "both strips open together under the two numbers with the same place marked on each, and the picker is shown moving the two as one piece. On 7,480 and 2,360 the mixed rounding gives 7,000 less 2,400, which is 4,600 and answers no question that was asked, while sending both to the nearest thousand gives 7,000 less 2,000, which is 5,000 against a worked answer of 5,120. All three numbers are left standing and none is crossed out."
+          },
+          {
+            "why": "two different answers to one question have meant a mistake every time so far.",
+            "move": "says the estimate made at one place must be wrong because it does not match the estimate made at another.",
+            "screen": "two strips open together under the same number, one stretched to the hundreds either side of it and one to the thousands either side, with the same pin standing on both; the nearer end is a different number on each strip, and on each strip it really is the nearer end. The exercise this chapter closes on never names a place at all, and the worked case printed directly above it goes to the nearest thousand, so the nearest thousand is the reading printed across the top of the stage and kept there for every pair in it. Nothing is marked."
+          }
+        ],
+        "screen": "the place picker with one number already rounded and the other waiting",
+        "soWhat": "Both numbers go to the same place or the estimate means nothing, and where a question does not name a place, the worked case beside it names it.",
+        "concept": "Both numbers, and the same place"
+      },
+      {
+        "n": 4,
+        "win": "the gap bar stretches long and the written answer is sent back to be worked again",
+        "does": "builds the estimate and decides whether the written answer can stand",
+        "goal": "an answer far from its estimate is the one to work again",
+        "says": "Your estimate and this answer are far apart. Which one would you check first?",
+        "check": "Somebody works 8,204 take 3,679 and writes 5,525. Estimate to the nearest thousand and tell me whether that answer can stand.",
+        "feels": "a fast answer that is roughly right catches a worked answer that is badly wrong",
+        "hands": "Before working a subtraction out at all, estimate it in your head and write that estimate in the margin, then work the subtraction properly and read the margin back.",
+        "tries": "First rung, from the item: what does your estimate say the answer should be near? Second rung, the phase's: how far from it is the answer standing in the bay? Third rung: the written working is lit one column at a time from the ones until the first column that disagrees is found. Nothing in the bay is ever marked right or wrong.",
+        "wrong": [
+          {
+            "why": "a subtraction that is set out tidily looks like a subtraction that has gone well.",
+            "move": "trusts a written answer because its columns look neat, and never builds the estimate beside it.",
+            "screen": "the estimate builds in a moment on the right, 9,215 going to 9,000 and 3,684 going to 4,000 for an estimate of 5,000, and the gap bar is run from there to the written answer of 6,531, with the 1,531 between them printed on it. The written working is left standing exactly as it was with all its columns showing, and when it is worked again the answer is 5,531, the tens and the hundreds each fetching a ten from the column on their left."
+          },
+          {
+            "why": "a wrong answer feels like work to be thrown away rather than work to be looked at.",
+            "move": "sees the gap stretch long and rubs the whole working out to begin it again.",
+            "screen": "the columns of the written subtraction light one at a time from the ones, and the first column whose digit does not agree with the rebuilt one is the only one left lit; on that working it is the thousands, which lent a ten to the hundreds on its right and was never left one less, so a nine went into the working where an eight belonged. The rest of the columns stay standing, and the gap bar shortens to nothing as that single column is put right. Nothing is cleared and nothing is marked."
+          }
+        ],
+        "screen": "the judge bay holding a written answer with the estimate building beside it",
+        "soWhat": "An answer far from its estimate is the one to go back to, and building the estimate to find that out costs almost nothing.",
+        "concept": "An estimate tells you when an answer cannot be right"
+      }
+    ],
+    "delight": "The second phase, the moment the gap bar is run twice. The first pair is 25,896 and 12,036: the worked answer is 13,860, the estimate is 14,000, and the two come down onto one line drawn from nothing up to the worked answer, where the 140 between them is a step so short it has to be labelled before it can be seen. Then 10,900 and 10,172 are loaded and the same bar is run again: the worked answer is 728, the estimate is 1,000, and the 272 between them is more than a third of the whole answer, so the bar runs off the end of a line the first pair had barely marked. The label roughly doubled and the bar changed out of all recognition, so the number that measures a gap and the size of that gap are both on the stage at once, and they are plainly not the same thing. Nothing else moves and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the two numbers stand in deep blue and amber down the exact side with its columns ruled and its answer row empty, the estimate side is blank, the place picker along the top is already set to the nearest thousand and locked, and a number line strip is drawn under each number on the right but not yet stretched. On the second both sides are finished, the worked answer in green and the estimated one in rose, and the gap bar lies between them drawn and unlabelled. On the third one number has been rounded and the other is waiting, with the picker unlocked. On the fourth the judge bay is open along the foot with somebody else's answer already in its slot and the estimate side empty beside it. The running count at the top left is empty and the slot and the pad stand empty down the right. One thing moves, once: the number line strip under the greater number, or the place picker, or the empty label on the gap bar, gives one slow pulse while the voice says to round both numbers first. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any two numbers, any place, with both sides running, the number line strips open and the gap bar live. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on rounding before subtracting, comparing an estimate with the exact answer, rounding both to the same place, and judging a written answer.",
+    "voiceLines": [
+      "Round both numbers first. Then take one from the other.",
+      "Round each number first, then take away. Not the other way round.",
+      "Put the two answers beside each other. How far apart are they?",
+      "One went to the nearest thousand. Can the other go somewhere else?",
+      "Your estimate and this answer are far apart. Which one would you check first?",
+      "New numbers. Send them both to the same place before anything else.",
+      "Free play. Any two numbers, any place, both sides running and the gap bar live.",
+      "Look at the strip under each number again, and at which end it is nearer.",
+      "A fast answer and a worked one, standing together with the gap drawn between them."
+    ],
+    "observations": [
+      {
+        "why": "Numbers that end in zeros have nothing to fetch and nothing to lend.",
+        "soWhat": "An estimate is quick, and quick is the whole reason for having one.",
+        "observe": "The estimate landed with no column drawn on that side of the stage at all."
+      },
+      {
+        "why": "Both numbers moved the same way, so most of the two moves cancelled and only the difference between them was left over.",
+        "soWhat": "The gap between an estimate and a worked answer is nothing more than the two rounding moves put together.",
+        "observe": "Rounding 7,899 up by 101 and 4,766 up by 234 left the estimate 133 under the worked answer, so 3,000 stood beside 3,133."
+      },
+      {
+        "why": "The greater number was pushed up by 100 and the smaller was pulled down by 172, and both of those widen a gap rather than cancelling, so the estimate sits 272 above the worked answer.",
+        "soWhat": "An estimate is not always close, and it is furthest out when the two numbers sit near each other and round opposite ways. It is worth having even then, because an estimate that loose would still catch an answer out by a whole thousand.",
+        "observe": "On 10,900 and 10,172 the estimate came to 1,000 while the worked answer was only 728."
+      },
+      {
+        "why": "A trade that draws the ten arriving and forgets to take it off the column on the left hands the answer an amount that was never there.",
+        "soWhat": "An estimate cannot tell me the answer, but it can tell me in seconds that an answer cannot be right.",
+        "observe": "A worked answer sitting a whole thousand from its estimate turned out to have a lending column that was never reduced."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "two numbers with the estimate side empty and the place already set",
+        "win": "the estimate lands without a single column being written",
+        "traceback": "Each pin slides to its nearer thousand, the rounded numbers stand in rose and their difference lands under the rule; an answer worked first and rounded after stands on the exact side, not crossed out.",
+        "ladder": [
+          "Which of your two numbers is already rounded?",
+          "Did you round both numbers before taking away?",
+          "Did you round first, or work it out first?",
+          "Which two thousands is the other one sitting between?",
+          "Round just the first number. Then round the second, and take one from the other."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "both sides finished with the gap bar waiting between them",
+        "win": "the gap bar is drawn short and labelled, and both answers stay standing",
+        "traceback": "The line zooms in on the gap and counts up from the smaller answer in hops to the other, and the gap is labelled; for the worked answer, the columns are worked from the ones with every trade drawn.",
+        "ladder": [
+          "Start at 4,416. How much more makes 5,000?",
+          "Is any top digit smaller than the one under it?",
+          "Start at 3,444. How much more makes 4,000?",
+          "Is the gap a big part of the worked answer, or only a small part?",
+          "Count up to the next hundred first. Then count on to the bigger number."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the place picker with one number already rounded and the other waiting",
+        "win": "the picker moves both strips together and the two rounded numbers land at the same place",
+        "traceback": "The picker lights the question's place and moves both strips together, each pin slides to its nearer end and the estimate lands; an estimate made another way stands above it, not crossed out.",
+        "ladder": [
+          "What place are both of your numbers going to?",
+          "Is 12,240 nearer to 12,000 or to 13,000?",
+          "Is each number going to the nearest hundred?",
+          "Which two round numbers of that size is each one sitting between?",
+          "Press one place for both numbers. Then send each pin to its nearer end."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the judge bay holding a written answer with the estimate building beside it",
+        "win": "the gap bar stretches long and the written answer is sent back to be worked again",
+        "traceback": "The estimate builds on the right and the gap bar runs from it to the written answer with the distance labelled; on the verdict, work it again stands ringed and the written working is gone over from the ones, only the columns that disagree put right.",
+        "ladder": [
+          "What does your estimate say the answer should be near?",
+          "Could rounding alone move an answer that far?",
+          "Were you asked for a worked answer or a quick one?",
+          "How far from your estimate is the written answer?",
+          "Round both numbers to the nearest thousand first. Then take one from the other."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "places": {
+      "hundred": 100,
+      "thousand": 1000,
+      "ten thousand": 10000
+    },
+    "columns": [
+      "TTh",
+      "Th",
+      "H",
+      "T",
+      "O"
+    ],
+    "rounding": "the child sends each pin to an end of its strip: a tap on an end key sends it there, a drag drops it at the end it is let go nearer to, the arrow keys send a focused pin left or right; a tap on the pin does not move it. A correction slides it to the nearer end; exactly halfway goes up",
+    "picker": "one place for both numbers: a new place un-rounds both and restretches both strips together, so two numbers can never stand at different places",
+    "trades": "a column whose top digit is too small opens a ten from the column on its left: the lender is struck through in ink with its smaller value above it in rose, the ten travels to the column it joins, and that column's new value is written above it",
+    "gapLine": "from 0 to a round number past both answers; a tap zooms it to the gap; a correction counts up from the smaller answer in hops",
+    "verdict": "rounding to the nearest thousand moves each number by at most 499 down or 500 up, so an estimate and the true difference are less than 1,000 apart: a written answer 1,000 or more from the estimate cannot be right (work it again); a choice counts only once both pins are rounded",
+    "colours": {
+      "greater": "blue",
+      "takenAway": "amber",
+      "answer": "green",
+      "tenOnTheMove": "vermilion",
+      "rewritten": "rose",
+      "rounded": "rose",
+      "placeZero": "grey"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T7.C24:ML1",
+        "kind": "estimate",
+        "nums": [
+          8640,
+          3315
+        ],
+        "unit": 1000,
+        "near": 5685,
+        "winMs": 2600,
+        "answer": 6000
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T7.C24:1",
+        "kind": "estimate",
+        "nums": [
+          5870,
+          2140
+        ],
+        "unit": 1000,
+        "near": 3860,
+        "winMs": 2600,
+        "answer": 4000
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T7.C24:2",
+        "kind": "estimate",
+        "nums": [
+          8430,
+          5910
+        ],
+        "unit": 1000,
+        "near": 3000,
+        "winMs": 2600,
+        "answer": 2000
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T7.C25:ML2",
+        "kind": "gap",
+        "nums": [
+          8713,
+          4297
+        ],
+        "unit": 1000,
+        "near": 1416,
+        "winMs": 4400,
+        "answer": 584,
+        "winLine": "They are 584 apart. Near, but not equal."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T7.C25:3",
+        "kind": "exact",
+        "nums": [
+          7624,
+          4180
+        ],
+        "unit": 1000,
+        "near": 3564,
+        "winMs": 4600,
+        "answer": 3444
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T7.C25:4",
+        "kind": "gap",
+        "nums": [
+          7624,
+          4180
+        ],
+        "unit": 1000,
+        "near": 1444,
+        "winMs": 4800,
+        "answer": 556,
+        "winLine": "Only 556 apart. An estimate lands near the answer, not on it."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T7.C26:ML3",
+        "kind": "estimate",
+        "pick": true,
+        "worked": true,
+        "start": {
+          "unit": 1000,
+          "rounded": [
+            7000,
+            null
+          ]
+        },
+        "nums": [
+          7480,
+          2360
+        ],
+        "unit": 1000,
+        "near": 4600,
+        "winMs": 5200,
+        "answer": 5000,
+        "winLine": "Both at the nearest thousand, and 5,000 lands near 5,120."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T7.C26:5",
+        "kind": "estimate",
+        "pick": true,
+        "nums": [
+          34780,
+          12240
+        ],
+        "unit": 1000,
+        "near": 22800,
+        "winMs": 2800,
+        "answer": 23000
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T7.C26:6",
+        "kind": "estimate",
+        "pick": true,
+        "worked": true,
+        "also": 1000,
+        "nums": [
+          7480,
+          2360
+        ],
+        "unit": 100,
+        "near": 4600,
+        "winMs": 7600,
+        "answer": 5100,
+        "winLine": "At the same place, each estimate lands near 5,120."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T7.C27:ML4",
+        "kind": "estimate",
+        "written": 6531,
+        "wtv": [
+          null,
+          11,
+          11,
+          null
+        ],
+        "tag": "written",
+        "nums": [
+          9215,
+          3684
+        ],
+        "unit": 1000,
+        "near": 7000,
+        "winMs": 9400,
+        "answer": 5000,
+        "winLine": "Far from the estimate. Go back and work it again."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T7.C27:7",
+        "kind": "judge",
+        "written": 3455,
+        "tag": "till",
+        "nums": [
+          62410,
+          27865
+        ],
+        "unit": 1000,
+        "near": "could be right",
+        "winMs": 8400,
+        "answer": "work it again",
+        "wait": "First round both numbers. Then decide.",
+        "winLine": "Far from the estimate, so the till cannot be right."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T7.C27:8",
+        "kind": "estimate",
+        "compare": true,
+        "nums": [
+          20850,
+          20130
+        ],
+        "unit": 1000,
+        "near": 720,
+        "winMs": 7200,
+        "answer": 1000,
+        "winLine": "The gap is 280, on an answer of only 720. Here the estimate is not much use."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: Each pin slides to its nearer thousand, the rounded numbers stand in rose and their difference lands under the rule; an answer worked first and rounded after stands on the exact side, not crossed out.",
+      "Phase 2: The line zooms in on the gap and counts up from the smaller answer in hops to the other, and the gap is labelled; for the worked answer, the columns are worked from the ones with every trade drawn.",
+      "Phase 3: The picker lights the question's place and moves both strips together, each pin slides to its nearer end and the estimate lands; an estimate made another way stands above it, not crossed out.",
+      "Phase 4: The estimate builds on the right and the gap bar runs from it to the written answer with the distance labelled; on the verdict, work it again stands ringed and the written working is gone over from the ones, only the columns that disagree put right."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Round both numbers first. Then take one from the other.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "A fast answer and a worked one, standing together with the gap drawn between them.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T7.C24:ML1",
+            "worked": false,
+            "kind": "estimate",
+            "planQuestion": "Estimate 6,284 - 2,715 by rounding each number to the nearest thousand.",
+            "question": {
+              "en": "Estimate 8,640 − 3,315. Round each number to the nearest thousand."
+            },
+            "ask": {
+              "en": "Estimated difference?"
+            },
+            "answer": 6000,
+            "planAnswer": "3,000",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T7.C24:1",
+            "worked": false,
+            "kind": "estimate",
+            "planQuestion": "Estimate 5,870 - 2,140 by rounding each number to the nearest thousand.",
+            "question": {
+              "en": "Estimate 5,870 − 2,140 to the nearest thousand."
+            },
+            "ask": {
+              "en": "Estimated difference?"
+            },
+            "answer": 4000,
+            "planAnswer": "4,000, because the rounded numbers are 6,000 and 2,000",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T7.C24:2",
+            "worked": false,
+            "kind": "estimate",
+            "planQuestion": "Estimate 8,430 - 5,910 by rounding each number to the nearest thousand.",
+            "question": {
+              "en": "Estimate 8,430 − 5,910. Round both to the nearest thousand first."
+            },
+            "ask": {
+              "en": "Estimated difference?"
+            },
+            "answer": 2000,
+            "planAnswer": "2,000, because the rounded numbers are 8,000 and 6,000",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T7.C25:ML2",
+            "worked": false,
+            "kind": "gap",
+            "planQuestion": "Estimate 8,713 - 4,297 to the nearest thousand, then work the exact difference and compare the two.",
+            "question": {
+              "en": "8,713 − 4,297, estimated and worked. The estimate is 5,000. The worked answer is 4,416. What is the gap between them?"
+            },
+            "ask": {
+              "en": "How far apart?"
+            },
+            "answer": 584,
+            "planAnswer": "The estimate is 5,000 and the exact difference is 4,416, which sits close to it",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T7.C25:3",
+            "worked": false,
+            "kind": "exact",
+            "planQuestion": "Estimate 7,624 - 4,180 to the nearest thousand, and give the exact difference as well.",
+            "question": {
+              "en": "7,624 − 4,180 is about 4,000. Now work the exact difference."
+            },
+            "ask": {
+              "en": "Worked answer?"
+            },
+            "answer": 3444,
+            "planAnswer": "The estimate is 4,000 and the exact difference is 3,444",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T7.C25:4",
+            "worked": false,
+            "kind": "gap",
+            "planQuestion": "A child says an estimate of 4,000 must be wrong because the exact difference is 3,444. What would you tell the child?",
+            "question": {
+              "en": "A child says 4,000 must be wrong. The worked answer is 3,444. How far short of 4,000 is it?"
+            },
+            "ask": {
+              "en": "How far apart?"
+            },
+            "answer": 556,
+            "planAnswer": "That an estimate is meant to land near the exact difference and not to equal it, and 4,000 does",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T7.C26:ML3",
+            "worked": false,
+            "kind": "estimate",
+            "planQuestion": "A child rounds 7,480 to the nearest thousand and 2,360 to the nearest hundred, then subtracts. Why is that no use?",
+            "question": {
+              "en": "A child rounds 7,480 to the nearest thousand. Then 2,360 goes to the nearest hundred. Why is that no use? Round both to the nearest thousand."
+            },
+            "ask": {
+              "en": "Estimate, same place?"
+            },
+            "answer": 5000,
+            "planAnswer": "Both numbers have to go to the same place. To the nearest thousand the estimate is 5,000, and the exact difference is 5,120",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T7.C26:5",
+            "worked": false,
+            "kind": "estimate",
+            "planQuestion": "Estimate 34,780 - 12,240 by rounding each number to the nearest thousand.",
+            "question": {
+              "en": "Estimate 34,780 − 12,240. Round each number to the nearest thousand."
+            },
+            "ask": {
+              "en": "Estimated difference?"
+            },
+            "answer": 23000,
+            "planAnswer": "23,000, because the rounded numbers are 35,000 and 12,000",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T7.C26:6",
+            "worked": false,
+            "kind": "estimate",
+            "planQuestion": "Why must both numbers go to the same place before they are subtracted?",
+            "question": {
+              "en": "Why must both numbers go to the same place? Round 7,480 and 2,360 both to the nearest hundred."
+            },
+            "ask": {
+              "en": "Nearest hundred estimate?"
+            },
+            "answer": 5100,
+            "planAnswer": "Because rounding them to different places changes the two by different amounts, so the gap between them shifts and the estimate is no use",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T7.C27:ML4",
+            "worked": false,
+            "kind": "estimate",
+            "planQuestion": "A child works 9,215 - 3,684 and writes 6,531. Use an estimate to the nearest thousand to judge it.",
+            "question": {
+              "en": "A child works 9,215 − 3,684. The answer written is 6,531. Estimate to the nearest thousand to judge it."
+            },
+            "ask": {
+              "en": "Estimated difference?"
+            },
+            "answer": 5000,
+            "planAnswer": "The estimate is 5,000, so 6,531 cannot be right. The exact difference is 5,531",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T7.C27:7",
+            "worked": false,
+            "kind": "judge",
+            "planQuestion": "A shop takes 62,410 one week and 27,865 the next. A till prints the difference as 3,455. Estimate to the nearest thousand and say whether the till can be right.",
+            "question": {
+              "en": "A shop takes 62,410 one week. The next week it takes 27,865. A till prints the difference as 3,455. Round the two takings first. Can the till be right?"
+            },
+            "ask": {
+              "en": "Can the till be right?"
+            },
+            "answer": "work it again",
+            "planAnswer": "The estimate is 34,000, and 3,455 is nowhere near it, so the till is wrong. The difference is 34,545",
+            "choices": [
+              "could be right",
+              "work it again"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T7.C27:8",
+            "worked": false,
+            "kind": "estimate",
+            "planQuestion": "Estimate 20,850 - 20,130 to the nearest thousand, work the exact difference, and say whether the estimate was much use here.",
+            "question": {
+              "en": "Estimate 20,850 − 20,130. Round each number to the nearest thousand. Then see if the estimate is much use."
+            },
+            "ask": {
+              "en": "Estimated difference?"
+            },
+            "answer": 1000,
+            "planAnswer": "The estimate is 1,000 and the exact difference is 720, so the estimate is 280 out, which is a large slice of so small a difference; rounding pushed the two numbers apart",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "estimate_gap",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "estimate_gap",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Round first, then take away",
+        "conceptId": "M2.S4.T7.C24",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C24:ML1",
+          "M2.S4.T7.C24:1",
+          "M2.S4.T7.C24:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Close, not equal",
+        "conceptId": "M2.S4.T7.C25",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C25:ML2",
+          "M2.S4.T7.C25:3",
+          "M2.S4.T7.C25:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Both numbers, and the same place",
+        "conceptId": "M2.S4.T7.C26",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C26:ML3",
+          "M2.S4.T7.C26:5",
+          "M2.S4.T7.C26:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "An estimate tells you when an answer cannot be right",
+        "conceptId": "M2.S4.T7.C27",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C27:ML4",
+          "M2.S4.T7.C27:7",
+          "M2.S4.T7.C27:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "numbers",
+    "place",
+    "rounded",
+    "estimate",
+    "value",
+    "exact",
+    "exact",
+    "gap",
+    "judgeTarget",
+    "verdict"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, numbers, place, rounded, estimate, value, exact, exact, gap, judgeTarget, verdict",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "estimate_gap"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T7.C24.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Round both numbers first. Then take one from the other."
+    },
+    {
+      "en": "Round each number first, then take away. Not the other way round."
+    },
+    {
+      "en": "Put the two answers beside each other. How far apart are they?"
+    },
+    {
+      "en": "One went to the nearest thousand. Can the other go somewhere else?"
+    },
+    {
+      "en": "Your estimate and this answer are far apart. Which one would you check first?"
+    },
+    {
+      "en": "New numbers. Send them both to the same place before anything else."
+    },
+    {
+      "en": "Free play. Any two numbers, any place, both sides running and the gap bar live."
+    },
+    {
+      "en": "Look at the strip under each number again, and at which end it is nearer."
+    },
+    {
+      "en": "A fast answer and a worked one, standing together with the gap drawn between them."
+    }
+  ],
+  "build": {
+    "source": "1730cbac:212609",
+    "runtime": "class4/runtime/runtime.tsx",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-22T15:14:06.656Z",
+    "checks": {
+      "pass": 61,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-22T15:14:02.150Z"
+    },
+    "tsxBytes": 202042,
+    "tsxMd5": "8d007cf4f077cee56b29931b9850487f"
+  }
+}

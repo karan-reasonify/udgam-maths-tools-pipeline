@@ -1,0 +1,987 @@
+{
+  "slotId": "M1.S1.T2.C4.2D1",
+  "mediaId": "M1.S1.T2.C4.2D1",
+  "toolId": "column_builder",
+  "title": "Column Builder",
+  "component": "M1.S1.T2.C4.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch2",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch2_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_2/2dtool/M1.S1.T2.C4.2D1/M1.S1.T2.C4.2D1.tsx",
+  "description": "Drag two numbers onto a column mat and find out what happens when they are lined up by the wrong ends.",
+  "conceptIds": [
+    "M1.S1.T2.C4",
+    "M1.S1.T2.C5",
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Put two long numbers one under the other so that every digit lands in its own column, then add them a column at a time starting from the right.",
+    "look": "A ruled mat with a heading over every column, two strips of digit cards that can be slid along it, and the answer building up under the rule.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Column Builder' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the columns closed against the columns the mat is ruled for, two numbers in ink, the first climbing by one as each column total is written under the rule and the second fixed at the width of the mat. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The mat sits across the top of the working area, 800 by 300 at 207,202: ruled columns 120 wide under headings 44 tall, six of them at most, drawn from the right so that the ones column is always the rightmost and a four column mat is this same mat with its two left columns left unruled. Under the headings lie two addend rows of cells 84 tall, then a rule 6 tall running the full width of the mat, then the sum row 84 tall beneath it. An addend arrives as a strip of digit cards drawn joined into one piece, each card 96 by 76 sitting centred in its column, so a strip slides as a whole and a single digit can never be pulled out of it. A strip can be dropped anywhere along the mat, including where its right end hangs over open columns, and the heading standing over each of its digits is read out afresh as it moves, with what that digit is worth written small underneath. Check lining outlines in amber every digit that is not under its own place and names the place it is standing in instead. A column that is tapped lights the full height of both addend rows, and its total is written in green in the sum row under the rule; with the ones first control locked, only the rightmost unfinished column will light at all. There is no circle above any column on this mat and nothing ever travels leftwards across it, because no pair this tool sets takes a column past nine. The expanded strip opens beneath the mat, 1086 by 96 at 64,520, and writes each addend as its thousands, hundreds, tens and ones with plus signs 28 tall between them, every part standing under the column it came out of. The naming labels are plates 180 by 44 that land at the left end of each addend row reading addend and at the left end of the sum row reading sum, and the rule itself is drawn heavier while they are being placed. A ledge 1086 by 96 at the foot of the working area holds any strip that has not yet been given a home. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a column total or a whole sum is asked for, and on the first and fourth phases a word pad of the mat's own words, ones, tens, hundreds, thousands, ten thousands, lakhs, addend and sum, so that a column can be named and a row labelled with one press. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: a number being added is deep blue, the answer standing under the rule is green, a digit carried into the next column is vermilion, a rounded number is rose, the digit under discussion or the one that is missing is amber, and a zero that is only holding a place open is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a column is told by the heading written above it before it is ever told by a colour, and a carried digit by being small and by sitting above the column it is going into.",
+    "finish": "The card shows the longest sum the child built, its columns still named, with the addends and the sum labelled.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the check lining control finds nothing out of place and the empty columns stay empty",
+        "does": "slides the shorter strip until its ones digit stands under the ones heading",
+        "goal": "the addends are lined up by their right ends so each digit sits in its own column",
+        "says": "Line them up by their right ends. Which column does the shorter number start in?",
+        "check": "Away from the screen: write four thousand six and eighty two one under the other on squared paper. Which column does the eight stand in?",
+        "feels": "one number is shorter than the other, and the gap belongs at the left where nothing is standing",
+        "hands": "On squared paper write the column headings first, one to a square, and only then a five digit number with a three digit one under it, one digit to a square. Ask which square the shorter number begins in. Then write the same pair again lined up by their left ends instead and read out loud what each of its digits has become.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which column is the last digit of the shorter number standing in? Second rung, the phase's: which column does the last digit of any number belong in? Third rung: the mat is cut to three columns with one two digit strip on it and the child slides that single strip home. The word pad of column names stays open behind all three.",
+        "wrong": [
+          {
+            "why": "writing starts at the left everywhere else on a page, and two numbers that begin together look tidy.",
+            "move": "pushes the shorter strip to the left end of the mat so that the two numbers begin under one another.",
+            "screen": "the headings above the shorter strip are read out as it stands, so its leading digit is heard in the ten thousands column and the worth written under it is read out as tens of thousands; check lining then outlines every digit of that strip in amber and names the place each one is standing in. The strip is not moved for the child and nothing is cleared."
+          },
+          {
+            "why": "an empty column looks unfinished, and a square with nothing in it looks like a square that still wants something.",
+            "move": "fills the shorter number's empty left columns with zeros of its own and counts them as part of it.",
+            "screen": "the zeros the child wrote stay exactly where they are, drawn grey, and the strip is read out twice, once with them and once without, with the two readings written one under the other and coming to the same number; the zeros are then left standing where they were and the empty columns beside them are outlined."
+          }
+        ],
+        "screen": "the mat with a five digit strip in place and a three digit strip loose beside it",
+        "soWhat": "Line the addends up by their right ends, because every column is a place.",
+        "concept": "Columns stand for places"
+      },
+      {
+        "n": 2,
+        "win": "the columns fill from the right and the sum stands complete under the rule",
+        "does": "taps the ones column, then each column to its left in turn",
+        "goal": "the columns are worked from the right, one at a time",
+        "says": "Start at the ones. Say what that column comes to before you move left.",
+        "check": "Why can the leftmost column not be finished before the columns to its right are done?",
+        "feels": "the right hand column is the only one that can be finished for certain, so it goes first",
+        "hands": "Write two five digit numbers on squared paper, then cover every column but the leftmost with a strip of card and try to finish that column. Uncover the ones column and ask what might still arrive from the right before the left one can be trusted.",
+        "tries": "First rung, from the item: which column is furthest to the right? Second rung, the phase's: which way does anything that will not fit in a column have to travel? Third rung: the mat is cut to two columns and the child works those two in order. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "reading and writing both run from the left, and the leftmost column is where the number seems to begin.",
+            "move": "taps the leftmost column first and works rightwards, the way a number is read.",
+            "screen": "every total the child wrote stays under the rule exactly where it was put. The ones first control then locks itself, the same two strips are worked again from the right with one column lighting at a time, and the two runs stand one under the other with the order of work numbered beside each column. Nothing is cleared."
+          },
+          {
+            "why": "the numbers are small enough to hold, and the mat looks like somewhere to show working that has already been done.",
+            "move": "adds the two numbers in their head and types a whole answer without a column being touched.",
+            "screen": "the mat works the columns anyway from the right, each one lighting as it is added and writing its total in green under the rule, and the child's number stands in the answer slot beside the one the mat builds; where the two part, the first column from the right that parts them is lit amber and stays lit."
+          }
+        ],
+        "screen": "two five digit strips lined up, with every column still blank under the rule",
+        "soWhat": "Adding starts at the ones and works left, because anything that spills has to move left.",
+        "concept": "The ones column goes first"
+      },
+      {
+        "n": 3,
+        "win": "the last column on the left is worked and the mat stops, with no new rule needed",
+        "does": "works the same way along a longer mat and counts the steps it took",
+        "goal": "a six digit sum is a shorter sum with more steps on the left",
+        "says": "Same method, more columns. Where does it end this time?",
+        "check": "How many column steps does a sum of two six digit numbers take, and which of them comes first?",
+        "feels": "six columns and not one new thing to learn",
+        "hands": "Take a four digit sum the child has already worked on paper and write two more digits in front of each number to make them six digits long. Ask how many steps the new sum takes, and whether any one of those steps is a kind of step they have not done before.",
+        "tries": "First rung, from the item: how many columns is the mat ruled for? Second rung, the phase's: how many of them have a total under the rule? Third rung: the mat is cut back to four columns, the child works it, and then two columns are opened at the left and the same sum is worked again. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "a six digit number is the biggest thing they have written down, and big new numbers have arrived with new rules before now.",
+            "move": "asks for a new rule because the numbers are longer than any they have added before.",
+            "screen": "the six column sum stays where it is and the four column sum the child worked earlier is laid under it with their right ends aligned; the steps of each are counted along from the right, and each step of the longer sum is lit beside the step of the shorter one it matches, with two steps at the left end matching nothing at all."
+          },
+          {
+            "why": "five columns is what the last few sums took, and a rule with most of it written on looks like a rule that is full.",
+            "move": "works five of the six columns and reads the sum as finished.",
+            "screen": "the leftmost column keeps both of its digits lit with the square under the rule left empty and ringed in amber, and the sum is read out place by place from the right until the reading arrives at nothing at all. Nothing is filled in for the child."
+          }
+        ],
+        "screen": "the mat grown to six columns with two six digit strips on it",
+        "soWhat": "A longer sum is the same method with more steps, and it still starts at the ones.",
+        "concept": "More columns do not mean a new method"
+      },
+      {
+        "n": 4,
+        "win": "both labels land on the right rows and the finished sum is read aloud",
+        "does": "labels the two strips and the answer, then reads the whole thing out",
+        "goal": "the parts of a written sum can be named",
+        "says": "Point at the addends. Now point at the sum. Say which is which.",
+        "check": "In a sum of your own, point at the addends and then at the sum, and say which is which.",
+        "feels": "the two names stay put however the numbers are swapped about",
+        "hands": "Point at a sum the child has finished on paper and ask for the names of its three rows. Then have them write a sum of their own and label every row before a single column is worked.",
+        "tries": "First rung, from the item: which rows are above the rule? Second rung, the phase's: what is the row under the rule called? Third rung: the mat is cut to two columns with a finished sum on it and the child lays the three labels on that. The word pad stays open and no label is ever placed for the child.",
+        "wrong": [
+          {
+            "why": "the three rows look alike once they are written down, and the largest number looks like the important one.",
+            "move": "calls the answer under the rule an addend, because it is the largest number on the mat.",
+            "screen": "the rule is drawn heavier and the two rows above it lift a little together while the word addend is written on each of them, and the row below the rule stays down and takes the word sum; the child's label stays exactly where it was put, so that the two readings can be held against each other."
+          },
+          {
+            "why": "add this to that names one number as the thing being added and the other as the thing it is added into.",
+            "move": "labels only the lower strip as an addend, because only one of the numbers looks as though it is doing anything.",
+            "screen": "the two strips swap rows on the mat, the columns are worked again from the right and the same total stands under the rule in green; both strips carry the word addend the whole time and neither of them is ever the one being added to."
+          }
+        ],
+        "screen": "a finished sum on the mat with the naming control waiting",
+        "soWhat": "The addends go above the rule and the sum goes under it.",
+        "concept": "The addends are what you add and the sum is what you get"
+      }
+    ],
+    "delight": "The first phase, the moment the loose strip is dragged along the mat. It does not snap anywhere and nothing is marked. As it passes each column the heading over its leading digit is read out afresh, hundreds, then thousands, then ten thousands, and the worth written small underneath grows ten times at every step, so the same three digit cards are worth hundreds in one column and tens of thousands two columns along. Slide it back and the worths shrink again the same way. Nothing else moves and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the mat stands five columns wide with a five digit strip lying home in its columns and a shorter strip loose on the ledge below it, not standing in any column at all. On the second two strips of the same length are already home and every square under the rule is blank. On the third the mat stands six columns wide with a six digit strip on each of its two rows. On the fourth a finished sum stands with its total under the rule and the naming labels waiting at the left of the mat. The running count at the top left holds the columns closed against the columns the mat is ruled for, and the answer slot and the pad stand empty down the right. One thing moves, once: the loose strip, or the ones column, or the leftmost column, or the first naming label, gives one slow pulse while the voice asks for the two numbers to be lined up by their right ends. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any two numbers up to six digits, with the lining check, the expanded form strip and the naming labels switched on or off. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on lining addends up, working from the ones and adding five and six digit numbers where no column has to be carried.",
+    "voiceLines": [
+      "Two numbers and a ruled mat. Line them up by their right ends.",
+      "Line them up by their right ends. Which column does the shorter number start in?",
+      "Start at the ones. Say what that column comes to before you move left.",
+      "Same method, more columns. Where does it end this time?",
+      "Point at the addends. Now point at the sum. Say which is which.",
+      "Another pair. Same mat, and the ones column still goes first.",
+      "Free play. Any two numbers, the lining check and the expanded strip as you like.",
+      "Slide them back and read the heading standing over each digit.",
+      "Every digit stood in its own column, and you worked them from the right."
+    ],
+    "observations": [
+      {
+        "why": "Those places are not part of that number at all.",
+        "soWhat": "An empty column is not an unfinished one; it is a place the number does not reach.",
+        "observe": "The shorter number left its left columns empty instead of filling them."
+      },
+      {
+        "why": "The heading standing over a digit is what that digit is worth.",
+        "soWhat": "Lining up by the right ends is not tidiness, it is what makes the columns true.",
+        "observe": "Pushing the short strip one column to the left made every digit in it worth ten times as much."
+      },
+      {
+        "why": "No pair here takes a column past nine, so nothing ever has to move to the left.",
+        "soWhat": "That is exactly what changes the moment a column does pass nine, which is the next mount's whole job.",
+        "observe": "Nothing left any column on this mat, so the sum came out as long as the longer addend."
+      },
+      {
+        "why": "The ones column is the only column that nothing can ever arrive into.",
+        "soWhat": "The order of work is part of the method, not a matter of taste.",
+        "observe": "The columns were worked from the right and the sum filled from the right."
+      },
+      {
+        "why": "A column total is the thousands, hundreds, tens and ones added apart from one another.",
+        "soWhat": "The expanded form is the column sum laid out sideways.",
+        "observe": "The expanded strip and the mat held the same sum written two ways."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the mat with a five digit strip in place and a three digit strip loose beside it",
+        "win": "the check lining control finds nothing out of place and the empty columns stay empty",
+        "traceback": "Check lining rings each digit out of its place and lights the heading it stands under; the strip slides home by its right end with each digit's worth under it, and the sum is worked from the ones under the child's own (a wrong column total is put right for that column alone: its equation, the total boxed in amber, over counters that make it).",
+        "ladder": [
+          "Which column is the last digit of the shorter number standing in?",
+          "Which column does the 8 of 508 belong in?",
+          "Which column is the 7 standing in, and which column does it belong in?",
+          "Which column does the last digit of any number belong in?",
+          "Put the last digit under the ones heading. Then read the heading over each digit."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "two five digit strips lined up, with every column still blank under the rule",
+        "win": "the columns fill from the right and the sum stands complete under the rule",
+        "traceback": "Started in the wrong column: the mat works every column from the right, writing each total in green with its order under it, and the ones column is ringed in amber. A column added wrong: that column's equation, its total boxed in amber, over counters that make it.",
+        "ladder": [
+          "Which column is furthest to the right?",
+          "Which two digits stand in the ones column?",
+          "Which column did you start with?",
+          "Which way does anything that will not fit in a column have to travel?",
+          "Add the two digits in the ones column first. Then move one column to the left."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the mat grown to six columns with two six digit strips on it",
+        "win": "the last column on the left is worked and the mat stops, with no new rule needed",
+        "traceback": "A sum read as finished too soon: the mat works all six columns from the right with the steps counted under them, and the first column where the child's sum parts from it (the empty square at the left) is ringed in amber. A column added wrong: that column's equation over counters that make it.",
+        "ladder": [
+          "How many columns is the mat ruled for?",
+          "Did you stop before the last column on the left?",
+          "Is any square in the green row still empty?",
+          "How many of them have a total under the rule?",
+          "Count the columns from the right, and give every one of them a total."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a finished sum on the mat with the naming control waiting",
+        "win": "both labels land on the right rows and the finished sum is read aloud",
+        "traceback": "The rule is drawn heavier, the two rows above it lift together, and addend, addend and sum are written beside the rows while the child's labels stay where they were put; a sum is worked again from the right (for the smallest five-digit and largest four-digit numbers the two blank addend rows fill in first), and a column added wrong is put right for that column alone.",
+        "ladder": [
+          "Which rows are above the rule?",
+          "What is the smallest number with five digits?",
+          "Where does the word sum go on the mat?",
+          "What is the row under the rule called?",
+          "Which rows hold the numbers you add, and which row holds what they make?"
+        ]
+      }
+    ]
+  },
+  "model": {
+    "columnWidth": 150,
+    "places": [
+      "ones",
+      "tens",
+      "hundreds",
+      "thousands",
+      "ten thousands",
+      "lakhs"
+    ],
+    "rows": [
+      "addend",
+      "addend",
+      "sum"
+    ],
+    "matColumns": [
+      5,
+      5,
+      6,
+      5
+    ],
+    "carries": "none: every pair adds without a column passing nine",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C4:ML1",
+        "kind": "linesum",
+        "a": 43215,
+        "b": 362,
+        "winMs": 2600,
+        "answer": 43577
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T2.C4:1",
+        "kind": "column",
+        "a": 71024,
+        "b": 508,
+        "digit": 5,
+        "at": 2,
+        "winMs": 1900,
+        "answer": "hundreds"
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S1.T2.C4:2",
+        "kind": "what",
+        "a": 60532,
+        "b": 247,
+        "winMs": 1600,
+        "answer": "every digit"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T2.C5:ML2",
+        "kind": "first",
+        "a": 25431,
+        "b": 13246,
+        "winMs": 2600,
+        "answer": 7
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T2.C5:3",
+        "kind": "first",
+        "a": 34152,
+        "b": 21306,
+        "lit": 0,
+        "winMs": 2600,
+        "answer": 8
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T2.C5:4",
+        "kind": "sum",
+        "a": 46023,
+        "b": 23451,
+        "winMs": 2400,
+        "answer": 69474
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:ML3",
+        "kind": "sum",
+        "a": 524301,
+        "b": 342156,
+        "winMs": 2600,
+        "answer": 866457
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T2.C6:5",
+        "kind": "sum",
+        "a": 213046,
+        "b": 524132,
+        "winMs": 2600,
+        "answer": 737178
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T2.C6:6",
+        "kind": "sum",
+        "a": 605231,
+        "b": 142508,
+        "winMs": 2600,
+        "answer": 747739
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T2.C7:ML4",
+        "kind": "name",
+        "a": 61204,
+        "b": 27395,
+        "pad": "enter",
+        "winMs": 1600,
+        "answer": "sum"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T2.C7:7",
+        "kind": "recall",
+        "a": 10000,
+        "b": 9999,
+        "plates": "keep",
+        "winMs": 3000,
+        "answer": 19999
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T2.C7:8",
+        "kind": "namesum",
+        "a": 32405,
+        "b": 45263,
+        "winMs": 2400,
+        "answer": 77668
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: Check lining rings each digit out of its place and lights the heading it stands under; the strip slides home by its right end with each digit's worth under it, and the sum is worked from the ones under the child's own (a wrong column total is put right for that column alone: its equation, the total boxed in amber, over counters that make it).",
+      "Phase 2: Started in the wrong column: the mat works every column from the right, writing each total in green with its order under it, and the ones column is ringed in amber. A column added wrong: that column's equation, its total boxed in amber, over counters that make it.",
+      "Phase 3: A sum read as finished too soon: the mat works all six columns from the right with the steps counted under them, and the first column where the child's sum parts from it (the empty square at the left) is ringed in amber. A column added wrong: that column's equation over counters that make it.",
+      "Phase 4: The rule is drawn heavier, the two rows above it lift together, and addend, addend and sum are written beside the rows while the child's labels stay where they were put; a sum is worked again from the right (for the smallest five-digit and largest four-digit numbers the two blank addend rows fill in first), and a column added wrong is put right for that column alone."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Two numbers and a ruled mat.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every digit stood in its own column, and you worked them from the right.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C4:ML1",
+            "worked": false,
+            "kind": "linesum",
+            "planQuestion": "Set out 43,215 + 362 on a column mat. Which column does the 3 of 362 stand in, and what is the sum?",
+            "question": {
+              "en": "Set out 43,215 + 362 on the mat. Slide 362 in until each digit stands in its own column, then find the sum."
+            },
+            "ask": {
+              "en": "Line up 362, then add"
+            },
+            "answer": 43577,
+            "planAnswer": "The hundreds column, and the sum is 43,577",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T2.C4:1",
+            "worked": false,
+            "kind": "column",
+            "planQuestion": "Set out 71,024 + 508 on a column mat. Under which column does the 5 of 508 sit?",
+            "question": {
+              "en": "Set out 71,024 + 508 on the mat. Under which column does the 5 of 508 sit?"
+            },
+            "ask": {
+              "en": "The 5 of 508 sits under?"
+            },
+            "answer": "hundreds",
+            "planAnswer": "The hundreds column, because 508 is five hundred eight",
+            "choices": [
+              "ones",
+              "tens",
+              "hundreds",
+              "thousands",
+              "ten thousands",
+              "lakhs"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S1.T2.C4:2",
+            "worked": false,
+            "kind": "what",
+            "planQuestion": "Two addends of different lengths are lined up by their left ends instead of their right. What goes wrong?",
+            "question": {
+              "en": "Two addends of different lengths are lined up by their left ends instead of their right. What goes wrong? Which digits of 247 are out of place?"
+            },
+            "ask": {
+              "en": "Which digits are out of place?"
+            },
+            "answer": "every digit",
+            "planAnswer": "Every digit lands in the wrong column, so tens are added to ones and hundreds to tens, and the sum is wrong before any adding starts",
+            "choices": [
+              "only the 7",
+              "every digit",
+              "none",
+              "only the 2"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T2.C5:ML2",
+            "worked": false,
+            "kind": "first",
+            "planQuestion": "Add 25,431 and 13,246, and say which column you finish first and what it comes to.",
+            "question": {
+              "en": "Add 25,431 and 13,246. Tap the column you finish first, then type what it comes to."
+            },
+            "ask": {
+              "en": "Which column first? Its total?"
+            },
+            "answer": 7,
+            "planAnswer": "The ones column, which comes to 7, and the sum is 38,677",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T2.C5:3",
+            "worked": false,
+            "kind": "first",
+            "planQuestion": "Add 34,152 and 21,306, and say what the ones column comes to.",
+            "question": {
+              "en": "Add 34,152 and 21,306. What does the ones column come to?"
+            },
+            "ask": {
+              "en": "The ones column makes?"
+            },
+            "answer": 8,
+            "planAnswer": "The ones column comes to 8, and the sum is 55,458",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T2.C5:4",
+            "worked": false,
+            "kind": "sum",
+            "planQuestion": "Add 46,023 and 23,451.",
+            "question": {
+              "en": "Add 46,023 and 23,451. Work one column at a time, from the right."
+            },
+            "ask": {
+              "en": "Add, ones first"
+            },
+            "answer": 69474,
+            "planAnswer": "69,474",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C6:ML3",
+            "worked": false,
+            "kind": "sum",
+            "planQuestion": "Add 5,24,301 and 3,42,156.",
+            "question": {
+              "en": "Add 5,24,301 and 3,42,156."
+            },
+            "ask": {
+              "en": "Add, ones first"
+            },
+            "answer": 866457,
+            "planAnswer": "8,66,457",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T2.C6:5",
+            "worked": false,
+            "kind": "sum",
+            "planQuestion": "Add 2,13,046 and 5,24,132.",
+            "question": {
+              "en": "Add 2,13,046 and 5,24,132."
+            },
+            "ask": {
+              "en": "Add, ones first"
+            },
+            "answer": 737178,
+            "planAnswer": "7,37,178",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T2.C6:6",
+            "worked": false,
+            "kind": "sum",
+            "planQuestion": "Add 6,05,231 and 1,42,508.",
+            "question": {
+              "en": "Add 6,05,231 and 1,42,508."
+            },
+            "ask": {
+              "en": "Add, ones first"
+            },
+            "answer": 747739,
+            "planAnswer": "7,47,739",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T2.C7:ML4",
+            "worked": false,
+            "kind": "name",
+            "planQuestion": "A mat shows 61,204 above 27,395 with a rule under them. Which numbers are the addends, and what is the sum?",
+            "question": {
+              "en": "A mat shows 61,204 above 27,395 with a rule under them. Which numbers are the addends, and what is the sum? Drag a label onto each row, then press enter."
+            },
+            "ask": {
+              "en": "Label each row"
+            },
+            "answer": "sum",
+            "planAnswer": "The addends are 61,204 and 27,395, and the sum is 88,599",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T2.C7:7",
+            "worked": false,
+            "kind": "recall",
+            "planQuestion": "Find the sum of the smallest five digit number and the largest four digit number.",
+            "question": {
+              "en": "Add the smallest five-digit number and the largest four-digit number."
+            },
+            "ask": {
+              "en": "Find the sum"
+            },
+            "answer": 19999,
+            "planAnswer": "19,999, because the addends are 10,000 and 9,999",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T2.C7:8",
+            "worked": false,
+            "kind": "namesum",
+            "planQuestion": "Add thirty-two thousand four hundred five and forty-five thousand two hundred sixty-three. Name the addends first.",
+            "question": {
+              "en": "Add thirty-two thousand four hundred five and forty-five thousand two hundred sixty-three. Name the addends first."
+            },
+            "ask": {
+              "en": "Label the rows, then add"
+            },
+            "answer": 77668,
+            "planAnswer": "The addends are 32,405 and 45,263, and the sum is 77,668",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "column_builder",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "column_builder",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Columns stand for places",
+        "conceptId": "M1.S1.T2.C4",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C4:ML1",
+          "M1.S1.T2.C4:1",
+          "M1.S1.T2.C4:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "The ones column goes first",
+        "conceptId": "M1.S1.T2.C5",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C5:ML2",
+          "M1.S1.T2.C5:3",
+          "M1.S1.T2.C5:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "More columns do not mean a new method",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C6:ML3",
+          "M1.S1.T2.C6:5",
+          "M1.S1.T2.C6:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "The addends are what you add and the sum is what you get",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C7:ML4",
+          "M1.S1.T2.C7:7",
+          "M1.S1.T2.C7:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "columns",
+    "addends",
+    "null",
+    "null",
+    "offsets",
+    "lined",
+    "columnDone",
+    "sum",
+    "expandedOpen",
+    "labels",
+    "a",
+    "b",
+    "s"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, columns, addends, null, null, offsets, lined, columnDone, sum, expandedOpen, labels, a, b, s",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "column_builder"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C4.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Two numbers and a ruled mat. Line them up by their right ends."
+    },
+    {
+      "en": "Line them up by their right ends. Which column does the shorter number start in?"
+    },
+    {
+      "en": "Start at the ones. Say what that column comes to before you move left."
+    },
+    {
+      "en": "Same method, more columns. Where does it end this time?"
+    },
+    {
+      "en": "Point at the addends. Now point at the sum. Say which is which."
+    },
+    {
+      "en": "Another pair. Same mat, and the ones column still goes first."
+    },
+    {
+      "en": "Free play. Any two numbers, the lining check and the expanded strip as you like."
+    },
+    {
+      "en": "Slide them back and read the heading standing over each digit."
+    },
+    {
+      "en": "Every digit stood in its own column, and you worked them from the right."
+    }
+  ],
+  "build": {
+    "source": "8a3cf2b4:1470054",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-24T07:24:59.288Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-24T07:24:52.859Z"
+    },
+    "tsxBytes": 1465852,
+    "tsxMd5": "09206a9561ea31c68f15fe9832d23620"
+  }
+}

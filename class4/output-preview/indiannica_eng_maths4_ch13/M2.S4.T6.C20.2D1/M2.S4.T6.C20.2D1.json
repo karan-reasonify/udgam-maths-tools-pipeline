@@ -1,0 +1,1100 @@
+{
+  "slotId": "M2.S4.T6.C20.2D1",
+  "mediaId": "M2.S4.T6.C20.2D1",
+  "toolId": "price_multiplier",
+  "title": "Price Multiplier",
+  "component": "M2.S4.T6.C20.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch13",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch13_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_13/2dtool/M2.S4.T6.C20.2D1/M2.S4.T6.C20.2D1.tsx",
+  "description": "Multiply a price by a count, paise first, carrying each hundred paise as one rupee and writing the paise left after the dot, keep the count free of any dot, and follow a cost through to the change or the money left.",
+  "conceptIds": [
+    "M2.S4.T6.C20",
+    "M2.S4.T6.C21",
+    "M2.S4.T6.C22",
+    "M2.S4.T6.C23"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Multiply a price by a count, paise first, put the dot in its place, and follow a cost through to the change or the money left.",
+    "look": "A multiplying frame in the middle of the canvas under a row of the things being bought, a carry circle over the rupees, and a two-step card with a change bench at the right.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Price Multiplier' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the things counted against the things in the row, two numbers in ink, the first climbing by one as each thing lights and the second fixed at the number of things drawn. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The thing row runs across the top of the working area, 1086 by 90 at 64,214, drawing the things being bought, up to twelve, each dark until it is counted and lit as it is. The multiplying frame stands under it at the left, 540 by 330 at 64,316. Its top line holds the price of one thing in a rupees column and a paise column, with the near-black dotted line between them and the vermilion dot on it, and the headings Rs and p above it outside the working. The second line holds the times sign at the far left and the count box beside it in sky blue, both to the left of the rupees column and outside both columns; the second line has no cell under the paise at all. The counter that fills the count box sits under the frame, 240 by 56 at 64,660, sets whole things only and has no dot key. A carry circle sits over each rupees place. The paise box stands beside the frame, 200 by 110 at 620,316, and the multiply control under it, 200 by 56 at 620,440. Multiply works the paise column first: the paise times the count is written in the paise box as a number of paise, each hundred in it gathers into a full strip that rolls up into one rupee and drops into the carry circle over the rupees, and the paise left go down after the dot as two digits, with a zero in front of fewer than ten. The rupees are then multiplied and the carried rupees added, and the cost is written on the answer line. At the right stand the two-step card, 320 by 110 at 830,316, holding the money a buyer has or pays, and the change bench under it, 320 by 280 at 830,440, which sets the cost under that money in columns with the dots in one line and takes it away. When the paise on top are too few, the bench breaks one rupee into a hundred paise, the rupees figure struck through and rewritten one less above it in amber. The cost stays in a box of its own on the bench while the money left or the change is found. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across with a dot key, for writing a cost, a change or the money left, and the answer slot prints Rs before the number and holds exactly two places after the dot. The counter that sets the count is not the pad: it has whole numbers only and no dot key. On the fourth phase the slot's label names what the question asks for, the cost, the change or the money left. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The rupees of every amount, the rupees column and the value printed on every note and coin are deep blue. The paise of every amount, the paise column and every cell standing for paise are green. The dot between rupees and paise is vermilion, a clear round dot, and wherever amounts stand in columns it sits on a near-black dotted line. A rupee carried from the paise, and a rupee broken into a hundred paise with the digits it rewrites, are amber. The change handed back, the money left and a remainder are reddish purple, so money coming back is never mistaken for a cost. A count of things, a number multiplied by, how many notes of one value or how many can be bought, is sky blue, because a count of things is not money. The zeros that fill the paise column of a whole-rupee amount in column working are grey. Every play note is one plain pale blue rectangle and every play coin one plain steel disc, all notes one size and all coins one size, each printed with its value and nothing else. No coin below one rupee is drawn anywhere: paise are shaded cells on a strip ruled into a hundred in ten blocks of ten, so a full strip is exactly one rupee. Chrome never borrows one of those and none of them is ever used for chrome: every column rule, dotted line, tick, bracket, strike line, bill rule and panel edge is near-black. Every reading survives with the colour taken away, because a digit is told apart by the column it stands in, a carry by the circle it sits in, a count by the box beside the times sign or the slot marked things, and the change or money left by the tray or line that holds it, before any of them is told by a colour. Grey never means faint: a zero in a paise column is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. A rupees figure that goes down by one is struck through once with the new figure written above it, and never rubbed out. The count is drawn in sky blue in its own box on every phase and is never written in a rupees or a paise column, so nothing on the stage can read it as money. Every answer with paise writes them as two digits after the dot.",
+    "finish": "The card shows the last product the child worked, the count in its box with no dot, each carry in its circle, and the answer the question asked for.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the hundreds roll up into the carry circle, and the rupees and the carry add into the cost",
+        "does": "multiplies the paise by the count, rolls each hundred into the carry circle, then multiplies the rupees and adds the carry",
+        "goal": "money is multiplied paise first, each hundred paise carried as one rupee, and then the rupees",
+        "says": "Multiply the paise first. How many whole rupees do they make?",
+        "check": "Away from the screen: one pencil box costs Rs 45.50. What do four cost? Say what the paise made first.",
+        "feels": "the paise of every thing bought pile up, and every full hundred of them becomes a rupee",
+        "hands": "Cost a class party list on paper one line at a time. Take one line, six packets of juice at Rs 12.50, and multiply the paise first: fifty paise six times is three hundred paise. Swap the three hundred for three rupee coins on the desk, then multiply the rupees and add the three.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: what do the paise make when multiplied? Second rung, the phase's: how many whole rupees is that? Third rung: the frame is cut to one rupee and fifty paise times two, and the child carries before the larger price comes back. The number pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the rupees and the paise look like two separate numbers, and each is given its own product written in full.",
+            "move": "multiplies the rupees and the paise apart and writes Rs 138.300, leaving the carried rupees in the paise.",
+            "screen": "the paise box shows three hundred paise, and three full strips fill one after another, each rolling up into a rupee and dropping into the carry circle, which reads three. Two zeros go down after the dot in the paise column, the rupees product takes the three, and the child's Rs 138.300 stays in the slot beside the new cost."
+          },
+          {
+            "why": "the paise look like a small extra on the price, and it is easy to multiply the big part and copy the small part.",
+            "move": "multiplies the rupees and brings the fifty paise down unchanged, writing Rs 138.50, as if only the rupees were bought six times.",
+            "screen": "the six notebooks in the row light one at a time, and a copy of the price, rupees and paise together, slides down under each. The six lots of fifty paise are counted together in the paise box, three hundred paise, and roll up into three rupees in the carry circle. The rupees product takes them, and the child's Rs 138.50 stays in the slot."
+          }
+        ],
+        "screen": "a price on the top line, a count on the second, and the carry circle empty",
+        "soWhat": "Multiply the paise first, carry each hundred paise as one rupee, then multiply the rupees and add the carry.",
+        "concept": "Paise first, then rupees"
+      },
+      {
+        "n": 2,
+        "win": "the count settles in its box with no dot, and the row of things lights one by one to match it",
+        "does": "counts the things one by one, lifts the count out of the paise column, and sets it in the count box with no dot",
+        "goal": "the number multiplied by counts things, so it is written without a dot and has no paise",
+        "says": "What does this number count? Does it have any paise?",
+        "check": "Write the cost of three kites at Rs 22.40 each as a multiplication. Where does the three go, and does it have a dot?",
+        "feels": "the number multiplied by is how many things, and things come whole",
+        "hands": "Write the cost of eight pens at Rs 14.25 as a multiplication on the board, first with the eight under the paise and a dot in front of it, the way the chapter's worked example prints its count. Ask the class what the eight counts, and whether pens can have paise. Then rewrite it with the eight in a box beside the times sign, and multiply.",
+        "tries": "First rung, from the item: what does this number count? Second rung, the phase's: can a count have paise? Third rung: the row is cut to two things with the count already in its box, and the child multiplies before the larger count comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the chapter's one multiplication worked in columns prints its count that way, and a dot beside a number in a money sum looks like the money's own dot.",
+            "move": "copies a layout that puts a dot in front of the nine under the paise, and reads the nine as nine paise.",
+            "screen": "the nine pens in the row stay dark while the count stands under the paise. The count is then lifted out: its dot falls away, it settles in the sky blue count box beside the times sign, and the pens light one at a time up to nine. The price is multiplied by the count, and the child's reading stays written in the slot."
+          },
+          {
+            "why": "with the count standing under the paise, the paise are the only digits it seems to reach.",
+            "move": "multiplies only the digits standing over the count, the fifty paise, carries four rupees and writes Rs 18.50, leaving the rupees unmultiplied.",
+            "screen": "the count moves into its box beside the times sign, and a near-black bracket reaches from the box across both columns of the price. The paise are multiplied, four hundred and fifty, and the rupees too, one hundred and twenty-six, and with the four carried the cost comes to Rs 130.50. The child's Rs 18.50 stays in the slot beside it."
+          }
+        ],
+        "screen": "a frame where the count stands with a dot in front of it under the paise, and a row of the things above",
+        "soWhat": "The number multiplied by counts things, so it has no dot and no paise.",
+        "concept": "The number multiplied by is a count"
+      },
+      {
+        "n": 3,
+        "win": "the paise left land as two digits after the dot, and the carried rupees join the rupees",
+        "does": "multiplies the paise, carries the whole rupees, writes the paise left after the dot, then finishes the rupees",
+        "goal": "when the paise do not come to whole rupees, the paise left are written as two digits after the dot",
+        "says": "Some paise are left over. Where do they go?",
+        "check": "One bag of beads costs Rs 21.35. What do seven bags cost? Say what went after the dot.",
+        "feels": "whatever the hundreds leave behind is still paise, and it still takes two places",
+        "hands": "Multiply Rs 20.35 by three with the class, paise first: a hundred and five paise. Swap a hundred of them for a rupee coin and ask what is left to write after the dot. Write it with one digit first, Rs 61.5, and ask the class to read it aloud; then write Rs 61.05 and read that.",
+        "tries": "First rung, from the item: how many paise did the paise make? Second rung, the phase's: how many are left once the whole hundreds are carried? Third rung: the frame is cut to a price with five paise times three, and the child writes the fifteen paise after the dot before the larger price comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "five is one digit and seems to need only one place, and nothing in the multiplying says the paise take two.",
+            "move": "writes the five paise left from a hundred and five as one digit after the dot, Rs 49.5 for Rs 49.05.",
+            "screen": "the child's Rs 49.5 is read back on the answer line with the second place after the dot empty, which says fifty paise, and fifty cells shade on a strip. A zero is then set in the first place after the dot and the five moves to the second, and the shading falls back to five cells. Both answers stand side by side, the child's still in the slot."
+          },
+          {
+            "why": "the forty is written after the dot and the rupees look like a separate job, so the rupee in the carry circle is left behind.",
+            "move": "forgets the carried rupee and writes Rs 168.40 for four cups at Rs 42.35.",
+            "screen": "the carry circle over the rupees glows amber with its one still in it, and the rupees product, one hundred and sixty-eight, is lit beside it. The circle's rupee travels down into the product, making one hundred and sixty-nine, and the child's Rs 168.40 stays in the slot beside the new cost."
+          }
+        ],
+        "screen": "a price whose paise times the count is not a whole number of hundreds, with the dot waiting in the answer line",
+        "soWhat": "The paise left over are written as two digits after the dot, and each whole hundred is carried as a rupee.",
+        "concept": "Paise left over go after the dot"
+      },
+      {
+        "n": 4,
+        "win": "the change or the money left lands in the answer slot, and the cost stays in its box as a step",
+        "does": "finds the cost by multiplying, sets it under the money held, takes it away, and fills the answer slot",
+        "goal": "a two-step question finds the cost first and then the change or the money left, which is the answer",
+        "says": "First find the cost. Is the cost what the question asks for?",
+        "check": "Four tins of paint cost Rs 72.35 each. How much is left from Rs 300? Say which number is the answer.",
+        "feels": "the cost is on the way to the answer, not the answer itself",
+        "hands": "Give each group Rs 500 of play money and a list: three pots of paint at Rs 64.25 each. They find the cost first, then pay it out of the Rs 500 and count what is left. Ask which number the question wanted, and where the cost went once it had been used.",
+        "tries": "First rung, from the item: what does the question ask for? Second rung, the phase's: what is the cost, and what is it taken from? Third rung: the card is cut to one thing bought with one note, and the child finds the change before the larger question comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the multiplying was the long part of the work, and its answer looks like the end of it.",
+            "move": "stops at the cost, Rs 593.25, when the question asks how much money is left.",
+            "screen": "the child's number is set in the cost box on the bench, where it matches, and the answer slot's label, money left, lights in reddish purple. The cost is then set under Rs 700 on the change bench, a rupee is broken into a hundred paise because there are zero paise on top, and the money left is taken away. The child's Rs 593.25 stays in the slot beside the cost box."
+          },
+          {
+            "why": "with nothing on top in the paise column, the twenty-five paise below look as if they come straight down.",
+            "move": "takes the cost from Rs 700 without breaking a rupee, bringing the twenty-five paise straight down, and writes Rs 107.25.",
+            "screen": "the paise cell stays shut over the grey zeros of the Rs 700, and the child's twenty-five is written small beside it. One rupee is broken into a hundred paise, seven hundred struck through and six hundred and ninety-nine written above it, and a hundred less twenty-five gives seventy-five. The rupees then take away, and the child's Rs 107.25 stays in the slot."
+          }
+        ],
+        "screen": "a two-step card with the money held, a price and a count, and the answer slot asking for the money left",
+        "soWhat": "Find the cost first, then answer what the question asks: the cost, the change or the money left.",
+        "concept": "The cost, then the change"
+      }
+    ],
+    "delight": "The second phase, the moment the count is lifted out of the paise column. Its dot falls away and rolls off the frame, the count settles into its own sky blue box beside the times sign, and the things in the row light one at a time. As each one lights, a copy of the price card slides down beside the frame, until the copies stand in a stack, one for each thing, and the stack adds up to the same cost the frame gives by multiplying. It can be done as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a price stands on the top line of the frame and a count in its box on the second, with the row of things above lit to match and the carry circle empty. On the second a copied layout lies over the frame, the count standing as a loose card under the paise with a dot in front of it, and the row of things above is dark. On the third the price's paise times the count will not make whole hundreds, and the dot waits on the answer line. On the fourth the two-step card holds the money a buyer has, with the price and the count beside it, and the answer slot asks for the money left. The running count at the top left holds the things counted against the things in the row, and the answer slot and the pad stand empty down the right. One thing moves, once: the paise of the price, or the stray dot, or the dot on the answer line, or the two-step card, gives one slow pulse while the voice asks what the whole row costs. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any price and any count, with the carry circle and the change bench open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on multiplying paise first, writing the count with no dot, writing the paise left after the dot, and two-step questions that end on the change or the money left.",
+    "voiceLines": [
+      "A row of things and the price of one. What does the whole row cost?",
+      "Multiply the paise first. How many whole rupees do they make?",
+      "What does this number count? Does it have any paise?",
+      "Some paise are left over. Where do they go?",
+      "First find the cost. Is the cost what the question asks for?",
+      "A new price. Count the things before you multiply.",
+      "Free play. Any price and any count, with the carry circle and the change bench open.",
+      "Multiply the paise again, and watch where each hundred goes.",
+      "Every hundred paise carried, every count kept free of a dot, and every question answered as it asked."
+    ],
+    "observations": [
+      {
+        "why": "Every hundred paise in the product is one rupee, so it belongs with the rupees and is added to them.",
+        "soWhat": "Multiply the paise first, carry each hundred paise as one rupee, then multiply the rupees and add the carry.",
+        "observe": "The paise times the count rolled up into the carry circle a hundred at a time, and the rupees took the carry."
+      },
+      {
+        "why": "The number multiplied by says how many things there are, and a number of things has no rupees and no paise.",
+        "soWhat": "The number multiplied by counts things, so it has no dot and no paise.",
+        "observe": "Once the count was lifted into its own box and lost its dot, the row of things lit one by one to match it."
+      },
+      {
+        "why": "The paise take the two places after the dot, so five paise left over are written with a zero in front.",
+        "soWhat": "The paise left over are written as two digits after the dot, so five paise are written 05.",
+        "observe": "When the paise product was not a whole number of hundreds, what was left went after the dot as two digits."
+      },
+      {
+        "why": "The question asked what was left after buying, and the cost is what was taken away to find it.",
+        "soWhat": "Find the cost first, then answer what the question asks: the cost, the change or the money left.",
+        "observe": "The cost stayed in its box as a step while the answer slot took the money left."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a price on the top line, a count on the second, and the carry circle empty",
+        "win": "the hundreds roll up into the carry circle, and the rupees and the carry add into the cost",
+        "traceback": "Every thing's paise pour onto the strip, each full hundred rolls into the carry circle, the paise left go after the dot, and the rupees times the count take the carry: the whole cost.",
+        "ladder": [
+          "What do the paise make when multiplied?",
+          "Do the paise of 4 pencils stay at 50 paise?",
+          "Do the paise of 4 ribbons fill a whole strip?",
+          "Have the rupees been multiplied, and the carry added?",
+          "Try Rs 1.50 times 2 first. The paise make a hundred, and a hundred paise is one rupee."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a frame where the count stands with a dot in front of it under the paise, and a row of the things above",
+        "win": "the count settles in its box with no dot, and the row of things lights one by one to match it",
+        "traceback": "The count is lifted out of the paise column into its own box, its dot falls away, the things light one by one, and the count multiplies both columns of the price: the whole cost.",
+        "ladder": [
+          "Did the 9 multiply the rupees as well as the paise?",
+          "How much is the 26 taken 3 times?",
+          "Count the bottles in the row. How many prices is that?",
+          "Look at the row. Do you count things with a dot?",
+          "With 2 things, the price is simply taken twice."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a price whose paise times the count is not a whole number of hundreds, with the dot waiting in the answer line",
+        "win": "the paise left land as two digits after the dot, and the carried rupees join the rupees",
+        "traceback": "The paise pour and each full hundred rolls into the carry circle; what is left goes after the dot as two digits (a zero in front of fewer than ten), and the carried rupee joins the rupees.",
+        "ladder": [
+          "How many paise did the paise make?",
+          "The carry circle holds a rupee. Is it in your rupees?",
+          "Paise take two places. Where does a lone 5 go?",
+          "How many are left once the whole hundreds are carried?",
+          "Try 5 paise times 3 first. That makes 15 paise, written after the dot as 15."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a two-step card with the money held, a price and a count, and the answer slot asking for the money left",
+        "win": "the change or the money left lands in the answer slot, and the cost stays in its box as a step",
+        "traceback": "The cost is found and kept in its own box, set under the money held, one rupee is broken into a hundred paise, and the money left or the change is taken away.",
+        "ladder": [
+          "You found what the bags cost. Does the child still have some money?",
+          "Do the crayons use up the whole note?",
+          "Did you take the cost from all the money the child had?",
+          "What is the cost, and what is it taken from?",
+          "Try one thing and one note first. The change is the note less the cost."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "colours": {
+      "rupees": "#0072B2",
+      "paise": "#009E73",
+      "dot": "#D55E00",
+      "carry": "#E69F00",
+      "change": "#CC79A7",
+      "count": "#56B4E9",
+      "zero": "#767676"
+    },
+    "frame": {
+      "x": 0,
+      "y": 112,
+      "w": 490,
+      "h": 328,
+      "rs": [
+        234,
+        276,
+        318
+      ],
+      "dot": 360,
+      "ps": [
+        396,
+        438
+      ],
+      "head": 154,
+      "carry": {
+        "x": 318,
+        "y": 194,
+        "r": 26
+      },
+      "price": 268,
+      "times": {
+        "x": 34,
+        "y": 346
+      },
+      "box": {
+        "x": 58,
+        "y": 290,
+        "w": 108,
+        "h": 74
+      },
+      "rule": 376,
+      "answer": 426
+    },
+    "paiseBox": {
+      "x": 512,
+      "y": 112,
+      "w": 256,
+      "h": 114
+    },
+    "strip": {
+      "x": 512,
+      "y": 246,
+      "w": 256,
+      "h": 60,
+      "cells": 100,
+      "blocks": 10
+    },
+    "card": {
+      "x": 792,
+      "y": 112,
+      "w": 294,
+      "h": 114
+    },
+    "bench": {
+      "x": 792,
+      "y": 238,
+      "w": 294,
+      "h": 288,
+      "rs": [
+        860,
+        902,
+        944
+      ],
+      "dot": 972,
+      "ps": [
+        1004,
+        1046
+      ],
+      "above": 290,
+      "top": 348,
+      "costBox": {
+        "x": 834,
+        "y": 370,
+        "w": 242,
+        "h": 66
+      },
+      "cost": 424,
+      "rule": 448,
+      "answer": 506
+    },
+    "row": {
+      "y": 57,
+      "pitch": 90,
+      "max": 12
+    },
+    "free": {
+      "rupees": [
+        1,
+        50
+      ],
+      "paise": [
+        0,
+        95,
+        5
+      ],
+      "count": [
+        1,
+        12
+      ],
+      "held": [
+        100,
+        200,
+        500
+      ],
+      "start": {
+        "r": 23,
+        "p": 50,
+        "count": 6,
+        "held": 1
+      }
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T6.C20:ML1",
+        "kind": "multiply",
+        "price": "23.50",
+        "count": 6,
+        "thing": "notebook",
+        "near": "138.50",
+        "winMs": 2800,
+        "answer": "141.00"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T6.C20:1",
+        "kind": "multiply",
+        "price": "7.50",
+        "count": 4,
+        "thing": "pencil",
+        "near": "28.50",
+        "winMs": 2800,
+        "answer": "30.00"
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T6.C20:2",
+        "kind": "multiply",
+        "price": "12.25",
+        "count": 4,
+        "thing": "ribbon",
+        "near": "48.25",
+        "winMs": 2800,
+        "answer": "49.00"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T6.C21:ML2",
+        "kind": "lift",
+        "price": "14.50",
+        "count": 9,
+        "thing": "pen",
+        "near": "18.50",
+        "winMs": 2800,
+        "answer": "130.50"
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T6.C21:3",
+        "kind": "lift",
+        "price": "26.40",
+        "count": 3,
+        "thing": "book",
+        "near": "27.20",
+        "winMs": 2800,
+        "answer": "79.20"
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T6.C21:4",
+        "kind": "lift",
+        "price": "31.20",
+        "count": 7,
+        "thing": "bottle",
+        "near": "32.40",
+        "winMs": 2800,
+        "answer": "218.40"
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T6.C22:ML3",
+        "kind": "left",
+        "price": "42.35",
+        "count": 4,
+        "thing": "cup",
+        "near": "168.40",
+        "winMs": 2800,
+        "answer": "169.40"
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T6.C22:5",
+        "kind": "left",
+        "price": "85.60",
+        "count": 3,
+        "thing": "torch",
+        "near": "255.80",
+        "winMs": 2800,
+        "answer": "256.80"
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T6.C22:6",
+        "kind": "left",
+        "price": "16.35",
+        "count": 3,
+        "thing": "ball",
+        "near": "49.5",
+        "winMs": 2800,
+        "answer": "49.05"
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T6.C23:ML4",
+        "kind": "change",
+        "price": "118.65",
+        "count": 5,
+        "thing": "bag",
+        "held": [
+          700
+        ],
+        "pays": false,
+        "near": "593.25",
+        "winMs": 3000,
+        "answer": "106.75"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T6.C23:7",
+        "kind": "change",
+        "price": "64.75",
+        "count": 6,
+        "thing": "crayons",
+        "held": [
+          500
+        ],
+        "pays": true,
+        "near": "388.50",
+        "winMs": 3000,
+        "answer": "111.50"
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T6.C23:8",
+        "kind": "change",
+        "price": "162.80",
+        "count": 4,
+        "thing": "lamp",
+        "held": [
+          450,
+          300
+        ],
+        "pays": false,
+        "near": "651.20",
+        "winMs": 3000,
+        "answer": "98.80"
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: Every thing's paise pour onto the strip, each full hundred rolls into the carry circle, the paise left go after the dot, and the rupees times the count take the carry: the whole cost.",
+      "Phase 2: The count is lifted out of the paise column into its own box, its dot falls away, the things light one by one, and the count multiplies both columns of the price: the whole cost.",
+      "Phase 3: The paise pour and each full hundred rolls into the carry circle; what is left goes after the dot as two digits (a zero in front of fewer than ten), and the carried rupee joins the rupees.",
+      "Phase 4: The cost is found and kept in its own box, set under the money held, one rupee is broken into a hundred paise, and the money left or the change is taken away."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A row of things and the price of one. What does the whole row cost?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every hundred paise carried, every count kept free of a dot, and every question answered as it asked.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T6.C20:ML1",
+            "worked": false,
+            "kind": "multiply",
+            "planQuestion": "One notebook costs Rs 23.50. What do 6 notebooks cost?",
+            "question": {
+              "en": "One notebook costs Rs 23.50. Find the cost of all 6 notebooks. Tap the paise once for each notebook. Write the cost with two places after the dot."
+            },
+            "ask": {
+              "en": "Cost of 6 notebooks?"
+            },
+            "answer": "141.00",
+            "planAnswer": "Rs 141",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T6.C20:1",
+            "worked": false,
+            "kind": "multiply",
+            "planQuestion": "One pencil costs Rs 7.50. What do 4 pencils cost?",
+            "question": {
+              "en": "One pencil costs Rs 7.50. What do 4 pencils cost? Keep two places for the paise."
+            },
+            "ask": {
+              "en": "Cost of 4 pencils?"
+            },
+            "answer": "30.00",
+            "planAnswer": "Rs 30. 50 paise times 4 is 200 paise, which is 2 rupees, and 7 times 4 is 28, so 28 and 2 make 30",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T6.C20:2",
+            "worked": false,
+            "kind": "multiply",
+            "planQuestion": "One ribbon costs Rs 12.25. What do 4 ribbons cost?",
+            "question": {
+              "en": "One ribbon costs Rs 12.25. How much for 4 ribbons?"
+            },
+            "ask": {
+              "en": "Cost of 4 ribbons?"
+            },
+            "answer": "49.00",
+            "planAnswer": "Rs 49. 25 paise times 4 is 100 paise, which is 1 rupee, and 12 times 4 is 48, so 48 and 1 make 49",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T6.C21:ML2",
+            "worked": false,
+            "kind": "lift",
+            "planQuestion": "A child sets out the cost of 9 pens at Rs 14.50 each as 14.50 x .9, with a dot in front of the 9 under the paise. What does the 9 count, and what do the pens cost?",
+            "question": {
+              "en": "Each pen costs Rs 14.50. A child wrote the 9 under the paise, with a dot in front. Is that where the 9 belongs? Then find what the 9 pens cost. The paise take two places."
+            },
+            "ask": {
+              "en": "Cost of 9 pens?"
+            },
+            "answer": "130.50",
+            "planAnswer": "The 9 counts pens, so it has no dot and no paise. The pens cost Rs 130.50",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T6.C21:3",
+            "worked": false,
+            "kind": "lift",
+            "planQuestion": "Rs 26.40 is multiplied by 3 to find what 3 books cost. Is the 3 written with a dot in front of it?",
+            "question": {
+              "en": "Rs 26.40 is multiplied by 3, to find what 3 books cost. Should the 3 have a dot in front of it? Show it on the frame, then find the cost."
+            },
+            "ask": {
+              "en": "Cost of 3 books?"
+            },
+            "answer": "79.20",
+            "planAnswer": "No. The 3 counts books, so it has no dot and no paise. The books cost Rs 79.20",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T6.C21:4",
+            "worked": false,
+            "kind": "lift",
+            "planQuestion": "A child writes the cost of 7 bottles at Rs 31.20 each as 31.20 x .7 and reads the .7 as 70 paise. What should the 7 be, and what do the bottles cost?",
+            "question": {
+              "en": "Each bottle costs Rs 31.20. Someone put a dot before the 7 and called it 70 paise. What should the 7 be, and what do the bottles cost?"
+            },
+            "ask": {
+              "en": "Cost of 7 bottles?"
+            },
+            "answer": "218.40",
+            "planAnswer": "The 7 counts bottles, so it has no dot and no paise. 7 times Rs 31.20 is Rs 218.40",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T6.C22:ML3",
+            "worked": false,
+            "kind": "left",
+            "planQuestion": "One cup costs Rs 42.35. What do 4 cups cost?",
+            "question": {
+              "en": "One cup costs Rs 42.35. What do 4 cups cost? Tap the paise once for each cup."
+            },
+            "ask": {
+              "en": "Cost of 4 cups?"
+            },
+            "answer": "169.40",
+            "planAnswer": "Rs 169.40",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T6.C22:5",
+            "worked": false,
+            "kind": "left",
+            "planQuestion": "One torch costs Rs 85.60. What do 3 torches cost?",
+            "question": {
+              "en": "One torch costs Rs 85.60. Find the cost of 3 torches."
+            },
+            "ask": {
+              "en": "Cost of 3 torches?"
+            },
+            "answer": "256.80",
+            "planAnswer": "Rs 256.80. 60 paise times 3 is 180 paise: carry 1 rupee and write 80 after the dot. 85 times 3 is 255, and 1 more makes 256",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T6.C22:6",
+            "worked": false,
+            "kind": "left",
+            "planQuestion": "One ball costs Rs 16.35. What do 3 balls cost?",
+            "question": {
+              "en": "One ball costs Rs 16.35. How much for 3 balls?"
+            },
+            "ask": {
+              "en": "Cost of 3 balls?"
+            },
+            "answer": "49.05",
+            "planAnswer": "Rs 49.05. 35 paise times 3 is 105 paise: carry 1 rupee and write 05 after the dot, because the paise take two places. 16 times 3 is 48, and 1 more makes 49",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T6.C23:ML4",
+            "worked": false,
+            "kind": "change",
+            "planQuestion": "A child has Rs 700 and buys 5 bags of rice at Rs 118.65 each. How much money is left?",
+            "question": {
+              "en": "A child has Rs 700 and buys 5 bags of rice at Rs 118.65 each. How much money is left? Tap the paise for each bag. Write the paise in two places."
+            },
+            "ask": {
+              "en": "How much money is left?"
+            },
+            "answer": "106.75",
+            "planAnswer": "Rs 106.75",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T6.C23:7",
+            "worked": false,
+            "kind": "change",
+            "planQuestion": "A child buys 6 boxes of crayons at Rs 64.75 each and pays with a Rs 500 note. How much change comes back?",
+            "question": {
+              "en": "A child buys 6 boxes of crayons at Rs 64.75 each and pays with a Rs 500 note. How much change comes back?"
+            },
+            "ask": {
+              "en": "How much change comes back?"
+            },
+            "answer": "111.50",
+            "planAnswer": "Rs 111.50. The crayons cost Rs 388.50, and Rs 500 less Rs 388.50 is Rs 111.50. The question asks for the change, not the cost",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T6.C23:8",
+            "worked": false,
+            "kind": "change",
+            "planQuestion": "A child has Rs 450 and is given Rs 300 more, then buys 4 lamps at Rs 162.80 each. How much money is left?",
+            "question": {
+              "en": "A child has Rs 450 and is given Rs 300 more, then buys 4 lamps at Rs 162.80 each. What is the child left with after the lamps?"
+            },
+            "ask": {
+              "en": "How much is left?"
+            },
+            "answer": "98.80",
+            "planAnswer": "Rs 98.80. The child has Rs 750 and the lamps cost Rs 651.20. From zero paise, break one rupee into a hundred paise: Rs 749 and 100 paise, so Rs 98.80 is left",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "price_multiplier",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "price_multiplier",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Paise first, then rupees",
+        "conceptId": "M2.S4.T6.C20",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S4.T6.C20:ML1",
+          "M2.S4.T6.C20:1",
+          "M2.S4.T6.C20:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "The number multiplied by is a count",
+        "conceptId": "M2.S4.T6.C21",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S4.T6.C21:ML2",
+          "M2.S4.T6.C21:3",
+          "M2.S4.T6.C21:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Paise left over go after the dot",
+        "conceptId": "M2.S4.T6.C22",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S4.T6.C22:ML3",
+          "M2.S4.T6.C22:5",
+          "M2.S4.T6.C22:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "The cost, then the change",
+        "conceptId": "M2.S4.T6.C23",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S4.T6.C23:ML4",
+          "M2.S4.T6.C23:7",
+          "M2.S4.T6.C23:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "price",
+    "paiseProduct",
+    "carry",
+    "cost",
+    "held",
+    "held",
+    "left",
+    "counted",
+    "things"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, phase, price, paiseProduct, carry, cost, held, held, left, counted, things, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "price_multiplier"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T6.C20.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A row of things and the price of one. What does the whole row cost?"
+    },
+    {
+      "en": "Multiply the paise first. How many whole rupees do they make?"
+    },
+    {
+      "en": "What does this number count? Does it have any paise?"
+    },
+    {
+      "en": "Some paise are left over. Where do they go?"
+    },
+    {
+      "en": "First find the cost. Is the cost what the question asks for?"
+    },
+    {
+      "en": "A new price. Count the things before you multiply."
+    },
+    {
+      "en": "Free play. Any price and any count, with the carry circle and the change bench open."
+    },
+    {
+      "en": "Multiply the paise again, and watch where each hundred goes."
+    },
+    {
+      "en": "Every hundred paise carried, every count kept free of a dot, and every question answered as it asked."
+    }
+  ],
+  "build": {
+    "source": "1a9b8d21:1639557",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-25T07:36:28.118Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-25T07:36:27.570Z"
+    },
+    "tsxBytes": 1639534,
+    "tsxMd5": "3df459683204fdbb4151ade73b47c1b4"
+  }
+}

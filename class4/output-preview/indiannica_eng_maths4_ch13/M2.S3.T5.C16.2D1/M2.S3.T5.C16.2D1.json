@@ -1,0 +1,1093 @@
+{
+  "slotId": "M2.S3.T5.C16.2D1",
+  "mediaId": "M2.S3.T5.C16.2D1",
+  "toolId": "change_counter",
+  "title": "Change Counter",
+  "component": "M2.S3.T5.C16.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch13",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch13_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_13/2dtool/M2.S3.T5.C16.2D1/M2.S3.T5.C16.2D1.tsx",
+  "description": "Take one amount from another in columns, paise first, break one rupee into a hundred paise when the paise on top are too few, and find the change as the money given less the bill.",
+  "conceptIds": [
+    "M2.S3.T5.C16",
+    "M2.S3.T5.C17",
+    "M2.S3.T5.C18",
+    "M2.S3.T5.C19"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Take one amount from another in columns, break a rupee into a hundred paise whenever the paise on top are too few, and find the change a payment brings back.",
+    "look": "A shop counter with the money given on the left, the bill beside it, a column frame between them, and a change tray at the right.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Change Counter' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the columns taken away against the two columns in the frame, paise and rupees, two numbers in ink, the first climbing by one as each column's answer lands and the second fixed at two. On the fourth phase the check is counted as a third step, so the second number reads three. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The money given lies at the left of the working area, 260 by 240 at 64,214, as the notes paid laid side by side with their amount written under them in deep blue. The bill slip lies under it, 260 by 260 at 64,466, listing the things and their prices with the total at its foot. The column frame stands in the middle, 480 by 500 at 344,214: the money given on the top line and the bill on the second, a near-black dotted line down the frame so that every dot sits on it, rupees to its left and paise to its right, a rule under the second line and the answer line under the rule. A whole-rupee amount stands in the frame with grey zeros filling its paise column. The take-away control sits at the foot of the frame, 220 by 56 at 344,658, and works the paise column first. When the paise on top are fewer than the paise below, the paise cell stays shut and the break control lights over the rupees on top, 220 by 56 at 604,658. Break strikes through the rupees figure on top and writes the figure one less above it in amber; one rupee rises from the struck figure and opens into a strip of a hundred cells that slides across the dotted line to join the paise on top, whose figure is rewritten a hundred more above them in amber. From zero paise the strip alone becomes the paise on top, a hundred paise. Only then does the paise cell open, and after it the rupees. The change tray stands at the right, 300 by 340 at 850,214, and fills with the change, the rupees as play notes and coins and the paise as shaded cells on one strip, with the change written under it in reddish purple. The check control sits under the tray, 300 by 60 at 850,570, slides the change back across onto the bill, adds the two in columns, and lays the sum beside the money given. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across with a dot key, and the answer slot prints Rs before the number and holds exactly two places after the dot. On the fourth phase the slot's label reads change, so the bill's total, which the frame shows as a step, has a place of its own that is not the answer. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The rupees of every amount, the rupees column and the value printed on every note and coin are deep blue. The paise of every amount, the paise column and every cell standing for paise are green. The dot between rupees and paise is vermilion, a clear round dot, and wherever amounts stand in columns it sits on a near-black dotted line. A rupee carried from the paise, and a rupee broken into a hundred paise with the digits it rewrites, are amber. The change handed back, the money left and a remainder are reddish purple, so money coming back is never mistaken for a cost. A count of things, a number multiplied by, how many notes of one value or how many can be bought, is sky blue, because a count of things is not money. The zeros that fill the paise column of a whole-rupee amount in column working are grey. Every play note is one plain pale blue rectangle and every play coin one plain steel disc, all notes one size and all coins one size, each printed with its value and nothing else. No coin below one rupee is drawn anywhere: paise are shaded cells on a strip ruled into a hundred in ten blocks of ten, so a full strip is exactly one rupee. Chrome never borrows one of those and none of them is ever used for chrome: every column rule, dotted line, tick, bracket, strike line, bill rule and panel edge is near-black. Every reading survives with the colour taken away, because a digit is told apart by the column it stands in, a carry by the circle it sits in, a count by the box beside the times sign or the slot marked things, and the change or money left by the tray or line that holds it, before any of them is told by a colour. Grey never means faint: a zero in a paise column is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. A rupees figure that goes down by one is struck through once with the new figure written above it, and never rubbed out. The rupees figure on top is never rubbed out: it is struck through once and the figure one less written above it, so a break can be read after the take-away is done. A strip of a hundred cells crosses the dotted line only when a rupee is broken, and the paise cell opens only when the paise on top are at least the paise below.",
+    "finish": "The card shows the last take-away the child worked, every broken rupee struck through and rewritten, the change in the tray, and the check adding back to the money given.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the paise answer lands, then the rupees answer beside it across the dot",
+        "does": "takes away the paise column, then the rupees column",
+        "goal": "amounts are taken away in columns with the dots in a line, the paise first and then the rupees",
+        "says": "Which column do you take away first?",
+        "check": "Away from the screen: take Rs 12.30 from Rs 47.85, paise first.",
+        "feels": "each column takes away on its own, and the paise go first",
+        "hands": "Play shopkeeper with play notes, coins and paper strips of a hundred cells. Price a toy at Rs 23.40 and lay Rs 48.65 of play money on the counter, then take the price away in columns on the board, paise first and then rupees. Count out what is left from the play money to check the board.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which amount is on top? Second rung, the phase's: which column did you take away first? Third rung: the frame is cut to an amount whose bottom line has no rupees, only paise, and the child takes the paise away before the full amounts come back. The number pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the rupees are the big part of each amount, and the paise look like a small tail that can be dropped.",
+            "move": "takes away the rupees only and writes Rs 45, leaving the paise out.",
+            "screen": "the paise column lights green and its take-away runs, forty less fifteen, and twenty-five lands on the answer line after the dot. The answer line then reads rupees, dot and paise, and the child's Rs 45 stays in the slot beside it, nothing marked."
+          },
+          {
+            "why": "the first amount heard is the first one written, and the word from is easy to pass over.",
+            "move": "sets Rs 23.15 on the top line because it was named first in take Rs 23.15 from Rs 68.40.",
+            "screen": "the frame sets the child's order and the take-away tries the rupees: twenty-three rupees on top cannot give sixty-eight, and the rupees cell stays shut. The word from in the question lights, the two lines change places so that the amount after it stands on top, and the child's first frame stays drawn beside the new one."
+          }
+        ],
+        "screen": "the column frame holding a larger amount above a smaller one, with enough paise on top",
+        "soWhat": "Take away the paise first, then the rupees, with the dots in one line.",
+        "concept": "Paise first, then rupees"
+      },
+      {
+        "n": 2,
+        "win": "the rupee opens into a hundred cells, the paise on top grow by a hundred, and the take-away goes through",
+        "does": "breaks one rupee, watches the rupees go down by one and the paise on top grow by a hundred, then takes away",
+        "goal": "when the paise on top are too few, one rupee is broken into a hundred paise and the rupees on top go down by one",
+        "says": "There are not enough paise on top. Where can more come from?",
+        "check": "Take Rs 19.75 from Rs 53.40. Say where the extra paise came from.",
+        "feels": "the rupee does not vanish, it moves across the dot as a hundred paise",
+        "hands": "Give a pair Rs 5.20 in play money, five rupee coins and a strip with twenty cells shaded, and ask them to pay seventy paise. They cannot from twenty cells, so they swap one rupee coin for a full strip of a hundred cells. Count the paise now, a hundred and twenty, and take seventy away. Ask how many rupee coins are left.",
+        "tries": "First rung, from the item: are there enough paise on top? Second rung, the phase's: what does one rupee become? Third rung: the frame is cut to one rupee and twenty paise on top and fifty paise below, and the child breaks the rupee before the larger take-away comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the paise column holds two numbers, and taking the smaller from the larger is the only take-away that seems to work, whichever line each is on.",
+            "move": "takes the smaller paise from the larger, eighty-five less thirty, whichever line each stands on, and writes Rs 288.55.",
+            "screen": "the paise cell stays shut on the thirty on top, and the child's fifty-five is written small beside it. The break control then strikes through four hundred and twenty-six and writes four hundred and twenty-five above it, and a strip of a hundred cells joins the thirty to make a hundred and thirty. The paise take away, a hundred and thirty less eighty-five, and the child's Rs 288.55 stays in the slot."
+          },
+          {
+            "why": "breaking a rupee is heard as making a hundred paise, and the thirty already there is easy to lose as the new figure is written.",
+            "move": "breaks the rupee but writes a hundred paise in place of the thirty on top, instead of adding them, and gets Rs 287.15.",
+            "screen": "the strip of a hundred cells slides across and lies beside the thirty shaded cells on top, and the two are counted together, a hundred and thirty, before anything is taken. The paise take away, a hundred and thirty less eighty-five, and the child's Rs 287.15 stays in the slot beside the new answer."
+          }
+        ],
+        "screen": "a take-away whose paise on top are fewer than the paise below, with the paise cell refusing",
+        "soWhat": "When the paise on top are fewer than the paise below, break one rupee into a hundred paise. The rupees on top go down by one.",
+        "concept": "Breaking a rupee into paise"
+      },
+      {
+        "n": 3,
+        "win": "a hundred paise appear on top, the rupees go down by one, and both columns take away",
+        "does": "breaks one rupee, sees a hundred paise appear on top, takes the paise away, then the rupees",
+        "goal": "from zero paise, one rupee is broken into a hundred paise, so the rupees go down by one and the paise on top become a hundred",
+        "says": "The top has no paise at all. What do you break?",
+        "check": "Take Rs 36.20 from Rs 100. What is written above the rupees, and what above the paise?",
+        "feels": "with no paise on top, the break makes all of them, and the rupees pay for it",
+        "hands": "Write Rs 200 on the board with two zeros in its paise column, 200.00, and ask the class to take forty-five paise away. Let them find that there are zero paise on top. Then break one rupee: strike through the two hundred, write one hundred and ninety-nine above it, and write a hundred paise above the zeros. Take forty-five from the hundred.",
+        "tries": "First rung, from the item: how many paise are on top? Second rung, the phase's: where can paise come from when there are none? Third rung: the frame is cut to one rupee, written with two zeros in its paise column, with ten paise below, and the child breaks it before the larger take-away comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "with nothing on top in the paise column, the paise below look as if there is nothing to take them from, so they come down as they are.",
+            "move": "writes the thirty-five paise from the bottom line straight down into the answer, and gets Rs 243.35.",
+            "screen": "the paise cell stays shut over the grey zeros, and the child's thirty-five is written small beside it. The break control then strikes through three hundred and writes two hundred and ninety-nine above it, and a full strip of a hundred cells slides across to stand over the zeros, a hundred paise on top. A hundred less thirty-five is taken away, and the child's Rs 243.35 stays in the slot."
+          },
+          {
+            "why": "the hundred paise are the part that gets written, and the rupee they came from is easy to forget to take off.",
+            "move": "breaks a rupee into a hundred paise but leaves the three hundred as it was, and gets Rs 243.65.",
+            "screen": "the three hundred on top is lit with nothing struck through it, beside a hundred paise that came from nowhere, and the whole top line is counted in paise to show it has grown by a rupee. The three hundred is then struck through and two hundred and ninety-nine written above it, and the take-away runs again, the child's Rs 243.65 staying in the slot."
+          }
+        ],
+        "screen": "a whole-rupee amount written with two zeros in its paise column, above an amount with paise",
+        "soWhat": "To take paise from zero paise, break one rupee into a hundred paise. The rupees go down by one, and the paise on top become a hundred.",
+        "concept": "Taking paise from zero paise"
+      },
+      {
+        "n": 4,
+        "win": "the change fills the tray, and the change and the bill add back to the money given",
+        "does": "sets the bill under the money given, takes it away, counts the change into the tray, then adds it back to check",
+        "goal": "the change is the money given less the bill, and adding the change back to the bill checks it",
+        "says": "What was paid, and what was the bill? How much comes back?",
+        "check": "A bill comes to Rs 184.75 and a Rs 200 note is paid. What is the change? Add it back to check.",
+        "feels": "the change is what the money given still holds once the bill has been paid out of it",
+        "hands": "Price three things on a play counter so that the bill comes to rupees and paise, and pay with large play notes. The shopkeeper adds the bill, takes it from the money given in columns, and counts the change out. The shopper then adds the change to the bill aloud and checks that it makes the money given.",
+        "tries": "First rung, from the item: what was paid, and what was the bill? Second rung, the phase's: which is taken from which? Third rung: the counter is cut to a bill in whole rupees paid with one note, and the child finds the change and adds it back before the larger bill comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "adding the bill was the long part of the work and its total is the last big number written, so it feels like the end.",
+            "move": "gives the bill, Rs 736.40, as the answer, when the question asks how much change comes back.",
+            "screen": "the child's number is set against the bill slip's total, where it matches, and the answer slot's label, change, lights in reddish purple. The bill is then set under the money given, eight hundred rupees, and taken away, and the change tray fills. The child's Rs 736.40 stays in the slot beside the bill's own total."
+          },
+          {
+            "why": "a bill and a payment are both money on the counter, and adding is what was just done to the bill.",
+            "move": "adds the bill to the money given and writes Rs 1536.40.",
+            "screen": "the check control lays the child's sum beside the notes paid, and it stands far taller than the eight hundred rupees on the counter, more than the shopper ever had. The bill is then set under the money given and taken away, a rupee broken into a hundred paise at the paise column, and the change fills the tray. The child's number stays in the slot."
+          }
+        ],
+        "screen": "a bill slip with its total, the notes paid, and the change tray empty",
+        "soWhat": "The change is the money given less the bill, and adding the change back to the bill checks it.",
+        "concept": "Change from a payment"
+      }
+    ],
+    "delight": "The fourth phase, the moment the check control is pressed on a bill with paise that was paid in whole rupees. The change slides back across the counter onto the bill, and its shaded cells pour onto the bill's paise and fill exactly one strip, not a cell over and not a cell short. The full strip curls up into a rupee and joins the rupees, and the whole stack settles level beside the notes that were paid, rupee for rupee. It can be run as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the column frame holds a larger amount above a smaller one, with enough paise on top, and the take-away control lit. On the second the frame holds a take-away whose paise on top are fewer than the paise below, the paise cell shut and the break control waiting over the rupees on top. On the third the top line is a whole-rupee amount carrying two zeros in its paise column, as column working writes it, above an amount with paise. On the fourth a bill slip lies under the notes paid, the frame is empty and the change tray stands empty at the right. The running count at the top left holds the columns taken away against the columns in the frame, and the answer slot and the pad stand empty down the right. One thing moves, once: the paise column, or the break control, or the grey zeros, or the bill slip, gives one slow pulse while the voice asks which column goes first. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any payment and any bill, with the break control, the change tray and the check open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on taking away paise first, breaking a rupee into a hundred paise, taking paise from zero paise by the same break, and finding and checking change.",
+    "voiceLines": [
+      "Money given, a bill, and a tray for the change. Which column goes first?",
+      "Which column do you take away first?",
+      "There are not enough paise on top. Where can more come from?",
+      "The top has no paise at all. What do you break?",
+      "What was paid, and what was the bill? How much comes back?",
+      "A new bill. Set it under the money given before anything is taken.",
+      "Free play. Any payment and any bill, with the break, the tray and the check open.",
+      "Look at the paise on top again. Are there enough to take from?",
+      "A rupee broken wherever the paise were too few, and every change added back to check."
+    ],
+    "observations": [
+      {
+        "why": "Each column is taken away on its own, and the paise go first because a break, when one is needed, starts there.",
+        "soWhat": "Take away the paise first, then the rupees, with the dots in one line.",
+        "observe": "The paise answer landed first, then the rupees answer beside it across the dot."
+      },
+      {
+        "why": "The broken rupee became a hundred paise that joined the paise on top, so it left the rupees.",
+        "soWhat": "When the paise on top are fewer than the paise below, break one rupee into a hundred paise. The rupees on top go down by one.",
+        "observe": "The paise cell stayed shut until a rupee was broken, and then the rupees on top showed one less."
+      },
+      {
+        "why": "There were no paise on top for the strip to join, so its hundred cells were all there was.",
+        "soWhat": "To take paise from zero paise, break one rupee into a hundred paise. The rupees go down by one, and the paise on top become a hundred.",
+        "observe": "From zero paise, the strip from the broken rupee alone made the paise on top, a hundred paise."
+      },
+      {
+        "why": "The change is what the money given still holds once the bill is taken out, so putting the bill back gives it all again.",
+        "soWhat": "The change is the money given less the bill, and adding the change back to the bill checks it.",
+        "observe": "The change slid back onto the bill, and the two made exactly the money given."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the column frame holding a larger amount above a smaller one, with enough paise on top",
+        "win": "the paise answer lands, then the rupees answer beside it across the dot",
+        "traceback": "The paise column lights and takes away first, its answer landing after the dot; then the rupees column takes away and its answer lands before the dot.",
+        "ladder": [
+          "Which amount is on top? Start with the paise under it.",
+          "Did you take away the paise as well as the rupees?",
+          "Read your answer across the dot. Are the paise there?",
+          "Work right of the dot before the left.",
+          "One column at a time: paise on the right, then rupees on the left."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a take-away whose paise on top are fewer than the paise below, with the paise cell refusing",
+        "win": "the rupee opens into a hundred cells, the paise on top grow by a hundred, and the take-away goes through",
+        "traceback": "The paise cell stays shut; a rupee is broken: the rupees on top are struck and written one less in amber, a strip of a hundred cells joins the paise on top, whose figure is written a hundred more, and both columns take away.",
+        "ladder": [
+          "Look at the paise on top and below. Which is more?",
+          "After a break, the rupees on top are one less. Did you use that?",
+          "Add the hundred paise to the paise on top. What do you take from?",
+          "What does one rupee become?",
+          "Break one rupee on top. Put its hundred paise with the paise on top, then take away."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a whole-rupee amount written with two zeros in its paise column, above an amount with paise",
+        "win": "a hundred paise appear on top, the rupees go down by one, and both columns take away",
+        "traceback": "The paise cell stays shut over the grey zeros; a rupee is broken: the rupees on top are struck and written one less, a full strip of a hundred cells becomes the paise on top, and both columns take away.",
+        "ladder": [
+          "How many paise are on top?",
+          "Were the paise taken away, or copied down from below?",
+          "Rs 600 has no paise on top. What must happen before the paise?",
+          "Where can paise come from when there are none?",
+          "Break one rupee on top. It gives a hundred paise, and the rupees become one less."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a bill slip with its total, the notes paid, and the change tray empty",
+        "win": "the change fills the tray, and the change and the bill add back to the money given",
+        "traceback": "The bill is set under the money given and taken away, a rupee broken into a hundred paise at the paise column, and the change fills the tray with its amount written under it; on the check question the change is added back to the bill, a full strip of paise curls into a rupee, and the sum stands beside the money given.",
+        "ladder": [
+          "What was paid, and what was the bill?",
+          "The bill's total is one step. What comes back to the shopper?",
+          "Add the change to the bill. Do they make the money given?",
+          "Which is taken from which?",
+          "The money given is the bill and the change together."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "unit": "paise",
+    "notes": [
+      500,
+      200,
+      100,
+      50,
+      20,
+      10
+    ],
+    "coins": [
+      5,
+      2,
+      1
+    ],
+    "stripCells": 100,
+    "frame": {
+      "lesson": {
+        "x": 60,
+        "w": 400,
+        "dot": 300,
+        "pitch": 48,
+        "first": 48,
+        "sign": 100
+      },
+      "counter": {
+        "x": 290,
+        "w": 410,
+        "dot": 560,
+        "pitch": 44,
+        "first": 46,
+        "sign": 322
+      }
+    },
+    "rows": {
+      "head": 52,
+      "rewrite": 104,
+      "top": 172,
+      "bottom": 252,
+      "rule": 282,
+      "answer": 352,
+      "cardY": 16,
+      "cardH": 368
+    },
+    "cells": {
+      "x": 540,
+      "y": 16,
+      "w": 530,
+      "h": 268,
+      "slots": [
+        580,
+        830
+      ],
+      "top": 88,
+      "cell": 16,
+      "gap": 5
+    },
+    "cells4": {
+      "x": 574,
+      "y": 400,
+      "w": 190,
+      "h": 126,
+      "top": 446,
+      "one": {
+        "x": 585,
+        "cw": 14
+      },
+      "two": {
+        "x": [
+          578,
+          673
+        ],
+        "cw": 6
+      },
+      "ch": 7,
+      "gap": 3
+    },
+    "tray": {
+      "x": 786,
+      "y": 16,
+      "w": 300,
+      "h": 336
+    },
+    "checkKey": {
+      "x": 786,
+      "y": 364,
+      "w": 300,
+      "h": 72
+    },
+    "breakKey": {
+      "lesson": {
+        "x": 60,
+        "y": 430,
+        "w": 280
+      },
+      "counter": {
+        "x": 296,
+        "y": 430,
+        "w": 260
+      }
+    },
+    "paidPanel": {
+      "x": 0,
+      "y": 16,
+      "w": 260,
+      "h": 268
+    },
+    "slip": {
+      "x": 0,
+      "w": 260,
+      "floor": 524
+    },
+    "freeStart": {
+      "top": 50000,
+      "bot": 34765
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T5.C16:ML1",
+        "kind": "first",
+        "top": 6840,
+        "bot": 2315,
+        "answer": "45.25",
+        "winMs": 3600
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T5.C16:1",
+        "kind": "first",
+        "top": 3965,
+        "bot": 1420,
+        "answer": "25.45",
+        "winMs": 3600
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T5.C16:2",
+        "kind": "first",
+        "top": 25890,
+        "bot": 10235,
+        "answer": "156.55",
+        "winMs": 3600
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T5.C17:ML2",
+        "kind": "break",
+        "top": 42630,
+        "bot": 13885,
+        "answer": "287.45",
+        "winMs": 4600
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T5.C17:3",
+        "kind": "break",
+        "top": 6425,
+        "bot": 2780,
+        "answer": "36.45",
+        "winMs": 4600
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T5.C17:4",
+        "kind": "break",
+        "top": 54060,
+        "bot": 31595,
+        "answer": "224.65",
+        "winMs": 4600
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T5.C18:ML3",
+        "kind": "zero",
+        "top": 30000,
+        "bot": 5735,
+        "answer": "242.65",
+        "winMs": 4600
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T5.C18:5",
+        "kind": "zero",
+        "top": 9000,
+        "bot": 1845,
+        "answer": "71.55",
+        "winMs": 4600
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T5.C18:6",
+        "kind": "zero",
+        "top": 60000,
+        "bot": 12530,
+        "answer": "474.70",
+        "winMs": 7000
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T5.C19:ML4",
+        "kind": "change",
+        "top": 80000,
+        "bot": 73640,
+        "paid": [
+          500,
+          100,
+          100,
+          100
+        ],
+        "lines": [],
+        "answer": "63.60",
+        "winMs": 9500
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T5.C19:7",
+        "kind": "change",
+        "top": 120000,
+        "bot": 93835,
+        "paid": [
+          500,
+          500,
+          200
+        ],
+        "lines": [
+          [
+            "bag",
+            34850
+          ],
+          [
+            "shoes",
+            52525
+          ],
+          [
+            "socks",
+            6460
+          ]
+        ],
+        "answer": "261.65",
+        "winMs": 9500
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T5.C19:8",
+        "kind": "check",
+        "op": "add",
+        "top": 41285,
+        "bot": 8715,
+        "paid": [
+          500
+        ],
+        "lines": [],
+        "answer": "yes",
+        "winMs": 8000
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The paise column lights and takes away first, its answer landing after the dot; then the rupees column takes away and its answer lands before the dot.",
+      "Phase 2: The paise cell stays shut; a rupee is broken: the rupees on top are struck and written one less in amber, a strip of a hundred cells joins the paise on top, whose figure is written a hundred more, and both columns take away.",
+      "Phase 3: The paise cell stays shut over the grey zeros; a rupee is broken: the rupees on top are struck and written one less, a full strip of a hundred cells becomes the paise on top, and both columns take away.",
+      "Phase 4: The bill is set under the money given and taken away, a rupee broken into a hundred paise at the paise column, and the change fills the tray with its amount written under it; on the check question the change is added back to the bill, a full strip of paise curls into a rupee, and the sum stands beside the money given."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Rupees on the left of the dot, paise on the right.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "A rupee broken wherever the paise were too few, and every change added back to check.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T5.C16:ML1",
+            "worked": false,
+            "kind": "first",
+            "planQuestion": "Take Rs 23.15 from Rs 68.40.",
+            "question": {
+              "en": "Take Rs 23.15 from Rs 68.40."
+            },
+            "ask": {
+              "en": "Take Rs 23.15 from Rs 68.40"
+            },
+            "answer": "45.25",
+            "planAnswer": "Rs 45.25",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T5.C16:1",
+            "worked": false,
+            "kind": "first",
+            "planQuestion": "Take Rs 14.20 from Rs 39.65.",
+            "question": {
+              "en": "Now take Rs 14.20 from Rs 39.65."
+            },
+            "ask": {
+              "en": "Take Rs 14.20 from Rs 39.65"
+            },
+            "answer": "25.45",
+            "planAnswer": "Rs 25.45",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T5.C16:2",
+            "worked": false,
+            "kind": "first",
+            "planQuestion": "Take Rs 102.35 from Rs 258.90.",
+            "question": {
+              "en": "One more. Take Rs 102.35 from Rs 258.90."
+            },
+            "ask": {
+              "en": "Take Rs 102.35 from Rs 258.90"
+            },
+            "answer": "156.55",
+            "planAnswer": "Rs 156.55. Paise first: 90 less 35 is 55. Then 258 less 102 is 156",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T5.C17:ML2",
+            "worked": false,
+            "kind": "break",
+            "planQuestion": "Take Rs 138.85 from Rs 426.30.",
+            "question": {
+              "en": "Take Rs 138.85 from Rs 426.30."
+            },
+            "ask": {
+              "en": "Take Rs 138.85 from Rs 426.30"
+            },
+            "answer": "287.45",
+            "planAnswer": "Rs 287.45",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T5.C17:3",
+            "worked": false,
+            "kind": "break",
+            "planQuestion": "Take Rs 27.80 from Rs 64.25.",
+            "question": {
+              "en": "Now take Rs 27.80 from Rs 64.25."
+            },
+            "ask": {
+              "en": "Take Rs 27.80 from Rs 64.25"
+            },
+            "answer": "36.45",
+            "planAnswer": "Rs 36.45. Break one rupee into a hundred paise: Rs 63 and 125 paise, and 125 less 80 is 45",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T5.C17:4",
+            "worked": false,
+            "kind": "break",
+            "planQuestion": "Take Rs 315.95 from Rs 540.60.",
+            "question": {
+              "en": "One more. Take Rs 315.95 from Rs 540.60."
+            },
+            "ask": {
+              "en": "Take Rs 315.95 from Rs 540.60"
+            },
+            "answer": "224.65",
+            "planAnswer": "Rs 224.65. Break one rupee into a hundred paise: Rs 539 and 160 paise, then 160 less 95 is 65 and 539 less 315 is 224",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T5.C18:ML3",
+            "worked": false,
+            "kind": "zero",
+            "planQuestion": "Take Rs 57.35 from Rs 300.",
+            "question": {
+              "en": "Take Rs 57.35 from Rs 300."
+            },
+            "ask": {
+              "en": "Take Rs 57.35 from Rs 300"
+            },
+            "answer": "242.65",
+            "planAnswer": "Rs 242.65",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T5.C18:5",
+            "worked": false,
+            "kind": "zero",
+            "planQuestion": "Take Rs 18.45 from Rs 90.",
+            "question": {
+              "en": "Now take Rs 18.45 from Rs 90."
+            },
+            "ask": {
+              "en": "Take Rs 18.45 from Rs 90"
+            },
+            "answer": "71.55",
+            "planAnswer": "Rs 71.55. Rs 90 is 90.00, and from zero paise one rupee is broken into a hundred paise: Rs 89 and 100 paise",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T5.C18:6",
+            "worked": false,
+            "kind": "zero",
+            "planQuestion": "A child takes Rs 125.30 from Rs 600 and writes Rs 475.30. What went wrong, and what is the right answer?",
+            "question": {
+              "en": "A child takes Rs 125.30 from Rs 600. The child writes Rs 475.30. What went wrong, and what is the right answer?"
+            },
+            "ask": {
+              "en": "The right answer?"
+            },
+            "answer": "474.70",
+            "planAnswer": "The child wrote the 30 paise from the bottom instead of taking them away. From zero paise, break one rupee into a hundred paise: Rs 599 and 100 paise. 100 less 30 is 70 and 599 less 125 is 474, so the answer is Rs 474.70",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T5.C19:ML4",
+            "worked": false,
+            "kind": "change",
+            "planQuestion": "A bill comes to Rs 736.40. The shopper pays with one Rs 500 note and three Rs 100 notes. How much change comes back?",
+            "question": {
+              "en": "A bill comes to Rs 736.40. The shopper pays with one Rs 500 note and three Rs 100 notes. How much change comes back?"
+            },
+            "ask": {
+              "en": "How much change?"
+            },
+            "answer": "63.60",
+            "planAnswer": "Rs 63.60",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T5.C19:7",
+            "worked": false,
+            "kind": "change",
+            "planQuestion": "A bag costs Rs 348.50, shoes Rs 525.25 and socks Rs 64.60. The shopper pays Rs 1200 for all three. How much is returned?",
+            "question": {
+              "en": "A bag costs Rs 348.50 and shoes Rs 525.25. Socks cost Rs 64.60. The shopper pays Rs 1,200 for all three. How much is returned?"
+            },
+            "ask": {
+              "en": "How much is returned?"
+            },
+            "answer": "261.65",
+            "planAnswer": "Rs 261.65. The bill comes to Rs 938.35, and Rs 1200 less Rs 938.35 is Rs 261.65. The bill is a step; the question asks for the amount returned",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T5.C19:8",
+            "worked": false,
+            "kind": "check",
+            "planQuestion": "A shopper pays with a Rs 500 note for a bill of Rs 412.85 and is handed Rs 87.15. Is the change right? Check by adding.",
+            "question": {
+              "en": "A shopper pays for a Rs 412.85 bill with a Rs 500 note. The shopper is handed Rs 87.15. Is the change right? Check by adding."
+            },
+            "ask": {
+              "en": "Is the change right?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes. Rs 87.15 and Rs 412.85 make Rs 500.00, which is the money given",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "change_counter",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "change_counter",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Paise first, then rupees",
+        "conceptId": "M2.S3.T5.C16",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C16:ML1",
+          "M2.S3.T5.C16:1",
+          "M2.S3.T5.C16:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Breaking a rupee into paise",
+        "conceptId": "M2.S3.T5.C17",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C17:ML2",
+          "M2.S3.T5.C17:3",
+          "M2.S3.T5.C17:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Taking paise from zero paise",
+        "conceptId": "M2.S3.T5.C18",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C18:ML3",
+          "M2.S3.T5.C18:5",
+          "M2.S3.T5.C18:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Change from a payment",
+        "conceptId": "M2.S3.T5.C19",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C19:ML4",
+          "M2.S3.T5.C19:7",
+          "M2.S3.T5.C19:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "given",
+    "top",
+    "paidAmt",
+    "bill",
+    "billAmt",
+    "broken",
+    "paiseLeft",
+    "rupeesLeft",
+    "change",
+    "bot",
+    "checked"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, phase, given, top, paidAmt, bill, billAmt, broken, paiseLeft, rupeesLeft, change, bot, checked",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "change_counter"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T5.C16.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Money given, a bill, and a tray for the change. Which column goes first?"
+    },
+    {
+      "en": "Which column do you take away first?"
+    },
+    {
+      "en": "There are not enough paise on top. Where can more come from?"
+    },
+    {
+      "en": "The top has no paise at all. What do you break?"
+    },
+    {
+      "en": "What was paid, and what was the bill? How much comes back?"
+    },
+    {
+      "en": "A new bill. Set it under the money given before anything is taken."
+    },
+    {
+      "en": "Free play. Any payment and any bill, with the break, the tray and the check open."
+    },
+    {
+      "en": "Look at the paise on top again. Are there enough to take from?"
+    },
+    {
+      "en": "A rupee broken wherever the paise were too few, and every change added back to check."
+    }
+  ],
+  "build": {
+    "source": "f1a8c335:1675270",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-25T07:34:54.873Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-25T07:34:54.622Z"
+    },
+    "tsxBytes": 1673783,
+    "tsxMd5": "19a0ea29d6f8346ffa376afbdeb77343"
+  }
+}

@@ -1,0 +1,1078 @@
+{
+  "slotId": "M2.S4.T7.C24.2D1",
+  "mediaId": "M2.S4.T7.C24.2D1",
+  "toolId": "digit_tester",
+  "title": "Digit Tester",
+  "component": "M2.S4.T7.C24.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch6",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch6_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_6/2dtool/M2.S4.T7.C24.2D1/M2.S4.T7.C24.2D1.tsx",
+  "description": "Decide what divides a number by looking at it, add every digit including the zeros, and count who is sharing before you test.",
+  "conceptIds": [
+    "M2.S4.T7.C24",
+    "M2.S4.T7.C25",
+    "M2.S4.T7.C26",
+    "M2.S4.T7.C27"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find out what divides a number by looking at it instead of dividing it, and find out what that answer does not cover.",
+    "look": "A number laid out one digit to a cell with four test lamps below it, a sum rail underneath and a sharing bay at the side.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Digit Tester' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the tests run against the tests this phase offers, two numbers in ink, the first climbing by one as each lamp is answered and the second fixed at four, which is every test this chapter teaches and no more. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The number stands across the top of the working area as digit cards, one digit to a drawn cell 108 by 124 with 12 between the cells, the row centred at 64,202 and holding up to six of them. A cell is drawn for every digit and a cell holding a zero is drawn and ruled exactly like the rest, at the same size, in the same band, with nothing about it smaller or fainter. The four test lamps stand in a row beneath, each 156 by 108 at 64,366 and spaced 40 apart, marked two, three, five and ten, and a fifth slot of the same size stands beside them at the right, drawn empty and labelled as not taught in this chapter: it can be pressed, it stays dark, and it names what is not known instead of answering. Choosing two, five or ten slides the shutter across the number from the left, leaving only the ones cell showing, and the verdict is given from that one cell. Choosing three stows the shutter and opens the sum rail below the cells, 1086 by 92 at 64,506: every cell has to be dragged down onto it in order, and the rail will not close while any cell is still up. A cell that was passed by is handed back lit with its own digit still showing, zero or not, and the rail totals only what it is actually holding, then runs that total through the same lamp again. The sharing bay stands at the right of the working area, 300 by 400 at 786,202: people are added one at a time as drawn figures, the one handing the things out has a tick box of its own, and no test will run until the count is settled. It then divides by THAT number on a ruled board and sets whatever is left over on the shelf outside the rows at full strength and fully countable. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a digit total, a quotient or a remainder is asked for, and beside them a pair of verdict keys reading yes and not known, so that a child can answer the fifth slot honestly with one press. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: a number that divides another exactly is deep blue, a number built by multiplying is green, anything standing in both lists at once is rose, whatever is left over and any trial that fails is vermilion, the number being broken up or the total in hand is amber, and a single digit being read or added is sky blue. Chrome never borrows one of those and none of them is ever used for chrome, and every reading survives with the colour taken away, because a leftover is told by standing outside the rows before it is told by a band, and a list that stops is told by the wall at each end of it and a list that does not by the open edge of the frame. No cell is ever smaller, fainter or narrower for holding a zero, and the rail never closes over a gap. Both of those are one rule with one reason: the page this tool is built from adds the digits of a four digit number and names three of them, and it comes out right, so nothing a child can check would ever have said otherwise.",
+    "finish": "The card shows the last number the child tested, its four lamps as they ended, the full sum rail with every cell on it, and the empty slot still dark.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the answer lands with the rest of the number still covered by the shutter",
+        "does": "drops the shutter, reads the one digit still showing and picks a lamp",
+        "goal": "the ones digit alone decides the tests for two, five and ten",
+        "says": "Cover everything but the end. Can you still answer? Which digit did it?",
+        "check": "Is 2,965 divisible by 5? Is it divisible by 10? Look only at its last digit.",
+        "feels": "the whole number covered up, and the answer still there to be read",
+        "hands": "Write a long number on the board, seven thousand two hundred and forty-two, and cover all of it with a sheet of paper except the last digit. Ask whether the class can still say if it divides by two. Do it again for one thousand and twenty-five with the test for five, and for eighty-nine thousand six hundred and thirty with the test for ten. Each time, uncover the number afterwards and divide it out to see that the test told the truth.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which cell is the ones cell? Second rung, the phase's: what is standing in it? Third rung: the number is cut to two cells, the shutter drops, and the child answers from the one cell left showing. The number pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the rule for three is the one that felt like a method, with every cell coming down onto the rail and the zeros counted in like the rest, and a method that was hard to learn gets reached for first whatever the lamp says.",
+            "move": "adds the digits up to test a number for two, because adding the digits is the rule that took the most learning.",
+            "screen": "the shutter slides across and leaves only the ones cell showing, and the verdict is given from that one cell while the sum rail stays stowed and closed. The total the child built stays where it was written, and the lamp for three lights beside the lamp for two so that the rule and the test it belongs to are drawn together. Nothing is cleared."
+          },
+          {
+            "why": "reading, writing and saying a number all start at the left, and the ones place is the last thing a number gets round to.",
+            "move": "reads the first digit instead of the last, because a number is read from the left hand end.",
+            "screen": "the cells are named from the RIGHT hand end, ones first, with each name written under its own cell, and the shutter is drawn closing from the left so that the cell still showing is plainly the one the test was chosen for. The number is then divided out in full on the board beside it, and the child's verdict stays in the slot with the leading digit still lit where they were looking."
+          }
+        ],
+        "screen": "a long number with the shutter ready and three of the lamps lit",
+        "soWhat": "The ones digit alone settles the tests for two, for five and for ten.",
+        "concept": "Reading the last digit"
+      },
+      {
+        "n": 2,
+        "win": "the rail closes only when every cell has come down, and the total runs through the test",
+        "does": "drags each cell down onto the rail in order, zeros and all, then tests the total",
+        "goal": "every digit goes into the total, zeros included",
+        "says": "Take every card down, even the empty looking ones. Leave none out.",
+        "check": "Test 80,690 for divisibility by 3, writing down every digit including both zeros.",
+        "feels": "a zero adds nothing, and skipping it loses everything that comes after it",
+        "hands": "Write 6405 on squared paper with one digit to a square, all four of them, and add the four together. The page prints this same sum with only three numbers in it. Find the digit the page left out, say what it adds to the total, and say why the answer came out right anyway. Then do the same on 80,690, where two zeros have to be written down and the digits either side of them are the ones that get lost if a cell is skipped.",
+        "tries": "First rung, from the item: which cell is still up? Second rung, the phase's: how many cells does this number have altogether? Third rung: the number is cut to three cells with a zero in the middle and the child brings all three down in order. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the total does come out right, so nothing the child can check ever says the step was wrong, and the printed demonstration of this very rule does exactly the same thing on the same number.",
+            "move": "leaves the zero out of the total, because a zero adds nothing to it.",
+            "screen": "the rail will not close and the skipped cell is handed back lit, with its zero drawn at full size where it stands and the gap on the rail left open at its full width. Once every cell has come down the total is written and sent back up through the lamp. The same run is then laid on a five digit number holding two zeros, where the cells either side of them are the ones a skipping finger takes with it."
+          },
+          {
+            "why": "the adding is the new work and it is the part that took effort, so it feels like the thing that was being asked for.",
+            "move": "adds the digits, writes the total and stops there, reporting the total as the answer.",
+            "screen": "the total the rail built rises back up into the cells as a number in its own right and the lamp for three lights again above it, asking to be pressed a second time. The first total stays drawn where the rail wrote it, and the verdict that comes out of the second press is written under the number the child started from."
+          }
+        ],
+        "screen": "a number holding two zeros with the sum rail open and empty below it",
+        "soWhat": "Every digit goes into the total for the test for three, zeros included.",
+        "concept": "Adding every digit for three"
+      },
+      {
+        "n": 3,
+        "win": "the empty slot stays dark and named, and the child says nothing is known about it",
+        "does": "asks the empty slot a question and is shown it was never taught",
+        "goal": "four tests are taught here and they settle nothing else",
+        "says": "It passed every test here. Now tell me about four. Can you?",
+        "check": "1,050 and 1,080 both pass every test in this chapter. Which of the two divides by 4, and what did the tests tell you about that?",
+        "feels": "four lamps lit, and the slot beside them still dark",
+        "hands": "Write 1,050 and 1,080 on the board and run this chapter's four tests on both of them. Both pass all four. Now ask the class which of the two divides by four, take a vote, and then divide each of them by four and count what is left. Finish by asking what the four tests had actually told them about four, and accept only the answer that they had told them nothing.",
+        "tries": "First rung, from the item: which tests has this chapter taught you? Second rung, the phase's: is the number you are being asked about one of them? Third rung: the lamps are cut to two and the child is asked about a third divisor and presses the not known key. The verdict keys stay open.",
+        "wrong": [
+          {
+            "why": "six really is two threes, so a number that three goes into looks as though it is most of the way to six already, and no test on the page contradicts it.",
+            "move": "says a number that passed the test for three must divide by six as well, because six is made out of two and three.",
+            "screen": "the fifth slot lights and stays dark beside the four lamps. The number is divided by six on the ruled board, its rows drawn and three set on the leftover shelf outside them at full strength, and the lamp for two is pressed on the same number and does not fill. The child's claim stays in the answer slot with the division standing under it."
+          },
+          {
+            "why": "four lamps full look like a finished job, and nothing on the page ever says how many tests there are altogether.",
+            "move": "treats a number that has passed every lamp on the stage as a number that has been fully examined.",
+            "screen": "both numbers that passed all four are divided by four side by side on one board, one coming out with the shelf empty and the other leaving two standing outside the rows at full strength. The four lamps stay full above both of them the whole time, and the fifth slot stays dark and named. Nothing is marked either way."
+          }
+        ],
+        "screen": "a number that has passed all four lamps, with the empty slot beside them",
+        "soWhat": "A test answers for the number you tested by and for no other, so this chapter's four tests settle four things and nothing else.",
+        "concept": "What the tests do not cover"
+      },
+      {
+        "n": 4,
+        "win": "the count changes, the test runs on the new number and any leftover stands outside the rows",
+        "does": "counts the people, ticks the one handing them out, then tests by that number",
+        "goal": "count everyone sharing, including the person handing the things out",
+        "says": "Count everyone who is sharing. Have you counted the one handing them out?",
+        "check": "You invite 5 friends, you have 24 buns, and you are eating one share yourself. How many are sharing, and will any be left?",
+        "feels": "the person holding the tray is sharing too",
+        "hands": "Act it out. Sit six children in a circle with fifty counters in the middle and deal them out one at a time, round and round, until nobody can have another. Count what is left. Then take one child out of the circle and do the whole thing again with the same fifty. Ask what changed, and why the person holding the tray has to be counted before anybody divides anything.",
+        "tries": "First rung, from the item: how many friends were asked? Second rung, the phase's: is anybody sharing who has not been counted yet? Third rung: the bay is cut to a small party, the child counts the figures, ticks the box and reads the new count. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the number of friends is the number the question says out loud, and the person holding the tray is not usually counted among the guests; the printed page does exactly this and states the conclusion flatly.",
+            "move": "tests fifty by five, because five friends were invited, and concludes that none will be left.",
+            "screen": "the sharing bay counts the people out one at a time as drawn figures, and the tick box for the one handing them out is still empty and lights. Ticking it changes the count, the division runs again on the new count, and two are set on the shelf outside the rows at full strength. The first division stays drawn beside it with the number it was run for written under it."
+          },
+          {
+            "why": "one test has been passed and a passed test feels like a finished answer, so the divisor it was run for stops being part of what was shown.",
+            "move": "shows that fifty divides by five and takes that as settling whether any will be left, whoever ends up sharing.",
+            "screen": "both divisions are drawn on the same board, one under the other: fifty into five rows with the shelf beside it empty, and fifty into six rows with two standing outside at full strength. Each board is labelled with the number it was run for, and the question is read again above them with the words how many are sharing lit."
+          }
+        ],
+        "screen": "the sharing bay with the friends counted and the host box still unticked",
+        "soWhat": "Count everyone who is sharing before you choose a divisor, and remember the test answers only for the divisor you chose.",
+        "concept": "Testing for the right number of people"
+      }
+    ],
+    "delight": "The second phase, at the moment a cell is skipped. The rail does not shut and nothing is marked: the cell that was passed by lifts a little where it stands, lights, and its digit is drawn larger for a beat, zero and all, while the cells that did come down stay lying on the rail in exactly the order they arrived. The gap on the rail where that cell belongs stays open at its full width, so the missing one is a hole in the line rather than a line that closed up neatly behind it. Bring it down and the rail shuts, the total is written, and the total goes straight back up through the lamp.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a long number stands across the top in its cells with the shutter drawn back at the left and three of the four lamps lit. On the second a number holding two zeros stands in its cells, every cell drawn the same size whatever is in it, with the sum rail open and empty underneath and the shutter stowed. On the third a number that has already passed all four lamps stands in the cells with the four lamps full and the fifth slot beside them drawn and dark. On the fourth the sharing bay is open at the side with the invited friends counted out as drawn figures and the tick box for the one handing the things out still empty. The running count at the top left holds the tests run against the tests this phase offers, and the answer slot and the pad stand empty down the right. One thing moves, once: the ones cell, or the leftmost cell still waiting above the rail, or the dark fifth slot, or the empty tick box, gives one slow pulse while the voice asks how much of the number has to be looked at. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any number up to six digits, all four lamps live, with the sum rail open and the sharing bay beside it. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on reading the ones digit, adding every digit for three, saying what the tests leave unanswered, and testing by the right number of people.",
+    "voiceLines": [
+      "A number laid out, one digit to a cell, and four lamps underneath it.",
+      "Cover everything but the end. Can you still answer? Which digit did it?",
+      "Take every card down, even the empty looking ones. Leave none out.",
+      "It passed every test here. Now tell me about four. Can you?",
+      "Count everyone who is sharing. Have you counted the one handing them out?",
+      "A new number in the cells. Which lamp are you going to choose?",
+      "Free play. Any number in the cells, all four lamps live, the sharing bay beside them.",
+      "Bring every cell down again, and leave none of them up there.",
+      "Four tests run, every cell counted in, and one slot that stayed dark."
+    ],
+    "observations": [
+      {
+        "why": "Ten, and five and two inside it, are settled by what stands in the ones place alone.",
+        "soWhat": "For those three tests, nothing but the last digit matters.",
+        "observe": "For two, for five and for ten the whole number was covered and the answer was still available."
+      },
+      {
+        "why": "A zero adds nothing to the total, so skipping one never shows up in the answer and the habit survives.",
+        "soWhat": "Every digit comes down, zeros included, and a total built from some of the digits is not the test.",
+        "observe": "The rail refused to close while one cell was still up, even when that cell held a zero."
+      },
+      {
+        "why": "This chapter teaches four tests, and none of them is about any other divisor.",
+        "soWhat": "A test answers for the number you tested by and for no other, so passing all four is not being fully examined.",
+        "observe": "A number that passed all four lamps left the fifth slot exactly as dark as it began."
+      },
+      {
+        "why": "The person handing the things out is sharing too, so the divisor was wrong before the test was ever run.",
+        "soWhat": "Count everyone who is sharing before you choose what to divide by.",
+        "observe": "The count in the sharing bay changed the moment the tick box was ticked, and the leftover changed with it."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a long number with the shutter ready and three of the lamps lit",
+        "win": "the answer lands with the rest of the number still covered by the shutter",
+        "traceback": "The shutter opens and the cells are named from the right, ones first; the shutter covers all but the ones cell, its digit is laid against the digits that pass, the lamp gives its verdict and the number is divided out on the board.",
+        "ladder": [
+          "Which cell is the ones cell?",
+          "Which ones digits pass the test for five?",
+          "For ten, what must stand in the last cell?",
+          "What is standing in the ones cell?",
+          "Read only the digit that is still showing, then decide."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a number holding two zeros with the sum rail open and empty below it",
+        "win": "the rail closes only when every cell has come down, and the total runs through the test",
+        "traceback": "Every cell still up is lit and brought down onto the rail in order, zeros included; each digit on the rail lights as it is added, the rail closes, the total is written and runs up through the lamp for three.",
+        "ladder": [
+          "Count the cells on the rail. Did every one go into your total?",
+          "Point at each digit on the rail as you add it.",
+          "Does three go into the total exactly?",
+          "How many cells does this number have altogether?",
+          "Say the total out loud as you touch each digit on the rail."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a number that has passed all four lamps, with the empty slot beside them",
+        "win": "the empty slot stays dark and named, and the child says nothing is known about it",
+        "traceback": "The dark slot flickers and stays dark. Two numbers that pass all four lamps are divided by four side by side, one with nothing left and one with two left; or each lamp is run in turn on the clues; or 7,005 is divided by six with three left and the lamp for two stays empty.",
+        "ladder": [
+          "Which tests has this chapter taught you?",
+          "Take the lamps one at a time. What does each one look at?",
+          "Which lamp did she really run?",
+          "Is the number you are being asked about one of them?",
+          "Count the lamps, then look for a lamp with that number on it."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the sharing bay with the friends counted and the host box still unticked",
+        "win": "the count changes, the test runs on the new number and any leftover stands outside the rows",
+        "traceback": "The child's own count is shared out on a board, a row for each person and the leftover on its shelf; the host's box is ticked, the figures are counted one at a time, and the true count is shared out round by round on a second board beside it.",
+        "ladder": [
+          "How many friends were asked?",
+          "Is the girl in your count, or only her friends?",
+          "Who is holding the tray of rolls?",
+          "Is anybody sharing who has not been counted yet?",
+          "Count the figures one by one, tick the box, then share out by the new count."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "cell": {
+      "w": 108,
+      "h": 124,
+      "gap": 12
+    },
+    "lamps": [
+      2,
+      3,
+      5,
+      10
+    ],
+    "notTaught": [
+      4,
+      6,
+      8,
+      9
+    ],
+    "onesDigitsThatPass": {
+      "2": [
+        0,
+        2,
+        4,
+        6,
+        8
+      ],
+      "5": [
+        0,
+        5
+      ],
+      "10": [
+        0
+      ]
+    },
+    "placeNames": [
+      "O",
+      "T",
+      "H",
+      "Th",
+      "TTh",
+      "L"
+    ],
+    "notKnownPair": [
+      1020,
+      1050
+    ],
+    "colours": {
+      "divides": "#0072B2",
+      "leftover": "#D55E00",
+      "number": "#E69F00",
+      "digitRead": "#56B4E9"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T7.C24:ML1",
+        "kind": "verdict",
+        "num": 4386,
+        "d": 2,
+        "answer": "yes",
+        "winMs": 3400
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T7.C24:1",
+        "kind": "verdict",
+        "num": 7314,
+        "d": 5,
+        "answer": "no",
+        "winMs": 3400
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T7.C24:2",
+        "kind": "verdict",
+        "num": 6470,
+        "d": 10,
+        "answer": "yes",
+        "winMs": 3400
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T7.C25:ML2",
+        "kind": "total",
+        "num": 40608,
+        "answer": 18,
+        "winMs": 4000
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T7.C25:3",
+        "kind": "total",
+        "num": 3105,
+        "answer": 9,
+        "winMs": 4000
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T7.C25:4",
+        "kind": "three",
+        "num": 50073,
+        "answer": "yes",
+        "winMs": 3600
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T7.C26:ML3",
+        "kind": "mystery",
+        "d": 4,
+        "answer": "not known",
+        "winMs": 2600
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T7.C26:6",
+        "kind": "list",
+        "ones": 0,
+        "sum": 12,
+        "answer": [
+          2,
+          3,
+          5,
+          10
+        ],
+        "pad": "enter",
+        "winMs": 3800
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T7.C26:7",
+        "kind": "proof",
+        "num": 7005,
+        "d": 6,
+        "answer": "by 3 only",
+        "winMs": 3600
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T7.C27:ML4",
+        "kind": "share",
+        "friends": 4,
+        "things": 35,
+        "host": "boy",
+        "pron": "him",
+        "thing": "laddoos",
+        "answer": [
+          5,
+          0
+        ],
+        "parts": [
+          {
+            "label": "sharing"
+          },
+          {
+            "label": "left over"
+          }
+        ],
+        "winMs": 5600
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": null,
+        "kind": "share",
+        "friends": 5,
+        "things": 50,
+        "host": "girl",
+        "pron": "her",
+        "thing": "sweets",
+        "answer": [
+          6,
+          2
+        ],
+        "parts": [
+          {
+            "label": "sharing"
+          },
+          {
+            "label": "left over"
+          }
+        ],
+        "winMs": 5600
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T7.C27:8",
+        "kind": "share",
+        "friends": 7,
+        "things": 70,
+        "host": "cook",
+        "pron": "him",
+        "thing": "rolls",
+        "answer": [
+          8,
+          6
+        ],
+        "parts": [
+          {
+            "label": "sharing"
+          },
+          {
+            "label": "left over"
+          }
+        ],
+        "winMs": 6000
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The shutter opens and the cells are named from the right, ones first; the shutter covers all but the ones cell, its digit is laid against the digits that pass, the lamp gives its verdict and the number is divided out on the board.",
+      "Phase 2: Every cell still up is lit and brought down onto the rail in order, zeros included; each digit on the rail lights as it is added, the rail closes, the total is written and runs up through the lamp for three.",
+      "Phase 3: The dark slot flickers and stays dark. Two numbers that pass all four lamps are divided by four side by side, one with nothing left and one with two left; or each lamp is run in turn on the clues; or 7,005 is divided by six with three left and the lamp for two stays empty.",
+      "Phase 4: The child's own count is shared out on a board, a row for each person and the leftover on its shelf; the host's box is ticked, the figures are counted one at a time, and the true count is shared out round by round on a second board beside it."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A number laid out, one digit to a cell, and four lamps underneath it.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Four tests run, every cell counted in, and one slot that stayed dark.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T7.C24:ML1",
+            "worked": false,
+            "kind": "verdict",
+            "planQuestion": "Is 4,386 divisible by 2? Look only at the end of it.",
+            "question": {
+              "en": "Is 4,386 divisible by 2? Look only at the end of it."
+            },
+            "ask": {
+              "en": "Divisible by 2?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes, because its ones digit is 6",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T7.C24:1",
+            "worked": false,
+            "kind": "verdict",
+            "planQuestion": "Is 7,314 divisible by 5?",
+            "question": {
+              "en": "Is 7,314 divisible by 5?"
+            },
+            "ask": {
+              "en": "Divisible by 5?"
+            },
+            "answer": "no",
+            "planAnswer": "No. Its ones digit is 4, and a number divisible by 5 ends in 5 or 0",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T7.C24:2",
+            "worked": false,
+            "kind": "verdict",
+            "planQuestion": "Is 6,470 divisible by 10?",
+            "question": {
+              "en": "Is 6,470 divisible by 10?"
+            },
+            "ask": {
+              "en": "Divisible by 10?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes. Its ones digit is 0, and 6470 divided by 10 is 647",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T7.C25:ML2",
+            "worked": false,
+            "kind": "total",
+            "planQuestion": "Test 40,608 for divisibility by 3, writing every digit down.",
+            "question": {
+              "en": "To test 40,608 for three, add every digit on the rail. What is the total?"
+            },
+            "ask": {
+              "en": "Digit total?"
+            },
+            "answer": 18,
+            "planAnswer": "Yes, because the digits add to 18 and 3 divides 18",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T7.C25:3",
+            "worked": false,
+            "kind": "total",
+            "planQuestion": "Add every digit of 3,105 and say whether 3 divides it.",
+            "question": {
+              "en": "Add every digit of 3,105. Bring each cell down first, then type the total."
+            },
+            "ask": {
+              "en": "Digit total?"
+            },
+            "answer": 9,
+            "planAnswer": "The digits add to 9, so yes; 3105 divided by 3 is 1035",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T7.C25:4",
+            "worked": false,
+            "kind": "three",
+            "planQuestion": "Test 50,073 for divisibility by 3.",
+            "question": {
+              "en": "Test 50,073 for divisibility by 3. Bring every cell down, then decide."
+            },
+            "ask": {
+              "en": "Does 3 divide 50,073?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes. Every digit counts, so 5 and 0 and 0 and 7 and 3 add to 15, which 3 divides",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T7.C26:ML3",
+            "worked": false,
+            "kind": "mystery",
+            "planQuestion": "A number passes the tests for 2, for 3, for 5 and for 10. What do you now know about 4?",
+            "question": {
+              "en": "A number passes the tests for 2, for 3, for 5 and for 10. What do you now know about 4?"
+            },
+            "ask": {
+              "en": "Does it divide by 4?"
+            },
+            "answer": "not known",
+            "planAnswer": "Nothing at all",
+            "choices": [
+              "yes",
+              "no",
+              "not known"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T7.C26:6",
+            "worked": false,
+            "kind": "list",
+            "planQuestion": "A number ends in 0 and its digits add to 12. Which of this chapter's four tests does it pass?",
+            "question": {
+              "en": "A number ends in 0 and its digits add to 12. Which of this chapter's four tests does it pass? Tap each lamp it passes, then press enter."
+            },
+            "ask": {
+              "en": "Which tests does it pass?"
+            },
+            "answer": "2, 3, 5, 10",
+            "planAnswer": "All four: by 2, by 5 and by 10 from its ones digit, and by 3 because 3 divides 12",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T7.C26:7",
+            "worked": false,
+            "kind": "proof",
+            "planQuestion": "A child shows that 7,005 divides by 3 and then says it must divide by 6 as well. What is wrong?",
+            "question": {
+              "en": "A child shows that 7,005 divides by 3. Then she says it must divide by 6 as well. What did her test prove?"
+            },
+            "ask": {
+              "en": "What did the test prove?"
+            },
+            "answer": "by 3 only",
+            "planAnswer": "The chapter has no test for 6, and 7005 does not divide by 6 at all, because it is odd. A test answers for the number tested by and no other",
+            "choices": [
+              "by 3 only",
+              "by 3 and 6"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T7.C27:ML4",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A boy asks 4 friends to his party and has 35 laddoos to share out equally. Who is sharing, and will any be left?",
+            "question": {
+              "en": "A boy asks 4 friends to his party and has 35 laddoos to share out equally. Who is sharing, and will any be left?"
+            },
+            "ask": {
+              "en": "How many share? How many left?"
+            },
+            "answer": [
+              5,
+              0
+            ],
+            "planAnswer": "Five people are sharing, counting the boy, and none will be left",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "share",
+            "planQuestion": null,
+            "question": {
+              "en": "A girl shares 50 sweets with her 5 friends, and keeps one share for herself. She tests 50 by 5, and is sure none will be left over."
+            },
+            "ask": {
+              "en": "How many share? How many left?"
+            },
+            "answer": [
+              6,
+              2
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T7.C27:8",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A cook has 70 rolls and asks 7 friends to share them, taking a share himself. He tests 70 by 7 and says none will be left. What has he missed?",
+            "question": {
+              "en": "A cook has 70 rolls and asks 7 friends to share them, taking a share himself. He tests 70 by 7 and says none will be left. What has he missed?"
+            },
+            "ask": {
+              "en": "How many share? How many left?"
+            },
+            "answer": [
+              8,
+              6
+            ],
+            "planAnswer": "Himself. With him there are 8 sharing, and 70 divided by 8 is 8 with 6 left over",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M2.S4.T7.C24:5"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "digit_tester",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "digit_tester",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Reading the last digit",
+        "conceptId": "M2.S4.T7.C24",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C24:ML1",
+          "M2.S4.T7.C24:1",
+          "M2.S4.T7.C24:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Adding every digit for three",
+        "conceptId": "M2.S4.T7.C25",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C25:ML2",
+          "M2.S4.T7.C25:3",
+          "M2.S4.T7.C25:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "What the tests do not cover",
+        "conceptId": "M2.S4.T7.C26",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C26:ML3",
+          "M2.S4.T7.C26:6",
+          "M2.S4.T7.C26:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Testing for the right number of people",
+        "conceptId": "M2.S4.T7.C27",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C27:ML4",
+          "M2.S4.T7.C24.2D1:p4_2",
+          "M2.S4.T7.C27:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "number",
+    "num",
+    "divisor",
+    "digitCells",
+    "lamp",
+    "shutter",
+    "testsRun",
+    "lampsLit",
+    "marked",
+    "railDown",
+    "skippedCell",
+    "railTotal",
+    "railClosed",
+    "gate",
+    "hostTicked",
+    "sharers",
+    "leftover",
+    "r"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, number, num, divisor, digitCells, lamp, shutter, testsRun, lampsLit, marked, railDown, skippedCell, railTotal, railClosed, gate, hostTicked, sharers, leftover, r, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "digit_tester"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T7.C24.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A number laid out, one digit to a cell, and four lamps underneath it."
+    },
+    {
+      "en": "Cover everything but the end. Can you still answer? Which digit did it?"
+    },
+    {
+      "en": "Take every card down, even the empty looking ones. Leave none out."
+    },
+    {
+      "en": "It passed every test here. Now tell me about four. Can you?"
+    },
+    {
+      "en": "Count everyone who is sharing. Have you counted the one handing them out?"
+    },
+    {
+      "en": "A new number in the cells. Which lamp are you going to choose?"
+    },
+    {
+      "en": "Free play. Any number in the cells, all four lamps live, the sharing bay beside them."
+    },
+    {
+      "en": "Bring every cell down again, and leave none of them up there."
+    },
+    {
+      "en": "Four tests run, every cell counted in, and one slot that stayed dark."
+    }
+  ],
+  "build": {
+    "source": "7d4717a3:215931",
+    "runtime": "class4/runtime/frozen/r5/runtime.tsx",
+    "runtimeVersion": "r5",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-23T11:54:09.396Z",
+    "checks": {
+      "pass": 63,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-23T11:54:09.061Z"
+    },
+    "tsxBytes": 204200,
+    "tsxMd5": "b467b8213daff2135daf781c657ca911"
+  }
+}

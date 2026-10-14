@@ -1,0 +1,1156 @@
+{
+  "slotId": "M2.S4.T7.C24.2D1",
+  "mediaId": "M2.S4.T7.C24.2D1",
+  "toolId": "duration_track",
+  "title": "Duration Track",
+  "component": "M2.S4.T7.C24.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch12",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch12_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_12/2dtool/M2.S4.T7.C24.2D1/M2.S4.T7.C24.2D1.tsx",
+  "description": "Plant a start flag and an end flag on a track of the day and hop between them, stopping at 12 noon when they are either side of it. Hop a duration forward or back.",
+  "conceptIds": [
+    "M2.S4.T7.C24",
+    "M2.S4.T7.C25",
+    "M2.S4.T7.C26",
+    "M2.S4.T7.C27"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find how long something takes from its start and its end, across 12 noon as well, and find an end time or an earlier time from a duration.",
+    "look": "A long time track marked in hours with a tall 12 noon post, a start flag and an end flag, a hopper, and a clock face above.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Duration Track' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the hops made against the hops this count needs, two numbers in ink, the first climbing by one as each hop lands and the second fixed once both flags, or a flag and a card, are set. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The clock face stands at the top left of the working area, 180 across centred at 170,316, and follows the hopper, its hands turning as each hop lands. The duration card tray sits beside it, 300 by 110 at 290,226, holding cards that give a duration in hours and minutes, the hours in vermilion and the minutes in deep blue. The back switch sits under the tray, 160 by 56 at 290,350. The zoom lens stands at the top right, 440 by 150 at 700,226, and widens any stretch of the track so its five-minute ticks can be counted. The time track runs across the lower half, 1056 by 60 at 80,560, from the left-hand midnight post to the right-hand one, one hour to every 44, sky blue from midnight to noon and amber from noon to midnight, with a near-black hour post at every hour and a tick every five minutes. The 12 noon post, at 608, is drawn taller than the others, rising to 440 under a small sun. The start flag and the end flag are planted on the track by time, each on a near-black pole with its time and a.m. or p.m. on its pennant. The hopper hops above the track in three kinds of hop: a short hop of minutes on to the next hour post, whole-hour hops from post to post, and a last hop of minutes on to the end flag. Each hop is drawn as a green arc from landing to landing, between 470 and 560, with its length written on it. When the flags stand either side of noon, the noon post is a stop the hopper cannot jump: it lands on 12 noon, the hops before the post are totalled in a green box just left of it and the hops after it in a box just right of it, and the two boxes are added. The total bar runs under the track, 1056 by 60 at 80,650, adding the hops, with the hours of the total in vermilion and its minutes in deep blue, and carrying sixty minutes as one hour, the carried hour drawn in wine. A pale flag can stand on the track to show where a child's answer would be. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve keys three across, the ten digits, a colon and a clear key, with keys reading a.m., p.m., hours and minutes over it. The answer slot takes a duration as hours and minutes in two boxes, or a time with a colon and a label box, whichever the question asks for, and a time with no label will not settle. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The hour hand, every hour tile and hour cell, the hours column, and the hours of a time the stage splits into hours and minutes are vermilion. The minute hand, every minute tile and minute cell, the minutes column and the minutes of a split time are deep blue. The second hand, every second cell and the seconds column are reddish purple. The a.m. half of the day, from midnight to noon, is sky blue on every strip, timeline and track, and the p.m. half, from noon to midnight, is amber, so the label changes where the colour does. Time counted between a start and an end, every hop and total on a track, and the days counted between two dates are green. An hour or a minute carried or broken, with the digits it strikes and rewrites, is wine. A calendar day, week or year picked out or ticked, a month on its bar and a day tile are olive. The days left over beyond whole weeks, and the twenty-ninth of February in a leap year, are yellow outlined in near-black. Chrome never borrows one of those and none of them is ever used for chrome: every clock rim, minute mark, clock number, hub, rule, tick, post, bracket, guide line and panel edge is near-black. Every reading survives with the colour taken away, because an hour hand is told from a minute hand by its length, a column by its heading, a half of the day by its label, and a counted day from one left out by being filled rather than outlined, before any of them is told by a colour. A figure that goes down by one is struck through once with the new figure written above it, and never rubbed out. The hopper counts on or back from a flag and does not take one time from another as whole numbers, so no hop on this stage is a hundred minutes long, and a hop of minutes that meets an hour post is seen to cross it. Where the flags stand either side of noon, the hopper lands on 12 noon before going on, which is the page's own count on to the next hour with 12 noon as that hour.",
+    "finish": "The card shows the track with the child's last flags and every hop drawn over it, the noon stop lit where it was used, and the answer written under the total bar.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the hops are drawn over the track with their lengths, and the total bar writes the duration",
+        "does": "hops from the start flag to the next hour post, then whole hours, then on to the end flag, and adds the hops",
+        "goal": "a duration is found by counting on from the start to the next hour, then on to the end, and adding the parts",
+        "says": "Hop to the next hour first. How far is that? Now hop on to the end.",
+        "check": "Away from the screen: a lesson runs from 10:40 a.m. to 11:25 a.m. How long is it? Say where you stopped first.",
+        "feels": "the hour posts break the stretch into pieces that are easy to count, and the pieces add up",
+        "hands": "Begin with the exam the section opens on, from 9:30 a.m. to 12 noon, which the page never finishes: count on thirty minutes to ten o'clock and two hours to noon, two hours thirty minutes. Then take a lesson from the class timetable that starts and ends in the same morning, count on to the next hour first and then on to the end, and write the two parts before adding.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: how far is it from the start to the next hour? Second rung, the phase's: how many whole hours come after that? Third rung: the flags are cut to two times inside one hour, and the child finds the minutes between them before the longer stretch comes back. The pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "taking the smaller from the larger is how whole numbers are compared, and the colon looks like a gap inside one number.",
+            "move": "takes 648 from 905 as whole numbers and answers two hours fifty-seven minutes for a journey from 6:48 a.m. to 9:05 a.m.",
+            "screen": "the hopper runs from the start flag: twelve minutes on to the seven o'clock post, two whole-hour hops to nine, and five minutes on to the end flag. The total bar adds twelve minutes, two hours and five minutes, two hours seventeen minutes, and the child's answer is laid beside it, forty minutes longer, and stays in the slot, nothing marked."
+          },
+          {
+            "why": "forty-eight is the minutes number written on the start flag, and it is the minutes number in sight.",
+            "move": "reads the first hop as forty-eight minutes, the minutes of the start time, instead of the twelve left to seven o'clock, and answers two hours fifty-three minutes.",
+            "screen": "the zoom lens widens the stretch from the start flag to the seven o'clock post, and its ticks are counted from 6:48, two minutes to 6:50 and ten more to seven: twelve. The first hop is drawn again with twelve on it, and the child's answer stays in the slot beside the new total."
+          }
+        ],
+        "screen": "the start and end flags planted in the same morning or evening, with the hopper at the start flag",
+        "soWhat": "Count on to the next hour, then whole hours, then the minutes to the end, and add the parts.",
+        "concept": "Counting on to the next hour"
+      },
+      {
+        "n": 2,
+        "win": "the part before noon and the part after it are written either side of the noon post, and their sum is the duration",
+        "does": "hops from the start to 12 noon, then on through the afternoon to the end flag, and adds the part before noon to the part after it",
+        "goal": "across noon, count on to 12 noon, then on through the afternoon, and add the two parts",
+        "says": "Stop at twelve noon first. How long is it before noon, and how long after it?",
+        "check": "A fair runs from 10:25 a.m. to 4:10 p.m. How long is it? Say the part before noon and the part after it.",
+        "feels": "noon is a stop on the way, and the stretch is two pieces that each stay in one half of the day",
+        "hands": "Mark a paper strip of the day with a tall post at noon. Groups pick a morning start and an afternoon end from the school day, count on to the noon post first and write that part, then count on from noon to the end and write the second part, and add the two.",
+        "tries": "First rung, from the item: are the flags on the same side of noon? Second rung, the phase's: how long is it from the start to 12 noon? Third rung: the flags are cut to one time just before noon and one just after it, and the child finds the two parts before the longer stretch comes back. The pad stays open.",
+        "wrong": [
+          {
+            "why": "nine is the bigger number, and the bigger number is the one that gets taken from.",
+            "move": "takes 3:25 away from 9:50 because three looks smaller than nine, and answers six hours twenty-five minutes for a stall open from 9:50 a.m. to 3:25 p.m.",
+            "screen": "both flags are planted, the start in the sky blue half and the end in the amber half, with the noon post lit between them. The hopper hops ten minutes to ten o'clock and two hours to 12 noon and stops on the post, then three hours and twenty-five minutes on to the end flag. The two green boxes add to five hours thirty-five minutes, and the child's answer stays in the slot beside the total."
+          },
+          {
+            "why": "the afternoon clock starts again at twelve, so 2:05 p.m. looks like two hours and five minutes of something.",
+            "move": "answers two hours five minutes for a picnic from 11:20 a.m. to 2:05 p.m., counting only the part after noon.",
+            "screen": "the hopper stops on the noon post, and the box to its left fills with the part before noon, forty minutes, which the child's answer left out. The box to the right fills with two hours five minutes, and the two slide down into the total bar: two hours forty-five minutes, beside the child's answer in the slot."
+          }
+        ],
+        "screen": "the start flag in the morning, the end flag in the afternoon, and the noon post lit",
+        "soWhat": "Across noon, count on to 12 noon, then on through the afternoon, and add the two parts.",
+        "concept": "Across twelve noon"
+      },
+      {
+        "n": 3,
+        "win": "the end flag settles, and its time is written with a.m. or p.m.",
+        "does": "hops the hours of the duration, then its minutes, crossing an hour post or the noon post where it must, and plants the end flag",
+        "goal": "a start time and a duration give the end time, counting on the hours and then the minutes",
+        "says": "Hop the hours first, then the minutes. Where do you land?",
+        "check": "A match starts at 11:40 a.m. and lasts two hours thirty-five minutes. When does it end?",
+        "feels": "the duration is a set of hops, and where the last one lands says both the time and its half of the day",
+        "hands": "Give each group a start time and a duration card, such as a trip that leaves at 10:45 a.m. and lasts two hours twenty-five minutes. They move a counter along a paper strip of the day, the hours first and then the minutes, and say the label where it lands.",
+        "tries": "First rung, from the item: where does the start flag stand? Second rung, the phase's: where do the hours of the duration land, before the minutes? Third rung: the card is cut to whole hours only, and the child hops them before the minutes come back. The pad and the label keys stay open.",
+        "wrong": [
+          {
+            "why": "adding hours to hours and minutes to minutes works for durations, and eighty-five looks like just a bigger number of minutes.",
+            "move": "adds the minutes to make eighty-five and writes 1:85 p.m. for three hours thirty-five minutes after 10:50 a.m.",
+            "screen": "the zoom lens widens the hour after 1:50 p.m., and the hopper's last hop reaches the two o'clock post after ten minutes, with twenty-five of the thirty-five still to go. The hop goes on past the post to 2:25 p.m. An hour on the clock above holds sixty marks, so no time on it reads eighty-five minutes past one, and the child's answer stays in the slot."
+          },
+          {
+            "why": "the start had a.m., and nothing about adding a duration seems to touch the label.",
+            "move": "keeps the a.m. of the start and writes 2:25 a.m. for three hours thirty-five minutes after 10:50 a.m.",
+            "screen": "the hopper's hours cross the noon post, which lights, and the end flag's pennant is written in the amber half as 2:25 p.m. A pale flag stands in the sky blue half at 2:25 a.m., at night, and the child's answer stays in the slot."
+          }
+        ],
+        "screen": "a start flag and a duration card, with the end flag in the hopper's hand",
+        "soWhat": "A start time and a duration give the end time: count on the hours, then the minutes, and write a.m. or p.m. for where it lands.",
+        "concept": "From a start and a duration"
+      },
+      {
+        "n": 4,
+        "win": "the start flag settles, and its time is written with a.m. or p.m.",
+        "does": "hops back the hours, then the minutes, crossing an hour post or the noon post where it must, and plants the start flag",
+        "goal": "counting back the hours and then the minutes from a time gives the time before it",
+        "says": "Hop back the hours first. Now the minutes. What time is it?",
+        "check": "What time was it one hour fifty minutes before 12:30 p.m.?",
+        "feels": "going back is the same hops the other way, and crossing noon backwards turns the label back to a.m.",
+        "hands": "Stand a counter on a paper strip of the day at 1:30 p.m. and ask what time it was two hours fifteen minutes before. Count back the hours first, past the noon post, then the minutes, and say the label where it lands.",
+        "tries": "First rung, from the item: which way does the hopper face? Second rung, the phase's: where do the hours land, going back? Third rung: the card is cut to whole hours only, and the child hops them back before the minutes come back. The pad and the label keys stay open.",
+        "wrong": [
+          {
+            "why": "the given time was p.m., and counting back feels like staying in the same afternoon.",
+            "move": "keeps p.m. after counting back past noon, and writes 10:15 p.m. for two hours fifty minutes before 1:05 p.m.",
+            "screen": "the hopper turns and hops back two whole hours, over the noon post, which lights, to 11:05 a.m. in the sky blue half, then five minutes back to the eleven o'clock post and forty-five more to 10:15 a.m. A pale flag shows the child's 10:15 p.m. late in the amber half, and the child's answer stays in the slot."
+          },
+          {
+            "why": "taking away in columns is the move practised with whole numbers, and the colon is easy to read as one more place in a number.",
+            "move": "takes forty-five from 720 as whole numbers and writes 6:75 a.m. for forty-five minutes before 7:20 a.m.",
+            "screen": "the zoom lens widens the hour before 7:20 a.m., and the hopper hops back twenty minutes to the seven o'clock post and twenty-five more to 6:35 a.m. An hour on the clock above holds sixty marks, so no time on it reads seventy-five minutes past six, and the child's answer stays in the slot."
+          },
+          {
+            "why": "the count starts from noon, and counting on is the move the first three phases practise.",
+            "move": "counts forward from noon instead of back, and writes 2:50 p.m. for the time one hundred and seventy minutes before noon.",
+            "screen": "the back switch lights and the hopper faces back along the track. The card writes one hundred and seventy minutes as two hours fifty minutes, sixty and sixty and fifty, and the hopper hops back two hours to 10:00 a.m. and fifty minutes more to 9:10 a.m. A pale flag shows the child's 2:50 p.m. on the other side of the noon post, and the child's answer stays in the slot."
+          }
+        ],
+        "screen": "an end flag and a duration card, with the hopper turned to face back along the track",
+        "soWhat": "Count back the hours, then the minutes, and change p.m. to a.m. when the count passes 12 noon.",
+        "concept": "Counting back"
+      }
+    ],
+    "delight": "The second phase, the moment the hopper lands on 12 noon. It stops on top of the tall post under the sun, the part before noon is written in its green box on the left, and the next hop leaves the post over amber track. When the last hop lands on the end flag, the two green boxes slide down into the total bar and add, and if their minutes come to sixty or more an hour rolls up in wine and joins the hours. It can be run as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the start flag and the end flag stand in the same morning or the same evening, with the hopper waiting at the start flag and the total bar empty. On the second the start flag stands in the morning and the end flag in the afternoon, and the tall noon post is lit under its sun. On the third a start flag stands on the track with a duration card beside it, and the end flag is in the hopper's hand. On the fourth an end flag stands on the track with a duration card beside it, and the hopper faces back along the track. The running count at the top left holds the hops made against the hops this count needs, and the answer slot and the pad stand empty down the right. One thing moves, once: the hopper, or the noon post, or the duration card, or the back switch, gives one slow pulse while the voice asks where the next hour is. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "The whole track with both flags, the hopper forward and back, the duration cards, the total bar and the clock all open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on counting on to the next hour, durations across 12 noon, end times from a start and a duration, and counting back.",
+    "voiceLines": [
+      "A track of the whole day, a start flag and an end flag. Where is the next hour?",
+      "Hop to the next hour first. How far is that? Now hop on to the end.",
+      "Stop at twelve noon first. How long is it before noon, and how long after it?",
+      "Hop the hours first, then the minutes. Where do you land?",
+      "Hop back the hours first. Now the minutes. What time is it?",
+      "A new pair of times. Plant both flags before you hop.",
+      "Free play. The whole track, both flags, the hopper both ways and the duration cards open.",
+      "Hop to the next hour first, and stop at noon if the flags are either side of it.",
+      "Durations counted on to the next hour, noon crossed with a stop, and end and start times found."
+    ],
+    "observations": [
+      {
+        "why": "Counting on to the next hour makes each part easy to count, and each whole hour in the middle is sixty minutes.",
+        "soWhat": "Count on to the next hour, then whole hours, then the minutes to the end, and add the parts.",
+        "observe": "The hops landed on the next hour post, then on each whole hour, then on the end flag, and the total bar added them."
+      },
+      {
+        "why": "The label changes at noon, so the count is made in two parts that each stay in one half of the day.",
+        "soWhat": "Across noon, count on to 12 noon, then on through the afternoon, and add the two parts.",
+        "observe": "The hopper would not jump the noon post, and the part before noon and the part after it were written either side of it."
+      },
+      {
+        "why": "The duration says how far to go from the start, and the half of the track where the flag lands gives its label.",
+        "soWhat": "A start time and a duration give the end time: count on the hours, then the minutes, and write a.m. or p.m. for where it lands.",
+        "observe": "The end flag landed once the hours and then the minutes were hopped, and its pennant took the label of the half it stood in."
+      },
+      {
+        "why": "Counting back past noon moves the time out of the afternoon half and into the morning half.",
+        "soWhat": "Count back the hours, then the minutes, and change p.m. to a.m. when the count passes 12 noon.",
+        "observe": "Hopping back, the flag landed in the morning half after the hopper crossed the noon post."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the start and end flags planted in the same morning or evening, with the hopper at the start flag",
+        "win": "the hops are drawn over the track with their lengths, and the total bar writes the duration",
+        "traceback": "The hopper runs from the start flag to the next hour post, then the whole hours, then the minutes to the end flag; the total bar adds the hops, and a pale flag stands where the child's answer would end.",
+        "ladder": [
+          "How far is it from the start to the next hour?",
+          "An hour has 60 minutes, not 100. Count on to eight o'clock first.",
+          "Start at 2:40. How many minutes until the three o'clock post?",
+          "How many whole hours come after that?",
+          "Add the minutes of the short hops, then the whole hours."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the start flag in the morning, the end flag in the afternoon, and the noon post lit",
+        "win": "the part before noon and the part after it are written either side of the noon post, and their sum is the duration",
+        "traceback": "The hopper stops on the 12 noon post; the part before noon and the part after it fill two boxes in the total bar and add, and a pale flag stands where the child's answer would end.",
+        "ladder": [
+          "Are the flags on the same side of noon?",
+          "The shop opens in the morning. Did you count the hours before noon?",
+          "The picnic begins before noon. Did your count start there?",
+          "How long is it from the start to 12 noon?",
+          "Add the part before noon to the part after noon."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a start flag and a duration card, with the end flag in the hopper's hand",
+        "win": "the end flag settles, and its time is written with a.m. or p.m.",
+        "traceback": "From the start flag the hopper hops the card's whole hours, then its minutes, stopping on the hour post they cross; the end flag is planted with its time and its half of the day, and a pale flag stands at the child's time.",
+        "ladder": [
+          "Where does the start flag stand?",
+          "Sixty minutes make an hour. Did your minutes pass an hour post?",
+          "It leaves in the morning. Does it come back before or after noon?",
+          "Where do the hours of the duration land, before the minutes?",
+          "Now work out the minutes, and stop at the hour post on the way."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "an end flag and a duration card, with the hopper turned to face back along the track",
+        "win": "the start flag settles, and its time is written with a.m. or p.m.",
+        "traceback": "The hopper faces back and hops the card's whole hours, then its minutes, stopping on the hour post; crossing noon turns p.m. to a.m.; the start flag is planted with its time, and a pale flag stands at the child's time.",
+        "ladder": [
+          "Which way does the hopper face?",
+          "Going back past seven o'clock, how many minutes are left to go back?",
+          "Going back from noon, is the time earlier or later?",
+          "Where do the hours land, going back?",
+          "Did your count back cross 12 noon? Then the half of the day changes."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "minutesInHour": 60,
+    "noon": 720,
+    "day": 1440,
+    "method": "count on to the next hour post, then the whole hours in one hop (landing on 12 noon when the two times stand either side of it), then the minutes; a duration card hops its whole hours, then its minutes, which stop on the hour post they cross",
+    "dayStrip": {
+      "x": 216,
+      "y": 18,
+      "w": 860,
+      "h": 36,
+      "am": "midnight to noon, sky blue",
+      "pm": "noon to midnight, amber"
+    },
+    "lensTrack": {
+      "x": 16,
+      "y": 334,
+      "w": 1054,
+      "h": 40,
+      "window": "the hours around the flags, one hour of margin each side (around the card's reach both ways for a card)"
+    },
+    "totalBar": {
+      "x": 16,
+      "y": 466,
+      "w": 1054,
+      "h": 58,
+      "adds": "the hops; across noon the part before and the part after it"
+    },
+    "clock": {
+      "cx": 100,
+      "cy": 102,
+      "r": 90,
+      "follows": "the hopper"
+    },
+    "free": {
+      "start": 510,
+      "end": 855,
+      "cards": [
+        45,
+        90,
+        170
+      ]
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T7.C24:ML1",
+        "kind": "span",
+        "s": 408,
+        "e": 545,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "winMs": 2600,
+        "answer": [
+          2,
+          17
+        ],
+        "near": [
+          2,
+          57
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T7.C24:1",
+        "kind": "span",
+        "s": 1165,
+        "e": 1215,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "winMs": 2600,
+        "answer": [
+          0,
+          50
+        ],
+        "near": [
+          0,
+          90
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T7.C24:2",
+        "kind": "span",
+        "s": 880,
+        "e": 965,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "winMs": 2600,
+        "answer": [
+          1,
+          25
+        ],
+        "near": [
+          1,
+          65
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T7.C25:ML2",
+        "kind": "span",
+        "s": 590,
+        "e": 925,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "winMs": 2800,
+        "answer": [
+          5,
+          35
+        ],
+        "near": [
+          6,
+          25
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T7.C25:3",
+        "kind": "span",
+        "s": 525,
+        "e": 1110,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "winMs": 2800,
+        "answer": [
+          9,
+          45
+        ],
+        "near": [
+          2,
+          15
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T7.C25:4",
+        "kind": "span",
+        "s": 680,
+        "e": 845,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "winMs": 2800,
+        "answer": [
+          2,
+          45
+        ],
+        "near": [
+          2,
+          5
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T7.C26:ML3",
+        "kind": "after",
+        "a": 650,
+        "d": 215,
+        "card": "3 h 35 min",
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "winMs": 2800,
+        "answer": "2:25 p.m.",
+        "near": "1:85 p.m."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T7.C26:5",
+        "kind": "after",
+        "a": 935,
+        "d": 100,
+        "card": "1 h 40 min",
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "winMs": 2800,
+        "answer": "5:15 p.m.",
+        "near": "4:75 p.m."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T7.C26:7",
+        "kind": "after",
+        "a": 565,
+        "d": 290,
+        "card": "4 h 50 min",
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "winMs": 2800,
+        "answer": "2:15 p.m.",
+        "near": "2:15 a.m."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T7.C27:ML4",
+        "kind": "before",
+        "a": 785,
+        "d": 170,
+        "card": "2 h 50 min",
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "winMs": 2800,
+        "answer": "10:15 a.m.",
+        "near": "10:15 p.m."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T7.C27:6",
+        "kind": "before",
+        "a": 440,
+        "d": 45,
+        "card": "45 min",
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "winMs": 2800,
+        "answer": "6:35 a.m.",
+        "near": "6:75 a.m."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T7.C27:8",
+        "kind": "before",
+        "a": 720,
+        "d": 170,
+        "card": "170 min",
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "winMs": 2800,
+        "answer": "9:10 a.m.",
+        "near": "2:50 p.m."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The hopper runs from the start flag to the next hour post, then the whole hours, then the minutes to the end flag; the total bar adds the hops, and a pale flag stands where the child's answer would end.",
+      "Phase 2: The hopper stops on the 12 noon post; the part before noon and the part after it fill two boxes in the total bar and add, and a pale flag stands where the child's answer would end.",
+      "Phase 3: From the start flag the hopper hops the card's whole hours, then its minutes, stopping on the hour post they cross; the end flag is planted with its time and its half of the day, and a pale flag stands at the child's time.",
+      "Phase 4: The hopper faces back and hops the card's whole hours, then its minutes, stopping on the hour post; crossing noon turns p.m. to a.m.; the start flag is planted with its time, and a pale flag stands at the child's time."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A track of the whole day, a start flag and an end flag. Where is the next hour?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Durations counted on to the next hour, noon crossed with a stop, and end and start times found.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T7.C24:ML1",
+            "worked": false,
+            "kind": "span",
+            "planQuestion": "A train leaves at 6:48 a.m. and arrives at 9:05 a.m. How long is the journey?",
+            "question": {
+              "en": "A train leaves at 6:48 a.m., and arrives at 9:05 a.m. How long is the journey?"
+            },
+            "ask": {
+              "en": "How long is the journey?"
+            },
+            "answer": [
+              2,
+              17
+            ],
+            "planAnswer": "2 hours 17 minutes",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T7.C24:1",
+            "worked": false,
+            "kind": "span",
+            "planQuestion": "How long is it from 7:25 p.m. to 8:15 p.m.?",
+            "question": {
+              "en": "It starts at 7:25 p.m., and it ends at 8:15 p.m. How much time goes by?"
+            },
+            "ask": {
+              "en": "How much time goes by?"
+            },
+            "answer": [
+              0,
+              50
+            ],
+            "planAnswer": "50 minutes: 35 minutes to 8:00 p.m. and 15 more",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T7.C24:2",
+            "worked": false,
+            "kind": "span",
+            "planQuestion": "A class visit to a museum runs from 2:40 p.m. to 4:05 p.m. How long is it?",
+            "question": {
+              "en": "A class visit to a museum starts at 2:40 p.m., and ends at 4:05 p.m. How long does the visit last?"
+            },
+            "ask": {
+              "en": "How long is the visit?"
+            },
+            "answer": [
+              1,
+              25
+            ],
+            "planAnswer": "1 hour 25 minutes: 20 minutes to 3:00 p.m., 1 hour to 4:00 p.m., and 5 minutes more",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T7.C25:ML2",
+            "worked": false,
+            "kind": "span",
+            "planQuestion": "A market stall opens at 9:50 a.m. and closes at 3:25 p.m. How long is it open?",
+            "question": {
+              "en": "A market stall opens at 9:50 a.m., and closes at 3:25 p.m. How long is it open?"
+            },
+            "ask": {
+              "en": "How long is the stall open?"
+            },
+            "answer": [
+              5,
+              35
+            ],
+            "planAnswer": "5 hours 35 minutes",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T7.C25:3",
+            "worked": false,
+            "kind": "span",
+            "planQuestion": "A shop opens at 8:45 a.m. and closes at 6:30 p.m. How long is it open?",
+            "question": {
+              "en": "A shop opens at 8:45 a.m., and closes at 6:30 p.m. For how many hours and minutes is the shop open?"
+            },
+            "ask": {
+              "en": "How long is the shop open?"
+            },
+            "answer": [
+              9,
+              45
+            ],
+            "planAnswer": "9 hours 45 minutes. Count on to 12 noon, 3 hours 15 minutes, then on to 6:30 p.m., 6 hours 30 minutes",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T7.C25:4",
+            "worked": false,
+            "kind": "span",
+            "planQuestion": "A picnic lasts from 11:20 a.m. to 2:05 p.m. How long is it?",
+            "question": {
+              "en": "A picnic starts at 11:20 a.m., and ends at 2:05 p.m. How much time does the picnic take?"
+            },
+            "ask": {
+              "en": "How long is the picnic?"
+            },
+            "answer": [
+              2,
+              45
+            ],
+            "planAnswer": "2 hours 45 minutes: 40 minutes to 12 noon, then 2 hours 5 minutes",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T7.C26:ML3",
+            "worked": false,
+            "kind": "after",
+            "planQuestion": "A bus trip starts at 10:50 a.m. and takes 3 hours 35 minutes. When does it end?",
+            "question": {
+              "en": "A bus trip starts at 10:50 a.m., and takes 3 hours 35 minutes. When does it end?"
+            },
+            "ask": {
+              "en": "When does the trip end?"
+            },
+            "answer": "2:25 p.m.",
+            "planAnswer": "2:25 p.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T7.C26:5",
+            "worked": false,
+            "kind": "after",
+            "planQuestion": "A game starts at 3:35 p.m. and lasts 1 hour 40 minutes. When does it end?",
+            "question": {
+              "en": "A game starts at 3:35 p.m., and lasts 1 hour 40 minutes. At what time is the game over?"
+            },
+            "ask": {
+              "en": "When does the game end?"
+            },
+            "answer": "5:15 p.m.",
+            "planAnswer": "5:15 p.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T7.C26:7",
+            "worked": false,
+            "kind": "after",
+            "planQuestion": "A school trip leaves at 9:25 a.m. and lasts 4 hours 50 minutes. When does it get back?",
+            "question": {
+              "en": "A school trip leaves at 9:25 a.m., and lasts 4 hours 50 minutes. When does it get back?"
+            },
+            "ask": {
+              "en": "When is it back?"
+            },
+            "answer": "2:15 p.m.",
+            "planAnswer": "2:15 p.m. Four hours after 9:25 a.m. is 1:25 p.m., and 50 minutes more cross two o'clock to 2:15 p.m.",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T7.C27:ML4",
+            "worked": false,
+            "kind": "before",
+            "planQuestion": "What time was it 2 hours 50 minutes before 1:05 p.m.?",
+            "question": {
+              "en": "What time was it 2 hours 50 minutes before 1:05 p.m.?"
+            },
+            "ask": {
+              "en": "What time was it?"
+            },
+            "answer": "10:15 a.m.",
+            "planAnswer": "10:15 a.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T7.C27:6",
+            "worked": false,
+            "kind": "before",
+            "planQuestion": "What time was it 45 minutes before 7:20 a.m.?",
+            "question": {
+              "en": "Which time is 45 minutes before 7:20 a.m.?"
+            },
+            "ask": {
+              "en": "What time was that?"
+            },
+            "answer": "6:35 a.m.",
+            "planAnswer": "6:35 a.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T7.C27:8",
+            "worked": false,
+            "kind": "before",
+            "planQuestion": "What was the time 170 minutes before noon?",
+            "question": {
+              "en": "170 minutes before noon: what was the time then?"
+            },
+            "ask": {
+              "en": "What was the time?"
+            },
+            "answer": "9:10 a.m.",
+            "planAnswer": "9:10 a.m. 170 minutes is 2 hours 50 minutes, and counting back that far from 12 noon gives 9:10 a.m.",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "duration_track",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "duration_track",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Counting on to the next hour",
+        "conceptId": "M2.S4.T7.C24",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C24:ML1",
+          "M2.S4.T7.C24:1",
+          "M2.S4.T7.C24:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Across twelve noon",
+        "conceptId": "M2.S4.T7.C25",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C25:ML2",
+          "M2.S4.T7.C25:3",
+          "M2.S4.T7.C25:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "From a start and a duration",
+        "conceptId": "M2.S4.T7.C26",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C26:ML3",
+          "M2.S4.T7.C26:5",
+          "M2.S4.T7.C26:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Counting back",
+        "conceptId": "M2.S4.T7.C27",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C27:ML4",
+          "M2.S4.T7.C27:6",
+          "M2.S4.T7.C27:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "startFlag",
+    "endFlag",
+    "hops",
+    "t",
+    "k",
+    "durationCard",
+    "card",
+    "direction",
+    "label",
+    "total",
+    "card"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, startFlag, endFlag, hops, t, k, durationCard, card, direction, label, total, card",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "duration_track"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T7.C24.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A track of the whole day, a start flag and an end flag. Where is the next hour?"
+    },
+    {
+      "en": "Hop to the next hour first. How far is that? Now hop on to the end."
+    },
+    {
+      "en": "Stop at twelve noon first. How long is it before noon, and how long after it?"
+    },
+    {
+      "en": "Hop the hours first, then the minutes. Where do you land?"
+    },
+    {
+      "en": "Hop back the hours first. Now the minutes. What time is it?"
+    },
+    {
+      "en": "A new pair of times. Plant both flags before you hop."
+    },
+    {
+      "en": "Free play. The whole track, both flags, the hopper both ways and the duration cards open."
+    },
+    {
+      "en": "Hop to the next hour first, and stop at noon if the flags are either side of it."
+    },
+    {
+      "en": "Durations counted on to the next hour, noon crossed with a stop, and end and start times found."
+    }
+  ],
+  "build": {
+    "source": "c53ed975:1660121",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-24T18:48:30.957Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-24T18:48:29.708Z"
+    },
+    "tsxBytes": 1650557,
+    "tsxMd5": "89457917aa14de1fb7822073ef79261f"
+  }
+}

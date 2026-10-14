@@ -1,260 +1,359 @@
 /* ═══ M1.S1.T2.C4.2D1 · tenth_strip · tool-specific part ═══════════════════════════════
    runtime/runtime.tsx (+ runtime/mascot.tsx) is prepended at build, so everything outside the
-   working area already exists: header + its three controls, canvas, slot + pad, bubble + mascot,
-   phase dots (user / AI mode), window.toolApi, sounds, the synced voice, scoring, the events,
-   idle and restart. NO imports in this file; only the five host hooks. Follow docs/LAYOUT.md.
-   Edit, never rewrite. Built by `node cli.mjs scaffold`; concepts are verbatim (check compares them). */
+   working area already exists: header + its three controls, canvas, the question bar and the answer
+   panel (board layout), bubble + mascot, phase dots, window.toolApi, the sound effects, scoring, the
+   events, idle and restart. THE LESSON IS SILENT (runtime r30): nothing is spoken; every line is
+   printed on the bubble, which is the guide. The lesson is action-driven (r34): every phase opens on
+   guide steps, one click each, and nothing moves on unless the child acts.
+   The picture: a strip that is one named whole, cut into ten equal pieces (amber when coloured), with
+   two writing cards along its foot, a Fraction card (stacked) and a Decimal card ([ones] . [tenths]),
+   joined by a bar that fills only when both carry the amount. Fractions and decimals of phases 1-3 are
+   answered ON their card (cardAnswer, PATTERNS 9e); phase 4's decimals are typed whole with the point
+   key, so a bare point and a digit can be written and corrected.
+   NO imports in this file; only the five host hooks. Follow docs/LAYOUT.md and docs/PATTERNS.md. */
 
 const TOOL_ID = "tenth_strip";
 const MEDIA_ID = "M1.S1.T2.C4.2D1";
 const TOOL_NAME = "Tenth Strip";
 const CHROME = {"dim":"#9AA4AC","ink":"#2B2B2B","rule":"#C9BCA6","panel":"#F2E4CE","paper":"#FFFDF7","accent":"#5B6770"};
+/* kept for the tool object's shape (and the sidecar); nothing speaks from r30 */
 const VOICE = {"rate":0.92,"pitch":1.06};
 
-/* spoken before phase 1's teach lines only (the plan's opening voice line) */
-const OPENING = ["A long strip, and nothing cut yet."];
-/* the whole-tool line: spoken on the summary page */
+/* printed on the bubble before phase 1's teach lines only (not shown: phase 1 has steps) */
+const OPENING = ["A long strip, and nothing cut yet. Say what it is before the cutter runs."];
+/* the whole-tool line (not shown from r44; kept for the sidecar) */
 const FINISH_LINE = "Every share written twice over, and the zero standing in the ones place each time.";
-/* said when the child opens Free play from the summary page (the plan's free-play voice line) */
-const FREE_LINE = "Free play. Name a whole, cut it, colour any pieces, and both writings follow.";
+/* printed when the child opens Free play: every control it names is live in the free branch of Work */
+const FREE_LINE = "Free play: name, cut evenly or by eye, colour and measure.";
 
-/* Hindi and Gujarati, keyed by the English line exactly (runtime r21: `lineFor(line, lang, TR)`); the English
-   everywhere else stays what the checks read. Terms follow NCERT class 4: decimal दशमलव / દશાંશ, decimal point
-   दशमलव बिंदु / દશાંશ ચિહ્ન, tenth दसवाँ भाग / દશમો ભાગ, hundredth सौवाँ भाग / સોમો ભાગ, whole पूर्ण / પૂર્ણ.
-   Digits stay digits (the runtime speaks 0.3 as words). A first draft; wants a native speaker's read. */
+/* THE START PAGE (runtime r28; docs/LAYOUT.md §1c): one question to wonder at, and the object itself. */
+const START_HOOK = "What is this strip a strip of?";
+function StartArt({ box, C, lang, tx = (v: any) => v }: any) {
+  const w = 1000, h = 120, x = (box.w - w) / 2, y = 124;
+  return (
+    <g>
+      {/* the name tag, still empty */}
+      <rect x={x} y={y - 104} width={330} height={76} rx={16} fill="#FFFFFF" stroke={C.rule} strokeWidth={2} />
+      <text x={x + 22} y={y - 56} fontSize={T.micro} fontWeight={700} fill={TS_INK2}>{tx("Whole")}</text>
+      <text x={x + 150} y={y - 50} fontSize={T.prompt} fontWeight={700} fill={C.accent}>?</text>
+      {/* one long strip, nothing cut */}
+      <rect x={x} y={y} width={w} height={h} rx={18} fill={TS_SHEET} stroke={TS_LINE} strokeWidth={3} filter="url(#fShadowSoft)" />
+      {/* the rail and the cutter parked at its left end */}
+      <rect x={x} y={y + h + 52} width={w} height={10} rx={5} fill={tint(C.rule, 0.2)} />
+      <g transform={`translate(${x + 18},${y + h + 6})`}>
+        <path d="M 0 0 L 40 0 L 20 44 Z" fill="#B9C2C8" stroke={TS_LINE} strokeWidth={2.5} strokeLinejoin="round" />
+        <rect x={-6} y={44} width={52} height={22} rx={8} fill={shade(C.accent, 0.1)} stroke={TS_LINE} strokeWidth={2} />
+      </g>
+    </g>
+  );
+}
+
+/* Hindi and Gujarati (docs/PATTERNS.md §11): filled in the language pass, once the English is final. */
 const TR: any = {
   hi: {
     "Tenth Strip": "दसवाँ भाग पट्टी",
-    "A long strip, and nothing cut yet.": "एक लंबी पट्टी, और अभी कुछ कटा नहीं है।",
-    "Every share written twice over, and the zero standing in the ones place each time.": "हर हिस्सा दो बार लिखा गया, और हर बार इकाई के स्थान पर शून्य खड़ा रहा।",
-    "Free play. Name a whole, cut it, colour any pieces, and both writings follow.": "मुक्त खेल। एक पूर्ण का नाम चुनो, उसे काटो, कोई भी टुकड़े रंग दो, और दोनों रूप साथ-साथ बदलेंगे।",
+    "Free play: name, cut evenly or by eye, colour and measure.": "मुक्त खेल: नाम चुनो, बराबर या अंदाज़ से काटो, रंगो और नापो।",
+    "Tap Measure to lay them down.": "नापो दबाकर टुकड़े लिटा दो।", "standing pieces": "खड़े टुकड़े",
+    "What is this strip a strip of?": "यह पट्टी किस चीज़ की है?",
     /* phase 1 */
     "Splitting one into ten equal parts": "एक को दस बराबर भागों में बाँटना",
-    "Nothing is a tenth on its own. Say what this strip is, then cut it into ten.": "कोई भी टुकड़ा अकेले दसवाँ भाग नहीं होता। बताओ यह पट्टी क्या है, फिर इसे दस भागों में काटो।",
-    "Are they all the same size?": "क्या ये सब एक ही माप के हैं?",
-    "Stand two pieces side by side. Is one longer?": "दो टुकड़े साथ-साथ खड़े करो। क्या एक लंबा है?",
-    "One whole cut into ten equal parts gives tenths, and the parts must be the same size.": "एक पूर्ण को दस बराबर भागों में काटने से दसवें भाग बनते हैं, और सब भाग एक ही माप के होने चाहिए।",
+    "Tap a name for this strip.": "इस पट्टी का नाम चुनो।",
+    "Name the strip before you cut it.": "काटने से पहले पट्टी का नाम चुनो।",
+    "Tap Cut to cut ten equal pieces.": "काटो दबाकर दस बराबर टुकड़े करो।",
+    "Tap the Cut key.": "काटो वाली कुंजी दबाओ।",
+    "Tap Measure to stand them up.": "नापो दबाकर टुकड़े खड़े करो।",
+    "Tap the Measure key.": "नापो वाली कुंजी दबाओ।",
+    "Are all ten pieces the same size?": "क्या दसों टुकड़े एक माप के हैं?",
+    "A tenth is one of ten equal parts.": "दस बराबर भागों में एक, दसवाँ भाग है।",
+    "Ten equal parts of one whole are tenths, and the parts must be the same size.": "एक पूर्ण के दस बराबर भाग दसवें भाग हैं, और सब भाग एक माप के हों।",
     "You learned: ten equal parts of one whole are tenths.": "तुमने सीखा: एक पूर्ण के दस बराबर भाग दसवें भाग होते हैं।",
-    "Write the coloured part": "रंगा हुआ भाग लिखो",
-    "Name this strip, cut it into ten equal pieces, then colour six of them. Write the coloured part as a fraction.": "इस पट्टी का नाम चुनो, इसे दस बराबर टुकड़ों में काटो, फिर छह टुकड़ों में रंग भरो। रंगे हुए भाग को भिन्न के रूप में लिखो।",
-    "How many pieces is this strip cut into?": "यह पट्टी कितने टुकड़ों में कटी है?",
-    "Write it with a point": "इसे दशमलव बिंदु से लिखो",
-    "This ribbon is already cut into ten. Colour three pieces and write that part with a point.": "यह रिबन पहले से दस भागों में कटा है। तीन टुकड़ों में रंग भरो और उस भाग को दशमलव बिंदु से लिखो।",
-    "Count the coloured pieces again, slowly.": "रंगे हुए टुकड़े फिर से गिनो, धीरे-धीरे।",
+    "Write the coloured part of the strip as a fraction.": "रंगे भाग को भिन्न में लिखो।",
+    "Coloured part as a fraction?": "रंगा भाग भिन्न में?",
+    "The bottom counts every piece.": "नीचे की संख्या सब टुकड़े गिनती है।",
+    "Write the three coloured pieces with a point.": "तीन रंगे टुकड़े दशमलव बिंदु से लिखो।",
+    "Coloured part with a point?": "रंगा भाग दशमलव बिंदु से?",
+    "Is a whole strip coloured?": "क्या पूरी पट्टी रंगी है?",
+    "Folded without measuring, is a short piece still one tenth?": "बिना नापे कटा छोटा टुकड़ा दसवाँ भाग है?",
     "Is a short piece a tenth?": "क्या छोटा टुकड़ा दसवाँ भाग है?",
-    "No": "नहीं", "Yes": "हाँ",
-    "This strip was folded by eye, so two pieces came out longer. Can a short piece be called one tenth?": "यह पट्टी अंदाज़ से मोड़ी गई थी, इसलिए दो टुकड़े लंबे निकले। क्या छोटे टुकड़े को एक दसवाँ भाग कह सकते हैं?",
-    "Stand the pieces against one another and look.": "टुकड़ों को एक-दूसरे के पास रखकर देखो।",
+    "Stand the pieces up and compare them.": "टुकड़े खड़े करके आपस में मिलाओ।",
+    "Yes": "हाँ", "No": "नहीं",
     /* phase 2 */
-    "The same amount, written with a point": "उतनी ही मात्रा, दशमलव बिंदु से लिखी",
-    "Write it over ten. Now write the very same thing with a point.": "इसे दस भागों वाली भिन्न में लिखो। अब ठीक वही दशमलव बिंदु से लिखो।",
-    "Which part of the strip did you colour?": "तुमने पट्टी का कौन सा भाग रंगा?",
-    "The point splits the whole ones from the pieces of one.": "बिंदु पूरी इकाइयों को एक के टुकड़ों से अलग करता है।",
-    "A share written over ten and a share written with a point say one amount.": "दस भागों वाली भिन्न में लिखा हिस्सा और बिंदु से लिखा हिस्सा, एक ही मात्रा बताते हैं।",
-    "You learned: a fraction over ten and a decimal say one amount.": "तुमने सीखा: दस भागों वाली भिन्न और दशमलव एक ही मात्रा बताते हैं।",
-    "Colour four of the ribbon's ten lengths, then write that part with a point.": "रिबन की दस लंबाइयों में से चार में रंग भरो, फिर उस भाग को दशमलव बिंदु से लिखो।",
-    "How many lengths did you colour?": "तुमने कितनी लंबाइयों में रंग भरा?",
-    "The milk stands at the eighth mark. Colour up to it and write the amount with a point.": "दूध आठवें निशान पर है। वहाँ तक रंग भरो और मात्रा को दशमलव बिंदु से लिखो।",
-    "Which mark is the milk standing at?": "दूध किस निशान पर है?",
-    "Tap the decimal point": "दशमलव बिंदु पर टैप करो",
-    "This number says seven tenths. Tap the part of it that is the decimal point.": "यह संख्या सात दसवें भाग बताती है। इसका वह भाग टैप करो जो दशमलव बिंदु है।",
-    "Which part of it is not a digit at all?": "इसका कौन सा भाग अंक है ही नहीं?",
+    "The same amount, written with a point": "वही मात्रा, दशमलव बिंदु से लिखी",
+    "Tap a piece to colour one tenth.": "एक टुकड़ा दबाकर दसवाँ भाग रंगो।",
+    "Tap a piece of the chocolate bar.": "चॉकलेट का एक टुकड़ा दबाओ।",
+    "Tap one more and watch both cards.": "एक और दबाओ, दोनों कार्ड देखो।",
+    "Tap a piece that is still plain.": "बिना रंग का टुकड़ा दबाओ।",
+    "Count the coloured pieces again.": "रंगे टुकड़े फिर से गिनो।",
+    "Both cards must show one amount.": "दोनों कार्ड एक ही मात्रा बताएँ।",
+    "A share over ten and the same share with a point say one amount.": "दस वाली भिन्न और दशमलव, दोनों एक ही मात्रा बताते हैं।",
+    "You learned: a fraction over ten and a decimal say one amount.": "तुमने सीखा: दस वाली भिन्न और दशमलव एक ही मात्रा बताते हैं।",
+    "Write the coloured part of the ribbon as a fraction.": "रिबन के रंगे भाग को भिन्न में लिखो।",
+    "The top counts coloured pieces.": "ऊपर की संख्या रंगे टुकड़े गिनती है।",
+    "In 0.7, what does the 7 count?": "0.7 में 7 क्या गिनता है?",
+    "What does the 7 count?": "7 क्या गिनता है?",
+    "Is the 7 before or after the point?": "7 बिंदु से पहले है या बाद में?",
+    "Look at the seven coloured pieces.": "सात रंगे टुकड़ों को देखो।",
+    "Each piece is one of ten equal parts.": "हर टुकड़ा दस बराबर भागों में एक है।",
+    "tenths": "दसवें भाग", "ones": "इकाई",
+    "Now write the milk with a point.": "अब दूध को दशमलव बिंदु से लिखो।",
+    "How much milk?": "कितना दूध?",
+    "Only one digit goes after the point.": "बिंदु के बाद एक ही अंक आता है।",
     /* phase 3 */
     "Counting more than one tenth": "एक से ज़्यादा दसवें भाग गिनना",
-    "How many tenths are coloured? That is the digit after the point.": "कितने दसवें भाग रंगे हैं? वही बिंदु के बाद का अंक है।",
-    "Which column does that count go in?": "यह गिनती किस खाने में जाती है?",
-    "Go along the strip from the left and count as you go.": "पट्टी पर बाईं ओर से चलो और गिनते जाओ।",
+    "Tap Count to count the pieces.": "गिनो दबाकर टुकड़े गिनो।",
+    "Tap the Count key.": "गिनो वाली कुंजी दबाओ।",
+    "Tap the Decimal card to write it.": "इसे लिखने को दशमलव कार्ड दबाओ।",
+    "It is the card with the point.": "जिस कार्ड में बिंदु है, वही।",
+    "Which place does that count go in?": "यह गिनती किस स्थान में जाती है?",
+    "Count each piece from the left.": "बाईं ओर से हर टुकड़ा गिनो।",
     "The digit after the point counts how many tenths there are.": "बिंदु के बाद का अंक बताता है कि कितने दसवें भाग हैं।",
     "You learned: the digit after the point counts the tenths.": "तुमने सीखा: बिंदु के बाद का अंक दसवें भाग गिनता है।",
-    "A garden is divided into ten equal beds. Colour the seven planted beds and write that part with a point.": "एक बगीचा दस बराबर क्यारियों में बँटा है। बोई हुई सात क्यारियों में रंग भरो और उस भाग को दशमलव बिंदु से लिखो।",
-    "Which beds are you counting, the planted ones or the rest?": "तुम कौन सी क्यारियाँ गिन रहे हो, बोई हुई या बाकी?",
-    "A chapati is cut into ten equal parts and five are eaten. Colour the eaten parts and write them with a point.": "एक रोटी दस बराबर भागों में कटी है और पाँच भाग खा लिए गए। खाए गए भागों में रंग भरो और उन्हें दशमलव बिंदु से लिखो।",
-    "Count the parts that were eaten.": "खाए गए भाग गिनो।",
-    "Write the plain part": "बिना रंग का भाग लिखो",
-    "Nine of this ribbon's ten pieces are coloured. Write the part that is left plain with a point.": "इस रिबन के दस टुकड़ों में से नौ रंगे हैं। जो भाग बिना रंग का बचा है, उसे दशमलव बिंदु से लिखो।",
-    "The question asks for the plain pieces, not the coloured ones.": "प्रश्न बिना रंग वाले टुकड़े पूछ रहा है, रंगे हुए नहीं।",
+    "Write how much is planted.": "लिखो कितना भाग बोया गया है।",
+    "Planted part with a point?": "बोया भाग दशमलव बिंदु से?",
+    "Which pieces are coloured?": "कौन से टुकड़े रंगे हैं?",
+    "How much of the chapati was eaten?": "रोटी का कितना भाग खाया गया?",
+    "Eaten part with a point?": "खाया भाग दशमलव बिंदु से?",
+    "How many pieces were eaten?": "कितने टुकड़े खाए गए?",
+    "Now write the part left plain.": "अब बिना रंग वाला भाग लिखो।",
+    "Plain part with a point?": "बिना रंग का भाग दशमलव बिंदु से?",
+    "Count only the plain pieces.": "सिर्फ़ बिना रंग के टुकड़े गिनो।",
     /* phase 4 */
     "What the zero in front is for": "आगे का शून्य किसलिए है",
-    "Something is missing in front of the point. What is it holding?": "बिंदु के आगे कुछ छूटा है। वह किसे थामे रखता है?",
-    "How many ones are there in front of the point?": "बिंदु के आगे कितनी इकाइयाँ हैं?",
-    "Read it from the left: the column before the point comes first.": "बाईं ओर से पढ़ो: बिंदु से पहले का खाना सबसे पहले आता है।",
-    "The zero before the point holds the ones place open and says there are no whole ones.": "बिंदु से पहले का शून्य इकाई का स्थान खुला रखता है और बताता है कि कोई पूरी इकाई नहीं है।",
+    "Tap the box in front of the point.": "बिंदु के आगे वाला खाना दबाओ।",
+    "Look just left of the point.": "बिंदु के ठीक बाईं ओर देखो।",
+    "Put the grey zero in that box.": "स्लेटी शून्य उस खाने में रखो।",
+    "The 0 tile is at the right.": "0 वाली टाइल दाईं ओर है।",
+    "How many whole ones are there?": "कितनी पूरी इकाइयाँ हैं?",
+    "An empty place still needs a digit.": "खाली स्थान में भी अंक चाहिए।",
+    "Write a zero before the point every time a number is less than one.": "जब संख्या एक से कम हो, बिंदु से पहले शून्य लिखो।",
     "You learned: the zero in front holds the ones place open.": "तुमने सीखा: आगे का शून्य इकाई का स्थान खुला रखता है।",
-    "Write it properly": "इसे सही ढंग से लिखो",
-    "A price in a shop is written as a bare point and a six, with nothing in front of the point. Write that price properly.": "दुकान में एक कीमत सिर्फ़ बिंदु और छह के रूप में लिखी है, बिंदु के आगे कुछ नहीं है। उस कीमत को सही ढंग से लिखो।",
-    "Which column stands in front of the point?": "बिंदु के आगे कौन सा खाना है?",
-    "What is missing?": "क्या छूटा है?",
-    "the whole": "पूर्ण", "the tenths": "दसवें भाग", "the point": "दशमलव बिंदु",
-    "A friend spent two tenths of their pocket money on a pen. What must you be told before you can say the rupees?": "एक दोस्त ने अपने जेब खर्च के दो दसवें भाग से पेन खरीदा। रुपये बताने के लिए तुम्हें पहले क्या जानना होगा?",
-    "A share is always a share of something.": "हिस्सा हमेशा किसी चीज़ का हिस्सा होता है।",
-    "Write the label properly": "लेबल सही ढंग से लिखो",
-    "A weight label reads as a bare point and a four, with kilograms after it. Write the label properly.": "वज़न के लेबल पर सिर्फ़ बिंदु और चार लिखा है, उसके बाद किलोग्राम। लेबल को सही ढंग से लिखो।",
-    "How many kilograms, before any part of one?": "एक के किसी भाग से पहले कितने किलोग्राम?",
-    /* the working area's own words; "no" "yes" "whole" "tenths" "point" are what the slot shows after a choice */
-    "written": "लिखे गए", "free": "मुक्त",
-    "ribbon": "रिबन", "chapati": "रोटी", "milk": "दूध", "garden": "बगीचा",
-    "Measure": "नापो", "By eye": "अंदाज़ से",
-    "ones": "इकाई", "tenths": "दसवें भाग", "hundredths": "सौवें भाग",
-    "one whole": "एक पूर्ण", "pieces": "टुकड़े",
-    "cut by eye": "अंदाज़ से कटे", "your pieces": "तुम्हारे टुकड़े", "cut to ten": "दस में कटे", "ten times apart": "दस गुना अलग",
-    "decimal point": "दशमलव बिंदु", "name the whole": "पूर्ण का नाम बताओ", "not the same size": "एक माप के नहीं",
-    "a share of what?": "किसका हिस्सा?", "coloured": "रंगा हुआ", "plain": "बिना रंग", "ones place held": "इकाई का स्थान थामे",
-    "kg": "किग्रा",
-    "no": "नहीं", "yes": "हाँ", "whole": "पूर्ण", "point": "दशमलव बिंदु",
+    "Write this sign properly.": "इस तख्ती को सही ढंग से लिखो।",
+    "Write the sign properly.": "तख्ती सही ढंग से लिखो।",
+    "Which place is before the point?": "बिंदु से पहले कौन सा स्थान है?",
+    "A pen cost two tenths of the pocket money.": "पेन में जेब खर्च के दो दसवें भाग लगे।",
+    "What must you know to find the pen's rupees?": "पेन के रुपये जानने को क्या पता होना चाहिए?",
+    "Read the story again: what is not told?": "कहानी फिर पढ़ो: क्या नहीं बताया?",
+    "Is two tenths always the same rupees?": "दो दसवें भाग, हमेशा उतने ही रुपये?",
+    "More money makes two tenths bigger.": "ज़्यादा पैसे, तो हिस्सा भी बड़ा।",
+    "how much": "कितने पैसे", "the point": "दशमलव बिंदु",
+    "Now fix this weight label.": "अब यह वज़न का लेबल ठीक करो।",
+    "Write the label properly.": "लेबल सही ढंग से लिखो।",
+    "What stands in front of the point on this label?": "इस लेबल पर बिंदु के आगे क्या है?",
+    /* the win lines (api.say) */
+    "Yes, six of ten equal pieces is six tenths of the strip.": "हाँ, दस बराबर टुकड़ों में से छह, यानी छह दसवें भाग।",
+    "Yes, 0.3 is the same as three tenths.": "हाँ, 0.3 और तीन दसवें भाग एक ही हैं।",
+    "Right, the pieces are not equal, so none of them is a tenth.": "सही, टुकड़े बराबर नहीं हैं, इसलिए कोई भी दसवाँ भाग नहीं है।",
+    "Yes, the Decimal card writes the same amount, and its dot is the decimal point.": "हाँ, दशमलव कार्ड वही मात्रा लिखता है, और उसका बिंदु दशमलव बिंदु है।",
+    "Right, the 7 sits just after the point, in the tenths place.": "सही, 7 बिंदु के ठीक बाद, दसवें भाग के स्थान पर है।",
+    "Yes, the milk is 0.8 of the litre.": "हाँ, दूध एक लीटर का 0.8 भाग है।",
+    "Yes, 0.7 is planted: the 7 counts seven planted tenths.": "हाँ, 0.7 भाग बोया है: 7 बोए गए सात दसवें भाग गिनता है।",
+    "Yes, 0.5 of the chapati was eaten, which is half of it.": "हाँ, रोटी का 0.5 भाग खाया गया, यानी आधी रोटी।",
+    "Yes, 0.1 plain and 0.9 coloured make 1 whole.": "हाँ, 0.1 बिना रंग और 0.9 रंगा मिलकर 1 पूर्ण।",
+    "Yes, 0.6 is six tenths, and the 0 stands in the ones place.": "हाँ, 0.6 यानी छह दसवें भाग, और 0 इकाई के स्थान पर है।",
+    "Right, nobody said how much money there was, so the rupees cannot be found.": "सही, किसी ने नहीं बताया कितने पैसे थे, इसलिए रुपये नहीं निकलते।",
+    "Yes, 0.4 kg: the 0 shows there is no whole kilogram.": "हाँ, 0.4 किलोग्राम: 0 बताता है कि पूरा किलोग्राम नहीं है।",
+    /* the working area's own words (tx) */
+    "Whole": "पूर्ण", "coloured": "रंगा हुआ", "piece": "टुकड़ा",
+    "chocolate bar": "चॉकलेट", "ribbon": "रिबन", "chapati": "रोटी", "1 L milk": "1 लीटर दूध", "garden": "बगीचा",
+    "pocket money": "जेब खर्च", "1 kg": "1 किग्रा", "kg": "किग्रा",
+    "Cut": "काटो", "By eye": "अंदाज़ से", "Measure": "नापो", "Count": "गिनो",
+    "Fraction": "भिन्न", "Decimal": "दशमलव", "Sign": "तख्ती", "Label": "लेबल",
+    "numerator": "अंश", "denominator": "हर", "zero": "शून्य",
+    "no whole ones": "कोई पूरी इकाई नहीं", "10 equal pieces": "10 बराबर टुकड़े",
+    "equal: tenths": "बराबर: दसवें भाग", "not equal: not tenths": "बराबर नहीं: दसवें भाग नहीं",
+    "same two tenths,": "वही दो दसवें भाग,", "different rupees": "अलग अलग रुपये",
   },
   gu: {
     "Tenth Strip": "દશમો ભાગ પટ્ટી",
-    "A long strip, and nothing cut yet.": "એક લાંબી પટ્ટી, અને હજી કંઈ કપાયું નથી.",
-    "Every share written twice over, and the zero standing in the ones place each time.": "દરેક ભાગ બે વાર લખ્યો, અને દરેક વખતે એકમના સ્થાને શૂન્ય ઊભું રહ્યું.",
-    "Free play. Name a whole, cut it, colour any pieces, and both writings follow.": "મુક્ત રમત. એક પૂર્ણનું નામ પસંદ કરો, તેને કાપો, કોઈ પણ ટુકડામાં રંગ પૂરો, અને બંને રૂપ સાથે બદલાશે.",
+    "Free play: name, cut evenly or by eye, colour and measure.": "મુક્ત રમત: નામ પસંદ કરો, સરખું કે અંદાજથી કાપો, રંગો અને માપો.",
+    "Tap Measure to lay them down.": "માપો દબાવી ટુકડા સુવડાવો.", "standing pieces": "ઊભા ટુકડા",
+    "What is this strip a strip of?": "આ પટ્ટી શેની છે?",
     /* phase 1 */
     "Splitting one into ten equal parts": "એકને દસ સરખા ભાગમાં વહેંચવું",
-    "Nothing is a tenth on its own. Say what this strip is, then cut it into ten.": "કોઈ ટુકડો એકલો દશમો ભાગ નથી હોતો. કહો કે આ પટ્ટી શું છે, પછી તેના દસ ભાગ કરો.",
-    "Are they all the same size?": "શું આ બધા એક જ માપના છે?",
-    "Stand two pieces side by side. Is one longer?": "બે ટુકડા બાજુ બાજુમાં ઊભા કરો. શું એક લાંબો છે?",
-    "One whole cut into ten equal parts gives tenths, and the parts must be the same size.": "એક પૂર્ણને દસ સરખા ભાગમાં કાપવાથી દશમા ભાગ બને છે, અને બધા ભાગ એક જ માપના હોવા જોઈએ.",
+    "Tap a name for this strip.": "આ પટ્ટીનું નામ પસંદ કરો.",
+    "Name the strip before you cut it.": "કાપતા પહેલાં પટ્ટીનું નામ પસંદ કરો.",
+    "Tap Cut to cut ten equal pieces.": "કાપો દબાવી દસ સરખા ટુકડા કરો.",
+    "Tap the Cut key.": "કાપો વાળી કી દબાવો.",
+    "Tap Measure to stand them up.": "માપો દબાવી ટુકડા ઊભા કરો.",
+    "Tap the Measure key.": "માપો વાળી કી દબાવો.",
+    "Are all ten pieces the same size?": "શું દસેય ટુકડા એક જ માપના છે?",
+    "A tenth is one of ten equal parts.": "દસ સરખા ભાગમાંથી એક, દશમો ભાગ છે.",
+    "Ten equal parts of one whole are tenths, and the parts must be the same size.": "એક પૂર્ણના દસ સરખા ભાગ દશમા ભાગ છે, અને બધા ભાગ એક માપના હોય.",
     "You learned: ten equal parts of one whole are tenths.": "તમે શીખ્યા: એક પૂર્ણના દસ સરખા ભાગ દશમા ભાગ છે.",
-    "Write the coloured part": "રંગેલો ભાગ લખો",
-    "Name this strip, cut it into ten equal pieces, then colour six of them. Write the coloured part as a fraction.": "આ પટ્ટીનું નામ પસંદ કરો, તેને દસ સરખા ટુકડામાં કાપો, પછી છ ટુકડામાં રંગ પૂરો. રંગેલા ભાગને અપૂર્ણાંક તરીકે લખો.",
-    "How many pieces is this strip cut into?": "આ પટ્ટી કેટલા ટુકડામાં કપાઈ છે?",
-    "Write it with a point": "તેને દશાંશ ચિહ્ન સાથે લખો",
-    "This ribbon is already cut into ten. Colour three pieces and write that part with a point.": "આ રિબનના દસ ભાગ પહેલેથી કરેલા છે. ત્રણ ટુકડામાં રંગ પૂરો અને તે ભાગને દશાંશ ચિહ્ન સાથે લખો.",
-    "Count the coloured pieces again, slowly.": "રંગેલા ટુકડા ફરી ગણો, ધીમે ધીમે.",
+    "Write the coloured part of the strip as a fraction.": "રંગેલા ભાગને અપૂર્ણાંકમાં લખો.",
+    "Coloured part as a fraction?": "રંગેલો ભાગ અપૂર્ણાંકમાં?",
+    "The bottom counts every piece.": "નીચેની સંખ્યા બધા ટુકડા ગણે છે.",
+    "Write the three coloured pieces with a point.": "ત્રણ રંગેલા ટુકડા દશાંશ ચિહ્નથી લખો.",
+    "Coloured part with a point?": "રંગેલો ભાગ દશાંશ ચિહ્નથી?",
+    "Is a whole strip coloured?": "શું આખી પટ્ટી રંગેલી છે?",
+    "Folded without measuring, is a short piece still one tenth?": "અંદાજથી કાપેલો નાનો ટુકડો દશમો છે?",
     "Is a short piece a tenth?": "શું નાનો ટુકડો દશમો ભાગ છે?",
-    "No": "ના", "Yes": "હા",
-    "This strip was folded by eye, so two pieces came out longer. Can a short piece be called one tenth?": "આ પટ્ટી અંદાજથી વાળી હતી, તેથી બે ટુકડા લાંબા નીકળ્યા. શું નાના ટુકડાને એક દશમો ભાગ કહી શકાય?",
-    "Stand the pieces against one another and look.": "ટુકડાઓને એકબીજાની બાજુમાં મૂકીને જુઓ.",
+    "Stand the pieces up and compare them.": "ટુકડા ઊભા કરી સરખાવો.",
+    "Yes": "હા", "No": "ના",
     /* phase 2 */
-    "The same amount, written with a point": "એટલી જ માત્રા, દશાંશ ચિહ્ન સાથે લખેલી",
-    "Write it over ten. Now write the very same thing with a point.": "તેને દસ ભાગવાળા અપૂર્ણાંક તરીકે લખો. હવે એ જ વાત દશાંશ ચિહ્ન સાથે લખો.",
-    "Which part of the strip did you colour?": "તમે પટ્ટીનો કયો ભાગ રંગ્યો?",
-    "The point splits the whole ones from the pieces of one.": "ચિહ્ન પૂરા એકમોને એકના ટુકડાથી અલગ કરે છે.",
-    "A share written over ten and a share written with a point say one amount.": "દસ ભાગવાળા અપૂર્ણાંક તરીકે લખેલો ભાગ અને ચિહ્ન સાથે લખેલો ભાગ, એક જ માત્રા દર્શાવે છે.",
-    "You learned: a fraction over ten and a decimal say one amount.": "તમે શીખ્યા: દસ ભાગવાળો અપૂર્ણાંક અને દશાંશ એક જ માત્રા દર્શાવે છે.",
-    "Colour four of the ribbon's ten lengths, then write that part with a point.": "રિબનની દસ લંબાઈમાંથી ચારમાં રંગ પૂરો, પછી તે ભાગને દશાંશ ચિહ્ન સાથે લખો.",
-    "How many lengths did you colour?": "તમે કેટલી લંબાઈમાં રંગ પૂર્યો?",
-    "The milk stands at the eighth mark. Colour up to it and write the amount with a point.": "દૂધ આઠમા નિશાન પર છે. ત્યાં સુધી રંગ પૂરો અને માત્રાને દશાંશ ચિહ્ન સાથે લખો.",
-    "Which mark is the milk standing at?": "દૂધ કયા નિશાન પર છે?",
-    "Tap the decimal point": "દશાંશ ચિહ્ન પર ટૅપ કરો",
-    "This number says seven tenths. Tap the part of it that is the decimal point.": "આ સંખ્યા સાત દશમા ભાગ કહે છે. તેનો જે ભાગ દશાંશ ચિહ્ન છે તેના પર ટૅપ કરો.",
-    "Which part of it is not a digit at all?": "તેનો કયો ભાગ અંક છે જ નહીં?",
+    "The same amount, written with a point": "એ જ માત્રા, દશાંશ ચિહ્નથી લખેલી",
+    "Tap a piece to colour one tenth.": "એક ટુકડો દબાવી દશમો ભાગ રંગો.",
+    "Tap a piece of the chocolate bar.": "ચોકલેટનો એક ટુકડો દબાવો.",
+    "Tap one more and watch both cards.": "એક વધુ દબાવો, બંને કાર્ડ જુઓ.",
+    "Tap a piece that is still plain.": "રંગ વગરનો ટુકડો દબાવો.",
+    "Count the coloured pieces again.": "રંગેલા ટુકડા ફરી ગણો.",
+    "Both cards must show one amount.": "બંને કાર્ડ એક જ માત્રા બતાવે.",
+    "A share over ten and the same share with a point say one amount.": "દસવાળો અપૂર્ણાંક અને દશાંશ, બંને એક જ માત્રા બતાવે છે.",
+    "You learned: a fraction over ten and a decimal say one amount.": "તમે શીખ્યા: દસવાળો અપૂર્ણાંક અને દશાંશ એક જ માત્રા બતાવે છે.",
+    "Write the coloured part of the ribbon as a fraction.": "રિબનના રંગેલા ભાગને અપૂર્ણાંકમાં લખો.",
+    "The top counts coloured pieces.": "ઉપરની સંખ્યા રંગેલા ટુકડા ગણે છે.",
+    "In 0.7, what does the 7 count?": "0.7 માં 7 શું ગણે છે?",
+    "What does the 7 count?": "7 શું ગણે છે?",
+    "Is the 7 before or after the point?": "7 ચિહ્નની પહેલાં છે કે પછી?",
+    "Look at the seven coloured pieces.": "સાત રંગેલા ટુકડા જુઓ.",
+    "Each piece is one of ten equal parts.": "દરેક ટુકડો દસ સરખા ભાગમાંથી એક છે.",
+    "tenths": "દશમા ભાગ", "ones": "એકમ",
+    "Now write the milk with a point.": "હવે દૂધને દશાંશ ચિહ્નથી લખો.",
+    "How much milk?": "કેટલું દૂધ?",
+    "Only one digit goes after the point.": "ચિહ્ન પછી એક જ અંક આવે છે.",
     /* phase 3 */
     "Counting more than one tenth": "એક કરતાં વધુ દશમા ભાગ ગણવા",
-    "How many tenths are coloured? That is the digit after the point.": "કેટલા દશમા ભાગ રંગેલા છે? એ જ ચિહ્ન પછીનો અંક છે.",
-    "Which column does that count go in?": "આ ગણતરી કયા ખાનામાં જાય છે?",
-    "Go along the strip from the left and count as you go.": "પટ્ટી પર ડાબી બાજુથી ચાલો અને ગણતા જાઓ.",
+    "Tap Count to count the pieces.": "ગણો દબાવી ટુકડા ગણો.",
+    "Tap the Count key.": "ગણો વાળી કી દબાવો.",
+    "Tap the Decimal card to write it.": "લખવા માટે દશાંશ કાર્ડ દબાવો.",
+    "It is the card with the point.": "જે કાર્ડમાં ચિહ્ન છે, તે.",
+    "Which place does that count go in?": "આ ગણતરી કયા સ્થાને જાય છે?",
+    "Count each piece from the left.": "ડાબેથી દરેક ટુકડો ગણો.",
     "The digit after the point counts how many tenths there are.": "ચિહ્ન પછીનો અંક કહે છે કે કેટલા દશમા ભાગ છે.",
     "You learned: the digit after the point counts the tenths.": "તમે શીખ્યા: ચિહ્ન પછીનો અંક દશમા ભાગ ગણે છે.",
-    "A garden is divided into ten equal beds. Colour the seven planted beds and write that part with a point.": "એક બગીચો દસ સરખી ક્યારીમાં વહેંચાયેલો છે. વાવેલી સાત ક્યારીમાં રંગ પૂરો અને તે ભાગને દશાંશ ચિહ્ન સાથે લખો.",
-    "Which beds are you counting, the planted ones or the rest?": "તમે કઈ ક્યારી ગણો છો, વાવેલી કે બાકીની?",
-    "A chapati is cut into ten equal parts and five are eaten. Colour the eaten parts and write them with a point.": "એક રોટલી દસ સરખા ભાગમાં કાપી છે અને પાંચ ભાગ ખાઈ લીધા. ખાધેલા ભાગમાં રંગ પૂરો અને તેમને દશાંશ ચિહ્ન સાથે લખો.",
-    "Count the parts that were eaten.": "ખાધેલા ભાગ ગણો.",
-    "Write the plain part": "રંગ વગરનો ભાગ લખો",
-    "Nine of this ribbon's ten pieces are coloured. Write the part that is left plain with a point.": "આ રિબનના દસ ટુકડામાંથી નવ રંગેલા છે. જે ભાગ રંગ વગરનો રહ્યો છે તેને દશાંશ ચિહ્ન સાથે લખો.",
-    "The question asks for the plain pieces, not the coloured ones.": "પ્રશ્ન રંગ વગરના ટુકડા પૂછે છે, રંગેલા નહીં.",
+    "Write how much is planted.": "કેટલો ભાગ વાવેલો છે તે લખો.",
+    "Planted part with a point?": "વાવેલો ભાગ દશાંશ ચિહ્નથી?",
+    "Which pieces are coloured?": "કયા ટુકડા રંગેલા છે?",
+    "How much of the chapati was eaten?": "રોટલીનો કેટલો ભાગ ખવાયો?",
+    "Eaten part with a point?": "ખાધેલો ભાગ દશાંશ ચિહ્નથી?",
+    "How many pieces were eaten?": "કેટલા ટુકડા ખવાયા?",
+    "Now write the part left plain.": "હવે રંગ વગરનો ભાગ લખો.",
+    "Plain part with a point?": "રંગ વગરનો ભાગ દશાંશ ચિહ્નથી?",
+    "Count only the plain pieces.": "ફક્ત રંગ વગરના ટુકડા ગણો.",
     /* phase 4 */
     "What the zero in front is for": "આગળનું શૂન્ય શા માટે છે",
-    "Something is missing in front of the point. What is it holding?": "ચિહ્નની આગળ કંઈક રહી ગયું છે. તે શેને સાચવી રાખે છે?",
-    "How many ones are there in front of the point?": "ચિહ્નની આગળ કેટલા એકમ છે?",
-    "Read it from the left: the column before the point comes first.": "ડાબી બાજુથી વાંચો: ચિહ્ન પહેલાનું ખાનું સૌથી પહેલાં આવે છે.",
-    "The zero before the point holds the ones place open and says there are no whole ones.": "ચિહ્ન પહેલાનું શૂન્ય એકમનું સ્થાન ખુલ્લું રાખે છે અને કહે છે કે કોઈ પૂરો એકમ નથી.",
+    "Tap the box in front of the point.": "ચિહ્નની આગળનું ખાનું દબાવો.",
+    "Look just left of the point.": "ચિહ્નની બરાબર ડાબે જુઓ.",
+    "Put the grey zero in that box.": "રાખોડી શૂન્ય એ ખાનામાં મૂકો.",
+    "The 0 tile is at the right.": "0 વાળી ટાઇલ જમણી બાજુ છે.",
+    "How many whole ones are there?": "કેટલા આખા એકમ છે?",
+    "An empty place still needs a digit.": "ખાલી સ્થાનમાં પણ અંક જોઈએ.",
+    "Write a zero before the point every time a number is less than one.": "સંખ્યા એક કરતાં ઓછી હોય ત્યારે ચિહ્ન પહેલાં શૂન્ય લખો.",
     "You learned: the zero in front holds the ones place open.": "તમે શીખ્યા: આગળનું શૂન્ય એકમનું સ્થાન ખુલ્લું રાખે છે.",
-    "Write it properly": "તેને બરાબર લખો",
-    "A price in a shop is written as a bare point and a six, with nothing in front of the point. Write that price properly.": "દુકાનમાં એક કિંમત ફક્ત ચિહ્ન અને છ તરીકે લખી છે, ચિહ્નની આગળ કંઈ નથી. તે કિંમતને બરાબર લખો.",
-    "Which column stands in front of the point?": "ચિહ્નની આગળ કયું ખાનું છે?",
-    "What is missing?": "શું રહી ગયું છે?",
-    "the whole": "પૂર્ણ", "the tenths": "દશમા ભાગ", "the point": "દશાંશ ચિહ્ન",
-    "A friend spent two tenths of their pocket money on a pen. What must you be told before you can say the rupees?": "એક મિત્રએ પોતાના ખિસ્સાખર્ચના બે દશમા ભાગમાંથી પેન ખરીદી. રૂપિયા કહેવા માટે તમારે પહેલાં શું જાણવું પડે?",
-    "A share is always a share of something.": "ભાગ હંમેશાં કોઈ વસ્તુનો ભાગ હોય છે.",
-    "Write the label properly": "લેબલ બરાબર લખો",
-    "A weight label reads as a bare point and a four, with kilograms after it. Write the label properly.": "વજનના લેબલ પર ફક્ત ચિહ્ન અને ચાર લખ્યું છે, તેની પાછળ કિલોગ્રામ. લેબલને બરાબર લખો.",
-    "How many kilograms, before any part of one?": "એકના કોઈ ભાગ પહેલાં કેટલા કિલોગ્રામ?",
-    /* the working area's own words; "no" "yes" "whole" "tenths" "point" are what the slot shows after a choice */
-    "written": "લખાયેલા", "free": "મુક્ત",
-    "ribbon": "રિબન", "chapati": "રોટલી", "milk": "દૂધ", "garden": "બગીચો",
-    "Measure": "માપો", "By eye": "અંદાજથી",
-    "ones": "એકમ", "tenths": "દશમા ભાગ", "hundredths": "સોમા ભાગ",
-    "one whole": "એક પૂર્ણ", "pieces": "ટુકડા",
-    "cut by eye": "અંદાજથી કાપેલા", "your pieces": "તમારા ટુકડા", "cut to ten": "દસમાં કાપેલા", "ten times apart": "દસ ગણા અલગ",
-    "decimal point": "દશાંશ ચિહ્ન", "name the whole": "પૂર્ણનું નામ આપો", "not the same size": "એક જ માપના નથી",
-    "a share of what?": "શેનો ભાગ?", "coloured": "રંગેલો", "plain": "રંગ વગરનો", "ones place held": "એકમનું સ્થાન સચવાયું",
-    "kg": "કિગ્રા",
-    "no": "ના", "yes": "હા", "whole": "પૂર્ણ", "point": "દશાંશ ચિહ્ન",
+    "Write this sign properly.": "આ પાટિયું બરાબર લખો.",
+    "Write the sign properly.": "પાટિયું બરાબર લખો.",
+    "Which place is before the point?": "ચિહ્ન પહેલાં કયું સ્થાન છે?",
+    "A pen cost two tenths of the pocket money.": "પેનમાં ખિસ્સાખર્ચના બે દશમા ભાગ ગયા.",
+    "What must you know to find the pen's rupees?": "પેનના રૂપિયા શોધવા શું જાણવું પડે?",
+    "Read the story again: what is not told?": "વાર્તા ફરી વાંચો: શું કહ્યું નથી?",
+    "Is two tenths always the same rupees?": "બે દશમા ભાગ, હંમેશાં એટલા જ રૂપિયા?",
+    "More money makes two tenths bigger.": "વધુ પૈસા, તો બે દશમા ભાગ પણ વધુ.",
+    "how much": "કેટલા પૈસા", "the point": "દશાંશ ચિહ્ન",
+    "Now fix this weight label.": "હવે આ વજનનું લેબલ સુધારો.",
+    "Write the label properly.": "લેબલ બરાબર લખો.",
+    "What stands in front of the point on this label?": "આ લેબલ પર ચિહ્નની આગળ શું છે?",
+    /* the win lines (api.say) */
+    "Yes, six of ten equal pieces is six tenths of the strip.": "હા, દસ સરખા ટુકડામાંથી છ, એટલે છ દશમા ભાગ.",
+    "Yes, 0.3 is the same as three tenths.": "હા, 0.3 અને ત્રણ દશમા ભાગ એક જ છે.",
+    "Right, the pieces are not equal, so none of them is a tenth.": "સાચું, ટુકડા સરખા નથી, તેથી કોઈ દશમો ભાગ નથી.",
+    "Yes, the Decimal card writes the same amount, and its dot is the decimal point.": "હા, દશાંશ કાર્ડ એ જ માત્રા લખે છે, અને તેનું ટપકું દશાંશ ચિહ્ન છે.",
+    "Right, the 7 sits just after the point, in the tenths place.": "સાચું, 7 ચિહ્નની બરાબર પછી, દશમા ભાગના સ્થાને છે.",
+    "Yes, the milk is 0.8 of the litre.": "હા, દૂધ એક લિટરનો 0.8 ભાગ છે.",
+    "Yes, 0.7 is planted: the 7 counts seven planted tenths.": "હા, 0.7 ભાગ વાવેલો છે: 7 વાવેલા સાત દશમા ભાગ ગણે છે.",
+    "Yes, 0.5 of the chapati was eaten, which is half of it.": "હા, રોટલીનો 0.5 ભાગ ખવાયો, એટલે અડધી રોટલી.",
+    "Yes, 0.1 plain and 0.9 coloured make 1 whole.": "હા, 0.1 રંગ વગરનો અને 0.9 રંગેલો મળી 1 પૂર્ણ.",
+    "Yes, 0.6 is six tenths, and the 0 stands in the ones place.": "હા, 0.6 એટલે છ દશમા ભાગ, અને 0 એકમના સ્થાને છે.",
+    "Right, nobody said how much money there was, so the rupees cannot be found.": "સાચું, કેટલા પૈસા હતા તે કોઈએ કહ્યું નથી, તેથી રૂપિયા ન મળે.",
+    "Yes, 0.4 kg: the 0 shows there is no whole kilogram.": "હા, 0.4 કિલોગ્રામ: 0 બતાવે છે કે આખો કિલોગ્રામ નથી.",
+    /* the working area's own words (tx) */
+    "Whole": "પૂર્ણ", "coloured": "રંગેલો", "piece": "ટુકડો",
+    "chocolate bar": "ચોકલેટ", "ribbon": "રિબન", "chapati": "રોટલી", "1 L milk": "1 લિટર દૂધ", "garden": "બગીચો",
+    "pocket money": "ખિસ્સાખર્ચ", "1 kg": "1 કિગ્રા", "kg": "કિગ્રા",
+    "Cut": "કાપો", "By eye": "અંદાજથી", "Measure": "માપો", "Count": "ગણો",
+    "Fraction": "અપૂર્ણાંક", "Decimal": "દશાંશ", "Sign": "પાટિયું", "Label": "લેબલ",
+    "numerator": "અંશ", "denominator": "છેદ", "zero": "શૂન્ય",
+    "no whole ones": "કોઈ આખો એકમ નથી", "10 equal pieces": "10 સરખા ટુકડા",
+    "equal: tenths": "સરખા: દશમા ભાગ", "not equal: not tenths": "સરખા નથી: દશમા ભાગ નથી",
+    "same two tenths,": "એ જ બે દશમા ભાગ,", "different rupees": "જુદા જુદા રૂપિયા",
   },
 };
 
 /* ── the chapter's own inks ──────────────────────────────────────────────────────────────
-   A piece of this strip stands for tenths, so it colours amber. In a written number a digit
-   left of the point is deep blue, a digit right of it green, and the point vermilion between
-   them; a zero that is only holding a place open is grey, at the same size and weight. */
-const PIECES = 10;
-const TENTH = CONTENT.ten;
-const HUND = CONTENT.bead;
-const INK_ONES = shade(CONTENT.hundred, 0.25);
-const INK_TENTH = shade(CONTENT.one, 0.25);
-const INK_POINT = shade(CONTENT.pointer, 0.25);
-const DOT = CONTENT.pointer;
-const ZERO_INK = "#6B6B6B";
+   A piece of this strip stands for tenths, so it colours amber. In a written number a digit left of
+   the point is deep blue, a digit right of it green, and the point vermilion between them; a zero
+   that only holds a place open is grey, at the same size and weight. */
+const TS_PIECES = 10;
+const TS_AMBER = CONTENT.ten;
+const TS_ROSE = CONTENT.bead;
+const TS_INK_ONES = shade(CONTENT.hundred, 0.25);
+const TS_INK_TENTH = shade(CONTENT.one, 0.25);
+const TS_DOT = CONTENT.pointer;
+const TS_ZERO = "#767676";
+const TS_LINE = "#2B2B2B";
+const TS_SHEET = "#FFF4DC";      /* a piece not coloured: pale paper */
+const TS_INK2 = "#585858";       /* a caption: quiet, still about 7:1 on white */
+/* ten pieces folded by eye: the same strip, and no two of them a tenth (they add up to the whole) */
+const TS_UNEVEN = [150, 88, 104, 78, 142, 96, 118, 82, 110, 112];
+/* phase 4's Decimal card: SLOT_DECIMAL's two boxes with the point drawn, but the ones box may stay EMPTY (free), so a
+   child who writes the bare point and a digit can answer it and get its correction; judgeSlotDecimal refuses it */
+const TS_DEC_OPEN = [{ label: "whole", at: "dwhole", free: true }, { label: "decimal", at: "dpart" }];
+/* phase 4's rungs 2 and 3. The runtime has no ladder per question and reads the phase's `ladder` array (by reference)
+   when it shows a rung, so Work sets this one array's two rungs for the question on show: the zero questions get
+   TS_ZERO_RUNGS, the pocket-money question its own `ladder`. Read without Work (the checks, the sidecar) it holds
+   the zero rungs. */
+const TS_ZERO_RUNGS = ["How many whole ones are there?", "An empty place still needs a digit."];
+const TS_L4: any[] = TS_ZERO_RUNGS.slice();
+/* phase 2 the same way: its two writing questions share TS_P2_RUNGS, "what does the 7 count?" has its own */
+const TS_P2_RUNGS = ["Count the coloured pieces again.", "Both cards must show one amount."];
+const TS_L2: any[] = TS_P2_RUNGS.slice();
+/* the wholes a child can name the strip (the first is a chocolate bar, the only whole drawn with the chocolate skin) */
+const TS_WHOLES = ["chocolate bar", "ribbon", "chapati"];
 
-/* ── the working area, 1086 x 528 (local units) ───────────────────────────────────────── */
-const NAMEBOX = { x: 0, y: 0, w: 280, h: 76 };
-const CARDX = [300, 456, 612];
-const CARDW = 144;
-const MEASURE = { x: 772, y: 0, w: 144, h: 76 };
-const BYEYE = { x: 932, y: 0, w: 144, h: 76 };
-const BAR = { x: 3, y: 96, w: 1080, h: 100 };
-const RAIL = { y: 240, x0: 44, x1: 1040 };
-const SHOW = { y: 292, h: 108 };      /* pieces standing on the rule, or a second strip */
-const FORM = { y: 416 };              /* the two written forms, joined by their bar */
-const CHART = { ones: 300, tenth: 560, hund: 820, w: 220, y: 80, h: 170, point: 540 };
-
-/* ten pieces cut by eye: the same strip, but no two of them a tenth */
-const UNEVEN = [150, 88, 104, 78, 142, 96, 118, 82, 110, 112];
-const WHOLES = [{ id: "ribbon", label: "ribbon" }, { id: "chapati", label: "chapati" }, { id: "milk", label: "milk" }];
-
-/* One entry per phase = one mount.
-   says    the teach run, said before anything is asked
-   ladder  rungs 2 and 3 of the hint ladder (rung 1 is each item's own miss line); never the answer
-   closing one closing line for this phase, said once when it goes idle
-   learned the summary page's row for this phase: "You learned: ..." (at most 72 characters)
-   traceback what the working area redraws after a miss, in one line (for the sidecar)
-   items   three a phase, each with the plan's question id.
-           kind  strip  the child names, cuts and colours the strip; the answer is that share
-                        written as a fraction (parts: SLOT_FRACTION) or with a point (a string)
-                 uneven ten pieces cut by eye, stood against the rule
-                 name   the parts of a written decimal, tapped on the working area
-                 zero   a bare point and a digit in the ones / tenths chart
-                 share  a share with no whole named behind it
-           read  "shaded" or "plain": which run of pieces the question asks for */
+/* One entry per phase = one mount. Every phase opens on guide steps (one click each, a hint each);
+   items: three a phase, each with the plan's question id.
+     form  fraction  answered on the Fraction card (parts: SLOT_FRACTION)
+           decimal   answered on the Decimal card, [ones] . [tenths] (parts: SLOT_DECIMAL)
+           typed     phase 4: a sign written without its zero, rewritten on the Decimal card (parts: TS_DEC_OPEN), whose
+                     ones box may be left empty, so the bare point ("|6") is a real miss with its correction
+           uneven    a strip folded by eye, Yes / No
+           digit     what the digit after the point counts, a choice
+           share     a share of a whole nobody named, Yes / No
+     shade the pieces coloured from the left; read "plain" asks for the pieces left plain
+     whole the name of the whole the strip stands for; near: the misconception as typed */
 const PHASES = [
   {
     n: 1,
     concept: "Splitting one into ten equal parts",
     conceptId: "M1.S1.T2.C4", objectiveIds: ["O1"],
-    says: ["Nothing is a tenth on its own. Say what this strip is, then cut it into ten."],
+    says: ["Say what you are cutting first. Now cut it into ten. Are the pieces the same?"],
+    steps: [
+      { say: "Tap a name for this strip.", on: "name", hint: "Name the strip before you cut it." },
+      { say: "Tap Cut to cut ten equal pieces.", on: "cut", hint: "Tap the Cut key." },
+      { say: "Tap Measure to stand them up.", on: "measure", hint: "Tap the Measure key." },
+    ],
+    stepHold: 2400,
     /* the plan's rung 3 was a stage direction; written here as a hint a child can act on */
-    ladder: ["Are they all the same size?", "Stand two pieces side by side. Is one longer?"],
-    closing: "One whole cut into ten equal parts gives tenths, and the parts must be the same size.",
+    ladder: ["Are all ten pieces the same size?", "A tenth is one of ten equal parts."],
+    closing: "Ten equal parts of one whole are tenths, and the parts must be the same size.",
     learned: "You learned: ten equal parts of one whole are tenths.",
-    traceback: "A strip is cut into ten beside the child's, the pieces colour one at a time, and the share is written over ten and again with a point.",
+    traceback: "The run the question asks for lights piece by piece with its count, both cards fill with the share, and a folded strip stands its pieces beside an evenly cut one.",
     items: [
-      /* learn ML1: answer in the plan = 6/10, which is written 0.6. The fraction is typed in the
-         stacked slot; the win writes its decimal under the same six pieces. */
-      { qid: "M1.S1.T2.C4:ML1", kind: "strip", cut: true, shade: 6, read: "shaded", form: "fraction",
-        parts: SLOT_FRACTION, answer: [6, PIECES], winMs: 3400, ask: "Write the coloured part",
-        say: "Name this strip, cut it into ten equal pieces, then colour six of them. Write the coloured part as a fraction.",
-        miss: "How many pieces is this strip cut into?" },
+      /* learn ML1: answer in the plan = 6/10, which is written 0.6. The fraction is typed on the
+         Fraction card; the win writes the decimal of the same six pieces on the Decimal card. */
+      { qid: "M1.S1.T2.C4:ML1", kind: "strip", form: "fraction", shade: 6, parts: SLOT_FRACTION, answer: [6, 10], near: "6|4", winMs: 3200,
+        say: "Write the coloured part of the strip as a fraction.", ask: "Coloured part as a fraction?",
+        miss: "The bottom counts every piece." },
       /* practice 1: answer in the plan = 0.3 */
-      { qid: "M1.S1.T2.C4:1", kind: "strip", whole: "ribbon", shade: 3, read: "shaded", form: "decimal",
-        answer: "0.3", winMs: 3000, ask: "Write it with a point",
-        say: "This ribbon is already cut into ten. Colour three pieces and write that part with a point.",
-        miss: "Count the coloured pieces again, slowly." },
-      /* practice 2: answer in the plan = No, because tenths are ten equal parts, so every piece
-         has to be the same size */
-      { qid: "M1.S1.T2.C4:2", kind: "uneven", answer: "no", winMs: 2600, ask: "Is a short piece a tenth?",
-        choices: [{ id: "no", label: "No" }, { id: "yes", label: "Yes" }],
-        say: "This strip was folded by eye, so two pieces came out longer. Can a short piece be called one tenth?",
-        miss: "Stand the pieces against one another and look." },
+      /* the plan's question names the three, so the slip is the place, not the count: 3 put in the ones box */
+      { qid: "M1.S1.T2.C4:1", kind: "strip", form: "decimal", shade: 3, parts: SLOT_DECIMAL, answer: ["0", "3"], near: "3|10", winMs: 3200,
+        say: "Write the three coloured pieces with a point.", ask: "Coloured part with a point?",
+        miss: "Is a whole strip coloured?" },
+      /* practice 2: answer in the plan = No, because tenths are ten equal parts, so every piece has
+         to be the same size */
+      { qid: "M1.S1.T2.C4:2", kind: "uneven", form: "uneven", shade: 0, answer: "no", near: "yes", winMs: 3000,
+        choices: [{ id: "yes", label: "Yes" }, { id: "no", label: "No" }],
+        say: "Folded without measuring, is a short piece still one tenth?", ask: "Is a short piece a tenth?",
+        miss: "Stand the pieces up and compare them." },
     ],
   },
   {
@@ -262,59 +361,67 @@ const PHASES = [
     concept: "The same amount, written with a point",
     conceptId: "M1.S1.T2.C5", objectiveIds: ["O1"],
     says: ["Write it over ten. Now write the very same thing with a point."],
-    ladder: ["Which part of the strip did you colour?", "The point splits the whole ones from the pieces of one."],
-    closing: "A share written over ten and a share written with a point say one amount.",
+    steps: [
+      { say: "Tap a piece to colour one tenth.", on: "shade", hint: "Tap a piece of the chocolate bar." },
+      { say: "Tap one more and watch both cards.", on: "shade", hint: "Tap a piece that is still plain." },
+    ],
+    stepHold: 1800,
+    ladder: TS_L2,
+    closing: "A share over ten and the same share with a point say one amount.",
     learned: "You learned: a fraction over ten and a decimal say one amount.",
-    traceback: "The coloured pieces light one at a time, the share is written over ten, and the joining bar fills to the same share written with a point.",
+    traceback: "The coloured pieces light one at a time with their count, and both cards fill with that share, joined by the bar.",
     items: [
       /* learn ML2: answer in the plan = 4/10, written 0.4, and the dot is called the decimal point.
-         The decimal is typed; the win draws its fraction and the joining bar; the dot is named by
-         the third question of this phase. */
-      { qid: "M1.S1.T2.C5:ML2", kind: "strip", whole: "ribbon", shade: 4, read: "shaded", form: "decimal",
-        answer: "0.4", winMs: 3000, ask: "Write it with a point",
-        say: "Colour four of the ribbon's ten lengths, then write that part with a point.",
-        miss: "How many lengths did you colour?" },
-      /* practice 3: answer in the plan = 0.8 of a litre */
-      { qid: "M1.S1.T2.C5:3", kind: "strip", whole: "milk", shade: 8, read: "shaded", form: "decimal",
-        answer: "0.8", winMs: 3000, ask: "Write it with a point",
-        say: "The milk stands at the eighth mark. Colour up to it and write the amount with a point.",
-        miss: "Which mark is the milk standing at?" },
+         The fraction is written on the Fraction card (the plan's answer starts 4/10); the win fills the
+         Decimal card and names the dot, and says nothing about tenths (the next question asks it). */
+      { qid: "M1.S1.T2.C5:ML2", kind: "strip", form: "fraction", whole: "ribbon", shade: 4, parts: SLOT_FRACTION, answer: [4, 10], near: "6|10", winMs: 3200,
+        say: "Write the coloured part of the ribbon as a fraction.", ask: "Coloured part as a fraction?",
+        miss: "The top counts coloured pieces." },
       /* practice 4: answer in the plan = The dot standing between the zero and the seven is the
-         decimal point, and the seven counts seven tenths. The dot is tapped on the number itself;
-         the win lights the seven pieces it counts. */
-      { qid: "M1.S1.T2.C5:4", kind: "name", number: "0.7", shade: 7, pad: "enter", answer: "point",
-        winMs: 3200, ask: "Tap the decimal point",
-        say: "This number says seven tenths. Tap the part of it that is the decimal point.",
-        miss: "Which part of it is not a digit at all?" },
+         decimal point, and the seven counts seven tenths. The question names the number; the child says
+         what the seven counts. It follows ML2 (whose win names the dot) and comes before the milk, whose
+         win would say tenths. */
+      { qid: "M1.S1.T2.C5:4", kind: "digit", form: "digit", whole: "chocolate bar", shade: 7, answer: "tenths", near: "ones", winMs: 3200,
+        choices: [{ id: "tenths", label: "tenths" }, { id: "ones", label: "ones" }],
+        say: "In 0.7, what does the 7 count?", ask: "What does the 7 count?",
+        miss: "Is the 7 before or after the point?",
+        /* its own rungs 2 and 3 (phase 2's are about writing a card): each says more, none names the answer */
+        ladder: ["Look at the seven coloured pieces.", "Each piece is one of ten equal parts."] },
+      /* practice 3: answer in the plan = 0.8 of a litre */
+      { qid: "M1.S1.T2.C5:3", kind: "strip", form: "decimal", whole: "1 L milk", shade: 8, parts: SLOT_DECIMAL, answer: ["0", "8"], near: "8|10", winMs: 3200,
+        say: "Now write the milk with a point.", ask: "How much milk?",
+        miss: "Only one digit goes after the point." },
     ],
   },
   {
     n: 3,
     concept: "Counting more than one tenth",
     conceptId: "M1.S1.T2.C6", objectiveIds: ["O2"],
-    says: ["How many tenths are coloured? That is the digit after the point."],
-    ladder: ["Which column does that count go in?", "Go along the strip from the left and count as you go."],
+    says: ["How many tenths are shaded? That is the digit after the point."],
+    steps: [
+      { say: "Tap Count to count the pieces.", on: "count", hint: "Tap the Count key." },
+      { say: "Tap the Decimal card to write it.", on: "write", hint: "It is the card with the point." },
+    ],
+    stepHold: 2000,
+    ladder: ["Which place does that count go in?", "Count each piece from the left."],
     closing: "The digit after the point counts how many tenths there are.",
     learned: "You learned: the digit after the point counts the tenths.",
-    traceback: "The run the question asks for lights one piece at a time, and the count is written into the tenths place after the point.",
+    traceback: "The run the question asks for lights one piece at a time with its count, and the count is written in the tenths place after a grey zero.",
     items: [
-      /* learn ML3: answer in the plan = 0.7, and the digit after the point counts tenths */
-      { qid: "M1.S1.T2.C6:ML3", kind: "strip", whole: "garden", shade: 7, read: "shaded", form: "decimal",
-        answer: "0.7", winMs: 3000, ask: "Write it with a point",
-        say: "A garden is divided into ten equal beds. Colour the seven planted beds and write that part with a point.",
-        miss: "Which beds are you counting, the planted ones or the rest?" },
+      /* learn ML3: answer in the plan = 0.7, and the digit after the point counts tenths (the win says it) */
+      { qid: "M1.S1.T2.C6:ML3", kind: "strip", form: "decimal", whole: "garden", shade: 7, parts: SLOT_DECIMAL, answer: ["0", "7"], near: "7|10", winMs: 3400,
+        say: "Write how much is planted.", ask: "Planted part with a point?",
+        miss: "Which pieces are coloured?" },
       /* practice 5: answer in the plan = 0.5 */
-      { qid: "M1.S1.T2.C6:5", kind: "strip", whole: "chapati", shade: 5, read: "shaded", form: "decimal",
-        answer: "0.5", winMs: 3000, ask: "Write it with a point",
-        say: "A chapati is cut into ten equal parts and five are eaten. Colour the eaten parts and write them with a point.",
-        miss: "Count the parts that were eaten." },
-      /* practice 6: answer in the plan = 0.9 is shaded and 0.1 is not, and the two together
-         rebuild one whole. One slot takes one decimal, so the plain part is asked for and the win
-         stands the two runs together. */
-      { qid: "M1.S1.T2.C6:6", kind: "strip", whole: "ribbon", shade: 9, read: "plain", form: "decimal",
-        answer: "0.1", winMs: 3400, ask: "Write the plain part",
-        say: "Nine of this ribbon's ten pieces are coloured. Write the part that is left plain with a point.",
-        miss: "The question asks for the plain pieces, not the coloured ones." },
+      { qid: "M1.S1.T2.C6:5", kind: "strip", form: "decimal", whole: "chapati", shade: 5, parts: SLOT_DECIMAL, answer: ["0", "5"], near: "5|10", winMs: 3200,
+        say: "How much of the chapati was eaten?", ask: "Eaten part with a point?",
+        miss: "How many pieces were eaten?" },
+      /* practice 6: answer in the plan = 0.9 is shaded and 0.1 is not, and the two together rebuild
+         one whole. The card takes one decimal, so the plain part is asked for (the slip is counting the
+         coloured run) and the win writes both runs, 0.9 and 0.1, under the strip. */
+      { qid: "M1.S1.T2.C6:6", kind: "strip", form: "decimal", whole: "chocolate bar", shade: 9, read: "plain", parts: SLOT_DECIMAL, answer: ["0", "1"], near: "0|9", winMs: 3400,
+        say: "Now write the part left plain.", ask: "Plain part with a point?",
+        miss: "Count only the plain pieces." },
     ],
   },
   {
@@ -322,641 +429,805 @@ const PHASES = [
     concept: "What the zero in front is for",
     conceptId: "M1.S1.T2.C7", objectiveIds: ["O2"],
     says: ["Something is missing in front of the point. What is it holding?"],
-    ladder: ["How many ones are there in front of the point?", "Read it from the left: the column before the point comes first."],
-    closing: "The zero before the point holds the ones place open and says there are no whole ones.",
+    steps: [
+      { say: "Tap the box in front of the point.", on: "ones", hint: "Look just left of the point." },
+      { say: "Put the grey zero in that box.", on: "zero", hint: "The 0 tile is at the right." },
+    ],
+    stepHold: 2000,
+    /* rungs 2 and 3 for the zero questions; a question with a `ladder` of its own (the pocket money) gets that instead */
+    ladder: TS_L4,
+    closing: "Write a zero before the point every time a number is less than one.",
     learned: "You learned: the zero in front holds the ones place open.",
-    traceback: "The ones column in front of the point stays drawn and open, a grey zero walks into it, and the number is read again in full.",
+    traceback: "The ones box in front of the point stays open and lit, the pieces count up to the digit, and a grey zero walks into the ones place.",
     items: [
-      /* learn ML4: answer in the plan = The zero in front of the point is missing, so the sign
-         should read 0.6 */
-      { qid: "M1.S1.T2.C7:ML4", kind: "zero", bare: "6", answer: "0.6", winMs: 3000,
-        ask: "Write it properly",
-        say: "A price in a shop is written as a bare point and a six, with nothing in front of the point. Write that price properly.",
-        miss: "Which column stands in front of the point?" },
-      /* practice 7: answer in the plan = It cannot be said yet, because nobody has said how much
-         the pocket money was; two tenths is a share until the amount is named */
-      { qid: "M1.S1.T2.C7:7", kind: "share", shade: 2, answer: "whole", winMs: 2800, ask: "What is missing?",
-        choices: [{ id: "whole", label: "the whole" }, { id: "tenths", label: "the tenths" }, { id: "point", label: "the point" }],
-        say: "A friend spent two tenths of their pocket money on a pen. What must you be told before you can say the rupees?",
-        miss: "A share is always a share of something." },
-      /* practice 8: answer in the plan = 0.4 kg, and the zero holds the ones place to show there
-         are no whole kilograms */
-      { qid: "M1.S1.T2.C7:8", kind: "zero", bare: "4", unit: "kg", answer: "0.4", winMs: 3000,
-        ask: "Write the label properly",
-        say: "A weight label reads as a bare point and a four, with kilograms after it. Write the label properly.",
-        miss: "How many kilograms, before any part of one?" },
+      /* learn ML4: answer in the plan = The zero in front of the point is missing, so the sign should read 0.6 */
+      { qid: "M1.S1.T2.C7:ML4", kind: "zero", form: "typed", whole: "ribbon", shade: 6, title: "Sign", parts: TS_DEC_OPEN, answer: ["0", "6"], near: "|6", winMs: 3200,
+        say: "Write this sign properly.", ask: "Write the sign properly.",
+        miss: "Which place is before the point?" },
+      /* practice 7: answer in the plan = It cannot be said yet, because nobody has said how much the
+         pocket money was; two tenths is a share until the amount is named. Three keys, each naming what
+         could be missing (the owner's choice over Yes / No): the amount of money is the one */
+      { qid: "M1.S1.T2.C7:7", kind: "share", form: "share", whole: "pocket money", shade: 2, answer: "amount", near: "tenths", winMs: 3400,
+        choices: [{ id: "amount", label: "how much" }, { id: "tenths", label: "tenths" }, { id: "point", label: "the point" }],
+        say: "A pen cost two tenths of the pocket money.", ask: "What must you know to find the pen's rupees?",
+        miss: "Read the story again: what is not told?",
+        /* its own rungs 2 and 3 (phase 4's ladder is about the ones place): each says more, none names the answer */
+        ladder: ["Is two tenths always the same rupees?", "More money makes two tenths bigger."] },
+      /* practice 8: answer in the plan = 0.4 kg, and the zero holds the ones place to show there are no
+         whole kilograms */
+      { qid: "M1.S1.T2.C7:8", kind: "zero", form: "typed", whole: "1 kg", shade: 4, title: "Label", unit: "kg", parts: TS_DEC_OPEN, answer: ["0", "4"], near: "|4", winMs: 3200,
+        say: "Now fix this weight label.", ask: "Write the label properly.",
+        miss: "What stands in front of the point on this label?" },
     ],
   },
 ];
 
 /* The numbers, rows, sizes and targets the working area needs (they go into the sidecar too). */
-const MODEL = { pieces: PIECES, strip: BAR, rail: RAIL, rule: SHOW, chart: CHART,
-  wholes: WHOLES.map((w) => w.id), uneven: UNEVEN, places: ["ones", "tenths", "hundredths"] };
+const MODEL = { pieces: TS_PIECES, uneven: TS_UNEVEN, wholes: TS_WHOLES, places: ["ones", "tenths"],
+  strip: { maxLen: 1200, h: 132 }, cards: ["Fraction", "Decimal"], skin: "piece" };
 
 /* ── the maths, checked by `node cli.mjs check` ──────────────────────────────────────────── */
 
-/* a share of ten written with a point: the zero holds the ones place, then the count of tenths */
-const decOf = (k: number) => "0." + String(k);
-/* the run of pieces this question asks about */
-const runOf = (it: any) => (it.read === "plain" ? PIECES - it.shade : it.shade);
-
-/* judge: a fraction by its two boxes; everything else by its written form, exactly as the book
-   writes it (so "0.30" is not "0.3" and ".3" is not "0.3") */
+/* judge: a fraction by its two boxes; a decimal on the card by its two boxes (the tenths digit for
+   digit); a typed decimal by its written form, exactly as the book writes it (".6" is not "0.6");
+   a choice by its id */
 const judge = (item: any, v: any) => {
+  if (item.choices) return String(v ?? "").trim().toLowerCase() === String(item.answer).toLowerCase();
+  if (item.parts && item.parts.some((p: any) => p.at === "dwhole")) return judgeSlotDecimal(item, v);
   if (item.parts) return judgeSlotParts(item, v);
-  return String(v).trim().toLowerCase() === String(item.answer).trim().toLowerCase();
+  return String(v ?? "").trim() === String(item.answer);
 };
-/* oracle: every answer re-derived from the item's own picture, by a route that touches neither
-   judge nor Work */
+/* oracle: every answer re-derived from the item's own numbers, by a route that touches neither judge
+   nor Work (the count of tenths written as a tenth of the whole, toFixed) */
 const oracle = () => PHASES.every((p: any) => p.items.every((it: any) => {
-  if (it.kind === "strip") {
-    const k = it.read === "plain" ? PIECES - it.shade : it.shade;
-    if (k < 1 || k > PIECES) return false;
-    if (it.form === "fraction") return Array.isArray(it.answer) && it.answer[0] === k && it.answer[1] === PIECES;
-    return it.answer === "0" + "." + k;
-  }
-  if (it.kind === "uneven") return UNEVEN.length === PIECES && UNEVEN.some((w) => w !== UNEVEN[0]) && it.answer === "no";
-  if (it.kind === "name") {
-    const marks = String(it.number).split("").filter((c) => c < "0" || c > "9");
-    return marks.length === 1 && marks[0] === "." && it.answer === "point";
-  }
-  if (it.kind === "zero") return String(it.bare).length === 1 && it.answer === "0." + it.bare;
-  if (it.kind === "share") return !it.whole && it.answer === "whole";
+  const cnt = it.read === "plain" ? 10 - it.shade : it.shade;
+  if (it.form === "fraction") return it.answer[0] === cnt && it.answer[1] === 10;
+  if (it.form === "decimal") return it.answer.join(".") === (cnt / 10).toFixed(1);
+  if (it.form === "typed") return it.answer.join(".") === (it.shade / 10).toFixed(1);
+  if (it.form === "uneven") return new Set(TS_UNEVEN).size > 1 && TS_UNEVEN.reduce((a, b) => a + b, 0) === 1080 && it.answer === "no";
+  if (it.form === "digit") return String(it.shade / 10).split(".")[1].length === 1 && it.answer === "tenths";
+  if (it.form === "share") return !it.amount && it.answer === "amount";
   return false;
 }));
-/* the most likely wrong answer (the misconception); judge must reject it */
-const nearMiss = (item: any) => {
-  if (item.kind === "strip") {
-    const k = runOf(item), other = PIECES - k;           /* the other run of pieces, counted instead */
-    /* half the strip: both runs read the same, so the other slip of this phase stands in, which is
-       putting both of the fraction's numbers on the line (five tenths written as five point ten) */
-    if (item.form === "fraction") return (other === k ? k + 1 : other) + "|" + PIECES;
-    return other === k ? k + "." + PIECES : decOf(other);
-  }
-  /* both zero items ask about the ones place left blank, so the number left as it stands with no zero
-     in front is their slip; the plan's other slip (the digit slid along, 0.06) is still caught live by
-     the traceback, which re-reads what was typed */
-  if (item.kind === "zero") return "." + item.bare;
-  if (item.kind === "name") return "tenths";             /* the digit after the point, not the mark */
-  if (item.choices) return (item.choices.find((c: any) => c.id !== item.answer) || {}).id;
-  return "~";
-};
+/* the most likely wrong answer (the misconception), as the child would type it; judge must reject it */
+const nearMiss = (item: any) => item.near;
 /* the forms of an answer that no question, hint or ladder line may print */
-const answerForms = (item: any) =>
-  item.parts ? []                    /* the strip is cut into ten in front of the child: the cut IS the question */
-    : item.kind === "name" ? []      /* the answer is a part of the number already printed on the stage */
-      : /^\d*\.\d+$/.test(String(item.answer)) ? [String(item.answer), speakable(String(item.answer))]
-        : [String(item.answer)];
+const answerForms = (item: any) => {
+  const cnt = item.read === "plain" ? 10 - item.shade : item.shade;
+  if (item.form === "fraction") return [item.answer[0] + "/" + item.answer[1], speakable(item.answer[0] + "/" + item.answer[1])];
+  if (item.form === "decimal" || item.form === "typed") { const d = item.answer.join("."); return [d, speakable(d), speakable(cnt + "/10")]; }
+  if (item.form === "digit") return [cnt + " tenths", speakable(cnt + "/10")];
+  if (item.form === "share") return ["how much"];
+  return [String(item.answer)];
+};
 /* the answer as the teacher agent gives it (toolApi.answer) and the sidecar lists it */
 const agentKey = (item: any) => item.answer;
 
 /* the dev driver (stripped at port) and the agent reach the working area only through HOOK */
 const HOOK: any = {};
 const solve = (item: any, T: any) => (T.state().stage === "demo" ? HOOK.demo && HOOK.demo() : T.submit(item.answer));
-/* the agent's answer(): a part tapped on the working area, or a decimal typed into the slot (the
-   runtime's own answer() keeps digits only, which would drop the point) */
-const answer = (item: any, v: any) => {
-  if (item.pad === "enter") return HOOK.set ? HOOK.set(v) : false;
-  if (!item.parts && !item.choices && String(v).indexOf(".") >= 0) return HOOK.type ? (HOOK.type(String(v)), true) : false;
-  return undefined;
-};
-/* the agent's check() before Enter; undefined = press Enter */
-const check = () => (HOOK.check ? HOOK.check() : undefined);
+/* the agent's answer(): every question is answered on a card or by a choice key, which the runtime's own answer()
+   takes ("0.6", ["0", "6"], "0|6", [6, 10]), so the tool adds nothing */
+const answer = (item: any, v: any) => undefined;
+/* the agent's check() before Enter: nothing waits on the picture, so Enter (in a steps phase it
+   reaches api.onEnter and performs the current step) */
+const check = () => undefined;
 
-/* ── the working area: 1086 x 528, origin at its top-left ──────────────────────────────── */
+/* ── the working area ───────────────────────────────────────────────────────────────────── */
 
 const TS_CSS = `
+.ts-pop{animation:tsPop 360ms cubic-bezier(.3,1.4,.5,1) both;transform-box:fill-box;transform-origin:center}
+@keyframes tsPop{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
 .ts-fade{animation:tsFade 420ms ease-out both}
 @keyframes tsFade{from{opacity:0}to{opacity:1}}
-.ts-glow{animation:tsGlow 1100ms ease-in-out both}
-@keyframes tsGlow{0%{opacity:.3}50%{opacity:1}100%{opacity:.3}}
-.ts-move{transition:transform 460ms cubic-bezier(.3,.7,.25,1)}
-.ts-grab{cursor:grab}
-.ts-tap{cursor:pointer}
-@media (prefers-reduced-motion:reduce){.ts-fade,.ts-glow{animation:none}.ts-move{transition:none}}
+.ts-rise{animation:tsRise 520ms cubic-bezier(.3,.7,.25,1) both}
+@keyframes tsRise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.ts-caret{animation:tsCaret 1s steps(1) infinite}
+@keyframes tsCaret{50%{opacity:0}}
+.ts-flash{animation:tsFlash 900ms ease-in-out both}
+@keyframes tsFlash{0%,100%{stroke-opacity:0}25%,75%{stroke-opacity:1}}
+@media (prefers-reduced-motion:reduce){.ts-pop,.ts-fade,.ts-rise,.ts-flash,.ts-caret{animation:none}}
 `;
 
-/* how a question's strip stands when it opens */
-const initCut = (it: any) => (!it ? 0 : it.kind === "strip" && it.cut ? 0 : PIECES);
-const initShaded = (it: any) => {
-  const c = initCut(it);
-  const pre = !it ? 0 : it.kind === "share" || it.kind === "name" ? it.shade : it.kind === "zero" ? Number(it.bare) : 0;
-  return Array.from({ length: c }, (_, i) => i < pre);
+/* the run of pieces a question asks about */
+const tsRun = (it: any) => (!it ? 0 : it.read === "plain" ? TS_PIECES - (it.shade || 0) : it.shade || 0);
+/* a count of tenths, written with a point, as the card's two boxes */
+const tsDec = (c: number) => (c >= TS_PIECES ? ["1", "0"] : ["0", String(c)]);
+const tsFirst = (c: number) => Array.from({ length: TS_PIECES }, (_, i) => i < c);
+
+/* where everything stands, from the room the working area has (box.w: 1472 shut, 1086 open) */
+const tsGeo = (W: number, centre: boolean) => {
+  const L = Math.min(1200, W - 40), x0 = Math.round((W - L) / 2);
+  /* the two cards stand under the strip's middle when nothing else needs the right of the foot */
+  const cx = x0 + (centre ? Math.round((L - 664) / 2) : 0);
+  return {
+    L, x0,
+    name: { x: x0, y: 0, w: 400, h: 76 },
+    /* the name chips, each as wide as its word needs */
+    chip: (j: number) => {
+      const wOf = (k: number) => Math.max(150, TS_WHOLES[k].length * 19 + 34);
+      let x = x0 + 416;
+      for (let k = 0; k < j; k++) x += wOf(k) + 12;
+      return { x, y: 0, w: wOf(j), h: 76 };
+    },
+    strip: { x: x0, y: 96, w: L, h: 132 },
+    base: 266,
+    frac: { x: cx, y: 284, w: 210, h: 236 },
+    join: { x: cx + 226, y: 284 + 100, w: 72, h: 32 },
+    dec: { x: cx + 314, y: 284, w: 350, h: 236 },
+    right: { x: x0 + 700, y: 284, w: L - 700, h: 236 },
+    /* the keys: Cut, By eye / Measure, Count, two across at the right of the foot */
+    btn: (slot: number) => {
+      const bw = 165, bh = 96;
+      const col = slot % 2, row = Math.floor(slot / 2);
+      return { x: x0 + L - (2 * bw + 12) + col * (bw + 12), y: 296 + row * (bh + 16), w: bw, h: bh };
+    },
+  };
+};
+/* the pieces along the strip: ten of one length, or ten folded by eye */
+const tsCuts = (cut: string, L: number) => {
+  if (cut === "uneven") {
+    let a = 0;
+    return TS_UNEVEN.map((u) => { const w = (u * L) / 1080; const r = { a, w }; a += w; return r; });
+  }
+  return Array.from({ length: TS_PIECES }, (_, i) => ({ a: (i * L) / TS_PIECES, w: L / TS_PIECES }));
+};
+/* one piece: square where it meets its neighbours, round at the two ends of the whole */
+const tsPieceD = (x: number, y: number, w: number, h: number, rl: boolean, rr: boolean) => {
+  const r = 16, a = rl ? r : 0, b = rr ? r : 0;
+  return `M ${x + a} ${y} H ${x + w - b}` + (rr ? ` A ${r} ${r} 0 0 1 ${x + w} ${y + r}` : "") + ` V ${y + h - b}`
+    + (rr ? ` A ${r} ${r} 0 0 1 ${x + w - r} ${y + h}` : "") + ` H ${x + a}` + (rl ? ` A ${r} ${r} 0 0 1 ${x} ${y + h - r}` : "")
+    + ` V ${y + a}` + (rl ? ` A ${r} ${r} 0 0 1 ${x + r} ${y}` : "") + " Z";
+};
+/* how a scene opens: a phase's steps, a question, free play */
+const tsFresh = (n: number, key: string, item: any, named: any) => {
+  const base: any = { key, name: null, cut: "none", shaded: tsFirst(0), stand: false, count: 0, write: false, ones: false, zero: false, lit: 0, fix: null };
+  if (key.endsWith(":free") || key.endsWith(":sum")) return base;
+  if (key.endsWith(":demo")) {
+    if (n === 1) return base;
+    /* phase 3's steps stand under its first question ("Planted part with a point?"), so its strip is the garden */
+    return { ...base, name: n === 3 ? "garden" : TS_WHOLES[0], cut: "even", shaded: tsFirst(n === 3 ? 3 : n === 4 ? 5 : 0) };
+  }
+  const it = item || {};
+  return { ...base, name: n === 1 ? named || TS_WHOLES[0] : it.whole || TS_WHOLES[0], cut: it.kind === "uneven" ? "uneven" : "even", shaded: tsFirst(it.shade || 0) };
 };
 
-/* one piece of the strip: square where it meets its neighbours, round at the two ends of the whole */
-const pieceD = (x: number, y: number, w: number, h: number, rl: boolean, rr: boolean) => {
-  const r = 16;
-  const a = rl ? r : 0, b = rr ? r : 0;
-  return `M ${x + a} ${y} H ${x + w - b}`
-    + (rr ? ` A ${r} ${r} 0 0 1 ${x + w} ${y + r}` : "")
-    + ` V ${y + h - b}`
-    + (rr ? ` A ${r} ${r} 0 0 1 ${x + w - r} ${y + h}` : "")
-    + ` H ${x + a}`
-    + (rl ? ` A ${r} ${r} 0 0 1 ${x} ${y + h - r}` : "")
-    + ` V ${y + a}`
-    + (rl ? ` A ${r} ${r} 0 0 1 ${x + r} ${y}` : "") + " Z";
-};
-
-function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, lang = "en", tx = (v: any) => v }: any) {
+function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL, step, stepOn, box, answerOn, lang = "en", tx = (v: any) => v }: any) {
   const C = api.C;
   const tl = useTimeline();
+  const it = item || {};
   const free = stage === "free";
-  const kind = free ? "free" : item.kind;
-  /* "2 of 3" in the language in use (Hindi and Gujarati put the total first) */
-  const ofN = (a: number, b: number) => lang === "hi" ? `${b} में से ${a}` : lang === "gu" ? `${b} માંથી ${a}` : `${a} of ${b}`;
-
-  const [nameId, setNameId] = useState<string | null>(() => (item && item.whole) || null);
-  const [cut, setCut] = useState(() => initCut(item));     /* 0 = one whole, uncut */
-  const [shaded, setShaded] = useState<boolean[]>(() => initShaded(item));
-  const [eye, setEye] = useState(false);                   /* free play: ten pieces cut by eye */
-  const [stand, setStand] = useState(false);               /* the pieces stood against the rule */
-  const [both, setBoth] = useState(false);                 /* a second, level set stands beside them */
-  const [pick, setPick] = useState<string | null>(null);   /* the part of the number that was tapped */
-  const [zeroIn, setZeroIn] = useState(false);             /* the grey zero is in the ones column */
-  const [arrow, setArrow] = useState(false);
-  const [glow, setGlow] = useState<string | null>(null);
-  const [lit, setLit] = useState(0);                       /* pieces counted, one at a time */
-  const [fix, setFix] = useState<any>(null);               /* the correction layer: never the child's own pieces */
-  const [form, setForm] = useState<any>(null);             /* the two written forms and their bar */
-  const [touched, setTouched] = useState(false);
-  const shadedRef = useRef<boolean[]>([]); shadedRef.current = shaded;
-  const pickRef = useRef<string | null>(null); pickRef.current = pick;
-  const setupFor = useRef(-9);
-  const timer = useRef<any>(null);
-  useEffect(() => () => clearTimeout(timer.current), []);
-
-  const busy = tl.busy;
-
-  const reset = (it: any, isFree: boolean) => {
-    tl.stop();
-    setCut(isFree ? 0 : initCut(it));
-    setShaded(isFree ? [] : initShaded(it));
-    setNameId(isFree ? null : it.whole || null);
-    setEye(false);
-    setStand(false); setBoth(false); setPick(null); setZeroIn(false); setArrow(false);
-    setGlow(null); setLit(0); setFix(null); setForm(null); setTouched(false);
-    api.lock(false);
-  };
-
-  useEffect(() => {
-    if (stage === "ask" && setupFor.current !== index) { setupFor.current = index; reset(item, false); }
-  }, [stage, index]);
-
-  /* free play: any whole, any cut, any pieces coloured, and both writings follow */
-  useEffect(() => {
-    if (!free) return;
-    setupFor.current = -9;
-    reset(item, true);
-  }, [free]);
-
-  /* the correction stands on its own layer; the child's own pieces are never written into, so the
-     next tap confirms the correction instead of undoing it */
-  const clearFix = () => { if (fix || form) { setFix(null); setForm(null); setLit(0); setStand(false); setBoth(false); } };
-  const bumpName = () => { setGlow("name"); clearTimeout(timer.current); timer.current = setTimeout(() => setGlow(null), 1100); };
-
-  const named = !!nameId;
-  const askable = stage === "ask" || free;
-  const canName = !busy && (free || (askable && !!item.cut));
-  /* the cutter can always be taken hold of; it simply will not cut until the strip has a name */
-  const cutterLive = !busy && (free || (askable && !!item.cut));
-  const canCut = cutterLive && named;
-  const canShade = !busy && named && cut > 0 && (free || (askable && kind === "strip"));
-  const canRule = !busy && (free || (askable && kind === "uneven"));
-  const canPick = !busy && askable && kind === "name";
-  const canRead = !busy && askable && kind === "zero";
-
-  const nameIt = (id: string) => { if (!canName) return; clearFix(); setNameId(id); setGlow(null); api.sfx.tick(); setTouched(true); };
-
-  const cutTo = (cnt: number) => {
-    if (!canCut) { if (!named) bumpName(); return; }
-    clearFix();
-    setTouched(true); setEye(false);
-    if (!free && cnt !== PIECES) { setCut(0); setShaded([]); return; }   /* it settles only on ten */
-    setCut(cnt); setShaded(Array.from({ length: cnt }, () => false)); api.sfx.tick();
-  };
-
-  const tapPiece = (k: number) => {
-    if (!canShade) { if (!named && cut === 0) bumpName(); return; }
-    clearFix();
-    setTouched(true);
-    const s = shadedRef.current.slice(); s[k] = !s[k];
-    shadedRef.current = s; setShaded(s); api.sfx.tick();
-  };
-
-  const railX = (k: number) => RAIL.x0 + ((k - 1) / 11) * (RAIL.x1 - RAIL.x0);
-  const countAt = (x: number) => Math.max(1, Math.min(12, 1 + Math.round(((x - RAIL.x0) / (RAIL.x1 - RAIL.x0)) * 11)));
-
-  const drag = useDrag((pay: any, p: any, moved: boolean) => {
-    if (!pay || pay.src !== "cutter") return;
-    cutTo(moved ? countAt(p.x) : PIECES);
+  const isDemo = stage === "demo";
+  const won = stage === "win" || stage === "idle";
+  /* in free play `item` is the last question of the last phase: read the stage first */
+  const k = free ? "free" : isDemo ? "demo" : it.form || "";
+  const sceneKey = n + ":" + (free ? "free" : isDemo || stage === "teach" ? "demo" : stage === "summary" ? "sum" : "q" + index);
+  const named = useRef<any>(null);
+  const [raw, setRaw] = useState<any>(null);
+  const s = raw && raw.key === sceneKey ? raw : tsFresh(n, sceneKey, it, named.current);
+  const put = (patch: any) => setRaw((o: any) => {
+    const b = o && o.key === sceneKey ? o : tsFresh(n, sceneKey, it, named.current);
+    return { ...b, ...(typeof patch === "function" ? patch(b) : patch) };
   });
-  const dragging = !!(drag.drag && drag.drag.moved && drag.drag.payload && drag.drag.payload.src === "cutter");
-  const handleN = dragging ? countAt(drag.drag.x) : Math.max(1, cut || 1);
-  const handleX = railX(handleN);
+  const G = tsGeo(box ? box.w : W.w, k === "fraction" || k === "decimal" || k === "digit" || (isDemo && n === 2));
+  /* the chocolate skin only when the whole IS a chocolate bar: a ribbon, a garden or a litre of milk drawn as chocolate
+     would teach a wrong model, so any other named whole is the plain paper strip with its name label */
+  const choc = s.name === TS_WHOLES[0];
+  /* phase 4's rungs for the question on show: its own `ladder` when it has one, else the zero rungs */
+  if (n === 2 || n === 4) {
+    const lad = n === 2 ? TS_L2 : TS_L4, own = !free && Array.isArray(it.ladder) ? it.ladder : n === 2 ? TS_P2_RUNGS : TS_ZERO_RUNGS;
+    lad[0] = own[0]; lad[1] = own[1];
+  }
+  const coloured = s.shaded.filter(Boolean).length;
 
-  /* Enter: only the tapped part of a written number is answered on the working area */
-  const enterFn: any = stage === "ask" && kind === "name" && !busy
-    ? () => { if (pickRef.current) api.submit(pickRef.current); }
-    : null;
-  api.onEnter(enterFn);
-  HOOK.set = (v: any) => { if (kind !== "name") return false; pickRef.current = String(v); setPick(String(v)); return true; };
-  HOOK.type = (s: string) => api.setTyped(String(s));
-  HOOK.check = () => undefined;
-
-  const pickPart = (id: string) => {
-    if (!canPick) return;
-    clearFix();
-    setTouched(true);
-    pickRef.current = id; setPick(id); api.sfx.tick();
+  /* ── the acts: each one click, reported the moment it happens ── */
+  const perform = (on: string, arg?: any) => {
+    if (on === "name") { named.current = arg; put({ name: arg, lit: 0 }); api.sfx.tick(); return; }
+    if (on === "cut" || on === "uneven") {
+      if (!s.name) { put({ lit: s.lit + 1 }); return; }   /* nothing is cut until the whole is named */
+      api.sfx.cut();
+      put({ cut: on === "cut" ? "even" : "uneven", stand: false, shaded: tsFirst(0) });
+      tl.run([[650, () => {}]], () => api.sfx.settle());
+      return;
+    }
+    if (on === "measure") { if (s.cut === "none") return; api.sfx.settle(); put((b: any) => ({ stand: !b.stand })); return; }
+    if (on === "count") { api.sfx.tick(); put((b: any) => ({ count: b.count + 1 })); return; }
+    if (on === "write") { api.sfx.settle(); put({ write: true }); return; }
+    if (on === "ones") { api.sfx.tick(); put({ ones: true }); return; }
+    if (on === "zero") { api.sfx.settle(); put({ zero: true, ones: true }); return; }
+    if (on === "shade") { api.sfx.tick(); put((b: any) => { const sh = b.shaded.slice(); sh[arg] = !sh[arg]; return { shaded: sh, stand: false }; }); return; }
   };
-  const readOnes = () => { if (!canRead) return; setArrow(true); setTouched(true); clearTimeout(timer.current); timer.current = setTimeout(() => setArrow(false), 1400); };
+  const lastMeasure = useRef(0);
+  const act = (on: string, arg?: any) => {
+    /* a second Measure within 400 ms (a double tap) is the same press: it never lays the pieces flat again at once */
+    if (on === "measure") { const t = Date.now(); if (t - lastMeasure.current < 400) return; lastMeasure.current = t; }
+    if (isDemo) {
+      /* the whole may be renamed until it is cut (as in free play): a chip is never a wrong act before Cut */
+      if (on === "name" && stepOn !== on && s.name && s.cut === "none") { perform(on, arg !== undefined ? arg : s.name); return; }
+      /* a guide step: only the act it waits for moves anything; any other act shows the step's hint */
+      if (stepOn !== on) { api.did(on); if ((on === "cut" || on === "uneven") && !s.name) put({ lit: s.lit + 1 }); return; }
+      const a = arg !== undefined ? arg : on === "name" ? TS_WHOLES[0] : on === "shade" ? s.shaded.indexOf(false) : undefined;
+      if (on === "shade" && (a < 0 || s.shaded[a])) { api.did("unshade"); return; }
+      perform(on, a);
+      api.did(on);
+      return;
+    }
+    api.did(on);
+    perform(on, arg);
+  };
+  /* Enter, the agent's toolApi.check() and the dev solve() perform the CURRENT step */
+  api.onEnter(isDemo && stepOn ? () => act(stepOn) : null);
+  HOOK.demo = () => { if (isDemo && stepOn) act(stepOn); };
 
-  /* ── the run of pieces a question is about, on the child's own strip ── */
-  const runOrder = () => shaded.map((s: boolean, i: number) => ({ s, i }))
-    .filter((x: any) => (item.read === "plain" ? !x.s : x.s)).map((x: any) => x.i);
+  /* a new scene: the card may blink again */
+  useEffect(() => { api.cardReady(true); }, [sceneKey]);
 
-  /* ── the win: what was counted lights one piece at a time, then both writings ── */
-  useEffect(() => {
-    if (stage !== "win") return;
-    const S: any[] = [];
-    if (kind === "strip") {
-      const ord = runOrder(), k = runOf(item);
-      ord.forEach((_: number, i: number) => S.push([210, () => setLit(i + 1)]));
-      S.push([300, () => setForm({ frac: [k, PIECES], dec: decOf(k), bar: true, sub: item.read === "plain" ? "plain" : "coloured" })]);
-      if (item.read === "plain") S.push([700, () => setForm({ frac: [k, PIECES], dec: decOf(k), bar: true, sub: "plain", other: decOf(PIECES - k), otherSub: "coloured" })]);
-      S.push([700, () => {}]);
-    } else if (kind === "name") {
-      S.push([200, () => setPick("point")], [500, () => setForm({ word: "decimal point" })]);
-      Array.from({ length: item.shade }).forEach((_, i) => S.push([180, () => setLit(i + 1)]));
-      S.push([700, () => {}]);
-    } else if (kind === "zero") {
-      S.push([260, () => { setArrow(true); setZeroIn(true); }], [520, () => setForm({ dec: item.answer, sub: "ones place held" })], [800, () => {}]);
-    } else if (kind === "uneven") {
-      S.push([160, () => setStand(true)], [1100, () => setBoth(true)], [800, () => {}]);
-    } else if (kind === "share") {
-      S.push([200, () => setGlow("name")], [600, () => setForm({ word: "name the whole" })], [800, () => {}]);
-    } else S.push([300, () => {}]);
-    tl.run(S);
-  }, [stage]);
-
-  /* ── the traceback: the mathematics redrawn on its own layer, ending on the whole right answer;
-        nothing is marked, nothing is cleared, and the child's pieces are left exactly as they are ── */
+  /* ── the traceback: count the run the question asks for, then write the whole right answer ── */
   useEffect(() => {
     if (!wrong || stage !== "ask") return;
     api.lock(true);
-    setTouched(true);
-    const done = () => api.lock(false);
-    const v = String((wrong && wrong.value) || "");
-    const S: any[] = [];
-    if (kind === "strip") {
-      const k = runOf(item);
-      S.push([300, () => { setForm(null); setLit(0); setFix({ strip: true, shade: item.shade, read: item.read }); }]);
-      Array.from({ length: k }).forEach((_, i) => S.push([260, () => setLit(i + 1)]));
-      S.push([340, () => setForm({ frac: [k, PIECES], dec: decOf(k), bar: true, sub: item.read === "plain" ? "plain" : "coloured" })]);
-      S.push([800, () => {}]);
-    } else if (kind === "uneven") {
-      S.push([200, () => { setFix({ rule: true }); setStand(true); }], [1200, () => setBoth(true)],
-        [700, () => setForm({ word: "not the same size" })], [800, () => {}]);
-    } else if (kind === "name") {
-      S.push([300, () => { setFix({ ring: "point" }); setPick(null); }], [700, () => setForm({ word: "decimal point" })]);
-      Array.from({ length: item.shade }).forEach((_, i) => S.push([170, () => setLit(i + 1)]));
-      S.push([800, () => {}]);
-    } else if (kind === "zero") {
-      /* the zero written in, with the digit slid along: the two readings are carried down to strips
-         ten times apart, and the digit is walked back into the tenths place */
-      const slid = /^0\.0\d/.test(v.replace(/\s/g, ""));
-      if (slid) {
-        S.push([300, () => { setFix({ two: true, k: Number(item.bare) }); setLit(0); }],
-          [900, () => setLit(1)], [900, () => setLit(2)],
-          [600, () => { setFix({ hund: true, k: Number(item.bare) }); }],
-          [800, () => { setFix(null); setArrow(true); setGlow("ones"); }]);
-      } else {
-        S.push([320, () => { setArrow(true); setGlow("ones"); }]);
-      }
-      S.push([900, () => setZeroIn(true)], [500, () => setForm({ dec: item.answer, sub: "ones place held" })], [800, () => {}]);
-    } else if (kind === "share") {
-      S.push([320, () => setGlow("name")], [900, () => setForm({ word: "name the whole", sub: "a share of what?" })], [800, () => {}]);
-    } else S.push([400, () => {}]);
-    tl.run(S, done);
+    api.cardReady(false);
+    const v = String(wrong.value ?? "");
+    put((b: any) => ({ stand: false, fix: { forTyped: v, st: 1, run: ((b.fix && b.fix.run) || 0) + 1 } }));
+    const kk = it.form === "uneven" ? 3 : tsRun(it);
+    tl.run([[kk * 240 + 600, () => {}], [1000, () => put((b: any) => ({ fix: { ...(b.fix || {}), st: 2 } }))], [700, () => {}]],
+      () => { api.lock(false); api.cardReady(true); });
   }, [wrong]);
 
-  /* free play has no target: the two writings follow the colouring, live. Pieces cut by eye are not
-     tenths, so nothing is written over them; that is what the rule is for. */
-  const shadeCount = shaded.filter(Boolean).length;
-  const freeForm = free && named && cut > 0 && shadeCount > 0 && !eye
-    ? { frac: [shadeCount, cut], bar: cut === PIECES, sub: cut === PIECES ? "coloured" : null,
-      dec: cut === PIECES ? (shadeCount === PIECES ? "1.0" : decOf(shadeCount)) : null }
-    : null;
-  const formShown = free ? freeForm : form;
+  /* ── the win: a line of its own for every question ── */
+  useEffect(() => {
+    if (stage !== "win") return;
+    const q = it.qid;
+    if (q === "M1.S1.T2.C4:ML1") api.say("Yes, six of ten equal pieces is six tenths of the strip.");
+    else if (q === "M1.S1.T2.C4:1") api.say("Yes, 0.3 is the same as three tenths.");
+    else if (q === "M1.S1.T2.C4:2") api.say("Right, the pieces are not equal, so none of them is a tenth.");
+    else if (q === "M1.S1.T2.C5:ML2") api.say("Yes, the Decimal card writes the same amount, and its dot is the decimal point.");
+    else if (q === "M1.S1.T2.C5:4") api.say("Right, the 7 sits just after the point, in the tenths place.");
+    else if (q === "M1.S1.T2.C5:3") api.say("Yes, the milk is 0.8 of the litre.");
+    else if (q === "M1.S1.T2.C6:ML3") api.say("Yes, 0.7 is planted: the 7 counts seven planted tenths.");
+    else if (q === "M1.S1.T2.C6:5") api.say("Yes, 0.5 of the chapati was eaten, which is half of it.");
+    else if (q === "M1.S1.T2.C6:6") api.say("Yes, 0.1 plain and 0.9 coloured make 1 whole.");
+    else if (q === "M1.S1.T2.C7:ML4") api.say("Yes, 0.6 is six tenths, and the 0 stands in the ones place.");
+    else if (q === "M1.S1.T2.C7:7") api.say("Right, nobody said how much money there was, so the rupees cannot be found.");
+    else if (q === "M1.S1.T2.C7:8") api.say("Yes, 0.4 kg: the 0 shows there is no whole kilogram.");
+  }, [stage, index]);
 
-  /* ── what the host and the agent read back (toolApi.getState) ── */
-  const litOn = runOrder().slice(0, lit);
-  api.share({
-    wholeName: nameId, pieces: cut, equal: kind !== "uneven" && !eye,
-    shaded: shadeCount,
-    fractionSlot: formShown && formShown.frac ? formShown.frac.join("/") : null,
-    decimalSlot: formShown && formShown.dec ? formShown.dec : null,
-    zeroWritten: zeroIn,
-  });
+  /* what the host and the agent read back (toolApi.getState) */
+  api.share({ wholeName: s.name, pieces: s.cut === "none" ? 1 : TS_PIECES, equal: s.cut !== "uneven", shaded: coloured,
+    measured: !!s.stand, complete: stage === "idle" });
 
-  /* ── drawing ───────────────────────────────────────────────────────────────────────── */
-  const showStrip = !(fix && fix.two) && (kind === "strip" || kind === "uneven" || kind === "share" || kind === "free" || kind === "name" || kind === "zero");
-  const showChart = kind === "name" || kind === "zero";
-  const showName = kind === "strip" || kind === "share" || kind === "free";
-  const showCutter = kind === "free" || (kind === "strip" && !!item.cut);
-  const widths = kind === "uneven" || (kind === "free" && eye && cut === PIECES) ? UNEVEN : null;
-  const count = kind === "uneven" ? PIECES : dragging ? handleN : Math.max(cut, 1);
-  const cutNow = dragging ? handleN : cut;
-  const chartish = kind === "name" || kind === "zero";
-  const bary = chartish ? SHOW.y : BAR.y;
-  const barh = chartish ? SHOW.h - 24 : BAR.h;
+  /* ── what each part of the picture shows now ── */
+  const fixOn = !!(s.fix && stage === "ask");
+  const fix2 = fixOn && s.fix.st >= 2;
+  const fixCards = fix2 && String(typed ?? "") === s.fix.forTyped;   /* the correction's answer, until the child types again */
+  const kk = tsRun(it);
+  const cuts = tsCuts(s.cut === "none" ? "even" : s.cut, G.L);
+  const standNow = s.stand || (k === "uneven" && (fixOn || won));
+  /* the width of the coloured run from the left (0 when there is none, it is broken, or the row under the strip is
+     taken by a correction or a win) */
+  const runOk = coloured > 0 && s.shaded.every((x: boolean, i: number) => x === i < coloured);
+  const runLabel = runOk && s.cut !== "none" && !standNow && !fixOn && !won ? cuts[coloured - 1].a + cuts[coloured - 1].w : 0;
+  const showCards = !(n === 1 && isDemo) && k !== "uneven";
+  /* the pieces whose count is written on them (a counted run) */
+  let counted: number[] = [];
+  if (isDemo && n === 3 && s.count > 0) counted = [0, 1, 2];
+  else if (!isDemo && !free && (fixOn || won) && k !== "uneven") {
+    counted = it.read === "plain" ? Array.from({ length: kk }, (_, j) => (it.shade || 0) + j) : Array.from({ length: kk }, (_, j) => j);
+  }
+  const countRun = isDemo ? s.count : s.fix ? s.fix.run : won ? 99 : 0;
 
-  /* the strip the child owns */
-  const stripPieces = () => {
-    const out: any[] = [];
-    let x = BAR.x;
-    for (let i = 0; i < count; i++) {
-      const w = widths ? widths[i] : BAR.w / count;
-      const on = cutNow > 0 && !!shaded[i];
-      out.push(<path key={"p" + i} d={pieceD(x, bary, w, barh, i === 0, i === count - 1)}
-        fill={on ? TENTH : tint(C.panel, 0.45)} stroke={C.ink} strokeWidth={3} />);
-      x += w;
+  let fracV = ["", ""], decV = ["", ""], fracAct = -1, decAct = -1;
+  /* the place headings: in phase 2 only from C5:4's win on (a "tenths" heading earlier would answer "what does the 7
+     count?" before it is asked) */
+  let heads = n >= 3 || free || (n === 2 ? (won || fix2) && index >= 1 : won || fix2);
+  let open = false, lit = false, note = false, title = "Decimal", unit = "";
+  if (free) {
+    if (s.cut === "even" && coloured > 0) { fracV = [String(coloured), "10"]; decV = tsDec(coloured); }
+  } else if (isDemo) {
+    if (n === 2 && coloured > 0) { fracV = [String(coloured), "10"]; decV = tsDec(coloured); }
+    if (n === 3 && s.write) { fracV = ["3", "10"]; decV = ["0", "3"]; }
+    /* phase 4's steps: the card is the sign written without its zero (the first question's ask names a sign) */
+    if (n === 4) { fracV = ["5", "10"]; decV = [s.zero ? "0" : "", "5"]; open = !s.zero; lit = s.ones && !s.zero; note = s.ones; title = "Sign"; }
+  } else {
+    const typedV = slotPartsOf(typed, 2);
+    const asked = answerOn === "card" && box && box.open;
+    if (k === "fraction") {
+      fracV = won || fixCards ? [String(kk), "10"] : stage === "ask" ? typedV : ["", ""];
+      if (won || fix2) decV = tsDec(kk);
+      if (asked && !fixCards) fracAct = part || 0;
+    } else if (k === "decimal") {
+      decV = won || fixCards ? tsDec(kk) : stage === "ask" ? typedV : ["", ""];
+      if (won || fix2) fracV = [String(kk), "10"];
+      if (asked && !fixCards) decAct = part || 0;
+      note = fix2;
+    } else if (k === "typed") {
+      /* the sign rewritten on the Decimal card by the child: the ones box stands open (dashed) while nothing is in it and
+         is lit only by a correction; the sign itself stands at the right as it was written */
+      decV = won || fixCards ? tsDec(kk) : stage === "ask" ? typedV : ["", ""];
+      open = decV[0] === ""; lit = fixOn && decV[0] === ""; note = won || fix2; heads = true; unit = it.unit || "";
+      if (won || fix2) fracV = [String(kk), "10"];
+      if (asked && !fixCards) decAct = part || 0;
+    } else if (k === "digit") {
+      decV = tsDec(kk);
+      heads = won || fix2;
+      if (won || fix2) fracV = [String(kk), "10"];
+    } else if (k === "share") {
+      fracV = [String(kk), "10"]; decV = tsDec(kk); heads = true;
     }
-    return out;
+  }
+  const full = (v: string[]) => v[0] !== "" && v[1] !== "";
+  const joined = showCards && full(fracV) && full(decV);
+
+  /* ── drawing helpers (called, never mounted) ── */
+  const digitSize = (vals: string[]) => { const m = Math.max(1, ...vals.map((v) => String(v || "").length)); return m <= 2 ? 48 : m <= 3 ? 40 : 32; };
+  const caret = (bx: number, by: number, bw: number, bh: number, txt: string, fs: number) => {
+    const cx = bx + bw / 2 + (String(txt).length * fs * 0.3) + 6;
+    return <line className="ts-caret" x1={cx} y1={by + 14} x2={cx} y2={by + bh - 14} stroke={C.accent} strokeWidth={3} strokeLinecap="round" />;
   };
 
-  /* pieces stood end on against the rule: a difference in length is seen, not argued about */
-  const standing = (ws: number[], x0: number, label: string, flat: boolean) => {
-    const bw = 40, gap = 8;
-    const hs = ws.map((w) => Math.round((w / 150) * (SHOW.h - 12)));
-    const top = (h: number) => SHOW.y + SHOW.h - h;
-    const hi = hs.indexOf(Math.max(...hs)), lo = hs.indexOf(Math.min(...hs));
+  const nameRow = () => {
+    const nb = G.name;
+    /* the name chips: in phase 1's steps until the strip is cut (they rename it till then), and always in free play */
+    const chips = (n === 1 && isDemo && s.cut === "none") || free;
     return (
-      <g className="ts-fade" pointerEvents="none">
-        {hs.map((h, i) => (
-          <rect key={"s" + i} x={x0 + i * (bw + gap)} y={top(h)} width={bw} height={h} rx={6}
-            fill={TENTH} fillOpacity={0.55} stroke={C.ink} strokeWidth={2} />
-        ))}
-        {!flat && (
-          <path d={`M ${x0 + hi * (bw + gap) + bw / 2} ${top(hs[hi]) - 14} V ${top(hs[hi]) - 22} H ${x0 + lo * (bw + gap) + bw / 2} V ${top(hs[lo]) - 14}`}
-            fill="none" stroke={C.ink} strokeWidth={3} />
-        )}
-        {flat && <path d={`M ${x0} ${top(hs[0]) - 18} H ${x0 + (ws.length - 1) * (bw + gap) + bw}`} fill="none" stroke={C.ink} strokeWidth={3} />}
-        <text x={x0 + ((ws.length * (bw + gap) - gap) / 2)} y={SHOW.y + SHOW.h + (lang === "en" ? 30 : 38)} textAnchor="middle"
-          fontSize={T.micro} fontWeight={600} fill={C.ink}>{tx(label)}</text>
-      </g>
-    );
-  };
-
-  /* a written decimal: grey zero holding the ones place, vermilion point, green tenths */
-  const written = (s: string, x: number, y: number, size: number) => {
-    const chars = String(s).split("");
-    let after = false;
-    return (
-      <text x={x} y={y} textAnchor="middle" fontSize={size} fontWeight={700}>
-        {chars.map((ch, i) => {
-          if (ch === ".") { after = true; return <tspan key={i} fill={INK_POINT}>{ch}</tspan>; }
-          const fill = after ? INK_TENTH : ch === "0" ? ZERO_INK : INK_ONES;
-          return <tspan key={i} fill={fill}>{ch}</tspan>;
-        })}
-      </text>
-    );
-  };
-
-  const chartCol = (x: number, head: string, digit: string | null, open: boolean, ink: string) => (
-    <g>
-      <text x={x + CHART.w / 2} y={CHART.y - T.label * 0.6} textAnchor="middle" fontSize={T.micro} fontWeight={600} fill={C.ink}>{tx(head)}</text>
-      <rect x={x} y={CHART.y} width={CHART.w} height={CHART.h} rx={RAD.panel} fill="#FFFFFF"
-        stroke={open && glow === "ones" ? DOT : C.rule} strokeWidth={open ? 4 : 2}
-        strokeDasharray={open ? "12 10" : undefined} className={open && glow === "ones" ? "ts-glow" : ""} />
-      {digit !== null && <text x={x + CHART.w / 2} y={CHART.y + CHART.h / 2 + T.display * 0.34} textAnchor="middle"
-        fontSize={T.display} fontWeight={700} fill={ink}>{digit}</text>}
-    </g>
-  );
-
-  /* one invite, and it steps along: name the whole, cut it, colour a piece */
-  const stripish = kind === "strip" || kind === "free";
-  const invite = !askable || busy || dragging ? null
-    : stripish && !named ? { x: NAMEBOX.w / 2, y: NAMEBOX.h / 2, r: 34 }
-      : stripish && cut === 0 ? { x: handleX, y: RAIL.y, r: 40 }
-        : stripish && !shaded.some(Boolean) ? { x: BAR.x + BAR.w / count / 2, y: bary + barh / 2, r: 44 }
-          : kind === "uneven" && !stand ? { x: MEASURE.x + MEASURE.w / 2, y: MEASURE.h / 2, r: 34 }
-            : null;
-
-  return (
-    <g>
-      <style>{TS_CSS}</style>
-
-      {/* the running count: shares written against the shares this phase lays out */}
-      <g data-zone="runs">
-        <rect x={0} y={-94} width={330} height={76} rx={RAD.panel} fill="url(#gPanel)" stroke={C.rule} strokeWidth={2} />
-        <text x={18} y={lang === "en" ? -68 : -62} fontSize={T.micro} fontWeight={600} fill={C.ink}>{tx("written")}</text>
-        <text x={316} y={-32} textAnchor="end" fontSize={T.speech} fontWeight={700} fill={C.ink}>
-          {free ? tx("free") : ofN(Math.min(index + (stage === "win" || stage === "idle" || stage === "summary" ? 1 : 0), phase.items.length), phase.items.length)}
-        </text>
-      </g>
-
-      {/* what is being cut: the slots take nothing until the strip above them has a name */}
-      {showName && (
-        <g>
-          <rect x={NAMEBOX.x} y={NAMEBOX.y} width={NAMEBOX.w} height={NAMEBOX.h} rx={RAD.panel}
-            fill="#FFFFFF" stroke={glow === "name" ? DOT : C.rule} strokeWidth={glow === "name" ? 5 : 2}
-            className={glow === "name" ? "ts-glow" : ""} />
-          <text x={NAMEBOX.x + NAMEBOX.w / 2} y={NAMEBOX.y + NAMEBOX.h / 2 + T.label * 0.34} textAnchor="middle"
-            fontSize={T.label} fontWeight={700} fill={named ? C.ink : C.accent}>{named ? tx(nameId) : "?"}</text>
-        </g>
-      )}
-
-      {/* the three wholes, in phase one and in free play */}
-      {(kind === "free" || (kind === "strip" && !!item.cut)) && WHOLES.map((w, i) => (
-        <Key key={w.id} id={"whole-" + w.id} label={"Cut one " + w.label} x={CARDX[i]} y={NAMEBOX.y} w={CARDW} h={NAMEBOX.h}
-          C={C} primary={nameId === w.id} disabled={!canName} onClick={() => nameIt(w.id)}>
-          <text y={12} textAnchor="middle" fontSize={T.label} fontWeight={600} fill={nameId === w.id ? "#FFFFFF" : C.ink}>{tx(w.label)}</text>
-        </Key>
-      ))}
-
-      {/* the rule, and a cut made by eye */}
-      {(kind === "free" || kind === "uneven") && (
-        <Key id="measure" label="Measure the pieces" x={MEASURE.x} y={MEASURE.y} w={MEASURE.w} h={MEASURE.h} C={C}
-          primary={stand} disabled={!canRule} onClick={() => { clearFix(); setTouched(true); setStand((s: boolean) => !s); }}>
-          <text y={12} textAnchor="middle" fontSize={T.label} fontWeight={600} fill={stand ? "#FFFFFF" : C.ink}>{tx("Measure")}</text>
-        </Key>
-      )}
-      {kind === "free" && (
-        <Key id="by-eye" label="Cut ten pieces by eye" x={BYEYE.x} y={BYEYE.y} w={BYEYE.w} h={BYEYE.h} C={C}
-          primary={eye} disabled={!named || busy}
-          onClick={() => { clearFix(); setTouched(true); setEye(true); setCut(PIECES); setShaded(Array.from({ length: PIECES }, () => false)); setStand(false); api.sfx.tick(); }}>
-          <text y={12} textAnchor="middle" fontSize={T.label} fontWeight={600} fill={eye ? "#FFFFFF" : C.ink}>{tx("By eye")}</text>
-        </Key>
-      )}
-
-      {/* the ones and tenths chart */}
-      {showChart && (
-        <g>
-          {chartCol(CHART.ones, "ones", kind === "zero" ? (zeroIn ? "0" : null) : String(item.number)[0],
-            kind === "zero" && !zeroIn, kind === "zero" ? ZERO_INK : INK_ONES)}
-          <circle cx={CHART.point} cy={CHART.y + CHART.h / 2 + T.display * 0.28} r={13} fill={DOT} />
-          {chartCol(CHART.tenth, "tenths", kind === "zero" ? String(item.bare) : String(item.number)[2], false, INK_TENTH)}
-          {kind === "zero" && item.unit && (
-            <text x={CHART.hund + 10} y={CHART.y + CHART.h / 2 + T.speech * 0.34} fontSize={T.speech} fontWeight={600} fill={C.ink}>{tx(item.unit)}</text>
-          )}
-          {fix && fix.hund && <g pointerEvents="none">{chartCol(CHART.hund, "hundredths", String(fix.k), false, shade(HUND, 0.25))}</g>}
-          {arrow && (
-            <path className="ts-fade" pointerEvents="none" d={`M ${CHART.point - 24} ${CHART.y + CHART.h + 26} H ${CHART.ones + CHART.w / 2} V ${CHART.y + CHART.h + 12}`}
-              fill="none" stroke={DOT} strokeWidth={4} strokeLinecap="round" />
-          )}
-          {canPick && (
-            <g>
-              <Hit id="part-ones" label="The first digit" x={CHART.ones + 20} y={CHART.y} w={CHART.w - 40} h={CHART.h} onPress={() => pickPart("ones")} />
-              <Hit id="part-point" label="The mark between the digits" x={CHART.point - 36} y={CHART.y + CHART.h / 2 - 36} w={HIT} h={HIT} onPress={() => pickPart("point")} />
-              <Hit id="part-tenth" label="The last digit" x={CHART.tenth + 20} y={CHART.y} w={CHART.w - 40} h={CHART.h} onPress={() => pickPart("tenths")} />
-            </g>
-          )}
-          {canRead && <Hit id="read-ones" label="Read the ones column" x={CHART.ones + 20} y={CHART.y} w={CHART.w - 40} h={CHART.h} onPress={readOnes} />}
-          {pick && (
-            <rect className="ts-fade" pointerEvents="none" fill="none" stroke={C.accent} strokeWidth={5} rx={RAD.panel}
-              x={pick === "point" ? CHART.point - 40 : (pick === "ones" ? CHART.ones : CHART.tenth) + 8}
-              y={pick === "point" ? CHART.y + CHART.h / 2 - 40 : CHART.y - 8}
-              width={pick === "point" ? 80 : CHART.w - 16} height={pick === "point" ? 80 : CHART.h + 16} />
-          )}
-          {fix && fix.ring && (
-            <rect className="ts-fade" pointerEvents="none" fill="none" stroke={DOT} strokeWidth={5} rx={RAD.panel}
-              x={CHART.point - 40} y={CHART.y + CHART.h / 2 - 40} width={80} height={80} />
-          )}
-        </g>
-      )}
-
-      {/* the cutter on its rail: it folds the strip as it travels and settles only on ten; drawn before the strip so that,
-          once cut, Tab goes from the cutter straight on to the first piece (cut, then colour) */}
-      {showCutter && (
-        <g>
-          <rect x={RAIL.x0 - 10} y={RAIL.y - 5} width={RAIL.x1 - RAIL.x0 + 20} height={10} rx={5} fill={tint(C.rule, 0.35)} />
-          {/* Hindi and Gujarati letters stand taller than English ones, so their label sits beside the handle, clear of the strip above it */}
-          <text x={lang === "en" ? Math.min(Math.max(handleX, 90), 996) : handleX > 800 ? handleX - 20 : handleX + 20}
-            y={RAIL.y - (lang === "en" ? 24 : 11)} textAnchor={lang === "en" ? "middle" : handleX > 800 ? "end" : "start"} fontSize={T.micro} fontWeight={700}
-            fill={handleN === PIECES ? shade(TENTH, 0.35) : C.ink}>{handleN === 1 ? tx("one whole") : handleN + " " + tx("pieces")}</text>
-          <g className={cutterLive ? "ts-grab c4-piece" : ""} {...(cutterLive ? { ...control("cutter", "Cut the strip into pieces"), ...drag.bind({ src: "cutter" }), ...drag.keys({ src: "cutter" }) } : {})}>
-            <rect x={handleX - HIT / 2} y={RAIL.y - HIT / 2} width={HIT} height={HIT} fill="transparent" />
-            <path d={`M ${handleX} ${RAIL.y - 26} L ${handleX + 22} ${RAIL.y + 20} H ${handleX - 22} Z`}
-              fill={cutterLive ? C.accent : tint(C.rule, 0.2)} stroke={shade(C.accent, 0.35)} strokeWidth={3} filter="url(#fShadowSoft)" />
+      <g>
+        <rect x={nb.x} y={nb.y} width={nb.w} height={nb.h} rx={16} fill="#FFFFFF" stroke={s.name ? C.rule : C.accent} strokeWidth={s.name ? 2 : 3}
+          strokeDasharray={s.name ? undefined : "10 8"} />
+        <text x={nb.x + 22} y={nb.y + 48} fontSize={T.micro} fontWeight={700} fill={TS_INK2}>{tx("Whole")}</text>
+        <text x={nb.x + 122} y={nb.y + 50} fontSize={T.label} fontWeight={700} fill={s.name ? TS_LINE : C.accent}>{s.name ? tx(s.name) : "?"}</text>
+        {s.lit > 0 && <rect key={"lit" + s.lit} className="ts-flash" x={nb.x - 5} y={nb.y - 5} width={nb.w + 10} height={nb.h + 10} rx={20}
+          fill="none" stroke={C.accent} strokeWidth={5} pointerEvents="none" />}
+        {k === "share" && (fix2 || won) && (
+          <g className="ts-pop">
+            <rect x={G.chip(0).x} y={0} width={150} height={76} rx={16} fill="#FFFFFF" stroke={C.rule} strokeWidth={2} strokeDasharray="10 8" />
+            <text x={G.chip(0).x + 75} y={50} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.accent}>₹ ?</text>
           </g>
-        </g>
-      )}
+        )}
+        {chips && TS_WHOLES.map((w, j) => {
+          const c = G.chip(j), sel = s.name === w;
+          return (
+            <Key key={w} id={"name-" + w} label={tx(w)} x={c.x} y={c.y} w={c.w} h={c.h - 4} C={C} tone={sel ? "enter" : "key"} primary={sel}
+              onClick={() => act("name", w)}>
+              <text y={11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={toneInk(sel ? "enter" : "key", sel ? "#FFFFFF" : C.ink)}>{tx(w)}</text>
+            </Key>
+          );
+        })}
+      </g>
+    );
+  };
 
-      {/* the strip itself: one piece until the cutter settles on ten */}
-      {showStrip && (
-        <g>
-          {stripPieces()}
-          {litOn.map((i: number) => {
-            const w = BAR.w / count;
-            return <rect key={"lit" + i} className="ts-fade" pointerEvents="none" x={BAR.x + i * w + 4} y={bary + 4} width={w - 8} height={barh - 8}
-              rx={10} fill="none" stroke={C.accent} strokeWidth={5} />;
-          })}
-          {kind !== "name" && cutNow > 0 && Array.from({ length: count }).map((_, i) => {
-            const w = widths ? widths[i] : BAR.w / count;
-            const x = widths ? widths.slice(0, i).reduce((a: number, b: number) => a + b, 0) + BAR.x : BAR.x + i * w;
-            return canShade ? <Hit key={"h" + i} id={"piece-" + i} label={"Colour piece " + (i + 1)} x={x} y={bary} w={w} h={barh} onPress={() => tapPiece(i)} /> : null;
-          })}
-        </g>
-      )}
-
-      {/* the correction layer: a second strip, drawn beside the child's and never over it */}
-      {fix && fix.strip && (
-        <g className="ts-fade" pointerEvents="none">
-          {Array.from({ length: PIECES }).map((_, i) => {
-            const w = BAR.w / PIECES;
-            const on = i < fix.shade;
-            const counted = fix.read === "plain" ? i >= fix.shade && i < fix.shade + lit : i < lit;
+  const stripView = () => {
+    const S = G.strip;
+    if (standNow) return null;
+    if (s.cut === "none") {
+      return <rect x={S.x} y={S.y} width={S.w} height={S.h} rx={18} fill={TS_SHEET} stroke={TS_LINE} strokeWidth={3} filter="url(#fShadowSoft)" />;
+    }
+    const live = (n === 2 && isDemo) || free;
+    return (
+      <g>
+        {/* each piece is its own element with its own box (S.x + a, S.y, w, S.h): the plain paper shape first (the
+            fallback), the chocolate tile stretched to that box and clipped to the piece, then the amber of a coloured
+            piece over it at 0.72 with a dark inset outline, then the outline; the equal widths come from the model */}
+        <defs>
+          {cuts.map((c, i) => (
+            <clipPath key={"k" + i} id={"ts-pc" + i}><path d={tsPieceD(S.x + c.a, S.y, c.w, S.h, i === 0, i === TS_PIECES - 1)} /></clipPath>
+          ))}
+        </defs>
+        <g filter="url(#fShadowSoft)">
+          {cuts.map((c, i) => {
+            const d = tsPieceD(S.x + c.a, S.y, c.w, S.h, i === 0, i === TS_PIECES - 1);
             return (
-              <g key={"f" + i}>
-                <path d={pieceD(BAR.x + i * w, SHOW.y, w, SHOW.h - 24, i === 0, i === PIECES - 1)}
-                  fill={on ? TENTH : tint(C.panel, 0.45)} stroke={C.ink} strokeWidth={3} />
-                {counted && <rect x={BAR.x + i * w + 4} y={SHOW.y + 4} width={w - 8} height={SHOW.h - 32} rx={10} fill="none" stroke={C.accent} strokeWidth={5} />}
+              <g key={"p" + i} data-role="piece">
+                <path d={d} fill={TS_SHEET} />
+                {choc && <Skin name="piece" x={S.x + c.a} y={S.y} w={c.w} h={S.h} fit="stretch" clip={"url(#ts-pc" + i + ")"} />}
+                {s.shaded[i] && <path d={d} fill="url(#gTen)" fillOpacity={0.72} />}
+                {s.shaded[i] && <rect x={S.x + c.a + 7} y={S.y + 7} width={c.w - 14} height={S.h - 14} rx={8} fill="none" stroke={TS_LINE} strokeWidth={4} />}
+                <path d={d} fill="none" stroke={TS_LINE} strokeWidth={3} />
               </g>
             );
           })}
         </g>
-      )}
-      {fix && fix.two && (
-        <g className="ts-fade" pointerEvents="none">
-          {Array.from({ length: PIECES }).map((_, i) => (
-            <path key={"t" + i} d={pieceD(BAR.x + i * (BAR.w / PIECES), SHOW.y, BAR.w / PIECES, 44, i === 0, i === PIECES - 1)}
-              fill={lit >= 1 && i < fix.k ? TENTH : tint(C.panel, 0.45)} stroke={C.ink} strokeWidth={3} />
-          ))}
-          {Array.from({ length: 100 }).map((_, i) => (
-            <rect key={"u" + i} x={BAR.x + i * (BAR.w / 100)} y={SHOW.y + 60} width={BAR.w / 100} height={44}
-              fill={lit >= 2 && i < fix.k ? HUND : tint(C.panel, 0.45)} stroke={C.ink} strokeWidth={1} />
-          ))}
-          <text x={BAR.x + BAR.w / 2} y={SHOW.y + SHOW.h + (lang === "en" ? 28 : 36)} textAnchor="middle" fontSize={T.micro} fontWeight={600} fill={C.ink}>{tx("ten times apart")}</text>
-        </g>
-      )}
+        {cuts.slice(1).map((c, i) => (
+          <line key={"c" + i} className="ts-fade" style={{ animationDelay: i * 45 + "ms" } as any}
+            x1={S.x + c.a} y1={S.y} x2={S.x + c.a} y2={S.y + S.h} stroke={TS_LINE} strokeWidth={3.5} />
+        ))}
+        {/* the written word under the coloured run, so colour never carries the reading alone */}
+        {runLabel && (
+          <g pointerEvents="none">
+            <path d={`M ${S.x + 6} ${S.y + S.h + 6} V ${S.y + S.h + 14} H ${S.x + runLabel - 6} V ${S.y + S.h + 6}`} fill="none" stroke={TS_LINE} strokeWidth={3} strokeLinejoin="round" />
+            <text x={S.x + Math.max(runLabel / 2, 70)} y={S.y + S.h + (lang === "en" ? 38 : 46)} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={TS_LINE}>{tx("coloured")}</text>
+          </g>
+        )}
+        {live && cuts.map((c, i) => (
+          <Hit key={"h" + i} id={"piece-" + (i + 1)} x={S.x + c.a} y={S.y} w={c.w} h={S.h} label={tx("piece") + " " + (i + 1)}
+            onPress={() => act("shade", i)} />
+        ))}
+      </g>
+    );
+  };
 
-      {/* the pieces stood against the rule */}
-      {stand && kind !== "free" && standing(UNEVEN, 40, "cut by eye", false)}
-      {stand && kind === "free" && standing(eye ? UNEVEN
-        : Array.from({ length: Math.min(Math.max(cut, 1), 12) }, () => Math.min(150, BAR.w / Math.max(cut, 1))), 189, "your pieces", !eye)}
-      {both && standing(Array.from({ length: PIECES }, () => 108), 574, "cut to ten", true)}
-
-      {/* the two writings, joined by their bar, because they carry one amount */}
-      {formShown && (
-        <g className="ts-fade" pointerEvents="none">
-          {formShown.frac && (
-            <g>
-              <text x={400} y={FORM.y + 40} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={INK_TENTH}>{formShown.frac[0]}</text>
-              <rect x={356} y={FORM.y + 50} width={88} height={6} rx={3} fill={C.ink} />
-              <text x={400} y={FORM.y + 92} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={C.ink}>{formShown.frac[1]}</text>
+  /* the pieces lifted off the strip and stood end on against the rule: the same lengths, upright */
+  const standView = () => {
+    if (!standNow) return null;
+    const S = G.strip, base = G.base, bw = 40;
+    const lens = cuts.map((c) => c.w);
+    const hi = Math.max(...lens), lo = Math.min(...lens);
+    const lastX = S.x + cuts[TS_PIECES - 1].a + cuts[TS_PIECES - 1].w / 2 + bw / 2;
+    const bx = Math.min(lastX + 22, S.x + S.w - 6);
+    return (
+      <g pointerEvents="none">
+        <line x1={S.x} y1={base} x2={S.x + S.w} y2={base} stroke={TS_LINE} strokeWidth={4} strokeLinecap="round" />
+        {Array.from({ length: 13 }).map((_, j) => (
+          <line key={"t" + j} x1={S.x + (j * S.w) / 12} y1={base} x2={S.x + (j * S.w) / 12} y2={base + 10} stroke={TS_LINE} strokeWidth={2} />
+        ))}
+        {cuts.map((c, i) => {
+          const x = S.x + c.a + c.w / 2 - bw / 2, y = base - c.w;
+          return (
+            <g key={"b" + i} className="ts-rise" style={{ animationDelay: i * 30 + "ms" } as any}>
+              <rect x={x} y={y} width={bw} height={c.w} rx={6} fill={TS_SHEET} />
+              {choc && <Skin name="piece" x={x} y={y} w={bw} h={c.w} fit="stretch" />}
+              {s.shaded[i] && <rect x={x} y={y} width={bw} height={c.w} rx={6} fill="url(#gTen)" fillOpacity={0.72} />}
+              <rect x={x} y={y} width={bw} height={c.w} rx={6} fill="none" stroke={TS_LINE} strokeWidth={2.5} />
             </g>
-          )}
-          {/* the joining bar, drawn as the two strokes of an equals sign so it can never be read as a
-              take-away: it fills only once both writings stand, because they carry one amount */}
-          {formShown.frac && formShown.dec && formShown.bar && (
-            <g>
-              <rect x={480} y={FORM.y + 38} width={76} height={11} rx={5} fill={shade(C.accent, 0.2)} />
-              <rect x={480} y={FORM.y + 59} width={76} height={11} rx={5} fill={shade(C.accent, 0.2)} />
-            </g>
-          )}
-          {formShown.dec && written(formShown.dec, formShown.frac ? 660 : 543, FORM.y + 70, T.xl)}
-          {formShown.other && written(formShown.other, 880, FORM.y + 70, T.xl)}
-          {formShown.word && (
-            <text x={543} y={FORM.y + 64} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={C.ink}>{tx(formShown.word)}</text>
-          )}
-          {formShown.sub && <text x={formShown.dec && formShown.frac ? 660 : 543} y={FORM.y + 104} textAnchor="middle" fontSize={T.micro} fontWeight={600} fill={C.ink}>{tx(formShown.sub)}</text>}
-          {formShown.otherSub && <text x={880} y={FORM.y + 104} textAnchor="middle" fontSize={T.micro} fontWeight={600} fill={C.ink}>{tx(formShown.otherSub)}</text>}
-        </g>
-      )}
+          );
+        })}
+        {hi - lo > 1 ? (
+          <g stroke={TS_LINE} strokeWidth={3} strokeLinecap="round">
+            <line x1={bx} y1={base - hi} x2={bx} y2={base - lo} />
+            <line x1={bx - 8} y1={base - hi} x2={bx + 8} y2={base - hi} />
+            <line x1={bx - 8} y1={base - lo} x2={bx + 8} y2={base - lo} />
+          </g>
+        ) : (
+          <line x1={bx - 8} y1={base - hi} x2={bx + 8} y2={base - hi} stroke={TS_LINE} strokeWidth={3} strokeLinecap="round" />
+        )}
+        {/* free play: a tap on the standing pieces says how to lay them down again (never a silent tap) */}
+        {free && (
+          <g pointerEvents="all">
+            <Hit id="stand" x={S.x} y={base - hi - 8} w={S.w} h={hi + 16} label={tx("standing pieces")}
+              onPress={() => api.say("Tap Measure to lay them down.")} />
+          </g>
+        )}
+      </g>
+    );
+  };
 
-      {invite && <Invite x={invite.x} y={invite.y} r={invite.r} C={C} />}
+  const cardFrac = () => {
+    const c = G.frac, bw = 120, bh = 70, bx = c.x + (c.w - bw) / 2;
+    const boxes = [{ y: c.y + 46 }, { y: c.y + 142 }];
+    const fs = digitSize(fracV);
+    return (
+      <g>
+        <rect x={c.x} y={c.y} width={c.w} height={c.h} rx={18} fill="#FFFFFF" stroke={C.rule} strokeWidth={2} filter="url(#fShadowSoft)" />
+        <text x={c.x + c.w / 2} y={c.y + 34} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={TS_INK2}>{tx("Fraction")}</text>
+        {boxes.map((b, j) => (
+          <g key={j}>
+            <rect x={bx} y={b.y} width={bw} height={bh} rx={10} fill={fracAct === j ? "#FFFFFF" : tint(C.panel, 0.55)}
+              stroke={fracAct === j ? C.accent : C.rule} strokeWidth={fracAct === j ? 4 : 2} />
+            {fracV[j] !== "" && <text key={"f" + j + fracV[j]} className={won || fixCards ? "ts-pop" : undefined} x={bx + bw / 2} y={b.y + bh / 2 + fs * 0.36}
+              textAnchor="middle" fontSize={fs} fontWeight={700} fill={TS_LINE}>{fracV[j]}</text>}
+            {fracAct === j && caret(bx, b.y, bw, bh, fracV[j], fs)}
+          </g>
+        ))}
+        <line x1={bx - 18} y1={c.y + 129} x2={bx + bw + 18} y2={c.y + 129} stroke={TS_LINE} strokeWidth={5} strokeLinecap="round" />
+      </g>
+    );
+  };
+
+  /* the Decimal card's two boxes and the point between them; with a unit after the tenths box ("kg", "किग्रा") the
+     boxes sit closer and further left, so the unit ends inside the card in every language */
+  const decBoxes = () => {
+    const c = G.dec, u = !!(it && it.unit && !free && !isDemo);
+    const wx = c.x + (u ? 22 : 34), dx = c.x + (u ? 150 : 182);
+    return { wb: { x: wx, y: c.y + 92, w: 100, h: 100 }, db: { x: dx, y: c.y + 92, w: 100, h: 100 }, px: (wx + 100 + dx) / 2 };
+  };
+  const cardDec = () => {
+    const c = G.dec, { wb, db, px } = decBoxes();
+    const fs = digitSize(decV);
+    const zeroWalk = (k === "typed" && (won || fix2)) || (isDemo && n === 4 && s.zero);
+    return (
+      <g>
+        <rect x={c.x} y={c.y} width={c.w} height={c.h} rx={18} fill="#FFFFFF" stroke={C.rule} strokeWidth={2} filter="url(#fShadowSoft)" />
+        <text x={c.x + c.w / 2} y={c.y + 34} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={TS_INK2}>{tx(title)}</text>
+        {heads && <text x={wb.x + wb.w / 2} y={c.y + 78} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={TS_INK_ONES}>{tx("ones")}</text>}
+        {heads && <text x={db.x + db.w / 2} y={c.y + 78} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={TS_INK_TENTH}>{tx("tenths")}</text>}
+        {/* the ones box: drawn open (dashed) while nothing is in it on a written sign, lit when it is looked for */}
+        <rect x={wb.x} y={wb.y} width={wb.w} height={wb.h} rx={10}
+          fill={decAct === 0 ? "#FFFFFF" : lit ? tint(C.accent, 0.78) : tint(C.panel, 0.55)}
+          stroke={decAct === 0 || lit ? C.accent : C.rule} strokeWidth={decAct === 0 || lit ? 4 : 2} strokeDasharray={open ? "12 8" : undefined} />
+        <rect x={db.x} y={db.y} width={db.w} height={db.h} rx={10} fill={decAct === 1 ? "#FFFFFF" : tint(C.panel, 0.55)}
+          stroke={decAct === 1 ? C.accent : C.rule} strokeWidth={decAct === 1 ? 4 : 2} />
+        <circle cx={px} cy={wb.y + wb.h - 16} r={8} fill={TS_DOT} />
+        {decV[0] !== "" && <text key={"w" + decV[0] + (zeroWalk ? "z" : "")} className={zeroWalk || won || fixCards ? "ts-pop" : undefined}
+          x={wb.x + wb.w / 2} y={wb.y + wb.h / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700}
+          fill={decV[0] === "0" ? TS_ZERO : TS_INK_ONES}>{decV[0]}</text>}
+        {decV[1] !== "" && <text key={"d" + decV[1]} className={won || fixCards ? "ts-pop" : undefined}
+          x={db.x + db.w / 2} y={db.y + db.h / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill={TS_INK_TENTH}>{decV[1]}</text>}
+        {decAct === 0 && caret(wb.x, wb.y, wb.w, wb.h, decV[0], fs)}
+        {decAct === 1 && caret(db.x, db.y, db.w, db.h, decV[1], fs)}
+        {unit && <text x={db.x + db.w + 10} y={db.y + db.h / 2 + 12} fontSize={lang === "en" ? T.label : T.micro} fontWeight={700} fill={TS_LINE}>{tx(unit)}</text>}
+        {/* hi / gu: 6 lower, so the matras clear the boxes' bottom edge */}
+        {note && <text x={c.x + 18} y={c.y + c.h - (lang === "en" ? 14 : 8)} fontSize={T.micro} fontWeight={600} fill={TS_INK2}>{tx("no whole ones")}</text>}
+      </g>
+    );
+  };
+
+  const cardsView = () => {
+    if (!showCards) return null;
+    const j = G.join;
+    return (
+      <g>
+        {cardFrac()}
+        {/* the joining bar: two bars, an equals sign, that fill only when both cards carry the amount */}
+        {[0, 1].map((r) => (
+          <rect key={"j" + r} x={j.x} y={j.y + r * 22} width={j.w} height={10} rx={5} fill={joined ? C.accent : "none"}
+            stroke={joined ? C.accent : C.rule} strokeWidth={2} strokeDasharray={joined ? undefined : "8 6"} />
+        ))}
+        {cardDec()}
+      </g>
+    );
+  };
+
+  /* the keys at the right of the foot, the zero tile, and the correction's own drawings there */
+  const rightView = () => {
+    const keyOf = (slot: number, id: string, label: string, enabled: boolean) => {
+      const b = G.btn(slot);
+      return (
+        <Key key={id} id={id} label={tx(label)} x={b.x} y={b.y} w={b.w} h={b.h} C={C} tone="key" disabled={!enabled} onClick={() => act(id)}>
+          <text y={11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={enabled ? toneInk("key", C.ink) : TS_INK2}>{tx(label)}</text>
+        </Key>
+      );
+    };
+    const busy = fixOn && s.fix.st < 2;
+    return (
+      <g>
+        {((n === 1 && isDemo) || free) && keyOf(0, "cut", "Cut", true)}
+        {free && keyOf(1, "uneven", "By eye", true)}
+        {((n === 1 && isDemo) || free || k === "uneven") && keyOf(2, "measure", "Measure", s.cut !== "none" && !busy && !(k === "uneven" && won))}
+        {n === 3 && isDemo && keyOf(3, "count", "Count", true)}
+        {n === 4 && isDemo && !s.zero && (
+          <g>
+            <rect x={G.right.x + 40} y={G.right.y + 50} width={110} height={110} rx={14} fill="#FFFFFF" stroke={TS_ZERO} strokeWidth={3} filter="url(#fShadowSoft)" />
+            <text x={G.right.x + 95} y={G.right.y + 125} textAnchor="middle" fontSize={T.display} fontWeight={700} fill={TS_ZERO}>0</text>
+          </g>
+        )}
+        {k === "typed" && signView()}
+      </g>
+    );
+  };
+  /* the shop sign or the weight label as it was written, a bare point and a digit; the correction and the win walk a
+     grey 0 into the place in front of the point */
+  const signView = () => {
+    const R = G.right, bw = Math.min(300, R.w - 20), bh = 150, bx = R.x + (R.w - bw) / 2, by = R.y + 50;
+    const done = won || fix2;
+    return (
+      <g pointerEvents="none">
+        <line x1={bx + 40} y1={by} x2={bx + bw / 2} y2={by - 34} stroke={TS_LINE} strokeWidth={2.5} />
+        <line x1={bx + bw - 40} y1={by} x2={bx + bw / 2} y2={by - 34} stroke={TS_LINE} strokeWidth={2.5} />
+        <circle cx={bx + bw / 2} cy={by - 36} r={5} fill={TS_LINE} />
+        <rect x={bx} y={by} width={bw} height={bh} rx={14} fill="#FFFFFF" stroke={TS_LINE} strokeWidth={3} filter="url(#fShadowSoft)" />
+        <text x={bx + bw / 2} y={by + 34} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={TS_INK2}>{tx(it.title || "Sign")}</text>
+        <text key={done ? "z" : "b"} className={done ? "ts-pop" : undefined} x={bx + bw / 2 - (it.unit ? 30 : 0)} y={by + 118} textAnchor="middle"
+          fontSize={T.display} fontWeight={700}>
+          {done && <tspan fill={TS_ZERO}>0</tspan>}<tspan fill={shade(TS_DOT, 0.25)}>.</tspan><tspan fill={TS_INK_TENTH}>{String(it.shade)}</tspan>
+        </text>
+        {it.unit && <text x={bx + bw / 2 + (done ? 56 : 40)} y={by + 118} fontSize={T.label} fontWeight={700} fill={TS_LINE}>{tx(it.unit)}</text>}
+      </g>
+    );
+  };
+
+  /* the correction and the win, drawn on a layer that never takes a tap */
+  const layer = () => {
+    const S = G.strip;
+    const items: any[] = [];
+    if (counted.length) {
+      items.push(
+        <g key={"cnt" + countRun}>
+          {counted.map((i, j) => {
+            const c = cuts[i]; const cx = S.x + c.a + c.w / 2, cy = S.y + S.h / 2;
+            return (
+              <g key={i} className="ts-pop" style={{ animationDelay: j * 240 + "ms" } as any}>
+                <circle cx={cx} cy={cy} r={26} fill="#FFFFFF" stroke={TS_LINE} strokeWidth={2.5} />
+                <text x={cx} y={cy + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={TS_LINE}>{j + 1}</text>
+              </g>
+            );
+          })}
+        </g>
+      );
+    }
+    /* the whole is ten equal pieces: a brace under the strip (the fraction's bottom number) */
+    if (k === "fraction" && (fix2 || won)) {
+      const y = S.y + S.h + 6;
+      items.push(
+        <g key="brace" className="ts-fade">
+          <path d={`M ${S.x + 4} ${y} V ${y + 12} H ${S.x + S.w - 4} V ${y}`} fill="none" stroke={TS_LINE} strokeWidth={3} strokeLinejoin="round" />
+          <rect x={S.x + S.w / 2 - 130} y={y + 2} width={260} height={30} fill="#FFFFFF" />
+          <text x={S.x + S.w / 2} y={y + 28} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={TS_LINE}>{tx("10 equal pieces")}</text>
+        </g>
+      );
+    }
+    /* the digit slid along (five tenths written as five hundredths): the same whole cut into a hundred */
+    if (k === "typed" && fixOn && /^0?\|0\d$/.test(s.fix.forTyped)) {
+      const y = S.y + S.h + 8, h = 32, d = Number(s.fix.forTyped.slice(-1));
+      items.push(
+        <g key="hund" className="ts-fade">
+          <rect x={S.x} y={y} width={S.w} height={h} rx={8} fill={TS_SHEET} stroke={TS_LINE} strokeWidth={2} />
+          {Array.from({ length: d }).map((_, j) => (
+            <rect key={"r" + j} x={S.x + (j * S.w) / 100} y={y} width={S.w / 100} height={h} fill={TS_ROSE} />
+          ))}
+          {Array.from({ length: 99 }).map((_, j) => (
+            <line key={"l" + j} x1={S.x + ((j + 1) * S.w) / 100} y1={y} x2={S.x + ((j + 1) * S.w) / 100} y2={y + h}
+              stroke={TS_LINE} strokeWidth={(j + 1) % 10 === 0 ? 2.5 : 0.8} />
+          ))}
+        </g>
+      );
+    }
+    /* the part left plain and the part coloured, each written with a point under its own run: together one whole */
+    if (k === "decimal" && it.read === "plain" && (fix2 || won)) {
+      const y = S.y + S.h + 6, sh = it.shade || 0, mid = cuts[sh - 1].a + cuts[sh - 1].w;
+      const runs = [[0, mid, tsDec(sh).join(".")], [mid, S.w, tsDec(TS_PIECES - sh).join(".")]];
+      items.push(
+        <g key="runs" className="ts-fade">
+          {runs.map((r: any, j) => (
+            <g key={j}>
+              <path d={`M ${S.x + r[0] + 6} ${y} V ${y + 8} H ${S.x + r[1] - 6} V ${y}`} fill="none" stroke={TS_LINE} strokeWidth={3} strokeLinejoin="round" />
+              <text x={S.x + (r[0] + r[1]) / 2} y={y + 34} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={TS_LINE}>{r[2]}</text>
+            </g>
+          ))}
+        </g>
+      );
+    }
+    /* folded by eye: an evenly cut strip stood up beside it, all level */
+    if (k === "uneven" && (fix2 || won)) {
+      const base = 508, bw = 40, len = G.L / TS_PIECES, span = Math.min(640, G.L - 360);
+      items.push(
+        <g key="even" className="ts-fade">
+          <text x={S.x} y={base - len - 18} fontSize={T.micro} fontWeight={700} fill={TS_LINE}>{tx("equal: tenths")}</text>
+          <line x1={S.x} y1={base} x2={S.x + span} y2={base} stroke={TS_LINE} strokeWidth={4} strokeLinecap="round" />
+          {Array.from({ length: TS_PIECES }).map((_, j) => {
+            const x = S.x + 10 + (j * (span - 20 - bw)) / 9;
+            return (
+              <g key={j}>
+                <rect x={x} y={base - len} width={bw} height={len} rx={6} fill={TS_SHEET} />
+                {choc && <Skin name="piece" x={x} y={base - len} w={bw} h={len} fit="stretch" />}
+                <rect x={x} y={base - len} width={bw} height={len} rx={6} fill="none" stroke={TS_LINE} strokeWidth={2.5} />
+              </g>
+            );
+          })}
+          <text x={G.name.x + G.name.w + 24} y={50} fontSize={T.micro} fontWeight={700} fill={TS_LINE}>{tx("not equal: not tenths")}</text>
+        </g>
+      );
+    }
+    /* a share of a whole nobody named: two wholes, two different amounts of rupees */
+    if (k === "share" && (fix2 || won)) {
+      const R = G.right, mw = 160, cw = mw / TS_PIECES;
+      const rows = [["₹100", "₹20"], ["₹50", "₹10"]];
+      items.push(
+        <g key="share" className="ts-fade">
+          <text x={R.x + 6} y={R.y + 30} fontSize={T.micro} fontWeight={700} fill={TS_LINE}>{tx("same two tenths,")}</text>
+          <text x={R.x + 6} y={R.y + 64} fontSize={T.micro} fontWeight={700} fill={TS_LINE}>{tx("different rupees")}</text>
+          {rows.map((r, j) => {
+            const y = R.y + 96 + j * 72;
+            return (
+              <g key={j}>
+                <text x={R.x + 6} y={y + 32} fontSize={T.micro} fontWeight={700} fill={TS_LINE}>{r[0]}</text>
+                {Array.from({ length: TS_PIECES }).map((_, i) => (
+                  <rect key={i} x={R.x + 96 + i * cw} y={y} width={cw} height={44} fill={i < 2 ? TS_AMBER : TS_SHEET} stroke={TS_LINE} strokeWidth={1.5} />
+                ))}
+                <text x={R.x + 96 + mw + 14} y={y + 32} fontSize={T.micro} fontWeight={700} fill={TS_LINE}>{r[1]}</text>
+              </g>
+            );
+          })}
+        </g>
+      );
+    }
+    return <g pointerEvents="none">{items}</g>;
+  };
+
+  /* the card's own tap targets: the asked card opens the keypad; its boxes take the caret */
+  const cardControls = () => {
+    const out: any[] = [];
+    const busy = fixOn && s.fix.st < 2;
+    if (stage === "ask" && answerOn === "card" && !busy && (k === "fraction" || k === "decimal" || k === "typed")) {
+      const c = k === "fraction" ? G.frac : G.dec;
+      if (!box.open) {
+        out.push(<SlotPartBox key="open" id="answer-open" label={tx(k === "fraction" ? "Fraction" : "Decimal")} x={c.x} y={c.y} w={c.w} h={c.h}
+          on={false} enabled={true} onPick={() => api.openAnswer()} />);
+        out.push(<BlinkRing key="ring" x={c.x} y={c.y} w={c.w} h={c.h} rx={18} C={C} />);
+      } else if (k === "fraction") {
+        out.push(<SlotPartBox key="p1" id="part-1" label={tx("numerator")} x={c.x} y={c.y + 40} w={c.w} h={89} on={part === 0} enabled={true} onPick={() => api.pickPart(0)} />);
+        out.push(<SlotPartBox key="p2" id="part-2" label={tx("denominator")} x={c.x} y={c.y + 129} w={c.w} h={93} on={part === 1} enabled={true} onPick={() => api.pickPart(1)} />);
+      } else {
+        /* the two finger boxes split at the point */
+        const px = decBoxes().px;
+        out.push(<SlotPartBox key="p1" id="part-1" label={tx("ones")} x={c.x} y={c.y + 56} w={px - c.x} h={160} on={part === 0} enabled={true} onPick={() => api.pickPart(0)} />);
+        out.push(<SlotPartBox key="p2" id="part-2" label={tx("tenths")} x={px} y={c.y + 56} w={c.x + c.w - px} h={160} on={part === 1} enabled={true} onPick={() => api.pickPart(1)} />);
+      }
+    }
+    /* the guide steps' own controls on the cards and the tray */
+    if (isDemo && n === 3) out.push(<Hit key="write" id="write" x={G.dec.x} y={G.dec.y} w={G.dec.w} h={G.dec.h} label={tx("Decimal")} onPress={() => act("write")} />);
+    if (isDemo && n === 4) {
+      const { wb } = decBoxes();
+      out.push(<Hit key="ones" id="ones" x={wb.x - 16} y={wb.y - 16} w={wb.w + 32} h={wb.h + 32} label={tx("ones")} onPress={() => act("ones")} />);
+      if (!s.zero) out.push(<Hit key="zero" id="zero" x={G.right.x + 40} y={G.right.y + 50} w={110} h={110} label={tx("zero")} onPress={() => act("zero")} />);
+    }
+    return out;
+  };
+
+  /* the one invite, on the control the step waits for */
+  /* the one invite: the runtime's pulse (c4-pulse) as a rounded rectangle 10 units outside the thing to touch, so it
+     never cuts through a key's word, the question bar, a heading or the point */
+  const invite = () => {
+    if (!isDemo || !stepOn) return null;
+    let at: any = null;
+    if (stepOn === "name") { const c = G.chip(0); at = { x: c.x, y: c.y, w: c.w, h: c.h - 4 }; }
+    if (stepOn === "cut") at = G.btn(0);
+    if (stepOn === "measure") at = G.btn(2);
+    if (stepOn === "count") at = G.btn(3);
+    if (stepOn === "shade") { const i = Math.max(0, s.shaded.indexOf(false)); const c = cuts[i]; at = { x: G.strip.x + c.a, y: G.strip.y, w: c.w, h: G.strip.h }; }
+    if (stepOn === "write") at = G.dec;
+    if (stepOn === "ones") at = decBoxes().wb;
+    if (stepOn === "zero") at = { x: G.right.x + 40, y: G.right.y + 50, w: 110, h: 110 };
+    if (!at) return null;
+    const ink = (THEME && THEME.enter && THEME.enter[1]) || C.accent;
+    return <rect className="c4-pulse" x={at.x - 10} y={at.y - 10} width={at.w + 20} height={at.h + 20} rx={RAD.key + 10}
+      fill="none" stroke={ink} strokeWidth={5} pointerEvents="none" />;
+  };
+
+  return (
+    <g>
+      <style>{TS_CSS}</style>
+      {nameRow()}
+      {stripView()}
+      {standView()}
+      {cardsView()}
+      {rightView()}
+      {layer()}
+      {cardControls()}
+      {invite()}
     </g>
   );
 }
 
 /* the summary page's small drawing of the child's last right answer in a phase:
-   result.last = { value, answer, kind, item, shared } (shared = what api.share held at that moment) */
-function Thumb({ result, C, w, h, lang = "en", tx = (v: any) => v }: any) {
-  const L = (result && result.last) || {};
-  const v = L.value;
-  if (v === null || v === undefined || v === "") return null;
-  const s = String(v);
-  const frac = s.indexOf("|") >= 0 ? s.split("|") : null;
-  const sh = L.shared && typeof L.shared.shaded === "number" ? L.shared.shaded : null;
-  const dec = /^\d*\.\d+$/.test(s);
+   a strip of ten with the run coloured, and the answer as the child gave it */
+function Thumb({ n, result, C, w, h, lang = "en", tx = (v: any) => v }: any) {
+  const last = result && result.last;
+  if (!last || last.value === null || last.value === undefined) return null;
+  /* the runtime keeps the question's INDEX in its phase (last.item) and the answer as given (an array for a card) */
+  const ph: any = PHASES[(n || 1) - 1] || { items: [] };
+  const it: any = typeof last.item === "number" ? ph.items[last.item] || {} : last.item || {};
+  const ps = slotPartsOf(last.value, 2);
+  const sh0 = it.shade || 0;
+  const frac = it.form === "fraction";
+  /* the strip: across the top with the answer under it, or at the left beside a stacked fraction */
+  /* hi / gu: the strip a little higher and the label lower, so the matras clear the bracket above them */
+  const dev = lang === "hi" || lang === "gu";
+  const sx = 12, sw = frac ? 140 : w - 24, sh = dev ? 22 : 24, sy = frac ? (h - sh) / 2 - 6 : dev ? 5 : 8;
+  const ws = it.form === "uneven" ? TS_UNEVEN.map((u) => (u * sw) / 1080) : Array.from({ length: TS_PIECES }, () => sw / TS_PIECES);
+  const xs = ws.map((_: number, i: number) => sx + ws.slice(0, i).reduce((a: number, b: number) => a + b, 0));
+  /* the run the answer counts: the coloured pieces, or the plain ones when the question asked for those */
+  const run = it.form === "uneven" ? null : it.read === "plain" ? [sh0, TS_PIECES] : [0, sh0];
+  const label = frac ? null
+    : it.choices ? tx(((it.choices || []).find((c: any) => c.id === String(last.value)) || { label: String(last.value) }).label)
+    : ps[0] + "." + ps[1] + (it.unit ? " " + tx(it.unit) : "");
   return (
     <g>
       <rect x={0} y={0} width={w} height={h} rx={14} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={1.5} />
-      {sh !== null && Array.from({ length: PIECES }).map((_, i) => (
-        <rect key={i} x={14 + i * ((w - 28) / PIECES)} y={12} width={(w - 28) / PIECES} height={22}
-          fill={i < sh ? TENTH : "#FFFFFF"} stroke={C.ink} strokeWidth={1} />
+      {ws.map((cw: number, i: number) => (
+        <rect key={i} x={xs[i]} y={sy} width={cw} height={sh} fill={i < sh0 ? TS_AMBER : TS_SHEET} stroke={TS_LINE} strokeWidth={1.2} />
       ))}
-      {frac ? (
-        <g>
-          <text x={w / 2} y={h - 40} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={INK_TENTH}>{frac[0]}</text>
-          <rect x={w / 2 - 20} y={h - 34} width={40} height={3} fill={C.ink} />
-          <text x={w / 2} y={h - 8} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={C.ink}>{frac[1]}</text>
-        </g>
+      {run && run[1] > run[0] && (
+        <path d={`M ${xs[run[0]] + 2} ${sy + sh + 3} V ${sy + sh + 8} H ${xs[run[1] - 1] + ws[run[1] - 1] - 2} V ${sy + sh + 3}`}
+          fill="none" stroke={TS_LINE} strokeWidth={2.5} strokeLinejoin="round" />
+      )}
+      {label !== null ? (
+        <text x={w / 2} y={h - (dev ? 9 : 12)} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={TS_LINE}>{label}</text>
       ) : (
-        <text x={w / 2} y={h - 16} textAnchor="middle" fontSize={T.label} fontWeight={700}
-          fill={dec ? INK_TENTH : C.ink}>{s}</text>
+        <g>
+          <text x={sx + sw + 42} y={h / 2 - 8} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={TS_LINE}>{ps[0]}</text>
+          <line x1={sx + sw + 18} y1={h / 2 + 1} x2={sx + sw + 66} y2={h / 2 + 1} stroke={TS_LINE} strokeWidth={2.5} />
+          <text x={sx + sw + 42} y={h / 2 + 30} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={TS_LINE}>{ps[1]}</text>
+        </g>
       )}
     </g>
   );
@@ -964,8 +1235,18 @@ function Thumb({ result, C, w, h, lang = "en", tx = (v: any) => v }: any) {
 
 function TenthStrip(props: any) {
   return (
-    <ToolFrame props={props} tool={{ TOOL_ID, MEDIA_ID, TOOL_NAME, CHROME, VOICE, OPENING, FINISH_LINE, FREE_LINE, TR, freePlay: true, pointKey: true, Thumb, PHASES, MODEL, Work,
-      judge, oracle, nearMiss, answerForms, agentKey, solve, answer, check, fitHost: () => null }} />
+    <ToolFrame props={props} tool={{ TOOL_ID, MEDIA_ID, TOOL_NAME, CHROME, VOICE, OPENING, FINISH_LINE, FREE_LINE, TR, freePlay: true, Thumb, PHASES, MODEL, Work,
+      judge, oracle, nearMiss, answerForms, agentKey, solve, answer, check, fitHost: () => null,
+      /* the board layout (LAYOUT.md §1b): the question and an Answer key on a bar across the top, the working area the
+         whole card until the child taps Answer, the answer box and keypad in a panel that slides in from the right */
+      board: true,
+      /* answering on the card (PATTERNS 9e): a fraction on the Fraction card, a decimal of phases 1-3 on the Decimal card */
+      cardAnswer: true,
+      /* the Next key (PATTERNS.md 9d): nothing moves on by itself */
+      nextKey: true,
+      /* the start page: the tool's name, StartArt, START_HOOK, a Start key (above) */
+      StartArt, START_HOOK,
+      }} />
   );
 }
 

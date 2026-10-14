@@ -1,0 +1,1167 @@
+{
+  "slotId": "M2.S4.T6.C20.2D1",
+  "mediaId": "M2.S4.T6.C20.2D1",
+  "toolId": "story_to_difference",
+  "title": "Story to Difference",
+  "component": "M2.S4.T6.C20.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch3",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch3_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_3/2dtool/M2.S4.T6.C20.2D1/M2.S4.T6.C20.2D1.tsx",
+  "description": "A question told in sentences, with every number liftable, and a mat that only takes the ones the question needs.",
+  "conceptIds": [
+    "M2.S4.T6.C20",
+    "M2.S4.T6.C21",
+    "M2.S4.T6.C22",
+    "M2.S4.T6.C23"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Turn a question told in sentences into a subtraction, using only the numbers that answer what was actually asked.",
+    "look": "A short question across the top with every number liftable, a row of question cards under it, and an empty column mat waiting below.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Story to Difference' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: how many numbers have come down onto the mat against how many the question needs, two numbers side by side in ink, with the words of the chosen question card printed small underneath them; on the second phase it carries the numbers that have been turned down as well, and on the fourth it marks which of the two steps is being worked. Nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The problem board is 1086 by 130 at 64,202, the sentences set large on the paper colour with every number in them drawn as a card 130 by 52 standing proud of its line; a card lifted out leaves a ruled dash in the gap so the sentence still reads, and a card pushed back settles into the dash and fills it. The shrink strip is 1086 by 56 at 64,340, drawn shut until it is opened, and it reruns the same sentence shape with single digit numbers, answers itself, and prints the move it used once underneath. The question row is four cards 260 by 48 at 64,404, at 340,404, at 616,404 and at 892,404, reading how many more, how many are left, how many to reach and how much altogether, and until one of them is picked no number card will lift at all. The column mat is 620 by 218 at 64,464: a trade strip 30 tall across its top where a lending digit is struck through once with its smaller value written above it and the ten it lent is drawn arriving in the column it went to, a heading row 34 tall of six ruled cells reading L, TTh, Th, H, T and O, the greater number 48 tall in deep blue, the number being taken away 48 tall in amber with a minus to the left of its row, a rule 4 tall, and the answer row 48 tall in green under it. A card lands on the mat by its right hand end, so a four digit number under a five digit one leaves its left hand column ruled and empty rather than closing the gap up, and a card dropped into the upper row that is smaller than the card already in the lower row will not settle: the mat holds it hovering and the two trade places under a finger. A number turned down dims where it stands to the grey this chapter keeps for a place being held open and nothing being brought, which is exactly the job that number is doing in the question, and it keeps its outline so it can still be read and pointed at. The build bay is 400 by 218 at 716,464 and stays shut and outlined until an amount is described rather than printed, when it opens with two rows of its own and the words more than standing between them, works that small subtraction in its own columns and drops the built card out of its foot with a drawn edge, so an amount that was made is told from an amount that was lifted. The step order bay takes the same rectangle on the last phase: two labelled slots one above the other with a lock on the second, which opens only when the first has been worked. The two steps may be laid down in either order, so a wrong order is seen rather than prevented. The answer sentence strip is 1086 by 40 at 64,690, blank until the answer row is full, and it then writes the finished answer back into a sentence that matches the chosen question card word for word. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever the answer has to be written, with a strip of unit words under them, kilograms, millimetres, cans, people and rupees among them, because an answer that names nothing has not answered anything yet. On the third phase the shrink strip borrows the number keys for its single digit version and hands them straight back. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: the greater number on top is deep blue, the number being taken away is amber, the answer under the rule is green, the ten lifted out of a column is vermilion and is always drawn small above the column it arrives in, a digit rewritten after the trade has been made is rose, and a zero holding a place open is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a column is told by the heading over it before it is told by its band, and a trade is told by the strike through the lending digit and by the smaller value written above it.",
+    "finish": "The card shows the question the child worked with its numbers sorted, the spare one still dimmed, and the answer written as a sentence.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the mat holds the two numbers the right way up and the answer is written as a sentence",
+        "does": "picks the question card, lifts both numbers down and works the columns",
+        "goal": "the two amounts the question compares come down onto the mat",
+        "says": "Say what you are being asked for before you touch a number.",
+        "check": "Read me this question and then tell me what it wants without saying any of its numbers.",
+        "feels": "a paragraph turns into two numbers with a rule under them, and the sentences stop mattering",
+        "hands": "Read the question aloud, turn the page face down, and ask the child to say what is being asked for in their own words before the page is turned back over.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: what does your question card say? Second rung, the phase's: which two amounts does it compare? Third rung: the question is cut to its last sentence alone with both cards showing, and the child says which of them goes on top. The pad stays open behind all three.",
+        "wrong": [
+          {
+            "why": "a written line is read from the left, so the order the numbers turn up in looks like the order they belong in.",
+            "move": "lifts both numbers down in the order the sentences print them and sets them out that way round on the mat.",
+            "screen": "the question card stays lit above the mat and the two cards are read out with what each one counts printed under it; the mat then shows both orders one under the other, and only the mat with the greater number on top has enough in its columns to pay. On the dairy's 3,929 kilograms of two kinds together, of which 1,560 kilograms is the one kind, the other comes to 2,369 kilograms, the tens fetching a ten from the hundreds on their left and those hundreds being left one less. Nothing is cleared."
+          },
+          {
+            "why": "two numbers and one mat meant adding for a whole chapter before this one, and the sentences do not shout that something is being taken away.",
+            "move": "adds the two amounts because both of them count the same kind of thing.",
+            "screen": "the chosen question card is reprinted large across the mat and its words are matched one at a time to what the mat would do: the card that asks how many are left and the card that asks how much altogether are stood side by side with the same two numbers under each, and only one of the two leaves the greater amount standing unchanged at the top. Both workings are left on the stage and neither is crossed out."
+          }
+        ],
+        "screen": "a two sentence question with two numbers in it and an empty mat",
+        "soWhat": "Say what is being asked, find the two amounts it is about, put the greater one on top and take the other off it.",
+        "concept": "Find the two numbers the question is about"
+      },
+      {
+        "n": 2,
+        "win": "the spare number dims in its sentence, still readable, and the mat holds only two",
+        "does": "greys the spare number and lifts down only the two that are needed",
+        "goal": "a number can be printed and still have no job in the question",
+        "says": "One of these numbers has no job here. Which one?",
+        "check": "Point at the number in this question you did not use, and tell me what it was there for.",
+        "feels": "a number can be perfectly true and have no work at all to do in this question",
+        "hands": "Read a question with a pencil in hand, underline every number that answers it, draw a light box round any number that does not, and say out loud what the boxed number was there for.",
+        "tries": "First rung, from the item: what does your question card ask for? Second rung, the phase's: does this number help to answer it? Third rung: the question is read back one sentence at a time with only that sentence's number liftable, so each is judged on its own. Nothing greyed is ever deleted.",
+        "wrong": [
+          {
+            "why": "the number is printed in the question, and until now everything printed in a question has been needed.",
+            "move": "lifts the number of carriages down onto the mat along with the two counts of people.",
+            "screen": "the question card stays lit and each number card is held up against it in turn with the sentence it came from printed underneath; the carriage card is the only one whose sentence says how the train is built rather than who is riding in it, and it settles back into its place in grey. The two that are left give 2,740 less 1,560, which is 1,180 people, the tens fetching a ten from the hundreds on their left. The child's answer stays in the slot beside the new one."
+          },
+          {
+            "why": "a number with no job looks like a mistake, and a mistake is a thing to take out.",
+            "move": "rubs the spare number off the board so the question looks tidy.",
+            "screen": "the number comes back into its sentence in grey with its outline still drawn round it, and the whole question is read through once with it standing there; grey is the colour this chapter keeps for a place being held open and nothing being brought, which is exactly what that number is doing. On the pair of towns the distance between them goes grey and the two populations give 37,648 less 26,820, which is 10,828 people, the hundreds fetching a ten from the thousands on their left."
+          }
+        ],
+        "screen": "a three number question where one number answers nothing",
+        "soWhat": "Work out what is being asked first, bring down only the numbers that answer it, and leave the spare one standing where it is.",
+        "concept": "Some numbers are printed to be left out"
+      },
+      {
+        "n": 3,
+        "win": "the tiny version answers itself and the same move lands on the real numbers",
+        "does": "works the tiny version, names the move, then does the same to the real numbers",
+        "goal": "the same shape in tiny numbers shows which move is wanted",
+        "says": "Try the same question with tiny numbers. What did you do to those?",
+        "check": "What must be added to 5,621 to make 9,999? Do the tiny version out loud first and tell me what you did to it.",
+        "feels": "a question you could not begin becomes one you can answer out loud, and then it turns out to be the same question",
+        "hands": "Ask the same question with numbers small enough to answer out loud, write down what you did to those two, and then do that same thing to the real numbers on squared paper.",
+        "tries": "First rung, from the item: what would this question look like with single digit numbers? Second rung, the phase's: what did you do to those two? Third rung: the strip is opened already answered with the move printed under it, so only the copying across is left to do. The pad stays open.",
+        "wrong": [
+          {
+            "why": "the word standing in the sentence is the word the hands reach for, and the question plainly says that something is being added.",
+            "move": "adds the two numbers because the question uses the word added.",
+            "screen": "the shrink strip opens under the sentence and reruns it with single digit numbers: what must be added to four to make seven. The answer is three, and the strip writes that three as seven take four, so the move is read off a sum the child never had to work. The real sentence then takes the same move: 75,000 less 45,698 gives 29,302, and 29,302 added back to 45,698 stands at 75,000. Both the strip and the mat stay on the stage."
+          },
+          {
+            "why": "the small version feels like a different question rather than the same question wearing smaller numbers.",
+            "move": "works the tiny version, gets it right, and then goes back to the real numbers and does something else.",
+            "screen": "the two sentences are stood one above the other with the same words underlined in both and only the numbers different, and the move the strip used is printed once between them with an arrow running down from the strip to the mat. The strip's working stays visible while the real one runs, so the two can be read against each other without anything being cleared."
+          }
+        ],
+        "screen": "a reach the target question with the shrink strip open beneath it",
+        "soWhat": "An amount needed to reach a target is the target take away what is already there, and shrinking the numbers is how you can see that it is.",
+        "concept": "Shrink the question until you can see it"
+      },
+      {
+        "n": 4,
+        "win": "the steps stand in order, the second unlocks only after the first and the answer lands",
+        "does": "lays the two steps out in order, then works the first one",
+        "goal": "the order of two steps is decided before either is worked",
+        "says": "Two steps here. Which one has to happen first, and why?",
+        "check": "One machine costs 11,050 rupees more than another and the dearer one is 35,570 rupees. Which step comes first, and what do the two cost together?",
+        "feels": "two steps that are both right can still come out wrong, and the only thing wrong with them was their order",
+        "hands": "Write the two steps down as two lines before either is worked, number them one and two, and only then pick a pencil up for the first of them.",
+        "tries": "First rung, from the item: what are your two steps, said in words? Second rung, the phase's: which of the two could you do right now with the numbers that are printed? Third rung: the bay is cut to the first step alone with the second slot locked, so only one working is open at a time. Nothing in either slot is ever marked.",
+        "wrong": [
+          {
+            "why": "there are two prices printed and a taking away is being asked for, so the two prices look like the two numbers to subtract.",
+            "move": "takes the smaller price off the greater one, which compares the two things instead of comparing the total with what was paid.",
+            "screen": "the step order bay draws both roads and labels what each one answers. Taking one price off the other answers how much dearer one thing is than the other; adding the two prices and taking the price actually paid off that total answers how much was saved. On the printer and the scanner the two prices come to 4,619 and the combined price of 4,358 leaves 261 rupees saved, the tens fetching a ten from the hundreds on their left. The other road keeps its answer too and neither is crossed out."
+          },
+          {
+            "why": "two numbers and the words more than look like an addition, and one of the two has already been printed as a price.",
+            "move": "adds the two printed numbers straight away when one thing is described as costing a set amount more than another.",
+            "screen": "the build bay opens beside the mat and the sentence that describes the second price underlines itself word by word: the amount printed is the dearer one, and the other is that amount less what it is dearer by. So 35,570 less 11,050 builds the cheaper machine at 24,520 with no column having to fetch anything, and only then do the two go onto the mat together and come to 60,090 rupees. The bay leaves its small working standing under the main one."
+          }
+        ],
+        "screen": "a question needing an addition and a subtraction, with the step order bay open",
+        "soWhat": "Decide the order of two steps before working either one: bought together for less wants the adding first, and priced above another wants the taking away first.",
+        "concept": "Two steps need an order"
+      }
+    ],
+    "delight": "The third phase, the moment the shrink strip opens. The question standing on the board is about a number in the tens of thousands and a target in the tens of thousands, and the strip beneath it reruns the same sentence with a four where the one number was and a seven where the other was. It then answers itself while the child watches, because what must be added to four to make seven is three and everybody in the room can see that it is, and the three it writes down is written as seven take four. The move rides back up the arrow to the real sentence, which turns out to be the same question after all: the target less what is already there, so 75,000 less 45,698 is 29,302, and 45,698 and 29,302 put back together stand at 75,000. Nothing else moves and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a two sentence question is printed across the board with both of its numbers standing proud of the lines as cards, the row of question cards is face up beneath it, and the column mat below is ruled under its headings and empty with a minus already drawn to the left of its lower row. On the second the question runs to three numbers and one of them answers nothing. On the third a reach the target question stands there with the shrink strip drawn shut along its foot. On the fourth the step order bay is open beside the mat, two empty slots one above the other with a lock drawn on the second. The running count at the top left is empty and the slot and the pad stand empty down the right. One thing moves, once: the row of question cards gives one slow lift while the voice asks what the question is actually asking for. That lift is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "A bank of questions in sentences and tables, with the dim bay, the shrink strip and a write your own bay. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on finding the two numbers a question is about, leaving a spare one out, shrinking a question to see its shape, and ordering two steps.",
+    "voiceLines": [
+      "Read it right through. What is the question actually asking for?",
+      "Say what you are being asked for before you touch a number.",
+      "One of these numbers has no job here. Which one?",
+      "Try the same question with tiny numbers. What did you do to those?",
+      "Two steps here. Which one has to happen first, and why?",
+      "A new question. Say what it wants before you lift a number.",
+      "Free play. Sentences, tables, described amounts, and a bay for writing your own.",
+      "Read it again, one sentence at a time, and keep your question card showing.",
+      "Every sentence turned into a taking away, and the numbers with no job are still standing."
+    ],
+    "observations": [
+      {
+        "why": "The question says which two amounts are being compared, and only those two ever go on the mat.",
+        "soWhat": "Choosing the numbers is a move of its own, and it happens before any taking away.",
+        "observe": "Picking the question card sorted the numbers before a single one had been lifted."
+      },
+      {
+        "why": "Both of those shapes end as a smaller number taken off a greater one.",
+        "soWhat": "There are only a few shapes, and the sentences tell me which one I am holding if I read them for that.",
+        "observe": "A total with one part given, and two amounts compared, came down onto the same mat and were worked the same way: 3,929 less 1,560 gave 2,369, and 37,648 less 26,820 gave 10,828."
+      },
+      {
+        "why": "A number is printed in a question because it is true, not because the question needs it.",
+        "soWhat": "I can turn a number down and still say afterwards what it was doing there.",
+        "observe": "The spare number stayed on the board in grey and the answer came out right without it."
+      },
+      {
+        "why": "Two things bought together for less than their prices wants the total first, while one thing priced above another wants the cheaper one built first.",
+        "soWhat": "Two right steps in the wrong order give a wrong answer that looks properly worked.",
+        "observe": "One question needed adding first and taking away second, and the next one needed exactly the opposite order."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a two sentence question with two numbers in it and an empty mat",
+        "win": "the mat holds the two numbers the right way up and the answer is written as a sentence",
+        "traceback": "The question line lights and the right question card goes up; if the answer given was the sum, that route is written under the mat in ink (altogether: the two numbers added), beside the right one it is then set against; both numbers come down, the greater on top (a smaller one on top is swapped down); the columns are taken from the ones, a lending digit struck once in ink with its new value above it in rose and the ten travelling into the next column; the answer row fills and the answer is written back into a sentence.",
+        "ladder": [
+          "Was water put into the tank, or taken out of it?",
+          "What does your question card say?",
+          "Does how many more ask you to join the towns, or to compare them?",
+          "Which two amounts does it compare?",
+          "Read only the last sentence. Which number goes on top?"
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a three number question where one number answers nothing",
+        "win": "the spare number dims in its sentence, still readable, and the mat holds only two",
+        "traceback": "The right question card goes up; the number with no job flies back into its sentence and turns grey with its outline kept; the two needed numbers stand on the mat, the greater on top, and are taken from the ones with each trade drawn; the answer sentence is written back.",
+        "ladder": [
+          "Do the coaches tell you anything about who was riding?",
+          "Does the distance to the town change how many trips ran?",
+          "What does your question card ask for?",
+          "Does this number help to answer it?",
+          "Read one sentence at a time. Does its number answer your question card?"
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a reach the target question with the shrink strip open beneath it",
+        "win": "the tiny version answers itself and the same move lands on the real numbers",
+        "traceback": "The right question card goes up; the tiny version opens and answers itself (4 and 3 more make 7, so 7 − 4 = 3); the same move goes onto the real numbers with the target on top; the columns are worked across the zeros, each zero opening a ten; the answer is added back to show the target, and written as a sentence.",
+        "ladder": [
+          "Added to 52,640, your number should make 90,000. Would it?",
+          "What would this question look like with single digit numbers?",
+          "Can the bricks to buy be more than the builder needs?",
+          "Which move did the tiny numbers need?",
+          "Open the tiny version. Copy its move onto the big numbers."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a question needing an addition and a subtraction, with the step order bay open",
+        "win": "the steps stand in order, the second unlocks only after the first and the answer lands",
+        "traceback": "The two steps are laid in their right order; if the answer given matches another route (the two prices compared, the printed numbers added at once, the payment added), that route is written under the mat in ink, beside the right one; the bay works the first step in its own columns and builds its card with a drawn edge (for the payment and the balance, whose steps need nothing from each other, the first is set out and its result filled in last); the second step's two numbers come down onto the mat and are worked from the ones; the answer sentence is written back.",
+        "ladder": [
+          "Taking one price off the other shows which is dearer. Is that the saving?",
+          "Is ₹24,350 the fridge's price, or the washing machine's?",
+          "What are your two steps, said in words?",
+          "Which of the two could you do right now with the numbers that are printed?",
+          "Work the first step alone. Then use its answer in the second."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "mat": {
+      "columns": [
+        "L",
+        "TTh",
+        "Th",
+        "H",
+        "T",
+        "O"
+      ],
+      "alignsBy": "the right hand end (ones under ones)",
+      "rows": [
+        "the greater number",
+        "the number taken away"
+      ],
+      "greaterOnTop": "a smaller number over a greater one does not settle; the two swap under a finger",
+      "trade": "a lending digit is struck once in ink, its new value written above in rose, and the ten it lends travels (vermilion) into the next column"
+    },
+    "questionCards": [
+      "How many more?",
+      "How many are left?",
+      "How many to reach?",
+      "How much altogether?"
+    ],
+    "questionCardFirst": "in phases 1 to 3 no number card lifts until a card that says what is asked is picked; in phase 4 none lifts until the first step is worked",
+    "problems": [
+      {
+        "qid": "M2.S4.T6.C20:ML1",
+        "asks": [
+          "How many are left?"
+        ],
+        "top": 48250,
+        "takeAway": 26190,
+        "operation": "-",
+        "spare": null,
+        "tiny": null,
+        "steps": null,
+        "answerSentence": "{n} L of water is left."
+      },
+      {
+        "qid": "M2.S4.T6.C20:1",
+        "asks": [
+          "How many are left?"
+        ],
+        "top": 18420,
+        "takeAway": 7315,
+        "operation": "-",
+        "spare": null,
+        "tiny": null,
+        "steps": null,
+        "answerSentence": "{n} books are left on the shelves."
+      },
+      {
+        "qid": "M2.S4.T6.C20:2",
+        "asks": [
+          "How many more?"
+        ],
+        "top": 36940,
+        "takeAway": 21508,
+        "operation": "-",
+        "spare": null,
+        "tiny": null,
+        "steps": null,
+        "answerSentence": "The first town has {n} more people."
+      },
+      {
+        "qid": "M2.S4.T6.C21:ML2",
+        "asks": [
+          "How many are left?"
+        ],
+        "top": 3845,
+        "takeAway": 1672,
+        "operation": "-",
+        "spare": 24,
+        "tiny": null,
+        "steps": null,
+        "answerSentence": "{n} passengers were not children."
+      },
+      {
+        "qid": "M2.S4.T6.C21:3",
+        "asks": [
+          "How many more?"
+        ],
+        "top": 2640,
+        "takeAway": 1925,
+        "operation": "-",
+        "spare": 15,
+        "tiny": null,
+        "steps": null,
+        "answerSentence": "{n} more trips ran in March."
+      },
+      {
+        "qid": "M2.S4.T6.C21:4",
+        "asks": [
+          "How many are left?"
+        ],
+        "top": 24318,
+        "takeAway": 11207,
+        "operation": "-",
+        "spare": 500,
+        "tiny": null,
+        "steps": null,
+        "answerSentence": "{n} tickets were used later."
+      },
+      {
+        "qid": "M2.S4.T6.C22:ML3",
+        "asks": [
+          "How many to reach?"
+        ],
+        "top": 90000,
+        "takeAway": 52640,
+        "operation": "-",
+        "spare": null,
+        "tiny": {
+          "have": 4,
+          "target": 7,
+          "move": "7 − 4"
+        },
+        "steps": null,
+        "answerSentence": "{n} should be added to make 90,000."
+      },
+      {
+        "qid": "M2.S4.T6.C22:5",
+        "asks": [
+          "How many to reach?"
+        ],
+        "top": 30000,
+        "takeAway": 14672,
+        "operation": "-",
+        "spare": null,
+        "tiny": {
+          "have": 2,
+          "target": 6,
+          "move": "6 − 2"
+        },
+        "steps": null,
+        "answerSentence": "{n} should be added to make 30,000."
+      },
+      {
+        "qid": "M2.S4.T6.C22:6",
+        "asks": [
+          "How many to reach?",
+          "How many more?"
+        ],
+        "top": 40000,
+        "takeAway": 27516,
+        "operation": "-",
+        "spare": null,
+        "tiny": {
+          "have": 5,
+          "target": 8,
+          "move": "8 − 5"
+        },
+        "steps": null,
+        "answerSentence": "{n} more bricks must be bought."
+      },
+      {
+        "qid": "M2.S4.T6.C23:ML4",
+        "asks": [],
+        "top": 10740,
+        "takeAway": 9950,
+        "operation": "-",
+        "spare": null,
+        "tiny": null,
+        "steps": [
+          {
+            "step": "Add the two prices",
+            "working": "7480 + 3260",
+            "builds": 10740
+          },
+          {
+            "step": "Subtract the price paid",
+            "working": "10740 − 9950",
+            "builds": null
+          }
+        ],
+        "answerSentence": "₹{n} is saved."
+      },
+      {
+        "qid": "M2.S4.T6.C23:7",
+        "asks": [],
+        "top": 24350,
+        "takeAway": 17870,
+        "operation": "+",
+        "spare": null,
+        "tiny": null,
+        "steps": [
+          {
+            "step": "Find the cheaper price",
+            "working": "24350 − 6480",
+            "builds": 17870
+          },
+          {
+            "step": "Add the two prices",
+            "working": "24350 + 17870",
+            "builds": null
+          }
+        ],
+        "answerSentence": "The two cost ₹{n} together."
+      },
+      {
+        "qid": "M2.S4.T6.C23:8",
+        "asks": [],
+        "top": 68908,
+        "takeAway": 34500,
+        "operation": "-",
+        "spare": null,
+        "tiny": null,
+        "steps": [
+          {
+            "step": "Find the payment",
+            "working": "68908 − 21308",
+            "builds": null
+          },
+          {
+            "step": "Take off the spending",
+            "working": "68908 − 34500",
+            "builds": null
+          }
+        ],
+        "answerSentence": "The payment was ₹{p}. ₹{n} is left at the end."
+      }
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T6.C20:ML1",
+        "kind": "diff",
+        "near": 74440,
+        "winMs": 6400,
+        "answer": 22060
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T6.C20:1",
+        "kind": "diff",
+        "near": 25735,
+        "winMs": 6400,
+        "answer": 11105
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T6.C20:2",
+        "kind": "diff",
+        "near": 58448,
+        "winMs": 6400,
+        "answer": 15432
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T6.C21:ML2",
+        "kind": "spare",
+        "near": 2149,
+        "winMs": 6800,
+        "answer": 2173
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T6.C21:3",
+        "kind": "spare",
+        "near": 700,
+        "winMs": 6800,
+        "answer": 715
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T6.C21:4",
+        "kind": "spare",
+        "near": 12611,
+        "winMs": 6800,
+        "answer": 13111
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T6.C22:ML3",
+        "kind": "reach",
+        "near": 142640,
+        "winMs": 9000,
+        "answer": 37360
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T6.C22:5",
+        "kind": "reach",
+        "near": 44672,
+        "winMs": 9000,
+        "answer": 15328
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T6.C22:6",
+        "kind": "reach",
+        "near": 67516,
+        "winMs": 9000,
+        "answer": 12484
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T6.C23:ML4",
+        "kind": "two",
+        "near": 4220,
+        "winMs": 9000,
+        "answer": 790
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T6.C23:7",
+        "kind": "two",
+        "near": 30830,
+        "winMs": 9000,
+        "answer": 42220
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T6.C23:8",
+        "kind": "two",
+        "near": [
+          90216,
+          34408
+        ],
+        "winMs": 9600,
+        "answer": [
+          47600,
+          34408
+        ],
+        "parts": [
+          {
+            "label": "Payment"
+          },
+          {
+            "label": "Balance"
+          }
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The question line lights and the right question card goes up; if the answer given was the sum, that route is written under the mat in ink (altogether: the two numbers added), beside the right one it is then set against; both numbers come down, the greater on top (a smaller one on top is swapped down); the columns are taken from the ones, a lending digit struck once in ink with its new value above it in rose and the ten travelling into the next column; the answer row fills and the answer is written back into a sentence.",
+      "Phase 2: The right question card goes up; the number with no job flies back into its sentence and turns grey with its outline kept; the two needed numbers stand on the mat, the greater on top, and are taken from the ones with each trade drawn; the answer sentence is written back.",
+      "Phase 3: The right question card goes up; the tiny version opens and answers itself (4 and 3 more make 7, so 7 − 4 = 3); the same move goes onto the real numbers with the target on top; the columns are worked across the zeros, each zero opening a ten; the answer is added back to show the target, and written as a sentence.",
+      "Phase 4: The two steps are laid in their right order; if the answer given matches another route (the two prices compared, the printed numbers added at once, the payment added), that route is written under the mat in ink, beside the right one; the bay works the first step in its own columns and builds its card with a drawn edge (for the payment and the balance, whose steps need nothing from each other, the first is set out and its result filled in last); the second step's two numbers come down onto the mat and are worked from the ones; the answer sentence is written back."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Read it right through. What is the question actually asking for?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every sentence turned into a taking away, and the numbers with no job are still standing.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T6.C20:ML1",
+            "worked": false,
+            "kind": "diff",
+            "planQuestion": "A tank held 48,250 L of water and 26,190 L was used. How much is left?",
+            "question": {
+              "en": "A tank held 48,250 L of water, and 26,190 L was used. How much is left?"
+            },
+            "ask": {
+              "en": "Water left?"
+            },
+            "answer": 22060,
+            "planAnswer": "22,060 L",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T6.C20:1",
+            "worked": false,
+            "kind": "diff",
+            "planQuestion": "A library had 18,420 books and 7,315 were lent out. How many are left on the shelves?",
+            "question": {
+              "en": "A library had 18,420 books, and 7,315 were lent out. How many are left on the shelves?"
+            },
+            "ask": {
+              "en": "Books left?"
+            },
+            "answer": 11105,
+            "planAnswer": "11,105 books",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T6.C20:2",
+            "worked": false,
+            "kind": "diff",
+            "planQuestion": "One town has 36,940 people and another has 21,508. How many more people has the first town?",
+            "question": {
+              "en": "One town has 36,940 people, and another has 21,508. How many more people has the first town?"
+            },
+            "ask": {
+              "en": "How many more?"
+            },
+            "answer": 15432,
+            "planAnswer": "15,432 people",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T6.C21:ML2",
+            "worked": false,
+            "kind": "spare",
+            "planQuestion": "A train with 24 coaches carried 3,845 passengers, and 1,672 of them were children. How many were not children?",
+            "question": {
+              "en": "A train with 24 coaches carried 3,845 passengers, and 1,672 of them were children. How many were not children?"
+            },
+            "ask": {
+              "en": "Not children?"
+            },
+            "answer": 2173,
+            "planAnswer": "2,173 passengers, and the number of coaches is not needed",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T6.C21:3",
+            "worked": false,
+            "kind": "spare",
+            "planQuestion": "A depot 15 km from the town ran 2,640 trips in March and 1,925 trips in April. How many more trips ran in March?",
+            "question": {
+              "en": "A depot 15 km from the town ran 2,640 trips in March, and 1,925 trips in April. How many more trips ran in March?"
+            },
+            "ask": {
+              "en": "More trips?"
+            },
+            "answer": 715,
+            "planAnswer": "715 trips, and the distance is not needed",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T6.C21:4",
+            "worked": false,
+            "kind": "spare",
+            "planQuestion": "A hall with 500 chairs sold 24,318 tickets in a week, and 11,207 of them were used on the first day. How many were used later?",
+            "question": {
+              "en": "A hall with 500 chairs sold 24,318 tickets in a week. 11,207 of them were used on the first day. How many were used later?"
+            },
+            "ask": {
+              "en": "Used later?"
+            },
+            "answer": 13111,
+            "planAnswer": "13,111 tickets, and the number of chairs is not needed",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T6.C22:ML3",
+            "worked": false,
+            "kind": "reach",
+            "planQuestion": "What should be added to 52,640 to make it 90,000?",
+            "question": {
+              "en": "Here is 52,640. What should be added to it to make 90,000?"
+            },
+            "ask": {
+              "en": "What to add?"
+            },
+            "answer": 37360,
+            "planAnswer": "37,360",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T6.C22:5",
+            "worked": false,
+            "kind": "reach",
+            "planQuestion": "What should be added to 14,672 to make it 30,000?",
+            "question": {
+              "en": "Here is 14,672. What should be added to it to make 30,000?"
+            },
+            "ask": {
+              "en": "What to add?"
+            },
+            "answer": 15328,
+            "planAnswer": "15,328",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T6.C22:6",
+            "worked": false,
+            "kind": "reach",
+            "planQuestion": "A builder needs 40,000 bricks and already has 27,516. How many more must be bought?",
+            "question": {
+              "en": "A builder needs 40,000 bricks, and already has 27,516. How many more must be bought?"
+            },
+            "ask": {
+              "en": "Bricks to buy?"
+            },
+            "answer": 12484,
+            "planAnswer": "12,484 bricks",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T6.C23:ML4",
+            "worked": false,
+            "kind": "two",
+            "planQuestion": "A table costs Rs 7,480 and a chair costs Rs 3,260. The two together are sold for Rs 9,950. How much is saved?",
+            "question": {
+              "en": "A table costs ₹7,480, and a chair costs ₹3,260. The two together are sold for ₹9,950. How much is saved?"
+            },
+            "ask": {
+              "en": "Money saved?"
+            },
+            "answer": 790,
+            "planAnswer": "Rs 790",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T6.C23:7",
+            "worked": false,
+            "kind": "two",
+            "planQuestion": "A fridge costs Rs 24,350, which is Rs 6,480 more than a washing machine. What do the two cost together?",
+            "question": {
+              "en": "A fridge costs ₹24,350, which is ₹6,480 more than a washing machine. What do the two cost together?"
+            },
+            "ask": {
+              "en": "Cost together?"
+            },
+            "answer": 42220,
+            "planAnswer": "Rs 42,220, because the washing machine costs Rs 17,870",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T6.C23:8",
+            "worked": false,
+            "kind": "two",
+            "planQuestion": "An account held Rs 21,308. After a payment came in the balance was Rs 68,908, and Rs 34,500 was then spent. Find the payment and the balance at the end.",
+            "question": {
+              "en": "An account held ₹21,308. After a payment came in, the balance was ₹68,908. Then ₹34,500 was spent. Find the payment, and the balance at the end."
+            },
+            "ask": {
+              "en": "Payment and balance?"
+            },
+            "answer": [
+              47600,
+              34408
+            ],
+            "planAnswer": "The payment was Rs 47,600 and the balance at the end is Rs 34,408",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "story_to_difference",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "story_to_difference",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Find the two numbers the question is about",
+        "conceptId": "M2.S4.T6.C20",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S4.T6.C20:ML1",
+          "M2.S4.T6.C20:1",
+          "M2.S4.T6.C20:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Some numbers are printed to be left out",
+        "conceptId": "M2.S4.T6.C21",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S4.T6.C21:ML2",
+          "M2.S4.T6.C21:3",
+          "M2.S4.T6.C21:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Shrink the question until you can see it",
+        "conceptId": "M2.S4.T6.C22",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S4.T6.C22:ML3",
+          "M2.S4.T6.C22:5",
+          "M2.S4.T6.C22:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Two steps need an order",
+        "conceptId": "M2.S4.T6.C23",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S4.T6.C23:ML4",
+          "M2.S4.T6.C23:7",
+          "M2.S4.T6.C23:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "problem",
+    "questionCard",
+    "liftedNumbers",
+    "id",
+    "dimmed",
+    "id",
+    "shrunk",
+    "builtAmount",
+    "stepOrder",
+    "sid",
+    "answerSentence"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, phase, problem, questionCard, liftedNumbers, id, dimmed, id, shrunk, builtAmount, stepOrder, sid, answerSentence, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "story_to_difference"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T6.C20.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Read it right through. What is the question actually asking for?"
+    },
+    {
+      "en": "Say what you are being asked for before you touch a number."
+    },
+    {
+      "en": "One of these numbers has no job here. Which one?"
+    },
+    {
+      "en": "Try the same question with tiny numbers. What did you do to those?"
+    },
+    {
+      "en": "Two steps here. Which one has to happen first, and why?"
+    },
+    {
+      "en": "A new question. Say what it wants before you lift a number."
+    },
+    {
+      "en": "Free play. Sentences, tables, described amounts, and a bay for writing your own."
+    },
+    {
+      "en": "Read it again, one sentence at a time, and keep your question card showing."
+    },
+    {
+      "en": "Every sentence turned into a taking away, and the numbers with no job are still standing."
+    }
+  ],
+  "build": {
+    "source": "6121feb4:223753",
+    "runtime": "class4/runtime/runtime.tsx",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-22T15:10:58.934Z",
+    "checks": {
+      "pass": 61,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-22T15:10:58.604Z"
+    },
+    "tsxBytes": 214143,
+    "tsxMd5": "8dd1e0a22e726ac468756d48ecdfeed9"
+  }
+}

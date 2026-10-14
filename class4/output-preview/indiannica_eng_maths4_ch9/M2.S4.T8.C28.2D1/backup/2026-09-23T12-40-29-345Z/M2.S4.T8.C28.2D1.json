@@ -1,0 +1,1301 @@
+{
+  "slotId": "M2.S4.T8.C28.2D1",
+  "mediaId": "M2.S4.T8.C28.2D1",
+  "toolId": "solid_workshop",
+  "title": "Solid Workshop",
+  "component": "M2.S4.T8.C28.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch9_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_9/2dtool/M2.S4.T8.C28.2D1/M2.S4.T8.C28.2D1.tsx",
+  "description": "Count a solid's faces, edges and vertices, tell a prism from a pyramid, fold a flat net into a solid, and look at a box from the top, the front and the side.",
+  "conceptIds": [
+    "M2.S4.T8.C28",
+    "M2.S4.T8.C29",
+    "M2.S4.T8.C30",
+    "M2.S4.T8.C31"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Count what a solid is made of, sort it by its bases, fold one up from flat, and look at it from three sides.",
+    "look": "A solid on a turntable with three counters at the top left of the canvas, a net bench below it, and a view window with three small cameras at the right.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Solid Workshop' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the faces, the edges and the vertices, the corners, counted so far, three numbers in ink under their own headings and always in that order, each climbing by one as its part is lit. On the third phase it carries the creases folded against the creases the net has, and on the fourth the views drawn against the three cameras. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The turntable stands at the left of the working area, 360 by 470 at 64,214, with one solid drawn on it in a simple three-quarter view, its visible edges deep blue and its hidden edges grey and dashed, turning a quarter turn at a time to show every side. Tapping a face lights it green and adds one to the face count; tracing along a line where two faces meet lights that edge amber and adds one to the edge count; tapping a corner drops a vermilion dot on it as a vertex and adds one to the vertex count. A part already counted stays lit and cannot be counted twice, a curved face lights with a curved sheen, and a cone's tip takes a dot as its one vertex, though no two edges meet there. The bench fills the middle, 420 by 470 at 440,214. On the second phase it is the sorting bench, with the headings prism and pyramid across its top: the base light lights a solid's base, or both its bases, green, and the solid is set under the heading its bases and other faces call for, the base itself keeping whatever shape it has. On the third it is the net bench, holding in one flat piece a net of up to six squares, each 66 on a side, or of rectangles and triangles; the fold control raises the faces along their creases one at a time, and a net that closes meets every edge, while one that cannot close shows two faces landing on one place, glowing sky blue, and a side left open. The view window stands at the right, 274 by 470 at 876,214: the top view in its upper part, 274 by 170 at 876,226, and the front and side views side by side beneath it, each 130 by 170, at 876,420 and 1014,420, all drawn at one scale with near-black guide lines running level from the top of one view to the top of the next. The size strip runs under them, 274 by 50 at 876,610, holding the measurements every view of the solid shares. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a count or a measurement is asked for, and a word pad wherever a solid, a face or a view is named, with keys reading cube, cuboid, cylinder, cone, sphere, prism, pyramid, square, rectangle, triangle and circle. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The figure being studied, every line, segment, ray, side, outline, circle, angle arm and visible edge of a solid, is deep blue. Every point, end point, corner dot, vertex dot and the centre dot of a circle is vermilion. A length being measured, walked, added or named, and every angle arc and square corner mark, is amber. The unit squares that cover an area, the flood inside a closed figure and a face of a solid being counted are green. A line of symmetry or a mirror line is reddish purple and always dotted. The second thing set beside the first, a fold being tried, a mirror image, the other half of a fold, a chord that is not a diameter and the larger angle between clock hands, is sky blue. A hidden edge of a solid is grey and dashed, and grey is used for nothing else. Chrome never borrows one of those and none of them is ever used for chrome: every grid line, ruler tick, bracket, guide line and table rule is near-black. Every reading survives with the colour taken away, because a point is a round dot, a line carries an arrowhead at each end, a ray a dot and one arrowhead and a segment a dot at each end, a measured length carries its number, a hidden edge is dashed and a line of symmetry is dotted, before any of them is told by a colour. A dotted line always means a true line of symmetry or a mirror line, and a fold being tried is drawn solid until it is kept, so nothing else on any stage of this chapter is ever dotted. Hidden edges are the only dashed lines on this stage, and every vertex counted is a round vermilion dot. The three counts never share a box and always stand in one order, faces, edges, vertices, so a number is read by its heading and never by where it happens to sit.",
+    "finish": "The card shows the solid the child counted with its three counts, the net they folded standing closed beside it, and its three views at one scale.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the counts stop at six, twelve and eight, with every part of the box lit",
+        "does": "spins the solid, taps every face, traces every edge and dots every corner",
+        "goal": "a face is a surface, an edge is where two faces meet, and a vertex is a corner, each counted on its own",
+        "says": "Spin it round. Count the faces first, then the edges, then the corners.",
+        "check": "Away from the screen: count the faces, edges and vertices of a closed box, with a sticker on each part as you count it.",
+        "feels": "faces, edges and corners are three different counts, and each one is kept in its own place",
+        "hands": "Hand each group a closed cardboard box. Touch and count its faces, then run a finger along each edge where two faces meet, then touch each corner, which is called a vertex. Put a sticker on each part as it is counted so none is counted twice. Then do the same with a tin and a party hat, and ask where the hat's one vertex is.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which count is this, faces, edges or corners? Second rung, the phase's: has every side of the solid been turned to face you? Third rung: the solid is cut to one face held flat, its edges and corners counted, before the whole solid comes back. The number pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the two tables on the solids page print their columns in different orders, edges before vertices in one and after them in the other, so a number read by its place in a row lands under the wrong word.",
+            "move": "swaps the edge and vertex counts, writing eight edges and twelve vertices for a cube.",
+            "screen": "the counts are run again one at a time with their headings lit: every edge traced lights amber along its length and the edge count climbs to twelve, then every corner takes a vermilion dot and the vertex count climbs to eight. The child's two numbers stay in the slot beside the headings, nothing marked."
+          },
+          {
+            "why": "the definition on the solids page says two edges meet at a vertex, and the cone's one edge runs round its rim, nowhere near its tip.",
+            "move": "gives the cone no vertex, because a vertex was defined as a point where two edges meet and a cone has only one edge.",
+            "screen": "the cone turns on the turntable and its tip is tapped: a vermilion dot drops there and the vertex count takes one, while the edge count, traced round the rim, stays at one. The tip is lit as the cone's corner, where its curved face comes to a point with no edges meeting, and the child's answer stays in the slot."
+          }
+        ],
+        "screen": "a box on the turntable with its three counters empty",
+        "soWhat": "A face is a surface, an edge is where two faces meet, and a vertex is a corner. A cube has six faces, twelve edges and eight vertices.",
+        "concept": "Faces, edges and vertices"
+      },
+      {
+        "n": 2,
+        "win": "the prism shows two matching bases with rectangles between, and the pyramid one square base with four triangles meeting at its tip",
+        "does": "lights the bases of each solid, counts them, and sets each under prism or pyramid",
+        "goal": "a prism has two matching bases joined by rectangles, and a pyramid has one base with triangles rising to a point",
+        "says": "How many bases does it have? What joins them, or where do its sides meet?",
+        "check": "A pyramid has a base with six sides. How many faces does it have? What shape is each one?",
+        "feels": "a prism has two matching ends, a pyramid has one base and a point, and the base keeps whatever shape it has",
+        "hands": "Set out a cube, a tall carton with square ends, a tent-shaped card box and a paper pyramid on a square base. Ask which have two matching ends and which have one base with triangles rising to a point. Then stand a ruler against the tall carton and against one edge of its square end, and ask whether it is a cube.",
+        "tries": "First rung, from the item: how many bases does the solid have? Second rung, the phase's: what shape is the base, and what joins it to the rest? Third rung: the bench is cut to one solid, lit base first, and each other face is lit in turn before the second solid comes back. The number pad and the word pad stay open.",
+        "wrong": [
+          {
+            "why": "the solids page says a pyramid's faces are all triangular, beside a table that gives the square pyramid a square base.",
+            "move": "says every face of a square pyramid is a triangle, and counts only the four that rise to the tip.",
+            "screen": "the base light turns the pyramid over and lights its base green: a square, with four sides and four corners. The face count climbs to five, the four triangles and the square, and the child's four stays in the slot beside it."
+          },
+          {
+            "why": "the solids page lists a square prism as also known as a cube and never mentions its height, and a cube is a square prism only when its height matches the side of its base.",
+            "move": "calls a tall square prism a cube because its two ends are squares.",
+            "screen": "the size strip is laid up the prism's side and along one edge of its square end, and the two lengths stand side by side, the height plainly longer. The prism is shrunk down until the two lengths match, and only then do all six faces light as squares. The child's answer stays in the slot."
+          }
+        ],
+        "screen": "a triangular prism and a square pyramid on the sorting bench with their bases dim",
+        "soWhat": "A prism has two matching bases joined by rectangles; a pyramid has one base, and its faces other than the base are triangles meeting at a point.",
+        "concept": "Prisms and pyramids"
+      },
+      {
+        "n": 3,
+        "win": "the net closes into a cube with every edge met, or shows the two faces that collide and the side left open",
+        "does": "folds the net up along its edges and watches whether every edge meets",
+        "goal": "a net is a flat shape that folds along its edges into a solid, and some arrangements of squares do not fold into a cube",
+        "says": "Fold it up. Does it close, or do two faces land in one place?",
+        "check": "Draw two different nets of a cube on squared paper. Cut one out and fold it to check.",
+        "feels": "the count of squares is not enough; where each square hangs decides whether it closes",
+        "hands": "Give each group a cardboard box to cut along some of its edges until it lies flat in one piece, and compare the flat shapes from different groups. Then give each group six paper squares and ask them to tape together one flat piece that folds back into a cube, and one that does not.",
+        "tries": "First rung, from the item: how many faces does the solid need? Second rung, the phase's: which squares fold up to make the top and the bottom? Third rung: the net is folded one crease at a time, with the child choosing each next crease. The word pad stays open.",
+        "wrong": [
+          {
+            "why": "a cross looks like a box opened out flat, and one picture of a net looks like the only one.",
+            "move": "thinks a net of a cube must be shaped like a cross, and says a different arrangement of six squares cannot fold into one.",
+            "screen": "the child's arrangement, a row of four with one square above the first and one below the last, is laid on the bench and folded up one crease at a time: the row wraps round into four sides and the other two squares fold over as the top and the bottom, closing with every edge met. The cross is folded beside it and closes too, and both cubes stand side by side with the child's answer in the slot."
+          },
+          {
+            "why": "six faces and six squares match, so the count looks like the whole test.",
+            "move": "expects six squares in a straight row to fold into a cube, because there are six squares and a cube has six faces.",
+            "screen": "the row is folded up one crease at a time: it wraps round, and the fifth and sixth squares land on the first and second, glowing sky blue where two faces sit in one place, while the top and the bottom of the box stay open. The child's answer stays in the slot, nothing marked."
+          }
+        ],
+        "screen": "six squares joined as one flat piece on the net bench",
+        "soWhat": "A net is a flat shape that folds along its edges into a solid, and one solid can have several nets.",
+        "concept": "A net folds into a solid"
+      },
+      {
+        "n": 4,
+        "win": "the three views settle at one scale, the front and side views standing the same height",
+        "does": "opens each camera in turn and matches the measurements the views share",
+        "goal": "a solid looks different from the top, the front and the side, and every view of one solid shares its measurements",
+        "says": "Look from the top, then the front, then the side. Which views are the same height?",
+        "check": "A box is nine centimetres long, three wide and five high. Give its top view, its front view and its side view.",
+        "feels": "each camera sees one side of the same box, so the views share its measurements",
+        "hands": "Stand a box on a desk. Ask one child to look from directly above, one from the front and one from the side, and each to sketch what they see. Hold the front and side sketches side by side, and ask whether they should be the same height.",
+        "tries": "First rung, from the item: which camera is looking? Second rung, the phase's: which two measurements does that camera see? Third rung: the solid is cut to a cube, whose three views are three equal squares, before the box comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the solids page draws a box's side view taller than its front view, and a narrow view drawn tall looks right.",
+            "move": "draws the side view of a box taller than its front view.",
+            "screen": "the size strip holds the box's height, and the front and side views are both drawn against it at one scale, with level guide lines running from the top of one to the top of the other. The child's taller side view stands beside them, its top above the guide line, and both are kept."
+          },
+          {
+            "why": "the rectangle is the shape the cylinder shows from the front, which is how it is usually seen.",
+            "move": "gives an upright cylinder a rectangle as its top view.",
+            "screen": "the top camera is opened over the upright cylinder, and its view is drawn as a plain circle with no dot, the front camera's rectangle drawn beside it. The view window labels each drawing with the camera that saw it, and the child's rectangle stays in the slot."
+          }
+        ],
+        "screen": "a box on the turntable with three cameras round it and the view window empty",
+        "soWhat": "A solid looks different from the top, the front and the side, and the views share its measurements: a box's front and side views are the same height.",
+        "concept": "Top, front and side"
+      }
+    ],
+    "delight": "The third phase, the moment the last crease of a good net is folded. The squares have been rising one at a time along their edges, and as the last one swings up to close the top, every edge meets its partner with a soft click, the seams disappear, and the finished cube drops onto the turntable and turns once. Unfold it and the six squares lie flat again exactly where they began. It can be folded and unfolded as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a closed box sits on the turntable with its hidden edges dashed and its three counts at nothing. On the second a triangular prism and a square pyramid stand on the bench under the headings prism and pyramid, with their bases dim. On the third six squares lie on the bench as one flat piece, not yet folded. On the fourth a box stands on the turntable with three small cameras round it, the view window empty and the size strip holding the box's measurements. The running count at the top left holds the faces, the edges and the vertices, the corners, counted so far, and the answer slot and the pad stand empty down the right. One thing moves, once: the box's top face, or the prism's end, or the first crease of the net, or the top camera, gives one slow pulse while the voice asks what will be counted first. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any solid on the turntable, any net on the bench, and the view window open on either. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on counting faces, edges and vertices, telling prisms from pyramids, which nets fold into a solid, and top, front and side views.",
+    "voiceLines": [
+      "A solid on a turntable. What will you count first, faces, edges or corners?",
+      "Spin it round. Count the faces first, then the edges, then the corners.",
+      "How many bases does it have? What joins them, or where do its sides meet?",
+      "Fold it up. Does it close, or do two faces land in one place?",
+      "Look from the top, then the front, then the side. Which views are the same height?",
+      "A new solid. Turn it right round before you count anything.",
+      "Free play. Any solid, any net, with the three cameras open.",
+      "Spin it slowly and count again, one kind of part at a time.",
+      "Every part counted under its heading, every base found, every net folded and every view drawn."
+    ],
+    "observations": [
+      {
+        "why": "A box has edges on its far side that a single view cannot show.",
+        "soWhat": "Count faces, edges and vertices on the whole solid, turning it, and read each count by its heading.",
+        "observe": "The edge count reached twelve only after the turntable brought the hidden edges round."
+      },
+      {
+        "why": "A pyramid has one base, and only the faces other than the base rise to its point as triangles.",
+        "soWhat": "A pyramid's faces other than its base are triangles, and its base can be a square or another polygon.",
+        "observe": "The square pyramid lit one square face and four triangles."
+      },
+      {
+        "why": "A net closes only when every face lands in a different place and every edge meets another.",
+        "soWhat": "A net is tested by folding: six squares are not enough on their own, and a cube has several nets.",
+        "observe": "Six squares in a row wrapped round and two faces landed in one place, while other arrangements of six closed into a cube."
+      },
+      {
+        "why": "Both cameras see the same height of the same box.",
+        "soWhat": "The views of one solid share its measurements, so a side view is never taller than the front view of the same box.",
+        "observe": "The front and side views of the box stood level against the same guide line."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a box on the turntable with its three counters empty",
+        "win": "the counts stop at six, twelve and eight, with every part of the box lit",
+        "traceback": "The solid turns and every part is lit again, one kind at a time, until the three counts stand at the right numbers.",
+        "ladder": [
+          "Turn the cube round and light every part you meet.",
+          "Does the curved side count as a face?",
+          "What about the sharp point at the top?",
+          "Has every side of the solid been turned to face you?",
+          "One kind at a time: a flat surface, a line where two faces meet, a sharp point."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a triangular prism and a square pyramid on the sorting bench with their bases dim",
+        "win": "the prism shows two matching bases with rectangles between, and the pyramid one square base with four triangles meeting at its tip",
+        "traceback": "The base is turned up and lit green, and the face count ends on every face the solid has; on the bench the two matching ends are lit and the solid is set under prism.",
+        "ladder": [
+          "Turn it over. What is the roof standing on?",
+          "Light both ends and see what joins them.",
+          "Every side of the base sends up one triangle. Count the base too.",
+          "What shape is the base, and what joins it to the rest?",
+          "Light the base first, then turn the solid and light every face that is left."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "six squares joined as one flat piece on the net bench",
+        "win": "the net closes into a cube with every edge met, or shows the two faces that collide and the side left open",
+        "traceback": "The net is folded one crease at a time and the solid it makes is left standing.",
+        "ladder": [
+          "Follow the row round the sides. Where do the other two squares land?",
+          "Walk along the row and see how often it passes the same side.",
+          "The square stays flat. Where do the four triangles meet?",
+          "Which squares fold up to make the top and the bottom?",
+          "Watch each crease in turn and see where that face comes to rest."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a box on the turntable with three cameras round it and the view window empty",
+        "win": "the three views settle at one scale, the front and side views standing the same height",
+        "traceback": "The cameras open again and the views are drawn at one scale, with the measurement they share written in.",
+        "ladder": [
+          "The side camera cannot see how long the box is.",
+          "Look down on it. What is it standing on?",
+          "Look along the tops of the two views. Where do they line up?",
+          "Which two measurements does that camera see?",
+          "Open a camera and watch the guide lines run level from one view to the next."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "solids": {
+      "cube": {
+        "geo": "cube",
+        "s": 112,
+        "name": "cube",
+        "poses": 5,
+        "bases": [
+          "f1p",
+          "f1m"
+        ]
+      },
+      "prism4": {
+        "geo": "prism4",
+        "s": 100,
+        "name": "square prism",
+        "poses": 5,
+        "bases": [
+          "f1p",
+          "f1m"
+        ]
+      },
+      "pyr4": {
+        "geo": "pyr4",
+        "s": 100,
+        "name": "square pyramid",
+        "poses": 4,
+        "bases": [
+          "base"
+        ]
+      },
+      "pyr5": {
+        "geo": "pyr5",
+        "s": 100,
+        "name": "pyramid",
+        "poses": 4,
+        "bases": [
+          "base"
+        ]
+      },
+      "box1": {
+        "geo": "box1",
+        "s": 20,
+        "name": "box",
+        "poses": 5,
+        "bases": [
+          "f1p",
+          "f1m"
+        ],
+        "cm": [
+          10,
+          4,
+          6
+        ]
+      },
+      "box2": {
+        "geo": "box2",
+        "s": 20,
+        "name": "box",
+        "poses": 5,
+        "bases": [
+          "f1p",
+          "f1m"
+        ],
+        "cm": [
+          12,
+          5,
+          8
+        ]
+      },
+      "cylinder": {
+        "round": "cylinder",
+        "s": 100,
+        "name": "cylinder",
+        "poses": 2
+      },
+      "cone": {
+        "round": "cone",
+        "s": 100,
+        "name": "cone",
+        "poses": 2
+      }
+    },
+    "nets": {
+      "netA": {
+        "solid": "cube",
+        "cols": 4,
+        "rows": 3,
+        "closes": true,
+        "cells": [
+          [
+            0,
+            1,
+            "f1m"
+          ],
+          [
+            1,
+            1,
+            "f0p"
+          ],
+          [
+            2,
+            1,
+            "f1p"
+          ],
+          [
+            3,
+            1,
+            "f0m"
+          ],
+          [
+            0,
+            0,
+            "f2p"
+          ],
+          [
+            3,
+            2,
+            "f2m"
+          ]
+        ]
+      },
+      "netRow": {
+        "solid": "cube",
+        "cols": 6,
+        "rows": 1,
+        "closes": false,
+        "cells": [
+          [
+            0,
+            0,
+            "f1m"
+          ],
+          [
+            1,
+            0,
+            "f0p"
+          ],
+          [
+            2,
+            0,
+            "f1p"
+          ],
+          [
+            3,
+            0,
+            "f0m"
+          ],
+          [
+            4,
+            0,
+            "f1m"
+          ],
+          [
+            5,
+            0,
+            "f0p"
+          ]
+        ]
+      },
+      "netCross": {
+        "solid": "cube",
+        "cols": 3,
+        "rows": 4,
+        "closes": true,
+        "cells": [
+          [
+            1,
+            0,
+            "f1m"
+          ],
+          [
+            1,
+            1,
+            "f2m"
+          ],
+          [
+            1,
+            2,
+            "f1p"
+          ],
+          [
+            1,
+            3,
+            "f2p"
+          ],
+          [
+            0,
+            1,
+            "f0m"
+          ],
+          [
+            2,
+            1,
+            "f0p"
+          ]
+        ]
+      },
+      "netPyr": {
+        "solid": "pyr4",
+        "cols": 3,
+        "rows": 3,
+        "closes": true,
+        "cells": [
+          [
+            1,
+            1,
+            "base"
+          ],
+          [
+            2,
+            1,
+            "t0"
+          ],
+          [
+            1,
+            2,
+            "t3"
+          ],
+          [
+            0,
+            1,
+            "t2"
+          ],
+          [
+            1,
+            0,
+            "t1"
+          ]
+        ]
+      }
+    },
+    "panes": {
+      "top": {
+        "x": 700,
+        "y": 40,
+        "w": 360,
+        "h": 168
+      },
+      "front": {
+        "x": 700,
+        "y": 240,
+        "w": 226,
+        "h": 220
+      },
+      "side": {
+        "x": 934,
+        "y": 240,
+        "w": 126,
+        "h": 220
+      }
+    },
+    "freeSolids": [
+      "cube",
+      "prism4",
+      "pyr4",
+      "pyr5",
+      "cylinder",
+      "cone"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T8.C28:ML1",
+        "kind": "count",
+        "solid": "cube",
+        "winMs": 3400,
+        "parts": [
+          {
+            "label": "faces"
+          },
+          {
+            "label": "edges"
+          },
+          {
+            "label": "corners"
+          }
+        ],
+        "answer": [
+          6,
+          12,
+          8
+        ],
+        "near": "6|8|12"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T8.C28:1",
+        "kind": "count",
+        "solid": "cylinder",
+        "winMs": 3400,
+        "parts": [
+          {
+            "label": "faces"
+          },
+          {
+            "label": "edges"
+          },
+          {
+            "label": "corners"
+          }
+        ],
+        "answer": [
+          3,
+          2,
+          0
+        ],
+        "near": "2|2|0"
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T8.C28:2",
+        "kind": "count",
+        "solid": "cone",
+        "winMs": 3400,
+        "parts": [
+          {
+            "label": "faces"
+          },
+          {
+            "label": "edges"
+          },
+          {
+            "label": "corners"
+          }
+        ],
+        "answer": [
+          2,
+          1,
+          1
+        ],
+        "near": "2|1|0"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T8.C29:ML2",
+        "kind": "faces",
+        "solid": "pyr4",
+        "answer": 5,
+        "near": 4,
+        "winMs": 3200
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T8.C29:3",
+        "kind": "sort",
+        "solid": "prism4",
+        "pad": "enter",
+        "answer": "prism",
+        "near": "pyramid",
+        "winMs": 3400
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T8.C29:4",
+        "kind": "faces",
+        "solid": "pyr5",
+        "answer": 6,
+        "near": 5,
+        "winMs": 3200
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T8.C30:ML3",
+        "kind": "fold",
+        "net": "netA",
+        "winMs": 5000,
+        "answer": "yes",
+        "near": "no"
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T8.C30:5",
+        "kind": "fold",
+        "net": "netRow",
+        "winMs": 5000,
+        "answer": "no",
+        "near": "yes"
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T8.C30:6",
+        "kind": "fold",
+        "net": "netPyr",
+        "winMs": 5000,
+        "answer": "pyramid",
+        "near": "cube"
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T8.C31:ML4",
+        "kind": "view",
+        "solid": "box1",
+        "cam": "side",
+        "winMs": 3600,
+        "parts": [
+          {
+            "label": "across",
+            "unit": "cm"
+          },
+          {
+            "label": "up",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          4,
+          6
+        ],
+        "near": "10|6"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T8.C31:7",
+        "kind": "look",
+        "solid": "pyr4",
+        "cam": "top",
+        "lockCam": "top",
+        "winMs": 3600,
+        "answer": "square",
+        "near": "triangle"
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T8.C31:8",
+        "kind": "share",
+        "solid": "box2",
+        "cam": "front",
+        "winMs": 3600,
+        "answer": "height",
+        "near": "length"
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The solid turns and every part is lit again, one kind at a time, until the three counts stand at the right numbers.",
+      "Phase 2: The base is turned up and lit green, and the face count ends on every face the solid has; on the bench the two matching ends are lit and the solid is set under prism.",
+      "Phase 3: The net is folded one crease at a time and the solid it makes is left standing.",
+      "Phase 4: The cameras open again and the views are drawn at one scale, with the measurement they share written in."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A solid on a turntable. What will you count first, faces, edges or corners?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every part counted under its heading, every base found, every net folded and every view drawn.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T8.C28:ML1",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A die is a cube. How many faces, edges and vertices does it have?",
+            "question": {
+              "en": "A die is a cube. How many faces, edges and vertices does it have?"
+            },
+            "ask": {
+              "en": "Count the cube"
+            },
+            "answer": [
+              6,
+              12,
+              8
+            ],
+            "planAnswer": "Six faces, twelve edges and eight vertices",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T8.C28:1",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A tin is a cylinder. Count its faces, edges and vertices.",
+            "question": {
+              "en": "A tin is a cylinder. Count its faces, its edges and its corners."
+            },
+            "ask": {
+              "en": "Count the tin"
+            },
+            "answer": [
+              3,
+              2,
+              0
+            ],
+            "planAnswer": "Three faces, two flat and one curved; two edges; and no vertices",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T8.C28:2",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A party hat is a cone. Count its faces, edges and vertices.",
+            "question": {
+              "en": "A party hat is a cone. How many of each part has it?"
+            },
+            "ask": {
+              "en": "Count the hat"
+            },
+            "answer": [
+              2,
+              1,
+              1
+            ],
+            "planAnswer": "Two faces, one curved and one flat; one edge round the rim; and one vertex, its tip, though no two edges meet there",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T8.C29:ML2",
+            "worked": false,
+            "kind": "faces",
+            "planQuestion": "A roof is shaped like a pyramid with a square base. What shape are its other faces, and how many faces does it have in all?",
+            "question": {
+              "en": "A roof is a pyramid with a square base. How many faces in all?"
+            },
+            "ask": {
+              "en": "Faces in all?"
+            },
+            "answer": 5,
+            "planAnswer": "The other faces are four triangles, so it has five faces: the square base and four triangles",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T8.C29:3",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "A solid has two matching square ends joined by four rectangles. Is it a prism or a pyramid, and is it a cube?",
+            "question": {
+              "en": "Look at this solid on the bench. Which kind of solid is it?"
+            },
+            "ask": {
+              "en": "Sort this solid"
+            },
+            "answer": "prism",
+            "planAnswer": "A prism, a square prism. It is a cube only if its height is the same as the side of its square ends",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T8.C29:4",
+            "worked": false,
+            "kind": "faces",
+            "planQuestion": "A pyramid has a base with five sides. How many faces does it have?",
+            "question": {
+              "en": "A pyramid has a base with five sides. How many faces does it have?"
+            },
+            "ask": {
+              "en": "How many faces?"
+            },
+            "answer": 6,
+            "planAnswer": "Six: the five-sided base and five triangles, one rising from each side of the base",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T8.C30:ML3",
+            "worked": false,
+            "kind": "fold",
+            "planQuestion": "Six squares are cut out as one piece: a row of four, with one square above the first and one square below the last. Will it fold into a cube?",
+            "question": {
+              "en": "Six squares are cut as one piece. A row of four, with one square above the first and one below the last. Will it fold into a cube?"
+            },
+            "ask": {
+              "en": "Fold into a cube?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes. The row of four wraps round to make the four side faces, and the other two fold to make the top and the bottom",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T8.C30:5",
+            "worked": false,
+            "kind": "fold",
+            "planQuestion": "Six squares are joined in one straight row. Will they fold into a cube?",
+            "question": {
+              "en": "Here are six squares joined in one straight row. Do they fold into a cube?"
+            },
+            "ask": {
+              "en": "Will it close?"
+            },
+            "answer": "no",
+            "planAnswer": "No. The row wraps round and the last two squares land on the first two, leaving the top and the bottom open",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T8.C30:6",
+            "worked": false,
+            "kind": "fold",
+            "planQuestion": "A net is a square with a triangle on each of its four sides. Which solid does it fold into?",
+            "question": {
+              "en": "This net is a square with a triangle on each of its four sides. Which solid does it fold into?"
+            },
+            "ask": {
+              "en": "Which solid?"
+            },
+            "answer": "pyramid",
+            "planAnswer": "A square pyramid: the square is the base, and the four triangles fold up to meet at a point",
+            "choices": [
+              "cube",
+              "pyramid",
+              "prism",
+              "cone"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T8.C31:ML4",
+            "worked": false,
+            "kind": "view",
+            "planQuestion": "A box is ten centimetres long, four centimetres wide and six centimetres high. What are its top view, front view and side view?",
+            "question": {
+              "en": "A box is ten centimetres long, four wide and six high. What are the two measurements of its side view?"
+            },
+            "ask": {
+              "en": "The side view"
+            },
+            "answer": [
+              4,
+              6
+            ],
+            "planAnswer": "The top view is a rectangle ten by four, the front view ten by six, and the side view four by six",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T8.C31:7",
+            "worked": false,
+            "kind": "look",
+            "planQuestion": "A square pyramid stands on its base. What does it look like from directly above?",
+            "question": {
+              "en": "This pyramid stands on its base. What shape do you see from straight above?"
+            },
+            "ask": {
+              "en": "From the top?"
+            },
+            "answer": "square",
+            "planAnswer": "A square, with a line from each corner to a point in the middle, where the tip sits over the centre",
+            "choices": [
+              "square",
+              "triangle",
+              "circle",
+              "rectangle"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T8.C31:8",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A box is twelve centimetres long, five wide and eight high. Give its front view and its side view, and the measurement they share.",
+            "question": {
+              "en": "Open the front camera and the side camera. Which measurement do both views share?"
+            },
+            "ask": {
+              "en": "Both views share?"
+            },
+            "answer": "height",
+            "planAnswer": "The front view is twelve by eight and the side view five by eight; they share the height, eight centimetres",
+            "choices": [
+              "height",
+              "length",
+              "width",
+              "depth"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "solid_workshop",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "solid_workshop",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Faces, edges and vertices",
+        "conceptId": "M2.S4.T8.C28",
+        "objectiveIds": [
+          "O13"
+        ],
+        "items": [
+          "M2.S4.T8.C28:ML1",
+          "M2.S4.T8.C28:1",
+          "M2.S4.T8.C28:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Prisms and pyramids",
+        "conceptId": "M2.S4.T8.C29",
+        "objectiveIds": [
+          "O13"
+        ],
+        "items": [
+          "M2.S4.T8.C29:ML2",
+          "M2.S4.T8.C29:3",
+          "M2.S4.T8.C29:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "A net folds into a solid",
+        "conceptId": "M2.S4.T8.C30",
+        "objectiveIds": [
+          "O14"
+        ],
+        "items": [
+          "M2.S4.T8.C30:ML3",
+          "M2.S4.T8.C30:5",
+          "M2.S4.T8.C30:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Top, front and side",
+        "conceptId": "M2.S4.T8.C31",
+        "objectiveIds": [
+          "O14"
+        ],
+        "items": [
+          "M2.S4.T8.C31:ML4",
+          "M2.S4.T8.C31:7",
+          "M2.S4.T8.C31:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "solid",
+    "faces",
+    "edges",
+    "vertices",
+    "baseKind",
+    "net",
+    "net",
+    "folded",
+    "views"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, solid, faces, edges, vertices, baseKind, net, net, folded, views",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "solid_workshop"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T8.C28.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A solid on a turntable. What will you count first, faces, edges or corners?"
+    },
+    {
+      "en": "Spin it round. Count the faces first, then the edges, then the corners."
+    },
+    {
+      "en": "How many bases does it have? What joins them, or where do its sides meet?"
+    },
+    {
+      "en": "Fold it up. Does it close, or do two faces land in one place?"
+    },
+    {
+      "en": "Look from the top, then the front, then the side. Which views are the same height?"
+    },
+    {
+      "en": "A new solid. Turn it right round before you count anything."
+    },
+    {
+      "en": "Free play. Any solid, any net, with the three cameras open."
+    },
+    {
+      "en": "Spin it slowly and count again, one kind of part at a time."
+    },
+    {
+      "en": "Every part counted under its heading, every base found, every net folded and every view drawn."
+    }
+  ],
+  "build": {
+    "source": "fea01be4:216380",
+    "runtime": "class4/runtime/frozen/r4/runtime.tsx",
+    "runtimeVersion": "r4",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-23T11:32:03.072Z",
+    "checks": {
+      "pass": 63,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-23T11:32:02.716Z"
+    },
+    "tsxBytes": 205405,
+    "tsxMd5": "28106d58a53eacf87ff53c2b26422e2b"
+  }
+}

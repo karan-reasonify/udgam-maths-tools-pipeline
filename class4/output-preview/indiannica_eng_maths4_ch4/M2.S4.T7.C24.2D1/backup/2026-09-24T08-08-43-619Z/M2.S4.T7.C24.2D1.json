@@ -1,0 +1,1097 @@
+{
+  "slotId": "M2.S4.T7.C24.2D1",
+  "mediaId": "M2.S4.T7.C24.2D1",
+  "toolId": "story_to_product",
+  "title": "Story to Product",
+  "component": "M2.S4.T7.C24.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch4",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch4_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_4/2dtool/M2.S4.T7.C24.2D1/M2.S4.T7.C24.2D1.tsx",
+  "description": "A problem in sentences with every number liftable, a bay that asks for one amount and how many, and a strip that works the same product the other way round.",
+  "conceptIds": [
+    "M2.S4.T7.C24",
+    "M2.S4.T7.C25",
+    "M2.S4.T7.C26",
+    "M2.S4.T7.C27"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Turn a problem written in sentences into a multiplication, work it, and check it by working the same two numbers the other way round.",
+    "look": "A short problem across the top with every number liftable, a question row under it, and a bay split into one for each and how many.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Story to Product' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: how many numbers are still up in the sentences and how many have come down, two numbers side by side in ink, so a number lifted by mistake can be read there without going back over the problem; on the last phase it carries how many rows each of the two workings opened, written in words. Nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The problem board runs along the top of the working area, 1086 by 130 at 64,202, holding the problem in two or three ordinary sentences set large enough to read across a room, with every number in it drawn as a card 130 by 56 standing proud of its line; a card lifted out leaves its outline behind in the sentence so the sentence stays readable with a gap in it, and pushing the card back closes the outline again. The question row is 1086 by 76 at 64,346 and stays locked, greyed along its edges, until both sides of the bay below hold a card. The bay is 1086 by 130 at 64,436, split down the middle into two halves 530 wide: the left one for the amount that goes with one of them and the right one for how many of them there are, each with an empty landing square 130 by 56 at its centre and its heading printed under the square rather than over it, so a card never covers the words that say what it is for. The digits bay is 420 by 130 and opens in place of the left half on the phase that needs it, a small panel where a description is turned into digits one place at a time, largest place first, with the finished number rising out of it as a fresh card that behaves like any other card on the board. The working area proper is 1086 by 76 at 64,580 and stays locked until the question row holds a whole multiplication and not a number; unlocked, it takes any method from the chapter, a chart of rose partial product rows or a ruled grid, and the product lands in green. The swap and check strip sits at 64,668, closed to a line 1086 by 4 and growing to 1086 by 62 when the product lands: it stands the two workings side by side with their rows plainly unlike each other, the multiplier that made each set of rows named in the margin, and the two totals drawn level on one line; where the totals agree the line closes as a single bar with the word Same printed on it, which is the word the printed page uses. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a product or a built number has to be written, with a thirteenth key that writes the multiplication sign, because the question row wants a whole multiplication and not a pair of numbers standing next to each other. On the third phase a strip of three words, largest, smallest and dozen, sits under the keys, because a description is read out before anybody starts building it. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: the number being multiplied is deep blue, the number it is multiplied by is amber, the product under the rule is green, a digit carried into the next column is vermilion and is always drawn small above the column it joins, a partial product row made by one place of the multiplier is rose, and a zero holding a place open or a step that is skipped is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a column is told by the heading over it before it is told by its band, a carry is told by being small and sitting above the rule, and a row is told by the place named in the margin beside it.",
+    "finish": "The card shows the problem the child worked, the two numbers it chose still in the bay, and the answer written back into a sentence.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "both sides of the bay fill and the sentences the two numbers came from light",
+        "does": "lifts the amount for one thing into one side of the bay and the count into the other",
+        "goal": "the amount for one thing and the number of things are picked out of the sentences",
+        "says": "Find the amount for one of them. Now find how many there are. Those two are the whole question.",
+        "check": "Away from the screen: a shop sells handicraft items at Rs 115 each and sold 220 of them. Which number goes with one item, which one counts the items, and what is the total sale?",
+        "feels": "the two numbers are obvious from the first reading, and which of them is which turns out to be the whole question",
+        "hands": "Read the problem aloud and stop at every number, saying what that number counts before going on, then cover the problem over and say the two numbers back from memory with what each counts.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: what does one of them cost, or hold, or take? Second rung, the phase's: how many of them are there? Third rung: the problem is cut to one sentence at a time with the rest greyed, and every number is named aloud for what it counts as it comes down. The pad stays open behind all three.",
+        "wrong": [
+          {
+            "why": "the question asks how many in all, and in all has meant adding in every chapter up to this one.",
+            "move": "adds the two numbers, so a carton packed with 216 bottles and 8 such cartons is handed in as 224.",
+            "screen": "the two sentences are read again one at a time with a strip of eight cartons drawn underneath them, every carton the same size and holding the same 216 whether the child likes it or not. The eight are laid out equal and separate and the strip is read back as one amount taken eight times over, which is a multiplication and comes to 1728. Nothing is cleared and the answer stays in the slot."
+          },
+          {
+            "why": "the two numbers turn up in the sentences in that order, and swapping two numbers never changes a product, so nothing on the stage objects to it.",
+            "move": "fills the two halves of the bay the other way round, putting the count of cartons into the side for the amount that goes with one and the bottles into the side for how many, and the product comes out as 1728 either way.",
+            "screen": "both answer sentences are written out under the bay and read back aloud. One of them says that eight cartons hold 1728 bottles between them, which is the problem. The other says that 216 cartons hold 8 bottles each, which is not, although its arithmetic is identical. The two bay headings light in turn while the sentences are read, and neither sentence is marked."
+          }
+        ],
+        "screen": "a two sentence problem with its numbers drawn as cards and the bay below it empty",
+        "soWhat": "Find the amount that goes with one thing and then find how many of those things there are, and check the pair by reading the answer back as a sentence, because the product on its own will not tell you if the two got swapped.",
+        "concept": "One amount each, and many of them"
+      },
+      {
+        "n": 2,
+        "win": "the question row holds the multiplication and the working area unlocks beneath it",
+        "does": "writes the multiplication into the question row, and only then starts working",
+        "goal": "the multiplication is written down in full before any digit is multiplied",
+        "says": "Write the whole thing down before you work any of it out. Deciding and doing are two jobs.",
+        "check": "A press prints 114 pages a minute and runs for 3698 minutes. Write the multiplication out in full, and only then say what you would work first.",
+        "feels": "writing it out first feels like a delay, and then the thing you wrote turns out to be the thing you were about to get wrong",
+        "hands": "Write the multiplication on the line before anything else goes on the paper at all, then turn the problem face down and work only what you wrote.",
+        "tries": "First rung, from the item: what are your two numbers? Second rung, the phase's: what goes between them, and what has to be there before the working area will open? Third rung: the two cards are read up out of the bay into the question row by the tool while the child says each of them aloud. The pad stays open and the working area stays locked until the row is whole.",
+        "wrong": [
+          {
+            "why": "the numbers are up there on the board and multiplying is the thing that has to happen, so writing it out first looks like a step that can be missed.",
+            "move": "starts multiplying digits straight out of the sentences, so a number from the wrong sentence gets picked up halfway through and the working cannot be read back afterwards.",
+            "screen": "the working area locks again and the question row stands empty above it. The two cards in the bay are read up into the row one at a time with the multiplication sign written between them, and only when the row holds the whole thing does the working area open under it. Nothing already written is taken away."
+          },
+          {
+            "why": "every blank row in every book so far has wanted an answer written into it.",
+            "move": "writes a number into the question row instead of a multiplication, because a blank row that has to be filled before anything else opens looks like the place an answer goes.",
+            "screen": "the question row is labelled again under its left hand end and the working area below it is named as the place an answer is allowed to land. The number the child wrote lifts out of the row and drops into the working area where it can stand, and the row fills instead with the two cards from the bay and the sign between them, at which point the working area opens."
+          }
+        ],
+        "screen": "the two chosen numbers in the bay with the question row above the working area still empty",
+        "soWhat": "Deciding what to work out and working it out are two separate jobs, so the whole multiplication goes down in writing before a single digit is multiplied.",
+        "concept": "Write the multiplication before working it"
+      },
+      {
+        "n": 3,
+        "win": "the empty card fills with the number the description named and the digits bay closes",
+        "does": "works the described number out in the digits bay and brings it back as a card",
+        "goal": "a number given only in words is turned into digits before it is used",
+        "says": "That number is described, not printed. Turn the words into digits before you touch it.",
+        "check": "What is the largest three digit number, what is the smallest three digit number, and what is their product?",
+        "feels": "a number that is only described does not feel like a number until you have built it, and then it behaves like every other number on the board",
+        "hands": "Say the description out loud and build the number one place at a time with digit cards on the table, largest place first, before it is allowed anywhere near the sum.",
+        "tries": "First rung, from the item: how many places has the number you are building? Second rung, the phase's: what is the smallest, or the largest, that each of those places may hold? Third rung: the frame is drawn empty with its places named and filled one at a time, largest place first, with the child saying what each place is allowed to take. Nothing is marked.",
+        "wrong": [
+          {
+            "why": "the smallest digit that can stand at the front of a number is one, because a zero at the front would not be there at all, and once one has been chosen for the first place it gets chosen for the rest of them too.",
+            "move": "takes the smallest three digit number to be 111, so the product of the largest and the smallest three digit numbers comes out as 1,10,889 instead of 99,900.",
+            "screen": "a three place frame is drawn and filled from the left. The first place takes the smallest digit that can stand there, which is one, and then the frame asks what the second place may hold; a zero is allowed there and is smaller than a one, so in it goes, and so does the third. The frame reads 100, and 999 x 100 is worked beside it to 99,900. Nothing is cleared."
+          },
+          {
+            "why": "a dozen is a word for a roundish number of things, and ten is the roundest number there is.",
+            "move": "reads a dozen as ten, so 45 trays of a dozen eggs comes out as 450 instead of 540.",
+            "screen": "one tray is drawn with its cups counted out, twelve of them, and the tray is copied until 45 of them stand equal and separate on the board. The digits bay writes twelve onto a card and sends it up into the blank in the sentence, and the working reads 12 x 45 = 540 with the tray still drawn beside it."
+          }
+        ],
+        "screen": "a problem naming a number by description, with an empty card where that number should be",
+        "soWhat": "A description is a question of its own, and it is finished and turned into digits before the multiplying starts.",
+        "concept": "Some numbers are described rather than printed"
+      },
+      {
+        "n": 4,
+        "win": "both workings land on one number and the strip closes with the two rows level",
+        "does": "swaps the two numbers, works it again and stands the two answers level",
+        "goal": "the same product is worked the other way round and the two answers are read together",
+        "says": "Now swap the two numbers and work it again. The answer has to come out the same.",
+        "check": "You have worked 5569 x 98 and have an answer. How would you check it without repeating a single one of the steps you have just done?",
+        "feels": "the two workings look nothing like one another right down to the last line, and then they land on the same number",
+        "hands": "Work the product on paper, then turn the page over, swap the two numbers and work it again without looking back, and only then put the two answers side by side.",
+        "tries": "First rung, from the item: which two numbers are you multiplying? Second rung, the phase's: which of them was the multiplier, and what happens to the rows when the other one takes its place? Third rung: the swapped working is opened row by row beside the first with the multiplier that made each row named in the margin. Nothing in either working is ever marked right or wrong.",
+        "wrong": [
+          {
+            "why": "a second go at the same working feels like a second opinion, and it lands on the same number, which feels a great deal like agreement.",
+            "move": "checks by working the same product the same way a second time, gets the same answer and calls it checked.",
+            "screen": "the two workings are stood side by side and shown to be the same rows in the same order; a slip is put into the first row of both at the same moment and both totals move together, so the two agree with each other and are both wrong. The swapped working is then run beside them with rows that are nothing like theirs, and it does not move. Nothing is marked."
+          },
+          {
+            "why": "the two workings show a different count of rows and different numbers in every one of them, and difference looks a lot like disagreement.",
+            "move": "swaps the two numbers, sees that the second working has nothing in common with the first, decides one of them must be wrong, and hands in the shorter one without finishing it.",
+            "screen": "both workings are run all the way to their totals with the multiplier that made each set of rows named in the margin. 98 x 5569 opens four rows, 882 and 5880 and 49,000 and 4,90,000, because its multiplier has four places. 5569 x 98 opens two, 44,552 and 5,01,210, because its multiplier has two. The rows are counted off against the multipliers that made them, and both totals land on 5,45,762 and are drawn level."
+          }
+        ],
+        "screen": "a finished product with the swap and check strip open beneath it",
+        "soWhat": "Swapping the two numbers gives a check made of different steps, so it catches a slip that reading my own working back over would simply agree with.",
+        "concept": "The other order is a free check"
+      }
+    ],
+    "delight": "The last phase, the moment the swap and check strip opens on 98 x 5569. The first working runs down the left of the strip in four rose rows, 882 and 5880 and 49,000 and 4,90,000, one for each place of a four digit multiplier. The second runs down beside it in two, 44,552 and 5,01,210, because the multiplier swapped is only two digits long. Nothing about the two looks alike, not the count of rows, not one row in either of them, not the length of the rule underneath. Then both totals drop onto a single line and read 5,45,762, and the line closes as one bar across the strip. The voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a two sentence problem is printed across the board with each of its numbers standing proud of its line as a card, and the bay below is split in two with both halves empty and both headings printed under their landing squares. On the second the bay already holds its two cards and the question row above the working area is empty and greyed at its edges. On the third the board carries a problem that names a number instead of printing it, so one card up in the sentences is blank, and the digits bay stands open in place of the left half of the bay. On the fourth a finished product is sitting in the working area with the swap and check strip closed to a line beneath it. The running count at the top left is empty and the slot and the pad stand empty down the right. One thing moves, once: the first number card up in the sentences on the first three phases, or the closed swap and check strip on the last, gives one slow pulse while the voice says to read it through once. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "A bank of problems in sentences and in described numbers, with the digits bay and the swap strip open and a bay for writing your own. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on finding the amount for one thing, writing the multiplication first, turning a described number into digits and checking by swapping.",
+    "voiceLines": [
+      "Read it through once. What is the question actually asking for?",
+      "Find the amount for one of them. Now find how many there are. Those two are the whole question.",
+      "Write the whole thing down before you work any of it out. Deciding and doing are two jobs.",
+      "That number is described, not printed. Turn the words into digits before you touch it.",
+      "Now swap the two numbers and work it again. The answer has to come out the same.",
+      "A new problem. Find what one of them is worth before you touch anything.",
+      "Free play. Sentences, described numbers, the digits bay and the swap strip all open.",
+      "Read the sentences again with both sides of the bay still showing.",
+      "Every problem was written down before it was worked, and every answer went back into a sentence."
+    ],
+    "observations": [
+      {
+        "why": "One side holds what a single thing is worth and the other holds how many of those things there are, and the sentences of the problem say which is which.",
+        "soWhat": "Choosing the two numbers is a move I make on purpose rather than something that happens quietly while I read.",
+        "observe": "Both sides of the bay had to hold a card before anything could be multiplied, and the two sides are asking for different things."
+      },
+      {
+        "why": "Swapping two numbers never changes a product, so the arithmetic has no objection to make. Only the sentence does.",
+        "soWhat": "The sentence at the end is the check on what the two numbers meant, and a number with no sentence round it is not yet an answer.",
+        "observe": "Filling the two sides the wrong way round gave exactly the same product and an answer sentence that described nothing at all."
+      },
+      {
+        "why": "The largest three digit number is 999 and the smallest is 100, and neither of them is printed anywhere in the problem.",
+        "soWhat": "A description is a question of its own, and I finish it before any multiplying starts.",
+        "observe": "A number that was only described stayed as a blank card until it had been built in the digits bay."
+      },
+      {
+        "why": "The number of rows is set by however many places the multiplier has, and swapping changes which of the two numbers is the multiplier without changing the product.",
+        "soWhat": "The other order is a check made of different steps, so it catches a slip that reading my own working back would simply agree with.",
+        "observe": "98 x 5569 opened four rows, 5569 x 98 opened two, and both landed on 5,45,762."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a two sentence problem with its numbers drawn as cards and the bay below it empty",
+        "win": "both sides of the bay fill and the sentences the two numbers came from light",
+        "traceback": "The two cards come down into their halves while each heading lights; if the two were added, the amount for one is laid out once for every thing as equal tiles; the question row writes itself, the column working runs row by row to the product, and the answer sentence is written under the bay.",
+        "ladder": [
+          "How much cloth goes with one day?",
+          "How many marbles go with one bag?",
+          "How many days go with one shawl?",
+          "How many of them are there?",
+          "Which number goes with one thing? Which one counts the things?"
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the two chosen numbers in the bay with the question row above the working area still empty",
+        "win": "the question row holds the multiplication and the working area unlocks beneath it",
+        "traceback": "The question row is written from the two bay cards, one at a time, with the sign between them, and only then does the working area open; the column working runs row by row, each place zero shown in grey, to the product, and the answer sentence is written under the row.",
+        "ladder": [
+          "What are your two numbers? The bottles in one carton, and how many cartons.",
+          "Which two numbers does the story give? The passengers on one trip, and how many trips.",
+          "Find the two numbers first. The pages in one minute, and how many minutes.",
+          "What goes between them? The row must be whole before you work it.",
+          "Read the two bay cards up into the row, one at a time. Then work it."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a problem naming a number by description, with an empty card where that number should be",
+        "win": "the empty card fills with the number the description named and the digits bay closes",
+        "traceback": "The digits bay fills the described number place by place from the left, each place taking the smallest or largest digit it may hold, and the card rises into its blank; for a dozen, one tray of twelve cups is counted and copied until 45 trays stand; the row writes itself and the working runs to the product.",
+        "ladder": [
+          "How many places has the number you are building?",
+          "Which digit can stand first in the smallest three digit number?",
+          "How many eggs make one dozen?",
+          "What is the least or most each place may hold?",
+          "Fill the places from the left. Say what each place may take."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a finished product with the swap and check strip open beneath it",
+        "win": "both workings land on one number and the strip closes with the two rows level",
+        "traceback": "Both workings run all the way to their totals, the digit of the multiplier that made each row named in the margin, and the two totals land level on one line under a bar that says Same.",
+        "ladder": [
+          "Which two numbers are you multiplying?",
+          "Check the first row of each working. Did every carry go into the next column?",
+          "Check the carries in the row made by the tens digit.",
+          "Which one was the multiplier? What happens to the rows when you swap?",
+          "Work the swapped one row by row. Name the digit that made each row."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "bay": {
+      "halves": [
+        "for each one",
+        "how many"
+      ],
+      "rule": "phase 1: the question row writes itself only when the bay reads right; a swapped bay is read back as a sentence, and both readings are written under the row, neither marked"
+    },
+    "questionRow": "two cards with the sign between them; phase 2: Enter waits until the row holds the whole multiplication",
+    "working": {
+      "method": "the book's column method: the number with more digits on top, one partial product per digit of the multiplier (each keeping its place zeros, the digit that made it named in the margin), then the rows added; a zero digit of the multiplier is a step skipped (a thin grey line marked skipped, never a row of zeros); a one-digit multiplier writes the product straight under the rule",
+      "colours": {
+        "top": "deep blue",
+        "multiplier": "amber",
+        "rows": "rose",
+        "carries": "vermilion, small, above the column they join",
+        "product": "green",
+        "zeros": "grey"
+      }
+    },
+    "digitsBay": "phase 3: a tap on the digits bay lends it the pad (api.capture); the described number is typed place by place, biggest place first, stopping at its places, and Enter raises it into its blank card and gives the pad back",
+    "swapStrip": "phase 4: the first working (the amount for one on top) and the swapped working run side by side and land level under a bar that says Same; Enter waits until the strip is open",
+    "problems": [
+      {
+        "qid": "M2.S4.T7.C24:ML1",
+        "step": "bay",
+        "numbers": [
+          145,
+          12
+        ],
+        "described": [],
+        "answerSentence": "It weaves {n} m in 12 days."
+      },
+      {
+        "qid": "M2.S4.T7.C24:1",
+        "step": "bay",
+        "numbers": [
+          36,
+          7
+        ],
+        "described": [],
+        "answerSentence": "7 bags hold {n} marbles."
+      },
+      {
+        "qid": "M2.S4.T7.C24:2",
+        "step": "bay",
+        "numbers": [
+          150,
+          9
+        ],
+        "described": [],
+        "answerSentence": "9 shawls take {n} days."
+      },
+      {
+        "qid": "M2.S4.T7.C25:ML2",
+        "step": "row",
+        "numbers": [
+          184,
+          26
+        ],
+        "described": [],
+        "answerSentence": "26 cartons hold {n} bottles."
+      },
+      {
+        "qid": "M2.S4.T7.C25:3",
+        "step": "row",
+        "numbers": [
+          48,
+          15
+        ],
+        "described": [],
+        "answerSentence": "15 trips carry {n} passengers."
+      },
+      {
+        "qid": "M2.S4.T7.C25:4",
+        "step": "row",
+        "numbers": [
+          126,
+          1450
+        ],
+        "described": [],
+        "answerSentence": "In 1,450 minutes it prints {n} pages."
+      },
+      {
+        "qid": "M2.S4.T7.C26:ML3",
+        "step": "build",
+        "numbers": [
+          999,
+          10
+        ],
+        "described": [
+          {
+            "places": 3,
+            "value": 999
+          },
+          {
+            "places": 2,
+            "value": 10
+          }
+        ],
+        "answerSentence": "The product is {n}."
+      },
+      {
+        "qid": "M2.S4.T7.C26:5",
+        "step": "build",
+        "numbers": [
+          100,
+          99
+        ],
+        "described": [
+          {
+            "places": 3,
+            "value": 100
+          },
+          {
+            "places": 2,
+            "value": 99
+          }
+        ],
+        "answerSentence": "The product is {n}."
+      },
+      {
+        "qid": "M2.S4.T7.C26:6",
+        "step": "build",
+        "numbers": [
+          12,
+          45
+        ],
+        "described": [
+          {
+            "places": 2,
+            "value": 12
+          }
+        ],
+        "answerSentence": "45 trays hold {n} eggs."
+      },
+      {
+        "qid": "M2.S4.T7.C27:ML4",
+        "step": "swap",
+        "numbers": [
+          215,
+          124
+        ],
+        "described": [],
+        "answerSentence": "124 lamps sell for ₹{n}."
+      },
+      {
+        "qid": "M2.S4.T7.C27:7",
+        "step": "swap",
+        "numbers": [
+          185,
+          64
+        ],
+        "described": [],
+        "answerSentence": "In 64 hours it makes {n} scooters."
+      },
+      {
+        "qid": "M2.S4.T7.C27:8",
+        "step": "swap",
+        "numbers": [
+          135,
+          240
+        ],
+        "described": [],
+        "answerSentence": "240 boxes sell for ₹{n}."
+      }
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T7.C24:ML1",
+        "kind": "bay",
+        "near": 157,
+        "winMs": 7000,
+        "answer": 1740
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T7.C24:1",
+        "kind": "bay",
+        "near": 43,
+        "winMs": 6000,
+        "answer": 252
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T7.C24:2",
+        "kind": "bay",
+        "near": 159,
+        "winMs": 6600,
+        "answer": 1350
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T7.C25:ML2",
+        "kind": "row",
+        "near": 1472,
+        "winMs": 7600,
+        "answer": 4784
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T7.C25:3",
+        "kind": "row",
+        "near": 288,
+        "winMs": 7200,
+        "answer": 720
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T7.C25:4",
+        "kind": "row",
+        "near": 13050,
+        "winMs": 9000,
+        "answer": 182700
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T7.C26:ML3",
+        "kind": "build",
+        "near": 10989,
+        "winMs": 8600,
+        "answer": 9990
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T7.C26:5",
+        "kind": "build",
+        "near": 10989,
+        "winMs": 8600,
+        "answer": 9900
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T7.C26:6",
+        "kind": "build",
+        "near": 450,
+        "winMs": 7600,
+        "answer": 540
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T7.C27:ML4",
+        "kind": "swap",
+        "near": 26640,
+        "winMs": 10000,
+        "answer": 26660
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T7.C27:7",
+        "kind": "swap",
+        "near": 11520,
+        "winMs": 9600,
+        "answer": 11840
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T7.C27:8",
+        "kind": "swap",
+        "near": 31200,
+        "winMs": 10000,
+        "answer": 32400
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The two cards come down into their halves while each heading lights; if the two were added, the amount for one is laid out once for every thing as equal tiles; the question row writes itself, the column working runs row by row to the product, and the answer sentence is written under the bay.",
+      "Phase 2: The question row is written from the two bay cards, one at a time, with the sign between them, and only then does the working area open; the column working runs row by row, each place zero shown in grey, to the product, and the answer sentence is written under the row.",
+      "Phase 3: The digits bay fills the described number place by place from the left, each place taking the smallest or largest digit it may hold, and the card rises into its blank; for a dozen, one tray of twelve cups is counted and copied until 45 trays stand; the row writes itself and the working runs to the product.",
+      "Phase 4: Both workings run all the way to their totals, the digit of the multiplier that made each row named in the margin, and the two totals land level on one line under a bar that says Same."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Read it through once. What is the question actually asking for?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every problem was written down before it was worked, and every answer went back into a sentence.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T7.C24:ML1",
+            "worked": false,
+            "kind": "bay",
+            "planQuestion": "A loom weaves 145 m of cloth in a day. How much does it weave in 12 days?",
+            "question": {
+              "en": "A loom weaves 145 m of cloth in a day. How much does it weave in 12 days?"
+            },
+            "ask": {
+              "en": "Metres in 12 days?"
+            },
+            "answer": 1740,
+            "planAnswer": "1740 m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T7.C24:1",
+            "worked": false,
+            "kind": "bay",
+            "planQuestion": "A bag holds 36 marbles. How many marbles are in 7 such bags?",
+            "question": {
+              "en": "A bag holds 36 marbles. How many marbles are in 7 such bags?"
+            },
+            "ask": {
+              "en": "Marbles in 7 bags?"
+            },
+            "answer": 252,
+            "planAnswer": "252 marbles",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T7.C24:2",
+            "worked": false,
+            "kind": "bay",
+            "planQuestion": "A weaver takes 150 days to make one shawl. How many days would 9 shawls take?",
+            "question": {
+              "en": "A weaver takes 150 days to make one shawl. How many days would 9 shawls take?"
+            },
+            "ask": {
+              "en": "Days for 9 shawls?"
+            },
+            "answer": 1350,
+            "planAnswer": "1350 days",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T7.C25:ML2",
+            "worked": false,
+            "kind": "row",
+            "planQuestion": "A carton holds 184 bottles and a shop takes 26 cartons. Write the multiplication first, then find the answer.",
+            "question": {
+              "en": "A carton holds 184 bottles, and a shop takes 26 cartons. Write the multiplication first, then find the answer."
+            },
+            "ask": {
+              "en": "Bottles in all?"
+            },
+            "answer": 4784,
+            "planAnswer": "184 x 26, which comes to 4784 bottles",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T7.C25:3",
+            "worked": false,
+            "kind": "row",
+            "planQuestion": "A bus carries 48 passengers on each trip. Write the multiplication for 15 trips and find the total.",
+            "question": {
+              "en": "A bus carries 48 passengers on each trip. Write the multiplication for 15 trips, and find the total."
+            },
+            "ask": {
+              "en": "Passengers in all?"
+            },
+            "answer": 720,
+            "planAnswer": "48 x 15, which comes to 720 passengers",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T7.C25:4",
+            "worked": false,
+            "kind": "row",
+            "planQuestion": "A press prints 126 pages a minute. Write the multiplication for 1450 minutes and find the total.",
+            "question": {
+              "en": "A press prints 126 pages a minute. Write the multiplication for 1,450 minutes, and find the total."
+            },
+            "ask": {
+              "en": "Pages in all?"
+            },
+            "answer": 182700,
+            "planAnswer": "126 x 1450, which comes to 1,82,700 pages",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T7.C26:ML3",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "What is the product of the largest three digit number and the smallest two digit number?",
+            "question": {
+              "en": "What is the product of the largest three digit number and the smallest two digit number?"
+            },
+            "ask": {
+              "en": "The product?"
+            },
+            "answer": 9990,
+            "planAnswer": "9990, because the two numbers are 999 and 10",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T7.C26:5",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "What is the product of the smallest three digit number and the largest two digit number?",
+            "question": {
+              "en": "What is the product of the smallest three digit number and the largest two digit number?"
+            },
+            "ask": {
+              "en": "The product?"
+            },
+            "answer": 9900,
+            "planAnswer": "9900, because the two numbers are 100 and 99",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T7.C26:6",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "A tray holds one dozen eggs. How many eggs are in 45 such trays?",
+            "question": {
+              "en": "A tray holds one dozen eggs. How many eggs are in 45 such trays?"
+            },
+            "ask": {
+              "en": "Eggs in 45 trays?"
+            },
+            "answer": 540,
+            "planAnswer": "540 eggs, because a dozen is 12",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T7.C27:ML4",
+            "worked": false,
+            "kind": "swap",
+            "planQuestion": "A shop sold 124 lamps at Rs 215 each. Find the total, then check it by working the same two numbers the other way round.",
+            "question": {
+              "en": "A shop sold 124 lamps at ₹215 each. Find the total, then check it by working the two numbers the other way round."
+            },
+            "ask": {
+              "en": "Total sale in ₹?"
+            },
+            "answer": 26660,
+            "planAnswer": "Rs 26,660, and the other order gives Rs 26,660 as well",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T7.C27:7",
+            "worked": false,
+            "kind": "swap",
+            "planQuestion": "A company assembles 185 scooters an hour. How many in 64 hours? Check your answer the other way round.",
+            "question": {
+              "en": "A company assembles 185 scooters an hour. How many in 64 hours? Check your answer the other way round."
+            },
+            "ask": {
+              "en": "Scooters in 64 hours?"
+            },
+            "answer": 11840,
+            "planAnswer": "11,840 scooters, and 64 x 185 comes to 11,840 as well",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T7.C27:8",
+            "worked": false,
+            "kind": "swap",
+            "planQuestion": "A shopkeeper sold 240 carved boxes at Rs 135 each. Find the total sale and check it by swapping the two numbers.",
+            "question": {
+              "en": "A shopkeeper sold 240 carved boxes at ₹135 each. Find the total sale, and check it by swapping the two numbers."
+            },
+            "ask": {
+              "en": "Total sale in ₹?"
+            },
+            "answer": 32400,
+            "planAnswer": "Rs 32,400, and 135 x 240 comes to Rs 32,400 as well",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "story_to_product",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "story_to_product",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "One amount each, and many of them",
+        "conceptId": "M2.S4.T7.C24",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C24:ML1",
+          "M2.S4.T7.C24:1",
+          "M2.S4.T7.C24:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Write the multiplication before working it",
+        "conceptId": "M2.S4.T7.C25",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C25:ML2",
+          "M2.S4.T7.C25:3",
+          "M2.S4.T7.C25:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Some numbers are described rather than printed",
+        "conceptId": "M2.S4.T7.C26",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C26:ML3",
+          "M2.S4.T7.C26:5",
+          "M2.S4.T7.C26:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "The other order is a free check",
+        "conceptId": "M2.S4.T7.C27",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C27:ML4",
+          "M2.S4.T7.C27:7",
+          "M2.S4.T7.C27:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "problem",
+    "lifted",
+    "id",
+    "oneEach",
+    "howMany",
+    "written",
+    "id",
+    "builtNumbers",
+    "d",
+    "d",
+    "product",
+    "told",
+    "checked",
+    "same"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, phase, problem, lifted, id, oneEach, howMany, written, id, builtNumbers, d, d, product, told, checked, same, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "story_to_product"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T7.C24.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Read it through once. What is the question actually asking for?"
+    },
+    {
+      "en": "Find the amount for one of them. Now find how many there are. Those two are the whole question."
+    },
+    {
+      "en": "Write the whole thing down before you work any of it out. Deciding and doing are two jobs."
+    },
+    {
+      "en": "That number is described, not printed. Turn the words into digits before you touch it."
+    },
+    {
+      "en": "Now swap the two numbers and work it again. The answer has to come out the same."
+    },
+    {
+      "en": "A new problem. Find what one of them is worth before you touch anything."
+    },
+    {
+      "en": "Free play. Sentences, described numbers, the digits bay and the swap strip all open."
+    },
+    {
+      "en": "Read the sentences again with both sides of the bay still showing."
+    },
+    {
+      "en": "Every problem was written down before it was worked, and every answer went back into a sentence."
+    }
+  ],
+  "build": {
+    "source": "e6d36114:217498",
+    "runtime": "class4/runtime/runtime.tsx",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-22T15:14:55.939Z",
+    "checks": {
+      "pass": 61,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-22T15:14:54.507Z"
+    },
+    "tsxBytes": 206191,
+    "tsxMd5": "972b0a864002798e19b20c117de314f2"
+  }
+}

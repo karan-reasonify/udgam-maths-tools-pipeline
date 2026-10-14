@@ -1,0 +1,1130 @@
+{
+  "slotId": "M2.S4.T9.C32.2D1",
+  "mediaId": "M2.S4.T9.C32.2D1",
+  "toolId": "angle_and_grid_finder",
+  "title": "Angle and Grid Finder",
+  "component": "M2.S4.T9.C32.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch9_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_9/2dtool/M2.S4.T9.C32.2D1/M2.S4.T9.C32.2D1.tsx",
+  "description": "Name an angle by its vertex, sort it against a square corner, name the smaller angle between clock hands, and find a place on a grid by its row and column.",
+  "conceptIds": [
+    "M2.S4.T9.C32",
+    "M2.S4.T9.C33",
+    "M2.S4.T9.C34",
+    "M2.S4.T9.C35"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Name an angle and sort it against a square corner, read the smaller angle between clock hands, and find a place on a grid by its row and its column.",
+    "look": "Hinged arms and a clock face on the left of the canvas, a square-corner card between them, and a grid of pictures with numbered rows and columns on the right.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Angle and Grid Finder' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the names built, the angles sorted or the moves made against what this phase asks for, two numbers in ink, the first climbing by one as each name settles, each kind lands or each move is made, and the second fixed at what this phase holds. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The working area is split in two. On the left, two deep blue arms are hinged at a point, 330 by 290 at 64,214, each arm draggable to open or close the angle between them, with a capital letter at the end of each arm and a vermilion dot and letter at the point where they meet, and an amber arc drawn between the arms close to that point, or a square corner mark when the angle is a right angle. The name builder runs under the arms, 330 by 56 at 64,516, writing the angle's name as its letters are tapped and settling it only with the meeting letter in the middle. The square-corner card rests at 410,214, 120 by 120, a paper corner with its square corner mark in amber, and can be dragged into any angle with one edge along an arm: it fits exactly, or the second arm lies inside it, or a space is left between it and the second arm, lit. The clock face stands under the card, 220 across at 400,346, with an hour hand and a longer minute hand that snap to point exactly at the numbers; both angles between the hands are shaded at once, the larger in sky blue, and the smaller is outlined. The hour counter sits under the clock, 220 by 56 at 400,582, and steps round the gaps between the numbers from one hand to the other, each way round in turn, counting the hours apart and never the numbers passed. On the right the picture grid stands 480 by 480 at 660,226: four rows and four columns of cells 110 on a side, holding sixteen different pictures with no picture appearing twice, the row numbers in a strip 40 wide down its left edge, counted from the top, and the column numbers in a strip 40 tall across its top, counted from the left. The marker is a ring round one cell and moves one step at a time, down or up by rows and across by columns; as it moves, its whole row lights across the grid and its whole column lights down it, and the row and column numbers at the edges light with them. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is a word pad wherever a kind or a name is asked for, with keys reading right angle, acute and obtuse and the capital letters of the figure, and twelve number keys three across wherever a row, a column or a count of hours is asked for. The list of ten can do statements and the word pad of the chapter's twenty vocabulary words sit under the slot for the closing pages. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The figure being studied, every line, segment, ray, side, outline, circle, angle arm and visible edge of a solid, is deep blue. Every point, end point, corner dot, vertex dot and the centre dot of a circle is vermilion. A length being measured, walked, added or named, and every angle arc and square corner mark, is amber. The unit squares that cover an area, the flood inside a closed figure and a face of a solid being counted are green. A line of symmetry or a mirror line is reddish purple and always dotted. The second thing set beside the first, a fold being tried, a mirror image, the other half of a fold, a chord that is not a diameter and the larger angle between clock hands, is sky blue. A hidden edge of a solid is grey and dashed, and grey is used for nothing else. Chrome never borrows one of those and none of them is ever used for chrome: every grid line, ruler tick, bracket, guide line and table rule is near-black. Every reading survives with the colour taken away, because a point is a round dot, a line carries an arrowhead at each end, a ray a dot and one arrowhead and a segment a dot at each end, a measured length carries its number, a hidden edge is dashed and a line of symmetry is dotted, before any of them is told by a colour. A dotted line always means a true line of symmetry or a mirror line, and a fold being tried is drawn solid until it is kept, so nothing else on any stage of this chapter is ever dotted. A clock here is never set to six o'clock or twelve o'clock, so its two angles are never equal and the smaller is always plain to see, and an angle between the hands is counted in hours apart against the three hours of a right angle. Every picture on the grid appears once, so a picture is found by its row and its column, and a miscount cannot land on the same picture somewhere else.",
+    "finish": "The card shows the angles the child named and sorted, the clock with its smaller angle outlined, and the grid with the path the marker took.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the name settles with the meeting letter in the middle and both arms lit from it",
+        "does": "opens the arms, names the arms and the vertex, and builds the angle's name",
+        "goal": "an angle is two arms from one vertex, named with the vertex in the middle",
+        "says": "Where do the two arms meet? Put that letter in the middle of the name.",
+        "check": "Draw an angle with its vertex at P and its arms through Q and R. Write three names for it.",
+        "feels": "the letter where the arms meet sits in the middle of a three-letter name, or stands alone",
+        "hands": "Hinge two pencils together at one end with a rubber band and open them. Ask where the two meet. Call that point the vertex, the corner the angle opens from, and call the pencils its arms. Letter the tip of each pencil and the vertex on sticky notes, and read the angle's name aloud with the vertex in the middle.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which point do both arms start from? Second rung, the phase's: where does that letter go in the name? Third rung: the arms are cut back so only the three letters show, and the name is built one letter at a time. The word pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "a name is read from the left, and the point that matters most seems to belong at the front.",
+            "move": "names the angle with the vertex first, writing angle BAC for the angle at B.",
+            "screen": "the name builder draws the angle the child's name describes, with its corner at A and its arms running to B and to C, shaded sky blue beside the angle at B, a different corner. The builder then writes the name with the meeting letter in the middle, and both names stay in the slot."
+          },
+          {
+            "why": "every point on the figure has a letter, and nothing about the letters says which one is the corner.",
+            "move": "takes the point at the end of one arm for the vertex, because it carries a letter like the rest.",
+            "screen": "the arms are traced from the child's point, and only one arm runs from it; from the meeting point both arms run out, and they light from there together. The meeting point takes its vermilion dot with the word vertex beside it, and the child's answer stays in the slot."
+          }
+        ],
+        "screen": "two hinged arms with a letter at each end and at the point where they meet",
+        "soWhat": "An angle is two arms from one vertex, the corner where they meet, and it is named with the vertex in the middle or by the vertex alone.",
+        "concept": "Two arms and a vertex"
+      },
+      {
+        "n": 2,
+        "win": "the card settles in the angle and its kind lands beside it: right, acute or obtuse",
+        "does": "lays the card into the angle, reads how it fits, and sorts the angle",
+        "goal": "a right angle is a square corner, an acute angle is smaller and an obtuse angle is larger",
+        "says": "Lay the square corner in. Does it fit, cover an arm, or leave a space?",
+        "check": "Find one right angle, one acute angle and one obtuse angle in the room. Test each with a folded paper corner.",
+        "feels": "the square corner is the ruler for angles: it fits, it holds the arms inside, or it leaves a space",
+        "hands": "Fold a sheet of paper in half and in half again to make a square corner. Use it to test corners round the room: the corner of a desk, a door standing half open, a pair of open scissors and a book standing wide open. Sort each one as fits exactly, sits inside the paper corner, or leaves a space.",
+        "tries": "First rung, from the item: what does the square corner do when it is laid in? Second rung, the phase's: is the angle smaller or larger than the square corner? Third rung: the arms are set to a square corner first and then opened or closed a step at a time, with the card laid in at each step. The word pad stays open.",
+        "wrong": [
+          {
+            "why": "acute sounds like sharp and small, and a drawing with short arms looks small whatever its opening.",
+            "move": "calls an angle bigger than a right angle acute, because it is drawn small or its arms are short.",
+            "screen": "the square-corner card is laid into the angle with one edge along an arm, and a space opens between the card's other edge and the second arm, lit. The kind lands beside the angle as obtuse, and the child's answer stays in the slot."
+          },
+          {
+            "why": "long arms take up a lot of the page, and a big drawing looks like a big angle.",
+            "move": "calls a narrow angle obtuse because its arms are drawn long.",
+            "screen": "the arms are made longer and then shorter while the opening between them stays exactly the same, and the card sits over the angle each time with both arms inside its edges. The kind stays acute throughout, and the child's answer stays in the slot."
+          }
+        ],
+        "screen": "the hinged arms opened to an angle, with the square-corner card beside them",
+        "soWhat": "A right angle is a square corner; an angle smaller than it is acute, and one larger than it is obtuse.",
+        "concept": "Right, acute and obtuse"
+      },
+      {
+        "n": 3,
+        "win": "the smaller angle is outlined, the square-corner card is laid against it, and its kind lands",
+        "does": "counts the hours between the hands each way round, picks the smaller angle, and sorts it",
+        "goal": "clock hands make two angles, and the one to name is the smaller",
+        "says": "The hands make two angles. Which is the smaller one? What kind is it?",
+        "check": "Set a paper clock to eight o'clock. Count the hours between the hands both ways. Name the smaller angle's kind.",
+        "feels": "the hands always make two angles, and the one to name is the gap between them the short way round",
+        "hands": "Hold up a paper clock with card hands set to three o'clock. Lay the folded paper corner between the hands: it fits. Count the gaps between the numbers from one hand to the other, three hours, and call that the square corner. Then set ten o'clock and ask the class to count the hours between the hands both ways round, and to name the smaller.",
+        "tries": "First rung, from the item: how many hours apart are the hands the short way round? Second rung, the phase's: how many hours make a square corner? Third rung: the clock is set to three o'clock first and the card laid in, before the hour in the question comes back. The word pad stays open.",
+        "wrong": [
+          {
+            "why": "the page calls any angle bigger than a right angle obtuse, with no upper limit, and the hands do make a big angle the other way round.",
+            "move": "names the larger angle, counting the long way round, and calls the angle at ten o'clock obtuse.",
+            "screen": "both angles between the hands are shaded, the larger in sky blue, and the hours are counted round each way, ten one way and two the other. The smaller angle is outlined and the square-corner card is laid against it: its three hours reach past the two, so the angle sits inside the card. The child's answer stays in the slot."
+          },
+          {
+            "why": "counting the numbers feels like counting the hours, and the number at each hand gets counted as well.",
+            "move": "counts the numbers the angle covers instead of the gaps between them, making two o'clock three hours wide and so a right angle.",
+            "screen": "the hour counter steps the gaps one at a time from one hand to the other, twelve to one and one to two, lighting each gap, and stops at two. The square-corner card is laid from the minute hand and reaches past the hour hand to three, and the child's answer stays in the slot."
+          }
+        ],
+        "screen": "a clock face with its hands set to an hour and both angles shaded",
+        "soWhat": "Clock hands make two angles, and the one to name is the smaller: one or two hours apart is acute, three is a right angle, and four or five is obtuse.",
+        "concept": "The angle between clock hands"
+      },
+      {
+        "n": 4,
+        "win": "the marker lands, its row lights across and its column lights down, and the picture it sits on is named",
+        "does": "moves the marker by rows and columns as told and names the picture it reaches",
+        "goal": "a place on a grid is given by its row and its column, and moving down changes the row",
+        "says": "Move down. Which number changed, the row or the column?",
+        "check": "On a grid with rows counted from the top, start in row one, column four. Move three places straight down. Where are you now?",
+        "feels": "moving down, the row number changes and the column number stays, and moving across it is the other way round",
+        "hands": "Draw a grid of four rows and four columns on the board with a different picture in every cell, rows numbered down the left from the top and columns across the top from the left. Ask for the picture in row three, column two. Then move a paper marker two places straight down and ask which number changed, the row or the column.",
+        "tries": "First rung, from the item: which end is row one counted from on this grid? Second rung, the phase's: does this move go down or across? Third rung: the grid is cut to two rows and two columns, and the marker makes one move with its row and column lit before the larger grid comes back. The number pad and the word pad stay open.",
+        "wrong": [
+          {
+            "why": "the chapter's own sentence about the fruit grid names columns for a move straight down, when the two fruits it compares share a column, three rows apart.",
+            "move": "calls a move straight down a move of so many columns, though the column never changes.",
+            "screen": "the marker is moved down one step at a time from its start, and at each step a new row lights across the grid while its column stays lit down it, unchanged. The row number at the left edge climbs by one at each step, the column number at the top stays the same, and the child's answer stays in the slot beside them."
+          },
+          {
+            "why": "on the page's own fruit grid the same fruit sits three times, once in the very row asked about, so a child who miscounts the columns still names the fruit that is asked for and is told so.",
+            "move": "names the picture that looks right at a glance without counting its row and column, so a miscount can still land on the right name.",
+            "screen": "the marker is set on the child's picture where it sits, and its row and column light at the edges beside the row and column the question gave; where they differ, both cells ring. The slot then asks for the row and the column as well as the picture, so an answer names the place and not only the thing."
+          }
+        ],
+        "screen": "the picture grid with its rows numbered down the left and its columns across the top, and the marker at a start",
+        "soWhat": "A place on a grid is given by its row and its column. Rows run across and columns run down, so moving down changes the row and keeps the column.",
+        "concept": "Rows across, columns down"
+      }
+    ],
+    "delight": "The fourth phase, the moment the marker moves straight down. Its whole row slides down with it, lighting a fresh line of pictures across the grid, while the lit column it travels along stays exactly where it was, and the row number at the left edge ticks on by one at each step with the column number at the top never changing. Move it across and the opposite happens. It can be walked round the grid as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase two arms stand hinged at a point on the left of the working area, a capital letter at the end of each arm and at the point where they meet, with the name builder empty under them. On the second the arms stand opened to an angle with the square-corner card lying beside them. On the third the clock face stands with its hands set to an hour, both angles between them shaded and neither outlined. On the fourth the picture grid stands on the right, its rows numbered down its left edge from the top and its columns across its top from the left, with the marker ringing one cell. The running count at the top left holds the names built, the angles sorted or the moves made against what this phase asks for, and the answer slot and the pad stand empty down the right. One thing moves, once: the meeting point, or the square-corner card, or the hour counter, or the marker, gives one slow pulse while the voice asks where the two arms meet. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any angle on the hinged arms, any hour on the clock, and any move on the grid, with the square-corner card and the row and column lights open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on naming angles, sorting them against a square corner, the smaller angle between clock hands, and places and moves on a grid.",
+    "voiceLines": [
+      "Two arms from one point, a clock and a grid. Where do the two arms meet?",
+      "Where do the two arms meet? Put that letter in the middle of the name.",
+      "Lay the square corner in. Does it fit, cover an arm, or leave a space?",
+      "The hands make two angles. Which is the smaller one? What kind is it?",
+      "Move down. Which number changed, the row or the column?",
+      "A new one. Find the vertex, or row one, before anything moves.",
+      "Free play. Any angle, any hour, any move on the grid, with the square corner open.",
+      "Lay the square corner in again, count the hours again, or walk the marker one step at a time.",
+      "Every angle named from its vertex, every clock read the short way round, and every move told by row and column."
+    ],
+    "observations": [
+      {
+        "why": "The middle letter says where the angle opens from, and the other two only say which way its arms point.",
+        "soWhat": "Name an angle with its vertex, the corner, in the middle, or by the vertex alone.",
+        "observe": "The name settled only with the meeting letter in the middle."
+      },
+      {
+        "why": "A right angle is a square corner, and every other angle is smaller or larger than it.",
+        "soWhat": "An acute angle is smaller than a right angle and an obtuse angle is larger, however long the arms are drawn.",
+        "observe": "The square-corner card fitted, held the arms inside it, or left a space, and that sorted every angle."
+      },
+      {
+        "why": "The hands split the clock face into two gaps, one each way round.",
+        "soWhat": "Name the smaller angle between clock hands, counted in hours apart against the three hours of a right angle.",
+        "observe": "At every hour the hands made two angles, and only the smaller was outlined."
+      },
+      {
+        "why": "Rows run across the grid and columns run down it.",
+        "soWhat": "Moving down or up changes the row and keeps the column, and moving across changes the column and keeps the row.",
+        "observe": "A move down lit a new row across the grid and kept the same column lit."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "two hinged arms with a letter at each end and at the point where they meet",
+        "win": "the name settles with the meeting letter in the middle and both arms lit from it",
+        "traceback": "The arms are traced from the point they share, the vertex takes its dot, and the whole name is written with the vertex letter in the middle.",
+        "ladder": [
+          "Which point do both arms start from?",
+          "One point has both arms running out of it.",
+          "Follow each ray back to the point they share.",
+          "Where does that letter go in the name?",
+          "Look at the three letters and build the name one letter at a time."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the hinged arms opened to an angle, with the square-corner card beside them",
+        "win": "the card settles in the angle and its kind lands beside it: right, acute or obtuse",
+        "traceback": "The square-corner card is laid into the angle, the space or the overlap is lit, and the kind of angle is written beside it.",
+        "ladder": [
+          "What does the square corner do when it is laid in?",
+          "Does the second arm fall inside the card or outside it?",
+          "Does the card cover the whole angle, or is some left over?",
+          "Is the angle smaller or larger than the square corner?",
+          "Set the arms to a square corner first, then open them a little at a time."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a clock face with its hands set to an hour and both angles shaded",
+        "win": "the smaller angle is outlined, the square-corner card is laid against it, and its kind lands",
+        "traceback": "The gaps are counted one at a time the short way round, the smaller angle is outlined, and the square corner is laid against it.",
+        "ladder": [
+          "How many hours apart are the hands the short way round?",
+          "Walk the marker from one hand to the other and count the gaps.",
+          "Count the gaps the short way, not the numbers.",
+          "How many hours make a square corner?",
+          "Set the clock to three o'clock first and lay the card in."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the picture grid with its rows numbered down the left and its columns across the top, and the marker at a start",
+        "win": "the marker lands, its row lights across and its column lights down, and the picture it sits on is named",
+        "traceback": "The marker walks the move one step at a time, lighting a fresh row across and keeping its column, and stops on the right place.",
+        "ladder": [
+          "Which end is row one counted from on this grid?",
+          "Does the column change when the marker goes down?",
+          "Walk the marker from the drum down to the leaf.",
+          "Does this move go down or across?",
+          "Walk the marker one step at a time and watch the numbers at the edges."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "name": {
+      "vx": 340,
+      "vy": 318,
+      "arm": 248,
+      "box": {
+        "x": 618,
+        "y": 206,
+        "w": 132,
+        "h": 112,
+        "gap": 30
+      }
+    },
+    "sort": {
+      "vx": 380,
+      "vy": 360,
+      "arm": 290,
+      "card": 150,
+      "home": {
+        "x": 800,
+        "y": 175
+      }
+    },
+    "clock": {
+      "cx": 400,
+      "cy": 268,
+      "r": 180,
+      "hour": 84,
+      "minute": 116,
+      "panel": {
+        "x": 740,
+        "y": 186,
+        "w": 300,
+        "h": 156
+      }
+    },
+    "grid": {
+      "x": 303,
+      "y": 24,
+      "edge": 40,
+      "cell": 110,
+      "rows": 4,
+      "cols": 4,
+      "pictures": [
+        [
+          "bell",
+          "kite",
+          "drum",
+          "boat"
+        ],
+        [
+          "star",
+          "cup",
+          "lamp",
+          "tent"
+        ],
+        [
+          "ball",
+          "fish",
+          "leaf",
+          "sock"
+        ],
+        [
+          "ring",
+          "flag",
+          "tree",
+          "moon"
+        ]
+      ],
+      "read": {
+        "x": 800,
+        "y": 150,
+        "w": 270,
+        "h": 190
+      }
+    },
+    "free": {
+      "vx": 230,
+      "vy": 280,
+      "arm": 175,
+      "card": 130,
+      "home": {
+        "x": 24,
+        "y": 36
+      },
+      "grid": 566
+    },
+    "rightAngleHours": 3,
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T9.C32:ML1",
+        "kind": "name",
+        "letters": [
+          "A",
+          "B",
+          "C"
+        ],
+        "open": [
+          -52,
+          8
+        ],
+        "pad": "enter",
+        "answer": "ABC",
+        "near": "BAC",
+        "winMs": 2600
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T9.C32:1",
+        "kind": "vertex",
+        "letters": [
+          "D",
+          "E",
+          "F"
+        ],
+        "open": [
+          -40,
+          22
+        ],
+        "pad": "enter",
+        "answer": "E",
+        "near": "D",
+        "winMs": 2400
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T9.C32:2",
+        "kind": "name",
+        "letters": [
+          "S",
+          "O",
+          "T"
+        ],
+        "open": [
+          -62,
+          6
+        ],
+        "pad": "enter",
+        "answer": "SOT",
+        "near": "OST",
+        "winMs": 2600
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T9.C33:ML2",
+        "kind": "sort",
+        "deg": 90,
+        "answer": "right angle",
+        "near": "acute",
+        "winMs": 3000
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T9.C33:3",
+        "kind": "sort",
+        "deg": 42,
+        "answer": "acute",
+        "near": "obtuse",
+        "winMs": 3400,
+        "stretch": true
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T9.C33:4",
+        "kind": "sort",
+        "deg": 128,
+        "answer": "obtuse",
+        "near": "acute",
+        "winMs": 3000
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T9.C34:ML3",
+        "kind": "clock",
+        "hour": 10,
+        "answer": "acute",
+        "near": "obtuse",
+        "winMs": 3200
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T9.C34:5",
+        "kind": "clock",
+        "hour": 4,
+        "answer": "obtuse",
+        "near": "acute",
+        "winMs": 3200
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T9.C34:6",
+        "kind": "clock",
+        "hour": 9,
+        "answer": "right angle",
+        "near": "obtuse",
+        "winMs": 3200
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T9.C35:ML4",
+        "kind": "move",
+        "start": [
+          1,
+          1
+        ],
+        "across": 2,
+        "down": 3,
+        "parts": [
+          {
+            "label": "row"
+          },
+          {
+            "label": "column"
+          }
+        ],
+        "answer": [
+          4,
+          3
+        ],
+        "near": "3|2",
+        "winMs": 3400
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T9.C35:7",
+        "kind": "reach",
+        "start": [
+          1,
+          2
+        ],
+        "down": 2,
+        "answer": "fish",
+        "near": "cup",
+        "winMs": 3200
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T9.C35:8",
+        "kind": "say",
+        "start": [
+          1,
+          3
+        ],
+        "down": 2,
+        "from": [
+          1,
+          3
+        ],
+        "to": [
+          3,
+          3
+        ],
+        "answer": "rows below",
+        "near": "columns below",
+        "winMs": 3400
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The arms are traced from the point they share, the vertex takes its dot, and the whole name is written with the vertex letter in the middle.",
+      "Phase 2: The square-corner card is laid into the angle, the space or the overlap is lit, and the kind of angle is written beside it.",
+      "Phase 3: The gaps are counted one at a time the short way round, the smaller angle is outlined, and the square corner is laid against it.",
+      "Phase 4: The marker walks the move one step at a time, lighting a fresh row across and keeping its column, and stops on the right place."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Two arms from one point, a clock and a grid. Where do the two arms meet?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every angle named from its vertex, every clock read the short way round, and every move told by row and column.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T9.C32:ML1",
+            "worked": false,
+            "kind": "name",
+            "planQuestion": "Rays BA and BC start from point B. Name the angle they make, its arms and its vertex.",
+            "question": {
+              "en": "Rays BA and BC start from point B. Tap the three letters to name the angle."
+            },
+            "ask": {
+              "en": "Name this angle"
+            },
+            "answer": "ABC",
+            "planAnswer": "Angle ABC, which is also angle CBA or angle B. Its arms are rays BA and BC, and its vertex is B",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T9.C32:1",
+            "worked": false,
+            "kind": "vertex",
+            "planQuestion": "An angle is named angle DEF. Which letter is its vertex, and which rays are its arms?",
+            "question": {
+              "en": "This angle is named angle DEF. Which letter is its vertex?"
+            },
+            "ask": {
+              "en": "Tap the vertex"
+            },
+            "answer": "E",
+            "planAnswer": "E is the vertex, and the arms are rays ED and EF",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T9.C32:2",
+            "worked": false,
+            "kind": "name",
+            "planQuestion": "Rays OS and OT start from point O. Give three names for the angle they make.",
+            "question": {
+              "en": "Rays OS and OT start from point O. Name this angle the same way."
+            },
+            "ask": {
+              "en": "Name this angle"
+            },
+            "answer": "SOT",
+            "planAnswer": "Angle SOT, angle TOS and angle O",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T9.C33:ML2",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "The corner of a page fits exactly into one angle. A second angle is so narrow that its arms sit inside the page's corner. What kinds of angle are they?",
+            "question": {
+              "en": "These two arms stand open. Lay the card into this angle and name its kind."
+            },
+            "ask": {
+              "en": "What kind?"
+            },
+            "answer": "right angle",
+            "planAnswer": "The first is a right angle, and the second is acute",
+            "choices": [
+              "right angle",
+              "acute",
+              "obtuse"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T9.C33:3",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "The blades of a pair of scissors open to an angle smaller than the corner of a page. What kind of angle is it?",
+            "question": {
+              "en": "These are the open blades of a pair of scissors. Sort the angle they make."
+            },
+            "ask": {
+              "en": "What kind?"
+            },
+            "answer": "acute",
+            "planAnswer": "Acute, because it is smaller than a right angle",
+            "choices": [
+              "right angle",
+              "acute",
+              "obtuse"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T9.C33:4",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "A book stands open with its covers wider apart than a square corner. What kind of angle do the covers make?",
+            "question": {
+              "en": "This angle is made by the two covers of an open book. Sort it the same way."
+            },
+            "ask": {
+              "en": "What kind?"
+            },
+            "answer": "obtuse",
+            "planAnswer": "Obtuse. A square-corner card laid in the angle leaves a space between itself and one cover",
+            "choices": [
+              "right angle",
+              "acute",
+              "obtuse"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T9.C34:ML3",
+            "worked": false,
+            "kind": "clock",
+            "planQuestion": "At ten o'clock, what kind of angle do the hands of a clock make?",
+            "question": {
+              "en": "At ten o'clock, what kind of angle do the hands make?"
+            },
+            "ask": {
+              "en": "What kind?"
+            },
+            "answer": "acute",
+            "planAnswer": "Acute. The smaller angle between the hands is two hours wide, less than the three hours of a right angle",
+            "choices": [
+              "right angle",
+              "acute",
+              "obtuse"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T9.C34:5",
+            "worked": false,
+            "kind": "clock",
+            "planQuestion": "What kind of angle do the hands of a clock make at four o'clock?",
+            "question": {
+              "en": "The hands now stand at four o'clock. Sort the smaller angle."
+            },
+            "ask": {
+              "en": "What kind?"
+            },
+            "answer": "obtuse",
+            "planAnswer": "Obtuse. The smaller angle is four hours wide, more than the three hours of a right angle",
+            "choices": [
+              "right angle",
+              "acute",
+              "obtuse"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T9.C34:6",
+            "worked": false,
+            "kind": "clock",
+            "planQuestion": "At nine o'clock, the hands are three hours apart one way and nine hours apart the other. Which angle do you name, and what kind is it?",
+            "question": {
+              "en": "The clock says nine o'clock now. Name the kind of angle the hands make."
+            },
+            "ask": {
+              "en": "What kind?"
+            },
+            "answer": "right angle",
+            "planAnswer": "The smaller one, three hours wide, which is a right angle",
+            "choices": [
+              "right angle",
+              "acute",
+              "obtuse"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T9.C35:ML4",
+            "worked": false,
+            "kind": "move",
+            "planQuestion": "On a grid, rows are counted from the top and columns from the left. A marker starts in row one, column one. It moves two columns across to the right, then three rows down. Where does it stop?",
+            "question": {
+              "en": "The marker starts in row one, column one. Move it two columns across, then three rows down."
+            },
+            "ask": {
+              "en": "Where does it stop?"
+            },
+            "answer": [
+              4,
+              3
+            ],
+            "planAnswer": "In row four, column three",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T9.C35:7",
+            "worked": false,
+            "kind": "reach",
+            "planQuestion": "A grid has rows counted from the top. Row one: bell, kite, drum, boat. Row two: star, cup, lamp, tent. Row three: ball, fish, leaf, sock. Start at the kite and move two rows down. Which picture do you reach?",
+            "question": {
+              "en": "The marker sits on the kite. Move it two rows down and name the picture you reach."
+            },
+            "ask": {
+              "en": "Which picture?"
+            },
+            "answer": "fish",
+            "planAnswer": "The fish, in row three, column two, the same column as the kite",
+            "choices": [
+              "fish",
+              "cup",
+              "leaf",
+              "lamp"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T9.C35:8",
+            "worked": false,
+            "kind": "say",
+            "planQuestion": "In a grid with rows counted from the top, a drum is in row one, column three, and a leaf is in row three, column three. A child says the leaf is two columns below the drum. What should the child say?",
+            "question": {
+              "en": "A child says the leaf lies two columns below the drum. Say that the right way."
+            },
+            "ask": {
+              "en": "Which words fit?"
+            },
+            "answer": "rows below",
+            "planAnswer": "The leaf is two rows below the drum, in the same column. Moving down changes the row, not the column",
+            "choices": [
+              "rows below",
+              "columns below",
+              "rows across",
+              "columns across"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "angle_and_grid_finder",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "angle_and_grid_finder",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Two arms and a vertex",
+        "conceptId": "M2.S4.T9.C32",
+        "objectiveIds": [
+          "O15"
+        ],
+        "items": [
+          "M2.S4.T9.C32:ML1",
+          "M2.S4.T9.C32:1",
+          "M2.S4.T9.C32:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Right, acute and obtuse",
+        "conceptId": "M2.S4.T9.C33",
+        "objectiveIds": [
+          "O15"
+        ],
+        "items": [
+          "M2.S4.T9.C33:ML2",
+          "M2.S4.T9.C33:3",
+          "M2.S4.T9.C33:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "The angle between clock hands",
+        "conceptId": "M2.S4.T9.C34",
+        "objectiveIds": [
+          "O16"
+        ],
+        "items": [
+          "M2.S4.T9.C34:ML3",
+          "M2.S4.T9.C34:5",
+          "M2.S4.T9.C34:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Rows across, columns down",
+        "conceptId": "M2.S4.T9.C35",
+        "objectiveIds": [
+          "O16"
+        ],
+        "items": [
+          "M2.S4.T9.C35:ML4",
+          "M2.S4.T9.C35:7",
+          "M2.S4.T9.C35:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "arms",
+    "angleName",
+    "cardIn",
+    "clockTime",
+    "hoursWalked",
+    "marker",
+    "moves"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, arms, angleName, cardIn, clockTime, hoursWalked, marker, moves, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "angle_and_grid_finder"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T9.C32.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Two arms from one point, a clock and a grid. Where do the two arms meet?"
+    },
+    {
+      "en": "Where do the two arms meet? Put that letter in the middle of the name."
+    },
+    {
+      "en": "Lay the square corner in. Does it fit, cover an arm, or leave a space?"
+    },
+    {
+      "en": "The hands make two angles. Which is the smaller one? What kind is it?"
+    },
+    {
+      "en": "Move down. Which number changed, the row or the column?"
+    },
+    {
+      "en": "A new one. Find the vertex, or row one, before anything moves."
+    },
+    {
+      "en": "Free play. Any angle, any hour, any move on the grid, with the square corner open."
+    },
+    {
+      "en": "Lay the square corner in again, count the hours again, or walk the marker one step at a time."
+    },
+    {
+      "en": "Every angle named from its vertex, every clock read the short way round, and every move told by row and column."
+    }
+  ],
+  "build": {
+    "source": "48f0ca77:1443272",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-24T10:11:44.952Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-24T10:11:41.400Z"
+    },
+    "tsxBytes": 1442330,
+    "tsxMd5": "3038c7fcf53c37b03c9ce2177d85c089"
+  }
+}

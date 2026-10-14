@@ -1,0 +1,1134 @@
+{
+  "slotId": "M2.S4.T8.C28.2D1",
+  "mediaId": "M2.S4.T8.C28.2D1",
+  "toolId": "calendar_counter",
+  "title": "Calendar Counter",
+  "component": "M2.S4.T8.C28.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch12",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch12_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_12/2dtool/M2.S4.T8.C28.2D1/M2.S4.T8.C28.2D1.tsx",
+  "description": "Sort the months by their days, lay a year out in weeks, and run any year through the whole leap year rule. Count days with both ends decided first, and write short dates.",
+  "conceptIds": [
+    "M2.S4.T8.C28",
+    "M2.S4.T8.C29",
+    "M2.S4.T8.C30",
+    "M2.S4.T8.C31"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Know the days in each month and in a year, and decide whether a year is a leap year. Count the days between two dates with each end decided first, and write a date in short form.",
+    "look": "A wall of twelve month cards under a year dial, a rack of month bars and a weeks ruler, a day counter with two end switches, and a date writer.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Calendar Counter' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the months sorted, the gate's questions answered, the days counted or the slots filled against what this phase holds, two numbers in ink, the first climbing by one as each settles and the second fixed at what this phase holds. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The year dial stands at the top left of the working area, 240 by 52 at 76,214, reading the year in ink and starting at 2026. The calendar wall stands under it, 640 by 452 at 76,274: the twelve month cards of the dialled year in three rows of four, each card 152 by 144 with its month's name, the columns S M T W T F S, and its dates laid out as the calendar in use today lays out that year, its first day under the right weekday. The right-hand column, 400 wide from 740, holds a different piece on each phase. On the first, the month rack, 400 by 190 at 740,214, has three olive bars, for months of thirty-one days, months of thirty days and February, and the year bar under them adds the twelve months into one total. The weeks ruler under the rack, 400 by 250 at 740,420, lays the year's days out in rows of seven, fifty-two full rows in four blocks of thirteen, and the days left over stand after them in yellow outlined in near-black: one in a year of three hundred and sixty-five days and two in a leap year. On the second, the leap year gate, 400 by 300 at 740,214, asks three questions in order, each a near-black box with a yes path and a no path: is the year divisible by four, is it a century year, and is it divisible by four hundred. The path the dialled year takes lights, and a leap year grows a twenty-ninth of February on the wall in yellow outlined in near-black. On the third, the two end switches, 400 by 80 at 740,214, one for whether the first day counts and one for whether the last day counts, must both be set before the day counter under them, 400 by 200 at 740,310, will light. It then counts month by month, writing the days in the first month, any whole months, and the days in the last month, while the counted days on the wall fill in green one by one and a day left out is outlined only, at full strength. The holiday shelf, 400 by 110 at 740,524, holds cards that each show a holiday with its date. On the fourth, the date writer, 400 by 200 at 740,214, has two-place slots for the day and the month and a four-place slot for the year, day first, and a switch under them for dots, slashes or dashes. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve keys three across, the ten digits and two keys that clear and go back, with a word pad of the months and the weekdays over it where a month or a day is asked for, and yes and no keys on the second phase. On the third phase the answer slot will not open until both end switches are set, and on the fourth it holds the day, the month and the year in places of their own. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The hour hand, every hour tile and hour cell, the hours column, and the hours of a time the stage splits into hours and minutes are vermilion. The minute hand, every minute tile and minute cell, the minutes column and the minutes of a split time are deep blue. The second hand, every second cell and the seconds column are reddish purple. The a.m. half of the day, from midnight to noon, is sky blue on every strip, timeline and track, and the p.m. half, from noon to midnight, is amber, so the label changes where the colour does. Time counted between a start and an end, every hop and total on a track, and the days counted between two dates are green. An hour or a minute carried or broken, with the digits it strikes and rewrites, is wine. A calendar day, week or year picked out or ticked, a month on its bar and a day tile are olive. The days left over beyond whole weeks, and the twenty-ninth of February in a leap year, are yellow outlined in near-black. Chrome never borrows one of those and none of them is ever used for chrome: every clock rim, minute mark, clock number, hub, rule, tick, post, bracket, guide line and panel edge is near-black. Every reading survives with the colour taken away, because an hour hand is told from a minute hand by its length, a column by its heading, a half of the day by its label, and a counted day from one left out by being filled rather than outlined, before any of them is told by a colour. A figure that goes down by one is struck through once with the new figure written above it, and never rubbed out. Every day count on this stage shows which of its ends it counts: a counted day is filled and a day left out is outlined only, at full strength and never hidden. The holiday shelf gives the date of each holiday it holds, and the wall draws each dialled year as the calendar in use today lays it out.",
+    "finish": "The card shows the wall with the child's last count lit day by day, the two end switches as they set them, and the dates they wrote in short form.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the year bar reads three hundred and sixty-five, and the weeks ruler shows full rows of seven with one day over",
+        "does": "sorts the months onto their bars, adds the year on the year bar, lays the weeks ruler along it, then finds a chosen weekday in a month",
+        "goal": "four months have thirty days, seven have thirty-one and February twenty-eight, three hundred and sixty-five days in all, which is fifty-two weeks and one day",
+        "says": "Which months have thirty days? Now add all twelve. How many whole weeks is that, and what is left?",
+        "check": "Away from the screen: how many days do April, May and June have together?",
+        "feels": "the months do not share one length, and the year does not fill its weeks exactly",
+        "hands": "Hang a real calendar for this year and have groups list the months with thirty days, the months with thirty-one, and February. Add the three groups on the board, then count the year's days off in sevens and ask what is left over.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which bar does this month go on? Second rung, the phase's: how many days are left after the full weeks? Third rung: the wall is cut to three months, one quarter of the year, and the child sorts and adds them before the whole year comes back. The pad and the word pad stay open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "a year sounds like a whole number of weeks, and a single day left over is too small to notice.",
+            "move": "calls a year of three hundred and sixty-five days exactly fifty-two weeks, one day short of its length.",
+            "screen": "the weeks ruler lays the year bar's three hundred and sixty-five days out in rows of seven, and fifty-two full rows fill, three hundred and sixty-four days, with one yellow day standing alone after them. The child's answer stays in the slot beside the ruler, nothing marked."
+          },
+          {
+            "why": "from January to July, with February left aside, the months do go long and short in turn, so the pattern looks as if it runs on.",
+            "move": "gives August thirty days, taking the months to go thirty-one, thirty, thirty-one, thirty all through the year.",
+            "screen": "August's card slides onto the thirty-one bar, and its dates on the wall run to the thirty-first. July and August stand side by side on that bar, two months in a row with thirty-one days each, and the child's thirty stays in the slot."
+          }
+        ],
+        "screen": "the wall of twelve month cards for 2026 and the empty month rack",
+        "soWhat": "A year of three hundred and sixty-five days is fifty-two weeks and one day, and a leap year is fifty-two weeks and two days, one day more.",
+        "concept": "Days in the months and the year"
+      },
+      {
+        "n": 2,
+        "win": "February grows a twenty-ninth day for each leap year, the year bar reads three hundred and sixty-six, and a century year that fails the last question stays at twenty-eight",
+        "does": "dials a year, runs it through the three questions of the gate in order, and watches February",
+        "goal": "a year divisible by four is a leap year, except a century year not divisible by four hundred; a leap year has twenty-nine days in February",
+        "says": "Is the year divisible by four? Is it a century year? If it is, ask about four hundred.",
+        "check": "Was 1904 a leap year? Was 1900? Say which questions each one passed.",
+        "feels": "four gives the rule, a century year breaks it, and four hundred mends it again",
+        "hands": "Say that the earth takes about three hundred and sixty-five and a quarter days to go round the sun, which is why some years have a twenty-ninth of February. Then write five years on the board, 2024, 2025, 1900, 2000 and 2100, and for each ask the three questions in order: is it divisible by four, is it a century year, and if it is, is it divisible by four hundred. Ask which of the five had, or will have, a twenty-ninth of February.",
+        "tries": "First rung, from the item: is the year divisible by four? Second rung, the phase's: is it a century year, and if it is, is it divisible by four hundred? Third rung: the dial is cut to a year that is not a century year, and the child runs it through the first question before the century year comes back. The yes and no keys stay open.",
+        "wrong": [
+          {
+            "why": "the rule about four is the one a child meets first, and 1700 passes it.",
+            "move": "calls 1700 a leap year because it is divisible by four, stopping at the first question.",
+            "screen": "the gate takes 1700 through all three questions: yes at divisible by four, yes at century year, and no at divisible by four hundred, and the no path lights. February on the wall stays at twenty-eight days and the year bar at three hundred and sixty-five, and the child's answer stays in the slot."
+          },
+          {
+            "why": "the part about century years is heard last, and the part about four hundred is easy to drop.",
+            "move": "calls 1600 not a leap year because it is a century year, as if every century year were left out.",
+            "screen": "the gate takes 1600 on past the century question to the last one, divisible by four hundred, where it answers yes, and the yes path lights. February on the wall grows a twenty-ninth day in yellow, the year bar reads three hundred and sixty-six, and the child's answer stays in the slot."
+          }
+        ],
+        "screen": "the year dial and the leap year gate, with February on the wall showing twenty-eight days",
+        "soWhat": "A year divisible by four is a leap year, except a century year not divisible by four hundred. A leap year has twenty-nine days in February.",
+        "concept": "Leap years"
+      },
+      {
+        "n": 3,
+        "win": "the counted days light on the wall, the parts are written month by month, and they add to the total",
+        "does": "sets whether the first day counts and whether the last day counts, then counts the days left in the first month, any whole months, and the days in the last month",
+        "goal": "before counting the days between two dates, decide whether the first day and the last day count, then count month by month",
+        "says": "Before you count, does the first day count? Does the last day count?",
+        "check": "How many days are there from 25 June to 10 July, counting both dates?",
+        "feels": "each end is a decision, and the count moves by one each time an end is turned in or out",
+        "hands": "Choose a class event on a real calendar, and before anyone counts the days to it, have the class decide whether today counts and whether the event day counts. Count once with each choice and write the answers side by side, so everyone sees the count move by one for each end.",
+        "tries": "First rung, from the item: does the first day count, and does the last? Second rung, the phase's: how many days are counted in the first month? Third rung: the dates are cut to two in the same month, and the child counts them with both switches set before the longer count comes back. The pad stays open, and the answer slot opens once both switches are set.",
+        "wrong": [
+          {
+            "why": "taking the first date from the month's days and adding the last date is a quick way through two months, and it quietly counts the last day in.",
+            "move": "takes eighteen from thirty for September and adds seven for October, which counts 7 October, and answers nineteen days between 18 September and 7 October, not counting either date.",
+            "screen": "the counter stays dark until both end switches are set to leave the ends out. It then fills in green the twelve days from 19 to 30 September and the six days from 1 to 6 October, and 7 October stands outlined only, not counted. The parts are written twelve and six, eighteen in all, and the child's nineteen stays in the slot beside them."
+          },
+          {
+            "why": "taking the first date away is the move that works when the first date is left out, and here it counts.",
+            "move": "takes twelve from thirty for November, which leaves out 12 November, and answers twenty-one days from 12 November to 3 December, counting both dates.",
+            "screen": "the first end switch reads counted, and 12 November fills in green on the wall with the eighteen days after it, nineteen in November. The three days of December fill after them, and the parts are written nineteen and three, twenty-two in all, beside the child's twenty-one in the slot."
+          },
+          {
+            "why": "adding a number of days to a date is a quick way to move along a calendar, and it leaves the first day out of the count.",
+            "move": "adds sixteen to 22 March and writes 7 April as the last day of a sixteen-day tournament that counts 22 March as its first day.",
+            "screen": "the first end switch reads counted, 22 March fills in green as day one, and the days fill on, ten in March and six in April, the sixteenth landing on 6 April. 7 April stands outlined only, the day after, and the child's answer stays in the slot."
+          }
+        ],
+        "screen": "two dates flagged on the wall, with both end switches unset and the day counter waiting",
+        "soWhat": "Decide whether each end counts before counting, then count month by month.",
+        "concept": "Counting days between dates"
+      },
+      {
+        "n": 4,
+        "win": "the date settles in short form, and the same date shows with dots, with slashes and with dashes",
+        "does": "fills the day and the month with two digits each and the year with four, then switches between dots, slashes and dashes",
+        "goal": "a date in short form is the day, the month and the year in figures, day first, with two digits for the day and the month and four for the year",
+        "says": "Day first, then the month, then the year. How many digits does each one take?",
+        "check": "Write 5 September 2026 in short form, with dots and then with slashes.",
+        "feels": "the short form keeps one order, day, then month, then year, and fills every place",
+        "hands": "Write today's date in words on the board, and have the class write it in short form with the day first, two digits for the day and the month and four for the year. Then show the same date written month first, as some countries do, and ask which day it would be read as here.",
+        "tries": "First rung, from the item: which comes first in the short form? Second rung, the phase's: how many digits do the day and the month each take? Third rung: the writer is cut to a date whose day and month already have two digits, and the child writes it before the shorter numbers come back. The pad stays open.",
+        "wrong": [
+          {
+            "why": "some screens and calendars show the month first, and a date said aloud as January the third puts the month first.",
+            "move": "writes the month first, 01.03.2027 for 3 January 2027, which reads as 1 March.",
+            "screen": "the date writer's slots are labelled day, month and year in order, and the child's digits are read back through them: day one, month three, 1 March 2027, and that date lights on the wall two months on from 3 January. The digits are then set day first, 03.01.2027, and the child's answer stays in the slot."
+          },
+          {
+            "why": "three and one are single digits, and a nought in front of a number seems to add nothing.",
+            "move": "drops the noughts and writes 3.1.2027 for 3 January 2027.",
+            "screen": "the day and month slots of the date writer each show both places drawn, and their empty first places light until a nought fills each. The same date then shows with dots, slashes and dashes, 03.01.2027, 03/01/2027 and 03-01-2027, and the child's answer stays in the slot beside it."
+          }
+        ],
+        "screen": "a date written in words, and the date writer's three empty slots",
+        "soWhat": "A date in short form is the day, the month and the year in figures, day first, with two digits for the day and the month.",
+        "concept": "Writing a date in short form"
+      }
+    ],
+    "delight": "The first phase, when the year dial is turned on by one. The day left over on the weeks ruler lifts off in yellow and slides across the wall, and each month card's dates move one column to the right, so the first of January moves from a Thursday in 2026 to a Friday in 2027. Turned on from 2028, a leap year, two days lift off, and the first of January moves two columns, from a Saturday in 2028 to a Monday in 2029. It can be turned as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the wall shows the twelve month cards of 2026, the year of the chapter's printed calendar, and the month rack beside it is empty. On the second the year dial and the leap year gate stand at the right, with February on the wall showing twenty-eight days. On the third two dates are flagged on the wall, both end switches are unset, and the day counter is dark. On the fourth a date written in words stands above the date writer's three empty slots. The running count at the top left holds the months sorted, the gate's questions answered, the days counted or the slots filled against what this phase holds, and the answer slot and the pad stand empty down the right. One thing moves, once: January's card, or the dial, or the first end switch, or the day slot, gives one slow pulse while the voice asks how many days are in this year. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any year on the dial, the whole calendar wall, the month rack, the weeks ruler, the leap year gate, the day counter, the holiday shelf and the date writer all open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the days in the months and the year, leap years, counting days with each end decided first, and short dates.",
+    "voiceLines": [
+      "A wall of twelve months and a year dial. How many days are in this year?",
+      "Which months have thirty days? Now add all twelve. How many whole weeks is that, and what is left?",
+      "Is the year divisible by four? Is it a century year? If it is, ask about four hundred.",
+      "Before you count, does the first day count? Does the last day count?",
+      "Day first, then the month, then the year. How many digits does each one take?",
+      "A new question. Find the month on the wall before you count anything.",
+      "Free play. Any year on the dial, with the rack, the ruler, the gate, the counter and the date writer open.",
+      "Decide both ends first, then count month by month.",
+      "Months sorted, years run through the whole rule, counts begun with both ends decided, and dates written day first."
+    ],
+    "observations": [
+      {
+        "why": "Fifty-two full rows of seven are three hundred and sixty-four days, one short of the year.",
+        "soWhat": "A year of three hundred and sixty-five days is fifty-two weeks and one day, and a leap year is fifty-two weeks and two days, one day more.",
+        "observe": "The year bar read three hundred and sixty-five, and the weeks ruler filled fifty-two rows of seven with one day over."
+      },
+      {
+        "why": "A year divisible by four is a leap year, except a century year not divisible by four hundred, and the gate asks those questions in that order.",
+        "soWhat": "A year divisible by four is a leap year, except a century year not divisible by four hundred. A leap year has twenty-nine days in February.",
+        "observe": "February grew a twenty-ninth day for the years that passed the gate, and a century year that failed the last question kept twenty-eight."
+      },
+      {
+        "why": "Whether each end counts changes the number of days by one for that end, so the count has no answer until both are decided.",
+        "soWhat": "Decide whether each end counts before counting, then count month by month.",
+        "observe": "The counter would not light until both switches were set, and the answer changed by one when a switch was turned."
+      },
+      {
+        "why": "The short form writes the day, the month and the year in that order, and a nought fills an empty first place.",
+        "soWhat": "A date in short form is the day, the month and the year in figures, day first, with two digits for the day and the month.",
+        "observe": "The date settled day first, with two digits for the day and the month, and the switch showed it with dots, slashes and dashes."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the wall of twelve month cards for 2026 and the empty month rack",
+        "win": "the year bar reads three hundred and sixty-five, and the weeks ruler shows full rows of seven with one day over",
+        "traceback": "June and August slide onto their bars beside July with their day counts written; the weeks ruler lays 365 days in four blocks of 13 weeks with 1 yellow day over; March's Saturdays are ticked 1st, 2nd, 3rd down to 21 March.",
+        "ladder": [
+          "Count each month's days on its card, a row of seven at a time.",
+          "Lay the weeks ruler out, and count the rows of seven.",
+          "Find the first Saturday, then go down one week at a time.",
+          "A week is seven days.",
+          "Count the weeks first, then the days that are left."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the year dial and the leap year gate, with February on the wall showing twenty-eight days",
+        "win": "February grows a twenty-ninth day for each leap year, the year bar reads three hundred and sixty-six, and a century year that fails the last question stays at twenty-eight",
+        "traceback": "The gate takes the year through its questions in order and the path it takes lights: 1700 stops at four hundred and February stays at 28, 2028 passes and February grows a yellow 29th with the year bar at 366, 1800 stops at four hundred.",
+        "ladder": [
+          "Run each year down the gate, one box after another.",
+          "Run the year through the gate first, then look at February.",
+          "Eighteen hundred is a century year. Which question comes after that?",
+          "Start with the first question: is the year divisible by four?",
+          "Is it a century year, and if it is, is it divisible by four hundred?"
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "two dates flagged on the wall, with both end switches unset and the day counter waiting",
+        "win": "the counted days light on the wall, the parts are written month by month, and they add to the total",
+        "traceback": "The end switches are set as the question says, then the counted days fill in green month by month and a day left out stays outlined; the counter writes each month's part and the total (12 and 6, 18; 19 and 3, 22; 10 and 6 to 6 April).",
+        "ladder": [
+          "The seventh of October is left out too. Where does your count stop?",
+          "The twelfth of November counts. Start the count on it.",
+          "If the 22nd is day one, what is day two? Keep counting on.",
+          "How many days are counted in the first month?",
+          "Try two dates in one month first, then come back to this count."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a date written in words, and the date writer's three empty slots",
+        "win": "the date settles in short form, and the same date shows with dots, with slashes and with dashes",
+        "traceback": "The date writer reads the child's digits back through its day, month and year places (month first lights 1 March on the month strip; a dropped nought leaves an empty place lit), then sets the date day first with every place filled and shows it with dots, slashes and dashes.",
+        "ladder": [
+          "Which comes first in the short form, the day or the month?",
+          "Look at the month's two places. Is each one filled?",
+          "Which place of the day is still empty?",
+          "How many digits do the day and the month each take?",
+          "Try the twelfth of November first, where both already have two digits."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "startYear": 2026,
+    "weekBlocks": 4,
+    "weeksPerBlock": 13,
+    "yearDays": 365,
+    "gate": [
+      "divisible by 4?",
+      "century year?",
+      "divisible by 400?"
+    ],
+    "bars": {
+      "31 days": [
+        "Jan",
+        "Mar",
+        "May",
+        "Jul",
+        "Aug",
+        "Oct",
+        "Dec"
+      ],
+      "30 days": [
+        "Apr",
+        "Jun",
+        "Sep",
+        "Nov"
+      ],
+      "28 or 29 days": [
+        "Feb"
+      ]
+    },
+    "holidays": [
+      "Republic Day: 26 January",
+      "Independence Day: 15 August",
+      "Teacher's Day: 5 September",
+      "Children's Day: 14 November",
+      "Christmas Day: 25 December"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T8.C28:1",
+        "kind": "sort",
+        "months": [
+          5,
+          7
+        ],
+        "parts": [
+          {
+            "label": "June"
+          },
+          {
+            "label": "August"
+          }
+        ],
+        "answer": [
+          30,
+          31
+        ],
+        "near": "30|30",
+        "winMs": 3000
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T8.C28:ML1",
+        "kind": "weeks",
+        "days": 365,
+        "parts": [
+          {
+            "label": "weeks"
+          },
+          {
+            "label": "days over"
+          }
+        ],
+        "answer": [
+          52,
+          1
+        ],
+        "near": "52|0",
+        "winMs": 3200
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T8.C28:4",
+        "kind": "weekday",
+        "month": 2,
+        "weekday": 6,
+        "nth": 3,
+        "answer": 21,
+        "near": 14,
+        "winMs": 3000
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T8.C29:ML2",
+        "kind": "leapset",
+        "years": [
+          1996,
+          1700,
+          1600
+        ],
+        "answer": "1996 and 1600",
+        "near": "all three",
+        "winMs": 3200
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T8.C29:2",
+        "kind": "febdays",
+        "years": [
+          2028
+        ],
+        "answer": 29,
+        "near": 28,
+        "winMs": 3000
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T8.C29:5",
+        "kind": "leapq",
+        "years": [
+          1800
+        ],
+        "answer": "no",
+        "near": "yes",
+        "winMs": 3000
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T8.C30:ML3",
+        "kind": "between",
+        "from": [
+          8,
+          18
+        ],
+        "to": [
+          9,
+          7
+        ],
+        "firstIn": false,
+        "lastIn": false,
+        "answer": 18,
+        "near": 19,
+        "winMs": 3400
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T8.C30:6",
+        "kind": "between",
+        "from": [
+          10,
+          12
+        ],
+        "to": [
+          11,
+          3
+        ],
+        "firstIn": true,
+        "lastIn": true,
+        "answer": 22,
+        "near": 21,
+        "winMs": 3400
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T8.C30:8",
+        "kind": "lastday",
+        "from": [
+          2,
+          22
+        ],
+        "length": 16,
+        "firstIn": true,
+        "lastIn": true,
+        "answer": 6,
+        "near": 7,
+        "winMs": 3400
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T8.C31:ML4",
+        "kind": "short",
+        "date": [
+          3,
+          1,
+          2027
+        ],
+        "parts": [
+          {
+            "label": "day"
+          },
+          {
+            "label": "month"
+          },
+          {
+            "label": "year"
+          }
+        ],
+        "answer": [
+          "03",
+          "01",
+          "2027"
+        ],
+        "near": "01|03|2027",
+        "winMs": 3600
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T8.C31:3",
+        "kind": "short",
+        "date": [
+          30,
+          4,
+          2026
+        ],
+        "parts": [
+          {
+            "label": "day"
+          },
+          {
+            "label": "month"
+          },
+          {
+            "label": "year"
+          }
+        ],
+        "answer": [
+          "30",
+          "04",
+          "2026"
+        ],
+        "near": "30|4|2026",
+        "winMs": 3600
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": null,
+        "kind": "short",
+        "date": [
+          9,
+          10,
+          2025
+        ],
+        "parts": [
+          {
+            "label": "day"
+          },
+          {
+            "label": "month"
+          },
+          {
+            "label": "year"
+          }
+        ],
+        "answer": [
+          "09",
+          "10",
+          "2025"
+        ],
+        "near": "9|10|2025",
+        "winMs": 3600
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: June and August slide onto their bars beside July with their day counts written; the weeks ruler lays 365 days in four blocks of 13 weeks with 1 yellow day over; March's Saturdays are ticked 1st, 2nd, 3rd down to 21 March.",
+      "Phase 2: The gate takes the year through its questions in order and the path it takes lights: 1700 stops at four hundred and February stays at 28, 2028 passes and February grows a yellow 29th with the year bar at 366, 1800 stops at four hundred.",
+      "Phase 3: The end switches are set as the question says, then the counted days fill in green month by month and a day left out stays outlined; the counter writes each month's part and the total (12 and 6, 18; 19 and 3, 22; 10 and 6 to 6 April).",
+      "Phase 4: The date writer reads the child's digits back through its day, month and year places (month first lights 1 March on the month strip; a dropped nought leaves an empty place lit), then sets the date day first with every place filled and shows it with dots, slashes and dashes."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A wall of twelve months and a year dial. How many days are in this year?",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Months sorted, years run through the whole rule, both ends decided, and short forms written.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T8.C28:1",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "How many days does June have, and how many does August have?",
+            "question": {
+              "en": "How many days does June have, and how many does August have?"
+            },
+            "ask": {
+              "en": "Days in June and in August?"
+            },
+            "answer": [
+              30,
+              31
+            ],
+            "planAnswer": "June has 30 days and August has 31",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T8.C28:ML1",
+            "worked": false,
+            "kind": "weeks",
+            "planQuestion": "A year that is not a leap year has 365 days. How many whole weeks is that, and how many days are left over?",
+            "question": {
+              "en": "A year that is not a leap year has 365 days. How many whole weeks is that, and how many days are left over?"
+            },
+            "ask": {
+              "en": "365 days: weeks and days over?"
+            },
+            "answer": [
+              52,
+              1
+            ],
+            "planAnswer": "Fifty-two weeks and one day",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T8.C28:4",
+            "worked": false,
+            "kind": "weekday",
+            "planQuestion": "1 March 2026 is a Sunday. On which date is the third Saturday of March 2026?",
+            "question": {
+              "en": "The first of March, two thousand twenty-six, is a Sunday. On which date is the third Saturday of March?"
+            },
+            "ask": {
+              "en": "3rd Saturday of March 2026?"
+            },
+            "answer": 21,
+            "planAnswer": "21 March 2026. The first Saturday is 7 March, and two more weeks bring it to 14 March and then 21 March",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T8.C29:ML2",
+            "worked": false,
+            "kind": "leapset",
+            "planQuestion": "Which of these years were leap years: 1996, 1700 and 1600?",
+            "question": {
+              "en": "Which of these were leap years? Nineteen ninety-six, seventeen hundred, or sixteen hundred?"
+            },
+            "ask": {
+              "en": "Which of them were leap years?"
+            },
+            "answer": "1996 and 1600",
+            "planAnswer": "1996 and 1600 were leap years, and 1700 was not",
+            "choices": [
+              "1996 only",
+              "1996 and 1600",
+              "all three",
+              "1996 and 1700"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T8.C29:2",
+            "worked": false,
+            "kind": "febdays",
+            "planQuestion": "How many days does February have in 2028, and why?",
+            "question": {
+              "en": "How many days does February have in two thousand twenty-eight? Use the gate to think it through."
+            },
+            "ask": {
+              "en": "Days in February 2028?"
+            },
+            "answer": 29,
+            "planAnswer": "29 days, because 2028 is divisible by four and is not a century year, so it is a leap year",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T8.C29:5",
+            "worked": false,
+            "kind": "leapq",
+            "planQuestion": "Was 1800 a leap year?",
+            "question": {
+              "en": "Was eighteen hundred a leap year?"
+            },
+            "ask": {
+              "en": "Was 1800 a leap year?"
+            },
+            "answer": "no",
+            "planAnswer": "No. 1800 is divisible by four, but it is a century year not divisible by four hundred",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T8.C30:ML3",
+            "worked": false,
+            "kind": "between",
+            "planQuestion": "How many days are there between 18 September and 7 October, not counting either date?",
+            "question": {
+              "en": "How many days are there between the eighteenth of September and the seventh of October? Do not count either date."
+            },
+            "ask": {
+              "en": "18 Sep to 7 Oct days between?"
+            },
+            "answer": 18,
+            "planAnswer": "18 days",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T8.C30:6",
+            "worked": false,
+            "kind": "between",
+            "planQuestion": "How many days are there from 12 November to 3 December, counting both dates?",
+            "question": {
+              "en": "Now count the days from the twelfth of November to the third of December. Both dates count."
+            },
+            "ask": {
+              "en": "12 Nov to 3 Dec both counted?"
+            },
+            "answer": 22,
+            "planAnswer": "22 days: 19 days from 12 to 30 November, and 3 days from 1 to 3 December",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T8.C30:8",
+            "worked": false,
+            "kind": "lastday",
+            "planQuestion": "A tournament starts on 22 March and runs for 16 days, with the first day counted as day one. On which date is its last day? Play runs each day from 9:55 a.m. to 1:35 p.m. How long is that?",
+            "question": {
+              "en": "A tournament starts on the twenty-second of March and runs for 16 days. The first day is day one. On which date is its last day?"
+            },
+            "ask": {
+              "en": "Last day: which date?"
+            },
+            "answer": 6,
+            "planAnswer": "Its last day is 6 April: 10 days from 22 to 31 March and 6 days in April. Play lasts 3 hours 40 minutes a day: count on to 12 noon, 2 hours 5 minutes, then 1 hour 35 minutes more",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T8.C31:ML4",
+            "worked": false,
+            "kind": "short",
+            "planQuestion": "Write 3 January 2027 in short form.",
+            "question": {
+              "en": "Write the third of January, two thousand twenty-seven, in short form."
+            },
+            "ask": {
+              "en": "3 January 2027 in short form?"
+            },
+            "answer": [
+              "03",
+              "01",
+              "2027"
+            ],
+            "planAnswer": "03.01.2027, which can also be written 03/01/2027 or 03-01-2027",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T8.C31:3",
+            "worked": false,
+            "kind": "short",
+            "planQuestion": "Write 30 April 2026 in short form.",
+            "question": {
+              "en": "Now the thirtieth of April, two thousand twenty-six, the same way."
+            },
+            "ask": {
+              "en": "30 April 2026 in short form?"
+            },
+            "answer": [
+              "30",
+              "04",
+              "2026"
+            ],
+            "planAnswer": "30.04.2026, or 30/04/2026 or 30-04-2026",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "short",
+            "planQuestion": null,
+            "question": {
+              "en": "And the ninth of October, two thousand twenty-five?"
+            },
+            "ask": {
+              "en": "9 October 2025 in short form?"
+            },
+            "answer": [
+              "09",
+              "10",
+              "2025"
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M2.S4.T8.C30:7"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "calendar_counter",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "calendar_counter",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Days in the months and the year",
+        "conceptId": "M2.S4.T8.C28",
+        "objectiveIds": [
+          "O13"
+        ],
+        "items": [
+          "M2.S4.T8.C28:1",
+          "M2.S4.T8.C28:ML1",
+          "M2.S4.T8.C28:4"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Leap years",
+        "conceptId": "M2.S4.T8.C29",
+        "objectiveIds": [
+          "O13"
+        ],
+        "items": [
+          "M2.S4.T8.C29:ML2",
+          "M2.S4.T8.C29:2",
+          "M2.S4.T8.C29:5"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Counting days between dates",
+        "conceptId": "M2.S4.T8.C30",
+        "objectiveIds": [
+          "O14"
+        ],
+        "items": [
+          "M2.S4.T8.C30:ML3",
+          "M2.S4.T8.C30:6",
+          "M2.S4.T8.C30:8"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Writing a date in short form",
+        "conceptId": "M2.S4.T8.C31",
+        "objectiveIds": [
+          "O14"
+        ],
+        "items": [
+          "M2.S4.T8.C31:ML4",
+          "M2.S4.T8.C31:3",
+          "M2.S4.T8.C28.2D1:p4_3"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "year",
+    "year",
+    "gy",
+    "monthsSorted",
+    "yearTotal",
+    "days",
+    "weeksLeft",
+    "leapSteps",
+    "firstDate",
+    "lastDate",
+    "firstCounts",
+    "lastCounts",
+    "dayCount",
+    "answer",
+    "shortDate",
+    "x"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, year, year, gy, monthsSorted, yearTotal, days, weeksLeft, leapSteps, firstDate, lastDate, firstCounts, lastCounts, dayCount, answer, shortDate, x, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "calendar_counter"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T8.C28.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A wall of twelve months and a year dial. How many days are in this year?"
+    },
+    {
+      "en": "Which months have thirty days? Now add all twelve. How many whole weeks is that, and what is left?"
+    },
+    {
+      "en": "Is the year divisible by four? Is it a century year? If it is, ask about four hundred."
+    },
+    {
+      "en": "Before you count, does the first day count? Does the last day count?"
+    },
+    {
+      "en": "Day first, then the month, then the year. How many digits does each one take?"
+    },
+    {
+      "en": "A new question. Find the month on the wall before you count anything."
+    },
+    {
+      "en": "Free play. Any year on the dial, with the rack, the ruler, the gate, the counter and the date writer open."
+    },
+    {
+      "en": "Decide both ends first, then count month by month."
+    },
+    {
+      "en": "Months sorted, years run through the whole rule, counts begun with both ends decided, and dates written day first."
+    }
+  ],
+  "build": {
+    "source": "7effbd5d:1546930",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-24T18:50:53.345Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-24T18:50:51.566Z"
+    },
+    "tsxBytes": 1542480,
+    "tsxMd5": "7c9614f97c4633a3d750250ed57b107a"
+  }
+}

@@ -1,0 +1,974 @@
+{
+  "slotId": "M2.S4.T6.C20.2D1",
+  "mediaId": "M2.S4.T6.C20.2D1",
+  "toolId": "lattice_grid",
+  "title": "Lattice Grid",
+  "component": "M2.S4.T6.C20.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch4",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch4_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_4/2dtool/M2.S4.T6.C20.2D1/M2.S4.T6.C20.2D1.tsx",
+  "description": "Rule a grid with one cell for every pair of digits, fill each cell with a single digit fact split by its diagonal, then sweep the strips from the bottom right.",
+  "conceptIds": [
+    "M2.S4.T6.C20",
+    "M2.S4.T6.C21",
+    "M2.S4.T6.C22",
+    "M2.S4.T6.C23"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find a product a second way, by giving every pair of digits its own square and reading the answer off the diagonals.",
+    "look": "A ruled grid of equal cells with a diagonal across each one, the digits of the two numbers outside it, and shaded strips running down to the bottom right corner.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Lattice Grid' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: how many cells the grid has and how many of them are filled, two numbers side by side in ink, so a grid that is one cell short can be read there without counting it over; on the last phase it carries how many strips have been swept and how many of them passed one to the left, written in words. Nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The grid bay is 620 by 440 at 64,202. The ruler control draws the lattice inside it as equal square cells at a pitch of 116, one column for each digit of the number along the top and one row for each digit of the number down the side, with a straight diagonal ruled corner to corner across every cell, all of them running the same way, and the whole grid centred in the bay at whatever size it comes out. The digits sit outside the grid and never inside it, the number along the top in deep blue above its columns and the number down the side in amber beside its rows; touching a cell lights the two digits it belongs to and dims nothing else. A cell takes two digits, one on each side of its diagonal, the tens digit in the upper half and the ones digit in the lower, and a pair coming to less than ten still fills both halves, with a grey zero in the upper one because that half is being held open. The answer rail is a single bent strip of empty squares 76 deep, running along the foot of the grid at 64,654 and turning up its left hand side, one square for every diagonal strip, and it fills from its right hand end as the sweep runs. The compare panel is 420 by 528 at 700,202 and holds the same product set out in columns: a heading row 36 tall of four ruled cells reading Th, H, T and O, a carry strip 34 tall above it where a carried digit stands small and vermilion above the column it is being added into, the multiplicand row 56 tall in deep blue, two partial product rows 56 tall in rose, a rule 4 tall and the product row 56 tall in green beneath it. The panel fills at the same pace as the grid, one column digit for every cell, so the rings arrive on one side of the working area while none arrive on the other. The sweep control then shades one diagonal strip at a time beginning at the bottom right corner, the shaded strip standing a shade darker than the paper and every other strip left exactly as it was; the strip's total is printed at its outer end as it shades, and where that total comes to more than nine the right hand digit drops into the answer rail and a small vermilion one travels up the strip and lands above the strip to its left, arriving there before that strip is totalled. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a cell or a strip total has to be written, with a thirteenth key that writes the grey zero for the upper half of a cell whose pair comes to less than ten. On the last phase a row of four place words, ones, tens, hundreds and thousands, sits under the keys and is printed again alongside the squares of the answer rail, because a strip is one place of the answer and a place holds a single digit. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: the number being multiplied is deep blue, the number it is multiplied by is amber, the product under the rule is green, a digit carried into the next column is vermilion and is always drawn small above the column it joins, a partial product row made by one place of the multiplier is rose, and a zero holding a place open or a step that is skipped is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a column is told by the heading over it before it is told by its band, a carry is told by being small and sitting above the rule, and a row is told by the place named in the margin beside it.",
+    "finish": "The card shows the grid the child filled with its strips still shaded and the product read off the edge beside it.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the grid stands with one cell for every pair and a diagonal drawn across each one",
+        "does": "rules the grid to the size the two numbers ask for and sets the digits round its edges",
+        "goal": "the grid is ruled with one cell for each pair of digits and a diagonal in every cell",
+        "says": "Count the digits in each number. How many squares will the grid need?",
+        "check": "Away from the screen: you are to multiply a four digit number by a two digit number this way. How many cells does the grid need, and how many squares will the answer rail hold?",
+        "feels": "the grid looks like it is asking how many numbers there are, and it is really asking how many pairs of digits there are",
+        "hands": "Rule the grid with a ruler on squared paper, one square for every pair of digits, and draw all the diagonals the same way round before a single digit is written anywhere on it.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: how many digits has each of your two numbers? Second rung, the phase's: how many pairs can you make between them? Third rung: the digits step out one at a time and pair off on the stage while the empty grid redraws itself around them. The pad stays open behind all three.",
+        "wrong": [
+          {
+            "why": "a cell looks like a box for a number, and there are two numbers waiting to be put somewhere.",
+            "move": "rules two cells because there are two numbers, so the grid for 87 x 35 comes out one cell across and two cells down.",
+            "screen": "the digits step out of the two numbers one at a time and each pairs with every digit of the other, the pairings printed in a short list beside the bay: eight with three, seven with three, eight with five and seven with five, four of them for two digits against two. The grid redraws itself with one cell for each pairing and the list empties into it. Nothing is cleared and the answer stays in the slot."
+          },
+          {
+            "why": "every cell is drawn on its own, and a diagonal looks like that cell's own decoration rather than a piece of a line running through the whole grid.",
+            "move": "rules the grid to the right size but draws each diagonal whichever way that cell happens to suggest, so some run down to the right and some down to the left.",
+            "screen": "the sweep is tried and two strips cross in the middle of the grid, so one cell finds itself in two strips and another in none, and the answer rail is left with a square it cannot fill. The diagonals are then drawn again all running the same way and the strips lie parallel, each ending in its own square on the rail. Nothing is marked."
+          }
+        ],
+        "screen": "an empty stage with the two numbers waiting outside it and the ruler control lit",
+        "soWhat": "A lattice takes one cell for every pair of digits, so a three digit number against a two digit one wants six cells, and every cell carries a diagonal running the same way as all the others.",
+        "concept": "One cell for every pair of digits"
+      },
+      {
+        "n": 2,
+        "win": "the cell fills on both sides of its diagonal and the next pair lights outside the grid",
+        "does": "multiplies the lit pair and writes the two digits on either side of the diagonal",
+        "goal": "each cell holds one digit fact with its tens above the diagonal and its ones below",
+        "says": "Tens above the line, ones below it. Every square takes two digits, even a small one.",
+        "check": "A cell pairs 4 and 2. What goes above its diagonal and what goes below it, and why is the upper half not left empty?",
+        "feels": "a square with one line through it turns out to be two places rather than one, and even a small product needs both of them",
+        "hands": "Fill one cell at a time on paper, saying the pair's product aloud as two digits even when it is a small one, so eight is said as zero and eight before it is written down.",
+        "tries": "First rung, from the item: what does that pair of digits come to? Second rung, the phase's: which half of the cell is the tens half? Third rung: the cell is opened on its own with its two halves named above and below the diagonal, and the product is written into them one digit at a time. The pad stays open and nothing already written is taken away.",
+        "wrong": [
+          {
+            "why": "eight is one digit and the cell is one square, so writing one digit in it looks like the whole job, and which half it goes in never comes up.",
+            "move": "gives a cell whose pair comes to less than ten a single digit, so 4 x 2 in the grid for 74 x 26 is written as a bare 8 with nothing beside it, and because the pen was coming down off the digit outside the grid the 8 lands above the diagonal. The sweep then reads 2644 instead of 1924.",
+            "screen": "the cell is opened large on its own with its diagonal across it and its two halves named, the upper one for tens and the lower one for ones. Eight has no tens, so the upper half takes a grey zero and the eight drops into the lower half where it belongs. The two strips that cell sits in are then swept again with it filled properly, and the rail reads 1924. Nothing is cleared."
+          },
+          {
+            "why": "a number is read from the left and written from the left, and the lower half is the half the pen reaches first coming down off the digit outside the grid.",
+            "move": "puts the tens digit below the diagonal and the ones digit above it in every cell, so 7 x 6 = 42 reads 2 above and 4 below, and the grid for 74 x 26 sweeps to 5182.",
+            "screen": "one cell is opened large with its halves named and the places of the answer printed along the answer rail beside it. The upper half is shown to lie in the strip one place further left than the lower half of the same cell, which is why the tens belong up there. Every cell is turned the right way round in place, one at a time, and the grid sweeps to 1924."
+          }
+        ],
+        "screen": "the ruled grid with every cell empty and one pair of digits lit outside it",
+        "soWhat": "The tens digit of a cell's product goes above its diagonal and the ones digit below it, and every cell takes two digits even when the pair comes to less than ten.",
+        "concept": "The diagonal splits tens from ones"
+      },
+      {
+        "n": 3,
+        "win": "the column sum shows its rings and the grid shows none of them while it is being filled",
+        "does": "compares the two and says what the grid never once asked for",
+        "goal": "filling the grid asks for no carrying at all, because every cell is one digit times one digit",
+        "says": "Compare the grid with the column sum. What did the grid never ask you to do while you were multiplying?",
+        "check": "Fill the grid for 96 x 36 and count the carries. Then work 96 x 36 in columns and count them again. Which half of the work does the claim printed on the page actually cover?",
+        "feels": "the grid really does ask for no carrying while you multiply, and then the adding turns up and wants one after all",
+        "hands": "Work the same product twice on paper, once in the grid and once in columns, and put a ring round every carried digit in the column working before either answer is read out.",
+        "tries": "First rung, from the item: what is the most a single cell's pair can come to? Second rung, the phase's: where do that product's tens go? Third rung: the grid and the column working are stood side by side and filled at the same pace, so the rings arrive on one side and not on the other while both are being multiplied. Nothing is marked.",
+        "wrong": [
+          {
+            "why": "a column sum sends whatever will not fit to the next column along, and a row of cells looks a great deal like a row of columns.",
+            "move": "carries between cells while filling the grid, so a cell whose pair comes to 15 keeps its 5 and sends a 1 into the cell on its left.",
+            "screen": "the cell is drawn large on its own with its diagonal across it, and the tens of its product are shown dropping into the upper half of that same cell rather than leaving it, because that half is where the cell keeps its own tens. The cells on either side are shown untouched throughout. Nothing is carried while you multiply your way across a grid, and the grid is then redrawn with every cell holding its own pair and no traffic at all between them."
+          },
+          {
+            "why": "the claim printed on the page stops at the word carrying, and a grid with every square full looks finished.",
+            "move": "hears that nothing is carried while you multiply and takes it to mean nothing is left to do, so the filled cells are read straight off from the top left and a string of their digits is handed in.",
+            "screen": "the word is split in two on the stage and each half is answered on its own. While you multiply, the grid asks for none, and that half is ticked off against the compare panel beside it. Then the strips are outlined as the second half of the job: they are the places of the answer and not one of them has been added yet. One strip shades from the bottom right corner to show what is still to come, and the cells stay exactly as the child left them."
+          }
+        ],
+        "screen": "the filled grid with the same product set out in columns beside it, its rings lit",
+        "soWhat": "Nothing is carried while I multiply through the cells, because each cell is one digit times one digit with its own half for its tens. That is the whole of what the claim covers, and the adding that comes after it is a separate matter.",
+        "concept": "Nothing is carried while you multiply"
+      },
+      {
+        "n": 4,
+        "win": "every strip lands a digit, the ones that passed sit on the strips they joined, and the product reads off the edge",
+        "does": "sweeps each strip in turn from the bottom right corner and writes its digit",
+        "goal": "the strips are swept from the bottom right, and a strip past nine passes one to its left",
+        "says": "Start at the bottom right corner. If a strip comes to more than nine, pass one to the strip on its left.",
+        "check": "Sweep 84 x 56. Which strip passes one to its left, and what does the strip it lands on come to once that one has been counted in?",
+        "feels": "the grid was finished and there is a whole second job standing there, and the second job turns out to be adding",
+        "hands": "Sweep the strips on paper with a finger, one at a time from the bottom right corner, writing each strip's total out in the margin before any digit is written into the answer.",
+        "tries": "First rung, from the item: which corner does the sweep begin from? Second rung, the phase's: what does a strip do when it comes to more than nine? Third rung: the strips are shaded one at a time with each total printed at its outer end and the digit that travels drawn as it goes. Nothing on the grid is cleared.",
+        "wrong": [
+          {
+            "why": "the strip's total is a number and the square under it is where that strip's answer goes, and nobody has said that a square holds only one digit.",
+            "move": "lets a strip that comes to ten put both its digits into one square of the answer rail, so 87 x 35 reads three, ten, four, five.",
+            "screen": "the four squares of the rail are named with their places, ones, tens, hundreds and thousands, and the square holding ten is opened. A place holds a single digit, so the zero stays where it is and the one belongs to the place on its left. A small vermilion one lifts out of the square, travels up the strip and lands above the strip to its left, and that strip is totalled again with it counted in, giving three. The rail reads 3045."
+          },
+          {
+            "why": "a grid looks like something to be read, and reading starts at the top left of everything else in the book.",
+            "move": "sweeps from the top left corner instead of the bottom right, because that is the corner a page is read from.",
+            "screen": "the top left strip is shown to hold only the 2 from 3 x 8, and it is written as the first digit of the answer; two strips later one comes to ten and has nowhere to send its one, because the strip that should have taken it was written three moves ago. The answer rail is then named with its places, the bottom right corner is read as the ones place because it is the strip holding the two ones digits and nothing else, and the sweep is run again from there, the places climbing leftwards the way they do in every column working in the book."
+          }
+        ],
+        "screen": "the filled grid with the diagonal strips shaded and the answer squares empty down its edge",
+        "soWhat": "The strips are swept from the bottom right corner, each one is one place of the answer, and a strip coming to more than nine keeps its right hand digit and passes one to the strip on its left, which lands there before that strip is totalled.",
+        "concept": "The answer is read down the diagonals"
+      }
+    ],
+    "delight": "The third phase, the moment the grid and the column working finish together. The four cells of 87 x 35 fill one after another and not one ring appears anywhere on the grid, while an arm's length away in the compare panel the same product has drawn two of them in vermilion, each sitting small above the column it was joining. The two are left standing side by side for a beat. Then the sweep begins, and on the strip that comes to ten a vermilion one lifts off the grid for the first time and travels up to the strip on its left. The tool has been telling the truth in two halves, and the second half arrives with a ring of its own.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the grid bay is empty paper with the two numbers waiting outside it, the one that will run along the top in deep blue and the one that will run down the side in amber, and the ruler control lit beneath them. On the second the grid is ruled and every cell is empty with its diagonal already drawn, and one pair of digits outside it is lit. On the third the grid stands full and the compare panel beside it holds the same product set out in columns, equally full, with its carry rings showing. On the fourth the grid is full, the diagonal strips are outlined but unshaded, and the answer rail runs empty along the foot and up the left hand side. The running count at the top left is empty and the slot and the pad stand empty down the right. One thing moves, once: the ruler control on the first phase, the lit pair of digits outside the grid on the second and third, or the bottom right corner of the grid on the last, gives one slow pulse while the voice says to rule the grid first. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any two numbers of two or three digits, with the ruler, the compare panel and the sweep open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on ruling the grid, filling a cell on both sides of its diagonal, scoping the claim the page makes, and sweeping the strips.",
+    "voiceLines": [
+      "Rule the grid first. One square for every pair of digits, and a line across each.",
+      "Count the digits in each number. How many squares will the grid need?",
+      "Tens above the line, ones below it. Every square takes two digits, even a small one.",
+      "Compare the grid with the column sum. What did the grid never ask you to do while you were multiplying?",
+      "Start at the bottom right corner. If a strip comes to more than nine, pass one to the strip on its left.",
+      "A new pair of numbers. The grid changes size before anything else does.",
+      "Free play. Any two numbers, the ruler, the compare panel and the sweep all open.",
+      "Fill that square again and say which half each of its digits belongs in.",
+      "Every square held one fact on its own, and then the strips put the places back together."
+    ],
+    "observations": [
+      {
+        "why": "Every digit of one number has to meet every digit of the other exactly once, and the grid is built to make that unmissable.",
+        "soWhat": "I can count the cells I am going to need, and the squares the answer will fill, before I rule a single line.",
+        "observe": "The grid took one cell for every pair of digits, so a three digit number against a two digit one wanted six cells and a four digit against a two digit wanted eight."
+      },
+      {
+        "why": "The upper half is the tens half, and a product below ten has no tens, which is exactly what a zero there says.",
+        "soWhat": "Every cell takes two digits, so every strip holds the same count of things and the sweep cannot quietly lose a place.",
+        "observe": "A pair coming to less than ten still filled both halves of its cell, with a grey zero sitting above the diagonal."
+      },
+      {
+        "why": "Each cell holds one digit taken one digit of times, and the diagonal gives that product's tens their own half of the square instead of sending them next door.",
+        "soWhat": "Nothing is carried while I multiply through the cells, and that is exactly as far as the claim on the page reaches.",
+        "observe": "Filling all four cells of the grid for 87 x 35 asked for no carrying at all, while the same product set out in columns beside it drew two carry rings before its rows had even been added."
+      },
+      {
+        "why": "Each strip is one place of the answer and a place holds a single digit, so whatever will not fit there belongs to the place above it.",
+        "soWhat": "The carrying the grid spared me while I was multiplying turns up again once the strips are added, and it always travels left, never right.",
+        "observe": "Sweeping 87 x 35 reached a strip holding four, four and two, which came to ten, so it wrote a zero, sent one to the strip on its left, and the rail read 3045."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "an empty stage with the two numbers waiting outside it and the ruler control lit",
+        "win": "the grid stands with one cell for every pair and a diagonal drawn across each one",
+        "traceback": "Each digit pairs with every digit of the other in a numbered list beside the grid, and the right grid is drawn in dashes over the child's, one cell a pair.",
+        "ladder": [
+          "Does a cell hold a whole number, or one digit from each number?",
+          "Count the tiles along the top, then the tiles down the side.",
+          "How can every cell get exactly one pair?",
+          "How many pairs can you make between them?",
+          "Pair each digit on top with every digit down the side."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the ruled grid with every cell empty and one pair of digits lit outside it",
+        "win": "the cell fills on both sides of its diagonal and the next pair lights outside the grid",
+        "traceback": "The cell is opened large with its halves named tens and ones, the fact is written beside it, and the product goes into the halves one digit at a time.",
+        "ladder": [
+          "Check every square: the right product, and two digits in it.",
+          "Which digit of that product counts the tens?",
+          "How many tens are there in that product?",
+          "Which half of the cell is the tens half?",
+          "Say the product, then write its tens above the line and its ones below."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the filled grid with the same product set out in columns beside it, its rings lit",
+        "win": "the column sum shows its rings and the grid shows none of them while it is being filled",
+        "traceback": "The grid and the column working fill side by side at the same pace: the rings arrive in the columns and never in the grid.",
+        "ladder": [
+          "Did any square send a digit to the square beside it?",
+          "What is the most a single cell's pair can come to?",
+          "What is left to do once every cell is full?",
+          "Where do that product's tens go?",
+          "Watch the grid and the columns fill side by side, and look for the rings."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the filled grid with the diagonal strips shaded and the answer squares empty down its edge",
+        "win": "every strip lands a digit, the ones that passed sit on the strips they joined, and the product reads off the edge",
+        "traceback": "The strips are swept again from the bottom right: each total is printed in its square, a total past nine keeps its right hand digit and sends its one to the strip on the left, and the product is read off the edge.",
+        "ladder": [
+          "How many digits can one square of the answer hold?",
+          "Add every digit in the strip, and the one passed to it.",
+          "Which strips came to more than nine?",
+          "What does a strip do when it comes to more than nine?",
+          "Watch each strip totalled in turn, and the one that travels to the left."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "pitch": 116,
+    "railDepth": 76,
+    "places": [
+      "O",
+      "T",
+      "H",
+      "Th",
+      "TTh"
+    ],
+    "method": "one cell for each pair of digits; tens above the diagonal, ones below; strips added from the bottom right, a strip over nine keeps its right hand digit and passes one to its left",
+    "colours": {
+      "top": "deep blue",
+      "side": "amber",
+      "product": "green",
+      "carry": "vermilion",
+      "partialRow": "rose",
+      "zeroHoldingAPlace": "grey"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T6.C20:ML1",
+        "kind": "rule",
+        "top": "74",
+        "side": "26",
+        "pad": "enter",
+        "winMs": 2600,
+        "answer": "2 × 2"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T6.C20:1",
+        "kind": "rule",
+        "top": "???",
+        "side": "??",
+        "blank": true,
+        "pad": "enter",
+        "winMs": 3200,
+        "answer": "3 × 2"
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T6.C20:2",
+        "kind": "place",
+        "top": "74",
+        "side": "26",
+        "winMs": 2600,
+        "answer": "top and side"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T6.C21:ML2",
+        "kind": "fill",
+        "top": "74",
+        "side": "26",
+        "winMs": 2000,
+        "answer": "14 08 42 24"
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T6.C21:3",
+        "kind": "cell",
+        "top": "9",
+        "side": "3",
+        "winMs": 1800,
+        "answer": "27"
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T6.C21:4",
+        "kind": "cell",
+        "top": "4",
+        "side": "2",
+        "winMs": 1800,
+        "answer": "08"
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T6.C22:ML3",
+        "kind": "carries",
+        "top": "87",
+        "side": "35",
+        "winMs": 1800,
+        "answer": 0
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T6.C22:5",
+        "kind": "why",
+        "top": "87",
+        "side": "35",
+        "winMs": 3400,
+        "answer": "own tens half"
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T6.C22:6",
+        "kind": "where",
+        "top": "87",
+        "side": "35",
+        "winMs": 5600,
+        "answer": "at the strips"
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T6.C23:ML4",
+        "kind": "sweep",
+        "top": "74",
+        "side": "26",
+        "winMs": 4200,
+        "answer": 1924
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T6.C23:7",
+        "kind": "sweep",
+        "top": "68",
+        "side": "45",
+        "winMs": 4200,
+        "answer": 3060
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T6.C23:8",
+        "kind": "sweep",
+        "top": "76",
+        "side": "54",
+        "winMs": 4200,
+        "answer": 4104
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: Each digit pairs with every digit of the other in a numbered list beside the grid, and the right grid is drawn in dashes over the child's, one cell a pair.",
+      "Phase 2: The cell is opened large with its halves named tens and ones, the fact is written beside it, and the product goes into the halves one digit at a time.",
+      "Phase 3: The grid and the column working fill side by side at the same pace: the rings arrive in the columns and never in the grid.",
+      "Phase 4: The strips are swept again from the bottom right: each total is printed in its square, a total past nine keeps its right hand digit and sends its one to the strip on the left, and the product is read off the edge."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Rule the grid first. One square for every pair of digits, and a line across each.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every square held one fact on its own, and then the strips put the places back together.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T6.C20:ML1",
+            "worked": false,
+            "kind": "rule",
+            "planQuestion": "How many cells does a grid for 74 x 26 need, and what does each one hold?",
+            "question": {
+              "en": "How many cells does a grid for 74 × 26 need, and what does each one hold?"
+            },
+            "ask": {
+              "en": "Rule the grid: 74 × 26"
+            },
+            "answer": "2 × 2",
+            "planAnswer": "Four cells, one for each pair of digits",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T6.C20:1",
+            "worked": false,
+            "kind": "rule",
+            "planQuestion": "A grid is ruled for a three digit number multiplied by a two digit number. How many cells does it have?",
+            "question": {
+              "en": "A grid is ruled for a three digit number multiplied by a two digit number. How many cells does it have?"
+            },
+            "ask": {
+              "en": "Rule the grid: 3 digits by 2"
+            },
+            "answer": "3 × 2",
+            "planAnswer": "Six, because each of the three digits pairs with each of the two",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T6.C20:2",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "Where do the digits of the two numbers go on a grid like this one?",
+            "question": {
+              "en": "Where do the digits of the two numbers go on a grid like this one?"
+            },
+            "ask": {
+              "en": "Where do the digits go?"
+            },
+            "answer": "top and side",
+            "planAnswer": "One number along the top and the other down the side, so that every cell belongs to exactly one pair",
+            "choices": [
+              "top and side",
+              "inside cells",
+              "both on top",
+              "both at side"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T6.C21:ML2",
+            "worked": false,
+            "kind": "fill",
+            "planQuestion": "Fill the four cells of the grid for 74 x 26.",
+            "question": {
+              "en": "Fill the four cells of the grid for 74 × 26."
+            },
+            "ask": {
+              "en": "Fill the four cells"
+            },
+            "answer": "14 08 42 24",
+            "planAnswer": "7 x 2 gives 1 and 4, 4 x 2 gives 0 and 8, 7 x 6 gives 4 and 2, and 4 x 6 gives 2 and 4",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T6.C21:3",
+            "worked": false,
+            "kind": "cell",
+            "planQuestion": "A cell pairs 9 and 3. What goes above its diagonal and what goes below?",
+            "question": {
+              "en": "A cell pairs 9 and 3. What goes above its diagonal and what goes below?"
+            },
+            "ask": {
+              "en": "9 × 3: above, then below?"
+            },
+            "answer": "27",
+            "planAnswer": "2 above and 7 below, because 9 x 3 = 27",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T6.C21:4",
+            "worked": false,
+            "kind": "cell",
+            "planQuestion": "A cell pairs 4 and 2. What goes above its diagonal and what goes below?",
+            "question": {
+              "en": "A cell pairs 4 and 2. Which digit sits above the diagonal, and which sits below?"
+            },
+            "ask": {
+              "en": "4 × 2: above, then below?"
+            },
+            "answer": "08",
+            "planAnswer": "0 above and 8 below, because 4 x 2 = 8 and every cell takes two digits",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T6.C22:ML3",
+            "worked": false,
+            "kind": "carries",
+            "planQuestion": "While the cells of the grid for 74 x 26 are being filled, how many times do you have to carry?",
+            "question": {
+              "en": "While the cells of the grid for 87 × 35 are being filled, how many times do you have to carry?"
+            },
+            "ask": {
+              "en": "Times you carry in the grid?"
+            },
+            "answer": 0,
+            "planAnswer": "Not once, because every cell is a single digit multiplied by a single digit",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T6.C22:5",
+            "worked": false,
+            "kind": "why",
+            "planQuestion": "Why is nothing carried while you multiply your way through the cells?",
+            "question": {
+              "en": "Why is nothing carried while you multiply your way through the cells?"
+            },
+            "ask": {
+              "en": "Why is nothing carried?"
+            },
+            "answer": "own tens half",
+            "planAnswer": "Because every cell is one digit times one digit, and the diagonal gives the tens their own half of the square",
+            "choices": [
+              "own tens half",
+              "small numbers",
+              "no tens made"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T6.C22:6",
+            "worked": false,
+            "kind": "where",
+            "planQuestion": "A child says this method never needs carrying. The claim holds while you are multiplying, so where does it break down?",
+            "question": {
+              "en": "A child says this method never needs carrying. The claim holds while you are multiplying, so where does it break down?"
+            },
+            "ask": {
+              "en": "Where does it break down?"
+            },
+            "answer": "at the strips",
+            "planAnswer": "At the strips. When the diagonals are added, a strip that comes to more than nine still passes one to its left",
+            "choices": [
+              "at the strips",
+              "in the cells",
+              "nowhere"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T6.C23:ML4",
+            "worked": false,
+            "kind": "sweep",
+            "planQuestion": "Sweep the diagonals of the grid for 74 x 26 and read off the product.",
+            "question": {
+              "en": "Sweep the diagonals of the grid for 74 × 26 and read off the product."
+            },
+            "ask": {
+              "en": "Sweep 74 × 26 strip by strip"
+            },
+            "answer": 1924,
+            "planAnswer": "1924",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T6.C23:7",
+            "worked": false,
+            "kind": "sweep",
+            "planQuestion": "Find 68 x 45 this way, and say which strip passed one to its left.",
+            "question": {
+              "en": "Find 68 × 45 this way, and say which strip passed one to its left."
+            },
+            "ask": {
+              "en": "Sweep 68 × 45 strip by strip"
+            },
+            "answer": 3060,
+            "planAnswer": "3060, and the third strip from the right came to 10, so it passed one to its left",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T6.C23:8",
+            "worked": false,
+            "kind": "sweep",
+            "planQuestion": "Find 76 x 54 this way, and say how many strips passed one to the left.",
+            "question": {
+              "en": "Find 76 × 54 this way, and say how many strips passed one to the left."
+            },
+            "ask": {
+              "en": "Sweep 76 × 54 strip by strip"
+            },
+            "answer": 4104,
+            "planAnswer": "4104, and two strips in a row passed one to the left",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "lattice_grid",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "lattice_grid",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "One cell for every pair of digits",
+        "conceptId": "M2.S4.T6.C20",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S4.T6.C20:ML1",
+          "M2.S4.T6.C20:1",
+          "M2.S4.T6.C20:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "The diagonal splits tens from ones",
+        "conceptId": "M2.S4.T6.C21",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S4.T6.C21:ML2",
+          "M2.S4.T6.C21:3",
+          "M2.S4.T6.C21:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Nothing is carried while you multiply",
+        "conceptId": "M2.S4.T6.C22",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S4.T6.C22:ML3",
+          "M2.S4.T6.C22:5",
+          "M2.S4.T6.C22:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "The answer is read down the diagonals",
+        "conceptId": "M2.S4.T6.C23",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S4.T6.C23:ML4",
+          "M2.S4.T6.C23:7",
+          "M2.S4.T6.C23:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "across",
+    "down",
+    "cells",
+    "filled",
+    "sweptStrips",
+    "passes",
+    "product"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, phase, across, down, cells, filled, sweptStrips, passes, product, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "lattice_grid"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T6.C20.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Rule the grid first. One square for every pair of digits, and a line across each."
+    },
+    {
+      "en": "Count the digits in each number. How many squares will the grid need?"
+    },
+    {
+      "en": "Tens above the line, ones below it. Every square takes two digits, even a small one."
+    },
+    {
+      "en": "Compare the grid with the column sum. What did the grid never ask you to do while you were multiplying?"
+    },
+    {
+      "en": "Start at the bottom right corner. If a strip comes to more than nine, pass one to the strip on its left."
+    },
+    {
+      "en": "A new pair of numbers. The grid changes size before anything else does."
+    },
+    {
+      "en": "Free play. Any two numbers, the ruler, the compare panel and the sweep all open."
+    },
+    {
+      "en": "Fill that square again and say which half each of its digits belongs in."
+    },
+    {
+      "en": "Every square held one fact on its own, and then the strips put the places back together."
+    }
+  ],
+  "build": {
+    "source": "c00cc06f:1603921",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-24T07:41:56.894Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-24T07:41:56.589Z"
+    },
+    "tsxBytes": 1604424,
+    "tsxMd5": "78c8f3008e1da0cae56969e756650235"
+  }
+}

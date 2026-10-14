@@ -1,0 +1,1214 @@
+{
+  "slotId": "M2.S4.T6.C20.2D1",
+  "mediaId": "M2.S4.T6.C20.2D1",
+  "toolId": "pictograph_builder",
+  "title": "Pictograph Builder",
+  "component": "M2.S4.T6.C20.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch14",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch14_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_14/2dtool/M2.S4.T6.C20.2D1/M2.S4.T6.C20.2D1.tsx",
+  "description": "Turn a tally into symbols one key's worth at a time, give the pictograph a title and a key, stand it up the page, and read a column by its symbols and the key.",
+  "conceptIds": [
+    "M2.S4.T6.C20",
+    "M2.S4.T6.C21",
+    "M2.S4.T6.C22",
+    "M2.S4.T6.C23"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Draw a pictograph from a tally chart, one symbol for each key's worth, give it a title and a key, stand it up the page, and read a column by its symbols and the key.",
+    "look": "A tally chart at the left, an empty pictograph at the right with a title strip and a key box, a tray of plain picture symbols, and a side ruler.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only. 'Pictograph Builder' sits in ink at the far left, with a small dot set clear of the name by measuring it. The phase title sits beside the dot on the same line, then the host's navigation, and again, sound and restart stand as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the symbols stamped in the row being built, one number in ink that climbs by one for each stamp and shows a half for a half stamp. Beside it are the rows finished against the rows the tally holds. Lifting a stamp takes one off, because the tally gets its marks back. A row's number is never written here, and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The tally chart stands at the left of the working area, 300 by 380 at 64,212. It holds up to six rows, each 56 tall with 6 between, from 220, each with its name in a cell 90 wide and its tally marks in a strip 200 wide. The marks are drawn small, every fifth across the four before it, up to four bundles. The symbol tray sits under it, 300 by 110 at 64,606, holding five plain pictures: a face, a cup, a tree, a kite and a bus. No letter, sign or mark stands in for a picture. The pictograph stands at the right, 660 by 500 at 380,212. Along its top are the title strip, 480 by 44, and the key box, 170 by 44 at 870,212, both outlined blanks until they are filled. Across the page it holds up to six rows, each 56 tall with 8 between, from 268. Each row has its name in a cell 120 wide, then its symbols from 512, each 36 wide with 8 between, up to ten. Its number, with its unit, sits in a tag 80 wide at 956. The key dial card stands at the far right, 100 by 210 at 1048,212, with the turn control under it at 1048,436 and the side ruler control at 1048,510. Each stamp puts one symbol at the next place along its row, one width and one gap on from the last, counted from the row's left edge. At the same moment one key's worth of marks fades from the matching tally row. A half stamp is offered only when exactly half a key's worth is left in that tally row, and it draws the left half of the symbol, last in the row. A stamp with nothing left in its tally row does not land. Every symbol stamped is the same picture at the same size, and a symbol dragged along its row slides back to its place. The pictograph shows as finished only when the title strip and the key box are both filled. The turn control swings the finished rows up into columns, each 64 wide with 24 between, from 464, stacked from a bottom line at 670. Each symbol, 34 tall with 4 between, keeps its place; the column names sit under the line, and each column's number sits above its top symbol. The side ruler, 56 wide at 392, lies blank beside the columns. As each symbol is tapped from the bottom, it writes beside it in amber the key times the symbols counted so far, in the data's own units. It never numbers the symbols themselves. Down the right of the canvas the question sits above the answer slot at 1186,250 (356 by 92), which holds what the child has given. That rectangle is the same on every phase and is never animated in or out. Under it is the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a number is asked for. For the title and the key's unit, a small letter pad opens over it, with the words the data uses offered as whole keys, children, people, cups, days and books among them. The footer runs 758 to 900. The voice caption sits at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling. The phase bar sits at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, taken from its pictures. Every upright tally mark is deep blue, and every fifth mark, drawn across the four before it, is vermilion. Every pictograph symbol, whole or half, in the key and in the rows, is green, except where the rows are named by colour. There each row's symbols wear that row's own colour: red, green, blue, yellow or purple. The key's symbol there is plain grey, which stands for one symbol of any colour and is used for nothing else. Amber is what a row, a column or a tally stands for once it is read, and so are the numbers in a table and the numbers a side ruler writes. Amber too is what half a symbol stands for, what a key leaves over, and a small round counter for one thing counted. A total of every row is reddish purple, and so is a thing a total counts more than once, such as a stop two routes share. The row a question asks about is marked by a pale sky blue band laid behind its symbols, never over them. So is the stretch by which one row or tally reaches beyond another. Chrome never borrows one of those, and none of them is ever used for chrome. Every table rule, row line, belt, route line, bracket, outlined blank and card edge is near-black, and titles, row names, headings and the wording of every key are near-black type. Every reading survives with the colour taken away. A fifth mark lies across and not upright, and a half symbol is the left half of the whole. A row's number sits beyond its end, a total sits in its own bar or cell, and a band lies behind a row rather than on it. No amount is ever drawn as a length of colour: an amount on this stage is symbols, marks, counters or a written number. A blank waiting for the child is an empty outlined box, never a faded copy of its answer. No pictograph on this stage is drawn with its side numbered in symbols. A side is left bare, or the side ruler numbers it in the data's own units, so a number the stage writes beside a column counts the data and not the pictures.",
+    "finish": "The card shows the pictograph the child drew from the tally, with its title and its key, standing up the page, and the side ruler numbered in children beside one column.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the last marks fade from the tally as the last symbol lands, and the row's count matches",
+        "does": "stamps symbols into the row, each taking one key's worth of marks from the tally, until the tally row is used up",
+        "goal": "one symbol is drawn for each key's worth, so the count shared into the key gives the number of symbols",
+        "says": "Each symbol stands for this many. How many symbols use up the tally?",
+        "check": "The key is one face for five people. How many faces show thirty people?",
+        "feels": "each stamp takes its handful of marks from the tally, and the row is done when the tally is",
+        "hands": "Before the tool is opened, tally the class's favourite fruits on the board. Then build the pictograph on the wall with one sticky note for every two children, crossing two marks off the tally for each note. Ask how many notes the mango row needs before anyone sticks one up. The count is shared into twos, not counted one by one, and a row with one child left over would need half a note.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: how many does one symbol stand for? Second rung, the phase's: how many of those make the count? Third rung: the tally row is cut to six marks with a key of two, and the child stamps until it is used up. The number keys stay open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "one picture for one child is how pictures have always counted, and the key is easy to forget while drawing.",
+            "move": "tries to stamp one face for each child, fourteen faces for fourteen children.",
+            "screen": "each stamp fades two marks from the tally, and after seven stamps the tally row is used up. The eighth stamp does not land, and the row stands at seven faces. Lifting a face gives its two marks back to the tally."
+          },
+          {
+            "why": "the bundles are what the eye sees in a tally, and each looks like one thing to draw.",
+            "move": "stamps one face for each bundle of five in the tally, two faces for fourteen.",
+            "screen": "the first stamp fades two marks out of the first bundle, not the whole bundle, and the bundle is seen split. The row goes on to seven faces as the tally fades two marks at a time."
+          },
+          {
+            "why": "the favourite row feels as though it ought to look the biggest.",
+            "move": "wants the favourite row's pictures drawn bigger or further apart, so it reaches past a row with more symbols.",
+            "screen": "every stamp lands the same picture at the same size, at the next place along from the row's left edge. A symbol dragged further along slides back, and the row stands at its true length, shorter than the row with more symbols."
+          }
+        ],
+        "screen": "a tally chart at the left, an empty pictograph row at the right, and the key dial set",
+        "soWhat": "Draw one symbol for each key's worth. The symbols times the key give back the count.",
+        "concept": "From a tally to symbols"
+      },
+      {
+        "n": 2,
+        "win": "the title and the key fill in, and every row's number appears at its end",
+        "does": "writes a title that says what the data is about and fills the key box",
+        "goal": "every pictograph needs a title that says what the data is about and a key that says what one symbol stands for",
+        "says": "Could anyone read this yet? What is missing?",
+        "check": "Away from the screen: draw three rows of stars for your class's pets. Give it a title and a key.",
+        "feels": "the chart can be read only once it says what it counts and what each picture is worth",
+        "hands": "Hold up a chart with no title and no key, and ask what it shows and how many each row is. Let the class find that nobody can say. The vocabulary box lists title and never defines it, and leaves out key altogether, so say both: the title is the heading that says what a pictograph shows, and the key says what one symbol stands for. The third exercise prints its symbol as a sign, not a picture. Draw a plain picture instead, and call its categories kinds of television show.",
+        "tries": "First rung, from the item: what does one picture stand for? Second rung, the phase's: could someone else read this chart? Third rung: the chart is cut to one row, and the child fills its key box. The letter pad stays open.",
+        "wrong": [
+          {
+            "why": "the child drew the chart and knows the key, so it does not feel missing.",
+            "move": "leaves the key off because the pictures are easy to count, so a reader takes each picture as one flower.",
+            "screen": "the pictograph will not show as finished, and the key box stays an outlined blank. Each row's tag stays empty, and the running count shows symbols only. The child's rows stay as drawn."
+          },
+          {
+            "why": "a title looks like a name for the picture, and the picture is a pictograph.",
+            "move": "writes a title that names the chart but not the data, such as My Pictograph.",
+            "screen": "the title strip keeps the child's words. A question card beside it asks what was counted, and the strip is offered back with the child's words still in it."
+          },
+          {
+            "why": "the number is the part used for reading, so it seems to be the whole key.",
+            "move": "writes the key as one flower for five, without saying five of what.",
+            "screen": "the key box keeps the number, and its unit stays an outlined blank. Each row's tag writes its number with the same blank after it."
+          }
+        ],
+        "screen": "a finished set of rows with the title strip and the key box still outlined blanks",
+        "soWhat": "Every pictograph needs a title that says what the data is about and a key that says what one symbol stands for.",
+        "concept": "A title and a key"
+      },
+      {
+        "n": 3,
+        "win": "the rows swing up into columns, every symbol keeps its place, and the column's number matches its row's",
+        "does": "stands it up the page, then reads one column by counting its symbols and using the key",
+        "goal": "a pictograph drawn up the page is read the same way, by counting symbols and using the key",
+        "says": "Now it stands up. Is it read any differently?",
+        "check": "A column holds five faces, one face for four children. How many children does it show?",
+        "feels": "the rows swing up, every symbol keeps its place, and a column is read just as its row was",
+        "hands": "Stand the class's fruit pictograph up the wall, one column for each fruit, sticking the notes on from the bottom. Ask whether it is read any differently. The chapter says pictographs are usually drawn across the page and can be drawn up it. Its one upward pictograph is the zoo animals, eight faces for the tiger at two children each.",
+        "tries": "First rung, from the item: how many symbols are in the column? Second rung, the phase's: what does one symbol stand for? Third rung: the pictograph is cut to one column of three symbols, and the child reads it from the bottom. The number keys stay open.",
+        "wrong": [
+          {
+            "why": "a column standing up looks like a new kind of chart, and its height looks like the answer.",
+            "move": "counts the column's symbols and gives six as the children who come by bicycle, forgetting the key once it stands up.",
+            "screen": "the column's symbols light from the bottom one at a time into the running count, six. The key's three is taken under each, and eighteen lands above the column. The child's six stays in the slot."
+          },
+          {
+            "why": "writing starts at the top of a page, and the title is at the top.",
+            "move": "on a pictograph drawn by hand, hangs each column's symbols from the top, so a short column starts high and looks tall.",
+            "screen": "the child's drawing stays on its card beside the board. The turned pictograph stacks every column from the bottom line, so a short column is short at the foot, and the columns' numbers are the same as before."
+          }
+        ],
+        "screen": "the finished pictograph across the page with the turn control waiting",
+        "soWhat": "A pictograph drawn up the page is read the same way: count the symbols and use the key.",
+        "concept": "A pictograph that stands up"
+      },
+      {
+        "n": 4,
+        "win": "the side ruler reads in children up to the top face, and the answer matches the column",
+        "does": "counts the faces, uses the key, and numbers the side ruler in children as each face is tapped",
+        "goal": "a column's data is its symbols times the key, whatever numbers stand beside it",
+        "says": "Those numbers count faces. How many children does the column show?",
+        "check": "Each face stands for three children. What numbers go beside the first four faces?",
+        "feels": "the numbers climb up the side by the key's worth, and the top one is the column's number",
+        "hands": "Show the chapter's upward pictograph of zoo animals. Its side is numbered from nought to ten in ones at the grid lines, under a heading that names children. Each face fills one grid square and stands for two children, so those numbers count faces: the tiger's column reaches eight where sixteen children chose it. Read every column by counting its faces and using the key. If the class numbers a side, number it in children, two, four, six, or leave it bare.",
+        "tries": "First rung, from the item: what do the numbers on the side count? Second rung, the phase's: what does one face stand for? Third rung: the column is cut to three faces, and the child numbers the side ruler in children. The number keys stay open.",
+        "wrong": [
+          {
+            "why": "a number beside a column usually says how much the column is, and the heading says children.",
+            "move": "reads seven off the numbered side as the children, when those numbers count faces.",
+            "screen": "the side ruler is laid blank beside the column. As each face is tapped from the bottom it writes two, four, six in amber, and it reaches fourteen at the top face. The child's seven stays beside the old side's seven."
+          },
+          {
+            "why": "the chapter's own upward pictograph does exactly that, so it looks like the right way.",
+            "move": "numbers the side of their own upward pictograph one per face, under the heading number of children.",
+            "screen": "the side ruler is laid beside the child's side and numbers itself in children as each face is tapped, two, four, six, up to the key times the faces. The child's numbers stand beside it, and the heading is set against both."
+          }
+        ],
+        "screen": "one column of faces with the key above it, a question card describing a side numbered one per face, and the side ruler blank",
+        "soWhat": "A column's data is its symbols times the key, whatever numbers stand beside it.",
+        "concept": "Numbers beside a column"
+      }
+    ],
+    "delight": "The first phase, when the last symbol of a row lands and its tally row is used up. The faded marks drift across the stage and settle inside the symbols, a key's worth in each whole symbol and half that in a half. Every symbol is seen holding its own marks. A tap on any symbol afterwards makes its marks glow inside it for a moment. It runs as often as a finger likes, nothing is marked either way, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the tally chart stands at the left with the key dial already set. One empty row waits on the pictograph at the right, with the symbol tray open. On the second the rows stand finished, with the title strip and the key box still outlined blanks. On the third the finished pictograph stands across the page with the turn control waiting. On the fourth one column of faces stands up the page with the key above it, and the side ruler lies blank beside it. A question card in the slot describes a side numbered one per face. The running count at the top left holds the symbols stamped in the row being built, with the rows finished beside it. The answer slot and the pad stand empty down the right. One thing moves, once: the stamp, or the empty key box, or the turn control, or the column's bottom face, gives one slow pulse while the voice asks its question. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any tally chart of up to six rows, any plain picture symbol and any key that fits, across the page or up it, with the side ruler open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on symbols from a tally, the title and the key, pictographs drawn up the page, and numbers beside a column.",
+    "voiceLines": [
+      "A tally on one side and an empty pictograph on the other. Set the key first.",
+      "Each symbol stands for this many. How many symbols use up the tally?",
+      "Could anyone read this yet? What is missing?",
+      "Now it stands up. Is it read any differently?",
+      "Those numbers count faces. How many children does the column show?",
+      "Another tally. How much does one symbol take from it?",
+      "Free play. Any tally, any plain picture, and any key that fits.",
+      "Lift the last symbol off, and watch how many marks it gives back.",
+      "A pictograph drawn from its tally, given a title and a key, and read standing up."
+    ],
+    "observations": [
+      {
+        "why": "Each symbol stood for one key's worth, so it took that many marks.",
+        "soWhat": "One symbol is drawn for each key's worth: the count shared into the key gives the number of symbols.",
+        "observe": "Each stamp faded two marks from the tally, and the row was finished when the tally row was used up."
+      },
+      {
+        "why": "Without the key nobody can turn a symbol into a number, and without the title nobody knows what was counted.",
+        "soWhat": "Every pictograph needs a title that says what the data is about and a key that says what one symbol stands for.",
+        "observe": "The pictograph would not show as finished until its title and its key were both filled."
+      },
+      {
+        "why": "Turning moves the symbols, and it does not change how many there are or what each one stands for.",
+        "soWhat": "A pictograph drawn up the page is read the same way: count the symbols and use the key.",
+        "observe": "The rows swung up into columns, and every column's number matched its row's."
+      },
+      {
+        "why": "It writes the key times the symbols counted, which is the data and not the count of symbols.",
+        "soWhat": "Numbers beside a column count whatever they were written for, and the column's data is its symbols times the key.",
+        "observe": "The side ruler wrote two, four, six up the column, and its top number matched the column's number."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a tally chart at the left, an empty pictograph row at the right, and the key dial set",
+        "win": "the last marks fade from the tally as the last symbol lands, and the row's count matches",
+        "traceback": "Each stamp takes one key's worth of marks from the tally until the row is used up, and the row reads its symbols times the key.",
+        "ladder": [
+          "How many children does one face stand for?",
+          "How many marks does one star use up?",
+          "How many marks does one book picture use up?",
+          "How many of those make the count?",
+          "Take away one key's worth of marks for each stamp. Count the stamps until no marks are left."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a finished set of rows with the title strip and the key box still outlined blanks",
+        "win": "the title and the key fill in, and every row's number appears at its end",
+        "traceback": "The title and the key fill in, and each row's number, its symbols times the key, is written at its end.",
+        "ladder": [
+          "What does one picture stand for?",
+          "The friend did not know one thing about the cup pictures. What was it?",
+          "One cloud is not one day here. What is it worth?",
+          "Would a friend know what one picture is worth?",
+          "Look at one row alone. What must a reader know to read it?"
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the finished pictograph across the page with the turn control waiting",
+        "win": "the rows swing up into columns, every symbol keeps its place, and the column's number matches its row's",
+        "traceback": "The column's symbols light from the bottom into the running count, the key is taken beside each, and the column's number lands above it.",
+        "ladder": [
+          "How many symbols are in the column?",
+          "Take the key once for every cup picture in a column.",
+          "Turn it back and forth. Does any symbol come or go?",
+          "Is the question asking for symbols, or for what they stand for?",
+          "Count one column's symbols one at a time, whichever way the chart is turned."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "one column of faces with the key above it, a question card describing a side numbered one per face, and the side ruler blank",
+        "win": "the side ruler reads in children up to the top face, and the answer matches the column",
+        "traceback": "The side ruler is laid beside the column and, face by face from the bottom, writes the key times the faces counted, up to the top face.",
+        "ladder": [
+          "What do the numbers on the side count?",
+          "Those numbers count something other than people. What?",
+          "Start at the bottom. What is the first face worth?",
+          "Which card tells you what a face is worth?",
+          "Go up the column face by face, adding the key each time."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "workingArea": {
+      "w": 1086,
+      "h": 528
+    },
+    "tally": {
+      "markPitch": 13,
+      "bundlePitch": 73,
+      "fifthMark": "drawn across the four before it"
+    },
+    "pictograph": {
+      "symbol": 44,
+      "pitch": 52,
+      "firstSymbolX": 196
+    },
+    "upright": {
+      "symbol": 36,
+      "pitch": 40,
+      "bottomLine": 470,
+      "columnPitch": 150
+    },
+    "keyDial": {
+      "min": 1,
+      "max": 10
+    },
+    "freePlay": {
+      "tally": [
+        1,
+        25
+      ],
+      "tray": [
+        "face",
+        "cup",
+        "tree",
+        "kite",
+        "bus"
+      ]
+    },
+    "colours": {
+      "mark": "#0072B2",
+      "fifthMark": "#D55E00",
+      "symbol": "#009E73",
+      "reading": "#E69F00",
+      "askedRow": "#56B4E9"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T6.C20:ML1",
+        "kind": "stamp",
+        "row": "Swimming",
+        "count": 14,
+        "key": 2,
+        "sym": "face",
+        "unit": "children",
+        "answer": 7,
+        "winMs": 2400
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T6.C20:1",
+        "kind": "stamp",
+        "row": "Cricket",
+        "count": 22,
+        "key": 2,
+        "sym": "star",
+        "unit": "children",
+        "answer": 11,
+        "winMs": 2600
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T6.C20:2",
+        "kind": "stamp",
+        "row": "Stories",
+        "count": 35,
+        "key": 5,
+        "sym": "book",
+        "unit": "books",
+        "answer": 7,
+        "winMs": 2400
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T6.C21:ML2",
+        "kind": "finish",
+        "pad": "enter",
+        "sym": "flower",
+        "unit": "flowers",
+        "key": 5,
+        "rows": [
+          [
+            "Garden A",
+            4
+          ],
+          [
+            "Garden B",
+            6
+          ],
+          [
+            "Garden C",
+            3
+          ],
+          [
+            "Garden D",
+            5
+          ]
+        ],
+        "titles": [
+          [
+            "mine",
+            "My pictograph"
+          ],
+          [
+            "bloom",
+            "Flowers in bloom today"
+          ],
+          [
+            "gardens",
+            "Four gardens"
+          ]
+        ],
+        "keys": [
+          [
+            "k5",
+            "= 5"
+          ],
+          [
+            "k5f",
+            "= 5 flowers"
+          ],
+          [
+            "k1f",
+            "= 1 flower"
+          ]
+        ],
+        "answer": "bloom k5f",
+        "winMs": 2200
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T6.C21:3",
+        "kind": "missing",
+        "sym": "cup",
+        "unit": "cups",
+        "key": 2,
+        "title": "Cups of tea sold",
+        "rows": [
+          [
+            "Monday",
+            3
+          ],
+          [
+            "Tuesday",
+            5
+          ],
+          [
+            "Wednesday",
+            2
+          ]
+        ],
+        "answer": "key",
+        "winMs": 2000
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T6.C21:4",
+        "kind": "keyread",
+        "sym": "cloud",
+        "unit": "days",
+        "key": 2,
+        "title": "Rainy days",
+        "focus": 0,
+        "rows": [
+          [
+            "June",
+            6
+          ],
+          [
+            "July",
+            8
+          ],
+          [
+            "August",
+            5
+          ],
+          [
+            "September",
+            3
+          ]
+        ],
+        "answer": 12,
+        "winMs": 1800
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T6.C22:ML3",
+        "kind": "column",
+        "sym": "bike",
+        "unit": "children",
+        "key": 3,
+        "title": "Coming by bicycle",
+        "up": true,
+        "focus": 0,
+        "cols": [
+          [
+            "4A",
+            6
+          ],
+          [
+            "4B",
+            4
+          ],
+          [
+            "4C",
+            5
+          ],
+          [
+            "4D",
+            3
+          ]
+        ],
+        "answer": 18,
+        "winMs": 2000
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T6.C22:5",
+        "kind": "columns",
+        "sym": "cup",
+        "unit": "cups",
+        "key": 10,
+        "title": "Cups of tea sold",
+        "up": true,
+        "cols": [
+          [
+            "Mon",
+            4
+          ],
+          [
+            "Tue",
+            7
+          ],
+          [
+            "Wed",
+            5
+          ]
+        ],
+        "parts": [
+          {
+            "label": "Mon"
+          },
+          {
+            "label": "Tue"
+          },
+          {
+            "label": "Wed"
+          }
+        ],
+        "answer": [
+          40,
+          70,
+          50
+        ],
+        "winMs": 2000
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T6.C22:6",
+        "kind": "same",
+        "sym": "face",
+        "unit": "children",
+        "key": 2,
+        "title": "Favourite fruits",
+        "up": false,
+        "focus": 0,
+        "cols": [
+          [
+            "Mango",
+            9
+          ],
+          [
+            "Apple",
+            5
+          ],
+          [
+            "Banana",
+            7
+          ]
+        ],
+        "answer": 9,
+        "winMs": 2000
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T6.C23:ML4",
+        "kind": "side",
+        "sym": "face",
+        "unit": "children",
+        "key": 2,
+        "faces": 7,
+        "heading": [
+          "Number of",
+          "children"
+        ],
+        "answer": 14,
+        "winMs": 2000
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T6.C23:7",
+        "kind": "side",
+        "sym": "face",
+        "unit": "people",
+        "key": 5,
+        "faces": 9,
+        "heading": [
+          "Number of",
+          "people"
+        ],
+        "answer": 45,
+        "winMs": 2200
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T6.C23:8",
+        "kind": "ruler",
+        "sym": "face",
+        "unit": "children",
+        "key": 4,
+        "faces": 4,
+        "parts": [
+          {
+            "label": "1st"
+          },
+          {
+            "label": "2nd"
+          },
+          {
+            "label": "3rd"
+          },
+          {
+            "label": "4th"
+          }
+        ],
+        "answer": [
+          4,
+          8,
+          12,
+          16
+        ],
+        "winMs": 1800
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: Each stamp takes one key's worth of marks from the tally until the row is used up, and the row reads its symbols times the key.",
+      "Phase 2: The title and the key fill in, and each row's number, its symbols times the key, is written at its end.",
+      "Phase 3: The column's symbols light from the bottom into the running count, the key is taken beside each, and the column's number lands above it.",
+      "Phase 4: The side ruler is laid beside the column and, face by face from the bottom, writes the key times the faces counted, up to the top face."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A tally on one side and an empty pictograph on the other. Set the key first.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "A pictograph drawn from its tally, given a title and a key, and read standing up.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T6.C20:ML1",
+            "worked": false,
+            "kind": "stamp",
+            "planQuestion": "A tally chart shows 14 children chose swimming, and the key is one face for 2 children. How many faces go in the swimming row?",
+            "question": {
+              "en": "A tally chart shows 14 children chose swimming, and the key is one face for 2 children. How many faces go in the swimming row?"
+            },
+            "ask": {
+              "en": "Faces in the swimming row?"
+            },
+            "answer": 7,
+            "planAnswer": "7 faces",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T6.C20:1",
+            "worked": false,
+            "kind": "stamp",
+            "planQuestion": "The key is one star for 2 children. How many stars show 22 children?",
+            "question": {
+              "en": "The key is one star for 2 children. How many stars show 22 children?"
+            },
+            "ask": {
+              "en": "Stars for 22 children?"
+            },
+            "answer": 11,
+            "planAnswer": "11 stars, because 11 x 2 = 22",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T6.C20:2",
+            "worked": false,
+            "kind": "stamp",
+            "planQuestion": "The key is one book picture for 5 books. How many book pictures show 35 books?",
+            "question": {
+              "en": "A tally counts 35 story books, and one book picture stands for 5 books. How many book pictures does the row need?"
+            },
+            "ask": {
+              "en": "Book pictures for 35 books?"
+            },
+            "answer": 7,
+            "planAnswer": "7 book pictures, because 7 x 5 = 35",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T6.C21:ML2",
+            "worked": false,
+            "kind": "finish",
+            "planQuestion": "A pictograph has rows of flower pictures for four gardens, but no title and no key. Each picture stands for 5 flowers, and the chart counts the flowers in bloom today. What title and key should it carry, and why?",
+            "question": {
+              "en": "A pictograph has rows of flower pictures for four gardens, but no title and no key. Each picture stands for 5 flowers, and the chart counts the flowers in bloom today. Give it the title and the key it needs."
+            },
+            "ask": {
+              "en": "Fill the title and the key."
+            },
+            "answer": "bloom k5f",
+            "planAnswer": "A title such as Flowers in Bloom Today, and the key one flower picture for 5 flowers",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T6.C21:3",
+            "worked": false,
+            "kind": "missing",
+            "planQuestion": "A pictograph shows rows of cup pictures but has no key, and a friend reads each row as that many cups. What should the pictograph have carried?",
+            "question": {
+              "en": "A pictograph shows rows of cup pictures. A friend reads each row as that many cups, but the chart meant more. What should the pictograph have carried?"
+            },
+            "ask": {
+              "en": "What was left off?"
+            },
+            "answer": "key",
+            "planAnswer": "A key saying what one cup picture stands for, and a title saying what the data is about",
+            "choices": [
+              "key",
+              "title",
+              "more",
+              "colour"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T6.C21:4",
+            "worked": false,
+            "kind": "keyread",
+            "planQuestion": "A class drew a pictograph of rainy days in four months with one cloud for 2 days, but left off the key. June holds 6 clouds, and a reader says June had 6 rainy days. How many rainy days did June have?",
+            "question": {
+              "en": "A class drew a pictograph of rainy days in four months, with one cloud for 2 days. They left off the key. June holds 6 clouds, and a reader says June had 6 rainy days. How many rainy days did June have?"
+            },
+            "ask": {
+              "en": "Rainy days in June?"
+            },
+            "answer": 12,
+            "planAnswer": "12, because each cloud stands for 2 days. The missing key misled the reader",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T6.C22:ML3",
+            "worked": false,
+            "kind": "column",
+            "planQuestion": "A pictograph drawn up the page has a column of 6 bicycle pictures for Class 4A, and the key is one bicycle for 3 children. How many children in Class 4A come by bicycle?",
+            "question": {
+              "en": "A pictograph drawn up the page has a column of 6 bicycle pictures for Class 4 A. The key is one bicycle for 3 children. How many children in that class come by bicycle?"
+            },
+            "ask": {
+              "en": "Children in 4A by bicycle?"
+            },
+            "answer": 18,
+            "planAnswer": "18 children",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T6.C22:5",
+            "worked": false,
+            "kind": "columns",
+            "planQuestion": "An upward pictograph has columns of 4, 7 and 5 cup pictures, and one cup stands for 10 cups of tea. How many cups does each column show?",
+            "question": {
+              "en": "An upward pictograph has columns of 4, 7 and 5 cup pictures. One cup stands for 10 cups of tea. How many cups of tea does each column show?"
+            },
+            "ask": {
+              "en": "Cups of tea in each column?"
+            },
+            "answer": [
+              40,
+              70,
+              50
+            ],
+            "planAnswer": "40, 70 and 50 cups",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T6.C22:6",
+            "worked": false,
+            "kind": "same",
+            "planQuestion": "The same data is drawn once across the page and once up it. The mango row of the one across holds 9 symbols. How many symbols does the mango column of the upward one hold?",
+            "question": {
+              "en": "The same data is drawn once across the page and once up it. How many symbols does the mango column of the upward one hold?"
+            },
+            "ask": {
+              "en": "Symbols in the mango column?"
+            },
+            "answer": 9,
+            "planAnswer": "9. Only the direction changes, so every row keeps its symbols",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T6.C23:ML4",
+            "worked": false,
+            "kind": "side",
+            "planQuestion": "An upward pictograph has a column of 7 faces, each for 2 children. A chart numbers the side beside it one to seven, one number for each face. How many children does the column show?",
+            "question": {
+              "en": "An upward pictograph has a column of 7 faces, each for 2 children. A chart numbers the side beside it one to seven, one number for each face. How many children does the column show?"
+            },
+            "ask": {
+              "en": "Children in the column?"
+            },
+            "answer": 14,
+            "planAnswer": "14 children",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T6.C23:7",
+            "worked": false,
+            "kind": "side",
+            "planQuestion": "A column holds 9 faces, each for 5 people. Its side is numbered one to nine, one number per face, under the heading Number of people. How many people does the column show?",
+            "question": {
+              "en": "A column holds 9 faces, each for 5 people. Its side is numbered one to nine, one number per face, under the heading Number of people. How many people is that?"
+            },
+            "ask": {
+              "en": "People in the column?"
+            },
+            "answer": 45,
+            "planAnswer": "45. The side's numbers count faces, so the heading does not match them: 9 x 5 = 45 people",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T6.C23:8",
+            "worked": false,
+            "kind": "ruler",
+            "planQuestion": "You number the side of an upward pictograph in children, with one face for 4 children. What numbers go beside the first, second, third and fourth faces?",
+            "question": {
+              "en": "You number the side of an upward pictograph in children, with one face for 4 children. What numbers go beside the first, second, third and fourth faces?"
+            },
+            "ask": {
+              "en": "Numbers up the side?"
+            },
+            "answer": [
+              4,
+              8,
+              12,
+              16
+            ],
+            "planAnswer": "4, 8, 12 and 16",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "pictograph_builder",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "pictograph_builder",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "From a tally to symbols",
+        "conceptId": "M2.S4.T6.C20",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S4.T6.C20:ML1",
+          "M2.S4.T6.C20:1",
+          "M2.S4.T6.C20:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "A title and a key",
+        "conceptId": "M2.S4.T6.C21",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S4.T6.C21:ML2",
+          "M2.S4.T6.C21:3",
+          "M2.S4.T6.C21:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "A pictograph that stands up",
+        "conceptId": "M2.S4.T6.C22",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S4.T6.C22:ML3",
+          "M2.S4.T6.C22:5",
+          "M2.S4.T6.C22:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Numbers beside a column",
+        "conceptId": "M2.S4.T6.C23",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S4.T6.C23:ML4",
+          "M2.S4.T6.C23:7",
+          "M2.S4.T6.C23:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "tally",
+    "symbol",
+    "keyWorth",
+    "key",
+    "rows",
+    "title",
+    "keyText",
+    "upright",
+    "curUp",
+    "sideRuler",
+    "lit",
+    "thumb",
+    "sym",
+    "key",
+    "unit"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, tally, symbol, keyWorth, key, rows, title, keyText, upright, curUp, sideRuler, lit, thumb, sym, key, unit",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "pictograph_builder"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T6.C20.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A tally on one side and an empty pictograph on the other. Set the key first."
+    },
+    {
+      "en": "Each symbol stands for this many. How many symbols use up the tally?"
+    },
+    {
+      "en": "Could anyone read this yet? What is missing?"
+    },
+    {
+      "en": "Now it stands up. Is it read any differently?"
+    },
+    {
+      "en": "Those numbers count faces. How many children does the column show?"
+    },
+    {
+      "en": "Another tally. How much does one symbol take from it?"
+    },
+    {
+      "en": "Free play. Any tally, any plain picture, and any key that fits."
+    },
+    {
+      "en": "Lift the last symbol off, and watch how many marks it gives back."
+    },
+    {
+      "en": "A pictograph drawn from its tally, given a title and a key, and read standing up."
+    }
+  ],
+  "build": {
+    "source": "4ff7c328:1730569",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-25T10:09:27.364Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-25T10:09:26.826Z"
+    },
+    "tsxBytes": 1733237,
+    "tsxMd5": "805551e8847434d60f523d857b23874c"
+  }
+}

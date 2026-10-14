@@ -1,0 +1,1090 @@
+{
+  "slotId": "M2.S3.T5.C16.2D1",
+  "mediaId": "M2.S3.T5.C16.2D1",
+  "toolId": "addition_rules",
+  "title": "Rules Bench",
+  "component": "M2.S3.T5.C16.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch2",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch2_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_2/2dtool/M2.S3.T5.C16.2D1/M2.S3.T5.C16.2D1.tsx",
+  "description": "Swap the addends, regroup them, and add one digit at a time, with two sums running side by side to compare.",
+  "conceptIds": [
+    "M2.S3.T5.C16",
+    "M2.S3.T5.C17",
+    "M2.S3.T5.C18",
+    "M2.S3.T5.C19"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find out what you are allowed to change about a sum without changing its answer, and which single digit moves when you add a round amount.",
+    "look": "Two column mats side by side sharing one set of number cards, with a step bay and a ring of circles below them.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Rules Bench' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: how many cards are standing on each mat, two numbers side by side in ink, so a bracket that turns three cards into two can be read there without counting the mat over; on the last two phases it carries the number the step bay began with and, under it, the amount being added, written in words. Nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The card tray runs along the top of the working area, 1086 by 88 at 64,202, holding the phase's number cards 150 by 64 at a pitch of 166; a card drawn out of the tray leaves its outline behind and the outline refills, so the same card can be dealt to both mats at once. The two mats are 510 by 256 at 64,300 and at 640,300, the same rectangle twice: a heading row 36 tall of five ruled cells reading TTh, Th, H, T and O, a carry strip 34 tall above the heading row where a carried digit stands small and vermilion over the column it is being added into, two addend rows 56 tall on the first phase and three on the second, a rule 4 tall under the last addend, and the sum row 56 tall under the rule with its digits in green. Between the mats, 66 wide at 574,300, runs the compare rail: it stays blank until both sums are written, and when the two sum rows read alike it closes as a single bar across the gap with the word Same printed on it, which is the word the printed page uses. The swap control is 180 by 48 under each mat at 174,566 and at 750,566, and it reverses the order of the cards on that mat alone without touching the other. A bracket jaw 210 by 24 rides under any pair of addend rows on a three card mat, hinged at its left end; closing it adds that pair there and then, turns the two cards face down and stands one new card in their place, so a grouping changes without a single number being rewritten. The step bay is 1086 by 110 at 64,620: the number window 420 by 72 at its left, five amount keys 108 by 56 along its middle reading nothing, one, ten, a hundred and a thousand, and the hold the rest control at its right, which drives a small ink pin into every digit that is to stay still. On the third and fourth phases the two mats fold to a single line of their last answer and the step bay grows upward to 1086 by 300 at 64,430, which is the only change of furniture anywhere in the tool; the place chart is then drawn in behind the number as five ruled columns with their headings printed small along the foot, and the column whose digit is about to move lights amber before it moves. In free play the ring bay opens in place of the mats: a triangle 420 by 380 centred at 574,300 with a circle 92 across at each of its three corners and one on the middle of each of its three sides, six in all, and a side total printed along each side, rewritten the moment a card lands in a circle. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a sum or a number has to be written, with a thirteenth key that writes a run of zeros so a round total can be finished in one press. On the fourth phase a strip of five place words, ones, tens, hundreds, thousands and ten thousands, sits under the keys, because the digit that is going to move is named before the amount key is pressed. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: a number being added is deep blue, the sum under the rule is green, a carried digit is vermilion and always drawn small above the column it is being added into, a rounded number and any estimated sum are rose, the digit under discussion or the one that is missing is amber, and a zero holding a place open is grey. Chrome never borrows one of them, and every one of those readings survives with the colour taken away, because a column is told by the heading over it before it is told by its band, and a carry is told by being small and sitting above the rule.",
+    "finish": "The card shows one sum worked two ways with its answers together, and the number from the step bay with the digit that moved still lit.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "both answers land together and read the same",
+        "does": "works both mats and reads the two answers against each other",
+        "goal": "swapping the addends leaves the sum alone",
+        "says": "Swap them over and add again. Did anything change?",
+        "check": "Away from the screen: add two numbers, then swap them round and add them again. What changed, and what did not?",
+        "feels": "swapping the two addends over feels as though it must matter, and both sum rows fill with the same number at the same moment",
+        "hands": "Write the two numbers on two paper slips, add them on squared paper, then swap the slips over and add them again on the line underneath, and read the two answers straight down the page.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: are the same two cards on both mats? Second rung, the phase's: which column is each digit standing in? Third rung: the mats are cut to one digit card apiece and that pair is added both ways round. The pad stays open behind all three.",
+        "wrong": [
+          {
+            "why": "every worked sum in the chapter so far has had the longer number on top, so that looks like part of the method rather than a habit.",
+            "move": "writes the larger addend on top on both mats, tidying the swap away while setting the second sum out.",
+            "screen": "the right mat clears and refills from the tray in the order the cards were dealt, one card to a row, each ringed in ink as it lands so the order can be read off the mat; both sums are then worked down the columns from the ones and the two answers stand together in the compare rail. The child's answer stays in the slot."
+          },
+          {
+            "why": "the top row used to be the longer number, and the left hand edge is where a written line begins.",
+            "move": "lines the two addends up by their left ends once the shorter one has been swapped to the top.",
+            "screen": "the heading over every digit of the shorter card is named under it as the card slides, and the card carries on sliding right until its last digit stands in the ones column, leaving its left hand column standing empty rather than closing the gap up. The rule and the sum row stay empty the whole time it moves, so nothing is added until the places agree."
+          }
+        ],
+        "screen": "the same two cards on both mats, in opposite orders",
+        "soWhat": "The sum is the same whichever order the addends are written in, so the easier one may go on top.",
+        "concept": "The order of the addends does not matter"
+      },
+      {
+        "n": 2,
+        "win": "the two mats agree, and the bracketed pair on one of them makes a round number",
+        "does": "closes the brackets around the pair that makes a round number",
+        "goal": "any pair may be added first, and one pair is easier than the others",
+        "says": "Pick the easiest pair to add first. You are allowed to.",
+        "check": "You have 4,300 and 15,842 and 5,700 to add. Which two would you add first, and what does that pair make?",
+        "feels": "you are allowed to choose, and one of the choices makes most of the sum disappear",
+        "hands": "Write three numbers on three cards, lay them on the table, and let the child draw a pencil loop round whichever pair they want to add first, add that pair out loud, and only then bring the third card in.",
+        "tries": "First rung, from the item: which two of your three cards make a round number together? Second rung, the phase's: what is left to add once that bracket is closed? Third rung: the mat is cut to the two cards that make the round number and the third is held in the tray until that pair is done. The pad stays open.",
+        "wrong": [
+          {
+            "why": "a written sum is read from the left, so the order the cards are lying in looks like an instruction about what has to be done first.",
+            "move": "adds the three cards strictly from left to right because that is the order they were dealt.",
+            "screen": "the bracket jaw opens under each possible pair in turn with that pair's total printed beside it, so the three first steps stand together on the stage: 2,600 and 7,400 make 10,000 and neither of the other pairs makes anything round, and the jaw under the round pair stays open while the others close. Nothing on the mat is cleared."
+          },
+          {
+            "why": "the pair total is a new number on the mat, and every number on the mat has been an addend until now.",
+            "move": "closes the bracket and then adds the pair total in as well as the two cards it replaced.",
+            "screen": "the two bracketed cards turn face down and slide under the single card that replaced them, so three cards are plainly two; the running count at the top left drops to the cards now standing, and the sum row stays empty until the mat holds exactly the cards it is going to add."
+          }
+        ],
+        "screen": "three cards on each mat with brackets open around different pairs",
+        "soWhat": "Three or more addends may be grouped any way at all, so the pair that makes a round number is the pair to add first.",
+        "concept": "The grouping of the addends does not matter either"
+      },
+      {
+        "n": 3,
+        "win": "the number sits unchanged after zero and stands at its successor after one",
+        "does": "adds each in turn and watches what moves",
+        "goal": "zero leaves a number alone and one gives its successor",
+        "says": "Adding nothing leaves it alone. Adding one steps it forward. Which is which?",
+        "check": "What is 3,67,204 plus nothing, and what is the number straight after 76,409?",
+        "feels": "adding nothing turns out to be a real addition, and adding one turns out to be a step rather than a sum",
+        "hands": "Say a number out loud and have the child say the one that comes straight after it, then write both down one under the other and look at which columns are different and which are not.",
+        "tries": "First rung, from the item: which column did the amount go into? Second rung, the phase's: how many digits may one column hold? Third rung: the step bay is cut to a three digit number with only the keys for nothing and for one live, and each is pressed on its own. The pad stays open and nothing already written is taken away.",
+        "wrong": [
+          {
+            "why": "adding is the thing that makes a number bigger, and putting a zero on the end is the one way of making a number bigger that needs no counting at all.",
+            "move": "writes the zero onto the end of the number, so 84,376 is handed in as 84,3760.",
+            "screen": "the zero is carried down into the ones column where it belongs and sits there in grey, because it is holding a place and bringing no amount, and every column is then read out from the ones with nothing added to any of them. The number in the window is printed twice, before and after, and the two printings are the same."
+          },
+          {
+            "why": "one more than nine is ten, and ten is the number the child has just said out loud.",
+            "move": "adds one to a number ending in nine and writes ten in the ones place.",
+            "screen": "the ones column opens to show the ten it has been handed, ten counters standing in a line, and they tie themselves into one bundle that will not fit in a column that holds a single digit; the bundle rides up as a small vermilion one above the tens column, the ones place is left with a grey zero, and the tens column is added again with that carried one in it."
+          }
+        ],
+        "screen": "the step bay with a number in it and the amounts zero and one waiting",
+        "soWhat": "Zero leaves a number exactly as it was, and one gives the number that comes straight after it, which is its successor.",
+        "concept": "Adding zero changes nothing and adding one steps forward"
+      },
+      {
+        "n": 4,
+        "win": "the named digit lifts, the rest stay pinned and the place chart agrees",
+        "does": "names the digit that will move before pressing, then presses",
+        "goal": "each round amount raises the digit in its own place and no other",
+        "says": "Which digit is going to move this time? Say it before you press.",
+        "check": "A tank held 17,435 L and a thousand litres more went in. Which digit changes, and what does the tank hold now?",
+        "feels": "the digit that moves is named by the chart and not by where it happens to sit on the line",
+        "hands": "Write a five digit number with a finger width between the digits, write the place name under each one, and ask which of those names the amount being added belongs to before anybody adds anything at all.",
+        "tries": "First rung, from the item: which place does the amount you are adding belong to? Second rung, the phase's: which column on the chart carries that name? Third rung: the chart is cut to that one column with every other digit pinned and greyed, so only that digit is free to move. The place words stay open under the pad.",
+        "wrong": [
+          {
+            "why": "a thousand is the biggest amount on the keys, and the digit that gets raised is picked by eye rather than read off the chart, which puts it one place out.",
+            "move": "adds a thousand by raising the hundreds digit, so 26,318 is handed in as 26,418.",
+            "screen": "the place chart slides in behind the number and the thousands column lights amber with its heading named aloud; the hundreds digit the child moved is put back and pinned with the rest, and the thousands digit alone lifts, rolls forward by one and drops, leaving 27,318 in the window. Both numbers stay printed, one under the other."
+          },
+          {
+            "why": "the shortcut has worked on every number it has been tried on, and in all of those the digit happened to be second along from the left hand end.",
+            "move": "adds a thousand to a six digit number by raising the second digit from the left, which is where the thousands digit stood in every five digit number so far.",
+            "screen": "a five digit number and a six digit one are stood one under the other with the place chart behind both, and a thousand is added to each; the thousands column lights amber in both, and the two amber digits are plainly not the same distance from the left hand end while both are the fourth column counted in from the right. Nothing is marked and nothing is cleared."
+          }
+        ],
+        "screen": "the step bay with the place chart behind the number and every other digit pinned",
+        "soWhat": "Adding ten raises the tens digit, a hundred the hundreds digit and a thousand the thousands digit, whatever the rest of the number looks like.",
+        "concept": "Adding ten, a hundred or a thousand lifts one digit"
+      }
+    ],
+    "delight": "The third phase, the moment one is added to a number that ends in nines. The ones digit rolls forward, reaches ten, cannot stay in a column that holds one digit, and hands the step on: the four nines of 59,999 roll over one after another from the right, each leaving a grey zero behind it because a zero there is holding a place open and bringing nothing, and the roll runs out at the ten thousands column, where the five steps quietly up to six. The window is left reading 60,000, which is the number that comes straight after the one that was standing there. Nothing else moves and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the two mats stand side by side with the same two cards on each, dealt in opposite orders, their columns ruled under their headings, their rules drawn and their sum rows empty. On the second each mat holds three cards and a bracket jaw lies open under a different pair on each, so the two groupings are showing before anything is pressed. On the third the mats have folded to one line apiece and the step bay has grown up into their place, a number standing in its window with the amount keys for nothing and for one waiting beside it. On the fourth the place chart is drawn in behind that number and every digit carries its small holding pin. The running count at the top left is empty and the slot and the pad stand empty down the right. One thing moves, once: the swap control on the first phase, the open bracket jaw on the second, or the number in the step bay window on the last two, gives one slow pulse while the voice says there are two mats and one set of cards. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any numbers on either mat, brackets anywhere, with the step bay and the ring bay open alongside. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on order, grouping, adding zero and one, and lifting the digit that belongs to the amount.",
+    "voiceLines": [
+      "Two mats, one set of cards. Put the same numbers on both.",
+      "Swap them over and add again. Did anything change?",
+      "Pick the easiest pair to add first. You are allowed to.",
+      "Adding nothing leaves it alone. Adding one steps it forward. Which is which?",
+      "Which digit is going to move this time? Say it before you press.",
+      "The same kind of sum. Something else is allowed to change.",
+      "Free play. Any numbers, either mat, brackets anywhere, and the ring of circles open.",
+      "Work both mats again and read the two answers side by side.",
+      "You moved the addends about and the sum never budged, and then you lifted one digit on purpose."
+    ],
+    "observations": [
+      {
+        "why": "Only the order of the addends changed, and an order is not an amount.",
+        "soWhat": "I may write whichever addend is easier to work with on top.",
+        "observe": "The two mats held the same two cards in opposite orders and their sum rows filled with the same number."
+      },
+      {
+        "why": "Any pair may be added first, so the pair that makes a round number can be picked on purpose.",
+        "soWhat": "Grouping is not a sentence to recite. It is a way of making the sum in front of me easier.",
+        "observe": "Closing a bracket turned three cards into two, and one of the two was a round number."
+      },
+      {
+        "why": "Zero puts no amount into any place, so there is nothing for a column to take.",
+        "soWhat": "Adding zero is still an addition, and its answer is the number you started with.",
+        "observe": "Adding nothing left every column exactly as it was, and the window printed the number twice the same."
+      },
+      {
+        "why": "A round amount goes into its own place, and a place is named by the chart rather than counted from the left hand end.",
+        "soWhat": "The shortcut is about a place, so it keeps working however long the number gets.",
+        "observe": "A thousand raised the fourth column counted in from the right in a five digit number and in a six digit one."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the same two cards on both mats, in opposite orders",
+        "win": "both answers land together and read the same",
+        "traceback": "The right mat clears and refills in the order the cards were dealt, each ringed as it lands; both sums are worked from the ones with their carries and stand together: Same.",
+        "ladder": [
+          "Are the same two cards on both mats?",
+          "Does swapping the cards change what they add up to?",
+          "Which card is on the left mat but not yet on the right?",
+          "Which column is each digit standing in?",
+          "Try it small first. Is 3 + 5 the same as 5 + 3?"
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "three cards on each mat with brackets open around different pairs",
+        "win": "the two mats agree, and the bracketed pair on one of them makes a round number",
+        "traceback": "Each pair is totalled in turn and the round one stays open; that bracket closes, its two cards turn face down under their total, and both mats are added to the same sum.",
+        "ladder": [
+          "Which two of your three cards make a round number together?",
+          "Both mats hold the same three cards. Which one is missing?",
+          "Which pair would be easiest to add in your head?",
+          "What is left to add once that bracket is closed?",
+          "Add the round pair first, then bring in the card left over."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the step bay with a number in it and the amounts zero and one waiting",
+        "win": "the number sits unchanged after zero and stands at its successor after one",
+        "traceback": "The amount drops into its own column (a zero in grey); the columns are read from the ones, ten ones bundle into a carried one, and the result is printed under the start.",
+        "ladder": [
+          "Which column did the amount go into?",
+          "What happens to a column of nines when one more comes?",
+          "Which number comes just after it when you count?",
+          "How many digits may one column hold?",
+          "Start at the ones column. Add the amount there, and carry if it makes ten."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the step bay with the place chart behind the number and every other digit pinned",
+        "win": "the named digit lifts, the rest stay pinned and the place chart agrees",
+        "traceback": "The place chart lights the amount's column amber; every other digit stays pinned, that digit alone lifts and rolls on by one, and the new number is printed under the old.",
+        "ladder": [
+          "Which place does the amount you are adding belong to?",
+          "Which two places do ten and a hundred go into?",
+          "Did the child change the thousands digit or the hundreds digit?",
+          "Which column on the chart carries that name?",
+          "Only the digit in that column moves. Every other digit stays pinned."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "mats": {
+      "columns": [
+        "TTh",
+        "Th",
+        "H",
+        "T",
+        "O"
+      ],
+      "rowsByPhase": {
+        "1": 2,
+        "2": 3
+      },
+      "compareWord": "Same"
+    },
+    "stepBay": {
+      "places": [
+        "ones",
+        "tens",
+        "hundreds",
+        "thousands",
+        "ten thousands"
+      ],
+      "amountsByPhase": {
+        "3": [
+          0,
+          1
+        ],
+        "4": [
+          10,
+          100,
+          1000
+        ]
+      },
+      "predictFirst": true
+    },
+    "ring": {
+      "circles": 6,
+      "cards": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sides": [
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          1,
+          4,
+          2
+        ],
+        [
+          2,
+          5,
+          0
+        ]
+      ]
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T5.C16:ML1",
+        "kind": "sum",
+        "cards": [
+          26418,
+          51270
+        ],
+        "left": [
+          "a",
+          "b"
+        ],
+        "right": [
+          "b",
+          "a"
+        ],
+        "answer": 77688,
+        "winMs": 3800
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T5.C16:1",
+        "kind": "sum",
+        "cards": [
+          34205,
+          18640
+        ],
+        "left": [
+          "a",
+          "b"
+        ],
+        "right": [
+          "b",
+          "a"
+        ],
+        "answer": 52845,
+        "winMs": 3800
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T5.C16:2",
+        "kind": "blank",
+        "cards": [
+          41738,
+          6205
+        ],
+        "left": [
+          "a",
+          "b"
+        ],
+        "right": [
+          "b",
+          "blank"
+        ],
+        "near": 6205,
+        "answer": 41738,
+        "pad": "enter",
+        "winMs": 3800
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T5.C17:ML2",
+        "kind": "group",
+        "cards": [
+          2600,
+          7400,
+          18530
+        ],
+        "left": [
+          "a",
+          "b",
+          "c"
+        ],
+        "right": [
+          "a",
+          "b",
+          "c"
+        ],
+        "jawL": 0,
+        "jawR": 1,
+        "answer": 28530,
+        "winMs": 4800
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T5.C17:3",
+        "kind": "blank",
+        "cards": [
+          5120,
+          3408,
+          2675
+        ],
+        "left": [
+          "a",
+          "b",
+          "c"
+        ],
+        "right": [
+          "a",
+          "blank",
+          "c"
+        ],
+        "jawL": 0,
+        "jawR": 1,
+        "near": 8528,
+        "answer": 3408,
+        "pad": "enter",
+        "winMs": 4800
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T5.C17:4",
+        "kind": "group",
+        "cards": [
+          4300,
+          15842,
+          5700
+        ],
+        "left": [
+          "a",
+          "b",
+          "c"
+        ],
+        "right": [
+          "a",
+          "b",
+          "c"
+        ],
+        "jawL": 0,
+        "jawR": 1,
+        "answer": 25842,
+        "winMs": 4800
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T5.C18:ML3",
+        "kind": "step",
+        "start": 84376,
+        "adds": [
+          0
+        ],
+        "answer": 84376,
+        "winMs": 1800
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T5.C18:5",
+        "kind": "step",
+        "start": 59999,
+        "adds": [
+          1
+        ],
+        "answer": 60000,
+        "winMs": 1800
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T5.C18:6",
+        "kind": "step",
+        "start": 76409,
+        "adds": [
+          1
+        ],
+        "answer": 76410,
+        "winMs": 1800
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T5.C19:ML4",
+        "kind": "step",
+        "start": 26318,
+        "adds": [
+          1000
+        ],
+        "answer": 27318,
+        "winMs": 1800
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T5.C19:7",
+        "kind": "step",
+        "start": 48362,
+        "adds": [
+          10,
+          100
+        ],
+        "answer": 48472,
+        "winMs": 1800
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T5.C19:8",
+        "kind": "step",
+        "start": 34652,
+        "adds": [
+          1000
+        ],
+        "answer": 35652,
+        "winMs": 1800
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The right mat clears and refills in the order the cards were dealt, each ringed as it lands; both sums are worked from the ones with their carries and stand together: Same.",
+      "Phase 2: Each pair is totalled in turn and the round one stays open; that bracket closes, its two cards turn face down under their total, and both mats are added to the same sum.",
+      "Phase 3: The amount drops into its own column (a zero in grey); the columns are read from the ones, ten ones bundle into a carried one, and the result is printed under the start.",
+      "Phase 4: The place chart lights the amount's column amber; every other digit stays pinned, that digit alone lifts and rolls on by one, and the new number is printed under the old."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Two mats, one set of cards. Put the same numbers on both.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "You moved the addends about and the sum never budged, and then you lifted one digit on purpose.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T5.C16:ML1",
+            "worked": false,
+            "kind": "sum",
+            "planQuestion": "Add 26,418 and 51,270, then swap the addends and add again. What do you notice?",
+            "question": {
+              "en": "Add 26,418, and 51,270. Then swap the addends and add again. Type the sum you get."
+            },
+            "ask": {
+              "en": "What is the sum?"
+            },
+            "answer": 77688,
+            "planAnswer": "Both give 77,688, so the order of the addends does not change the sum",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T5.C16:1",
+            "worked": false,
+            "kind": "sum",
+            "planQuestion": "Does 34,205 + 18,640 give the same answer as 18,640 + 34,205?",
+            "question": {
+              "en": "Take 34,205, and add 18,640. Then take 18,640, and add 34,205. Is the answer the same? Type the sum."
+            },
+            "ask": {
+              "en": "What is the sum?"
+            },
+            "answer": 52845,
+            "planAnswer": "Yes, both come to 52,845",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T5.C16:2",
+            "worked": false,
+            "kind": "blank",
+            "planQuestion": "Fill the blank: 41,738 + 6,205 = 6,205 + ___",
+            "question": {
+              "en": "Fill the blank. 41,738 + 6,205, equals 6,205 + one more card. Which card is it? Drag it in, then press Enter."
+            },
+            "ask": {
+              "en": "Which card fits the gap?"
+            },
+            "answer": 41738,
+            "planAnswer": "41,738",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T5.C17:ML2",
+            "worked": false,
+            "kind": "group",
+            "planQuestion": "Add 2,600 + 7,400 + 18,530 by choosing the easiest grouping.",
+            "question": {
+              "en": "Add 2,600 and 7,400, and then 18,530. Choose the easiest grouping. Tap a bracket, or tap two cards."
+            },
+            "ask": {
+              "en": "What is the total?"
+            },
+            "answer": 28530,
+            "planAnswer": "28,530, by adding 2,600 and 7,400 first to make 10,000",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T5.C17:3",
+            "worked": false,
+            "kind": "blank",
+            "planQuestion": "Fill the blank: (5,120 + 3,408) + 2,675 = 5,120 + (___ + 2,675)",
+            "question": {
+              "en": "Fill the blank. The left mat holds 5,120, 3,408 and 2,675. The right mat holds 5,120, a gap and 2,675. Which card fills the gap? Drag it in, then press Enter."
+            },
+            "ask": {
+              "en": "Which card fits the gap?"
+            },
+            "answer": 3408,
+            "planAnswer": "3,408",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T5.C17:4",
+            "worked": false,
+            "kind": "group",
+            "planQuestion": "Add 4,300 + 15,842 + 5,700 by choosing the easiest pair first.",
+            "question": {
+              "en": "Add 4,300 and 15,842, and then 5,700. Choose the easiest pair first."
+            },
+            "ask": {
+              "en": "What is the total?"
+            },
+            "answer": 25842,
+            "planAnswer": "25,842, by adding 4,300 and 5,700 first to make 10,000",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T5.C18:ML3",
+            "worked": false,
+            "kind": "step",
+            "planQuestion": "What is 84,376 + 0, and what is 84,376 + 1?",
+            "question": {
+              "en": "What is 84,376 + 0? Type what the window will read, then press + 0."
+            },
+            "ask": {
+              "en": "What will it read?"
+            },
+            "answer": 84376,
+            "planAnswer": "84,376 and 84,377",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T5.C18:5",
+            "worked": false,
+            "kind": "step",
+            "planQuestion": "What is 3,67,204 + 0, and what is 59,999 + 1?",
+            "question": {
+              "en": "What is 59,999 + 1? Type the reading you expect, then press + 1."
+            },
+            "ask": {
+              "en": "What will it read?"
+            },
+            "answer": 60000,
+            "planAnswer": "3,67,204 and 60,000",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T5.C18:6",
+            "worked": false,
+            "kind": "step",
+            "planQuestion": "What is the successor of 76,409?",
+            "question": {
+              "en": "What is the successor of 76,409? Type it, then let + 1 check it."
+            },
+            "ask": {
+              "en": "What comes next?"
+            },
+            "answer": 76410,
+            "planAnswer": "76,410",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T5.C19:ML4",
+            "worked": false,
+            "kind": "step",
+            "planQuestion": "A tank held 26,318 L of water and another 1000 L was poured in. A child wrote 26,418 L. Is that right?",
+            "question": {
+              "en": "A tank held 26,318 L of water, and 1,000 L more was poured in. A child wrote 26,418 L. What should it be? Type it, then press + 1,000."
+            },
+            "ask": {
+              "en": "How many litres now?"
+            },
+            "answer": 27318,
+            "planAnswer": "No. The tank holds 27,318 L, because adding a thousand raises the thousands digit",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T5.C19:7",
+            "worked": false,
+            "kind": "step",
+            "planQuestion": "Add 10 to 48,362, then add 100 to your answer, and say which digit changed each time.",
+            "question": {
+              "en": "Add 10 to 48,362, then add 100 to your answer. Type what you get, then press + 10."
+            },
+            "ask": {
+              "en": "What will it read?"
+            },
+            "answer": 48472,
+            "planAnswer": "48,372 after the ten and 48,472 after the hundred. The tens digit changed first, then the hundreds digit",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T5.C19:8",
+            "worked": false,
+            "kind": "step",
+            "planQuestion": "A shop had 34,652 packets and a thousand more arrived. A child wrote 34,752. Correct the child and say what went wrong.",
+            "question": {
+              "en": "A shop had 34,652 packets, and a thousand more arrived. A child wrote 34,752. Fix the child's answer, then check it with + 1,000."
+            },
+            "ask": {
+              "en": "How many packets now?"
+            },
+            "answer": 35652,
+            "planAnswer": "It should be 35,652. The child raised the hundreds digit, but adding a thousand raises the thousands digit",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "addition_rules",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "addition_rules",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "The order of the addends does not matter",
+        "conceptId": "M2.S3.T5.C16",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C16:ML1",
+          "M2.S3.T5.C16:1",
+          "M2.S3.T5.C16:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "The grouping of the addends does not matter either",
+        "conceptId": "M2.S3.T5.C17",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C17:ML2",
+          "M2.S3.T5.C17:3",
+          "M2.S3.T5.C17:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Adding zero changes nothing and adding one steps forward",
+        "conceptId": "M2.S3.T5.C18",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C18:ML3",
+          "M2.S3.T5.C18:5",
+          "M2.S3.T5.C18:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Adding ten, a hundred or a thousand lifts one digit",
+        "conceptId": "M2.S3.T5.C19",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C19:ML4",
+          "M2.S3.T5.C19:7",
+          "M2.S3.T5.C19:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "cards",
+    "leftMat",
+    "rightMat",
+    "brackets",
+    "null",
+    "pair",
+    "closed"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, cards, leftMat, rightMat, brackets, null, pair, closed",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "addition_rules"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T5.C16.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Two mats, one set of cards. Put the same numbers on both."
+    },
+    {
+      "en": "Swap them over and add again. Did anything change?"
+    },
+    {
+      "en": "Pick the easiest pair to add first. You are allowed to."
+    },
+    {
+      "en": "Adding nothing leaves it alone. Adding one steps it forward. Which is which?"
+    },
+    {
+      "en": "Which digit is going to move this time? Say it before you press."
+    },
+    {
+      "en": "The same kind of sum. Something else is allowed to change."
+    },
+    {
+      "en": "Free play. Any numbers, either mat, brackets anywhere, and the ring of circles open."
+    },
+    {
+      "en": "Work both mats again and read the two answers side by side."
+    },
+    {
+      "en": "You moved the addends about and the sum never budged, and then you lifted one digit on purpose."
+    }
+  ],
+  "build": {
+    "source": "73e8c1e0:213318",
+    "runtime": "class4/runtime/runtime.tsx",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-22T15:35:17.327Z",
+    "checks": {
+      "pass": 61,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-22T15:35:17.222Z"
+    },
+    "tsxBytes": 203706,
+    "tsxMd5": "11349c6ef5d0d92097beccddd4bf46ce"
+  }
+}

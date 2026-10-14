@@ -1,0 +1,1190 @@
+{
+  "slotId": "M2.S4.T7.C24.2D1",
+  "mediaId": "M2.S4.T7.C24.2D1",
+  "toolId": "which_is_more_rail",
+  "title": "Which Is More Rail",
+  "component": "M2.S4.T7.C24.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch7",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch7_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_7/2dtool/M2.S4.T7.C24.2D1/M2.S4.T7.C24.2D1.tsx",
+  "description": "Send a pair of fractions down a rail with two gates, and park the pairs that neither gate will take.",
+  "conceptIds": [
+    "M2.S4.T7.C24",
+    "M2.S4.T7.C25",
+    "M2.S4.T7.C26",
+    "M2.S4.T7.C27"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find out which pairs of fractions each of this chapter's two rules can settle, and what to do with a pair that neither one reaches.",
+    "look": "A rail running across the stage with two named gates on it, a parking bay at its end and a line-up board underneath.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Which Is More Rail' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the pairs settled against the pairs this phase loads, two numbers in ink, and beside them, on its own and never underneath as though it were a shortfall, the count of pairs standing in the bay. Neither count ever goes down and neither of them ever reads as a score. The working area is 1086 by 528 at 64,202. The rail runs left to right across the upper half of the working area, 1086 by 10 at 64,330, with a loading head at its left 240 by 200 at 64,230 and the two gates standing on it. The first gate is 200 by 240 at 420,210 and carries a printed label naming it for a shared lower number; the second is 200 by 240 at 700,210 and carries a printed label naming it for a shared upper number. Each label is a sentence about what that gate tests and never about which number is bigger. A gate opens only when its own test passes: inside the first, both fractions are drawn as strips of equal length cut the same number of times, and the fuller strip lifts clear in vermilion; inside the second, the two strips are cut differently and filled with the same number of parts, and the strip cut into fewer parts is drawn plainly reaching further. A gate that refuses lights the two numbers it would have compared on both fractions, writes nothing, marks nothing and lets the pair roll on. The parking bay is 240 by 240 at 980,210, drawn in sky blue with a printed label standing over it, and it is a settled end state rather than an error: a pair that both gates refused rolls in, comes to rest, and the bay prints beside it that this pair shares neither number and that no rule in this chapter reaches it. Nothing in the bay is ever red, nothing in it is ever crossed through, and nothing ever pushes a parked pair back out onto the rail by itself. The line-up board runs 1086 by 190 at 64,530, three to six card slots along it with the direction switch 200 by 48 at its right reading ascending or descending; a slot takes a card only once the whole set has been checked for what its members share, and a small strip is drawn under each card so the finished order can be read off the pictures as well as off the numbers. The whole number reader sits at 64,470, 240 by 48, and draws any fraction written over one as that many complete whole circles in green. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across where a number is asked for, with three comparison keys beside them reading is greater than, is less than, and cannot be settled yet. The third key is the same size and the same weight as the other two, because on this rail it is an answer and not a way out of answering. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: the parts a fraction counts are deep blue, the parts of that same whole which it leaves are amber, a whole shown entire or a bracket spanning one whole is green, a second writing of an amount already on the stage is rose, the greater of two fractions one of the chapter's rules can settle is vermilion, and a pair neither rule settles is sky blue, which is how this stage says undecided without saying wrong. Chrome never borrows one of those and none of them is ever used for chrome. Every reading survives with the colour taken away, because a part is told from the rest by the drawn cut between them and by the label under it before it is ever told by a fill, and every cut, score line, cell edge and guide line is near-black. A fraction is drawn everywhere with its upper number above a level horizontal line and its lower number below, both upright and centred, and a mixed number is drawn as an upright whole number standing beside a stacked fraction. The bay is never drawn as a bin, a cross, a question mark or an empty box. It is a labelled place with a printed reason standing over it, and a pair in it has been correctly handled. A child who reaches it has read both gates and found that neither one tests anything these two fractions have in common, which is a piece of work and not a failure to do one.",
+    "finish": "The card shows every pair the child sent down the rail, which gate took each one, and anything standing in the not yet bay still labelled with the reason it is there.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the gate opens, the strips are drawn with the same cuts, and the fuller one is lifted out",
+        "does": "sends the pair through the first gate and reads the two strips inside it",
+        "goal": "like fractions are compared by their upper numbers",
+        "says": "These two are cut the same way. So what is left to compare?",
+        "check": "Put the right sign between 3/10 and 8/10, and tell me which pair of numbers you used to decide.",
+        "feels": "the pieces are the same size on both strips, so there is only one thing left that can separate them",
+        "hands": "Cut two identical paper strips, fold both into elevenths, and colour seven parts of one and four of the other. Lay them one under the other from a ruled margin and ask what is the same about the two pictures before asking which is more.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: are the two numbers below the lines the same? Second rung, the phase's: so what is left that can be different? Third rung: the gate is opened with both strips drawn and cut but neither filled, and the child fills each from its own upper number. The comparison keys stay open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the lower number has done the deciding on every question since the chapter began, so it is the number the eye goes to first.",
+            "move": "compares the two lower numbers, which are identical and cannot decide anything.",
+            "screen": "the gate opens and draws both strips cut the same number of times, with the eleven cuts counted out along each and printed as equal. The two lower numbers are then lit together and read out as the same number, so nothing about them separates the pair, and the two upper numbers light next with the filled parts counted along each strip. The child's answer stays in the slot and both strips stay drawn."
+          },
+          {
+            "why": "a fraction still looks like two ordinary numbers, and adding them turns each one into a single number that can be compared the ordinary way.",
+            "move": "adds the two numbers of each fraction together and compares the totals.",
+            "screen": "the child's two totals are printed where they were worked out and are not crossed through, because on this pair they happen to agree with the strips. The rail then loads three quarters against three eighths and runs the same move on it: the totals come to seven and eleven, so the move picks three eighths, and the second gate is opened on the same pair with both strips cut and filled, where three quarters plainly reaches further. Both runs are left standing together."
+          }
+        ],
+        "screen": "a pair whose lower numbers match waiting at the head of the rail",
+        "soWhat": "When two fractions share a lower number they are like fractions, the pieces are the same size, and the one with the larger upper number is the larger fraction.",
+        "concept": "Same pieces, so count them"
+      },
+      {
+        "n": 2,
+        "win": "the second gate opens and the strip cut into fewer parts is shown reaching further",
+        "does": "sends the pair on to the second gate and compares the two strips",
+        "goal": "fractions sharing an upper number are compared by their lower numbers",
+        "says": "You are taking the same number of pieces each time. Which pieces are bigger?",
+        "check": "Which is greater, 7/8 or 7/20, and would your reason still work if both top numbers were one instead of seven?",
+        "feels": "the same number of pieces taken both times, so the only thing left to decide it is how big a piece is",
+        "hands": "Fold one strip into quarters and an identical strip into eighths, and colour three parts of each. Lay them from a ruled margin and ask which reaches further, then ask how many pieces were coloured on each one. Do it again with fifths against twelfths, five parts coloured on both.",
+        "tries": "First rung, from the item: are the two numbers above the lines the same? Second rung, the phase's: which of the two wholes was cut into fewer pieces? Third rung: the gate is opened with one part of each strip lifted out and laid side by side, so the piece sizes are compared before any counting. The comparison keys stay open.",
+        "wrong": [
+          {
+            "why": "a larger number has meant a larger amount everywhere else in arithmetic, and nothing about a fraction announces that the lower number works the other way round.",
+            "move": "picks the fraction with the larger lower number, choosing 5/12 over 5/6 because twelve is more than six.",
+            "screen": "the gate opens and cuts both strips from the same left edge, one into six parts and one into twelve, with a single part of each lifted out and laid side by side so the difference in piece size is the thing on the stage. Five parts are then filled on each strip, one at a time and in step, and the run of five bigger pieces stops further along. The child's choice stays in the slot and both strips stay drawn."
+          },
+          {
+            "why": "the rule has been met as a rule about unit fractions, so a pair with a shared upper number of three looks like a pair the gate was not built for.",
+            "move": "refuses the pair 3/4 against 3/8 at the second gate because neither of its upper numbers is one, and sends it on to the bay.",
+            "screen": "the bay hands the pair straight back and prints why, because the bay takes only pairs that share neither number and this pair shares its upper number. The second gate's label is read out as it is printed, a sentence about a shared upper number with no mention of what that number has to be, and the gate then opens on the pair and cuts both strips, three parts filled on each. The child's send is left drawn as a faint line along the rail."
+          }
+        ],
+        "screen": "a pair whose upper numbers match, refused by the first gate",
+        "soWhat": "For any pair that share a numerator, the smaller denominator gives the larger fraction, because cutting a whole into fewer parts makes every part bigger.",
+        "concept": "Same count, so size the pieces"
+      },
+      {
+        "n": 3,
+        "win": "the cards settle in order, the direction label is read aloud and the strips beside them grow the same way",
+        "does": "finds what the whole set shares, then slides the cards into order",
+        "goal": "a set is ordered by whatever its members share",
+        "says": "What do all of these have in common? Order them by whatever is left.",
+        "check": "Arrange 6/5, 6/11, 6/7 and 6/2 in ascending order, and say what the set shares.",
+        "feels": "one list has its bottom numbers running downwards while the fractions themselves run up",
+        "hands": "Peg a card marked nothing at one end of a string and a card marked one whole at the other, and hand out a set of cards that all share a lower number. Have them pegged up, then take them down and hand out a set that all share an upper number instead, and ask what changed about the way the set had to be read.",
+        "tries": "First rung, from the item: what do all four of these cards have in common? Second rung, the phase's: which rule compares that kind of pair? Third rung: the board is cut to two cards from the set, ordered as a pair before the other two come back. Nothing placed on the board is ever marked wrong.",
+        "wrong": [
+          {
+            "why": "the lower number has been the important one for most of the chapter, so it is the column the eye runs down first.",
+            "move": "orders a set of like fractions by their lower numbers, which are all identical and carry no information at all.",
+            "screen": "the four cards are laid in a row with their lower numbers lit together and read out as one number repeated four times, and the board will not accept an order built on them. The upper numbers light next and a small strip is drawn under each card, filled from its own fraction, so the four strips grow in the same direction as the four upper numbers. The child's arrangement stays on the board while the strips are drawn beneath it."
+          },
+          {
+            "why": "ascending means going up, the numbers being sorted are the lower ones, and putting numbers in increasing order is the move that phrase has always meant.",
+            "move": "puts a shared-numerator set in order by writing its lower numbers out in increasing order, and hands in the reverse of what was asked.",
+            "screen": "a strip is drawn under every card, all of one length, each cut into its own lower number and filled with six parts, and the four strips are stood in the order the child chose. The fills plainly shorten from left to right while the direction switch reads ascending, and the switch is lit rather than moved. The child's order stays on the board and the strips stay drawn beneath it."
+          }
+        ],
+        "screen": "four fractions on the line-up board with the direction set to ascending",
+        "soWhat": "Find what the whole set shares before deciding anything, because that is what says which of the two rules orders it.",
+        "concept": "Putting a list in order"
+      },
+      {
+        "n": 4,
+        "win": "the pair parks in the not yet bay with the reason printed beside it and nothing guessed",
+        "does": "tries each gate, sees both refuse, and sends the pair to the bay",
+        "goal": "a pair sharing neither number cannot be settled by this chapter",
+        "says": "Neither gate will take this pair. What can you honestly say about it?",
+        "check": "Which is greater, 4/5 or 7/9? Say which gate would take that pair, and what your answer is.",
+        "feels": "both gates look at this pair and neither of them is asking about anything the two fractions have",
+        "hands": "Hand out a pair that shares neither of its numbers, such as three sevenths against five eighths, and ask which rule would settle it. Let the class try both and find that neither one asks about anything this pair has. Then ask what they would need to be given in order to place it, and write that down as the thing still to come rather than as a failure.",
+        "tries": "First rung, from the item: do the two numbers below the lines match? Second rung, the phase's: do the two numbers above the lines match? Third rung: the rail is cut to the two gates alone with their labels read out one after the other, so what each one tests is heard before the pair is pushed. Parking the pair is one of the three answer keys and none of the rungs ever pushes towards a guess.",
+        "wrong": [
+          {
+            "why": "the rule about a smaller lower number was the last one taught and it is the one nearest to hand, and nothing about this pair announces that it is out of that rule's reach.",
+            "move": "settles the pair anyway on its lower numbers, picking 3/7 over 5/8 because seven is the smaller of the two.",
+            "screen": "the pair is sent back to the head of the rail and each gate says again what it tests, with the two numbers it would have compared lit on both fractions: the lower numbers are seven and eight and do not match, the upper numbers are three and five and do not match either. Neither gate opens and no strips are drawn, because there is no rule here to draw them for. The pair rolls on into the bay with its reason printed, and the child's verdict stays in the slot beside it, unmarked."
+          },
+          {
+            "why": "the bay has just been met and it is the easiest place on the rail to send something to, and a pair with a one underneath it looks like nothing the rules were about.",
+            "move": "sends a pair that one of the two gates does take to the bay, because the numbers look unfamiliar.",
+            "screen": "the bay hands the pair back and prints the test it failed to fail: it takes only pairs that share neither number, and 9/1 against 9/4 shares its upper number. The second gate then opens on the pair, cuts both strips and fills nine parts on each, and the whole number reader draws the one written underneath as nine complete circles in green. The child's send is left drawn as a faint line along the rail and nothing is marked."
+          }
+        ],
+        "screen": "a pair sharing no number at all rolling past both gates",
+        "soWhat": "A pair sharing neither of its numbers cannot be settled by either rule in this chapter, and saying so is the correct answer rather than a gap.",
+        "concept": "Pairs these two rules cannot settle"
+      }
+    ],
+    "delight": "The second gate, the moment it opens on three quarters against three eighths. The two strips do not appear side by side already filled. They are cut while a hand watches, the upper one into four parts and the lower one into eight, from the same left edge and to the same length, and then three parts are filled on each, one at a time and in step, so the same count is plainly being taken both times. The two fills stop in different places, and a measuring line drops from the longer one down to the shorter to say how much further. Neither shared upper number is one, which is the point of running it on this pair: the gate is not a rule about halves and quarters and thirds, it is a rule about taking the same number of pieces out of wholes that were cut differently. Nothing else on the rail moves and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase two written fractions sit at the head of the rail with their lower numbers plainly matching, both gates shut ahead of them and the bay at the far end empty. On the second a pair whose upper numbers match stands just past the first gate, which has already let it through untouched, with the second gate shut in front of it. On the third four fraction cards lie on the line-up board below the rail, out of order, with the direction switch reading ascending and every slot empty. On the fourth a pair sharing neither of its numbers waits at the head of the rail, both gates shut, and the bay at the end is drawn open in the undecided colour with its label already printed and nothing standing in it. The running count at the top left holds the pairs settled against the pairs this phase loads, with the pairs parked counted beside them rather than under them. One thing moves, once: the two lower numbers, or the two upper numbers, or the shortest card on the board, or the empty bay, gives one slow pulse while the voice asks what this pair has in common. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any pair or set of fractions on the rail, both gates live, the not yet bay open and the line-up board set ascending or descending. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on comparing like fractions, comparing fractions sharing an upper number, ordering a set either way, and saying when a pair cannot be settled yet.",
+    "voiceLines": [
+      "A pair at the head of the rail. Before you push, say what these two fractions share.",
+      "These two are cut the same way. So what is left to compare?",
+      "You are taking the same number of pieces each time. Which pieces are bigger?",
+      "What do all of these have in common? Order them by whatever is left.",
+      "Neither gate will take this pair. What can you honestly say about it?",
+      "Another pair. Look at the bottom numbers first, then the top ones.",
+      "Free play. Any pair or any set on the rail, both gates live and the bay open.",
+      "Send it back and read each gate's label out. Every gate says what it tests.",
+      "Every pair sent where it belongs, and the ones neither gate reaches still parked and still labelled."
+    ],
+    "observations": [
+      {
+        "why": "One gate tests whether the pieces are the same size and the other tests whether the same count of pieces is being taken.",
+        "soWhat": "Learn the two rules by what they compare, because learnt as rules about big and small numbers they get swapped inside a week.",
+        "observe": "Each gate said what it tested before it would open, and neither label mentioned a bigger or a smaller number."
+      },
+      {
+        "why": "Cutting a whole into fewer parts makes every part bigger, and taking the same count of bigger parts reaches further.",
+        "soWhat": "For any pair that share a numerator, the smaller denominator gives the larger fraction, whatever that shared upper number happens to be.",
+        "observe": "Inside the second gate the strip cut into fewer parts reached further, and it did that whether the shared upper number was one or three."
+      },
+      {
+        "why": "The set shared a numerator, so the fraction with the largest lower number is the smallest of them.",
+        "soWhat": "Find what the whole set shares first, because the rule decides the direction and not the other way about.",
+        "observe": "In one ascending list the denominators came out running downwards."
+      },
+      {
+        "why": "The two rules in this chapter each need a shared number, and those pairs had neither.",
+        "soWhat": "When neither rule reaches a pair, saying so is the answer, and the method that would reach it has not been met yet.",
+        "observe": "Some pairs rolled past both gates and came to rest in the bay with a reason printed beside them."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a pair whose lower numbers match waiting at the head of the rail",
+        "win": "the gate opens, the strips are drawn with the same cuts, and the fuller one is lifted out",
+        "traceback": "The pair rolls into the same bottom gate, both strips are cut the same way, the parts fill in step, and the fuller strip lifts out.",
+        "ladder": [
+          "Are the two numbers below the lines the same?",
+          "Fourteenths both times, so the pieces match. Which one takes more of them?",
+          "Read it from the left card across to the right card.",
+          "So what is left that can be different?",
+          "Count the parts each top number takes. More parts of one size is more."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a pair whose upper numbers match, refused by the first gate",
+        "win": "the second gate opens and the strip cut into fewer parts is shown reaching further",
+        "traceback": "The pair rolls into the same top gate, both strips are cut from one edge, the same count of parts fills in step, and a line measures how much further the fuller one reaches.",
+        "ladder": [
+          "Are the two numbers above the lines the same?",
+          "A bigger bottom number cuts the whole into more pieces, so each one is smaller.",
+          "Seven pieces both times. Whose seven cover more of the whole?",
+          "Which of the two wholes was cut into fewer pieces?",
+          "Fewer pieces in a whole means every piece of it is bigger."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "four fractions on the line-up board with the direction set to ascending",
+        "win": "the cards settle in order, the direction label is read aloud and the strips beside them grow the same way",
+        "traceback": "The shared numbers light on all four cards, a strip grows under each one, and the cards slide into the order that was asked for.",
+        "ladder": [
+          "Read the four bottom numbers, then the four top ones.",
+          "Descending starts at the greatest and steps down.",
+          "Here the bottom numbers change. Does a bigger bottom number make a bigger piece?",
+          "Which rule compares that kind of pair?",
+          "Put just two cards in order first, then fit the other two around them."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a pair sharing no number at all rolling past both gates",
+        "win": "the pair parks in the not yet bay with the reason printed beside it and nothing guessed",
+        "traceback": "The pair tries each gate in turn, both light the numbers they compare and stay shut, and it rolls on into the bay with its reason printed.",
+        "ladder": [
+          "Do the two numbers below the lines match?",
+          "Try each gate in turn. Does either one open for this pair?",
+          "All four take eight pieces. Whose pieces are the biggest?",
+          "Do the two numbers above the lines match?",
+          "Say what each gate tests, then check it on these two cards."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "stations": [
+      "head",
+      "g1",
+      "g2",
+      "bay"
+    ],
+    "gates": [
+      {
+        "id": "g1",
+        "tests": "the two bottom numbers",
+        "opens": "when they are the same"
+      },
+      {
+        "id": "g2",
+        "tests": "the two top numbers",
+        "opens": "when they are the same"
+      }
+    ],
+    "bay": {
+      "label": "not yet",
+      "takes": "a pair that shares neither number",
+      "reason": [
+        "shares no number",
+        "no rule reaches it"
+      ]
+    },
+    "strip": {
+      "whole": 930,
+      "cutBy": "the bottom number",
+      "fills": "the top number"
+    },
+    "board": {
+      "slots": 4,
+      "directions": [
+        "ascending",
+        "descending"
+      ]
+    },
+    "reader": "a fraction over one is drawn as that many whole circles",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T7.C24:ML1",
+        "kind": "pick",
+        "pair": [
+          [
+            7,
+            11
+          ],
+          [
+            4,
+            11
+          ]
+        ],
+        "answer": [
+          7,
+          11
+        ],
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "pad": "enter",
+        "winMs": 3800
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T7.C24:1",
+        "kind": "pick",
+        "pair": [
+          [
+            9,
+            14
+          ],
+          [
+            5,
+            14
+          ]
+        ],
+        "answer": [
+          9,
+          14
+        ],
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "pad": "enter",
+        "winMs": 4000
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T7.C24:2",
+        "kind": "sign",
+        "pair": [
+          [
+            3,
+            10
+          ],
+          [
+            8,
+            10
+          ]
+        ],
+        "answer": "<",
+        "winMs": 5200
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T7.C25:ML2",
+        "kind": "pick",
+        "pair": [
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            12
+          ]
+        ],
+        "answer": [
+          5,
+          6
+        ],
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "pad": "enter",
+        "winMs": 4000
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T7.C25:3",
+        "kind": "pick",
+        "pair": [
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            9
+          ]
+        ],
+        "answer": [
+          2,
+          3
+        ],
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "pad": "enter",
+        "winMs": 3600
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T7.C25:4",
+        "kind": "pick",
+        "pair": [
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            20
+          ]
+        ],
+        "answer": [
+          7,
+          8
+        ],
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "pad": "enter",
+        "winMs": 4200
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T7.C26:ML3",
+        "kind": "order",
+        "set": [
+          [
+            6,
+            13
+          ],
+          [
+            2,
+            13
+          ],
+          [
+            11,
+            13
+          ],
+          [
+            9,
+            13
+          ]
+        ],
+        "dir": "up",
+        "answer": "2/13, 6/13, 9/13, 11/13",
+        "pad": "enter",
+        "winMs": 3800
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T7.C26:5",
+        "kind": "order",
+        "set": [
+          [
+            4,
+            9
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            5,
+            9
+          ]
+        ],
+        "dir": "down",
+        "answer": "8/9, 5/9, 4/9, 1/9",
+        "pad": "enter",
+        "winMs": 3400
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T7.C26:6",
+        "kind": "order",
+        "set": [
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            11
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "dir": "up",
+        "answer": "6/11, 6/7, 6/5, 6/2",
+        "pad": "enter",
+        "winMs": 3400
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T7.C27:ML4",
+        "kind": "bay",
+        "pair": [
+          [
+            3,
+            7
+          ],
+          [
+            5,
+            8
+          ]
+        ],
+        "answer": "not yet",
+        "pad": "enter",
+        "winMs": 2200
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T7.C27:7",
+        "kind": "bay",
+        "pair": [
+          [
+            4,
+            5
+          ],
+          [
+            7,
+            9
+          ]
+        ],
+        "answer": "not yet",
+        "pad": "enter",
+        "winMs": 2200
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T7.C27:8",
+        "kind": "order",
+        "set": [
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            12
+          ],
+          [
+            8,
+            3
+          ]
+        ],
+        "dir": "down",
+        "answer": "8/1, 8/3, 8/6, 8/12",
+        "pad": "enter",
+        "winMs": 4000
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The pair rolls into the same bottom gate, both strips are cut the same way, the parts fill in step, and the fuller strip lifts out.",
+      "Phase 2: The pair rolls into the same top gate, both strips are cut from one edge, the same count of parts fills in step, and a line measures how much further the fuller one reaches.",
+      "Phase 3: The shared numbers light on all four cards, a strip grows under each one, and the cards slide into the order that was asked for.",
+      "Phase 4: The pair tries each gate in turn, both light the numbers they compare and stay shut, and it rolls on into the bay with its reason printed."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A pair at the head of the rail. Before you push, say what these two fractions share.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every pair sent where it belongs, and the ones neither gate reaches still parked and still labelled.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T7.C24:ML1",
+            "worked": false,
+            "kind": "pick",
+            "planQuestion": "Compare 7/11 and 4/11, and say which gate settles it.",
+            "question": {
+              "en": "Compare 7/11 and 4/11, and say which gate settles it."
+            },
+            "ask": {
+              "en": "Which is greater?"
+            },
+            "answer": "7/11",
+            "planAnswer": "7/11 is the greater, and the gate for a shared lower number settles it",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T7.C24:1",
+            "worked": false,
+            "kind": "pick",
+            "planQuestion": "Which is greater, 9/14 or 5/14?",
+            "question": {
+              "en": "Which is greater, 9/14 or 5/14?"
+            },
+            "ask": {
+              "en": "Which is greater?"
+            },
+            "answer": "9/14",
+            "planAnswer": "9/14",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T7.C24:2",
+            "worked": false,
+            "kind": "sign",
+            "planQuestion": "Put the right sign between 3/10 and 8/10.",
+            "question": {
+              "en": "Put the right sign between 3/10 and 8/10."
+            },
+            "ask": {
+              "en": "Which sign?"
+            },
+            "answer": "<",
+            "planAnswer": "3/10 is less than 8/10",
+            "choices": [
+              "<",
+              ">",
+              "="
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T7.C25:ML2",
+            "worked": false,
+            "kind": "pick",
+            "planQuestion": "Compare 5/6 and 5/12.",
+            "question": {
+              "en": "Compare 5/6 and 5/12."
+            },
+            "ask": {
+              "en": "Which is greater?"
+            },
+            "answer": "5/6",
+            "planAnswer": "5/6 is the greater",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T7.C25:3",
+            "worked": false,
+            "kind": "pick",
+            "planQuestion": "Which is greater, 2/3 or 2/9?",
+            "question": {
+              "en": "Which is greater, 2/3 or 2/9?"
+            },
+            "ask": {
+              "en": "Which is greater?"
+            },
+            "answer": "2/3",
+            "planAnswer": "2/3, because thirds are bigger parts than ninths and the same number of them is taken",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T7.C25:4",
+            "worked": false,
+            "kind": "pick",
+            "planQuestion": "Which is greater, 7/8 or 7/20?",
+            "question": {
+              "en": "Now take 7/8 and 7/20. Which one is more?"
+            },
+            "ask": {
+              "en": "Which is greater?"
+            },
+            "answer": "7/8",
+            "planAnswer": "7/8",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T7.C26:ML3",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Arrange 6/13, 2/13, 11/13 and 9/13 in ascending order.",
+            "question": {
+              "en": "Arrange 6/13, 2/13, 11/13 and 9/13 in ascending order."
+            },
+            "ask": {
+              "en": "Ascending order"
+            },
+            "answer": "2/13, 6/13, 9/13, 11/13",
+            "planAnswer": "2/13, 6/13, 9/13, 11/13",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T7.C26:5",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Arrange 4/9, 8/9, 1/9 and 5/9 in descending order.",
+            "question": {
+              "en": "Now put 4/9, 8/9, 1/9 and 5/9 the other way round, greatest first."
+            },
+            "ask": {
+              "en": "Descending order"
+            },
+            "answer": "8/9, 5/9, 4/9, 1/9",
+            "planAnswer": "8/9, 5/9, 4/9, 1/9",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T7.C26:6",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Arrange 6/5, 6/11, 6/7 and 6/2 in ascending order.",
+            "question": {
+              "en": "Line up 6/5, 6/11, 6/7 and 6/2, smallest first."
+            },
+            "ask": {
+              "en": "Ascending order"
+            },
+            "answer": "6/11, 6/7, 6/5, 6/2",
+            "planAnswer": "6/11, 6/7, 6/5, 6/2",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T7.C27:ML4",
+            "worked": false,
+            "kind": "bay",
+            "planQuestion": "Compare 3/7 and 5/8 using the rules of this chapter.",
+            "question": {
+              "en": "Compare 3/7 and 5/8 using the rules of this chapter."
+            },
+            "ask": {
+              "en": "Which is greater?"
+            },
+            "answer": "not yet",
+            "planAnswer": "Neither rule reaches this pair, so it cannot be settled yet",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T7.C27:7",
+            "worked": false,
+            "kind": "bay",
+            "planQuestion": "Which is greater, 4/5 or 7/9, and which rule settles it?",
+            "question": {
+              "en": "Which is greater, 4/5 or 7/9, and which rule settles it?"
+            },
+            "ask": {
+              "en": "Which is greater?"
+            },
+            "answer": "not yet",
+            "planAnswer": "Neither rule settles it, because the pair shares no number, so it cannot be decided with what this chapter teaches",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T7.C27:8",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "A list reads 8/6, 8/1, 8/12 and 8/3. Put it in descending order and say what 8/1 is worth.",
+            "question": {
+              "en": "A list reads 8/6, 8/1, 8/12 and 8/3. Put it in descending order."
+            },
+            "ask": {
+              "en": "Descending order"
+            },
+            "answer": "8/1, 8/3, 8/6, 8/12",
+            "planAnswer": "8/1, 8/3, 8/6, 8/12, and 8/1 is worth eight whole ones",
+            "madeOn": "working area"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "which_is_more_rail",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "which_is_more_rail",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Same pieces, so count them",
+        "conceptId": "M2.S4.T7.C24",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C24:ML1",
+          "M2.S4.T7.C24:1",
+          "M2.S4.T7.C24:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Same count, so size the pieces",
+        "conceptId": "M2.S4.T7.C25",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C25:ML2",
+          "M2.S4.T7.C25:3",
+          "M2.S4.T7.C25:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Putting a list in order",
+        "conceptId": "M2.S4.T7.C26",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C26:ML3",
+          "M2.S4.T7.C26:5",
+          "M2.S4.T7.C26:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Pairs these two rules cannot settle",
+        "conceptId": "M2.S4.T7.C27",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C27:ML4",
+          "M2.S4.T7.C27:7",
+          "M2.S4.T7.C27:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "left",
+    "right",
+    "gateOpened",
+    "verdict",
+    "direction",
+    "lineUp",
+    "k"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, left, right, gateOpened, verdict, direction, lineUp, k",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "which_is_more_rail"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T7.C24.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A pair at the head of the rail. Before you push, say what these two fractions share."
+    },
+    {
+      "en": "These two are cut the same way. So what is left to compare?"
+    },
+    {
+      "en": "You are taking the same number of pieces each time. Which pieces are bigger?"
+    },
+    {
+      "en": "What do all of these have in common? Order them by whatever is left."
+    },
+    {
+      "en": "Neither gate will take this pair. What can you honestly say about it?"
+    },
+    {
+      "en": "Another pair. Look at the bottom numbers first, then the top ones."
+    },
+    {
+      "en": "Free play. Any pair or any set on the rail, both gates live and the bay open."
+    },
+    {
+      "en": "Send it back and read each gate's label out. Every gate says what it tests."
+    },
+    {
+      "en": "Every pair sent where it belongs, and the ones neither gate reaches still parked and still labelled."
+    }
+  ],
+  "build": {
+    "source": "90881328:1658845",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-24T09:38:49.910Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-24T09:38:49.113Z"
+    },
+    "tsxBytes": 1659397,
+    "tsxMd5": "906bc4763ac6a4d2998ac52137a28bf1"
+  }
+}
