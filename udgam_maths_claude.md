@@ -300,7 +300,7 @@ model of what to write down.
 | 5 | Division | sharing and grouping; the book's long-division layout; remainder; check: quotient × divisor + remainder | quotient AND remainder: two boxes in the slot (`parts`, BUILD_CARD §7) | a perfect division still types remainder 0; label boxes at most 10 characters |
 | 6 | Factors and Multiples | rectangles of counters for factor pairs; multiples on a hundred chart; primes; divisibility tests | numbers, lists, yes/no | list answers in any order (`answerForms`); choice items |
 | 7 | Understanding Fractions | equal parts of a whole and of a set; fraction bars and circles; equivalent and like fractions; fraction of a number | a fraction: `parts: SLOT_FRACTION` (stacked in the slot); a mixed number or tidied answer: `SLOT_MIXED` (BUILD_CARD §7) | draw fractions stacked (numerator over denominator), never "3/4" in the picture or the ask; the voice says "quarter" |
-| 8 | Decimals | tenths and hundredths on grids of 10 and 100; the decimal point in the place-value chart; money and length | a decimal: `pointKey: true` (the pad's point key, BUILD_CARD §7); the answer a string in its written form ("0.09") | the zero in front is always written; no commas inside a fraction or a decimal (2750/1000); the voice says "zero point six five" |
+| 8 | Decimals | tenths and hundredths on grids of 10 and 100; the decimal point in the place-value chart; money and length | a decimal: on a Decimal card (`parts: SLOT_DECIMAL`, PATTERNS 9e) where the picture has one, else `pointKey: true` (the pad's point key, BUILD_CARD §7); the answer in its written form ("0.09" or ["0","09"]) | the zero in front is always written; no commas inside a fraction or a decimal (2750/1000); the voice says "zero point six five" |
 | 9 | Geometry | lines, rays, angles, circles (centre, radius, diameter), shapes, nets | words, choices, drawn | `miss-shows-answer` cannot read word or drawn answers: the visual reviewer judges corrections |
 | 10 | Patterns | number and shape patterns, the rule, growing patterns | numbers, next shape | the rule is the picture; choices for shapes |
 | 11 | Metric Measures | km/m/cm/mm, kg/g, L/mL on scales and rulers; conversions (× 1,000, × 100) | two units (5 km 250 m) or one converted | two-part answers: step 2; the voice reads units in words |
@@ -391,6 +391,21 @@ Announce a runtime or lib edit to the other chapter sessions of the class before
   language passes one by one as English becomes final.
 - **Ask the owner only the real doubts, batched** (a plan departure, a picture that contradicts a name, an opening that differs from the brief);
   take the reviewers' small wording findings and the owner-side decisions yourself and say so.
+- **A check that reaches a state by a shortcut proves nothing about the child's flow.** `gotoStep` and the dev driver reset marks a child
+  never resets: r24's thinking pose passed its own check and still never showed at question 1 of any phase (a guide step's tap marked
+  question 1 as acted on; the owner found it, r25 fixed it). For any rule about "before the first act", walk the real flow: start page,
+  the guide steps by real taps or Enter, then the question with nothing touched (`mascot-think` now does, in the same session).
+- **A mark keyed by item index also covers the guide steps** (they belong to item 0): any "has the child acted on this question" state
+  counts only while the stage is "ask".
+- **Summary thumbnails:** `result.last.item` is the INDEX; r24 gives `last.it` and a `summary-thumbs` check fails a blank or English thumbnail.
+  Five of six ch 8 tools drew blank boxes before it. A multi-part `last.value` is read with `slotPartsOf`, never `String(...)`.
+- **Which input for a decimal:** on a tappable Decimal card (`SLOT_DECIMAL`, the zero in front typed, an empty whole box a miss) where the
+  picture has a Decimal card; the point key only where typing the point or the places IS the lesson (reading a number, a sum).
+- **One review round per tool, on the near-final tool:** a runtime change that touches every frame (a mascot pose, a key's colour) is made
+  BEFORE the visual reviews, not after; otherwise every pack is built twice. Do the runtime package, freeze, pin, re-check, then the packs.
+- **A session limit kills agents mid-edit:** after a restart `status` shows "source changed since" for the tools that were being edited;
+  quick-check each before trusting it, resume (SendMessage) or start a fresh builder, and keep ONE background loop of checks (a second one
+  doubles Chrome on a machine the owner's browser already fills).
 
 ## Where things are
 

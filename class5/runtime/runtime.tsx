@@ -1122,6 +1122,7 @@ function usePress(onPress: () => void, enabled = true, keepFocus = false) {
   const keys = (e: any) => {
     if (!on.current || (e.key !== "Enter" && e.key !== " ")) return;
     e.preventDefault(); e.stopPropagation();
+    if (e.repeat) return;   /* r24: a held key repeats keydown (auto-repeat): the press counts once */
     setDown(true);
     setTimeout(() => setDown(false), 120);
     act.current();
@@ -1398,7 +1399,11 @@ const CSS = `
 @keyframes c4nextblink{0%,100%{stroke-opacity:1}50%{stroke-opacity:.08}}
 [data-control="next-key"] .c4-face{animation:c4nextface .9s ease-in-out infinite}
 @keyframes c4nextface{0%,100%{filter:brightness(1)}50%{filter:brightness(1.3)}}
-@media (prefers-reduced-motion:reduce){[data-control="next-key"] .c4-face{animation:none}.c4-pulse,.c4-caret,.c4-talk,.c4-hop,.c4-nod,.c4-cheer,.c4-cheer1,.c4-twinkle,.c4-ring,.c4-cue,.c4-nextblink,.c4-px,.c4-py,.c4-pr,.c4-flash{animation:none}.c4-ctl .c4-body{transition:none}.c4-fill{transition:none}}
+.c4-tdot{animation:c4tdot 2.1s ease-in-out infinite}
+@keyframes c4tdot{0%,60%,100%{opacity:.22}15%,45%{opacity:1}}
+.c4-bulb{transform-box:fill-box;transform-origin:50% 100%;animation:c4bulb 1s ease-out 1 both}
+@keyframes c4bulb{0%{transform:scale(.2);opacity:0}18%{transform:scale(1.18);opacity:1}32%{transform:scale(1);opacity:1}82%{transform:scale(1);opacity:1}100%{transform:scale(.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){[data-control="next-key"] .c4-face{animation:none}.c4-pulse,.c4-caret,.c4-talk,.c4-hop,.c4-nod,.c4-cheer,.c4-cheer1,.c4-twinkle,.c4-ring,.c4-cue,.c4-nextblink,.c4-px,.c4-py,.c4-pr,.c4-flash,.c4-tdot,.c4-bulb{animation:none}.c4-ctl .c4-body{transition:none}.c4-fill{transition:none}}
 `;
 
 /* the runtime's OWN chrome text (never a tool's content) in the three shipped languages. A tool never
@@ -1412,6 +1417,7 @@ const UI_STRINGS: Record<string, any> = {
     rubOut: "Rub out", enter: "Enter", point: "Point", freePlay: "Free play", playAgain: "Play again",
     wellDone: "Well done!", summaryLine: "Here is the summary of what you have learned.", tapToStart: "Tap to start", freePlayLine: "Free play.",
     rightFirstTime: (a: number, b: number) => `Right first time: ${a} / ${b}`,
+    starsLabel: (a: number, b: number) => `Right first time: ${a} of ${b}`,
     phaseOf: (n: number, N: number) => `Phase ${n} of ${N}`,
     questionOf: (i: number, total: number) => `Question ${i} of ${total}`,
     stepOf: (k: number, N: number) => `Step ${k} of ${N}`,
@@ -1426,6 +1432,7 @@ const UI_STRINGS: Record<string, any> = {
     rubOut: "मिटाएँ", enter: "दर्ज करें", point: "बिंदु", freePlay: "मुक्त खेल", playAgain: "फिर से खेलें",
     wellDone: "बहुत बढ़िया!", summaryLine: "यह रहा सारांश: तुमने क्या सीखा।", tapToStart: "शुरू करने के लिए स्पर्श करें", freePlayLine: "मुक्त खेल।",
     rightFirstTime: (a: number, b: number) => `पहली बार में सही: ${a} / ${b}`,
+    starsLabel: (a: number, b: number) => `पहली बार में सही: ${b} में से ${a}`,
     phaseOf: (n: number, N: number) => `चरण ${n}, ${N} में से`,
     questionOf: (i: number, total: number) => `प्रश्न ${i}, ${total} में से`,
     stepOf: (k: number, N: number) => `चरण ${k}, ${N} में से`,
@@ -1440,6 +1447,7 @@ const UI_STRINGS: Record<string, any> = {
     rubOut: "ભૂંસો", enter: "દાખલ કરો", point: "બિંદુ", freePlay: "મુક્ત રમત", playAgain: "ફરી રમો",
     wellDone: "ખૂબ સરસ!", summaryLine: "આ રહ્યો સારાંશ: તમે શું શીખ્યા.", tapToStart: "શરૂ કરવા સ્પર્શ કરો", freePlayLine: "મુક્ત રમત.",
     rightFirstTime: (a: number, b: number) => `પ્રથમ પ્રયાસમાં સાચા: ${a} / ${b}`,
+    starsLabel: (a: number, b: number) => `પ્રથમ પ્રયાસમાં સાચા: ${b} માંથી ${a}`,
     phaseOf: (n: number, N: number) => `તબક્કો ${n}, ${N} માંથી`,
     questionOf: (i: number, total: number) => `પ્રશ્ન ${i}, ${total} માંથી`,
     stepOf: (k: number, N: number) => `તબક્કો ${k}, ${N} માંથી`,
@@ -1733,7 +1741,7 @@ function Pad({ C, enabled, digitsOff, onKey, choices, onChoice, point, pointOff,
    nothing is being asked (a teach line, a win): the key stays in place, flat and quiet. The runs box, when the tool
    has one, keeps its own place to the left of the bar. The question is one line at prompt size, else up to two lines
    at label size, else up to two at micro: the type floor holds, and Hindi and Gujarati fit the same box. */
-function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, onChoice, lang, TR, quiet, blink }: any) {
+function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, onChoice, lang, TR, quiet, blink, onTap }: any) {
   const x0 = hasRuns ? Z.runs.x + Z.runs.w + 16 : Z.ask.x;
   const bw = Z.ask.x + Z.ask.w - x0;
   /* r49 (cardAnswer): mode "choices" draws the question's choices (Yes / No) as keys at the right end, in the Answer key's
@@ -1754,7 +1762,7 @@ function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, on
   const next = mode === "next";
   const label = next ? nextLabel : mode === "enter" ? UI.enter : open ? UI.answerClose : UI.answer;
   return (
-    <g data-zone="ask">
+    <g data-zone="ask" onClick={onTap}>
       <rect x={x0} y={Z.ask.y} width={bw} height={Z.ask.h} rx={RAD.panel + 4} fill="#FFFFFF" stroke={C.rule} strokeWidth={2} filter="url(#fShadowSoft)" />
       {pick.w.map((ln: string, k: number) => (
         <text key={k} x={x0 + 28} y={top + k * lh} fontSize={pick.s} fontWeight={500} fill={C.ink}>{ln}</text>
@@ -1778,7 +1786,8 @@ function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, on
         </Key>
       )}
       {next && <NextBlink x={kx} y={ky} w={kw} h={kh} C={C} />}
-      {blink && !next && mode === "answer" && !open && <NextBlink x={kx} y={ky} w={kw} h={kh} C={C} />}
+      {/* r24: the ring rides the key only while the child must press it: the Answer key with the keypad shut, or the Enter key once the answer is ready */}
+      {blink && !next && (mode === "answer" ? !open : mode === "enter") && <NextBlink x={kx} y={ky} w={kw} h={kh} C={C} />}
     </g>
   );
 }
@@ -1907,7 +1916,7 @@ function Party({ C, big, n }: any) {
 
 /* the mascot says every line the tool speaks: it bobs only while a line is being spoken and is
    still otherwise. If its picture ever fails to decode, the drawn speaking dot stands in. */
-function Mascot({ C, speaking, react, ok, onFail, cheerOn, onCheerFail }: any) {
+function Mascot({ C, speaking, react, ok, onFail, cheerOn, onCheerFail, thinkOn, onThinkFail, bulbN }: any) {
   const m = MASCOT_BOX;
   /* r30: no voice, so no talking bob; one hop when an answer is right or a phase ends, one nod after a miss (a new key
      restarts the one-shot animation) */
@@ -1918,18 +1927,60 @@ function Mascot({ C, speaking, react, ok, onFail, cheerOn, onCheerFail }: any) {
      class stays (the animation does not replay) and the standing picture is back. */
   const cheerSrc = typeof MASCOT_CHEER === "string" ? MASCOT_CHEER : "";
   const cheering = !!(cheerOn && cheerSrc && react && (react.kind === "cheer" || react.kind === "cheer1"));
+  /* r24: while a question waits for the child (and until the first act) Kiko THINKS: a third picture (MASCOT_THINK: a hand at the chin, the eyes
+     glancing up and aside), with a thought puff (plain vector beside the head, its three dots lighting one after another). The cheer wins over
+     it. A thinking picture that fails to decode leaves the standing one. */
+  const thinkSrc = typeof MASCOT_THINK === "string" ? MASCOT_THINK : "";
+  const thinking = !cheering && !!(thinkOn && thinkSrc);
   return (
     <g data-zone="voice">
       <line x1={m.x + 8} y1={m.y + m.h - 2} x2={m.x + m.w - 8} y2={m.y + m.h - 2} stroke={C.rule} strokeWidth={3} strokeLinecap="round" />
       {ok ? (
-        <image key={"m" + ((react && react.n) || 0)} data-role="mascot" className={speaking ? "c4-talk" : mood} href={cheering ? cheerSrc : MASCOT_IMAGE} data-pose={cheering ? "cheer" : undefined} x={m.x} y={m.y} width={m.w} height={m.h}
-          preserveAspectRatio="xMidYMax meet" aria-hidden="true" pointerEvents="none" onError={cheering ? onCheerFail : onFail} />
+        <image key={"m" + ((react && react.n) || 0)} data-role="mascot" className={speaking ? "c4-talk" : mood} href={cheering ? cheerSrc : thinking ? thinkSrc : MASCOT_IMAGE} data-pose={cheering ? "cheer" : thinking ? "think" : undefined} x={m.x} y={m.y} width={m.w} height={m.h}
+          preserveAspectRatio="xMidYMax meet" aria-hidden="true" pointerEvents="none" onError={cheering ? onCheerFail : thinking ? onThinkFail : onFail} />
       ) : (
         <g data-role="mascot-drawn">
           {speaking && <circle cx={m.x + m.w / 2} cy={820} r={40} fill="none" stroke={C.accent} strokeWidth={5} />}
           <circle cx={m.x + m.w / 2} cy={820} r={30} fill="url(#gAccent)" filter="url(#fShadowSoft)" />
         </g>
       )}
+      {ok && thinking && <ThinkPuff />}
+      {ok && bulbN > 0 && !cheering && <HintBulb key={"b" + bulbN} />}
+    </g>
+  );
+}
+
+/* r24: the thought puff beside Kiko's head while the pose is on: two small circles rising to a cloud with three dots. Plain vector in the
+   mascot box's own coordinates (the box is 204 x 160 at MASCOT_BOX; the puff lies at x 150 to 197, y 5 to 52, so at stage x 178 to 225,
+   y 743 to 790: inside the voice zone, clear of the picture, 29 short of the bubble at x 254, below the working-area floor). No pointer events. */
+const THINK_BUMPS = [[154, 48, 2.6], [161, 41, 4], [166, 25, 9.5], [176.5, 17.5, 11.5], [187, 25, 8.5]];
+const THINK_DOTS = [167, 175.5, 184];
+function ThinkPuff() {
+  const m = MASCOT_BOX;
+  const body = (fill: string, stroke?: string) => (
+    <g fill={fill} stroke={stroke} strokeWidth={stroke ? 2.2 : undefined} strokeLinejoin="round">
+      {THINK_BUMPS.map((b, k) => <circle key={k} cx={b[0]} cy={b[1]} r={b[2]} />)}
+      <rect x={156} y={23} width={39} height={12} rx={6} />
+    </g>
+  );
+  return (
+    <g data-role="think-puff" transform={`translate(${m.x},${m.y})`} aria-hidden="true" pointerEvents="none">
+      {body("#C9BCA6", "#C9BCA6")}
+      {body("#FFF4E0")}
+      <g fill="#B3A284">
+        {THINK_DOTS.map((cx, k) => <circle key={k} className="c4-tdot" style={{ animationDelay: k * 0.35 + "s" } as any} cx={cx} cy={26.5} r={2.3} />)}
+      </g>
+    </g>
+  );
+}
+
+/* r24: a small yellow bulb pops where the puff stands (up and to the right of Kiko's head) for about a second when the Hint key is pressed:
+   the header's own bulb picture, drawn small. Plain vector, no pointer events. */
+function HintBulb() {
+  const m = MASCOT_BOX;
+  return (
+    <g data-role="hint-bulb" transform={`translate(${m.x + 176},${m.y + 28})`} aria-hidden="true" pointerEvents="none">
+      <g className="c4-bulb"><g transform="scale(0.8)"><IconBulb /></g></g>
     </g>
   );
 }
@@ -1966,7 +2017,7 @@ function PhaseDot({ C, k, N, x, w, now, done, fill = 1, navigable, onGo, UI }: a
   );
 }
 
-function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, done, onGo, mascotOk, onMascotFail, UI, onBubble, cue, board, lang, hintType, cheerOn, onCheerFail }: any) {
+function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, done, onGo, mascotOk, onMascotFail, UI, onBubble, cue, board, lang, hintType, cheerOn, onCheerFail, thinkOn, onThinkFail, bulbN }: any) {
   const b = Z.bubble;
   /* board layout: the line reads as the hint pill, the same box with an accent edge (nothing else moves: the arrow's
      offsets, the bar and the mascot are the classic ones) */
@@ -2011,7 +2062,7 @@ function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, don
   const pitch = Z.bar.w / Math.max(N, 1);
   return (
     <g>
-      <Mascot C={C} speaking={speaking} react={react} ok={mascotOk} onFail={onMascotFail} cheerOn={cheerOn} onCheerFail={onCheerFail} />
+      <Mascot C={C} speaking={speaking} react={react} ok={mascotOk} onFail={onMascotFail} cheerOn={cheerOn} onCheerFail={onCheerFail} thinkOn={thinkOn} onThinkFail={onThinkFail} bulbN={bulbN} />
       <g data-zone="bubble">
         <path d={`M ${b.x} ${b.y + 30} L ${b.x - 18} ${b.y + 44} L ${b.x} ${b.y + 58} Z`} fill="#FFFFFF" stroke={edge} strokeWidth={edgeW} />
         <rect x={b.x} y={b.y} width={b.w} height={b.h} rx={24} fill="#FFFFFF" stroke={edge} strokeWidth={edgeW} filter="url(#fShadowSoft)" />
@@ -2060,7 +2111,7 @@ function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, don
             done={k < n - 1 || (done.includes(k + 1) && k !== n - 1)} fill={Math.min(i + 1, total) / Math.max(total, 1)}
             navigable={navigable} onGo={onGo} UI={UI} />
         ))}
-        <text x={Z.bar.x} y={Z.bar.y + 60} fontSize={T.micro} fontWeight={600} fill={C.ink}>{UI.phaseOf(n, N)}</text>
+        <text x={Z.bar.x} y={Z.bar.y + 60} fontSize={T.micro} fontWeight={dev ? 500 : 600} fill={C.ink}>{UI.phaseOf(n, N)}</text>
         <text x={Z.bar.x + Z.bar.w} y={Z.bar.y + 60} textAnchor="end" fontSize={T.micro} fontWeight={500} fill={C.ink}>{UI.questionOf(Math.min(i + 1, total), total)}</text>
       </g>
     </g>
@@ -2103,13 +2154,13 @@ function Summary({ C, phases, results, row, showScore, freePlay, onFree, onAgain
             <text x={128} y={y + 40} fontSize={T.label} fontWeight={700} fill={C.ink}>{lineFor(p.concept, lang, TR)}</text>
             <text x={128} y={y + (lang === "hi" || lang === "gu" ? 80 : 74)} fontSize={T.micro} fontWeight={500} fill={learnedInk}>{lineFor(p.learned, lang, TR)}</text>
             {r && r.last && Thumb && (
-              <g transform={`translate(1290,${y + 2})`}><Thumb n={k + 1} result={r} C={C} w={236} h={rowH - 10} lang={lang} tx={(v: any) => lineFor(v, lang, TR)} /></g>
+              <g data-role="thumb" transform={`translate(1290,${y + 2})`}><Thumb n={k + 1} result={r} it={r.last.it} C={C} w={236} h={rowH - 10} lang={lang} tx={(v: any) => lineFor(v, lang, TR)} /></g>
             )}
           </g>
         );
       })}
       {showScore && played.length > 0 && (
-        <g role="img" aria-label={`Right first time: ${first} of ${total}`}>
+        <g role="img" aria-label={UI.starsLabel ? UI.starsLabel(first, total) : `Right first time: ${first} of ${total}`}>
           {[0, 1, 2].map((k) => (
             <path key={k} d={starPath(704 + k * 62, 596, 24)} fill={k < stars ? CONTENT.ten : "#FFFFFF"}
               stroke={k < stars ? shade(CONTENT.ten, 0.3) : C.rule} strokeWidth={3} strokeLinejoin="round" />
@@ -2264,7 +2315,10 @@ function ToolFrame({ props, tool }: any) {
   const showStart = hasStart && P.start !== false && (navigable || P.start === true);
   const [started, setStarted] = useState(!showStart);
   const startedRef = useRef(!showStart);
-  const startNow = () => { if (startedRef.current) return; startedRef.current = true; setStarted(true); };
+  /* r24: when the lesson last changed stage or phase (the start page's Start, a phase entered, the Next key): the Enter that performs a guide step
+     is not taken within 400 ms of it, so the second of two quick Enters (a held key, a double press) never does the first step of what just opened */
+  const changeAt = useRef(0);
+  const startNow = () => { if (startedRef.current) return; startedRef.current = true; changeAt.current = Date.now(); setStarted(true); };
   const [idx, setIdx] = useState((mountPhase || 1) - 1);
   const phase = phases[idx] || { n: 1, concept: "", items: [] };
   const n = idx + 1;
@@ -2286,6 +2340,9 @@ function ToolFrame({ props, tool }: any) {
      stays a plain replay, as it always was. */
   const pendingAdvance = useRef<(() => void) | null>(null);
   const [locked, setLocked] = useState(false);
+  /* r24: `locked` mirrored in a ref, written the moment a tool calls api.lock, so an effect of the same commit sees it */
+  const lockedRef = useRef(false);
+  const lockNow = (b: boolean) => { lockedRef.current = b; setLocked(b); };
   /* CLASSROOM mode (props.classroom): read on every render, so the host can switch it on or off mid-lesson */
   const classroom = (P.classroom ?? (P.additionalProps && P.additionalProps.classroom)) === true;
   const holdRef = useRef(false);
@@ -2322,6 +2379,7 @@ function ToolFrame({ props, tool }: any) {
   const [mascotOk, setMascotOk] = useState(true);
   const mascotRef = useRef(true);
   const [cheerOk, setCheerOk] = useState(true);   /* r54: false when the cheering picture does not decode: the standing one stays */
+  const [thinkOk, setThinkOk] = useState(true);   /* r24: false when the thinking picture does not decode: the standing one stays */
   /* r54: a SMALL cheer on every right answer: the cheering picture for 900 ms and one jump (c4-cheer1); at a phase's last question the
      party's long cheer takes over. None under reduced motion. */
   const [quick, setQuick] = useState<any>({ n: 0, on: false });
@@ -2334,12 +2392,42 @@ function ToolFrame({ props, tool }: any) {
   /* the mascot does not talk (r30): it cheers when an answer is right (r54: a small cheer, a long one with the party at a phase's end) and nods after a miss */
   const [react, setReact] = useState<any>({ kind: "", n: 0 });
   const mascotDo = (kind: string) => setReact((r: any) => ({ kind, n: r.n + 1 }));
+  /* r24: the pose that waits. Kiko THINKS while a question is open and the child has not yet acted on it (no tap, no key, no Hint key, nothing
+     typed); the first act puts the standing picture back, a miss (the retry) the thinking one again. `actedKey` is the question the child acted on. */
+  const actedRef = useRef("");
+  const [actedKey, setActedKey] = useState("");
+  const markActed = () => {
+    if (!startedRef.current) return;
+    /* r25: only a tap or key while a QUESTION is open is an act on it. A guide step's tap (stage "demo") shares the question's key
+       (idx.0.run), so before this every phase's question 1 opened already "acted on" and Kiko never thought there (found by the owner) */
+    if (live.current && live.current.stage !== "ask") return;
+    if (lockedRef.current && live.current && live.current.tries > 0) return;   /* a tap during a miss's traceback is not an act on the retry */
+    const k = String((live.current && live.current.qKey) || "");
+    if (actedRef.current !== k) { actedRef.current = k; setActedKey(k); }
+  };
+  const forgetActed = () => { if (actedRef.current) { actedRef.current = ""; setActedKey(""); } };
+  /* the Hint key pops a small bulb above-right of Kiko's head for a second */
+  const [bulb, setBulb] = useState<any>({ n: 0, on: false });
+  const bulbNow = () => setBulb((b: any) => ({ n: b.n + 1, on: true }));
+  useEffect(() => {
+    if (!bulb.on) return;
+    const t = setTimeout(() => setBulb((b: any) => ({ ...b, on: false })), 1000);
+    return () => clearTimeout(t);
+  }, [bulb.n]);
   /* the party (r38/r39): a small celebration when the 3 questions of a phase are done (a bigger one after the last phase); none
      under reduced motion. It plays for PARTY_MS and the walk to the next phase waits for it (phaseEnd), so it is seen whole.
      There is no free play between phases: free play is the summary page's, after the last. */
   const [party, setParty] = useState<any>({ n: 0, big: false, on: false });
   const partyAt = useRef(0);   /* when the last party began (0: none): the walk to the next phase waits for it */
   const partyNow = (big: boolean) => { if (reducedMotion()) return; partyAt.current = Date.now(); setParty((p: any) => ({ n: p.n + 1, big, on: true })); mascotDo("cheer"); };
+  /* r24: a skip (a classroom teacher's tap), a phase dot or a restart ends the celebration AT ONCE: the confetti, the cheering picture and the
+     jumps (c4-cheer / c4-cheer1 come from react.kind), and the walk stops waiting for the party */
+  const endCelebration = () => {
+    partyAt.current = 0;
+    setParty((p: any) => (p.on ? { ...p, on: false } : p));
+    setQuick((q: any) => (q.on ? { ...q, on: false } : q));
+    setReact((r: any) => (r.kind === "cheer" || r.kind === "cheer1" ? { kind: "", n: r.n + 1 } : r));
+  };
   useEffect(() => {
     if (!party.on) return;
     const t = setTimeout(() => setParty((p: any) => ({ ...p, on: false })), PARTY_MS);
@@ -2403,7 +2491,10 @@ function ToolFrame({ props, tool }: any) {
   const setTyped = (v: any) => {
     const nv = typeof v === "function" ? v(typedRef.current) : String(v ?? "");
     typedRef.current = nv;
-    if (board && nv !== "" && live.current.stage === "ask" && !wantRef.current && !(cardAnswerOn && live.current.item && live.current.item.choices)) setPanel(true);
+    /* r24: a question answered on the working area (pad "enter") has no keypad: the word a tool writes into the slot never opens the panel */
+    if (board && nv !== "" && live.current.stage === "ask" && !wantRef.current && !(cardAnswerOn && live.current.item && live.current.item.choices)
+      && !(live.current.item && live.current.item.pad === "enter" && !captureRef.current)) setPanel(true);
+    if (nv !== "") markActed();
     staleRef.current = false;
     staleParts.current = [];
     if (nv === "") setPart(0); /* a cleared slot starts again at the first box */
@@ -2431,7 +2522,7 @@ function ToolFrame({ props, tool }: any) {
   const takeNext = (): boolean => {
     const f = nextRef.current;
     if (!f) return false;
-    nextRef.current = null; setHeldNext(false); f();
+    nextRef.current = null; setHeldNext(false); changeAt.current = Date.now(); f();
     return true;
   };
   /* r34: a right answer's next question comes after its short celebration, by itself, in every mode. In a classroom a tap
@@ -2463,12 +2554,16 @@ function ToolFrame({ props, tool }: any) {
     if (!holdRef.current) return false;
     if (voice.release(true)) return true;
     const f = nextRef.current;
-    if (f) { nextRef.current = null; setHeldNext(false); f(); return true; }
+    if (f) { endCelebration(); nextRef.current = null; setHeldNext(false); f(); return true; }
     const pa = pendingAdvance.current;
-    if (pa) { pa(true); return true; }
-    return voice.release();
+    if (pa) { endCelebration(); pa(true); return true; }
+    const cut = voice.release();
+    if (cut) endCelebration();
+    return cut;
   };
   const item = items[Math.min(i, items.length - 1)] || {};
+  /* r24: the question on show, as one key (the phase, the question, the run): what "acted on" and "ready" are remembered against */
+  const qKey = idx + "." + i + "." + run;
   const say = (it: any) => tx(it.say) || tx(it.ask) || "";
   const live = useRef<any>({});
   /* r49, CARD ANSWER (opt-in: `tool.cardAnswer: true`, board layout only). The answer is given ON the card of the picture that
@@ -2486,20 +2581,36 @@ function ToolFrame({ props, tool }: any) {
   const cardReadyRef = useRef(true);
   const cardGateRef = useRef(false);   /* an act on the picture (Cut, Lots of, Trade) still waits: a digit typed meanwhile is ignored */
   const setCardReady = (b: any, gate?: any) => { cardGateRef.current = !!gate; const v = !!b; if (cardReadyRef.current !== v) { cardReadyRef.current = v; setCardReadyState(v); } };
+  /* r24, THE ANSWER KEY (every board tool, not only cardAnswer ones): when the question's answer is typed on the keypad (or a choice made
+     in it) the pink Answer key is what the child must press. While that is so (a question is open, nothing blocks it, the picture is ready) the
+     key BLINKS and the built-in "Tap the blinking Answer key." line shows under the instruction. Never in a guide step or warm-up, with the
+     keypad open, while the pad is locked, after the win, on a card question (the card blinks) or a choice question whose keys are in the bar. */
+  const keyAskOn = cardAnswerOn ? answerOn === "key" : board && stage === "ask" && item.pad !== "enter";
+  /* a tool whose answer is made on the working area (pad "enter"): the Enter key in the bar blinks once the tool says the answer is ready
+     (api.answerReady(true)); steady before, and for a tool that never says so */
+  const [readyKey, setReadyKey] = useState("");
+  const answerReady = (b: any) => { const k = b ? String((live.current && live.current.qKey) || "") : ""; setReadyKey((o) => (o === k ? o : k)); };
   const tapLine = () => (answerOn === "card" ? (cardReadyRef.current ? UI.tapCard(tx(item.cardName || (cardKind === "decimal" ? "Decimal" : "Fraction"))) : "")
-    : answerOn === "choices" ? UI.pickIt : answerOn === "key" ? UI.tapAnswer : "");
-  const showTap = () => { const l = tapLine(); setHintText(l, l ? "type" : "hint"); };
+    : answerOn === "choices" ? UI.pickIt : keyAskOn && cardReadyRef.current ? UI.tapAnswer : "");
+  const showTap = () => { const l = lockedRef.current ? "" : tapLine(); setHintText(l, l ? "type" : "hint"); };
   /* a tap on the card (or the Answer key) opens the keypad and says what to do with it; Close (or the key again) shuts it */
+  const openedAt = useRef(0);   /* r24: when a tap last opened the keypad: a second press within 300 ms (a double tap) does not shut it again */
   const openAnswer = () => {
     const L = live.current;
     if (!board || L.stage !== "ask" || L.locked) return false;
+    markActed();
     if (!wantRef.current) {
       setPanel(true);
+      openedAt.current = Date.now();
       if (!hintOn.current || hintKind.current === "type") setHintText(L.item.choices ? UI.pickIt : UI.typeIt, "type");   /* r36 / r41 */
     }
     return true;
   };
-  const closeAnswer = () => { setPanel(false); if (hintKind.current === "type") showTap(); };
+  const closeAnswer = () => {
+    if (wantRef.current && Date.now() - openedAt.current < 300) return;   /* the second tap of a double tap */
+    setPanel(false);
+    if (hintKind.current === "type") showTap();
+  };
 
   /* every event leaves the frame too: a window CustomEvent, and a postMessage when framed */
   const emit = (name: string, detail: any) => {
@@ -2527,6 +2638,12 @@ function ToolFrame({ props, tool }: any) {
         cm.onload = () => { if (!cm.naturalWidth) setCheerOk(false); };
         cm.onerror = () => setCheerOk(false);
         cm.src = MASCOT_CHEER;
+      }
+      if (typeof MASCOT_THINK === "string" && MASCOT_THINK) {
+        const tm = new Img();
+        tm.onload = () => { if (!tm.naturalWidth) setThinkOk(false); };
+        tm.onerror = () => setThinkOk(false);
+        tm.src = MASCOT_THINK;
       }
     } catch (e) { /* a probe that cannot run says nothing about the picture */ }
   }, []);
@@ -2595,6 +2712,7 @@ function ToolFrame({ props, tool }: any) {
      act the current step waits for; the last act opens the question. Anything else is ignored (false), so an act out of
      order changes nothing here and the tool answers it as it always did. */
   const didAt = useRef(0);   /* when Work last reported an act (any act): workTap and a typed digit wait it out */
+  const lastRight = useRef<any>({ name: "", at: 0 });   /* r24: the last act that moved a guide step on, and when (C10) */
   const did = (name: any) => {
     const L = live.current, st = L.phase && L.phase.steps;
     didAt.current = Date.now();
@@ -2602,11 +2720,15 @@ function ToolFrame({ props, tool }: any) {
     const k = stepRef.current;
     if (!st[k]) return false;
     if (String(st[k].on) !== String(name)) {
+      /* r24: the act the child JUST did, repeated (a double tap on a guide control): the step counted it once; the second tap is
+         not an error, so the next step's hint never flashes */
+      if (lastRight.current.name === String(name) && Date.now() - lastRight.current.at < 500) return false;
       /* an act that is not the one this step waits for: the instruction stays, the step's hint shows under it and stays
          (the same hint, however many times) until the right act */
       if (st[k].hint) setHintText(tx(st[k].hint));
       return false;
     }
+    lastRight.current = { name: String(name), at: Date.now() };
     stepRef.current = k + 1; setStepNo(k + 1);
     if (k + 1 < st.length) { voice.speak(tx(st[k + 1].say)); return true; }
     /* the last act: its result stays on the board for a moment (phase.stepHold ms, 1600 by default; none under reduced
@@ -2637,7 +2759,11 @@ function ToolFrame({ props, tool }: any) {
   };
 
   /* the hint ladder, the same for a miss and for a request: rung 0 the item's own miss line, then the phase's two rungs */
-  const rungOf = (it: any, ladder: any[], k: number) => (k <= 0 ? it.miss || ladder[0] : k === 1 ? ladder[0] || it.miss : ladder[1] || ladder[0]);
+  /* r24: a question may carry its own ladder (`it.ladder`, rungs 2 and 3) in place of its phase's */
+  const rungOf = (it: any, phaseLadder: any[], k: number) => {
+    const ladder = it && Array.isArray(it.ladder) && it.ladder.length ? it.ladder : phaseLadder || [];
+    return k <= 0 ? it.miss || ladder[0] : k === 1 ? ladder[0] || it.miss : ladder[1] || ladder[0];
+  };
   const rungShown = useRef(-1);   /* the rung on show for this question (-1: none) */
   useEffect(() => { rungShown.current = -1; }, [i, idx, run]);
   /* The header's HINT key (r35, the owner: the lesson is manual, a stuck child or a teacher may ask): while a guide step
@@ -2645,6 +2771,7 @@ function ToolFrame({ props, tool }: any) {
      with nothing to hint (a win, a closing line, the summary, free play, no hint written) it shows the lines again. */
   const askHint = () => {
     const L = live.current;
+    markActed(); bulbNow();   /* r24: the Hint key is an act (Kiko stops thinking) and pops the small bulb */
     if (L.stage === "demo" && L.phase.steps && L.phase.steps[stepRef.current]) {
       const st = L.phase.steps[stepRef.current];
       if (st.hint) { setHintText(tx(st.hint)); return; }
@@ -2757,7 +2884,7 @@ function ToolFrame({ props, tool }: any) {
     capture(null);
     exploreOf.current = null;
     pendingAdvance.current = null;
-    setSummaryRow(-1); setTyped(""); setWrong(null); setLocked(false);
+    setSummaryRow(-1); setTyped(""); setWrong(null); lockNow(false);
     setStage("free");
     voice.speak(tx(tool.FREE_LINE) || UI.freePlayLine, undefined, { nopark: true });
   };
@@ -2806,7 +2933,7 @@ function ToolFrame({ props, tool }: any) {
       answered.current += 1;
       const r = results.current[L.n] || { answered: 0, firstTry: 0, total: L.items.length };
       results.current[L.n] = { ...r, answered: r.answered + 1, firstTry: r.firstTry + (L.tries === 0 ? 1 : 0), total: L.items.length,
-        last: { item: L.i, value, kind: it.kind, answer: it.answer, shared: { ...shared.current } } };
+        last: { item: L.i, it: it, value, kind: it.kind, answer: it.answer, shared: { ...shared.current } } };
       L.stage = "win";
       setWrong(null);
       setStage("win");
@@ -2821,6 +2948,7 @@ function ToolFrame({ props, tool }: any) {
     /* a miss: said three ways and none of them is the number; nothing marked, nothing reset */
     sfx.wrong();
     mascotDo("nod");
+    forgetActed(); setReadyKey("");
     const t = L.tries + 1;
     L.tries = t;
     setTries(t);
@@ -2927,7 +3055,8 @@ function ToolFrame({ props, tool }: any) {
   const enterPhase = (k: number, at = 0) => {
     const kk = Math.min(Math.max(Math.round(k), 0), N - 1);
     clearLater(); voice.hush();
-    setParty((p: any) => (p.on ? { ...p, on: false } : p));   /* r41: a restart, a dot or a skip ends the confetti too */
+    endCelebration();   /* r41: a restart, a dot or a skip ends the confetti too; r24: and the cheering picture and its jumps */
+    changeAt.current = Date.now();
     exploreOf.current = null; hintsOf.current = { at: "", k: 0 };
     fired.current = false; firstTry.current = 0; answered.current = 0;
     summaryTok.current++; setSummaryRow(-1);
@@ -2937,7 +3066,7 @@ function ToolFrame({ props, tool }: any) {
     skipTeach.current = at > 0 ? at : null;
     /* the stage moves with the phase in the same render: a jump during a win must never show the
        new phase's first item with stage "win" (a tool drawing its win would draw that item's answer) */
-    setIdx(kk); setI(at); setTyped(""); setTries(0); setWrong(null); setLocked(false); setRing(null);
+    setIdx(kk); setI(at); setTyped(""); setTries(0); setWrong(null); lockNow(false); setRing(null);
     setStage(at > 0 ? "ask" : "teach");
     setRun((r) => r + 1);
   };
@@ -2965,7 +3094,7 @@ function ToolFrame({ props, tool }: any) {
     pendingAdvance.current = null; /* a jump makes any advance a spoken line was walking toward stale */
     enterRef.current = null;
     capture(null);
-    setI(a); setTyped(""); setTries(0); setWrong(null); setLocked(false); setStage("ask");
+    setI(a); setTyped(""); setTries(0); setWrong(null); lockNow(false); forgetActed(); setStage("ask");
     voice.speak(say(live.current.items[a] || {}));
   };
   /* the agent's absolute step; in AI mode it stays inside the phase being shown (the host's, then each one the tool walks on to) */
@@ -3045,6 +3174,9 @@ function ToolFrame({ props, tool }: any) {
        the FIRST Enter is swallowed mid-keystroke, before the usePress blur added above can run). */
     const h = (e: any) => {
       if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) return;
+      /* r24: a held Enter or Space repeats keydown: the act is done once, by the first press */
+      if (e.repeat && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); return; }
+      if (startedRef.current && e.key !== "Tab" && e.key !== "Shift") markActed();
       /* the start page: Enter or Space starts the lesson; nothing else is live behind it */
       if (!startedRef.current) { if (e.key === "Enter" || e.key === " ") { startNow(); e.preventDefault(); } return; }
       if (/^[0-9]$/.test(e.key)) { press(e.key); e.preventDefault(); pointerBlur(); }
@@ -3054,7 +3186,12 @@ function ToolFrame({ props, tool }: any) {
         setPart(partRef.current + 1); e.preventDefault(); pointerBlur();
       }
       else if (tool.pointKey && (e.key === "." || e.code === "NumpadDecimal")) { press("point"); e.preventDefault(); pointerBlur(); }
-      else if (e.key === "Enter") { press("enter"); e.preventDefault(); }
+      else if (e.key === "Enter") {
+        /* r24: the physical Enter is not taken as a guide-step act within 400 ms of a stage or phase change (a double Enter; the agent's
+           check() and the checks' solve() do not come this way) */
+        if (live.current.stage === "demo" && Date.now() - changeAt.current < 400) { e.preventDefault(); return; }
+        press("enter"); e.preventDefault();
+      }
       else if (e.key === "Backspace") { press("back"); e.preventDefault(); pointerBlur(); }
       /* Escape clears the typed answer, but never while the pad is locked (a miss's traceback: the answer stays in the box) */
       else if (e.key === "Escape") { if (captureRef.current) press("clear"); else if (live.current.stage === "ask" && !live.current.locked) setTyped(""); e.preventDefault(); }
@@ -3072,7 +3209,7 @@ function ToolFrame({ props, tool }: any) {
   /* `props.answerOpen: true` (the host's, or a teacher's, choice) keeps the panel open on every question, as the classic
      layout always had its pad; the working area then stays at its open width. Off by default. */
   const alwaysOpen = (P.answerOpen ?? (P.additionalProps && P.additionalProps.answerOpen)) === true;
-  const panelOpen = board && !(cardAnswerOn && item.choices) && (openWanted || captured || alwaysOpen) && !locked && (stage === "ask" || (stage === "free" && captured));
+  const panelOpen = board && !(cardAnswerOn && item.choices) && !(item.pad === "enter" && !captured && !alwaysOpen) && (openWanted || captured || alwaysOpen) && !locked && (stage === "ask" || (stage === "free" && captured));
   const slide = useSlide(panelOpen ? 1 : 0);
   const workW = board ? Math.round(ZBOARD.work.w - (ZBOARD.work.w - BOARD_OPEN_W) * slide) : W.w;
   /* the hint goes with whatever it was about: a right act or a right answer (stepNo / stage change), the next question or
@@ -3080,17 +3217,20 @@ function ToolFrame({ props, tool }: any) {
   useEffect(() => { setHintText(""); }, [stage, i, idx, run, stepNo]);
   /* r49: where to tap, when the question opens (and when Work says the picture is ready for the card); a real hint stays */
   useEffect(() => {
-    if (!answerOn || locked || wantRef.current) return;
+    /* r24: while the pad is locked (the tool's own act or a traceback) no "tap here" line stands: a tool that locks in the very commit
+       a question opens would otherwise show it for a moment (lockedRef is written the moment api.lock is called) */
+    if (locked || lockedRef.current) { if (!wantRef.current && hintOn.current && hintKind.current === "type") setHintText(""); return; }
+    if ((!answerOn && !keyAskOn) || wantRef.current || panelOpen) return;
     if (hintOn.current && hintKind.current === "hint") return;
     const l = tapLine();
     if (l) setHintText(l, "type");
     else if (hintOn.current && hintKind.current === "type") setHintText("");   /* the picture still wants an act: no "tap the card" */
-  }, [answerOn, i, idx, run, cardReady, locked]);
+  }, [answerOn, keyAskOn, i, idx, run, cardReady, locked, panelOpen]);
   /* a new question or phase starts with the panel shut; so does anything that is not a question */
   useEffect(() => { if (board && wantRef.current) setPanel(false); }, [i, idx, run]);
   useEffect(() => { if (board && wantRef.current && stage !== "ask" && !(stage === "free" && captured)) setPanel(false); }, [stage, captured]);
 
-  live.current = { idx, n, phase, i, item, stage, typed, tries, submit, setTyped, items, locked, board, panelOpen };
+  live.current = { idx, n, phase, i, item, stage, typed, tries, submit, setTyped, items, locked, board, panelOpen, qKey };
 
   /* what the host and the teacher agent can read and drive (window.toolApi, and window[TOOL_ID]) */
   const apiRef = useRef<any>({});
@@ -3103,7 +3243,8 @@ function ToolFrame({ props, tool }: any) {
       typed: typedRef.current, keypadOpen: stage === "ask" && !locked, tries,
       ...(board ? { board: true, answerPanel: panelOpen ? "open" : "closed", workWidth: workW } : {}),
       ...(hasStart ? { startPage: !started } : {}),
-      ...(cardAnswerOn ? { answerOn, cardReady, hintKind: hintText ? hintKind.current : null } : {}),
+      hintKind: hintText ? hintKind.current : null,   /* r24: for every tool (the built-in "tap the Answer key" line is a "type" line) */
+      ...(cardAnswerOn ? { answerOn, cardReady } : {}),
       ...(nextKeyOn ? { nextKey: heldNext ? (heldNext === "phase" ? UI.nextPhase : heldNext === "summary" ? UI.summaryKey : UI.next) : null } : {}),
       party: party.on,
       ...(phase.steps && phase.steps.length ? { guideStep: stepNo, guideSteps: phase.steps.length, guideOn: stage === "demo" && phase.steps[stepNo] ? String(phase.steps[stepNo].on) : null } : {}),
@@ -3240,11 +3381,14 @@ function ToolFrame({ props, tool }: any) {
     share: (o: any) => { shared.current = o || {}; },
     onEnter: (fn: any) => { enterRef.current = fn || null; },
     /* always set: a Work callback may hold an older api whose `locked` is stale; React skips a no-op */
-    lock: (b: boolean) => setLocked(!!b),
+    lock: (b: boolean) => lockNow(!!b),
     capture, demoDone, did, C, W,
     /* r49 (cardAnswer): a tap on the card opens the keypad / a tap on a box of the card puts the caret in it; cardReady(false)
        while the picture still wants an act (a blinking card would send the child past it) */
     openAnswer, closeAnswer, pickPart, cardReady: setCardReady,
+    /* r24: a question answered on the working area (pad "enter") says when its answer is ready to send: the Enter key in the bar then
+       blinks (api.answerReady(true)); (false), a new question or a miss makes it steady again. A tool that never calls it keeps a steady key. */
+    answerReady,
   };
   /* box: the room the working area has just now ({ w, h }: the whole card with the answer panel shut, the classic
      1086 wide with it open, in between while it slides). A board tool lays itself out from this, not from W. */
@@ -3259,7 +3403,8 @@ function ToolFrame({ props, tool }: any) {
   const rz = ring ? ringBox(ring, workW, panelOpen) : null;
 
   return (
-    <div className="c4-frame" style={{ position: "relative", margin: "0 auto", touchAction: "none", userSelect: "none", WebkitUserSelect: "none" } as any}>
+    <div className="c4-frame" style={{ position: "relative", margin: "0 auto", touchAction: "none", userSelect: "none", WebkitUserSelect: "none" } as any}
+      onPointerDownCapture={markActed} onKeyDownCapture={(e: any) => { if (e.key !== "Tab" && e.key !== "Shift") markActed(); }}>
       <style>{CSS}</style>
       <svg className="c4" viewBox="0 0 1600 900" width="100%" height="100%" aria-label={tx(tool.TOOL_NAME)}
         style={{ ["--c4-accent" as any]: C.accent, ["--c4-focus" as any]: shade(C.accent, 0.4) } as any}>
@@ -3324,7 +3469,8 @@ function ToolFrame({ props, tool }: any) {
             <>
               <AskBar C={C} ask={askText} hasRuns={!!Runs} mode={askMode} open={panelOpen} UI={UI} nextLabel={nextLabel}
                 choices={item.choices} onChoice={(id: string) => { if (!locked) commit(id); }} lang={lang} TR={tool.TR} quiet={cardAnswerOn}
-                blink={cardAnswerOn && !panelOpen}
+                onTap={workTap}
+                blink={askMode === "answer" ? keyAskOn && !locked && !panelOpen && cardReady : askMode === "enter" ? readyKey === qKey && readyKey !== "" && !locked : false}
                 onKey={() => {
                   if (askMode === "next") { takeNext(); return; }
                   if (askMode === "enter") { press("enter"); return; }
@@ -3352,6 +3498,7 @@ function ToolFrame({ props, tool }: any) {
         )}
         <Footer C={C} line={voice.line} hint={hintText} speaking={voice.speaking} react={react} n={n} N={N} i={i} total={items.length}
           navigable={navigable} done={done} onGo={goPhase} mascotOk={mascotOk} onMascotFail={mascotFail} cheerOn={(party.on || quick.on) && cheerOk} onCheerFail={() => setCheerOk(false)} UI={UI}
+          thinkOn={thinkOk && stage === "ask" && !(locked && tries > 0) && actedKey !== qKey && !(nextKeyOn && heldNext)} onThinkFail={() => setThinkOk(false)} bulbN={bulb.on ? bulb.n : 0}
           onBubble={classroom ? nudge : undefined} cue={voice.held} board={board} lang={lang} hintType={!!hintText && hintKind.current === "type"} />
         {party.on && <Party key={party.n} C={C} big={party.big} n={party.n} />}
         {rz && <rect className="c4-ring" x={rz.x - 6} y={rz.y - 6} width={rz.w + 12} height={rz.h + 12} rx={24}

@@ -178,8 +178,9 @@ export function judgeHintFit(m, TR, opts = {}) {
   const langs = ["hi", "gu"].filter((l) => TR && TR[l] && Object.keys(TR[l]).length && m.speakableIn && m.lineFor);
   const pairs = [];
   for (const p of m.PHASES || []) {
-    const lad = p.ladder || [];
+    const phaseLad = p.ladder || [];
     (p.items || []).forEach((it, k) => {
+      const lad = it.ladder && it.ladder.length ? it.ladder : phaseLad;   /* r24: a question may carry its own ladder */
       const rungs = [...new Set([enOf(it.miss) || enOf(lad[0]), enOf(lad[0]) || enOf(it.miss), enOf(lad[1]) || enOf(lad[0])].filter(Boolean))];
       for (const r of rungs) pairs.push({ tag: `phase ${p.n} question ${k + 1}`, instr: it.say || it.ask, hint: r });
     });
@@ -229,6 +230,7 @@ export function judgeOnePage(m, TR) {
       const q = it.say || it.ask;
       if (q) lines.push({ tag: `phase ${p.n} question ${k + 1}`, what: "instruction", v: q });
       if (it.miss) lines.push({ tag: `phase ${p.n} question ${k + 1}`, what: "hint (miss)", v: it.miss });
+      (it.ladder || []).forEach((r, j) => { if (r) lines.push({ tag: `phase ${p.n} question ${k + 1} ladder ${j + 1}`, what: "hint", v: r }); });
     });
     (p.ladder || []).forEach((r, k) => { if (r) lines.push({ tag: `phase ${p.n} ladder ${k + 1}`, what: "hint", v: r }); });
   }
@@ -265,7 +267,7 @@ export function judgeHintKey(rec, phase, item, m, stepPhase) {
     if (norm(a.instruction) !== norm(b.instruction)) bad.push(`at a step the key changed the instruction (${cut(b.instruction)} -> ${cut(a.instruction)})`);
     if (a.stage !== "demo" || a.guideStep !== (rec.step.k || 0)) bad.push(`at a step the key moved the lesson (stage ${a.stage}, guideStep ${a.guideStep})`);
   } else if (stepPhase) bad.push("the phase has guide steps but the key was not tried on one");
-  const lad = phase.ladder || [], q = rec.q;
+  const lad = (item && item.ladder && item.ladder.length ? item.ladder : phase.ladder) || [], q = rec.q;
   if (!q) bad.push("the key was not tried at an open question");
   else {
     /* a built-in "type" line (r49: where to tap, or choose) is an instruction, not a hint */
@@ -295,7 +297,7 @@ export function judgeHintKey(rec, phase, item, m, stepPhase) {
 export function judgeHintPinned(rec, phase, item, m, tag = `phase ${phase.n}`) {
   const bad = [];
   if (!rec || !rec.timeline) return [`${tag}: no hint run`];
-  const lad = phase.ladder || [];
+  const lad = (item && item.ladder && item.ladder.length ? item.ladder : phase.ladder) || [];
   const sp = (s) => norm(m.speakable ? m.speakable(enOf(s)) : enOf(s));
   const want1 = sp(enOf(item.miss) || enOf(lad[0])), want2 = sp(enOf(lad[0]) || enOf(item.miss));
   if (!want1) return [`${tag}: the question has no miss line and the phase no ladder: nothing to show after a miss`];
@@ -538,7 +540,7 @@ export function judgePaging(rec, m) {
    slot, and the hint is never the question's own line */
 export function judgeHintOnMiss(rec, phase, item, m) {
   const bad = [], tag = `${phase.n}`;
-  const hint = enOf(item.miss) || enOf((phase.ladder || [])[0]);
+  const hint = enOf(item.miss) || enOf(((item.ladder && item.ladder.length ? item.ladder : phase.ladder) || [])[0]);
   if (!hint) return [`${tag}: the first question has no miss line and the phase no ladder: nothing to show after a miss`];
   const want = first(hint, m), q = first(item.say || item.ask, m);
   if (want && want === q) bad.push(`${tag}: the hint is the question's own line (${cut(want)})`);
@@ -574,7 +576,7 @@ export function printedLines(M, toolSrc = "", opts = {}) {
     if (steps) add(steps.flatMap((s) => (s ? [s.say, s.hint] : []))); else add(p.says);
     add(p.demoLines); add(p.ladder); if (!(simple && p === P[P.length - 1])) add(p.closing); add(p.learned);
     for (const it of p.items || []) {
-      add(it.say); add(it.ask); add(it.miss);
+      add(it.say); add(it.ask); add(it.miss); add(it.ladder);   /* r24: a question's own ladder */
       if (Array.isArray(it.choices)) add(it.choices.map((c) => c && c.label));
       if (Array.isArray(it.parts)) for (const pt of it.parts) if (pt && !pt.at) { add(pt.label); add(pt.unit); }
     }
@@ -693,7 +695,7 @@ const LADDER_HINT = "builder: give the phase a ladder of two rungs that differ f
 export function judgeLadderMonotonic(rec, phase = {}, item = {}, m = {}) {
   if (!rec) return ["no hint-ladder run", LADDER_HINT];
   const sp = (s) => norm(m.speakable ? m.speakable(enOf(s)) : enOf(s));
-  const lad = phase.ladder || [];
+  const lad = (item && item.ladder && item.ladder.length ? item.ladder : phase.ladder) || [];
   const rungs = [enOf(item.miss) || enOf(lad[0]), enOf(lad[0]) || enOf(item.miss), enOf(lad[1]) || enOf(lad[0])].map(sp);
   const at = (h) => rungs.map((r, k) => (r && r === norm(h) ? k : -1)).filter((k) => k >= 0);
   const bad = [];

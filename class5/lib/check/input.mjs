@@ -12,6 +12,17 @@ import { cdpSession, pool } from "../core/chrome.mjs";
 import { decodePng } from "../core/png.mjs";
 
 const VISIBLE = `(el) => { const r = el.getBoundingClientRect(); return r.width > 4 && r.height > 4 && !el.closest('[display="none"]'); }`;
+/* r24: the ring (class c4-nextblink) round the Answer key of the question bar: does one exist, does it enclose the key, and is it animated */
+const KEYRING = `(() => { const k = document.querySelector('[data-zone="ask"] [data-control="answer-open"]'), rs = Array.from(document.querySelectorAll('.c4-nextblink'));
+  if (!k) return { key: false, rings: rs.length, around: 0, anim: null };
+  const kb = k.getBoundingClientRect();
+  const around = rs.filter((r) => { const b = r.getBoundingClientRect(); return b.left <= kb.left + 2 && b.right >= kb.right - 2 && b.top <= kb.top + 2 && b.bottom >= kb.bottom - 2; });
+  return { key: true, disabled: k.getAttribute('aria-disabled') === 'true', rings: rs.length, around: around.length, anim: around.length ? getComputedStyle(around[0]).animationName : null }; })()`;
+/* r24: the mascot's pose and the thought puff's box in stage units */
+const POSE = `(() => { const m = document.querySelector('image[data-role="mascot"]'), p = document.querySelector('[data-role="think-puff"]'); let box = null;
+  if (p) { const svg = document.querySelector('svg.c4'), inv = svg.getScreenCTM().inverse(), r = p.getBoundingClientRect(), a = svg.createSVGPoint(), b = svg.createSVGPoint();
+    a.x = r.left; a.y = r.top; b.x = r.right; b.y = r.bottom; const A = a.matrixTransform(inv), B = b.matrixTransform(inv); box = { x: A.x, y: A.y, x2: B.x, y2: B.y }; }
+  return { pose: m ? (m.getAttribute('data-pose') || '') : null, puff: !!p, box, stage: window.toolApi.getState().stage }; })()`;
 
 /* the visible drag pieces of a phase (one of each control), trying its questions in turn; the first
    question waits out its teach lines, since some pieces live only in a demo */
@@ -53,6 +64,22 @@ async function enterRun(url) {
   return cdpSession(url, async (s) => {
     if (!(await s.until("!!(window.toolApi && window.__tool)", 20000))) return { error: "the tool did not mount" };
     const steps = await s.ev("window.toolApi.getState().steps");
+    /* r25, the REAL flow first (a child's): the guide steps by real Enter presses (each a keydown, an act), then question 1 must open
+       with Kiko thinking and nothing touched. gotoStep (below) resets the "acted" mark, so the pose of the questions it opens proves
+       nothing about question 1 after the steps: a tap during a step once marked question 1 as acted on and Kiko never thought there
+       (found by the owner on ch 8, 2026-10-14; the r24 row passed all the same). */
+    let flow = null;
+    {
+      let guard = 0;
+      while (guard++ < 16) {
+        const g = await s.ev("window.toolApi.getState().stage");
+        if (g === "ask" || g === "win" || g === "free") break;
+        await s.key("Enter", "Enter", 13, String.fromCharCode(13));
+        await s.wait(1800);
+      }
+      await s.wait(700);
+      if ((await s.ev("window.toolApi.getState().stage")) === "ask") flow = await s.ev(POSE);
+    }
     const live = `(() => { const st = window.toolApi.getState(); const k = document.querySelector('[data-control="key-1"]'); return st.keypadOpen && st.cardReady !== false && !st.choices && !st.parts && k && k.getAttribute('aria-disabled') !== 'true'; })()`;
     /* later questions first (gotoStep goes straight to a question); the first one waits out its teach lines */
     for (const t of [...Array.from({ length: steps - 1 }, (_, k) => k + 1), 0]) {
@@ -60,7 +87,10 @@ async function enterRun(url) {
       if (!(await s.until(live, t ? 3000 : 25000))) continue;
       await s.wait(400);                                  /* settled: a phase jump reports "ask" for one render */
       if (!(await s.ev(live))) continue;
+      const poseOpen = await s.ev(POSE);                  /* r24: a question waits and nothing was touched: Kiko thinks */
       await s.click('[data-control="key-1"]');
+      await s.wait(120);
+      const poseTap = await s.ev(POSE);                   /* ... and after the first tap he stands again */
       const before = await s.ev("window.toolApi.getState().typed");
       await s.key("Enter", "Enter", 13, String.fromCharCode(13));
       await s.wait(500);
@@ -82,9 +112,9 @@ async function enterRun(url) {
         await s.key("Enter", "Enter", 13, String.fromCharCode(13)); await s.wait(500);
         touch = { t0, t1, t2: await s.ev("window.toolApi.getState().typed") };
       }
-      return { step: t + 1, before, ...st, noResend, touch, logs: s.logs.slice(0, 3) };
+      return { step: t + 1, before, ...st, noResend, touch, pose: { open: poseOpen, tap: poseTap, flow }, logs: s.logs.slice(0, 3) };
     }
-    return { none: true };
+    return { none: true, flow };
   }, { label: "click-then-enter", timeout: 150000 });
 }
 
@@ -326,11 +356,13 @@ async function boardRun(url) {
     const KEY = `document.querySelector('[data-control="answer-open"]')`;
     const g = () => s.ev(`(() => { const a = window.toolApi.getState(), k = ${KEY};
       return { panel: a.answerPanel, w: a.workWidth, stage: a.stage, typed: a.typed, tries: a.tries, locked: !!window.__tool.state().locked,
-        label: k ? k.getAttribute("aria-label") : null, parts: !!a.parts,
+        label: k ? k.getAttribute("aria-label") : null, parts: !!a.parts, hint: a.hint, hintKind: a.hintKind, ring: ${KEYRING},
         /* drawn, not merely mounted: a shut panel is display none (not drawn, not tabbable, not in any geometry) */
         key1: (() => { const e = document.querySelector('[data-control="key-1"]'); return !!e && !e.closest('[display="none"]'); })() }; })()`);
     const settle = async (want) => { await s.until(`window.toolApi.getState().answerPanel === ${JSON.stringify(want)}`, 4000); await s.wait(700); return g(); };
     const live = `(() => { const st = window.toolApi.getState(), k = ${KEY}; return st.board && st.keypadOpen && st.cardReady !== false && !st.choices && !!k && k.getAttribute("aria-disabled") !== "true"; })()`;
+    /* r24: before any question (a warm-up or a guide step is waiting) nothing may ring the Answer key */
+    const mount = await s.ev(`({ stage: window.toolApi.getState().stage, hint: window.toolApi.getState().hint, ring: ${KEYRING} })`);
     let found = false;
     for (const t of [...Array.from({ length: steps - 1 }, (_, k) => k + 1), 0]) {
       await s.ev(`window.toolApi.gotoStep(${t})`);
@@ -338,8 +370,8 @@ async function boardRun(url) {
       await s.wait(500);
       if (await s.ev(live)) { found = true; break; }
     }
-    if (!found) return { none: true };
-    const out = { start: await g() };
+    if (!found) return { none: true, mount };
+    const out = { mount, start: await g() };
     await s.click('[data-control="answer-open"]'); out.opened = await settle("open");
     await s.click('[data-control="answer-open"]'); out.shut = await settle("closed");
     const b = await s.centre('[data-control="answer-open"]');
@@ -356,6 +388,42 @@ async function boardRun(url) {
     out.logs = s.logs.slice(0, 3);
     return out;
   }, { label: "board-panel", timeout: 120000, reducedMotion: false });
+}
+
+/* r24, ANSWER-BLINK (a board tool without cardAnswer; the board-panel run): the pink Answer key blinks only while it is the thing to press */
+function judgeAnswerBlink(v) {
+  const b = [];
+  if (!v || v.none) return b;
+  const m = v.mount;
+  if (m && m.stage !== "ask" && m.ring && m.ring.around) b.push(`while a warm-up or a guide step waits (stage "${m.stage}") the Answer key is ringed: it blinks only at an open question`);
+  const s = v.start || {};
+  if (!s.ring || !s.ring.key) b.push("no Answer key (data-control answer-open) in the question bar at an open question");
+  else {
+    if (!s.ring.around) b.push("a keypad question opens with the Answer key not blinking (no ring c4-nextblink round it): it must blink while the keypad is shut");
+    else if (!s.ring.anim || s.ring.anim === "none") b.push(`the ring round the Answer key does not blink (animation ${s.ring.anim})`);
+    if (s.hintKind !== "type" || !/blinking Answer key/i.test(String(s.hint || ""))) b.push(`no built-in "Tap the blinking Answer key." line under the instruction at an open question (hint ${JSON.stringify(s.hint)}, kind ${s.hintKind})`);
+  }
+  if (v.opened && v.opened.ring && v.opened.ring.around) b.push("the Answer key still blinks with the keypad open: it stops once it is tapped");
+  if (v.shut && v.shut.ring && !v.shut.ring.around) b.push("after Close the Answer key does not blink again though the question still waits");
+  if (v.shut && (v.shut.hintKind !== "type" || !/blinking Answer key/i.test(String(v.shut.hint || "")))) b.push(`after Close the "Tap the blinking Answer key." line did not come back (hint ${JSON.stringify(v.shut.hint)})`);
+  if (v.sawLock && v.during && v.during.ring && v.during.ring.around) b.push("the Answer key blinks while the pad is locked (a miss's traceback)");
+  if (v.sawLock && v.during && v.during.hintKind === "type" && /blinking Answer key/i.test(String(v.during.hint || ""))) b.push("the \"Tap the blinking Answer key.\" line shows while the pad is locked");
+  return b;
+}
+
+/* r24, MASCOT-THINK (the click-then-enter run, any tool): Kiko thinks while a question waits and stands again at the first tap; the puff is inside his box */
+function judgeThink(p) {
+  const b = [], o = p.open || {}, t = p.tap || {};
+  if (o.pose !== "think") b.push(`at an open question nothing touched yet the mascot is not thinking (data-pose "${o.pose}", want "think")`);
+  if (!o.puff) b.push("no thought puff (data-role think-puff) beside Kiko while the question waits");
+  else if (o.box && (o.box.x < 27.5 || o.box.y < 737.5 || o.box.x2 > 232.5 || o.box.y2 > 898.5)) b.push(`the thought puff leaves the mascot's box (x 28 to 232, y 738 to 898): it is at x ${Math.round(o.box.x)} to ${Math.round(o.box.x2)}, y ${Math.round(o.box.y)} to ${Math.round(o.box.y2)}`);
+  if (t.pose === "think") b.push("after the first tap the mascot is still thinking: the standing picture must be back");
+  if (t.puff) b.push("the thought puff is still drawn after the first tap");
+  /* r25: question 1 after the guide steps, reached by real key presses (the flow a child takes) */
+  const f = p.flow;
+  if (f && f.pose !== "think") b.push(`after the guide steps (real Enter presses) question 1 opened with nothing touched and the mascot is not thinking (data-pose "${f.pose}", want "think"): a tap or key during a guide step must not count as an act on the question`);
+  else if (f && !f.puff) b.push("question 1 after the guide steps has no thought puff beside Kiko");
+  return b;
 }
 
 function judgeBoard(v) {
@@ -992,7 +1060,9 @@ async function cardAnswerRun(url) {
       for (let k = 0; k < 40; k++) {
         const a = await g();
         if (a.stage === "ask") break;
-        if (a.stage === "demo") await s.ev("window.__tool.solve()");
+        /* the stage is read AGAIN inside the same evaluation: a steps phase's hold can end between the read above and this call, and a
+           solve() that finds the stage "ask" answers the question (ch 8, 2026-10-14: the walk then read the next answer and threw) */
+        if (a.stage === "demo") await s.ev("window.toolApi.getState().stage === 'demo' && window.__tool.solve()");
         await s.wait(250);
       }
       await s.wait(700);
@@ -1137,7 +1207,7 @@ export function judgeCardAnswer(rec) {
       if (c.back.panel !== "open") bad.push(`after a miss the keypad did not come back with the answer to retype (${c.back.panel})`);
       if (!(c.retype || []).includes("7")) bad.push(`after a miss the digit the child retypes does not show in the card's first box (it shows ${JSON.stringify(c.retype || [])}): the card must be the answer box again as soon as something new is typed`);
     }
-    const asked = (c.asked || []).map(String);
+    const asked = (Array.isArray(c.asked) ? c.asked : []).map(String);
     asked.forEach((v, j) => {
       const shown = (c.typedBoxes[j] || []).join(" ");
       if (!shown.includes(v)) bad.push(`the digits "${v}" typed for box ${j + 1} do not show in the card's box (it shows ${JSON.stringify(c.typedBoxes[j] || [])})`);
@@ -1198,7 +1268,7 @@ export async function startPageInput({ base, poolSize = 2, first = "", backToSta
 /* `point`: the tool's source asks for the point key (pointKey: true). Without it the run is skipped
    altogether — a 12-key pad has no key-point element, so every wait for one would run to its timeout
    (it timed out the whole session on ch 7's tools, which have fraction boxes on several questions) */
-export async function realInput({ base, N, poolSize = 2, point: hasPoint = false, board = false }) {
+export async function realInput({ base, N, poolSize = 2, point: hasPoint = false, board = false, think = false, blink = false }) {
   const jobs = [];
   /* a board tool keeps its answer panel open for the key, box and point runs (the host's `answerOpen`, ?answer=open),
      since they press the keypad's keys; its own behaviour is judged by boardRun */
@@ -1273,7 +1343,25 @@ export async function realInput({ base, N, poolSize = 2, point: hasPoint = false
       panel = { ok: !b.length, detail: `board layout, by a real mouse, finger and keys: it opens shut, Answer opens it (the picture narrows to ${bo.value.opened.w}), Close shuts it, a typed digit opens it, a miss shuts it for the traceback${bo.value.sawLock ? "" : " (this tool does not lock the pad)"} and brings it back with the answer kept`, bad: b };
     }
   }
-  return { drag, key, parts, point, panel };
+  /* r24: the thinking pose (any tool whose runtime has it) and the Answer key's blink (a board tool without cardAnswer) */
+  let thinkRow = null, blinkRow = null;
+  if (think) {
+    const e = enter.ok ? enter.value : null;
+    if (!e) thinkRow = { ok: false, detail: "", bad: [(enter.error && enter.error.message) || "no click-then-enter run"] };
+    else if (e.error) thinkRow = { ok: false, detail: "", bad: [e.error] };
+    else if (e.none || !e.pose) {
+      const b = e.flow ? judgeThink({ open: { pose: "think", puff: true }, tap: {}, flow: e.flow }) : [];
+      thinkRow = { ok: !b.length, detail: "no question answered on the digit keys, so only question 1 after the guide steps was judged for the thinking pose", bad: b };
+    }
+    else { const b = judgeThink(e.pose); thinkRow = { ok: !b.length, detail: "while a question waits and nothing has been touched the mascot is the thinking picture (data-pose think) with its thought puff, inside his 204 x 160 box; the first tap puts the standing picture back and the puff away", bad: b }; }
+  }
+  if (blink && board) {
+    if (!bo || !bo.ok) blinkRow = { ok: false, detail: "", bad: [(bo && bo.error && bo.error.message) || "no board-panel run"] };
+    else if (bo.value.error) blinkRow = { ok: false, detail: "", bad: [bo.value.error] };
+    else if (bo.value.none) blinkRow = { ok: true, detail: "no typed question with an Answer key was reached, so the blink was not exercised", bad: [] };
+    else { const b = judgeAnswerBlink(bo.value); blinkRow = { ok: !b.length, detail: "the pink Answer key blinks (a ring, animated) only while it is what the child must press: a keypad question that waits with the keypad shut, with the built-in \"Tap the blinking Answer key.\" line under the instruction; not before a question (a warm-up or a guide step), not with the keypad open, not while the pad is locked; the line comes back after Close", bad: b }; }
+  }
+  return { drag, key, parts, point, panel, think: thinkRow, blink: blinkRow };
 }
 
 /* THE SIMPLE SUMMARY PAGE (runtime r44, the owner: "make it simple"): after the last phase the bubble says ONE line,
@@ -1292,7 +1380,20 @@ const SUM_LINES = `(() => { const svg = document.querySelector("svg.c4"), m = sv
 const SUM_SNAP = `(() => { const A = window.toolApi.getState(), b = document.querySelector('[data-zone="bubble"]');
   return { stage: A.stage, row: A.summaryRow, fin: (window.__events || []).length, ring: !!document.querySelector('[data-zone="summary"] .c4-ring'),
     line: b ? Array.from(b.querySelectorAll('[data-role="instruction"] text')).map((x) => x.textContent).join(" ") : "" }; })()`;
-async function summaryRun(url, lang, classroom, outDir) {
+/* r24: the summary page's thumbnails (the right-hand column of each row): how many elements each really draws and the words in it */
+const THUMBS = `(() => { const out = []; document.querySelectorAll('[data-zone="summary"] [data-role="thumb"]').forEach((g) => {
+  const row = g.closest('[data-row]'), els = Array.from(g.querySelectorAll('rect,circle,ellipse,path,line,polyline,polygon,text,image'));
+  let drawn = 0, words = '';
+  els.forEach((e) => {
+    if (e.tagName === 'text') { const t = String(e.textContent || '').trim(); if (t) { drawn++; words += t + ' '; } return; }
+    const b = e.getBoundingClientRect();
+    if (b.width < 0.5 && b.height < 0.5) return;
+    const cs = getComputedStyle(e), none = (v) => !v || v === 'none' || /transparent|rgba\\([^)]*,\\s*0\\)/.test(v);
+    if (e.tagName === 'image' || !none(cs.fill) || (!none(cs.stroke) && parseFloat(cs.strokeWidth) > 0)) drawn++;
+  });
+  out.push({ row: row ? Number(row.getAttribute('data-row')) : -1, drawn, words: words.trim() });
+}); return out; })()`;
+async function summaryRun(url, lang, classroom, outDir, lastSteps) {
   return cdpSession(url, async (s) => {
     if (!(await s.until("!!(window.toolApi && window.__tool)", 20000))) return { lang, classroom, error: "the tool did not mount" };
     await s.until("['ask', 'demo'].includes(window.toolApi.getState().stage)", 25000);
@@ -1319,16 +1420,60 @@ async function summaryRun(url, lang, classroom, outDir) {
       }
       await s.wait(100);
     }
-    return { lang, classroom, opened: true, samples, frame, tap, logs: s.logs.slice(0, 3) };
-  }, { label: `summary ${lang}${classroom ? " classroom" : ""}`, timeout: 90000 });
+    /* r24 (summary-thumbs): this mount played the last phase only, so only its row has a thumbnail. After the sampling above the
+       earlier phases' last questions are answered right too (gotoStep, then the dev key), the last phase's again, and the summary's
+       thumbnails are read once it opens. Nothing above this block depends on it. */
+    let thumbs = null;
+    if (lastSteps && lastSteps.length && !classroom) {
+      for (const t of lastSteps) {
+        await s.ev(`window.toolApi.gotoStep(${t})`);
+        let asked = false;
+        for (let k = 0; k < 40 && !asked; k++) {
+          const st = await s.ev("window.toolApi.getState().stage");
+          if (st === "ask") asked = true;
+          else { if (st === "demo") await s.ev("window.toolApi.getState().stage === 'demo' && window.__tool.solve()"); await s.wait(250); }
+        }
+        if (!asked) continue;
+        await s.wait(250);
+        await s.ev("window.toolApi.getState().stage === 'ask' && window.__tool.solve()");
+        await s.wait(150);
+      }
+      if (await s.until("window.toolApi.getState().stage === 'summary'", 25000)) { await s.wait(600); thumbs = await s.ev(THUMBS); }
+      else thumbs = { error: "the summary page did not open again after every phase's last question was answered" };
+    }
+    return { lang, classroom, opened: true, samples, frame, tap, thumbs, logs: s.logs.slice(0, 3) };
+  }, { label: `summary ${lang}${classroom ? " classroom" : ""}`, timeout: lastSteps && !classroom ? 190000 : 90000 });
 }
-export async function summaryInput({ base, N, outDir, langs = ["en", "hi", "gu"], poolSize = 2 }) {
+export async function summaryInput({ base, N, outDir, langs = ["en", "hi", "gu"], poolSize = 2, lastSteps = null }) {
   const plan = [...langs.map((l) => ({ lang: l, classroom: false })), { lang: "en", classroom: true }];
-  const res = await pool(plan.map((p) => () => summaryRun(`${base}?phase=${N}&muted=1&probe=1${p.lang === "en" ? "" : "&lang=" + p.lang}${p.classroom ? "&classroom=1" : ""}`, p.lang, p.classroom, outDir)), poolSize);
+  const res = await pool(plan.map((p) => () => summaryRun(`${base}?phase=${N}&muted=1&probe=1${p.lang === "en" ? "" : "&lang=" + p.lang}${p.classroom ? "&classroom=1" : ""}`, p.lang, p.classroom, outDir, lastSteps)), poolSize);
   return res.map((r, k) => {
     if (!r.ok) return { ...plan[k], error: r.error && r.error.message };
     const v = r.value;
     if (v.frame && fs.existsSync(v.frame.png)) v.ink = measureHintFrame({ ...v.frame, phase: N, kind: "summary", lang: v.lang }, decodePng(fs.readFileSync(v.frame.png)));
     return v;
   });
+}
+
+/* r24, SUMMARY-THUMBS (runtime with `last.it`): every summary row's thumbnail draws at least two things (a blank cream box draws a frame and
+   nothing) and, in Hindi and Gujarati, carries no Latin letter (digits, units written in the language and symbols are fine).
+   rows = summaryInput(): the en, hi and gu sessions each carry `thumbs` (a list, or { error }). Returns { bad, notes }. */
+export function judgeSummaryThumbs(rows = [], N = 1) {
+  const bad = [], notes = [];
+  let seen = 0;
+  for (const r of rows) {
+    if (r.classroom || !r.thumbs) continue;
+    if (r.thumbs.error) { bad.push(`${r.lang}: ${r.thumbs.error}`); continue; }
+    seen++;
+    if (!r.thumbs.length) { notes.push(`${r.lang}: the summary page drew no thumbnail (the tool has none)`); continue; }
+    if (r.thumbs.length < N) notes.push(`${r.lang}: ${r.thumbs.length} of ${N} phases had a thumbnail`);
+    for (const t of r.thumbs) {
+      const tag = `phase ${t.row + 1} thumbnail (${r.lang})`;
+      if (t.drawn < 2) bad.push(`${tag}: ${t.drawn} drawn element${t.drawn === 1 ? "" : "s"}, a blank box (a Thumb reads result.last.it, the item object, or result.last.item, the question's index)`);
+      const lat = r.lang !== "en" ? /[A-Za-z]+/.exec(t.words || "") : null;
+      if (lat) bad.push(`${tag}: Latin letters "${lat[0]}" in "${String(t.words).slice(0, 40)}" (write it through tx(), a TR line)`);
+    }
+  }
+  if (!seen && !bad.length) notes.push("no summary session read the thumbnails");
+  return { bad, notes };
 }

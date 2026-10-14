@@ -29,7 +29,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { sources, hostScope } from "../build/preview.mjs";
 import { loadModel } from "./model.mjs";
-import { realInput, startPageInput, stepClickInput, partyInput, realWrongInput, hintFramesInput, partyDotInput, summaryInput, nextKeyInput, judgeNextKey, cardAnswerInput, judgeCardAnswer } from "./input.mjs";
+import { realInput, startPageInput, stepClickInput, partyInput, realWrongInput, hintFramesInput, partyDotInput, summaryInput, nextKeyInput, judgeNextKey, cardAnswerInput, judgeCardAnswer, judgeSummaryThumbs } from "./input.mjs";
 import { padShapeProblems } from "./padshape.mjs";
 import { judgeSilent, judgeNoArrow, judgeSoundButton, stepsShape, judgeGuideSteps, judgeHintOnMiss, judgeHintPinned, judgeHintFit, DEV_RULE,
   judgeClassroom, judgePaging, judgeOnePage, judgeHintKey, judgePhaseParty, judgeNoFreeBetween,
@@ -154,6 +154,9 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
 
   /* ── maths ────────────────────────────────────────────────────────────────────── */
   const m = await loadModel(dir);
+  /* r24: a question's own ladder (it.ladder) is read only by a runtime whose rungOf reads it; an older pin ignores the field, so the
+     checks of such a chapter ignore it too and judge it exactly as before */
+  if (!caps.itemLadder) for (const p of m.PHASES || []) for (const it of p.items || []) if (it && it.ladder !== undefined) { try { delete it.ladder; } catch (e) { /* frozen: left */ } }
   const badW = WORDS.filter(([n, w]) => m.words(n) !== w).map(([n, w]) => `${n} -> "${m.words(n)}" (want "${w}")`);
   ok("maths", "number-words", !badW.length, `number names, Indian system: ${WORDS.length} of ${WORDS.length} right`, badW.join("; "));
   const badI = INDIAN.filter(([n, s]) => m.indian(n) !== s).map(([n, s]) => `${n} -> ${m.indian(n)} (want ${s})`);
@@ -174,9 +177,9 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   const stepSays = (p) => (Array.isArray(p.steps) ? p.steps.map((s) => s && s.say).filter((x) => typeof x === "string") : []);
   for (const p of m.PHASES) {
     if (!/^M\d+\.S\d+\.T\d+\.C\d+$/.test(p.conceptId || "") || !(p.objectiveIds || []).length) ids.push(`phase ${p.n}`);
-    const lad = p.ladder || [];
-    if (lad.length < 2 || p.items.some((it) => !it.miss)) ladders.push(`phase ${p.n}`);
-    const spoken = [...(p.says || []), ...stepSays(p), ...(p.demoLines || []), ...lad, p.closing, ...p.items.flatMap((it) => [it.say, it.miss])].filter(Boolean);
+    const lad = p.ladder || [], ladOf = (it) => (it.ladder && it.ladder.length ? it.ladder : lad);   /* r24: a question may carry its own ladder (rungs 2 and 3) */
+    if (p.items.some((it) => !it.miss || ladOf(it).length < 2) || (!p.items.length && lad.length < 2)) ladders.push(`phase ${p.n}`);
+    const spoken = [...(p.says || []), ...stepSays(p), ...(p.demoLines || []), ...lad, p.closing, ...p.items.flatMap((it) => [it.say, it.miss, ...(it.ladder || [])])].filter(Boolean);
     for (const s of spoken) if (unspoken(m.speakable(s))) digitLines.push(s.slice(0, 50));
     p.items.forEach((it, k) => {
       const tag = `${p.n}.${k + 1}`, key = m.agentKey ? m.agentKey(it) : it.answer;
@@ -185,7 +188,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
         if (!m.judge(it, key)) itemsBad.push(`${tag}: judge rejects its own answer ${JSON.stringify(key)}`);
         if (m.nearMiss) { const nm = m.nearMiss(it); if (m.judge(it, nm)) itemsBad.push(`${tag}: judge accepts the near miss ${JSON.stringify(nm)}`); }
       }
-      const texts = [it.ask, it.say, it.miss, ...lad, ...(p.says || []), ...stepSays(p)];
+      const texts = [it.ask, it.say, it.miss, ...lad, ...(it.ladder || []), ...(p.says || []), ...stepSays(p)];
       for (const f of formsOf(it)) if (texts.some((t) => mentions(t, f))) echo.push(`${tag} prints "${f}"`);
     });
   }
@@ -207,7 +210,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   ok("maths", "voice-in-words", !digitLines.length, silentRt ? "every bubble line is printed as words (no digit, symbol or unit abbreviation left after speakable)" : "every spoken line reaches the voice as words (no digit, symbol or unit abbreviation left)", digitLines.join(" | "));
   /* NCERT V13 + V19 (silent runtime: kept for the printed bubble): no en or em dash, and each piece at most 20 words and 110 characters */
   const allSpoken = [...(m.OPENING || []), summaryRt ? null : m.FINISH_LINE, ...m.PHASES.flatMap((p) => [...(p.says || []), ...stepSays(p), ...(p.demoLines || []), ...(p.ladder || []), p.closing,
-    ...p.items.flatMap((it) => [it.say, it.miss])])].filter(Boolean);
+    ...p.items.flatMap((it) => [it.say, it.miss, ...(it.ladder || [])])])].filter(Boolean);
   const dashes = allSpoken.filter((x) => /[–—]/.test(x)).map((x) => x.slice(0, 40));
   const long = allSpoken.flatMap((x) => (m.pieces ? m.pieces(m.speakable(x)) : [x])).filter((x) => x.length > 110 || x.split(/\s+/).length > 20).map((x) => x.slice(0, 40));
   ok("maths", "voice-lines", !dashes.length && !long.length, `${allSpoken.length} ${silentRt ? "bubble" : "spoken"} lines: no dashes, every piece at most 20 words and 110 characters`,
@@ -240,7 +243,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   const stepHints = (ph) => (Array.isArray(ph.steps) ? ph.steps.map((s) => s && s.hint).filter((x) => typeof x === "string") : []);
   m.PHASES.forEach((p, k) => {
     const next = m.PHASES[k + 1], firstSay = (ph) => ph.items[0] && ph.items[0].say;
-    runOnce(`phase ${p.n}`, [...opens(p, k), ...stepHints(p), ...p.items.flatMap((it) => [it.say, it.miss]), ...(p.ladder || [])]);
+    runOnce(`phase ${p.n}`, [...opens(p, k), ...stepHints(p), ...p.items.flatMap((it) => [it.say, it.miss, ...(it.ladder || [])]), ...(p.ladder || [])]);
     if (next) runOnce(`phase ${p.n} closing into phase ${next.n}`, [p.closing, ...opens(next, k + 1), firstSay(next)]);
   });
   if (silentRt) ok("maths", "bubble-no-repeat", !repeats.length, "the bubble never repeats itself: no sentence twice in a phase (teach or guide steps, questions, hints) or a closing into the next phase's opening, nor a near copy",
@@ -417,7 +420,10 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
      to press, and every wait for it would run to its timeout. Comments are stripped first: the skeleton's
      own note about pointKey sits in every scaffolded tool */
   const wantsPoint = /pointKey\s*:\s*true/.test(tool.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, ""));
-  const RI = await realInput({ base, N, poolSize: Math.min(Number(process.env.C4_CHROME_POOL) || 4, 3), point: wantsPoint, board }).catch((e) => ({ drag: fail(e), key: fail(e), parts: fail(e), point: fail(e), panel: fail(e) }));
+  /* r24: the thinking pose (a runtime with MASCOT_THINK and its inline picture) and the Answer key's blink (a board tool without cardAnswer) */
+  const thinkRt = caps.think && /const MASCOT_THINK: string = "data:image\/webp;base64,/.test(combined);
+  const blinkRt = caps.answerBlink && board && !/\bcardAnswer\s*:\s*true/.test(tool.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, ""));
+  const RI = await realInput({ base, N, poolSize: Math.min(Number(process.env.C4_CHROME_POOL) || 4, 3), point: wantsPoint, board, think: thinkRt, blink: blinkRt }).catch((e) => ({ drag: fail(e), key: fail(e), parts: fail(e), point: fail(e), panel: fail(e) }));
   log(`  real mouse, finger and key input in ${((Date.now() - t1) / 1000).toFixed(0)} s`);
   /* a tool with a start page (runtime r28: StartArt and/or START_HOOK in its source) is asked to prove it */
   const hasStart = /\b(StartArt|START_HOOK)\b/.test(tool.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, "")) && caps.startPage;
@@ -450,7 +456,11 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
     .catch((e) => [{ lang: "en", error: String(e && e.message) }]) : null;
   const PD = dotRt && partyRt && N > 1 ? await partyDotInput({ base }).catch((e) => ({ error: String(e && e.message) })) : null;
   /* r44: the simple summary page, in en, hi and gu, and in an English classroom */
-  const SS = summaryRt ? await summaryInput({ base, N, outDir: tmp, poolSize: cdpPool }).catch((e) => [{ lang: "en", error: String(e && e.message) }]) : null;
+  /* r24 (summary-thumbs): a runtime whose result.last carries the item object, and a tool that gives a Thumb: the summary session also
+     answers every phase's last question right and reads each row's thumbnail */
+  const thumbsAsked = summaryRt && caps.lastIt && /\bThumb\b/.test(toolPlain);
+  const lastSteps = (() => { let a = 0; return m.PHASES.map((p) => { const c = Math.max((p.items || []).length, 1), t = a + c - 1; a += c; return t; }); })();
+  const SS = summaryRt ? await summaryInput({ base, N, outDir: tmp, poolSize: cdpPool, lastSteps: thumbsAsked ? lastSteps : null }).catch((e) => [{ lang: "en", error: String(e && e.message) }]) : null;
   const D = {};
   runs.forEach((r, k) => { D[r.key] = got[k].ok ? got[k].value : { error: String(got[k].error && got[k].error.message) }; });
   const failedRuns = runs.filter((r) => !D[r.key] || D[r.key].error);
@@ -714,6 +724,12 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
     const fin = SS.map((r) => ((r.samples || []).find((x) => x.fin > 0) || {}).t).filter((x) => typeof x === "number");
     ok("render", "summary-simple", !sb.length, `the summary page is simple (r44): after the last phase the bubble says exactly UI.summaryLine (${SS.map((r) => r.lang + (r.classroom ? " classroom" : "")).join(", ")}), in one or two lines that never touch, and does not change by itself; getState().summaryRow stays -1 for 8 s; no row is ringed; finished goes once, ${fin.length ? (Math.min(...fin) / 1000).toFixed(1) + " to " + (Math.max(...fin) / 1000).toFixed(1) + " s" : "about 5 s"} after the page opens; in a classroom a tap on the bubble changes nothing (Free play and Play again: their own rows)`, cap(sb));
   }
+  if (SS && thumbsAsked) {
+    const th = judgeSummaryThumbs(SS, N);
+    const none = SS.every((r) => r.classroom || !Array.isArray(r.thumbs) || !r.thumbs.length);
+    if (!th.bad.length && none) add("render", "summary-thumbs", "info", `not asked: the summary page drew no thumbnail${th.notes.length ? " (" + th.notes.join("; ") + ")" : ""}`);
+    else ok("render", "summary-thumbs", !th.bad.length, `in English, Hindi and Gujarati every summary row's thumbnail (the Thumb of the tool, with result.last.it the item object) draws at least two things, never a blank box, and in Hindi and Gujarati carries no Latin letter (digits, units written in the language and symbols are fine); the session answers every phase's last question right, then reads the rows${th.notes.length ? " (" + th.notes.join("; ") + ")" : ""}`, cap(th.bad));
+  }
   ok("render", "finished-once", !bad.finished.length, "phases before the last walk on to the next with no finished; the last sends finished exactly once, with honest score, stars and ids", cap(bad.finished));
   ok("render", "agent-drives", !bad.agent.length, "AI mode: the teacher agent plays every phase through window.toolApi alone (walks on, then finishes)", cap(bad.agent));
   ok("render", "tool-api", !bad.api.length, `window.toolApi has the ${m.TOOL_API ? m.TOOL_API.length : 0} NCERT verbs + window.${m.TOOL_ID}; getState() complete`, cap(bad.api));
@@ -804,6 +820,8 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   ok("render", "point-input", RI.point.ok, RI.point.detail, cap(RI.point.bad));
   if (!silentRt) ok("render", "voice-sync", !syncBad.length, `mute keeps the place, unmute speaks on from the word reached ("${mv ? mv.resumed : ""}"), mascot moves only while audio plays`, syncBad.join("; "));
   if (board) ok("render", "board-panel", RI.panel.ok, RI.panel.detail, cap(RI.panel.bad));
+  if (RI.blink) ok("render", "answer-blink", RI.blink.ok, RI.blink.detail, cap(RI.blink.bad));
+  if (RI.think) ok("render", "mascot-think", RI.think.ok, RI.think.detail, cap(RI.think.bad));
   if (SP) ok("render", "start-page", SP.ok, SP.detail, cap(SP.bad));
   /* classroom (r34: action-driven): nothing waits for a "next" tap but the pieces of a long line (with the arrow); a right
      answer's next question, a miss's hint, a closing line's walk and the summary's rows come by themselves; a tap on the

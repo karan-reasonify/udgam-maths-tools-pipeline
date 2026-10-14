@@ -59,6 +59,18 @@ Never read `slot.json`, `plan.json`, `*.preview.html`, `.build/`, `output-previe
      cuts, counts, pours, weighs or measures as its own element with a clear box, and where `images.tsx` holds a skin for it draw
      `<Skin>` over EVERY such piece (the plain shape first, only as the fallback). Never leave a plain block where the image pass
      made an object for it; before the pass has run, keep the pieces skin-ready. Digits and marks stay in code, never in a picture.
+   - **What the runtime does for you from r24** (when your pinned runtime has it; `check` proves each, PATTERNS 9e and 9f): the pink Answer
+     key and its "Tap the blinking Answer key." line show only while a typed question waits with the keypad shut; Kiko THINKS (a third
+     picture, a thought puff) from a question's opening until the child's first tap; the Hint key pops a bulb; a held or doubled Enter
+     and a double tap are guarded. Do not draw or time any of it. Two things are YOURS: (1) a `pad: "enter"` question (answered on the
+     working area, the berry Enter key in the bar) calls `api.answerReady(true)` when its answer is complete and `(false)` when it is
+     not, or that key never blinks; (2) the summary `Thumb` reads the question as the `it` prop (r24) or
+     `PHASES[n - 1].items[result.last.item]` (`last.item` is the INDEX, never the item), a multi-part `last.value` through
+     `slotPartsOf` and every word through `tx` (`summary-thumbs` fails a blank or English thumbnail).
+   - **A decimal answer is written ON the Decimal card where the picture has one** (`parts: SLOT_DECIMAL`, the point drawn, the zero in
+     front typed, an empty whole box a real miss); the point key only where typing the point is the lesson. During guide steps the pinned
+     question bar names no number the picture does not show ("this weight"), and a question that needs rungs of its own carries
+     `ladder: [...]` on the item (r24: the static checks and the TR list see it).
    - **Before the first answer nothing on screen prints the answer** (no value under a tile, no total, no
      reference card that answers it, no bubble line, step or hint that prints it).
    - **After a miss the traceback redraws the maths and ends on the whole right answer**, unmarked (no

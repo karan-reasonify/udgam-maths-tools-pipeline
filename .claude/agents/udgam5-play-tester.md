@@ -71,6 +71,10 @@ plain; vary it.
    Report a tap that shows nothing, a control that acts but shows no hint when it is the wrong one, and a click that both
    acts and shows a hint.
 3. **Keyboard only**: Tab through the controls, Enter and Space on each, digits + Enter on typed items.
+   **The child's real flow, not a shortcut** (r24; `gotoStep` and the dev driver reset state a child never resets): from the start page,
+   the guide steps by real taps or Enter, then question 1 with nothing touched: Kiko must be the thinking picture and the Answer key must
+   blink only when typing is what is left; the first tap or key ends the pose; a held Enter (auto-repeat), two Enters 50 ms apart and a
+   double tap on a step's control or on the Answer key must do ONE thing; a tap on the disabled Answer key during a step shows the hint.
 4. **Mode switches**: jump phases with the phase dots (user mode); in AI mode (`mode: "ai"`) drive the phase through
    `window.toolApi` only (answer, check, next, gotoStep). There is no voice to test (the lesson is silent from runtime r30):
    the sound button switches the sound effects only (`muted: false` in `play()` to keep them on); no error when it is pressed

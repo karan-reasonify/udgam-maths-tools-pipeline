@@ -89,6 +89,11 @@ Look at each PNG (they are in the slot's folder). Use `--full --phase n --state 
    shows as its real object (a chocolate bar, a roti, buttons, a jug, a scale) where the image pass made one. A plain block there is
    a should-fix, and a must-fix when the skin exists in `images.tsx` and is not drawn. A plain block where the content calls for an
    object and the pass gave no reason is a question. Digits and marks stay in code: no digit or letter inside a picture.
+10. **Kiko thinks, the keys blink by rule** (r24, `docs/LAYOUT.md` section 5): in every ask frame where nothing was touched, Kiko is the
+   thinking picture (a hand at his chin, eyes glancing up) with the thought puff beside his head, inside his footer box and clear of
+   the bubble. A standing Kiko at a waiting question is a should-fix (a must-fix at question 1 right after the guide steps); a puff
+   over the bubble, cut off or past the stage's edge is a must-fix. The pink Answer key (on a card question the card) shows its ring
+   only when it is the thing to press, never in a guide step or with the keypad open.
 
 ## Report (at most 25 lines)
 Verdict: CLEAN or ISSUES. One line per finding:

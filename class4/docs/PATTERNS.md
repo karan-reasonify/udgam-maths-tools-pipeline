@@ -181,9 +181,23 @@ still print in the rows, so each keeps its Hindi and Gujarati entry and its 72-c
 longer shown** (nor the last phase's closing line): a tool may drop it, and one that keeps it breaks nothing (no check
 asks for its TR any more).
 
-`Thumb({ result, C, w, h })` draws the child's last right answer of a phase (`result.last = { value,
-answer, kind, item, shared }`). Free play is `stage === "free"`: the tool's own mode from the plan's
+`Thumb({ result, it, C, w, h, lang, tx })` draws the child's last right answer of a phase (`result.last = { item, it, value,
+answer, kind, shared }`). **The trap (hit by five of ch 8's six tools):** `last.item` is the question's INDEX in its phase
+(`L.i`), a number, not the item object. From runtime r24 `last.it` IS the item object (`PHASES[n - 1].items[item]`) and the
+runtime passes it as the `it` prop; before r24 find it with `PHASES[n - 1].items[last.item]`. `last.value` is the answer as the
+child gave it: a typed two-box answer is the string `"a|b"`, a card answer an array, a number a number: read it with
+`slotPartsOf(last.value, n)`, never `String(last.value)` ("0,8" for `[0, 8]`), and write every word through `tx()` so Hindi
+and Gujarati carry no English. The `summary-thumbs` check (r24) fails a thumbnail that draws fewer than two things and, in hi and gu,
+one with a Latin letter. Free play is `stage === "free"`: the tool's own mode from the plan's
 `writeup.freePlay`, nothing to get right, the plain pad.
+
+```tsx
+function Thumb({ n, result, it, C, w, h, tx = (v: any) => v }: any) {
+  const item = it || (result.last && PHASES[n - 1].items[result.last.item]) || {};   // r24: `it`; before: the index
+  const [whole, tenths] = slotPartsOf(result.last.value, 2);                       // "2|9" or [2, 9]
+  return <g>{/* a frame AND what the child made: at least two things */}</g>;
+}
+```
 
 **Free play offers exactly what `FREE_LINE` says, no more.** The line is printed (a voiced runtime: spoken) when free play opens,
 so every control it names must be reachable in the `stage === "free"` branch. A control that lives
@@ -394,6 +408,33 @@ the picture that holds the form it asks for, not through the Answer key, the key
   asks for that card, of the same amount): then it stays covered until it is asked.
 - See it with `playkit` (`nextKey: true` for the Next key too) and a screenshot at the open of a card question, with the
   keypad open and typed; `check` proves it: `card-answer`.
+
+## 9f. The Answer key's blink, Kiko's thinking pose and the guards (runtime r24)
+
+Nothing here is written by a tool except `api.answerReady`; each part is the runtime's and is proved by `check`.
+
+- **The Answer key blinks, with its line (every board tool).** While a typed (or keypad-chosen) question waits with the keypad shut,
+  the pink Answer key has the Next key's ring round it and "Tap the blinking Answer key." shows under the instruction
+  (`getState().hintKind` is "type", never a hint). It does not blink in a warm-up or a guide step, with the keypad open, while the
+  pad is locked, after the win, on a card question or a Yes / No question in the bar. `check`: `answer-blink` (a board tool
+  without `cardAnswer`). `getState().hintKind` is there for every tool now (a check that reads `hint` at an open question asks
+  `hintKind !== "type"` first).
+- **`api.answerReady(true | false)`** (a `pad: "enter"` question, answered on the working area): call it when the answer is
+  complete or picked, so the Enter key in the bar BLINKS; `false` (or a new question, or a miss) puts it back to steady. A tool
+  that never calls it keeps a steady key, as before.
+- **Kiko thinks while a question waits** (`data-pose="think"`, with a thought puff beside his head; the first tap, key, Hint key or
+  typed digit puts the standing picture back; a miss brings it again) and the **Hint key pops a bulb** for about a second. Nothing to
+  write. `check`: `mascot-think`.
+- **A question's own ladder.** `item.ladder = [rung2, rung3]` is read in place of the phase's `ladder` for that question (the
+  runtime's `rungOf`, and every static check: `hint-ladder`, `hint-fit`, `one-page`, `bubble-no-repeat`, `answer-not-echoed`,
+  `tr-coverage`). Setting the rungs from `Work` still works; the item field is the native way (and gets TR checked).
+- **Guards a tool gets for free:** a held Enter (auto-repeat) is one press; the physical Enter is not taken as a guide-step act
+  within 400 ms of a stage or phase change (a double Enter at Start, or at the Next phase key, never does the next phase's first
+  step); a double tap (second press within 300 ms) on the Answer key does not shut the keypad it opened; a repeat of the act that
+  just moved a guide step on (same `api.did` name within 500 ms: a double tap on a guide control) is not a wrong act, so the next
+  step's hint never flashes; a tap on a disabled key or the question bar in a guide step shows the step's hint; the party, the
+  cheer and its jumps end at once on a teacher's skip or a phase change; a `pad: "enter"` question never gets the keypad panel,
+  before or after a miss; a tool that locks the pad in the commit a question opens never shows the tap line.
 
 ## 9v. The voice (voiced runtimes: no `const SILENT_VOICE = true`, Class 4's frozen r1-r21)
 

@@ -82,7 +82,19 @@ footer (mascot, bubble, phase bar) and summary page are the same. What changes i
   play it reads "Free play".
 - **The Answer key** is a toy key like the pad's. Shut: accent, "Answer". Open: quiet, "Close". Not asking (a teach
   line, a win, a traceback): flat and quiet, never faded. A question answered on the working area (`pad: "enter"`) has
-  no panel: the key reads Enter and commits it.
+  no panel: the key reads Enter and commits it, and it has no panel after a miss either (r24).
+- **It blinks, and a line says so (r24, in EVERY board tool, not only `cardAnswer` ones).** The ring of the Next key (4 wide,
+  hugging the key, `.c4-nextblink`; steady under reduced motion) rides the Answer key, and the built-in line "Tap the blinking
+  Answer key." (UI.tapAnswer; a "type" line: neutral band, `getState().hintKind` "type") shows under the instruction, **only while
+  the key is what the child must press**: a question is open (`stage` "ask"), its answer is typed on the keypad (or a choice is made
+  in it), the keypad is shut, the pad is not locked and the picture is ready (`api.cardReady`). **Never** in a warm-up or a guide
+  step (the key is flat and quiet there), with the keypad open (the line becomes "Type your answer, then press Enter." and comes
+  back on Close), while the pad is locked, after the win, on a card question (the card blinks) or a choice question whose keys
+  stand in the bar (they blink). A question answered on the working area (`pad: "enter"`): the Enter key in the bar stays steady
+  until the tool says its answer is ready (`api.answerReady(true)`), then blinks; steady again after a miss or on the next
+  question; a tool that never says so keeps a steady key. A tap on the disabled Answer key or on the bar itself during a guide step
+  is a wrong act: the step's hint shows. A second press of the key within 300 ms of the one that opened the keypad (a double tap)
+  is ignored; Close later closes it.
 - **The panel opens** on a tap or Enter on the key, on any digit, point or rub-out typed on the keyboard (the digit
   lands in the box), when the pad is lent to the working area (`api.capture`), and for an agent's `answer()`. **It
   shuts** on a right answer, the next question, a phase change, the summary, the end of a capture, and on a miss: the
@@ -223,6 +235,17 @@ Each is 56 across with a 72-unit finger box; 72 apart, so the boxes tile and nev
   two happy arcs, cut to the same box as the standing picture so the swap never moves Kiko. It takes the place of the standing picture on the
   same `<image data-role="mascot" data-pose="cheer">` while the party plays and for 0.9 s after any other right answer; if it fails to decode
   the standing picture stays. A PNG mascot has none (`MASCOT_CHEER` is empty and nothing changes).
+  **The thinking pose (r24, the owner: "small change in kiko svg mascot whenever a que comes to solve ... expression of thinking"):**
+  a third picture, `MASCOT_THINK` (about 24 KB), made from the same SVG layers by `node cli.mjs mascot` and cut to the same box
+  (the three swap without moving Kiko): the viewer's left hand comes up to the chin, the head tilts a little and the eyes glance up and
+  aside. While a question waits (`stage` "ask") and the child has not yet acted on it (no tap, no key, no Hint key, nothing typed) the
+  same `<image data-role="mascot">` shows it, with `data-pose="think"`, and a **thought puff** stands beside the head
+  (`data-role="think-puff"`, plain vector: two small circles rising to a cloud, fill #FFF4E0, outline #C9BCA6, with three dots that
+  light one after another; stage x 178 to 225, y 743 to 790, inside the mascot's 204 x 160 box, 29 units short of the bubble). The first
+  act puts the standing picture and the puff away; a miss brings the thinking pose back (after the nod, and the traceback when
+  the pad was locked); the cheer overrides it; under reduced motion it is shown still (the dots steady). A thinking picture that does
+  not decode leaves the standing one. **The Hint key** pops a small yellow bulb (`data-role="hint-bulb"`, the header's bulb, drawn
+  small) where the puff stands for about 1 s. Nothing is cut off or overlapped: both stay inside the voice zone.
 - **Bubble: the guide.** The line of the moment, printed, numbers as words. Every instruction and every hint is
   ONE page (one sentence that fits; r35), so nothing pages by a timer. After a wrong act or answer the instruction
   stays **pinned** on top (`data-role="instruction"`) and the **hint** sits under it in a tinted band with an accent
@@ -252,7 +275,8 @@ Each is 56 across with a 72-unit finger box; 72 apart, so the boxes tile and nev
   thirds, the last question full accent; the fill slides 480 ms (none under reduced motion). Earlier
   phases are full accent (finished), also when a later phase is mounted on its own, so the bar reads
   as one fill from left to right; later
-  phases are the panel colour. Under them: "Phase n of N" (left) and "Question i of total" (right).
+  phases are the panel colour. Under them: "Phase n of N" (left) and "Question i of total" (right), in one weight (r24: in Hindi
+  and Gujarati the first was bold and the second regular).
 
 ## 5b. The summary page (as the NCERT Class 4 tools)
 
@@ -270,7 +294,9 @@ is the summary page's only.
 and to the right); the last phase adds a second at the right, above the phase pills (about x 1500, y 734, aimed up and
 to the left). Neither cone stands on the bubble (x 254 to 910, y 748 to 892) or the phase pills (x 930 to 1560, y 782
 to 800); the confetti flies over everything for its 2.3 s, with no pointer events. A phase dot, a restart or a skip
-ends the party at once (`phase-party`: the phase-2 dot pressed while it is on, gone within 300 ms).
+ends the party at once (`phase-party`: the phase-2 dot pressed while it is on, gone within 300 ms). From r24 that includes the
+cheering picture and its jumps (a classroom teacher's tap, the skip, ends the party, the cheer and the jumps at once, and a phase dot
+pressed during the 0.9 s cheer after an ordinary right answer clears it: Kiko is standing in the next phase).
 
 Phases before the last send no `finished`. The last phase ends on the summary page. The page covers the canvas (the
 working area, slot and pad are hidden under it, not unmounted):

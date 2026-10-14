@@ -44,6 +44,10 @@ export function capsOf(runtimeSrc) {
     sideBySide: /SLOT_DECIMAL/.test(r),                  /* r26: side-by-side answer boxes */
     nextKey: /const nextKeyOn\b/.test(r),                /* r45/r48: the opt-in Next key (`nextKey: true` in the ToolFrame tool) */
     cardAnswer: /const cardAnswerOn\b/.test(r),            /* r49+: the opt-in card answer (`cardAnswer: true`, board layout); no scaffold block: a tool opts in by hand */
+    think: /MASCOT_THINK/.test(r),                        /* r24: the mascot THINKS while a question waits (MASCOT_THINK, the thought puff, the hint bulb) */
+    answerBlink: /const keyAskOn\b/.test(r),              /* r24: the Answer key blinks, with its tap line, in EVERY board tool while it is what to press (and the Enter key once api.answerReady) */
+    itemLadder: /Array\.isArray\(it\.ladder\)/.test(r),      /* r24: rungOf reads a question's own `it.ladder` (the maths and TR rows then read it too; an older pin ignores the field) */
+    lastIt: /last: \{ item: L\.i, it:/.test(r),           /* r24: result.last.it is the item object (last.item stays the index); the Thumb gets `it` */
   };
 }
 

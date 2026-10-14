@@ -39,7 +39,7 @@ import { pathToFileURL } from "node:url";
 /* the bubble's text for a role ("instruction" | "hint"), as drawn; the same selector check's realWrongRun uses (lib/check/input.mjs ROLE) */
 const ROLE = (role) => `(() => { const g = document.querySelector('[data-zone="bubble"] [data-role="${role}"]'); return g ? Array.from(g.querySelectorAll("text")).map((x) => x.textContent).join(" ") : ""; })()`;
 
-const KEEP = ["stage", "phase", "phases", "item", "items", "step", "typed", "tries", "keypadOpen", "padTo", "choices", "parts", "hint", "instruction",
+const KEEP = ["stage", "phase", "phases", "item", "items", "step", "typed", "tries", "keypadOpen", "padTo", "choices", "parts", "hint", "hintKind", "instruction",
   "guideOn", "guideStep", "guideSteps", "party", "nextKey", "held", "muted", "summaryRow", "cardReady", "panel"];
 
 export async function snap(t) {

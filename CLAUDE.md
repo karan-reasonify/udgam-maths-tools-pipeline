@@ -39,8 +39,14 @@
 - **Standard look, in every class (from class 4 r23, class 5 r55 on; the head of 2026-10-13):** the header's three buttons are the owner's
   picture (a cream glossy disc on a tan rim: yellow bulb, blue speaker with orange waves, green refresh arrow; `HeaderControl`, LAYOUT §2);
   every start page and Enter / Answer / Start key wears a theme's berry colours (`DEFAULT_THEME` when a tool has no skins), never the chrome's
-  grey (`check`'s `start-page` row proves it); word-choice keys fit a long word. A chapter gets them by `runtime freeze` + `runtime pin --ch N`
-  on the owner's word; a finished chapter is not restaled. Classes 4 and 5 carry the same code and docs (a new class copies class 5).
+  grey (`check`'s `start-page` row proves it); word-choice keys fit a long word. **From class 4 r25 / class 5's next freeze:** the pink Answer key
+  (and its "Tap the blinking Answer key." line) shows only while a typed question waits with the keypad shut, and a `pad: "enter"` question's
+  berry Enter key blinks only once the tool says `api.answerReady(true)`; Kiko THINKS (a third picture `MASCOT_THINK`, a thought puff) from a
+  question's opening until the child's first tap, and a bulb pops on the Hint key; a held or doubled Enter, a double tap and a classroom skip
+  are guarded; the summary `Thumb` gets the item as `last.it` (`last.item` is the INDEX); a decimal answer is written on the Decimal card
+  where the picture has one. `check` proves it (`answer-blink`, `mascot-think`, `summary-thumbs`). A chapter gets all of this by
+  `runtime freeze` + `runtime pin --ch N` on the owner's word; a finished chapter is not restaled. Classes 4 and 5 carry the same code and
+  docs (a new class copies class 5).
 - Stage now: **pipeline v1**, set from the reference tool `M1.S1.T2.C4.2D1` (class 4, chapter 1). Chapters are made
   one after another; **publish only after every chapter of a class is made, and only on the user's word**.
 - **Each chapter builds on its own runtime.** `work/<chapter_id>/runtime.json` pins a frozen snapshot in
