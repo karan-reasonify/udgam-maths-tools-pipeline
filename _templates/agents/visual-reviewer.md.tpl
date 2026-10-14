@@ -94,6 +94,7 @@ Look at each PNG (they are in the slot's folder). Use `--full --phase n --state 
    the bubble. A standing Kiko at a waiting question is a should-fix (a must-fix at question 1 right after the guide steps); a puff
    over the bubble, cut off or past the stage's edge is a must-fix. The pink Answer key (on a card question the card) shows its ring
    only when it is the thing to press, never in a guide step or with the keypad open.
+11. **Not too small** (`{{DIR}}/docs/LAYOUT.md` section 3): a picture of one or two small things (a bar of cards, a fraction, a few labels) fills about a third of the working area or more; its main digits are 64 or more and its labels 40 or more. A small picture with a big empty area is a should-fix (scale it up), whatever the language; judge it with the panel open as well as shut.
 
 ## Report (at most 25 lines)
 Verdict: CLEAN or ISSUES. One line per finding:

@@ -67,6 +67,8 @@ Never read `slot.json`, `plan.json`, `*.preview.html`, `.build/`, `output-previe
      not, or that key never blinks; (2) the summary `Thumb` reads the question as the `it` prop (r24) or
      `PHASES[n - 1].items[result.last.item]` (`last.item` is the INDEX, never the item), a multi-part `last.value` through
      `slotPartsOf` and every word through `tx` (`summary-thumbs` fails a blank or English thumbnail).
+   - **Scale a small picture UP** (LAYOUT section 3, PREFLIGHT 11; `picture-scale` warns): a picture of one or two small things fills about a third
+     of the working area or more (as drawn with the panel open): digits 64+, cards 110+, meaningful labels 40+; 28 is the floor for a minor caption.
    - **The wide keypad is the default for a new tool** (r26: the scaffold writes `bigPad: true` beside `board: true`, PATTERNS 9g): the answer
      panel is 556 wide and the picture has x 64 to 964 while it is open. Keep it when the picture fits; when `check`'s `board-fit` says
      something runs under the panel (a strip of ten, a chart of seven columns), set `bigPad: false` for that tool and say so in the report.

@@ -165,6 +165,7 @@ Each is 56 across with a 72-unit finger box; 72 apart, so the boxes tile and nev
 - **The maths is the picture.** Countable things in the content colours, big numerals (`T.xl` 56 or
   `T.display` 72). One idea per screen: this phase's object and nothing else. No decoration, background
   art, emoji or raster (the one exception: a board tool's object skin, §1b). Objects fill at most about 70 % of the area.
+- **Not too small either: fill the room.** Objects fill at most about 70 % of the area, and a picture of only one or two small things (a bar of a few cards, a fraction, a number with a point, a handful of labels) fills AT LEAST about a third of it: scale the cards, digits and labels up until it does, because the last bench must read it (the owner, 2026-10-14: "on the left side there are few texts: increase the font size so it looks clear from the last bench"). A sparse screen (8 words or fewer on the area) has its main digits at 64 or more, a card at 110 or more, and every label that carries meaning at 40 or more; 28 stays the floor for a minor caption only. With the answer panel open the area is 900 wide (`bigPad`, §1b) or 1086: scale to THAT, and keep the layouts that sit below the picture (corrections, lanes, trays) in step with it. `check` warns (`picture-scale`) when the picture is far under-used.
 - **Labels, not sentences.** At most 4 words per text on the area; instructions are printed in the
   bubble, never written here.
 - **Pieces the child moves.** The child drags, taps or slides the object itself, never picks from a shelf.

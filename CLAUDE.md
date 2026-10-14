@@ -44,7 +44,7 @@
   berry Enter key blinks only once the tool says `api.answerReady(true)`; Kiko THINKS (a third picture `MASCOT_THINK`, a thought puff) from a
   question's opening until the child's first tap, and a bulb pops on the Hint key; a held or doubled Enter, a double tap and a classroom skip
   are guarded; the summary `Thumb` gets the item as `last.it` (`last.item` is the INDEX); a decimal answer is written on the Decimal card
-  where the picture has one; the wide keypad (`bigPad: true`, r26) is written into every new tool by `scaffold` (set it to false only when the picture needs the full width). `check` proves it (`answer-blink`, `mascot-think`, `summary-thumbs`, `board-fit`). A chapter gets all of this by
+  where the picture has one; a small picture is scaled up (it fills about a third of the working area, digits 64+, cards 110+, labels 40+; LAYOUT section 3, `picture-scale`); the wide keypad (`bigPad: true`, r26) is written into every new tool by `scaffold` (set it to false only when the picture needs the full width). `check` proves it (`answer-blink`, `mascot-think`, `summary-thumbs`, `board-fit`). A chapter gets all of this by
   `runtime freeze` + `runtime pin --ch N` on the owner's word; a finished chapter is not restaled. Classes 4 and 5 carry the same code and
   docs (a new class copies class 5).
 - Stage now: **pipeline v1**, set from the reference tool `M1.S1.T2.C4.2D1` (class 4, chapter 1). Chapters are made

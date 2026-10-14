@@ -40,6 +40,7 @@ import { decodePng, contrast, parseRgb } from "../core/png.mjs";
 import { idOf, writeStatus } from "../core/work.mjs";
 import { pinState } from "../core/pin.mjs";
 import { capsOf } from "../core/caps.mjs";
+import { judgePictureScale, PICTURE_SCALE_DETAIL } from "./picturescale.mjs";
 
 /* the zones as containers, in stage units (a little wider than the boxes where text sits beside them) */
 export const ZONES = {
@@ -470,6 +471,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
 
   const overlaps = [], spills = [], offStage = [], small = [], fingers = [], crowd = [], words = [], mode = [], picture = [], phaseBar = [], padBad = [];
   const boardFit = [], skinBad = [];
+  const scaleFrames = [];   /* r26: the ask frames with the panel open, for picture-scale */
   const padSeen = { enter: 0, typed: 0 };
   let pulses = 0, rasters = [], emoji = [], still = [], focus = true, colours = 0, skinCount = 0;
   for (let n = 1; n <= N; n++) {
@@ -491,6 +493,8 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
       }
       for (const s of g.shapes) { const z = ZS[s.zone]; if (z && !inside(s.box, z)) spills.push(`${tag}: ${s.tag} in ${s.zone} ${fmt(s.box)}`); }
       for (const t of g.texts) { const z = ZS[t.zone], b = t.ink || t.box; if (z && !inside(b, z, 2)) spills.push(`${tag}: "${t.text.slice(0, 16)}" in ${t.zone} ${fmt(b)}`); }
+      /* picture-scale (r26): the ASK frame with the answer panel open is the reading frame: a picture of one or two small things is scaled up */
+      if (board && !shut && key.startsWith("ask") && g.controls.some((c) => c.zone === "pad")) scaleFrames.push({ tag: `phase ${n} ask`, g });
       /* board layout, panel open: the picture must have rearranged into the room that is left, never run under the panel */
       if (board && !shut && g.controls.some((c) => c.zone === "pad")) {
         const edge = ZS.drawer.x - 4;
@@ -574,6 +578,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
     ok("render", "skins-fallback", a === b && a > 0 && !left, `with every skin removed the same ${a} plain shapes still draw: the picture is a look, the plain drawing stands on its own`,
       `with skins the first question draws ${a} plain shapes, with none ${b} (skins still drawn: ${left}): what is under the pictures must be the whole drawing`);
   }
+  if (board && caps.bigPad) { const ps = judgePictureScale(scaleFrames, { workW: bigPad ? 900 : 1086, workH: ZS.work.h }); ok("render", "picture-scale", !ps.length, PICTURE_SCALE_DETAIL, cap(ps), "warn"); }
   if (board) ok("render", "board-fit", !boardFit.length, "board layout: with the answer panel open, nothing of the working area runs under it", cap(boardFit));
   ok("render", "no-emoji", !emoji.length, "no emoji", cap(emoji));
   ok("render", "stillness", !still.length, "still under reduced motion (no endless animation)", cap(still));
