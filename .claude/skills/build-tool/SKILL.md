@@ -16,3 +16,18 @@ from a class 4 chapter 1 session).
 To start or continue a tool: `/gen-tools <N> <publication|school> <chapter> [MEDIA_ID]`.
 The CLI runs in `class<N>/`: `doctor | list | fetch | scaffold | preview | check | shots | clean | status`.
 If `class<N>/` does not exist: `node classctl.mjs new --class <N>` (from the maths_pipeline root).
+
+## Standards every tool carries (no prompt has to repeat them; they are in the docs and the checks)
+
+- **Real objects, not plain blocks** (`docs/IMAGES.md`): whatever the child shares, cuts, counts, pours, weighs or measures is a real
+  everyday object (a chocolate bar, a roti, buttons, a jug, a kitchen scale); `<Skin>` over every such piece, the plain shape only the
+  fallback; a plain block needs a stated reason (digits and marks, geometry shapes, people, a piece too thin, a wrong model).
+- **The look is the runtime's, never drawn by a tool:** the header's three buttons (bulb, speaker, refresh), a berry Start / Enter / Answer
+  key (never the chrome's grey), Kiko with his cheer and his THINKING pose (r24: from a question's opening until the first tap), the
+  Answer key's blink and its "Tap the blinking Answer key." line (only while typing is what is left), the guards on a held or doubled Enter.
+- **What a tool does itself** (`docs/PREFLIGHT.md`, `docs/PATTERNS.md` 9e, 9f): `api.answerReady(true | false)` on a `pad: "enter"`
+  question; a `Thumb` that reads the item as `it` (or `PHASES[n - 1].items[result.last.item]`: `last.item` is the INDEX) and every word
+  through `tx`; a decimal answered ON the Decimal card (`SLOT_DECIMAL`, the zero in front typed) where the picture has one; a neutral
+  question bar during guide steps; one sentence a bubble page; Hindi and Gujarati in `TR`, keyed by the English byte for byte.
+- **Prove it with the child's real flow:** a shortcut (`gotoStep`, the dev driver) resets marks a child never resets; the checks that
+  matter (`mascot-think`, `answer-blink`, `summary-thumbs`) walk the start page, the guide steps and the question as a child does.

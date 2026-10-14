@@ -18,5 +18,8 @@ The same as `.claude/commands/gen-tools.md`; both are shortcuts into the runbook
    `udgam<N>` otherwise).
 2. If class, publication or school, or chapter is missing, ask for it. "udgam" means publication
    indiannica. A concept id such as `M1.S1.T2.C4` names the slot `M1.S1.T2.C4.2D1`.
-3. Stop at the report (step 8). Upload (step 10) only when the user says so. A remake of an already built
+3. Everything in the runbook's lessons and the "standard look" bullets of the root `CLAUDE.md` applies without the user saying it: the image
+   pass (step 5c) runs for EVERY tool and gives real objects instead of plain blocks; the runtime's header buttons, berry keys, Kiko's
+   thinking pose and the Answer key's blink are never redone by a tool; a decimal is answered on the Decimal card where the picture has one.
+4. Stop at the report (step 8). Upload (step 10) only when the user says so. A remake of an already built
    chapter (the runbook's REMAKE section) and a `classctl sync --apply` also wait for the user's word.

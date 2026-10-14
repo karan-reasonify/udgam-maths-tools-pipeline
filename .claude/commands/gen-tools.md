@@ -5,6 +5,8 @@ argument-hint: <class> <publication|school> <chapter> [SLOT_ID] [lean]
 Make Udgam maths tools. Arguments: $ARGUMENTS
 (The same as `.claude/skills/gen-tools/SKILL.md`; both are shortcuts into the runbook.)
 
+0. The standards in the root `CLAUDE.md` ("Pictures are real objects", "Standard look") and the runbook's lessons apply WITHOUT the user
+   saying them: the image pass runs for every tool, the runtime's look is never redrawn by a tool.
 1. Read `udgam_maths_claude.md` (the runbook) and follow its flow, steps 0 to 8, for the class and chapter
    named in the arguments (`<class>` is the class number `<N>`: 3, 4, 5, ...). Step 0 starts with the class
    folder: if `class<N>/` does not exist, run `node classctl.mjs new --class <N>` and tell the user the
