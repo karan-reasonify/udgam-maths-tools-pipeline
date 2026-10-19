@@ -1,0 +1,1190 @@
+{
+  "slotId": "M2.S4.T7.C30.2D1",
+  "mediaId": "M2.S4.T7.C30.2D1",
+  "toolId": "scale_bench",
+  "title": "Scale Bench",
+  "component": "M2.S4.T7.C30.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch8_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_8/2dtool/M2.S4.T7.C24.2D1/M2.S4.T7.C24.2D1.tsx",
+  "description": "Read a weight exactly as the scale prints it, count the places that are really there, and build the fraction from them.",
+  "conceptIds": [
+    "M2.S4.T7.C30",
+    "M2.S4.T7.C31",
+    "M2.S4.T7.C32",
+    "M2.S4.T7.C33"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        1086,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Turn a decimal back into a fraction by counting the places that are printed, and find out what a zero on the end is doing there.",
+    "look": "A kitchen scale at the left with a printing display, a bench of three working steps beside it, and a balance beam under the two rows.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Scale Bench' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the weights converted against the weights this phase puts on the pan, two numbers in ink, the first climbing by one as each fraction is finished and the second fixed at however many this phase holds. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The scale stands at the left of the working area, its body 340 by 360 at 64,220 with a shallow pan drawn across the top of it, and its display 280 by 86 at 94,500. The display prints a weight exactly as it reads and never tidies it: a zero standing at the end of the number is drawn grey but at the same size and weight as every other digit, and it is never dimmed, shrunk, faded or left off. The bench stands to the right of the scale in three working steps, each 210 by 150, at 440,220, 670,220 and 900,220. Carry brings the printed weight across from the display to the first step along a drawn path, with the number unchanged on the way. The first step drops the point out and lays the digits down as the numerator, with nothing else about them altered and no digit lost. The second step counts the decimal places, lighting each printed digit to the right of the point in turn from the point outwards, a zero on the end included and lit like the rest, and writes the count it reaches. The third step writes the denominator as a one followed by one zero for every counted place, the zeros drawn in one at a time directly under the count so that the two can be matched digit for digit. Tidy first takes the same weight, drops a zero off its end, and runs the whole bench again in a second row of three steps directly below at 440,390, 670,390 and 900,390, so both fractions stand on the stage at once and neither is cleared. The balance beam is drawn under the two rows, 420 by 110 at 440,552, with one fraction hung at each end: it holds dead level, because the two amounts are equal, and it never tips either way at any point. The written form panel stands beside it, 280 by 110 at 870,552, holding the two written forms one above the other with their places counted off, plainly different lengths and never drawn level. The can do list runs along the foot, 1086 by 56 at 64,672, carrying six statements to be ticked against the work standing on the bench. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a numerator or a denominator is asked for, with a fraction key beside them that draws a bar and opens a box above and a box below, and under those a tick key for the can do list, which can only be pressed while the work a statement is about is standing on the bench. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: a digit standing to the left of the point is deep blue, a digit standing to the right of it is green, and the point itself is vermilion between them on every phase without exception. A part or a column standing for tenths is amber, one standing for hundredths is rose, one standing for thousandths is sky blue, and a zero that is only holding a place open is grey, whether it was written in on the left of a short numerator or printed on the end of a measurement. Chrome never borrows one of those and none of them is ever used for chrome, and every one of the readings survives with the colour taken away, because a place is told by the heading written over it before it is ever told by a colour, a filling zero is told by the short arrow running inward from the point, and a zero printed on the end is told by the place counter that lights it. Grey never means faint: such a zero is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. The beam and the panel are two different instruments and they are never drawn agreeing with each other. The beam is about how much, so it is level; the panel is about how it is written, so it is uneven. Nothing on this stage ever rubs a printed digit out, and the tidied row is built beside the printed one rather than over it.",
+    "finish": "The card shows the weight the child read, the fraction built from its printed places, and the tidied row standing under it with the beam level between them.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the digits settle as the numerator with nothing else about them changed",
+        "does": "carries the weight to the bench and drops the point out of it",
+        "goal": "the numerator is the digits with the point taken out and nothing else changed",
+        "says": "Take the dot out and leave the digits alone. What have you got?",
+        "check": "Away from the screen: read a weight off a scale and write its numerator. Did every digit make it across?",
+        "feels": "the point comes out and the digits stay exactly as they were, in the same order and all of them",
+        "hands": "Put a packet on a kitchen scale and let the class read the display out exactly as it stands, including anything on the end. Write the digits down without the point and check that the same digits are there, in the same order, with none lost. Then cover the point on the written number with a finger and ask what is left, and whether anything else has been changed.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: how many digits are on the display? Second rung, the phase's: how many are in your numerator? Third rung: the bench is cut to a weight with two digits and the child carries it across. The number pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the number came off the display with the point in it and taking a mark out of a number feels like changing the number, which is the one thing the step says not to do.",
+            "move": "keeps the point in the numerator, so the top of the fraction is still a decimal.",
+            "screen": "the point is lifted out of the number along a drawn path and set down beside the bench, where it stays visible, and the digits close up into the numerator with none of them moving out of order. The child's version stays standing in the first step, and both are read out as rows of digits so that the only difference between them can be heard."
+          },
+          {
+            "why": "the whole number part is the part that looks like a number already, and the digits after the point read as something attached to it rather than as part of it.",
+            "move": "writes only the digits from one side of the point, keeping the whole number part and dropping the rest.",
+            "screen": "the display is carried across again at walking pace with every digit lighting in turn from the left, and the digits settle into the numerator one at a time with the count of digits written above the row. The child's shorter numerator stays exactly where it was written, and the two rows are stood one above the other with the digits that went missing lit in the display."
+          }
+        ],
+        "screen": "a weight standing on the scale display with the first working step empty",
+        "soWhat": "The numerator is the digits with the point taken out and nothing else changed.",
+        "concept": "Dropping the point to get the top"
+      },
+      {
+        "n": 2,
+        "win": "the denominator settles with its zeros drawn in one at a time under the count",
+        "does": "counts the decimal places and writes one and that many zeros",
+        "goal": "the denominator is one followed by a zero for every decimal place",
+        "says": "Count the places after the dot. Now write one and that many zeros.",
+        "check": "A weight has three decimal places. What goes underneath, and how many zeros does it have?",
+        "feels": "the bottom number is built rather than remembered, one zero for each place counted",
+        "hands": "Work two conversions by hand, one with a weight of one decimal place and one with three, and write the counting and the denominator on two lines directly under one another so the zeros line up with the places. Ask what the denominator would be for a weight with four places, without a scale to read it off, and let the class build it from the count.",
+        "tries": "First rung, from the item: how many places did the counter find? Second rung, the phase's: how many zeros does that ask for? Third rung: the bench is cut to a weight of one decimal place and the child builds its denominator. The number pad and the fraction key stay open.",
+        "wrong": [
+          {
+            "why": "every early figure in the chapter had ten underneath it, and ten has quietly become what the bottom of one of these fractions looks like.",
+            "move": "writes ten underneath whatever the number of places, because ten was the first denominator the chapter met.",
+            "screen": "the place counter is run again with each printed digit after the point lighting in turn and the count written under the row, and the third step then draws the zeros in one at a time under that count, stopping when they match. The child's denominator stays standing where it was written, and the built one is stood beside it with the count drawn above both."
+          },
+          {
+            "why": "the count is the number the second step just handed over, and the empty box under the bar is the next place anything gets written.",
+            "move": "writes the number of places underneath instead of one followed by that many zeros, so two places give a two.",
+            "screen": "the count stays lit in the second step and the third step is walked through slowly: a one is written first, then a zero for each place, each zero landing under the place it belongs to. The child's denominator stays in the row, the built denominator is written beside it, and both fractions are read out with the size of the pieces each one is counting drawn underneath them."
+          }
+        ],
+        "screen": "the numerator laid down with the denominator slot empty under it",
+        "soWhat": "The denominator is one followed by a zero for every decimal place.",
+        "concept": "Building the bottom from the places"
+      },
+      {
+        "n": 3,
+        "win": "the count takes in the last zero and the denominator comes out one zero longer",
+        "does": "counts the printed places with that last zero included and builds the denominator from them",
+        "goal": "a printed zero on the end takes a decimal place of its own",
+        "says": "There is a zero on the end. Does it take a place or not?",
+        "check": "A label reads a weight with a zero printed on its end. How many decimal places is that, and what goes underneath?",
+        "feels": "the zero on the end is not spare, it is standing in a place and the counting reaches it",
+        "hands": "Let each group weigh three packets and write each weight down exactly as the scale shows it, trailing zeros and all, before anything is converted. Then convert each one, counting the printed places aloud. Ask any group that rubbed a zero off the end what denominator they ended up with, and stand it beside a group that kept it, so both numbers are on the board together.",
+        "tries": "First rung, from the item: what is the last digit the display prints? Second rung, the phase's: is it standing in a decimal place? Third rung: the bench is cut to a weight of two printed places ending in a zero and the child counts and builds. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "a zero on the end adds nothing to the amount, and tidying a number before working with it is a habit that has been useful everywhere else.",
+            "move": "rubs the zero off the end of the weight before counting, because it looks as though it is doing nothing.",
+            "screen": "the weight is carried back to the display and read again exactly as the scale printed it, with the last zero drawn at full strength and lit like every other digit, and the place counter runs from the point outwards taking it in. The child's shorter count stays written under the bench and both counts are left standing, with the denominator built again a zero at a time under the longer one."
+          },
+          {
+            "why": "the count and the bottom number are written in two different steps, so a count that has been corrected does not automatically reach the number underneath.",
+            "move": "counts the printed zero as a place but leaves the denominator the length it would have been without it.",
+            "screen": "the count and the denominator are drawn one directly above the other with each zero lined up under the place it stands for, and the last place is left with nothing under it and held lit. The child's denominator stays exactly where it was written, the missing zero is walked into the row under the lit place, and both denominators are read out with the size of their pieces drawn underneath."
+          }
+        ],
+        "screen": "a weight with a zero on its end, lit on the display",
+        "soWhat": "A trailing zero takes a decimal place of its own, so the denominator comes out one zero longer.",
+        "concept": "A zero on the end still counts"
+      },
+      {
+        "n": 4,
+        "win": "the beam holds level while the two written forms stand plainly different beside it",
+        "does": "runs the tidy first control and reads the two fractions and the beam together",
+        "goal": "the tidied number gives the same amount and a different written answer",
+        "says": "Tidy it first and run it again. Same amount? Same writing?",
+        "check": "A height is printed with two decimal places, the last of them a zero. Write the fraction the question asks for, and say what a child who tidied it first would have written instead.",
+        "feels": "the beam will not move, and the two written answers are still not the same answer",
+        "hands": "Weigh one packet and write its weight twice, once exactly as the scale printed it and once tidied, then convert both. Ask the class two questions in this order and never only one of them. Is it the same amount? Yes, and the beam holds level. Is it the same writing? No, and the writing is what the question asked for. Finish on the reverse case: an amount given as seventy hundredths asks for two decimal places, and writing only one of them throws away the very place the words named.",
+        "tries": "First rung, from the item: how many places are printed on this one? Second rung, the phase's: how many are printed on the tidied one? Third rung: the bench is cut to a weight of two printed places and the child runs both rows and reads the beam. The number pad and the fraction key stay open.",
+        "wrong": [
+          {
+            "why": "two different fractions written under one weight look like a contradiction, and rubbing one out is what has always been done with a working that turned out to disagree with another.",
+            "move": "decides the two answers cannot both be right and rubs one of them out.",
+            "screen": "nothing is rubbed out. Both fractions swing down on to the beam, one at each end, and the beam holds dead level and stays level, while the panel beside it writes the two forms one above the other with their places counted off and their lengths plainly different. Both rows of the bench stay standing above them for as long as anybody wants to look."
+          },
+          {
+            "why": "tidying has been the right move in every chapter up to this one, and a shorter number is easier to work with and looks better written down.",
+            "move": "tidies every weight in sight before converting it, as a habit, including an amount that was given in words as seventy hundredths.",
+            "screen": "the words are laid out along the bench with the last word lit, the two places that word asks for are drawn empty to the right of a point, and the child's tidied answer is walked into them, where it reaches only the place nearest the point and leaves the far one open. The beam still holds level under the two amounts, the panel still stands the two written forms apart, and both answers stay on the stage with the place that was thrown away left lit."
+          }
+        ],
+        "screen": "both rows on the bench, the printed one above and the tidied one below it",
+        "soWhat": "A trailing zero leaves the amount alone and takes a decimal place, so it changes the denominator and not the weight.",
+        "concept": "The right amount can still be the wrong answer"
+      }
+    ],
+    "delight": "The fourth phase, when tidy first is pressed. The weight lifts off the display a second time, sheds the zero from its end on the way across, and runs the three steps of the lower row on its own: the point drops out, the places count themselves one short of the row above, and the denominator is built a zero at a time under the shorter count. Then both fractions swing down on to the beam, one at each end, and the beam holds absolutely level and stays there, while beside it the panel writes the two forms one above the other with their places counted off and their lengths plainly different. Nothing tips, nothing is marked, and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase a weight stands on the display and the first working step of the bench is empty, with the point still in the number. On the second the numerator is already laid down and the denominator slot under it stands empty with its count unmade. On the third the display carries a weight whose last printed digit is a zero, drawn at full strength and lit, with the place counter waiting. On the fourth both rows of the bench stand one above the other, the printed row worked and the tidied row empty, with the beam drawn level and unloaded beneath them. The running count at the top left holds the weights converted against the weights this phase puts on the pan, and the answer slot and the pad stand empty down the right. One thing moves, once: the point in the display, or the empty denominator slot, or the last printed digit, or the unloaded beam, gives one slow pulse while the voice asks what the display actually says. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any weight on the scale, with as many zeros on the end as the display will carry, the tidied row and the balance beam open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on dropping the point, building the denominator from the places, counting a printed zero on the end, and what tidying a number first costs.",
+    "voiceLines": [
+      "Read the display exactly as it stands, last zero and all.",
+      "Take the dot out and leave the digits alone. What have you got?",
+      "Count the places after the dot. Now write one and that many zeros.",
+      "There is a zero on the end. Does it take a place or not?",
+      "Tidy it first and run it again. Same amount? Same writing?",
+      "Another weight on the pan. Read it off the way the scale wrote it.",
+      "Free play. Any weight on the pan, tidied row and balance beam open.",
+      "Carry it back to the scale and count the printed places again, every one of them.",
+      "Every weight read as printed, and a level beam under two written answers that are not the same."
+    ],
+    "observations": [
+      {
+        "why": "Taking the point out is the only thing the first step does, so no digit can go missing in it.",
+        "soWhat": "If a digit disappears between the display and the numerator, the mistake was made in the first step.",
+        "observe": "The numerator was the digits of the display with the point taken out, and nothing else about them changed."
+      },
+      {
+        "why": "There is one zero for each decimal place, so the two rows can be matched against each other digit for digit.",
+        "soWhat": "The denominator is built from the count, so a wrong count and a wrong denominator are one mistake and not two.",
+        "observe": "The zeros of the denominator were drawn in one at a time under the count of places."
+      },
+      {
+        "why": "It is standing in a decimal place, and the count is of the places that are printed rather than of the places a tidy hand would have written.",
+        "soWhat": "A trailing zero takes a decimal place of its own, so it makes the denominator one zero longer.",
+        "observe": "The zero printed at the end of the weight lit in the counting like every other digit."
+      },
+      {
+        "why": "The two fractions are the same amount of flour and are not the same piece of writing, and the two instruments measure different things.",
+        "soWhat": "Two answers can be equal in amount and still be different answers, and a question can be about the writing.",
+        "observe": "The beam held dead level while the panel beside it stood the two written forms plainly apart."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a weight standing on the scale display with the first working step empty",
+        "win": "the digits settle as the numerator with nothing else about them changed",
+        "traceback": "The weight is carried to the bench, the point lifts out to its rest and the digits close up into the top number.",
+        "ladder": [
+          "Every digit goes into the top number.",
+          "Did a digit stay behind with the point?",
+          "Is there a digit after the point too?",
+          "Count every digit on the display.",
+          "Write the digits in order, no point."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the numerator laid down with the denominator slot empty under it",
+        "win": "the denominator settles with its zeros drawn in one at a time under the count",
+        "traceback": "The point drops out, the places light one at a time from the point outwards, and the bottom is built a zero at a time under them.",
+        "ladder": [
+          "How many digits stand after the point?",
+          "A zero for each place after the point.",
+          "Count to the very last digit.",
+          "As many zeros as there are places.",
+          "Write a one, then those zeros after it."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a weight with a zero on its end, lit on the display",
+        "win": "the count takes in the last zero and the denominator comes out one zero longer",
+        "traceback": "The weight is read as printed, the last zero lights like every other place, and the bottom is built a zero longer.",
+        "ladder": [
+          "What is the last digit printed?",
+          "Nothing was tidied; read every digit.",
+          "Count the zeros after the one.",
+          "Each digit after the point is a place.",
+          "Count the end zero as a place too."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "both rows on the bench, the printed one above and the tidied one below it",
+        "win": "the beam holds level while the two written forms stand plainly different beside it",
+        "traceback": "The asked row is run, both fractions hang on the beam, which stays level, and the two written forms stand apart.",
+        "ladder": [
+          "Count the places left after tidying.",
+          "Read the top row, end zero and all.",
+          "Did you count the zero on the end?",
+          "Count the places in the asked row.",
+          "Put one zero per place after a one."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "warmUps": [
+      "9.2 kg",
+      "6.25 kg",
+      "3.70 kg",
+      "2.750 kg"
+    ],
+    "freeWeights": [
+      "2.750 kg",
+      "1.50 kg",
+      "6.800 kg",
+      "3.20 kg",
+      "9.40 kg"
+    ],
+    "method": [
+      "the digits without the point are the numerator",
+      "count the printed places, an end zero included",
+      "write one and a zero for every counted place underneath"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T7.C30:ML1",
+        "kind": "top",
+        "weight": "6.3",
+        "unit": "kg",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          63,
+          10
+        ],
+        "near": "6|10",
+        "winMs": 3500
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T7.C30:1",
+        "kind": "top",
+        "weight": "8.4",
+        "unit": "kg",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          84,
+          10
+        ],
+        "near": "8|10",
+        "winMs": 3500
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T7.C30:2",
+        "kind": "top",
+        "weight": "15.7",
+        "unit": "kg",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          157,
+          10
+        ],
+        "near": "15|10",
+        "winMs": 3500
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T7.C31:ML2",
+        "kind": "frac",
+        "weight": "45.28",
+        "unit": "kg",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          4528,
+          100
+        ],
+        "near": "4528|10",
+        "winMs": 3800
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T7.C31:3",
+        "kind": "frac",
+        "weight": "30.62",
+        "unit": "kg",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          3062,
+          100
+        ],
+        "near": "3062|2",
+        "winMs": 3800
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T7.C31:4",
+        "kind": "frac",
+        "weight": "7.209",
+        "unit": "kg",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          7209,
+          1000
+        ],
+        "near": "7209|10",
+        "winMs": 4500
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T7.C32:ML3",
+        "kind": "frac",
+        "weight": "1.450",
+        "unit": "kg",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          1450,
+          1000
+        ],
+        "near": "145|100",
+        "winMs": 4500
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T7.C32:5",
+        "kind": "frac",
+        "weight": "2.60",
+        "unit": "m",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          260,
+          100
+        ],
+        "near": "26|10",
+        "winMs": 3800
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T7.C32:6",
+        "kind": "back",
+        "weight": "4.500",
+        "unit": "kg",
+        "given": [
+          4500,
+          1000
+        ],
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "4",
+          "500"
+        ],
+        "near": "4|5",
+        "winMs": 3300
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T7.C33:ML4",
+        "kind": "rows",
+        "row": "t",
+        "weight": "1.450",
+        "unit": "kg",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          145,
+          100
+        ],
+        "near": "1450|1000",
+        "winMs": 3000
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T7.C33:7",
+        "kind": "rows",
+        "row": "p",
+        "tPre": true,
+        "weight": "1.30",
+        "unit": "m",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          130,
+          100
+        ],
+        "near": "13|10",
+        "winMs": 3000
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T7.C33:8",
+        "kind": "rows",
+        "row": "p",
+        "weight": "5.250",
+        "unit": "kg",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          5250,
+          1000
+        ],
+        "near": "525|100",
+        "winMs": 5000
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The weight is carried to the bench, the point lifts out to its rest and the digits close up into the top number.",
+      "Phase 2: The point drops out, the places light one at a time from the point outwards, and the bottom is built a zero at a time under them.",
+      "Phase 3: The weight is read as printed, the last zero lights like every other place, and the bottom is built a zero longer.",
+      "Phase 4: The asked row is run, both fractions hang on the beam, which stays level, and the two written forms stand apart."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Read the display exactly as it stands, last zero and all.",
+    "onFreePlay": "Free play: press New weight, then tidy it and hang both on the beam.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Every weight read as printed, and a level beam under two written answers that are not the same.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; the bubble holds ONE sentence: a wrong act shows that step's hint in place of the instruction, a wrong answer the next rung of its ladder, and the instruction comes back when the child taps again (a key, the card or the Answer key) or does the right act; at a phase's last right answer the bubble shows only the phase's closing line; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T7.C30:ML1",
+            "worked": false,
+            "kind": "top",
+            "planQuestion": "Write 6.3 as a fraction, and say where the top number came from.",
+            "question": {
+              "en": "Write 6.3 kg as a fraction."
+            },
+            "ask": {
+              "en": "This weight as a fraction"
+            },
+            "answer": [
+              63,
+              10
+            ],
+            "planAnswer": "63/10, and the top number is the digits with the point taken out",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T7.C30:1",
+            "worked": false,
+            "kind": "top",
+            "planQuestion": "Write 8.4 as a fraction.",
+            "question": {
+              "en": "What fraction does 8.4 kg give?"
+            },
+            "ask": {
+              "en": "8.4 kg as a fraction"
+            },
+            "answer": [
+              84,
+              10
+            ],
+            "planAnswer": "84/10",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T7.C30:2",
+            "worked": false,
+            "kind": "top",
+            "planQuestion": "In turning 15.7 into a fraction, what is the numerator, and where does it come from?",
+            "question": {
+              "en": "Turn 15.7 kg into a fraction."
+            },
+            "ask": {
+              "en": "15.7 kg as a fraction"
+            },
+            "answer": [
+              157,
+              10
+            ],
+            "planAnswer": "157, which is the digits with the point taken out",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T7.C31:ML2",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "Write 45.28 as a fraction.",
+            "question": {
+              "en": "Write 45.28 kg as a fraction."
+            },
+            "ask": {
+              "en": "This weight as a fraction"
+            },
+            "answer": [
+              4528,
+              100
+            ],
+            "planAnswer": "4528/100",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T7.C31:3",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "Write 30.62 as a fraction.",
+            "question": {
+              "en": "Now write 30.62 kg as a fraction."
+            },
+            "ask": {
+              "en": "30.62 kg as a fraction"
+            },
+            "answer": [
+              3062,
+              100
+            ],
+            "planAnswer": "3062/100",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T7.C31:4",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "Write 7.209 as a fraction, and say how the denominator was chosen.",
+            "question": {
+              "en": "What fraction is 7.209 kg?"
+            },
+            "ask": {
+              "en": "7.209 kg as a fraction"
+            },
+            "answer": [
+              7209,
+              1000
+            ],
+            "planAnswer": "7209/1000, because three decimal places give one followed by three zeros",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T7.C32:ML3",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "A scale prints a weight as 1.450 kg. How many decimal places is that, and what fraction does it give?",
+            "question": {
+              "en": "A scale prints 1.450 kg; write it as a fraction."
+            },
+            "ask": {
+              "en": "This weight as a fraction"
+            },
+            "answer": [
+              1450,
+              1000
+            ],
+            "planAnswer": "Three decimal places, so 1450/1000 kg",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T7.C32:5",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "A label reads 2.60 m. Write it as a fraction, counting the places that are printed.",
+            "question": {
+              "en": "A tape measure reads 2.60 m; write that reading as a fraction."
+            },
+            "ask": {
+              "en": "2.60 m as a fraction"
+            },
+            "answer": [
+              260,
+              100
+            ],
+            "planAnswer": "260/100",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T7.C32:6",
+            "worked": false,
+            "kind": "back",
+            "planQuestion": "Is 4.500 the same amount as 4.5, and is it the same written form?",
+            "question": {
+              "en": "What printed weight gives 4500 over 1000?"
+            },
+            "ask": {
+              "en": "The weight it came from"
+            },
+            "answer": [
+              "4",
+              "500"
+            ],
+            "planAnswer": "The same amount, but not the same written form, because 4.500 has three decimal places and 4.5 has one",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T7.C33:ML4",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "A child tidies that same 1.450 kg to 1.45 and then converts it. What do they write, and why is it not the answer that was asked for?",
+            "question": {
+              "en": "What fraction does the tidied 1.45 kg give?"
+            },
+            "ask": {
+              "en": "The tidied weight as a fraction"
+            },
+            "answer": [
+              145,
+              100
+            ],
+            "planAnswer": "They write 145/100, which is the same weight and not the number that was printed",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T7.C33:7",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "A height is printed as 1.30 m. One child writes 130/100 and another tidies it to 1.3 and writes 13/10. Which one answered the question that was asked?",
+            "question": {
+              "en": "Write 1.30 m as a fraction, just as printed."
+            },
+            "ask": {
+              "en": "1.30 m as printed"
+            },
+            "answer": [
+              130,
+              100
+            ],
+            "planAnswer": "The first one, because the printed number has two decimal places; the two are the same height, but 130/100 is the written form the question was about",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T7.C33:8",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "A bag is printed as 5.250 kg. Write it as a fraction, and say what a child who tidied it first would have written instead.",
+            "question": {
+              "en": "What fraction is the printed 5.250 kg?"
+            },
+            "ask": {
+              "en": "5.250 kg as printed"
+            },
+            "answer": [
+              5250,
+              1000
+            ],
+            "planAnswer": "5250/1000, and a child who tidied to 5.25 first would have written 525/100, the same weight in a different written form",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "scale_bench",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "scale_bench",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Dropping the point to get the top",
+        "conceptId": "M2.S4.T7.C30",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C30:ML1",
+          "M2.S4.T7.C30:1",
+          "M2.S4.T7.C30:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Building the bottom from the places",
+        "conceptId": "M2.S4.T7.C31",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C31:ML2",
+          "M2.S4.T7.C31:3",
+          "M2.S4.T7.C31:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "A zero on the end still counts",
+        "conceptId": "M2.S4.T7.C32",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C32:ML3",
+          "M2.S4.T7.C32:5",
+          "M2.S4.T7.C32:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "The right amount can still be the wrong answer",
+        "conceptId": "M2.S4.T7.C33",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C33:ML4",
+          "M2.S4.T7.C33:7",
+          "M2.S4.T7.C33:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "printed",
+    "null",
+    "numerator",
+    "null",
+    "null",
+    "placesCounted",
+    "lit",
+    "denominator",
+    "null",
+    "null",
+    "tidiedRow",
+    "balanced",
+    "hung"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, printed, null, numerator, null, null, placesCounted, lit, denominator, null, null, tidiedRow, balanced, hung, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "scale_bench"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T7.C30.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Read the display exactly as it stands, last zero and all."
+    },
+    {
+      "en": "Take the dot out and leave the digits alone. What have you got?"
+    },
+    {
+      "en": "Count the places after the dot. Now write one and that many zeros."
+    },
+    {
+      "en": "There is a zero on the end. Does it take a place or not?"
+    },
+    {
+      "en": "Tidy it first and run it again. Same amount? Same writing?"
+    },
+    {
+      "en": "Another weight on the pan. Read it off the way the scale wrote it."
+    },
+    {
+      "en": "Free play. Any weight on the pan, tidied row and balance beam open."
+    },
+    {
+      "en": "Carry it back to the scale and count the printed places again, every one of them."
+    },
+    {
+      "en": "Every weight read as printed, and a level beam under two written answers that are not the same."
+    }
+  ],
+  "build": {
+    "source": "46ff89e6:395610",
+    "runtime": "class4/runtime/frozen/r26/runtime.tsx",
+    "runtimeVersion": "r26",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-14T14:39:55.893Z",
+    "checks": {
+      "pass": 88,
+      "warn": 0,
+      "fail": 0,
+      "info": 2,
+      "at": "2026-10-14T14:39:55.622Z"
+    },
+    "tsxBytes": 563953,
+    "tsxMd5": "ca7d5f56474ad050f6f2d437b2f4a9b5",
+    "handEdited": true
+  }
+}

@@ -13,6 +13,12 @@
    NO imports in this file; only the five host hooks. Follow docs/LAYOUT.md and docs/PATTERNS.md.
    Every English line the tool prints, in its data or drawn by Work (tx("...")), has a Hindi and a
    Gujarati entry in TR once the English is final (check's tr-coverage row lists what is missing).
+//#if keyOnly
+   THE NEW LOOK (the owner, 2026-10-16; docs/LAYOUT.md §1d-§1e, docs/PATTERNS.md §15-§16): no question bar (only the blinking key at the top
+   right), four small clickable phase dots, a big ONE-sentence bubble, digits as written, every act performed on screen (api.act). The question
+   lives ONLY in the bubble: each item's `say` is the whole question in one sentence. Opt out (delete `keyOnly: true` / `navDots: true` below)
+   only with a reason stated in the report.
+//#endif
    Edit, never rewrite. Built by `node cli.mjs scaffold`; concepts are verbatim (check compares them). */
 
 const TOOL_ID = "%%TOOL_ID%%";
@@ -53,6 +59,9 @@ const TR: any = { hi: {}, gu: {} };
 
 /* One entry per phase = one mount.
    says    the teach run, printed on the bubble a piece at a time before anything is asked (numbers are printed as words)
+//#if keyOnly
+           keyOnly: digits print as written; a bubble line may name its number unless that gives the answer away
+//#endif
    steps   GUIDE STEPS (runtime r30; `hint` r34), when the plan's teach lines describe acts:
              steps: [{ say: "Tap Cut to cut the bar into ten equal parts.", on: "cut", hint: "Tap the Cut key first." },
                      { say: "Now tap one part to shade it.", on: "shade", hint: "Tap one piece of the bar." }],
@@ -74,6 +83,9 @@ const TR: any = { hi: {}, gu: {} };
            phase whose teach describes no act (then `says` is the teach run and the phase opens on its first question).
    ladder  rungs 2 and 3 of the hint ladder (rung 1 is each item's own miss line); never the answer
    closing one closing line for this phase, printed once when it goes idle
+//#if keyOnly
+           keyOnly: ONE sentence; the bubble shows it in place of the last win line
+//#endif
    learned the summary page's row for this phase: "You learned: ..." (at most 72 characters)
    traceback what the working area redraws after a miss, in one line (for the sidecar)
    demo?   { ... } when the phase opens on the child's one physical act (see api.demoDone); steps are the newer way
@@ -82,6 +94,11 @@ const TR: any = { hi: {}, gu: {} };
            kind  your name for the item type (the Work, judge and oracle switch on it)
            say   the question's line on the bubble (one sentence: one page); ask = the short prompt above the slot
                  (<= 3 lines of ~15 chars)
+//#if keyOnly
+                 keyOnly: there is no question bar, so the bubble is the only place the question shows: `say` is the WHOLE question in ONE
+                 sentence (the plan's question cut to one: put its setup back in when the child needs it). `ask` stays, because the checks and
+                 the sidecar read it, but it is never drawn. A hint (miss, ladder rung) shows in place of the question: ONE sentence each
+//#endif
            answer what the slot or the working area must produce; miss = rung 1, shown at once UNDER the pinned
                   instruction after a miss (one sentence, never the answer; a second miss shows ladder[0], a third
                   ladder[1]), and kept there until the child acts again
@@ -132,6 +149,15 @@ const check = () => (HOOK.check ? HOOK.check() : undefined);
    Its size is `box` ({ w, h, open }): the whole card (1472 x 528) with the answer panel shut and 1086 x 528 with it
    open, easing between (the board layout, docs/LAYOUT.md §1b, docs/PATTERNS.md §14): lay everything out from box.w
    with plain arithmetic in render, never from constants or api.W. Origin at the area's top-left.
+//#if keyOnly
+   keyOnly (LAYOUT.md §1d): the question bar is gone, so the working area is 64,108, 1472 x 520 (NOT 64,202 x 528) with the panel shut, 1086 (900
+   with bigPad) x 520 open. box.key = { x, y, w, h } is the key's corner in THIS area's coordinates (about x 1190, y 0, 282 x 88; wider on a
+   Yes/No question): keep every element out of it, e.g. const kx = box.key ? box.key.x - 12 : box.w; (board-fit). There is no runs zone.
+//#if act
+   Every act (cut, measure, count, tidy ...) is performed on screen: await api.act({ tool, moves, at, onPoint }) from the child's tap and
+   react only when it resolves true (PATTERNS.md §15).
+//#endif
+//#endif
    Countable things use CONTENT colours (url(#gHundred|gTen|gOne|gBead|gPointer)); coloured numerals
    and words use a deeper ink, shade(colour, 0.25), so they read at 4.5:1. Type uses T.* only.
    Pieces: drag = useDrag(onDrop) then {...control(id, label), ...drag.bind(pay), ...drag.keys(pay)};
@@ -180,6 +206,9 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     <g>
       {/* the running count sits in the runs zone (64,108), 94 above the working area:
           <g data-zone="runs"><rect x={0} y={-94} width={330} height={76} .../>...</g> */}
+//#if keyOnly
+      {/* keyOnly: no runs zone (the key-only row fails a runs box); nothing under box.key; the question is in the bubble only */}
+//#endif
       <rect x={0} y={0} width={box ? box.w : W.w} height={W.h} rx={RAD.panel} fill="none" stroke={C.rule} strokeWidth={2} strokeDasharray="10 12" />
     </g>
   );
@@ -206,6 +235,12 @@ function %%COMPONENT%%(props: any) {
       /* the board layout (LAYOUT.md §1b): the question and an Answer key on a bar across the top, the working area the
          whole card until the child taps Answer, the answer box and keypad in a panel that slides in from the right */
       board: true,
+//#if keyOnly
+      /* KEY ONLY (the new look; LAYOUT.md §1d, PATTERNS.md §16; needs board: true): no question bar, only its blinking key at the top right;
+         the working area is 64,108, 1472 x 520 and the key's corner is props.box.key (keep every element out of it); the question lives
+         only in the bubble. Opt out (a picture that needs the bar's room) by deleting this line, with the reason in the report. */
+      keyOnly: true,
+//#endif
 //#endif
 //#if bigPad
       /* the wide keypad (LAYOUT.md §1b, PATTERNS.md 9g; the owner: "empty space left of the keypad, increase its size"): the answer
@@ -217,6 +252,11 @@ function %%COMPONENT%%(props: any) {
       /* the Next key (PATTERNS.md 9d): nothing moves on by itself; after a right answer the win picture waits for the child's tap on
          the blinking Next key (the question bar's right end; the classic layout: the answer slot's place). Delete to keep the timers. */
       nextKey: true,
+//#endif
+//#if navDots
+      /* NAV DOTS (the new look; LAYOUT.md §1d; stands alone): the phase bar becomes one small clickable dot per phase, no text; a tap starts
+         THAT phase, in user and AI mode. Delete this line to keep the bar. */
+      navDots: true,
 //#endif
 //#if startPage
       /* the start page: the tool's name, StartArt, START_HOOK, a Start key (above) */

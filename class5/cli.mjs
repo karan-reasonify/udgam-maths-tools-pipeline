@@ -14,10 +14,17 @@
  *                         THE REVIEW PACK (docs/REVIEW_PACK.md): every frame a reviewer needs at the full 1600x900 in <slot>/pack/
  *                         (p<phase>-<state>-<lang>.png + pack.json), made in one go; --changed lists the frames that are new or
  *                         whose pixels differ from the pack before (pack.prev.json), still rebuilding the whole pack
- *   node cli.mjs check    <MEDIA_ID> [--ch N] [--no-render] [--rows all]
+ *   node cli.mjs check    <MEDIA_ID> [--ch N] [--no-render] [--rows all] [--force]
  *                         every check, one report (docs/CHECKS.md). The printout shows the summary line and every row that is
- *                         not a pass; --rows all prints every row. status.json and .build/check.json always keep every row
- *   node cli.mjs port     <MEDIA_ID> [--ch N]                   standalone <ID>.tsx + <ID>.json in output-preview/
+ *                         not a pass; --rows all prints every row. status.json and .build/check.json always keep every row.
+ *                         A pass ports, except over a HAND-EDITED pair (its port is skipped; --force overwrites it, losing the edits)
+ *   node cli.mjs port     <MEDIA_ID> [--ch N] [--force]         standalone <ID>.tsx + <ID>.json in output-preview/; refuses a
+ *                         hand-edited pair (--force overwrites it and moves status.handEdit to handEditReplaced)
+ *   node cli.mjs approve  <MEDIA_ID> [--ch N] [--note "what changed"]
+ *                         a SMALL CHANGE made in the pair itself (runbook "Small changes to one tool"): proves the pair as it
+ *                         stands (hostsim; every phase in en, hi, gu driven: wrong answer, digit key, every question right;
+ *                         the key's corner clear) and records it in status.handEdit, so publish accepts those exact bytes.
+ *                         New bytes need --note. Env: CHROME_PATH (Linux: chrome-headless-shell), C4_FONTCONFIG (Poppins)
  *   node cli.mjs publish  <MEDIA_ID> [--ch N] [--upload] [--apply] [--version latest|N]
  *                         dry run by default; --upload writes to the bucket, --apply fixes lp2_media urls,
  *                         --offline lets --upload go ahead when lpv2 is unreachable (plan copy from fetch)
@@ -36,6 +43,11 @@
  *                         A SILENT runtime (r30+): says there is nothing to bake and exits; `check` (tr-coverage) proves
  *                         the printed Hindi and Gujarati. --force still bakes it, for reference only
  *   node cli.mjs mascot   [--src svg|png] [--height 420]        regenerate runtime/mascot.tsx (config `mascot`: ../kiko.svg, Kiko)
+ *   node cli.mjs fontkit  the FONT KIT (docs/LAYOUT.md §9): runtime/fontkit.json -> runtime/fontkit.tsx, Poppins 500/600/700 subset
+ *                         (Latin + Devanagari, fontTools woff2) as @font-face data URIs carried inside every tool (generated; never read it)
+ *   node cli.mjs actionkit [--dry] [--force] [--only key] [--model m]   the ACTION KIT (docs/IMAGES.md §11): the five tool
+ *                         pictures api.act draws (knife, scissors, ruler, pencil, eraser) from runtime/actionkit.json through the
+ *                         skin library and ledger, made once for every tool -> runtime/actionkit.tsx (generated; never read it)
  *   node cli.mjs images   make <MEDIA_ID> [--ch N] [--force] [--only key] [--dry] [--model name]
  *                         skins (docs/IMAGES.md): reads <slot>/images.json (written by the image agent), makes only
  *                         what the library and the raw cache lack (this class's, then the config's skinLibraries,
@@ -75,13 +87,15 @@ import { buildPack } from "./lib/build/pack.mjs";
 import { hashOf, setReportRows } from "./lib/check/check.mjs";
 import { checkAndPort } from "./lib/check/runAndShip.mjs";
 import { makeMascot } from "./lib/build/mascot.mjs";
+import { makeFontKit } from "./lib/build/fontkit.mjs";
 import { cleanSlot } from "./lib/finish/clean.mjs";
-import { portAndVerify } from "./lib/ship/port.mjs";
+import { portAndVerify, pairState } from "./lib/ship/port.mjs";
+import { approve } from "./lib/check/approve.mjs";
 import { publish } from "./lib/ship/publish.mjs";
 import { loadServiceAccount, accessToken, probeBucket } from "./lib/ship/gcs.mjs";
-import { freeze, headVersion, nextVersion, readVersions, readPin, writePin, pinState, sha, headHashes } from "./lib/core/pin.mjs";
+import { freeze, headVersion, readVersions, readPin, writePin, pinState, sha, headHashes } from "./lib/core/pin.mjs";
 import { readFence, fenceSet } from "./lib/core/fence.mjs";
-import { imagesCommand } from "./lib/images/make.mjs";
+import { imagesCommand, makeActionKit } from "./lib/images/make.mjs";
 
 const BOOLEANS = ["force", "full", "json", "help", "no-render", "upload", "apply", "offline", "watch", "off", "on", "clear", "html", "dry", "pack", "changed"];
 const a = parseArgs(process.argv.slice(3), BOOLEANS);
@@ -182,7 +196,7 @@ function writeChapter(j) {
   /* a chapter is pinned to the runtime of the day it was fetched, and never re-pinned here:
      re-fetching a plan must not move a finished chapter onto a newer runtime. */
   if (!readPin(cdir)) {
-    const v = headVersion() || freeze(nextVersion(), { note: `head at ${j.chapterId} fetch` }).version;
+    const v = freeze(null, { note: `head at ${j.chapterId} fetch` }).version;
     writePin(cdir, v, { why: `fetched ${new Date().toISOString().slice(0, 10)}` });
     console.log(`  runtime ${v} pinned for ${j.chapterId} (runtime/frozen/${v})`);
   }
@@ -286,19 +300,23 @@ function status() {
     .filter((c) => !a.ch || c === chapterIdFor({ klass: klass(), pub: a.pub, ch: a.ch }));
   for (const c of chapters) {
     const pin = readPin(path.join(root, c));
+    /* a hand-edited pair (runbook "Small changes to one tool") is reported as such, never as stale: its source is not what ships */
+    const handOf = (dir) => { const h = pairState(dir); return h && (h.edited || h.approved) ? `hand-edited (${h.approved ? "approved " + String(h.at).slice(0, 10) : "NOT approved"})` : ""; };
     console.log(`${c}${pin ? `  ·  runtime ${pin.version}` : "  ·  NO PIN (node cli.mjs runtime pin --ch N)"}`);
     for (const id of fs.readdirSync(path.join(root, c)).filter((x) => fs.existsSync(path.join(root, c, x, "slot.json")))) {
       const dir = path.join(root, c, id), st = readStatus(dir);
       let chk = "not checked";
+      const hand = handOf(dir);
       if (st.checks) {
         const toolFile = path.join(dir, "tool.tsx");
         const fresh = fs.existsSync(toolFile) && st.checkedTool === hashOf(dir);
         /* a sealed tool was published from a source that passed check on the runtime of its day;
            what is live is a frozen copy of it, so only a change to tool.tsx itself matters now */
         const sealed = st.sealed && fs.existsSync(toolFile) && st.sealed.tool === sha(fs.readFileSync(toolFile));
-        const note = fresh ? "" : sealed ? `, sealed on ${st.sealed.version}` : ", source changed since";
+        const note = fresh || hand ? "" : sealed ? `, sealed on ${st.sealed.version}` : ", source changed since";
         chk = `check ${st.checks.fail ? st.checks.fail + " FAIL" : "passed"} (${st.checks.pass} pass)${note}`;
       }
+      if (hand) chk += ` · ${hand}`;
       console.log(`  ${pad(id, 20)}${pad(st.stage || "?", 10)}${st.toolBytes ? pad("tool " + kb(st.toolBytes).trim(), 16) : pad("", 16)}${fs.existsSync(path.join(dir, "tool.tsx")) ? chk : ""}`);
     }
   }
@@ -312,7 +330,7 @@ async function doCheck() {
   /* the preview is rebuilt from the source being hashed, so a check can never pass on a stale page.
      every check passing ports straight away (output-preview/, proved in the host emulator) so the
      tool shows up in the viewer without a separate step; publish still waits on the user's word. */
-  const { checked, ported, portError } = await checkAndPort(dir, { render: !a["no-render"] });
+  const { checked, ported, portError } = await checkAndPort(dir, { render: !a["no-render"], force: !!a.force });
   if (checked.summary.fail) { process.exitCode = 1; return; }
   if (portError) { console.log(`  port failed: ${portError}`); process.exitCode = 1; return; }
   if (ported && !ported.hostsim.ok) process.exitCode = 1;
@@ -375,13 +393,20 @@ function doCleanAll(opts) {
 }
 
 async function doPort() {
-  // note: `check` now ports automatically the moment it passes; this is for a manual re-port
-  // (e.g. --force after a hand edit to output-preview/ itself, which is otherwise never touched by hand)
+  // note: `check` now ports automatically the moment it passes; this is for a manual re-port.
+  // A hand-edited pair (runbook "Small changes to one tool") is refused; --force overwrites it and loses those edits
   const dir = resolveTarget(a._[0], a);
   const r = await portAndVerify(dir, { force: !!a.force, log: console.log });
   console.log(`  ${rel(r.tsxFile)}  ${kb(r.tsxBytes).trim()} (library ${kb(r.libBytes).trim()})`);
   console.log(`  ${rel(r.jsonFile)}  ${kb(r.jsonBytes).trim()}`);
   if (!r.hostsim.ok) { console.log("  the standalone file does not run in the host emulator"); process.exitCode = 1; }
+}
+
+/* approve: prove a hand-edited pair on its own bytes and record it for publish (lib/check/approve.mjs) */
+async function doApprove() {
+  const dir = resolveTarget(a._[0], a);
+  const r = await approve(dir, { note: a.note && a.note !== true ? String(a.note) : "", log: console.log });
+  if (!r.ok) process.exitCode = 1;
 }
 
 async function doPublish() {
@@ -435,6 +460,7 @@ async function doView() {
    The runtime, the mascot and a tool are hashed together, so one shared runtime meant an edit
    for a new chapter restaled every finished tool of every older chapter. A chapter now names its
    own frozen snapshot; bringing a chapter forward is a deliberate freeze + pin + re-check. */
+const CHURN_MS = 24 * 3600 * 1000;
 const chapterDirs = (spec) => (spec
   ? chapterList(spec).map((n) => path.join(workRoot(), chapterIdFor({ klass: klass(), pub: a.pub, ch: n })))
   : fs.readdirSync(workRoot()).map((c) => path.join(workRoot(), c)).filter((d) => fs.statSync(d).isDirectory()));
@@ -445,18 +471,19 @@ function doRuntime() {
   const sub = String(a._[0] || "status");
 
   if (sub === "freeze") {
-    const known = headVersion();
-    const v = a._[1] ? String(a._[1]) : known || nextVersion();
-    const r = freeze(v, { note: String(a.note && a.note !== true ? a.note : "") });
+    const r = freeze(a._[1] ? String(a._[1]) : null, { note: String(a.note && a.note !== true ? a.note : "") });
     console.log(r.made
       ? `froze runtime ${r.version}: runtime ${r.runtime} · mascot ${r.mascot} · ${kb(r.bytes).trim()}  (runtime/frozen/${r.version}/)`
       : `runtime ${r.version} already holds this exact head (runtime ${r.runtime}); nothing to freeze`);
+    /* the batch rule (runbook non-negotiable 3): every freeze that a chapter then pins re-stales its tools, and r56-r64 were nine in a day */
+    const recent = Object.entries(readVersions().versions).filter(([, row]) => Date.now() - Date.parse(row.frozenAt) < CHURN_MS).length;
+    if (r.made && recent >= 3) console.log(`WARNING: ${recent} runtimes frozen in the last 24 h. Each one re-stales every checked tool of every chapter that pins it. Batch runtime fixes: log the gap, work round it in the tool, freeze ONCE per chapter (runbook non-negotiable 3).`);
     return;
   }
 
   if (sub === "pin") {
     const version = a.version && a.version !== true ? String(a.version)
-      : headVersion() || freeze(nextVersion(), { note: "the head at pin time" }).version;
+      : freeze(null, { note: "the head at pin time" }).version;
     const dirs = chapterDirs(a.ch);
     if (!dirs.length) throw new Error("no chapter to pin; name one with --ch N");
     for (const cdir of dirs) {
@@ -467,6 +494,8 @@ function doRuntime() {
       const stale = slots.filter((d) => { const st = readStatus(d); return st.checks && st.checkedTool !== hashOf(d); });
       console.log(`${path.basename(cdir)}  runtime ${pin.version}${was && was.version !== pin.version ? ` (was ${was.version})` : ""}  ${slots.length} slot(s)`);
       if (stale.length) console.log(`  re-check on this pin: ${stale.map(idOf).join(", ")}`);
+      const moves = (pin.history || []).filter((h) => Date.now() - Date.parse(h.until) < CHURN_MS).length;
+      if (was && was.version !== pin.version && moves >= 2) console.log(`  WARNING: ${path.basename(cdir)} has moved ${moves} times in the last 24 h (now ${pin.version}); every move re-checks every tool and rebuilds its packs. Move once, at step 6, unless a blocker (runbook non-negotiable 3).`);
     }
     console.log("a pinned chapter cannot be restaled by another chapter's runtime edit");
     return;
@@ -524,14 +553,20 @@ function doFence() {
   if (!Object.keys(f.sessions || {}).length) console.log("  no session has opened a chapter yet");
 }
 
+/* the ACTION KIT: the five shared tool pictures of api.act (docs/IMAGES.md §11) -> runtime/actionkit.tsx */
+async function doActionKit() {
+  await makeActionKit({ force: !!a.force, dry: !!a.dry, only: a.only && a.only !== true ? String(a.only).split(",").map((x) => x.trim()) : null,
+    ...(a.model && a.model !== true ? { models: [String(a.model)] } : {}) });
+}
+
 /* skins for a slot or a chapter (lib/images/, docs/IMAGES.md); it parses its own flags (--dry, --batch) */
 async function doImages() {
   await imagesCommand(process.argv.slice(3), { log: console.log });
 }
 
 const COMMANDS = { doctor, list, fetch: fetchChapters, scaffold: doScaffold, preview: doPreview, shots: doShots, check: doCheck,
-  port: doPort, publish: doPublish, mascot: doMascot, clean: doClean, status, view: doView, runtime: doRuntime, fence: doFence, voice: doVoice,
-  images: doImages };
+  port: doPort, approve: doApprove, publish: doPublish, mascot: doMascot, clean: doClean, status, view: doView, runtime: doRuntime, fence: doFence, voice: doVoice,
+  images: doImages, actionkit: doActionKit, fontkit: () => makeFontKit() };
 
 if (!cmd || a.help || !COMMANDS[cmd]) {
   const head = fs.readFileSync(path.join(ROOT, "cli.mjs"), "utf8").split("*/")[0];

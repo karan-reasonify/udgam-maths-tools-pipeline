@@ -224,17 +224,20 @@ async function pointRun(url) {
     /* Scan first, drive second. One state read a step and no waiting: a tool whose questions are mostly
        word choices and fractions (ch 8's Place and Worth Chart) used to spend its whole session waiting
        at each question for a pad that question never shows, and timed out before it drove anything. */
-    const shape = `(() => { const g = window.toolApi.getState(); return { p: !!g.parts, c: !!g.choices, h: ${has} }; })()`;
-    const plain = [];
+    /* e: the digit keys are off or absent (a working-area question, pad "enter", may show no keypad at all): such questions go to the END of the list, so nine of
+       them in phases 1-3 can no longer use up the cap before phase 4's typed decimals (2026-10-17, ch 5 Decimal Reader) */
+    const shape = `(() => { const g = window.toolApi.getState(); const z = document.querySelector('[data-control="key-0"]'); return { p: !!g.parts, c: !!g.choices, h: ${has}, e: !z || z.getAttribute('aria-disabled') === 'true' }; })()`;
+    const plain = [], late = [];
     let partsAt = -1, seen = false;
     for (let t = 0; t < steps; t++) {
       await s.ev(`window.toolApi.gotoStep(${t})`);
       await s.wait(250);
       const k = await s.ev(shape);
       if (k.h) seen = true;
-      if (!k.p && !k.c) plain.push(t);
+      if (!k.p && !k.c) (k.e ? late : plain).push(t);
       else if (k.p && partsAt < 0) partsAt = t;
     }
+    plain.push(...late);
     /* the point key is off on a question answered in boxes, and "." types nothing there */
     if (partsAt >= 0) {
       await s.ev(`window.toolApi.gotoStep(${partsAt})`);
@@ -357,6 +360,8 @@ async function boardRun(url) {
     const g = () => s.ev(`(() => { const a = window.toolApi.getState(), k = ${KEY};
       return { panel: a.answerPanel, w: a.workWidth, stage: a.stage, typed: a.typed, tries: a.tries, locked: !!window.__tool.state().locked,
         label: k ? k.getAttribute("aria-label") : null, parts: !!a.parts, hint: a.hint, hintKind: a.hintKind, ring: ${KEYRING},
+        /* what the bubble really draws (ONE SENTENCE A SCREEN: the built-in tap line is in the state, never on the bubble) */
+        drawn: (() => { const z = document.querySelector('[data-zone="bubble"]'); return z ? Array.from(z.querySelectorAll("text")).map((t) => t.textContent).join(" ") : ""; })(),
         /* drawn, not merely mounted: a shut panel is display none (not drawn, not tabbable, not in any geometry) */
         key1: (() => { const e = document.querySelector('[data-control="key-1"]'); return !!e && !e.closest('[display="none"]'); })() }; })()`);
     const settle = async (want) => { await s.until(`window.toolApi.getState().answerPanel === ${JSON.stringify(want)}`, 4000); await s.wait(700); return g(); };
@@ -391,7 +396,7 @@ async function boardRun(url) {
 }
 
 /* r24, ANSWER-BLINK (a board tool without cardAnswer; the board-panel run): the pink Answer key blinks only while it is the thing to press */
-function judgeAnswerBlink(v) {
+function judgeAnswerBlink(v, one = false) {
   const b = [];
   if (!v || v.none) return b;
   const m = v.mount;
@@ -408,21 +413,30 @@ function judgeAnswerBlink(v) {
   if (v.shut && (v.shut.hintKind !== "type" || !/blinking Answer key/i.test(String(v.shut.hint || "")))) b.push(`after Close the "Tap the blinking Answer key." line did not come back (hint ${JSON.stringify(v.shut.hint)})`);
   if (v.sawLock && v.during && v.during.ring && v.during.ring.around) b.push("the Answer key blinks while the pad is locked (a miss's traceback)");
   if (v.sawLock && v.during && v.during.hintKind === "type" && /blinking Answer key/i.test(String(v.during.hint || ""))) b.push("the \"Tap the blinking Answer key.\" line shows while the pad is locked");
+  /* ONE SENTENCE A SCREEN (one, keyOnly): the line stays in getState().hint (kind "type"), but the bubble never draws it: the key's blink is the cue */
+  if (one) for (const [w, f] of [["at the open question", s], ["after Close", v.shut]]) if (f && /blinking Answer key/i.test(String(f.drawn || ""))) b.push(`the bubble draws the built-in "Tap the blinking Answer key." line ${w}: under keyOnly (one sentence a screen) only the question is drawn`);
   return b;
 }
 
 /* r24, MASCOT-THINK (the click-then-enter run, any tool): Kiko thinks while a question waits and stands again at the first tap; the puff is inside his box */
-function judgeThink(p) {
+/* mb: the mascot's box on the stage (class 4 r27 keyOnly: 28, 666, 295.8 x 232, the runtime's mascotBoxOf; else 28, 738, 204 x 160) and,
+   with it, the bubble's left edge the puff stays clear of */
+function judgeThink(p, mb = null, one = false) {
   const b = [], o = p.open || {}, t = p.tap || {};
+  const M = mb || { x: 28, y: 738, w: 204, h: 160 };
   if (o.pose !== "think") b.push(`at an open question nothing touched yet the mascot is not thinking (data-pose "${o.pose}", want "think")`);
-  if (!o.puff) b.push("no thought puff (data-role think-puff) beside Kiko while the question waits");
-  else if (o.box && (o.box.x < 27.5 || o.box.y < 737.5 || o.box.x2 > 232.5 || o.box.y2 > 898.5)) b.push(`the thought puff leaves the mascot's box (x 28 to 232, y 738 to 898): it is at x ${Math.round(o.box.x)} to ${Math.round(o.box.x2)}, y ${Math.round(o.box.y)} to ${Math.round(o.box.y2)}`);
+  /* ONE SENTENCE A SCREEN (one, keyOnly): Kiko keeps the thinking pose, but no thought cloud (data-role think-puff) is drawn */
+  if (one) { if (o.puff) b.push("a thought puff (data-role think-puff) is drawn beside Kiko: under keyOnly (one sentence a screen) he keeps the thinking pose and draws no cloud"); }
+  else if (!o.puff) b.push("no thought puff (data-role think-puff) beside Kiko while the question waits");
+  else if (o.box && (o.box.x < M.x - 0.5 || o.box.y < M.y - 0.5 || o.box.x2 > M.x + M.w + 0.5 || o.box.y2 > M.y + M.h + 0.5)) b.push(`the thought puff leaves the mascot's box (x ${Math.round(M.x)} to ${Math.round(M.x + M.w)}, y ${Math.round(M.y)} to ${Math.round(M.y + M.h)}): it is at x ${Math.round(o.box.x)} to ${Math.round(o.box.x2)}, y ${Math.round(o.box.y)} to ${Math.round(o.box.y2)}`);
+  else if (o.box && mb && mb.bubbleX && o.box.x2 > mb.bubbleX - 2) b.push(`the thought puff (to x ${Math.round(o.box.x2)}) touches the bubble (x ${mb.bubbleX})`);
   if (t.pose === "think") b.push("after the first tap the mascot is still thinking: the standing picture must be back");
   if (t.puff) b.push("the thought puff is still drawn after the first tap");
   /* r25: question 1 after the guide steps, reached by real key presses (the flow a child takes) */
   const f = p.flow;
   if (f && f.pose !== "think") b.push(`after the guide steps (real Enter presses) question 1 opened with nothing touched and the mascot is not thinking (data-pose "${f.pose}", want "think"): a tap or key during a guide step must not count as an act on the question`);
-  else if (f && !f.puff) b.push("question 1 after the guide steps has no thought puff beside Kiko");
+  else if (one && f && f.puff) b.push("question 1 after the guide steps draws a thought puff beside Kiko: under keyOnly (one sentence a screen) there is no cloud");
+  else if (!one && f && !f.puff) b.push("question 1 after the guide steps has no thought puff beside Kiko");
   return b;
 }
 
@@ -531,7 +545,7 @@ export function judgeStart(rows, first = "", { backToStart = false, silent = tru
       for (let i = 0; i < whole.length; i++) for (let k = i + 1; k < whole.length; k++) if (over(box(whole[i]), box(whole[k]))) b.push(`${tag}: "${whole[i].text.slice(0, 16)}" overlaps "${whole[k].text.slice(0, 16)}"`);
       const key = g.controls.find((c) => c.id === "start");
       if (!key || key.box.w < 71 || key.box.h < 71 || key.role !== "button" || key.tab !== "0" || !key.label) b.push(`${tag}: the Start key is not a labelled, focusable 72 x 72 button`);
-      g.images.filter((im) => im.role !== "mascot" && im.role !== "skin").forEach((im) => b.push(`${tag}: a picture on the start page that is neither the mascot nor a skin`));
+      g.images.filter((im) => im.role !== "mascot" && im.role !== "skin" && im.role !== "act").forEach((im) => b.push(`${tag}: a picture on the start page that is neither the mascot nor a skin`));
     }
     /* a runtime with DEFAULT_THEME (class 4 r23, class 5 r55): every start page wears a theme's Enter colours, so no Start key is the
        chrome's grey; the faces are saturated (at least 0.35) and never red (the owner, 2026-10-13: "all start pages should look alike") */
@@ -708,6 +722,9 @@ export async function realWrongInput({ base, phases, poolSize = 2, floor = false
    question, and a wrong act (__tool.did) at its first guide step when it has one. Returns per frame the lines (baseline,
    size, x-extent in stage units), the hint band's colour, the screen transform and the PNG's path; measureHintFrame()
    then reads the pixels. */
+/* class 4 r27: a keyOnly or navDots tool's bubble writes its own box (data-box "x,y,w,h"); without it the classic box is measured */
+const BUBBLE_BOX_DOM = `(() => { const z = document.querySelector('[data-zone="bubble"][data-box]'); if (!z) return null;
+  const v = z.getAttribute("data-box").split(",").map(Number); return { x: v[0], y: v[1], w: v[2], h: v[3] }; })()`;
 async function hintFramesRun(url, lang, N, outDir) {
   return cdpSession(url, async (s) => {
     if (!(await s.until("!!(window.toolApi && window.__tool)", 20000))) return { lang, error: "the tool did not mount" };
@@ -720,7 +737,7 @@ async function hintFramesRun(url, lang, N, outDir) {
       const g = document.querySelector('[data-zone="bubble"] [data-role="hint"]');
       const rs = g ? Array.from(g.querySelectorAll("rect")) : [];
       const bd = rs.find((r) => Number(r.getAttribute("width")) > 6), br = rs.find((r) => Number(r.getAttribute("width")) <= 6);
-      return { lines, alone: !g && !!window.toolApi.getState().hint, band: bd ? getComputedStyle(bd).fill : null, bar: br ? getComputedStyle(br).fill : null, ctm: { a: m.a, d: m.d, e: m.e, f: m.f }, hint: window.toolApi.getState().hint }; })()`;
+      return { lines, alone: !g && !!window.toolApi.getState().hint, band: bd ? getComputedStyle(bd).fill : null, bar: br ? getComputedStyle(br).fill : null, ctm: { a: m.a, d: m.d, e: m.e, f: m.f }, hint: window.toolApi.getState().hint, bubble: ${BUBBLE_BOX_DOM} }; })()`;
     const frames = [];
     /* the step index of each phase's first question, from getState() (a phase need not have three questions) */
     const starts = [];
@@ -752,7 +769,7 @@ async function hintFramesRun(url, lang, N, outDir) {
    own edge is not ink). The outline is the run of rows at the bubble's top and bottom edges that are ink nearly all the
    way across (>= 97%: a line of text has gaps between its words); topGap and bottomGap are the clear rows between the
    outline and the text, block the text's ink height, all in stage units. */
-export function measureHintFrame(fr, img, bubble = { x: 254, y: 748, w: 656, h: 144 }) {
+export function measureHintFrame(fr, img, bubble = (fr && fr.bubble) || { x: 254, y: 748, w: 656, h: 144 }) {
   const parse = (c) => { const m = /rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)/.exec(String(c || "")); return m ? [+m[1], +m[2], +m[3]] : null; };
   const bgs = [[255, 255, 255], parse(fr.band), parse(fr.bar)].filter(Boolean);
   const ink = (c) => bgs.every((b) => Math.hypot(c[0] - b[0], c[1] - b[1], c[2] - b[2]) > 80);
@@ -812,7 +829,8 @@ async function partyDotRun(url) {
     await s.ev("window.__tool.solve()");
     const seen = await s.until(`!!document.querySelector('[data-zone="party"]')`, 5000);
     if (!seen) return { seen: false };
-    const dot = '[data-control="phase-2"]';
+    /* class 4 r27: a navDots tool's dot is data-control "phase-dot" with data-phase */
+    const dot = await s.ev(`document.querySelector('[data-control="phase-2"]') ? '[data-control="phase-2"]' : '[data-control="phase-dot"][data-phase="2"]'`);
     const has = await s.ev(`!!document.querySelector(${JSON.stringify(dot)})`);
     if (!has) return { seen: true, noDot: true };
     await s.click(dot);
@@ -823,6 +841,230 @@ async function partyDotRun(url) {
 export async function partyDotInput({ base }) {
   const r = await pool([() => partyDotRun(`${base}?phase=1&muted=1&probe=1`)], 1);
   return r[0].ok ? r[0].value : { error: r[0].error && r[0].error.message };
+}
+
+/* class 4 r27, NAV DOTS (a tool with navDots: true): one small dot per phase, a control in user AND AI mode. One DevTools session per
+   mode: a real mouse click on the dot of each later phase in turn, then on phase 1's (back), each starts THAT phase (phase k,
+   question 1, nothing answered, the stage teach / demo / ask, the dot of k current); then phase 1's first question is answered
+   and its own (current) dot clicked: the phase starts again from a clean slate (question 1, nothing answered). */
+const NAV_SNAP = `(() => { const a = window.toolApi.getState(), ds = Array.from(document.querySelectorAll('[data-control="phase-dot"]'));
+  return { phase: a.phase, item: a.item, stage: a.stage, answered: a.answered, dots: ds.length,
+    current: ds.filter((d) => d.getAttribute("aria-current") === "step").map((d) => Number(d.getAttribute("data-phase"))),
+    bad: ds.filter((d) => d.getAttribute("role") !== "button" || d.getAttribute("tabindex") !== "0" || !/^Step \\d+ of \\d+$/.test(d.getAttribute("aria-label") || "")).length }; })()`;
+async function navDotsRun(url, mode, N) {
+  return cdpSession(url, async (s) => {
+    if (!(await s.until("!!(window.toolApi && window.__tool)", 20000))) return { mode, error: "the tool did not mount" };
+    await s.until("['ask', 'demo', 'teach'].includes(window.toolApi.getState().stage)", 25000);
+    const out = { mode, start: await s.ev(NAV_SNAP), jumps: [] };
+    for (const k of [...Array.from({ length: N - 1 }, (_, j) => j + 2), 1]) {
+      const sel = `[data-control="phase-dot"][data-phase="${k}"]`;
+      if (!(await s.ev(`!!document.querySelector(${JSON.stringify(sel)})`))) { out.jumps.push({ k, missing: true }); continue; }
+      await s.click(sel);
+      await s.until(`window.toolApi.getState().phase === ${k}`, 1500);
+      await s.wait(250);
+      out.jumps.push({ k, ...(await s.ev(NAV_SNAP)) });
+    }
+    /* the current dot restarts its phase: answer phase 1's first question, then press dot 1 */
+    await s.ev("window.toolApi.gotoStep(0)");
+    for (let j = 0; j < 40 && (await s.ev("window.toolApi.getState().stage")) !== "ask"; j++) {
+      await s.ev("window.toolApi.getState().stage === 'demo' && window.__tool.solve()"); await s.wait(250);
+    }
+    await s.ev("window.toolApi.getState().stage === 'ask' && window.__tool.solve()");
+    await s.wait(400);
+    const before = await s.ev(NAV_SNAP);
+    await s.click('[data-control="phase-dot"][data-phase="1"]');
+    await s.wait(400);
+    out.restart = { before, after: await s.ev(NAV_SNAP) };
+    out.logs = s.logs.slice(0, 3);
+    return out;
+  }, { label: `nav dots ${mode}`, timeout: 90000 });
+}
+export async function navDotsInput({ base, N }) {
+  const modes = ["user", "ai"];
+  const res = await pool(modes.map((md) => () => navDotsRun(`${base}?phase=1&muted=1&probe=1${md === "ai" ? "&mode=ai" : ""}`, md, N)), 2);
+  return res.map((r, k) => (r.ok ? r.value : { mode: modes[k], error: r.error && r.error.message }));
+}
+export function judgeNavDots(runs = [], N = 1) {
+  const bad = [];
+  for (const r of runs) {
+    const t = `${r.mode} mode`;
+    if (r.error) { bad.push(`${t}: ${r.error}`); continue; }
+    const st = r.start || {};
+    if (st.dots !== N) bad.push(`${t}: ${st.dots} phase dots (data-control phase-dot), want ${N}`);
+    if (st.bad) bad.push(`${t}: ${st.bad} dot(s) not a focusable button labelled "Step k of N"`);
+    for (const j of r.jumps || []) {
+      if (j.missing) { bad.push(`${t}: no dot for phase ${j.k}`); continue; }
+      if (j.phase !== j.k) bad.push(`${t}: a click on the dot of phase ${j.k} left phase ${j.phase} on`);
+      else if (j.item !== 1 || j.answered !== 0 || !["teach", "demo", "ask"].includes(j.stage)) bad.push(`${t}: phase ${j.k} did not start clean (question ${j.item}, ${j.answered} answered, stage ${j.stage})`);
+      if (j.current && (j.current.length !== 1 || j.current[0] !== j.k)) bad.push(`${t}: after the jump to phase ${j.k} the current dot is ${JSON.stringify(j.current)}`);
+    }
+    const rs = r.restart || {};
+    if (!rs.before || rs.before.answered < 1) bad.push(`${t}: phase 1's first question could not be answered before the restart (answered ${rs.before && rs.before.answered})`);
+    else if (!rs.after || rs.after.phase !== 1 || rs.after.answered !== 0 || rs.after.item !== 1 || !["teach", "demo", "ask"].includes(rs.after.stage)) bad.push(`${t}: the current dot did not start its phase again (${JSON.stringify(rs.after)})`);
+    for (const l of r.logs || []) bad.push(`${t}: console: ${String(l).slice(0, 100)}`);
+  }
+  if (!runs.length) bad.push("no nav-dots run");
+  return bad;
+}
+
+/* ACTION ANIMATION (2026-10-16, api.act; docs/CHECKS.md action-anim), for a tool whose source calls api.act. ONE DevTools session,
+   motion on: the act is reached through its own control, the way a child reaches it: in each phase in turn (navigated, same
+   session), while a guide step waits, a real click on its control (data-control = getState().guideOn; Enter when it has none),
+   else a real click on each enabled control of the working area; at most 8 tries, until getState().acting turns true. A page
+   recorder (every frame, timed from the pointerdown or keydown) proves: the act layer (data-role act-layer) is drawn within 300 ms;
+   while it is drawn the pad is locked (the dev driver's state().locked), no pad or bar key is live and getState().acting is true;
+   within 2 s it is gone, acting is false and the lock is back as it was. Then prefers-reduced-motion is emulated, the same page
+   loaded again and the same tries replayed: the last one must draw no layer and leave acting false (and a guide step it moved
+   on must move on at once, within 400 ms). */
+const ACT_REC = `(() => { if (!window.__actRec) { const tick = () => { const r = window.__actRec, now = performance.now(), on = !!document.querySelector('[data-role="act-layer"]');
+    if (r.t0) {
+      if (on) { if (r.seen === null) r.seen = now - r.t0; r.samples++;
+        if (!(window.__tool && window.__tool.state().locked)) r.lockedAll = false;
+        if (!window.toolApi.getState().acting) r.actingAll = false;
+        if (Array.from(document.querySelectorAll('[data-zone="pad"]:not(.c4-quiet) [data-control], [data-zone="ask"] [data-control]')).some((e) => e.getAttribute('aria-disabled') !== 'true')) r.quietAll = false; }
+      else if (r.seen !== null && r.gone === null) r.gone = now - r.t0; }
+    requestAnimationFrame(tick); };
+  const start = () => { const r = window.__actRec; if (!r.t0) r.t0 = performance.now(); };
+  window.addEventListener('pointerdown', start, true); window.addEventListener('keydown', start, true); requestAnimationFrame(tick); }
+  window.__actRec = { t0: 0, seen: null, gone: null, lockedAll: true, actingAll: true, quietAll: true, samples: 0 }; return true; })()`;
+const ACT_STATE = `(() => { const g = window.toolApi.getState(); return { stage: g.stage, step: g.guideStep, on: g.guideOn, acting: !!g.acting, phase: g.phase,
+  locked: !!(window.__tool && window.__tool.state().locked), layer: !!document.querySelector('[data-role="act-layer"]') }; })()`;
+/* the enabled controls of the working area, by their data-control (the first of each name) */
+const ACT_WORK = `(() => { const z = document.querySelector('[data-zone="work"]'); if (!z) return []; const seen = new Set();
+  return Array.from(z.querySelectorAll('[data-control]')).filter((e) => { const r = e.getBoundingClientRect(); return r.width > 4 && r.height > 4 && e.getAttribute('aria-disabled') !== 'true'; })
+    .map((e) => e.getAttribute('data-control')).filter((c) => !seen.has(c) && seen.add(c)); })()`;
+async function actionAnimRun(base, N) {
+  return cdpSession(`${base}?phase=1&muted=1&probe=1`, async (s) => {
+    const load = async (n) => {
+      await s.send("Page.navigate", { url: `${base}?phase=${n}&muted=1&probe=1` });
+      await s.wait(300);
+      if (!(await s.until("!!(window.toolApi && window.__tool)", 20000))) return false;
+      await s.until("['demo', 'ask'].includes(window.toolApi.getState().stage)", 25000);
+      await s.wait(500);
+      return true;
+    };
+    /* one try: what to press now (a guide step's control or Enter, else the next work control not yet tried) */
+    const press = async (tried) => {
+      const g = await s.ev(ACT_STATE);
+      if (g.stage === "demo" && g.on) {
+        const sel = `[data-control=${JSON.stringify(g.on)}]`;
+        if (await s.ev(`!!document.querySelector(${JSON.stringify(sel)})`)) { await s.click(sel); return { how: "click", sel, step: g.step }; }
+        await s.key("Enter", "Enter", 13); return { how: "enter", step: g.step };
+      }
+      const c = (await s.ev(ACT_WORK)).find((x) => !tried.has(x));
+      if (!c) return null;
+      tried.add(c);
+      const sel = `[data-zone="work"] [data-control=${JSON.stringify(c)}]`;
+      await s.click(sel); return { how: "click", sel, step: g.step };
+    };
+    const replay = async (t) => (t.how === "enter" ? s.key("Enter", "Enter", 13) : s.click(t.sel));
+    const out = { tries: [] };
+    let found = null;
+    for (let n = 1; n <= N && !found && out.tries.length < 8; n++) {
+      if (!(await load(n))) return { error: `phase ${n}: the tool did not mount` };
+      await s.ev(ACT_REC);
+      const tried = new Set();
+      while (out.tries.length < 8) {
+        const before = await s.ev(ACT_STATE);
+        await s.ev("(() => { window.__actRec.t0 = 0; window.__actRec.seen = null; window.__actRec.gone = null; window.__actRec.samples = 0; return true; })()");
+        const t = await press(tried);
+        if (!t) break;
+        out.tries.push({ n, ...t });
+        if (await s.until(`(() => { const g = window.toolApi.getState(); return !!g.acting || !!document.querySelector('[data-role="act-layer"]'); })()`, 700)) {
+          found = { n, before, t };
+          await s.until(`!document.querySelector('[data-role="act-layer"]') && !window.toolApi.getState().acting`, 4000);
+          await s.wait(120);
+          out.motion = { rec: await s.ev("window.__actRec"), before, after: await s.ev(ACT_STATE) };
+          break;
+        }
+        await s.wait(300);
+      }
+    }
+    if (!found) return out;
+    /* the same tries, under reduced motion */
+    await s.send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
+    if (!(await load(found.n))) return { ...out, error: "reduced motion: the tool did not mount" };
+    await s.ev(ACT_REC);
+    const mine = out.tries.filter((t) => t.n === found.n);
+    for (let k = 0; k < mine.length - 1; k++) { await replay(mine[k]); await s.wait(400); }
+    const before = await s.ev(ACT_STATE);
+    await replay(mine[mine.length - 1]);
+    await s.wait(400);
+    out.reduced = { before, rec: await s.ev("window.__actRec"), after: await s.ev(ACT_STATE),
+      reduce: await s.ev("matchMedia('(prefers-reduced-motion: reduce)').matches") };
+    out.logs = s.logs.slice(0, 3);
+    return out;
+  }, { label: "action anim", timeout: 120000, reducedMotion: false });
+}
+export async function actionAnimInput({ base, N }) {
+  const r = await pool([() => actionAnimRun(base, N)], 1);
+  return r[0].ok ? r[0].value : { error: r[0].error && r[0].error.message };
+}
+export function judgeActionAnim(o = {}) {
+  const bad = [];
+  if (o.error) return [o.error];
+  if (!o.motion) return [`no act was seen: ${o.tries ? o.tries.length : 0} real tries (each phase's guide-step control or Enter, then the working area's controls) never set getState().acting; an act a child reaches must be reachable the same way`];
+  const r = o.motion.rec || {}, b = o.motion.before || {}, a = o.motion.after || {};
+  if (r.seen === null) bad.push("the act layer (data-role act-layer) never appeared");
+  else if (r.seen > 300) bad.push(`the tool appeared ${Math.round(r.seen)} ms after the press (want 300 at most)`);
+  if (!r.lockedAll) bad.push("the pad was not locked while the act played");
+  if (!r.quietAll) bad.push("a pad or bar key was live while the act played");
+  if (!r.actingAll) bad.push("getState().acting was not true while the act played");
+  if (r.gone === null) bad.push("the act was still on screen 2.6 s after the press");
+  else if (r.gone > 2000) bad.push(`the act ended ${Math.round(r.gone)} ms after the press (want 2 s at most)`);
+  if (a.acting) bad.push("getState().acting stayed true after the act");
+  if (a.locked && !b.locked) bad.push("the pad stayed locked after the act");
+  const d = o.reduced;
+  if (!d) bad.push("no reduced-motion run");
+  else {
+    if (!d.reduce) bad.push("reduced motion could not be emulated");
+    if (d.rec && d.rec.seen !== null) bad.push("under reduced motion the act was still drawn");
+    if (d.after && (d.after.acting || d.after.layer)) bad.push("under reduced motion the act did not end at once");
+    if (o.motion.before.stage === "demo" && a.step !== b.step && d.after && d.before && d.after.step === d.before.step && d.after.stage === d.before.stage)
+      bad.push("under reduced motion the guide step the act performs did not move on within 400 ms");
+  }
+  for (const l of o.logs || []) bad.push(`console: ${String(l).slice(0, 100)}`);
+  return bad;
+}
+
+/* THE FONT KIT (2026-10-16; docs/CHECKS.md font-kit), for a tool built with runtime/fontkit.tsx: one DevTools session, no fontconfig
+   (the plain Chrome the checks launch has no Poppins of its own). After document.fonts.ready every weight of the kit's family is
+   loaded (document.fonts.check), and the bubble's text (else the header's, else the start page's) is drawn with the kit itself: CDP
+   CSS.getPlatformFontsForNode names a custom (web) font for it, never a system fallback. */
+async function fontKitRun(url) {
+  return cdpSession(url, async (s) => {
+    if (!(await s.until("!!(window.toolApi && window.__tool)", 20000))) return { error: "the tool did not mount" };
+    await s.wait(600);
+    await s.ev("(async () => { await document.fonts.ready; return true; })()");
+    const fam = await s.ev("(() => { const t = Array.from(document.querySelectorAll('style')).map((x) => x.textContent).join(''); const m = /@font-face\\{font-family:'([^']+)'/.exec(t); return m ? m[1] : null; })()");
+    if (!fam) return { family: null };
+    const loaded = await s.ev(`(async () => { await document.fonts.ready; return [500, 600, 700].map((w) => ({ w, ok: document.fonts.check(w + " 20px '${fam}'") })); })()`);
+    const sel = await s.ev(`(() => { for (const q of ['[data-zone="bubble"] text', '[data-zone="header"] text', 'svg.c4 text']) { const e = Array.from(document.querySelectorAll(q)).find((x) => /[A-Za-z]/.test(x.textContent || '')); if (e) { e.setAttribute('data-cdp-font', ''); return q; } } return null; })()`);
+    let fonts = null;
+    if (sel) {
+      await s.send("DOM.enable"); await s.send("CSS.enable");
+      const doc = await s.send("DOM.getDocument", { depth: 0 });
+      const q = doc.root ? await s.send("DOM.querySelector", { nodeId: doc.root.nodeId, selector: "[data-cdp-font]" }) : {};
+      const r = q.nodeId ? await s.send("CSS.getPlatformFontsForNode", { nodeId: q.nodeId }) : null;
+      fonts = r && r.fonts ? r.fonts : null;
+    }
+    return { family: fam, loaded, sel, fonts, logs: s.logs.slice(0, 3) };
+  }, { label: "font kit", timeout: 60000 });
+}
+export async function fontKitInput({ base }) {
+  const r = await pool([() => fontKitRun(`${base}?phase=1&muted=1&probe=1`)], 1);
+  return r[0].ok ? r[0].value : { error: r[0].error && r[0].error.message };
+}
+export function judgeFontKit(o = {}) {
+  if (o.error) return [o.error];
+  const bad = [];
+  if (!o.family) return ["no @font-face of the kit in the page's <style>"];
+  for (const l of o.loaded || []) if (!l.ok) bad.push(`${l.w} '${o.family}' is not loaded after document.fonts.ready`);
+  if (!o.sel) bad.push("no text found to read the font of");
+  else if (!o.fonts || !o.fonts.length) bad.push(`no platform font reported for ${o.sel}`);
+  else if (!o.fonts.some((f) => f.isCustomFont)) bad.push(`${o.sel} is drawn in ${o.fonts.map((f) => f.familyName).join(", ")}, a system font, not the kit`);
+  for (const l of o.logs || []) bad.push(`console: ${String(l).slice(0, 100)}`);
+  return bad;
 }
 
 /* THE PHASE PARTY (runtime r40: it starts AT the right answer of a phase's last question), with motion ON (the party is   skipped under reduced motion, which every other run forces). One user-mode mount from phase 1 walks through EVERY
@@ -1247,6 +1489,74 @@ export function judgeCardAnswer(rec) {
   return bad;
 }
 
+/* ONE-LINE-BUBBLE (ONE SENTENCE A SCREEN; keyOnly on a runtime with caps.oneSentence, LAYOUT §1d): one DevTools session per phase, motion ON, a
+   user-mode mount from the phase's start. The guide steps are walked (the agent's act), the first question opens, then: its bubble; a wrong
+   answer (dev miss, the pad unlocked again); a REAL digit key; a REAL click on the header's Hint key; and the phase's last question answered
+   right, the bubble sampled every 80 ms until the Next key has stood 0.4 s (nextkey=1) or the phase walks on. A MutationObserver records any
+   moment a thought puff or Hint-key bulb is on the page. judgeOneLine (silent.mjs) reads the frames. */
+const OL_BUB = `(() => { const z = document.querySelector('[data-zone="bubble"]'); return z ? Array.from(z.querySelectorAll("text")).map((t) => t.textContent).join(" ").replace(/\\s+/g, " ").trim() : ""; })()`;
+const OL_ROLES = `(() => { const q = (r) => { const g = document.querySelector('[data-zone="bubble"] [data-role="' + r + '"]'); return g ? Array.from(g.querySelectorAll("text")).map((t) => t.textContent).join(" ").replace(/\\s+/g, " ").trim() : null; }; return { instruction: q("instruction"), hint: q("hint") }; })()`;
+const OL_ST = `(() => { const a = window.toolApi.getState(); return { stage: a.stage, item: a.item, items: a.items, phase: a.phase, step: a.step, hint: a.hint, hintKind: a.hintKind, instruction: a.instruction, nextKey: a.nextKey === undefined ? null : a.nextKey, locked: !!window.__tool.state().locked }; })()`;
+const OL_FX = `({ puff: !!document.querySelector('[data-role="think-puff"]'), bulb: !!document.querySelector('[data-role="hint-bulb"]') })`;
+async function oneLineRun(url, n, lang, nextKey) {
+  return cdpSession(url, async (s) => {
+    if (!(await s.until("!!(window.toolApi && window.__tool)", 20000))) return { error: "the tool did not mount" };
+    await s.ev(`window.__ol = { puff: false, bulb: false }; new MutationObserver(() => { const f = ${OL_FX}; if (f.puff) window.__ol.puff = true; if (f.bulb) window.__ol.bulb = true; }).observe(document.documentElement, { childList: true, subtree: true }); true`);
+    await s.until("['ask', 'demo'].includes(window.toolApi.getState().stage)", 25000);
+    for (let k = 0; k < 14 && (await s.ev("window.toolApi.getState().stage === 'demo'")); k++) { await s.ev("window.toolApi.getState().stage === 'demo' && window.__tool.solve()"); await s.wait(450); }
+    if (!(await s.until("window.toolApi.getState().stage === 'ask'", 20000))) return { error: "the first question did not open" };
+    await s.wait(700);
+    const snap = async () => ({ st: await s.ev(OL_ST), bubble: await s.ev(OL_BUB), roles: await s.ev(OL_ROLES), fx: await s.ev(OL_FX) });
+    const out = { phase: n, lang };
+    out.open = await snap();
+    await s.ev("window.__tool.nearMiss(); window.__tool.submit()");
+    await s.until("!!window.toolApi.getState().hint && window.toolApi.getState().hintKind !== 'type'", 6000);
+    await s.until("!window.__tool.state().locked", 30000);
+    await s.wait(500);
+    out.afterWrong = await snap();
+    await s.key("5", "Digit5", 53, "5");
+    await s.wait(500);
+    out.afterKey = await snap();
+    await s.click('[data-control="again"]');
+    await s.wait(150);
+    out.hintKey = await snap();
+    /* the phase's last question, answered right */
+    const g0 = out.open.st;
+    await s.ev(`window.toolApi.gotoStep(${g0.step - (g0.item - 1) + (g0.items - 1)})`);
+    for (let k = 0; k < 40 && (await s.ev("window.toolApi.getState().stage")) !== "ask"; k++) {
+      if (await s.ev("window.toolApi.getState().stage === 'demo'")) await s.ev("window.toolApi.getState().stage === 'demo' && window.__tool.solve()");
+      await s.wait(250);
+    }
+    await s.wait(400);
+    const asked = await s.ev("window.toolApi.getState().stage === 'ask'");
+    const last = { phase: g0.phase, solved: false, seen: [] };
+    if (asked) {
+      await s.ev("window.__tool.solve()");
+      last.solved = !(await s.ev("window.toolApi.getState().stage === 'ask'"));
+      const t0 = Date.now();
+      let keyAt = null;
+      while (last.solved && Date.now() - t0 < 9000) {
+        const st = await s.ev(OL_ST);
+        last.seen.push({ t: Date.now() - t0, stage: st.stage, phase: st.phase, bubble: await s.ev(OL_BUB), roles: await s.ev(OL_ROLES) });
+        if (st.phase !== g0.phase || st.stage === "summary") break;
+        if (nextKey && st.nextKey && keyAt === null) keyAt = Date.now();
+        if (keyAt !== null && Date.now() - keyAt > 400) break;
+        await s.wait(80);
+      }
+    }
+    out.last = last;
+    out.fx = await s.ev("window.__ol");
+    out.logs = s.logs.slice(0, 3);
+    return out;
+  }, { label: `one sentence a screen, phase ${n}${lang && lang !== "en" ? " " + lang : ""}`, timeout: 170000, reducedMotion: false });
+}
+/* every phase in English, and phase 1 in each language the tool has begun (langs). nextKey: the tool opts in (the run adds ?nextkey=1) */
+export async function oneLineInput({ base, N, langs = [], nextKey = false, poolSize = 2 }) {
+  const plan = [...Array.from({ length: N }, (_, k) => ({ n: k + 1, lang: "en" })), ...langs.map((l) => ({ n: 1, lang: l }))];
+  const res = await pool(plan.map((p) => () => oneLineRun(`${base}?phase=${p.n}&muted=1&probe=1${nextKey ? "&nextkey=1" : ""}${p.lang === "en" ? "" : "&lang=" + p.lang}`, p.n, p.lang, nextKey)), poolSize);
+  return res.map((r, k) => (r.ok ? r.value : { phase: plan[k].n, lang: plan[k].lang, error: r.error && r.error.message }));
+}
+
 /* the start page of a tool that has one: English by tap and by Enter, Hindi and Gujarati for fit */
 export async function startPageInput({ base, poolSize = 2, first = "", backToStart = false, silent = true, defaultTheme = false }) {
   const q = "?phase=1&probe=1&startpage=1";
@@ -1268,7 +1578,7 @@ export async function startPageInput({ base, poolSize = 2, first = "", backToSta
 /* `point`: the tool's source asks for the point key (pointKey: true). Without it the run is skipped
    altogether — a 12-key pad has no key-point element, so every wait for one would run to its timeout
    (it timed out the whole session on ch 7's tools, which have fraction boxes on several questions) */
-export async function realInput({ base, N, poolSize = 2, point: hasPoint = false, board = false, think = false, blink = false }) {
+export async function realInput({ base, N, poolSize = 2, point: hasPoint = false, board = false, think = false, blink = false, mascotBox = null, oneSentence = false, typedAsk = true }) {
   const jobs = [];
   /* a board tool keeps its answer panel open for the key, box and point runs (the host's `answerOpen`, ?answer=open),
      since they press the keypad's keys; its own behaviour is judged by boardRun */
@@ -1337,6 +1647,7 @@ export async function realInput({ base, N, poolSize = 2, point: hasPoint = false
   if (board) {
     if (!bo.ok) panel = { ok: false, detail: "", bad: [bo.error.message] };
     else if (bo.value.error) panel = { ok: false, detail: "", bad: [bo.value.error] };
+    else if (bo.value.none && !typedAsk) panel = { ok: true, detail: "board layout with no typed question (every item a choice or answered on the working area), so there is no answer panel to exercise", bad: [] };
     else if (bo.value.none) panel = { ok: false, detail: "", bad: ["no typed question with an Answer key was reached, so the answer panel was never exercised"] };
     else {
       const b = judgeBoard(bo.value);
@@ -1350,16 +1661,16 @@ export async function realInput({ base, N, poolSize = 2, point: hasPoint = false
     if (!e) thinkRow = { ok: false, detail: "", bad: [(enter.error && enter.error.message) || "no click-then-enter run"] };
     else if (e.error) thinkRow = { ok: false, detail: "", bad: [e.error] };
     else if (e.none || !e.pose) {
-      const b = e.flow ? judgeThink({ open: { pose: "think", puff: true }, tap: {}, flow: e.flow }) : [];
-      thinkRow = { ok: !b.length, detail: "no question answered on the digit keys, so only question 1 after the guide steps was judged for the thinking pose", bad: b };
+      const b = e.flow ? judgeThink({ open: { pose: "think", puff: !oneSentence }, tap: {}, flow: e.flow }, mascotBox, oneSentence) : [];
+      thinkRow = { ok: !b.length, detail: "no question answered on the digit keys, so only question 1 after the guide steps was judged for the thinking pose" + (oneSentence ? " (keyOnly, one sentence a screen: the pose, and NO thought puff)" : ""), bad: b };
     }
-    else { const b = judgeThink(e.pose); thinkRow = { ok: !b.length, detail: "while a question waits and nothing has been touched the mascot is the thinking picture (data-pose think) with its thought puff, inside his 204 x 160 box; the first tap puts the standing picture back and the puff away", bad: b }; }
+    else { const b = judgeThink(e.pose, mascotBox, oneSentence); thinkRow = { ok: !b.length, detail: oneSentence ? "keyOnly, one sentence a screen: while a question waits and nothing has been touched the mascot is the thinking picture (data-pose think) and NO thought puff (data-role think-puff) is drawn; the first tap puts the standing picture back" : `while a question waits and nothing has been touched the mascot is the thinking picture (data-pose think) with its thought puff, inside his ${mascotBox ? `${Math.round(mascotBox.w)} x ${Math.round(mascotBox.h)} box (keyOnly: 1.45 times as big), clear of the bubble` : "204 x 160 box"}; the first tap puts the standing picture back and the puff away`, bad: b }; }
   }
   if (blink && board) {
     if (!bo || !bo.ok) blinkRow = { ok: false, detail: "", bad: [(bo && bo.error && bo.error.message) || "no board-panel run"] };
     else if (bo.value.error) blinkRow = { ok: false, detail: "", bad: [bo.value.error] };
     else if (bo.value.none) blinkRow = { ok: true, detail: "no typed question with an Answer key was reached, so the blink was not exercised", bad: [] };
-    else { const b = judgeAnswerBlink(bo.value); blinkRow = { ok: !b.length, detail: "the pink Answer key blinks (a ring, animated) only while it is what the child must press: a keypad question that waits with the keypad shut, with the built-in \"Tap the blinking Answer key.\" line under the instruction; not before a question (a warm-up or a guide step), not with the keypad open, not while the pad is locked; the line comes back after Close", bad: b }; }
+    else { const b = judgeAnswerBlink(bo.value, oneSentence); blinkRow = { ok: !b.length, detail: (oneSentence ? "keyOnly, one sentence a screen (the built-in line is in getState().hint, kind type, and never drawn on the bubble): the pink Answer key blinks (a ring, animated) only while it is what the child must press: a keypad question that waits with the keypad shut, with the built-in \"Tap the blinking Answer key.\" line in the state only" : "the pink Answer key blinks (a ring, animated) only while it is what the child must press: a keypad question that waits with the keypad shut, with the built-in \"Tap the blinking Answer key.\" line under the instruction") + "; not before a question (a warm-up or a guide step), not with the keypad open, not while the pad is locked; the line comes back after Close", bad: b }; }
   }
   return { drag, key, parts, point, panel, think: thinkRow, blink: blinkRow };
 }
@@ -1376,7 +1687,7 @@ const SUM_LINES = `(() => { const svg = document.querySelector("svg.c4"), m = sv
   const lines = Array.from(document.querySelectorAll('[data-zone="bubble"] [data-role="instruction"] text')).map((t) => {
     const r = t.getBoundingClientRect(), a = st(r.left, r.top), b = st(r.right, r.bottom);
     return { role: "instruction", text: t.textContent, y: +t.getAttribute("y"), size: +t.getAttribute("font-size"), x0: a.x, x1: b.x }; });
-  return { lines, band: null, bar: null, ctm: { a: m.a, d: m.d, e: m.e, f: m.f } }; })()`;
+  return { lines, band: null, bar: null, ctm: { a: m.a, d: m.d, e: m.e, f: m.f }, bubble: ${BUBBLE_BOX_DOM} }; })()`;
 const SUM_SNAP = `(() => { const A = window.toolApi.getState(), b = document.querySelector('[data-zone="bubble"]');
   return { stage: A.stage, row: A.summaryRow, fin: (window.__events || []).length, ring: !!document.querySelector('[data-zone="summary"] .c4-ring'),
     line: b ? Array.from(b.querySelectorAll('[data-role="instruction"] text')).map((x) => x.textContent).join(" ") : "" }; })()`;

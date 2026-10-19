@@ -34,6 +34,8 @@ export const KINDS = {
 };
 /* the cutting recipe's version is part of every skin's key: a library skin cut the old way is never served as a hit */
 export const CUT_VERSION = 2;
+/* the same for the action kit's TOOL cut (process.mjs OPT.tool: grey is object, finger loops are holes); a skin's key never has it */
+export const TOOL_CUT = 3;
 
 /* the mascot's look in words only: naming a mascot, robot or character in a prompt invites the model to draw one */
 export const STYLE = "A soft 3D cartoon illustration in the style of a children's animated film: rounded, appealing, clean shapes with smooth soft shading, rich warm colour and a gentle satin sheen (no hard white glare). Exactly one object, seen from directly above (a flat-lay, top-down view), centred, filling most of the frame with a margin of background all round. The background is perfectly plain pure white (#FFFFFF): no floor, no table, no gradient, no texture.";
@@ -44,10 +46,18 @@ export const ONE_SURFACE = "No cut lines, no grooves, no segments, no squares, n
 /* for a single piece (tile): its own bevel and panel are wanted, a second piece or a grid is not */
 export const ONE_PIECE = "Only one piece: no second piece, no row or grid of pieces, no crumbs, no lines across it.";
 
+/* the ACTION KIT (runtime/actionkit.json, `node cli.mjs actionkit`, docs/IMAGES.md §11): the TOOLS that perform a tool's act
+   (a knife, scissors, a ruler, a pencil, an eraser), made once and shared by every tool. The skin rules above are for the object
+   a child shares (they forbid a knife and cool colours); a kit picture keeps STYLE and the chapter's look, and these instead. */
+export const KIT_FRAME = "The object is one whole tool, complete, lying flat, seen exactly from straight above, centred, with a clear margin of white all round it.";
+export const KIT_NEGATIVES = "Strict rules: exactly one object and nothing else. No text, no digits, no numbers, no letters, no marks, no scale, no logos, no labels, no brand marks. No packaging, no plate, no board, no food, no hands, no people, no faces, no characters. No shadow outside the object.";
+export const kitPrompt = (style, img) => [STYLE, style ? `Look: ${String(style).trim().replace(/\.?$/, ".")}` : "", KIT_FRAME,
+  `The object: ${String(img.prompt).trim().replace(/\.?$/, ".")}`, KIT_NEGATIVES].filter(Boolean).join(" ");
+
 /* budgets count the data-URI length, which is what lands in images.tsx; the WebP file is about 3/4 of it.
    An image may ask for less (`maxKB` in images.json), never more. */
 export const BUDGET = { skin: 25 * 1024, slot: 60 * 1024 };
-export const MAX_SKINS_PER_SLOT = 2;
+export const MAX_SKINS_PER_SLOT = 3;   /* a third only for a tool that names different wholes (ch 8 C4: chocolate bar, ribbon, chapati) */
 export const MAX_ATTEMPTS = 2;          /* billed generations per picture per run, a rejected picture included */
 export const CONCURRENCY = 3;
 export const Q_START = 0.78;
@@ -74,8 +84,8 @@ export const sha1 = (s) => crypto.createHash("sha1").update(String(s)).digest("h
 /* the raw picture is keyed WITHOUT its pixel size, so re-cutting it at another size never bills again;
    the prompt is not in the key either: two slots asking for the same object, kind and style share it */
 export const rawHash = ({ object, kind, style, aspect }) => sha1(["raw", norm(object), kind, norm(style), aspect].join("|"));
-export const skinHash = (raw, { kind, px, inset, maxKB }) => sha1(["skin", `cut${CUT_VERSION}`, (KINDS[kind] || {}).cut, raw,
-  `${px[0]}x${px[1]}`, Number(inset).toFixed(3), maxKB || ""].join("|"));
+export const skinHash = (raw, { kind, px, inset, maxKB, tool }) => sha1(["skin", `cut${CUT_VERSION}`, (KINDS[kind] || {}).cut, raw,
+  `${px[0]}x${px[1]}`, Number(inset).toFixed(3), maxKB || "", ...(tool ? [`tool${TOOL_CUT}`] : [])].join("|"));
 
 export function buildPrompt(plan, img) {
   const k = KINDS[img.kind];

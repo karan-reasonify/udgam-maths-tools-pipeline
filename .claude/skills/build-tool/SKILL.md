@@ -14,7 +14,10 @@ reference tool of class 4 is `class4/work/indiannica_eng_maths4_ch1/M1.S1.T2.C4.
 from a class 4 chapter 1 session).
 
 To start or continue a tool: `/gen-tools <N> <publication|school> <chapter> [MEDIA_ID]`.
-The CLI runs in `class<N>/`: `doctor | list | fetch | scaffold | preview | check | shots | clean | status`.
+**A small change to one existing tool** (edit, fix, tweak) is not a build: make it in the tool's ported pair
+(`class<N>/output-preview/<chapter_id>/<MEDIA_ID>/<MEDIA_ID>.tsx` + `.json`) and prove it with
+`node cli.mjs approve <MEDIA_ID> --ch <n> --note "what changed"`, never `check` (runbook "Small changes to one tool").
+The CLI runs in `class<N>/`: `doctor | list | fetch | scaffold | preview | check | shots | clean | status | approve`.
 If `class<N>/` does not exist: `node classctl.mjs new --class <N>` (from the maths_pipeline root).
 
 ## Standards every tool carries (no prompt has to repeat them; they are in the docs and the checks)

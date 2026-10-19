@@ -214,7 +214,7 @@ moves on unless the child acts (a tap, a key, an answer). Every line is printed 
 three jobs:
 
 - **Instruct.** The teach lines, or a phase's guide steps (§9b), then each question's `say`.
-- **Hint.** After a miss the instruction stays PINNED on top and the hint shows at once UNDER it, in a tinted band
+- **Hint.** (With the new look, `keyOnly`, §16b, the hint REPLACES the question in the bubble: one sentence a screen.) After a miss the instruction stays PINNED on top and the hint shows at once UNDER it, in a tinted band
   (r34): the item's own `miss`, a second miss in a row `ladder[0]`, a third `ladder[1]`. It stays unchanged until
   the child acts again; a right answer clears it (`hint-pinned`). The header's **Hint** key (r35) shows the same
   rungs on demand, one press each, and a guide step's `hint` during a step (`hint-key`). A hint is never the
@@ -326,6 +326,9 @@ function Work({ stage, step, stepOn, api, ... }: any) {
   open. Set a longer `stepHold` when the act's animation is long (a trade closing ten tenths: 2300), so the child sees
   what the step showed before the picture resets to the question's opening. If the picture should not carry the
   warm-up into the question (a shaded strip, a tally), reset it when the stage goes `"demo"` to `"ask"`.
+  **The steps work a WARM-UP, never question 1's own item** (class 5 ch 6, 2026-10-17): pick a number whose result is
+  none of the phase's answers, and open question 1 exactly as questions 2 and 3 open. Steps that convert question 1's
+  own fraction leave its answer on the card during the hold and, carried over, at the question (PATTERNS §10).
 - A miss at a question shows its rung at once, under the pinned instruction. In a classroom the steps wait for the
   child's act at the board, not the tap.
 - Each `say` is one sentence (one page), at most 20 words and 110 characters, no dash; every `say` and `hint` has
@@ -404,6 +407,11 @@ the picture that holds the form it asks for, not through the Answer key, the key
   boxes, the active box solid with the caret. Call `api.cardReady(false)` while an act on the picture still waits (Cut,
   Lots of, Trade) or the picture is animating: the card then neither blinks nor takes a tap, the bubble says nothing about it
   and a digit typed on the keyboard is ignored, so the picture comes first. After a miss show the correction's own answer on the card until the child types something new, then clear the correction's cards (keep its strips) so the typed digits show. Set the typed digits at ONE size in both boxes, the size the finished answer is drawn at, stepping down together only for a long number.
+- **The pieces' props** (2026-10-17; three ch 5 builders had to probe them): `<SlotPartBox id label x y w h on enabled onPick />`
+  (a labelled finger box; `on` = the active box, solid with the caret), `<BlinkRing x y w h rx C sw={4} m={2} />` (the blinking
+  ring round a box; `m` its margin), `<Invite x y r={56} C />` (a pulsing CIRCLE round a centre, not a box: ring a rect with
+  `BlinkRing`). `api.pickPart(j)` counts from **0** (`part-1` is `pickPart(0)`). A control drawn from spaced pieces (slices, chips
+  with gaps) needs one transparent backing rect, or a tap in a gap falls through to the floor and reads as a wrong act.
 - **The other card at the win** fills too, in its own form, unless that gives away the next question (the next question
   asks for that card, of the same amount): then it stays covered until it is asked.
 - See it with `playkit` (`nextKey: true` for the Next key too) and a screenshot at the open of a card question, with the
@@ -657,3 +665,229 @@ Answer key and the sliding panel; the tool changes only how its `Work` is laid o
 - **The cut is the maths and is drawn in code:** equal widths come from the model (`cell = len / 10`), never from the
   picture. A knife sweep, the pieces settling apart by a small gap and the cut lines are SVG; the cutting board
   behind is SVG in the chrome colours.
+
+## 15. An action performed on screen: `api.act` (the owner, 2026-10-16; a runtime with `ACTION_KIT_HELPER`)
+
+Every action key or act (cut, split, measure, count, carry, tidy ...) is DONE by a real tool on screen (LAYOUT.md §1e): a kit
+picture (`knife`, `scissors`, `ruler`, `pencil`, `eraser`; IMAGES.md §11) or the drawn `hand`. Call it from the act, await it,
+and react only on `true`:
+
+```tsx
+const cut = async () => {
+  if (cutDone) { api.did("cut"); return; }
+  const ok = await api.act({
+    tool: "knife", moves: "slice",                      /* knife|scissors|ruler|pencil|eraser|hand · slice|snip|slide|draw|rub|tap|push|carry|sweep */
+    at: cuts.map((x) => ({ x, y: barY + barH / 2 })),   /* WORK coordinates, in order: where it acts */
+    onPoint: (i) => setSplit(i + 1),                    /* the moment the knife passes cut i: that piece splits */
+  });
+  if (!ok) return;                                      /* a second tap while it played, or the phase moved on: do nothing */
+  setCutDone(true); api.sfx.settle(); api.did("cut");   /* the pieces part a little and settle; the step moves on */
+};
+api.onEnter(stage === "demo" && stepOn ? () => cut() : null);
+```
+
+- `at`: the points it acts at; `slide`, `draw`, `push`, `carry` and `sweep` travel along `from` -> `at`... -> `to` (`from`/`to`
+  optional), `onPoint(i)` firing as they pass `at[i]`. A ruler (`slide`) lies along `from` -> `to` with its top edge on that line
+  and pops a tick at each `at`. `hold`: an svg node drawn round 0,0 that travels with a push, carry or sweep (the carried piece:
+  hide your own copy while it travels). `ms`: another length inside 0.7 to 1.5 s.
+- It resolves `true` when it ends (at once under reduced motion, after every `onPoint`), `false` when another act is playing or a
+  phase change, restart or new question ended it. While it plays the pad, the keys and the working area wait, so start it from the
+  child's act with the answer panel shut (a guide step, or before Answer). Your own `api.lock(true)` held before it stays.
+- Never draw the tool yourself and never put a knife or a hand in `images.json`; the helper prints no text, so nothing goes in `TR`.
+- **A pencil WRITES AS IT GOES (the owner, 2026-10-18, class 5 ch 6).** Nothing it writes pops in at the end. Text (digits, signs,
+  words): the tip travels left to right with a small writing wiggle (a short loop or zigzag inside each character's box) and each
+  character appears the moment the tip passes it (`onPoint`); use `moves: "push"` for text, because `draw` leaves a straight grey
+  trail that vanishes, which is not a pencil mark. A line that stays (a fraction bar, a bracket, a cut, a strike-through): `draw`
+  along exactly that line with dense `at` points, and grow the tool's own line with the tip, so the trail lies on the mark that stays.
+  Shading: the tip moves cell to cell with a small hatch and each cell fills as the tip reaches it, with no trail across cells. A
+  tick or cut mark: the tip goes to each mark and makes its stroke there, with no line joining the marks. 1.5 s is the most one act
+  lasts: split long writing into acts played one after another.
+- **Pace (class 5 default from the head after r65, the owner 2026-10-18):** the runtime plays every act 1.5x calmer
+  (`ACT_TEMPO`), so keep giving `ms` in 0.7 to 1.5 s and never slow an act yourself. A pencil act plays the writing "tick" at
+  its points and holds a 400 ms beat (`ACT_BEAT`) before it resolves. A chain of acts in one guide step must end within
+  `approve`'s 10 s wait.
+- `check`: `action-anim` clicks the act's control for real (name a step's button after its act: `data-control="cut"`).
+
+## 16. Authoring under keyOnly (the new look; the owner, 2026-10-16; a runtime with `keyOnly`, LAYOUT.md §1d and §1e)
+
+A new tool starts with `keyOnly: true` and `navDots: true` in its `ToolFrame` object (`scaffold` writes both beside `board: true`): no question
+bar (only the blinking key at the top right), four small clickable phase dots, a big one-sentence bubble, digits as written and every act
+performed on screen (§15). The working area is 64,108, 1472 x 520 (900 wide with the panel open and `bigPad`), not 64,202 x 528. A tool opts out
+(delete the line) only with a reason stated in its report. The examples are the finished ch 8 Tenth Strip.
+
+### 16a. Keep every element out of the key's corner: `box.key`
+`Work` gets `box.key` = { x, y, w, h } in its own coordinates (about x 1190, y 0, 282 x 88; wider on a Yes/No question; absent when no key
+stands there). Nothing sits under it: no picture, label, card or key of yours (`board-fit`). Take the room left of it or below it.
+
+```tsx
+const kx = box.key ? box.key.x - 12 : box.w;               /* the right edge anything on the top row may use */
+const L = Math.min(1200, box.w - 40);
+/* a strip whose knife must stand at its end moves left until the knife is out of the corner */
+const x0 = Math.round(Math.max(20, Math.min((box.w - L) / 2, kx - 34 - 0.9 * L)));
+const nameRow = { x: Math.max(0, Math.min(x0, kx - rowW)), y: 0, w: rowW, h: 76 };   /* the row of name keys ends before the corner */
+```
+
+### 16b. The question lives only in the bubble
+- Each item's `say` is the WHOLE question in ONE sentence; `ask` stays (the checks and the sidecar read it) but is never drawn:
+  ```tsx
+  { qid: "M1.S1.T2.C4:ML1", kind: "strip", parts: SLOT_FRACTION, answer: [6, 10],
+    say: "Write the coloured part of the strip as a fraction.",   /* the whole question, one sentence */
+    ask: "Coloured part as a fraction?",                          /* short prompt; not drawn */
+    miss: "The bottom counts every piece." },                     /* a hint: one sentence */
+  ```
+- A guide step's `say` and `hint`, every `miss` and ladder rung, and a phase's `closing` are ONE sentence each. The bubble shows a hint
+  INSTEAD of the question, and the phase's `closing` instead of the last win line (`one-line-bubble`, `one-page`).
+- Numbers print as written ("In 0.7, what does the 7 count?"), so a question may name its number unless that gives the answer away.
+- The scaffold cuts a plan question of several sentences to its first question sentence and keeps the whole plan text in the item's comment:
+  put the setup back into ONE sentence when the child needs it.
+
+### 16c. One key for a sequence
+Buttons used one after another, where the second makes the first unnecessary (Cut, then Measure), are ONE key at the bottom
+centre whose label follows the act. Its `data-control` follows the current act (`Key id`), so a guide step (`on: "cut"`, then `"measure"`) still
+advances and `check` can click it; key it by position so the label changes without a remount. In free play the two starting choices (Cut and
+By eye) stand side by side until one is tapped. A key that only UNDOES the last act (a "Lay flat" that puts the pieces back) is a dead end: the guide
+has no step for it, so leave it out; the sequence ends on its last real act, and in free play a new Cut or By eye starts over.
+
+```tsx
+const TS_KEY = { cut: "Cut", uneven: "By eye", measure: "Measure", count: "Count" };
+const lastKey = useRef(0);
+const pressKey = (on) => {                                                /* 400 ms: one tap never also presses the next label */
+  const t = Date.now();
+  if (t - lastKey.current < 400) return;
+  lastKey.current = t;
+  act(on);
+};
+const actionKeys = () => {
+  let ids = [];
+  if (free) ids = s.cut === "none" || s.stand ? ["cut", "uneven"] : ["measure"];   /* two choices until one is tapped, then the one key; after Measure they start over */
+  else if (n === 1 && isDemo) ids = s.cut === "none" ? ["cut"] : s.stand ? [] : ["measure"];   /* the sequence: ONE key, its label follows the act, none after the last */
+  const bs = G.keys(ids.length, showCards);                               /* bottom centre: one key 240 wide, or two side by side */
+  return ids.map((id, j) => ({ id, j, label: TS_KEY[id], ...bs[j] }));
+};
+{actionKeys().map((b) => <Key key={"act" + b.j} id={b.id} label={tx(b.label)} x={b.x} y={b.y} w={b.w} h={b.h} C={C} tone="key" onClick={() => pressKey(b.id)}>
+  <text y={11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={toneInk("key", C.ink)}>{tx(b.label)}</text>
+</Key>)}
+```
+
+### 16d. An object looks like the object from the first frame
+Before its first action a chocolate bar is already chocolate: draw the `<Skin>` the moment the object is named (or from the start), as the
+WHOLE, under the cuts and the shading (a tile stretched to each piece; a ribbon picture over the whole box, clipped per piece; a ROUND thing is a disc, §17).
+The plain shape stays under it as the fallback. A key that NAMES an object carries that object's small picture.
+
+```tsx
+const sk = s.name === "chocolate bar" ? "piece" : s.name === "ribbon" ? "ribbon" : s.name === "chapati" ? "chapati" : "";
+<rect x={S.x} y={S.y} width={S.w} height={S.h} rx={18} fill={TS_SHEET} stroke={TS_LINE} strokeWidth={3} />   /* uncut: the plain fallback */
+{choc && <Skin name="piece" x={S.x} y={S.y} w={S.w} h={S.h} fit="stretch" clip="url(#ts-whole)" />}          /* the whole, already the bar */
+{tex && <Skin name={sk} x={S.x} y={S.y} w={S.w} h={S.h} clip="url(#ts-whole)" />}
+/* after the cut, each piece: its skin, then the colour code over it at 0.72, then the outline */
+{choc && <Skin name="piece" x={S.x + c.a} y={S.y} w={c.w} h={S.h} fit="stretch" clip={"url(#ts-pc" + i + ")"} />}
+{s.shaded[i] && <path d={d} fill="url(#gTen)" fillOpacity={0.72} />}
+```
+
+### 16e. Every act through `api.act`
+Pick the tool by the object (a knife for a bar or a chapati, scissors for a ribbon, a pencil for a line on paper, a ruler to measure, the
+hand to count) and play it from the child's act; the act is done only when it resolves `true` (§15):
+
+```tsx
+const tool = sk === "ribbon" ? "scissors" : sk ? "knife" : "pencil";
+const viaTool = (on, done) => {
+  const o = actFor(on);                          /* { tool, moves, at, onPoint }, or null when nothing needs performing */
+  if (!o) { done(); return; }
+  if (playing.current) return;                   /* a second tap while it plays */
+  playing.current = true; setBusy(true);
+  api.act(o).then((ok) => { playing.current = false; setBusy(false); if (ok) done(); });   /* the state, the sound and api.did(on), once */
+};
+```
+Enter, the agent's `check()` and the dev `solve()` call the same `act(stepOn)` (`api.onEnter`), so a step is done the one way.
+
+## 17. A round whole is a disc cut in wedges (the owner, 2026-10-17; class 4 ch 8 C5 Tenth Strip; keyOnly runtime)
+A thing that is round in life is drawn ROUND and cut the way it is cut in life: a chapati, roti, pizza, cake, pie or clock face is a DISC cut
+from the centre into equal WEDGES (never a strip); a ribbon, a chocolate bar, paper or a tape stays a strip. Both can sit in one tool: the whole the
+child names (`s.name`) picks the drawing.
+- **The shape.** Pieces are wedges from the centre, angles clockwise from the top: `a` = start, `w` = width in degrees (ten equal wedges are 36 each; a
+  cut by eye keeps its ratios, angle = u / sum of u x 360). The tool's own helpers (nothing in the runtime; copy them from the finished C5, one
+  small block): `tsPol(cx,cy,r,deg)` (a point on the rim), `tsWedge(cx,cy,r,a,w)` (the path), `tsWedgeIn(...,d)` (the same wedge drawn d inside, the dark
+  inset outline of a coloured piece), `tsCrust(...)` (an arc just inside the rim), `tsRowAt(cuts, r, W)` (the Measure row's layout).
+- **The picture.** The object's `<Skin>` goes over the WHOLE disc and is clipped per wedge (a `clipPath` of the wedge path), the plain brown disc under
+  it is the fallback; thin dark cut lines (stroke about 3) so ten parts read from the last bench; a crust arc. The disc is as big as the room allows
+  (about 420 across, `picture-scale`) and shrinks to fit when the keypad opens; nothing under `box.key`.
+- **The act.** `api.act({ tool: "knife", ... })` comes down on each cut line in turn (radial lines through the centre); the state changes at the end (§15).
+- **Coloured pieces stay in place**: the colour code at 0.72 over the skin plus the dark inset outline; never removed and no gap (a taken-away wedge is a
+  different lesson).
+- **Measure** hangs the wedges tip down from a ruler line in ONE row (each wedge's rim chord sits on the line; a width mark at both ends of every
+  wedge: equal for the even cut, visibly different for the uneven one) and they STAY there. No key puts them back (§16c); in free play a new Cut starts
+  over. The row's wedge radius: about 200 alone, 168 above cards, 150 with two rows.
+- **Taps.** Every wedge has a labelled 72 x 72 button at its centroid (the `data-control` the checks and the keyboard see) and a transparent wedge-shaped
+  `<WedgeTap>` behind it so the whole wedge answers (`usePress`); on a cut by eye alternate the buttons' radii so none overlap (`no-crowding`).
+
+## 18. Traps the ch 5 builders hit (2026-10-17; class 5 ch 5 Decimals, runtime r56)
+
+- **Ids the runtime owns.** Never give a tool control one of these `data-control` ids: `again` (the header's Hint key), `answer-open`,
+  `part-1`/`part-2`, `key-0`..`key-9`, `key-point`, `choice-<id>`, `phase-dot`. A tool control with one is shadowed: a check clicks the
+  runtime's control instead (`guide-steps-real-wrong` clicked the header).
+- **A late keyed reset wipes an act.** `useEffect(() => { if (S0.key !== sk) setS(fresh()) }, [sk])` can run AFTER an act has resolved,
+  so the act's result vanishes (the `--virtual-time-budget` runs then show "no result" for idle, agent, free ... and about ten FAILs).
+  Reset inside the setter: `setS((p) => (p.key === sk ? p : fresh()))`.
+- **A phase's closing replaces only a win line the tool says.** With no `api.say` at the last win, the bubble keeps the question and
+  `one-line-bubble` fails. Give every item a one-sentence `win` line, said at the win; data-borne lines are not listed by
+  `tr-coverage`, so add each to `TR` by hand.
+- **Is a hint showing?** `Work` gets no hint prop: read `toolApi.getState().hint` with `hintKind` other than `"type"` (the built-in
+  where-to-tap line) and latch it for the question. Use it to show a helper key whose act reveals part of the answer (lit digits, a
+  count, a result) only after the first miss or the Hint key; keep the key in the guide steps, free play and the correction.
+- **A nudge said with `api.say` stays until something replaces it.** "Shade some squares first." or "Fill every step first." said at a
+  refused Enter is still on the bubble after the child has done it (C10, C40 play tests): the runtime does not bring the question back.
+  On the child's next act that answers the nudge (a square shaded, a card placed, a pick), say the question again (`api.say(item.say)`).
+  Key that effect to the act's CONTENT (`[rows.join(" ")]`), never to an array's identity: an untouched question that builds fresh
+  rows each render fires it at once and wipes its own nudge (C15). A restore-the-question effect stands down while the nudge still holds (C30).
+- **A hi or gu bubble line over about 80 characters is split at its commas** and only the last piece may stay (a long Hindi closing was
+  cut after two lines; no check replays phases 2 to 4 in hi/gu). Keep every hi/gu bubble line one sentence of at most 80 characters.
+- **(ch 9) A phase opens on stage "teach" for one frame before "demo".** A `Work` that picks the warm-up only when `stage === "demo"`
+  draws question 1's own board for that frame (play testers caught "4 L 615 mL" before the warm-up's "3 m 45 cm"). Treat `teach` like
+  `demo` whenever the phase has a warm-up: `const it = (demo || stage === "teach") && P.warm ? P.warm : item`.
+  The step count in that frame is still the PREVIOUS phase's: a warm-up drawn from the step shows its finished state, so use step 0
+  while `stage === "teach"`.
+- **(ch 9) A reset in a passive effect draws the OLD board for one frame,** and `getState()` can sample it (a solved warm-up showed
+  "14,100 g" on question 1). Derive the board from the question key during render (`const S = raw.qk === qk ? raw : fresh()`).
+- **(ch 9) At a phase's last question the stage goes to "idle" about 0.7 s after the win.** A win picture drawn only for
+  `stage === "win"` vanishes while the closing line still describes it: draw it for `win || idle` after the phase's last right answer.
+- **(ch 9) A home-made Devanagari/Gujarati width estimate undercounts.** Five ch 9 tools wrote their own and most skipped the SPACING
+  vowel signs (ा ि ी ो ौ ः / ા િ ી ો ૌ), which take real width, so labels fitted at 40 ran 2-6 px past their cells in hi. Count every
+  letter and spacing sign; skip only zero-advance marks: U+0900-0902, 093C, 0941-0948, 094D, 0951-0957, 0962-0963 (and the Gujarati
+  twins U+0A81-0A82, 0ABC, 0AC1-0AC8, 0ACD, 0AE2-0AE3). Keep 6 units clear of the cell, and check a hi frame with the pad OPEN.
+- **(ch 9) A correction replay outlives its question.** `useTimeline` survives a question change inside a phase, so when the teacher
+  agent calls `toolApi.next()` / `gotoStep` mid-replay, the old timeline keeps drawing (it painted the NEXT question's whole answer in
+  C35) and its done-callback runs `api.setTyped("")` / `api.lock(false)` on the new question (C10). Stop the timeline and release the
+  lock wherever the question key changes (`useEffect(() => () => tl.stop(), [qk])`), and ignore board taps while a correction plays.
+- **(ch 9) A question entered again opens on a fresh board, even after an away-and-back.** The runtime remounts Work (`workN`, r64+)
+  only for a `gotoStep` to the CURRENT question, so Q2 -> Q3 (left untouched) -> Q2 keeps the same Work. A board tagged with the
+  question key and rebuilt only when the tag differs finds Q2's old state still tagged Q2 and redraws the old correction, the
+  child's old marks, or (C10) a stale wrong tag that makes a right answer miss (C5, C10, C20, C45). Key the board to the ENTRY, not
+  the question: bump an entry count during render whenever the question key changes and rebuild on it. A keypad open/shut is not an
+  entry and keeps the board. Probe: miss Q2, `gotoStep` Q3, `gotoStep` Q2; and with no miss, mark Q2, `next()`, come back.
+- **An Invite on a key, a chip or a card always hugs its outline** (`<Invite x y w h rx C />`, r57+; x, y its CENTRE). The default circle
+  (r 56) centred on a label cuts through its letters, worst in Hindi and Gujarati where it hides the matras; five ch 5 tools shipped it
+  before a visual review. Pass the piece's own box: the runtime draws the ring 6 units outside it, so a ring round a box that already
+  has a margin can leave the working area (`zones`).
+- **No-break spaces do not hold a line together in the bubble:** it turns every space-like character into a plain space before it
+  wraps. To keep an equation on one line in hi/gu write it without spaces ("5.23+1.6=6.83"); the English stays as written.
+
+## 19. Rules the ch 6 reviews settled (2026-10-19; class 4 ch 6 Factors and Multiples, runtime r28)
+
+- **One invite while a question is open.** In the ask stage nothing in the picture pulses: the bubble names the act and the
+  runtime's Answer key (or Enter, once `api.answerReady(true)`) is the only thing that blinks. The one exception is a `pad: "enter"`
+  question before its act, while Enter is not blinking yet: it may ring the ONE control the act needs. A ring never sits on a
+  candidate answer (a post, a card, a lamp the child must judge) or on a number the question itself gives (a "3 rows" card when
+  the answer is 9). Guide steps keep their invites. `one-invite` does not count the Answer key's blink, so the reviewers judge this.
+- **Name a key by its label in every language.** The bubble says the key the screen shows: the runtime's Enter reads
+  "दर्ज करें" / "દાખલ કરો", so a line never says "एंटर दबाओ" / "એન્ટર દબાવો".
+- **Nothing counts the answers for the child.** A question whose task is to find factors or pairs never says how many ("all four
+  factors", "the two factors", "all three pairs"); a pick card never shows how many picks it expects; an empty dashed slot never
+  stands where the answer will go.
+- **A guess costs a try.** A gate that lights the missing work (cards still up, an open gap) may judge nothing for an EARLY act,
+  but a wrong answer typed while the work is undone is a normal miss whose hint is that light; otherwise a child guesses for free
+  and wins with a full first-try score.
+- **Skins are all-or-nothing per group** (IMAGES §2, the 40 a screen): a pile, or a board's rows with its own shelf, is all skin or
+  all plain, never mixed; the same things on two boards look alike; a word on screen names what is drawn ("counters" when the
+  pieces may be plain, "buttons" only where every one is a button).
+- **A counted or labelled pile keeps its letters clear:** a Devanagari hook or matra under a label needs 10-12 px above the first
+  row of pieces; a verdict label never prints over another label or a table row (give it its own line).

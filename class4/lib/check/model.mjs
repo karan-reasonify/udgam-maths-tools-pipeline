@@ -10,11 +10,12 @@ import { sources } from "../build/preview.mjs";
 /* PHASES travels whole, so a phase's guide steps (`steps: [{ say, on, hint }]`, runtime r30/r34) come with it; TR,
    FREE_LINE and START_HOOK are read by tr-coverage (every printed line has its Hindi and Gujarati entry); speakableIn and
    lineFor by hint-fit (the Hindi and Gujarati of a hint and its instruction, as the bubble prints them); UI_STRINGS and
-   readMs by the r41 rows (the built-in choose line of each language; a piece's reading time) */
+   readMs by the r41 rows (the built-in choose line of each language; a piece's reading time); footerBoxes, FIT_CLASSIC / FIT_KEY,
+   KEY_CORNER, ZKEY / ZKEY_BIG by the keyOnly and navDots rows (class 4 r27: the bubble, the dots, the key's corner and the zones) */
 const NAMES = ["TOOL_ID", "MEDIA_ID", "TOOL_NAME", "OPENING", "FINISH_LINE", "FREE_LINE", "START_HOOK", "TR", "PHASES", "MODEL", "CHROME", "VOICE",
   "judge", "oracle", "nearMiss", "answerForms", "agentKey", "words", "wordsIntl", "indian", "intl", "speakable",
   "leadNumber", "pieces", "speakableIn", "lineFor", "T", "CONTENT", "DEFAULT_CHROME", "Z", "MASCOT_BOX", "MASCOT_SIZE", "HIT", "TOOL_API", "POINTS", "AUDIO",
-  "UI_STRINGS", "readMs"];
+  "UI_STRINGS", "readMs", "footerBoxes", "FIT_CLASSIC", "FIT_KEY", "KEY_CORNER", "ZKEY", "ZKEY_BIG", "mascotBoxOf"];
 
 const STUB_REACT = "const R={createElement:()=>null,Fragment:'f'};export default R;" +
   "export const useState=()=>{throw new Error('model: no rendering here')};export const useEffect=()=>{};" +

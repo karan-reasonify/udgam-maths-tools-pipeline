@@ -95,6 +95,12 @@ Look at each PNG (they are in the slot's folder). Use `--full --phase n --state 
    over the bubble, cut off or past the stage's edge is a must-fix. The pink Answer key (on a card question the card) shows its ring
    only when it is the thing to press, never in a guide step or with the keypad open.
 11. **Not too small** (`{{DIR}}/docs/LAYOUT.md` section 3): a picture of one or two small things (a bar of cards, a fraction, a few labels) fills about a third of the working area or more; its main digits are 64 or more and its labels 40 or more. A small picture with a big empty area is a should-fix (scale it up), whatever the language; judge it with the panel open as well as shut.
+12. **Round things are round; grids are dark, big and fixed; their labels are last-bench labels** (the owner, 2026-10-17; `{{DIR}}/docs/PATTERNS.md` §17,
+   `{{DIR}}/docs/LAYOUT.md` section 3): a chapati, roti, pizza, cake or clock drawn as a strip, or cut in strips, is a must-fix (a ribbon or a bar stays a
+   strip). In a grid of unit boxes every box has a dark outline (empty ones too) and a counted box a deeper fill: a hairline grey grid on white is a
+   must-fix. The grid fills the room beside the OPEN keypad and keeps its size and place with the pad open or shut (compare the ask frame and the typed
+   frame: a grid that jumps or sits small beside an empty band is a should-fix). Counting numbers, chips, ladder names, card titles and word tiles are 32 or
+   more, dark, bold and on one line, in hi and gu too. A key that only undoes the last act (a "Lay flat") is a should-fix.
 
 ## Report (at most 25 lines)
 Verdict: CLEAN or ISSUES. One line per finding:

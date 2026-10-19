@@ -9,7 +9,8 @@
  *                                                key, host contract, modes, toolApi, events, scoring
  *
  * Port refuses unless `check` passed on this exact source (status.json holds its hash). The .tsx is
- * then proved in the host emulator (hostsim) before publish will touch it.
+ * then proved in the host emulator (hostsim) before publish will touch it. It never overwrites a HAND-EDITED pair (a small
+ * change made in the pair itself, proved by `approve`: lib/check/approve.mjs) unless --force, which loses those edits.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -30,6 +31,26 @@ const version = (m) => { try { return req(`${m}/package.json`).version; } catch 
 export const md5 = (buf) => crypto.createHash("md5").update(buf).digest("hex");
 
 export const outDir = (dir) => fromRoot(path.join(CONFIG.outDir, chapterOf(dir), idOf(dir)));
+
+/* A HAND-EDITED pair (runbook "Small changes to one tool"): its .tsx is not the one port wrote (status.ported.tsxMd5).
+   It is APPROVED while status.handEdit names these exact bytes (both md5s), written by `approve`. Pure (publish.test.mjs). */
+export function handEditOf(st, tsxMd5, jsonMd5) {
+  const he = st.handEdit;
+  const approved = !!he && he.tsxMd5 === tsxMd5 && he.jsonMd5 === jsonMd5;
+  /* a .json-only edit counts too: port records the .json's md5 from now on (an older record has none, then only the .tsx and an
+     approval tell), and an approved pair is hand-edited by definition */
+  return { edited: approved || !!(st.ported && ((st.ported.tsxMd5 && tsxMd5 && st.ported.tsxMd5 !== tsxMd5) || (st.ported.jsonMd5 && jsonMd5 && st.ported.jsonMd5 !== jsonMd5))),
+    approved, at: he ? he.at : null, notes: (he && he.notes) || [] };
+}
+export const handEditLine = (h) => `hand-edited pair (${h.approved ? "approved" : "not approved"}); \`port --force\` overwrites it and loses those edits: ${
+  h.notes.map((n) => n.note).filter(Boolean).join("; ") || "(no note recorded)"}`;
+/* the slot's pair as it is on disk now: null when there is none */
+export function pairState(dir) {
+  const f = path.join(outDir(dir), idOf(dir));
+  if (!fs.existsSync(f + ".tsx") || !fs.existsSync(f + ".json")) return null;
+  const tsxMd5 = md5(fs.readFileSync(f + ".tsx")), jsonMd5 = md5(fs.readFileSync(f + ".json"));
+  return { ...handEditOf(readStatus(dir), tsxMd5, jsonMd5), tsxMd5, jsonMd5 };
+}
 
 /* @use-gesture/react as one closure; its `react` is the host's global React */
 async function gestureBlock() {
@@ -72,8 +93,10 @@ export function shipScope(tsx) {
   return probs;
 }
 
-export async function port(dir, { force = false } = {}) {
+export async function port(dir, { force = false, replaceHandEdit = force } = {}) {
   const st = readStatus(dir);
+  const he = pairState(dir);
+  if (he && he.edited && !replaceHandEdit) throw new Error(handEditLine(he));
   const hash = hashOf(dir);
   if (!force && (!st.checks || st.checks.fail !== 0 || st.checkedTool !== hash))
     throw new Error(st.checkedTool !== hash ? "the source changed since the last check; run: node cli.mjs check <id>" : "the last check failed; fix it and run check again");
@@ -130,12 +153,25 @@ ${silent
   const shared = (() => { const mm = /api\.share\(\{([\s\S]*?)\}\)/.exec(fs.readFileSync(path.join(dir, "tool.tsx"), "utf8")); return mm ? [...mm[1].matchAll(/([A-Za-z_]\w*)\s*:/g)].map((x) => x[1]) : []; })();
   // both files are named by the slot id: the plan's mount id, the JSON's slotId, the last part of its 2d_tool_url
   if (slot.id && slot.id !== id) throw new Error(`the folder ${id} is not the plan's slot id ${slot.id}`);
-  if (slot["2d_tool_url"] && !slot["2d_tool_url"].endsWith(`/${id}/${id}.tsx`)) throw new Error(`the plan's 2d_tool_url does not end in /${id}/${id}.tsx: ${slot["2d_tool_url"]}`);
+  // a RE-KEYED plan (class 4 ch 8/10 v3: new ids, old urls) names the old id's object; publish.mjs mountTarget uploads there, the pair stays <id>
+  const urlStem = slot["2d_tool_url"] && (/\/([^/]+)\/\1\.tsx$/.exec(slot["2d_tool_url"]) || [])[1];
+  if (slot["2d_tool_url"] && !(urlStem === id || /^M\d+\.S\d+\.T\d+\.C\d+\.2D\d+$/.test(urlStem || ""))) throw new Error(`the plan's 2d_tool_url does not end in /${id}/${id}.tsx (or a re-keyed /<media id>/<media id>.tsx): ${slot["2d_tool_url"]}`);
   const out = outDir(dir);
   fs.mkdirSync(out, { recursive: true });
   const tsxFile = path.join(out, `${id}.tsx`), jsonFile = path.join(out, `${id}.json`);
   fs.writeFileSync(tsxFile, tsx);
   const N = m.PHASES.length;
+  /* class 4 r27 (LAYOUT.md §1d): keyOnly and navDots move the stage's boxes; the sidecar names them from the runtime's own (ZKEY, footerBoxes) */
+  const toolBare = fs.readFileSync(path.join(dir, "tool.tsx"), "utf8").replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, "");
+  const keyOnlyTool = boardTool && caps.keyOnly && /\bkeyOnly\s*:\s*true/.test(toolBare) && !!m.ZKEY, navDotsTool = caps.navDots && /\bnavDots\s*:\s*true/.test(toolBare);
+  const fb = (keyOnlyTool || navDotsTool) && m.footerBoxes ? m.footerBoxes(keyOnlyTool, navDotsTool, N) : null;
+  const box = (b) => [b.x, b.y, b.w, b.h];
+  const r27 = !fb ? null : {
+    ...(keyOnlyTool ? { canvas: box(m.ZKEY.canvas), phase: box(m.ZKEY.work), phaseWithPanel: [64, 108, /\bbigPad\s*:\s*true/.test(toolBare) ? 900 : 1086, 520],
+      ask: box(m.KEY_CORNER), drawer: box(m.ZKEY.drawer), slot: box(m.ZKEY.slot), pad: box(m.ZKEY.pad),
+      layout: "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right" } : {}),
+    bubble: box(fb.bubble), ...(navDotsTool ? { bar: box(fb.dots) } : {}),
+    ...(navDotsTool ? { dots: `one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase` } : {}) };
   /* the languages the tool really ships (NCERT sidecars list theirs the same way): English, plus Hindi and
      Gujarati when its TR table (docs/PATTERNS.md §11) has entries for them */
   const langs = ["en"];
@@ -149,16 +185,20 @@ ${silent
     subtype: slot.subtype || "simulation", grade: CONFIG.defaults.class, chapter: st.chapterId || chapterOf(dir),
     publication: CONFIG.defaults.pub, planId: st.planId, planVersion: st.version, url: slot["2d_tool_url"] || null,
     description: slot.description, conceptIds: m.PHASES.map((p) => p.conceptId), languages: langs,
-    modes: "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+    modes: "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit." + (navDotsTool ? " With navDots the dots are controls in AI mode too: a tap on a dot starts that phase." : ""),
     stage: {
       viewBox: "0 0 1600 900", margin: 40,
       sizing: "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
       bands: {
         header: `0 to 80. One line: the tool name, a measured dot, the phase concept; ${silent ? "Hint" : "again"}, sound and restart as round controls far right.`,
-        canvas: boardTool
+        canvas: keyOnlyTool
+          ? "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end."
+          : boardTool
           ? "92 to 746. One rounded card holding the question bar with its Answer key, the running count, the working area (the whole card until Answer is tapped) and the answer panel that slides in from the right; the summary page covers it at the end."
           : "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
-        footer: "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right.",
+        footer: keyOnlyTool ? `652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed)${navDotsTool ? ", one small dot per phase at the right" : ", the phase dots and the phase and question counts at the right"}.`
+          : navDotsTool ? "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, one small dot per phase at the right."
+          : "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right.",
       },
       zones: { header: [0, 0, 1600, 80], canvas: [40, 92, 1520, 654], ...(boardTool
         ? { runs: [64, 110, 330, 76], phase: [64, 202, 1472, 528], phaseWithPanel: [64, 202, 1086, 528], ask: [64, 104, 1472, 88], slot: [1180, 218, 340, 92], pad: [1180, 324, 340, 390], drawer: [1164, 202, 372, 528],
@@ -167,7 +207,7 @@ ${silent
         voice: [28, 704, 204, 194], mascot: [28, 738, 204, 160], bubble: [254, 748, 656, 144], bar: [930, 782, 630, 58],
         controls: silent ? "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes"
           : "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
-        dots: `one pill per phase across bar, pitch ${Math.round(630 / N)}; in user mode each is a button with a 72-tall finger box` },
+        dots: `one pill per phase across bar, pitch ${Math.round(630 / N)}; in user mode each is a button with a 72-tall finger box`, ...(r27 || {}) },
       noSidebar: "There is no sidebar. The canvas takes every unit the chrome can spare.",
       noScoreBox: "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page.",
     },
@@ -254,8 +294,11 @@ ${silent
     build: { source: hash, runtime: runtimeVersion ? `${CLASS_DIR}/runtime/frozen/${runtimeVersion}/runtime.tsx` : `${CLASS_DIR}/runtime/runtime.tsx`, runtimeVersion: runtimeVersion || null, library: `@use-gesture/react@${version("@use-gesture/react")}`, builtAt: new Date().toISOString(),
       checks: st.checks, tsxBytes: Buffer.byteLength(tsx), tsxMd5: md5(Buffer.from(tsx)) },
   };
-  fs.writeFileSync(jsonFile, JSON.stringify(sidecar, null, 2) + "\n");
-  writeStatus(dir, { ported: { source: hash, at: sidecar.build.builtAt, tsx: tsxFile, tsxBytes: sidecar.build.tsxBytes, tsxMd5: sidecar.build.tsxMd5 } });
+  const jsonText = JSON.stringify(sidecar, null, 2) + "\n";
+  fs.writeFileSync(jsonFile, jsonText);
+  /* the pair approve proved is gone: its record moves aside (handEdit names bytes that no longer exist) */
+  writeStatus(dir, { ported: { source: hash, at: sidecar.build.builtAt, tsx: tsxFile, tsxBytes: sidecar.build.tsxBytes, tsxMd5: sidecar.build.tsxMd5, jsonMd5: md5(Buffer.from(jsonText)) },
+    ...(st.handEdit ? { handEdit: undefined, handEditReplaced: { ...st.handEdit, replacedAt: sidecar.build.builtAt } } : {}) });
   return { tsxFile, jsonFile, tsxBytes: Buffer.byteLength(tsx), jsonBytes: fs.statSync(jsonFile).size, libBytes: Buffer.byteLength(lib) };
 }
 
@@ -263,8 +306,8 @@ ${silent
  * `node cli.mjs port` does end to end. Never uploads or touches lpv2/GCS (that is publish, still
  * gated on the user's word); this only ever writes output-preview/ and this slot's status.json.
  * Used by `node cli.mjs port` itself and by check's auto-port-on-pass (lib/check/runAndShip.mjs). */
-export async function portAndVerify(dir, { force = false, log = () => {} } = {}) {
-  const r = await port(dir, { force });
+export async function portAndVerify(dir, { force = false, replaceHandEdit = force, log = () => {} } = {}) {
+  const r = await port(dir, { force, replaceHandEdit });
   log(`port ${idOf(dir)}: ${r.tsxFile}`);
   const sidecar = JSON.parse(fs.readFileSync(r.jsonFile, "utf8"));
   const sim = await hostsim(r.tsxFile, sidecar);

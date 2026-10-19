@@ -1,0 +1,1068 @@
+{
+  "slotId": "M1.S1.T2.C5.2D1",
+  "mediaId": "M1.S1.T2.C5.2D1",
+  "toolId": "per_cent_grid",
+  "title": "Per Cent Grid",
+  "component": "M1.S1.T2.C5.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch6",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch6_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_6/2dtool/M1.S1.T2.C5.2D1/M1.S1.T2.C5.2D1.tsx",
+  "description": "Shade a hundred grid, read the shading as a fraction over 100 and as a per cent, and fold the grid into a strip of ten equal cells.",
+  "conceptIds": [
+    "M1.S1.T2.C5",
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7",
+    "M1.S1.T2.C8"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Read and shade a per cent on a hundred grid as a count out of a hundred, write it as a fraction over 100 and with the % sign, and see a strip of ten equal cells as the same whole in columns.",
+    "look": "A full ten by ten grid at the left, the Columns and cells counter under it, a fraction card and a per cent card at its right, and on the last phase a strip of ten equal cells.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Per Cent Grid' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many cells are shaded, out of one hundred. It is never a score. The working area is 1086 by 528 at x 64, y 202. The grid is 480 by 480 with its top left at x 110, y 230, ruled into ten columns and ten rows of equal cells in near-black and labelled Whole and 100% above it. Shaded cells are deep blue and unshaded cells stay warm white. The Columns and cells counter stands at x 640, y 240, reading the shading in words as full columns and single cells. The fraction card and the per cent card stand one above the other at x 640, y 360 and x 640, y 480, each 300 by 90, and turn green when the child's answer matches the shading. The Scatter and Fold buttons sit side by side at x 640, y 620, each labelled in words. On the fourth phase the ten columns close up into a strip 900 long and 80 tall at x 110, y 420, each of its ten equal cells labelled one tenth, the shaded columns becoming shaded cells. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a fraction bar key and a % key, for setting a count of cells up to one hundred, or typing a fraction or a per cent into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the tools of this chapter share them. The part the question gives, as shaded cells, a fraction, a decimal or an amount, is deep blue, labelled Given. The per cent, fraction or decimal the working reaches, and what is left after a part is used, is green, labelled Answer or Left. Both terms multiplied or divided by one number, and the times one hundred step before the % sign, are vermilion, labelled Both terms or Times 100. A unit fact that puts two amounts in one unit is violet, labelled Unit fact. The part used, taken away or not won is rose, labelled Used or Not won. The step, cell or number being worked on now is amber. A zero holding a place open inside a decimal is grey, labelled Place holder, and nothing else on the stage is ever grey. An unshaded cell of a whole stays warm white inside its near-black outline, the % sign is near-black ink, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of them, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The cards show the last shading as a fraction over 100 and as a per cent, with the grid and its folded strip side by side.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the fraction card reads 53/100 and the per cent card 53%, both green",
+        "does": "counts the full columns, then the single cells, and types the count over one hundred",
+        "goal": "a number of shaded cells out of the 100 cells of a hundred grid is that many per cent",
+        "says": "A hundred equal cells. Count the shaded ones. How many out of a hundred?",
+        "check": "Away from the screen: a hundred children are in a hall, and some wear red. How would you say that part as a per cent?",
+        "feels": "the count out of a hundred turning into a per cent in one step",
+        "hands": "Draw a ten by ten grid on squared paper, shade some full columns and a few more cells, and write the count over one hundred and again with the % sign.",
+        "tries": "First rung: count the full columns only. Second rung: count the single cells only. Third rung: the same task with fewer full columns shaded, before the full shading returns.",
+        "wrong": [
+          {
+            "why": "both kinds of cell are right there, and the white ones can look like the part asked about",
+            "move": "counts the unshaded cells instead of the shaded ones",
+            "screen": "each shaded cell gets a small number in turn, column by column, and the unshaded cells stay warm white and unnumbered"
+          },
+          {
+            "why": "a column looks like one long thing, so it feels like one",
+            "move": "counts each full column as one cell",
+            "screen": "each full column lights amber in turn with its ten cells numbered down it, and the counter adds ten for it"
+          }
+        ],
+        "screen": "a grid with five full columns and three more cells shaded, and the cards blank",
+        "soWhat": "per cent means out of a hundred",
+        "concept": "Per cent means out of a hundred"
+      },
+      {
+        "n": 2,
+        "win": "three columns and one cell shaded, and the per cent card reads 31%",
+        "does": "shades as many cells as the numerator says, and types the per cent",
+        "goal": "a fraction over 100 is written as a per cent by its numerator, with the % sign",
+        "says": "The bottom number is already a hundred. The top number is the per cent.",
+        "check": "Away from the screen: what is the same about forty-seven out of a hundred and forty-seven per cent?",
+        "feels": "the fraction card and the per cent card saying the same number",
+        "hands": "Write a fraction over one hundred on a card, shade that many cells of a paper grid, and write the numerator with the % sign beside it.",
+        "tries": "First rung: read the bottom number and check it is one hundred. Second rung: read the top number aloud. Third rung: the same task with a numerator under ten, before the full fraction returns.",
+        "wrong": [
+          {
+            "why": "the number is right, so the sign seems like decoration",
+            "move": "types the numerator with no % sign",
+            "screen": "the grid's count is written under it with the word hundredths, and the empty place after the child's number in the answer slot is lit amber"
+          },
+          {
+            "why": "one hundred is the biggest number on the card",
+            "move": "types the denominator as the per cent",
+            "screen": "a second grid beside the first shades what the child typed, every cell of it, so the two shadings are seen side by side"
+          }
+        ],
+        "screen": "the question card showing 31/100 and an empty grid",
+        "soWhat": "the numerator of a fraction over one hundred is the per cent",
+        "concept": "Hundredths as per cents"
+      },
+      {
+        "n": 3,
+        "win": "the cells are scattered to new places, and the per cent card still reads 27%",
+        "does": "shades full columns first, then single cells, then taps Scatter and watches the cards",
+        "goal": "any cells of the right count show a per cent, full columns of ten first",
+        "says": "Shade the right number of cells. Does it matter which ones?",
+        "check": "Away from the screen: two friends shade the same per cent, one in columns and one scattered. How could you check both?",
+        "feels": "the cells scattering across the grid while the per cent card holds still",
+        "hands": "Shade the asked number of cells anywhere on a paper grid. Swap grids with a partner, and count each other's shading column by column.",
+        "tries": "First rung: shade the full columns only. Second rung: add the single cells one at a time. Third rung: the same task with a per cent under ten, before the full count returns.",
+        "wrong": [
+          {
+            "why": "both digits are counts, and the first one read gets used first",
+            "move": "swaps the tens and the ones, shading the ones digit as full columns",
+            "screen": "the shaded columns are numbered ten, twenty and on in amber, and the question's per cent is written beside the running count so the two are read together"
+          },
+          {
+            "why": "every grid the child has seen shades tidy columns",
+            "move": "clears a scattered shading, believing the cells must sit in one block",
+            "screen": "Scatter spreads the shading again, and the per cent card and the Columns and cells counter read the same count as before"
+          }
+        ],
+        "screen": "an empty grid and the question card asking for 27%",
+        "soWhat": "any cells of the right count show a per cent, full columns of ten first",
+        "concept": "Shading a per cent"
+      },
+      {
+        "n": 4,
+        "win": "four cells shaded, and the per cent card reads 40% under the words four tenths",
+        "does": "taps Fold, counts the cells of the strip, and shades some of them",
+        "goal": "a strip of ten equal cells is the whole, and each cell is ten hundredths of it",
+        "says": "Ten columns fold into ten equal cells. What per cent is one cell?",
+        "check": "Away from the screen: if every cell of a strip of ten is shaded, what per cent is shaded?",
+        "feels": "a whole grid folding into ten wide cells",
+        "hands": "Fold a paper grid along its column lines into a strip of ten, colour some of the strip's cells, and say each cell as ten per cent.",
+        "tries": "First rung: shade one cell of the strip and read the card. Second rung: shade one more and read it again. Third rung: the same task with the grid opened out beside the strip.",
+        "wrong": [
+          {
+            "why": "on the grid one cell was one per cent, so the habit carries over",
+            "move": "counts each cell of the strip as one per cent",
+            "screen": "Fold runs back once, the grid opening out so each strip cell is seen to cover a whole column of ten, then it closes again"
+          },
+          {
+            "why": "the white cells are just as easy to count",
+            "move": "counts the unshaded cells of the strip",
+            "screen": "the shaded cells are numbered in turn in amber, and the unshaded ones stay warm white and unnumbered"
+          }
+        ],
+        "screen": "the grid with its ten columns outlined in amber and the Fold button lit",
+        "soWhat": "a strip of ten equal cells is the whole, and each cell is ten hundredths of it",
+        "concept": "A strip of ten"
+      }
+    ],
+    "delight": "On the fourth phase, the moment Fold is tapped, the ten columns glide together into one long strip, the shaded columns staying shaded, and the per cent card does not change at all.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet typed. On the first phase the full ten by ten grid sits at the left with some columns and cells already shaded deep blue, and the fraction and per cent cards blank. On the second the question card shows a fraction over one hundred beside an empty grid. On the third the grid is empty and the question card asks for a per cent. On the fourth the ten columns of the grid are outlined in amber and the Fold button waits. One thing moves, once: the first cell, or the Fold button on the fourth phase, gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any shading of the grid, scattered or in columns, and the grid folded into its strip and back. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on counting out of a hundred, fractions over a hundred, shading a per cent and the strip of ten.",
+    "voiceLines": [
+      "A hundred equal cells, waiting to be shaded.",
+      "A hundred equal cells. Count the shaded ones. How many out of a hundred?",
+      "The bottom number is already a hundred. The top number is the per cent.",
+      "Shade the right number of cells. Does it matter which ones?",
+      "Ten columns fold into ten equal cells. What per cent is one cell?",
+      "A new grid. Every cell is one hundredth.",
+      "Free play. Shade, scatter and fold as you like.",
+      "Count the full columns first, then the single cells.",
+      "You counted out of a hundred every time."
+    ],
+    "observations": [
+      {
+        "why": "a per cent counts how many hundredths are shaded, not which ones.",
+        "soWhat": "any cells of the right count show a per cent.",
+        "observe": "Scatter moved the shaded cells about, and the per cent card did not change."
+      },
+      {
+        "why": "the grid is ten rows deep, and every cell is the same size.",
+        "soWhat": "counting full columns first, then single cells, makes a count out of a hundred quick.",
+        "observe": "Every full column held exactly ten cells."
+      },
+      {
+        "why": "both count the same hundredths.",
+        "soWhat": "a fraction over one hundred is written as a per cent by its numerator.",
+        "observe": "The numerator on the fraction card and the number on the per cent card were always the same."
+      },
+      {
+        "why": "each column is one tenth of the grid, ten hundredths.",
+        "soWhat": "each cell of a strip of ten equal cells is ten per cent of the whole.",
+        "observe": "After folding, one cell of the strip covered what a whole column had."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a grid with five full columns and three more cells shaded, and the cards blank",
+        "win": "the fraction card reads 53/100 and the per cent card 53%, both green",
+        "traceback": "each full shaded column lights amber in turn and the counter adds it, then the single cells; the cards end on the count over 100 and the per cent",
+        "ladder": [
+          "Count only the blue cells, the shaded ones.",
+          "Look at the whole grid and all of its equal cells.",
+          "Look at the blue part, which is most of this grid.",
+          "Each full column holds 10 cells, so count the full columns in tens.",
+          "After the full columns, add the single blue cells one at a time."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the question card showing 31/100 and an empty grid",
+        "win": "three columns and one cell shaded, and the per cent card reads 31%",
+        "traceback": "the grid shades the top number of cells, full columns first, and the per cent card ends on that number with the % sign",
+        "ladder": [
+          "The per cent is not the bottom number of the card.",
+          "Look at the top number of the new card.",
+          "Write the top number of each card in its own box.",
+          "The bottom number is 100, so the top number counts the hundredths.",
+          "Each hundredth is 1 per cent, so the hundredths make the per cent."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "an empty grid and the question card asking for 27%",
+        "win": "the cells are scattered to new places, and the per cent card still reads 27%",
+        "traceback": "the right count is shaded on a demo layer, full columns first, and the cards end on it; the child's own shading comes back at the next act",
+        "ladder": [
+          "Look at the counter beside the grid and compare it with 34.",
+          "Count your blue cells and match them to the per cent in the question.",
+          "Count the cells each child shaded, not where they sit.",
+          "Each full column is 10 cells, so shade the tens as full columns first.",
+          "Shade full columns for the tens, then single cells for the ones."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the grid with its ten columns outlined in amber and the Fold button lit",
+        "win": "four cells shaded, and the per cent card reads 40% under the words four tenths",
+        "traceback": "each shaded strip cell is labelled with the running per cent in tens, and the cards end on the per cent",
+        "ladder": [
+          "Look at one strip cell: it was a whole column of the grid.",
+          "Look at what each shaded cell was before the grid folded.",
+          "Look at how many cells of your strip are shaded now.",
+          "Each strip cell is one whole column of 10 cells, so it is 10%.",
+          "Count the shaded strip cells in tens, one ten for each cell."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "grid": {
+      "cols": 10,
+      "rows": 10,
+      "cell": 44
+    },
+    "strip": {
+      "cells": 10,
+      "cell": 86
+    },
+    "warmUp": {
+      "shadePhase2": 25,
+      "scatterPhase3": 20
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C5:PG1",
+        "kind": "read",
+        "cols": 6,
+        "cells": 3,
+        "parts": [
+          {
+            "label": "shaded",
+            "unit": "%"
+          }
+        ],
+        "answer": [
+          63
+        ],
+        "near": "37",
+        "win": "Yes, 63 shaded cells make 63%."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T2.C5:1",
+        "kind": "mean",
+        "answer": "hundred",
+        "near": "ten",
+        "ladder": [
+          "The grid has 10 columns, and each column has 10 cells.",
+          "Think of how many cells all ten columns make together."
+        ],
+        "win": "Yes, per cent means out of 100."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S1.T2.C5:5",
+        "kind": "read",
+        "cols": 9,
+        "cells": 4,
+        "parts": [
+          {
+            "label": "shaded",
+            "unit": "%"
+          }
+        ],
+        "answer": [
+          94
+        ],
+        "near": "6",
+        "win": "Yes, 94 shaded cells make 94%."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:PG2",
+        "kind": "frac",
+        "num": 71,
+        "parts": [
+          {
+            "label": "per cent",
+            "unit": "%"
+          }
+        ],
+        "answer": [
+          71
+        ],
+        "near": "100",
+        "win": "Yes, 71 hundredths is 71%."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T2.C6:2",
+        "kind": "frac",
+        "num": 57,
+        "parts": [
+          {
+            "label": "per cent",
+            "unit": "%"
+          }
+        ],
+        "answer": [
+          57
+        ],
+        "near": "100",
+        "win": "Yes, 57 hundredths is 57%."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T2.C6:6",
+        "kind": "two",
+        "nums": [
+          5,
+          50
+        ],
+        "parts": [
+          {
+            "label": "left",
+            "unit": "%"
+          },
+          {
+            "label": "right",
+            "unit": "%"
+          }
+        ],
+        "answer": [
+          5,
+          50
+        ],
+        "near": "100|100",
+        "win": "Yes, they are 5% and 50%."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C7:PG3",
+        "kind": "shade",
+        "pct": 34,
+        "pad": "enter",
+        "answer": 34,
+        "near": 43,
+        "win": "Yes, 34 cells show 34%."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T2.C7:3",
+        "kind": "shade",
+        "pct": 16,
+        "pad": "enter",
+        "answer": 16,
+        "near": 61,
+        "win": "Yes, 16 cells show 16%."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T2.C7:7",
+        "kind": "who",
+        "a": [
+          3,
+          8
+        ],
+        "b": 38,
+        "answer": "both",
+        "near": "asha",
+        "ladder": [
+          "Ravi's cells are scattered, yet there are still 38 of them.",
+          "Which cells are shaded does not matter, only how many are shaded."
+        ],
+        "win": "Yes, both are right."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T2.C8:PG4",
+        "kind": "strip",
+        "lit": 3,
+        "parts": [
+          {
+            "label": "shaded",
+            "unit": "%"
+          }
+        ],
+        "answer": [
+          30
+        ],
+        "near": "3",
+        "win": "Yes, 3 cells of the strip are 30%."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T2.C8:4",
+        "kind": "strip",
+        "lit": 2,
+        "parts": [
+          {
+            "label": "shaded",
+            "unit": "%"
+          }
+        ],
+        "answer": [
+          20
+        ],
+        "near": "2",
+        "win": "Yes, 2 cells are 20% of the strip."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T2.C8:8",
+        "kind": "stripShade",
+        "pct": 90,
+        "pad": "enter",
+        "answer": 9,
+        "near": 1,
+        "win": "Yes, 9 cells of the strip show 90%."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: each full shaded column lights amber in turn and the counter adds it, then the single cells; the cards end on the count over 100 and the per cent",
+      "Phase 2: the grid shades the top number of cells, full columns first, and the per cent card ends on that number with the % sign",
+      "Phase 3: the right count is shaded on a demo layer, full columns first, and the cards end on it; the child's own shading comes back at the next act",
+      "Phase 4: each shaded strip cell is labelled with the running per cent in tens, and the cards end on the per cent"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A hundred equal cells, waiting to be shaded.",
+    "onFreePlay": "Free play. Shade, scatter and fold, then start a new grid.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You counted out of a hundred every time.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C5:PG1",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A hundred grid has 100 equal cells, and 63 of them are shaded. What per cent of the grid is shaded?",
+            "question": {
+              "en": "What per cent of the hundred grid is shaded?"
+            },
+            "ask": {
+              "en": "Shaded part as a per cent?"
+            },
+            "answer": [
+              63
+            ],
+            "planAnswer": "63%",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T2.C5:1",
+            "worked": false,
+            "kind": "mean",
+            "planQuestion": "What does per cent mean?",
+            "question": {
+              "en": "Per cent means out of how many?"
+            },
+            "ask": {
+              "en": "Out of how many?"
+            },
+            "answer": "hundred",
+            "planAnswer": "Out of a hundred",
+            "choices": [
+              "ten",
+              "hundred",
+              "thousand"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S1.T2.C5:5",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A hundred grid has 9 full columns and 4 more cells shaded. What per cent is shaded?",
+            "question": {
+              "en": "Count again: what per cent of this grid is shaded?"
+            },
+            "ask": {
+              "en": "Shaded per cent?"
+            },
+            "answer": [
+              94
+            ],
+            "planAnswer": "94%, because 9 columns are 90 cells and 4 more make 94 of the 100",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T2.C6:PG2",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "Write 71/100 as a per cent.",
+            "question": {
+              "en": "Write the fraction on the card as a per cent."
+            },
+            "ask": {
+              "en": "This fraction as a per cent?"
+            },
+            "answer": [
+              71
+            ],
+            "planAnswer": "71%",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T2.C6:2",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "Write 57/100 as a per cent.",
+            "question": {
+              "en": "Now write this new fraction as a per cent."
+            },
+            "ask": {
+              "en": "New fraction as a per cent?"
+            },
+            "answer": [
+              57
+            ],
+            "planAnswer": "57%",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T2.C6:6",
+            "worked": false,
+            "kind": "two",
+            "planQuestion": "Write 5/100 and 50/100 as per cents.",
+            "question": {
+              "en": "Write each fraction, the left one and the right one, as a per cent."
+            },
+            "ask": {
+              "en": "Each as a per cent?"
+            },
+            "answer": [
+              5,
+              50
+            ],
+            "planAnswer": "5% and 50%",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C7:PG3",
+            "worked": false,
+            "kind": "shade",
+            "planQuestion": "Shade 34% of a hundred grid.",
+            "question": {
+              "en": "Drag across the grid to shade 34%, then tap Enter."
+            },
+            "ask": {
+              "en": "Shade 34%"
+            },
+            "answer": 34,
+            "planAnswer": "Any 34 cells of the 100",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T2.C7:3",
+            "worked": false,
+            "kind": "shade",
+            "planQuestion": "How many cells of a hundred grid do you shade to show 16%?",
+            "question": {
+              "en": "Now shade 16% of the grid."
+            },
+            "ask": {
+              "en": "Shade 16%"
+            },
+            "answer": 16,
+            "planAnswer": "Any 16 cells",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T2.C7:7",
+            "worked": false,
+            "kind": "who",
+            "planQuestion": "Two children show 38% on hundred grids. One shades three full columns and 8 more cells. The other shades 38 cells scattered about. Who is right?",
+            "question": {
+              "en": "Asha shades 3 columns and 8 cells, and Ravi 38 scattered cells; who shows 38%?"
+            },
+            "ask": {
+              "en": "Who shows 38%?"
+            },
+            "answer": "both",
+            "planAnswer": "Both are right. Each shaded 38 of the 100 cells, and which cells does not matter",
+            "choices": [
+              "asha",
+              "ravi",
+              "both"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T2.C8:PG4",
+            "worked": false,
+            "kind": "strip",
+            "planQuestion": "A strip is cut into 10 equal cells, and 3 of them are shaded. What per cent of the strip is shaded?",
+            "question": {
+              "en": "What per cent of the strip is shaded?"
+            },
+            "ask": {
+              "en": "Shaded part of the strip?"
+            },
+            "answer": [
+              30
+            ],
+            "planAnswer": "30%",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T2.C8:4",
+            "worked": false,
+            "kind": "strip",
+            "planQuestion": "A strip has 10 equal cells. What per cent of the strip is 2 cells?",
+            "question": {
+              "en": "What per cent of the strip are these 2 cells?"
+            },
+            "ask": {
+              "en": "2 cells as a per cent?"
+            },
+            "answer": [
+              20
+            ],
+            "planAnswer": "20%, because each cell is 10%",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T2.C8:8",
+            "worked": false,
+            "kind": "stripShade",
+            "planQuestion": "How many cells of a strip of 10 equal cells do you shade to show 90%?",
+            "question": {
+              "en": "Shade the strip to show 90%, then tap Enter."
+            },
+            "ask": {
+              "en": "Show 90%"
+            },
+            "answer": 9,
+            "planAnswer": "9 cells, because each cell is 10%",
+            "madeOn": "working area"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "per_cent_grid",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "per_cent_grid",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Per cent means out of a hundred",
+        "conceptId": "M1.S1.T2.C5",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C5:PG1",
+          "M1.S1.T2.C5:1",
+          "M1.S1.T2.C5:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Hundredths as per cents",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C6:PG2",
+          "M1.S1.T2.C6:2",
+          "M1.S1.T2.C6:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Shading a per cent",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C7:PG3",
+          "M1.S1.T2.C7:3",
+          "M1.S1.T2.C7:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A strip of ten",
+        "conceptId": "M1.S1.T2.C8",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C8:PG4",
+          "M1.S1.T2.C8:4",
+          "M1.S1.T2.C8:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "shaded",
+    "columns",
+    "cells",
+    "folded"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), shaded, columns, cells, folded, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "per_cent_grid"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C5.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A hundred equal cells, waiting to be shaded."
+    },
+    {
+      "en": "A hundred equal cells. Count the shaded ones. How many out of a hundred?"
+    },
+    {
+      "en": "The bottom number is already a hundred. The top number is the per cent."
+    },
+    {
+      "en": "Shade the right number of cells. Does it matter which ones?"
+    },
+    {
+      "en": "Ten columns fold into ten equal cells. What per cent is one cell?"
+    },
+    {
+      "en": "A new grid. Every cell is one hundredth."
+    },
+    {
+      "en": "Free play. Shade, scatter and fold as you like."
+    },
+    {
+      "en": "Count the full columns first, then the single cells."
+    },
+    {
+      "en": "You counted out of a hundred every time."
+    }
+  ],
+  "build": {
+    "source": "fbb2c267:610395",
+    "runtime": "class5/runtime/frozen/r64/runtime.tsx",
+    "runtimeVersion": "r64",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T10:47:20.222Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-18T10:47:20.096Z"
+    },
+    "tsxBytes": 539090,
+    "tsxMd5": "606b701ef33ff20dfb8af86ddb1c8fdb",
+    "handEdited": true
+  }
+}

@@ -377,6 +377,105 @@
       "note": "r54 = r53 + Kiko CHEERS: MASCOT_CHEER (arms up, happy eyes; 21 KB) shows with the party (c4-cheer: three jumps, 7 twinkling sparkles in Party) and for 0.9 s after any right answer (c4-cheer1, replaces the hop); same <image data-role=mascot> with data-pose=cheer; a cheer picture that fails to decode leaves the standing one; none under reduced motion; caps.cheer; phase-party asserts the pose. r53 has Kiko standing only: never pin it for a new chapter",
       "frozenAt": "2026-10-13T09:23:12.849Z",
       "bytes": 267326
+    },
+    "r55": {
+      "runtime": "692d47b74549",
+      "mascot": "89fc3fe4ce80",
+      "actionkit": "581afb8078ea",
+      "fontkit": "2a05aa65e720",
+      "note": "r55 = the head of 2026-10-16 (class 4's new look, synced): keyOnly + navDots, one sentence a screen (hint replaces the question, closing at a phase's last question, digits as written, no thought puff or hint bulb), api.act + ACTION KIT, FONT KIT (Poppins inside the tool), the header buttons + DEFAULT_THEME, the answer-key blink + Kiko thinks + guards (r24/r25), bigPad, picture-scale; first pinned by class 5 ch 5",
+      "frozenAt": "2026-10-17T09:25:36.702Z",
+      "bytes": 534398
+    },
+    "r56": {
+      "runtime": "78951efc46bc",
+      "mascot": "89fc3fe4ce80",
+      "actionkit": "581afb8078ea",
+      "fontkit": "2a05aa65e720",
+      "note": "r56 = r55 + two act fixes from the ch 5 pilot's play test: workTap ignores a click while an act plays (a correct key click no longer flashes the step's wrong-act hint for the whole act), and an act in flight ends (resolves false) when the guide steps hand over to the question (a key tapped in the step hold never writes into question 1)",
+      "frozenAt": "2026-10-17T11:31:44.865Z",
+      "bytes": 534713
+    },
+    "r57": {
+      "runtime": "1c9c682b6231",
+      "mascot": "89fc3fe4ce80",
+      "actionkit": "581afb8078ea",
+      "fontkit": "2a05aa65e720",
+      "note": "r57 = r56 + three ch 6 fixes: an empty parts box with a unit keeps the caret clear of the unit; a choice answer shows the chosen label (through TR), not its id, when the tool has no format; Invite takes w/h to hug a wide key as a rounded rect",
+      "frozenAt": "2026-10-17T12:48:42.923Z",
+      "bytes": 535267
+    },
+    "r58": {
+      "runtime": "de6b43a2290a",
+      "mascot": "89fc3fe4ce80",
+      "actionkit": "581afb8078ea",
+      "fontkit": "2a05aa65e720",
+      "note": "r58 = r57 + two slot/key fixes from ch 6 reviews: the typed digits are anchored at their END so the caret sits right after them and the unit a fixed gap after the caret (caret touched the % or overlapped a digit on r57); choice-key labels take the biggest size (40, then 32) at which every key of the group fits, wrapped by the key's own width, not at 10 letters (\"Out of 1,000\" wrapped; labels stayed 32 in 150-tall tiles)",
+      "frozenAt": "2026-10-17T14:58:00.364Z",
+      "bytes": 536663
+    },
+    "r59": {
+      "runtime": "a5974d35e10b",
+      "mascot": "89fc3fe4ce80",
+      "actionkit": "581afb8078ea",
+      "fontkit": "2a05aa65e720",
+      "note": "r59 = r58 + two ch 5 play-test fixes: Close hands a lent pad back (closeAnswer calls capture(null); the panel stayed open while the pad was lent to the picture, so Close was dead in any tool that types into its picture), and openAnswer ignores a tap within 400 ms of a question change (a double tap on the Next key opened the keypad on the new question)",
+      "frozenAt": "2026-10-17T15:18:33.048Z",
+      "bytes": 536927
+    },
+    "r60": {
+      "runtime": "cb70dc26bf15",
+      "mascot": "89fc3fe4ce80",
+      "actionkit": "581afb8078ea",
+      "fontkit": "2a05aa65e720",
+      "note": "r60 = r59 + four play-test guards (ch 5 Fraction Converter): a double tap on the Hint key walks one rung, not two (400 ms); a double tap on Close no longer reopens the pad (openAnswer ignores a tap within 350 ms of Close); Enter on an unchanged miss does nothing AND keeps its hint on show (it used to clear the hint first); the 'tap the blinking card' line names the card through the runtime's own UI words (cardFrac / cardDec) in hi/gu when the tool's TR has no entry",
+      "frozenAt": "2026-10-17T15:20:30.900Z",
+      "bytes": 537795
+    },
+    "r61": {
+      "runtime": "6041a8437245",
+      "mascot": "89fc3fe4ce80",
+      "actionkit": "581afb8078ea",
+      "fontkit": "2a05aa65e720",
+      "note": "r61 = r60 + two play-test fixes (ch 5 Place Value Board, Fraction Converter): useDrag.keys ignores auto-repeat (a held Enter on a draggable piece toggled it every 350 ms; the slider walked x3 to x7); the answer boxes' aria labels (numerator / denominator / whole part / decimal part box) come from the runtime's UI words in en/hi/gu, then the tool's TR, never English in hi/gu",
+      "frozenAt": "2026-10-17T15:24:36.212Z",
+      "bytes": 538748
+    },
+    "r62": {
+      "runtime": "b2041860eca2",
+      "mascot": "89fc3fe4ce80",
+      "actionkit": "581afb8078ea",
+      "fontkit": "2a05aa65e720",
+      "note": "r62 = r61 + (1) the same question entered again (gotoStep to it after its win) remounts Work on a fresh board (enterItem bumps run when the index is unchanged; the solved board reopened in stage ask and one Enter won again); (2) a question counts once per phase attempt (results[n].done): won again it adds nothing to answered, firstTry or the score (score went 5 -> 10 for one question); (3) the Hint double-tap guard is 200 ms, not r60's 400 (the hint-key check presses twice 250 ms apart and wants the stronger rung)",
+      "frozenAt": "2026-10-17T15:28:52.348Z",
+      "bytes": 539353
+    },
+    "r63": {
+      "runtime": "aeb90bdd3105",
+      "mascot": "89fc3fe4ce80",
+      "actionkit": "581afb8078ea",
+      "fontkit": "2a05aa65e720",
+      "note": "r63 = r62 with the same-question remount narrowed: enterItem bumps run only when the question is entered again AFTER its win (stage not ask); a gotoStep to the question still open in ask keeps the board, as before r62 (r62 failed phase-party on the ch 5 pilot)",
+      "frozenAt": "2026-10-18T08:11:48.374Z",
+      "bytes": 539490
+    },
+    "r64": {
+      "runtime": "5be4eb11851d",
+      "mascot": "89fc3fe4ce80",
+      "actionkit": "581afb8078ea",
+      "fontkit": "2a05aa65e720",
+      "note": "r64 = r63 + five play-test fixes: Work remounts on its own key (workN), so a gotoStep back to a won or missed question no longer re-fires the phase-start effect (r62/r63 replayed the guide steps) and a missed one gets a fresh board too; choice keys commit once a tap (400 ms) and never within 600 ms of a question change (a Next double tap answered the next question's right-most choice); a card's answer boxes ignore the second tap of the double tap that opened it (300 ms); a digit on a working-area or choice question does nothing and keeps the hint, and Enter on a working-area question leaves the hint to the tool; the Answer/Close key closes a pad lent by api.capture (r59 handled closeAnswer, but the key called openAnswer)",
+      "frozenAt": "2026-10-18T09:07:45.553Z",
+      "bytes": 540773
+    },
+    "r65": {
+      "runtime": "1f41dfae4d3a",
+      "mascot": "89fc3fe4ce80",
+      "actionkit": "581afb8078ea",
+      "fontkit": "2a05aa65e720",
+      "note": "r65 = r64 + wrapText/pieces split words at ordinary white space only (a no-break space keeps '3 kg' whole; \\s matched NBSP) and a number keeps the word after it, so a bubble line never ends on '90' with its 'g' on the next (ch 9 C5, C20)",
+      "frozenAt": "2026-10-18T13:35:03.509Z",
+      "bytes": 541244
     }
   }
 }

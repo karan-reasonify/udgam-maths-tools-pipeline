@@ -14,7 +14,9 @@ export function chapterLabel(c: ChapterMeta, classNo: number | null) {
 
 function badgeTitle(state: CheckState, t: ToolSummary) {
   const checks = t.status?.checks;
-  if (state === "stale") return "checked, but the tool, runtime or mascot has changed since: re-run check";
+  const he = t.status?.handEdit as { at?: string } | undefined;
+  if (he && state === "pass") return `hand-edited pair, approved ${String(he.at ?? "").slice(0, 10)}: \`approve\` proved these exact files (the check counts below are of the source)`;
+  if (state === "stale") return "checked, but the tool, runtime or mascot has changed since: re-run check (a hand-edited pair: run approve)";
   if (!checks || state === "unchecked") return "not checked";
   return `${checks.pass} pass · ${checks.warn} warn · ${checks.fail} fail`;
 }

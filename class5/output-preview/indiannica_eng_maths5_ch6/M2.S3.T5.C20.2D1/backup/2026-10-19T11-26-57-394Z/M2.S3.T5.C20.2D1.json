@@ -1,0 +1,1172 @@
+{
+  "slotId": "M2.S3.T5.C20.2D1",
+  "mediaId": "M2.S3.T5.C20.2D1",
+  "toolId": "per_cent_back",
+  "title": "Per Cent Unpacker",
+  "component": "M2.S3.T5.C20.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch6",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch6_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_6/2dtool/M2.S3.T5.C20.2D1/M2.S3.T5.C20.2D1.tsx",
+  "description": "Write a per cent over 100 and simplify it, or read it as hundredths, or as thousandths when it has a point, to give a decimal.",
+  "conceptIds": [
+    "M2.S3.T5.C20",
+    "M2.S3.T5.C21",
+    "M2.S3.T5.C22",
+    "M2.S3.T5.C23"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Write a per cent as a fraction in lowest terms, including per cents above one whole and below one per cent, and as a decimal through hundredths, or thousandths when it has a point.",
+    "look": "A per cent card, its fraction over 100 and a bar under it at the left, and a hundred grid over a place value chart of ones, tenths, hundredths and thousandths at the right.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Per Cent Unpacker' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of hundredths the per cent names. It is never a score. The working area is 1086 by 528 at x 64, y 202. The per cent card stands at x 110, y 230, 200 by 90, deep blue, and the fraction over one hundred is written beside it at x 340, y 230. The bar under both lies at x 110, y 340, 600 long and 50 tall, keeping its shaded length whatever the terms become. When Divide by HCF is tapped the words Both terms light vermilion, and the fraction reached in lowest terms is green. The hundred grid, 300 by 300, stands at x 800, y 210, and on the second phase a second grid of the same size joins at x 450, y 420, under the bar. The place value chart stands under the first grid at x 800, y 530, 300 by 180, with four columns headed Ones, Tenths, Hundredths and Thousandths; an empty place holds a grey 0, and the decimal read off it is green. The Over 100, Divide by HCF, Hundredths and Split hundredths buttons stand in a column at x 110, y 420, each labelled in words. On the fourth phase each hundredth of the grid is cut into ten thin slices, each one thousandth. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a point key, a fraction bar key and a % key. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the tools of this chapter share them. The part the question gives, as shaded cells, a fraction, a decimal or an amount, is deep blue, labelled Given. The per cent, fraction or decimal the working reaches, and what is left after a part is used, is green, labelled Answer or Left. Both terms multiplied or divided by one number, and the times one hundred step before the % sign, are vermilion, labelled Both terms or Times 100. A unit fact that puts two amounts in one unit is violet, labelled Unit fact. The part used, taken away or not won is rose, labelled Used or Not won. The step, cell or number being worked on now is amber. A zero holding a place open inside a decimal is grey, labelled Place holder, and nothing else on the stage is ever grey. An unshaded cell of a whole stays warm white inside its near-black outline, the % sign is near-black ink, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of them, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The cards show the last per cent beside its fraction in lowest terms and its decimal, with the grid and the chart under them.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "32/100 shrinks to 8/25 in green, and the bar's shaded length has not moved",
+        "does": "taps Over 100, then Divide by HCF, and types the fraction in lowest terms",
+        "goal": "a per cent is written over 100 and simplified by the HCF to lowest terms",
+        "says": "Per cent means out of a hundred. Write it over a hundred, then simplify.",
+        "check": "Away from the screen: how do you know when a fraction is in lowest terms?",
+        "feels": "both terms shrinking together while the shaded bar stays exactly still",
+        "hands": "Write a per cent over one hundred on a card, list the numbers that divide both terms, and divide both by the biggest of them.",
+        "tries": "First rung: write the per cent over one hundred. Second rung: find one number that divides both terms. Third rung: the same task with a per cent that is a count of tens, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "dividing once made the numbers smaller, so the job felt done",
+            "move": "stops at a simpler fraction that is not yet in lowest terms",
+            "screen": "Divide by HCF runs again from the child's fraction, the factor both terms still share lit amber, while the bar's shaded length holds still"
+          },
+          {
+            "why": "the per cent sign already felt like it said out of a hundred",
+            "move": "writes the per cent with no denominator, as a whole number",
+            "screen": "the Over 100 button writes one hundred under the child's number, and the grid beside it shades the same count of cells"
+          }
+        ],
+        "screen": "the card showing 32% and the Over 100 button lit",
+        "soWhat": "a per cent is written over one hundred and simplified by the HCF to lowest terms",
+        "concept": "Back to a fraction"
+      },
+      {
+        "n": 2,
+        "win": "the first reads 9/5 in green past the whole, and the second 1/200, half of one cell",
+        "does": "simplifies the first to an improper fraction, then writes the second as a part of one hundredth",
+        "goal": "a per cent above 100 gives an improper fraction, and a fraction of one per cent is that fraction of one hundredth",
+        "says": "Is this more than one whole? And how big is half of one per cent?",
+        "check": "Away from the screen: which is bigger, one half per cent or one half?",
+        "feels": "a tiny half cell sitting alone in a whole grid",
+        "hands": "Shade two paper grids for a per cent above one hundred, and write it over one hundred before simplifying. Then cut one cell in half and say what part of one per cent it is.",
+        "tries": "First rung: shade the first whole grid. Second rung: shade the part of the next grid. Third rung: the same task with a per cent just above one hundred, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the number is big, so it seems to be all wholes",
+            "move": "writes a per cent above one hundred over one",
+            "screen": "the two grids light, the first full and the second part filled, labelled Whole and Part, and one hundred is written under the child's number in amber"
+          },
+          {
+            "why": "half is a big fraction, and the words per cent are easy to skip",
+            "move": "reads half of one per cent as half of the whole",
+            "screen": "one cell of the grid is lit and cut in half, and the half is shaded beside the whole grid, so the tiny part is seen at its true size"
+          }
+        ],
+        "screen": "the card showing 180% over two grids, and a second card showing 1/2%",
+        "soWhat": "a per cent above one hundred gives an improper fraction, and a fraction of one per cent is that fraction of one hundredth",
+        "concept": "Very large and very small per cents"
+      },
+      {
+        "n": 3,
+        "win": "the chart reads 0.73 in green, with seven in the tenths and three in the hundredths",
+        "does": "taps Hundredths, reads the chart, and types the decimal",
+        "goal": "a whole-number per cent is a number of hundredths, written in decimal form",
+        "says": "How many hundredths? Write them after the point.",
+        "check": "Away from the screen: how would you write nine per cent as a decimal, and why is there a zero in it?",
+        "feels": "the chart filling column by column from the grid",
+        "hands": "Shade a per cent on a paper grid, count the full columns as tenths and the single cells as hundredths, and write the decimal.",
+        "tries": "First rung: count the full columns as tenths. Second rung: count the single cells as hundredths. Third rung: the same task with a per cent under ten, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the digits are copied in order, and one place after the point seems enough",
+            "move": "writes the per cent's digits as tenths, one place too far to the left",
+            "screen": "a row of grids beside the first fills to what the child's decimal names, well past one whole, while the per cent's own shading fills less than one grid"
+          },
+          {
+            "why": "the per cent has one digit, so the decimal seems to need one",
+            "move": "leaves out the zero in the tenths place for a per cent under ten",
+            "screen": "the chart's Tenths column shows a grey 0 labelled Place holder, ringed in amber, with the grid's full columns counted as none"
+          }
+        ],
+        "screen": "the card showing 73% over one grid, and the chart empty",
+        "soWhat": "a whole-number per cent is a number of hundredths, written in decimal form",
+        "concept": "Per cents as decimals"
+      },
+      {
+        "n": 4,
+        "win": "twenty-four slices counted, and the chart reads 0.024, with a grey 0 in the tenths place",
+        "does": "taps Split hundredths, counts the thin slices, and types the decimal",
+        "goal": "a per cent with one place after its point is read as thousandths, three places after the point",
+        "says": "Cut each hundredth into ten. How many thousandths is it?",
+        "check": "Away from the screen: how many thousandths are in one hundredth?",
+        "feels": "a hundredth splitting into ten thin slices",
+        "hands": "Cut a paper square into ten thin slices to stand for one hundredth cut into ten, and count the thousandths.",
+        "tries": "First rung: count the slices of one split hundredth. Second rung: count each whole hundredth as ten slices. Third rung: the same task with a per cent under one, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the per cent had a point, and two places felt like enough",
+            "move": "writes the per cent's digits as hundredths, ten times too much",
+            "screen": "Split hundredths cuts each hundredth into ten slices, and the slices are counted into the Thousandths column one by one in amber"
+          },
+          {
+            "why": "more digits felt more exact",
+            "move": "writes one more digit than the chart has columns for",
+            "screen": "the chart keeps its four columns, the extra digit is held outside it lit amber, and the slices are counted again"
+          }
+        ],
+        "screen": "the card showing 2.4% with two cells and part of a third shaded",
+        "soWhat": "a per cent with one place after its point is read as thousandths, three places after the point",
+        "concept": "Per cents with a point"
+      }
+    ],
+    "delight": "On the fourth phase, each hundredth splits into ten thin slices with a soft ripple along the row, and the Thousandths column of the chart lights up for the first time.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet written. On the first phase the per cent card sits at the top left with the Over 100 button lit. On the second two cards wait, one above one hundred per cent over two grids and one below one per cent. On the third the per cent card sits over one grid and the chart is empty. On the fourth the card shows a per cent with a point, with some cells and part of one more shaded. One thing moves, once: the Over 100 button, or the Split hundredths button on the fourth phase, gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "A per cent of the child's own, written over 100 and simplified, poured into the chart or split into thousandths. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on lowest terms, per cents above one whole and below one per cent, and per cents as decimals.",
+    "voiceLines": [
+      "A per cent, ready to be written over a hundred.",
+      "Per cent means out of a hundred. Write it over a hundred, then simplify.",
+      "Is this more than one whole? And how big is half of one per cent?",
+      "How many hundredths? Write them after the point.",
+      "Cut each hundredth into ten. How many thousandths is it?",
+      "A new per cent. How many hundredths does it name?",
+      "Free play. Unpack any per cent you like.",
+      "Write it over a hundred again, then look for the HCF.",
+      "Every per cent went back to hundredths, then to its new form."
+    ],
+    "observations": [
+      {
+        "why": "dividing both terms by one number names the same amount.",
+        "soWhat": "the fraction in lowest terms is the same amount as the per cent over one hundred.",
+        "observe": "The bar's shaded length stayed still while both terms shrank."
+      },
+      {
+        "why": "one hundred per cent is one whole.",
+        "soWhat": "a per cent above one hundred gives a fraction more than one whole.",
+        "observe": "A per cent above one hundred filled one grid and ran on into the next."
+      },
+      {
+        "why": "full columns are tenths and single cells are hundredths.",
+        "soWhat": "a whole-number per cent is written as that many hundredths in decimal form.",
+        "observe": "The chart's digits after the point matched the shaded columns and cells."
+      },
+      {
+        "why": "one hundredth cut into ten equal slices gives slices of one thousandth each.",
+        "soWhat": "a per cent with one place after its point is read as thousandths, three places after the point.",
+        "observe": "Splitting the hundredths put a digit in the Thousandths column for the first time."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the card showing 32% and the Over 100 button lit",
+        "win": "32/100 shrinks to 8/25 in green, and the bar's shaded length has not moved",
+        "traceback": "the per cent over 100, both terms divided by their HCF (vermilion), the bar regrouped with its shaded length unchanged, the lowest terms on the Answer card in green",
+        "ladder": [
+          "Write 36 over 100, then simplify both terms together.",
+          "Both terms end in zero, so try a number bigger than 2.",
+          "Keep dividing until only 1 divides both terms.",
+          "The HCF is the biggest number that divides both terms.",
+          "Divide the top and the bottom by the HCF, then check nothing else divides both."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the card showing 180% over two grids, and a second card showing 1/2%",
+        "win": "the first reads 9/5 in green past the whole, and the second 1/200, half of one cell",
+        "traceback": "the bars of the per cent, labelled Whole and Part, regrouped by the HCF, the improper fraction or whole number on the Answer card in green; 1/8% as one hundredth cut into 8, 1/800",
+        "ladder": [
+          "Per cent means out of 100, so 240 goes over 100.",
+          "Look at how many bars are full.",
+          "1/8% is 1/8 of one hundredth, not 1/8 of the whole.",
+          "Divide both terms by their HCF, even when the top is bigger.",
+          "Each full bar is one whole, and the last bar shows the part left."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the card showing 73% over one grid, and the chart empty",
+        "win": "the chart reads 0.73 in green, with seven in the tenths and three in the hundredths",
+        "traceback": "the grid poured into the chart: whole grids as ones, full columns as tenths, single cells as hundredths, a grey 0 holding an empty place, the decimal on the Answer card in green",
+        "ladder": [
+          "83% means 83 hundredths, so find the Hundredths column in the chart.",
+          "Look at the full columns of the grid first.",
+          "Each full grid is one whole, so the wholes go before the point.",
+          "Count the full columns as tenths and the single cells as hundredths.",
+          "Tenths go just after the point, and hundredths after them."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the card showing 2.4% with two cells and part of a third shaded",
+        "win": "twenty-four slices counted, and the chart reads 0.024, with a grey 0 in the tenths place",
+        "traceback": "each shaded hundredth split into ten slices, the part of a hundredth zoomed, the chart filled to the Thousandths column with grey place holders, the decimal on the Answer card in green",
+        "ladder": [
+          "6.5 hundredths is how many thousandths?",
+          "Count the slices of one split hundredth.",
+          "Look at the full column and the single cells of the grid.",
+          "Count each whole hundredth as ten slices.",
+          "Write the thousandths with three places after the point."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "warmUps": {
+      "1": [
+        "35%"
+      ],
+      "2": [
+        "175%",
+        "1/2%"
+      ],
+      "3": [
+        "73%"
+      ],
+      "4": [
+        "2.4%"
+      ]
+    },
+    "freePerCents": [
+      "45",
+      "25",
+      "35",
+      "8",
+      "4.5",
+      "12.5",
+      "75",
+      "0.5"
+    ],
+    "picture": "x 0 to 900 in the working area, the same open or shut (bigPad); fraction route: per cent card, over 100, the HCF, Answer card, bars of 100 parts; decimal route: hundred grid 360, per cent card, Answer card, place value chart Ones . Tenths Hundredths Thousandths",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T5.C20:PB1",
+        "kind": "frac",
+        "pc": "36",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          9,
+          25
+        ],
+        "near": "18|50",
+        "cardName": "Answer"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T5.C20:1",
+        "kind": "frac",
+        "pc": "90",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          9,
+          10
+        ],
+        "near": "45|50",
+        "cardName": "Answer"
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T5.C20:4",
+        "kind": "frac",
+        "pc": "44",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          11,
+          25
+        ],
+        "near": "22|50",
+        "cardName": "Answer"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T5.C21:PB2",
+        "kind": "big",
+        "pc": "240",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          12,
+          5
+        ],
+        "near": "240|1",
+        "cardName": "Answer"
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T5.C21:3",
+        "kind": "big",
+        "pc": "300",
+        "parts": [
+          {
+            "label": "whole",
+            "at": "whole"
+          }
+        ],
+        "answer": [
+          3
+        ],
+        "near": "300",
+        "cardName": "Answer"
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T5.C21:5",
+        "kind": "tiny",
+        "pc": "1/8",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          1,
+          800
+        ],
+        "near": "1|8",
+        "cardName": "Answer",
+        "ladder": [
+          "Multiply 1/8 by 1/100.",
+          "Cut each of the 100 parts into 8, then count the parts in one whole."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T5.C22:PB3",
+        "kind": "dec",
+        "pc": "83",
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "83"
+        ],
+        "near": "8|3",
+        "cardName": "Answer"
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T5.C22:2",
+        "kind": "dec",
+        "pc": "58",
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "58"
+        ],
+        "near": "5|8",
+        "cardName": "Answer"
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T5.C22:6",
+        "kind": "dec",
+        "pc": "306",
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "3",
+          "06"
+        ],
+        "near": "30|6",
+        "cardName": "Answer"
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T5.C23:PB4",
+        "kind": "point",
+        "pc": "6.5",
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "065"
+        ],
+        "near": "0|65",
+        "cardName": "Answer"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T5.C23:7",
+        "kind": "point",
+        "pc": "3.5",
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "035"
+        ],
+        "near": "0|35",
+        "cardName": "Answer"
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T5.C23:8",
+        "kind": "point",
+        "pc": "12.4",
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "124"
+        ],
+        "near": "1|24",
+        "cardName": "Answer"
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: the per cent over 100, both terms divided by their HCF (vermilion), the bar regrouped with its shaded length unchanged, the lowest terms on the Answer card in green",
+      "Phase 2: the bars of the per cent, labelled Whole and Part, regrouped by the HCF, the improper fraction or whole number on the Answer card in green; 1/8% as one hundredth cut into 8, 1/800",
+      "Phase 3: the grid poured into the chart: whole grids as ones, full columns as tenths, single cells as hundredths, a grey 0 holding an empty place, the decimal on the Answer card in green",
+      "Phase 4: each shaded hundredth split into ten slices, the part of a hundredth zoomed, the chart filled to the Thousandths column with grey place holders, the decimal on the Answer card in green"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A per cent, ready to be written over a hundred.",
+    "onFreePlay": "Free play. Tap the per cent card for a new one, then tap Unpack.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Every per cent went back to hundredths, then to its new form.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T5.C20:PB1",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "Write 36% as a fraction in lowest terms.",
+            "question": {
+              "en": "Write 36% as a fraction in lowest terms."
+            },
+            "ask": {
+              "en": "36% in lowest terms?"
+            },
+            "answer": [
+              9,
+              25
+            ],
+            "planAnswer": "9/25",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T5.C20:1",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "Write 90% as a fraction in lowest terms.",
+            "question": {
+              "en": "Now write 90% as a fraction in lowest terms."
+            },
+            "ask": {
+              "en": "90% in lowest terms?"
+            },
+            "answer": [
+              9,
+              10
+            ],
+            "planAnswer": "9/10, because 90/100 = 9/10",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T5.C20:4",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "Write 44% as a fraction in lowest terms.",
+            "question": {
+              "en": "Write 44% in lowest terms too."
+            },
+            "ask": {
+              "en": "44% in lowest terms?"
+            },
+            "answer": [
+              11,
+              25
+            ],
+            "planAnswer": "11/25. The HCF of 44 and 100 is 4",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T5.C21:PB2",
+            "worked": false,
+            "kind": "big",
+            "planQuestion": "Write 240% as a fraction in lowest terms.",
+            "question": {
+              "en": "Write 240% as a fraction in lowest terms."
+            },
+            "ask": {
+              "en": "240% in lowest terms?"
+            },
+            "answer": [
+              12,
+              5
+            ],
+            "planAnswer": "12/5, which is 2 2/5",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T5.C21:3",
+            "worked": false,
+            "kind": "big",
+            "planQuestion": "Write 300% as a whole number.",
+            "question": {
+              "en": "Write 300% as a whole number."
+            },
+            "ask": {
+              "en": "300% as a whole number?"
+            },
+            "answer": [
+              3
+            ],
+            "planAnswer": "3, because 300/100 = 3",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T5.C21:5",
+            "worked": false,
+            "kind": "tiny",
+            "planQuestion": "Write 1/8% as a fraction.",
+            "question": {
+              "en": "Write 1/8% as a fraction."
+            },
+            "ask": {
+              "en": "1/8% as a fraction?"
+            },
+            "answer": [
+              1,
+              800
+            ],
+            "planAnswer": "1/800. 1/8% means 1/8 out of 100: 1/8 x 1/100 = 1/800",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T5.C22:PB3",
+            "worked": false,
+            "kind": "dec",
+            "planQuestion": "Write 83% as a decimal.",
+            "question": {
+              "en": "Write 83% as a decimal."
+            },
+            "ask": {
+              "en": "83% as a decimal?"
+            },
+            "answer": [
+              "0",
+              "83"
+            ],
+            "planAnswer": "0.83",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T5.C22:2",
+            "worked": false,
+            "kind": "dec",
+            "planQuestion": "Write 58% as a decimal.",
+            "question": {
+              "en": "Now write 58% as a decimal."
+            },
+            "ask": {
+              "en": "58% as a decimal?"
+            },
+            "answer": [
+              "0",
+              "58"
+            ],
+            "planAnswer": "0.58, because 58% is 58 hundredths",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T5.C22:6",
+            "worked": false,
+            "kind": "dec",
+            "planQuestion": "Write 306% as a decimal.",
+            "question": {
+              "en": "Write 306% as a decimal."
+            },
+            "ask": {
+              "en": "306% as a decimal?"
+            },
+            "answer": [
+              "3",
+              "06"
+            ],
+            "planAnswer": "3.06, because 306/100 is 3 wholes and 6 hundredths",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T5.C23:PB4",
+            "worked": false,
+            "kind": "point",
+            "planQuestion": "Write 6.5% as a decimal.",
+            "question": {
+              "en": "Write 6.5% as a decimal."
+            },
+            "ask": {
+              "en": "6.5% as a decimal?"
+            },
+            "answer": [
+              "0",
+              "065"
+            ],
+            "planAnswer": "0.065",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T5.C23:7",
+            "worked": false,
+            "kind": "point",
+            "planQuestion": "Write 3.5% as a decimal.",
+            "question": {
+              "en": "Now write 3.5% as a decimal."
+            },
+            "ask": {
+              "en": "3.5% as a decimal?"
+            },
+            "answer": [
+              "0",
+              "035"
+            ],
+            "planAnswer": "0.035, because 3.5 hundredths is 35 thousandths",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T5.C23:8",
+            "worked": false,
+            "kind": "point",
+            "planQuestion": "Write 12.4% as a decimal.",
+            "question": {
+              "en": "Write 12.4% as a decimal."
+            },
+            "ask": {
+              "en": "12.4% as a decimal?"
+            },
+            "answer": [
+              "0",
+              "124"
+            ],
+            "planAnswer": "0.124, because 12.4 hundredths is 124 thousandths",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "per_cent_back",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "per_cent_back",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Back to a fraction",
+        "conceptId": "M2.S3.T5.C20",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C20:PB1",
+          "M2.S3.T5.C20:1",
+          "M2.S3.T5.C20:4"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Very large and very small per cents",
+        "conceptId": "M2.S3.T5.C21",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C21:PB2",
+          "M2.S3.T5.C21:3",
+          "M2.S3.T5.C21:5"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Per cents as decimals",
+        "conceptId": "M2.S3.T5.C22",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C22:PB3",
+          "M2.S3.T5.C22:2",
+          "M2.S3.T5.C22:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Per cents with a point",
+        "conceptId": "M2.S3.T5.C23",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C23:PB4",
+          "M2.S3.T5.C23:7",
+          "M2.S3.T5.C23:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "per_cent",
+    "numerator",
+    "denominator",
+    "hcf",
+    "g",
+    "chart",
+    "split",
+    "answer",
+    "null"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, per_cent, numerator, denominator, hcf, g, chart, split, answer, null, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "per_cent_back"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T5.C20.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A per cent, ready to be written over a hundred."
+    },
+    {
+      "en": "Per cent means out of a hundred. Write it over a hundred, then simplify."
+    },
+    {
+      "en": "Is this more than one whole? And how big is half of one per cent?"
+    },
+    {
+      "en": "How many hundredths? Write them after the point."
+    },
+    {
+      "en": "Cut each hundredth into ten. How many thousandths is it?"
+    },
+    {
+      "en": "A new per cent. How many hundredths does it name?"
+    },
+    {
+      "en": "Free play. Unpack any per cent you like."
+    },
+    {
+      "en": "Write it over a hundred again, then look for the HCF."
+    },
+    {
+      "en": "Every per cent went back to hundredths, then to its new form."
+    }
+  ],
+  "build": {
+    "source": "ad44ddd6:619409",
+    "runtime": "class5/runtime/frozen/r64/runtime.tsx",
+    "runtimeVersion": "r64",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T11:01:07.938Z",
+    "checks": {
+      "pass": 94,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-18T11:01:07.833Z"
+    },
+    "tsxBytes": 539405,
+    "tsxMd5": "57d8a2125e0e913d092dc5c18943b7b3",
+    "handEdited": true
+  }
+}

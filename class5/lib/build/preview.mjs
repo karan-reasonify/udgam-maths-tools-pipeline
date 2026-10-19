@@ -31,8 +31,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { CONFIG, fromRoot } from "../core/env.mjs";
-import { resolveRuntime } from "../core/pin.mjs";
+import { resolveRuntime, KITS } from "../core/pin.mjs";
 import { idOf } from "../core/work.mjs";
+import { GEOMETRY_SRC } from "../check/geometry.mjs";
 import { capsOf, rtFlags } from "../core/caps.mjs";
 
 const HOOKS = new Set(["useState", "useEffect", "useRef", "useMemo", "useCallback"]);
@@ -65,13 +66,13 @@ export function hostScope(combined, toolSrc) {
   return warn;
 }
 
-/* the three sources in build order; the mascot sits between runtime and tool.
+/* the sources in build order; the mascot (and the kits, when the runtime has them) sit between runtime and tool.
    The runtime is the chapter's own: its pin (work/<chapter_id>/runtime.json -> runtime/frozen/<v>/),
    else the head. That is why a runtime edit for one chapter cannot restale another chapter. */
 export function sources(dir) {
   const toolFile = path.join(dir, "tool.tsx");
   if (!fs.existsSync(toolFile)) throw new Error(`no tool.tsx in ${dir}; run scaffold first`);
-  const { runtimeFile, mascotFile, version } = resolveRuntime(dir);
+  const { runtimeFile, mascotFile, kitDir, version } = resolveRuntime(dir);
   if (!fs.existsSync(mascotFile)) throw new Error("no runtime/mascot.tsx; run: node cli.mjs mascot");
   const runtime = fs.readFileSync(runtimeFile, "utf8");
   const mascot = fs.readFileSync(mascotFile, "utf8");
@@ -85,7 +86,11 @@ export function sources(dir) {
      never edited or read by hand; the runtime's Skin draws them. A slot without one builds exactly as before. */
   const imagesFile = path.join(dir, "images.tsx");
   const images = fs.existsSync(imagesFile) ? fs.readFileSync(imagesFile, "utf8").trim() + "\n\n" : "";
-  const combined = runtime.trimEnd() + "\n\n" + mascot.trim() + "\n\n" + voice + images + tool.trim() + "\n";
+  /* the KITS, GENERATED and frozen with the runtime like the mascot, never read by hand (2026-10-16): actionkit.tsx, the pictures
+     api.act draws (`const ACTION_KIT`, docs/IMAGES.md §11, `node cli.mjs actionkit`), and fontkit.tsx, Poppins inside the tool
+     (`const FONT_KIT`, docs/LAYOUT.md §9, `node cli.mjs fontkit`). A runtime without them builds exactly as before. */
+  const kits = KITS.map((k) => path.join(kitDir, `${k}.tsx`)).filter((f) => fs.existsSync(f)).map((f) => fs.readFileSync(f, "utf8").trim() + "\n\n").join("");
+  const combined = runtime.trimEnd() + "\n\n" + mascot.trim() + "\n\n" + kits + voice + images + tool.trim() + "\n";
   return { runtime, mascot, tool, combined, runtimeVersion: version };
 }
 
@@ -195,74 +200,7 @@ window.addEventListener("finished", (e: any) => (window as any).__events.push(e.
 createRoot(document.getElementById("root")!).render(React.createElement(Tool, props));
 
 /* a snapshot of what is on the stage, in stage units, for the layout checks */
-function geometry() {
-  const svg: any = document.querySelector("svg.c4");
-  if (!svg) return null;
-  const inv = svg.getScreenCTM().inverse();
-  const pt = (x: number, y: number) => { const p = svg.createSVGPoint(); p.x = x; p.y = y; return p.matrixTransform(inv); };
-  const box = (el: any) => { const r = el.getBoundingClientRect(); const a = pt(r.left, r.top), b = pt(r.right, r.bottom);
-    return { x: +a.x.toFixed(1), y: +a.y.toFixed(1), w: +(b.x - a.x).toFixed(1), h: +(b.y - a.y).toFixed(1) }; };
-  const zoneOf = (el: any) => { const z = el.closest("[data-zone]"); return z ? z.getAttribute("data-zone") : null; };
-  const shown = (el: any) => { for (let e = el; e && e !== svg; e = e.parentNode) { const cs = getComputedStyle(e); if (cs.display === "none" || cs.visibility === "hidden" || Number(cs.opacity) < 0.05) return false; } return true; };
-  const scaleOf = (el: any) => { const m = inv.multiply(el.getScreenCTM()); return Math.sqrt(Math.abs(m.a * m.d - m.b * m.c)); };
-  /* the ink band of a line of text, from its baseline: what a reader sees, not the line box */
-  const ink = (t: any, b: any, size: number) => {
-    try { const p = t.getStartPositionOfChar(0), q = svg.createSVGPoint(); q.x = p.x; q.y = p.y;
-      const s = q.matrixTransform(inv.multiply(t.getScreenCTM())), desc = /[gjpqy,;()]/.test(t.textContent);
-      return { x: b.x, w: b.w, y: +(s.y - 0.74 * size).toFixed(1), h: +((desc ? 0.97 : 0.76) * size).toFixed(1) };
-    } catch (e) { return b; }
-  };
-  const texts: any[] = [];
-  svg.querySelectorAll("text").forEach((t: any) => {
-    if (!t.textContent.trim() || !shown(t)) return;
-    const own = Array.from(t.querySelectorAll("tspan")).filter((s: any) => s.getAttribute("fill"));
-    const size = parseFloat(getComputedStyle(t).fontSize) * scaleOf(t);
-    const base = { size: +size.toFixed(1), weight: getComputedStyle(t).fontWeight, zone: zoneOf(t), reading: !!t.closest("[data-role=reading]"),
-      control: !!t.closest("[data-control]"), disabled: !!t.closest("[aria-disabled=true]"), stroked: t.getAttribute("stroke") ? true : false };
-    if (own.length) own.forEach((s: any) => { if (!s.textContent.trim()) return; const b = box(s); texts.push({ ...base, text: s.textContent.trim(), box: b, ink: ink(s, b, size), fill: getComputedStyle(s).fill, part: true }); });
-    const bt = box(t);
-    texts.push({ ...base, text: t.textContent.trim(), box: bt, ink: ink(t, bt, size), fill: getComputedStyle(t).fill, whole: own.length > 0 });
-  });
-  const controls = Array.from(svg.querySelectorAll("[data-control]")).filter(shown).map((c: any) => ({ id: c.getAttribute("data-control"),
-    role: c.getAttribute("role"), tab: c.getAttribute("tabindex"), label: c.getAttribute("aria-label"), box: box(c), zone: zoneOf(c),
-    disabled: c.getAttribute("aria-disabled") === "true" || !!c.closest(".c4-quiet") }));
-  const zones = Array.from(svg.querySelectorAll("[data-zone]")).map((z: any) => ({ zone: z.getAttribute("data-zone"), box: box(z) }));
-  /* only pictures that are drawn: the working area stays mounted under the summary page, display none, and its skins read 0 x 0 */
-  const images = Array.from(svg.querySelectorAll("image")).filter(shown).map((im: any) => ({ role: im.getAttribute("data-role"), box: box(im) }));
-  const colors: any[] = [];
-  const stopsOf = (v: string) => { const m = /url\\(["']?#([^"')]+)["']?\\)/.exec(v); if (!m) return null; const g = document.getElementById(m[1]);
-    return g ? Array.from(g.querySelectorAll("stop")).map((s: any) => getComputedStyle(s).stopColor) : null; };
-  svg.querySelectorAll("rect,circle,ellipse,path,line,polygon,polyline,text,tspan").forEach((el: any) => {
-    if (!shown(el)) return;
-    const cs = getComputedStyle(el);
-    [["fill", cs.fill, cs.fillOpacity], ["stroke", cs.stroke, cs.strokeOpacity]].forEach(([k, v, o]: any) => {
-      if (!v || v === "none" || Number(o) === 0) return;
-      const list = v.startsWith("url") ? stopsOf(v) || [] : [v];
-      list.forEach((c: string) => colors.push({ c, k, zone: zoneOf(el), o: Number(o) }));
-    });
-  });
-  const outside: any[] = [], shapes: any[] = [];
-  svg.querySelectorAll("rect,circle,ellipse,path,line,polygon,image").forEach((el: any) => {
-    if (!shown(el) || el.getAttribute("fill") === "transparent" || el.closest("defs")) return;
-    const b = box(el);
-    if (b.w <= 0 || b.h <= 0) return;
-    const zone = zoneOf(el);
-    if (zone) shapes.push({ tag: el.tagName, zone, box: b, cls: el.getAttribute("class") || undefined });
-    if (b.x < -1 || b.y < -1 || b.x + b.w > 1601 || b.y + b.h > 901) outside.push({ tag: el.tagName, zone, box: b });
-  });
-  const bar = svg.querySelector('[data-zone="bar"]');
-  const dots = Array.from(svg.querySelectorAll('[data-zone="bar"] [aria-label^="Step "]')).map((d: any) => ({ role: d.getAttribute("role"),
-    tab: d.getAttribute("tabindex"), label: d.getAttribute("aria-label"), current: d.getAttribute("aria-current"), box: box(d),
-    state: d.getAttribute("data-state"), fill: Number(d.getAttribute("data-fill")),
-    /* the part actually drawn: the fill rect against its track */
-    drawn: (() => { const fr = d.querySelector(".c4-fill"), tr = d.querySelector(".c4-body") ? d.querySelector(".c4-body rect") : d.querySelector("rect"); return fr && tr ? +(box(fr).w / box(tr).w).toFixed(3) : 0; })() }));
-  const anims = (document as any).getAnimations ? (document as any).getAnimations().filter((a: any) => a.playState === "running").map((a: any) => ({
-    name: a.animationName || "", infinite: !!(a.effect && a.effect.getComputedTiming && a.effect.getComputedTiming().iterations === Infinity),
-    cls: a.effect && a.effect.target && a.effect.target.getAttribute ? a.effect.target.getAttribute("class") : null })) : [];
-  const css = Array.from(document.querySelectorAll("style")).map((s: any) => s.textContent).join("\\n");
-  return { texts, controls, zones, images, colors, outside, shapes, dots, anims, mode: bar && bar.getAttribute("data-mode"),
-    pulses: svg.querySelectorAll(".c4-pulse").length, focusRule: /:focus-visible/.test(css) && /:focus\\s*[,{]/.test(css) };
-}
+${GEOMETRY_SRC}
 
 (window as any).__geometry = geometry;
 
@@ -292,7 +230,7 @@ if (drive) {
     /* r34: the bubble draws the pinned instruction (data-role "instruction") and, after a wrong act or answer, the hint
        under it (data-role "hint"): their text, the wrapped lines joined */
     const roleText = (role: string) => { const g = document.querySelector('[data-zone="bubble"] [data-role="' + role + '"]'); return g ? Array.from(g.querySelectorAll("text")).map((x: any) => x.textContent).join(" ") : ""; };
-    const pinSnap = () => ({ hint: A.getState().hint, instruction: A.getState().instruction, domInstr: roleText("instruction"), domHint: roleText("hint"), typed: t.state().typed });
+    const pinSnap = () => ({ hint: A.getState().hint, hintKind: A.getState().hintKind, instruction: A.getState().instruction, domInstr: roleText("instruction"), domHint: roleText("hint"), typed: t.state().typed });
     const held = () => !!A.getState().held;
     const cueOn = () => !!document.querySelector("svg .c4-cue");
     const bubbleKey = () => { const el: any = document.querySelector('[data-control="bubble"]'); if (el) { el.focus(); key("Enter", el); } return !!el; };
@@ -802,7 +740,8 @@ if (drive) {
       }
       /* a phase dot, from the keyboard: focus it and press Enter */
       const p0 = t.state().phase, to = p0 === 2 ? 1 : 2;
-      const dot: any = document.querySelector('[data-control="phase-' + to + '"]');
+      /* class 4 r27: a navDots tool's dot is data-control "phase-dot" with data-phase */
+      const dot: any = document.querySelector('[data-control="phase-' + to + '"]') || document.querySelector('[data-control="phase-dot"][data-phase="' + to + '"]');
       if (dot) { dot.focus(); key("Enter", dot); await until(() => t.state().phase !== p0, 60); log.push({ dotJump: t.state().phase === to }); }
     }
     if (drive === "wrong") {

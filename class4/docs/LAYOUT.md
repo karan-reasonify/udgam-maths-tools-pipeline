@@ -145,6 +145,105 @@ without a start page, AI mode and the agent's `toolApi.reset()` keep the phase r
 - The page is the tool's face: the same card, rule and shadow as the canvas, the mascot on its ground line at the left,
   the same toy Start key as the pad's Enter, in the tool's THEME Enter colours: a tool with skins wears the theme its image agent chose from the object, a tool with none the runtime's standard `DEFAULT_THEME` (berry, never the chrome's grey), so every start page looks alike. `check` proves it (`start-page`: the Start key wears the theme's Enter gradient, saturated and not red).
 
+## 1d. Key only and nav dots (runtime r27, opt-in: keyOnly, navDots)
+
+Two switches of Class 4's r27 (the owner, 2026-10-15, the Tenth Strip of chapter 8 first), written beside `nextKey: true` in the
+object a tool passes to `ToolFrame`. Each is independent; a tool with neither is drawn exactly as §1 and §1b say. `check` judges
+them by the runtime's own boxes (`footerBoxes`, `ZKEY`, `KEY_CORNER`, `FIT_KEY`, read through the model).
+
+```
+  0 ┌ header 0-80 (unchanged) ─────────────────────────────────────────────────────────────────┐
+ 92 │ ┌ canvas 40,92  1520 x 548 ───────────────────────────────────────────────────────────┐ │
+108 │ │ ┌ WORKING AREA 64,108  1472 x 520 ─────────────────────────────┐  [   key 264x72   ]│ │ key 1262,112
+    │ │ │  the picture; nothing under the key's corner (box.key)        │  (corner 1254-1536,  │ │
+    │ │ │                                                               │   y 108-196)         │ │
+628 │ │ └──────────────────────────────────────────────────────────────────────────────────────┘ │
+640 │ └────────────────────────────────────────────────────────────────────────────────────────┘ │
+656 │  ( Kiko  ┌ bubble 343,656  w to the dots − 20 (913 with 4 phases) x 236 ──┐   ●  ○  ○  ○ │ dots, centred y 774
+    │  1.45 x) ◄│ the line at 56 / 50 / 46; instruction + hint at 48 / 44 / 40     │             │
+898 └──ground───┴──────────────────────────────────────────────────────────────────┴─────────────┘
+```
+
+**keyOnly: true** (needs `board: true`; marker `const ZKEY`):
+
+| zone | box (x, y, w, h) | holds |
+|---|---|---|
+| ask | the bar's right end only | NO bar card, question text, border or "Free play": only the key, where the bar put it: Answer / Close / Enter / Next / Next phase / Summary at 1262, 112, 264 x 72 (Yes / No choice keys of a `cardAnswer` question in the same place, 150 x 72 or wider, right-aligned to 1526), same colours, the same `.c4-nextblink` ring and blink rules, guards and data-attributes (still in `data-zone="ask"`). A card question (the card blinks) leaves the corner empty |
+| key corner | `KEY_CORNER` 1254, 108, 282 x 88 (stage) | reserved for the key in every state; Work gets it as **`props.box.key` = { x: 1190, y: 0, w: 282, h: 88 }** in its own coordinates (wider, `w = keys + 18`, on a question whose choice keys stand there). No picture element runs under it or under a key drawn there (`board-fit`) |
+| canvas | 40, 92, 1520, 548 | the card ends at 640 |
+| work | 64, 108, 1472 x 520 shut; 1086 (900 with `bigPad`) x 520 open | `props.box` = { w, h: 520, open, board, key } |
+| drawer | 1164, 108, 372 x 520 (bigPad 980, 108, 556 x 520) | as tall as the working area; the key stays in its corner ON TOP of the drawer and reads Close while it is open (a card question's Close stands there too: the drawer draws no Close of its own) |
+| slot | 1180, 198, 340 x 92 (bigPad 996, 524 wide) | under the key's row |
+| pad | 1180, 298, 340 x 318 (bigPad 996, 524 wide), keys 72.25 tall (8 apart) | on a card question (no answer box) the keypad takes the box's row too: 198 to 616, keys about 97 tall |
+| voice (Kiko) | 28, 666, 295.8 x 232 (`mascotBoxOf(true)`) | Kiko 1.45 times as big (the owner, 2026-10-15): the standing, thinking and cheering pictures (they swap in the same box), the thought puff (x 246 to 314, y 673 to 741), the Hint key's bulb, the ground line, the cheer's jumps and the party's sparkles, all scaled about the box's bottom-left corner (28, 898), so Kiko stands on the ground line at the bottom left and fills the footer. The party's left popper stands over the scaled hand (257, 715) |
+| bubble | 343, 656, w, 236 | 29 clear of the thought puff, as before; w is to 910 without navDots, else to 20 short of the dots (913 wide with four phases: x 343 to 1256); the tail meets it at y 744, the scaled Kiko's face |
+| summary | the canvas, 92 to 640 | "Well done!" at 142, rows from 166 to 470 (at most 92 a row), stars at 504, Free play and Play again 300 x 80 at 544 |
+
+The bubble's type (FIT_KEY), for the last bench, judged in Poppins (the platform's font, 0.49 em a character on average, 0.53 at most;
+the runtime counts 0.54): a plain line at **56** (two lines, 26 characters a line with four phases),
+else **50** (three), else **46** (three; four in English), never cut (the last layout is drawn whole: 40 over five lines in English, 46 over three in Hindi and Gujarati). An instruction and its hint:
+**48 + 48** (1 + 2, 2 + 1 or 2 + 2 lines), then **44 + 44**, then **40 + 40** (2 + 2), then a tight 40 (3 + 2, no band, English only);
+33 characters a line at 48, 36 at 44, 40 at 40 (four phases; Hindi and Gujarati are counted at 0.5 em a character, `FIT_KEY.devEm`, since a Devanagari or Gujarati code point is narrower: 36 at 48). Hindi and Gujarati keep the shape of their rule (gap 4, band padding 4, no tight
+layout, a layout counts when its block fits 236 − 6) with its numbers measured in Poppins, whose Devanagari rises 1.09 em over the
+baseline and falls 0.40 under it (Noto Sans: 0.90 and 0.26; with 1.45 em and 12 the first Hindi line's ink touched the outline): a
+pitch of **1.6 em** (`FIT_KEY.devPit`) and the block's top **0.3 em + 4** under the bubble's (`devTop`: 18 at 48). So a 1 + 1 pair
+fits at 48 (180), a 1 + 2 or 2 + 1 pair at 40 (216), and a longer one draws the hint alone (`hint-fit` names it). A plain line in
+Hindi or Gujarati takes 56 over two lines or 46 over three (1.6 em; its ink, `FIT_KEY.inkDev`, is held 4 inside the bubble). Characters a line scale with the bubble's width and leave the classroom cue's room (§13b: the arrow is
+44 x 60 at the bubble's right end, 30 in, centred on the bubble's height). The thought puff and the Hint key's bulb stay in Kiko's box,
+29 short of the bubble (`mascot-think` judges the scaled box and the bubble's edge). Not yet: a keyOnly tool with a runs box (`Runs`): `check`'s `key-only` row fails it.
+
+**navDots: true** (marker `function NavDot`): the phase bar (pills, "Phase n of N", "Question i of total") is replaced by ONE SMALL DOT
+PER PHASE and no text, at the footer's right: 72-unit finger boxes that tile, right edge 1564, centred on the bubble (y 774 with keyOnly,
+820 without). Done: filled accent, r 11; current: filled, r 16, with a ring r 25; later: hollow (panel fill, rule edge). Each dot is a
+control in **user AND AI mode** (a deliberate change of §6's AI-mode contract for a tool that asks for it): `data-control="phase-dot"`,
+`data-phase="k"`, `aria-label` "Step k of N", `aria-current="step"` on the current one, `data-state` done / now / later, Enter and Space,
+a pointer cursor. A tap starts THAT phase, any phase, forward or back (the current one too), exactly the way the header's restart
+starts the current phase (`enterPhase(k, 0)`: a clean phase, `finished` re-armed, the party and the cheer ended). The summary page keeps
+the dots (a tap there starts that phase). The bubble takes the width the bar freed. `check`: `nav-dots` (a real click on every dot, in
+both modes), `modes`, `phase-bar` (states only: a dot does not fill a part per question).
+
+### One sentence a screen (keyOnly only; the owner, 2026-10-16; head runtime, the marker `ONE SENTENCE A SCREEN` in `Footer`)
+
+Under `keyOnly: true` the bubble holds ONE sentence of Kiko's speech on a screen. A tool without `keyOnly` is drawn exactly as §5 says (the
+instruction pinned, the hint under it in a band, the built-in line in a neutral band). A chapter's runtime has it only from the snapshot that
+carries the marker (`caps.oneSentence`); r27 and every earlier snapshot keep the pair.
+
+- The bubble shows the question. A hint (after a wrong act, a wrong answer or the header's Hint key) REPLACES the question until the child's
+  next tap (a keypad key, the card, the Answer key) or the right act, then the question comes back. The hint is drawn alone, as a plain line
+  (`data-role="hint"`, no band, no question beside it); `getState().instruction` stays the question's line.
+- The built-in "type" lines ("Tap the blinking ... card.", "Tap the blinking Answer key.", "Type your answer, then press Enter.", "Choose your
+  answer.") are NOT shown. They stay in `getState().hint` (kind "type"); the key or card keeps blinking, which is the cue.
+- At a phase's LAST right answer the bubble shows only the phase's `closing` line (the tool's own "Yes, ..." win line is replaced, also when
+  Work says it through `api.say`).
+- In a silent runtime (`SILENT_VOICE`) the bubble prints a line AS WRITTEN, Latin digits ("36.907", "1.45 kg"), not as number words (the old
+  question bar showed digits, and the bar is gone); Hindi and Gujarati lines keep Latin digits too. A digit in a line is therefore no longer a
+  console warning.
+- Kiko keeps the thinking pose (hand on chin), but the thought cloud (`ThinkPuff`) and the Hint key's bulb (`HintBulb`) are not drawn: no element
+  `data-role="think-puff"` or `"hint-bulb"` is ever on the page.
+
+So a hint is laid out ALONE, as a plain line (FIT_KEY.plain: 56 / 50 / 46, 46 over four lines, 40 over five; Hindi and Gujarati by their own
+rule), not as the 48 / 44 / 40 pair, and it is at most 80 characters. `check` judges it: `hint-fit` (each hint alone), `hint-pinned`,
+`guide-steps`, `guide-steps-real-wrong`, `classroom`, `choice-answer-line` and `mascot-think` read the new behaviour, and `one-line-bubble`
+proves it frame by frame in a real DevTools session (CHECKS.md).
+
+## 1e. Action animation: a real tool performs the act (the owner, 2026-10-16; head runtime, `ACTION_KIT_HELPER`)
+
+**Every action key or act a tool offers (cut, split, measure, count, lift, put back, carry, tidy ...) is performed on screen** by a
+real tool: a knife slices along each cut line, scissors snip, a ruler slides in along the length, a pencil draws the line, an eraser
+rubs out (the ACTION KIT, IMAGES.md §11), or a cartoon hand drawn in code (glove white, ink outline) taps, pushes, carries or sweeps.
+The tool calls `api.act` (PATTERNS.md §15); the runtime draws it.
+
+| what | rule |
+|---|---|
+| layer | above the working area, under the key's corner, the drawer and the footer (the key is never covered); clipped to the working area; no pointer events; no text |
+| time | about 1.1 to 1.5 s an act (0.24 s in from just off its first point, the move at each point, 0.22 s out), never longer; many points share it |
+| while it plays | the pad and the keys are locked (the runtime's lock), the working area takes no tap, the keyboard waits, `getState().acting` is true |
+| the pieces | the tool's own: they react as the tool passes each point (`onPoint`) and part a little, then settle, when it ends |
+| sound | one of the runtime's Web Audio effects per move (cut, tick, settle, trade); no files |
+| reduced motion | nothing moves: the act ends at once in its end state |
+
+`check`'s `action-anim` row proves it (CHECKS.md). A tool that never calls `api.act` is drawn exactly as before.
+
 ## 2. Header
 
 Tool name (label size, weight 600), then a dot measured from the name, then the phase concept in the
@@ -178,6 +277,17 @@ Each is 56 across with a 72-unit finger box; 72 apart, so the boxes tile and nev
 - **Colour.** A place or a counter keeps one colour across the book. Coloured numerals and words use a
   deeper ink, `shade(colour, 0.25)`, so they read at 4.5:1 on white and on the panel; the counters keep
   the true colour. Zero digits holding a place are grey `#767676`.
+- **A grid of unit boxes is dark-outlined, big and fixed** (the owner, 2026-10-17; class 4 ch 8 Zoom Grid). On the light board every one of the boxes, the
+  empty ones too, has a DARK outline (ink; about 2.4 stage units inside the grid, 4.5 on its outer edge) and a coloured or counted box a DEEPER fill with
+  its own dark edge, so the counted part stands out from the last bench (a hairline `C.rule` grid on white is the defect; lines drawn over a dark
+  picture carry a light edge). The grid is the BIGGEST square the free room allows: lay the whole picture out from the width the working area has with
+  the keypad OPEN (`BOARD_OPEN_W` 1086; `BOARD_OPEN_W_BIG` 900 with `bigPad`) and from `box.h`, under any key row above it and clear of `box.key`, and
+  keep it at that one size and place whether the keypad is open or shut (a picture laid out for the shut width and then pushed aside by the pad jumps
+  while the child types). The glass, ladder, cards and keys are re-laid around it, never shrunk under their floors. Measure the room; do not hard-code
+  one cell size for every phase (ch 8's Zoom Grid went from 30-40 to 38-46 units a cell).
+- **The labels round a grid are last-bench labels** (same day). Counting numbers, caption chips, ladder names, card titles and word tiles are at least
+  `T.label` (32), the counting numbers beside the rows 40 or more, weight 600-700 in the darkest ink (`C.ink`), ONE line each and never shortened or
+  dropped, with a paper halo where they sit over a grid line or a colour. In Hindi and Gujarati the box is widened or the label moved, never the size lowered.
 - **A pile of tiles shows one label** (the top tile), so no value peeks out from underneath.
 - **The floor (r42).** The runtime puts a transparent rect, `data-role="work-floor"`, under Work as the first child of
   `data-zone="work"`, the size of the working box: a tap on the empty board around the drawing lands in the zone, so in a
@@ -248,7 +358,8 @@ Each is 56 across with a 72-unit finger box; 72 apart, so the boxes tile and nev
   act puts the standing picture and the puff away; a miss brings the thinking pose back (after the nod, and the traceback when
   the pad was locked); the cheer overrides it; under reduced motion it is shown still (the dots steady). A thinking picture that does
   not decode leaves the standing one. **The Hint key** pops a small yellow bulb (`data-role="hint-bulb"`, the header's bulb, drawn
-  small) where the puff stands for about 1 s. Nothing is cut off or overlapped: both stay inside the voice zone.
+  small) where the puff stands for about 1 s. Nothing is cut off or overlapped: both stay inside the voice zone. **Under `keyOnly` (§1d "One sentence
+  a screen") there is no puff and no bulb:** Kiko keeps the thinking pose (`data-pose="think"`) and nothing is drawn beside him.
 - **Bubble: the guide.** The line of the moment, printed, numbers as words. Every instruction and every hint is
   ONE page (one sentence that fits; r35), so nothing pages by a timer. After a wrong act or answer the instruction
   stays **pinned** on top (`data-role="instruction"`) and the **hint** sits under it in a tinted band with an accent
@@ -256,6 +367,8 @@ Each is 56 across with a 72-unit finger box; 72 apart, so the boxes tile and nev
   lines or 2 + 1), then the same at 28, then a tight 28 (2 + 2, no band); about 35 characters a line at 32, 40 at 28.
   When none fits, the hint is not drawn at all (`hint-fit` fails it). The hint stays unchanged until the child acts
   again; the right act, a right answer, the next question or phase clears it.
+  **keyOnly (§1d "One sentence a screen"):** the bubble holds ONE sentence: a hint replaces the question, no built-in line is shown and there is no
+  pair, band or layout below; the paragraphs here describe the classic bubble.
   The layouts, in order: 32 + 32 (1 + 2, 2 + 1, 1 + 1 lines), then the same at 28, then a tight 28 (2 + 2, no band).
   **Hindi and Gujarati (r43; r41 and r42 began it):** their matras rise about 8 units above the first line's top and
   their tails hang below the line, so their lines take a taller pitch, **1.45 em** (46 at 32, 41 at 28), where English
@@ -397,6 +510,9 @@ _A chapter whose pinned runtime still speaks has this instead of §8's silent le
 
 - Type scale `T`: display 72 · xl 56 · speech 44 · prompt 40 · label 32 · micro 28 (the floor). Weight
   600-700 for quantities and labels, 500 for prompts. Poppins, then the system sans.
+- **Poppins travels inside the tool** (the FONT KIT, the owner 2026-10-16: staging and some devices have none): `runtime/fontkit.tsx`
+  (`node cli.mjs fontkit`, 500/600/700 subset to Latin and Devanagari, about 171 KB) gives the private family `'C4 Poppins'`, first in
+  `FONT`; Gujarati stays on the device's font (Noto Sans Gujarati, then the system's). `check`'s `font-kit` row proves it.
 - Content colours (Okabe-Ito, countable things only): hundred `#0072B2`, ten `#E69F00`, one `#009E73`,
   bead `#CC79A7`, pointer `#D55E00`, line `#2B2B2B`. Chrome comes from the plan: paper, panel, ink, rule,
   dim, accent. Chrome never borrows a content colour.

@@ -1,0 +1,1124 @@
+{
+  "slotId": "M3.S5.T9.C40.2D1",
+  "mediaId": "M3.S5.T9.C40.2D1",
+  "toolId": "other_units",
+  "title": "Rounded Chart Estimator",
+  "component": "M3.S5.T9.C40.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch9_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_9/2dtool/M3.S5.T9.C40.2D1/M3.S5.T9.C40.2D1.tsx",
+  "description": "Sort other units by what they measure, compare each with a metric unit, estimate by adding a chart number a few times, and say about with every answer.",
+  "conceptIds": [
+    "M3.S5.T9.C40",
+    "M3.S5.T9.C41",
+    "M3.S5.T9.C42",
+    "M3.S5.T9.C43"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        1086,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Know what each other unit measures, compare it with a metric unit using the chart, estimate a measure by adding a chart number a few times, and say about with every answer.",
+    "look": "Seven chart cards along the top, three bins, pairs of bars laid side by side, stacks of one card, and an About stamp.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Rounded Chart Estimator' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of copies of a card stacked. It is never a score. The working area is 1086 by 528 at x 64, y 202. The chart lies along the top of the area at y 220 as seven cards, each 140 by 90, from x 90 to x 1070. Each card names one of the other units and gives its rounded metric number with the word about, and the metric side of each card is violet, labelled Unit fact. On the first phase three bins stand along y 560, at x 160, x 480 and x 800, each 240 wide, labelled length, weight and capacity. On the second phase two bar rails run along y 400 and y 470 from x 120, and a tapped card lays its two bars on them roughly to scale, the card's own unit above and the metric unit below. On the third phase the Stack button stands at x 900, y 330, and each tap lays one more copy of the card's bar end to end along y 400, with the metric numbers of the copies listed under the bars for adding. On the fourth phase the About stamp sits at x 900, y 560 and must be pressed onto an answer before it is taken. The measure a question gives is deep blue, labelled Given, the card in use is amber, and the answer turns green, labelled Answer, once it is stamped. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a point key, a delete key, and a key for each metric unit on the chart. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. The measure the question gives, in the unit it is given in, is deep blue, labelled Given or Measure. The measure the working reaches, and a reading on a scale, is green, labelled Answer, Reading or Same measure. The places moved across the unit chart, and the worth of one small mark on a scale, are vermilion, labelled Move or One mark. A unit fact, the unit names on the chart and the other temperature scale are violet, labelled Unit fact, Unit or Other scale. The part taken away, and a part left over after sharing, are rose, labelled Taken away or Left over. The unit, column, mark or step being worked on now is amber. Grey is kept for a zero holding a place open inside a number, labelled Place holder, and for nothing else. Rulers, tapes, jugs, scales, thermometer tubes, chart lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last stack stays on the stage with its sum beside it, stamped About, in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "every card sits in its bin, and the three bins light together",
+        "does": "drags each unit card into the bin of what it measures",
+        "goal": "miles, yards, feet and inches measure length; pounds and ounces measure weight; gallons measure capacity",
+        "says": "What does this unit measure? Drop it in its bin.",
+        "check": "Away from the screen: is a mile used to measure a road, a bag of flour, or a bucket of water?",
+        "feels": "the three bins lighting together once every card is home",
+        "hands": "Write the seven unit names on slips of paper and draw three boxes labelled length, weight and capacity. Put each slip in the box of what it measures.",
+        "tries": "First rung: sort just the mile and the pound. Second rung: add the gallon. Third rung: the same task with the four length units only, before the question's own cards return.",
+        "wrong": [
+          {
+            "why": "a gallon of water is heavy to carry, so it feels like a weight",
+            "move": "drops the gallon card into the weight bin",
+            "screen": "the card stays in the weight bin, and the capacity bin beside it is lit amber with a drawn jug in ink above it"
+          },
+          {
+            "why": "an ounce sounds like a small drink",
+            "move": "drops the ounce card into the capacity bin",
+            "screen": "the card stays where it was put, and the weight bin is lit amber with a drawn balance in ink above it"
+          }
+        ],
+        "screen": "seven unit cards and three bins labelled length, weight and capacity",
+        "soWhat": "miles, yards, feet and inches measure length; pounds and ounces measure weight; gallons measure capacity",
+        "concept": "Units used elsewhere"
+      },
+      {
+        "n": 2,
+        "win": "the longer bar glows, and the chart number is read with the word about",
+        "does": "taps a card and compares the two bars it lays side by side",
+        "goal": "read the chart's rounded number to tell whether a unit is bigger or smaller than a metric unit",
+        "says": "Tap a card. Which bar is longer?",
+        "check": "Away from the screen: if one of a unit is about two of another, which unit is bigger?",
+        "feels": "two bars sliding out side by side and one plainly longer",
+        "hands": "Hold a ruler marked in inches against one marked in centimetres, and say which small unit is longer and how you can tell.",
+        "tries": "First rung: tap the inch card and say which bar is longer. Second rung: do the same for the yard card. Third rung: the same task on one length card and one weight card, before the question's own card returns.",
+        "wrong": [
+          {
+            "why": "the name of a unit feels like it tells its size",
+            "move": "answers that the yard is longer than the metre, because a yard sounds like a big open space",
+            "screen": "the two bars are laid side by side on the rails, and the longer bar glows while the child's answer stays"
+          },
+          {
+            "why": "a bigger number usually means a bigger thing",
+            "move": "answers that the pound is heavier than the kilogram, because the number beside the pound on the kilogram card is bigger",
+            "screen": "the two bars are laid side by side, the kilogram's bar plainly longer, and the card's words are read aloud in the caption"
+          }
+        ],
+        "screen": "the chart cards along the top and two empty bar rails",
+        "soWhat": "read the chart's rounded number to tell whether a unit is bigger or smaller than a metric unit",
+        "concept": "Reading the chart"
+      },
+      {
+        "n": 3,
+        "win": "the stack meets the given length, and the sum turns green",
+        "does": "stacks the card as many times as asked and adds the metric numbers",
+        "goal": "for a few lots of a unit, add the chart number that many times",
+        "says": "Stack it once for each. Now add them.",
+        "check": "Away from the screen: how could you find about how long a few of one unit are, without multiplying?",
+        "feels": "copies of one card stacking up and their numbers adding into one estimate",
+        "hands": "Write a chart number on each of a few cards, one card for each lot asked, and add the cards' numbers with the points in one line.",
+        "tries": "First rung: stack the card twice and add. Second rung: stack it once more and add again. Third rung: the same task on the card with the simplest number, before the question's own card returns.",
+        "wrong": [
+          {
+            "why": "the first card on the stage is not counted as one of the lots",
+            "move": "adds the chart number one time too few",
+            "screen": "the child's answer is drawn as a bar beside the stacked copies, the two lengths seen apart, and the missing copy's place is outlined amber at the end of the stack"
+          },
+          {
+            "why": "in whole-number sums the last digits line up",
+            "move": "lines up the last digits of the chart numbers instead of their points when adding",
+            "screen": "the child's answer is drawn as a bar beside the stacked copies, and the numbers under the bars are shown again with their points in one line"
+          }
+        ],
+        "screen": "one chart card and a Stack button, with a question about a few of that unit",
+        "soWhat": "for a few lots of a unit, add the chart number that many times",
+        "concept": "Adding the chart's numbers"
+      },
+      {
+        "n": 4,
+        "win": "the About stamp lands, and the answer turns green",
+        "does": "builds the estimate, presses the About stamp onto it, and says why",
+        "goal": "every answer made from the chart is about, not exact, because its numbers are rounded",
+        "says": "Is it exact? Stamp it.",
+        "check": "Away from the screen: why do we say about when an answer comes from a rounded number?",
+        "feels": "the About stamp landing and the answer turning green",
+        "hands": "Write an estimate made from the chart on a card, and stamp or write about in front of it. Say why a careful sum can still be only about.",
+        "tries": "First rung: stamp an answer made from one card. Second rung: stamp one made from two copies added. Third rung: the same task on a weight card, before the question's own estimate returns.",
+        "wrong": [
+          {
+            "why": "the adding was careful, so the answer feels exact",
+            "move": "offers the answer without pressing the About stamp onto it",
+            "screen": "the answer waits in the slot uncoloured, and the About stamp beside it is lit amber"
+          },
+          {
+            "why": "the stamp seems to belong on the chart, where the rounding is",
+            "move": "stamps About on a card's metric number and leaves the answer unstamped",
+            "screen": "the stamp mark stays where it landed, and the answer in the slot is lit amber, waiting for its own stamp"
+          }
+        ],
+        "screen": "an estimate waiting in the answer slot and the About stamp beside it",
+        "soWhat": "every answer made from the chart is about, not exact, because its numbers are rounded",
+        "concept": "About, not exact"
+      }
+    ],
+    "delight": "On the fourth phase the About stamp lands with a soft thump, leaves a round inked mark on the answer, and the answer turns green under it.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet sorted or stacked. On the first phase seven unit cards lie above three bins labelled length, weight and capacity. On the second the chart cards lie along the top with two empty bar rails below. On the third one chart card lies beside the Stack button with a question about a few of that unit. On the fourth an estimate waits in the answer slot with the About stamp beside it. One thing moves, once: the first unit card, the first chart card, the Stack button or the About stamp gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any chart card tapped, stacked any number of times and added, with every estimate stamped about. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on what the units measure, their sizes, estimates by adding, and why every answer is about.",
+    "voiceLines": [
+      "Seven cards, from a chart of other units.",
+      "What does this unit measure? Drop it in its bin.",
+      "Tap a card. Which bar is longer?",
+      "Stack it once for each. Now add them.",
+      "Is it exact? Stamp it.",
+      "A new card. Read it with the word about.",
+      "Free play. Tap any card and stack it as often as you like.",
+      "Look at the two bars side by side. Which is longer?",
+      "You used the chart's rounded numbers, and said about every time."
+    ],
+    "observations": [
+      {
+        "why": "these units still measure length, weight or capacity, like the metric ones.",
+        "soWhat": "ask what a unit measures before comparing it with a metric unit.",
+        "observe": "Every card went into one of only three bins."
+      },
+      {
+        "why": "some of these units are bigger than the metric unit on their card and some are smaller.",
+        "soWhat": "the chart's number tells which is bigger, so read it before guessing.",
+        "observe": "On some cards the other unit's bar was longer than the metric bar, and on some it was shorter."
+      },
+      {
+        "why": "a few lots of a unit is that unit added that many times.",
+        "soWhat": "adding the chart's number gives an estimate without multiplying a decimal.",
+        "observe": "Stacking a card a few times and adding its numbers gave the estimate."
+      },
+      {
+        "why": "the chart's numbers are rounded, so anything made from them is close, not exact.",
+        "soWhat": "every answer from this chart is said with about.",
+        "observe": "No answer could be taken until the About stamp was on it."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "seven unit cards and three bins labelled length, weight and capacity",
+        "win": "every card sits in its bin, and the three bins light together",
+        "traceback": "The cards stay where the child put them; each card's own bin lights amber with a dashed copy of the card in it.",
+        "ladder": [
+          "Each card goes in the bin of what it measures.",
+          "Which card tells how heavy something is?",
+          "Capacity is how much a jug or a pot can hold.",
+          "A road is measured in miles, and a parcel is weighed in pounds.",
+          "Ask of each card: could you pour it, weigh it or measure how long it is?"
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the chart cards along the top and two empty bar rails",
+        "win": "the longer bar glows, and the chart number is read with the word about",
+        "traceback": "The question's card lays its two bars side by side, the longer bar glows and its words are written under them.",
+        "ladder": [
+          "Tap the blinking gallon card.",
+          "Tap the blinking inch card.",
+          "Tap the blinking yard card.",
+          "Which bar reaches further to the right, the gallon's or the litre's?",
+          "Read the gallon card: how many litres does one gallon fill?"
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "one chart card and a Stack button, with a question about a few of that unit",
+        "win": "the stack meets the given length, and the sum turns green",
+        "traceback": "The stack fills to the given length (a missing copy outlined amber) and the column adds the copies' numbers to the answer.",
+        "ladder": [
+          "Add 0.305 three times, once for each foot.",
+          "Stack the inch card twice and add its numbers.",
+          "Add 1.61 once for each mile, not 2 + 1.61.",
+          "Keep the points of the three 0.305 in one line.",
+          "Add the thousandths first: 5 + 5 + 5 is 15."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "an estimate waiting in the answer slot and the About stamp beside it",
+        "win": "the About stamp lands, and the answer turns green",
+        "traceback": "The column adds the copies' numbers to the answer, which waits under the About stamp.",
+        "ladder": [
+          "Add 2.2 once for each kilogram of the parcel.",
+          "Add 3.79 three times, once for each gallon.",
+          "Add 28.35 and 28.35 with their points in one line.",
+          "Line up the points of the three 2.2 before adding.",
+          "Add the three 2 tenths first, then the three 2 ones."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "chart": {
+      "mile": {
+        "top": "1 mile",
+        "num": "1.61",
+        "unit": "km",
+        "up": "1 mile",
+        "low": "1 km",
+        "ratio": 1.61
+      },
+      "yard": {
+        "top": "1 yard",
+        "num": "0.914",
+        "unit": "m",
+        "up": "1 yard",
+        "low": "1 m",
+        "ratio": 0.914
+      },
+      "foot": {
+        "top": "1 foot",
+        "num": "0.305",
+        "unit": "m",
+        "up": "1 foot",
+        "low": "1 m",
+        "ratio": 0.305
+      },
+      "inch": {
+        "top": "1 inch",
+        "num": "2.54",
+        "unit": "cm",
+        "up": "1 inch",
+        "low": "1 cm",
+        "ratio": 2.54
+      },
+      "pound": {
+        "top": "1 kg",
+        "num": "2.2",
+        "unit": "pounds",
+        "up": "1 pound",
+        "low": "1 kg",
+        "ratio": 0.45454545454545453
+      },
+      "ounce": {
+        "top": "1 ounce",
+        "num": "28.35",
+        "unit": "g",
+        "up": "1 ounce",
+        "low": "1 g",
+        "ratio": 28.35
+      },
+      "gallon": {
+        "top": "1 gallon",
+        "num": "3.79",
+        "unit": "L",
+        "up": "1 gallon",
+        "low": "1 L",
+        "ratio": 3.79
+      }
+    },
+    "kinds": {
+      "mile": "length",
+      "yard": "length",
+      "foot": "length",
+      "inch": "length",
+      "pound": "weight",
+      "ounce": "weight",
+      "gallon": "capacity"
+    },
+    "bins": [
+      "length",
+      "weight",
+      "capacity"
+    ],
+    "rows": [
+      [
+        "mile",
+        "yard",
+        "foot",
+        "inch"
+      ],
+      [
+        "pound",
+        "ounce",
+        "gallon"
+      ]
+    ],
+    "freeMax": 4,
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M3.S5.T9.C40:OU1",
+        "kind": "sort",
+        "pad": "enter",
+        "cards": [
+          "mile",
+          "pound",
+          "inch",
+          "gallon"
+        ],
+        "bin": "length",
+        "all": true,
+        "answer": "gallon=capacity,inch=length,mile=length,pound=weight",
+        "near": "gallon=length,inch=length,mile=length,pound=length",
+        "forms": [
+          "miles and inches"
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M3.S5.T9.C40:1",
+        "kind": "sort",
+        "pad": "enter",
+        "cards": [
+          "mile",
+          "yard",
+          "foot",
+          "inch",
+          "pound",
+          "ounce",
+          "gallon"
+        ],
+        "bin": "weight",
+        "some": [
+          "pound",
+          "ounce"
+        ],
+        "answer": "pound=weight",
+        "near": "mile=weight",
+        "ladder": [
+          "Think of a shop that sells rice or sugar by weight.",
+          "Only two cards are weights: think of what a kitchen scale shows."
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M3.S5.T9.C40:2",
+        "kind": "sort",
+        "pad": "enter",
+        "cards": [
+          "mile",
+          "gallon",
+          "ounce"
+        ],
+        "bin": "capacity",
+        "need": [
+          "gallon"
+        ],
+        "answer": "gallon=capacity",
+        "near": "ounce=capacity",
+        "ladder": [
+          "Petrol is sold by this unit in some countries.",
+          "A jug of milk is measured in this kind of unit."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M3.S5.T9.C41:OU2",
+        "kind": "compare",
+        "card": "gallon",
+        "answer": "more",
+        "near": "less",
+        "result": "More than 1 L",
+        "missLaid": "The top bar is one gallon and the bottom bar is one litre."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M3.S5.T9.C41:3",
+        "kind": "compare",
+        "card": "inch",
+        "answer": "longer",
+        "near": "shorter",
+        "result": "Longer than 1 cm",
+        "missLaid": "Look again at which of the two bars is longer.",
+        "ladder": [
+          "The top bar is the inch and the bottom bar is the centimetre.",
+          "The inch card says about 2.54 cm: is 2.54 more than 1?"
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M3.S5.T9.C41:4",
+        "kind": "compare",
+        "card": "yard",
+        "answer": "shorter",
+        "near": "longer",
+        "result": "Shorter than 1 m",
+        "missLaid": "A yard sounds big, but read its card first.",
+        "ladder": [
+          "The top bar is the yard: does it end before the metre's bar?",
+          "Is 0.914 more or less than 1 whole metre?"
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M3.S5.T9.C42:OU3",
+        "kind": "stack",
+        "card": "foot",
+        "count": 3,
+        "given": "3 feet",
+        "answer": "0.915",
+        "near": "3.305"
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M3.S5.T9.C42:5",
+        "kind": "stack",
+        "card": "inch",
+        "count": 2,
+        "given": "2 inches",
+        "answer": "5.08",
+        "near": "4.54",
+        "ladder": [
+          "Line up the points of 2.54 and 2.54 before you add.",
+          "Add the hundredths first: 4 + 4 is 8."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M3.S5.T9.C42:6",
+        "kind": "stack",
+        "card": "mile",
+        "count": 2,
+        "given": "2 miles",
+        "answer": "3.22",
+        "near": "3.61",
+        "ladder": [
+          "Write 1.61 under 1.61 with the points in one line.",
+          "Add the hundredths, then the tenths, and carry when you pass 9."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M3.S5.T9.C43:OU4",
+        "kind": "about",
+        "card": "pound",
+        "count": 3,
+        "given": "3 kg",
+        "answer": "6.6",
+        "near": "5.2"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M3.S5.T9.C43:7",
+        "kind": "about",
+        "card": "gallon",
+        "count": 3,
+        "given": "3 gallons",
+        "answer": "11.37",
+        "near": "6.79",
+        "ladder": [
+          "Keep the points of the three 3.79 in one line.",
+          "9 + 9 + 9 hundredths is 27: write 7 and carry 2."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M3.S5.T9.C43:8",
+        "kind": "about",
+        "card": "ounce",
+        "count": 2,
+        "given": "2 ounces",
+        "answer": "56.7",
+        "alt": "56.70",
+        "near": "30.35",
+        "ladder": [
+          "5 + 5 hundredths is 10: write 0 and carry 1.",
+          "Then 3 + 3 tenths and the carried 1 make 7 tenths."
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The cards stay where the child put them; each card's own bin lights amber with a dashed copy of the card in it.",
+      "Phase 2: The question's card lays its two bars side by side, the longer bar glows and its words are written under them.",
+      "Phase 3: The stack fills to the given length (a missing copy outlined amber) and the column adds the copies' numbers to the answer.",
+      "Phase 4: The column adds the copies' numbers to the answer, which waits under the About stamp."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Seven cards, from a chart of other units.",
+    "onFreePlay": "Free play: tap any card, then stack it up to four times.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You used the chart's rounded numbers, and said about every time.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M3.S5.T9.C40:OU1",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "Which of these measure length: miles, pounds, inches and gallons?",
+            "question": {
+              "en": "Sort these four cards to find which units measure length."
+            },
+            "ask": {
+              "en": "Which measure length?"
+            },
+            "answer": "gallon=capacity,inch=length,mile=length,pound=weight",
+            "planAnswer": "Miles and inches.",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M3.S5.T9.C40:1",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "Name one unit of weight on the chart that is not a metric unit.",
+            "question": {
+              "en": "Name one unit of weight on the chart by dragging it into the weight bin."
+            },
+            "ask": {
+              "en": "A unit of weight?"
+            },
+            "answer": "pound=weight",
+            "planAnswer": "The pound or the ounce",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M3.S5.T9.C40:2",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "Which of these measures capacity: a mile, a gallon or an ounce?",
+            "question": {
+              "en": "Drop the card that measures capacity into the capacity bin."
+            },
+            "ask": {
+              "en": "Which is capacity?"
+            },
+            "answer": "gallon=capacity",
+            "planAnswer": "A gallon",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M3.S5.T9.C41:OU2",
+            "worked": false,
+            "kind": "compare",
+            "planQuestion": "The chart gives 1 gallon as about 3.79 L. Does a gallon hold more or less than a litre?",
+            "question": {
+              "en": "Does a gallon hold more or less than a litre?"
+            },
+            "ask": {
+              "en": "More or less than 1 L?"
+            },
+            "answer": "more",
+            "planAnswer": "More. A gallon holds a little less than 4 litres.",
+            "choices": [
+              "more",
+              "less"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M3.S5.T9.C41:3",
+            "worked": false,
+            "kind": "compare",
+            "planQuestion": "Is an inch longer or shorter than a centimetre?",
+            "question": {
+              "en": "Is an inch longer or shorter than a centimetre?"
+            },
+            "ask": {
+              "en": "Longer or shorter than 1 cm?"
+            },
+            "answer": "longer",
+            "planAnswer": "Longer: the chart gives 1 inch as about 2.54 cm",
+            "choices": [
+              "longer",
+              "shorter"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M3.S5.T9.C41:4",
+            "worked": false,
+            "kind": "compare",
+            "planQuestion": "The chart gives 1 yard as about 0.914 m. Is a yard longer or shorter than a metre?",
+            "question": {
+              "en": "Is a yard longer or shorter than a metre?"
+            },
+            "ask": {
+              "en": "Longer or shorter than 1 m?"
+            },
+            "answer": "shorter",
+            "planAnswer": "Shorter, a little less than 1 m",
+            "choices": [
+              "longer",
+              "shorter"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M3.S5.T9.C42:OU3",
+            "worked": false,
+            "kind": "stack",
+            "planQuestion": "A plank is about 3 feet long. About how many metres is that?",
+            "question": {
+              "en": "A plank is about 3 feet long, so about how many metres is that?"
+            },
+            "ask": {
+              "en": "About how many metres is 3 feet?"
+            },
+            "answer": "0.915",
+            "planAnswer": "About 0.915 m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M3.S5.T9.C42:5",
+            "worked": false,
+            "kind": "stack",
+            "planQuestion": "A book is about 2 inches thick. About how many centimetres is that?",
+            "question": {
+              "en": "A book is about 2 inches thick, so about how many centimetres is that?"
+            },
+            "ask": {
+              "en": "About how many cm is 2 inches?"
+            },
+            "answer": "5.08",
+            "planAnswer": "About 5.08 cm, because 2.54 + 2.54 = 5.08",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M3.S5.T9.C42:6",
+            "worked": false,
+            "kind": "stack",
+            "planQuestion": "A walk is about 2 miles long. About how many kilometres is that?",
+            "question": {
+              "en": "A walk is about 2 miles long, so about how many kilometres is that?"
+            },
+            "ask": {
+              "en": "About how many km is 2 miles?"
+            },
+            "answer": "3.22",
+            "planAnswer": "About 3.22 km, because 1.61 + 1.61 = 3.22",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M3.S5.T9.C43:OU4",
+            "worked": false,
+            "kind": "about",
+            "planQuestion": "A parcel weighs about 3 kg. About how many pounds is that, and why is the answer only about?",
+            "question": {
+              "en": "A parcel weighs about 3 kg, so about how many pounds is that?"
+            },
+            "ask": {
+              "en": "About how many pounds is 3 kg?"
+            },
+            "answer": "6.6",
+            "planAnswer": "About 6.6 pounds. The chart's numbers are rounded, so the answer is close, not exact.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M3.S5.T9.C43:7",
+            "worked": false,
+            "kind": "about",
+            "planQuestion": "A pot holds about 3 gallons. About how many litres is that, and why do we say about?",
+            "question": {
+              "en": "A pot holds about 3 gallons, so about how many litres is that?"
+            },
+            "ask": {
+              "en": "About how many litres is 3 gallons?"
+            },
+            "answer": "11.37",
+            "planAnswer": "About 11.37 L, because 3.79 + 3.79 + 3.79 = 11.37, and the chart's numbers are rounded",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M3.S5.T9.C43:8",
+            "worked": false,
+            "kind": "about",
+            "planQuestion": "A letter weighs about 2 ounces. About how many grams is that, and is the answer exact?",
+            "question": {
+              "en": "A letter weighs about 2 ounces, so about how many grams is that?"
+            },
+            "ask": {
+              "en": "About how many grams is 2 ounces?"
+            },
+            "answer": "56.7",
+            "planAnswer": "About 56.7 g, because 28.35 + 28.35 = 56.7. It is not exact, because the chart's numbers are rounded",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "other_units",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "other_units",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Units used elsewhere",
+        "conceptId": "M3.S5.T9.C40",
+        "objectiveIds": [
+          "O15"
+        ],
+        "items": [
+          "M3.S5.T9.C40:OU1",
+          "M3.S5.T9.C40:1",
+          "M3.S5.T9.C40:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Reading the chart",
+        "conceptId": "M3.S5.T9.C41",
+        "objectiveIds": [
+          "O15"
+        ],
+        "items": [
+          "M3.S5.T9.C41:OU2",
+          "M3.S5.T9.C41:3",
+          "M3.S5.T9.C41:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Adding the chart's numbers",
+        "conceptId": "M3.S5.T9.C42",
+        "objectiveIds": [
+          "O16"
+        ],
+        "items": [
+          "M3.S5.T9.C42:OU3",
+          "M3.S5.T9.C42:5",
+          "M3.S5.T9.C42:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "About, not exact",
+        "conceptId": "M3.S5.T9.C43",
+        "objectiveIds": [
+          "O16"
+        ],
+        "items": [
+          "M3.S5.T9.C43:OU4",
+          "M3.S5.T9.C43:7",
+          "M3.S5.T9.C43:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "bins",
+    "card",
+    "fcard",
+    "active",
+    "copies",
+    "stamped",
+    "stampedNow"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, bins, card, fcard, active, copies, stamped, stampedNow, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "other_units"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M3.S5.T9.C40.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Seven cards, from a chart of other units."
+    },
+    {
+      "en": "What does this unit measure? Drop it in its bin."
+    },
+    {
+      "en": "Tap a card. Which bar is longer?"
+    },
+    {
+      "en": "Stack it once for each. Now add them."
+    },
+    {
+      "en": "Is it exact? Stamp it."
+    },
+    {
+      "en": "A new card. Read it with the word about."
+    },
+    {
+      "en": "Free play. Tap any card and stack it as often as you like."
+    },
+    {
+      "en": "Look at the two bars side by side. Which is longer?"
+    },
+    {
+      "en": "You used the chart's rounded numbers, and said about every time."
+    }
+  ],
+  "build": {
+    "source": "04688404:627983",
+    "runtime": "class5/runtime/frozen/r65/runtime.tsx",
+    "runtimeVersion": "r65",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T14:13:15.884Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-18T14:13:15.777Z"
+    },
+    "tsxBytes": 559489,
+    "tsxMd5": "7d2b23a9db81021c1b7811ca3e17d497"
+  }
+}

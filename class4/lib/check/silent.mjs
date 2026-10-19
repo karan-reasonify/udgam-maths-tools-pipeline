@@ -139,6 +139,8 @@ export function stepsShape(phases, m) {
    one line and one line fits (112 at 32, 102 at 28; one line and two lines need 158 at 32 and 143 at 28). */
 export const HINT_LAYOUTS = [[32, 1, 32, 2, 0], [32, 2, 32, 1, 0], [32, 1, 32, 1, 0], [28, 1, 28, 2, 0], [28, 2, 28, 1, 0], [28, 1, 28, 1, 0], [28, 2, 28, 2, 1]];
 export const DEV_RULE = { pit: (s) => Math.round(s * 1.45), gap: 4, pad: 4, top: 12, noTight: true };
+/* class 4 r27, a keyOnly bubble's Hindi and Gujarati (the runtime's FIT_KEY, calibrated in Poppins): pitch devPit em, the block's top devTop em + 4 */
+export const devRuleKey = (F) => ({ pit: (s) => Math.round(s * F.devPit), gap: 4, pad: 4, top: (s) => Math.round(s * F.devTop) + 4, noTight: true });
 /* the runtime's wrapText: greedy, at spaces, a word longer than the line stands alone */
 export function wrapAt(s, max) {
   const out = [];
@@ -153,13 +155,20 @@ export function wrapAt(s, max) {
 }
 const perLine = (size, w) => Math.max(8, Math.floor(w / (size * 0.54)));
 /* null when no layout fits (the hint is drawn alone); else { size, lines, hintLines, tight }. rule: DEV_RULE for Hindi and
-   Gujarati on a runtime that has it, else null (the line counts alone decide) */
-export function hintLayout(instruction, hint, rule = null) {
-  for (const [is, il, hs, hn, tight] of HINT_LAYOUTS) {
+   Gujarati on a runtime that has it, else null (the line counts alone decide). spec (class 4 r27, a keyOnly or navDots tool: the
+   runtime's own footerBoxes and FIT_KEY / FIT_CLASSIC, read through the model): { opts, iw, hw, maxH }, the layouts and the
+   bubble's widths and height; English is then held to the runtime's height rule too (size + 6 a line, gap 6, band 8; tight:
+   size + 1, gap 4, no band). Without a spec the classic bubble is judged exactly as before. */
+export function hintLayout(instruction, hint, rule = null, spec = null) {
+  const opts = spec ? spec.opts : HINT_LAYOUTS, iw = spec ? spec.iw : 612, hw = spec ? spec.hw : 592, maxH = spec ? spec.maxH : 144 - 6;
+  /* spec.em: the width of a character in em when it is not the classic 0.54 (a keyOnly bubble in Hindi or Gujarati: FIT_KEY.devEm) */
+  const pl = (size, w) => (spec && spec.em ? Math.max(8, Math.floor(w / (size * spec.em))) : perLine(size, w));
+  for (const [is, il, hs, hn, tight] of opts) {
     if (rule && rule.noTight && tight) continue;
-    const a = wrapAt(instruction, perLine(is, 612)).length, h = wrapAt(hint, perLine(hs, 592)).length;
+    const a = wrapAt(instruction, pl(is, iw)).length, h = wrapAt(hint, pl(hs, hw)).length;
     if (a > il || h > hn) continue;
-    if (rule && a * rule.pit(is) + rule.gap + h * rule.pit(hs) + rule.pad + rule.top > 144 - 6) continue;
+    if (rule && a * rule.pit(is) + rule.gap + h * rule.pit(hs) + rule.pad + (typeof rule.top === "function" ? rule.top(is) : rule.top) > maxH) continue;
+    if (spec && !rule && a * (tight ? is + 1 : is + 6) + (tight ? 4 : 6) + h * (tight ? hs + 1 : hs + 6) + (tight ? 0 : 8) > maxH) continue;
     return { size: is, lines: a, hintLines: h, tight: !!tight };
   }
   return null;
@@ -191,7 +200,7 @@ export function judgeHintFit(m, TR, opts = {}) {
     n++;
     if (h.length > 80) { fail.push(`${tag}: the hint is ${h.length} characters (at most 80): ${cut(h, 40)}`); continue; }
     for (const piece of bubblePieces(instr, m)) {
-      const L = hintLayout(piece, h);
+      const L = hintLayout(piece, h, null, opts.spec || null);
       if (!L) fail.push(`${tag}: no bubble layout fits ${cut(piece, 30)} with the hint ${cut(h, 30)} (the hint would not be drawn)`);
       else if (L.tight) warn.push(`${tag}: only the tight layout fits ${cut(piece, 30)} with ${cut(h, 30)} (4 lines, no band)`);
     }
@@ -201,10 +210,59 @@ export function judgeHintFit(m, TR, opts = {}) {
       const hh = norm(m.speakableIn(m.lineFor(hint, l, TR), l));
       const ps = (m.pieces ? m.pieces(m.speakableIn(m.lineFor(instr, l, TR), l)) : [m.lineFor(instr, l, TR)]).map(norm).filter(Boolean);
       for (const piece of ps) {
-        const L = hintLayout(piece, hh, opts.devRule || null);
+        const L = hintLayout(piece, hh, opts.devRule || null, opts.spec ? { ...opts.spec, em: opts.spec.devEm || null } : null);
         if (!L) warn.push(`${tag} (${l}): no banded layout fits ${cut(piece, 24)} with ${cut(hh, 24)} (the hint is drawn alone; shorten the ${l} line so each takes one bubble line)`);
         else if (L.tight) warn.push(`${tag} (${l}): only the tight layout fits`);
       }
+    }
+  }
+  return { fail, warn, n };
+}
+
+/* ── hint-fit, ONE SENTENCE A SCREEN (source; keyOnly on a runtime with caps.oneSentence, LAYOUT §1d) ──────────────────────
+   A hint REPLACES the question in the bubble, so there is no pair to lay out: each hint (every rung a question can show, every
+   step's hint) is judged ALONE, the way the runtime's Footer lays out a plain line (FIT_KEY.plain: 56 / 50 / 46 / 46 over four /
+   40 over five, the characters a line scaled to the bubble, the ink of the block 8 inside the bubble). English FAILS when no
+   layout fits (the last one would be drawn whole and spill) or the hint is over 80 characters, and WARNS when only the smallest
+   layout fits; Hindi and Gujarati (TR) warn only, laid out by their own rule (devEm, devPit, inkDev). spec = { plain, inkEn, inkDev,
+   devEm, devPit, bw, bh } (the bubble's width and height from the runtime's footerBoxes). */
+export function plainLayout(text, spec, dev) {
+  const em = dev ? spec.devEm : 0.54;
+  const opts = spec.plain.filter((o) => !o[3] || o[3] === (dev ? "dev" : "en"));
+  const per = (c) => Math.floor((c * (spec.bw - 104) * (0.54 / em)) / 552);
+  const lh = (s, k) => (dev ? Math.round(s * spec.devPit) : k > 0 ? s + 6 : s + 8);
+  const [up, down] = dev ? spec.inkDev : spec.inkEn;
+  let pk = opts.findIndex((o, k) => { const n = wrapAt(text, per(o[2])).length; return n <= o[1] && (n - 1) * lh(o[0], k) + (up + down) * o[0] <= spec.bh - 8; });
+  const over = pk < 0;
+  if (over) pk = opts.length - 1;
+  return { size: opts[pk][0], lines: wrapAt(text, per(opts[pk][2])).length, over, smallest: pk === opts.length - 1 };
+}
+export function judgeHintAlone(m, TR, spec) {
+  const fail = [], warn = [];
+  let n = 0;
+  const en = (s) => norm(m.speakable ? m.speakable(enOf(s)) : enOf(s));
+  const langs = ["hi", "gu"].filter((l) => TR && TR[l] && Object.keys(TR[l]).length && m.speakableIn && m.lineFor);
+  const hints = [];
+  for (const p of m.PHASES || []) {
+    const phaseLad = p.ladder || [];
+    (p.items || []).forEach((it, k) => {
+      const lad = it.ladder && it.ladder.length ? it.ladder : phaseLad;
+      const rungs = [...new Set([enOf(it.miss) || enOf(lad[0]), enOf(lad[0]) || enOf(it.miss), enOf(lad[1]) || enOf(lad[0])].filter(Boolean))];
+      for (const r of rungs) hints.push({ tag: `phase ${p.n} question ${k + 1}`, hint: r });
+    });
+    (Array.isArray(p.steps) ? p.steps : []).forEach((s, k) => { if (s && s.hint) hints.push({ tag: `phase ${p.n} step ${k + 1}`, hint: s.hint }); });
+  }
+  for (const { tag, hint } of hints) {
+    const h = en(hint);
+    n++;
+    if (h.length > 80) { fail.push(`${tag}: the hint is ${h.length} characters (at most 80): ${cut(h, 40)}`); continue; }
+    const L = plainLayout(h, spec, false);
+    if (L.over) fail.push(`${tag}: the hint ${cut(h, 30)} fits no bubble layout alone (it would spill the bubble)`);
+    else if (L.smallest) warn.push(`${tag}: only the smallest layout (${L.size} over ${L.lines} lines) fits the hint ${cut(h, 30)}`);
+    for (const l of langs) {
+      if (!(typeof hint === "string" && TR[l][hint])) continue;
+      const hh = norm(m.speakableIn(m.lineFor(hint, l, TR), l)), D = plainLayout(hh, spec, true);
+      if (D.over) warn.push(`${tag} (${l}): the hint ${cut(hh, 24)} fits no bubble layout alone (shorten the ${l} line)`);
     }
   }
   return { fail, warn, n };
@@ -310,13 +368,16 @@ export function judgeHintPinned(rec, phase, item, m, tag = `phase ${phase.n}`) {
   if (!isQ(hit.instruction)) bad.push(`${tag}: with the hint up, the instruction is ${cut(hit.instruction)}, not the question's line (it must stay pinned)`);
   if (!hit.domHint) bad.push(`${tag}: the hint is in getState() but not drawn in the bubble (no layout fits it: see hint-fit)`);
   else if (norm(hit.domHint) !== want1) bad.push(`${tag}: the bubble's hint reads ${cut(hit.domHint)}, getState().hint ${cut(want1)}`);
-  if (!hit.domInstr || !isQ(hit.domInstr)) bad.push(`${tag}: with the hint up, the bubble's instruction reads ${cut(hit.domInstr)}, not the question's line`);
+  /* ONE SENTENCE A SCREEN (m.oneSentence, keyOnly): the hint REPLACES the question on the bubble: only the hint is drawn */
+  if (m.oneSentence) { if (hit.domInstr) bad.push(`${tag}: with the hint up the bubble still draws the question ${cut(hit.domInstr)} (one sentence a screen: the hint replaces it)`); }
+  else if (!hit.domInstr || !isQ(hit.domInstr)) bad.push(`${tag}: with the hint up, the bubble's instruction reads ${cut(hit.domInstr)}, not the question's line`);
   if (rec.nearMiss !== undefined && hit.typed !== undefined && String(hit.typed) !== String(rec.nearMiss)) bad.push(`${tag}: the child's answer ${cut(rec.nearMiss, 20)} was not in the slot while the hint showed (${cut(hit.typed, 20)})`);
   const a = rec.after4s;
   if (a) {
     if (norm(a.hint) !== want1) bad.push(`${tag}: 4 s after the miss the hint is ${cut(a.hint)}, want the same ${cut(want1)} (it stays until the child acts again)`);
     if (!isQ(a.instruction)) bad.push(`${tag}: 4 s after the miss the instruction is ${cut(a.instruction)}, not the question's line`);
     if (!a.domHint) bad.push(`${tag}: 4 s after the miss the hint is no longer drawn`);
+    else if (m.oneSentence && a.domInstr) bad.push(`${tag}: 4 s after the miss the bubble draws the question ${cut(a.domInstr)} beside the hint`);
   }
   const b = rec.miss2;
   if (b) {
@@ -372,6 +433,7 @@ export function judgeGuideSteps(rec, phase, m) {
       if (norm(x.hint) !== wantH) bad.push(`${tag}: after a wrong act getState().hint is ${cut(x.hint)}, want step 1's hint ${cut(wantH)}`);
       else if (!x.domHint || norm(x.domHint) !== wantH) bad.push(`${tag}: after a wrong act the hint is not drawn in the bubble (${cut(x.domHint)})`);
       if (!pinned(x.instruction)) bad.push(`${tag}: after a wrong act the instruction is ${cut(x.instruction)}, not step 1's (it must stay pinned)`);
+      if (m.oneSentence && x.domInstr) bad.push(`${tag}: after a wrong act the bubble draws step 1's line ${cut(x.domInstr)} beside the hint (one sentence a screen: the hint replaces it)`);
       if (x.after3s && (norm(x.after3s.hint) !== wantH || !pinned(x.after3s.instruction))) bad.push(`${tag}: 3 s after a wrong act the hint or the instruction changed (${cut(x.after3s.hint)} / ${cut(x.after3s.instruction)})`);
       const a0 = acts[0];
       if (a0 && a0.hint && a0.hintKind !== "type") bad.push(`${tag}: the right act did not clear the hint (${cut(a0.hint)})`);
@@ -401,7 +463,8 @@ export function judgeClassroom(r, ctx = {}) {
   want(r.ring, "no your-turn ring on the working area when the question opened");
   const ms = r.miss || {};
   want(ms.hint && ms.hintMs !== undefined && ms.hintMs <= 700, `after a miss the hint did not show within 700 ms (${ms.hintMs} ms, ${JSON.stringify(ms.hint)})`);
-  want(ms.domHint && ms.domInstr, "after a miss the bubble did not draw both the pinned instruction and the hint");
+  if (ctx.oneSentence) want(ms.domHint && !ms.domInstr, "after a miss the bubble did not draw the hint alone (one sentence a screen: the hint replaces the question)");
+  else want(ms.domHint && ms.domInstr, "after a miss the bubble did not draw both the pinned instruction and the hint");
   want(!ms.held, "after a miss something waited for a tap (the hint must show by itself)");
   /* (a long win line or closing line of the tool's own pages like any long line: its parked pieces are not holds; the
      elapsed times below prove that the next question and phase come by themselves) */
@@ -568,13 +631,14 @@ export function printedLines(M, toolSrc = "", opts = {}) {
   /* r44 (opts.simpleSummary): the summary page says UI.summaryLine, so FINISH_LINE and the last phase's closing line are
      never shown: not asked (a tool may keep or drop them; the learned lines still print in the rows) */
   const simple = !!opts.simpleSummary;
+  /* opts.closingShown (ONE SENTENCE A SCREEN, keyOnly): the last phase's closing is the bubble's line at its last right answer, so it IS shown */
   add(M.TOOL_NAME); if (!simple) add(M.FINISH_LINE); add(M.FREE_LINE); add(M.START_HOOK);
   if (!(P[0] && Array.isArray(P[0].steps) && P[0].steps.length)) add(M.OPENING);
   for (const p of P) {
     const steps = Array.isArray(p.steps) && p.steps.length ? p.steps : null;
     add(p.concept);
     if (steps) add(steps.flatMap((s) => (s ? [s.say, s.hint] : []))); else add(p.says);
-    add(p.demoLines); add(p.ladder); if (!(simple && p === P[P.length - 1])) add(p.closing); add(p.learned);
+    add(p.demoLines); add(p.ladder); if (!(simple && !opts.closingShown && p === P[P.length - 1])) add(p.closing); add(p.learned);
     for (const it of p.items || []) {
       add(it.say); add(it.ask); add(it.miss); add(it.ladder);   /* r24: a question's own ladder */
       if (Array.isArray(it.choices)) add(it.choices.map((c) => c && c.label));
@@ -676,7 +740,7 @@ export function judgeRealWrong(runs = [], phases = [], m = {}) {
         const pinned = (t) => bubblePieces(s.say, m).some((p) => shows(t, p));
         if (norm(a.hint) !== wantH) bad.push(`${at}: 300 ms after the wrong act getState().hint is ${cut(a.hint)}, want the step's hint ${cut(wantH)}`);
         else if (norm(x.domHint) !== wantH) bad.push(`${at}: the hint is in getState() but the bubble draws ${cut(x.domHint)}`);
-        if (!pinned(a.instruction) || !pinned(x.domInstr)) bad.push(`${at}: after the wrong act the instruction is ${cut(a.instruction || x.domInstr)}, not the step's (it must stay pinned)`);
+        if (!pinned(a.instruction) || (m.oneSentence ? !!x.domInstr : !pinned(x.domInstr))) bad.push(`${at}: after the wrong act the instruction is ${cut(a.instruction || x.domInstr)}, ${m.oneSentence ? "or the bubble still draws the step's line beside the hint (one sentence a screen: the hint replaces it)" : "not the step's (it must stay pinned)"}`);
         if (a.stage !== "demo" || a.step !== x.k) bad.push(`${at}: the wrong act moved the lesson (stage ${a.stage}, guideStep ${a.step})`);
       }
       const nx = x.next || {}, lastStep = x.k + 1 >= st.length;
@@ -741,7 +805,7 @@ export function judgeHintLines(frames = []) {
    (UI.typeIt), drawn in the neutral band: its band and bar colours are not the hint's accent ones (the wrong choice's).
    Returns { bad, notes }. */
 const CHOICE_HINT = "builder: nothing to write; the line and its band are the runtime's (a choice question needs choices: [...] on the item)";
-export function judgeChoiceLine(recs = [], UI = {}) {
+export function judgeChoiceLine(recs = [], UI = {}, { oneSentence = false } = {}) {
   const bad = [], notes = [];
   for (const r of recs) {
     const tag = r.lang || "en", U = UI[tag] || {};
@@ -750,6 +814,8 @@ export function judgeChoiceLine(recs = [], UI = {}) {
     if (!r.answerKey) { notes.push("no Answer key (not a board tool)"); continue; }
     if (U.typeIt && norm(r.line) === norm(U.typeIt)) bad.push(`${tag}: the Answer key on a choice question shows ${cut(r.line)} (UI.typeIt: the child picks, nothing is typed)`);
     else if (U.pickIt && norm(r.line) !== norm(U.pickIt)) bad.push(`${tag}: the Answer key on a choice question shows ${cut(r.line)}, want UI.pickIt ${cut(U.pickIt)}`);
+    /* ONE SENTENCE A SCREEN (oneSentence, keyOnly): the built-in choose line is not drawn (the keys blink instead); the state still holds it */
+    if (oneSentence) { if (norm(r.lineDom)) bad.push(`${tag}: the bubble draws the built-in line ${cut(r.lineDom)} (one sentence a screen: only the question)`); continue; }
     if (norm(r.lineDom) !== norm(r.line)) bad.push(`${tag}: the bubble draws ${cut(r.lineDom)}, getState().hint ${cut(r.line)}`);
     const lb = r.lineBand || {}, mb = r.missBand || {};
     if (!r.lineBand) bad.push(`${tag}: the line is not drawn in a band`);
@@ -769,7 +835,9 @@ export function judgeChoiceLine(recs = [], UI = {}) {
    `poppers`, the stage boxes of the popper cones at first sight). Returns { bad, notes }. */
 export const BUBBLE_BOX = { x: 254, y: 748, w: 656, h: 144 }, PILLS_BOX = { x: 930, y: 782, w: 630, h: 18 };
 const hits = (a, b) => a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
-export function judgePartyExtras(dot, party) {
+/* boxes (class 4 r27, a keyOnly or navDots tool): { bubble, pills } where the runtime puts them (footerBoxes; pills = the drawn dots) */
+export function judgePartyExtras(dot, party, boxes = null) {
+  const BUBBLE = (boxes && boxes.bubble) || BUBBLE_BOX, PILLS = (boxes && boxes.pills) || PILLS_BOX;
   const bad = [], notes = [];
   if (!dot || dot.error) bad.push(`the party-dot run failed (${dot && dot.error})`);
   else if (!dot.seen) bad.push("the party-dot run saw no party after phase 1's last right answer");
@@ -783,8 +851,8 @@ export function judgePartyExtras(dot, party) {
   let seen = 0;
   for (const p of pick) for (const b of p.poppers || []) {
     seen++;
-    if (hits(b, BUBBLE_BOX)) bad.push(`phase ${p.phase}: a popper (${b.x},${b.y} ${b.w}x${b.h}) is over the bubble`);
-    if (hits(b, PILLS_BOX)) bad.push(`phase ${p.phase}: a popper (${b.x},${b.y} ${b.w}x${b.h}) is over the phase pills`);
+    if (hits(b, BUBBLE)) bad.push(`phase ${p.phase}: a popper (${b.x},${b.y} ${b.w}x${b.h}) is over the bubble`);
+    if (hits(b, PILLS)) bad.push(`phase ${p.phase}: a popper (${b.x},${b.y} ${b.w}x${b.h}) is over the phase ${boxes && boxes.pills ? "dots" : "pills"}`);
   }
   if (!seen) notes.push("the poppers were not measured");
   return { bad, notes };
@@ -841,4 +909,75 @@ export function judgeSummarySimple(runs = [], UI = {}, m = {}) {
   }
   if (!runs.length) bad.push("no summary run");
   return bad.length ? [...[...new Set(bad)].slice(0, 8), SUMMARY_HINT] : [];
+}
+
+/* ── one-line-bubble: ONE SENTENCE A SCREEN (keyOnly on a runtime with caps.oneSentence; LAYOUT §1d) ───────────────────────
+   One DevTools session per phase (English) and, on phase 1, one per language the tool has begun (hi, gu), with real input:
+   the first question of the phase opens with the bubble holding the question ONLY; a wrong answer replaces it with the hint ONLY
+   (not both); the child's next digit key brings the question back; the header's Hint key shows a hint ONLY; at the phase's LAST right
+   answer the bubble holds only the phase's `closing` (never the tool's own win line); and no thought puff or Hint-key bulb
+   (data-role think-puff, hint-bulb) is ever on the page. Everything is read as WRITTEN (a silent bubble prints Latin digits).
+   rows = oneLineInput(): [{ phase, lang, open|afterWrong|afterKey|hintKey: { st, bubble, roles: { instruction, hint }, fx },
+   last: { seen: [{ t, stage, phase, bubble, roles }], solved, keyed }, fx: { puff, bulb }, error, logs }]. m = the model. */
+export function judgeOneLine(rows = [], m = {}) {
+  const bad = [], notes = [];
+  const pcs = (v, lang) => (lang && lang !== "en" && m.lineFor && m.TR
+    ? (m.pieces ? m.pieces(m.speakableIn(m.lineFor(v, lang, m.TR), lang)) : [m.lineFor(v, lang, m.TR)]).map(norm).filter(Boolean)
+    : bubblePieces(v, m));
+  let n = 0;
+  for (const r of rows) {
+    const lang = r.lang || "en", tag = `phase ${r.phase}${lang !== "en" ? " (" + lang + ")" : ""}`;
+    if (r.error) { bad.push(`${tag}: ${r.error}`); continue; }
+    const P = (m.PHASES || []).find((p) => p.n === r.phase) || {}, items = P.items || [];
+    const it = items[((r.open && r.open.st && r.open.st.item) || 1) - 1] || items[0] || {};
+    const q = pcs(it.say || it.ask, lang), isQ = (s) => q.some((p) => shows(s, p));
+    const lad = (it.ladder && it.ladder.length ? it.ladder : P.ladder) || [];
+    const hintOf = (v) => (lang !== "en" ? norm(pcs(v, lang).join(" ")) : norm(m.speakable ? m.speakable(enOf(v)) : enOf(v)));
+    const rungs = [enOf(it.miss) || enOf(lad[0]), enOf(lad[0]) || enOf(it.miss), enOf(lad[1]) || enOf(lad[0])].filter(Boolean).map(hintOf);
+    const alone = (f, what, want) => {   /* the bubble holds ONE block: the hint role, or the instruction role, never both */
+      const rl = f.roles || {};
+      if (rl.instruction && rl.hint) bad.push(`${tag}: ${what} the bubble holds both the question ${cut(rl.instruction, 30)} and the hint ${cut(rl.hint, 30)} (one sentence a screen)`);
+      else if (want === "hint" && rl.instruction) bad.push(`${tag}: ${what} the bubble draws ${cut(rl.instruction, 40)} as the question, want the hint alone`);
+      else if (want === "question" && rl.hint) bad.push(`${tag}: ${what} the bubble draws the hint ${cut(rl.hint, 40)}, want the question alone`);
+    };
+    n++;
+    const o = r.open;
+    if (!o) { bad.push(`${tag}: no first-question frame`); continue; }
+    if (!isQ(o.bubble)) bad.push(`${tag}: the first question opens with ${cut(o.bubble, 60)} on the bubble, want its line alone ${cut(q[0] || "", 40)} (no built-in "tap" or "choose" line: the key's blink is the cue)`);
+    alone(o, "at the first question", "question");
+    const w = r.afterWrong;
+    if (!w) bad.push(`${tag}: no frame after a wrong answer`);
+    else if (!rungs.some((h) => norm(w.bubble) === h)) bad.push(`${tag}: after a wrong answer the bubble holds ${cut(w.bubble, 60)}, want the hint alone ${cut(rungs[0] || "", 40)}`);
+    else alone(w, "after a wrong answer", "hint");
+    const k = r.afterKey;
+    if (!k) bad.push(`${tag}: no frame after a digit key`);
+    else if (!isQ(k.bubble) && !((it.pad === "enter" || it.choices) && w && norm(k.bubble) === norm(w.bubble))) bad.push(`${tag}: after a digit key the bubble holds ${cut(k.bubble, 60)}, want the question back ${cut(q[0] || "", 40)}`);
+    else alone(k, "after a digit key", isQ(k.bubble) ? "question" : "hint");   /* r64: a digit does nothing on a pad:"enter" or choice question, so the hint may stay */
+    const h = r.hintKey;
+    if (!h) bad.push(`${tag}: no frame after the Hint key`);
+    else if (!h.st || !h.st.hint) bad.push(`${tag}: the Hint key showed no hint (getState().hint ${JSON.stringify(h.st && h.st.hint)})`);
+    else if (norm(h.bubble) !== norm(h.st.hint)) bad.push(`${tag}: after the Hint key the bubble holds ${cut(h.bubble, 60)}, getState().hint ${cut(h.st.hint, 60)}`);
+    else alone(h, "after the Hint key", "hint");
+    for (const [what, f] of [["at the first question", o], ["after a wrong answer", w], ["after a digit key", k], ["after the Hint key", h]]) {
+      if (f && f.fx && f.fx.puff) bad.push(`${tag}: ${what} a thought puff (data-role think-puff) is on the page`);
+      if (f && f.fx && f.fx.bulb) bad.push(`${tag}: ${what} a Hint-key bulb (data-role hint-bulb) is on the page`);
+    }
+    if (r.fx && r.fx.puff) bad.push(`${tag}: a thought puff (data-role think-puff) appeared during the session`);
+    if (r.fx && r.fx.bulb) bad.push(`${tag}: a Hint-key bulb (data-role hint-bulb) appeared during the session`);
+    const l = r.last;
+    if (!P.closing) notes.push(`${tag}: no closing line, so the phase's last win was not judged`);
+    else if (!l || !l.solved) bad.push(`${tag}: the phase's last question could not be answered right (stage never left "ask")`);
+    else {
+      const cp = pcs(P.closing, lang);
+      const seen = (l.seen || []).filter((x) => x.t >= 300 && x.stage !== "ask" && x.phase === r.last.phase && x.bubble);
+      const texts = [...new Set(seen.map((x) => norm(x.bubble)))];
+      if (!texts.length) bad.push(`${tag}: nothing was on the bubble after the phase's last right answer`);
+      const other = texts.filter((t) => !cp.some((p) => shows(t, p)));
+      if (other.length) bad.push(`${tag}: at the phase's last win the bubble holds ${other.slice(0, 2).map((t) => cut(t, 50)).join(" and ")}, want only its closing ${cut(cp[0] || "", 40)} (the tool's own win line gives way to it)`);
+      else if (!texts.some((t) => shows(t, cp[cp.length - 1]))) bad.push(`${tag}: the closing line ${cut(cp[cp.length - 1] || "", 40)} never reached the bubble at the phase's last win`);
+      if (seen.some((x) => x.roles && x.roles.instruction && x.roles.hint)) bad.push(`${tag}: at the phase's last win the bubble held a question and a hint together`);
+    }
+  }
+  if (!rows.length) bad.push("no one-line-bubble run");
+  return { bad: [...new Set(bad)].slice(0, 8), notes: [...new Set(notes)], n };
 }

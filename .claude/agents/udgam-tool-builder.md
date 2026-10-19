@@ -59,6 +59,11 @@ Never read `slot.json`, `plan.json`, `*.preview.html`, `.build/`, `output-previe
      cuts, counts, pours, weighs or measures as its own element with a clear box, and where `images.tsx` holds a skin for it draw
      `<Skin>` over EVERY such piece (the plain shape first, only as the fallback). Never leave a plain block where the image pass
      made an object for it; before the pass has run, keep the pieces skin-ready. Digits and marks stay in code, never in a picture.
+   - **Every act is performed on screen** (the owner, 2026-10-16; a pinned runtime with `ACTION_KIT_HELPER`, `class4/docs/PATTERNS.md` §15):
+     each action key or act the tool offers (cut, split, measure, count, carry, tidy ...) calls `await api.act({ tool, moves, at, onPoint })`,
+     so a knife, scissors, a ruler, a pencil, an eraser (the shared ACTION KIT, never a slot skin) or the drawn hand does it in about
+     1 to 1.5 s; split each piece in `onPoint`, part and settle the pieces when it resolves `true`, do nothing on `false`. `check`'s
+     `action-anim` row clicks the act's control for real.
    - **What the runtime does for you from r24** (when your pinned runtime has it; `check` proves each, PATTERNS 9e and 9f): the pink Answer
      key and its "Tap the blinking Answer key." line show only while a typed question waits with the keypad shut; Kiko THINKS (a third
      picture, a thought puff) from a question's opening until the child's first tap; the Hint key pops a bulb; a held or doubled Enter
@@ -72,6 +77,22 @@ Never read `slot.json`, `plan.json`, `*.preview.html`, `.build/`, `output-previe
    - **The wide keypad is the default for a new tool** (r26: the scaffold writes `bigPad: true` beside `board: true`, PATTERNS 9g): the answer
      panel is 556 wide and the picture has x 64 to 964 while it is open. Keep it when the picture fits; when `check`'s `board-fit` says
      something runs under the panel (a strip of ten, a chart of seven columns), set `bigPad: false` for that tool and say so in the report.
+   - **The new look: `keyOnly` and `navDots`** (the owner, 2026-10-16; only when the `features` line of your `readlist.md` names `keyOnly`: the
+     scaffold then wrote `keyOnly: true` and `navDots: true` beside `board: true`; `class4/docs/LAYOUT.md` §1d-§1e, `class4/docs/PATTERNS.md`
+     §16, PREFLIGHT 18-22; otherwise skip this bullet). No question bar (only the blinking key at the top right), four small clickable phase
+     dots, a big one-sentence bubble, digits as written, every act performed on screen. Opt out (delete the line) only with a reason in your report.
+     - The working area is 64,108, 1472 x 520 (900 wide with the panel open and `bigPad`), not 64,202 x 528. `box.key` is the key's corner in
+       Work coordinates (about x 1190, y 0, 282 x 88): keep every element out of it (`const kx = box.key ? box.key.x - 12 : box.w`; `board-fit`).
+     - The question lives only in the bubble: each item's `say` is the WHOLE question in ONE sentence (the scaffold cut a longer plan question
+       and kept it in a comment), `ask` stays (checks and the sidecar read it) but is never drawn. Guide-step lines, hints and `closing` are ONE
+       sentence each (`one-line-bubble`); a hint shows instead of the question. A question may name its number unless that gives the answer away.
+     - Buttons used one after another, where the second makes the first unnecessary, are ONE key at the bottom centre whose label follows the act
+       (Cut, then Measure; never a key that only undoes the last act): `data-control` follows the current act, a 400 ms double-tap guard, two starting choices side by side in free play.
+     - An object looks like the object from its first frame: draw the `<Skin>` as soon as it is named, under the cuts and the shading. Every act
+       goes through `api.act` (PATTERNS §15, `action-anim`).
+     - A round thing is a disc cut in wedges, never a strip (a chapati, roti, pizza, cake, pie, clock; PATTERNS §17, PREFLIGHT 23); a grid of unit
+       boxes has a dark outline on every box and a deeper fill on a counted one, and is the biggest square beside the OPEN keypad at one fixed size
+       whether the pad is open or shut (LAYOUT §3, PREFLIGHT 24); every label round it is at least 32, dark, bold and on one line (PREFLIGHT 25).
    - **A decimal answer is written ON the Decimal card where the picture has one** (`parts: SLOT_DECIMAL`, the point drawn, the zero in
      front typed, an empty whole box a real miss); the point key only where typing the point is the lesson. During guide steps the pinned
      question bar names no number the picture does not show ("this weight"), and a question that needs rungs of its own carries

@@ -13,6 +13,7 @@ import { CONFIG, fromRoot } from "../lib/core/env.mjs";
 import { workRoot, readStatus } from "../lib/core/work.mjs";
 import { hashOf } from "../lib/check/check.mjs";
 import { sha } from "../lib/core/pin.mjs";
+import { pairState } from "../lib/ship/port.mjs";
 
 const OUT_ROOT = fromRoot(CONFIG.outDir); // output-preview/
 
@@ -31,7 +32,7 @@ export function chapterClass(chapterId) {
 }
 
 /* A viewer lists ONLY its own class's chapters. A folder of another class's chapter that sits in this class's work/
-   (class 5 chapter 9 was begun in class4/work/) belongs to that class, so it is not offered here: Class 4 shows its 14
+   (class 5 chapter 9 was begun in class5/work/) belongs to that class, so it is not offered here: Class 4 shows its 14
    chapters and Class 5 shows Class 5's. An id that does not follow the pattern stays listed, as before. */
 export function isOwnChapter(chapterId) {
   const k = chapterClass(chapterId);
@@ -53,6 +54,10 @@ export function viewerPort() {
 export function checkState(dir) {
   let st;
   try { st = readStatus(dir); } catch { return "unchecked"; } // a NUL-filled status.json must not break the viewer
+  /* a hand-edited pair (runbook "Small changes to one tool", 2026-10-16) ships files the source's check never saw, and its source (tool.tsx) is
+     not what ships: approved = `approve` proved these exact bytes (pass); edited but not approved, or edited again since, needs approve (stale).
+     `node cli.mjs status` reads it the same way. */
+  try { const h = pairState(dir); if (h && (h.edited || h.approved)) return h.approved ? "pass" : "stale"; } catch { /* no pair on disk: the plain reading below */ }
   const toolFile = path.join(dir, "tool.tsx");
   if (!st.checks || !fs.existsSync(toolFile)) return "unchecked";
   let fresh = false;

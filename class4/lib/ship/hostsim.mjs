@@ -53,6 +53,8 @@ var until = async function (ok, n) { n = n || 600; for (var k = 0; k < n && !ok(
   out.startPageShown = !!out.start.startPage;
   if (out.startPageShown) { window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true })); await wait(400); out.startPageGone = !A.getState().startPage; }
   out.dots = Array.prototype.map.call(document.querySelectorAll('[data-zone="bar"] [aria-label^="Step "]'), function (d) { return d.getAttribute('role'); });
+  /* class 4 r27: navDots (data-control phase-dot) are controls in AI mode too */
+  out.navDots = !!document.querySelector('[data-control="phase-dot"]');
   for (var k = 0; k < KEYS.length && !A.getState().complete; k++) {
     await until(function () { var s = A.getState(); return s.stage === 'ask' || s.stage === 'demo' || s.stage === 'summary' || s.complete; });
     if (A.getState().stage === 'summary' || A.getState().complete) break;
@@ -131,7 +133,7 @@ ${HARNESS}</script></body></html>`);
       if (r.startPageShown && !r.startPageGone) probs.push("Enter on the start page did not begin the lesson");
       const wantMode = props.navigableDots ? "user" : "ai";
       if (r.start && r.start.mode !== wantMode) probs.push(`mode ${r.start && r.start.mode}, want ${wantMode}`);
-      if ((r.dots || []).length !== phases.length || (r.dots || []).some((x) => x !== (props.navigableDots ? "button" : "img"))) probs.push(`dots: ${JSON.stringify(r.dots)}`);
+      if ((r.dots || []).length !== phases.length || (r.dots || []).some((x) => x !== (props.navigableDots || r.navDots ? "button" : "img"))) probs.push(`dots: ${JSON.stringify(r.dots)}`);
       const f = r.finished || [];
       if (f.length !== 1) probs.push(`finished fired ${f.length} times`);
       else {

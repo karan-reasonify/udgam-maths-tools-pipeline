@@ -14,8 +14,8 @@
   `<pfx>-tool-builder` (one per slot) and five that only report: `-maths-reviewer`, `-visual-reviewer`,
   `-play-tester`, `-upload-auditor`, `-image-agent` (generated from `_templates/agents/`).
 - CLI (run in `class<N>/`): `doctor | list | fetch | scaffold | preview | check | shots | clean | status | port |
-  publish | runtime | fence | view | voice | images` (`check` ports on a pass; `publish` is a dry run unless
-  `--upload`; `runtime freeze|pin|seal|status` is the per-chapter runtime).
+  approve | publish | runtime | fence | view | voice | images` (`check` ports on a pass, never over a hand-edited pair;
+  `publish` is a dry run unless `--upload`; `runtime freeze|pin|seal|status` is the per-chapter runtime).
 - **Every class on one page: `node viewhub.mjs`** (this folder, http://localhost:5170; `viewer-hub/README.md`): Class and Chapter
   dropdowns and a tool list, each class's own viewer embedded; it starts the viewers and finds a new `class<N>/` itself. Change a
   viewer (its `?embed=1` support too) in the newest class and carry it with `classctl sync`/`new`, never by copying between class
@@ -36,6 +36,20 @@
   `class<N>/runtime/frozen/<rN>/`; `class<N>/runtime/runtime.tsx` is the head, where a new feature is written.
   A head edit reaches a chapter only through `node cli.mjs runtime freeze` + `runtime pin --ch N` + a
   re-check of that chapter, with a decision logged in the build card. No other chapter is ever restaled.
+- **Every act is performed on screen (the owner, 2026-10-16).** When the child taps an action (cut, split, measure, count, carry,
+  tidy ...) a real tool does it through `api.act`: a knife, scissors, a ruler, a pencil or an eraser (the ACTION KIT: five pictures made
+  once for every tool by `node cli.mjs actionkit` into the generated `runtime/actionkit.tsx`, never read, carried like the mascot) or a
+  hand drawn in code; about 1 to 1.5 s, the keys waiting, the pieces reacting (`class<N>/docs/PATTERNS.md` §15, `check`'s `action-anim`).
+  A chapter gets it by `runtime freeze` + `runtime pin --ch N` on the owner's word.
+- **Poppins travels inside every tool (the FONT KIT, the owner 2026-10-16).** `node cli.mjs fontkit` subsets Poppins 500/600/700 (Latin and
+  Devanagari; `class<N>/assets/fonts/`, SIL OFL) into the generated `runtime/fontkit.tsx` (never read, carried like the mascot), so a page or
+  device without Poppins shows the type `check` renders (`font-kit` row). A chapter gets it by `runtime freeze` + `runtime pin --ch N`.
+- **Small changes to one tool: edit the pair, then `approve`** (the owner, 2026-10-16). An edit, fix or tweak of one existing tool
+  is made straight away in its ported pair (`class<N>/output-preview/<chapter_id>/<slot_id>/<slot_id>.tsx` + `.json`), never in
+  `work/.../tool.tsx`, and proved with `node cli.mjs approve <slot_id> --ch N --note "what changed"` instead of `check`; `publish`
+  uploads only the approved bytes, and `check`/`port` never overwrite a hand-edited pair without `--force`. Making, generating or
+  remaking a tool stays on the `work/` flow, and a remake drops the hand edits (the notes in `status.handEdit` say what they were).
+  Runbook section "Small changes to one tool".
 - **One session, one chapter, one class.** A read fence refuses another chapter's `work/`; every pattern a
   builder needs is in `class<N>/docs/PATTERNS.md`. A deliberate look: `node cli.mjs fence --off`, then `--on`.
   Slot ids repeat across classes: work only in your class's folder.

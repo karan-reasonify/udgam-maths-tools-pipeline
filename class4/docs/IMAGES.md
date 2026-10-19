@@ -43,6 +43,9 @@ The object is chosen to **match what is inside the tool and what the operation i
 "strip the child cuts" is a chocolate bar, a share bar a ribbon or a tray, "ten counters" ten buttons or sweets, a weighing tool a
 kitchen scale with a bag on the pan.
 
+**A round object is drawn round** (a chapati, a roti, a pizza, a cake): its skin goes over a DISC and is clipped per wedge when it is cut, never stretched
+over a strip (PATTERNS §17, the owner 2026-10-17). A ribbon, a bar or paper stays a strip.
+
 **Plain is right only for these** (name the reason for each plain element in the report):
 - **the marks and digits themselves**: digit cards, place-value columns and their headings, number-line ticks, the numerals and hands
   of a clock, the display and dial of a scale, a ruler's marks, coin and note values, graph axes. The object that HOLDS the marks may
@@ -87,8 +90,8 @@ Start from this table and extend it in the same spirit; a new row is a one-line 
 still choose one**: the everyday object a child of this age would cut, count, pour, weigh or measure for exactly this content and
 operation, and say why in the image's `why`. "No object named" is never a reason for plain blocks.
 
-**Prefer the smallest set.** One skin reused for every piece and state; **at most 2 skins a slot** (the CLI
-refuses a third). Two slots asking for the same object, kind and style share one generated picture (a library
+**Prefer the smallest set.** One skin reused for every piece and state; **at most 3 skins a slot** (the CLI
+refuses a fourth; a second or third only when the tool names different wholes, e.g. ch 8 C4's chocolate bar, ribbon and chapati). Two slots asking for the same object, kind and style share one generated picture (a library
 hit costs nothing), so keep the `object` and `style` words the same across a chapter.
 
 ## 4. The kinds (how the CLI cuts the picture)
@@ -170,6 +173,10 @@ hit costs nothing), so keep the `object` and `style` words the same across a cha
   A shaded piece is a deep-blue or green tint over the skin (about 0.72), following the piece's own shape, never a
   different picture; an unshaded piece is the skin itself. The tint changes the hue far more than the luminance
   (the sheet prints the contrast), so the written label (Given, Answer) carries the reading, never colour alone.
+  **On a DARK skin (milk chocolate, a maroon ribbon) the tint alone is not enough** (class 5 ch 6, the owner 2026-10-17): blue
+  on chocolate measured 1.0-1.4:1 in brightness and vanishes on a washed-out board. There an uncounted piece wears a pale cream
+  wash over the skin (the object still shows) and a counted piece a deep blue, at least 3:1 apart in luminance, with the dark
+  outline readable on both. Measure it on the built sheet, not on the image sheet.
 - No digit, letter or label is ever in a picture.
 
 - `check` proves it (CHECKS.md): `skin-keys` (every `<Skin name>` has a picture in `images.tsx`), `skins` (all on the
@@ -244,3 +251,23 @@ node cli.mjs images sheet <MEDIA_ID> --ch N               the contact sheet
 node cli.mjs images status [--ch N]                       library, per-slot bytes against the budgets, money spent
 node cli.mjs images list                                  the library
 ```
+
+## 11. The ACTION KIT: the tools that perform an act (the owner, 2026-10-16)
+
+Five real pictures, made ONCE and shared by every tool, like the mascot: a small kitchen knife, open child-safe scissors, a wooden
+ruler with a BLANK face (the marks are code), a pencil and a pink eraser. `api.act` (PATTERNS.md §15) draws them doing the act; the
+cartoon hand stays drawn in code (§2: hands are never generated) and stands in for any picture that is missing.
+
+- **Not a slot's skin:** never in a slot's `images.json`, outside the 3-a-slot cap, no keypad theme. The plan is
+  `runtime/actionkit.json` (key, object, kind, aspect, px, maxKB, prompt, why, and how the runtime holds it: `len`, the acting point
+  `ax`/`ay`, `rot`); `node cli.mjs actionkit [--dry] [--force --only key]` makes it and writes the GENERATED `runtime/actionkit.tsx`
+  (`ACTION_KIT`: the data URIs, `ACTION_KIT_FIT`: size and pose). Never edit or read it; regenerate.
+- **Same machinery as a skin:** the raw cache, the library (a hit, a sibling class's included, is free), the ledger, two billed
+  attempts, the cut. Two differences, both for tools: the prompt keeps STYLE and the chapter's look but drops the skin negatives (it
+  may be a knife, and steel is grey: `kitPrompt` in `lib/images/rules.mjs`), and the cut is a TOOL cut (`process.mjs` `OPT.tool`:
+  only a faint grey is a floor shadow, and a near-white region enclosed by the object, a finger loop, is a hole).
+- **Carried like the mascot:** `sources()` puts it after `mascot.tsx` for a runtime that has one, `runtime freeze` copies it into
+  the snapshot (its hash is in the pin), `port` carries it inside the tool. A runtime without it builds exactly as before.
+- **Made 2026-10-16:** knife 200x37, scissors 111x140, ruler 200x42, pencil 190x40, eraser 110x90; about 14.6 KB of data URIs in
+  every tool built on it. Look at a new picture before keeping it (one re-make, as §9).
+- **The FONT KIT is carried the same way** (`node cli.mjs fontkit` -> generated `runtime/fontkit.tsx`, Poppins inside the tool; LAYOUT.md §9).

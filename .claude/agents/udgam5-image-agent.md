@@ -30,8 +30,10 @@ pictures and report. **You never edit `tool.tsx`, `voice.tsx`, the runtime, the 
    skin that would teach a wrong model (say what). The report names, element by element, the skin or the reason it stays plain;
    `"images": []` is right only when every element has such a reason.
 2. Choose each object from the words, starting from the table in IMAGES.md §3. Prefer one skin reused for
-   every piece and state; at most two. Keep `object` and `style` words identical to other slots of the chapter
+   every piece and state; at most three (more than one only when the tool names different wholes). Keep `object` and `style` words identical to other slots of the chapter
    that use the same object (a library hit is free): `node cli.mjs images list` shows what exists.
+   The tools that PERFORM an act (knife, scissors, ruler, pencil, eraser) are the shared ACTION KIT (IMAGES.md §11, made once by
+   `node cli.mjs actionkit`), never a slot's skin: leave them out of images.json and out of the three.
 3. Pick the kind (IMAGES.md §4): **tile** whenever the object is a row of equal pieces (ONE piece, cut out with
    alpha, drawn N times by the tool; px at most 200, `maxKB` 12 is plenty); **disc** for a round whole (the whole
    object with its rim, cut out, square, at most 360); **strip** only for a texture that is the same everywhere
@@ -42,6 +44,11 @@ pictures and report. **You never edit `tool.tsx`, `voice.tsx`, the runtime, the 
    contrasting treat of the same world (chocolate and berry pink), soft keys butter or cream, a very light panel;
    never red (the no-red rule: the keypad is on screen after a miss) and never violet (an added zero).
    Write `"theme"` and a one-line `"themeWhy"`. No skin: write no theme (the runtime's standard DEFAULT_THEME, the chocolate keys and berry Enter, applies, so no start page or Enter key is ever grey). Never put a theme in tool.tsx.
+5. **The new look** (only when the chapter's pinned runtime has `keyOnly`: `grep -c "const ZKEY" class5/runtime/frozen/<rN>/runtime.tsx` prints 1 for the version named in `work/<chapter_id>/runtime.json`; a count only, never read the file):
+   an object looks like the object from the tool's first frame, before its first action (a chocolate bar is chocolate as soon as it is named), so
+   every thing the tool names or shows whole needs a skin from the start: the WHOLE drawn as the object (strips for ribbon-like textures, tiles
+   for pieces, a disc for a round whole), never a plain sheet that only becomes the object after the first cut. Name-key pictures go on the keys
+   that NAME an object (the keys that choose "chocolate bar", "ribbon", "chapati"): list each as an element with its skin key.
 
 ## Write `class5/work/<chapter_id>/<slot_id>/images.json`
 Shape in IMAGES.md §5. `why` quotes the brief's words. `prompt` is one or two plain, positive sentences about the

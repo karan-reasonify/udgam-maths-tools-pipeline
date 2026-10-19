@@ -42,6 +42,24 @@ Variants, same flow:
    `node cli.mjs runtime freeze` -> `runtime pin --ch <n>` -> re-check **this chapter only**; log a row
    in `BUILD_CARD.md` §7. A snapshot is immutable (`runtime-pin` fails a tool whose snapshot was
    edited). A finished chapter moves forward only when the user asks for it.
+   **Runtime moves are BATCHED (the owner, 2026-10-18).** Class 5 froze r56 to r64 in one day, each a 2-35 line fix to a 535 KB
+   runtime, and every freeze that a chapter then pinned re-staled all its tools: ch 5 moved 8 times and ch 9 four times mid-build,
+   each move a full re-check, new packs and restarted reviewers. So:
+   - *A gap is LOGGED, not frozen.* A builder, reviewer or play tester that finds a runtime gap writes it on the chapter's
+     runtime-gap list (`work/<chapter_id>/NOTES.md`), and the tool works round it when it can. The head is edited and frozen
+     ONCE per chapter session at the gate **before the review packs** (a change that touches every frame must land before the
+     visual round, not after), and ONCE more at step 6 for what the play tests found. A third freeze needs a BLOCKER: a tool that
+     is blank, unplayable or marks a right answer wrong, shown by a real-input probe. A small annoyance waits for step 6.
+   - *A freeze moves nobody else.* Another chapter takes the newest head ONCE, at its own step 6 and on the owner's word, in a
+     single `runtime pin --ch N` (r55 straight to r64, never r56, r57, r62, r63 one by one), then re-checks once. It is told
+     after a blocker freeze; it does not pin mid-build.
+   - *Freeze only your own hunks.* Before a freeze, `diff runtime/runtime.tsx runtime/frozen/<last rN>/runtime.tsx` must show
+     only this session's edit; another session's half-done hunk means asking that session to finish first (it would be frozen
+     into your snapshot).
+   - *Never pick the name by hand.* `runtime freeze` (no name) and `runtime pin` choose it under a lock; "another session is
+     freezing" means wait a few seconds and run it again. `runtime freeze rN` is for restoring a named snapshot only.
+   In class 4 and class 5 (a new class gets it from `classctl new`), `freeze` and `pin` take that lock and print a WARNING at 3 freezes (all
+   chapters) or 2 moves of one chapter in 24 h: stop and batch.
 4. **A general rule goes into the pipeline, not one tool.** When a review answer applies to every tool
    (as "corrections end on the whole answer" did), put it in the docs, the runtime or a check, log it
    in §7, and apply it to all tools of the chapter. When it applies to every class, it goes into the class
@@ -231,6 +249,11 @@ edited; the skin libraries named in the class's config are reused free, read-onl
 shapes (`docs/PATTERNS.md`, the skins section); `check` proves `skin-keys` and `skins-fallback`. `Skin` is in the head runtime from
 2026-10-07: a chapter pinned before that first needs `runtime freeze` + `runtime pin --ch <n>` on the user's word
 (non-negotiable 3); a chapter fetched later has it from its first pin.
+The tools that PERFORM an act (a knife, scissors, a ruler, a pencil, an eraser) are not this pass: they are the shared ACTION KIT,
+made once for every tool (`node cli.mjs actionkit`, `class<N>/docs/IMAGES.md` §11), and every act a tool offers is done on screen by one
+of them or the drawn hand through `api.act` (`class<N>/docs/PATTERNS.md` §15, the owner 2026-10-16).
+The FONT KIT is the same kind of shared kit: Poppins is carried inside every tool (`node cli.mjs fontkit` -> generated `runtime/fontkit.tsx`,
+`class<N>/docs/LAYOUT.md` §9), so no pass and no tool asks for a font.
 
 **6. Chapter-wide pass.** When every tool is in: `node cli.mjs check` for each (fresh, on the final
 runtime and checker; it ports on a pass), one after another with `C4_CHROME_POOL=4`.
@@ -262,6 +285,26 @@ that tool's builder. Then steps 6 to 8 again.
 --upload` (md5-verified). If the dry run listed `lp2_media` rows to update, ask, then `--apply`. Report
 the live URLs.
 
+## Small changes to one tool: edit the pair (the owner's rule, 2026-10-16)
+
+A **small change to one existing tool** (the owner says edit, modify, fix, tweak, "small change in <tool>") is made straight away in
+its ported pair, `class<N>/output-preview/<chapter_id>/<slot_id>/<slot_id>.tsx` + `<slot_id>.json`. Do not edit `work/.../tool.tsx` and
+do not run `check` for it. **Making, generating or remaking** a tool still follows the flow above from `work/` (scaffold, builder,
+`check`, which ports).
+- Prove the edited pair on its own bytes, in `class<N>/`: `node cli.mjs approve <slot_id> --ch <n> --note "what changed"`. It plays
+  every phase in the host emulator, drives every phase in English, Hindi and Gujarati through the host's loader (Start, the guide
+  steps, the question, a wrong answer, a digit key, every question right), fails on a page error, a blank render, a state it cannot
+  reach or anything of the working area under the key's corner, prints the bubble's text in each state (read them) and saves
+  `approve-*.png` in the slot's `work/` folder (`clean` removes them). Run it with `CHROME_PATH` set to a Chrome that answers
+  `--dump-dom` (on Linux Playwright's chrome-headless-shell: `/opt/google/chrome/chrome` drives over DevTools but hangs on
+  `--dump-dom`) and `C4_FONTCONFIG` (or `fontconfig` in `pipeline.config.json`) naming a fontconfig file that adds Poppins.
+- A pass records `status.handEdit` (both md5s, the date, every note). `status` shows the slot as "hand-edited (approved <date>)" or
+  "hand-edited (NOT approved)", and `publish` uploads exactly the approved pair (step 10); a pair edited again after its approval is
+  refused until `approve` runs again, and new bytes need `--note`.
+- **A remake drops the hand edits:** it starts from `tool.tsx`, so carry each note's change into the source. `check` never ports over a
+  hand-edited pair (it runs every row and says "port skipped") and `port` refuses it; `--force` on either overwrites the pair, losing
+  the edits, and moves `handEdit` to `handEditReplaced`.
+
 ## Remake: a chapter that is already built, made again on a newer pipeline (only on the user's word)
 
 Remaking is a re-pin plus new tools. It is never done by a sync and never started unasked. Example: class 4
@@ -281,7 +324,8 @@ session; no other chapter moves (non-negotiables 3 and 7).
 4. `node cli.mjs scaffold <slot_id> --ch <n>` makes a fresh `tool.tsx`; then steps 3 to 9 as for any chapter.
 5. The live copies stay in the bucket until step 10 (`publish` keeps a backup of each live copy). The first
    `check` of a slot re-ports over its local `output-preview` pair; copy the pair aside first if the old
-   one should stay in the viewer.
+   one should stay in the viewer. A hand-edited pair (below) is not re-ported: `check --force` overwrites it, so first carry
+   its notes (`status.handEdit`) into the new source.
 
 ## Chapter notes
 
@@ -383,7 +427,8 @@ Announce a runtime or lib edit to the other chapter sessions of the class before
   draws `<Skin>` after the maths review. A skin never contradicts a name on screen (show it only when the named whole IS that object).
 - **`shots` reuses the slot's last preview:** after a pin, a runtime or a source change run `node cli.mjs preview <slot> --ch N` (or a
   `check`) first, or you review the OLD look (a grey Start key was a stale frame).
-- **A gap a builder reports twice is a pipeline gap:** fix it in the head runtime or the checks, log it in §7, freeze and re-pin (ch 8 found
+- **A gap a builder reports twice is a pipeline gap:** put it on the runtime-gap list, and fix it in the head runtime or the checks at
+  the next gate (non-negotiable 3: batched, one freeze before the packs), log it in §7, freeze and re-pin (ch 8 found
   four: `hint-lines-clear` with no theme, word-choice keys too narrow, the Enter key's text on a themed key, grey start pages). Tell the
   running builders when a pin moves under them; their next check runs on the new pin.
 - **Many builders on one machine:** a stalled agent (the watchdog stops one after 10 minutes with no output) is resumed with SendMessage;
@@ -431,4 +476,4 @@ Announce a runtime or lib edit to the other chapter sessions of the class before
 | carrying code between classes, a new class | `node classctl.mjs status \| sync \| new \| restore \| rootdocs` · `classctl.manifest.json` · `CLASSCTL.md` |
 | the agent templates | `_templates/agents/*.md.tpl` (the files in `.claude/agents/` are generated from them) |
 | tokens: what a session or a role costs | `node usage.mjs session [FILE.jsonl]` · `node usage.mjs static --class <N> [--ch <n>]` (pipeline root; prices in `usage.pricing.json`) |
-| CLI (in `class<N>/`) | `doctor` · `list` · `fetch` · `scaffold` · `preview` · `check` · `shots` · `clean` · `status` · `port` · `publish` · `runtime` · `fence` · `view` · `voice` · `images` |
+| CLI (in `class<N>/`) | `doctor` · `list` · `fetch` · `scaffold` · `preview` · `check` · `shots` · `clean` · `status` · `port` · `approve` · `publish` · `runtime` · `fence` · `view` · `voice` · `images` |

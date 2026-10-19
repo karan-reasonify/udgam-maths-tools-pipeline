@@ -1,0 +1,1152 @@
+{
+  "slotId": "M3.S5.T11.C50.2D1",
+  "mediaId": "M3.S5.T11.C50.2D1",
+  "toolId": "column_subtractor",
+  "title": "Column Subtractor",
+  "component": "M3.S5.T11.C50.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch5",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch5_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_5/2dtool/M3.S5.T11.C50.2D1/M3.S5.T11.C50.2D1.tsx",
+  "description": "Put the greater number on top with the points in one line, trade across the point where a place is short, and undo a mistaken addition in two steps.",
+  "conceptIds": [
+    "M3.S5.T11.C50",
+    "M3.S5.T11.C51",
+    "M3.S5.T11.C52",
+    "M3.S5.T11.C53"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        1086,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Subtract decimals, from whole numbers too, with the points in one line and trading where a place is short, read the three wordings of subtraction, and undo a mistaken addition in two steps.",
+    "look": "A column frame with one fixed point line, two cards lined up on it, trades drawn in vermilion above the columns, and a Wording card and an Undo panel on the later phases.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Column Subtractor' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x sixty-four, y 108 and 330 by 76, sits the running count: how many trades have been made, one for each block broken into ten. It is never a score. The working area is 1086 by 528 at x sixty-four, y 202. The frame spans x 110 to x 900 from y 230 to y 560, five columns 140 across headed Tens, Ones, Tenths, Hundredths and Thousandths, with the near-black point line at x 400. The two cards sit at y 300 and y 380, deep blue and labelled Given; the Top check outline lights amber around the upper card until it holds the greater number. A trade is drawn above its columns at y 250: one block of the left column breaks into ten small blocks of the short column, in vermilion, labelled Trade, and the top digits are rewritten there in small vermilion figures. The part taken away fades rose, labelled Taken away, and the difference is written green under a ruled line at y 500, labelled Difference. The Wording card sits at x 960, y 230, and the Undo panel at x 960, y 420, each 170 wide, stepping through its two steps one under the other. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is twelve number keys three across with a point key, for setting a decimal with up to three places or typing a difference into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the tools of this chapter share them. A decimal or fraction the question gives is deep blue, with the shaded parts that show it. The result the working reaches, a decimal, a fraction, a sum, a difference or what is left, is green, with its shaded parts. Ten of one place traded for one of the next, a carry in adding or a trade in taking away, is vermilion. A zero written after the point to line decimals up is violet, and so is the point written after a whole number before those zeros. The part taken away, used or poured out is rose. The digit, place or step being worked on now, and the first place where two decimals differ, are amber. A zero holding a place open inside a number is grey, and nothing else on the stage is ever grey. An unshaded part stays warm white inside its near-black outline, the decimal point is near-black ink, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of them, and each of those readings survives with the colour taken away, because a part is told by its written label, Given, Answer, Carry, Trade, Added zero, Taken away, Left or Place holder, before it is told by its colour.",
+    "finish": "The card shows the last difference in the frame, every trade still in vermilion above its column.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "two vermilion trades are drawn, one across the point, and the difference reads 4.77",
+        "does": "puts 7.4 on top, writes it as 7.40, and trades twice while taking away",
+        "goal": "the greater number goes on top, the points in one line, and a short place trades with the place to its left",
+        "says": "Greater number on top. When a place is short, trade from the left.",
+        "check": "Away from the screen: when a place is too short to take from, where do you get more from?",
+        "feels": "a block breaking into ten so a short place can be taken from",
+        "hands": "Measure two pencils to one place after the point, write the longer on top with the points in one line, and take away. Where a place is short, cross out one of the place to its left and write ten more.",
+        "tries": "First rung: put the greater number on top. Second rung: take away the rightmost column. Third rung: the same task with no trade, before trades return.",
+        "wrong": [
+          {
+            "why": "taking the small from the big feels like the rule for every column",
+            "move": "takes the smaller digit from the larger in every column",
+            "screen": "the short column lights amber and the block to its left pulses, and the child's own row is kept beside the answer row"
+          },
+          {
+            "why": "the numbers are written in the order they were read",
+            "move": "puts the smaller number on top because it was named first",
+            "screen": "the Top check stays lit around the upper card, and the two cards' bars are drawn to scale beside the frame"
+          }
+        ],
+        "screen": "the cards 2.63 and 7.4 in the tray, and the Top check unlit",
+        "soWhat": "the greater number goes on top, the points in one line, and a short place trades with the place to its left",
+        "concept": "Greater number on top"
+      },
+      {
+        "n": 2,
+        "win": "the top reads four ones, nine tenths and ten hundredths, and the difference reads 3.72",
+        "does": "taps Point first, then trades one one into tenths and one tenth into hundredths",
+        "goal": "a whole number gets its point and zeros before anything is taken from it",
+        "says": "Five has no tenths and no hundredths yet. What do you trade?",
+        "check": "Away from the screen: how many tenths are in one whole, and how many hundredths in one tenth?",
+        "feels": "a whole number opening up into ones, tenths and hundredths",
+        "hands": "Write a whole number and a decimal to take from it. Put a dot and zeros after the whole number first, then trade from the ones into the tenths and from the tenths into the hundredths.",
+        "tries": "First rung: write the whole number's point and zeros. Second rung: make the first trade. Third rung: the same task with one place after the point, before two return.",
+        "wrong": [
+          {
+            "why": "empty places above seem to leave nothing to take away from",
+            "move": "brings the decimal's digits down as they are because the top has nothing there",
+            "screen": "the Point first button writes the point and zeros on the whole number, and the first empty place lights amber"
+          },
+          {
+            "why": "the hundredths are the place that is short",
+            "move": "trades straight from the ones into the hundredths",
+            "screen": "the trade runs one step at a time: one one into ten tenths, then one tenth into ten hundredths, each drawn in vermilion"
+          }
+        ],
+        "screen": "the whole number card 5 on top and 1.28 below, the 5 with no point",
+        "soWhat": "a whole number gets its point and zeros before anything is taken from it",
+        "concept": "Taking a decimal from a whole number"
+      },
+      {
+        "n": 3,
+        "win": "all three wordings end in 8.1 - 2.5 = 5.6, and 4.09 - 4.09 = 0 sits beside them",
+        "does": "taps each wording, puts the lit number on top, and takes away",
+        "goal": "subtract from, take away and how much less all ask for the same difference, and a number minus itself is 0",
+        "says": "Three ways to say it. Which number starts on top each time?",
+        "check": "Away from the screen: in subtract a small number from a big one, which number do you start with?",
+        "feels": "three different sentences landing on one column",
+        "hands": "Write one subtraction three ways on a card: subtract from, take away and how much less. Circle the number that goes on top in each.",
+        "tries": "First rung: find the number that starts. Second rung: put it on top. Third rung: the same task with one wording, before all three return.",
+        "wrong": [
+          {
+            "why": "questions are usually worked in the order they are read",
+            "move": "puts the first number said on top",
+            "screen": "the Wording card lights the number that starts, and the Top check lights amber around the upper card"
+          },
+          {
+            "why": "the words sound unlike take away",
+            "move": "thinks how much less asks for a different sum",
+            "screen": "all three wordings are set side by side and each builds the same column, ending in the same difference"
+          }
+        ],
+        "screen": "the Wording card with three wordings of one subtraction of 2.5 and 8.1",
+        "soWhat": "subtract from, take away and how much less all ask for the same difference, and a number minus itself is 0",
+        "concept": "Three ways to ask for a difference"
+      },
+      {
+        "n": 4,
+        "win": "6.6 appears as the start, and the right answer 4.1 lands green, the number taken away twice",
+        "does": "takes 2.5 away once, watches the starting number appear, then takes 2.5 away again",
+        "goal": "a mistaken addition is undone by taking the number away, then taking it away again",
+        "says": "First get back to the start. Then do the subtraction that was wanted.",
+        "check": "Away from the screen: someone added a number instead of taking it away. How many times do you take it away to fix it?",
+        "feels": "the starting number reappearing, then the right answer below it",
+        "hands": "Pick a number and add another to it on paper by mistake. Take the added number away once and check you are back at the start. Then take it away again.",
+        "tries": "First rung: take the added number away once. Second rung: check that is the starting number. Third rung: the same task with whole numbers, before decimals return.",
+        "wrong": [
+          {
+            "why": "undoing the mistake feels like the whole job",
+            "move": "takes the number away only once and stops",
+            "screen": "the Undo panel's first step lights the starting number, and its second step waits with the added number beside it"
+          },
+          {
+            "why": "doing the same again feels like it should cancel out",
+            "move": "adds the number again to fix the mistake",
+            "screen": "the Undo panel shows the amount growing, the start drawn below it, and the take away step lit"
+          }
+        ],
+        "screen": "the Undo panel showing a number that had 2.5 added to it by mistake, giving 9.1",
+        "soWhat": "a mistaken addition is undone by taking the number away, then taking it away again",
+        "concept": "Undoing a mistaken addition"
+      }
+    ],
+    "delight": "On the first phase, when a place is short and the child taps the column to its left, one block cracks open like a pod and ten small vermilion blocks tumble into the short column.",
+    "opening": "Every mount comes up already furnished for its phase with the column frame drawn and its point line down the middle. On the first two phases the two cards wait in the tray with the Top check unlit, and on the second the upper card is a whole number with no point. On the third the Wording card shows its three wordings. On the fourth the Undo panel shows the mistaken answer. One thing moves, once: the first card, a wording or the Undo panel's first step gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any two decimals or whole numbers taken away with every trade shown, the Wording card and the Undo panel. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on trading across the point, taking from a whole number, three wordings, and undoing a mistake.",
+    "voiceLines": [
+      "A column frame, waiting for the greater number on top.",
+      "Greater number on top. When a place is short, trade from the left.",
+      "Five has no tenths and no hundredths yet. What do you trade?",
+      "Three ways to say it. Which number starts on top each time?",
+      "First get back to the start. Then do the subtraction that was wanted.",
+      "New numbers. Greater on top, points in one line.",
+      "Free play. Take any decimal from a greater one.",
+      "Which number is on top? Is any place too short?",
+      "Every trade was shown, and every difference checked."
+    ],
+    "observations": [
+      {
+        "why": "a smaller number cannot have a greater one taken from it here.",
+        "soWhat": "the greater number goes on top, with the points in one line.",
+        "observe": "The frame would not start until the greater number was on top."
+      },
+      {
+        "why": "one of a place is worth ten of the place to its right, across the point too.",
+        "soWhat": "when a place is short, trade 1 of the place to its left for 10 of this place.",
+        "observe": "Every trade broke one block into exactly ten of the next place."
+      },
+      {
+        "why": "its empty places after the point hold nothing to trade from until they are written.",
+        "soWhat": "a whole number gets its point and zeros before anything is taken from it.",
+        "observe": "A whole number needed its point and zeros before any trade could start."
+      },
+      {
+        "why": "taking away undoes adding the same amount.",
+        "soWhat": "a mistaken addition is undone by taking the number away, then taking it away again.",
+        "observe": "Taking the added number away once brought back the starting number."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the cards 2.63 and 7.4 in the tray, and the Top check unlit",
+        "win": "two vermilion trades are drawn, one across the point, and the difference reads 4.77",
+        "traceback": "The greater number goes on top with the points in one line and its zeros written in violet; each short place takes one block of its left neighbour, broken into ten (the old digit struck through in ink, the new one written above in vermilion); the difference is written green from the right, ending on the whole answer.",
+        "ladder": [
+          "Write 8.3 as 8.30 first, then trade a tenth for the hundredths.",
+          "6.4 needs a zero first, and its hundredths are short.",
+          "9.2 is 9.200, so trade down from the tenths, one place at a time.",
+          "Start at the right and ask if each top digit is big enough.",
+          "Where a top digit is too small, trade one from its left for ten."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the whole number card 5 on top and 1.28 below, the 5 with no point",
+        "win": "the top reads four ones, nine tenths and ten hundredths, and the difference reads 3.72",
+        "traceback": "The whole number goes on top in the ones column and gets its point and zeros in violet; the trades run one place at a time, one one into ten tenths, then one tenth into ten hundredths (struck in ink, rewritten in vermilion); the difference is written green.",
+        "ladder": [
+          "The 4 and 5 cannot just drop down, the 7 has empty places above them.",
+          "Look at the empty places above 3 and 7: can you take from nothing?",
+          "Which column does the 3 stand in, and what is above the 8 and 5?",
+          "Trade from the left, one place at a time, until no place is short.",
+          "Once every top digit is big enough, take away from the right."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the Wording card with three wordings of one subtraction of 2.5 and 8.1",
+        "win": "all three wordings end in 8.1 - 2.5 = 5.6, and 4.09 - 4.09 = 0 sits beside them",
+        "traceback": "The Wording card lights the number every wording starts from; the frame puts it on top, writes the zeros, trades where a place is short and writes the difference green, the same difference for all three wordings.",
+        "ladder": [
+          "You take away from 6.25, so that number starts on top.",
+          "The same number is taken from itself, so what is left?",
+          "How much less also asks for a difference, so the greater starts.",
+          "Put the number you take away from on top, points in one line.",
+          "Give the shorter number its zeros, then trade where a place is short."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the Undo panel showing a number that had 2.5 added to it by mistake, giving 9.1",
+        "win": "6.6 appears as the start, and the right answer 4.1 lands green, the number taken away twice",
+        "traceback": "The frame takes the added number away from the wrong result once and the start appears green; the start goes on top, the added number is taken away again, trading where short, and the right answer lands green.",
+        "ladder": [
+          "Read what the question asks for: the start, or the right answer?",
+          "8.05 already has the 2.3 inside it: what number was there before?",
+          "What was the number before 1.24 was added to it?",
+          "Taking the added number away once only gets you back to the start.",
+          "Take the added number away from the start one more time."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "columns": [
+      "Ones",
+      "Tenths",
+      "Hundredths",
+      "Thousandths"
+    ],
+    "frame": {
+      "columnWidths": {
+        "three": [
+          160,
+          200,
+          200
+        ],
+        "four": [
+          160,
+          240,
+          240,
+          240
+        ]
+      },
+      "rowHeight": 84,
+      "rows": {
+        "head": 36,
+        "trade": 52,
+        "top": 114,
+        "bot": 206,
+        "rule": 302,
+        "diff": 312,
+        "tray": 420,
+        "key": 426
+      },
+      "layoutWidth": 1086
+    },
+    "guide": {
+      "1": {
+        "top": "7.4",
+        "bot": "2.63",
+        "tray": [
+          "2.63",
+          "7.4"
+        ]
+      },
+      "2": {
+        "top": "5",
+        "bot": "1.28",
+        "tray": [
+          "1.28",
+          "5"
+        ]
+      },
+      "3": {
+        "top": "8.1",
+        "bot": "2.5",
+        "tray": [
+          "2.5",
+          "8.1"
+        ],
+        "word": null
+      },
+      "4": {
+        "got": "9.1",
+        "added": "2.5",
+        "start": "6.6",
+        "answer": "4.1"
+      }
+    },
+    "freePairs": [
+      [
+        "3.5",
+        "6.12"
+      ],
+      [
+        "0.48",
+        "2"
+      ],
+      [
+        "4.075",
+        "9.3"
+      ],
+      [
+        "1.9",
+        "5.06"
+      ],
+      [
+        "7",
+        "3.25"
+      ]
+    ],
+    "wordings": [
+      "Subtract {b} from {a}",
+      "Take away {b} from {a}",
+      "How much less is {b} than {a}?"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M3.S5.T11.C50:CS1",
+        "kind": "column",
+        "top": "8.3",
+        "bot": "4.56",
+        "tray": [
+          "4.56",
+          "8.3"
+        ],
+        "near": "4.26",
+        "answer": "3.74",
+        "ladder": [
+          "After that trade the tenths hold 2, too few for 5, so trade a one.",
+          "Take away: 10 take away 6 hundredths, then 12 take away 5 tenths."
+        ],
+        "win": "Yes, 8.30 take away 4.56 leaves 3.74."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M3.S5.T11.C50:3",
+        "kind": "column",
+        "top": "6.4",
+        "bot": "2.15",
+        "tray": [
+          "6.4",
+          "2.15"
+        ],
+        "near": "4.35",
+        "answer": "4.25",
+        "ladder": [
+          "Trade one tenth of 6.40 for ten hundredths, and the tenths keep 3.",
+          "Now find 10 minus 5 hundredths and 3 minus 1 tenth, then the ones."
+        ],
+        "win": "Right, 6.40 minus 2.15 is 4.25."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M3.S5.T11.C50:8",
+        "kind": "column",
+        "top": "9.2",
+        "bot": "4.608",
+        "tray": [
+          "4.608",
+          "9.2"
+        ],
+        "near": "5.408",
+        "answer": "4.592",
+        "ladder": [
+          "Trade a tenth, then a hundredth, then a one, each for ten of the next.",
+          "From the right: 10 minus 8 thousandths, then 9 minus 0 hundredths."
+        ],
+        "win": "Yes, three places each, and 4.592 is left."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M3.S5.T11.C51:CS2",
+        "kind": "whole",
+        "top": "7",
+        "bot": "2.45",
+        "tray": [
+          "7",
+          "2.45"
+        ],
+        "near": "5.45",
+        "answer": "4.55",
+        "ladder": [
+          "Break a one into ten tenths, then one of those tenths into ten hundredths.",
+          "Now 10 hundredths less 5, and 9 tenths less 4, then the ones."
+        ],
+        "win": "Yes, 7.00 take away 2.45 leaves 4.55."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M3.S5.T11.C51:4",
+        "kind": "whole",
+        "top": "4",
+        "bot": "1.37",
+        "tray": [
+          "1.37",
+          "4"
+        ],
+        "near": "3.37",
+        "answer": "2.63",
+        "ladder": [
+          "The hundredths need 7 and have none, so trade down from the ones.",
+          "Take 7 from 10 hundredths and 3 from 9 tenths, then the ones."
+        ],
+        "win": "Right, 4.00 minus 1.37 is 2.63."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M3.S5.T11.C51:6",
+        "kind": "whole",
+        "top": "3",
+        "bot": "0.85",
+        "tray": [
+          "0.85",
+          "3"
+        ],
+        "near": "3.85",
+        "answer": "2.15",
+        "ladder": [
+          "0.85 needs tenths and hundredths, so open a one and then a tenth of 3.00.",
+          "Find 10 minus 5 hundredths and 9 minus 8 tenths, then the ones."
+        ],
+        "win": "Yes, 3.00 less 0.85 is 2.15."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M3.S5.T11.C52:CS3",
+        "kind": "wording",
+        "top": "6.25",
+        "bot": "1.8",
+        "tray": [
+          "1.8",
+          "6.25"
+        ],
+        "word": 1,
+        "near": "5.65",
+        "answer": "4.45",
+        "ladder": [
+          "Write 1.8 as 1.80 under 6.25, then trade a one, since 2 tenths are too few.",
+          "Take away: 5 take away 0 hundredths, then 12 take away 8 tenths."
+        ],
+        "win": "Yes, 6.25 take away 1.80 leaves 4.45."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M3.S5.T11.C52:2",
+        "kind": "wording",
+        "top": "9.16",
+        "bot": "9.16",
+        "tray": [
+          "9.16",
+          "9.16"
+        ],
+        "word": null,
+        "near": "18.32",
+        "answer": 0,
+        "ladder": [
+          "Take away place by place: 6 hundredths take away 6, 1 tenth take away 1.",
+          "Do the ones too, 9 take away 9, then write what is left in each place."
+        ],
+        "win": "Nothing is left: 9.16 take away 9.16 is 0."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M3.S5.T11.C52:5",
+        "kind": "wording",
+        "top": "5.14",
+        "bot": "2.9",
+        "tray": [
+          "2.9",
+          "5.14"
+        ],
+        "word": 2,
+        "near": "3.84",
+        "answer": "2.24",
+        "ladder": [
+          "Put 5.14 on top and 2.90 under it, then trade a one for the tenths.",
+          "Now 4 hundredths less 0, and 11 tenths less 9, then the ones."
+        ],
+        "win": "Right, 2.9 is 2.24 less than 5.14."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M3.S5.T11.C53:CS4",
+        "kind": "undo",
+        "got": "7.9",
+        "added": "1.6",
+        "start": "6.3",
+        "near": "6.3",
+        "answer": "4.7",
+        "ladder": [
+          "7.9 take away 1.6 is 6.3, the start, so take 1.6 away from 6.3 now.",
+          "6.3 has 3 tenths, too few for 6, so trade a one before taking 1.6."
+        ],
+        "win": "Yes, the start was 6.3 and the answer is 4.7."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M3.S5.T11.C53:7",
+        "kind": "undo",
+        "got": "8.05",
+        "added": "2.3",
+        "start": "5.75",
+        "near": "5.75",
+        "answer": "3.45",
+        "ladder": [
+          "8.05 take away 2.30 gives the start, 5.75, so take 2.30 away again.",
+          "No trade is needed: 5 take away 0 hundredths, then 7 take away 3 tenths."
+        ],
+        "win": "Right, back to 5.75, then on to 3.45."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": null,
+        "kind": "undo",
+        "got": "7.3",
+        "added": "1.24",
+        "start": "6.06",
+        "near": "6.06",
+        "answer": "4.82",
+        "ladder": [
+          "Undoing gives 6.06, the start, and 1.24 must come off that too.",
+          "6.06 has no tenths, so trade a one before you take away 2 tenths."
+        ],
+        "win": "Yes, back to 6.06, then on to 4.82."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The greater number goes on top with the points in one line and its zeros written in violet; each short place takes one block of its left neighbour, broken into ten (the old digit struck through in ink, the new one written above in vermilion); the difference is written green from the right, ending on the whole answer.",
+      "Phase 2: The whole number goes on top in the ones column and gets its point and zeros in violet; the trades run one place at a time, one one into ten tenths, then one tenth into ten hundredths (struck in ink, rewritten in vermilion); the difference is written green.",
+      "Phase 3: The Wording card lights the number every wording starts from; the frame puts it on top, writes the zeros, trades where a place is short and writes the difference green, the same difference for all three wordings.",
+      "Phase 4: The frame takes the added number away from the wrong result once and the start appears green; the start goes on top, the added number is taken away again, trading where short, and the right answer lands green."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A column frame, waiting for the greater number on top.",
+    "onFreePlay": "Free play: put the greater number on top, trade, take away, then try a new pair.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Every trade was shown, and every difference checked.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M3.S5.T11.C50:CS1",
+            "worked": false,
+            "kind": "column",
+            "planQuestion": "What is 8.3 - 4.56?",
+            "question": {
+              "en": "What is 8.3 - 4.56?"
+            },
+            "ask": {
+              "en": "8.3 − 4.56 = ?"
+            },
+            "answer": "3.74",
+            "planAnswer": "3.74",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M3.S5.T11.C50:3",
+            "worked": false,
+            "kind": "column",
+            "planQuestion": "What is 6.4 - 2.15?",
+            "question": {
+              "en": "What is 6.4 - 2.15?"
+            },
+            "ask": {
+              "en": "6.4 − 2.15 = ?"
+            },
+            "answer": "4.25",
+            "planAnswer": "4.25. Write 6.4 as 6.40, and trade 1 tenth for 10 hundredths",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M3.S5.T11.C50:8",
+            "worked": false,
+            "kind": "column",
+            "planQuestion": "What is 9.2 - 4.608?",
+            "question": {
+              "en": "What is 9.2 - 4.608?"
+            },
+            "ask": {
+              "en": "9.2 − 4.608 = ?"
+            },
+            "answer": "4.592",
+            "planAnswer": "4.592, because 9.200 - 4.608 = 4.592",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M3.S5.T11.C51:CS2",
+            "worked": false,
+            "kind": "whole",
+            "planQuestion": "What is 7 - 2.45?",
+            "question": {
+              "en": "What is 7 - 2.45?"
+            },
+            "ask": {
+              "en": "7 − 2.45 = ?"
+            },
+            "answer": "4.55",
+            "planAnswer": "4.55",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M3.S5.T11.C51:4",
+            "worked": false,
+            "kind": "whole",
+            "planQuestion": "What is 4 - 1.37?",
+            "question": {
+              "en": "What is 4 - 1.37?"
+            },
+            "ask": {
+              "en": "4 − 1.37 = ?"
+            },
+            "answer": "2.63",
+            "planAnswer": "2.63. Write 4 as 4.00 before taking away",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M3.S5.T11.C51:6",
+            "worked": false,
+            "kind": "whole",
+            "planQuestion": "Subtract 0.85 from 3.",
+            "question": {
+              "en": "Subtract 0.85 from 3."
+            },
+            "ask": {
+              "en": "Subtract 0.85 from 3"
+            },
+            "answer": "2.15",
+            "planAnswer": "2.15, because 3.00 - 0.85 = 2.15",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M3.S5.T11.C52:CS3",
+            "worked": false,
+            "kind": "wording",
+            "planQuestion": "Take away 1.8 from 6.25.",
+            "question": {
+              "en": "Take away 1.8 from 6.25."
+            },
+            "ask": {
+              "en": "Take away 1.8 from 6.25"
+            },
+            "answer": "4.45",
+            "planAnswer": "4.45",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M3.S5.T11.C52:2",
+            "worked": false,
+            "kind": "wording",
+            "planQuestion": "What is 9.16 - 9.16?",
+            "question": {
+              "en": "What is 9.16 - 9.16?"
+            },
+            "ask": {
+              "en": "9.16 − 9.16 = ?"
+            },
+            "answer": 0,
+            "planAnswer": "0. A number minus itself is 0",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M3.S5.T11.C52:5",
+            "worked": false,
+            "kind": "wording",
+            "planQuestion": "How much less is 2.9 than 5.14?",
+            "question": {
+              "en": "How much less is 2.9 than 5.14?"
+            },
+            "ask": {
+              "en": "How much less is 2.9 than 5.14?"
+            },
+            "answer": "2.24",
+            "planAnswer": "2.24, because 5.14 - 2.90 = 2.24",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M3.S5.T11.C53:CS4",
+            "worked": false,
+            "kind": "undo",
+            "planQuestion": "Someone added 1.6 to a number instead of subtracting it, and got 7.9. What is the right answer?",
+            "question": {
+              "en": "1.6 was added instead of taken away, giving 7.9, so what is the right answer?"
+            },
+            "ask": {
+              "en": "Added 1.6, got 7.9. Right answer?"
+            },
+            "answer": "4.7",
+            "planAnswer": "4.7",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M3.S5.T11.C53:7",
+            "worked": false,
+            "kind": "undo",
+            "planQuestion": "Someone added 2.3 to a number instead of subtracting it, and got 8.05. What is the right answer?",
+            "question": {
+              "en": "Someone added 2.3 by mistake and got 8.05, so find the wanted answer."
+            },
+            "ask": {
+              "en": "Added 2.3, got 8.05. Right answer?"
+            },
+            "answer": "3.45",
+            "planAnswer": "3.45. First 8.05 - 2.30 = 5.75, the starting number. Then 5.75 - 2.30 = 3.45",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "undo",
+            "planQuestion": null,
+            "question": {
+              "en": "Adding 1.24 by mistake gave 7.3, so what should the answer be?"
+            },
+            "ask": {
+              "en": "Added 1.24, got 7.3. Right answer?"
+            },
+            "answer": "4.82",
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M3.S5.T11.C50:1"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "column_subtractor",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "column_subtractor",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Greater number on top",
+        "conceptId": "M3.S5.T11.C50",
+        "objectiveIds": [
+          "O19"
+        ],
+        "items": [
+          "M3.S5.T11.C50:CS1",
+          "M3.S5.T11.C50:3",
+          "M3.S5.T11.C50:8"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Taking a decimal from a whole number",
+        "conceptId": "M3.S5.T11.C51",
+        "objectiveIds": [
+          "O19"
+        ],
+        "items": [
+          "M3.S5.T11.C51:CS2",
+          "M3.S5.T11.C51:4",
+          "M3.S5.T11.C51:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Three ways to ask for a difference",
+        "conceptId": "M3.S5.T11.C52",
+        "objectiveIds": [
+          "O20"
+        ],
+        "items": [
+          "M3.S5.T11.C52:CS3",
+          "M3.S5.T11.C52:2",
+          "M3.S5.T11.C52:5"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Undoing a mistaken addition",
+        "conceptId": "M3.S5.T11.C53",
+        "objectiveIds": [
+          "O20"
+        ],
+        "items": [
+          "M3.S5.T11.C53:CS4",
+          "M3.S5.T11.C53:7",
+          "M3.S5.T11.C50.2D1:p4_3"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "cards",
+    "top",
+    "v",
+    "columns",
+    "x",
+    "trades",
+    "difference",
+    "diffStr",
+    "undo",
+    "undo"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), cards, top, v, columns, x, trades, difference, diffStr, undo, undo, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "column_subtractor"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M3.S5.T11.C50.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A column frame, waiting for the greater number on top."
+    },
+    {
+      "en": "Greater number on top. When a place is short, trade from the left."
+    },
+    {
+      "en": "Five has no tenths and no hundredths yet. What do you trade?"
+    },
+    {
+      "en": "Three ways to say it. Which number starts on top each time?"
+    },
+    {
+      "en": "First get back to the start. Then do the subtraction that was wanted."
+    },
+    {
+      "en": "New numbers. Greater on top, points in one line."
+    },
+    {
+      "en": "Free play. Take any decimal from a greater one."
+    },
+    {
+      "en": "Which number is on top? Is any place too short?"
+    },
+    {
+      "en": "Every trade was shown, and every difference checked."
+    }
+  ],
+  "build": {
+    "source": "0c26dd8a:642330",
+    "runtime": "class5/runtime/frozen/r64/runtime.tsx",
+    "runtimeVersion": "r64",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T13:32:56.258Z",
+    "checks": {
+      "pass": 91,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-18T13:32:56.132Z"
+    },
+    "tsxBytes": 561798,
+    "tsxMd5": "d5bc959566ac7dcf2e2075c2fb6121de"
+  }
+}

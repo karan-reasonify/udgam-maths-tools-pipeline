@@ -286,7 +286,7 @@ export function makeEditorApi({ discoverClasses, ensureRunning, send }) {
     }
 
     /* one tool as the host runs it, for the Before/After frames: the class viewer's own libraries and host
-       template (src= its port, so nothing is copied), the ported .tsx (after) or the snapshot taken when the fix
+       template (src= /c/<n>/ on the hub, so nothing is copied), the ported .tsx (after) or the snapshot taken when the fix
        began (before) */
     if (req.method === "GET" && p === "/render") {
       const s = slotOf(q("chapter"), q("slot"));
@@ -294,7 +294,7 @@ export function makeEditorApi({ discoverClasses, ensureRunning, send }) {
       const src = read(q("v") === "before" ? path.join(s.fb, "port.before.tsx") : s.outTsx);
       if (src === null) return send(res, 404, "not ported", "text/plain; charset=utf-8");
       try { await ensureRunning(s.c); } catch (e) { return send(res, 503, e.message, "text/plain; charset=utf-8"); }
-      const o = `http://${(req.headers.host || "localhost").replace(/:\d+$/, "")}:${s.c.port}`;
+      const o = `/c/${s.c.class}`; // proxied by the hub, so only its port has to be reachable
       const lang = ["en", "hi", "gu"].includes(q("lang")) ? q("lang") : "en";
       const noEnd = (x) => x.replace(/<\/script/gi, "<\\/script");
       const props = { navigableDots: false, muted: true, lang, classroom: false };

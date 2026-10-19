@@ -1,0 +1,1102 @@
+{
+  "slotId": "M2.S3.T5.C20.2D1",
+  "mediaId": "M2.S3.T5.C20.2D1",
+  "toolId": "code_wheel",
+  "title": "Code Wheel",
+  "component": "M2.S3.T5.C20.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch10_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_10/2dtool/M2.S3.T5.C16.2D1/M2.S3.T5.C16.2D1.tsx",
+  "description": "Set a key, write a word in code with it, and decode a message by undoing the key.",
+  "conceptIds": [
+    "M2.S3.T5.C20",
+    "M2.S3.T5.C21",
+    "M2.S3.T5.C22",
+    "M2.S3.T5.C23"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Set a key, write a word in code with it, and read a code back by undoing the key, then find out why the key is needed at all.",
+    "look": "Two rings of letters one inside the other, a number band that clips round them, and a message strip along the foot of the stage.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only. 'Code Wheel' sits in ink at the far left, with a small dot set clear of the name by measuring it. The phase title sits beside the dot on the same line, then the host's navigation, and again, sound and restart stand as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the letters carried against the letters in this phase's message, two numbers in ink. The first climbs by one as each letter drops into the strip or each trial row is written out, and the second is fixed at the length of the message. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The wheel sits at the left of the working area. The number band, when clipped on, is a ring 400 across at 64,212. Inside it the outer ring of letters is 340 across and the inner ring 250 across, all three sharing one centre at 264,412. Each ring carries the twenty-six letters evenly spaced, so Z sits beside A with no end anywhere. The place where Z meets A carries a small reddish purple tick on every ring. The outer ring is fixed. The inner ring turns one letter place per step, and the places turned are written on the key tag, 200 by 60 at 600,222. The number band writes each letter's place beside it, one to twenty-six, and flips to run from twenty-six down to one. A small arrow on the band shows which way it runs and what A is. The swap key draws chords straight across the ring from each letter to its partner: the first to the last, the second to the second last. The message strip runs along the foot of the working area, 1080 by 96 at 64,628, with a plain letter box above a code box for each letter. Tapping a letter on the outer ring draws a vermilion line from it to its partner under the current key, one place at a time. The partner then drops into the strip under the plain letter. Undo turns the wheel back by the key and carries each code letter back along the same kind of line. The trial rows stand at the right, 540 by 316 at 600,296, one row to a trial. In the locked mode each key tried is written at the left of its row with its reading in full beside it, and no row is marked until the key is shown. Down the right of the canvas the question sits above the answer slot at 1186,250 (356 by 92), which holds what the child has given. That rectangle is the same on every phase and is never animated in or out. Under it is the pad at 1170,368 (388 by 363). The pad is twenty-six letter keys, seven across in four rows with the last row holding five. Twelve number keys three across take over wherever a code is written in numbers. On the fourth phase two more keys stand under them, sure and cannot be sure. The footer runs 758 to 900. The voice caption sits at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling. The phase bar sits at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, taken from its pictures. Whatever the stage hands over is deep blue: a given term, a bead, the bottom row of a tower, a plain letter, a tile already laid. The first member of a repeating group is deep blue too, and the second member, or a second kind set beside the first, is amber. The step itself is vermilion in every tool without exception: a jump arc and its label, a quarter turn, an operation sign, a key's shift. Whatever the rule makes is green: a next term, a built box, a coded or decoded letter, a copy just laid, a tick. Whatever the child is asked to notice is reddish purple: a broken box, a closed-in gap, a doubled part, a leftover counter, a line put back. The dots of dotted paper are grey and nothing else is. Every bracket, outline, rule and blank is near-black chrome. Chrome never borrows a content colour, and no content colour is ever used for chrome. Every reading survives with the colour taken away, because a thing is told by its label or its place before it is told by its colour. A blank waiting for the child is an empty outlined box, never a faded copy of its answer. The alphabet is never drawn as a straight line on this stage, not even in a heading. A line has two ends, and an end is exactly where a letter falls off when a key moves it on.",
+    "finish": "The card shows the wheel set to the last key the child used, the message strip with a word in code and in plain letters, and the trial rows from the locked message.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the numbers drop into the strip, one under each letter",
+        "does": "taps each letter of a word and reads its number off the band into the strip",
+        "goal": "a key says what every letter stands for, such as A as one up to Z as twenty-six",
+        "says": "Find each letter on the ring. What number does the key give it?",
+        "check": "Away from the screen: write your name with A as one. Then ask a friend to read it back.",
+        "feels": "every letter has one partner under the key, and the same letter always gets the same one",
+        "hands": "Write the alphabet round the edge of a paper plate and number each letter from one, starting at A. Have each child write their own name in code with it and pass it to a partner to read back. Then number the plate the other way, with A as twenty-six, and ask what the same name becomes. Ask what the partner needed to know before they could read it.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: what number does the band give A? Second rung, the phase's: which way is the band running? Third rung: the word is cut to its first letter, and the child counts round the band from A to it. The letter keys and the number keys stay open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "counting on a ruler starts from zero, and the first mark on anything measured has always been the nought.",
+            "move": "counts the alphabet from zero, so every number comes out one too small and KITE is written ten, eight, nineteen, four.",
+            "screen": "the band counts from A again, lighting each letter as it is counted and writing one under A. The child's numbers stay in the strip, and the band's numbers are written above them, each one bigger. Nothing is cleared."
+          },
+          {
+            "why": "the first key met ran from A as one, and a band of numbers looks the same whichever way it runs.",
+            "move": "reads the numbers off the band as if it ran from A as one, when it has been flipped to run from A as twenty-six.",
+            "screen": "the small arrow on the band lights, with A's own number written beside it. The child's line stays in the strip, and the flipped band's number for each letter is carried down beside it, so S, U and N read eight, six and thirteen."
+          }
+        ],
+        "screen": "the outer ring with the number band clipped round it and an empty message strip",
+        "soWhat": "A key says what every letter stands for, such as A as one up to Z as twenty-six.",
+        "concept": "A key says what each letter stands for"
+      },
+      {
+        "n": 2,
+        "win": "the coded word fills the strip, and a letter near the end is carried round to the start",
+        "does": "carries each letter of the word to its partner on the inner ring",
+        "goal": "a key can move every letter the same number of places on, and Z comes round to A",
+        "says": "Move each letter the same number of places. What comes after the last letter?",
+        "check": "Move every letter of ZIP three places on, and say what happened to the Z.",
+        "feels": "every letter moves the same number of places, and the ring carries Z on round to A",
+        "hands": "Pin two paper circles together at the centre, each with the alphabet round its edge, and turn the inner one three letters on. Carry a short word across letter by letter, touching each landing. Then carry a word with Y or Z in it and ask what comes after Z. Let the circle answer: there is no end to fall off.",
+        "tries": "First rung, from the item: how many places does the key move each letter? Second rung, the phase's: what comes after Z on the ring? Third rung: the word is cut to one letter near the end of the alphabet, and the child carries it one place at a time. The letter keys stay open.",
+        "wrong": [
+          {
+            "why": "every written alphabet the class has seen ends at Z, and a line that ends has nothing past its end.",
+            "move": "stops at Z because nothing comes after it, and leaves that letter out of the code.",
+            "screen": "the carry line from Z runs on round the ring one place at a time, past the tick where Z meets A, lighting A, then B, then C. Each landing is numbered as it lights. The child's code keeps its empty box, and the ring's landing is written beside it."
+          },
+          {
+            "why": "a jump is easy to count by the letters touched, and the first letter touched is the one the finger is already on.",
+            "move": "counts the letter it starts on as the first place, so three places on from O lands on Q instead of R.",
+            "screen": "the carry runs one place at a time from O, and the first number is written on P, the first landing. O itself is left unnumbered. The child's Q stays in the strip, and the count stops on R with three written over it."
+          }
+        ],
+        "screen": "both rings, the inner ring turned a few places on, and a word waiting",
+        "soWhat": "A key can move every letter the same number of places on, and moving on past Z carries on round from A.",
+        "concept": "Moving each letter along"
+      },
+      {
+        "n": 3,
+        "win": "the message reads out in plain letters, and a letter that passed A comes round from Z",
+        "does": "turns the inner ring back by the key and reads each letter's partner",
+        "goal": "decoding moves each letter back as far as the key moved it on",
+        "says": "The key moved each letter on. Which way do you go to undo it?",
+        "check": "A key moved every letter two places on. The code reads E C V. What was the word? Code it again to check.",
+        "feels": "the key moved each letter on, so undoing it moves each one back just as far",
+        "hands": "Hand a partner a coded word and tell them the key: three places on. Ask which way they must go to undo it, and let them try both ways on the paper wheel. Then have them code their answer again with the key and compare it with the message they were given. If the two match, the word is found.",
+        "tries": "First rung, from the item: which way did the key move the letters? Second rung, the phase's: which way do you go to undo it? Third rung: the message is cut to one letter, and the child turns the ring back one place at a time. The letter keys stay open.",
+        "wrong": [
+          {
+            "why": "the key said on, and doing what the key says feels like obeying it.",
+            "move": "moves each letter three places on again instead of back, reading F D N H as I G Q K.",
+            "screen": "the child's reading is coded again through the key and set under the message. It comes out L J T N, further from the code rather than back to it. Undo then turns the wheel back three places and carries each code letter home. Both readings stay in the strip."
+          },
+          {
+            "why": "going back feels like counting down, and a count down stops at the start.",
+            "move": "going back past A, stops at A, so D F P never becomes a word.",
+            "screen": "the carry line runs back from D one place at a time, past the tick where A meets Z, lighting C, B, A, Z and then Y. Each landing is numbered as it lights. The child's box keeps what was written, and the ring's landing is written beside it."
+          }
+        ],
+        "screen": "a coded message in the strip with its key written beside it",
+        "soWhat": "Decoding moves each letter back as far as the key moved it on, and going back past A carries on round from Z.",
+        "concept": "Decoding means undoing the key"
+      },
+      {
+        "n": 4,
+        "win": "several readings stand in the trial rows, and the right one lights only when the key is shown",
+        "does": "tries one key after another, writes each reading out, and says what would settle it",
+        "goal": "without the key the same code can be read in more than one way",
+        "says": "Try a key. Now try another. Which one did the sender use?",
+        "check": "Away from the screen: send a friend a code with no key. How many readings can they find before you tell them?",
+        "feels": "several readings stand side by side, and nothing on the strip says which one the sender meant",
+        "hands": "Write three, one, two on the board with no key, and ask the class what it says. Collect every reading they can make, with A as one, with A as twenty-six, or with a key that moves letters along. Write each one out in full in a column. Then show the key, and ask what the key did that none of the readings could do.",
+        "tries": "First rung, from the item: which key did you try? Second rung, the phase's: could another key read it too? Third rung: the message is cut to one number, and the child reads it under two keys. The trial rows stay open.",
+        "wrong": [
+          {
+            "why": "a reading that makes a real word feels like proof, and the first key met is the one the hand reaches for.",
+            "move": "reads the code with A as one, finds a word, and takes it as certain.",
+            "screen": "the trial rows keep the child's reading and add the others, each written out in full with its key at the left of its row. Four, fifteen, seven reads D O G in one row and W L T in the next. No row is marked, and the key tag stays closed until the key is shown."
+          },
+          {
+            "why": "that key came first, and a code with no key named looks as though it must use the one already known.",
+            "move": "tries only the key with A as one, and gives up when it does not make a word.",
+            "screen": "the locked mode sets out the other keys the chapter uses, the flipped band, a key that moves letters along, and the swap. It writes a trial row for each in turn. The child's single row stays at the top."
+          }
+        ],
+        "screen": "a coded message with its key hidden and the trial rows empty",
+        "soWhat": "Without the key the same code can be read in more than one way, so to decode a secret code you must know the key.",
+        "concept": "Without the key the code stays locked"
+      }
+    ],
+    "delight": "The third phase, once the message reads out in plain letters. The plain word lifts off the strip and rides forward round the wheel through the key, letter by letter, and each letter lands exactly on the code box it came from. The two lines of the strip then stand one above the other, joined letter to letter by short vermilion ticks. It runs as often as a finger likes, nothing is marked, and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the outer ring stands with the number band clipped round it and a word waiting above an empty message strip. On the second both rings stand with the inner ring already turned a few places on, the key tag showing how many, and a word waiting. On the third a coded message lies in the strip with its key written on the tag and the plain letter boxes empty. On the fourth a coded message lies in the strip with the key tag closed and the trial rows empty. The running count at the top left holds the letters carried against the letters in this phase's message, and the answer slot and the pad stand empty down the right. One thing moves, once: the first letter of the word, or of the message, gives one slow pulse while the voice asks what the key does to it. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any key, a turn of the inner ring, a number band either way or the swap key, with the message strip and the locked mode open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on number keys and a swap key, keys that move letters along, decoding by undoing the key, and why the key is needed to read a code.",
+    "voiceLines": [
+      "Two rings of letters, one inside the other. Turn the inner ring to set a key.",
+      "Find each letter on the ring. What number does the key give it?",
+      "Move each letter the same number of places. What comes after the last letter?",
+      "The key moved each letter on. Which way do you go to undo it?",
+      "Try a key. Now try another. Which one did the sender use?",
+      "Another word. Say the key out loud before you carry a letter.",
+      "Free play. Any key, any word, with the strip and the locked message open.",
+      "Carry the letter again, one place at a time, and count as you go.",
+      "Words written in code and read back out, and every key named."
+    ],
+    "observations": [
+      {
+        "why": "A key is one rule for every letter, so it gives each letter one partner.",
+        "soWhat": "Anyone holding the key can write the code or read it.",
+        "observe": "Every letter had one number under the key, and the same letter always had the same number."
+      },
+      {
+        "why": "The letters sit round a circle, so the place after Z is the place where A is.",
+        "soWhat": "Moving on past Z carries on round from A.",
+        "observe": "A letter carried on past Z came round to A without anything special happening."
+      },
+      {
+        "why": "Undoing the key moves each letter back exactly as far as the key moved it on.",
+        "soWhat": "Decoding is the key run backwards, and coding the answer again is the check.",
+        "observe": "Coding the decoded word again gave back the code, letter for letter."
+      },
+      {
+        "why": "The same letters or numbers stand for different things under different keys.",
+        "soWhat": "To decode a secret code you must know the key.",
+        "observe": "Two keys read the same message two ways, and nothing on the strip chose between them."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the outer ring with the number band clipped round it and an empty message strip",
+        "win": "the numbers drop into the strip, one under each letter",
+        "traceback": "the band counts round from A to each letter of the word, lighting it, and the whole code is written out under the word",
+        "ladder": [
+          "A is one, not nothing, so start your counting there.",
+          "S sits far round the ring, so keep counting past the middle.",
+          "A pairs with Z, so which letter pairs with F?",
+          "Which letter does the band start at?",
+          "Count on from the nearest marked number."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "both rings, the inner ring turned a few places on, and a word waiting",
+        "win": "the coded word fills the strip, and a letter near the end is carried round to the start",
+        "traceback": "the ring turns to the key one place at a time and each letter is carried round to its partner, on past Z",
+        "ladder": [
+          "Z has nowhere left to go, so where does the ring take it?",
+          "Count the places you turn, not the letter you start on.",
+          "Y is near the end, so follow it on past Z.",
+          "Where does the ring take the last letter?",
+          "Count the turns before you read a letter."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a coded message in the strip with its key written beside it",
+        "win": "the message reads out in plain letters, and a letter that passed A comes round from Z",
+        "traceback": "the child's word is coded again through the key (it does not come back to the code), then the ring turns back by the key and each coded letter is carried home, round from Z when it passes A",
+        "ladder": [
+          "The key pushed the letters on, so pull them back.",
+          "Turn the ring back four places before you read.",
+          "Going back past A does not stop, it carries on from Z.",
+          "Did the key move the letters on or back?",
+          "Turn the ring the other way and count the turns again."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a coded message with its key hidden and the trial rows empty",
+        "win": "several readings stand in the trial rows, and the right one lights only when the key is shown",
+        "traceback": "each key is tried in a row of its own and the words stand side by side, none of them marked; the typed question redraws the ring turned to the key",
+        "ladder": [
+          "Do the two rows read the same word?",
+          "Another key may give another word, so does the code itself choose?",
+          "Count the six places you turn, not the letter you start on.",
+          "Which keys have you tried so far?",
+          "Write out what each key gives, then look again."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "alphabet": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "bandMarks": [
+      1,
+      5,
+      10,
+      15,
+      20,
+      25
+    ],
+    "wheel": {
+      "cx": 236,
+      "cy": 258,
+      "rim": 232,
+      "out": 204,
+      "mid": 174,
+      "inn": 150,
+      "hub": 96
+    },
+    "region": {
+      "x": 500,
+      "wide": 700,
+      "narrow": 404
+    },
+    "keys": {
+      "turn": {
+        "w": 150,
+        "h": 72
+      },
+      "letter": {
+        "w": 72,
+        "h": 72,
+        "gap": 8
+      }
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T5.C20:ML1",
+        "kind": "num",
+        "word": "KITE",
+        "parts": [
+          {
+            "label": "K"
+          },
+          {
+            "label": "I"
+          },
+          {
+            "label": "T"
+          },
+          {
+            "label": "E"
+          }
+        ],
+        "answer": [
+          11,
+          9,
+          20,
+          5
+        ],
+        "winMs": 2800,
+        "win": "Yes, each letter has just one number on the band."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T5.C20:1",
+        "kind": "num",
+        "word": "SUN",
+        "parts": [
+          {
+            "label": "S"
+          },
+          {
+            "label": "U"
+          },
+          {
+            "label": "N"
+          }
+        ],
+        "answer": [
+          19,
+          21,
+          14
+        ],
+        "winMs": 2800,
+        "win": "Yes, the same letter always gets the same number."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T5.C20:2",
+        "kind": "swap",
+        "word": "FLY",
+        "answer": "uob",
+        "winMs": 2800,
+        "win": "Yes, a swap key gives every letter one partner.",
+        "ladder": [
+          "F is the sixth letter, so look for the sixth from the end.",
+          "Z is first from the end, then Y, then X, and so on."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T5.C21:ML2",
+        "kind": "code",
+        "word": "ZOO",
+        "shift": 3,
+        "pad": "enter",
+        "answer": "CRR",
+        "winMs": 2800,
+        "win": "Yes, the ring carried Z straight on round the circle.",
+        "ladder": [
+          "What comes after Z on the ring?",
+          "Turn the ring three places and read the letter under Z."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T5.C21:3",
+        "kind": "code",
+        "word": "PEN",
+        "shift": 4,
+        "pad": "enter",
+        "answer": "TIR",
+        "winMs": 2800,
+        "win": "Yes, every letter moved the same four places.",
+        "ladder": [
+          "How many times must you tap On?",
+          "Tap On four times, then read under each letter."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T5.C21:4",
+        "kind": "code",
+        "word": "YES",
+        "shift": 3,
+        "pad": "enter",
+        "answer": "BHV",
+        "winMs": 2800,
+        "win": "Yes, Y went past Z and came round the ring.",
+        "ladder": [
+          "What sits next to Z on the ring?",
+          "Turn three places on and read under Y, E and S."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T5.C22:ML3",
+        "kind": "decode",
+        "code": "FDNH",
+        "shift": 3,
+        "pad": "enter",
+        "answer": "CAKE",
+        "winMs": 2800,
+        "win": "Yes, undoing the key took each letter home.",
+        "ladder": [
+          "Which way must the ring turn to undo three places on?",
+          "Turn the ring back three places and read under each code letter."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T5.C22:5",
+        "kind": "decode",
+        "code": "FSSO",
+        "shift": 4,
+        "pad": "enter",
+        "answer": "BOOK",
+        "winMs": 2800,
+        "win": "Yes, going back four places found the word.",
+        "ladder": [
+          "Which way did this key take the letters?",
+          "Tap Back four times, then read under F, S, S and O."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T5.C22:6",
+        "kind": "decode",
+        "code": "DFP",
+        "shift": 5,
+        "pad": "enter",
+        "answer": "YAK",
+        "winMs": 2800,
+        "win": "Yes, going back past A came round from Z.",
+        "ladder": [
+          "What sits before A on the ring?",
+          "Turn back five places and read under D, F and P."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T5.C23:ML4",
+        "kind": "lock",
+        "nums": [
+          4,
+          15,
+          7
+        ],
+        "answer": "unsure",
+        "winMs": 2800,
+        "win": "Yes, with no key the code reads two ways.",
+        "ladder": [
+          "Could another key read it too?",
+          "Look at both rows: does anything pick one of them?"
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T5.C23:7",
+        "kind": "lock",
+        "code": "KDW",
+        "answer": "unsure",
+        "winMs": 2800,
+        "win": "Yes, only the key tells you which word was meant.",
+        "ladder": [
+          "Could another key give a word too?",
+          "Look at both rows: which one did the sender mean?"
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T5.C23:8",
+        "kind": "code",
+        "word": "ANT",
+        "shift": 6,
+        "pad": "enter",
+        "answer": "GTZ",
+        "winMs": 2800,
+        "win": "Yes, and your friend needs the key, six places on, to read it.",
+        "ladder": [
+          "How many times must you tap On to make six places?",
+          "Tap On six times, then read under A, N and T."
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: the band counts round from A to each letter of the word, lighting it, and the whole code is written out under the word",
+      "Phase 2: the ring turns to the key one place at a time and each letter is carried round to its partner, on past Z",
+      "Phase 3: the child's word is coded again through the key (it does not come back to the code), then the ring turns back by the key and each coded letter is carried home, round from Z when it passes A",
+      "Phase 4: each key is tried in a row of its own and the words stand side by side, none of them marked; the typed question redraws the ring turned to the key"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Two rings of letters, one inside the other. Turn the inner ring to set a key.",
+    "onFreePlay": "Free play. Turn the ring to any key, then tap Next word for a new word.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Words written in code and read back out, and every key named.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T5.C20:ML1",
+            "worked": false,
+            "kind": "num",
+            "planQuestion": "With A as 1, B as 2 and so on up to Z as 26, write the word KITE in code.",
+            "question": {
+              "en": "With A as 1 and Z as 26, write the word KITE in code."
+            },
+            "ask": {
+              "en": "KITE in code"
+            },
+            "answer": [
+              11,
+              9,
+              20,
+              5
+            ],
+            "planAnswer": "11 9 20 5",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T5.C20:1",
+            "worked": false,
+            "kind": "num",
+            "planQuestion": "With A as 1 and Z as 26, write the word SUN in code.",
+            "question": {
+              "en": "Using the same band, write the word SUN in code."
+            },
+            "ask": {
+              "en": "SUN in code"
+            },
+            "answer": [
+              19,
+              21,
+              14
+            ],
+            "planAnswer": "19 21 14",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T5.C20:2",
+            "worked": false,
+            "kind": "swap",
+            "planQuestion": "A key swaps A with Z, B with Y, C with X, and so on. Write the word FLY in this code.",
+            "question": {
+              "en": "A key swaps A with Z, C with X, D with W and so on; how is FLY written?"
+            },
+            "ask": {
+              "en": "FLY in code"
+            },
+            "answer": "uob",
+            "planAnswer": "U O B",
+            "choices": [
+              "uob",
+              "vpc",
+              "tna",
+              "uoy"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T5.C21:ML2",
+            "worked": false,
+            "kind": "code",
+            "planQuestion": "A key moves every letter three places on, so A becomes D, and X, Y and Z go round to A, B and C. Write the word ZOO in this code.",
+            "question": {
+              "en": "A key moves every letter three places on, so A becomes D; write ZOO in code."
+            },
+            "ask": {
+              "en": "ZOO in code"
+            },
+            "answer": "CRR",
+            "planAnswer": "C R R",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T5.C21:3",
+            "worked": false,
+            "kind": "code",
+            "planQuestion": "A key moves every letter four places on. Write the word PEN in this code.",
+            "question": {
+              "en": "Now the key moves every letter four places on; write the word PEN in code."
+            },
+            "ask": {
+              "en": "PEN in code"
+            },
+            "answer": "TIR",
+            "planAnswer": "T I R",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T5.C21:4",
+            "worked": false,
+            "kind": "code",
+            "planQuestion": "A key moves every letter three places on. Write the word YES in this code.",
+            "question": {
+              "en": "Back to three places on, write the word YES in this code."
+            },
+            "ask": {
+              "en": "YES in code"
+            },
+            "answer": "BHV",
+            "planAnswer": "B H V, because Y goes round past Z to B",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T5.C22:ML3",
+            "worked": false,
+            "kind": "decode",
+            "planQuestion": "A key moved every letter three places on. The code reads F D N H. What was the word?",
+            "question": {
+              "en": "A key moved every letter three places on, so what word does F D N H hide?"
+            },
+            "ask": {
+              "en": "The word?"
+            },
+            "answer": "CAKE",
+            "planAnswer": "CAKE",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T5.C22:5",
+            "worked": false,
+            "kind": "decode",
+            "planQuestion": "A key moved every letter four places on. The code reads F S S O. What was the word?",
+            "question": {
+              "en": "This key moved letters four places on; which word was hidden in F S S O?"
+            },
+            "ask": {
+              "en": "Which word?"
+            },
+            "answer": "BOOK",
+            "planAnswer": "BOOK",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T5.C22:6",
+            "worked": false,
+            "kind": "decode",
+            "planQuestion": "A key moved every letter five places on. The code reads D F P. What was the word?",
+            "question": {
+              "en": "The key here moved letters five places on, so find the word in D F P."
+            },
+            "ask": {
+              "en": "What was it?"
+            },
+            "answer": "YAK",
+            "planAnswer": "YAK, because D goes back five places, past A and round from Z, to Y",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T5.C23:ML4",
+            "worked": false,
+            "kind": "lock",
+            "planQuestion": "A friend sends the code 4 15 7 with no key. Read it with A as 1, and then with A as 26 and Z as 1. Can you be sure what it says?",
+            "question": {
+              "en": "Try A as 1, then A as 26: are you sure what 4 15 7 says?"
+            },
+            "ask": {
+              "en": "Sure?"
+            },
+            "answer": "unsure",
+            "planAnswer": "With A as 1 it reads DOG, and with A as 26 it reads W L T. Without the key you cannot be sure which was meant",
+            "choices": [
+              "sure",
+              "unsure"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T5.C23:7",
+            "worked": false,
+            "kind": "lock",
+            "planQuestion": "The code K D W was made by moving every letter the same number of places on, but the key is lost. Moving back three places gives HAT. Moving back one place gives J C V. Can you be sure which is the message?",
+            "question": {
+              "en": "Try one key, then another: are you sure which word K D W meant?"
+            },
+            "ask": {
+              "en": "Sure?"
+            },
+            "answer": "unsure",
+            "planAnswer": "Not for certain. HAT is the only reading that makes a word, but only the key can settle it, because another key could hide another word",
+            "choices": [
+              "sure",
+              "unsure"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T5.C23:8",
+            "worked": false,
+            "kind": "code",
+            "planQuestion": "Make a key that moves every letter six places on, and write the word ANT in it. What must a friend be told before they can read it?",
+            "question": {
+              "en": "Set the key six places on and write ANT in code."
+            },
+            "ask": {
+              "en": "ANT in code"
+            },
+            "answer": "GTZ",
+            "planAnswer": "G T Z, and the friend must be told the key, six places on, so they can move each letter six places back",
+            "madeOn": "working area"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "code_wheel",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "code_wheel",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "A key says what each letter stands for",
+        "conceptId": "M2.S3.T5.C20",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C20:ML1",
+          "M2.S3.T5.C20:1",
+          "M2.S3.T5.C20:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Moving each letter along",
+        "conceptId": "M2.S3.T5.C21",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C21:ML2",
+          "M2.S3.T5.C21:3",
+          "M2.S3.T5.C21:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Decoding means undoing the key",
+        "conceptId": "M2.S3.T5.C22",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C22:ML3",
+          "M2.S3.T5.C22:5",
+          "M2.S3.T5.C22:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Without the key the code stays locked",
+        "conceptId": "M2.S3.T5.C23",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C23:ML4",
+          "M2.S3.T5.C23:7",
+          "M2.S3.T5.C23:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "keyType",
+    "places",
+    "message",
+    "coded",
+    "decoded",
+    "trials",
+    "r",
+    "nudge"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), keyType, places, message, coded, decoded, trials, r, nudge, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "code_wheel"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T5.C20.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Two rings of letters, one inside the other. Turn the inner ring to set a key."
+    },
+    {
+      "en": "Find each letter on the ring. What number does the key give it?"
+    },
+    {
+      "en": "Move each letter the same number of places. What comes after the last letter?"
+    },
+    {
+      "en": "The key moved each letter on. Which way do you go to undo it?"
+    },
+    {
+      "en": "Try a key. Now try another. Which one did the sender use?"
+    },
+    {
+      "en": "Another word. Say the key out loud before you carry a letter."
+    },
+    {
+      "en": "Free play. Any key, any word, with the strip and the locked message open."
+    },
+    {
+      "en": "Carry the letter again, one place at a time, and count as you go."
+    },
+    {
+      "en": "Words written in code and read back out, and every key named."
+    }
+  ],
+  "build": {
+    "source": "4eb08945:633183",
+    "runtime": "class4/runtime/frozen/r28/runtime.tsx",
+    "runtimeVersion": "r28",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-19T12:03:42.149Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-19T12:03:42.028Z"
+    },
+    "tsxBytes": 563863,
+    "tsxMd5": "d214f4e134b47d2e41247e4b73af74e5"
+  }
+}

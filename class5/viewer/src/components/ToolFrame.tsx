@@ -1,16 +1,26 @@
+import { useLayoutEffect, useRef, useState } from "react";
 import type { useLiveTool } from "../lib/useLiveTool";
+import { DEVICES, type Device } from "../lib/devices";
 
-/* the three shipped languages (runtime.tsx r10+, docs/PATTERNS.md §11): the host sets `lang` exactly
- * like navigableDots/muted here. A tool ported on an older frozen runtime has no lang contract
- * inlined and ignores the prop, so it stays English regardless of this control. */
-const LANGS: Array<{ key: "en" | "hi" | "gu"; label: string; title: string }> = [
-  { key: "en", label: "EN", title: "lang: 'en' — English" },
-  { key: "hi", label: "हिं", title: "lang: 'hi' — Hindi" },
-  { key: "gu", label: "ગુ", title: "lang: 'gu' — Gujarati" },
-];
-
-export function ToolFrame({ live }: { live: ReturnType<typeof useLiveTool> }) {
+/* the language and Teacher/Student controls are in the header (DeviceBar.tsx), beside the device frames */
+export function ToolFrame({ live, device }: { live: ReturnType<typeof useLiveTool>; device: Device }) {
   const { props, setProps, phases, srcDoc, iframeElRef, remount, autoPlay, autoPlaying, autoPlayNote, stopAutoPlay } = live;
+
+  /* the tool is mounted at the device's TRUE size and the frame is scaled down to fit the stage (never up past 1:1), so a
+     tool lays out (media queries, 100vh, the 390 px height of a phone) exactly as it will on that device */
+  const dev = DEVICES[device];
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+  useLayoutEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    /* client*, not a rect: a scrollbar's gutter would otherwise feed back into the fit and the scale would flicker */
+    const fit = () => setScale(Math.max(0.05, Math.min((el.clientWidth - 24) / dev.w, (el.clientHeight - 40) / dev.h, 1)));
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [dev.w, dev.h]);
 
   return (
     <div className="tool-frame">
@@ -26,10 +36,6 @@ export function ToolFrame({ live }: { live: ReturnType<typeof useLiveTool> }) {
           </select>
         </label>
         <label className="toolbar-field checkbox">
-          <input type="checkbox" checked={props.navigableDots} onChange={(e) => setProps((p) => ({ ...p, navigableDots: e.target.checked }))} />
-          user mode (navigableDots)
-        </label>
-        <label className="toolbar-field checkbox">
           <input type="checkbox" checked={props.muted} onChange={(e) => setProps((p) => ({ ...p, muted: e.target.checked }))} />
           muted
         </label>
@@ -39,32 +45,22 @@ export function ToolFrame({ live }: { live: ReturnType<typeof useLiveTool> }) {
           <input type="checkbox" checked={props.classroom} onChange={(e) => setProps((p) => ({ ...p, classroom: e.target.checked }))} />
           classroom
         </label>
-        <div className="toolbar-field seg" role="radiogroup" aria-label="Tool language">
-          {LANGS.map((l) => (
-            <button
-              key={l.key}
-              type="button"
-              className={"seg-btn" + (props.lang === l.key ? " active" : "")}
-              role="radio"
-              aria-checked={props.lang === l.key}
-              title={l.title}
-              onClick={() => setProps((p) => ({ ...p, lang: l.key }))}
-            >
-              {l.label}
-            </button>
-          ))}
-        </div>
         <button className="btn" onClick={remount}>remount</button>
         {autoPlaying
           ? <button className="btn" onClick={stopAutoPlay}>stop auto-play</button>
           : <button className="btn" onClick={autoPlay}>auto-play (sidecar's own answers)</button>}
         {autoPlayNote && <span className="muted small">{autoPlayNote}</span>}
       </div>
-      <div className="tool-frame-stage">
+      <div className="tool-frame-stage" ref={stageRef}>
         {srcDoc
           // changing the srcDoc attribute alone reloads the iframe; no React key trick needed
-          ? <iframe ref={iframeElRef} srcDoc={srcDoc} title="live tool preview" className="tool-iframe" />
+          ? (
+            <div className="frame-shell" data-device={device} style={{ width: dev.w * scale, height: dev.h * scale }}>
+              <iframe ref={iframeElRef} srcDoc={srcDoc} title="live tool preview" className="tool-iframe" style={{ width: dev.w, height: dev.h, transform: `scale(${scale})` }} />
+            </div>
+          )
           : <p className="muted">loading the tool…</p>}
+        <span className="frame-tag">{dev.label} · {dev.w}×{dev.h} · {Math.round(scale * 100)}%</span>
       </div>
     </div>
   );

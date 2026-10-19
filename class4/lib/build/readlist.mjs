@@ -13,7 +13,7 @@
  *   - the slot's brief.md and tool.tsx;
  *   - the docs/PATTERNS.md sections the slot needs: always the plain answer, the correction, the summary page, the bubble's lines,
  *     the giveaways and the three languages; the rest by what the PINNED RUNTIME can do (lib/core/caps.mjs, never a version
- *     number: guide steps, party, next key, card answer, board and skins) and by what the brief says (a fraction, a decimal,
+ *     number: guide steps, party, next key, card answer, board, key only (LAYOUT 1d-1e, PATTERNS 15-16) and skins) and by what the brief says (a fraction, a decimal,
  *     money, two answer boxes, a drag, a concrete object); the voiced-only section only when the runtime is NOT silent;
  *   - docs/IMAGES.md only for an image pass (--images);
  *   - docs/CHECKS.md only as the ROW of a check that fails (a grep), not as a whole read.
@@ -99,6 +99,10 @@ export function readlistEntries(dir, opts = {}) {
 
   whole("PREFLIGHT.md", "READ FIRST, whole: what tools are failed on, so the first build is right (the check named in each line decides)");
   whole("LAYOUT.md", "the final layout (never trimmed): the stage, the board, the start page, the header, the working area, the bubble, the summary page, the languages");
+  if (caps.keyOnly) { /* the new look: say where it is in the file just read, rather than listing the same lines twice */
+    const o = open("LAYOUT.md"), d = o && section(o, /^1d\./), e = o && section(o, /^1e\./);
+    if (d && e) E[E.length - 1].why += ` · this runtime has keyOnly: lines ${d.from}-${e.to} (§1d key only and nav dots, §1e acts on screen) are the new look: no question bar, the key's corner, the question in the bubble only`;
+  }
   { /* BUILD_CARD sections 1-6: from the top to the line before section 7 (the decisions history) */
     const o = open("BUILD_CARD.md");
     const k7 = o ? o.heads.findIndex((h) => /^7\./.test(h.text)) : -1;
@@ -118,6 +122,10 @@ export function readlistEntries(dir, opts = {}) {
   part(P, /^10\./, "what gives the answer away (read before drawing any readout or hint)", "## 10.");
   if (caps.board || caps.skin) part(P, /^14\./, `the board layout${caps.skin ? " and object skins (<Skin>)" : ""}: board: true, the answer drawer, the floor${f.objects.length ? `; the brief names an object (${f.objects.join(", ")}): the image pass decides whether it gets a skin` : ""}`, "## 14.");
   if (caps.party) part(P, /^9c\./, "the phase party: the runtime's; nothing to write, what to expect", "## 9c.");
+  if (caps.act || caps.keyOnly) part(P, /^15\./, "an action performed on screen: every action key or act calls await api.act({ tool, moves, at, onPoint }) (a knife, scissors, ruler, pencil, eraser or the hand), the pieces react" + (caps.act ? "" : " (api.act exists only when the features line names act)"), "## 15.");
+  if (caps.keyOnly) part(P, /^16\./, "authoring under keyOnly (the new look): read box.key and keep every element out of the key's corner; the question lives only in the bubble, one sentence a line; one key for a sequence; an object looks like the object from the first frame", "## 16.");
+  if (caps.keyOnly) part(P, /^18\./, "traps the ch 5 builders hit: ids the runtime owns (again, answer-open, part-N, key-N, choice-*), a late keyed reset that wipes an act, a closing needs a win line, how to tell a hint is showing, hi/gu bubble lines of at most 80 characters", "## 18.");
+  if (caps.keyOnly) part(P, /^19\./, "rules the ch 6 reviews settled: one invite while a question is open (never on a candidate answer), name a key by its label in hi/gu, nothing counts the answers for the child, a guess costs a try, skins all-or-nothing per group", "## 19.");
   if (caps.nextKey) part(P, /^9d\./, "the Next key: nextKey: true; nothing moves on by itself, so Work never advances on a timer", "## 9d.");
   if (caps.cardAnswer && (f.fraction || f.decimal)) part(P, /^9e\./, "answering on the card (cardAnswer: true): the brief has fraction or decimal answers", "## 9e.");
   part(P, /^8\./, "the summary page and Free play: Thumb, the free-play mode", "## 8.");
@@ -146,7 +154,7 @@ export function readlistEntries(dir, opts = {}) {
 }
 
 const runtimeLine = (caps) => {
-  const on = ["board", "startPage", "steps", "hint", "hintKey", "party", "nextKey", "cardAnswer", "skin", "classroom"].filter((k) => caps[k]);
+  const on = ["board", "keyOnly", "navDots", "startPage", "steps", "hint", "hintKey", "party", "nextKey", "cardAnswer", "skin", "classroom", "act"].filter((k) => caps[k]);
   return `${caps.silent ? "SILENT runtime (the bubble is the guide; nothing is spoken)" : "VOICED runtime (legacy: the lesson is spoken; read PATTERNS 9v below and the runbook's voice step, and treat the silent-only lines of PREFLIGHT as not yours)"} · features: ${on.join(", ") || "none"}`;
 };
 

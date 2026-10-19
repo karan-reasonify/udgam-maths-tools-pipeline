@@ -17,11 +17,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { parseArgs } from "../core/args.mjs";
-import { pool } from "../core/chrome.mjs";
+import { pool, chromePath } from "../core/chrome.mjs";
 import { resolveTarget, workRoot, idOf, chapterOf } from "../core/work.mjs";
 import { chapterIdFor } from "../plan/lp.mjs";
-import { env, mask } from "../core/env.mjs";
-import { BUDGET, CONCURRENCY, MAX_ATTEMPTS, MODELS, KINDS, price, rawHash, skinHash, buildPrompt, validatePlan } from "./rules.mjs";
+import { env, mask, fromRoot } from "../core/env.mjs";
+import { BUDGET, CONCURRENCY, MAX_ATTEMPTS, MODELS, KINDS, price, rawHash, skinHash, buildPrompt, validatePlan, kitPrompt } from "./rules.mjs";
 import { generateWithFallback, batchSubmit, batchStatus, batchCollect, batchCancel, batchPending, batchSucceeded, GeminiError } from "./gemini.mjs";
 import { makeSkin } from "./process.mjs";
 import { findRaw, saveRaw, saveRejected, getSkin, putSkin, markUsed, pruneUsed, skinUri, readIndex, ledgerAdd, ledgerTotals, LIB_DIR, writeJsonAtomic, siblings, readSiblingIndex } from "./library.mjs";
@@ -110,7 +110,7 @@ async function generateGroup(group, { models, log, lane = "inline" }) {
   return last || { ok: false, error: `no attempts left this run (${MAX_ATTEMPTS} per picture)` };
 }
 
-const cutOpts = (it) => ({ kind: it.img.kind, px: it.img.px, inset: it.img.inset, maxKB: it.img.maxKB, label: `skin ${it.img.key}` });
+const cutOpts = (it) => ({ kind: it.img.kind, px: it.img.px, inset: it.img.inset, maxKB: it.img.maxKB, tool: !!it.img.tool, label: `skin ${it.img.key}` });
 
 async function cutAll(group, buf, mime) {
   const cuts = new Map();
@@ -403,6 +403,79 @@ export async function imagesCommand(argv, { log = console.log } = {}) {
   if (sub === "status") return status(a, log);
   if (sub === "list") return list(log);
   throw new Error("images make <MEDIA_ID> [--ch N] [--force] [--only key] [--dry] [--model m] | make --ch N [--batch] | batch submit|status|apply|cancel --ch N | sheet <MEDIA_ID> | status [--ch N] | list");
+}
+
+/* ── the ACTION KIT (docs/IMAGES.md §11): the tools that perform an act (knife, scissors, ruler, pencil, eraser), made ONCE for
+   every tool, like the mascot. runtime/actionkit.json is the plan; each picture goes through the same library, raw cache, ledger,
+   two-attempt generation and cut as a skin (a library or sibling hit is free); runtime/actionkit.tsx is GENERATED (ACTION_KIT: the
+   data URIs, ACTION_KIT_FIT: each picture's size and the point that acts) and travels inside every tool built on a runtime that
+   has it (sources()). Not a slot's skin: it is outside the 3-a-slot cap, and its prompt is kitPrompt (a knife is allowed). ── */
+export async function makeActionKit({ force = false, only = null, dry = false, models = MODELS, log = console.log } = {}) {
+  const planFile = fromRoot("runtime/actionkit.json");
+  const plan = JSON.parse(fs.readFileSync(planFile, "utf8"));
+  const items = (plan.images || []).map((raw) => {
+    /* each picture validated as a one-picture plan: every skin rule but the per-slot cap */
+    const v = validatePlan({ images: [raw] });
+    if (v.errors.length) throw new Error(`actionkit.json: ${v.errors.join("; ")}`);
+    for (const w of v.warnings) log(`  warning ${w}`);
+    const img = { ...v.images[0], tool: true };   /* cut as a tool: steel and graphite are object, finger loops are holes */
+    const rh = rawHash({ object: img.object, kind: img.kind, style: plan.style, aspect: img.aspect }), sh = skinHash(rh, img);
+    const skin = force ? null : getSkin(sh), rawPic = findRaw(rh);
+    const how = skin ? "library" : rawPic && !force ? "recut" : "generate";
+    return { who: "actionkit", img, rh, sh, how, from: (skin || rawPic || {}).from, prompt: kitPrompt(plan.style, img), style: plan.style };
+  }).filter((it) => !only || only.includes(it.img.key));
+  const gen = items.filter((it) => it.how === "generate");
+  if (dry) {
+    for (const it of items) log(`  ${pad(it.img.key, 10)}${pad(it.img.object, 34)}${pad(it.img.px.join("x"), 9)}${it.how === "generate" ? `generate (${usd(price(models[0]))} on ${models[0]})` : it.how === "library" ? `library hit${fromNote(it)} (free)` : `re-cut the cached raw${fromNote(it)} (free)`}`);
+    log(`  dry run: ${gen.length} new picture(s), about ${usd(gen.length * price(models[0]))}; nothing was called`);
+    for (const it of gen) log(`\n  prompt for ${it.img.key}:\n    ${it.prompt}`);
+    return { items };
+  }
+  if (gen.length && !env().has("GEMINI_API_KEY")) throw new Error(`GEMINI_API_KEY is ${mask(env().get("GEMINI_API_KEY"))}; cannot generate`);
+  /* the cut runs in Chrome after the picture is paid for: no Chrome = a bought picture thrown away, so refuse first */
+  if (items.some((it) => it.how !== "library") && !chromePath()) throw new Error("Chrome not found; set CHROME_PATH before anything is billed");
+  const spentBefore = ledgerTotals().usd;
+  for (const it of items) {
+    try {
+      if (it.how === "recut") {
+        const r = findRaw(it.rh), cut = await makeSkin(fs.readFileSync(r.file), r.mime, cutOpts(it));
+        if (!cut.ok) { it.note = `REJECTED re-cut: ${cut.reasons.join("; ")} (re-make with --force --only ${it.img.key})`; continue; }
+        storeSkin(it, cut, r.meta && r.meta.model);
+      } else if (it.how === "generate") {
+        const g = await generateGroup([it], { models, log });
+        if (!g.ok) { it.note = `NOT MADE: ${g.error}`; continue; }
+        storeSkin(it, g.cuts.get(it.sh), g.model);
+      }
+      it.skin = getSkin(it.sh);
+      markUsed(it.sh, `actionkit:${it.img.key}`);
+      it.note = it.how === "library" ? `library hit${fromNote(it)}, free` : it.how === "recut" ? "re-cut from the cache, free" : "new";
+    } catch (e) { it.note = `ERROR ${e.message}`; }
+  }
+  /* --only re-makes some keys: the others keep their library picture */
+  const all = (plan.images || []).map((raw) => {
+    const mine = items.find((it) => it.img.key === raw.key);
+    if (mine) return mine;
+    const img = { ...validatePlan({ images: [raw] }).images[0], tool: true }, rh = rawHash({ object: img.object, kind: img.kind, style: plan.style, aspect: img.aspect });
+    return { img, skin: getSkin(skinHash(rh, img)), note: "kept" };
+  });
+  const made = all.filter((it) => it.skin);
+  pruneUsed("actionkit", Object.fromEntries(made.map((it) => [it.img.key, skinHash(rawHash({ object: it.img.object, kind: it.img.kind, style: plan.style, aspect: it.img.aspect }), it.img)])));
+  const fit = (it) => ({ w: it.skin.w, h: it.skin.h, len: it.img.len || 160, ax: it.img.ax ?? 0.5, ay: it.img.ay ?? 0.5, rot: it.img.rot || 0 });
+  const uris = made.map((it) => [it.img.key, skinUri(it.skin.file)]);
+  const bytes = uris.reduce((n, [, u]) => n + u.length, 0);
+  const out = fromRoot("runtime/actionkit.tsx");
+  fs.writeFileSync(out, `/* GENERATED by \`node cli.mjs actionkit\` from runtime/actionkit.json: the ACTION KIT (docs/IMAGES.md §11), ${made.length} picture(s), ${kb(bytes)} inline.
+   The tools that perform an act (api.act); it travels inside every tool built on a runtime that has it, like the mascot. A missing key
+   draws the runtime's drawn hand instead. Do not edit or read; regenerate. */
+const ACTION_KIT: Record<string, string> = {
+${uris.map(([k, u]) => `  ${JSON.stringify(k)}: "${u}",`).join("\n")}
+};
+const ACTION_KIT_FIT: Record<string, any> = ${JSON.stringify(Object.fromEntries(made.map((it) => [it.img.key, fit(it)])))};
+`);
+  for (const it of all) log(`  ${pad(it.img.key, 10)}${pad(it.img.object, 34)}${it.skin ? pad(`${it.skin.w}x${it.skin.h}`, 9) + pad(kb(it.skin.uriBytes), 9) : pad("", 18)}(${it.note})`);
+  log(`  ${path.relative(process.cwd(), out)}: ${made.length} of ${all.length} pictures, ${kb(bytes)} in every tool built on it · spent this run ${usd(ledgerTotals().usd - spentBefore)}`);
+  if (made.length < all.length) process.exitCode = 1;
+  return { out, made: made.length, bytes };
 }
 
 export { KINDS };

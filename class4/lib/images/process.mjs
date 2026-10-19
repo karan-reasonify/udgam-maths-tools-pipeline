@@ -80,7 +80,7 @@ function run() {
     const dr = r - bg[0], dg = gg - bg[1], db = b - bg[2];
     if (dr * dr + dg * dg + db * db <= 36 * 36) return true;     /* like the border */
     if (mn >= 234 && spread <= 18) return true;                   /* near-white */
-    if (spread <= 12 && mx >= 110) return true;                   /* grey: a shadow on the floor */
+    if (spread <= 12 && mx >= (OPT.tool ? 226 : 110)) return true; /* grey: a shadow on the floor (an action-kit tool's steel is darker) */
     return false;
   };
 
@@ -94,6 +94,38 @@ function run() {
     const p = q[qh++], x = p % W, y = (p - x) / W;
     if (x > 0) seed(p - 1); if (x < W - 1) seed(p + 1);
     if (y > 0) seed(p - W); if (y < H - 1) seed(p + W);
+  }
+  /* an action-kit TOOL (OPT.tool, docs/IMAGES.md §11; off for every skin, so a skin cuts exactly as it did): its grey steel or
+     graphite is object (above: only a faint grey is a shadow), and a near-white region the border flood cannot reach, at least 0.3 % of the picture, is a hole
+     (the scissors' finger loops) and so background too */
+  if (OPT.tool) {
+    const nw = (i) => Math.min(d[i], d[i + 1], d[i + 2]) >= 234 && Math.max(d[i], d[i + 1], d[i + 2]) - Math.min(d[i], d[i + 1], d[i + 2]) <= 18;
+    const seen = new Uint8Array(N);
+    for (let s0 = 0; s0 < N; s0++) {
+      if (isBg[s0] || seen[s0] || !nw(s0 * 4)) continue;
+      const reg = [s0]; seen[s0] = 1;
+      for (let h = 0; h < reg.length; h++) {
+        const p = reg[h], x = p % W;
+        for (const k of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, p >= W ? p - W : -1, p < N - W ? p + W : -1])
+          if (k >= 0 && !isBg[k] && !seen[k] && nw(k * 4)) { seen[k] = 1; reg.push(k); }
+      }
+      if (reg.length < N * 0.003) continue;
+      /* the hole's own soft rim (light, unsaturated) goes with it, up to 5 px, so no white ring is left inside the loop */
+      let ring = reg;
+      for (const p of reg) isBg[p] = 1;
+      for (let k = 0; k < 5; k++) {
+        const next = [];
+        for (const p of ring) {
+          const x = p % W;
+          for (const n of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, p >= W ? p - W : -1, p < N - W ? p + W : -1]) {
+            if (n < 0 || isBg[n]) continue;
+            const i = n * 4, mx = Math.max(d[i], d[i + 1], d[i + 2]), mn = Math.min(d[i], d[i + 1], d[i + 2]);
+            if (mn >= 150 && mx - mn <= 40) { isBg[n] = 1; next.push(n); }
+          }
+        }
+        ring = next;
+      }
+    }
   }
   let objN = 0; for (let p = 0; p < N; p++) if (!isBg[p]) objN++;
   const objFrac = objN / N;
@@ -277,12 +309,12 @@ export function stripIcc(buf) {
 }
 
 /* raw bytes -> { ok, reasons, warnings, webp (Buffer), uri, w, h, q, bytes, uriBytes, crop, stats, ... } */
-export async function makeSkin(raw, mime, { kind, px, inset, maxKB, label = "skin" }) {
+export async function makeSkin(raw, mime, { kind, px, inset, maxKB, tool = false, label = "skin" }) {
   const tmp = fromRoot(".build");
   fs.mkdirSync(tmp, { recursive: true });
   const page = path.join(tmp, `skin-${process.pid}-${Math.random().toString(36).slice(2, 8)}.html`);
   const budget = Math.min(BUDGET.skin, maxKB ? Math.round(Number(maxKB) * 1024) : BUDGET.skin);
-  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS };
+  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS, tool: !!tool };
   fs.writeFileSync(page, `<!doctype html><meta charset="utf-8"><body><pre id="out">pending</pre>`
     + `<script id="raw">window.__RAW = "data:${mime || "image/png"};base64,${raw.toString("base64")}"; window.__OPT = ${JSON.stringify(opt)};</script>`
     + `<script>${PAGE}</script></body>`);

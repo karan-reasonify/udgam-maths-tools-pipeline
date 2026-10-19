@@ -14,8 +14,8 @@
   `<pfx>-tool-builder` (one per slot) and five that only report: `-maths-reviewer`, `-visual-reviewer`,
   `-play-tester`, `-upload-auditor`, `-image-agent` (generated from `_templates/agents/`).
 - CLI (run in `class<N>/`): `doctor | list | fetch | scaffold | preview | check | shots | clean | status | port |
-  publish | runtime | fence | view | voice | images` (`check` ports on a pass; `publish` is a dry run unless
-  `--upload`; `runtime freeze|pin|seal|status` is the per-chapter runtime).
+  approve | publish | runtime | fence | view | voice | images` (`check` ports on a pass, never over a hand-edited pair;
+  `publish` is a dry run unless `--upload`; `runtime freeze|pin|seal|status` is the per-chapter runtime).
 - **Every class on one page: `node viewhub.mjs`** (this folder, http://localhost:5170; `viewer-hub/README.md`): Class and Chapter
   dropdowns and a tool list, each class's own viewer embedded; it starts the viewers and finds a new `class<N>/` itself. Change a
   viewer (its `?embed=1` support too) in the newest class and carry it with `classctl sync`/`new`, never by copying between class
@@ -53,6 +53,31 @@
   `class<N>/runtime/frozen/<rN>/`; `class<N>/runtime/runtime.tsx` is the head, where a new feature is written.
   A head edit reaches a chapter only through `node cli.mjs runtime freeze` + `runtime pin --ch N` + a
   re-check of that chapter, with a decision logged in the build card. No other chapter is ever restaled.
+  **Batch runtime moves** (2026-10-18; runbook non-negotiable 3): log a gap, freeze once per chapter before the review packs and
+  once at step 6 (a third only for a blocker), and another chapter pins the newest head once at its own step 6, never mid-build.
+- **Small changes to one tool: edit the pair, then `approve`** (the owner, 2026-10-16). An edit, fix or tweak of one existing tool
+  is made straight away in its ported pair (`class<N>/output-preview/<chapter_id>/<slot_id>/<slot_id>.tsx` + `.json`), never in
+  `work/.../tool.tsx`, and proved with `node cli.mjs approve <slot_id> --ch N --note "what changed"` instead of `check`; `publish`
+  uploads only the approved bytes, and `check`/`port` never overwrite a hand-edited pair without `--force`. Making, generating or
+  remaking a tool stays on the `work/` flow, and a remake drops the hand edits (the notes in `status.handEdit` say what they were).
+  Runbook section "Small changes to one tool".
+- **Every act is performed on screen (the owner, 2026-10-16).** When the child taps an action (cut, split, measure, count, carry,
+  tidy ...) a real tool does it through `api.act`: a knife, scissors, a ruler, a pencil or an eraser (the ACTION KIT: five pictures made
+  once for every tool by `node cli.mjs actionkit` into the generated `runtime/actionkit.tsx`, never read, carried like the mascot) or a
+  hand drawn in code; about 1 to 1.5 s, the keys waiting, the pieces reacting (`class<N>/docs/PATTERNS.md` §15, `check`'s `action-anim`).
+  A chapter gets it by `runtime freeze` + `runtime pin --ch N` on the owner's word.
+- **Poppins travels inside every tool (the FONT KIT, the owner 2026-10-16).** `node cli.mjs fontkit` subsets Poppins 500/600/700 (Latin and
+  Devanagari; `class<N>/assets/fonts/`, SIL OFL) into the generated `runtime/fontkit.tsx` (never read, carried like the mascot), so a page or
+  device without Poppins shows the type `check` renders (`font-kit` row). A chapter gets it by `runtime freeze` + `runtime pin --ch N`.
+- **Round things are round; grids are dark, big and fixed (the owner, 2026-10-17).** A chapati, roti, pizza or cake is a disc cut in wedges
+  by the knife, a ribbon or bar stays a strip (`class<N>/docs/PATTERNS.md` §17); a grid of unit boxes has a dark outline on every box, a deeper
+  fill on a counted one, is the biggest square beside the OPEN keypad at one fixed size, and its labels are 32+ and dark (LAYOUT §3, PREFLIGHT
+  23-25). No key that only undoes the last act (Cut, Measure: no "Lay flat"). Docs and agent templates only: no runtime change, no re-pin.
+- **A re-keyed plan: remap the ids, upload where the plan's url says** (the owner, 2026-10-16, class 4 ch 8 v3). When a new plan version
+  renumbers a tool's id and its concept ids but keeps its url, rename the slot, its four concept ids and every question id
+  (`<concept id>:<slot>`) in the pair and the work folder in ONE pass that never touches a url, `fetch` the new version, and `approve`
+  again; `publish` then uploads to the folder and file name the mount's OWN `2d_tool_url` names (a stem that is another mount's id, or not a
+  media id, is refused) and writes the .json with `component` set to that file name.
 - **One session, one chapter, one class.** A read fence refuses another chapter's `work/`; every pattern a
   builder needs is in `class<N>/docs/PATTERNS.md`. A deliberate look: `node cli.mjs fence --off`, then `--on`.
   Slot ids repeat across classes: work only in your class's folder.

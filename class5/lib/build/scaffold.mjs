@@ -15,8 +15,11 @@
  *     page a line, Work reports every act with api.did). Every line it prints is printed, never spoken.
  *   - a VOICED runtime (r21 and before): lib/build/skeleton.voiced.tsx (config `legacySkeleton`; it lives under lib/ so a code sync carries it), the old skeleton, so a
  *     chapter built on a frozen voiced runtime can still be scaffolded the way it always was.
- * A skeleton may carry `//#if <capability>` ... `//#endif` line pairs (board, bigPad, startPage, steps, hint, theme, skin): the
- * block stays when the runtime has the capability and is dropped, with its two marker lines, when it has not.
+ * A skeleton may carry `//#if <capability>` ... `//#endif` line pairs (board, bigPad, nextKey, keyOnly, navDots, act, startPage, steps,
+ * hint, theme, skin): the block stays when the runtime has the capability (the flag of that name in lib/core/caps.mjs) and is dropped,
+ * with its two marker lines, when it has not.
+ * keyOnly (no question bar, LAYOUT.md §1d): the bubble is the only place a question shows, so each item's `say` is the whole question in
+ * ONE sentence. A plan question of several sentences is cut to its first question sentence and its full text is kept in the item's comment.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -55,6 +58,9 @@ const hookOf = (line) => {
   const parts = String(line || "").trim().replace(/\s+/g, " ").split(/(?<=[.?!])\s+/);
   return parts.find((x) => /\?$/.test(x)) || parts[0] || "";
 };
+
+/* more than one sentence? (a question for a keyOnly bubble must be one) */
+const manySentences = (s) => String(s || "").trim().split(/(?<=[.?!])\s+/).filter(Boolean).length > 1;
 
 /* the skeleton for a pinned runtime's capabilities */
 export function skeletonFor(caps) {
@@ -103,9 +109,12 @@ export function scaffold(dir, { force = false, caps = null } = {}) {
       const dm = typeof it.ans === "number" ? null : /-?\d{1,3}(?:,\d{2,3})+\.\d+|-?\d+\.\d+/.exec(String(it.ans ?? ""));
       const lead = /-?\d{1,3}(?:,\d{2,3})+(?:\.\d+)?|-?\d+(?:\.\d+)?/.exec(String(it.ans ?? ""));
       const shown = a === null ? "null" : dm && lead && lead.index === dm.index ? js(dm[0].replace(/,/g, "")) : a;
+      /* keyOnly: the bubble is the only place the question shows, so `say` is ONE sentence; the whole plan text stays in a comment */
+      const cut = cap.keyOnly && manySentences(it.text);
       return [
         `      /* ${it.tag}: answer in the plan = ${String(it.ans).replace(/\*\//g, "* /")}${a === null ? "  TODO: set answer" : ""} */`,
-        `      { qid: ${js(it.qid)}, kind: "", say: ${js(it.text)}, ask: "", answer: ${shown}, miss: ${js(r1)} },`,
+        ...(cut ? [`      /* plan question, cut to one sentence for the bubble (TODO: say = the WHOLE question in ONE sentence): ${String(it.text).trim().replace(/\s+/g, " ").replace(/\*\//g, "* /")} */`] : []),
+        `      { qid: ${js(it.qid)}, kind: "", say: ${js(cut ? hookOf(it.text) : it.text)}, ask: "", answer: ${shown}, miss: ${js(r1)} },`,
       ].join("\n");
     }).join("\n");
     return [

@@ -85,7 +85,32 @@
   @media (prefers-reduced-motion: reduce) { .spin { animation: none; } }
   @media (max-width: 1500px) { #totals { display: none; } }
   @media (max-width: 1280px) { .step .lbl { display: none; } }
-  @media (max-width: 720px) { header { padding: 10px 12px; } select { max-width: 100%; flex: 1; } .rail { width: 210px; } }
+  /* a phone: a compact header, the tool fills the width, the tool list slides in over it (closed until asked for) */
+  #scrim { display: none; }
+  @media (max-width: 720px), (max-height: 500px) {
+    header { padding: 8px 10px; gap: 8px; }
+    h1 { font-size: 15px; }
+    label.pick { flex: 1 1 auto; min-width: 0; }
+    select, #selClass, #selChapter { max-width: none; min-width: 0; flex: 1; }
+    #nav:not([hidden]) { display: contents; } /* the chapter picker takes a row; Previous/Next and Refresh share the next */
+    #nav label.pick { flex: 1 1 100%; }
+    .stepper { flex: 1 1 auto; } .step-count { flex: 1; justify-content: center; }
+    #navMeta, #ownTab, .spacer { display: none !important; }
+    main { position: relative; }
+    .rail { position: absolute; top: 0; bottom: 0; left: 0; z-index: 6; width: min(86vw, 320px); box-shadow: 4px 0 18px rgba(16, 24, 40, .22); }
+    #scrim:not([hidden]) { display: block; position: absolute; inset: 0; z-index: 5; border: 0; padding: 0; background: rgba(15, 23, 42, .35); }
+  }
+  /* a phone on its side: height is what is short, so the header keeps to one row */
+  @media (max-height: 500px) {
+    header { flex-wrap: nowrap; padding: 6px 8px; gap: 6px; }
+    h1 { display: none; }
+    label.pick { font-size: 0; gap: 0; } /* hides the "class" / "chapter" words, keeps the dropdowns */
+    #nav label.pick { flex: 1 1 0; min-width: 0; } /* the chapter dropdown gives way first */
+    .step-count { padding: 0 8px; }
+    label.pick.preview-only, .stepper { flex: 0 0 auto; } #selClass { flex: none; width: auto; }
+    .views button { padding: 4px 8px; }
+    #btnRefresh { white-space: nowrap; }
+  }
   /* ---- Preview | Editor (editor.js) ---------------------------------------------------------------- */
   .views { display: inline-flex; padding: 3px; gap: 2px; border: 1px solid var(--btn-border); border-radius: 9px; background: var(--panel); }
   .views button { display: inline-flex; align-items: center; gap: 7px; min-height: 30px; padding: 0 12px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
@@ -221,6 +246,7 @@
 </header>
 <main>
   <aside class="rail" id="rail" aria-label="Tools" hidden></aside>
+  <button id="scrim" type="button" aria-label="Close the tool list" hidden></button>
   <div class="stage">
     <iframe id="frame" title="Tool viewer" allow="autoplay"></iframe>
     <div class="note" id="note"><div><span class="spin"></span>Looking for classes&hellip;</div></div>
@@ -246,6 +272,8 @@ const frame = $("frame"), note = $("note");
 const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch { /* storage blocked: the page still works */ } } };
 
 const S = { classes: [], cls: null, meta: null, tools: [], chapterId: "all", toolKey: null, frameClass: null, ready: false, loadToken: 0, railOpen: store.get("hub.rail") !== "0" };
+const NARROW = matchMedia("(max-width: 720px), (max-height: 500px)"); // a phone: the list is a drawer, closed at start, and its state is not remembered
+if (NARROW.matches) S.railOpen = false;
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const j = async (url, init) => { const r = await fetch(url, init); const b = await r.json().catch(() => ({})); if (!r.ok) throw new Error(b.error || `HTTP ${r.status}`); return b; };
@@ -319,6 +347,7 @@ function syncControls() {
   const live = S.ready && S.frameClass === S.cls; // the viewer in the frame is this class's and takes the hub's selection
   $("nav").hidden = $("navMeta").hidden = $("btnRail").hidden = !live;
   rail.hidden = !live || !S.railOpen;
+  $("scrim").hidden = rail.hidden;
   const open = S.railOpen, label = open ? "Hide tool list" : "Show tool list";
   $("btnRail").classList.toggle("active", open);
   $("btnRail").setAttribute("aria-pressed", String(open));
@@ -341,12 +370,12 @@ function writeHash() {
   const c = S.classes.find((x) => x.class === S.cls);
   document.title = S.cls == null ? "Udgam tool viewer" : `Class ${S.cls}${t ? ` — ${t.title ?? t.id}` : ""} — Udgam tools`;
   const own = $("ownTab");
-  if (c) { own.href = `http://${location.hostname}:${c.port}/`; own.hidden = false; } else own.hidden = true;
+  if (c) { own.href = `/c/${c.class}/`; own.hidden = false; } else own.hidden = true;
 }
 
 /* ---- the embedded viewer -------------------------------------------------------------------------- */
 
-const frameOrigin = () => { const c = S.classes.find((x) => x.class === S.frameClass); return c ? `http://${location.hostname}:${c.port}` : null; };
+const frameOrigin = () => { const c = S.classes.find((x) => x.class === S.frameClass); return c ? location.origin : null; }; // the viewer is proxied by the hub (/c/<n>/), so same origin
 
 function postSelection() {
   const t = currentTool();
@@ -359,7 +388,7 @@ function loadFrame(cls) {
   const c = S.classes.find((x) => x.class === cls);
   S.frameClass = cls; S.ready = false;
   const t = currentTool();
-  frame.src = `http://${location.hostname}:${c.port}/?embed=1${t ? `&ch=${encodeURIComponent(t.chapterId)}&tool=${encodeURIComponent(t.id)}` : ""}`;
+  frame.src = `/c/${cls}/?embed=1${t ? `&ch=${encodeURIComponent(t.chapterId)}&tool=${encodeURIComponent(t.id)}` : ""}`;
 }
 
 window.addEventListener("message", (e) => {
@@ -384,7 +413,7 @@ async function chooseClass(n, want = {}) {
   if (!c.installed) { showNote(`<h3>Class ${n} is not installed</h3><p class="muted">Run this once, then press Refresh:</p><pre>cd ${esc(c.folder)}\nnpm install</pre>`); return; }
   showNote(`<span class="spin"></span>Starting the class ${n} viewer${c.running ? "" : " (first start builds it: a few seconds)"}&hellip;`);
   try {
-    await j(`/api/classes/${n}/start`, { method: "POST" });
+    c.port = (await j(`/api/classes/${n}/start`, { method: "POST" })).port; // may differ from the listed one when that port was taken
     const [meta, tools] = await Promise.all([j(`/api/classes/${n}/meta`), j(`/api/classes/${n}/tools`)]);
     if (token !== S.loadToken) return; // the user moved on to another class meanwhile
     S.meta = meta; S.tools = tools;
@@ -408,6 +437,7 @@ async function chooseClass(n, want = {}) {
 }
 
 function chooseTool(key) {
+  if (NARROW.matches) S.railOpen = false; // a pick in the drawer shows the tool
   S.toolKey = key; writeHash(); syncControls(); markSelected();
   if (S.frameClass === S.cls) postSelection(); else loadFrame(S.cls);
 }
@@ -422,7 +452,8 @@ sel.ch.addEventListener("change", () => {
   chooseTool(S.toolKey);
 });
 rail.addEventListener("click", (e) => { const b = e.target.closest("button[data-key]"); if (b && !b.disabled) chooseTool(b.dataset.key); });
-$("btnRail").addEventListener("click", () => { S.railOpen = !S.railOpen; store.set("hub.rail", S.railOpen ? "1" : "0"); syncControls(); markSelected(); });
+$("btnRail").addEventListener("click", () => { S.railOpen = !S.railOpen; if (!NARROW.matches) store.set("hub.rail", S.railOpen ? "1" : "0"); syncControls(); markSelected(); });
+$("scrim").addEventListener("click", () => { S.railOpen = false; syncControls(); });
 for (const [id, d] of [["btnPrev", -1], ["btnNext", 1]]) {
   $(id).addEventListener("click", () => {
     const list = visibleTools().filter(selectable);

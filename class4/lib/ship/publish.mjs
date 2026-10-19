@@ -6,7 +6,9 @@
  *   2 mount    the mount with this media id in that plan, matched exactly (never by position); its
  *              own 2d_tool_url names the bucket folder, which is never composed by hand
  *   3 files    output-preview/<chapter>/<id>/<id>.tsx + .json from port; the sidecar names the same mediaId and
- *              component, port was built from the checked source, and that check passed
+ *              component, port was built from the checked source, and that check passed. A HAND-EDITED pair (runbook
+ *              "Small changes to one tool") is published only as the exact bytes `approve` proved (status.handEdit):
+ *              then those three source checks are skipped and every other one stays (pairProblems)
  *   4 host     the .tsx passes the host scope gate and the size limits (700 KB target, 1 MB hard),
  *              and the host emulator plays every phase through window.toolApi. A tool on a SILENT runtime
  *              (`const SILENT_VOICE = true`, r30+; no TOOL_VOICE) has no clip step, the report says "silent: no
@@ -23,11 +25,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { CONFIG, env, fromRoot } from "../core/env.mjs";
-import { withDb, plansFor, blobFor, mounts } from "../plan/lp.mjs";
+import { withDb, plansFor, blobFor, mounts, MEDIA_RE } from "../plan/lp.mjs";
 import { loadServiceAccount, accessToken, fetchRetry } from "./gcs.mjs";
 import { hashOf } from "../check/check.mjs";
 import { capsFor } from "../core/caps.mjs";
-import { outDir, shipScope, md5 } from "./port.mjs";
+import { outDir, shipScope, md5, handEditOf } from "./port.mjs";
 import { hostsim } from "./hostsim.mjs";
 import { shipVoice, checkShip, voiceMap, CLIP_DIR, CLIP_TYPE, CLIP_CACHE } from "./voiceship.mjs";
 import { idOf, chapterOf, readStatus, writeStatus } from "../core/work.mjs";
@@ -120,6 +122,48 @@ async function putClips(sa, bucket, api, chapterFolder, todo, cacheControl) {
   return failed;
 }
 
+/* step 3's refusals, pure (publish.test.mjs): the pair against the sidecar, the check and port. A pair approve proved
+   (status.handEdit names both md5s) skips the three that tie it to the checked source; one that differs from both what
+   port wrote and what approve proved is refused. tsx and json are the LOCAL pair's bytes (never the voice ship copy). */
+export function pairProblems({ id, st, side, hash, tsx, json }) {
+  const problems = [];
+  if (side.mediaId !== id || side.component !== `${id}.tsx`) problems.push(`the sidecar names ${side.mediaId} / ${side.component}`);
+  if (!tsx.toString("utf8").includes(id)) problems.push("the .tsx does not carry its media id");
+  const he = handEditOf(st, md5(tsx), md5(json));
+  if (he.approved) return { problems, handEdit: he };
+  if (he.edited) { problems.push("hand-edited but not approved: run approve"); return { problems, handEdit: null }; }
+  if (!st.checks || st.checks.fail !== 0) problems.push("the last check did not pass");
+  if (st.checkedTool !== hash) problems.push("the source changed since the last check");
+  if (!side.build || side.build.source !== hash) problems.push("the standalone pair was not built from the current source; run port again");
+  if (side.build && side.build.tsxMd5 !== md5(tsx)) problems.push("the .tsx changed after port (hand edits are not published)");
+  return { problems, handEdit: null };
+}
+
+/* Where a mount's tool is uploaded: the folder AND the file stem its OWN 2d_tool_url names, never composed by hand. Normally the stem is the
+   mount's id. A RE-KEYED plan (the owner, 2026-10-16: class 4 ch 8's v3 renumbered every id and kept every url) names a mount by its new id
+   while its url still points at the object of its old id: that url is where the app reads the tool, so the tool goes there, as that stem.
+   Refused: a url outside the bucket prefix, one that is not <folder>/<stem>/<stem>.tsx, a stem that is not a media id, or a stem that
+   is the id of ANOTHER mount of the plan (two tools would overwrite one object). Pure: publish.test.mjs. */
+export function mountTarget(url, id, prefix, siblingIds = []) {
+  if (!String(url).startsWith(prefix)) throw new Error(`the mount's own 2d_tool_url is not under ${prefix}: ${url}`);
+  const m = /^(.*)\/([^/]+)\/([^/]+)\.tsx$/.exec(url.slice(prefix.length));
+  if (!m || m[2] !== m[3]) throw new Error(`the mount's own 2d_tool_url is not <folder>/<stem>/<stem>.tsx under ${prefix}: ${url}`);
+  const stem = m[3], rekeyed = stem !== id;
+  if (rekeyed) {
+    if (!MEDIA_RE.test(stem)) throw new Error(`the mount's own 2d_tool_url names ${stem}, which is neither ${id} nor a media id: ${url}`);
+    if (siblingIds.includes(stem)) throw new Error(`the mount's own 2d_tool_url names ${stem}, which is another mount of this plan: uploading there would overwrite that tool: ${url}`);
+  }
+  return { folder: `${m[1]}/${m[2]}`, stem, rekeyed };
+}
+
+/* the sidecar that goes up for a re-keyed mount: its `component` names the object that is really there (<stem>.tsx), everything else is
+   the approved pair's bytes. The local pair keeps `<id>.tsx`; this is only the uploaded copy. */
+export function rekeySidecar(json, stem) {
+  const d = JSON.parse(json.toString("utf8"));
+  d.component = `${stem}.tsx`;
+  return Buffer.from(JSON.stringify(d, null, 2) + "\n", "utf8");
+}
+
 async function publicMd5(url) {
   try { const r = await fetch(url, { cache: "no-store" }); return r.ok ? md5(Buffer.from(await r.arrayBuffer())) : `HTTP ${r.status}`; } catch (e) { return String(e.message); }
 }
@@ -149,30 +193,32 @@ export async function publish(dir, { upload = false, apply = false, offline = fa
     const blob = await blobFor(db, chosen.plan_id);
     const raw = typeof blob.raw_json === "string" ? JSON.parse(blob.raw_json) : blob.raw_json;
     const mount = mounts(raw).find((m) => m.slot.id === id);
+    const siblingIds = mounts(raw).map((m) => m.slot.id).filter((x) => x !== id);
     const rows = (await db.query(`SELECT media_code, url, updated_at FROM ${CONFIG.lpTables.media} WHERE plan_id = $1 AND media_type = 'tool_2d' AND media_code = $2`,
       [chosen.plan_id, id])).rows;
-    return { chosen, live, mount, rows, db: true };
+    return { chosen, live, mount, rows, siblingIds, db: true };
   }); } catch (e) {
     if (!/cannot reach lpv2/.test(e.message)) throw e;
     const planFile = path.join(path.dirname(dir), "plan.json");
     if (!fs.existsSync(planFile)) throw e;
     const raw = JSON.parse(fs.readFileSync(planFile, "utf8"));
     const mount = mounts(raw).find((m) => m.slot.id === id);
-    dbInfo = { chosen: { plan_id: st.planId, version: st.version }, live: null, mount, rows: null, db: false };
+    dbInfo = { chosen: { plan_id: st.planId, version: st.version }, live: null, mount, rows: null, siblingIds: mounts(raw).map((m) => m.slot.id).filter((x) => x !== id), db: false };
     notes.push(`lpv2 unreachable (${e.message.split(":").slice(1).join(":").trim().slice(0, 90)}): plan and mount read from the copy fetched ${st.fetchedAt || "earlier"}; latest version and lp2_media NOT checked`);
   }
-  const { chosen, live, mount, rows } = dbInfo;
+  const { chosen, live, mount, rows, siblingIds } = dbInfo;
   say("plan", `${chosen.plan_id} v${chosen.version}${chosen.is_active ? " (the live one)" : ""}${Number(chosen.phase) ? " · phase " + chosen.phase : ""}`);
   if (dbInfo.db && !live) notes.push("no active version: nothing is live for students yet");
   else if (live && live.plan_id !== chosen.plan_id) notes.push(`the live version is v${live.version} (${live.plan_id}); this publishes against v${chosen.version}, the latest`);
   if (!mount) throw new Error(`${id} is not a 2d_tool mount in ${chosen.plan_id}; nothing to publish to`);
   const url = mount.slot["2d_tool_url"] || "";
   const prefix = `${PUBLIC_BASE}/${bucket}/`;
-  if (!url.startsWith(prefix) || !url.endsWith(`/${id}/${id}.tsx`)) throw new Error(`the mount's own 2d_tool_url is not <folder>/${id}/${id}.tsx under ${prefix}: ${url}`);
-  const folder = url.slice(prefix.length).split("/").slice(0, -1).join("/");
+  const target = mountTarget(url, id, prefix, siblingIds);
+  const { folder, stem } = target;
+  if (target.rekeyed) notes.push(`re-keyed mount: the plan names this tool ${id} but its 2d_tool_url still points at the object of its old id ${stem}; the tool is uploaded THERE (${stem}.tsx and ${stem}.json, the .json's component set to ${stem}.tsx), which is where the app reads it`);
   const chapterFolder = folder.split("/").slice(0, -1).join("/");   /* .../2dtool: the chapter's tools and their shared _voice/ */
   const voiceBase = `${prefix}${chapterFolder}/${CLIP_DIR}/`;
-  const names = { ".tsx": `${folder}/${id}.tsx`, ".json": `${folder}/${id}.json` };
+  const names = { ".tsx": `${folder}/${stem}.tsx`, ".json": `${folder}/${stem}.json` };
   const urls = { ".tsx": prefix + names[".tsx"], ".json": prefix + names[".json"] };
   say("mount", `${id} (${mount.slot.tool_id || mount.slot.title}) -> ${bucket}/${folder}/`);
 
@@ -182,13 +228,8 @@ export async function publish(dir, { upload = false, apply = false, offline = fa
   for (const f of Object.values(files)) if (!fs.existsSync(f)) throw new Error(`missing ${path.relative(fromRoot("."), f)}; run: node cli.mjs port ${id}`);
   const data = { ".tsx": fs.readFileSync(files[".tsx"]), ".json": fs.readFileSync(files[".json"]) };
   const side = JSON.parse(data[".json"].toString("utf8"));
-  const hash = hashOf(dir);
-  if (side.mediaId !== id || side.component !== `${id}.tsx`) problems.push(`the sidecar names ${side.mediaId} / ${side.component}`);
-  if (!data[".tsx"].toString("utf8").includes(id)) problems.push("the .tsx does not carry its media id");
-  if (!st.checks || st.checks.fail !== 0) problems.push("the last check did not pass");
-  if (st.checkedTool !== hash) problems.push("the source changed since the last check");
-  if (!side.build || side.build.source !== hash) problems.push("the standalone pair was not built from the current source; run port again");
-  if (side.build && side.build.tsxMd5 !== md5(data[".tsx"])) problems.push("the .tsx changed after port (hand edits are not published)");
+  const pair = pairProblems({ id, st, side, hash: hashOf(dir), tsx: data[".tsx"], json: data[".json"] });
+  problems.push(...pair.problems);
   /* a tool with baked Hindi/Gujarati voice is published as its SHIP COPY: the clips leave the file as <sha1>.ogg
      files under <chapter>/2dtool/_voice/ (lib/ship/voiceship.mjs); the local pair keeps them inline */
   const localTsx = data[".tsx"].toString("utf8");
@@ -200,8 +241,8 @@ export async function publish(dir, { upload = false, apply = false, offline = fa
       upTsx = Buffer.from(ship.tsx, "utf8");
     } catch (e) { problems.push("voice ship: " + e.message); }
   }
-  const up = { ".tsx": upTsx, ".json": data[".json"] };
-  say("files", `${id}.tsx ${(upTsx.length / 1024).toFixed(1)} KB${ship ? ` (ship copy; ${(data[".tsx"].length / 1024).toFixed(0)} KB with the clips inline)` : ""} · ${id}.json ${(data[".json"].length / 1024).toFixed(1)} KB · checks ${st.checks ? `${st.checks.pass} pass / ${st.checks.fail} fail` : "none"}`);
+  const up = { ".tsx": upTsx, ".json": target.rekeyed ? rekeySidecar(data[".json"], stem) : data[".json"] };
+  say("files", `${id}.tsx ${(upTsx.length / 1024).toFixed(1)} KB${ship ? ` (ship copy; ${(data[".tsx"].length / 1024).toFixed(0)} KB with the clips inline)` : ""} · ${id}.json ${(data[".json"].length / 1024).toFixed(1)} KB · checks ${st.checks ? `${st.checks.pass} pass / ${st.checks.fail} fail` : "none"}${pair.handEdit ? ` · hand-edited, approved ${String(pair.handEdit.at).slice(0, 10)}` : ""}`);
 
   /* 4 host */
   const scope = shipScope(upTsx.toString("utf8"));
@@ -299,7 +340,7 @@ export async function publish(dir, { upload = false, apply = false, offline = fa
   }
   for (const ext of [".tsx", ".json"]) {
     const want = md5(up[ext]);
-    let method = "api:raw", got = await viaApi(api, bucket, `${folder}`, `${id}${ext}`, up[ext], MIME[ext]);
+    let method = "api:raw", got = await viaApi(api, bucket, `${folder}`, `${stem}${ext}`, up[ext], MIME[ext]);
     let meta = got ? await objectMeta(ro, bucket, names[ext]) : null;
     if (!meta || meta.md5 !== want) {
       method = "gcs";

@@ -1,0 +1,1139 @@
+{
+  "slotId": "M1.S1.T2.C5.2D1",
+  "mediaId": "M1.S1.T2.C5.2D1",
+  "toolId": "metric_chart",
+  "title": "Chart Builder",
+  "component": "M1.S1.T2.C5.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch9_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_9/2dtool/M1.S1.T2.C5.2D1/M1.S1.T2.C5.2D1.tsx",
+  "description": "Build the metric chart from kilo to milli around the base unit, see each unit grow ten times to the left, and read a measure written one digit to a unit as one decimal with its unit.",
+  "conceptIds": [
+    "M1.S1.T2.C5",
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7",
+    "M1.S1.T2.C8"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Name the standard units, read the prefixes against the base unit, see that each unit is 10 times the unit to its right, and read a measure written one digit to a unit as one decimal with its unit.",
+    "look": "A chart of seven columns from kilo to milli with the base unit in the middle, three standard unit cards above it, and digit tiles that drop into the columns.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Chart Builder' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of units placed on the chart. It is never a score. The working area is 1086 by 528 at x 64, y 202. The chart fills the lower part of the area: seven columns, each 140 wide, from x 90 to x 1070, headed kilo, hecto, deca, the base unit, deci, centi and milli from left to right, with three rows at y 430, y 520 and y 610 for length, weight and capacity. The unit names in the cells are violet, labelled Unit, and the base unit column in the middle, metre, gram and litre, has a heavier ink outline. Above the chart, along y 240, stand the three standard unit cards, metre, kilogram and litre, each 200 by 110, with the tray of things beside them at x 820, y 240 on the first phase. On the second phase the six prefix cards lie face down over their column heads, and a turned card shows its worth against the base unit as a violet Unit fact on a strip at y 360. On the third phase the amber marker sits over one column, the Step left button stands at x 900, y 250, and ten small bars of the unit to the right slide together into one bar of the new unit along y 330, the step drawn as a vermilion arrow labelled Move. On the fourth phase the deep blue digit tiles, labelled Given, wait in a tray at x 120, y 250, drop one to a column, and the point snaps into the gap just after the column it is dropped on; a grey zero, labelled Place holder, fills a column left open. The decimal read back sits in green, labelled Answer, at x 120, y 690, with its unit name. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a point key, a delete key, and one key for each unit name of the row in use. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. The measure the question gives, in the unit it is given in, is deep blue, labelled Given or Measure. The measure the working reaches, and a reading on a scale, is green, labelled Answer, Reading or Same measure. The places moved across the unit chart, and the worth of one small mark on a scale, are vermilion, labelled Move or One mark. A unit fact, the unit names on the chart and the other temperature scale are violet, labelled Unit fact, Unit or Other scale. The part taken away, and a part left over after sharing, are rose, labelled Taken away or Left over. The unit, column, mark or step being worked on now is amber. Grey is kept for a zero holding a place open inside a number, labelled Place holder, and for nothing else. Rulers, tapes, jugs, scales, thermometer tubes, chart lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The chart stays built, with the last measure's digits in their columns, the point after its unit and the decimal read beside it in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "every thing sits on its standard unit, and the three cards light together",
+        "does": "drags each thing onto the standard unit that measures it",
+        "goal": "the metre measures length, the kilogram measures weight and the litre measures capacity; these are the standard units",
+        "says": "What would you measure this with? Drop it on its unit.",
+        "check": "Away from the screen: name one thing at home you would measure in litres, and one in kilograms.",
+        "feels": "the three cards lighting together once every thing is home",
+        "hands": "Put three paper cards on a desk saying metre, kilogram and litre. Pick up a ribbon, a bag of rice and a bottle of water, and put each on the card that measures it.",
+        "tries": "First rung: sort just two things, one to measure along and one to lift. Second rung: add one thing to pour. Third rung: the same task with three things from the classroom, before the question's own things return.",
+        "wrong": [
+          {
+            "why": "rice is poured from a bag like water from a jug, so it feels like something to fill",
+            "move": "drops the bag of rice on the litre card",
+            "screen": "the bag stays on the litre card, the kilogram card beside it is lit amber, and the word Weight is written in ink under the kilogram card while the rest of the child's sorting stays"
+          },
+          {
+            "why": "a long thing feels like a lot of something, and a lot feels heavy",
+            "move": "drops a long ribbon on the kilogram card",
+            "screen": "the ribbon stays where it was put, the metre card is lit amber, and the ribbon is drawn lying along a tape beside it, in steps"
+          }
+        ],
+        "screen": "three standard unit cards, metre, kilogram and litre, and a tray of things to measure",
+        "soWhat": "the metre measures length, the kilogram measures weight and the litre measures capacity; these are the standard units",
+        "concept": "Standard units"
+      },
+      {
+        "n": 2,
+        "win": "all six prefix cards face up, worth from a thousand times to a thousandth, with the base unit between them",
+        "does": "turns each prefix card and reads what it is worth against the base unit",
+        "goal": "kilo, hecto and deca make bigger units and deci, centi and milli smaller ones, all added to the base unit metre, gram or litre",
+        "says": "Turn a card. How many base units is it worth?",
+        "check": "Away from the screen: which is bigger, a decilitre or a decalitre, and how can the prefix tell you?",
+        "feels": "a row of face-down cards turning into a ladder from a thousand times to a thousandth",
+        "hands": "Write the six prefixes on cards and lay them in a row with a card saying base unit in the middle. Turn each over and write on its back what it is worth against the base unit.",
+        "tries": "First rung: turn only kilo and milli. Second rung: turn the two cards next to the base unit. Third rung: the same task on the length row only, before the question's own row returns.",
+        "wrong": [
+          {
+            "why": "hecto and hundredth start alike, so the two feel like one word",
+            "move": "types a hundredth, with the point key, for what a hectogram is worth in grams",
+            "screen": "the hecto card stays face up with its worth, a hundred times, in violet, and a bar of one gram is drawn beside a bar a hundred times as long, while the child's typed answer stays in the slot"
+          },
+          {
+            "why": "the deca card was turned just before, and its worth is still in mind",
+            "move": "types ten for how many grams make a hectogram",
+            "screen": "the hecto card is lit amber, and ten bars of deca slide under it in steps, then ten more rows of them, so the hundred grams can be counted"
+          }
+        ],
+        "screen": "the chart with its prefix cards face down and the base unit column lit",
+        "soWhat": "kilo, hecto and deca make bigger units and deci, centi and milli smaller ones, all added to the base unit metre, gram or litre",
+        "concept": "Prefixes and the base unit"
+      },
+      {
+        "n": 3,
+        "win": "ten bars click together into one, and the step is labelled Move, ten times",
+        "does": "presses Step left and watches ten bars of one unit fill one bar of the next",
+        "goal": "each unit is 10 times the unit to its right, and 1/10 of the unit to its left",
+        "says": "Step left. How many of the old unit fill the new one?",
+        "check": "Away from the screen: how many millimetres make one centimetre, and how many centimetres make one decimetre?",
+        "feels": "ten small bars clicking together into one bar of the next unit",
+        "hands": "Cut ten thin paper strips, each one centimetre long, and lay them end to end beside a ruler. They reach one decimetre. Say how many of the first unit made one of the next.",
+        "tries": "First rung: step left just once and count the bars. Second rung: step left once more and count again. Third rung: the same task on another row of the chart, before the question's own row returns.",
+        "wrong": [
+          {
+            "why": "the two units feel like neighbours because the decilitre between them is easy to forget",
+            "move": "counts one step from centilitres to litres and types ten",
+            "screen": "the marker's path is replayed on the row, two vermilion Move arrows are drawn under it in steps, each labelled ten times, and the child's answer stays in the slot"
+          },
+          {
+            "why": "on a number line the numbers grow to the right, so the right feels like the bigger side",
+            "move": "types that the unit to the left is a tenth of the unit to its right",
+            "screen": "ten small bars slide together again, slowly, into one bar of the unit to the left, and that bar is lit amber beside the child's answer"
+          }
+        ],
+        "screen": "one row of the chart with the marker on a unit and ten small bars of the unit to its right",
+        "soWhat": "each unit is 10 times the unit to its right, and 1/10 of the unit to its left",
+        "concept": "Ten times the unit to its right"
+      },
+      {
+        "n": 4,
+        "win": "the decimal and its unit turn green together",
+        "does": "drops one digit under each unit, sets the point after the unit asked for, and reads the decimal with its unit",
+        "goal": "a measure written one digit to a unit is read as one decimal, with the point just after the digit of the unit chosen and that unit named",
+        "says": "Set the point after the unit asked for. Now say the unit too.",
+        "check": "Away from the screen: why must a decimal measure always be said with its unit?",
+        "feels": "the decimal and its unit turning green together",
+        "hands": "Draw seven columns on paper and head them with the units of one row. Write one digit under each unit of a measure, put a paper point after the unit asked for, and read it aloud with that unit's name.",
+        "tries": "First rung: drop the digits and set the point after the base unit only. Second rung: move the point to the unit asked for and read it. Third rung: the same task with no empty column, before the question's own measure returns.",
+        "wrong": [
+          {
+            "why": "the base unit column is in the middle and has the heavier outline, so it feels like home",
+            "move": "sets the point after the base unit's digit when kilograms are asked for",
+            "screen": "the point stays where it was set, the measure is read back in grams beside it, and the kilograms column the question asked for is lit amber"
+          },
+          {
+            "why": "an empty column looks like nothing, so it seems safe to close the gap",
+            "move": "slides the next digit into a column that should hold nothing",
+            "screen": "each digit is read back in the column it sits in, the empty column is lit amber, and a grey zero waits beside it for the child to drop in"
+          },
+          {
+            "why": "the number looks finished once the point is in",
+            "move": "types the decimal without pressing a unit key",
+            "screen": "the decimal waits in the slot uncoloured, and the unit keys on the pad and the unit names of the row are lit amber"
+          }
+        ],
+        "screen": "a row of the chart with deep blue digit tiles waiting in a tray and the point loose above",
+        "soWhat": "a measure written one digit to a unit is read as one decimal, with the point just after the digit of the unit chosen and that unit named",
+        "concept": "A measure on the chart"
+      }
+    ],
+    "delight": "When the last prefix card turns over on the second phase, the whole row of worths slides into one line under the chart, a thousand times at one end and a thousandth at the other, and the base unit glows once in the middle.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet placed. On the first phase the three standard unit cards, metre, kilogram and litre, stand above the chart with a tray of things below them: a ribbon, a bag of rice, a bucket of water and more. On the second the chart lies with its six prefix cards face down and the base unit column lit. On the third one row of the chart lies with the marker on a unit and ten small bars of the unit to its right beside it. On the fourth a row lies empty with the deep blue digit tiles in their tray and the point loose above. One thing moves, once: the first thing in the tray, the first prefix card, the Step left button or the loose point gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any digits dropped on any row of the chart, the point set after any unit, and the measure read back in that unit. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the standard units, the prefixes, neighbouring units, and a measure read as one decimal with its unit.",
+    "voiceLines": [
+      "A chart of units, waiting to be built.",
+      "What would you measure this with? Drop it on its unit.",
+      "Turn a card. How many base units is it worth?",
+      "Step left. How many of the old unit fill the new one?",
+      "Set the point after the unit asked for. Now say the unit too.",
+      "A new row of the chart. Build it the same way.",
+      "Free play. Drop any digits and set the point anywhere.",
+      "Look along the row. Which unit is next to which?",
+      "You built the chart and read a measure off it, with its unit."
+    ],
+    "observations": [
+      {
+        "why": "the middle column holds the base unit the prefixes are added to, and the standard unit of weight is the kilogram.",
+        "soWhat": "keep the two words apart: the kilogram is the standard unit, and the gram is the base unit.",
+        "observe": "The gram sat in the middle column, but the kilogram card was the one the rice bag went on."
+      },
+      {
+        "why": "kilo, hecto and deca make bigger units, and deci, centi and milli make smaller ones.",
+        "soWhat": "the prefix alone tells how big a unit is against its base unit.",
+        "observe": "The prefix cards to the left of the base unit showed times, and the ones to its right showed parts."
+      },
+      {
+        "why": "each unit is 10 times the unit to its right.",
+        "soWhat": "two steps make a hundred and three steps make a thousand, so the chart shows how far apart any two units are.",
+        "observe": "Every Step left made ten bars click into one."
+      },
+      {
+        "why": "the point sits just after the digit of the unit named, and each column is one unit.",
+        "soWhat": "a decimal measure means nothing until its unit is named with it.",
+        "observe": "The same digits read as a different decimal each time the point moved to another unit."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "three standard unit cards, metre, kilogram and litre, and a tray of things to measure",
+        "win": "every thing sits on its standard unit, and the three cards light together",
+        "traceback": "The thing stays where it was dropped, the card it belongs on lights amber with Length, Weight or Capacity under it, and each thing is shown on its own card.",
+        "ladder": [
+          "A hose is long, a pumpkin is heavy and the tank holds water.",
+          "You walk along a playground from one end to the other.",
+          "Water goes in the bucket, but a bag of potatoes is lifted to weigh it.",
+          "The metre measures length, the kilogram weight, the litre what you pour.",
+          "Long things on the metre, heavy things on the kilogram, water on the litre."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the chart with its prefix cards face down and the base unit column lit",
+        "win": "all six prefix cards face up, worth from a thousand times to a thousandth, with the base unit between them",
+        "traceback": "The asked card turns face up with its worth in violet, the fact is written in green, and a bar of the big unit is drawn beside a bar of the base unit.",
+        "ladder": [
+          "Hecto is left of the base unit, the gram, so a hectogram is bigger.",
+          "Deca sits just left of the litre column, so a decalitre is more than a litre.",
+          "The largest unit of length sits at the far left of the length row.",
+          "Each card on the left matches the card as far away on the right.",
+          "Take the number on the partner card and say it as times."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "one row of the chart with the marker on a unit and ten small bars of the unit to its right",
+        "win": "ten bars click together into one, and the step is labelled Move, ten times",
+        "traceback": "The marker's path is replayed: the bars close up into the unit asked for, a Move arrow labelled times 10 is drawn for each step, and the facts are written in green.",
+        "ladder": [
+          "A litre is two places left of cL, so press Step left twice.",
+          "Press Step left once and watch the mL bars close up into one cL.",
+          "Press Step left until the marker reaches m, counting each press.",
+          "Each Step left joins the same number of small bars into one: count them.",
+          "For two steps that number comes twice over, so multiply, never add."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a row of the chart with deep blue digit tiles waiting in a tray and the point loose above",
+        "win": "the decimal and its unit turn green together",
+        "traceback": "The child's digits and point stay, the asked unit's column lights amber, the right point and any missing digit are shown, and the decimal is read back in green with its unit.",
+        "ladder": [
+          "Which column belongs to the unit the question asks for?",
+          "The point goes after the digit of the unit asked for.",
+          "Every column from km to m holds a digit, even the one with nothing in it.",
+          "Read the digits from the left, and put the point as you pass the unit asked for.",
+          "The digit of the asked unit comes just before the point, and the rest follow it."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "columns": [
+      "kilo",
+      "hecto",
+      "deca",
+      "",
+      "deci",
+      "centi",
+      "milli"
+    ],
+    "rows": {
+      "length": [
+        "km",
+        "hm",
+        "dam",
+        "m",
+        "dm",
+        "cm",
+        "mm"
+      ],
+      "weight": [
+        "kg",
+        "hg",
+        "dag",
+        "g",
+        "dg",
+        "cg",
+        "mg"
+      ],
+      "capacity": [
+        "kL",
+        "hL",
+        "daL",
+        "L",
+        "dL",
+        "cL",
+        "mL"
+      ]
+    },
+    "units": [
+      "m",
+      "kg",
+      "L"
+    ],
+    "stepThings": {
+      "ribbon": "m",
+      "rice": "kg",
+      "milk": "L"
+    },
+    "demo3": {
+      "kind": "step",
+      "row": "weight",
+      "from": 3,
+      "to": 1
+    },
+    "demo4": {
+      "kind": "read",
+      "row": "weight",
+      "digits": [
+        3,
+        4,
+        7,
+        5,
+        null,
+        null,
+        null
+      ],
+      "at": 0
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C5:MC1",
+        "kind": "sort",
+        "pad": "enter",
+        "things": [
+          "hose",
+          "pumpkin",
+          "tank"
+        ],
+        "answer": "hose:m,pumpkin:kg,tank:L",
+        "near": "hose:m,pumpkin:L,tank:kg",
+        "win": "Yes, each thing is on its own unit."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T2.C5:1",
+        "kind": "sort",
+        "pad": "enter",
+        "things": [
+          "playground"
+        ],
+        "answer": "playground:m",
+        "near": "playground:kg",
+        "win": "Yes, a playground is measured in metres."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S1.T2.C5:5",
+        "kind": "sort",
+        "pad": "enter",
+        "things": [
+          "bucket",
+          "potatoes"
+        ],
+        "answer": "bucket:L,potatoes:kg",
+        "near": "bucket:L,potatoes:L",
+        "win": "Yes, litres for water, kilograms for potatoes."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:MC2",
+        "kind": "prefix",
+        "pre": "hecto",
+        "row": "weight",
+        "answer": 100,
+        "near": "0.01",
+        "win": "Yes, 100 g make 1 hg."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T2.C6:2",
+        "kind": "prefix",
+        "pre": "deca",
+        "row": "capacity",
+        "answer": 10,
+        "near": "0.1",
+        "win": "Yes, 10 L make 1 daL."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T2.C6:6",
+        "kind": "prefix",
+        "pre": "kilo",
+        "row": "length",
+        "answer": 1000,
+        "near": "0.001",
+        "hideCard": true,
+        "win": "Yes, 1,000 m make 1 km."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C7:MC3",
+        "kind": "step",
+        "asks": "next+to",
+        "row": "capacity",
+        "from": 5,
+        "to": 3,
+        "parts": [
+          {
+            "label": "in 1 dL",
+            "unit": "cL"
+          },
+          {
+            "label": "in 1 L",
+            "unit": "cL"
+          }
+        ],
+        "answer": [
+          10,
+          100
+        ],
+        "near": "10|10",
+        "win": "Yes, 10 cL in 1 dL, 100 cL in 1 L."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T2.C7:3",
+        "kind": "step",
+        "asks": "to",
+        "row": "capacity",
+        "from": 6,
+        "to": 5,
+        "answer": 10,
+        "near": "0.1",
+        "ladder": [
+          "Count the small mL bars that closed up into the one cL bar.",
+          "The cL bar is split into equal mL parts: count every part."
+        ],
+        "win": "Yes, 10 mL make 1 cL."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T2.C7:7",
+        "kind": "step",
+        "asks": "places+to",
+        "row": "length",
+        "from": 6,
+        "to": 3,
+        "parts": [
+          {
+            "label": "places"
+          },
+          {
+            "label": "in 1 m",
+            "unit": "mm"
+          }
+        ],
+        "answer": [
+          3,
+          1000
+        ],
+        "near": "1|10",
+        "ladder": [
+          "Each press joins the same number of bars into one, so count those bars too.",
+          "Multiply that number by itself, once for every press you counted."
+        ],
+        "win": "Yes, 3 places, so 1,000 mm in 1 m."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T2.C8:MC4",
+        "kind": "read",
+        "row": "capacity",
+        "digits": [
+          3,
+          7,
+          2,
+          5,
+          null,
+          null,
+          null
+        ],
+        "at": 0,
+        "answer": "3.725",
+        "near": "3725",
+        "ladder": [
+          "The point goes just after the digit under kL, the unit asked for.",
+          "The kL digit comes before the point, and the hL, daL and L digits after it."
+        ],
+        "win": "Yes, the tank holds 3.725 kL."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T2.C8:4",
+        "kind": "read",
+        "row": "weight",
+        "given": true,
+        "digits": [
+          4,
+          1,
+          7,
+          0,
+          null,
+          null,
+          null
+        ],
+        "at": 0,
+        "answer": "4.170",
+        "also": [
+          "4.17"
+        ],
+        "near": "41.70",
+        "ladder": [
+          "The 4 sits under kg, so the point goes just after the 4.",
+          "After the point come the hg, dag and g digits, the 0 included."
+        ],
+        "win": "Yes, 4.170 kg, also written 4.17 kg."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T2.C8:8",
+        "kind": "read",
+        "row": "length",
+        "digits": [
+          7,
+          0,
+          3,
+          6,
+          null,
+          null,
+          null
+        ],
+        "at": 0,
+        "answer": "7.036",
+        "near": "7.36",
+        "ladder": [
+          "The 0 under hm holds that place open, so it is written after the point.",
+          "After the point come the hm, dam and m digits, with the 0 first."
+        ],
+        "win": "Yes, that is 7.036 km."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The thing stays where it was dropped, the card it belongs on lights amber with Length, Weight or Capacity under it, and each thing is shown on its own card.",
+      "Phase 2: The asked card turns face up with its worth in violet, the fact is written in green, and a bar of the big unit is drawn beside a bar of the base unit.",
+      "Phase 3: The marker's path is replayed: the bars close up into the unit asked for, a Move arrow labelled times 10 is drawn for each step, and the facts are written in green.",
+      "Phase 4: The child's digits and point stay, the asked unit's column lights amber, the right point and any missing digit are shown, and the decimal is read back in green with its unit."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A chart of units, waiting to be built.",
+    "onFreePlay": "Free play. Tap a column to change its digit, then tap a gap to set the point.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You built the chart and read a measure off it, with its unit.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C5:MC1",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "Which standard unit measures the length of a garden hose, which measures the weight of a pumpkin, and which measures the water in a tank?",
+            "question": {
+              "en": "Drop each on its standard unit: a hose, a pumpkin and the water in a tank."
+            },
+            "ask": {
+              "en": "Hose, pumpkin, tank?"
+            },
+            "answer": "hose:m,pumpkin:kg,tank:L",
+            "planAnswer": "The metre for the hose, the kilogram for the pumpkin, and the litre for the water.",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T2.C5:1",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "Which standard unit would you use to measure the length of a playground?",
+            "question": {
+              "en": "Which standard unit would you use to measure the length of a playground?"
+            },
+            "ask": {
+              "en": "A playground?"
+            },
+            "answer": "playground:m",
+            "planAnswer": "The metre (m)",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S1.T2.C5:5",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "Which standard unit fits the water in a bucket, and which fits the weight of a bag of potatoes?",
+            "question": {
+              "en": "Which standard unit fits a bucket of water, and which a bag of potatoes?"
+            },
+            "ask": {
+              "en": "Bucket, potatoes?"
+            },
+            "answer": "bucket:L,potatoes:kg",
+            "planAnswer": "The litre for the water, and the kilogram for the potatoes",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T2.C6:MC2",
+            "worked": false,
+            "kind": "prefix",
+            "planQuestion": "What does hecto mean, and how many grams make 1 hg?",
+            "question": {
+              "en": "What does hecto mean, and how many grams make 1 hg?"
+            },
+            "ask": {
+              "en": "Grams in 1 hg?"
+            },
+            "answer": 100,
+            "planAnswer": "Hecto means 100 times the base unit, so 100 g make 1 hg.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T2.C6:2",
+            "worked": false,
+            "kind": "prefix",
+            "planQuestion": "What does deca mean? How many litres make 1 daL?",
+            "question": {
+              "en": "What does deca mean, and how many litres make 1 daL?"
+            },
+            "ask": {
+              "en": "Litres in 1 daL?"
+            },
+            "answer": 10,
+            "planAnswer": "Deca means 10 times the base unit, so 10 litres make 1 daL",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T2.C6:6",
+            "worked": false,
+            "kind": "prefix",
+            "planQuestion": "Which is the largest unit of length in the chart, and how many metres make one of it?",
+            "question": {
+              "en": "Which is the largest unit of length in the chart, and how many metres make one?"
+            },
+            "ask": {
+              "en": "Metres in the largest?"
+            },
+            "answer": 1000,
+            "planAnswer": "The kilometre; 1000 m make 1 km",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C7:MC3",
+            "worked": false,
+            "kind": "step",
+            "planQuestion": "On the capacity row, dL sits just to the left of cL. How many centilitres make 1 dL, and how many make 1 litre?",
+            "question": {
+              "en": "On the capacity row, how many centilitres make 1 dL, and how many make 1 litre?"
+            },
+            "ask": {
+              "en": "cL in 1 dL, in 1 L?"
+            },
+            "answer": [
+              10,
+              100
+            ],
+            "planAnswer": "10 cL make 1 dL, and 100 cL make 1 litre.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T2.C7:3",
+            "worked": false,
+            "kind": "step",
+            "planQuestion": "How many millilitres make 1 cL?",
+            "question": {
+              "en": "How many millilitres make 1 cL?"
+            },
+            "ask": {
+              "en": "mL in 1 cL?"
+            },
+            "answer": 10,
+            "planAnswer": "10 mL",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T2.C7:7",
+            "worked": false,
+            "kind": "step",
+            "planQuestion": "How many places is it from mm to m on the chart, and how many millimetres make 1 m?",
+            "question": {
+              "en": "How many places is it from mm to m, and how many millimetres make 1 m?"
+            },
+            "ask": {
+              "en": "Places, mm in 1 m?"
+            },
+            "answer": [
+              3,
+              1000
+            ],
+            "planAnswer": "Three places to the left; 1 m is 10 x 10 x 10 = 1000 mm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T2.C8:MC4",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A tank holds 3 kL 7 hL 2 daL 5 L. Write it on the chart one digit to a unit, and read it as one decimal in kilolitres.",
+            "question": {
+              "en": "A tank holds 3 kL 7 hL 2 daL 5 L, so what is that as one decimal in kilolitres?"
+            },
+            "ask": {
+              "en": "In kilolitres?"
+            },
+            "answer": "3.725",
+            "planAnswer": "3.725 kL.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T2.C8:4",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "Digits 4, 1 and 7 sit under kg, hg and dag, and 0 sits under g. Read the measure as one decimal in kilograms.",
+            "question": {
+              "en": "Digits 4, 1, 7 and 0 sit under kg, hg, dag and g, so what is it in kilograms?"
+            },
+            "ask": {
+              "en": "In kilograms?"
+            },
+            "answer": "4.170",
+            "planAnswer": "4.170 kg, which is 4.17 kg",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T2.C8:8",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "Write 7 km 0 hm 3 dam 6 m as one decimal in kilometres.",
+            "question": {
+              "en": "Write 7 km 0 hm 3 dam 6 m as one decimal in kilometres."
+            },
+            "ask": {
+              "en": "In kilometres?"
+            },
+            "answer": "7.036",
+            "planAnswer": "7.036 km",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "metric_chart",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "metric_chart",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Standard units",
+        "conceptId": "M1.S1.T2.C5",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C5:MC1",
+          "M1.S1.T2.C5:1",
+          "M1.S1.T2.C5:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Prefixes and the base unit",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C6:MC2",
+          "M1.S1.T2.C6:2",
+          "M1.S1.T2.C6:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Ten times the unit to its right",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C7:MC3",
+          "M1.S1.T2.C7:3",
+          "M1.S1.T2.C7:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A measure on the chart",
+        "conceptId": "M1.S1.T2.C8",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C8:MC4",
+          "M1.S1.T2.C8:4",
+          "M1.S1.T2.C8:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "row",
+    "null",
+    "row",
+    "row",
+    "placed",
+    "length",
+    "length",
+    "marker",
+    "digits",
+    "point_after"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, row, null, row, row, placed, length, length, marker, digits, point_after, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "metric_chart"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C5.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A chart of units, waiting to be built."
+    },
+    {
+      "en": "What would you measure this with? Drop it on its unit."
+    },
+    {
+      "en": "Turn a card. How many base units is it worth?"
+    },
+    {
+      "en": "Step left. How many of the old unit fill the new one?"
+    },
+    {
+      "en": "Set the point after the unit asked for. Now say the unit too."
+    },
+    {
+      "en": "A new row of the chart. Build it the same way."
+    },
+    {
+      "en": "Free play. Drop any digits and set the point anywhere."
+    },
+    {
+      "en": "Look along the row. Which unit is next to which?"
+    },
+    {
+      "en": "You built the chart and read a measure off it, with its unit."
+    }
+  ],
+  "build": {
+    "source": "01c3eab9:655936",
+    "runtime": "class5/runtime/frozen/r65/runtime.tsx",
+    "runtimeVersion": "r65",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T15:03:18.039Z",
+    "checks": {
+      "pass": 93,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-18T15:03:17.923Z"
+    },
+    "tsxBytes": 577451,
+    "tsxMd5": "5900502a1a7bc7ca02a51b033d7f6335"
+  }
+}

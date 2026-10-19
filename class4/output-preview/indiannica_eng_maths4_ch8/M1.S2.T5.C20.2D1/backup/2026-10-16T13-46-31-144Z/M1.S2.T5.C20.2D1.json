@@ -1,0 +1,1037 @@
+{
+  "slotId": "M1.S2.T5.C16.2D1",
+  "mediaId": "M1.S2.T5.C16.2D1",
+  "toolId": "place_and_worth_chart",
+  "title": "Place and Worth Chart",
+  "component": "M1.S2.T5.C16.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch8_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_8/2dtool/M1.S2.T5.C16.2D1/M1.S2.T5.C16.2D1.tsx",
+  "description": "Drop a number into the chart past the ones, then give a digit its place and its worth in two separate slots.",
+  "conceptIds": [
+    "M1.S2.T5.C16",
+    "M1.S2.T5.C17",
+    "M1.S2.T5.C18",
+    "M1.S2.T5.C19"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; again, sound and restart as round controls far right.",
+      "canvas": "92 to 746. One rounded card holding the running count, the working area, the question, the answer box and the keypad; the summary page covers it at the end.",
+      "footer": "758 to 900. The mascot at the far left on its ground line, the speech bubble beside it, the phase dots and the phase and question counts at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        654
+      ],
+      "runs": [
+        64,
+        108,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        202,
+        1086,
+        528
+      ],
+      "ask": [
+        1186,
+        108,
+        356,
+        134
+      ],
+      "slot": [
+        1186,
+        250,
+        356,
+        92
+      ],
+      "pad": [
+        1170,
+        368,
+        388,
+        363
+      ],
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        254,
+        748,
+        656,
+        144
+      ],
+      "bar": [
+        930,
+        782,
+        630,
+        58
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: again, sound, restart; 72-unit finger boxes",
+      "dots": "one pill per phase across bar, pitch 158; in user mode each is a button with a 72-tall finger box"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Carry your place chart past the ones, and then say two different things about one digit: where it sits, and how much it is worth there.",
+    "look": "A ruled chart with a heading over every column, a dot column between the ones and the tenths, two answer slots under it and a rebuild bar along the foot.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Place and Worth Chart' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the digits settled against the digits the chart is holding, two numbers in ink, the first climbing by one as each digit is given both a name and an amount and the second fixed at the width of the number. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The chart fills the top of the working area, its headings row 48 tall at 64,206 and its cells 96 tall at 64,254. Seven digit columns stand 130 wide and one narrow column 70 wide holds the dot, in this order from the left: thousands, hundreds, tens, ones, the dot column, tenths, hundredths and thousandths. Every column carries a named heading written above it, outside the chart, and holds one digit and one only; a column already holding a digit refuses a second and springs it back with nothing marked. Grow the chart extends the ruled ground past the ones through the dot column and names each new column as it appears, left to right, so the three decimal places arrive in the order they are made. Count from the point runs rightwards from the dot column, lighting and naming one column at a time, and it always begins at the dot and never at either end of the number. The two answer slots stand under the chart, the place slot 360 by 88 at 64,386 and the worth slot 360 by 88 at 460,386, each with its heading drawn above it. Neither will take the other's answer: a column name dropped into the worth slot springs back with the column it names lit and the slot left empty, and an amount dropped into the place slot springs back the same way, with nothing marked and nothing cleared either time. The whole number bay stands at 860,386, 240 by 180, and asks how many tens, hundreds or thousands sit inside a long whole number, which is this same chart read the other way along. The rebuild bar runs at 64,510, 1080 by 130: every worth that has been given is carried down into it and stands in a visible row with its plus signs drawn between, the row is added, and the total is stood beside a copy of the number the chart started from, where the two are read digit for digit. The card lane runs along the foot, 1080 by 80 at 64,650, handing out digit cards and a single point card for holders to arrange, and refusing an arrangement with the point standing first or last by naming the rule it broke and nothing else. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a digit or an amount is asked for, with a fraction key beside them that draws a bar and opens a box above and a box below, and above the keys a name tray carrying the eight column headings, thousands, hundreds, tens, ones, tenths, hundredths and thousandths with the dot beside them, whose keys will only go into the slot headed place. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: a digit standing to the left of the point is deep blue, a digit standing to the right of it is green, and the point itself is vermilion between them on every phase without exception. A part or a column standing for tenths is amber, one standing for hundredths is rose, one standing for thousandths is sky blue, and a zero that is only holding a place open is grey, whether it was written in on the left of a short numerator or printed on the end of a measurement. Chrome never borrows one of those and none of them is ever used for chrome, and every one of the readings survives with the colour taken away, because a place is told by the heading written over it before it is ever told by a colour, a filling zero is told by the short arrow running inward from the point, and a zero printed on the end is told by the place counter that lights it. Grey never means faint: such a zero is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. The dot is given a column of its own on this chart and is never tucked into the ones column or drawn hanging off the edge of a digit. It is the one column that holds no digit, it is the column every count of places starts from, and a chart drawn without it is a chart where the counting has nowhere to begin.",
+    "finish": "The card shows the chart the child filled, each digit under its named column, and the rebuild bar standing under it with its total.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the dot column and the three decimal columns settle, each one named over its head",
+        "does": "grows the chart past the ones and names each new column as it appears",
+        "goal": "the chart the child already knows grows rightwards past the ones, through a dot",
+        "says": "Your chart stops at the ones. What could come after it?",
+        "check": "Away from the screen: draw your own chart from the thousands to the thousandths, headings first, and mark the dot its own column.",
+        "feels": "the chart does not stop, it carries on getting smaller past the ones",
+        "hands": "Draw the chart by hand across a whole page, headings first and a narrow column kept for the dot between the ones and whatever comes after it. Do not write a single digit until every heading is written. Ask what could come after the ones column and why the chart is allowed to carry on at all, and let the class answer from the strip and the grid they cut earlier rather than from memory.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which column is the last one you already knew? Second rung, the phase's: is the next piece along bigger or smaller than a whole one? Third rung: the chart is cut to ones, dot and tenths and the child names all three. The name tray stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "on the left of the chart the columns grow as the eye travels left, and nothing announces that the direction turns round at the dot.",
+            "move": "reads the columns after the point leftwards, the way the whole number columns are read, so tenths ends up at the far right.",
+            "screen": "the chart is grown again from the ones outwards with each new column named as it appears and a piece of the right size drawn under it, the amber tenth first, the rose hundredth next and the sky blue thousandth last, so the pieces get smaller as the columns travel right. The child's headings stay exactly where they were placed, and the two readings of the chart stand one above the other."
+          },
+          {
+            "why": "the dot is small and it sits right beside the ones digit, so it looks like a mark on that digit rather than a thing with a place of its own.",
+            "move": "puts the dot inside the ones column instead of giving it a column of its own.",
+            "screen": "the chart redraws with the narrow dot column ruled between the ones and the tenths and the dot standing in it, and count from the point is run twice: once from the child's chart, where the count has to start inside a column that is already holding a digit, and once from the chart with the dot column, where it starts on empty ground. Both charts are left standing."
+          }
+        ],
+        "screen": "the familiar chart ending at the ones with empty ground to its right",
+        "soWhat": "The place value chart runs on to the right of the ones place, past a dot, as tenths, hundredths and thousandths.",
+        "concept": "The chart carries on past the point"
+      },
+      {
+        "n": 2,
+        "win": "the counted columns light one at a time and the chosen column takes its name",
+        "does": "counts rightwards from the dot and names the column a chosen digit sits in",
+        "goal": "position alone decides the place, whatever the digit happens to be",
+        "says": "Count along from the dot. Where does this one sit?",
+        "check": "In a number of your own with three digits after the point, say which place the last one sits in and how you found it.",
+        "feels": "the column decides, and the digit standing in it has no say in the matter",
+        "hands": "Write a number with three digits after the point on the board and ask for the place of one digit at a time, in no particular order, with the class counting aloud from the dot each time rather than answering from the shape of the number. Then change one digit for a much bigger one, leave it where it is, and ask whether its place has changed.",
+        "tries": "First rung, from the item: where is the dot in this number? Second rung, the phase's: how many columns along from it is this digit? Third rung: the chart is cut to the dot and two columns after it and the child names both. The name tray stays open.",
+        "wrong": [
+          {
+            "why": "size and importance have gone together in every number met so far, and a big digit looks as though it ought to be worth more than a small one beside it.",
+            "move": "gives the larger digit the larger place, so an eight is put ahead of a four whatever order they stand in.",
+            "screen": "count from the point runs along the columns one at a time with each heading lighting as it is passed, and the digits are read out in the order they are standing rather than by size. The child's answer stays in the slot, the two digits are then swapped over in the chart with their places read again, and both readings are left on the stage."
+          },
+          {
+            "why": "numbers are read from the left, and on a number with one digit in front of the point the two counts happen to land on the same column, which is enough for the habit to survive unnoticed.",
+            "move": "counts the decimal places from the left hand end of the number instead of from the point.",
+            "screen": "the counting runs twice with both runs left drawn and numbered over the columns: once from the left hand end of the number, which is still inside the whole number part when it stops, and once from the dot outwards. A second number with three digits in front of the point is then dropped into the chart, where the two counts plainly part, and the child's count stays written where it was made."
+          }
+        ],
+        "screen": "a number dropped into the chart with its columns still unnamed",
+        "soWhat": "Position alone decides a digit's place, and the places are counted from the point outwards.",
+        "concept": "Counting places from the point"
+      },
+      {
+        "n": 3,
+        "win": "both slots fill with answers of the right kind and the lit column holds the two together",
+        "does": "fills the place slot with a name and the worth slot with an amount",
+        "goal": "the place is a name and the place value is an amount",
+        "says": "Where does it sit? Now say how much it is worth sitting there.",
+        "check": "Take the first digit after the point in a number of your own. Give its place, and then give its place value.",
+        "feels": "two questions about one digit, and the answers are different kinds of thing",
+        "hands": "Ask for the place first and the worth second, in that order, every single time, and write the two answers in two separate columns on the board so they never run together. Take one digit and ask both questions about it, then ask the class which of the two answers is a name and which is an amount. Keep the two columns up for the rest of the lesson.",
+        "tries": "First rung, from the item: which column is this digit standing in? Second rung, the phase's: how much is one piece of that column worth? Third rung: the chart is cut to the dot and the tenths column and the child fills both slots about the one digit in it. The name tray and the fraction key stay open.",
+        "wrong": [
+          {
+            "why": "the two phrases are one word apart, and the chapter's own worked example asks for place values and then begins every one of its five answer lines with the words the place of, so the page itself reads as though the two questions had one answer.",
+            "move": "answers a place value question with the word tenths, which names the column again and never says how much.",
+            "screen": "the word the child gave stays exactly where it was dropped and the slot headed place lights, because that is the slot it belongs in. The lit column is read out twice over, once as the name written above it and once as the size of the piece it counts, with that piece drawn underneath at its real size, and the slot headed worth is left open beside the answer already given."
+          },
+          {
+            "why": "the digit is the only number in sight and it is what would be read out if the column were ignored, which is exactly what a digit on its own is.",
+            "move": "writes the digit itself into the worth slot, so the six in a number is said to be worth six.",
+            "screen": "the digit is carried down out of its column into the rebuild bar as the bare number the child wrote, and the row is added with it: the total lands nowhere near the number the chart started from and is left standing beside it with the first pair that parts ringed in amber. The column is then read again with its heading lit and the piece it counts drawn under it."
+          }
+        ],
+        "screen": "one digit lit in the chart with the place slot and the worth slot both empty",
+        "soWhat": "The place of a digit is where it sits and is a name; the place value is what it is worth there and is an amount.",
+        "concept": "Place and place value are not the same word"
+      },
+      {
+        "n": 4,
+        "win": "the total settles beside the number the chart started from and the two read the same",
+        "does": "carries every worth down into the bar, adds them, and reads the total",
+        "goal": "the place values of every digit add back to the number they came from",
+        "says": "Add all the worths together. Where should they land?",
+        "check": "Write the place value of every digit of a number of your own, add them all up, and say what the total should be.",
+        "feels": "the worths add back to the number they came out of, exactly, with nothing left over",
+        "hands": "Write out the place value of every digit of a number in a column down the page, then add the column up and see where it lands. Use that adding as the check on every place value question set for the rest of the week: a total that does not come back says a digit was given the wrong column, and it says so without anybody marking anything. Finish with the digit card game, agreeing first that the point card may not stand at either end of the line.",
+        "tries": "First rung, from the item: what is this digit worth in its own column? Second rung, the phase's: what should all the worths come to together? Third rung: the chart is cut to two columns and the child gives both worths and adds them. The number pad and the fraction key stay open.",
+        "wrong": [
+          {
+            "why": "the digits are the numbers printed on the stage and adding them is the quickest thing that can be done with a row of numbers.",
+            "move": "adds the digits themselves instead of what each one is worth in its own column.",
+            "screen": "the bare digits come down into the rebuild bar exactly as the child sent them, the row adds itself and the small total stands beside the number the chart started from with the two read digit for digit and the first pair that parts ringed. The worths are then carried down into a second row underneath, added the same way, and both rows are left standing together."
+          },
+          {
+            "why": "the whole number part is where the large numbers are, and pieces smaller than one look like something that could not change a total much either way.",
+            "move": "leaves the digits after the point out of the sum, because they are too small to make a difference.",
+            "screen": "the worths of the whole number part alone are added in the bar and the total stands beside the number the chart started from, where it lands on a whole number and the reading parts at the dot column, which is left ringed. The three worths that were left out are then walked down into the row one at a time, each one changing the total as it lands, and the row is added again with the child's first total still standing above it."
+          }
+        ],
+        "screen": "every digit given its worth, with the rebuild bar empty along the foot",
+        "soWhat": "The place values of all the digits add back to the number they came from, and that is the check on every one of them.",
+        "concept": "Adding the worths back up"
+      }
+    ],
+    "delight": "The fourth phase, when the rebuild bar is added. The worths come down out of the chart one at a time along drawn paths, each one leaving its column lit behind it, and settle into the row in the order their columns stand in. The row adds itself from the right with the plus signs drawn between, and the total lifts across and stands beside a copy of the number the chart started from, where the two are read digit for digit from the left with each pair lighting as it is read. Move one digit into the wrong column and run it again: the row is built the same way, the total lands somewhere else, and the first pair that parts is left ringed in amber with nothing else marked.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the familiar chart stands ending at the ones column with plain ruled ground to its right and no headings on it. On the second a number is already dropped into the full chart with the headings turned face down, so the columns are there and unnamed. On the third one digit in the chart is lit and the two answer slots under it stand empty, one headed place and one headed worth. On the fourth every digit has been given its worth and the rebuild bar lies empty along the foot with its plus signs already drawn. The running count at the top left holds the digits settled against the digits the chart is holding, and the answer slot and the pad stand empty down the right. One thing moves, once: the empty ground past the ones, or the face down heading over the lit digit, or the slot headed place, or the first worth waiting to come down, gives one slow pulse while the voice asks what could come after the ones. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any number in the chart, either slot, with the rebuild bar, the whole number bay and the card lane all open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the columns past the ones, on counting places from the point, on the place against the place value, and on rebuilding a number from its worths.",
+    "voiceLines": [
+      "Your chart stops at the ones. There is more of it than that.",
+      "Your chart stops at the ones. What could come after it?",
+      "Count along from the dot. Where does this one sit?",
+      "Where does it sit? Now say how much it is worth sitting there.",
+      "Add all the worths together. Where should they land?",
+      "Another number into the chart. One digit to a column.",
+      "Free play. Any number in the chart, both slots, rebuild bar and card lane open.",
+      "Count the columns again from the dot, and answer the two slots in order.",
+      "Every digit given a name and an amount, and every amount added back to where it came from."
+    ],
+    "observations": [
+      {
+        "why": "Each column is a tenth of the column on its left, and that rule does not run out at the ones.",
+        "soWhat": "The tenths, hundredths and thousandths places are the same chart continued, not a second chart.",
+        "observe": "The chart did not stop at the ones; it carried on rightwards through a column kept for the dot."
+      },
+      {
+        "why": "The dot is the only mark in the number whose position does not depend on how many digits there are.",
+        "soWhat": "Count the decimal places from the point outwards, which is from the right of the point and not from the left of the number.",
+        "observe": "The counting of places always began at the dot, never at either end of the number."
+      },
+      {
+        "why": "One of the two questions asks where a digit sits and the other asks how much it is worth sitting there.",
+        "soWhat": "The place is a name and the place value is an amount, and answering one with the other answers nothing.",
+        "observe": "The slot headed worth would not take the word tenths, and the slot headed place would not take an amount."
+      },
+      {
+        "why": "Every digit's worth is exactly what that digit contributes, so together they are the whole number again.",
+        "soWhat": "Adding the worths is a check anyone can run, and a total that does not come back names a digit in the wrong column.",
+        "observe": "The worths added back to the number the chart started from, digit for digit."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the familiar chart ending at the ones with empty ground to its right",
+        "win": "the dot column and the three decimal columns settle, each one named over its head",
+        "traceback": "The chart is grown again from the ones outwards, each new column named as it appears with the piece it counts drawn under it, beside the child's own reading.",
+        "ladder": [
+          "Which column is the last one you already knew?",
+          "Which digit stands in the tens column here?",
+          "The pieces get smaller as you travel right. Which comes first?",
+          "Is the next piece along bigger or smaller than a whole one?",
+          "Each column right of the dot is ten times smaller than the one before it."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a number dropped into the chart with its columns still unnamed",
+        "win": "the counted columns light one at a time and the chosen column takes its name",
+        "traceback": "The count runs again from the dot and the column takes its name; where a digit's size decided it, the two digits are swapped over and both readings are left standing; where the count began at the left hand end, both runs are drawn and numbered over the columns.",
+        "ladder": [
+          "A big digit does not get a big place. Only the column decides.",
+          "Where does your counting start? Find the dot before you count.",
+          "Which column holds the hundreds in this number?",
+          "How many columns along from the dot is this digit?",
+          "Count one, two, three as you pass each column, and stop on the lit one."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "one digit lit in the chart with the place slot and the worth slot both empty",
+        "win": "both slots fill with answers of the right kind and the lit column holds the two together",
+        "traceback": "The lit column is read twice over, once as the name written above it and once as the piece it counts, drawn at its real size with its amount beside it.",
+        "ladder": [
+          "A place is a name you can read off the top of a column.",
+          "How many of that piece make one whole one?",
+          "The 6 stands one column past the dot. And how big is one of those pieces?",
+          "How much is one piece of that column worth?",
+          "A name goes in the slot headed place, and an amount in the slot headed worth."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "every digit given its worth, with the rebuild bar empty along the foot",
+        "win": "the total settles beside the number the chart started from and the two read the same",
+        "traceback": "The bare digits are added in the bar and the small total is stood beside the number the chart started from; then the worths come down and the row is added again. Where the digits after the dot were left out, the whole number worths alone are added first, and the small ones walk in after them.",
+        "ladder": [
+          "What is this digit worth in its own column?",
+          "Small worths are still worth something. Did they all go down?",
+          "Six cards went down. Was each one sent as its worth?",
+          "What should all the worths come to together?",
+          "A digit is worth what its own column says, never just itself."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "columnWidth": 162,
+    "dotColumnWidth": 74,
+    "places": [
+      "hundreds",
+      "tens",
+      "ones",
+      "tenths",
+      "hundredths",
+      "thousandths"
+    ],
+    "decimalPlaces": [
+      "tenths",
+      "hundredths",
+      "thousandths"
+    ],
+    "denominators": [
+      1,
+      1,
+      1,
+      10,
+      100,
+      1000
+    ],
+    "wholeNumberPlaces": [
+      "ones",
+      "tens",
+      "hundreds",
+      "thousands",
+      "ten thousands"
+    ],
+    "rebuildBar": {
+      "slotWidth": 138,
+      "gap": 26
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T5.C16:ML1",
+        "kind": "grow",
+        "num": "248.573",
+        "cards": [
+          "hundredths",
+          "thousandths",
+          "tenths"
+        ],
+        "pad": "enter",
+        "winMs": 2200,
+        "answer": "tenths|hundredths|thousandths"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T5.C16:1",
+        "kind": "bay",
+        "num": "5470",
+        "drop": 1,
+        "winMs": 2000,
+        "answer": 547
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T5.C16:2",
+        "kind": "grow",
+        "num": "36.907",
+        "cards": [
+          "thousandths",
+          "tenths",
+          "hundredths"
+        ],
+        "pad": "enter",
+        "winMs": 2200,
+        "answer": "tenths|hundredths|thousandths"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T5.C17:ML2",
+        "kind": "place",
+        "num": "6.482",
+        "lit": 4,
+        "winMs": 2600,
+        "answer": "hundredths"
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T5.C17:3",
+        "kind": "place",
+        "num": "7.328",
+        "lit": 3,
+        "err": "left",
+        "winMs": 2600,
+        "answer": "tenths"
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T5.C17:4",
+        "kind": "bay",
+        "num": "48600",
+        "drop": 2,
+        "winMs": 2000,
+        "answer": 486
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T5.C18:ML3",
+        "kind": "place",
+        "num": "34.16",
+        "lit": 3,
+        "winMs": 3000,
+        "answer": "tenths"
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T5.C18:5",
+        "kind": "worth",
+        "num": "91.507",
+        "lit": 5,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "winMs": 2400,
+        "answer": [
+          7,
+          1000
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T5.C18:6",
+        "kind": "worth",
+        "num": "5.63",
+        "lit": 3,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "winMs": 2400,
+        "answer": [
+          6,
+          10
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T5.C19:ML4",
+        "kind": "rebuild",
+        "num": "23.451",
+        "winMs": 3200,
+        "answer": "23.451"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T5.C19:7",
+        "kind": "rebuild",
+        "num": "52.874",
+        "err": "whole",
+        "winMs": 3200,
+        "answer": "52.874"
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T5.C19:8",
+        "kind": "rebuild",
+        "num": "472.836",
+        "winMs": 3200,
+        "answer": "472.836"
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The chart is grown again from the ones outwards, each new column named as it appears with the piece it counts drawn under it, beside the child's own reading.",
+      "Phase 2: The count runs again from the dot and the column takes its name; where a digit's size decided it, the two digits are swapped over and both readings are left standing; where the count began at the left hand end, both runs are drawn and numbered over the columns.",
+      "Phase 3: The lit column is read twice over, once as the name written above it and once as the piece it counts, drawn at its real size with its amount beside it.",
+      "Phase 4: The bare digits are added in the bar and the small total is stood beside the number the chart started from; then the worths come down and the row is added again. Where the digits after the dot were left out, the whole number worths alone are added first, and the small ones walk in after them."
+    ]
+  },
+  "voice": {
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Your chart stops at the ones. There is more of it than that.",
+    "onFreePlay": null,
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs",
+    "onFinish": "Every digit given a name and an amount, and every amount added back to where it came from.",
+    "rules": "Spoken on opening, as each phase begins, on each question, on a miss and on the summary page. Every line is printed in the bubble, numbers as words, by the device's own voice (Indian English first). Muting keeps the child's place; unmuting speaks on from the word it reached. If the browser refuses speech until a tap, the first line waits behind a Tap to start cover."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "none: an Udgam tool opens straight on its phase; the phase's teach lines are spoken first, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T5.C16:ML1",
+            "worked": false,
+            "kind": "grow",
+            "planQuestion": "Put 248.573 into a place value chart, one digit to a column, and name every column.",
+            "question": {
+              "en": "Put 248.573 in the chart. Name each new column as it opens, from the dot outwards."
+            },
+            "ask": {
+              "en": "Order from the dot"
+            },
+            "answer": "tenths|hundredths|thousandths",
+            "planAnswer": "2 hundreds, 4 tens, 8 ones, then the dot, then 5 tenths, 7 hundredths, 3 thousandths",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T5.C16:1",
+            "worked": false,
+            "kind": "bay",
+            "planQuestion": "How many tens are there in 5,470?",
+            "question": {
+              "en": "How many tens are there in 5,470? Tap the column where the tens stand."
+            },
+            "ask": {
+              "en": "Tens in 5,470?"
+            },
+            "answer": 547,
+            "planAnswer": "547",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T5.C16:2",
+            "worked": false,
+            "kind": "grow",
+            "planQuestion": "Which three places come after the point on the chart, and in what order?",
+            "question": {
+              "en": "Now 36.907, with the columns bare again. Name the three places the same way."
+            },
+            "ask": {
+              "en": "Order them again"
+            },
+            "answer": "tenths|hundredths|thousandths",
+            "planAnswer": "Tenths, then hundredths, then thousandths",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T5.C17:ML2",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "In 6.482, which place is the 8 in, and which place is the 2 in?",
+            "question": {
+              "en": "In 6.482, the 8 is lit. Count along from the dot and name the place it stands in."
+            },
+            "ask": {
+              "en": "Place of the 8?"
+            },
+            "answer": "hundredths",
+            "planAnswer": "The 8 is in the hundredths place and the 2 is in the thousandths place",
+            "choices": [
+              "ones",
+              "tenths",
+              "hundredths",
+              "thousandths"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T5.C17:3",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "In 7.328, which place is the 3 in?",
+            "question": {
+              "en": "Now the 3 in 7.328. Count the same way."
+            },
+            "ask": {
+              "en": "Place of the 3?"
+            },
+            "answer": "tenths",
+            "planAnswer": "The tenths place",
+            "choices": [
+              "ones",
+              "tenths",
+              "hundredths",
+              "thousandths"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T5.C17:4",
+            "worked": false,
+            "kind": "bay",
+            "planQuestion": "How many hundreds are there in 48,600?",
+            "question": {
+              "en": "Read 48,600 the other way. Cut it at the hundreds and say how many are inside."
+            },
+            "ask": {
+              "en": "Hundreds in 48,600?"
+            },
+            "answer": 486,
+            "planAnswer": "486",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T5.C18:ML3",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "In 34.16, give the place of the 1, and then give its place value.",
+            "question": {
+              "en": "In 34.16, the 1 is lit. Give its place, the name of the column it stands in."
+            },
+            "ask": {
+              "en": "The place of the 1"
+            },
+            "answer": "tenths",
+            "planAnswer": "Its place is the tenths place, and its place value is 1/10, which is 0.1",
+            "choices": [
+              "ones",
+              "tenths",
+              "hundredths",
+              "thousandths"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T5.C18:5",
+            "worked": false,
+            "kind": "worth",
+            "planQuestion": "In 91.507, give the place of the 7, and then give its place value.",
+            "question": {
+              "en": "In 91.507 the 7 sits in the thousandths place. Now give what it is worth there."
+            },
+            "ask": {
+              "en": "What is the 7 worth?"
+            },
+            "answer": [
+              7,
+              1000
+            ],
+            "planAnswer": "Its place is the thousandths place, and its place value is 7/1000, which is 0.007",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T5.C18:6",
+            "worked": false,
+            "kind": "worth",
+            "planQuestion": "A child is asked for the place value of the 6 in 5.63 and answers tenths. What is wrong with that answer?",
+            "question": {
+              "en": "A child says the 6 in 5.63 is worth just 6. Where it stands, what is it really worth?"
+            },
+            "ask": {
+              "en": "What is the 6 worth?"
+            },
+            "answer": [
+              6,
+              10
+            ],
+            "planAnswer": "Tenths is the name of the place, not the worth; the place value is 6/10, which is 0.6",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T5.C19:ML4",
+            "worked": false,
+            "kind": "rebuild",
+            "planQuestion": "Write the place value of every digit of 23.451, and add them all together.",
+            "question": {
+              "en": "Send every digit of 23.451 down as its worth. Then add the row and type what it comes to."
+            },
+            "ask": {
+              "en": "Add up the worths"
+            },
+            "answer": "23.451",
+            "planAnswer": "20 + 3 + 4/10 + 5/100 + 1/1000, which comes back to 23.451",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T5.C19:7",
+            "worked": false,
+            "kind": "rebuild",
+            "planQuestion": "Write the place value of every digit of 52.874, and add them all up.",
+            "question": {
+              "en": "Now 52.874. Bring the worths down the same way and add them."
+            },
+            "ask": {
+              "en": "What do they make?"
+            },
+            "answer": "52.874",
+            "planAnswer": "50 + 2 + 8/10 + 7/100 + 4/1000, which comes back to 52.874",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T5.C19:8",
+            "worked": false,
+            "kind": "rebuild",
+            "planQuestion": "Six digit cards and one point card are held up and make 472.836. Add the place values of all six digits and say what they come to.",
+            "question": {
+              "en": "Six digit cards and a point card make 472.836. Add all six worths and say what they come to."
+            },
+            "ask": {
+              "en": "All six worths?"
+            },
+            "answer": "472.836",
+            "planAnswer": "400 + 70 + 2 + 8/10 + 3/100 + 6/1000, which comes to 472.836",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page; finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "place_and_worth_chart",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "place_and_worth_chart",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "The chart carries on past the point",
+        "conceptId": "M1.S2.T5.C16",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M1.S2.T5.C16:ML1",
+          "M1.S2.T5.C16:1",
+          "M1.S2.T5.C16:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Counting places from the point",
+        "conceptId": "M1.S2.T5.C17",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M1.S2.T5.C17:ML2",
+          "M1.S2.T5.C17:3",
+          "M1.S2.T5.C17:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Place and place value are not the same word",
+        "conceptId": "M1.S2.T5.C18",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M1.S2.T5.C18:ML3",
+          "M1.S2.T5.C18:5",
+          "M1.S2.T5.C18:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Adding the worths back up",
+        "conceptId": "M1.S2.T5.C19",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M1.S2.T5.C19:ML4",
+          "M1.S2.T5.C19:7",
+          "M1.S2.T5.C19:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "columns",
+    "digits",
+    "d",
+    "placeSlot",
+    "worthSlot",
+    "given",
+    "length",
+    "length",
+    "count",
+    "rebuildTotal",
+    "total",
+    "cards",
+    "c"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted, speaking, voice, mascot, summaryRow, played, columns, digits, d, placeSlot, worthSlot, given, length, length, count, rebuildTotal, total, cards, c, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "place_and_worth_chart"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T5.C16.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files: correct, wrong (soft), win, and a tick when a piece snaps",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 390,
+    "height": 420,
+    "source": "textbooks/mascot.png",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Your chart stops at the ones. There is more of it than that."
+    },
+    {
+      "en": "Your chart stops at the ones. What could come after it?"
+    },
+    {
+      "en": "Count along from the dot. Where does this one sit?"
+    },
+    {
+      "en": "Where does it sit? Now say how much it is worth sitting there."
+    },
+    {
+      "en": "Add all the worths together. Where should they land?"
+    },
+    {
+      "en": "Another number into the chart. One digit to a column."
+    },
+    {
+      "en": "Free play. Any number in the chart, both slots, rebuild bar and card lane open."
+    },
+    {
+      "en": "Count the columns again from the dot, and answer the two slots in order."
+    },
+    {
+      "en": "Every digit given a name and an amount, and every amount added back to where it came from."
+    }
+  ],
+  "build": {
+    "source": "324f387b:1587088",
+    "runtime": "class4/runtime/frozen/r21/runtime.tsx",
+    "runtimeVersion": "r21",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-09-24T08:59:17.240Z",
+    "checks": {
+      "pass": 64,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-09-24T08:59:16.816Z"
+    },
+    "tsxBytes": 1580309,
+    "tsxMd5": "5fe1fe5acd693a4f9ea9a7246cb98fe5"
+  }
+}

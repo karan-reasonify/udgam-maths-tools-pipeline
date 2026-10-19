@@ -1,0 +1,1189 @@
+{
+  "slotId": "M1.S1.T2.C5.2D1",
+  "mediaId": "M1.S1.T2.C5.2D1",
+  "toolId": "cut_and_name",
+  "title": "Cut and Name",
+  "component": "M1.S1.T2.C5.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch7",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch7_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_7/2dtool/M1.S1.T2.C4.2D1/M1.S1.T2.C4.2D1.tsx",
+  "description": "Cut a whole into equal parts, colour some of them, and write the fraction that names what you took.",
+  "conceptIds": [
+    "M1.S1.T2.C5",
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7",
+    "M1.S1.T2.C8"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Cut one whole into equal parts, take some of them, and find out which of the two numbers of a fraction does which job.",
+    "look": "One whole thing in the middle of the stage with a cutter above it, an empty fraction being filled in underneath, and five labelled trays along the foot.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Cut and Name' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the parts coloured against the parts the whole was cut into, two numbers in ink one above the other in the same arrangement as the fraction being built, so the corner is read the same way round as the work. On the third phase it carries the cards sorted against the cards in the stack. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The whole sits across the top of the working area inside a mat 800 by 300 at 207,202, and it is switchable between a long bar 720 by 150, a circle of radius 132 and a row of separate counters of one kind. The cutter dial is 240 by 56 at 487,150, reading from two up to twenty. Turning it draws every cut as a near-black line right across the whole BEFORE anything can be filled, so the lower number can be counted on an empty bar, and the cuts go in at measured equal spacing with the outermost pieces the same width as the inner ones. Tapping a part fills it deep blue and raises the upper count; a part that has not been taken keeps its amber and its full size and is never faded, cropped or pushed off the mat. The empty fraction stands under the mat at 487,520, an upper slot 120 by 76 above a level rule 160 by 6 above a lower slot 120 by 76, filled by dragging number tiles into them. When both slots hold a tile the mat runs a counting pass over itself, ticking the cut lines against the lower slot from left to right and then the filled parts against the upper slot, with nothing marked either way and the child's tiles left exactly where they were put. The free cut control replaces the even cutter with one draggable line: while the two pieces differ a measuring bar runs along each of them and prints its length, the naming slots refuse every tile and print what is wrong with the picture rather than what the answer is, and an evenly cut copy of the same whole is drawn directly beneath from the same left edge. The collection view swaps the cut whole for a row of identical separate things and keeps the same fraction underneath it. The shelf runs along the foot of the working area, 1086 by 120 at 64,598, five trays 200 by 96 reading proper, improper, like, unlike and unit, with the card stack beside it. A card may be dropped into more than one tray and every tray it earns stays open; a tray it has not earned slides the card back with nothing marked and lights the two numbers that tray compares. Cards sharing a lower number are drawn shoulder to shoulder wherever they land. Cut again divides one chosen piece in two and rewrites the label under every piece on the mat. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a slot has to be filled, and on the second and third phases a word pad of this chapter's own words, half, quarter, equal parts, proper, improper, like, unlike and unit, so a picture can be named and a tray called with one press. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: the parts a fraction counts are deep blue, the parts of that same whole which it leaves are amber, a whole shown entire or a bracket spanning one whole is green, a second writing of an amount already on the stage is rose, the greater of two fractions one of the chapter's rules can settle is vermilion, and a pair neither rule settles is sky blue. Chrome never borrows one of those and none of them is ever used for chrome. Every reading survives with the colour taken away, because a part is told from the rest by the drawn cut between them and by the label under it before it is ever told by a fill, and every cut, score line, cell edge and guide line is near-black. A fraction is drawn everywhere with its upper number above a level horizontal line and its lower number below, both upright and centred; the line is never slanted and the two numbers are never set side by side. Nothing on this mat is ever shaded without being cut first. A whole that has not been through the cutter has no fill available to it at all, because a filled shape with no cuts in it shows an amount and hides the very number the child is here to read.",
+    "finish": "The card shows the last whole the child cut, its uncounted parts still drawn, the fraction written underneath, and the trays each of the sorted cards landed in.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "both slots fill, and the cuts and the coloured parts are counted back against the picture",
+        "does": "sets the number of cuts, colours some of the parts, then fills the two slots",
+        "goal": "the lower number counts the equal parts and the upper number counts the parts taken",
+        "says": "Cut the bar first and then colour. Which number says how it was cut?",
+        "check": "Away from the screen: rule a bar into nine equal parts, colour five, and tell me which of your two numbers you wrote down first and why that one.",
+        "feels": "the bar is cut before anything is coloured, so the lower number is already there and waiting",
+        "hands": "On squared paper rule a long bar and divide it into seven equal parts with a ruler before anything is coloured, counting the parts out loud on the empty bar. Then colour four of them. Write the fraction underneath the bar rather than beside it, and read it back from the bottom up in two halves: cut into seven equal parts, and four of them taken.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: how many cuts are drawn across your bar? Second rung, the phase's: how many of its pieces did you colour in? Third rung: the bar is cut back to four parts with one of them filled and the two slots are built on that before the longer bar comes back. The number pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "a written line is read from its left hand end, so the number met first looks like the number that goes first, and the upper slot is the slot the eye reaches first as well.",
+            "move": "writes the seven on top and the four underneath, because the seven is the number the sentence gives first.",
+            "screen": "the counting pass runs on the slots exactly as the child filled them. The lower slot asks for four and only four of the seven cut lines are ticked before it is satisfied, leaving three pieces of the bar outside the count altogether, and the upper slot then asks for seven coloured pieces and runs out after four. The child's two tiles stay exactly where they were dropped, a second bar cut into seven is drawn beneath the first with four of its parts filled, and the two bars are left standing together."
+          },
+          {
+            "why": "the coloured pieces and the plain ones are the two heaps on the mat, and two numbers look as though they ought to name that pair.",
+            "move": "counts the pieces left over instead of the pieces the bar was cut into, and writes four over three.",
+            "screen": "the counting pass runs twice over the same bar with nothing cleared. The first pass counts only the plain pieces and stops at three; the second runs along the whole bar and counts seven, the four filled ones included, with the bracket spanning the whole bar drawn green above it. The lower slot is read out as the count under that bracket, and the three the child wrote is left standing beside it so the two counts can be held against each other."
+          }
+        ],
+        "screen": "one uncut bar, the cutter dial above it and two empty fraction slots below",
+        "soWhat": "The lower number says how many equal parts the whole was cut into, and the upper number says how many of them are being counted.",
+        "concept": "What the two numbers count"
+      },
+      {
+        "n": 2,
+        "win": "the naming slot refuses the label, an even cut is drawn beside the uneven one, and the name lands only once the pieces match",
+        "does": "slides the cut until the two pieces plainly differ, then tries to name one",
+        "goal": "pieces that are not equal have no fraction name",
+        "says": "Slide the cut until the pieces look wrong. Now try to call one of them a quarter.",
+        "check": "Somebody cuts a cake into six pieces of different sizes and calls one of them a sixth. What would you say to them, and why?",
+        "feels": "four pieces, and not one of them has a name until all four of them match",
+        "hands": "Fold one paper square into four equal parts and colour one of them. Then take a second square of exactly the same size, fold it carelessly into four pieces that plainly differ, and colour the largest. Lay the two coloured pieces on top of one another and ask whether both of them can be called a quarter.",
+        "tries": "First rung, from the item: are your pieces all the same size? Second rung, the phase's: what does the word quarter promise about the four pieces? Third rung: the strip is cut evenly into two and the child names one piece, then the same cut is slid off centre and they try that same name again. Nothing is ever marked wrong and the word pad stays open.",
+        "wrong": [
+          {
+            "why": "counting the pieces is the move that has worked on every bar so far, and four pieces look like quarters however carelessly they were cut.",
+            "move": "calls one of four unequal pieces a quarter, because there are four pieces lying on the mat.",
+            "screen": "the slot refuses the tile and prints what is wrong with the picture rather than what the answer is. An evenly cut copy of the same strip is drawn directly beneath from the same left edge, and the long piece is slid down onto the small ones, where it covers two of them exactly. The strip is then read out as five pieces of that smaller size, so each small piece is one fifth of it, and the child's own cut stays exactly where it was slid to."
+          },
+          {
+            "why": "a picture that looks even reads as even, and nothing on a page measures anything for you unless you make it.",
+            "move": "nudges the cut until the two pieces look about right and names them halves without measuring anything.",
+            "screen": "the two pieces are lifted off the strip and laid one on top of the other, where the longer one overhangs by the amount it overhangs by. A measuring bar runs along each and prints its length, and the naming slot stays shut while the two lengths differ. The moment the cut is slid until the two measure the same the slot opens by itself and the word half goes in, and no tile is ever moved for the child."
+          }
+        ],
+        "screen": "a bar with one free cut line resting a little off its middle",
+        "soWhat": "Pieces that are not equal have no fraction name at all, so equal parts are part of the meaning rather than a rule about neatness.",
+        "concept": "Equal parts, or no fraction at all"
+      },
+      {
+        "n": 3,
+        "win": "every card settles in each tray it earns, and the cards sharing a lower number are drawn together",
+        "does": "drops each written fraction into every tray its two numbers earn",
+        "goal": "a fraction is sorted by comparing its two numbers",
+        "says": "Look at the number on top and the one below. Which trays does this card belong in?",
+        "check": "Look at 6/6. Which trays does it belong in, and which test did you use to put it in each one?",
+        "feels": "one card, three trays open at once, and not one of the three is wrong",
+        "hands": "Write 5/9, 11/8, 1/9 and 8/8 on four cards and set out five labelled paper trays, proper, improper, like, unlike and unit. Let each card be dropped into every tray it earns, with the test said out loud each time, and do not let a card be put down until all five tests have been tried on it.",
+        "tries": "First rung, from the item: which of the two numbers on this card is the larger? Second rung, the phase's: is the upper one smaller than the lower one, or is it not? Third rung: the shelf is cut to two trays, proper and improper, and the whole stack is sorted on that one test before the other three trays open again. The word pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "improper has been heard as top heavy, and a card whose two numbers match does not look top heavy at all.",
+            "move": "leaves 8/8 out of the improper tray, because its two numbers are the same rather than one of them being bigger.",
+            "screen": "the test is printed above the tray in the words it is actually written in, numerator greater than or equal to denominator, with greater and equal lit one after the other as separate ways of passing. The card is then drawn out on the mat behind the shelf: a whole cut into eight parts with eight of them filled leaves nothing amber anywhere and the green bracket spanning the whole sits exactly over the filled run, so the card is one whole. The child's sorting is left exactly as it was and no card is moved for them."
+          },
+          {
+            "why": "five trays and a stack of cards look like a matching game, and one card in one tray is what matching has always meant.",
+            "move": "drops each card into one tray only, as though a fraction had to pick a single kind and stay in it.",
+            "screen": "each card is lifted in turn and every one of the five tests is run on it with the trays it passes lighting together rather than one at a time. On 1/9 three trays light at once, because its upper number is the smaller one, its upper number is one, and it shares a lower number with 5/9 standing in the stack beside it. Every card the child has already placed stays where it was put and the further trays it earns are simply drawn open beside it."
+          }
+        ],
+        "screen": "the shelf of five labelled trays with a stack of written fractions beside it",
+        "soWhat": "Each of the five kinds is a separate test on the two numbers of the fraction, so one fraction can belong to several of them at the same time.",
+        "concept": "The five kinds, sorted by their two numbers"
+      },
+      {
+        "n": 4,
+        "win": "the pieces close back into one whole and the three fractions are written under them",
+        "does": "cuts one half in two, names the new pieces, and slides everything back into a whole",
+        "goal": "two quarters make a half and four quarters make a whole",
+        "says": "Cut one half in two. What is each of the new pieces called?",
+        "check": "Away from the screen: how many quarters are there in three halves, and how did you work that out?",
+        "feels": "a half and two quarters, three pieces of two different sizes, and they still close back into one whole",
+        "hands": "Fold a paper circle in half and cut along the fold. Cut one of the two halves in half again and lay the three pieces out in a row. Ask for each piece to be named before anything is slid back, then push the three together and ask what they come to.",
+        "tries": "First rung, from the item: how many pieces of this size would it take to fill the whole circle? Second rung, the phase's: how many of them cover the piece that was never cut? Third rung: the circle is cut in half only, and the two pieces are named before either of them is cut again. Nothing already named is renamed for the child.",
+        "wrong": [
+          {
+            "why": "they were made by halving something, and the word that names the action is the word nearest to hand when the pieces have to be named.",
+            "move": "calls the two smaller pieces halves, because they were cut out of a half.",
+            "screen": "the two small pieces are laid onto the untouched half and two of them cover it exactly, so the half is redrawn as two of that size standing side by side. The whole circle is then rebuilt and the same piece is laid onto it, where four of that size are needed to fill it and the count is drawn out one piece at a time. The names the child wrote stay printed under their pieces and the new naming is written underneath rather than over them."
+          },
+          {
+            "why": "three pieces in a row look like three of something, and a whole cut into three parts is where thirds come from.",
+            "move": "counts the three pieces lying on the mat and calls each of them a third.",
+            "screen": "a circle of exactly the same size is drawn beside the child's and ruled into three genuinely equal parts. The half is laid over one of those thirds and hangs past it, and each of the two quarters is laid over one and falls short of it. The refusal from the second phase is printed again underneath, that pieces which are not all the same size have no single name, and the child's three labels stay on the mat throughout."
+          }
+        ],
+        "screen": "one whole already cut in half, with one of the halves waiting",
+        "soWhat": "Two quarters make a half, two halves make a whole, and four quarters make a whole.",
+        "concept": "Halves and quarters in one field"
+      }
+    ],
+    "delight": "The fourth phase, the moment cut again lands on one of the two halves. The piece opens along a single drawn line into two, and every label on the mat rewrites itself in the same movement: the untouched piece still reads as a half, and the two new ones come up as quarters while the bracket spanning the whole circle stays green and stays exactly the size it was. Then the three pieces slide back together and close into one circle with no seam showing, and the three fractions are written in a row underneath, a half and a quarter and a quarter, with the whole drawn whole above them. Push a finger against the closed circle and it opens again into the same three pieces, so the cutting and the closing can be run back and forth as often as a hand likes. Nothing else on the mat moves and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase one uncut bar lies across the middle of the mat with the cutter dial resting above it and two empty fraction slots waiting underneath, one over the other with their rule already drawn between them. On the second a bar carries a single free cut line sitting a little off its middle, so the two pieces plainly differ before anything has been touched. On the third the shelf of five labelled trays runs along the foot with a stack of written fraction cards squared up beside it and the mat above them empty. On the fourth one whole circle lies already cut in half, the two halves drawn apart by the width of the cut, with the cut again control lit beside the nearer of them. The running count at the top left holds the parts coloured against the parts the whole was cut into, and the answer slot and the pad stand empty down the right. One thing moves, once: the uncut bar, or the free cut line, or the top card of the stack, or the half nearest the control, gives one slow pulse while the voice asks how this whole has been divided. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any whole, any number of even cuts up to twenty, with the free cut line, the collection view and the sorting shelf switched on or off. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on naming the two numbers, refusing an uneven cut, sorting fractions into the five kinds, and building halves and quarters out of one whole.",
+    "voiceLines": [
+      "One whole thing on the mat. Cut it into equal parts before you colour anything.",
+      "Cut the bar first and then colour. Which number says how it was cut?",
+      "Slide the cut until the pieces look wrong. Now try to call one of them a quarter.",
+      "Look at the number on top and the one below. Which trays does this card belong in?",
+      "Cut one half in two. What is each of the new pieces called?",
+      "Another whole. How many equal parts is this one going into?",
+      "Free play. Any whole, any number of cuts, with the free cut line and the trays as you like.",
+      "Count the cuts first and the coloured pieces second. The mat is still showing both.",
+      "Every whole cut, every part named, and the pieces nobody took still lying on the mat."
+    ],
+    "observations": [
+      {
+        "why": "The lower number counts how the whole was divided, and the dividing happens before anything is taken.",
+        "soWhat": "Read a fraction from the bottom up, because a piece has to have a size before there is anything to count.",
+        "observe": "The cuts went in before any colour did, and the lower number could be counted on a bar with nothing filled."
+      },
+      {
+        "why": "A fraction names a part of a whole, so the whole has to be there for the name to be against anything.",
+        "soWhat": "A coloured piece on its own has lost the thing that gave it its name.",
+        "observe": "The pieces nobody took stayed on the mat, full size, for the whole of every phase."
+      },
+      {
+        "why": "A quarter means one of four pieces that are all the same size, and these four were not.",
+        "soWhat": "Equal is part of what a fraction means, and not a tidiness rule added on afterwards.",
+        "observe": "With the cut slid off centre, no label would go into the slot at all."
+      },
+      {
+        "why": "Proper, like and unit are three separate tests, and they are all run on the same two numbers.",
+        "soWhat": "The five kinds are not five boxes to choose between, so a fraction may answer to several of them.",
+        "observe": "One card landed in three trays at once and nothing on the shelf objected."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "one uncut bar, the cutter dial above it and two empty fraction slots below",
+        "win": "both slots fill, and the cuts and the coloured parts are counted back against the picture",
+        "traceback": "A second bar is cut the same way beneath, every part is counted for the lower number, then the taken parts for the upper, ending on the whole fraction.",
+        "ladder": [
+          "Count every piece of the bar, not only the blue ones.",
+          "Does the lower number count all the pieces, or only the blue ones?",
+          "Which of the two numbers counts all the beads in the row?",
+          "How many parts are blue, and how many are there in all?",
+          "All the equal parts go below the line, and the blue parts go above it."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a bar with one free cut line resting a little off its middle",
+        "win": "the naming slot refuses the label, an even cut is drawn beside the uneven one, and the name lands only once the pieces match",
+        "traceback": "The pieces are measured, the shortest and the longest are ringed, and the answer is written under them.",
+        "ladder": [
+          "How many small pieces would the long piece cover?",
+          "Are the six slices all the same size?",
+          "On which bar do all four pieces match?",
+          "What does a fraction name promise about the size of the pieces?",
+          "A quarter names one of four pieces that are all the same size."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the shelf of five labelled trays with a stack of written fractions beside it",
+        "win": "every card settles in each tray it earns, and the cards sharing a lower number are drawn together",
+        "traceback": "Each card is lifted in turn, every tray's test is run on it, and the trays it earns light up.",
+        "ladder": [
+          "Which trays does the card with equal numbers earn?",
+          "Which cards have an upper number that is not smaller than the lower?",
+          "Which two cards have the same lower number?",
+          "Is the upper number smaller than the lower one, or is it not?",
+          "What do you do with a card whose two numbers are the same?"
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "one whole already cut in half, with one of the halves waiting",
+        "win": "the pieces close back into one whole and the three fractions are written under them",
+        "traceback": "The small pieces are laid on the untouched half and then into a whole circle, counted one by one, and named under the pieces.",
+        "ladder": [
+          "How many pieces of this size would fill the whole cake?",
+          "How do the two small pieces together compare with the big piece?",
+          "Cut every half in two, then count the small pieces one at a time.",
+          "How many of them cover the piece that was never cut?",
+          "The number of equal pieces that fill the whole goes below the line."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "card": {
+      "w": 220,
+      "h": 340
+    },
+    "free": {
+      "bar": 12,
+      "disc": 8
+    },
+    "warm": {
+      "bar": 6,
+      "strip": [
+        5,
+        7
+      ],
+      "card": [
+        1,
+        7
+      ],
+      "quarterCut": [
+        0,
+        0.5,
+        0.75,
+        1
+      ]
+    },
+    "colours": {
+      "taken": "#0072B2",
+      "left": "#E69F00",
+      "whole": "#009E73",
+      "copy": "#CC79A7",
+      "cut": "#2B2B2B"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C5:ML1",
+        "kind": "bar",
+        "thing": "bar",
+        "n": 7,
+        "take": 4,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          4,
+          7
+        ],
+        "near": "7|4",
+        "win": "Yes, the lower number counts all seven pieces."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T2.C5:1",
+        "kind": "bar",
+        "thing": "bar",
+        "n": 9,
+        "take": 5,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          5,
+          9
+        ],
+        "near": "5|4",
+        "win": "Yes, the upper number counts the blue pieces."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S1.T2.C5:2",
+        "kind": "which",
+        "frac": [
+          7,
+          12
+        ],
+        "answer": "top7",
+        "near": "bottom12",
+        "win": "Yes, the upper number counts the parts taken."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:ML2",
+        "kind": "equal",
+        "way": "strip",
+        "thing": "chocolate bar",
+        "units": [
+          2,
+          4,
+          2,
+          2
+        ],
+        "answer": "no",
+        "near": "yes",
+        "win": "Right, quarters must all be the same size."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T2.C6:3",
+        "kind": "equal",
+        "way": "cake",
+        "thing": "cake",
+        "units": [
+          5,
+          9,
+          6,
+          11,
+          7,
+          10
+        ],
+        "answer": "no",
+        "near": "yes",
+        "win": "Right, unequal slices are not sixths."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T2.C6:4",
+        "kind": "equal",
+        "way": "sheets",
+        "thing": "bar",
+        "sheets": [
+          {
+            "id": "A",
+            "units": [
+              6,
+              3,
+              5,
+              2
+            ]
+          },
+          {
+            "id": "B",
+            "units": [
+              4,
+              4,
+              4,
+              4
+            ]
+          }
+        ],
+        "answer": "B",
+        "near": "both",
+        "win": "Right, only bar B has four equal pieces."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C7:ML3",
+        "kind": "sort",
+        "pad": "enter",
+        "cards": [
+          [
+            5,
+            9
+          ],
+          [
+            11,
+            8
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "trays": [
+          "proper",
+          "improper",
+          "like",
+          "unlike",
+          "unit"
+        ],
+        "answer": "proper:5/9,1/9;improper:11/8,8/8;like:5/9,11/8,1/9,8/8;unlike:;unit:1/9",
+        "near": "proper:5/9,1/9;improper:11/8;like:5/9,11/8,1/9,8/8;unlike:;unit:1/9",
+        "ladder": [
+          "Which cards have the same lower number as another card?",
+          "Cards with the same lower number belong together in one tray."
+        ],
+        "win": "Yes, one card can sit in several trays."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T2.C7:5",
+        "kind": "sort",
+        "pad": "enter",
+        "cards": [
+          [
+            4,
+            11
+          ],
+          [
+            13,
+            6
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        "trays": [
+          "improper"
+        ],
+        "answer": "improper:13/6,6/6",
+        "near": "improper:13/6",
+        "win": "Yes, the upper number is not smaller."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T2.C7:6",
+        "kind": "sort",
+        "pad": "enter",
+        "cards": [
+          [
+            2,
+            15
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            9,
+            15
+          ]
+        ],
+        "trays": [
+          "like",
+          "unlike",
+          "unit"
+        ],
+        "answer": "like:2/15,9/15;unlike:1/8;unit:1/8",
+        "near": "like:2/15,9/15;unlike:;unit:1/8",
+        "ladder": [
+          "Does the odd card out share its lower number with another card?",
+          "A card with an upper number of 1 is a unit fraction."
+        ],
+        "win": "Yes, like cards share a lower number."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T2.C8:ML4",
+        "kind": "halves",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          1,
+          4
+        ],
+        "near": "1|2",
+        "win": "Yes, each small piece is a quarter."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T2.C8:7",
+        "kind": "field",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          1,
+          2
+        ],
+        "near": "2|8",
+        "win": "Yes, two quarters make a half."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T2.C8:8",
+        "kind": "three",
+        "halves": 3,
+        "answer": 6,
+        "near": 3,
+        "unit": "quarters",
+        "ladder": [
+          "How many quarters are in one half?",
+          "Each half is two quarters, so count them half by half."
+        ],
+        "win": "Yes, three halves are six quarters."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: A second bar is cut the same way beneath, every part is counted for the lower number, then the taken parts for the upper, ending on the whole fraction.",
+      "Phase 2: The pieces are measured, the shortest and the longest are ringed, and the answer is written under them.",
+      "Phase 3: Each card is lifted in turn, every tray's test is run on it, and the trays it earns light up.",
+      "Phase 4: The small pieces are laid on the untouched half and then into a whole circle, counted one by one, and named under the pieces."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "One whole thing on the mat. Cut it into equal parts before you colour anything.",
+    "onFreePlay": "Free play. Cut a whole into parts and tap parts to colour them.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Every whole cut, every part named, and the pieces nobody took still lying on the mat.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C5:ML1",
+            "worked": false,
+            "kind": "bar",
+            "planQuestion": "A ribbon is cut into seven equal pieces and four of them are tied together. Write that as a fraction and say what each number counts.",
+            "question": {
+              "en": "A bar of seven equal pieces has four blue, so what fraction is blue?"
+            },
+            "ask": {
+              "en": "What fraction is blue?"
+            },
+            "answer": [
+              4,
+              7
+            ],
+            "planAnswer": "4/7, where the seven counts the equal pieces and the four counts the pieces tied together",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T2.C5:1",
+            "worked": false,
+            "kind": "bar",
+            "planQuestion": "A wall is painted in nine equal bands and five of them are blue. What fraction of the wall is blue, and what does the nine count?",
+            "question": {
+              "en": "A bar has nine equal pieces and five are blue, so what fraction is blue?"
+            },
+            "ask": {
+              "en": "What fraction is blue?"
+            },
+            "answer": [
+              5,
+              9
+            ],
+            "planAnswer": "5/9, and the nine counts the equal bands the wall was divided into",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S1.T2.C5:2",
+            "worked": false,
+            "kind": "which",
+            "planQuestion": "In 7/12, which number counts the parts that were taken, and where is it written?",
+            "question": {
+              "en": "Which number in this fraction counts the parts that were taken?"
+            },
+            "ask": {
+              "en": "Which number counts taken?"
+            },
+            "answer": "top7",
+            "planAnswer": "The seven, and it is written above the line",
+            "choices": [
+              "top7",
+              "bottom12"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T2.C6:ML2",
+            "worked": false,
+            "kind": "equal",
+            "planQuestion": "A paper strip is cut into four pieces, but one piece is twice as long as each of the others. Can one of the small pieces be called a quarter?",
+            "question": {
+              "en": "This chocolate bar has four pieces, so can a small piece be called a quarter?"
+            },
+            "ask": {
+              "en": "Small piece a quarter?"
+            },
+            "answer": "no",
+            "planAnswer": "No, because a quarter has to be one of four pieces that are all the same size",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T2.C6:3",
+            "worked": false,
+            "kind": "equal",
+            "planQuestion": "A cake is cut into six pieces of different sizes. Is one of them a sixth?",
+            "question": {
+              "en": "This cake is cut into six slices, so is one slice a sixth?"
+            },
+            "ask": {
+              "en": "Is one piece a sixth?"
+            },
+            "answer": "no",
+            "planAnswer": "No, because sixths have to be six pieces that are all the same size",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T2.C6:4",
+            "worked": false,
+            "kind": "equal",
+            "planQuestion": "Two children each cut an identical sheet into four pieces. One makes four equal pieces and the other makes four unequal ones. Whose picture can be labelled one quarter?",
+            "question": {
+              "en": "Two bars are cut into four pieces each, so which one shows quarters?"
+            },
+            "ask": {
+              "en": "Which bar has quarters?"
+            },
+            "answer": "B",
+            "planAnswer": "Only the one with four equal pieces, because the other sheet has no piece that is one of four equal parts",
+            "choices": [
+              "A",
+              "B",
+              "both",
+              "neither"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C7:ML3",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "Look at 5/9, 11/8, 1/9 and 8/8. Say which are proper, which are improper, which two are like fractions, and which is a unit fraction.",
+            "question": {
+              "en": "Sort these four cards into every tray that each one belongs in."
+            },
+            "ask": {
+              "en": "Sort the cards"
+            },
+            "answer": "proper:5/9,1/9;improper:11/8,8/8;like:5/9,11/8,1/9,8/8;unlike:;unit:1/9",
+            "planAnswer": "5/9 and 1/9 are proper, 11/8 and 8/8 are improper, 5/9 and 1/9 are like fractions, and 1/9 is a unit fraction",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T2.C7:5",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "Which of 4/11, 13/6, 1/11 and 6/6 are improper fractions?",
+            "question": {
+              "en": "Drag each improper fraction into the tray."
+            },
+            "ask": {
+              "en": "Which are improper?"
+            },
+            "answer": "improper:13/6,6/6",
+            "planAnswer": "13/6 and 6/6, because in each the upper number is greater than or equal to the lower one",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T2.C7:6",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "From 2/15, 1/8 and 9/15, name the two like fractions and the unit fraction.",
+            "question": {
+              "en": "Sort the cards into like, unlike and unit."
+            },
+            "ask": {
+              "en": "Like, unlike, unit"
+            },
+            "answer": "like:2/15,9/15;unlike:1/8;unit:1/8",
+            "planAnswer": "2/15 and 9/15 are the like fractions, because both are written in fifteenths, and 1/8 is the unit fraction",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T2.C8:ML4",
+            "worked": false,
+            "kind": "halves",
+            "planQuestion": "A flatbread is cut in half and one half is cut in half again. Name the three pieces and say what they come to together.",
+            "question": {
+              "en": "One half of this cake is cut again, so what is each small piece?"
+            },
+            "ask": {
+              "en": "What is each small piece?"
+            },
+            "answer": [
+              1,
+              4
+            ],
+            "planAnswer": "One half, one quarter and one quarter, and together they make one whole flatbread",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T2.C8:7",
+            "worked": false,
+            "kind": "field",
+            "planQuestion": "A field is split into two equal halves and one half is split equally again. Write the three pieces as fractions and show that they make one whole field.",
+            "question": {
+              "en": "What fraction of the field do the two small pieces make?"
+            },
+            "ask": {
+              "en": "Two quarters together?"
+            },
+            "answer": [
+              1,
+              2
+            ],
+            "planAnswer": "One half, one quarter and one quarter, and 1/4 + 1/4 = 1/2, so the three pieces are two halves, which is one whole",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T2.C8:8",
+            "worked": false,
+            "kind": "three",
+            "planQuestion": "How many quarters are there in three halves?",
+            "question": {
+              "en": "How many quarters are there in three halves?"
+            },
+            "ask": {
+              "en": "Quarters in three halves?"
+            },
+            "answer": 6,
+            "planAnswer": "Six quarters, because each half is two quarters and three halves is six of them",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "cut_and_name",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "cut_and_name",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "What the two numbers count",
+        "conceptId": "M1.S1.T2.C5",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C5:ML1",
+          "M1.S1.T2.C5:1",
+          "M1.S1.T2.C5:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Equal parts, or no fraction at all",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C6:ML2",
+          "M1.S1.T2.C6:3",
+          "M1.S1.T2.C6:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "The five kinds, sorted by their two numbers",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C7:ML3",
+          "M1.S1.T2.C7:5",
+          "M1.S1.T2.C7:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Halves and quarters in one field",
+        "conceptId": "M1.S1.T2.C8",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C8:ML4",
+          "M1.S1.T2.C8:7",
+          "M1.S1.T2.C8:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "whole",
+    "way",
+    "fw",
+    "cuts",
+    "pieces",
+    "evenCuts",
+    "taken",
+    "numerator",
+    "denominator",
+    "sorted"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), whole, way, fw, cuts, pieces, evenCuts, taken, numerator, denominator, sorted, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "cut_and_name"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C5.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "One whole thing on the mat. Cut it into equal parts before you colour anything."
+    },
+    {
+      "en": "Cut the bar first and then colour. Which number says how it was cut?"
+    },
+    {
+      "en": "Slide the cut until the pieces look wrong. Now try to call one of them a quarter."
+    },
+    {
+      "en": "Look at the number on top and the one below. Which trays does this card belong in?"
+    },
+    {
+      "en": "Cut one half in two. What is each of the new pieces called?"
+    },
+    {
+      "en": "Another whole. How many equal parts is this one going into?"
+    },
+    {
+      "en": "Free play. Any whole, any number of cuts, with the free cut line and the trays as you like."
+    },
+    {
+      "en": "Count the cuts first and the coloured pieces second. The mat is still showing both."
+    },
+    {
+      "en": "Every whole cut, every part named, and the pieces nobody took still lying on the mat."
+    }
+  ],
+  "build": {
+    "source": "7912ee21:658642",
+    "runtime": "class4/runtime/frozen/r28/runtime.tsx",
+    "runtimeVersion": "r28",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-19T12:02:03.003Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-19T12:02:02.868Z"
+    },
+    "tsxBytes": 584238,
+    "tsxMd5": "d1316353bf6ae777792705b0fea319a1"
+  }
+}

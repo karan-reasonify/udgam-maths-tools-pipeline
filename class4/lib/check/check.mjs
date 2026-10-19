@@ -29,11 +29,11 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { sources, hostScope } from "../build/preview.mjs";
 import { loadModel } from "./model.mjs";
-import { realInput, startPageInput, stepClickInput, partyInput, realWrongInput, hintFramesInput, partyDotInput, summaryInput, nextKeyInput, judgeNextKey, cardAnswerInput, judgeCardAnswer, judgeSummaryThumbs } from "./input.mjs";
+import { actLimit, realInput, startPageInput, stepClickInput, partyInput, realWrongInput, hintFramesInput, partyDotInput, summaryInput, nextKeyInput, judgeNextKey, cardAnswerInput, judgeCardAnswer, judgeSummaryThumbs, navDotsInput, judgeNavDots, actionAnimInput, judgeActionAnim, fontKitInput, judgeFontKit, oneLineInput } from "./input.mjs";
 import { padShapeProblems } from "./padshape.mjs";
-import { judgeSilent, judgeNoArrow, judgeSoundButton, stepsShape, judgeGuideSteps, judgeHintOnMiss, judgeHintPinned, judgeHintFit, DEV_RULE,
+import { judgeSilent, judgeNoArrow, judgeSoundButton, stepsShape, judgeGuideSteps, judgeHintOnMiss, judgeHintPinned, judgeHintFit, judgeHintAlone, judgeOneLine, DEV_RULE,
   judgeClassroom, judgePaging, judgeOnePage, judgeHintKey, judgePhaseParty, judgeNoFreeBetween,
-  judgeClassroomPieces, judgeRealWrong, judgeLadderMonotonic, judgeHintLines, judgeChoiceLine, judgePartyExtras, judgeSummarySimple,
+  judgeClassroomPieces, judgeRealWrong, judgeLadderMonotonic, judgeHintLines, judgeChoiceLine, judgePartyExtras, judgeSummarySimple, devRuleKey,
   printedLines, trCoverage, trMessage, bubblePieces } from "./silent.mjs";
 import { dumpDomAsync, screenshotAsync, pool } from "../core/chrome.mjs";
 import { decodePng, contrast, parseRgb } from "../core/png.mjs";
@@ -41,6 +41,7 @@ import { idOf, writeStatus } from "../core/work.mjs";
 import { pinState } from "../core/pin.mjs";
 import { capsOf } from "../core/caps.mjs";
 import { judgePictureScale, PICTURE_SCALE_DETAIL } from "./picturescale.mjs";
+import { layoutProblems, phoneProblems, inter, inside, fmt, PHONE, PHONE_TEXT_PX } from "./layoutfit.mjs";
 
 /* the zones as containers, in stage units (a little wider than the boxes where text sits beside them) */
 export const ZONES = {
@@ -82,12 +83,11 @@ const esc = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 function mentions(text, form) {
   const f = String(form);
   if (!f) return false;
-  const re = /^[\d,]+$/.test(f) ? new RegExp(`(^|[^\\d,])${esc(f)}(?![\\d,])`) : new RegExp(`\\b${esc(f)}\\b`, "i");
+  /* a boundary only on a side that is a word character ("39%" has none after the sign); a digit-first form is never the tail of a decimal ("0.39%") */
+  const head = /^\d/.test(f) ? "(?<![\\d,.])" : /^\w/.test(f) ? "\\b" : "", tail = /\w$/.test(f) ? "\\b" : "";
+  const re = /^[\d,]+$/.test(f) ? new RegExp(`(^|[^\\d,])${esc(f)}(?![\\d,])`) : new RegExp(`${head}${esc(f)}${tail}`, "i");
   return re.test(String(text || ""));
 }
-const inter = (a, b) => Math.max(0, Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x)) * Math.max(0, Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y));
-const inside = (b, z, tol = 3) => b.x >= z.x - tol && b.y >= z.y - tol && b.x + b.w <= z.x + z.w + tol && b.y + b.h <= z.y + z.h + tol;
-const fmt = (b) => `(${Math.round(b.x)},${Math.round(b.y)} ${Math.round(b.w)}x${Math.round(b.h)})`;
 const hueOf = ([r, g, b]) => {
   const R = r / 255, G = g / 255, B = b / 255, mx = Math.max(R, G, B), mn = Math.min(R, G, B), d = mx - mn, l = (mx + mn) / 2;
   if (!d) return { h: 0, s: 0, l };
@@ -122,6 +122,16 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   const caps = capsOf(runtime), silentRt = caps.silent;
   /* r44: the simple summary page (one bubble line, UI.summaryLine; no row read out or ringed; FINISH_LINE not shown) */
   const summaryRt = /\bsummaryLine\s*:/.test(runtime);
+  /* class 4 r27, LAYOUT.md §1d: the two opt-in switches, each asked only of a runtime that has it (comments stripped first). keyOnly
+     needs the board layout; every geometry-calibrated row below branches on them and judges a tool without them exactly as before */
+  const toolBare = tool.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, "");
+  const wantsKeyOnly = /\bkeyOnly\s*:\s*true/.test(toolBare), wantsNavDots = /\bnavDots\s*:\s*true/.test(toolBare);
+  const keyOnly = wantsKeyOnly && caps.keyOnly && caps.board && /\bboard\s*:\s*true/.test(toolBare), navDots = wantsNavDots && caps.navDots;
+  /* ONE SENTENCE A SCREEN (2026-10-16, LAYOUT §1d): a keyOnly tool on a runtime with caps.oneSentence shows ONE sentence of Kiko's speech a
+     screen (a hint replaces the question, no built-in type line, the closing at a phase's last win, digits as written, no puff or bulb). Every
+     row below that judges the bubble branches on it; a keyOnly tool on r27 and every tool without keyOnly are judged exactly as before */
+  const oneSentence = keyOnly && caps.oneSentence, asWritten = oneSentence && silentRt;
+  const ONE_NOTE = oneSentence ? " [keyOnly, one sentence a screen: a hint is drawn ALONE, in place of the line, until the child's next act]" : "";
   const hs = hostScope(combined, tool);
   ok("source", "host-scope", !hs.length, "react (+ bundled @use-gesture) only; five host hooks; export default last", hs.join("; "));
   ok("source", "events", /dispatchEvent\(new CustomEvent\("finished"/.test(runtime) && /name: "finished"/.test(runtime) && /P\.onComplete/.test(runtime),
@@ -149,12 +159,21 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
     const missing = skinNames.filter((k) => !keys.includes(k));
     ok("source", "skin-keys", !missing.length, `every <Skin name> has a picture in images.tsx (${skinNames.join(", ")})`, `<Skin name> with no picture in images.tsx: ${missing.join(", ")} (it would draw nothing)`);
   }
+  /* class 4 r27: keyOnly is a board tool's, and a keyOnly tool with a runs box is not designed yet (the runs box sat beside the bar) */
+  if (wantsKeyOnly || wantsNavDots) {
+    const kb = [];
+    if (wantsKeyOnly && !caps.keyOnly) kb.push("the tool asks for keyOnly but the chapter's runtime has no key-only layout (class 4 r27 or later: pin the chapter)");
+    if (wantsNavDots && !caps.navDots) kb.push("the tool asks for navDots but the chapter's runtime has no nav dots (class 4 r27 or later: pin the chapter)");
+    if (wantsKeyOnly && caps.keyOnly && !/\bboard\s*:\s*true/.test(toolBare)) kb.push("keyOnly is for a board tool: set board: true too");
+    if (keyOnly && /(^|\n)\s*(?:function|const|let)\s+Runs\b/.test(toolBare)) kb.push("a keyOnly tool with a runs box (Runs) is not supported yet: the runs box sat beside the question bar; drop Runs or keyOnly");
+    ok("source", "key-only", !kb.length, `${[keyOnly && "keyOnly", navDots && "navDots"].filter(Boolean).join(" and ")} (class 4 r27, LAYOUT.md §1d): the runtime has ${keyOnly && navDots ? "both" : "it"}${keyOnly ? ", the tool is on the board layout, no runs box" : ""}`, kb.join("; "));
+  }
   /* the chapter builds on its own frozen runtime, so no other chapter can restale this tool */
   const pin = pinState(dir);
   ok("source", "runtime-pin", pin.ok, pin.msg, pin.msg);
 
   /* ── maths ────────────────────────────────────────────────────────────────────── */
-  const m = await loadModel(dir);
+  let m = await loadModel(dir);
   /* r24: a question's own ladder (it.ladder) is read only by a runtime whose rungOf reads it; an older pin ignores the field, so the
      checks of such a chapter ignore it too and judge it exactly as before */
   if (!caps.itemLadder) for (const p of m.PHASES || []) for (const it of p.items || []) if (it && it.ladder !== undefined) { try { delete it.ladder; } catch (e) { /* frozen: left */ } }
@@ -208,7 +227,11 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   }));
   const nChoice = m.PHASES.reduce((a, p) => a + p.items.filter((it) => it.choices).length, 0);
   ok("maths", "choices", !choiceBad.length, nChoice ? `${nChoice} word-choice items: each offers its answer once, no duplicates` : "no word-choice items", choiceBad.join("; "));
-  ok("maths", "voice-in-words", !digitLines.length, silentRt ? "every bubble line is printed as words (no digit, symbol or unit abbreviation left after speakable)" : "every spoken line reaches the voice as words (no digit, symbol or unit abbreviation left)", digitLines.join(" | "));
+  if (asWritten) add("maths", "voice-in-words", "info", "not asked: keyOnly (one sentence a screen) on a silent runtime prints a line AS WRITTEN, Latin digits and all (36.907, 1.45 kg), never as number words; the bubble rows below read it as written, and one-line-bubble proves it on the bubble");
+  else ok("maths", "voice-in-words", !digitLines.length, silentRt ? "every bubble line is printed as words (no digit, symbol or unit abbreviation left after speakable)" : "every spoken line reaches the voice as words (no digit, symbol or unit abbreviation left)", digitLines.join(" | "));
+  /* ONE SENTENCE A SCREEN: from here on every bubble row reads the bubble's text AS WRITTEN (m.speakable / m.speakableIn are the identity)
+     and knows the switch (m.oneSentence). The `speakable` and `number-words` rows above judged the real functions. */
+  if (oneSentence) m = { ...m, oneSentence: true, ...(asWritten ? { speakable: (s) => String(s ?? ""), speakableIn: (s) => String(s ?? "") } : {}) };
   /* NCERT V13 + V19 (silent runtime: kept for the printed bubble): no en or em dash, and each piece at most 20 words and 110 characters */
   const allSpoken = [...(m.OPENING || []), summaryRt ? null : m.FINISH_LINE, ...m.PHASES.flatMap((p) => [...(p.says || []), ...stepSays(p), ...(p.demoLines || []), ...(p.ladder || []), p.closing,
     ...p.items.flatMap((it) => [it.say, it.miss, ...(it.ladder || [])])])].filter(Boolean);
@@ -244,7 +267,8 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   const stepHints = (ph) => (Array.isArray(ph.steps) ? ph.steps.map((s) => s && s.hint).filter((x) => typeof x === "string") : []);
   m.PHASES.forEach((p, k) => {
     const next = m.PHASES[k + 1], firstSay = (ph) => ph.items[0] && ph.items[0].say;
-    runOnce(`phase ${p.n}`, [...opens(p, k), ...stepHints(p), ...p.items.flatMap((it) => [it.say, it.miss, ...(it.ladder || [])]), ...(p.ladder || [])]);
+    /* ONE SENTENCE A SCREEN: the closing is the bubble's line right after the phase's last question (it replaces the win line), so it joins the run */
+    runOnce(`phase ${p.n}`, [...opens(p, k), ...stepHints(p), ...p.items.flatMap((it) => [it.say, it.miss, ...(it.ladder || [])]), ...(p.ladder || []), ...(oneSentence ? [p.closing] : [])]);
     if (next) runOnce(`phase ${p.n} closing into phase ${next.n}`, [p.closing, ...opens(next, k + 1), firstSay(next)]);
   });
   if (silentRt) ok("maths", "bubble-no-repeat", !repeats.length, "the bubble never repeats itself: no sentence twice in a phase (teach or guide steps, questions, hints) or a closing into the next phase's opening, nor a near copy",
@@ -258,12 +282,22 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   /* hint-fit (r34): every hint a question or a step can show fits the bubble under its pinned instruction (source; a full
      check adds what the runs drew, in the render group) */
   const hintRt = caps.hint;
+  /* a hint in getState() that the bubble does not draw. ONE SENTENCE A SCREEN: the built-in "type" line is never drawn (it is state only), and the
+     first sample after a miss can hold the OLD text with the new kind (the ref moves before React commits), so a sample counts only where the
+     hint settled (the next sample, if any, still shows it). Every other tool: any such sample. */
+  const undrawnHint = (s, next) => !!s && !!s.hint && !s.domHint && !(oneSentence && (s.hintKind === "type" || (next && next.hint !== s.hint)));
   /* r43: the Hindi and Gujarati pairs by their own layout rule (the runtime keeps their block 12 under the bubble's top) */
-  const fit = hintRt ? judgeHintFit(m, m.TR, { devRule: /b\.y \+ topOf\b/.test(runtime) ? DEV_RULE : null }) : null;
+  /* class 4 r27: a keyOnly or navDots tool's bubble, as the runtime sizes it (footerBoxes) with its layouts (FIT_KEY: 48 / 44 / 40) */
+  const FB = (keyOnly || navDots) && m.footerBoxes ? m.footerBoxes(keyOnly, navDots, m.PHASES.length) : null;
+  const fitSpec = FB ? { opts: (keyOnly ? m.FIT_KEY : m.FIT_CLASSIC).hint, iw: FB.bubble.w - 44, hw: FB.bubble.w - 64, maxH: FB.bubble.h - 6, devEm: keyOnly ? m.FIT_KEY.devEm : null } : null;
+  const fit = hintRt && oneSentence && FB && m.FIT_KEY && m.FIT_KEY.plain
+    ? judgeHintAlone(m, m.TR, { plain: m.FIT_KEY.plain, inkEn: m.FIT_KEY.inkEn, inkDev: m.FIT_KEY.inkDev, devEm: m.FIT_KEY.devEm, devPit: m.FIT_KEY.devPit, bw: FB.bubble.w, bh: FB.bubble.h })
+    : hintRt ? judgeHintFit(m, m.TR, { devRule: keyOnly && m.FIT_KEY && m.FIT_KEY.devPit ? devRuleKey(m.FIT_KEY) : /b\.y \+ topOf\b/.test(runtime) ? DEV_RULE : null, spec: fitSpec }) : null;
   const fitMsg = (extra = []) => {
     const f = [...fit.fail, ...extra];
     if (f.length) return ["fail", f.slice(0, 6).join("; ") + (f.length > 6 ? `; +${f.length - 6} more` : "")];
     if (fit.warn.length) return ["warn", fit.warn.slice(0, 6).join("; ") + (fit.warn.length > 6 ? `; +${fit.warn.length - 6} more` : "")];
+    if (oneSentence) return ["pass", `${fit.n} hints (every rung a question can show, every step's hint) fit the bubble ALONE (keyOnly, one sentence a screen: a hint replaces the question, so no pair is laid out), in English${m.TR && (Object.keys(m.TR.hi || {}).length || Object.keys(m.TR.gu || {}).length) ? ", Hindi and Gujarati" : ""}; none over 80 characters`];
     return ["pass", `${fit.n} hints (every rung a question can show, every step's hint) fit the bubble under each piece of their instruction, banded, in English${m.TR && (Object.keys(m.TR.hi || {}).length || Object.keys(m.TR.gu || {}).length) ? ", Hindi and Gujarati" : ""}; none over 80 characters`];
   };
   if (fit && !render) { const [lv, msg] = fitMsg(); add("maths", "hint-fit", lv, msg); }
@@ -276,7 +310,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
     else add("maths", "one-page", "pass", `${one.n} instructions and hints (steps' say and hint, questions' say, misses, ladder rungs) are each one bubble page, in English${m.TR && (Object.keys(m.TR.hi || {}).length || Object.keys(m.TR.gu || {}).length) ? ", Hindi and Gujarati" : ""}: nothing pages by a timer`);
     /* tr-coverage: once a tool has begun its TR table, every line it prints has a Hindi and a Gujarati entry (this replaces
        the list the `voice` command used to print; the lesson is silent, so nothing is baked) */
-    const lines = printedLines(m, tool, { simpleSummary: summaryRt }), tr = trCoverage(lines, m.TR);
+    const lines = printedLines(m, tool, { simpleSummary: summaryRt, closingShown: oneSentence }), tr = trCoverage(lines, m.TR);
     if (!tr.asked) add("maths", "tr-coverage", "info", `not asked: no Hindi or Gujarati entries in a TR table yet (English only, ${lines.length} printed lines)`);
     else ok("maths", "tr-coverage", !tr.missing.hi.length && !tr.missing.gu.length, `all ${lines.length} printed lines have a hi and a gu entry in TR`,
       [tr.missing.hi.length ? trMessage("hi", tr.missing.hi) : "", tr.missing.gu.length ? trMessage("gu", tr.missing.gu) : ""].filter(Boolean).join("; "));
@@ -337,7 +371,21 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   const board = /\bboard\s*:\s*true/.test(tool.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, "")) && caps.board;
   /* r26: a tool with `bigPad: true` has the wider panel: its drawer, slot and pad boxes (and the working area's edge) move left */
   const bigPad = board && !!caps.bigPad && /\bbigPad\s*:\s*true/.test(tool.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, ""));
-  const ZS = board ? (bigPad ? { ...ZONES_BOARD, drawer: { x: 974, y: 198, w: 568, h: 540 }, slot: { x: 980, y: 204, w: 556, h: 122 }, pad: { x: 980, y: 316, w: 556, h: 422 } } : ZONES_BOARD) : ZONES;
+  let ZS = board ? (bigPad ? { ...ZONES_BOARD, drawer: { x: 974, y: 198, w: 568, h: 540 }, slot: { x: 980, y: 204, w: 556, h: 122 }, pad: { x: 980, y: 316, w: 556, h: 422 } } : ZONES_BOARD) : ZONES;
+  /* class 4 r27 (LAYOUT.md §1d): keyOnly moves the working area up (64, 108, 1472 x 520), the drawer to the working area's height (the
+     key on its top row, the answer box under it, the keypad under that; on a card question the keypad takes the box's row), the
+     summary into the shorter card (92 to 640) and the bubble down (y 656, 236 tall); navDots puts one dot per phase at the footer's
+     right, centred on the bubble, which takes the width the bar freed. The boxes are the runtime's own (ZKEY, footerBoxes) */
+  if (FB) {
+    const grow = (b, l, t, r, d) => ({ x: b.x - l, y: b.y - t, w: b.w + l + r, h: b.h + t + d });
+    const zk = keyOnly ? { ...m.ZKEY, ...(bigPad ? m.ZKEY_BIG : {}) } : null;
+    ZS = { ...ZS,
+      ...(zk ? { work: { ...zk.work }, drawer: grow(zk.drawer, 6, 4, 12, 8), slot: grow(zk.slot, 16, 14, 24, 16),
+        pad: grow({ ...zk.pad, y: zk.slot.y, h: zk.pad.y + zk.pad.h - zk.slot.y }, 16, 8, 24, 16), summary: { ...zk.canvas } } : {}),
+      bubble: grow(FB.bubble, 22, 2, 2, 2),
+      ...(keyOnly && m.mascotBoxOf ? { voice: grow(m.mascotBoxOf(true), 4, 4, 4, 2) } : {}),
+      ...(navDots ? { bar: grow(FB.dots, 6, 6, 6, 6) } : {}) };
+  }
   const runs = [];
   for (let n = 1; n <= N; n++) {
     runs.push({ key: `ask${n}`, n, url: `${base}?phase=${n}&muted=1&probe=1&drive=ask`, budget: 40000 });
@@ -403,6 +451,11 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
       runs.push({ key: "page", n: 1, classroom: true, url: `${base}?phase=1&classroom=1&probe=1&drive=page`, budget: 160000 });
     }
   }
+  /* THE PHONE FRAME (the viewer's Mobile, 844 x 390): the same ask / wrong / idle runs of every phase in English, Hindi and Gujarati, in a window
+     that size. The stage only scales there (390 / 900), but a line of text measures a little differently at a small pixel size, so the
+     layout judges run on what a phone really draws; the keys carry a `phone-` prefix and the English loop below never reads them */
+  for (const lang of ["en", ...trLangs]) for (let n = 1; n <= N; n++) for (const [dr, budget] of [["ask", 40000], ["wrong", 90000], ["idle", 180000]])
+    runs.push({ key: `phone-${lang}-${dr}${n}`, n, phone: true, url: `${base}?phase=${n}&muted=1&probe=1&drive=${dr}${lang === "en" ? "" : "&lang=" + lang}`, budget, width: PHONE.w, height: PHONE.h });
   const tmp = path.join(dir, ".build");
   fs.mkdirSync(tmp, { recursive: true });
   const shots = [...Array.from({ length: N }, (_, k) => ({ n: k + 1, png: path.join(tmp, `contrast-${k + 1}.png`), drive: "ask", key: `ask${k + 1}` })),
@@ -413,7 +466,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   log(`  rendering ${runs.length} runs + ${shots.length} screenshots in headless Chrome...`);
   const t0 = Date.now();
   const got = await pool([
-    ...runs.map((r) => () => dumpDomAsync(r.url, { budget: r.budget, label: r.key }).then(readDrive)),
+    ...runs.map((r) => () => dumpDomAsync(r.url, { budget: r.budget, label: r.key, width: r.width, height: r.height }).then(readDrive)),
     ...shots.map((s) => () => screenshotAsync(`${base}?phase=${s.n}&muted=1&shot=1&drive=${s.drive}${s.open ? "&answer=open" : ""}`, s.png, { budget: s.budget || 40000, label: `shot ${s.key}` })),
   ], Number(process.env.C4_CHROME_POOL) || 4);
   log(`  rendered in ${((Date.now() - t0) / 1000).toFixed(0)} s`);
@@ -426,7 +479,11 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   /* r24: the thinking pose (a runtime with MASCOT_THINK and its inline picture) and the Answer key's blink (a board tool without cardAnswer) */
   const thinkRt = caps.think && /const MASCOT_THINK: string = "data:image\/webp;base64,/.test(combined);
   const blinkRt = caps.answerBlink && board && !/\bcardAnswer\s*:\s*true/.test(tool.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, ""));
-  const RI = await realInput({ base, N, poolSize: Math.min(Number(process.env.C4_CHROME_POOL) || 4, 3), point: wantsPoint, board, think: thinkRt, blink: blinkRt }).catch((e) => ({ drag: fail(e), key: fail(e), parts: fail(e), point: fail(e), panel: fail(e) }));
+  /* class 4 r27 (keyOnly): Kiko is 1.45 times as big; the puff must stay in that box and clear of the bubble */
+  const mascotKey = keyOnly && m.mascotBoxOf && FB ? { ...m.mascotBoxOf(true), bubbleX: FB.bubble.x } : null;
+  /* a question typed on the keypad (not a choice, not answered on the working area): board-panel and pad-shape need one to judge */
+  const typedAsk = m.PHASES.some((ph) => ph.items.some((it) => it && !it.choices && it.pad !== "enter"));
+  const RI = await realInput({ base, N, poolSize: Math.min(Number(process.env.C4_CHROME_POOL) || 4, 3), point: wantsPoint, board, think: thinkRt, blink: blinkRt, mascotBox: mascotKey, oneSentence, typedAsk }).catch((e) => ({ drag: fail(e), key: fail(e), parts: fail(e), point: fail(e), panel: fail(e) }));
   log(`  real mouse, finger and key input in ${((Date.now() - t1) / 1000).toFixed(0)} s`);
   /* a tool with a start page (runtime r28: StartArt and/or START_HOOK in its source) is asked to prove it */
   const hasStart = /\b(StartArt|START_HOOK)\b/.test(tool.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, "")) && caps.startPage;
@@ -458,11 +515,19 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   const HF = linesRt && hintRt ? await hintFramesInput({ base, N, outDir: tmp, langs: ["en", ...trLangs], poolSize: cdpPool })
     .catch((e) => [{ lang: "en", error: String(e && e.message) }]) : null;
   const PD = dotRt && partyRt && N > 1 ? await partyDotInput({ base }).catch((e) => ({ error: String(e && e.message) })) : null;
+  /* class 4 r27: each nav dot reaches its phase, by a real click, in user and AI mode */
+  const ND = navDots ? await navDotsInput({ base, N }).catch((e) => [{ mode: "user", error: String(e && e.message) }]) : null;
+  /* 2026-10-16 (action-anim): a tool whose source calls api.act, on a runtime that has it: one act through its own control, motion on and reduced */
+  const AA = caps.act && /\bapi\.act\s*\(/.test(toolPlain) ? await actionAnimInput({ base, N }).catch((e) => ({ error: String(e && e.message) })) : null;
+  /* 2026-10-16 (font-kit): a tool built with the FONT KIT draws its text in the kit's own Poppins, on a Chrome with no Poppins of its own */
+  const FK = caps.fontKit && /const FONT_KIT\b/.test(combined) ? await fontKitInput({ base }).catch((e) => ({ error: String(e && e.message) })) : null;
   /* r44: the simple summary page, in en, hi and gu, and in an English classroom */
   /* r24 (summary-thumbs): a runtime whose result.last carries the item object, and a tool that gives a Thumb: the summary session also
      answers every phase's last question right and reads each row's thumbnail */
   const thumbsAsked = summaryRt && caps.lastIt && /\bThumb\b/.test(toolPlain);
   const lastSteps = (() => { let a = 0; return m.PHASES.map((p) => { const c = Math.max((p.items || []).length, 1), t = a + c - 1; a += c; return t; }); })();
+  /* ONE SENTENCE A SCREEN: the bubble holds one sentence, frame by frame, in a real DevTools session per phase (and phase 1 in hi and gu) */
+  const OL = oneSentence ? await oneLineInput({ base, N, langs: trLangs, nextKey: wantsNextKey && nextKeyRt, poolSize: cdpPool }).catch((e) => [{ phase: 1, lang: "en", error: String(e && e.message) }]) : null;
   const SS = summaryRt ? await summaryInput({ base, N, outDir: tmp, poolSize: cdpPool, lastSteps: thumbsAsked ? lastSteps : null }).catch((e) => [{ lang: "en", error: String(e && e.message) }]) : null;
   const D = {};
   runs.forEach((r, k) => { D[r.key] = got[k].ok ? got[k].value : { error: String(got[k].error && got[k].error.message) }; });
@@ -485,32 +550,26 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
     for (const { key, d, g, shut } of frames) {
       if (!g) continue;
       const tag = shut ? `${key} (panel shut)` : `${key}`;
-      const whole = g.texts.filter((t) => !t.part);
-      for (let a = 0; a < whole.length; a++) for (let b = a + 1; b < whole.length; b++) {
-        const A = whole[a].ink || whole[a].box, B = whole[b].ink || whole[b].box;
-        if (inter(A, B) > 6 && Math.min(A.x + A.w, B.x + B.w) - Math.max(A.x, B.x) > 2 && Math.min(A.y + A.h, B.y + B.h) - Math.max(A.y, B.y) > 2)
-          overlaps.push(`${tag}: "${whole[a].text.slice(0, 18)}" x "${whole[b].text.slice(0, 18)}"`);
-      }
-      for (const s of g.shapes) { const z = ZS[s.zone]; if (z && !inside(s.box, z)) spills.push(`${tag}: ${s.tag} in ${s.zone} ${fmt(s.box)}`); }
-      for (const t of g.texts) { const z = ZS[t.zone], b = t.ink || t.box; if (z && !inside(b, z, 2)) spills.push(`${tag}: "${t.text.slice(0, 16)}" in ${t.zone} ${fmt(b)}`); }
+      /* the layout judges (layoutfit.mjs, shared with approve): overlap, zone spill, off the stage, type floor, finger boxes, crowding */
+      const L = layoutProblems(g, { ZS, tag });
+      overlaps.push(...L.overlaps); spills.push(...L.spills); offStage.push(...L.offStage); small.push(...L.small); fingers.push(...L.fingers); crowd.push(...L.crowd);
       /* picture-scale (r26): the ASK frame with the answer panel open is the reading frame: a picture of one or two small things is scaled up */
       if (board && !shut && key.startsWith("ask") && g.controls.some((c) => c.zone === "pad")) scaleFrames.push({ tag: `phase ${n} ask`, g });
+      /* class 4 r27 (keyOnly): no picture element under the key's corner (KEY_CORNER, the Answer / Next key's) or under any key drawn
+         there just now (the choice keys are wider), in every frame, the panel shut or open */
+      if (keyOnly && m.KEY_CORNER) {
+        const kc = m.KEY_CORNER, areas = [{ what: "the key's corner", b: kc }, ...g.controls.filter((c) => c.zone === "ask").map((c) => ({ what: `the ${c.id} key`, b: { x: c.box.x - 6, y: c.box.y - 6, w: c.box.w + 12, h: c.box.h + 12 } }))];
+        for (const a of areas) {
+          for (const sh of g.shapes) if (sh.zone === "work" && inter(sh.box, a.b) > 4) { boardFit.push(`${tag}: ${sh.tag} ${fmt(sh.box)} runs under ${a.what} ${fmt(a.b)}`); break; }
+          for (const t of g.texts) { const b = t.ink || t.box; if (t.zone === "work" && inter(b, a.b) > 4) { boardFit.push(`${tag}: "${t.text.slice(0, 16)}" ${fmt(b)} runs under ${a.what} ${fmt(a.b)}`); break; } }
+        }
+      }
       /* board layout, panel open: the picture must have rearranged into the room that is left, never run under the panel */
       if (board && !shut && g.controls.some((c) => c.zone === "pad")) {
         const edge = ZS.drawer.x - 4;
         for (const s of g.shapes) if (s.zone === "work" && s.box.x + s.box.w > edge) boardFit.push(`${tag}: ${s.tag} ends at ${Math.round(s.box.x + s.box.w)}, the panel starts at ${ZS.drawer.x}`);
         for (const t of g.texts) { const b = t.ink || t.box; if (t.zone === "work" && b.x + b.w > edge) boardFit.push(`${tag}: "${t.text.slice(0, 16)}" ends at ${Math.round(b.x + b.w)}, the panel starts at ${ZS.drawer.x}`); }
       }
-      for (const t of g.texts) { const b = t.ink || t.box; if (b.x < -1 || b.y < -1 || b.x + b.w > 1601 || b.y + b.h > 901) offStage.push(`${tag}: "${t.text.slice(0, 16)}" ${fmt(b)}`); }
-      for (const o of g.outside) offStage.push(`${tag}: ${o.tag} ${fmt(o.box)}`);
-      for (const t of g.texts) if (t.size < 27.5) small.push(`${tag}: "${t.text.slice(0, 20)}" at ${t.size}`);
-      const live = g.controls.filter((c) => !c.disabled);
-      for (const c of live) {
-        if (c.box.w < 71 || c.box.h < 71) fingers.push(`${tag}: ${c.id} ${Math.round(c.box.w)}x${Math.round(c.box.h)}`);
-        if (c.role !== "button" || c.tab !== "0" || !c.label) fingers.push(`${tag}: ${c.id} is not a labelled, focusable button`);
-      }
-      for (let a = 0; a < live.length; a++) for (let b = a + 1; b < live.length; b++)
-        if (inter(live[a].box, live[b].box) > 16) crowd.push(`${tag}: ${live[a].id} x ${live[b].id}`);
       if (!shut && /^(ask|wrong)/.test(key) && d.api) {
         const ph = m.PHASES[d.api.phase - 1], r = padShapeProblems({ item: ph && ph.items[d.api.item - 1], padTo: d.api.padTo, controls: g.controls, tag });
         if (r.kind) padSeen[r.kind]++;
@@ -519,7 +578,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
       pulses = Math.max(pulses, g.pulses);
       /* a SKIN (the runtime's <Skin>: a generated picture of the object a tool shares out, docs/IMAGES.md) is allowed, but
          only on the working area and only a few; the mascot is the only other picture */
-      rasters.push(...g.images.filter((im) => im.role !== "mascot" && im.role !== "skin").map((im) => `${tag}: ${fmt(im.box)}`));
+      rasters.push(...g.images.filter((im) => im.role !== "mascot" && im.role !== "skin" && im.role !== "act").map((im) => `${tag}: ${fmt(im.box)}`));   /* act: an ACTION KIT tool in flight (api.act) */
       const skins = g.images.filter((im) => im.role === "skin");
       skinCount = Math.max(skinCount, skins.length);
       skins.forEach((im) => { if (!inside(im.box, ZS.work)) skinBad.push(`${tag}: a skin ${fmt(im.box)} is outside the working area`); });
@@ -541,7 +600,11 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
       }
       if (shut) continue;
       const dots = g.dots || [];
-      if (key.startsWith("agent")) {
+      /* class 4 r27 (navDots): the dots are controls in user AND AI mode */
+      if (navDots) {
+        if (dots.length !== N || dots.some((x, k) => x.role !== "button" || x.tab !== "0" || x.label !== `Step ${k + 1} of ${N}`)
+          || dots.filter((x) => x.current === "step").length !== 1) mode.push(`${tag}: nav dots must be ${N} labelled buttons, one current, in either mode`);
+      } else if (key.startsWith("agent")) {
         if (g.mode !== "ai" || dots.length !== N || dots.some((x) => x.role !== "img" || x.tab !== null)) mode.push(`${tag}: AI mode dots must be pictures only`);
       } else if (g.mode !== "user" || dots.length !== N || dots.some((x, k) => x.role !== "button" || x.tab !== "0" || x.label !== `Step ${k + 1} of ${N}`)
         || dots.filter((x) => x.current === "step").length !== 1) mode.push(`${tag}: user mode dots must be ${N} labelled buttons, one current`);
@@ -553,20 +616,41 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
       const qs = Math.max(m.PHASES[cur - 1].items.length, 1), want = /^(ask|wrong)/.test(key) || walked ? 1 / qs : 1;
       dots.forEach((x, k) => {
         const st = k < cur - 1 ? "done" : k === cur - 1 ? "now" : "later";
-        if (x.state !== st) phaseBar.push(`${tag}: phase ${k + 1} segment shows "${x.state}", want "${st}"`);
-        else if (k === cur - 1 && (Math.abs(x.fill - want) > 0.01 || (want >= 0.2 && Math.abs(x.drawn - want) > 0.03)))
+        if (x.state !== st) phaseBar.push(`${tag}: phase ${k + 1} ${navDots ? "dot" : "segment"} shows "${x.state}", want "${st}"`);
+        else if (!navDots && k === cur - 1 && (Math.abs(x.fill - want) > 0.01 || (want >= 0.2 && Math.abs(x.drawn - want) > 0.03)))
           phaseBar.push(`${tag}: current segment ${Math.round(x.drawn * 100)}% drawn (set ${Math.round(x.fill * 100)}%), want ${Math.round(want * 100)}%`);
       });
     }
   }
+  /* the phone runs: the same judges on every frame read at 844 x 390 (the six lists below take them too), kept for the phone rows */
+  const phoneFrames = [];
+  for (const r of runs.filter((x) => x.phone)) {
+    const d = D[r.key];
+    for (const [g, shut] of [[d && d.geometryShut, true], [d && d.geometry, false]]) {
+      if (!g) continue;
+      const tag = `${r.key.slice(6)} [phone${shut ? ", panel shut" : ""}]`;
+      const L = layoutProblems(g, { ZS, tag });
+      overlaps.push(...L.overlaps); spills.push(...L.spills); offStage.push(...L.offStage); small.push(...L.small); fingers.push(...L.fingers); crowd.push(...L.crowd);
+      phoneFrames.push({ tag, g });
+    }
+  }
   const cap = (a) => a.slice(0, 6).join("; ") + (a.length > 6 ? `; +${a.length - 6} more` : "");
-  ok("render", "no-overlap", !overlaps.length, "no text overlaps another, in any phase or state", cap(overlaps));
-  ok("render", "zones", !spills.length, "everything stays inside its zone (work, runs, slot, pad, bubble, bar, voice, header)", cap(spills));
+  ok("render", "no-overlap", !overlaps.length, "no text overlaps another, in any phase or state (English on the stage; English, Hindi and Gujarati on a phone)", cap(overlaps));
+  ok("render", "zones", !spills.length, `everything stays inside its zone (work, runs, slot, pad, bubble, bar, voice, header)${keyOnly ? "; keyOnly: the working area 64, 108, 1472 x 520, the drawer 108 to 628" : ""}${navDots ? "; navDots: the dots at the footer's right" : ""}`, cap(spills));
   ok("render", "on-stage", !offStage.length, "nothing leaves the 1600x900 stage", cap(offStage));
   ok("render", "type-floor", !small.length, "no rendered text below 28 stage units", cap(small));
   ok("render", "finger-boxes", !fingers.length, "every live control is a labelled, focusable button at least 72x72", cap(fingers));
   ok("render", "no-crowding", !crowd.length, "no two live finger boxes overlap", cap(crowd));
-  if (!padSeen.enter && !padSeen.typed && m.PHASES.some((ph) => ph.items[0] && !ph.items[0].choices))
+  /* the phone rows: what only a real 844 x 390 window can say (layoutfit.mjs phoneProblems) */
+  if (phoneFrames.length) {
+    const P = phoneProblems(phoneFrames), langs = ["en", ...trLangs].join(", ");
+    ok("render", "phone-frame", !P.frame.length, `at ${PHONE.w}x${PHONE.h} (a phone) the window is that size, the page does not scroll and the stage's 16:9 frame lies wholly in it, drawn at ${P.scale}`, cap(P.frame));
+    ok("render", "phone-type", !P.type.length, `the smallest text on the phone is ${P.minText ? P.minText.px.toFixed(1) : "?"} px (at least ${PHONE_TEXT_PX}), in ${langs}`, cap(P.type));
+    if (P.minTap) add("render", "phone-tap", "info", `the smallest live control on the phone is ${Math.round(P.minTap.px)} px (${P.minTap.id}): the finger floor of 72 stage units, drawn at ${P.scale}`);
+  }
+  /* keyOnly + board (2026-10-17): a working-area question's Enter stands in the key's corner, not the pad zone, so a tool with no
+     typed question at all (every item a choice or pad "enter") has nothing to sample here */
+  if (!padSeen.enter && !padSeen.typed && (keyOnly && board ? typedAsk : m.PHASES.some((ph) => ph.items[0] && !ph.items[0].choices)))
     padBad.push("nothing was sampled: no ask or wrong run showed the pad zone's keys, so the check saw nothing (a check that samples nothing is not a pass)");
   ok("render", "pad-shape", !padBad.length, `a working-area question draws only Enter, a typed one all twelve keys (sampled ${padSeen.enter} working-area, ${padSeen.typed} typed)`, cap(padBad));
   ok("render", "one-invite", pulses <= 1, "at most one pulsing invite at a time", `${pulses} pulsing at once`);
@@ -578,16 +662,16 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
     ok("render", "skins-fallback", a === b && a > 0 && !left, `with every skin removed the same ${a} plain shapes still draw: the picture is a look, the plain drawing stands on its own`,
       `with skins the first question draws ${a} plain shapes, with none ${b} (skins still drawn: ${left}): what is under the pictures must be the whole drawing`);
   }
-  if (board && caps.bigPad) { const ps = judgePictureScale(scaleFrames, { workW: bigPad ? 900 : 1086, workH: ZS.work.h }); ok("render", "picture-scale", !ps.length, PICTURE_SCALE_DETAIL, cap(ps), "warn"); }
-  if (board) ok("render", "board-fit", !boardFit.length, "board layout: with the answer panel open, nothing of the working area runs under it", cap(boardFit));
+  if (board && caps.bigPad) { const ps = judgePictureScale(scaleFrames, { workW: bigPad ? 900 : 1086, workH: ZS.work.h, workY: ZS.work.y }); ok("render", "picture-scale", !ps.length, PICTURE_SCALE_DETAIL, cap(ps), "warn"); }
+  if (board) ok("render", "board-fit", !boardFit.length, `board layout: with the answer panel open, nothing of the working area runs under it${keyOnly ? "; keyOnly: in every frame nothing of it runs under the key's corner (x 1254 to 1536, y 108 to 196: Work's box.key) or a key drawn there" : ""}`, cap(boardFit));
   ok("render", "no-emoji", !emoji.length, "no emoji", cap(emoji));
   ok("render", "stillness", !still.length, "still under reduced motion (no endless animation)", cap(still));
   ok("render", "focus-visible", focus, "keyboard focus ring present on the page", "no :focus-visible rule on the page");
   ok("render", "labels-short", !words.length, "working area has labels, not sentences (max 4 words)", cap(words), "warn");
   ok("render", "colour-budget", colours <= 5, `content hues on the working area: ${colours}`, `${colours} content hues on the working area at once`, "warn");
   ok("render", "picture-is-number", !picture.length, "the chart's digits and the running count always equal the tool's own value", cap(picture));
-  ok("render", "phase-bar", !phaseBar.length, "the current phase segment fills a part per question (question 1 of 3 a third, the last full); earlier phases finished, later empty", cap(phaseBar));
-  ok("render", "modes", !mode.length, "user mode: phase dots are buttons; AI mode: progress only", cap(mode));
+  ok("render", "phase-bar", !phaseBar.length, navDots ? "nav dots (r27): earlier phases done, the current one now, later ones later (no fill: a dot does not fill a part per question)" : "the current phase segment fills a part per question (question 1 of 3 a third, the last full); earlier phases finished, later empty", cap(phaseBar));
+  ok("render", "modes", !mode.length, navDots ? "nav dots (r27): the dots are buttons \"Step k of N\", one current, in user AND AI mode" : "user mode: phase dots are buttons; AI mode: progress only", cap(mode));
 
   /* behaviour, per phase */
   const bad = { wrong: [], finished: [], agent: [], api: [], probe: [], mute: [], mascot: [], hint: [], fitDrawn: [] };
@@ -602,7 +686,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
         const itW = P.items[L.item ?? 0] || P.items[0];
         if (hintRt) bad.hint.push(...judgeHintPinned(L.pin, P, itW, m, `phase ${n}`));
         else bad.hint.push(...judgeHintOnMiss(L.pin ? { nearMiss: L.nearMiss, timeline: L.pin.timeline } : L, P, itW, m));
-        if (hintRt && L.pin) for (const s of L.pin.timeline || []) if (s.hint && !s.domHint) { bad.fitDrawn.push(`phase ${n}: a hint in getState() was not drawn (${String(s.hint).slice(0, 40)})`); break; }
+        if (hintRt && L.pin) for (const [k, s] of (L.pin.timeline || []).entries()) if (undrawnHint(s, L.pin.timeline[k + 1])) { bad.fitDrawn.push(`phase ${n}: a hint in getState() was not drawn (${String(s.hint).slice(0, 40)})`); break; }
       }
       if (!L.typedKept) bad.wrong.push(`${n}: the typed answer was cleared`);
       if (!L.sameItem) bad.wrong.push(`${n}: a miss moved to another question`);
@@ -688,15 +772,15 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
       bad.hint.push(...judgeHintPinned(r, P1h, P1h.items[r.item ?? 0] || P1h.items[0], m, key === "hint1" ? "phase 1 (second miss, right answer)" : "phase 1, classroom"));
       if (d.probe && d.probe.errors.length) bad.hint.push(`${key}: ${d.probe.errors[0]}`);
     }
-    ok("render", "hint-pinned", !bad.hint.length, `after a miss the hint shows within 700 ms UNDER the pinned instruction (getState().instruction stays the question's line, getState().hint is the rung as printed, the bubble draws both roles with the same text, the child's answer stays), it is the same 4 s later, a second miss brings the next rung, a right answer clears it; every phase, and phase 1 in a classroom too`, cap(bad.hint));
+    ok("render", "hint-pinned", !bad.hint.length, oneSentence ? "keyOnly, one sentence a screen: after a miss the hint shows within 700 ms ALONE on the bubble, REPLACING the question (getState().instruction stays the question's line, getState().hint is the rung as printed, the bubble draws the hint role only, never the question beside it, the child's answer stays), it is the same 4 s later, a second miss brings the next rung, a right answer clears it; every phase, and phase 1 in a classroom too" : `after a miss the hint shows within 700 ms UNDER the pinned instruction (getState().instruction stays the question's line, getState().hint is the rung as printed, the bubble draws both roles with the same text, the child's answer stays), it is the same 4 s later, a second miss brings the next rung, a right answer clears it; every phase, and phase 1 in a classroom too`, cap(bad.hint));
   } else if (silentRt) ok("render", "hint-on-miss", !bad.hint.length, `after a miss the bubble shows the hint within 700 ms (the item's miss line, else the ladder's first rung), with the child's answer still in the slot, and the hint is never the question's own line (${N} phase${N === 1 ? "" : "s"})`, cap(bad.hint));
   if (fit) {
     /* hint-fit, source and render: what the runs drew (a hint in getState() must be drawn in the bubble) */
     for (const key of ["hint1", "hintRoom1", ...stepPhases.map((p) => `steps${p.n}`)]) {
       const r = D[key] && D[key].log && D[key].log[0];
       if (!r) continue;
-      const shots = [...(r.timeline || []), r.after4s, r.miss2, r.outOfOrder && typeof r.outOfOrder === "object" ? r.outOfOrder : null].filter(Boolean);
-      if (shots.some((s) => s.hint && !s.domHint)) bad.fitDrawn.push(`${key}: a hint in getState() was not drawn in the bubble`);
+      const tl = r.timeline || [], shots = [r.after4s, r.miss2, r.outOfOrder && typeof r.outOfOrder === "object" ? r.outOfOrder : null].filter(Boolean);
+      if (tl.some((s, k) => undrawnHint(s, tl[k + 1])) || shots.some((s) => undrawnHint(s))) bad.fitDrawn.push(`${key}: a hint in getState() was not drawn in the bubble`);
     }
     const [lv, msg] = fitMsg(bad.fitDrawn);
     add("render", "hint-fit", lv, msg);
@@ -717,14 +801,14 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   if (HF) {
     const hl = judgeHintLines(HF);
     const alone = HF.filter((f) => f.alone).map((f) => `${f.lang} phase ${f.phase} ${f.kind}`);
-    ok("render", "hint-lines-clear", !hl.bad.length, `the bubble's lines with a hint, by their INK on a screenshot (${hl.n} frames: every phase's wrong answer and wrong step, in ${["en", ...trLangs].join(", ")}${alone.length ? `; ${alone.length} drew the hint alone, no layout fitting the pair (see hint-fit): ${alone.slice(0, 4).join(", ")}${alone.length > 4 ? " …" : ""}` : ""}): consecutive lines never touch (2 clear units at least), no line touches the bubble's outline (2 units), the block has 6 units of the bubble to spare`, cap(hl.bad));
+    ok("render", "hint-lines-clear", !hl.bad.length, `${oneSentence ? "keyOnly, one sentence a screen (the hint REPLACES the question, so each frame is one block of the hint's lines): " : ""}the bubble's lines with a hint, by their INK on a screenshot (${hl.n} frames: every phase's wrong answer and wrong step, in ${["en", ...trLangs].join(", ")}${alone.length ? `; ${alone.length} drew the hint alone, no layout fitting the pair (see hint-fit): ${alone.slice(0, 4).join(", ")}${alone.length > 4 ? " …" : ""}` : ""}): consecutive lines never touch (2 clear units at least), no line touches the bubble's outline (2 units), the block has 6 units of the bubble to spare`, cap(hl.bad));
   }
   const chRuns = Object.keys(D).filter((k) => /^choice-/.test(k));
   if (chRuns.length) {
     const recs = chRuns.map((k) => (D[k].log && D[k].log[0]) || { lang: k.slice(7), error: D[k].error || "no result" });
-    const cl = judgeChoiceLine(recs, m.UI_STRINGS || {});
+    const cl = judgeChoiceLine(recs, m.UI_STRINGS || {}, { oneSentence });
     if (!cl.bad.length && cl.notes.length && recs.every((r) => !r.found || !r.answerKey)) add("render", "choice-answer-line", "info", `not asked: ${cl.notes.join("; ")}`);
-    else ok("render", "choice-answer-line", !cl.bad.length, `on a choice question the choose line (UI.pickIt, never "type your answer"; brought by the Answer key, or up at the open when the choices are keys in the question bar) in the neutral band, whose colours are not the hint's accent (in ${recs.map((r) => r.lang).join(", ")})${cl.notes.length ? " (" + cl.notes.join("; ") + ")" : ""}`, cap(cl.bad));
+    else ok("render", "choice-answer-line", !cl.bad.length, oneSentence ? `keyOnly, one sentence a screen: on a choice question the Answer key brings UI.pickIt into getState().hint (never "type your answer"; in ${recs.map((r) => r.lang).join(", ")}) and the bubble keeps the question: the built-in line is not drawn, the blinking keys are the cue${cl.notes.length ? " (" + cl.notes.join("; ") + ")" : ""}` : `on a choice question the choose line (UI.pickIt, never "type your answer"; brought by the Answer key, or up at the open when the choices are keys in the question bar) in the neutral band, whose colours are not the hint's accent (in ${recs.map((r) => r.lang).join(", ")})${cl.notes.length ? " (" + cl.notes.join("; ") + ")" : ""}`, cap(cl.bad));
   }
   if (SS) {
     const sb = judgeSummarySimple(SS, m.UI_STRINGS || {}, m);
@@ -810,11 +894,11 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
     }
     if (SC) { gsBad.push(...SC.bad); SC.notes.forEach((x) => notes.add("real click skipped: " + x)); }
     const clicked = SC ? SC.rows.filter((r) => r.found).length : 0;
-    ok("render", "guide-steps", !gsBad.length, `guide steps on phase ${stepPhases.map((p) => p.n).join(", ")}: the phase opens on step 1's line with the question waiting, nothing moves on a timer (4 s), a wrong act moves nothing and shows the step's hint under the pinned instruction (the same 3 s later), each right act (one toolApi.check(), one click) clears it and moves the bubble exactly one step on, the last opens the question with its line; ${clicked} first step(s) moved on by ONE real mouse click on their control; every step a say, an on and a hint, unique hints, short lines${notes.size ? " (" + [...notes].join("; ") + ")" : ""}`, cap(gsBad));
+    ok("render", "guide-steps", !gsBad.length, `guide steps on phase ${stepPhases.map((p) => p.n).join(", ")}: the phase opens on step 1's line with the question waiting, nothing moves on a timer (4 s), a wrong act moves nothing and shows the step's hint under the pinned instruction (the same 3 s later), each right act (one toolApi.check(), one click) clears it and moves the bubble exactly one step on, the last opens the question with its line; ${clicked} first step(s) moved on by ONE real mouse click on their control; every step a say, an on and a hint, unique hints, short lines${notes.size ? " (" + [...notes].join("; ") + ")" : ""}` + ONE_NOTE, cap(gsBad));
     if (RW) {
       const rw = judgeRealWrong(RW, m.PHASES, m);
       const tried = RW.reduce((a, r) => a + ((r.steps || []).length), 0);
-      ok("render", "guide-steps-real-wrong", !rw.bad.length, `a REAL wrong act at every guide step of phase ${stepPhases.map((p) => p.n).join(", ")} (${tried} tries): a mouse click on an inert point of Work's drawing (no data-control under it)${floorRt ? ", a mouse click on the empty board around it (the work-floor rect)" : ""} and a digit key, each in its own session, show that step's hint within 300 ms, the instruction pinned and the step unchanged; then a real click on the step's control still moves it on${rw.notes.length ? " (" + rw.notes[0] + (rw.notes.length > 1 ? `; ${rw.notes.length - 1} more step(s) alike: ` + rw.notes.slice(1).map((x) => x.split(":")[0]).join(", ") : "") + ")" : ""}`, cap(rw.bad));
+      ok("render", "guide-steps-real-wrong", !rw.bad.length, `a REAL wrong act at every guide step of phase ${stepPhases.map((p) => p.n).join(", ")} (${tried} tries): a mouse click on an inert point of Work's drawing (no data-control under it)${floorRt ? ", a mouse click on the empty board around it (the work-floor rect)" : ""} and a digit key, each in its own session, show that step's hint within 300 ms, the instruction pinned and the step unchanged; then a real click on the step's control still moves it on${rw.notes.length ? " (" + rw.notes[0] + (rw.notes.length > 1 ? `; ${rw.notes.length - 1} more step(s) alike: ` + rw.notes.slice(1).map((x) => x.split(":")[0]).join(", ") : "") + ")" : ""}` + ONE_NOTE, cap(rw.bad));
     }
   }
   if (silentRt || hasRoom) {
@@ -829,6 +913,11 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   if (board) ok("render", "board-panel", RI.panel.ok, RI.panel.detail, cap(RI.panel.bad));
   if (RI.blink) ok("render", "answer-blink", RI.blink.ok, RI.blink.detail, cap(RI.blink.bad));
   if (RI.think) ok("render", "mascot-think", RI.think.ok, RI.think.detail, cap(RI.think.bad));
+  if (OL) {
+    /* one-line-bubble (2026-10-16; keyOnly on a runtime with caps.oneSentence): the bubble holds ONE sentence, frame by frame */
+    const ol = judgeOneLine(OL, m);
+    ok("render", "one-line-bubble", !ol.bad.length, `keyOnly, one sentence a screen, by a real DevTools session per phase (${[...new Set(OL.map((r) => r.lang || "en"))].join(", ")}; every phase's first question, English): the bubble holds the question ONLY (no built-in tap or choose line); after a wrong answer the hint ONLY (not both); after a real digit key the question again; after the header's Hint key a hint ONLY; at the phase's last right answer exactly the phase's closing line (never the tool's own win line); every line as written (Latin digits); no element data-role think-puff or hint-bulb at any moment${ol.notes.length ? " (" + ol.notes.join("; ") + ")" : ""}`, cap(ol.bad));
+  }
   if (SP) ok("render", "start-page", SP.ok, SP.detail, cap(SP.bad));
   /* classroom (r34: action-driven): nothing waits for a "next" tap but the pieces of a long line (with the arrow); a right
      answer's next question, a miss's hint, a closing line's walk and the summary's rows come by themselves; a tap on the
@@ -846,7 +935,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
       const P = m.PHASES[(r.phase || 1) - 1] || m.PHASES[0];
       const winOf = (k) => { const it = (P.items || [])[k] || {}; return Number(it.winMs ?? tfWin ?? 1600); };
       const t = `${key} (phase ${r.phase})`;
-      judgeClassroom(r, { winOf, silentRt, hasExplore: /exploreOf|keepFocus/.test(runtime), cueBig: /c4-cue-big/.test(runtime), simpleSummary: summaryRt,
+      judgeClassroom(r, { winOf, silentRt, oneSentence, hasExplore: /exploreOf|keepFocus/.test(runtime), cueBig: /c4-cue-big/.test(runtime), simpleSummary: summaryRt,
         closingPieces: bubblePieces(P.closing || "", m).length }).forEach((x) => roomBad.push(`${t}: ${x}`));
       if (d.probe && d.probe.errors.length) roomBad.push(`${t}: ${d.probe.errors[0]}`);
       if (d.probe && d.probe.console.length) roomBad.push(`${t}: ${d.probe.console[0]}`);
@@ -859,7 +948,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
     }
     const sk = D.classroom1 && D.classroom1.log && D.classroom1.log[0];
     const skipNote = sk && sk.closingSkip ? "" : " (a closing-line skip needs a third phase after phase 1: not exercised)";
-    ok("render", "classroom", !roomBad.length, `classroom mode (r34): the bubble is a control; nothing waits for a tap at a right answer (the next question comes within its celebration + 2 s), a miss (the hint within 700 ms, the instruction still drawn), a phase's closing line (the next phase starts by itself) or the summary (${summaryRt ? "one line, no row read out, a tap on the bubble changes nothing" : "its rows go on"}, finished once); a tap during the celebration${sk && sk.closingSkip ? " and during a closing line" : ""} skips ahead within 700 ms; the cue shows only while a piece of a long line is parked (paging proved with a scripted three-sentence line: the arrow on each piece but the last, each tap the next piece, the end never waits); the your-turn ring; no score; the sound stays on${skipNote}`, cap(roomBad));
+    ok("render", "classroom", !roomBad.length, `classroom mode (r34): the bubble is a control; nothing waits for a tap at a right answer (the next question comes within its celebration + 2 s), a miss (the hint within 700 ms, the instruction still drawn), a phase's closing line (the next phase starts by itself) or the summary (${summaryRt ? "one line, no row read out, a tap on the bubble changes nothing" : "its rows go on"}, finished once); a tap during the celebration${sk && sk.closingSkip ? " and during a closing line" : ""} skips ahead within 700 ms; the cue shows only while a piece of a long line is parked (paging proved with a scripted three-sentence line: the arrow on each piece but the last, each tap the next piece, the end never waits); the your-turn ring; no score; the sound stays on${skipNote}` + ONE_NOTE, cap(roomBad));
     if (D.pieces1 || D.piecesN) {
       const src = sources(dir).tool.replace(/\/\*[\s\S]*?\*\/|(^|[^:"'`\\])\/\/[^\n]*/g, "$1"), says = [];
       for (const mm of src.matchAll(/api\.say\(\s*(\[[^\]]*\]|"(?:[^"\\\n]|\\.)*")/g)) { try { says.push(...[].concat(JSON.parse(mm[1]))); } catch { /* not a literal */ } }
@@ -876,7 +965,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
     const reduced = runs.filter((r) => D[r.key] && D[r.key].probe).map((r) => ({ key: r.key, probe: D[r.key].probe }));
     const cheerPic = caps.cheer && /const MASCOT_CHEER: string = "data:image\/webp;base64,/.test(combined); const pb = judgePhaseParty(PR, reduced, N, cheerPic);
     /* r41: a phase dot pressed while the party is on ends it; the poppers stand clear of the bubble and the phase pills */
-    const px = dotRt ? judgePartyExtras(PD, PR) : { bad: [], notes: [] };
+    const px = dotRt ? judgePartyExtras(PD, PR, FB ? { bubble: FB.bubble, pills: navDots ? { x: FB.dots.x + 10, y: FB.dots.y + 10, w: FB.dots.w - 20, h: FB.dots.h - 20 } : null } : null) : { bad: [], notes: [] };
     if (dotRt && N < 2) { px.bad = px.bad.filter((x) => !/party-dot run/.test(x)); px.notes.push("a one-phase tool has no phase dot to press"); }
     if (px.bad.length) pb.splice(Math.max(pb.length - 1, 0), 0, ...px.bad);
     if (px.bad.length && pb.length === px.bad.length) pb.push("builder: nothing to write; the party and its poppers are the runtime's (a FAIL is a runtime matter)");
@@ -901,6 +990,19 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
       const nk = judgeNextKey(NK, { winOf: winOfNK });
       ok("render", "next-key", !nk.length, `a tool with nextKey waits for the child: after a right answer nothing moves on by itself (4.5 s watched); once the celebration is over (the win animation; for a phase's last question the party and the closing line) the Next key (data-control next-key, 72 high, inside the stage, never disabled) appears and BLINKS (a ring round it, animated, its stroke opacity swings over 1 s; still under reduced motion), saying "Next", "Next phase" (after a phase's last question) or "Summary" (the last phase's last question: it opens the summary page), getState().nextKey is its label; a real click, toolApi.next() and the Enter key each move to the next question, phase or summary within a second and the key is gone; finished goes only after the summary opens (phase 1 from its first question${N > 1 ? ", and the last phase's last question" : ""}); the scripted runs keep the timers (props.autoNext)`, cap(nk));
     }
+  }
+  if (FK) {
+    const fk = judgeFontKit(FK);
+    ok("render", "font-kit", !fk.length, `the FONT KIT (runtime/fontkit.tsx): after document.fonts.ready the 500, 600 and 700 weights of '${FK.family || "C4 Poppins"}' are loaded and ${FK.sel || "the bubble's text"} is drawn in a custom (web) font${FK.fonts ? " (" + FK.fonts.map((f) => f.familyName + (f.isCustomFont ? ", web font" : ", system")).join("; ") + ")" : ""}, never a system fallback`, cap(fk));
+  }
+  if (AA) {
+    const aa = judgeActionAnim(AA, caps);
+    const rec = (AA.motion && AA.motion.rec) || {};
+    ok("render", "action-anim", !aa.length, `the act (api.act) through its own control (${(AA.tries || []).map((t) => (t.sel ? t.sel.replace(/^.*data-control=/, "").replace(/[\]"]/g, "") : "Enter")).join(", ")}), in one DevTools session: the tool is drawn ${rec.seen != null ? Math.round(rec.seen) + " ms" : "?"} after the press (300 at most), the pad locked, no pad or bar key live and getState().acting true while it plays, gone with the keys back ${rec.gone != null ? Math.round(rec.gone) + " ms" : "?"} after the press (${actLimit(caps)} ms at most); under reduced motion the same press draws nothing and ends at once`, cap(aa));
+  }
+  if (ND) {
+    const nd = judgeNavDots(ND, N);
+    ok("render", "nav-dots", !nd.length, `nav dots (class 4 r27): ${N} dots, buttons labelled "Step k of N"; in user and in AI mode a real click on the dot of phase 2${N > 2 ? " to " + N : ""}, then phase 1, starts THAT phase (question 1, nothing answered, its dot current), and the current dot after a right answer starts its phase again`, cap(nd));
   }
   if (freeGuardRt) {
     const nf = judgeNoFreeBetween(runs.filter((r) => D[r.key] && D[r.key].probe).map((r) => ({ key: r.key, probe: D[r.key].probe })), PR);

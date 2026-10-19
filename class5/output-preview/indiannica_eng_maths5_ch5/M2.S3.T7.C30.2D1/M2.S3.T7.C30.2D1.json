@@ -1,0 +1,1245 @@
+{
+  "slotId": "M2.S3.T7.C30.2D1",
+  "mediaId": "M2.S3.T7.C30.2D1",
+  "toolId": "expanded_form",
+  "title": "Expanded Form Splitter",
+  "component": "M2.S3.T7.C30.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch5",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch5_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_5/2dtool/M2.S3.T7.C30.2D1/M2.S3.T7.C30.2D1.tsx",
+  "description": "Split a decimal into its place value, decimal and fractional forms at once, and drag an expanded form back into standard form with zeros in the missing places.",
+  "conceptIds": [
+    "M2.S3.T7.C30",
+    "M2.S3.T7.C31",
+    "M2.S3.T7.C32",
+    "M2.S3.T7.C33"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        1086,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Write a decimal in place value, decimal and fractional expanded forms, and write an expanded form back in standard form, putting zeros in missing places.",
+    "look": "Digit tiles over a place strip at the top, three labelled rows of parts under them, and a tray of parts on the last phase.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Expanded Form Splitter' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x sixty-four, y 108 and 330 by 76, sits the running count: how many parts the decimal splits into, one for each digit that is not 0. It is never a score. The working area is 1086 by 528 at x sixty-four, y 202. The digit tiles run across the top of the working area at y 230, each 90 across, deep blue, with the large near-black point between Ones and Tenths and the place strip under them at y 330. The three rows run below at y 410, y 500 and y 590, each labelled at x 110 with its form: Place value form, Decimal form, Fractional form. Each part slides down from the digit it came from and lands in its row joined by plus signs; the Place value form row opens with the word is. A zero digit's part drops a little way and fades to half strength beside the words adds nothing. The Join button sits at the right end of each row, and the total it gives lands green under the row. On the last phase the tray runs along y 660, and a place left empty between parts lights grey and takes a 0 labelled Place holder. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is twelve number keys three across with a point key, a plus key and a fraction bar key, for setting a decimal or typing a part or a standard form into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the tools of this chapter share them. A decimal or fraction the question gives is deep blue, with the shaded parts that show it. The result the working reaches, a decimal, a fraction, a sum, a difference or what is left, is green, with its shaded parts. Ten of one place traded for one of the next, a carry in adding or a trade in taking away, is vermilion. A zero written after the point to line decimals up is violet, and so is the point written after a whole number before those zeros. The part taken away, used or poured out is rose. The digit, place or step being worked on now, and the first place where two decimals differ, are amber. A zero holding a place open inside a number is grey, and nothing else on the stage is ever grey. An unshaded part stays warm white inside its near-black outline, the decimal point is near-black ink, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of them, and each of those readings survives with the colour taken away, because a part is told by its written label, Given, Answer, Carry, Trade, Added zero, Taken away, Left or Place holder, before it is told by its colour.",
+    "finish": "The card shows the last decimal with its three expanded forms under it, each joined back up to the same number.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the row reads 6.83 is 6 ones + 8 tenths + 3 hundredths",
+        "does": "taps Split and names each part as it slides down: ones, tenths, hundredths",
+        "goal": "a decimal is written by its places: so many ones, tenths and hundredths",
+        "says": "Each digit takes its place name with it. Say them in order.",
+        "check": "Away from the screen: in a number with three digits after the point, what is the last place called?",
+        "feels": "each digit carrying its place name down with it",
+        "hands": "Write a decimal on a slip, and under each digit write its place name. Then write the number again as so many ones plus so many tenths plus so many hundredths.",
+        "tries": "First rung: name the place of the first digit after the point. Second rung: name the next. Third rung: the same task with one digit after the point, before longer decimals return.",
+        "wrong": [
+          {
+            "why": "the places after the point are new, and their order is easy to slip",
+            "move": "names a digit by the place of its neighbour",
+            "screen": "the part slides back up to its tile, and the place strip's name under it lights amber"
+          },
+          {
+            "why": "the decimal form uses one, and the rows look alike",
+            "move": "writes the place value form with an equals sign and numbers only",
+            "screen": "the Place value form row's opening word is lights, and each part shows its place name beside its digit"
+          }
+        ],
+        "screen": "6.83 on the tiles and the Place value form row empty",
+        "soWhat": "a decimal is written by its places: so many ones, tenths and hundredths",
+        "concept": "Place value form"
+      },
+      {
+        "n": 2,
+        "win": "the row reads 6.83 = 6 + 0.8 + 0.03, and the total lands green under it",
+        "does": "writes what each part is worth, then taps Join to add the row back up",
+        "goal": "a decimal is the sum of what each of its digits is worth, written as decimals",
+        "says": "What is each digit worth? Add them back up.",
+        "check": "Away from the screen: what is the tenths digit of a number worth, written as a decimal?",
+        "feels": "the parts adding back up to exactly the number they came from",
+        "hands": "Write what each digit of a decimal is worth on its own slip. Add the slips with the points in one line and check the total is the decimal.",
+        "tries": "First rung: write the worth of the whole number part. Second rung: write the worth of the tenths digit. Third rung: the same task with one digit after the point.",
+        "wrong": [
+          {
+            "why": "the digits are the numbers that are written",
+            "move": "writes each digit as its face value",
+            "screen": "each part is redrawn with its place's zeros or point, sliding down from its tile, and the child's row stays beside it"
+          },
+          {
+            "why": "tenths and hundredths both start with a zero and a point",
+            "move": "puts the point in the wrong place in a part after the point",
+            "screen": "the part's place name lights under its tile, and the digits of the part are counted after its point"
+          }
+        ],
+        "screen": "the same tiles and the Decimal form row empty",
+        "soWhat": "a decimal is the sum of what each of its digits is worth, written as decimals",
+        "concept": "Decimal form"
+      },
+      {
+        "n": 3,
+        "win": "the zero fades out, and the row reads 5.08 = 5 + 8/100",
+        "does": "splits it, watches the zero fall out, and writes the hundredths as a fraction",
+        "goal": "each place after the point is a fraction over 10, 100 or 1000, and a zero digit adds nothing",
+        "says": "The zero adds nothing. Where does the eight go?",
+        "check": "Away from the screen: why can a zero digit be left out of an expanded form?",
+        "feels": "a zero fading away while the digits after it keep their places",
+        "hands": "Write each digit after the point of a decimal as a fraction over 10, 100 or 1000, by its place. Leave out any zero digit, and check the sum.",
+        "tries": "First rung: write the tenths part as a fraction. Second rung: write the next part. Third rung: the same task with no zero digit, before a zero returns.",
+        "wrong": [
+          {
+            "why": "the zero dropped out, so the digit after it seems to move up a place",
+            "move": "gives a digit after a zero the wrong denominator",
+            "screen": "the zero tile stays in its place, faded, and the next digit's place name lights amber with its own denominator"
+          },
+          {
+            "why": "the first part after the point was over 10",
+            "move": "writes every part over 10",
+            "screen": "each part slides down from its tile with its place name, and the denominator for that place is written under it"
+          }
+        ],
+        "screen": "5.08 on the tiles, its zero tile outlined in amber",
+        "soWhat": "each place after the point is a fraction over 10, 100 or 1000, and a zero digit adds nothing",
+        "concept": "Fractional form"
+      },
+      {
+        "n": 4,
+        "win": "the tens and the hundredths light grey and take a 0, and 307.902 is read in green",
+        "does": "drags each part into its place and watches the empty places fill",
+        "goal": "an expanded form goes back to standard form with a 0 in every missing place",
+        "says": "Put each part in its place. What goes where nothing is?",
+        "check": "Away from the screen: an expanded form has hundreds, ones and tenths but no tens. What goes in the tens place?",
+        "feels": "a grey zero filling a place so the rest can sit right",
+        "hands": "Write the parts of an expanded form on cards. Lay each card in its place on a place strip drawn on paper, and put a zero card in every place nobody filled.",
+        "tries": "First rung: place the whole number part. Second rung: place the tenths part. Third rung: the same task with no missing place, before a missing place returns.",
+        "wrong": [
+          {
+            "why": "only the parts given seem to need digits",
+            "move": "writes the digits side by side with no zero in the missing place",
+            "screen": "the empty place between two parts lights grey and a 0 drops into it, and the digits after it slide back to their own places"
+          },
+          {
+            "why": "it is the next part after the tenths, so it seems to go next",
+            "move": "puts a thousandths part in the hundredths place",
+            "screen": "the part slides to the place its denominator names, and the place it skipped lights grey"
+          }
+        ],
+        "screen": "the parts 300, 7, 9/10 and 2/1000 in the tray, and an empty place strip",
+        "soWhat": "an expanded form goes back to standard form with a 0 in every missing place",
+        "concept": "Back to standard form"
+      }
+    ],
+    "delight": "On the second phase, when the child taps Join, the parts of the row slide back up into their tiles one after another with a soft click each, and the decimal lights green as the last one lands.",
+    "opening": "Every mount comes up already furnished for its phase with the tiles in place. On the first three phases a decimal sits on the tiles over the place strip, and the row for that phase's form is empty below it. On the fourth the place strip is empty and the parts of an expanded form wait in the tray. One thing moves, once: the Split button, or the first part in the tray, gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any decimal split into all three forms and joined back up, and any expanded form built back from the tray. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on place value form, decimal form, fractional form and standard form.",
+    "voiceLines": [
+      "One decimal, ready to be split three ways.",
+      "Each digit takes its place name with it. Say them in order.",
+      "What is each digit worth? Add them back up.",
+      "The zero adds nothing. Where does the eight go?",
+      "Put each part in its place. What goes where nothing is?",
+      "A new decimal. Say what each digit is worth first.",
+      "Free play. Split any decimal, or build one back.",
+      "Look at which digit each part came from.",
+      "Three forms, one number, and it went back together."
+    ],
+    "observations": [
+      {
+        "why": "each part is what one digit is worth in its place.",
+        "soWhat": "an expanded form lists what each digit is worth.",
+        "observe": "Every part slid down from exactly one digit."
+      },
+      {
+        "why": "they say the same worths in words, as decimals and as fractions.",
+        "soWhat": "a decimal expands three ways, and every form adds back up to it.",
+        "observe": "The three rows looked different and joined back up to the same number."
+      },
+      {
+        "why": "a zero in a place is worth nothing.",
+        "soWhat": "a zero digit adds nothing, so its place can be left out.",
+        "observe": "A zero digit dropped out of every row."
+      },
+      {
+        "why": "without a 0 there, every digit after it would slide one place along.",
+        "soWhat": "going back to standard form, a missing place gets a 0.",
+        "observe": "Going back, an empty place lit grey before the number could be read."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "6.83 on the tiles and the Place value form row empty",
+        "win": "the row reads 6.83 is 6 ones + 8 tenths + 3 hundredths",
+        "traceback": "The hidden place names light up one by one from the point, and the asked part's name is written into the row.",
+        "ladder": [
+          "Count the places after the point, starting next to it.",
+          "Places before the point count whole ones; places after it count parts of one.",
+          "Start at the point and count the places to the left."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the same tiles and the Decimal form row empty",
+        "win": "the row reads 6.83 = 6 + 0.8 + 0.03, and the total lands green under it",
+        "traceback": "The places after the point light up one by one up to the asked digit, and its worth is written on the Decimal card.",
+        "ladder": [
+          "Find the place the 5 stands in before you write its worth.",
+          "Look at which side of the point the 1 is on.",
+          "Step from the point to the 8, and let the zero take a step too."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "5.08 on the tiles, its zero tile outlined in amber",
+        "win": "the zero fades out, and the row reads 5.08 = 5 + 8/100",
+        "traceback": "Each place after the point shows its denominator, the zero holding its place, and the asked part is written on the Fraction card.",
+        "ladder": [
+          "Count the places after the point up to the 3, the zero too.",
+          "The bottom number depends on the place the 4 is in.",
+          "Start at the point and step right, one place at a time, to the 1."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the parts 300, 7, 9/10 and 2/1000 in the tray, and an empty place strip",
+        "win": "the tens and the hundredths light grey and take a 0, and 307.902 is read in green",
+        "traceback": "Every part slides to the place it names, each empty place takes a grey 0, and the number is written on the Decimal card.",
+        "ladder": [
+          "Read the strip from the left, one digit for each place.",
+          "Each part has one digit, so give each its own place.",
+          "Look along the strip for a place with no digit in it."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "places": [
+      "hundreds",
+      "tens",
+      "ones",
+      "tenths",
+      "hundredths",
+      "thousandths"
+    ],
+    "wholePlaces": 3,
+    "decimalPlaces": 3,
+    "strip": {
+      "lead": 34,
+      "evenPitchUpTo": 214,
+      "pointGap": 24,
+      "room": 1074
+    },
+    "warmUps": {
+      "1": "6.83",
+      "2": "6.83",
+      "3": "5.08",
+      "4": "300 + 7 + 9/10 + 2/1000"
+    },
+    "rows": [
+      "Place value form",
+      "Decimal form",
+      "Fractional form"
+    ],
+    "tray": "phase 4 and Free play's Build: the parts of an expanded form",
+    "cards": {
+      "decimal": "phases 2 and 4: [whole] . [after the point]",
+      "fraction": "phase 3: numerator over denominator"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T7.C30:EF1",
+        "kind": "pv",
+        "dec": "9.47",
+        "col": 4,
+        "win": "Yes, the 7 is 7 hundredths.",
+        "answer": "hundredths",
+        "near": "tenths",
+        "ladder": [
+          "The 7 is two places after the point, so count two places.",
+          "One place after the point is tenths, and the next place is ten times smaller."
+        ],
+        "winMs": 2400
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T7.C30:1",
+        "kind": "pv",
+        "dec": "2.56",
+        "col": 3,
+        "win": "Right, the 5 is 5 tenths.",
+        "answer": "tenths",
+        "near": "tens",
+        "ladder": [
+          "The 5 is just after the point, where the place names end in ths.",
+          "Ten of the first place after the point make one whole one."
+        ],
+        "winMs": 2400
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T7.C30:5",
+        "kind": "pv",
+        "dec": "60.35",
+        "col": 1,
+        "win": "Yes, the 6 is 6 tens.",
+        "answer": "tens",
+        "near": "ones",
+        "ladder": [
+          "The 0 holds the ones place, and the 6 is one place to its left.",
+          "Say the place names aloud from the ones to the left."
+        ],
+        "winMs": 2400
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T7.C31:EF2",
+        "kind": "dec",
+        "dec": "52.38",
+        "col": 1,
+        "answer": 50,
+        "near": 5,
+        "win": "Yes, the 5 is worth 50.",
+        "ladder": [
+          "The 2 is in the ones; the 5 is the next place to the left.",
+          "Each place to the left is worth ten times the place on its right."
+        ],
+        "winMs": 2400
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T7.C31:2",
+        "kind": "dec",
+        "dec": "3.19",
+        "col": 3,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "1"
+        ],
+        "near": "1|",
+        "win": "Right, the 1 is worth 0.1.",
+        "ladder": [
+          "Count the places after the point up to the 1.",
+          "The 1 is one of ten equal parts of a whole one: how do you write that part?"
+        ],
+        "winMs": 2400
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T7.C31:6",
+        "kind": "dec",
+        "dec": "107.908",
+        "col": 5,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "008"
+        ],
+        "near": "0|08",
+        "win": "Yes, that 8 is worth 0.008.",
+        "ladder": [
+          "Each step you took is one digit after the point in its worth.",
+          "Which places come between the point and the 8, and what is in each?"
+        ],
+        "winMs": 2400
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T7.C32:EF3",
+        "kind": "frac",
+        "dec": "5.803",
+        "col": 5,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          3,
+          1000
+        ],
+        "near": "3|100",
+        "win": "Yes, the 3 is 3 thousandths.",
+        "ladder": [
+          "The zero holds the hundredths place, so the 3 is one place further on.",
+          "Each place further from the point adds one more 0 to the bottom number."
+        ],
+        "winMs": 2400
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T7.C32:4",
+        "kind": "frac",
+        "dec": "1.84",
+        "col": 4,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          4,
+          100
+        ],
+        "near": "4|10",
+        "win": "Right, the 4 is 4 hundredths.",
+        "ladder": [
+          "Count from the point to the 4.",
+          "Tenths have one 0 in the bottom number: how many does the 4's place need?"
+        ],
+        "winMs": 2400
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T7.C32:8",
+        "kind": "frac",
+        "dec": "20.013",
+        "col": 4,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          1,
+          100
+        ],
+        "near": "1|10",
+        "win": "Yes, the 1 is 1 hundredth.",
+        "ladder": [
+          "The zero still holds the tenths place, so count its place too.",
+          "Tenths sit over 10: what goes under the place where the 1 is?"
+        ],
+        "winMs": 2400
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T7.C33:EF4",
+        "kind": "std",
+        "given": [
+          {
+            "n": 400
+          },
+          {
+            "n": 6
+          },
+          {
+            "f": [
+              1,
+              10
+            ]
+          },
+          {
+            "f": [
+              4,
+              1000
+            ]
+          }
+        ],
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "406",
+          "104"
+        ],
+        "near": "406|14",
+        "win": "Yes, two zeros hold the empty places.",
+        "ladder": [
+          "The 4 thousandths sits three places after the point.",
+          "An empty place between two digits still needs a digit to hold it."
+        ],
+        "winMs": 2600
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T7.C33:3",
+        "kind": "std",
+        "given": [
+          {
+            "n": 8
+          },
+          {
+            "d": "0.4"
+          },
+          {
+            "d": "0.02"
+          }
+        ],
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "8",
+          "42"
+        ],
+        "near": "8|402",
+        "win": "Right, no place was empty this time.",
+        "ladder": [
+          "The 2 of 0.02 is two places after the point.",
+          "Check every place from the first digit to the last: does each hold one?"
+        ],
+        "winMs": 2500
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T7.C33:7",
+        "kind": "std",
+        "given": [
+          {
+            "n": 50
+          },
+          {
+            "n": 3
+          },
+          {
+            "f": [
+              8,
+              100
+            ]
+          },
+          {
+            "f": [
+              1,
+              1000
+            ]
+          }
+        ],
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "53",
+          "081"
+        ],
+        "near": "53|81",
+        "win": "Yes, a 0 holds the tenths place open.",
+        "ladder": [
+          "Find each part's place first, then look at the places between them.",
+          "How many places lie between the 3 and the 8, and what is in each?"
+        ],
+        "winMs": 2600
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The hidden place names light up one by one from the point, and the asked part's name is written into the row.",
+      "Phase 2: The places after the point light up one by one up to the asked digit, and its worth is written on the Decimal card.",
+      "Phase 3: Each place after the point shows its denominator, the zero holding its place, and the asked part is written on the Fraction card.",
+      "Phase 4: Every part slides to the place it names, each empty place takes a grey 0, and the number is written on the Decimal card."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "One decimal, ready to be split three ways.",
+    "onFreePlay": "Free play: tap a digit to change it, then tap Split or Build.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Three forms, one number, and it went back together.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T7.C30:EF1",
+            "worked": false,
+            "kind": "pv",
+            "planQuestion": "Write 9.47 in place value form.",
+            "question": {
+              "en": "Finish the place value form of 9.47: the 7 is 7 what?"
+            },
+            "ask": {
+              "en": "The 7 is 7 what?"
+            },
+            "answer": "hundredths",
+            "planAnswer": "9.47 is 9 ones + 4 tenths + 7 hundredths",
+            "choices": [
+              "hundredths",
+              "tenths",
+              "thousandths"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T7.C30:1",
+            "worked": false,
+            "kind": "pv",
+            "planQuestion": "Write 2.56 in place value form.",
+            "question": {
+              "en": "Which place is the 5 of 2.56 in?"
+            },
+            "ask": {
+              "en": "The 5 is 5 what?"
+            },
+            "answer": "tenths",
+            "planAnswer": "2.56 is 2 ones + 5 tenths + 6 hundredths",
+            "choices": [
+              "tens",
+              "hundredths",
+              "tenths"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T7.C30:5",
+            "worked": false,
+            "kind": "pv",
+            "planQuestion": "Write 60.35 in place value form.",
+            "question": {
+              "en": "Name the place of the 6 in 60.35."
+            },
+            "ask": {
+              "en": "The 6 is 6 what?"
+            },
+            "answer": "tens",
+            "planAnswer": "60.35 is 6 tens + 3 tenths + 5 hundredths. The 0 ones add nothing, so they can be left out",
+            "choices": [
+              "hundreds",
+              "tens",
+              "ones"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T7.C31:EF2",
+            "worked": false,
+            "kind": "dec",
+            "planQuestion": "Write 52.38 in decimal form.",
+            "question": {
+              "en": "In the decimal form of 52.38, what is the 5 worth?"
+            },
+            "ask": {
+              "en": "The 5 is worth?"
+            },
+            "answer": 50,
+            "planAnswer": "52.38 = 50 + 2 + 0.3 + 0.08",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T7.C31:2",
+            "worked": false,
+            "kind": "dec",
+            "planQuestion": "Write 3.19 in decimal form.",
+            "question": {
+              "en": "What does the 1 in 3.19 add to the sum?"
+            },
+            "ask": {
+              "en": "The 1 is worth?"
+            },
+            "answer": [
+              "0",
+              "1"
+            ],
+            "planAnswer": "3.19 = 3 + 0.1 + 0.09",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T7.C31:6",
+            "worked": false,
+            "kind": "dec",
+            "planQuestion": "Write 107.908 in decimal form.",
+            "question": {
+              "en": "107.908 ends in an 8: what is it worth?"
+            },
+            "ask": {
+              "en": "The 8 is worth?"
+            },
+            "answer": [
+              "0",
+              "008"
+            ],
+            "planAnswer": "107.908 = 100 + 7 + 0.9 + 0.008",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T7.C32:EF3",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "Write 5.803 in fractional form.",
+            "question": {
+              "en": "In the fractional form of 5.803, which fraction is the 3?"
+            },
+            "ask": {
+              "en": "The 3 as a fraction?"
+            },
+            "answer": [
+              3,
+              1000
+            ],
+            "planAnswer": "5.803 = 5 + 8/10 + 3/1000",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T7.C32:4",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "Write 1.84 in fractional form.",
+            "question": {
+              "en": "Which fraction does the 4 of 1.84 stand for?"
+            },
+            "ask": {
+              "en": "The 4 as a fraction?"
+            },
+            "answer": [
+              4,
+              100
+            ],
+            "planAnswer": "1.84 = 1 + 8/10 + 4/100",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T7.C32:8",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "Write 20.013 in fractional form.",
+            "question": {
+              "en": "Write the 1 in 20.013 as a fraction."
+            },
+            "ask": {
+              "en": "The 1 as a fraction?"
+            },
+            "answer": [
+              1,
+              100
+            ],
+            "planAnswer": "20.013 = 20 + 1/100 + 3/1000",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T7.C33:EF4",
+            "worked": false,
+            "kind": "std",
+            "planQuestion": "Write 400 + 6 + 1/10 + 4/1000 in standard form.",
+            "question": {
+              "en": "Put each part in its place, then write the number on the card."
+            },
+            "ask": {
+              "en": "Standard form?"
+            },
+            "answer": [
+              "406",
+              "104"
+            ],
+            "planAnswer": "406.104",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T7.C33:3",
+            "worked": false,
+            "kind": "std",
+            "planQuestion": "What is 8 + 0.4 + 0.02 in standard form?",
+            "question": {
+              "en": "Build 8 + 0.4 + 0.02 and write its standard form."
+            },
+            "ask": {
+              "en": "Standard form?"
+            },
+            "answer": [
+              "8",
+              "42"
+            ],
+            "planAnswer": "8.42",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T7.C33:7",
+            "worked": false,
+            "kind": "std",
+            "planQuestion": "Write 50 + 3 + 8/100 + 1/1000 in standard form.",
+            "question": {
+              "en": "Last one: put these parts back together as one number."
+            },
+            "ask": {
+              "en": "Standard form?"
+            },
+            "answer": [
+              "53",
+              "081"
+            ],
+            "planAnswer": "53.081. There are no tenths, so a 0 goes in the tenths place",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "expanded_form",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "expanded_form",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Place value form",
+        "conceptId": "M2.S3.T7.C30",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S3.T7.C30:EF1",
+          "M2.S3.T7.C30:1",
+          "M2.S3.T7.C30:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Decimal form",
+        "conceptId": "M2.S3.T7.C31",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S3.T7.C31:EF2",
+          "M2.S3.T7.C31:2",
+          "M2.S3.T7.C31:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Fractional form",
+        "conceptId": "M2.S3.T7.C32",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S3.T7.C32:EF3",
+          "M2.S3.T7.C32:4",
+          "M2.S3.T7.C32:8"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Back to standard form",
+        "conceptId": "M2.S3.T7.C33",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S3.T7.C33:EF4",
+          "M2.S3.T7.C33:3",
+          "M2.S3.T7.C33:7"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "decimal",
+    "null",
+    "split",
+    "null",
+    "freeMode",
+    "zeros",
+    "null",
+    "c",
+    "tray",
+    "g",
+    "j",
+    "g",
+    "placed",
+    "place",
+    "part",
+    "label"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), decimal, null, split, null, freeMode, zeros, null, c, tray, g, j, g, placed, place, part, label",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "expanded_form"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T7.C30.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "One decimal, ready to be split three ways."
+    },
+    {
+      "en": "Each digit takes its place name with it. Say them in order."
+    },
+    {
+      "en": "What is each digit worth? Add them back up."
+    },
+    {
+      "en": "The zero adds nothing. Where does the eight go?"
+    },
+    {
+      "en": "Put each part in its place. What goes where nothing is?"
+    },
+    {
+      "en": "A new decimal. Say what each digit is worth first."
+    },
+    {
+      "en": "Free play. Split any decimal, or build one back."
+    },
+    {
+      "en": "Look at which digit each part came from."
+    },
+    {
+      "en": "Three forms, one number, and it went back together."
+    }
+  ],
+  "build": {
+    "source": "8f5d1930:634897",
+    "runtime": "class5/runtime/frozen/r64/runtime.tsx",
+    "runtimeVersion": "r64",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T14:06:04.346Z",
+    "checks": {
+      "pass": 92,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-18T14:06:04.231Z"
+    },
+    "tsxBytes": 558172,
+    "tsxMd5": "7a794a772b695a5f858d649fcbe8ca1c"
+  }
+}

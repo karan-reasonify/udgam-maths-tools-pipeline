@@ -12,6 +12,15 @@ import os from "node:os";
 import path from "node:path";
 import { execFile, execFileSync } from "node:child_process";
 
+function playwrightShells() {
+  const root = path.join(os.homedir(), ".cache/ms-playwright");
+  try {
+    return fs.readdirSync(root).filter((d) => /^chromium_headless_shell-\d+$/.test(d))
+      .sort((a, b) => Number(b.split("-")[1]) - Number(a.split("-")[1]))
+      .map((d) => path.join(root, d, "chrome-headless-shell-linux64/chrome-headless-shell"));
+  } catch { return []; }
+}
+
 export function chromePath() {
   const candidates = [
     process.env.CHROME_PATH,
@@ -20,6 +29,8 @@ export function chromePath() {
     path.join(os.homedir(), "AppData/Local/Google/Chrome/Application/chrome.exe"),
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     "/usr/bin/google-chrome",
+    /* Linux with no CHROME_PATH (2026-10-17): Playwright's newest chrome-headless-shell; /opt/google/chrome hangs on --dump-dom */
+    ...playwrightShells(),
   ].filter(Boolean);
   return candidates.find((p) => fs.existsSync(p)) || null;
 }

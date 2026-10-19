@@ -1,0 +1,1147 @@
+{
+  "slotId": "M1.S1.T3.C10.2D1",
+  "mediaId": "M1.S1.T3.C10.2D1",
+  "toolId": "hundred_grid",
+  "title": "Hundred Grid Shader",
+  "component": "M1.S1.T3.C10.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch5",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch5_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_5/2dtool/M1.S1.T3.C10.2D1/M1.S1.T3.C10.2D1.tsx",
+  "description": "Cut a tenth into hundredths and a hundredth into thousandths, shade any squares of the right count, and read a grid by columns and squares.",
+  "conceptIds": [
+    "M1.S1.T3.C10",
+    "M1.S1.T3.C11",
+    "M1.S1.T3.C12",
+    "M1.S1.T3.C13"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Read and shade hundredths on a hundred grid, writing them as fractions and as decimals, and see thousandths come from cutting a hundredth into ten.",
+    "look": "A full ten by ten grid at the left, the Columns and squares counter under it, a fraction card and a decimal card at its right, and a zoomed square on the last phase.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Hundred Grid Shader' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x sixty-four, y 108 and 330 by 76, sits the running count: how many squares are shaded, rising as the child drags and falling as it clears. On the last phase it counts thin slices instead. It is never a score. The working area is 1086 by 528 at x sixty-four, y 202. The grid is 480 by 480 at x 110, y 226, ten columns of ten squares, every square 48 across, ruled in near-black and labelled Whole above its top edge. Shaded squares are deep blue; unshaded squares stay warm white. The lifted column stands at x 640, y 226, its ten squares spread with small gaps, labelled 1 tenth above and 1 hundredth on its top square. The Columns and squares counter sits under the grid at y 716 in ink. The fraction card and the decimal card stand at x 900, y 300, one above the other, turning green when the child's answer matches the shading. On the last phase the zoomed square is drawn as a strip 400 long and 60 tall at x 640, y 520, cut into ten thin slices by near-black lines, each labelled 1 thousandth, with a fine line back to the square it came from. The Cut column, Scatter and Zoom buttons sit in a row at x 640, y 440. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is twelve number keys three across with a point key and a fraction bar key, for setting a number of hundredths or thousandths, or for typing a fraction or a decimal into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the tools of this chapter share them. A decimal or fraction the question gives is deep blue, with the shaded parts that show it. The result the working reaches, a decimal, a fraction, a sum, a difference or what is left, is green, with its shaded parts. Ten of one place traded for one of the next, a carry in adding or a trade in taking away, is vermilion. A zero written after the point to line decimals up is violet, and so is the point written after a whole number before those zeros. The part taken away, used or poured out is rose. The digit, place or step being worked on now, and the first place where two decimals differ, are amber. A zero holding a place open inside a number is grey, and nothing else on the stage is ever grey. An unshaded part stays warm white inside its near-black outline, the decimal point is near-black ink, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of them, and each of those readings survives with the colour taken away, because a part is told by its written label, Given, Answer, Carry, Trade, Added zero, Taken away, Left or Place holder, before it is told by its colour.",
+    "finish": "The card shows the last grid beside its fraction over 100 and its decimal, with one square lifted and sliced into thousandths.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the card shows 1/100 and 0.01, and the column reads ten hundredths make one tenth",
+        "does": "taps Cut column, counts the squares in the lifted column, and shades one square",
+        "goal": "a tenth cut into ten equal parts gives hundredths, and 10 hundredths make 1 tenth",
+        "says": "One column is one tenth. Cut it into ten. What is one square?",
+        "check": "Away from the screen: which is smaller, one tenth of a chocolate bar or one hundredth of it? How do you know?",
+        "feels": "a column falling apart into ten little squares",
+        "hands": "Cut a paper square into ten equal strips, then cut one strip into ten small squares. Lay the small squares beside the whole square and count how many would cover it.",
+        "tries": "First rung: count the squares in one column. Second rung: count the columns in the grid. Third rung: the same task on a column already lifted out, before the whole grid returns.",
+        "wrong": [
+          {
+            "why": "the column was a tenth a moment ago, and the square came from it",
+            "move": "calls one square a tenth",
+            "screen": "the lifted column's ten squares are numbered one to ten, and the words 1 tenth stay over the whole column while one square is lit amber"
+          },
+          {
+            "why": "a bigger number usually means a bigger amount",
+            "move": "says a hundredth is bigger than a tenth, because a hundred is bigger than ten",
+            "screen": "one square and one column are drawn side by side at the same scale, and the column is seen to hold ten of the squares"
+          }
+        ],
+        "screen": "the full grid with one column outlined in amber, and the column's words 1 tenth",
+        "soWhat": "a tenth cut into ten equal parts gives hundredths, and 10 hundredths make 1 tenth",
+        "concept": "One hundredth"
+      },
+      {
+        "n": 2,
+        "win": "the counter shows three columns and eight squares, and the card reads 38/100 and 0.38",
+        "does": "counts the full columns, then the single squares, and types the decimal",
+        "goal": "a shaded grid is read as full columns of ten and single squares, over 100",
+        "says": "Count the full columns first. Then count the squares left over.",
+        "check": "Away from the screen: how many squares are in four full columns and two more?",
+        "feels": "whole columns counting ten at a time",
+        "hands": "Colour some full columns and some single squares on a hundred grid drawn on squared paper. Count the columns in tens, then the single squares, and write the total over one hundred.",
+        "tries": "First rung: count the full columns only. Second rung: count the single squares only. Third rung: the same task with no single squares, before the mixed grid returns.",
+        "wrong": [
+          {
+            "why": "columns and squares look like two kinds of thing, like ones and tenths",
+            "move": "reads the full columns as ones and the single squares as tenths",
+            "screen": "each full column is labelled ten squares, and the counter adds the columns in tens before the single squares join them"
+          },
+          {
+            "why": "counting one at a time feels safest",
+            "move": "counts every square one by one and loses count",
+            "screen": "the counter lights one full column at a time and writes its ten, so the child's count so far is kept and carried on from there"
+          }
+        ],
+        "screen": "a grid with 3 full columns and 8 more squares shaded, and the counter hidden",
+        "soWhat": "a shaded grid is read as full columns of ten and single squares, over 100",
+        "concept": "Reading a hundred grid"
+      },
+      {
+        "n": 3,
+        "win": "six squares shaded, scattered to new places, and the card still reads 0.06",
+        "does": "shades squares until the count matches, then taps Scatter and watches the card",
+        "goal": "any squares of the right count show a number of hundredths",
+        "says": "Shade the right number of squares. Does it matter which ones?",
+        "check": "Away from the screen: two friends shade the same decimal in different squares. Can both be right?",
+        "feels": "the squares drifting about while the number stays still",
+        "hands": "Draw two hundred grids on squared paper. Shade the same number of squares on each, in two different patterns. Ask a partner whether they show the same decimal.",
+        "tries": "First rung: shade one square and read the card. Second rung: shade one full column and read it. Third rung: the same task with fewer hundredths, before the full count returns.",
+        "wrong": [
+          {
+            "why": "columns are quicker to shade than single squares",
+            "move": "shades full columns for a number of hundredths, one column for each unit",
+            "screen": "the counter reads the shading in hundredths, and a second grid beside it shades the asked number of single squares, so the two amounts are seen"
+          },
+          {
+            "why": "a drag runs on faster than counting",
+            "move": "drags past the count and shades one square too many",
+            "screen": "the counter reads one more than the question card, the last square shaded is lit amber, and nothing is cleared"
+          }
+        ],
+        "screen": "an empty grid and the question card asking for 0.06",
+        "soWhat": "any squares of the right count show a number of hundredths",
+        "concept": "Shading hundredths"
+      },
+      {
+        "n": 4,
+        "win": "four slices shaded, and the card reads 4/1000 and 0.004",
+        "does": "taps Zoom, counts the ten thin slices, and shades some of them",
+        "goal": "a hundredth cut into ten equal parts gives thousandths, and 10 thousandths make 1 hundredth",
+        "says": "Cut one square into ten. Each thin slice is one thousandth.",
+        "check": "Away from the screen: how many thousandths make one hundredth, and how many make one tenth?",
+        "feels": "one tiny square opening up into ten thinner slices",
+        "hands": "Draw one large square on paper to stand for one hundredth, and cut it into ten thin equal strips. Colour some strips and write how many thousandths they are.",
+        "tries": "First rung: zoom one square and count its slices. Second rung: shade one slice and read the card. Third rung: the same task with the fraction card lit first.",
+        "wrong": [
+          {
+            "why": "hundredths had two places, and the habit carries on",
+            "move": "writes a number of thousandths with only two places after the point",
+            "screen": "the zoomed strip's slices are counted, and the decimal card lights a third place after the point in amber, filling the empty place with a grey 0"
+          },
+          {
+            "why": "the word sounds like a big number",
+            "move": "thinks a thousandth is a thousand squares",
+            "screen": "the fine line from the zoomed strip back to its one square pulses, and the slice is seen to be a tenth of that square"
+          }
+        ],
+        "screen": "the grid with one square outlined in amber and the Zoom button lit",
+        "soWhat": "a hundredth cut into ten equal parts gives thousandths, and 10 thousandths make 1 hundredth",
+        "concept": "Thousandths"
+      }
+    ],
+    "delight": "On the third phase, when the child taps Scatter, the shaded squares lift off the grid, drift about like leaves and settle in new places, and the decimal card stays exactly as it was.",
+    "opening": "Every mount comes up already furnished for its phase with the grid in place. On the first phase the grid is empty with one column outlined in amber and the words one tenth above it. On the second a shading is already on the grid and the Columns and squares counter is hidden. On the third the grid is empty and the question card names a number of hundredths. On the fourth one square is outlined in amber and the Zoom button is lit. One thing moves, once: the outlined column or square, or the grid's first square, gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any shading of the grid, scattered or in columns, and any square zoomed and sliced. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on hundredths of a tenth, reading and shading grids, and thousandths.",
+    "voiceLines": [
+      "A hundred small squares, all the same size.",
+      "One column is one tenth. Cut it into ten. What is one square?",
+      "Count the full columns first. Then count the squares left over.",
+      "Shade the right number of squares. Does it matter which ones?",
+      "Cut one square into ten. Each thin slice is one thousandth.",
+      "A new grid. Count by columns of ten.",
+      "Free play. Shade, scatter and zoom as you like.",
+      "Count the full columns first, then the single squares.",
+      "Tenths into hundredths, and hundredths into thousandths."
+    ],
+    "observations": [
+      {
+        "why": "a column is one tenth of the grid, and the grid is cut into a hundred equal squares.",
+        "soWhat": "10 hundredths make 1 tenth.",
+        "observe": "One lifted column split into exactly ten squares."
+      },
+      {
+        "why": "each full column is ten squares, so the columns count the tens.",
+        "soWhat": "a shaded grid is read as full columns of ten and single squares, over 100.",
+        "observe": "Counting by full columns first was faster than counting every square."
+      },
+      {
+        "why": "the cards count how many squares are shaded, not which ones.",
+        "soWhat": "any squares of the right count show a number of hundredths.",
+        "observe": "After Scatter the squares were in new places, and the cards did not change."
+      },
+      {
+        "why": "a hundredth cut into ten equal parts gives thousandths.",
+        "soWhat": "10 thousandths make 1 hundredth.",
+        "observe": "One zoomed square split into ten thin slices."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the full grid with one column outlined in amber, and the column's words 1 tenth",
+        "win": "the card shows 1/100 and 0.01, and the column reads ten hundredths make one tenth",
+        "traceback": "The cut column's squares are numbered one by one under 1 tenth, ending on 10 hundredths; a tenth shaded in hundredths fills one column, numbered; one square is ringed beside its column and the cards end on 1/100 and 0.01.",
+        "ladder": [
+          "Count the squares in the cut column.",
+          "Count the squares you shaded.",
+          "Three single squares are far fewer than a tenth.",
+          "Look at the cut column and the grid again.",
+          "Every small square of the grid is the same size."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a grid with 3 full columns and 8 more squares shaded, and the counter hidden",
+        "win": "the counter shows three columns and eight squares, and the card reads 38/100 and 0.38",
+        "traceback": "Each full column is lit and labelled 10 as the counter adds in tens, the single squares join one by one, and the cards end on the hundredths as a fraction and a decimal.",
+        "ladder": [
+          "A full column is ten hundredths, not one whole.",
+          "Each column holds ten squares, so it is not one hundredth.",
+          "The bottom number counts every square of the grid.",
+          "Look for the columns that are full to the bottom.",
+          "Every square of the grid is one hundredth."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "an empty grid and the question card asking for 0.06",
+        "win": "six squares shaded, scattered to new places, and the card still reads 0.06",
+        "traceback": "The counter reads the child's shading in hundredths, a second grid shades the asked number of single squares beside it, and the cards end on the asked hundredths; for the two children each grid is counted to 14.",
+        "ladder": [
+          "Count the squares you shaded, each one a hundredth.",
+          "Compare your squares with the digits after the point.",
+          "Count the shaded squares on each grid.",
+          "Look at how many squares are shaded, not where.",
+          "Each square you shade is one hundredth."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the grid with one square outlined in amber and the Zoom button lit",
+        "win": "four slices shaded, and the card reads 4/1000 and 0.004",
+        "traceback": "The zoomed square's slices are numbered, the decimal card lights its third place after the point in amber with grey zeros holding the places, and the cards end on the thousandths.",
+        "ladder": [
+          "Count the thin slices of the big square.",
+          "These slices are thousandths, not hundredths.",
+          "The bottom number says how many parts make one whole.",
+          "Look closely at the big square and its slices.",
+          "Every slice of the big square is the same size."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "grid": {
+      "columns": 10,
+      "rows": 10,
+      "square": 39,
+      "at": [
+        12,
+        54
+      ],
+      "numbering": "column * 10 + row"
+    },
+    "zoom": {
+      "square": 90,
+      "slices": 10,
+      "size": 200
+    },
+    "warmup": {
+      "phase2": 38,
+      "phase3": 6,
+      "phase4": 1
+    },
+    "childB": [
+      3,
+      17,
+      22,
+      28,
+      35,
+      41,
+      46,
+      53,
+      59,
+      64,
+      72,
+      77,
+      85,
+      91
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T3.C10:HG1",
+        "kind": "cut",
+        "answer": 10,
+        "near": 1,
+        "ladder": [
+          "Touch each square of the column as you count it.",
+          "The column is as tall as the grid, one square for each row."
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T3.C10:1",
+        "kind": "tenth",
+        "pad": "enter",
+        "answer": 10,
+        "near": 1,
+        "ladder": [
+          "One tenth is one whole column of the grid.",
+          "Shade every square of one column, top to bottom."
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": null,
+        "kind": "one",
+        "k": 3,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "03"
+        ],
+        "near": "0|3",
+        "ladder": [
+          "It takes a hundred squares to fill the grid.",
+          "Hundredths take two places after the point."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T3.C11:HG2",
+        "kind": "read",
+        "cols": 5,
+        "ones": 3,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "53"
+        ],
+        "near": "5|3",
+        "ladder": [
+          "Count the full columns in tens, then add the single squares.",
+          "Write the hundredths you counted with two places after the point."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T3.C11:2",
+        "kind": "read",
+        "cols": 6,
+        "ones": 0,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "6"
+        ],
+        "alt": [
+          "0",
+          "60"
+        ],
+        "near": "0|06",
+        "ladder": [
+          "Skip-count the full columns: 10, 20, and on.",
+          "Each full column is one tenth, the first place after the point."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T3.C11:4",
+        "kind": "readf",
+        "cols": 2,
+        "ones": 9,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          29,
+          100
+        ],
+        "near": "29|10",
+        "ladder": [
+          "The top number counts every shaded square.",
+          "Two full columns are 20 squares, so add the single squares to 20."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T3.C12:HG3",
+        "kind": "shade",
+        "dec": "0.04",
+        "pad": "enter",
+        "answer": 4,
+        "near": 40,
+        "forms": [
+          "four"
+        ],
+        "ladder": [
+          "A full column is 0.1, far more than 0.04.",
+          "The two digits after the point count the hundredths."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T3.C12:3",
+        "kind": "shade",
+        "dec": "0.21",
+        "pad": "enter",
+        "answer": 21,
+        "near": 30,
+        "forms": [
+          "twenty-one"
+        ],
+        "ladder": [
+          "Each full column is one tenth, which is 0.1.",
+          "Shade full columns for the tenths, then single squares."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T3.C12:8",
+        "kind": "who",
+        "aCols": 1,
+        "aOnes": 4,
+        "answer": "both",
+        "near": "asha",
+        "ladder": [
+          "Count Asha's full column as ten, then add her single squares.",
+          "Compare how many squares are shaded on the two grids."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T3.C13:6",
+        "kind": "count10",
+        "answer": 10,
+        "near": 100,
+        "ladder": [
+          "Touch each slice from left to right as you count.",
+          "The big square is one hundredth, and each slice is one thousandth."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T3.C13:HG4",
+        "kind": "thou",
+        "th": 3,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "003"
+        ],
+        "near": "0|03",
+        "ladder": [
+          "Thousandths need three places after the point.",
+          "Zeros hold the tenths and hundredths places when they are empty."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T3.C13:7",
+        "kind": "thouf",
+        "th": 41,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          41,
+          1000
+        ],
+        "near": "41|100",
+        "forms": [
+          "1000",
+          "1,000",
+          "one thousand"
+        ],
+        "ladder": [
+          "Each thin slice is one thousandth of the whole grid.",
+          "Ten slices make a square, and the grid has 100 squares."
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The cut column's squares are numbered one by one under 1 tenth, ending on 10 hundredths; a tenth shaded in hundredths fills one column, numbered; one square is ringed beside its column and the cards end on 1/100 and 0.01.",
+      "Phase 2: Each full column is lit and labelled 10 as the counter adds in tens, the single squares join one by one, and the cards end on the hundredths as a fraction and a decimal.",
+      "Phase 3: The counter reads the child's shading in hundredths, a second grid shades the asked number of single squares beside it, and the cards end on the asked hundredths; for the two children each grid is counted to 14.",
+      "Phase 4: The zoomed square's slices are numbered, the decimal card lights its third place after the point in amber with grey zeros holding the places, and the cards end on the thousandths."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A hundred small squares, all the same size.",
+    "onFreePlay": "Free play. Shade, scatter and zoom as you like.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Tenths into hundredths, and hundredths into thousandths.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T3.C10:HG1",
+            "worked": false,
+            "kind": "cut",
+            "planQuestion": "One column of a hundred grid is one tenth of the grid. How many hundredths is one column?",
+            "question": {
+              "en": "Each square is one hundredth, so how many hundredths make the cut column?"
+            },
+            "ask": {
+              "en": "Hundredths in the column?"
+            },
+            "answer": 10,
+            "planAnswer": "10 hundredths, so 1/10 = 10/100",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T3.C10:1",
+            "worked": false,
+            "kind": "tenth",
+            "planQuestion": "How many hundredths make one tenth?",
+            "question": {
+              "en": "Shade as many hundredths as make one tenth, then press Enter."
+            },
+            "ask": {
+              "en": "Shade one tenth"
+            },
+            "answer": 10,
+            "planAnswer": "10 hundredths",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "one",
+            "planQuestion": null,
+            "question": {
+              "en": "3 squares of the grid are shaded, so what decimal is that?"
+            },
+            "ask": {
+              "en": "3 squares as a decimal?"
+            },
+            "answer": [
+              "0",
+              "03"
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T3.C11:HG2",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A hundred grid has 5 full columns and 3 more squares shaded. Write the shaded part as a fraction and as a decimal.",
+            "question": {
+              "en": "What decimal does the shaded part of this grid show?"
+            },
+            "ask": {
+              "en": "Shaded part as a decimal?"
+            },
+            "answer": [
+              "0",
+              "53"
+            ],
+            "planAnswer": "53/100, which is 0.53",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T3.C11:2",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A hundred grid has 6 full columns shaded and nothing else. Write the shaded part as a decimal.",
+            "question": {
+              "en": "Now write this new shading as a decimal."
+            },
+            "ask": {
+              "en": "This one as a decimal?"
+            },
+            "answer": [
+              "0",
+              "6"
+            ],
+            "planAnswer": "60 of the 100 squares, 60/100, which is 0.60 or 0.6",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T3.C11:4",
+            "worked": false,
+            "kind": "readf",
+            "planQuestion": "A hundred grid has 2 full columns and 9 more squares shaded. Write the shaded part as a fraction and as a decimal.",
+            "question": {
+              "en": "Which fraction of the whole grid is shaded?"
+            },
+            "ask": {
+              "en": "Shaded part as a fraction?"
+            },
+            "answer": [
+              29,
+              100
+            ],
+            "planAnswer": "29/100, which is 0.29",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T3.C12:HG3",
+            "worked": false,
+            "kind": "shade",
+            "planQuestion": "Shade a hundred grid to show 0.04.",
+            "question": {
+              "en": "Shade squares on the grid to show 0.04, then press Enter."
+            },
+            "ask": {
+              "en": "Shade 0.04"
+            },
+            "answer": 4,
+            "planAnswer": "Any 4 squares of the 100 shaded",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T3.C12:3",
+            "worked": false,
+            "kind": "shade",
+            "planQuestion": "How many squares of a hundred grid do you shade to show 0.21?",
+            "question": {
+              "en": "Now show 0.21 on the grid the same way."
+            },
+            "ask": {
+              "en": "Shade 0.21"
+            },
+            "answer": 21,
+            "planAnswer": "Any 21 squares",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T3.C12:8",
+            "worked": false,
+            "kind": "who",
+            "planQuestion": "Two children show 0.14 on hundred grids. One shades a full column and 4 more squares. The other shades 14 squares scattered about. Who is right?",
+            "question": {
+              "en": "Asha shades a column and 4 squares, Bina 14 scattered squares: who shows 0.14?"
+            },
+            "ask": {
+              "en": "Who shows 0.14?"
+            },
+            "answer": "both",
+            "planAnswer": "Both are right. Each shaded 14 of the 100 squares, and which squares does not matter",
+            "choices": [
+              "asha",
+              "bina",
+              "both",
+              "neither"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T3.C13:6",
+            "worked": false,
+            "kind": "count10",
+            "planQuestion": "How many thousandths make one hundredth?",
+            "question": {
+              "en": "How many thousandths make one hundredth?"
+            },
+            "ask": {
+              "en": "Thousandths in a hundredth?"
+            },
+            "answer": 10,
+            "planAnswer": "10 thousandths",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T3.C13:HG4",
+            "worked": false,
+            "kind": "thou",
+            "planQuestion": "One hundredth is cut into 10 equal parts and 3 of them are shaded. Write the shaded part as a fraction and as a decimal.",
+            "question": {
+              "en": "3 of the 10 slices of this hundredth are shaded: what decimal is that?"
+            },
+            "ask": {
+              "en": "Shaded part as a decimal?"
+            },
+            "answer": [
+              "0",
+              "003"
+            ],
+            "planAnswer": "3/1000, which is 0.003",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T3.C13:7",
+            "worked": false,
+            "kind": "thouf",
+            "planQuestion": "Write 41 thousandths as a fraction and as a decimal.",
+            "question": {
+              "en": "Write 41 thousandths as a fraction."
+            },
+            "ask": {
+              "en": "41 thousandths as a fraction?"
+            },
+            "answer": [
+              41,
+              1000
+            ],
+            "planAnswer": "41/1000, which is 0.041",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S1.T3.C12:5"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "hundred_grid",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "hundred_grid",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "One hundredth",
+        "conceptId": "M1.S1.T3.C10",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S1.T3.C10:HG1",
+          "M1.S1.T3.C10:1",
+          "M1.S1.T3.C10.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Reading a hundred grid",
+        "conceptId": "M1.S1.T3.C11",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S1.T3.C11:HG2",
+          "M1.S1.T3.C11:2",
+          "M1.S1.T3.C11:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Shading hundredths",
+        "conceptId": "M1.S1.T3.C12",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S1.T3.C12:HG3",
+          "M1.S1.T3.C12:3",
+          "M1.S1.T3.C12:8"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Thousandths",
+        "conceptId": "M1.S1.T3.C13",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S1.T3.C13:6",
+          "M1.S1.T3.C13:HG4",
+          "M1.S1.T3.C13:7"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "shaded",
+    "columns",
+    "squares",
+    "zoom",
+    "slices",
+    "answer",
+    "cnt"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), shaded, columns, squares, zoom, slices, answer, cnt, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "hundred_grid"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T3.C10.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A hundred small squares, all the same size."
+    },
+    {
+      "en": "One column is one tenth. Cut it into ten. What is one square?"
+    },
+    {
+      "en": "Count the full columns first. Then count the squares left over."
+    },
+    {
+      "en": "Shade the right number of squares. Does it matter which ones?"
+    },
+    {
+      "en": "Cut one square into ten. Each thin slice is one thousandth."
+    },
+    {
+      "en": "A new grid. Count by columns of ten."
+    },
+    {
+      "en": "Free play. Shade, scatter and zoom as you like."
+    },
+    {
+      "en": "Count the full columns first, then the single squares."
+    },
+    {
+      "en": "Tenths into hundredths, and hundredths into thousandths."
+    }
+  ],
+  "build": {
+    "source": "12f3ce08:628448",
+    "runtime": "class5/runtime/frozen/r64/runtime.tsx",
+    "runtimeVersion": "r64",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T12:41:46.124Z",
+    "checks": {
+      "pass": 92,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-18T12:41:46.006Z"
+    },
+    "tsxBytes": 559509,
+    "tsxMd5": "81f8a6b7272cef885173c22d605ebda4"
+  }
+}

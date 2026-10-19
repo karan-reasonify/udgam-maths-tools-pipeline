@@ -1,0 +1,1174 @@
+{
+  "slotId": "M1.S1.T2.C5.2D1",
+  "mediaId": "M1.S1.T2.C5.2D1",
+  "toolId": "tenth_strip",
+  "title": "Tenth Strip",
+  "component": "M1.S1.T2.C5.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch8_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_8/2dtool/M1.S1.T2.C4.2D1/M1.S1.T2.C4.2D1.tsx",
+  "description": "Cut one whole into ten equal parts, shade some of them, and write what is shaded two ways.",
+  "conceptIds": [
+    "M1.S1.T2.C5",
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7",
+    "M1.S1.T2.C8"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        1086,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Cut one whole into ten equal parts, shade some of them, and write what is shaded as a fraction and again with a point.",
+    "look": "A long strip lying across the stage with a cutter along it, a naming slot above it and two writing slots beside it.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Tenth Strip' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the shares written against the shares this phase lays out, two numbers in ink, the first climbing by one as each pair of slots fills and the second fixed at however many strips this phase holds. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The naming slot sits across the top left of the working area, 420 by 56 at 64,206, and holds what the whole is: a metre of ribbon, a chapati, a litre of milk. Until something is written in it the cutter stays parked and a tap on the strip springs back with the slot lit and still empty, nothing marked. The strip itself lies under it, 1080 by 150 at 64,274, drawn as one piece with rounded ends. The cutter rides a rail directly beneath it, 1080 by 10 at 64,436, with the count of pieces written above the rail as it is dragged; the strip folds into equal pieces as the cutter travels and settles only on ten, springing back from every other count with the pieces it was holding left lying along the stage. A settled strip shows ten pieces of one length, each 108 wide, touching along their edges so that the whole is still one thing, the dividing lines drawn near-black and no gap opened anywhere between them. A piece is shaded by tapping it and unshaded by tapping again, exactly the number shaded is drawn and no piece overlaps another; shading is amber, because a piece of this strip stands for tenths. Measure the pieces lifts all ten off the strip and stands them end on against a rule, 1080 by 120 at 64,462, where a difference in length is seen rather than argued about, with a small bracket drawn between the longest and the shortest and nothing written in it. The uneven cut control cuts ten pieces of visibly different lengths and asks whether one of the short ones can still be called a tenth, and the same rule measures those. The two writing slots stand along the foot of the working area, the fraction slot 320 by 92 at 200,606 and the slot that takes the point 320 by 92 at 600,606, with a bar 72 by 10 at 528,646 drawn between them that fills only once both are written, because they carry one amount. Inside the slot that takes the point, in front of the point, the ones column is drawn as an open box and stays open until a digit goes into it: a bare point and a digit is handed back with that box lit and the answer left standing exactly as it was entered. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a share or a single digit is asked for, with a fraction key beside them that draws a bar and opens a box above it and a box below it, and on the first phase a word pad of this strip's own words, whole, equal parts, tenth, tenths, fraction, decimal point and ones place, so that a piece can be named and a slot called with one press. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: a digit standing to the left of the point is deep blue, a digit standing to the right of it is green, and the point itself is vermilion between them on every phase without exception, because a chapter whose whole subject is one dot cannot afford a frame where the dot has to be hunted for. A part standing for tenths is amber, one standing for hundredths is rose, one standing for thousandths is sky blue, and a zero that is only holding a place open is grey, whether it was written in on the left of a short numerator or printed on the end of a measurement. Chrome never borrows one of those and none of them is ever used for chrome, and every one of the readings survives with the colour taken away, because a place is told by the heading written over it before it is ever told by a colour, a filling zero is told by the short arrow running inward from the point, and a zero printed on the end is told by the place counter that lights it. Grey never means faint: such a zero is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. Nothing on this stage ever changes size for emphasis. A shaded piece is drawn the same width as an unshaded one and a piece being talked about is never swollen or shrunk, because on this strip size is carrying the whole of the meaning and a piece that grows to be noticed is a piece that has stopped being a tenth.",
+    "finish": "The card shows the strip the child cut, its shaded pieces still coloured, and the fraction and the decimal standing side by side under it.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "ten pieces of one length settle along the strip and the measure control finds no difference",
+        "does": "names the whole, runs the cutter, then measures the pieces against one another",
+        "goal": "one whole cut into ten equal parts gives tenths, and the parts must match",
+        "says": "Say what you are cutting first. Now cut it into ten. Are the pieces the same?",
+        "check": "Away from the screen: fold a strip into ten, hand a friend one piece, and tell them what it is one tenth of.",
+        "feels": "a tenth is a share of something, and the something has to be named before the share says anything",
+        "hands": "Give each pair a long paper strip and let them fold and cut it into ten pieces without a ruler. Before anything is shaded, ask what the strip is a strip of and write that answer at the top of the sheet. Then stack the ten pieces and look at the edges. Cut a second strip with a ruler and stack those. Ask which of the two strips a tenth can be taken from, and what the other one would be describing if a share were written down from it.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: how many pieces is this strip cut into? Second rung, the phase's: are they all the same size? Third rung: the strip is cut to two pieces with one plainly longer than the other and the child says whether either of them is a half. The word pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "ten is the number the rule asks for and a count is easy to check, while lengths are not, so a strip with the right number of pieces looks like a strip that was cut right.",
+            "move": "cuts the strip into ten pieces by eye, counts ten of them, and calls any one of them a tenth.",
+            "screen": "the ten pieces lift off the strip and stand end on against the rule in the order they were cut, and the two that overhang the rest are left standing there with the bracket drawn between the longest and the shortest. The child's strip is left exactly as it was cut, a second strip is cut by the cutter beside it and measured the same way, and both sets of pieces stay standing on the rule together with nothing marked."
+          },
+          {
+            "why": "a picture with part of it coloured in looks like a question that has already been asked, and the strip is the only thing on the stage to count.",
+            "move": "shades some pieces and writes the share down while the naming slot above the strip is still empty.",
+            "screen": "both writing slots hand the answer back and stay empty, with the naming slot lit above the strip and the shaded pieces left exactly as the child shaded them. The voice then asks the question the reasoning box later in the chapter never asks, which is one tenth of what, and the slots stay shut until the strip has been called a ribbon, a chapati or a litre of milk."
+          }
+        ],
+        "screen": "an uncut strip with an empty naming slot above it and the cutter waiting",
+        "soWhat": "One whole cut into ten equal parts gives tenths, and the parts have to be the same size or none of them is a tenth.",
+        "concept": "Splitting one into ten equal parts"
+      },
+      {
+        "n": 2,
+        "win": "both slots fill and a bar is drawn joining them, because they carry one amount",
+        "does": "writes the shaded amount in the fraction slot and then in the decimal slot",
+        "goal": "a share is written over ten and with a point, and the two carry one amount",
+        "says": "Write it over ten. Now write the very same thing with a point.",
+        "check": "Write four tenths of a ribbon in two different ways, and then say which of the two is the larger amount.",
+        "feels": "two ways of writing it down, one strip, and the same pieces coloured under both of them",
+        "hands": "Take a strip already cut into ten and shade four pieces. Write the amount over ten on one line of the page and with a point on the line under it, and draw a line joining the two. Then cover one of the two lines with a hand and let a partner shade a fresh strip from the other. Do it again with six pieces, and ask whether the second line ever had to be worked out or only written.",
+        "tries": "First rung, from the item: how many pieces are shaded? Second rung, the phase's: which of the two slots is still waiting? Third rung: the strip is cut to two pieces with one of them shaded and the child fills both slots from it. The number pad and the fraction key stay open.",
+        "wrong": [
+          {
+            "why": "one right answer to a question that asked for one amount feels like the whole job, and the second slot reads as the same thing being asked twice over.",
+            "move": "writes the fraction, leaves the slot that takes the point empty, and reports the strip finished.",
+            "screen": "both slots stay on the stage with the child's fraction standing exactly where it was written and the second slot still empty, and the joining bar is drawn as a faint outline waiting to fill. The strip is read out again with the shaded pieces lighting one at a time, and the same count is asked for in the other slot with nothing cleared."
+          },
+          {
+            "why": "the two forms look nothing like each other on the line, and every other pair of different-looking numbers met so far has been a pair of different numbers.",
+            "move": "takes four tenths and the decimal for it to be two different sizes, because one is written with two numbers and the other with one.",
+            "screen": "the two written forms are carried down to the strip together and laid under the very same four shaded pieces, neither of them shading anything more or anything less. The joining bar fills between them, and a second strip is drawn under the first and shaded to the child's other reading, which asks for pieces this strip does not have; both strips are left standing."
+          }
+        ],
+        "screen": "the cut strip with some pieces shaded and both writing slots empty",
+        "soWhat": "A share is written as a fraction over ten and also with a decimal point, and the two say the same amount.",
+        "concept": "The same amount, written with a point"
+      },
+      {
+        "n": 3,
+        "win": "the digit lands and the shaded pieces light one at a time as it is counted back",
+        "does": "counts the shaded pieces and writes the digit that goes after the point",
+        "goal": "the digit after the point counts how many tenths there are",
+        "says": "How many tenths are shaded? That is the digit after the point.",
+        "check": "A strip of ten has six pieces shaded. Write the decimal, and say what the six is counting.",
+        "feels": "the digit after the point is a count of pieces, and nothing else on the line moves when it changes",
+        "hands": "Shade seven pieces of a ten piece strip and write the decimal. Then shade nine on a second strip and write that one. Put the two written numbers one under the other and ask what changed between them and what did not, and insist the answer is said as a sentence about the digit after the point rather than about the number as a whole.",
+        "tries": "First rung, from the item: which pieces are you counting, the shaded ones or the plain ones? Second rung, the phase's: which column does that count get written in? Third rung: the strip is cut to two pieces with the tenths column labelled over the slot and the child counts and writes. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the shaded count and the number of pieces are the two facts the strip hands over, and a decimal looks like somewhere that both of them could go.",
+            "move": "puts both of the fraction's numbers on the line, writing seven point one zero for seven pieces of ten.",
+            "screen": "the number the child wrote is carried to a fresh strip and read off it place by place. The seven lands in the ones column as seven whole strips, and seven whole strips are drawn out along the stage beside the single strip that was shaded. Both stand together, nothing is cleared, and the shaded strip is then read back with the count of pieces spoken into the tenths place on its own."
+          },
+          {
+            "why": "on a strip with a few pieces coloured the plain pieces are the bigger picture, and the question does not say out loud which of the two runs it is asking about.",
+            "move": "counts the pieces that are not shaded, because the plain run of them is the longer one.",
+            "screen": "the shaded pieces light one at a time from the left with the count written above them as it climbs, and the plain run is left plain and uncounted. The child's digit stays in the slot, a copy of the strip is drawn underneath with the child's count shaded instead, and the two strips stand together with plainly different amounts coloured in."
+          }
+        ],
+        "screen": "a strip with several pieces shaded and the decimal slot waiting",
+        "soWhat": "The digit after the point counts how many tenths there are.",
+        "concept": "Counting more than one tenth"
+      },
+      {
+        "n": 4,
+        "win": "the zero settles in the ones column and the column lights to show it is empty of whole ones",
+        "does": "adds the zero, then reads the number aloud with the ones column lit",
+        "goal": "the zero before the point holds the ones place open",
+        "says": "Something is missing in front of the point. What is it holding?",
+        "check": "Away from the screen: write four tenths of a kilogram properly on a label, and say what the zero you wrote is holding.",
+        "feels": "the zero is not filling a gap, it is holding a column open where there are no whole ones",
+        "hands": "Write a price on a scrap of paper as a bare point and a five, hand it across the room, and ask for it to be read out. Then write the same thing again with the zero in front and hand that over. Ask which of the two was easier to read and what the zero is actually saying about whole rupees. Finish by writing four tenths of a kilogram on a label for the class cupboard.",
+        "tries": "First rung, from the item: which column stands in front of the point? Second rung, the phase's: how many whole ones does this number have? Third rung: the strip is put away and a two column chart headed ones and tenths takes its place, and the child fills both columns. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "nothing is being counted there, and a column with nothing in it looks like a column that does not need anything written in it at all.",
+            "move": "leaves the ones place empty, because there are no whole ones to write in it.",
+            "screen": "the ones column stays drawn as an open box in front of the point and stays open, with the child's bare point and digit left exactly as they were entered. The number is then read out from that column rightwards, the reading stops on the open box, and the voice names the column the box belongs to. A grey zero is offered from the tray and the same reading is run again with it in place."
+          },
+          {
+            "why": "in front of was heard as make space in front, and making space for something usually means shifting whatever is already standing there.",
+            "move": "writes the zero in and slides the digit along to make room, turning five tenths into five hundredths.",
+            "screen": "both readings are carried down to strips. Five pieces of ten are shaded under the first, and under the second the whole is cut into a hundred and five of those cells are shaded, so the two pictures stand side by side and are plainly ten times apart. The child's number stays exactly where it was written, and the grey zero is then walked into the ones column with the five held still in the tenths place the whole way."
+          }
+        ],
+        "screen": "a decimal written into the slot as a bare point and a digit, with nothing in front of it",
+        "soWhat": "The zero before the point holds the ones place open and says there are no whole ones.",
+        "concept": "What the zero in front is for"
+      }
+    ],
+    "delight": "The first phase, the moment the measure is run on a strip that was cut by eye. The ten pieces lift off the strip together and stand themselves end on against the rule along the foot, in the order they were cut and not sorted, so the two that overhang the rest are plainly out of line; the bracket is drawn between the longest and the shortest with nothing written in it. Run the same measure on a strip the cutter settled, and the ten stand level, the bracket closes to nothing and the strip re-forms itself into one piece with the pieces sliding back into place. Both runs can be made as often as a finger likes, nothing is marked either way, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase an uncut strip lies along the ledge with the naming slot above it standing empty and the cutter parked at its left hand end. On the second the strip is already cut into ten with four pieces shaded, and the two writing slots stand along the foot of the working area with the joining bar between them drawn as a faint outline. On the third a strip stands with seven pieces shaded and the fraction slot already filled, so only the slot that takes the point is waiting. On the fourth a decimal sits in the slot as a bare point and a digit, with the ones column in front of it drawn as an open box and nothing in it. The running count at the top left holds the shares written against the shares this phase lays out, and the answer slot and the pad stand empty down the right. One thing moves, once: the empty naming slot, or the joining bar, or the leftmost shaded piece, or the open ones column, gives one slow pulse while the voice asks what the strip is a strip of. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any whole, any number of shaded pieces, with both writing slots and the uneven cut control open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on cutting one whole into ten equal parts, writing a share two ways, counting tenths, and the zero that holds the ones place.",
+    "voiceLines": [
+      "A long strip, and nothing cut yet. Say what it is before the cutter runs.",
+      "Say what you are cutting first. Now cut it into ten. Are the pieces the same?",
+      "Write it over ten. Now write the very same thing with a point.",
+      "How many tenths are shaded? That is the digit after the point.",
+      "Something is missing in front of the point. What is it holding?",
+      "Another whole. Name it first, then cut it into ten.",
+      "Free play. Any whole, any pieces shaded, both writing slots and the uneven cut open.",
+      "Stand the pieces against one another, then count the shaded ones again.",
+      "Every share written twice over, and the zero standing in the ones place each time."
+    ],
+    "observations": [
+      {
+        "why": "A share is a share of something, and until the something is named there is nothing for it to be a share of.",
+        "soWhat": "Two tenths of nobody's money is not an amount, and asking of what is the first move, not a quibble.",
+        "observe": "The slots would not take a share until the strip above them had been given a name."
+      },
+      {
+        "why": "Tenths are ten equal parts of one whole, and the word equal is doing work in that sentence.",
+        "soWhat": "Counting ten pieces is not enough; they have to be the same size or none of them is a tenth.",
+        "observe": "Ten pieces cut by eye stood at different heights on the rule, and ten cut properly stood level."
+      },
+      {
+        "why": "Both are ways of writing how much of the strip is coloured, and the colouring did not change between them.",
+        "soWhat": "A fraction over ten and a decimal with one place are one amount written two ways.",
+        "observe": "The fraction and the decimal were written from the very same shaded pieces and the bar joined them."
+      },
+      {
+        "why": "The column is there whether or not any whole ones are being counted, and a zero is how you say there are none.",
+        "soWhat": "The zero before the point is holding a column open, which is not the same as filling a gap.",
+        "observe": "The ones column in front of the point stayed drawn and open until something was put in it."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "an uncut strip with an empty naming slot above it and the cutter waiting",
+        "win": "ten pieces of one length settle along the strip and the measure control finds no difference",
+        "traceback": "The run the question asks for lights piece by piece with its count, both cards fill with the share, and a folded strip stands its pieces beside an evenly cut one.",
+        "ladder": [
+          "The bottom counts every piece.",
+          "Is a whole strip coloured?",
+          "Stand the pieces up and compare them.",
+          "Are all ten pieces the same size?",
+          "A tenth is one of ten equal parts."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the cut strip with some pieces shaded and both writing slots empty",
+        "win": "both slots fill and a bar is drawn joining them, because they carry one amount",
+        "traceback": "The coloured pieces light one at a time with their count, and both cards fill with that share, joined by the bar.",
+        "ladder": [
+          "The top counts coloured pieces.",
+          "Is the 7 before or after the point?",
+          "Only one digit goes after the point.",
+          "Count the coloured pieces again.",
+          "Both cards must show one amount."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a strip with several pieces shaded and the decimal slot waiting",
+        "win": "the digit lands and the shaded pieces light one at a time as it is counted back",
+        "traceback": "The run the question asks for lights one piece at a time with its count, and the count is written in the tenths place after a grey zero.",
+        "ladder": [
+          "Which pieces are coloured?",
+          "How many pieces were eaten?",
+          "Count only the plain pieces.",
+          "Which place does that count go in?",
+          "Count each piece from the left."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a decimal written into the slot as a bare point and a digit, with nothing in front of it",
+        "win": "the zero settles in the ones column and the column lights to show it is empty of whole ones",
+        "traceback": "The ones box in front of the point stays open and lit, the pieces count up to the digit, and a grey zero walks into the ones place.",
+        "ladder": [
+          "Which place is before the point?",
+          "Read the story again: what is not told?",
+          "What stands in front of the point on this label?",
+          "How many whole ones are there?",
+          "An empty place still needs a digit."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "pieces": 10,
+    "uneven": [
+      150,
+      88,
+      104,
+      78,
+      142,
+      96,
+      118,
+      82,
+      110,
+      112
+    ],
+    "wholes": [
+      "chocolate bar",
+      "ribbon",
+      "chapati"
+    ],
+    "places": [
+      "ones",
+      "tenths"
+    ],
+    "strip": {
+      "maxLen": 1200,
+      "h": 132
+    },
+    "cards": [
+      "Fraction",
+      "Decimal"
+    ],
+    "skin": "piece",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C5:ML1",
+        "kind": "strip",
+        "form": "fraction",
+        "shade": 6,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          6,
+          10
+        ],
+        "near": "6|4",
+        "winMs": 3200
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T2.C5:1",
+        "kind": "strip",
+        "form": "decimal",
+        "shade": 3,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "3"
+        ],
+        "near": "3|10",
+        "winMs": 3200
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S1.T2.C5:2",
+        "kind": "uneven",
+        "form": "uneven",
+        "shade": 0,
+        "answer": "no",
+        "near": "yes",
+        "winMs": 3000
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:ML2",
+        "kind": "strip",
+        "form": "fraction",
+        "whole": "ribbon",
+        "shade": 4,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          4,
+          10
+        ],
+        "near": "6|10",
+        "winMs": 3200
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T2.C6:4",
+        "kind": "digit",
+        "form": "digit",
+        "whole": "chocolate bar",
+        "shade": 7,
+        "answer": "tenths",
+        "near": "ones",
+        "winMs": 3200,
+        "ladder": [
+          "Look at the seven coloured pieces.",
+          "Each piece is one of ten equal parts."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T2.C6:3",
+        "kind": "strip",
+        "form": "decimal",
+        "whole": "1 L milk",
+        "shade": 8,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "8"
+        ],
+        "near": "8|10",
+        "winMs": 3200
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C7:ML3",
+        "kind": "strip",
+        "form": "decimal",
+        "whole": "garden",
+        "shade": 7,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "7"
+        ],
+        "near": "7|10",
+        "winMs": 3400
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T2.C7:5",
+        "kind": "strip",
+        "form": "decimal",
+        "whole": "chapati",
+        "shade": 5,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "5"
+        ],
+        "near": "5|10",
+        "winMs": 3200
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T2.C7:6",
+        "kind": "strip",
+        "form": "decimal",
+        "whole": "chocolate bar",
+        "shade": 9,
+        "read": "plain",
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "1"
+        ],
+        "near": "0|9",
+        "winMs": 3400
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T2.C8:ML4",
+        "kind": "zero",
+        "form": "typed",
+        "whole": "ribbon",
+        "shade": 6,
+        "title": "Sign",
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole",
+            "free": true
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "6"
+        ],
+        "near": "|6",
+        "winMs": 3200
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T2.C8:7",
+        "kind": "share",
+        "form": "share",
+        "whole": "pocket money",
+        "shade": 2,
+        "answer": "amount",
+        "near": "tenths",
+        "winMs": 3400,
+        "ladder": [
+          "Is two tenths always the same rupees?",
+          "More money makes two tenths bigger."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T2.C8:8",
+        "kind": "zero",
+        "form": "typed",
+        "whole": "1 kg",
+        "shade": 4,
+        "title": "Label",
+        "unit": "kg",
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole",
+            "free": true
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "4"
+        ],
+        "near": "|4",
+        "winMs": 3200
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The run the question asks for lights piece by piece with its count, both cards fill with the share, and a folded strip stands its pieces beside an evenly cut one.",
+      "Phase 2: The coloured pieces light one at a time with their count, and both cards fill with that share, joined by the bar.",
+      "Phase 3: The run the question asks for lights one piece at a time with its count, and the count is written in the tenths place after a grey zero.",
+      "Phase 4: The ones box in front of the point stays open and lit, the pieces count up to the digit, and a grey zero walks into the ones place."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A long strip, and nothing cut yet. Say what it is before the cutter runs.",
+    "onFreePlay": "Free play: name, cut evenly or by eye, colour and measure.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Every share written twice over, and the zero standing in the ones place each time.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; the bubble holds ONE sentence: a wrong act shows that step's hint in place of the instruction, a wrong answer the next rung of its ladder, and the instruction comes back when the child taps again (a key, the card or the Answer key) or does the right act; at a phase's last right answer the bubble shows only the phase's closing line; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C5:ML1",
+            "worked": false,
+            "kind": "strip",
+            "planQuestion": "A paper strip is cut into ten equal pieces and six of them are coloured. Write the coloured part as a fraction and as a decimal.",
+            "question": {
+              "en": "Write the coloured part of the strip as a fraction."
+            },
+            "ask": {
+              "en": "Coloured part as a fraction?"
+            },
+            "answer": [
+              6,
+              10
+            ],
+            "planAnswer": "6/10, which is written 0.6",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T2.C5:1",
+            "worked": false,
+            "kind": "strip",
+            "planQuestion": "A strip is cut into ten equal pieces and three of them are shaded. Write the shaded part as a decimal.",
+            "question": {
+              "en": "Write the three coloured pieces with a point."
+            },
+            "ask": {
+              "en": "Coloured part with a point?"
+            },
+            "answer": [
+              "0",
+              "3"
+            ],
+            "planAnswer": "0.3",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S1.T2.C5:2",
+            "worked": false,
+            "kind": "uneven",
+            "planQuestion": "A child folds a strip into ten pieces, but two of the pieces come out much longer than the rest. Can one of the short pieces be called one tenth?",
+            "question": {
+              "en": "Folded without measuring, is a short piece still one tenth?"
+            },
+            "ask": {
+              "en": "Is a short piece a tenth?"
+            },
+            "answer": "no",
+            "planAnswer": "No, because tenths are ten equal parts, so every piece has to be the same size",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T2.C6:ML2",
+            "worked": false,
+            "kind": "strip",
+            "planQuestion": "A ribbon is cut into ten equal lengths and four of the lengths are used. Write the part used as a fraction and with a point, and name the dot.",
+            "question": {
+              "en": "Write the coloured part of the ribbon as a fraction."
+            },
+            "ask": {
+              "en": "Coloured part as a fraction?"
+            },
+            "answer": [
+              4,
+              10
+            ],
+            "planAnswer": "4/10, written 0.4, and the dot is called the decimal point",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T2.C6:4",
+            "worked": false,
+            "kind": "digit",
+            "planQuestion": "In 0.7, which part is the decimal point, and what does the seven count?",
+            "question": {
+              "en": "In 0.7, what does the 7 count?"
+            },
+            "ask": {
+              "en": "What does the 7 count?"
+            },
+            "answer": "tenths",
+            "planAnswer": "The dot standing between the zero and the seven is the decimal point, and the seven counts seven tenths",
+            "choices": [
+              "tenths",
+              "ones"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T2.C6:3",
+            "worked": false,
+            "kind": "strip",
+            "planQuestion": "A one litre bottle is marked in ten equal steps and the milk stands at the eighth mark. Write that amount with a point.",
+            "question": {
+              "en": "Now write how much milk there is, with a point."
+            },
+            "ask": {
+              "en": "How much milk?"
+            },
+            "answer": [
+              "0",
+              "8"
+            ],
+            "planAnswer": "0.8 of a litre",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C7:ML3",
+            "worked": false,
+            "kind": "strip",
+            "planQuestion": "A garden is divided into ten equal beds and seven of the beds are planted. Write the planted part as a decimal, and say what the digit after the point counts.",
+            "question": {
+              "en": "Write the planted part of the garden with a point."
+            },
+            "ask": {
+              "en": "Planted part with a point?"
+            },
+            "answer": [
+              "0",
+              "7"
+            ],
+            "planAnswer": "0.7, and the digit after the point counts tenths",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T2.C7:5",
+            "worked": false,
+            "kind": "strip",
+            "planQuestion": "Five of the ten equal parts of a chapati are eaten. Write the part that was eaten as a decimal.",
+            "question": {
+              "en": "Write how much of the chapati was eaten, with a point."
+            },
+            "ask": {
+              "en": "Eaten part with a point?"
+            },
+            "answer": [
+              "0",
+              "5"
+            ],
+            "planAnswer": "0.5",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T2.C7:6",
+            "worked": false,
+            "kind": "strip",
+            "planQuestion": "A strip of ten equal pieces has nine of them shaded. Write the shaded part and the unshaded part as decimals.",
+            "question": {
+              "en": "Now write the part left plain, with a point."
+            },
+            "ask": {
+              "en": "Plain part with a point?"
+            },
+            "answer": [
+              "0",
+              "1"
+            ],
+            "planAnswer": "0.9 is shaded and 0.1 is not, and the two together rebuild one whole",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T2.C8:ML4",
+            "worked": false,
+            "kind": "zero",
+            "planQuestion": "A shop sign is written as a bare point and a six, with nothing in front of the point. What is missing, and why does it matter?",
+            "question": {
+              "en": "Write this sign properly."
+            },
+            "ask": {
+              "en": "Write the sign properly."
+            },
+            "answer": [
+              "0",
+              "6"
+            ],
+            "planAnswer": "The zero in front of the point is missing, so the sign should read 0.6",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T2.C8:7",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A friend says they spent two tenths of their pocket money on a pen. How many rupees did the pen cost?",
+            "question": {
+              "en": "A pen cost two tenths of the money: what must you know to find its price?"
+            },
+            "ask": {
+              "en": "What must you know to find the pen's rupees?"
+            },
+            "answer": "amount",
+            "planAnswer": "It cannot be said yet, because nobody has said how much the pocket money was; two tenths is a share until the amount is named",
+            "choices": [
+              "amount",
+              "tenths",
+              "point"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T2.C8:8",
+            "worked": false,
+            "kind": "zero",
+            "planQuestion": "A sign reads as a bare point and a four, with a kilogram after it. Write it properly, and say what the zero you added is doing.",
+            "question": {
+              "en": "Now fix this weight label."
+            },
+            "ask": {
+              "en": "Write the label properly."
+            },
+            "answer": [
+              "0",
+              "4"
+            ],
+            "planAnswer": "0.4 kg, and the zero holds the ones place to show there are no whole kilograms",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "tenth_strip",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "tenth_strip",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Splitting one into ten equal parts",
+        "conceptId": "M1.S1.T2.C5",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C5:ML1",
+          "M1.S1.T2.C5:1",
+          "M1.S1.T2.C5:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "The same amount, written with a point",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C6:ML2",
+          "M1.S1.T2.C6:4",
+          "M1.S1.T2.C6:3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Counting more than one tenth",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C7:ML3",
+          "M1.S1.T2.C7:5",
+          "M1.S1.T2.C7:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "What the zero in front is for",
+        "conceptId": "M1.S1.T2.C8",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C8:ML4",
+          "M1.S1.T2.C8:7",
+          "M1.S1.T2.C8:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "wholeName",
+    "pieces",
+    "equal",
+    "shaded",
+    "measured"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), wholeName, pieces, equal, shaded, measured, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "tenth_strip"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C5.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A long strip, and nothing cut yet. Say what it is before the cutter runs."
+    },
+    {
+      "en": "Say what you are cutting first. Now cut it into ten. Are the pieces the same?"
+    },
+    {
+      "en": "Write it over ten. Now write the very same thing with a point."
+    },
+    {
+      "en": "How many tenths are shaded? That is the digit after the point."
+    },
+    {
+      "en": "Something is missing in front of the point. What is it holding?"
+    },
+    {
+      "en": "Another whole. Name it first, then cut it into ten."
+    },
+    {
+      "en": "Free play. Any whole, any pieces shaded, both writing slots and the uneven cut open."
+    },
+    {
+      "en": "Stand the pieces against one another, then count the shaded ones again."
+    },
+    {
+      "en": "Every share written twice over, and the zero standing in the ones place each time."
+    }
+  ],
+  "build": {
+    "source": "ec8ee32d:417752",
+    "runtime": "class4/runtime/frozen/r27/runtime.tsx",
+    "runtimeVersion": "r27",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-15T13:34:04.302Z",
+    "checks": {
+      "pass": 91,
+      "warn": 0,
+      "fail": 0,
+      "info": 1,
+      "at": "2026-10-15T13:34:04.206Z"
+    },
+    "tsxBytes": 575982,
+    "tsxMd5": "21f0fb4d834e38370acc888313aed7c1",
+    "handEdited": true
+  }
+}

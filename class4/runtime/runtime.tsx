@@ -68,22 +68,92 @@ const ZBOARD_BIG: any = {
   drawer: { x: 980, y: 202, w: 556, h: 528 },
 };
 const BOARD_OPEN_W_BIG = 900;   /* 64 + 900 = 964, a 16-unit gap to the drawer at 980 */
+/* class 4 r27, KEY ONLY (opt-in: `keyOnly: true` beside `board: true`; LAYOUT.md §1d; the owner, 2026-10-15): the question bar is
+   gone, only its key stays at the bar's right end (same size, place, colours and blink); the question is on the bubble. The
+   working area moves up into the freed room (y 108, 520 tall), the canvas card ends at 640 and the footer's bubble grows
+   (y 656 to 892). The answer drawer is as tall as the working area: the key on its top row (it reads Close while the drawer is
+   open; a card question's Close stands there too), the answer box under it, the keypad under that (keys 72 or more). */
+const ZKEY: any = {
+  canvas: { x: 40, y: 92, w: 1520, h: 548 },
+  work: { x: 64, y: 108, w: 1472, h: 520 },
+  drawer: { x: 1164, y: 108, w: 372, h: 520 },
+  slot: { x: 1180, y: 198, w: 340, h: 92 },
+  pad: { x: 1180, y: 298, w: 340, h: 318 },
+};
+const ZKEY_BIG: any = {
+  drawer: { x: 980, y: 108, w: 556, h: 520 },
+  slot: { x: 996, y: 198, w: 524, h: 92 },
+  pad: { x: 996, y: 298, w: 524, h: 318 },
+};
+/* the key's corner in a keyOnly tool, in stage units, the part inside the working area: the Answer / Enter / Next key (264 x 72 at
+   1262, 112), its edge and its blinking ring. A picture never runs under it (`board-fit`); Work gets it as `box.key` in its own
+   coordinates, wider on a question whose choice keys (Yes / No) stand there */
+const KEY_CORNER = { x: 1254, y: 108, w: 282, h: 88 };
+/* the question bar's choice keys (cardAnswer): one key's width, so a long word ("thousandth") sits at the label size */
+function choiceKeyW(choices: any[], lang: string, TR: any): number {
+  const longest = Math.max(...(choices || []).map((c: any) => lineFor(c.label, lang, TR).length));
+  return Math.min(236, Math.max(150, Math.ceil(longest * T.label * 0.6 + 28)));
+}
+/* r27, the footer's boxes. keyOnly: the bubble is y 656 to 892 (236 tall); else y 748, 144 tall. navDots (opt-in: `navDots: true`):
+   one small dot per phase at the footer's right (72-unit finger boxes that tile, right edge 1564), centred on the bubble, which
+   takes the width the old phase bar freed (to 20 short of the dots). Without navDots the bubble keeps its 656 width. */
+function footerBoxes(keyOnly: boolean, navDots: boolean, N: number) {
+  /* keyOnly: Kiko is 1.45 times as big, so the bubble starts at 343: 29 clear of the thought puff's right edge (313.7), as before */
+  const bx = keyOnly ? 343 : 254, by = keyOnly ? 656 : 748, bh = keyOnly ? 236 : 144, n = Math.max(N, 1), dx = 1564 - n * HIT;
+  return { bubble: { x: bx, y: by, w: navDots ? dx - 20 - bx : keyOnly ? 910 - bx : 656, h: bh }, dots: { x: dx, y: by + bh / 2 - HIT / 2, w: n * HIT, h: HIT } };
+}
+/* the bubble's layouts. hint: [instruction size, its lines, hint size, its lines, tight], the first that fits wins (Footer);
+   plain: [size, most lines, characters a line in the classic 656-wide bubble (scaled with the bubble's width), "en" | "dev" for one
+   script only]. FIT_KEY sets the keyOnly bubble for the last bench: a plain line at 56, 50 or 46; an instruction and its hint at 48,
+   44 or 40 each. A plain line is never cut in a keyOnly bubble (the last option is drawn whole). Its characters a line are counted at
+   0.54 em (1022 / size), the widest Poppins line measured (the platform's font; 0.49 em on average), so a line ends left of the
+   classroom arrow */
+const FIT_CLASSIC: any = { hint: [[32, 1, 32, 2, 0], [32, 2, 32, 1, 0], [32, 1, 32, 1, 0], [28, 1, 28, 2, 0], [28, 2, 28, 1, 0], [28, 1, 28, 1, 0], [28, 2, 28, 2, 1]],
+  plain: [[44, 2, 24], [32, 3, 32]] };
+const FIT_KEY: any = { devEm: 0.5, devPit: 1.6, devTop: 0.3, inkEn: [0.78, 0.27], inkDev: [1.09, 0.4], hint: [[48, 1, 48, 2, 0], [48, 2, 48, 1, 0], [48, 2, 48, 2, 0], [44, 1, 44, 2, 0], [44, 2, 44, 1, 0], [44, 2, 44, 2, 0], [40, 2, 40, 2, 0], [40, 3, 40, 2, 1]],
+  plain: [[56, 2, 1022 / 56], [50, 3, 1022 / 50], [46, 3, 1022 / 46], [46, 4, 1022 / 46, "en"], [40, 5, 1022 / 40, "en"]] };
 let BOARD = false;
 let BIGPAD = false;
-function setLayout(board: boolean, big: boolean = false) {
+let KEYONLY = false;
+let NAVDOTS = false;
+function setLayout(board: boolean, big: boolean = false, key: boolean = false, nav: boolean = false, N: number = 1) {
   const src: any = board ? ZBOARD : ZCLASSIC;
   for (const k of Object.keys(src)) { if (!(Z as any)[k]) (Z as any)[k] = {}; Object.assign((Z as any)[k], src[k]); }
   if (board && big) for (const k of Object.keys(ZBOARD_BIG)) Object.assign((Z as any)[k], ZBOARD_BIG[k]);
+  /* r27: the switches move the canvas, the bubble and the bar, which the board layout leaves alone: put them back first */
+  if (KEYONLY || NAVDOTS || key || nav) for (const k of ["canvas", "bubble", "bar"]) Object.assign((Z as any)[k], ZCLASSIC[k]);
+  const keyOnly = !!(board && key);
+  if (keyOnly) {
+    for (const k of Object.keys(ZKEY)) Object.assign((Z as any)[k], ZKEY[k]);
+    if (big) for (const k of Object.keys(ZKEY_BIG)) Object.assign((Z as any)[k], ZKEY_BIG[k]);
+  }
+  if (keyOnly || nav) {
+    const f = footerBoxes(keyOnly, nav, N);
+    Object.assign(Z.bubble, f.bubble);
+    if (nav) Object.assign(Z.bar, f.dots);
+  }
   BOARD = board;
   BIGPAD = !!(board && big);
+  KEYONLY = keyOnly;
+  NAVDOTS = !!nav;
 }
 /* the mascot stands in the voice zone but below the working-area floor (730), so it never
    covers a card; its feet are on the ground line */
 const MASCOT_BOX = { x: 28, y: 738, w: 204, h: 160 };
+/* class 4 r27 (keyOnly; the owner, 2026-10-15: "Kiko grows too, since the bubble is bigger"): Kiko, its thinking and cheering pictures,
+   the thought puff, the Hint key's bulb, the cheer's jumps and the party's sparkles are drawn 1.45 times as big, scaled about the box's
+   bottom-left corner (28, 898), so Kiko still stands on the ground line at the bottom left and fills the footer (y 666 to 898) */
+const MASCOT_SCALE_KEY = 1.45;
+const MASCOT_T_KEY = `translate(${MASCOT_BOX.x} ${MASCOT_BOX.y + MASCOT_BOX.h}) scale(${MASCOT_SCALE_KEY}) translate(${-MASCOT_BOX.x} ${-(MASCOT_BOX.y + MASCOT_BOX.h)})`;
+/* the mascot's box on the stage: the classic one, or the scaled one of a keyOnly tool (28, 666, 295.8 x 232) */
+function mascotBoxOf(keyOnly: boolean) {
+  const m = MASCOT_BOX, k = keyOnly ? MASCOT_SCALE_KEY : 1;
+  return { x: m.x, y: m.y + m.h - m.h * k, w: m.w * k, h: m.h * k };
+}
 const HIT = 72; /* the smallest finger box, in stage units (about 46 px on a 1024-wide tablet) */
 /* the agent's verbs on window.toolApi, the same eleven the NCERT Class 4 tools expose */
 const TOOL_API = ["getState", "gotoStep", "say", "answer", "check", "reset", "next", "prev", "highlight", "setParam", "playDemo"];
-const FONT = "Poppins, 'Segoe UI', system-ui, -apple-system, sans-serif";
+const FONT = "'C4 Poppins', Poppins, 'Segoe UI', system-ui, -apple-system, 'Noto Sans Devanagari', 'Noto Sans Gujarati', sans-serif";   /* C4 Poppins: the FONT KIT */
 const RAD = { card: 28, panel: 20, key: 18, piece: 10 };
 const EDGE = 5; /* a control's face sinks this far onto its solid edge when pressed */
 const POINTS = 5;
@@ -221,11 +291,23 @@ function mix(hex: string, toward: string, t: number): string {
 const tint = (hex: string, t: number) => mix(hex, "#ffffff", t);
 const shade = (hex: string, t: number) => mix(hex, "#000000", t);
 
+/** Words for a wrap: split at ordinary white space only (a tool's no-break space keeps "3 kg" whole; `\s` matched it), and a
+    number keeps the word after it, so a line never ends on "90" with its "g" on the next. */
+function wrapWords(s: string): string[] {
+  const out: string[] = [];
+  for (const w of String(s || "").split(/[ \t\n\r]+/)) {
+    if (!w) continue;
+    if (out.length && /^[-−]?\d[\d,]*(\.\d+)?$/.test(out[out.length - 1])) out[out.length - 1] += " " + w;
+    else out.push(w);
+  }
+  return out;
+}
+
 /** Greedy word wrap by character budget (stage text has no layout engine). */
 function wrapText(s: string, max: number): string[] {
   const out: string[] = [];
   let line = "";
-  for (const w of String(s || "").split(/\s+/).filter(Boolean)) {
+  for (const w of wrapWords(s)) {
     if (!line) line = w;
     else if ((line + " " + w).length <= max) line += " " + w;
     else { out.push(line); line = w; }
@@ -245,7 +327,7 @@ function pieces(line: string, max = 80): string[] {
     const target = Math.ceil(s.length / Math.ceil(s.length / max));
     const res: string[] = [];
     let cur = "";
-    for (const w of s.split(/\s+/).filter(Boolean)) {
+    for (const w of wrapWords(s)) {
       if (cur && (cur + " " + w).length > target + 6) { res.push(cur); cur = w; } else cur = cur ? cur + " " + w : w;
     }
     if (cur) res.push(cur);
@@ -771,8 +853,9 @@ function useVoice(mutedRef: any, langRef: any, cfg: { rate: number; pitch: numbe
     cur.current = null; flush(); stopEngine(); setSpeaking(false); unpark();
     if (!SILENT_VOICE && hasBakedVoice(langRef.current)) warmVoice(langRef.current);
     /* numbers and operators into words in the language in use (speakable() for English, as before) */
+    /* keyOnly + silent (owner 2026-10-16): the bubble prints a line AS WRITTEN (Latin digits, 36.907, 1.45 kg); only a spoken runtime turns numbers into words */
     const list = (Array.isArray(lines) ? lines : [lines])
-      .map((l: any) => speakableIn(l, langRef.current))
+      .map((l: any) => SILENT_VOICE && KEYONLY ? String(l == null ? "" : l) : speakableIn(l, langRef.current))
       .filter(Boolean).flatMap((l: string) => pieces(l));
     last.current = list;
     lastOpts.current = opts || {};
@@ -794,7 +877,7 @@ function useVoice(mutedRef: any, langRef: any, cfg: { rate: number; pitch: numbe
       if (i >= list.length) { cur.current = null; setSpeaking(false); fire(); return; }
       const text = list[i];
       setLine(text);
-      if (/\d/.test(text)) console.warn("[voice] a spoken line still contains a digit:", text);
+      if (/\d/.test(text) && !(SILENT_VOICE && KEYONLY)) console.warn("[voice] a spoken line still contains a digit:", text);   /* keyOnly + silent: a digit is how the bubble prints it */
       let spent = false;
       const r: any = { text, base: 0, t0: Date.now(), span: readMs(text), mark: 0, last: i === list.length - 1, nopark: !!(opts && opts.nopark),
         done: () => { if (spent || run !== token.current) return; spent = true; if (cur.current === r) cur.current = null; gate(i + 1); },
@@ -938,9 +1021,12 @@ function Defs({ C }: any) {
 }
 
 /* "One thing invites a finger": a single gentle ring. Put it on the one thing to touch. */
-function Invite({ x, y, r = 56, C }: any) {
+function Invite({ x, y, r = 56, w, h, rx, C }: any) {
   /* the one invite takes the tool's THEME accent (r33) when it has one, so it is seen on the board's colours */
-  return <circle className="c4-pulse" cx={x} cy={y} r={r} fill="none" stroke={(THEME && THEME.enter && THEME.enter[1]) || (C && C.accent) || DEFAULT_CHROME.accent} strokeWidth={5} pointerEvents="none" />;
+  const stroke = (THEME && THEME.enter && THEME.enter[1]) || (C && C.accent) || DEFAULT_CHROME.accent;
+  /* r57: with w and h it hugs a wide key (centre x, y) as a rounded rect, so the ring never cuts through a long label */
+  if (w && h) return <rect className="c4-pulse" x={x - w / 2 - 6} y={y - h / 2 - 6} width={w + 12} height={h + 12} rx={(rx ?? RAD.key) + 6} fill="none" stroke={stroke} strokeWidth={5} pointerEvents="none" />;
+  return <circle className="c4-pulse" cx={x} cy={y} r={r} fill="none" stroke={stroke} strokeWidth={5} pointerEvents="none" />;
 }
 
 /* r46: the Next key BLINKS (a hard on-off ring round it, in the tool's Enter colour), so a child sees the lesson is waiting for
@@ -1054,7 +1140,7 @@ function stagePoint(ev: any, x: number, y: number): { x: number; y: number } | n
 }
 
 /** Drag with a finger, a pen or a mouse, in working-area units (gestures: @use-gesture).
-    Spread {...bind(payload)} and {...keys(payload)} on the piece. A move under 8 units is a tap,
+    Spread {...bind(payload)} and {...keys(payload)} on the piece. A move under 10 screen pixels is a tap,
     and Enter or Space on a focused piece is a tap too; onDrop(payload, point, moved) fires on
     release, and a tap means "put it where it belongs". */
 /* drags still open (a drag whose release never arrived is the stuck-drag bug; the checks read this) */
@@ -1070,7 +1156,7 @@ function useDrag(onDrop: (payload: any, p: { x: number; y: number }, moved: bool
       const s = stagePoint(event, xy[0], xy[1]);
       if (!s) return;
       const p0 = { x: s.x - W.x, y: s.y - W.y };
-      live.current = { payload, p0, p: p0, moved: false, svgEvent: event };
+      live.current = { payload, p0, p: p0, moved: false, svgEvent: event, xy0: [xy[0], xy[1]] };
       DRAGS.live++;
       setDrag({ payload, x: p0.x, y: p0.y, moved: false });
     }
@@ -1079,7 +1165,9 @@ function useDrag(onDrop: (payload: any, p: { x: number; y: number }, moved: bool
     if (!first) {
       const s = stagePoint(event, xy[0], xy[1]) || stagePoint(d.svgEvent, xy[0], xy[1]);
       if (s) d.p = { x: s.x - W.x, y: s.y - W.y };
-      if (Math.hypot(d.p.x - d.p0.x, d.p.y - d.p0.y) > 8) d.moved = true;
+      /* a move is a drag past 10 SCREEN pixels, not 8 stage units: on the 844 x 390 phone (scale 0.43) 8 units is 3.5 px, so a child's short
+         press-and-slide on a tile was neither a tap nor a drop and nothing happened */
+      if (Math.hypot(xy[0] - d.xy0[0], xy[1] - d.xy0[1]) > 10) d.moved = true;
       if (!last) setDrag({ payload: d.payload, x: d.p.x, y: d.p.y, moved: d.moved });
     }
     if (last) {
@@ -1094,6 +1182,7 @@ function useDrag(onDrop: (payload: any, p: { x: number; y: number }, moved: bool
     onKeyDown: (e: any) => {
       if (e.key !== "Enter" && e.key !== " ") return;
       e.preventDefault(); e.stopPropagation();
+      if (e.repeat) return;   /* r61: a held key auto-repeats; one press is one act (a held Enter toggled a pick every 350 ms) */
       dropRef.current(payload, { x: NaN, y: NaN }, false);
     },
   });
@@ -1359,6 +1448,232 @@ function IconEnter({ c }: any) {
   return <g {...ICON} stroke={c}><path d="M 16 -12 v 8 a 6 6 0 0 1 -6 6 h -24" /><path d="M -8 -5 l -7 7 l 7 7" /></g>;
 }
 
+/* FONT_KIT start */
+/* THE FONT KIT (class 4 head of 2026-10-16, the owner; LAYOUT.md §9). Poppins travels INSIDE the tool (runtime/fontkit.tsx, FONT_KIT:
+   500, 600 and 700 subset to Latin and Devanagari, woff2 data URIs, made by `node cli.mjs fontkit`), under a private family name, so a
+   page or a device without Poppins (staging, the owner's viewer) shows the same type the checks render; Gujarati stays on the device's
+   font. Its @font-face rules go into the runtime's own <style> (fontKitCss); on mount every weight is loaded, and once the fonts are
+   ready ToolFrame renders once more (useFontKit: 0, then 1) and the header and start page, which measure their text, measure again.
+   Nothing waits for it: the first paint may use the fallback for a moment, then the kit swaps in (font-display: swap). No FONT_KIT: nothing changes. */
+let FONT_KIT_STYLE = null;
+function fontKitCss(base) {
+  if (!FONT_KIT_STYLE || FONT_KIT_STYLE.base !== base) {
+    const k = typeof FONT_KIT !== "undefined" && FONT_KIT && FONT_KIT.css ? FONT_KIT.css : "";
+    FONT_KIT_STYLE = { base, out: k ? base + k : base };
+  }
+  return FONT_KIT_STYLE.out;
+}
+function useFontKit() {
+  const [gen, setGen] = useState(0);
+  useEffect(() => {
+    const k = typeof FONT_KIT !== "undefined" && FONT_KIT, fonts = typeof document !== "undefined" && document.fonts;
+    if (!k || !fonts) return;
+    let live = true;
+    Promise.all((k.weights || []).map((w) => fonts.load(`${w} 32px '${k.family}'`).catch(() => null)))
+      .then(() => fonts.ready).then(() => { if (live) setGen(1); }).catch(() => {});
+    return () => { live = false; };
+  }, []);
+  return gen;
+}
+/* FONT_KIT end */
+
+/* ACTION_KIT_HELPER start */
+/* ACTION ANIMATION (class 4 head of 2026-10-16, the owner; LAYOUT.md §1e, PATTERNS.md §15, IMAGES.md §11). When the child taps an
+   action (Cut, Split, Measure, Count, Lift, Put back, Tidy, Carry ...) a real tool does it on screen: a knife, scissors, a ruler, a
+   pencil or an eraser (the ACTION KIT pictures: runtime/actionkit.tsx, ACTION_KIT + ACTION_KIT_FIT, made once by
+   `node cli.mjs actionkit`), or a cartoon hand drawn here in code (glove white, ink outline: hands are drawn, never generated). Work calls
+     api.act({ tool, moves, at: [{ x, y }, ...], from?, to?, ms?, onPoint?, hold? }) -> Promise<boolean>
+   in its own (working-area) coordinates. tool: knife | scissors | ruler | pencil | eraser | hand; moves: slice | snip | slide |
+   draw | rub | tap | push | carry | sweep. The tool comes in from just off its first point, does its move at each point of `at`
+   (slide, draw, push, carry and sweep travel along from -> at... -> to), then leaves, in 1.1 to 1.5 s (never longer; `ms` asks for
+   another length inside 0.7 to 1.5 s). onPoint(i) runs the moment it acts at at[i] (split that piece as the knife passes it); `hold`
+   (an svg node drawn round 0,0) travels with a push, a carry or a sweep (the carried piece). The promise resolves true at the end: the
+   tool's own pieces part and settle then. While it plays the pad and keys are locked (the runtime's lock), the working area takes no
+   tap, the keyboard waits, getState().acting is true, and a second act() resolves false at once (react only on true: a double tap
+   never cuts twice). A phase change, a restart or a new question ends it (false). Under reduced motion nothing moves: every onPoint
+   runs and it resolves true at once. A kit picture that is missing draws the hand. It prints no text and catches no pointer; a tool
+   that never calls act renders exactly as before. */
+const ACT_SFX = { slice: "cut", snip: "cut", slide: "trade", draw: "tick", rub: "tick", tap: "tick", push: "settle", carry: "trade", sweep: "settle" };
+const ACT_TRAVEL = { slide: 1, draw: 1, push: 1, carry: 1, sweep: 1 };
+const ACT_TEMPO = 1.5, ACT_BEAT = 400;   /* class 5 default (the owner, 2026-10-18): every act 1.5x calmer; a pencil holds a beat after writing */
+const ACT_IN = Math.round(240 * ACT_TEMPO), ACT_OUT = Math.round(220 * ACT_TEMPO), ACT_MAX = Math.round(1500 * ACT_TEMPO);
+/* where each tool comes in from, and leaves to, off its first and last point (work units) */
+const ACT_OFF = { knife: [0, -170], scissors: [0, 170], pencil: [150, -150], eraser: [150, -90], hand: [130, 150] };
+const actOk = (p) => !!p && isFinite(p.x) && isFinite(p.y);
+/* a kit picture and how it is held (ACTION_KIT_FIT), or null: the hand stands in */
+function actPic(k) {
+  const src = typeof ACTION_KIT !== "undefined" && ACTION_KIT ? ACTION_KIT[k] : "";
+  if (!src || k === "hand") return null;
+  const fit = typeof ACTION_KIT_FIT !== "undefined" && ACTION_KIT_FIT && ACTION_KIT_FIT[k];
+  return { src, fit: fit || { w: 1, h: 1, len: 140, ax: 0.5, ay: 0.5, rot: 0 } };
+}
+/* one act: its points, its length, when it acts at each point of `at` (ms from the start) */
+function actPlan(o) {
+  const move = String(o.moves || o.move || "tap"), tool = String(o.tool || "hand");
+  const at = (o.at || []).filter(actOk), path = [o.from, ...at, o.to].filter(actOk);
+  if (!path.length) return null;
+  const travel = !!ACT_TRAVEL[move] && path.length > 1, pts = travel ? path : at.length ? at : path;
+  const total = Math.round(Math.min(ACT_MAX, Math.max(700 * ACT_TEMPO, ACT_TEMPO * (Number(o.ms) || 1100 + 100 * Math.max(0, pts.length - 2)))));
+  const mid = total - ACT_IN - ACT_OUT, cum = [0];
+  for (let k = 1; k < path.length; k++) cum.push(cum[k - 1] + Math.hypot(path[k].x - path[k - 1].x, path[k].y - path[k - 1].y));
+  const len = cum[cum.length - 1] || 1, first = actOk(o.from) ? 1 : 0, pic = actPic(tool);
+  const hits = at.map((_, i) => Math.round(ACT_IN + mid * (!travel ? (i + 0.65) / at.length : move === "slide" && pic ? 0.4 + 0.6 * cum[i + first] / len : cum[i + first] / len)));
+  const a = path[0], b = path[path.length - 1], dl = Math.hypot(b.x - a.x, b.y - a.y) || 1;
+  const off = move === "slide" && pic ? [-(b.x - a.x) / dl * 160, -(b.y - a.y) / dl * 160] : ACT_OFF[pic ? tool : "hand"] || ACT_OFF.hand;
+  return { move, tool, pic, total, mid, hits, pts, path, cum, len, travel, off, first, at };
+}
+/* where the tool is at t ms: x, y (its acting point), o (opacity), u (0..1 through the move at a point, -1 between), tm (0..1 through
+   the middle), seg (the travel's direction) */
+function actPose(p, t) {
+  const cl = (v) => Math.max(0, Math.min(1, v)), tm = cl((t - ACT_IN) / p.mid);
+  let x = p.path[0].x, y = p.path[0].y, u = -1, dir = [1, 0];
+  if (p.travel && !(p.move === "slide" && p.pic)) {   /* the ruler lays itself along the line instead (ActLayer); the hand that stands in for it travels */
+    const s = tm * p.len;
+    let j = 1;
+    while (j < p.cum.length - 1 && p.cum[j] < s) j++;
+    const a = p.path[j - 1], b = p.path[j], seg = p.cum[j] - p.cum[j - 1] || 1, f = cl((s - p.cum[j - 1]) / seg);
+    x = a.x + (b.x - a.x) * f; y = a.y + (b.y - a.y) * f; dir = [(b.x - a.x) / seg, (b.y - a.y) / seg];
+  } else if (!p.travel) {
+    const n = p.pts.length, k = Math.min(n - 1, Math.floor(tm * n)), f = tm * n - k;
+    const a = p.pts[Math.max(0, k - 1)], b = p.pts[k], g = k > 0 ? cl(f / 0.3) : 1, e = g * g * (3 - 2 * g);
+    x = a.x + (b.x - a.x) * e; y = a.y + (b.y - a.y) * e; u = f < 0.3 ? -1 : cl((f - 0.3) / 0.7);
+  }
+  const lead = t < ACT_IN ? 1 - cl(t / ACT_IN) : t > p.total - ACT_OUT ? 1 - cl((p.total - t) / ACT_OUT) : 0;
+  return { x: x + p.off[0] * lead * lead, y: y + p.off[1] * lead * lead, o: 1 - lead, u, tm, dir };
+}
+/* the drawn hand: point (index finger up, its tip at 0,0), open (palm out, fingers up, palm centre at 0,0) or grip (a fist, 0,0 under
+   its knuckles). Glove white with the ink outline, no skin tone (IMAGES.md §2: hands are drawn, never generated) */
+function ActHand({ pose, ink }) {
+  const s = { fill: "#FBF8F2", stroke: ink, strokeWidth: 4, strokeLinejoin: "round" };
+  const cuff = { fill: "#E8E1D4", stroke: ink, strokeWidth: 4 };
+  if (pose === "open") return (
+    <g data-role="act-hand" data-pose="open">
+      <rect x={-30} y={36} width={60} height={26} rx={8} {...cuff} />
+      <ellipse cx={-42} cy={8} rx={11} ry={24} transform="rotate(-35 -42 8)" {...s} />
+      {[[-34, 52], [-16, 60], [2, 56], [20, 46]].map(([fx, fh], k) => <rect key={k} x={fx} y={-10 - fh} width={16} height={fh + 14} rx={8} {...s} />)}
+      <rect x={-36} y={-22} width={72} height={62} rx={24} {...s} />
+    </g>
+  );
+  if (pose === "grip") return (
+    <g data-role="act-hand" data-pose="grip">
+      <rect x={-28} y={30} width={56} height={24} rx={8} {...cuff} />
+      <rect x={-36} y={-20} width={72} height={56} rx={24} {...s} />
+      {[-25, -9, 7, 23].map((fx, k) => <circle key={k} cx={fx} cy={-18} r={10} {...s} />)}
+      <rect x={-32} y={0} width={46} height={18} rx={9} {...s} />
+    </g>
+  );
+  return (
+    <g data-role="act-hand" data-pose="point">
+      <rect x={-34} y={98} width={68} height={26} rx={8} {...cuff} />
+      <ellipse cx={-34} cy={72} rx={12} ry={22} transform="rotate(-30 -34 72)" {...s} />
+      <rect x={-36} y={42} width={74} height={62} rx={26} {...s} />
+      <rect x={8} y={42} width={30} height={20} rx={10} {...s} />
+      <rect x={10} y={60} width={28} height={18} rx={9} {...s} />
+      <rect x={10} y={76} width={26} height={17} rx={8} {...s} />
+      <rect x={-12} y={0} width={24} height={62} rx={12} {...s} />
+    </g>
+  );
+}
+/* the layer: above the working area, under the key, the drawer and the footer; clipped to the working area; no pointer events */
+function ActLayer({ play, w, h, C }) {
+  const [t, setT] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    const step = () => { setT(performance.now() - play.t0); raf = requestAnimationFrame(step); };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [play]);
+  const q = actPose(play, t), d = q.u >= 0 ? Math.sin(Math.PI * q.u) : 0, m = play.move, pic = play.pic;
+  let dx = 0, dy = 0, rot = 0, sx = 1;
+  if (m === "slice") dy = -56 + 86 * d;
+  else if (m === "snip") { dy = 14 * (1 - d); sx = 1 - 0.3 * d; }
+  else if (m === "rub") dx = q.u >= 0 ? 24 * Math.sin(q.u * Math.PI * 6) : 0;
+  else if (m === "tap") sx = 1 - 0.12 * d;
+  else if (m === "sweep") rot = 14 * Math.sin(q.tm * Math.PI * 4);
+  else if (m === "carry") dy = -16 * Math.sin(Math.PI * q.tm);
+  const x = q.x + dx, y = q.y + dy;
+  let body = null;
+  if (pic && m === "slide") {
+    /* the ruler lies along from -> to, its top edge on the line, and a tick pops at each point of `at` as it is read */
+    const a = play.path[0], b = play.path[play.path.length - 1], L = Math.hypot(b.x - a.x, b.y - a.y) || pic.fit.len;
+    const ang = (Math.atan2(b.y - a.y, b.x - a.x) * 180) / Math.PI, th = (pic.fit.h / pic.fit.w) * pic.fit.len, ux = (b.x - a.x) / L, uy = (b.y - a.y) / L;
+    body = (
+      <g transform={`translate(${q.x} ${q.y}) rotate(${ang + (pic.fit.rot || 0)})`}>
+        <image data-role="act" href={pic.src} x={-24} y={0} width={L + 48} height={th} preserveAspectRatio="none" />
+        {play.at.map((p, i) => (t >= play.hits[i] ? <line key={i} x1={(p.x - a.x) * ux + (p.y - a.y) * uy} y1={0} x2={(p.x - a.x) * ux + (p.y - a.y) * uy} y2={22} stroke={C.ink} strokeWidth={4} strokeLinecap="round" /> : null))}
+      </g>
+    );
+  } else if (pic) {
+    const f = pic.fit, k = f.len / Math.max(f.w, f.h), pw = f.w * k, ph = f.h * k;
+    body = (
+      <g transform={`translate(${x} ${y}) rotate(${(f.rot || 0) + rot}) scale(${sx} 1)`}>
+        <image data-role="act" href={pic.src} x={-f.ax * pw} y={-f.ay * ph} width={pw} height={ph} preserveAspectRatio="none" />
+      </g>
+    );
+  } else {
+    const pose = m === "carry" ? "grip" : m === "push" || m === "sweep" ? "open" : "point";
+    /* drawn in a 1.4 times box, so it reads from the last bench beside the kit's tools */
+    const back = pose === "open" ? 72 : 0, hx = x - q.dir[0] * back, hy = pose === "grip" ? y - 48 : y - q.dir[1] * back;
+    body = (
+      <g transform={`translate(${hx} ${hy}) rotate(${(pose === "point" ? -18 : 10 * Math.sign(q.dir[0] || 1)) + rot}) scale(${1.4 * sx})`}>
+        <ActHand pose={pose} ink={C.ink} />
+      </g>
+    );
+  }
+  /* the pencil's line, drawn behind its tip from the first point (the tool draws its own line once the act is over) */
+  let trail = null;
+  if (m === "draw" && play.travel && t > ACT_IN) {
+    const s = q.tm * play.len, ps = play.path.filter((_, j) => play.cum[j] <= s).map((p) => `${p.x},${p.y}`);
+    trail = <polyline points={[...ps, `${q.x},${q.y}`].join(" ")} fill="none" stroke="#4A4A4A" strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />;
+  }
+  return (
+    <g opacity={q.o}>
+      <clipPath id="c4ActClip"><rect x={0} y={0} width={w} height={h} /></clipPath>
+      <g clipPath="url(#c4ActClip)" filter="url(#fShadowSoft)">
+        {trail}
+        {m === "tap" && d > 0 ? <circle cx={q.x} cy={q.y} r={14 + 26 * q.u} fill="none" stroke={C.ink} strokeWidth={4} strokeOpacity={0.35 * (1 - q.u)} /> : null}
+        {play.hold ? <g transform={`translate(${q.x} ${q.y + (m === "carry" ? dy : 0)})`}>{play.hold}</g> : null}
+        {body}
+      </g>
+    </g>
+  );
+}
+/* the hook ToolFrame holds: act() for Work's api, the play the layer draws, busy() for getState and the keys. `key` changes with the
+   phase, the run and the question: the act in flight ends (resolves false) */
+function useActionKit(lockNow, lockedRef, sfx, key) {
+  const [play, setPlay] = useState(null);
+  const cur = useRef(null);
+  const end = (ok) => {
+    const c = cur.current;
+    if (!c) return;
+    cur.current = null;
+    c.timers.forEach(clearTimeout);
+    setPlay(null);
+    if (!c.was) lockNow(false);   /* the tool's own lock, held before the act, stays */
+    c.resolve(ok);
+  };
+  useEffect(() => () => end(false), [key]);
+  const act = (o) => new Promise((resolve) => {
+    o = o || {};
+    if (cur.current) { resolve(false); return; }
+    const p = actPlan(o), onPoint = typeof o.onPoint === "function" ? o.onPoint : null;
+    const hit = (i) => { try { if (onPoint) onPoint(i); } catch (e) { console.error(e); } };
+    if (!p || reducedMotion()) { if (p) p.at.forEach((_, i) => hit(i)); resolve(true); return; }
+    const c = { timers: [], resolve, was: !!lockedRef.current };
+    cur.current = c;
+    lockNow(true);
+    const pen = p.tool === "pencil", fx = sfx && sfx[pen ? "tick" : ACT_SFX[p.move]];   /* a pencil sounds like writing */
+    let tickAt = -1e9;
+    const tick = () => { const n = performance.now(); if (fx && n - tickAt > 150) { tickAt = n; fx(); } };
+    if (fx && p.travel) c.timers.push(setTimeout(() => fx(), ACT_IN));
+    p.hits.forEach((ms, i) => c.timers.push(setTimeout(() => { hit(i); if (pen) tick(); else if (fx && !p.travel) fx(); }, ms)));
+    c.timers.push(setTimeout(() => end(true), p.total + (pen ? ACT_BEAT : 0)));
+    setPlay({ ...p, hold: o.hold || null, t0: performance.now() });
+  });
+  return { act, play, busy: () => !!cur.current };
+}
+/* ACTION_KIT_HELPER end */
+
 /* ── the frame: header, canvas, runs, working area, slot + pad, footer ────────────── */
 
 const CSS = `
@@ -1437,7 +1752,7 @@ const UI_STRINGS: Record<string, any> = {
     bubbleNext: "Next line",
     answer: "Answer", answerClose: "Close", start: "Start", toStart: "Back to the start", typeIt: "Type your answer, then press Enter.", pickIt: "Choose your answer.",
     next: "Next", nextPhase: "Next phase", summaryKey: "Summary",
-    tapCard: (c: string) => `Tap the blinking ${c} card.`, tapAnswer: "Tap the blinking Answer key.",
+    tapCard: (c: string) => `Tap the blinking ${c} card.`, cardFrac: "Fraction", cardDec: "Decimal", box: { numerator: "numerator box", denominator: "denominator box", whole: "whole part box", decimal: "decimal part box" }, tapAnswer: "Tap the blinking Answer key.",
   },
   hi: {
     again: "संकेत", soundOff: "ध्वनि बंद", soundOn: "ध्वनि चालू", restart: "यह चरण फिर से शुरू करें",
@@ -1452,7 +1767,7 @@ const UI_STRINGS: Record<string, any> = {
     bubbleNext: "अगली पंक्ति",
     answer: "उत्तर", answerClose: "बंद करें", start: "शुरू करें", toStart: "शुरुआत पर लौटें", typeIt: "अपना उत्तर लिखो, फिर दर्ज करें दबाओ।", pickIt: "अपना उत्तर चुनो।",
     next: "आगे", nextPhase: "अगला चरण", summaryKey: "सारांश",
-    tapCard: (c: string) => `चमकते ${c} कार्ड को छुओ।`, tapAnswer: "चमकती उत्तर कुंजी को छुओ।",
+    tapCard: (c: string) => `चमकते ${c} कार्ड को छुओ।`, cardFrac: "भिन्न", cardDec: "दशमलव", box: { numerator: "अंश का खाना", denominator: "हर का खाना", whole: "पूर्ण भाग का खाना", decimal: "दशमलव भाग का खाना" }, tapAnswer: "चमकती उत्तर कुंजी को छुओ।",
   },
   gu: {
     again: "સંકેત", soundOff: "અવાજ બંધ", soundOn: "અવાજ ચાલુ", restart: "આ તબક્કો ફરી શરૂ કરો",
@@ -1467,7 +1782,7 @@ const UI_STRINGS: Record<string, any> = {
     bubbleNext: "આગલી લીટી",
     answer: "જવાબ", answerClose: "બંધ કરો", start: "શરૂ કરો", toStart: "શરૂઆત પર પાછા જાઓ", typeIt: "તમારો જવાબ લખો, પછી દાખલ કરો દબાવો.", pickIt: "તમારો જવાબ પસંદ કરો.",
     next: "આગળ", nextPhase: "આગલો તબક્કો", summaryKey: "સારાંશ",
-    tapCard: (c: string) => `ઝબકતા ${c} કાર્ડને સ્પર્શ કરો.`, tapAnswer: "ઝબકતી જવાબ કીને સ્પર્શ કરો.",
+    tapCard: (c: string) => `ઝબકતા ${c} કાર્ડને સ્પર્શ કરો.`, cardFrac: "અપૂર્ણાંક", cardDec: "દશાંશ", box: { numerator: "અંશનું ખાનું", denominator: "છેદનું ખાનું", whole: "પૂર્ણ ભાગનું ખાનું", decimal: "દશાંશ ભાગનું ખાનું" }, tapAnswer: "ઝબકતી જવાબ કીને સ્પર્શ કરો.",
   },
 };
 
@@ -1538,7 +1853,7 @@ function SlotStack({ C, parts, typed, active, live, format, part, onPart, lang, 
           stroke={on ? slotEdge(C) : C.rule} strokeWidth={on ? 3 : 2.5} />
         <text x={x + w / 2} y={y + h / 2 + size * 0.36} textAnchor="middle" fontSize={size} fontWeight={600} fill={C.ink}>{shown}</text>
         {on && <rect className="c4-caret" x={x + w / 2 + nw / 2 + 4} y={y + (h - size * 0.8) / 2} width={3} height={size * 0.8} rx={1.5} fill={C.accent} />}
-        <SlotPartBox id={"part-" + (j + 1)} label={parts[j].label + " box"} x={hit.x} y={hit.y} w={hit.w} h={hit.h}
+        <SlotPartBox id={"part-" + (j + 1)} label={(((UI_STRINGS[lang] || UI_STRINGS.en).box || {})[parts[j].label] || lineFor(parts[j].label + " box", lang, TR))} x={hit.x} y={hit.y} w={hit.w} h={hit.h}
           on={on} enabled={live ?? active} onPick={() => onPart && onPart(j)} />
       </g>
     );
@@ -1582,7 +1897,7 @@ function SlotSide({ C, parts, typed, active, live, format, part, onPart, lang, T
         <rect x={x} y={by} width={bw} height={bh} rx={10} fill={mix(C.panel, "#FFFFFF", 0.3)} stroke={on ? slotEdge(C) : C.rule} strokeWidth={on ? 3 : 2.5} />
         <text x={mid} y={by + bh / 2 + size * 0.36} textAnchor="middle" fontSize={size} fontWeight={600} fill={C.ink}>{shown}</text>
         {on && <rect className="c4-caret" x={mid + nw / 2 + 4} y={by + (bh - size * 0.8) / 2} width={3} height={size * 0.8} rx={1.5} fill={C.accent} />}
-        <SlotPartBox id={"part-" + (j + 1)} label={parts[j].label + " box"} x={hx} y={Z.slot.y} w={hr - hx} h={Z.slot.h}
+        <SlotPartBox id={"part-" + (j + 1)} label={(((UI_STRINGS[lang] || UI_STRINGS.en).box || {})[parts[j].label] || lineFor(parts[j].label + " box", lang, TR))} x={hx} y={Z.slot.y} w={hr - hx} h={Z.slot.h}
           on={on} enabled={live ?? active} onPick={() => onPart && onPart(j)} />
       </g>
     );
@@ -1626,7 +1941,7 @@ function Slot({ C, ask, typed, active, live, format, parts, part, onPart, lang, 
           const x = Z.slot.x + k * (bw + gap), cx = x + bw / 2, on = active && k === part;
           const shown = shownIn(format, vals[k], k, lang, TR);
           const unit = p.unit ? lineFor(String(p.unit), lang, TR) : "";
-          const ugap = shown ? 24 : 0; /* room for the caret between the number and its unit */
+          const ugap = 24; /* room for the caret between the number and its unit, empty box too (r57: the caret sat on the %) */
           const uw = unit ? unit.length * T.micro * 0.55 + ugap : 0;
           const size = shown.length * T.prompt * 0.58 + uw <= bw - 28 ? T.prompt : T.label;
           const nw = shown.length * size * 0.58, left = cx - (nw + uw) / 2;
@@ -1635,10 +1950,12 @@ function Slot({ C, ask, typed, active, live, format, parts, part, onPart, lang, 
               <rect x={x} y={Z.slot.y} width={bw} height={Z.slot.h} rx={RAD.panel} fill="#FFFFFF"
                 stroke={on ? slotEdge(C) : C.rule} strokeWidth={on ? 4 : 2} filter="url(#fShadowSoft)" />
               <text x={x + 16} y={Z.slot.y + 31} fontSize={T.micro} fontWeight={500} fill={quiet}>{lineFor(p.label, lang, TR)}</text>
-              <text x={left} y={Z.slot.y + 77} fontSize={size} fontWeight={600} fill={C.ink}>{shown}
-                {unit && <tspan dx={ugap} fontSize={T.micro} fontWeight={500} fill={quiet}>{unit}</tspan>}</text>
+              {/* r58: the digits END at left + nw (anchored there, whatever their real width) and the unit starts a fixed gap after
+                  it, so the caret between them never touches either ("11 |%" touched, "45|" overlapped the 5 on r57) */}
+              <text x={left + nw} y={Z.slot.y + 77} textAnchor="end" fontSize={size} fontWeight={600} fill={C.ink}>{shown}</text>
+              {unit && <text x={left + nw + ugap} y={Z.slot.y + 77} fontSize={T.micro} fontWeight={500} fill={quiet}>{unit}</text>}
               {on && <rect className="c4-caret" x={left + nw + 4} y={Z.slot.y + 44} width={4} height={40} rx={2} fill={C.accent} />}
-              <SlotPartBox id={"part-" + (k + 1)} label={p.label + " box"} x={x} y={Z.slot.y} w={bw} h={Z.slot.h}
+              <SlotPartBox id={"part-" + (k + 1)} label={(((UI_STRINGS[lang] || UI_STRINGS.en).box || {})[p.label] || lineFor(p.label + " box", lang, TR))} x={x} y={Z.slot.y} w={bw} h={Z.slot.h}
                 on={on} enabled={live ?? active} onPick={() => onPart && onPart(k)} />
             </g>
           );
@@ -1650,13 +1967,14 @@ function Slot({ C, ask, typed, active, live, format, parts, part, onPart, lang, 
   const cx = Z.slot.x + Z.slot.w / 2;
   /* a long answer (a word, a number with commas) drops a size rather than spilling out of the slot */
   const size = shown.length * T.xl * 0.58 <= Z.slot.w - 40 ? T.xl : shown.length * T.speech * 0.58 <= Z.slot.w - 40 ? T.speech : T.prompt;
-  const caretX = cx + (shown.length * size * 0.3) + 6;
+  /* r58: the text ends where the caret starts (anchored at its end), so the caret never sits inside or far from the digits */
+  const endX = cx + shown.length * size * 0.29, caretX = endX + 6;
   return (
     <g data-zone="slot">
       {askLines}
       <rect x={Z.slot.x} y={Z.slot.y} width={Z.slot.w} height={Z.slot.h} rx={RAD.panel} fill="#FFFFFF"
         stroke={active ? slotEdge(C) : C.rule} strokeWidth={active ? 4 : 2} filter="url(#fShadowSoft)" />
-      <text x={cx} y={Z.slot.y + 46 + size * 0.36} textAnchor="middle" fontSize={size} fontWeight={600} fill={C.ink}>{shown}</text>
+      <text x={endX} y={Z.slot.y + 46 + size * 0.36} textAnchor="end" fontSize={size} fontWeight={600} fill={C.ink}>{shown}</text>
       {active && <rect className="c4-caret" x={caretX} y={Z.slot.y + 22} width={4} height={50} rx={2} fill={C.accent} />}
     </g>
   );
@@ -1670,7 +1988,8 @@ const KEYS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "back", "0", "enter"]
    as a number pad: 1 2 3 rub out / 4 5 6 / 7 8 9 beside a tall Enter / a wide 0 and the point.
    pointOff: this question's answer has no point (a fraction, two boxes): the point key is flat and off */
 function Pad({ C, enabled, digitsOff, onKey, choices, onChoice, point, pointOff, UI, lang, TR }: any) {
-  const gap = 12;
+  /* r27 (keyOnly): the drawer is shorter (the key's row is on top of it), so the keys stand 8 apart and stay 72 tall */
+  const gap = KEYONLY ? 8 : 12;
   const quiet = mix(C.ink, C.panel, 0.5);
   if (choices && choices.length) {
     /* a long word ("hundredth", "thousandth": 9 to 10 letters at the label size) does not fit a half-width key (164 on the board),
@@ -1682,15 +2001,23 @@ function Pad({ C, enabled, digitsOff, onKey, choices, onChoice, point, pointOff,
        two-key question does not leave the lower half of the panel empty. The classic pad keeps its own sizes. */
     const cw = (Z.pad.w - gap) / cols, ch = Math.min(BOARD ? 150 : 110, (Z.pad.h - EDGE - gap * (rows - 1)) / rows);
     const top = BOARD ? Z.pad.y + Math.max(0, (Z.pad.h - EDGE - (rows * ch + (rows - 1) * gap)) / 2) : Z.pad.y;
+    /* r58: the labels take the biggest size at which EVERY key of the group fits, wrapped by the key's own width (not at 10
+       letters): one line at 40, one line at 32, then two lines at 40, two at 32. "Out of 1,000" wrapped in a 260-wide tile on
+       r57, and labels stayed 32 in 150-tall tiles. One size for the whole group, so the keys read as a set. */
+    const dev = lang === "hi" || lang === "gu", lbls = choices.map((c: any) => lineFor(c.label, lang, TR));
+    const pitchOf = (s: number) => Math.round(s * (dev ? 1.45 : 1.15));
+    const wrapAt = (s: number) => Math.max(4, Math.floor((cw - 24) / (s * 0.6)));
+    const fitsAt = (s: number, n: number) => lbls.every((l: string) => wrapText(l, wrapAt(s)).length <= n) && n * pitchOf(s) <= ch - 16;
+    const [lsz, lmax] = ([[T.prompt, 1], [T.label, 1], [T.prompt, 2], [T.label, 2]] as [number, number][]).find(([s, n]) => fitsAt(s, n)) || [T.label, 2];
     return (
       <g data-zone="pad" className={enabled ? "" : "c4-quiet"}>
         {choices.map((c: any, j: number) => {
           const x = Z.pad.x + (j % cols) * (cw + gap), y = top + Math.floor(j / cols) * (ch + gap);
-          const lines = wrapText(lineFor(c.label, lang, TR), 10).slice(0, 2);
+          const lines = wrapText(lineFor(c.label, lang, TR), wrapAt(lsz)).slice(0, lmax);
           return (
             <Key key={c.id} id={"choice-" + c.id} label={lineFor(c.label, lang, TR)} x={x} y={y} w={cw} h={ch} C={C} tone="key" disabled={!enabled} onClick={() => enabled && onChoice(c.id)}>
               {lines.map((ln: string, k: number) => (
-                <text key={k} y={11 + (k - (lines.length - 1) / 2) * 32} textAnchor="middle" fontSize={T.label} fontWeight={600} fill={enabled ? toneInk("key", C.ink) : quiet}>{ln}</text>
+                <text key={k} y={Math.round(lsz * 0.35) + (k - (lines.length - 1) / 2) * pitchOf(lsz)} textAnchor="middle" fontSize={lsz} fontWeight={600} fill={enabled ? toneInk("key", C.ink) : quiet}>{ln}</text>
               ))}
             </Key>
           );
@@ -1753,7 +2080,9 @@ function Pad({ C, enabled, digitsOff, onKey, choices, onChoice, point, pointOff,
    nothing is being asked (a teach line, a win): the key stays in place, flat and quiet. The runs box, when the tool
    has one, keeps its own place to the left of the bar. The question is one line at prompt size, else up to two lines
    at label size, else up to two at micro: the type floor holds, and Hindi and Gujarati fit the same box. */
-function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, onChoice, lang, TR, quiet, blink, onTap }: any) {
+/* r27 (keyOnly): no bar card, no question text, no border: only the key (or the choice keys) at the bar's right end, in the same place,
+   size, colours and blink; the question is on the bubble. Nothing at all while nothing would stand there (a card question). */
+function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, onChoice, lang, TR, quiet, blink, onTap, keyOnly }: any) {
   const x0 = hasRuns ? Z.runs.x + Z.runs.w + 16 : Z.ask.x;
   const bw = Z.ask.x + Z.ask.w - x0;
   /* r49 (cardAnswer): mode "choices" draws the question's choices (Yes / No) as keys at the right end, in the Answer key's
@@ -1761,9 +2090,10 @@ function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, on
      idle bar of such a tool (`quiet`) draw no key at all */
   const nCh = mode === "choices" ? (choices || []).length : 0;
   /* a long word ("thousandth", 10 letters) needs a wider key: 150 for Yes / No, up to 236 so the word sits at the label size */
-  const longest = nCh ? Math.max(...(choices || []).map((c: any) => lineFor(c.label, lang, TR).length)) : 0;
-  const cw = Math.min(236, Math.max(150, Math.ceil(longest * T.label * 0.6 + 28))), cgap = 14;
+  const cw = nCh ? choiceKeyW(choices, lang, TR) : 150, cgap = 14;
   const kw = nCh ? nCh * cw + (nCh - 1) * cgap : 264, kh = 72, kx = x0 + bw - kw - 10, ky = Z.ask.y + (Z.ask.h - kh) / 2;
+  /* one size for the whole row of choice keys: the biggest at which EVERY label fits its key (one 40 and one 32 side by side read as two sizes) */
+  const rowSize = (choices || []).every((c: any) => lineFor(c.label, lang, TR).length * T.prompt * 0.6 <= cw - 20) ? T.prompt : T.label;
   const noKey = mode === "card" || (quiet && mode === "off");
   const room = (noKey ? x0 + bw - 10 : kx) - x0 - 40;
   const pick: any = [[T.prompt, 1], [T.label, 2], [T.micro, 2]].map(([s, l]: any) => ({ s, l, w: wrapText(ask, Math.floor(room / (s * 0.58))) }))
@@ -1775,12 +2105,12 @@ function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, on
   const label = next ? nextLabel : mode === "enter" ? UI.enter : open ? UI.answerClose : UI.answer;
   return (
     <g data-zone="ask" onClick={onTap}>
-      <rect x={x0} y={Z.ask.y} width={bw} height={Z.ask.h} rx={RAD.panel + 4} fill="#FFFFFF" stroke={C.rule} strokeWidth={2} filter="url(#fShadowSoft)" />
-      {pick.w.map((ln: string, k: number) => (
+      {!keyOnly && <rect x={x0} y={Z.ask.y} width={bw} height={Z.ask.h} rx={RAD.panel + 4} fill="#FFFFFF" stroke={C.rule} strokeWidth={2} filter="url(#fShadowSoft)" />}
+      {!keyOnly && pick.w.map((ln: string, k: number) => (
         <text key={k} x={x0 + 28} y={top + k * lh} fontSize={pick.s} fontWeight={500} fill={C.ink}>{ln}</text>
       ))}
       {nCh > 0 && (choices || []).map((c: any, j: number) => {
-        const x = kx + j * (cw + cgap), lab = lineFor(c.label, lang, TR), size = lab.length * T.prompt * 0.6 <= cw - 20 ? T.prompt : T.label;
+        const x = kx + j * (cw + cgap), lab = lineFor(c.label, lang, TR), size = rowSize;
         return (
           <g key={c.id}>
             <Key id={"choice-" + c.id} label={lab} x={x} y={ky} w={cw} h={kh} C={C} tone="key" onClick={() => onChoice && onChoice(c.id)}>
@@ -1875,9 +2205,11 @@ function Party({ C, big, n }: any) {
   const rnd = () => { seed = (seed * 48271) % 2147483647; return seed / 2147483647; };
   /* the left popper stands over the mascot's hand, clear of the bubble's corner (x 254); the right one on the card's floor
      (y 736), above the phase bar, never over a phase pill */
+  /* r27 (keyOnly): the left popper stands over the 1.45-times Kiko's hand (186, 772 scaled about 28, 898) */
+  const hand = KEYONLY ? { x: Math.round(28 + 158 * MASCOT_SCALE_KEY), y: Math.round(898 - 126 * MASCOT_SCALE_KEY) } : { x: 186, y: 772 };
   const origins = big
-    ? [{ x: 186, y: 772, a0: -80, a1: -20 }, { x: 1500, y: 734, a0: -160, a1: -100 }]
-    : [{ x: 186, y: 772, a0: -80, a1: -20 }];
+    ? [{ ...hand, a0: -80, a1: -20 }, { x: 1500, y: 734, a0: -160, a1: -100 }]
+    : [{ ...hand, a0: -80, a1: -20 }];
   const per = big ? 44 : 56;
   const parts: any[] = [];
   origins.forEach((o) => {
@@ -1902,12 +2234,16 @@ function Party({ C, big, n }: any) {
           </g>
         );
       })}
-      {(typeof MASCOT_CHEER === "string" && MASCOT_CHEER ? SPARKS : []).map((s, k) => (
+      {(() => {
+        const sparks = (typeof MASCOT_CHEER === "string" && MASCOT_CHEER ? SPARKS : []).map((s, k) => (
         <g key={"s" + k} transform={`translate(${s.x},${s.y}) scale(${s.s * (big ? 1.25 : 1)})`}>
           <polygon className="c4-twinkle" style={{ animationDelay: s.d + "s" } as any} points="0,-16 4.5,-4.5 16,0 4.5,4.5 0,16 -4.5,4.5 -16,0 -4.5,-4.5"
             fill={pal[2 + (k % 2)]} stroke={shade(pal[2 + (k % 2)], 0.25)} strokeWidth={1.5} strokeLinejoin="round" />
         </g>
-      ))}
+      ));
+        /* r27 (keyOnly): the sparkles round the 1.45-times Kiko, scaled with it */
+        return KEYONLY ? <g transform={MASCOT_T_KEY}>{sparks}</g> : sparks;
+      })()}
       {parts.map((p, k) => (
         <g key={k} transform={`translate(${p.o.x},${p.o.y})`}>
           <g className="c4-px" style={{ ["--dx" as any]: p.dx + "px", animationDelay: p.dl + "s" } as any}>
@@ -1944,8 +2280,8 @@ function Mascot({ C, speaking, react, ok, onFail, cheerOn, onCheerFail, thinkOn,
      it. A thinking picture that fails to decode leaves the standing one. */
   const thinkSrc = typeof MASCOT_THINK === "string" ? MASCOT_THINK : "";
   const thinking = !cheering && !!(thinkOn && thinkSrc);
-  return (
-    <g data-zone="voice">
+  const body = (
+    <>
       <line x1={m.x + 8} y1={m.y + m.h - 2} x2={m.x + m.w - 8} y2={m.y + m.h - 2} stroke={C.rule} strokeWidth={3} strokeLinecap="round" />
       {ok ? (
         <image key={"m" + ((react && react.n) || 0)} data-role="mascot" className={speaking ? "c4-talk" : mood} href={cheering ? cheerSrc : thinking ? thinkSrc : MASCOT_IMAGE} data-pose={cheering ? "cheer" : thinking ? "think" : undefined} x={m.x} y={m.y} width={m.w} height={m.h}
@@ -1958,8 +2294,10 @@ function Mascot({ C, speaking, react, ok, onFail, cheerOn, onCheerFail, thinkOn,
       )}
       {ok && thinking && <ThinkPuff />}
       {ok && bulbN > 0 && !cheering && <HintBulb key={"b" + bulbN} />}
-    </g>
+    </>
   );
+  /* r27 (keyOnly): the whole of it 1.45 times as big about the box's bottom-left corner (the pictures swap in the same box) */
+  return <g data-zone="voice">{KEYONLY ? <g transform={MASCOT_T_KEY}>{body}</g> : body}</g>;
 }
 
 /* r24: the thought puff beside Kiko's head while the pose is on: two small circles rising to a cloud with three dots. Plain vector in the
@@ -1968,6 +2306,7 @@ function Mascot({ C, speaking, react, ok, onFail, cheerOn, onCheerFail, thinkOn,
 const THINK_BUMPS = [[154, 48, 2.6], [161, 41, 4], [166, 25, 9.5], [176.5, 17.5, 11.5], [187, 25, 8.5]];
 const THINK_DOTS = [167, 175.5, 184];
 function ThinkPuff() {
+  if (KEYONLY) return null;   /* keyOnly (owner 2026-10-16): Kiko keeps the thinking pose, no thought cloud (LAYOUT §1d) */
   const m = MASCOT_BOX;
   const body = (fill: string, stroke?: string) => (
     <g fill={fill} stroke={stroke} strokeWidth={stroke ? 2.2 : undefined} strokeLinejoin="round">
@@ -1989,6 +2328,7 @@ function ThinkPuff() {
 /* r24: a small yellow bulb pops where the puff stands (up and to the right of Kiko's head) for about a second when the Hint key is pressed:
    the header's own bulb picture, drawn small. Plain vector, no pointer events. */
 function HintBulb() {
+  if (KEYONLY) return null;   /* keyOnly (owner 2026-10-16): no bulb beside Kiko */
   const m = MASCOT_BOX;
   return (
     <g data-role="hint-bulb" transform={`translate(${m.x + 176},${m.y + 28})`} aria-hidden="true" pointerEvents="none">
@@ -2029,8 +2369,36 @@ function PhaseDot({ C, k, N, x, w, now, done, fill = 1, navigable, onGo, UI }: a
   );
 }
 
-function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, done, onGo, mascotOk, onMascotFail, UI, onBubble, cue, board, lang, hintType, cheerOn, onCheerFail, thinkOn, onThinkFail, bulbN }: any) {
+/* r27 (class 4), NAV DOTS (opt-in: `navDots: true`; LAYOUT.md §1d; the owner, 2026-10-15): one small dot per phase and no text in
+   place of the long phase bar. Done: filled accent; the current one bigger and filled, with a ring; later: hollow (the panel colour,
+   the rule colour's edge). Each is a control in user AND AI mode (a 72-unit finger box; the boxes tile), and a tap, Enter or Space
+   starts THAT phase, any phase, forward or back, the way the header's restart starts the current one. data-state is machine-read
+   (the English word), as on the classic bar. */
+function NavDot({ C, k, N, cx, cy, now, done, onGo, UI }: any) {
+  const p = usePress(() => onGo(k), true);
+  const word = now ? "now" : done ? "done" : "not yet";
+  const on = now || done;
+  return (
+    <g className={"c4-ctl c4-dot" + (p.down ? " is-down" : "")} role="button" tabIndex={0} aria-label={UI.stepOf(k + 1, N)}
+      aria-current={now ? "step" : undefined} data-control="phase-dot" data-phase={k + 1} data-state={word === "not yet" ? "later" : word}
+      data-fill={on ? "1.000" : "0.000"} {...p.bind()} onKeyDown={p.keys}>
+      <rect x={cx - HIT / 2} y={cy - HIT / 2} width={HIT} height={HIT} fill="transparent" />
+      <g className="c4-body" style={{ transform: `translateY(${p.down ? 3 : 0}px)` } as any}>
+        {now && <circle cx={cx} cy={cy} r={25} fill="none" stroke={shade(C.accent, 0.15)} strokeWidth={4} />}
+        <circle className="c4-face" cx={cx} cy={cy} r={now ? 16 : 11} fill={on ? "url(#gAccent)" : C.panel} stroke={on ? shade(C.accent, 0.15) : C.rule} strokeWidth={3} />
+      </g>
+    </g>
+  );
+}
+
+function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, done, onGo, mascotOk, onMascotFail, UI, onBubble, cue, board, lang, hintType, cheerOn, onCheerFail, thinkOn, onThinkFail, bulbN, onDot }: any) {
   const b = Z.bubble;
+  /* r27: the layouts of the bubble's size (FIT_KEY for the tall keyOnly bubble), and where the tail meets it: at Kiko's face */
+  /* em: the width a character takes, in em. 0.54 everywhere but a keyOnly bubble in Hindi or Gujarati (FIT_KEY.devEm 0.5: a code point of
+     Devanagari or Gujarati is narrower, 0.45 em on average and 0.48 at most, Poppins and its fallback measured), so a line that fits is
+     not wrapped early */
+  const em = KEYONLY && (lang === "hi" || lang === "gu") ? FIT_KEY.devEm : 0.54;
+  const fit = KEYONLY ? FIT_KEY : FIT_CLASSIC, ty = KEYONLY ? Math.round(MASCOT_BOX.y + MASCOT_BOX.h - (MASCOT_BOX.h - 54) * MASCOT_SCALE_KEY) : b.y + 44;
   /* board layout: the line reads as the hint pill, the same box with an accent edge (nothing else moves: the arrow's
      offsets, the bar and the mascot are the classic ones) */
   const edge = board ? shade(C.accent, 0.1) : C.rule, edgeW = board ? 3 : 2;
@@ -2038,33 +2406,62 @@ function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, don
      band, in the biggest of these layouts that fits the 144-tall bubble: [instruction size, its lines, hint size, its lines].
      The last one is tight (no band). Nothing is ever cut. When NONE fits, the hint is drawn ALONE (the hint is what the
      child needs, the question stays in the question bar) and `hint-fit` fails the tool, so it is fixed at the source. */
-  const hintS = String(hint || "");
+  /* ONE SENTENCE A SCREEN (keyOnly; the owner 2026-10-16; LAYOUT §1d; the marker lib/core/caps.mjs `oneSentence` reads): ONE sentence in the
+     bubble. The built-in "type" line is not shown and a hint REPLACES the question (no instruction + hint pair below), so `shown` is the
+     hint alone, drawn as data-role="hint", until the child's next act */
+  const hintS = KEYONLY && hintType ? "" : String(hint || "");
   /* r41: Hindi and Gujarati carry matras above the headline and tails below the line, so their lines need a taller pitch
      (1.45 em) and a little room above the first line (the ink rises about 5 units over its baseline), or two lines touch and
      the first one touches the bubble's outline; English keeps size + 6. A layout counts only when its whole block fits the
      bubble with 6 to spare. There is no tight (band-less) layout in hi/gu: a pair that does not fit is the tool's to shorten. */
   const dev = lang === "hi" || lang === "gu";
-  const pit = (s: number, tight: any) => (tight ? s + 1 : dev ? Math.round(s * 1.45) : s + 6);
-  const gapOf = (tight: any) => (tight || dev ? 4 : 6), padOf = (tight: any) => (tight ? 0 : dev ? 4 : 8), topOf = dev ? 12 : 0;   /* topOf: the first line's top (y0) sits at least this far under the bubble's top: the ink rises ~8 over it */
+  /* r27 (keyOnly), measured in Poppins (the platform's font): its Devanagari rises 1.09 em over the baseline and falls 0.40 under it (Noto
+     Sans: 0.90 and 0.26), so a keyOnly bubble's Hindi and Gujarati lines take 1.6 em (FIT_KEY.devPit) and the block's top sits 0.3 em + 4
+     under the bubble's (FIT_KEY.devTop); the classic bubble keeps 1.45 em and 12 */
+  const pit = (s: number, tight: any) => (tight ? s + 1 : dev ? Math.round(s * (KEYONLY ? FIT_KEY.devPit : 1.45)) : s + 6);
+  const gapOf = (tight: any) => (tight || dev ? 4 : 6), padOf = (tight: any) => (tight ? 0 : dev ? 4 : 8);
+  const topAt = (s: number) => (!dev ? 0 : KEYONLY ? Math.round(s * FIT_KEY.devTop) + 4 : 12);   /* the first line's top (y0) sits at least this far under the bubble's top: the ink rises over it */
   let hl: any = null;
-  if (hintS) {
-    const cw = (s: number, w: number) => Math.max(8, Math.floor(w / (s * 0.54)));
-    const opts: any[] = [[32, 1, 32, 2, 0], [32, 2, 32, 1, 0], [32, 1, 32, 1, 0], [28, 1, 28, 2, 0], [28, 2, 28, 1, 0], [28, 1, 28, 1, 0], [28, 2, 28, 2, 1]];
+  if (hintS && !KEYONLY) {   /* keyOnly: no pair, the hint replaces the question */
+    const cw = (s: number, w: number) => Math.max(8, Math.floor(w / (s * em)));
+    const opts: any[] = fit.hint;
     for (const [is, il, hs, hn, tight] of opts) {
       if (dev && tight) continue;
-      const a = wrapText(line, cw(is, 612)), h = wrapText(hintS, cw(hs, 592));
+      const a = wrapText(line, cw(is, b.w - 44)), h = wrapText(hintS, cw(hs, b.w - 64));
       if (a.length > il || h.length > hn) continue;
-      const need = a.length * pit(is, tight) + gapOf(tight) + h.length * pit(hs, tight) + padOf(tight) + topOf;
+      const need = a.length * pit(is, tight) + gapOf(tight) + h.length * pit(hs, tight) + padOf(tight) + topAt(is);
       if (need <= b.h - 6) { hl = { is, a, hs, h, tight }; break; }
     }
   }
   /* two lines at speech size; a longer line drops to label size over three, never spills (the line shown is the hint
      alone when a hint is on show and no two-part layout fits) */
   const shown = hintS && !hl ? hintS : line;
-  const big = wrapText(shown, 24);
-  const size = big.length > 2 ? T.label : T.speech;
-  const lines = big.length > 2 ? wrapText(shown, 32).slice(0, 3) : big;
-  const lh = dev ? Math.round(size * 1.45) : big.length > 2 ? size + 6 : size + 8;
+  /* the first plain layout whose lines fit: classic 44 over two lines, else 32 over three (cut at three); a keyOnly bubble never cuts
+     (its last layout is drawn whole). Characters a line scale with the bubble's width, the classroom arrow's room kept (b.w - 104) */
+  const popts: any[] = fit.plain.filter((o: any) => !o[3] || o[3] === (dev ? "dev" : "en"));
+  const per = (c: number) => Math.floor((c * (b.w - 104) * (0.54 / em)) / 552);
+  const lhOf = (s: number, k: number) => (dev ? Math.round(s * (KEYONLY ? FIT_KEY.devPit : 1.45)) : k > 0 ? s + 6 : s + 8);
+  /* keyOnly: a layout also needs its lines' ink (FIT_KEY.ink, Poppins) to fit the bubble with 4 to spare above and below */
+  const inkFits = (o: any, k: number, n: number) => {
+    if (!KEYONLY) return true;
+    const [up, down] = dev ? FIT_KEY.inkDev : FIT_KEY.inkEn;
+    return (n - 1) * lhOf(o[0], k) + (up + down) * o[0] <= b.h - 8;
+  };
+  let pk = popts.findIndex((o: any, k: number) => { const n = wrapText(shown, per(o[2])).length; return n <= o[1] && inkFits(o, k, n); });
+  const over = pk < 0;
+  if (over) pk = popts.length - 1;
+  const size = popts[pk][0];
+  const lines0 = over && !KEYONLY ? wrapText(shown, per(popts[pk][2])).slice(0, popts[pk][1]) : wrapText(shown, per(popts[pk][2]));
+  /* keyOnly: a page never ends on one short word ("12.", "left.", hi "है?", gu "છે."): the last word of the line before comes down to keep it
+     company, when the pair fits the line and the number of lines stays the same (a number keeps its unit: wrapWords' tokens) */
+  const lines = (() => {
+    const n = lines0.length, last = lines0[n - 1] || "", pv = wrapWords(lines0[n - 2] || "");
+    if (!KEYONLY || n < 2 || wrapWords(last).length !== 1 || last.length > 12 || pv.length < 2) return lines0;
+    const w = pv[pv.length - 1];
+    if ((w + " " + last).length > per(popts[pk][2])) return lines0;
+    return [...lines0.slice(0, n - 2), pv.slice(0, -1).join(" "), w + " " + last];
+  })();
+  const lh = lhOf(size, pk);
   const top = b.y + b.h / 2 - ((lines.length - 1) * lh) / 2 + size * 0.36;
   /* the built-in "type / choose your answer" line (hintType) is a plain note, not a correction cue: a neutral band with a grey bar,
      never the accent colours a real hint wears */
@@ -2075,14 +2472,15 @@ function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, don
   return (
     <g>
       <Mascot C={C} speaking={speaking} react={react} ok={mascotOk} onFail={onMascotFail} cheerOn={cheerOn} onCheerFail={onCheerFail} thinkOn={thinkOn} onThinkFail={onThinkFail} bulbN={bulbN} />
-      <g data-zone="bubble">
-        <path d={`M ${b.x} ${b.y + 30} L ${b.x - 18} ${b.y + 44} L ${b.x} ${b.y + 58} Z`} fill="#FFFFFF" stroke={edge} strokeWidth={edgeW} />
+      <g data-zone="bubble" {...(KEYONLY || NAVDOTS ? { "data-box": [b.x, b.y, b.w, b.h].join(",") } : {})}>
+        <path d={`M ${b.x} ${ty - 14} L ${b.x - 18} ${ty} L ${b.x} ${ty + 14} Z`} fill="#FFFFFF" stroke={edge} strokeWidth={edgeW} />
         <rect x={b.x} y={b.y} width={b.w} height={b.h} rx={24} fill="#FFFFFF" stroke={edge} strokeWidth={edgeW} filter="url(#fShadowSoft)" />
-        <rect x={b.x + 1} y={b.y + 32} width={4} height={24} fill="#FFFFFF" />
+        <rect x={b.x + 1} y={ty - 12} width={4} height={24} fill="#FFFFFF" />
         {hl ? (() => {
           /* instruction on top (pinned), hint under it; positions from the chosen layout */
           const ilh = pit(hl.is, hl.tight), hlh = pit(hl.hs, hl.tight), gap = gapOf(hl.tight), pad = padOf(hl.tight);
           const H = hl.a.length * ilh + gap + hl.h.length * hlh + pad;
+          const topOf = topAt(hl.is);
           const y0 = Math.max(b.y + (b.h - H) / 2, b.y + topOf);   /* centred, but never closer than topOf to the top (the ink of hi/gu rises over y0) */
           const hy0 = y0 + hl.a.length * ilh + gap;
           return (
@@ -2102,7 +2500,7 @@ function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, don
             </>
           );
         })() : (
-          <g data-role="instruction">
+          <g data-role={KEYONLY && hintS ? "hint" : "instruction"}>
             {lines.map((ln, k) => (
               <text key={k} x={b.x + 30} y={top + k * lh} fontSize={size} fontWeight={500} fill={C.ink}>{ln}</text>
             ))}
@@ -2117,6 +2515,14 @@ function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, don
         {onBubble && <Hit id="bubble" x={b.x} y={b.y} w={b.w} h={b.h} onPress={onBubble} label={UI.bubbleNext} keep />}
       </g>
       {/* the phase dots: which phase is on the stage, and (user mode) a way to go to another */}
+      {NAVDOTS ? (
+        <g data-zone="bar" data-mode={navigable ? "user" : "ai"}>
+          {Array.from({ length: N }).map((_, k) => (
+            <NavDot key={k} C={C} k={k} N={N} cx={Z.bar.x + k * HIT + HIT / 2} cy={Z.bar.y + HIT / 2} now={k === n - 1}
+              done={k < n - 1 || (done.includes(k + 1) && k !== n - 1)} onGo={onDot} UI={UI} />
+          ))}
+        </g>
+      ) : (
       <g data-zone="bar" data-mode={navigable ? "user" : "ai"}>
         {Array.from({ length: N }).map((_, k) => (
           <PhaseDot key={k} C={C} k={k} N={N} x={Z.bar.x + k * pitch + 6} w={pitch - 12} now={k === n - 1}
@@ -2126,6 +2532,7 @@ function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, don
         <text x={Z.bar.x} y={Z.bar.y + 60} fontSize={T.micro} fontWeight={dev ? 500 : 600} fill={C.ink}>{UI.phaseOf(n, N)}</text>
         <text x={Z.bar.x + Z.bar.w} y={Z.bar.y + 60} textAnchor="end" fontSize={T.micro} fontWeight={500} fill={C.ink}>{UI.questionOf(Math.min(i + 1, total), total)}</text>
       </g>
+      )}
     </g>
   );
 }
@@ -2146,7 +2553,14 @@ function starPath(cx: number, cy: number, r: number): string {
 
 function Summary({ C, phases, results, row, showScore, freePlay, onFree, onAgain, Thumb, UI, lang, TR }: any) {
   const N = Math.max(phases.length, 1);
-  const top = 188, rowH = Math.min(92, (560 - top) / N);
+  /* r27 (keyOnly): the canvas card ends at 640, so the page is set tighter: rows from 166 to 470, the stars at 504, the keys 80 tall at 544 */
+  const K = KEYONLY, dev = lang === "hi" || lang === "gu";
+  /* keyOnly in Hindi / Gujarati (head of 2026-10-19): a row title's tails (ु ृ) touched the "You learned" line under it, whose matras rise to 1.1 em
+     (Poppins, measured: the learned line's ink rises 31 over its baseline, the title's falls 4 under it), so the learned line stands 40 under the
+     title's baseline (36 before; 1.5 em of the learned size is 42) and the rows take the room the stars and keys give up: they start 6 higher
+     and end at 488, the stars and their words 16 and the keys 8 lower (the keys 72 tall, the floor) */
+  const KD = K && dev;
+  const top = K ? (KD ? 160 : 166) : 188, rowH = Math.min(92, ((K ? (KD ? 488 : 470) : 560) - top) / N);
   const played = Object.keys(results).map(Number);
   const total = played.reduce((a, p) => a + (results[p].total || 0), 0);
   const first = played.reduce((a, p) => a + (results[p].firstTry || 0), 0);
@@ -2156,15 +2570,15 @@ function Summary({ C, phases, results, row, showScore, freePlay, onFree, onAgain
   return (
     <g data-zone="summary">
       <rect x={Z.canvas.x} y={Z.canvas.y} width={Z.canvas.w} height={Z.canvas.h} rx={RAD.card} fill="url(#gCard)" stroke={C.rule} strokeWidth={2} />
-      <text x={800} y={156} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={C.ink}>{UI.wellDone}</text>
+      <text x={800} y={K ? 142 : 156} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={C.ink}>{UI.wellDone}</text>
       {phases.map((p: any, k: number) => {
         const y = top + k * rowH, r = results[k + 1];
         return (
           <g key={k} data-row={k}>
             {row === k && <rect className="c4-ring" x={68} y={y - 4} width={1464} height={rowH - 4} rx={18} fill="none" stroke={C.accent} strokeWidth={4} pointerEvents="none" />}
-            <circle cx={100} cy={y + 29} r={10} fill={r ? C.accent : "#FFFFFF"} stroke={C.accent} strokeWidth={3} />
-            <text x={128} y={y + 40} fontSize={T.label} fontWeight={700} fill={C.ink}>{lineFor(p.concept, lang, TR)}</text>
-            <text x={128} y={y + (lang === "hi" || lang === "gu" ? 80 : 74)} fontSize={T.micro} fontWeight={500} fill={learnedInk}>{lineFor(p.learned, lang, TR)}</text>
+            <circle cx={100} cy={y + (K ? 24 : 29)} r={10} fill={r ? C.accent : "#FFFFFF"} stroke={C.accent} strokeWidth={3} />
+            <text x={128} y={y + (K ? 34 : 40)} fontSize={T.label} fontWeight={700} fill={C.ink}>{lineFor(p.concept, lang, TR)}</text>
+            <text x={128} y={y + (K ? (dev ? 74 : 66) : dev ? 80 : 74)} fontSize={T.micro} fontWeight={500} fill={learnedInk}>{lineFor(p.learned, lang, TR)}</text>
             {r && r.last && Thumb && (
               <g data-role="thumb" transform={`translate(1290,${y + 2})`}><Thumb n={k + 1} result={r} it={r.last.it} C={C} w={236} h={rowH - 10} lang={lang} tx={(v: any) => lineFor(v, lang, TR)} /></g>
             )}
@@ -2174,18 +2588,18 @@ function Summary({ C, phases, results, row, showScore, freePlay, onFree, onAgain
       {showScore && played.length > 0 && (
         <g role="img" aria-label={UI.starsLabel ? UI.starsLabel(first, total) : `Right first time: ${first} of ${total}`}>
           {[0, 1, 2].map((k) => (
-            <path key={k} d={starPath(704 + k * 62, 596, 24)} fill={k < stars ? CONTENT.ten : "#FFFFFF"}
+            <path key={k} d={starPath(704 + k * 62, K ? (KD ? 520 : 504) : 596, 24)} fill={k < stars ? CONTENT.ten : "#FFFFFF"}
               stroke={k < stars ? shade(CONTENT.ten, 0.3) : C.rule} strokeWidth={3} strokeLinejoin="round" />
           ))}
-          <text x={876} y={606} fontSize={T.micro} fontWeight={600} fill={C.ink}>{UI.rightFirstTime(first, total)}</text>
+          <text x={876} y={K ? (KD ? 530 : 514) : 606} fontSize={T.micro} fontWeight={600} fill={C.ink}>{UI.rightFirstTime(first, total)}</text>
         </g>
       )}
       {freePlay && (
-        <Key id="free-play" label={UI.freePlay} x={490} y={628} w={300} h={96} C={C} tone="enter" primary onClick={onFree}>
+        <Key id="free-play" label={UI.freePlay} x={490} y={K ? (KD ? 552 : 544) : 628} w={300} h={K ? (KD ? 72 : 80) : 96} C={C} tone="enter" primary onClick={onFree}>
           <text y={13} textAnchor="middle" fontSize={T.prompt} fontWeight={600} fill={toneInk("enter", "#FFFFFF")}>{UI.freePlay}</text>
         </Key>
       )}
-      <Key id="play-again" label={UI.playAgain} x={freePlay ? 810 : 650} y={628} w={300} h={96} C={C} tone="soft" onClick={onAgain}>
+      <Key id="play-again" label={UI.playAgain} x={freePlay ? 810 : 650} y={K ? (KD ? 552 : 544) : 628} w={300} h={K ? (KD ? 72 : 80) : 96} C={C} tone="soft" onClick={onAgain}>
         <text y={13} textAnchor="middle" fontSize={T.prompt} fontWeight={600} fill={toneInk("soft", C.ink)}>{UI.playAgain}</text>
       </Key>
     </g>
@@ -2198,17 +2612,21 @@ function Summary({ C, phases, results, row, showScore, freePlay, onFree, onAgain
 const RING_KEYS = ["header", "runs", "work", "slot", "pad", "voice", "bubble", "bar"];
 function ringBox(key: string, workW?: number, panelOpen?: boolean): any {
   if (key === "work") return { x: W.x, y: W.y, w: workW || W.w, h: W.h };
-  if (BOARD && (key === "slot" || key === "pad")) return panelOpen ? Z.drawer : Z.ask;
+  if (BOARD && (key === "slot" || key === "pad")) return panelOpen ? Z.drawer : KEYONLY ? KEY_CORNER : Z.ask;
   if (key === "slot") return { x: Z.slot.x, y: 150, w: Z.slot.w, h: 192 };
-  if (key === "voice") return MASCOT_BOX;
-  if (key === "bar") return { x: Z.bar.x, y: Z.bar.y - 8, w: Z.bar.w, h: 76 };
+  if (key === "voice") return KEYONLY ? mascotBoxOf(true) : MASCOT_BOX;
+  if (key === "bar") return NAVDOTS ? Z.bar : { x: Z.bar.x, y: Z.bar.y - 8, w: Z.bar.w, h: 76 };
   return (Z as any)[key];
 }
 
 /* ── ToolFrame: one phase at a time ──────────────────────────────────────────────────
    tool  = { TOOL_ID, MEDIA_ID, TOOL_NAME, CHROME?, VOICE?, OPENING?, FINISH_LINE?, PHASES,
              MODEL?, Work, Runs?, judge?, solve?, nearMiss?, oracle?, format?, winMs?, fitHost?, answer?, pointKey?, sideBySide?, board?, nextKey?, cardAnswer?,
-             StartArt?, START_HOOK? }
+             StartArt?, START_HOOK?, keyOnly?, navDots?, lastWinFirst? }
+           keyOnly (class 4 r27, with board): no question bar, only its key at the bar's right end; the working area is 64, 108,
+           1472 x 520 (props.box.h 520) and props.box.key is the key's corner in Work's coordinates (draw nothing under it); the
+           bubble is y 656 to 892 at the last bench's sizes. navDots (r27): one small dot per phase in place of the phase bar, a
+           control in user AND AI mode that starts its phase. LAYOUT.md §1d.
            StartArt / START_HOOK (r28): a START PAGE (LAYOUT.md §1c). The tool's name, StartArt (a component, drawn in a
            1200 x 340 box: props { box, C, lang, tx }; the object the lesson is about, never an answer), START_HOOK (one
            question to wonder at, a Spoken value with a TR entry), a big Start key and the mascot, drawn over the whole stage
@@ -2262,7 +2680,7 @@ function ringBox(key: string, workW?: number, panelOpen?: boolean): any {
            stay empty); Enter on an empty box answers once the typing is a whole answer.
    Work / Runs receive { phase, n, item, index, stage, wrong, typed, part, captured, api, MODEL } (part: the box with
            the caret; captured: the pad is lent to the working area now, false once the runtime took it back).
-   api   = { submit, setTyped, say, sfx, share, onEnter, lock, capture, demoDone, C, W }
+   api   = { submit, setTyped, say, sfx, share, onEnter, lock, capture, demoDone, C, W, act }   (act: 2026-10-16, ACTION_KIT_HELPER)
            onEnter(fn|null): Enter (and in a demo, the agent's check) goes to fn(value) instead of
            straight to submit. lock(true|false): quiets the pad while the working area is busy.
            capture(fn|null): lends the pad to the working area (a long-division frame's "left over"
@@ -2308,13 +2726,15 @@ function ToolFrame({ props, tool }: any) {
   /* the layout is the tool's own choice (board: true), fixed for the life of the mount; every zone box below is
      read after this line */
   const board = !!tool.board;
-  if (board || BOARD) setLayout(board, !!tool.bigPad);
+  const phases = tool.PHASES || [];
+  const N = Math.max(phases.length, 1);
+  /* r27: keyOnly (board tools only) and navDots, LAYOUT.md §1d; a tool without them never calls the new code */
+  const keyOnly = board && !!tool.keyOnly, navDots = !!tool.navDots;
+  if (board || BOARD || keyOnly || navDots || KEYONLY || NAVDOTS) setLayout(board, !!tool.bigPad, keyOnly, navDots, N);
   SKINS = P.skins !== false;
   /* the tool's own THEME, else the one the image agent chose from the slot's object (images.tsx: TOOL_THEME), else the standard
      DEFAULT_THEME, so no start page or Enter key is ever the chrome's grey */
   THEME = tool.THEME || (typeof TOOL_THEME !== "undefined" ? (TOOL_THEME as any) : null) || DEFAULT_THEME;
-  const phases = tool.PHASES || [];
-  const N = Math.max(phases.length, 1);
   const [mountPhase] = useState<number | null>(() => {
     const v = Number(P.phase);
     return P.phase === undefined || P.phase === null || P.phase === "" || !isFinite(v) ? null : Math.min(Math.max(Math.round(v), 1), N);
@@ -2449,6 +2869,7 @@ function ToolFrame({ props, tool }: any) {
   const [done, setDone] = useState<number[]>([]);
 
   const [run, setRun] = useState(0);
+  const [workN, setWorkN] = useState(0);   /* r64: remounts Work alone (a question entered again), never the phase-start effect that `run` drives */
   const [stage, setStage] = useState("teach");
   /* the guide step the child is on (phase.steps), mirrored in a ref so two did() calls in one tick still agree */
   const [stepNo, setStepNo] = useState(0);
@@ -2462,7 +2883,7 @@ function ToolFrame({ props, tool }: any) {
   const hintOn = useRef("");
   const hintKind = useRef("hint");
   const setHintText = (s: string, kind: string = "hint") => {
-    const t = s ? speakableIn(s, langRef.current) : "";
+    const t = s ? (SILENT_VOICE && KEYONLY ? String(s) : speakableIn(s, langRef.current)) : "";   /* keyOnly + silent: as written, Latin digits */
     hintOn.current = t; hintKind.current = kind;
     setHintTextState(t);
   };
@@ -2534,7 +2955,7 @@ function ToolFrame({ props, tool }: any) {
   const takeNext = (): boolean => {
     const f = nextRef.current;
     if (!f) return false;
-    nextRef.current = null; setHeldNext(false); changeAt.current = Date.now(); f();
+    nextRef.current = null; setHeldNext(false); changeAt.current = nextAt.current = Date.now(); f();
     return true;
   };
   /* r34: a right answer's next question comes after its short celebration, by itself, in every mode. In a classroom a tap
@@ -2575,7 +2996,7 @@ function ToolFrame({ props, tool }: any) {
   };
   const item = items[Math.min(i, items.length - 1)] || {};
   /* r24: the question on show, as one key (the phase, the question, the run): what "acted on" and "ready" are remembered against */
-  const qKey = idx + "." + i + "." + run;
+  const qKey = idx + "." + i + "." + run + "." + workN;
   const say = (it: any) => tx(it.say) || tx(it.ask) || "";
   const live = useRef<any>({});
   /* r49, CARD ANSWER (opt-in: `tool.cardAnswer: true`, board layout only). The answer is given ON the card of the picture that
@@ -2588,6 +3009,8 @@ function ToolFrame({ props, tool }: any) {
   const cardKindOf = (it: any) => (!cardAnswerOn || !it || it.choices || !it.parts || !it.parts.some((p: any) => p.at) ? null
     : it.parts.some((p: any) => p.at === "dwhole") ? "decimal" : "fraction");
   const cardKind = cardKindOf(item);   /* by the item alone, so the drawer keeps its look while it slides away at the win */
+  /* r27 (keyOnly): a card question has no answer box and its Close is the key in the corner, so the keypad takes the box's row too */
+  if (KEYONLY && cardKind) Object.assign(Z.pad, { y: Z.slot.y, h: Z.pad.y + Z.pad.h - Z.slot.y });
   const answerOn = !cardAnswerOn || stage !== "ask" ? null : item.choices ? "choices" : cardKind ? "card" : item.pad === "enter" ? null : "key";
   const [cardReady, setCardReadyState] = useState(true);
   const cardReadyRef = useRef(true);
@@ -2602,15 +3025,33 @@ function ToolFrame({ props, tool }: any) {
      (api.answerReady(true)); steady before, and for a tool that never says so */
   const [readyKey, setReadyKey] = useState("");
   const answerReady = (b: any) => { const k = b ? String((live.current && live.current.qKey) || "") : ""; setReadyKey((o) => (o === k ? o : k)); };
-  const tapLine = () => (answerOn === "card" ? (cardReadyRef.current ? UI.tapCard(tx(item.cardName || (cardKind === "decimal" ? "Decimal" : "Fraction"))) : "")
+  const tapLine = () => (answerOn === "card" ? (cardReadyRef.current ? UI.tapCard(item.cardName ? tx(item.cardName) : cardKind === "decimal" ? UI.cardDec : UI.cardFrac)   /* r60: the card's name in hi/gu without a TR entry */ : "")
     : answerOn === "choices" ? UI.pickIt : keyAskOn && cardReadyRef.current ? UI.tapAnswer : "");
   const showTap = () => { const l = lockedRef.current ? "" : tapLine(); setHintText(l, l ? "type" : "hint"); };
   /* a tap on the card (or the Answer key) opens the keypad and says what to do with it; Close (or the key again) shuts it */
   const openedAt = useRef(0);   /* r24: when a tap last opened the keypad: a second press within 300 ms (a double tap) does not shut it again */
+  const viaPtr = useRef(false);   /* the last press came from a pointer (a key press clears it): the pad's double-tap guard (padPress) is for fingers only */
+  const nextAt = useRef(0);   /* when the Next key last went on (takeNext): a double tap's second tap on the new phase's first step is no wrong act (demoMiss) */
+  const closingSaid = useRef(false);   /* keyOnly: api.say at a phase's last win gave way to the closing, which is then on the bubble: phaseEnd does not say it again */
+  const caretAt = useRef(0);   /* when an Enter last moved the caret of a mixed number to the next box: a double Enter's second one does not send the whole alone (pressPart) */
+  /* r64: a choice key commits once a tap: never a second time within 400 ms (a double tap took two tries), never within 600 ms of a
+     question change (the Next key and the next question's right-most choice key share a spot) */
+  const choiceAt = useRef(0);
+  const chooseNow = (id: string) => {
+    if (lockedRef.current || live.current.locked) return;
+    const t = Date.now();
+    if (t - choiceAt.current < 400 || t - changeAt.current < 600) return;
+    choiceAt.current = t;
+    commit(id);
+  };
+  const closedAt = useRef(0);   /* r60: when Close was last pressed (a double tap on Close reached the Answer key in the same spot) */
   const openAnswer = () => {
     const L = live.current;
     if (!board || L.stage !== "ask" || L.locked) return false;
+    if (Date.now() - changeAt.current < 400) return false;   /* r59: the second tap of a double tap on the Next key lands here */
+    if (Date.now() - closedAt.current < 350) return false;   /* r60: ... and the second tap of a double tap on Close */
     markActed();
+    if (KEYONLY && hintOn.current && hintKind.current === "hint") setHintText("");   /* keyOnly: a tap on the card / Answer key brings the question back */
     if (!wantRef.current) {
       setPanel(true);
       openedAt.current = Date.now();
@@ -2620,6 +3061,8 @@ function ToolFrame({ props, tool }: any) {
   };
   const closeAnswer = () => {
     if (wantRef.current && Date.now() - openedAt.current < 300) return;   /* the second tap of a double tap */
+    closedAt.current = Date.now();
+    if (captureRef.current) capture(null);   /* r59: the pad lent to the picture (api.capture) comes back, or the panel stays open */
     setPanel(false);
     if (hintKind.current === "type") showTap();
   };
@@ -2761,9 +3204,11 @@ function ToolFrame({ props, tool }: any) {
     const L = live.current, st = L.phase && L.phase.steps;
     if (L.stage !== "demo" || !st || !st[stepRef.current] || !st[stepRef.current].hint) return;
     if (Date.now() - didAt.current < 400) return;
+    if (Date.now() - nextAt.current < 500) return;   /* the second tap of a double tap on the Next phase key lands on the new phase's first step (its disabled Answer key): no wrong act */
     setHintText(tx(st[stepRef.current].hint));
   };
   const workTap = (e: any) => {
+    if (actor.busy()) return;   /* r56: an act on screen (api.act): the click that started it, or one while it plays, is never a wrong act */
     const el: any = e && e.target;
     const ctl = el && el.closest ? el.closest("[data-control]") : null;
     if (ctl && ctl.getAttribute("aria-disabled") !== "true") return;   /* a live control: it reports its own act */
@@ -2781,8 +3226,11 @@ function ToolFrame({ props, tool }: any) {
   /* The header's HINT key (r35, the owner: the lesson is manual, a stuck child or a teacher may ask): while a guide step
      waits it shows that step's hint; at an open question it shows the first rung, and each further press the stronger one;
      with nothing to hint (a win, a closing line, the summary, free play, no hint written) it shows the lines again. */
+  const hintAt = useRef(0);   /* r60: a double tap on the Hint key walked two rungs at once */
   const askHint = () => {
     const L = live.current;
+    if (Date.now() - hintAt.current < 200) return;   /* r62: 200 ms, so a double tap (40-150 ms) is one press and a deliberate second press is not */
+    hintAt.current = Date.now();
     markActed(); bulbNow();   /* r24: the Hint key is an act (Kiko stops thinking) and pops the small bulb */
     if (L.stage === "demo" && L.phase.steps && L.phase.steps[stepRef.current]) {
       const st = L.phase.steps[stepRef.current];
@@ -2872,6 +3320,8 @@ function ToolFrame({ props, tool }: any) {
       later(go, Math.max(1400, PARTY_MS + 150 - (Date.now() - partyAt.current)));
     };
     const closing = [tx(L.phase.closing)].filter(Boolean);
+    const said = closingSaid.current;   /* the closing is already on the bubble (api.say at the last win): it is read once */
+    closingSaid.current = false;
     /* r45 (nextKey): nothing walks on by itself. The closing line is read on the bubble (a press of the key cuts what is left
        of it) and the Next key comes once the party is over, never later; the last phase's key opens the summary */
     if (nextKeyOn) {
@@ -2879,12 +3329,17 @@ function ToolFrame({ props, tool }: any) {
       const go = () => { if (skipped) return; skipped = true; if (nextRef.current === go) nextRef.current = null; pendingAdvance.current = null; if (lastPhase) showSummary(); else enterPhase(L.idx + 1, 0); };
       pendingAdvance.current = null;
       if (holdRef.current) nextRef.current = go;   /* a classroom: a teacher's tap during the wait goes on at once, and the timer below stands down */
-      voice.speak(closing, undefined, { nopark: true });
+      if (!said) voice.speak(closing, undefined, { nopark: true });
       later(() => { if (!skipped) holdNext(go, lastPhase ? "summary" : "phase"); }, Math.max(0, PARTY_MS + 150 - (Date.now() - partyAt.current)));
       return;
     }
     pendingAdvance.current = walk;
-    voice.speak(closing, walk, { nopark: true });
+    if (said) {
+      /* the walk goes when the reading of the closing that is already on the bubble ends (a teacher's skip, pendingAdvance, goes at once) */
+      let waited = 0;
+      const poll = () => { if (gone) return; if (voice.reading() && waited < 8000) { waited += 150; later(poll, 150); } else walk(); };
+      poll();
+    } else voice.speak(closing, walk, { nopark: true });
     fallback(walk, closing.reduce((a, l) => a + readMs(speakable(l)), 0) + 6000);
   };
 
@@ -2914,6 +3369,7 @@ function ToolFrame({ props, tool }: any) {
     if (next < L.items.length) {
       capture(null);
       setI(next); setTyped(""); setTries(0); setWrong(null); setStage("ask");
+      setCardReady(true);   /* a question starts with its card ready: an api.cardReady(false) a Work never released (it was unmounted first) must not carry over; Work's own call for the new question comes after this */
       voice.speak(say(L.items[next]));
     } else phaseEnd();
   };
@@ -2941,12 +3397,16 @@ function ToolFrame({ props, tool }: any) {
         setTimeout(() => { if (lastPhase) sfx.cheer(); else sfx.win(); }, 420);
         partyNow(lastPhase);
       }
-      if (L.tries === 0) firstTry.current += 1;
-      answered.current += 1;
       const r = results.current[L.n] || { answered: 0, firstTry: 0, total: L.items.length };
-      results.current[L.n] = { ...r, answered: r.answered + 1, firstTry: r.firstTry + (L.tries === 0 ? 1 : 0), total: L.items.length,
+      /* r62: a question counts once a phase attempt: won again after a gotoStep back to it, it adds nothing to the score */
+      const once = !(r.done || []).includes(L.i);
+      if (once && L.tries === 0) firstTry.current += 1;
+      if (once) answered.current += 1;
+      results.current[L.n] = { ...r, done: once ? [...(r.done || []), L.i] : r.done, answered: r.answered + (once ? 1 : 0),
+        firstTry: r.firstTry + (once && L.tries === 0 ? 1 : 0), total: L.items.length,
         last: { item: L.i, it: it, value, kind: it.kind, answer: it.answer, shared: { ...shared.current } } };
       L.stage = "win";
+      closingSaid.current = false;
       setWrong(null);
       setStage("win");
       emit("question_done", { phase: L.n, item: L.i + 1, firstTry: L.tries === 0, conceptId: L.phase.conceptId });
@@ -2981,6 +3441,7 @@ function ToolFrame({ props, tool }: any) {
 
   const commit = (v?: any) => (enterRef.current ? enterRef.current(v) : submit(v));
   const press = (k: string) => {
+    if (actor.busy()) return;   /* an act on screen (api.act): every key waits for it */
     const L = live.current;
     /* r45: Enter presses the Next key once it is on show (never before: the Enter that sent the answer is long past) */
     if (k === "enter" && nextKeyOn && heldNext) { takeNext(); return; }
@@ -2993,6 +3454,10 @@ function ToolFrame({ props, tool }: any) {
     if (L.stage === "demo") { demoMiss(); return; }   /* r41: a typed digit during a guide step is a wrong act */
     if (captureRef.current && (L.stage === "ask" || L.stage === "free") && !L.locked) { captureRef.current(k); return; }
     if (L.stage !== "ask" || L.locked) return;
+    if (k === "enter" && staleRef.current && L.item.pad !== "enter") return;   /* r60: Enter on the unchanged miss does nothing, and its hint stays on show */
+    if (k !== "enter" && (L.item.pad === "enter" || L.item.choices)) return;   /* r64: a digit does nothing on a working-area or choice question, and the hint stays */
+    /* r64: on a working-area question Enter goes to the tool (api.onEnter), which knows whether the board changed: the hint stays until it answers */
+    if (KEYONLY && hintOn.current && hintKind.current === "hint" && !(k === "enter" && L.item.pad === "enter")) setHintText("");   /* keyOnly: the child's next tap brings the question back in place of the hint */
     if (answerOn === "card" && cardGateRef.current && k !== "enter") return;   /* r51: the picture first (a digit would open the keypad past the gate) */
     if (k === "point" && (!tool.pointKey || L.item.parts)) return;
     /* board layout: a key typed on the keyboard opens the answer panel, so the child sees what is being typed */
@@ -3022,6 +3487,9 @@ function ToolFrame({ props, tool }: any) {
      on the last box it answers once every box is filled (else the caret goes to the empty one). Rub out
      on an empty box steps back to the box before it. */
   const pressPart = (k: string, np: number) => {
+    /* the board's card / drawer is shut and nothing is lent to the picture: Enter moves no hidden caret (it walked Whole -> Top -> Bottom of a mixed number, so the next digit,
+       typed after the card was tapped open, landed in the wrong box) */
+    if (k === "enter" && board && !wantRef.current && !captureRef.current && !alwaysOpen) return;
     const ps = slotPartsOf(typedRef.current, np), at = Math.min(partRef.current, np - 1);
     const parts = live.current.item.parts;
     /* after a miss every box is stale: the same answer is never sent again until one box is rewritten */
@@ -3030,7 +3498,10 @@ function ToolFrame({ props, tool }: any) {
       /* a mixed number, whose boxes may stay empty: Enter on a filled box moves on; on an empty box (or
          the last) it answers once what is typed is a whole answer, else the caret goes where a number is
          still missing (the other half of a fraction), or on to the next box */
-      if (ps[at] !== "" && at < np - 1) { setPart(at + 1); return; }
+      if (ps[at] !== "" && at < np - 1) { caretAt.current = Date.now(); setPart(at + 1); return; }
+      /* a double tap on Enter (45 ms) or two Enters 50 ms apart: the first moved the caret, the second would send the whole number alone as a miss;
+         a deliberate whole-only answer ("45 ÷ 9 = 5") comes later than that */
+      if (ps[at] === "" && Date.now() - caretAt.current < 300) return;
       if (fresh && slotComplete(parts, ps)) { commit(ps.join("|")); return; }
       const half = parts.findIndex((p: any, j: number) => (p.at === "top" || p.at === "bottom") && ps[j] === ""
         && parts.some((q: any, i: number) => i !== j && (q.at === "top" || q.at === "bottom") && ps[i] !== ""));
@@ -3058,6 +3529,7 @@ function ToolFrame({ props, tool }: any) {
   const pickPart = (k: number) => {
     const L = live.current;
     if (L.stage !== "ask" || L.locked || !L.item.parts) return;
+    if (Date.now() - openedAt.current < 300) return;   /* r64: the second tap of the double tap that opened the card */
     if (captureRef.current) capture(null); /* a tap on an answer box takes the pad back to the slot */
     setPart(Math.min(Math.max(k, 0), L.item.parts.length - 1));
   };
@@ -3078,7 +3550,7 @@ function ToolFrame({ props, tool }: any) {
     skipTeach.current = at > 0 ? at : null;
     /* the stage moves with the phase in the same render: a jump during a win must never show the
        new phase's first item with stage "win" (a tool drawing its win would draw that item's answer) */
-    setIdx(kk); setI(at); setTyped(""); setTries(0); setWrong(null); lockNow(false); setRing(null);
+    setIdx(kk); setI(at); setTyped(""); setTries(0); setWrong(null); lockNow(false); setRing(null); setCardReady(true);
     setStage(at > 0 ? "ask" : "teach");
     setRun((r) => r + 1);
   };
@@ -3106,7 +3578,11 @@ function ToolFrame({ props, tool }: any) {
     pendingAdvance.current = null; /* a jump makes any advance a spoken line was walking toward stale */
     enterRef.current = null;
     capture(null);
-    setI(a); setTyped(""); setTries(0); setWrong(null); lockNow(false); forgetActed(); setStage("ask");
+    const same = a === live.current.i && (live.current.stage !== "ask" || live.current.tries > 0 || live.current.locked);
+    /* r62-r64: the same question entered again after its win or a miss (its board shows the answer then); a gotoStep to the
+       question still being worked on, untried, keeps the child's board */
+    setI(a); setTyped(""); setTries(0); setWrong(null); lockNow(false); forgetActed(); setStage("ask"); setCardReady(true);
+    if (same) setWorkN((n) => n + 1);   /* ... on a fresh board: Work remounts; r64: not `run`, which replayed the phase's guide steps */
     voice.speak(say(live.current.items[a] || {}));
   };
   /* the agent's absolute step; in AI mode it stays inside the phase being shown (the host's, then each one the tool walks on to) */
@@ -3242,12 +3718,18 @@ function ToolFrame({ props, tool }: any) {
   useEffect(() => { if (board && wantRef.current) setPanel(false); }, [i, idx, run]);
   useEffect(() => { if (board && wantRef.current && stage !== "ask" && !(stage === "free" && captured)) setPanel(false); }, [stage, captured]);
 
+  /* ACTION ANIMATION (2026-10-16): api.act, the layer and getState().acting; the act in flight ends with the phase, the run or the question,
+     and (r56) when the guide steps hand over to the question: an act started in the step hold resolves false, so it never writes into it */
+  const actor = useActionKit(lockNow, lockedRef, sfx, `${run}.${workN}:${idx}:${i}:${stage === "demo" ? "demo" : ""}`);
+  /* the FONT KIT (2026-10-16): 1 once the kit's fonts are ready; the header and the start page measure their text again */
+  const fontGen = useFontKit();
   live.current = { idx, n, phase, i, item, stage, typed, tries, submit, setTyped, items, locked, board, panelOpen, qKey };
 
   /* what the host and the teacher agent can read and drive (window.toolApi, and window[TOOL_ID]) */
   const apiRef = useRef<any>({});
   apiRef.current = {
     getState: () => ({
+      ...shared.current,   /* first: the runtime's own fields below win over a tool's shared field of the same name (a shared `answered` hid the runtime's count) */
       toolId: tool.TOOL_ID, mediaId: tool.MEDIA_ID, mode: navigable ? "user" : "ai", mountPhase, lang,
       phase: n, phases: N, conceptId: phase.conceptId, objectiveIds: phase.objectiveIds || [],
       step: (offsets[idx] || 0) + i, steps, item: i + 1, items: items.length, stage,
@@ -3257,15 +3739,16 @@ function ToolFrame({ props, tool }: any) {
       ...(hasStart ? { startPage: !started } : {}),
       hintKind: hintText ? hintKind.current : null,   /* r24: for every tool (the built-in "tap the Answer key" line is a "type" line) */
       ...(cardAnswerOn ? { answerOn, cardReady } : {}),
+      ...(KEYONLY ? { keyOnly: true } : {}), ...(NAVDOTS ? { navDots: true } : {}),
       ...(nextKeyOn ? { nextKey: heldNext ? (heldNext === "phase" ? UI.nextPhase : heldNext === "summary" ? UI.summaryKey : UI.next) : null } : {}),
-      party: party.on,
+      party: party.on, acting: actor.busy(),
       ...(phase.steps && phase.steps.length ? { guideStep: stepNo, guideSteps: phase.steps.length, guideOn: stage === "demo" && phase.steps[stepNo] ? String(phase.steps[stepNo].on) : null } : {}),
       parts: item.parts ? item.parts.map((p: any) => p.label) : null, part: partRef.current, padTo: captureRef.current ? "work" : "slot",
       answered: answered.current, firstTry: firstTry.current, score: answered.current * POINTS, maxScore: items.length * POINTS,
       answerShown: stage === "win" || stage === "idle" ? item.answer ?? null : null,
       summaryRow, played: Object.keys(results.current).map(Number), questionCount: `${Math.min(i + 1, items.length)} / ${items.length}`,
       muted: mutedRef.current, speaking: voice.speaking, voice: voice.state().voice, mascot: mascotRef.current ? "image" : "drawn",
-      classroom, held: classroom && voice.held, instruction: voice.line, hint: hintText || null, ...shared.current,
+      classroom, held: classroom && voice.held, instruction: voice.line, hint: hintText || null,
       /* the runtime owns `complete`: true once `finished` is sent. A tool's shared `complete` (the plan's
          field, often "stage is idle") would say it at every phase end, now that the tool walks on */
       complete: fired.current,
@@ -3389,7 +3872,15 @@ function ToolFrame({ props, tool }: any) {
 
   const api = {
     /* a Work line goes through the tool's TR table like every other line the tool speaks */
-    submit, setTyped, say: (lines: any, doneFn?: () => void) => voice.speak(Array.isArray(lines) ? lines.map((l: any) => tx(l)) : tx(lines), doneFn, { nopark: true }), sfx,
+    submit, setTyped, say: (lines: any, doneFn?: () => void) => {
+      /* keyOnly (owner 2026-10-16, one sentence a screen): at a phase's LAST right answer the tool's own win line gives way to the
+         phase's closing line, which phaseEnd then keeps on the bubble with the Next phase key */
+      const L = live.current;
+      /* The closing is said ONCE: phaseEnd keeps it on the bubble and does not say it again (it was said twice, pages 1,2,1,2). `tool.lastWinFirst: true`:
+         the tool's own win line shows first (its winMs, or until a tap on the bubble in a classroom) and phaseEnd then says the closing once */
+      if (KEYONLY && !tool.lastWinFirst && L && L.stage === "win" && L.items && L.i === L.items.length - 1 && L.phase && L.phase.closing) { lines = L.phase.closing; closingSaid.current = true; }
+      return voice.speak(Array.isArray(lines) ? lines.map((l: any) => tx(l)) : tx(lines), doneFn, { nopark: true });
+    }, sfx,
     share: (o: any) => { shared.current = o || {}; },
     onEnter: (fn: any) => { enterRef.current = fn || null; },
     /* always set: a Work callback may hold an older api whose `locked` is stale; React skips a no-op */
@@ -3401,13 +3892,19 @@ function ToolFrame({ props, tool }: any) {
     /* r24: a question answered on the working area (pad "enter") says when its answer is ready to send: the Enter key in the bar then
        blinks (api.answerReady(true)); (false), a new question or a miss makes it steady again. A tool that never calls it keeps a steady key. */
     answerReady,
+    /* 2026-10-16: a real tool performs the act on screen (the ACTION_KIT_HELPER block) */
+    act: actor.act,
   };
   /* box: the room the working area has just now ({ w, h }: the whole card with the answer panel shut, the classic
      1086 wide with it open, in between while it slides). A board tool lays itself out from this, not from W. */
   /* step / stepOn: the guide step the child is on and the act it waits for (null outside a steps phase), so Work can put
      its one invite on the right control */
+  /* r27 (keyOnly): the key's corner in Work's own coordinates (box.key): the Answer / Next key's, wider on a question whose choice keys
+     stand there; a picture never runs under it (board-fit) */
+  const keyW = cardAnswerOn && item.choices ? item.choices.length * choiceKeyW(item.choices, lang, tool.TR) + (item.choices.length - 1) * 14 : 264;
+  const keyBox = KEYONLY ? { x: KEY_CORNER.x + KEY_CORNER.w - (keyW + 18) - W.x, y: KEY_CORNER.y - W.y, w: keyW + 18, h: KEY_CORNER.h } : null;
   const workProps = { phase, n, item, index: i, stage, wrong, typed, part, captured, api, MODEL: tool.MODEL, lang, tx,
-    box: { w: workW, h: W.h, open: panelOpen, board },
+    box: { w: workW, h: W.h, open: panelOpen, board, ...(keyBox ? { key: keyBox } : {}) },
     answerOn, cardKind,
     step: stepNo, stepOn: stage === "demo" && phase.steps && phase.steps[stepNo] ? String(phase.steps[stepNo].on) : null };
   const Work = tool.Work;
@@ -3416,17 +3913,17 @@ function ToolFrame({ props, tool }: any) {
 
   return (
     <div className="c4-frame" style={{ position: "relative", margin: "0 auto", touchAction: "none", userSelect: "none", WebkitUserSelect: "none" } as any}
-      onPointerDownCapture={markActed} onKeyDownCapture={(e: any) => { if (e.key !== "Tab" && e.key !== "Shift") markActed(); }}>
-      <style>{CSS}</style>
+      onPointerDownCapture={() => { viaPtr.current = true; markActed(); }} onKeyDownCapture={(e: any) => { if (e.key !== "Tab" && e.key !== "Shift") { viaPtr.current = false; markActed(); } }}>
+      <style>{fontKitCss(CSS)}</style>
       <svg className="c4" viewBox="0 0 1600 900" width="100%" height="100%" aria-label={tx(tool.TOOL_NAME)}
         style={{ ["--c4-accent" as any]: C.accent, ["--c4-focus" as any]: shade(C.accent, 0.4) } as any}>
         <Defs C={C} />
         <rect x={0} y={0} width={1600} height={900} fill={C.paper} />
         {!started ? (
-          <StartPage C={C} name={tx(tool.TOOL_NAME)} hook={tx(tool.START_HOOK)} Art={tool.StartArt} UI={UI} lang={lang} tx={tx}
+          <StartPage key={"f" + fontGen} C={C} name={tx(tool.TOOL_NAME)} hook={tx(tool.START_HOOK)} Art={tool.StartArt} UI={UI} lang={lang} tx={tx}
             onStart={startNow} mascotOk={mascotOk} onMascotFail={mascotFail} />
         ) : (<>
-        <Header C={C} name={tx(tool.TOOL_NAME)} title={tx(phase.concept)} soundOn={soundOn}
+        <Header key={"f" + fontGen} C={C} name={tx(tool.TOOL_NAME)} title={tx(phase.concept)} soundOn={soundOn}
           onAgain={askHint}
           onSound={toggleSound} onRestart={showStart ? backToStart : restart} toStart={showStart} UI={UI} />
         <rect x={Z.canvas.x} y={Z.canvas.y} width={Z.canvas.w} height={Z.canvas.h} rx={RAD.card}
@@ -3440,24 +3937,35 @@ function ToolFrame({ props, tool }: any) {
         )}
         {/* under the summary card nothing else is drawn (hidden, not unmounted, so Free play keeps its state) */}
         <g display={stage === "summary" ? "none" : undefined}>
-        <g data-zone="work" transform={`translate(${W.x},${W.y})`} onClick={workTap}>
+        <g data-zone="work" transform={`translate(${W.x},${W.y})`} onClick={workTap} pointerEvents={actor.play ? "none" : undefined}>
           {/* r41: a transparent floor under Work, so a tap on EMPTY board lands inside the zone and counts as a wrong act in a guide step */}
           <rect data-role="work-floor" x={0} y={0} width={workW} height={W.h} fill="transparent" aria-hidden="true" />
-          {Work && <Work key={run} {...workProps} />}
+          {Work && <Work key={run + "." + workN} {...workProps} />}
         </g>
+        {actor.play && (
+          <g data-role="act-layer" transform={`translate(${W.x},${W.y})`} pointerEvents="none" aria-hidden="true">
+            <ActLayer play={actor.play} w={workW} h={W.h} C={C} />
+          </g>
+        )}
         {(() => {
           const askText = stage === "teach" ? "" : stage === "free" ? UI.freePlay : tx(item.ask);
           const nextLabel = heldNext === "phase" ? UI.nextPhase : heldNext === "summary" ? UI.summaryKey : UI.next;
           const slotEl = (
-            <Slot C={C} ask={board ? "" : askText} typed={stage === "free" ? "" : typed} active={stage === "ask" && !captured} live={stage === "ask"} format={tool.format} lang={lang} TR={tool.TR}
+            <Slot C={C} ask={board ? "" : askText} typed={stage === "free" ? "" : typed} active={stage === "ask" && !captured} live={stage === "ask"} lang={lang} TR={tool.TR}
+              format={tool.format || (item.choices ? (v: any) => { const c = item.choices.find((c: any) => String(c.id) === String(v)); return c ? c.label : v; } : undefined)}
               parts={stage === "free" ? null : item.parts} part={part} onPart={pickPart} side={!!tool.sideBySide} />
           );
           /* no host Next key: the tool walks on to the next phase by itself */
+          /* head of 2026-10-19: a card question's card stands under the pad's keys, so the second tap of a double tap on the card (45-450 ms later) landed on
+             key-6 and typed a digit ("4" became "64"): a FINGER's press on a key within 500 ms of the drawer opening is ignored (a key typed on the keyboard is not) */
+          const padPress = (k: string) => { if (viaPtr.current && answerOn === "card" && Date.now() - openedAt.current < 500) return; press(k); };
           const padEl = (
-            <Pad C={C} enabled={(stage === "ask" || (stage === "free" && captured)) && !locked} digitsOff={stage !== "free" && item.pad === "enter" && !captured} onKey={press}
+            <Pad C={C} enabled={(stage === "ask" || (stage === "free" && captured)) && !locked} digitsOff={stage !== "free" && item.pad === "enter" && !captured} onKey={padPress}
               point={!!tool.pointKey} pointOff={stage !== "free" && !!item.parts && !captured}
-              choices={stage === "free" ? null : item.choices} onChoice={(id: string) => { if (!locked) commit(id); }} UI={UI} lang={lang} TR={tool.TR} />
+              choices={stage === "free" || (KEYONLY && cardAnswerOn && item.choices) ? null : item.choices} onChoice={chooseNow} UI={UI} lang={lang} TR={tool.TR} />
           );
+          /* r27 (keyOnly): the drawer is drawn before the key (under it), so a choice question whose keys stand in the key's corner draws no
+             second, hidden set in the drawer's pad (it never opens for them): every choice-* control on the page is the corner's */
           /* r45 (nextKey, classic layout): while the Next key waits it takes the slot's place and the pad rests */
           if (!board) {
             if (nextKeyOn && heldNext) {
@@ -3475,12 +3983,12 @@ function ToolFrame({ props, tool }: any) {
           /* BOARD: the question and the Answer key in the bar on top; the slot and the pad in a panel that slides in
              from the right (not drawn at all while it is shut, so nothing in it can be tabbed to or tapped) */
           /* r49 (cardAnswer): Next, then the choice keys (Yes / No), then nothing (the card is the answer), then the Answer key */
+          /* r27 (keyOnly): with the keypad open on a card question the key's corner holds its Close (the drawer's own Close is not drawn) */
           const askMode = nextKeyOn && heldNext ? "next" : stage !== "ask" || locked ? "off" : item.pad === "enter" && !captured ? "enter"
-            : answerOn === "choices" ? "choices" : answerOn === "card" ? "card" : "answer";
-          return (
-            <>
-              <AskBar C={C} ask={askText} hasRuns={!!Runs} mode={askMode} open={panelOpen} UI={UI} nextLabel={nextLabel}
-                choices={item.choices} onChoice={(id: string) => { if (!locked) commit(id); }} lang={lang} TR={tool.TR} quiet={cardAnswerOn}
+            : answerOn === "choices" ? "choices" : answerOn === "card" ? (KEYONLY && panelOpen ? "answer" : "card") : "answer";
+          const askEl = (
+              <AskBar C={C} ask={askText} hasRuns={!!Runs} mode={askMode} open={panelOpen} UI={UI} nextLabel={nextLabel} keyOnly={KEYONLY}
+                choices={item.choices} onChoice={chooseNow} lang={lang} TR={tool.TR} quiet={cardAnswerOn}
                 onTap={workTap}
                 blink={askMode === "answer" ? keyAskOn && !locked && !panelOpen && cardReady : askMode === "enter" ? readyKey === qKey && readyKey !== "" && !locked : false}
                 onKey={() => {
@@ -3488,11 +3996,16 @@ function ToolFrame({ props, tool }: any) {
                   if (askMode === "enter") { press("enter"); return; }
                   /* r36: tapping Answer opens the keypad and shows the built-in "type your answer" line under the pinned
                      instruction (unless a hint is on show); Close takes that line away again */
-                  if (!wantRef.current) openAnswer(); else closeAnswer();
+                  if (!wantRef.current && !captureRef.current) openAnswer(); else closeAnswer();   /* r64: a pad lent by api.capture is open too: Close closes it */
                 }} />
+          );
+          /* keyOnly: the drawer reaches the key's row, so the key is drawn over it (after it); otherwise the bar comes first, as always */
+          return (
+            <>
+              {!KEYONLY && askEl}
               <g data-zone="drawer" display={slide < 0.002 ? "none" : undefined} transform={`translate(${((1 - slide) * (Z.drawer.w + 56)).toFixed(1)},0)`}>
                 <rect x={Z.drawer.x} y={Z.drawer.y} width={Z.drawer.w} height={Z.drawer.h} rx={RAD.card - 4} fill={THEME && THEME.panel ? "url(#gTpanel)" : "url(#gPanel)"} stroke={THEME && THEME.panel ? (THEME.slot || C.rule) : C.rule} strokeWidth={2} filter="url(#fShadow)" />
-                {cardKind ? (
+                {cardKind ? (KEYONLY ? null :
                   <Key id="answer-open" label={UI.answerClose} x={Z.slot.x} y={Z.slot.y + 10} w={Z.slot.w} h={72} C={C} tone="soft"
                     disabled={stage !== "ask" || locked} onClick={closeAnswer}>
                     <text y={14} textAnchor="middle" fontSize={T.prompt} fontWeight={600} fill={toneInk("soft", C.ink)}>{UI.answerClose}</text>
@@ -3500,6 +4013,7 @@ function ToolFrame({ props, tool }: any) {
                 ) : slotEl}
                 {padEl}
               </g>
+              {KEYONLY && askEl}
             </>
           );
         })()}
@@ -3511,7 +4025,8 @@ function ToolFrame({ props, tool }: any) {
         <Footer C={C} line={voice.line} hint={hintText} speaking={voice.speaking} react={react} n={n} N={N} i={i} total={items.length}
           navigable={navigable} done={done} onGo={goPhase} mascotOk={mascotOk} onMascotFail={mascotFail} cheerOn={(party.on || quick.on) && cheerOk} onCheerFail={() => setCheerOk(false)} UI={UI}
           thinkOn={thinkOk && stage === "ask" && !(locked && tries > 0) && actedKey !== qKey && !(nextKeyOn && heldNext)} onThinkFail={() => setThinkOk(false)} bulbN={bulb.on ? bulb.n : 0}
-          onBubble={classroom ? nudge : undefined} cue={voice.held} board={board} lang={lang} hintType={!!hintText && hintKind.current === "type"} />
+          onBubble={classroom ? nudge : undefined} cue={voice.held} board={board} lang={lang} hintType={!!hintText && hintKind.current === "type"}
+          onDot={(k: number) => enterPhase(k, 0)} />
         {party.on && <Party key={party.n} C={C} big={party.big} n={party.n} />}
         {rz && <rect className="c4-ring" x={rz.x - 6} y={rz.y - 6} width={rz.w + 12} height={rz.h + 12} rx={24}
           fill="none" stroke={C.accent} strokeWidth={6} pointerEvents="none" />}

@@ -1,0 +1,1328 @@
+{
+  "slotId": "M2.S3.T5.C20.2D1",
+  "mediaId": "M2.S3.T5.C20.2D1",
+  "toolId": "measure_comparer",
+  "title": "Same-Unit Comparer",
+  "component": "M2.S3.T5.C20.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch9_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_9/2dtool/M2.S3.T5.C20.2D1/M2.S3.T5.C20.2D1.tsx",
+  "description": "Put every measure in the same unit first, then compare two measures, find equal ones, find by how much one is more, and put four in order.",
+  "conceptIds": [
+    "M2.S3.T5.C20",
+    "M2.S3.T5.C21",
+    "M2.S3.T5.C22",
+    "M2.S3.T5.C23"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Compare measures by writing them in the same unit first, tell when two are equal, find by how much one is more, and put several in ascending or descending order.",
+    "look": "Measure cards along the top, and below them bars standing against one scale once the cards share a unit.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Same-Unit Comparer' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of measures put in the same unit. It is never a score. The working area is 1086 by 528 at x 64, y 202. The measure cards lie in a row across the top of the area at y 230, each 220 by 90, in deep blue, labelled Given, each in the form the question wrote it. The Same unit button stands at x 900, y 230, with a violet Unit fact beside it that names the link between the two units. Pressed, it rewrites each card in the smaller unit of the pair and stands each up as a bar rising from one baseline along y 700, the bars 120 wide and drawn to one scale, the rewritten measures green, labelled Same measure, above each bar. The sign slot sits between two bars at y 450 and takes less than, greater than or equals. On the third phase the Take away button stands at x 900, y 330, and pressed it lays the shorter bar over the longer, the covered part rose, labelled Taken away, and the part that sticks out green, labelled Answer, with its unit. On the fourth phase a shelf runs along y 700 from x 120 to x 1060, and the bar being dragged is amber. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a point key, a delete key, and a key for each unit of the pair. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. The measure the question gives, in the unit it is given in, is deep blue, labelled Given or Measure. The measure the working reaches, and a reading on a scale, is green, labelled Answer, Reading or Same measure. The places moved across the unit chart, and the worth of one small mark on a scale, are vermilion, labelled Move or One mark. A unit fact, the unit names on the chart and the other temperature scale are violet, labelled Unit fact, Unit or Other scale. The part taken away, and a part left over after sharing, are rose, labelled Taken away or Left over. The unit, column, mark or step being worked on now is amber. Grey is kept for a zero holding a place open inside a number, labelled Place holder, and for nothing else. Rulers, tapes, jugs, scales, thermometer tubes, chart lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last bars stay on the shelf in order, with their cards above them in the same unit.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the sign clicks between the two bars, and the taller bar's card turns green",
+        "does": "presses Same unit, reads both bars, and sets the sign between them",
+        "goal": "write both measures in the same unit, then compare the numbers",
+        "says": "Same unit first. Which bar stands taller?",
+        "check": "Away from the screen: which is longer, your pencil or your ruler, and did you measure them in the same unit?",
+        "feels": "two bars rising from one baseline and one plainly standing taller",
+        "hands": "Weigh two bags of beans on a kitchen scale, write one weight in kilograms and grams and the other in grams, then write both in grams before saying which is heavier.",
+        "tries": "First rung: rewrite only the mixed card in the smaller unit. Second rung: compare two numbers now in one unit. Third rung: the same task on two lengths, before the question's own weights return.",
+        "wrong": [
+          {
+            "why": "a bigger number usually means more, so the card with more digits feels heavier",
+            "move": "sets the greater than sign before pressing Same unit, choosing the card with the bigger-looking number",
+            "screen": "the sign stays where the child set it, and the bars stand up beside it so the child sees which is taller, with the Same unit button lit amber"
+          },
+          {
+            "why": "the larger unit feels like it decides everything",
+            "move": "compares only the kilograms part of the mixed measure with the other card",
+            "screen": "the grams part of the mixed card is lit amber, and its bar grows by that part in steps while the child's sign stays"
+          }
+        ],
+        "screen": "two cards, one a mixed measure and one in grams, and the Same unit button",
+        "soWhat": "write both measures in the same unit, then compare the numbers",
+        "concept": "Same unit first"
+      },
+      {
+        "n": 2,
+        "win": "the two bars stand exactly level, and the equals sign turns green",
+        "does": "presses Same unit and sees the two bars stand level, then sets the equals sign",
+        "goal": "two measures in different forms are equal when they are the same in the same unit",
+        "says": "Same unit. Are they level?",
+        "check": "Away from the screen: say one length two ways, once in metres and centimetres and once in centimetres.",
+        "feels": "two different-looking cards standing exactly level",
+        "hands": "Write one length in metres and centimetres on one card and in centimetres on another. Lay two strips of paper cut to each and see that they match.",
+        "tries": "First rung: rewrite the mixed card in centimetres. Second rung: compare it with the other card. Third rung: the same task with a whole number of metres, before the question's own cards return.",
+        "wrong": [
+          {
+            "why": "different-looking numbers seem like they must be different lengths",
+            "move": "sets less than because the two cards look different",
+            "screen": "the sign stays, and the two bars stand up beside it exactly level, with the equals sign lit amber in the tray"
+          },
+          {
+            "why": "writing the digits side by side feels like changing the unit",
+            "move": "picks the option whose digits follow the mixed measure's digits in order",
+            "screen": "the chosen card stands up as a bar beside the mixed measure's bar, the two tops seen apart, and the chosen card is lit amber"
+          }
+        ],
+        "screen": "two cards, a mixed measure and the same length in centimetres",
+        "soWhat": "two measures in different forms are equal when they are the same in the same unit",
+        "concept": "Equal measures"
+      },
+      {
+        "n": 3,
+        "win": "the rose part is covered, and the part that sticks out turns green with its unit",
+        "does": "puts both in the same unit, presses Take away, and types the difference with its unit",
+        "goal": "to find by how much, take the smaller from the larger in the same unit",
+        "says": "Lay the shorter one over. How much sticks out?",
+        "check": "Away from the screen: two ribbons, one longer. How would you find how much longer, without a sum?",
+        "feels": "the shorter bar sliding over the longer and the leftover part lighting up",
+        "hands": "Fill two bottles, measure each with a measuring jug, and write both in millilitres. Take the smaller from the larger and say the difference with its unit.",
+        "tries": "First rung: put both cards in millilitres. Second rung: lay the shorter bar over the longer and read what sticks out. Third rung: the same task on two capacities in whole litres, before the question's own cards return.",
+        "wrong": [
+          {
+            "why": "the numbers are there, and taking away seems ready to go",
+            "move": "presses Take away while the two cards are still in different units",
+            "screen": "the two bars cannot be laid over each other and stand apart, each with its own unit lit amber, until Same unit is pressed"
+          },
+          {
+            "why": "the number feels like the whole answer once the taking away is done",
+            "move": "types the difference without its unit",
+            "screen": "the difference waits in the slot uncoloured, and the unit keys on the pad are lit amber"
+          }
+        ],
+        "screen": "two capacity cards and the Take away button",
+        "soWhat": "to find by how much, take the smaller from the larger in the same unit",
+        "concept": "By how much"
+      },
+      {
+        "n": 4,
+        "win": "the four bars rise like steps along the shelf, and the order turns green",
+        "does": "presses Same unit, then drags the four bars along the shelf into order",
+        "goal": "put every measure in the same unit, then order them from smallest to largest or the other way",
+        "says": "Same unit first. Now smallest to largest.",
+        "check": "Away from the screen: what does ascending mean, and what does descending mean?",
+        "feels": "four bars rising like steps along the shelf",
+        "hands": "Write four weights on cards in mixed forms. Rewrite each in grams on its back, then lay the cards in a row from lightest to heaviest.",
+        "tries": "First rung: order just two of the cards. Second rung: add a third. Third rung: the same task with all four already in grams, before the question's own cards return.",
+        "wrong": [
+          {
+            "why": "the cards that start with the same kilograms look alike, so the rest is guessed",
+            "move": "drags the bars into order by the first number printed on each card",
+            "screen": "the order stays on the shelf, and each card's same measure in grams is shown above its bar so the two out of step are seen, lit amber"
+          },
+          {
+            "why": "ascending and descending are long words that sound alike",
+            "move": "builds descending order when ascending is asked",
+            "screen": "the bars stay as the child set them, falling like steps, and the word Ascending is written in ink above the shelf with an arrow rising to the right"
+          }
+        ],
+        "screen": "four weight cards in mixed forms and an empty shelf",
+        "soWhat": "put every measure in the same unit, then order them from smallest to largest or the other way",
+        "concept": "Putting measures in order"
+      }
+    ],
+    "delight": "On the fourth phase, when the last bar drops into place, the four bars rise along the shelf like steps, and a small ball rolls up them from the shortest to the tallest.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet compared. On the first phase two cards lie across the top, one a mixed measure and one in grams, with the Same unit button beside them. On the second two cards lie there, a mixed measure and a length in centimetres. On the third two capacity cards lie there with the Take away button waiting. On the fourth four weight cards in mixed forms lie above an empty shelf. One thing moves, once: the Same unit button gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any measures typed onto the cards, put in one unit, compared, taken away and ordered. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on comparing, equal measures, differences and order.",
+    "voiceLines": [
+      "Some measure cards, each written its own way.",
+      "Same unit first. Which bar stands taller?",
+      "Same unit. Are they level?",
+      "Lay the shorter one over. How much sticks out?",
+      "Same unit first. Now smallest to largest.",
+      "New cards. Same unit first.",
+      "Free play. Lay out any cards and stand them up side by side.",
+      "Are they in the same unit yet? Press Same unit and look again.",
+      "You put every measure in one unit before you compared."
+    ],
+    "observations": [
+      {
+        "why": "the number alone says nothing until the two measures are in the same unit.",
+        "soWhat": "put both measures in the same unit first, then compare the numbers.",
+        "observe": "A card with a bigger number stood as the shorter bar."
+      },
+      {
+        "why": "they are one measure written in two forms.",
+        "soWhat": "equal measures can look different, and the same unit shows it.",
+        "observe": "Two cards that looked quite different stood exactly level."
+      },
+      {
+        "why": "by how much means the larger take away the smaller, in one unit.",
+        "soWhat": "a difference is a measure too, and it keeps its unit.",
+        "observe": "Only the part that stuck out past the shorter bar was the difference."
+      },
+      {
+        "why": "in one unit, a bigger number is a bigger measure.",
+        "soWhat": "ordering is comparing, done a few times over.",
+        "observe": "Once the bars were up, putting them in order was just reading their heights."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "two cards, one a mixed measure and one in grams, and the Same unit button",
+        "win": "the sign clicks between the two bars, and the taller bar's card turns green",
+        "traceback": "Both cards are written in the smaller unit and stand up as bars, the mixed card lit amber, and the sign between the bars shows which is more.",
+        "ladder": [
+          "Compare grams with grams, so look at the two bars.",
+          "Write 3 m 20 cm in centimetres before you choose.",
+          "Lighter means less: how many grams are 4 kg 60 g?",
+          "Put both cards in the smaller unit before you compare them.",
+          "Now the two numbers share a unit, so compare them place by place."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "two cards, a mixed measure and the same length in centimetres",
+        "win": "the two bars stand exactly level, and the equals sign turns green",
+        "traceback": "Every card is written in the smaller unit and stands up as a bar; the equal bars stand level, joined by the equals sign or a level line.",
+        "ladder": [
+          "See whether the two bars stand level in centimetres.",
+          "Put both in millilitres and look at the tops of the bars.",
+          "Write 3 km 50 m in metres, then find the card that matches it.",
+          "Write the mixed card in the smaller unit, then hold it beside the other card.",
+          "Equal measures stand exactly level once they share a unit."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "two capacity cards and the Take away button",
+        "win": "the rose part is covered, and the part that sticks out turns green with its unit",
+        "traceback": "Both cards go into the smaller unit, the shorter bar is laid over the longer, and the part that sticks out is labelled with the difference.",
+        "ladder": [
+          "Read only the part that sticks out past the shorter bar.",
+          "Write 1 m 85 cm in centimetres before you take away.",
+          "Write both sacks in grams, then take the smaller away.",
+          "Lay the shorter bar over the longer and read what sticks out.",
+          "Take the smaller number from the larger one, both in the same unit."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "four weight cards in mixed forms and an empty shelf",
+        "win": "the four bars rise like steps along the shelf, and the order turns green",
+        "traceback": "Every card goes into the smaller unit, the bars out of place are lit amber, and each bar is numbered with its right place under the order's name.",
+        "ladder": [
+          "Look at the zeros: 4 g is a tiny part of a kilogram.",
+          "Think of the word: to descend means to go down.",
+          "Write each card in millilitres, minding the zeros that hold places.",
+          "Order just two of the bars first, then fit in a third.",
+          "Read the bar heights, since all four now share one unit."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "units": {
+      "g": {
+        "big": "kg",
+        "small": "g",
+        "k": 1000
+      },
+      "cm": {
+        "big": "m",
+        "small": "cm",
+        "k": 100
+      },
+      "mL": {
+        "big": "L",
+        "small": "mL",
+        "k": 1000
+      },
+      "m": {
+        "big": "km",
+        "small": "m",
+        "k": 1000
+      }
+    },
+    "free": [
+      {
+        "u": "g",
+        "cards": [
+          {
+            "id": "f1",
+            "b": 2,
+            "s": 50
+          },
+          {
+            "id": "f2",
+            "v": 2500
+          }
+        ]
+      },
+      {
+        "u": "cm",
+        "cards": [
+          {
+            "id": "f1",
+            "b": 1,
+            "s": 9
+          },
+          {
+            "id": "f2",
+            "v": 190
+          }
+        ]
+      },
+      {
+        "u": "mL",
+        "cards": [
+          {
+            "id": "f1",
+            "b": 4,
+            "s": 400
+          },
+          {
+            "id": "f2",
+            "v": 4040
+          }
+        ]
+      },
+      {
+        "u": "m",
+        "cards": [
+          {
+            "id": "f1",
+            "b": 2,
+            "s": 5
+          },
+          {
+            "id": "f2",
+            "v": 2050
+          }
+        ]
+      }
+    ],
+    "scale": "bars stand on one baseline that starts at the whole big units below the smallest measure (a break mark shows it)",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T5.C20:CM1",
+        "kind": "cmp",
+        "u": "g",
+        "want": "more",
+        "cards": [
+          {
+            "id": "c1",
+            "b": 3,
+            "s": 90
+          },
+          {
+            "id": "c2",
+            "v": 3150
+          }
+        ],
+        "answer": "c2",
+        "near": "c1",
+        "plan": "Which is heavier, 3 kg 90 g or 3150 g?",
+        "ladder": [
+          "3 kg is 3,000 g, so 3 kg 90 g is 3,000 g and 90 g more.",
+          "Line up 3,090 and 3,150, then compare their hundreds."
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T5.C20:1",
+        "kind": "cmp",
+        "u": "cm",
+        "want": "more",
+        "cards": [
+          {
+            "id": "c1",
+            "b": 3,
+            "s": 20
+          },
+          {
+            "id": "c2",
+            "v": 330
+          }
+        ],
+        "answer": "c2",
+        "near": "c1",
+        "plan": "Which is longer, 3 m 20 cm or 330 cm?",
+        "ladder": [
+          "1 m is 100 cm, so 3 m is 300 cm.",
+          "3 m 20 cm is 320 cm, so set 320 beside 330."
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T5.C20:5",
+        "kind": "cmp",
+        "u": "g",
+        "want": "less",
+        "noKey": true,
+        "cards": [
+          {
+            "id": "c1",
+            "b": 4,
+            "s": 60
+          },
+          {
+            "id": "c2",
+            "v": 4600
+          }
+        ],
+        "answer": "c1",
+        "near": "c2",
+        "plan": "Which is lighter, 4 kg 60 g or 4600 g?",
+        "ladder": [
+          "4 kg is 4,000 g, and 60 g more is 4,060 g.",
+          "The 0 in 4,060 holds the hundreds, so compare 0 hundreds with 6."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T5.C21:CM2",
+        "kind": "same",
+        "u": "cm",
+        "cards": [
+          {
+            "id": "c1",
+            "b": 6,
+            "s": 5
+          },
+          {
+            "id": "c2",
+            "v": 605
+          }
+        ],
+        "answer": "yes",
+        "near": "no",
+        "plan": "Is 6 m 5 cm the same length as 605 cm?",
+        "ladder": [
+          "6 m is 600 cm, and the 5 cm goes in the ones place.",
+          "6 m 5 cm has no tens, so a zero holds the tens place."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T5.C21:2",
+        "kind": "same",
+        "u": "mL",
+        "cards": [
+          {
+            "id": "c1",
+            "b": 5,
+            "s": 300
+          },
+          {
+            "id": "c2",
+            "v": 5300
+          }
+        ],
+        "answer": "yes",
+        "near": "no",
+        "plan": "Do 5 L 300 mL and 5300 mL hold the same amount?",
+        "ladder": [
+          "1 L is 1,000 mL, so 5 L is 5,000 mL.",
+          "Add the 300 mL to 5,000 mL, then set it beside 5,300 mL."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T5.C21:6",
+        "kind": "pick",
+        "u": "m",
+        "noKey": true,
+        "cards": [
+          {
+            "id": "c1",
+            "b": 3,
+            "s": 50
+          },
+          {
+            "id": "o1",
+            "v": 3500
+          },
+          {
+            "id": "o2",
+            "v": 3050
+          },
+          {
+            "id": "o3",
+            "v": 3005
+          }
+        ],
+        "answer": "o2",
+        "near": "o1",
+        "plan": "Which of these is the same length as 3 km 50 m: 3500 m, 3050 m or 3005 m?",
+        "ladder": [
+          "1 km is 1,000 m, so 3 km is 3,000 m.",
+          "50 m fills only the tens and the ones, so a zero holds the hundreds."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T5.C22:CM3",
+        "kind": "diff",
+        "u": "mL",
+        "cards": [
+          {
+            "id": "c1",
+            "b": 2,
+            "s": 640,
+            "name": "Pot"
+          },
+          {
+            "id": "c2",
+            "v": 2475,
+            "name": "Kettle"
+          }
+        ],
+        "parts": [
+          {
+            "label": "mL"
+          }
+        ],
+        "answer": [
+          165
+        ],
+        "near": [
+          1835
+        ],
+        "plan": "A pot holds 2 L 640 mL and a kettle holds 2475 mL. Which holds more, and by how much?",
+        "ladder": [
+          "2 L 640 mL is 2,640 mL, so take 2,475 mL away from it.",
+          "Count on: 2,475 and 25 make 2,500, and 140 more make 2,640."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T5.C22:4",
+        "kind": "diff",
+        "u": "cm",
+        "cards": [
+          {
+            "id": "c1",
+            "b": 1,
+            "s": 85,
+            "name": "Green"
+          },
+          {
+            "id": "c2",
+            "v": 164,
+            "name": "Red"
+          }
+        ],
+        "parts": [
+          {
+            "label": "cm"
+          }
+        ],
+        "answer": [
+          21
+        ],
+        "near": [
+          79
+        ],
+        "plan": "A green ribbon is 1 m 85 cm long and a red ribbon is 164 cm long. How much longer is the green ribbon?",
+        "ladder": [
+          "1 m 85 cm is 185 cm, so take 164 cm from 185 cm.",
+          "Count on from 164 cm: 6 more make 170 cm, and 15 more make 185 cm."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T5.C22:7",
+        "kind": "diff",
+        "u": "g",
+        "cards": [
+          {
+            "id": "c1",
+            "b": 5,
+            "s": 125,
+            "name": "Flour"
+          },
+          {
+            "id": "c2",
+            "b": 4,
+            "s": 980,
+            "name": "Lentils"
+          }
+        ],
+        "parts": [
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          145
+        ],
+        "near": [
+          855
+        ],
+        "plan": "A sack of flour weighs 5 kg 125 g and a sack of lentils weighs 4 kg 980 g. Which is heavier, and by how much?",
+        "ladder": [
+          "5 kg 125 g is 5,125 g and 4 kg 980 g is 4,980 g.",
+          "From 4,980 g, 20 g more make 5,000 g, and 125 g more make 5,125 g."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T5.C23:CM4",
+        "kind": "order",
+        "dir": "up",
+        "u": "g",
+        "pad": "enter",
+        "cards": [
+          {
+            "id": "c1",
+            "b": 1,
+            "s": 400
+          },
+          {
+            "id": "c2",
+            "v": 1040
+          },
+          {
+            "id": "c3",
+            "b": 1,
+            "s": 4
+          },
+          {
+            "id": "c4",
+            "v": 1410
+          }
+        ],
+        "answer": "c3,c2,c1,c4",
+        "near": "c2,c1,c4,c3",
+        "plan": "Put these weights in ascending order: 1 kg 400 g, 1040 g, 1 kg 4 g, 1410 g.",
+        "ladder": [
+          "1 kg 4 g is 1,004 g, since zeros hold the hundreds and the tens.",
+          "Compare 1,040 and 1,400 by their hundreds, then their tens."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T5.C23:3",
+        "kind": "word",
+        "u": "g",
+        "pre": true,
+        "cards": [
+          {
+            "id": "c3",
+            "b": 1,
+            "s": 4
+          },
+          {
+            "id": "c2",
+            "v": 1040
+          },
+          {
+            "id": "c1",
+            "b": 1,
+            "s": 400
+          },
+          {
+            "id": "c4",
+            "v": 1410
+          }
+        ],
+        "answer": "lg",
+        "near": "sm",
+        "plan": "What does descending order mean?",
+        "ladder": [
+          "Ascending climbs up from the shortest bar, and descending does the reverse.",
+          "Start at the tallest bar and step down to the shortest."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T5.C23:8",
+        "kind": "order",
+        "dir": "down",
+        "u": "mL",
+        "pad": "enter",
+        "cards": [
+          {
+            "id": "c1",
+            "b": 3,
+            "s": 75
+          },
+          {
+            "id": "c2",
+            "v": 3570
+          },
+          {
+            "id": "c3",
+            "b": 3,
+            "s": 7
+          },
+          {
+            "id": "c4",
+            "v": 3705
+          }
+        ],
+        "answer": "c4,c2,c1,c3",
+        "near": "c3,c1,c2,c4",
+        "plan": "Put these in descending order: 3 L 75 mL, 3570 mL, 3 L 7 mL, 3705 mL.",
+        "ladder": [
+          "3 L 75 mL is 3,075 mL, and 3 L 7 mL is 3,007 mL.",
+          "Compare 3,570 and 3,705 by their hundreds first."
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: Both cards are written in the smaller unit and stand up as bars, the mixed card lit amber, and the sign between the bars shows which is more.",
+      "Phase 2: Every card is written in the smaller unit and stands up as a bar; the equal bars stand level, joined by the equals sign or a level line.",
+      "Phase 3: Both cards go into the smaller unit, the shorter bar is laid over the longer, and the part that sticks out is labelled with the difference.",
+      "Phase 4: Every card goes into the smaller unit, the bars out of place are lit amber, and each bar is numbered with its right place under the order's name."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Some measure cards, each written its own way.",
+    "onFreePlay": "Free play. Tap New cards, then stand them up side by side.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You put every measure in one unit before you compared.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T5.C20:CM1",
+            "worked": false,
+            "kind": "cmp",
+            "planQuestion": "Which is heavier, 3 kg 90 g or 3150 g?",
+            "question": {
+              "en": "Which is heavier, 3 kg 90 g or 3,150 g?"
+            },
+            "ask": {
+              "en": "Which is heavier?"
+            },
+            "answer": "c2",
+            "planAnswer": "3150 g.",
+            "choices": [
+              "c1",
+              "c2"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T5.C20:1",
+            "worked": false,
+            "kind": "cmp",
+            "planQuestion": "Which is longer, 3 m 20 cm or 330 cm?",
+            "question": {
+              "en": "Which is longer, 3 m 20 cm or 330 cm?"
+            },
+            "ask": {
+              "en": "Which is longer?"
+            },
+            "answer": "c2",
+            "planAnswer": "330 cm, because 3 m 20 cm is 320 cm",
+            "choices": [
+              "c1",
+              "c2"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T5.C20:5",
+            "worked": false,
+            "kind": "cmp",
+            "planQuestion": "Which is lighter, 4 kg 60 g or 4600 g?",
+            "question": {
+              "en": "Which is lighter, 4 kg 60 g or 4,600 g?"
+            },
+            "ask": {
+              "en": "Which is lighter?"
+            },
+            "answer": "c1",
+            "planAnswer": "4 kg 60 g, because it is 4060 g",
+            "choices": [
+              "c1",
+              "c2"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T5.C21:CM2",
+            "worked": false,
+            "kind": "same",
+            "planQuestion": "Is 6 m 5 cm the same length as 605 cm?",
+            "question": {
+              "en": "Is 6 m 5 cm the same length as 605 cm?"
+            },
+            "ask": {
+              "en": "Same length?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes. They are the same length.",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T5.C21:2",
+            "worked": false,
+            "kind": "same",
+            "planQuestion": "Do 5 L 300 mL and 5300 mL hold the same amount?",
+            "question": {
+              "en": "Do 5 L 300 mL and 5,300 mL hold the same amount?"
+            },
+            "ask": {
+              "en": "Same amount?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes. 5 L 300 mL is 5300 mL",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T5.C21:6",
+            "worked": false,
+            "kind": "pick",
+            "planQuestion": "Which of these is the same length as 3 km 50 m: 3500 m, 3050 m or 3005 m?",
+            "question": {
+              "en": "Which of these is the same length as 3 km 50 m: 3,500 m, 3,050 m or 3,005 m?"
+            },
+            "ask": {
+              "en": "Which is equal?"
+            },
+            "answer": "o2",
+            "planAnswer": "3050 m",
+            "choices": [
+              "o1",
+              "o2",
+              "o3"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T5.C22:CM3",
+            "worked": false,
+            "kind": "diff",
+            "planQuestion": "A pot holds 2 L 640 mL and a kettle holds 2475 mL. Which holds more, and by how much?",
+            "question": {
+              "en": "A pot holds 2 L 640 mL, a kettle 2,475 mL: how much more does the bigger hold?"
+            },
+            "ask": {
+              "en": "How much more?"
+            },
+            "answer": [
+              165
+            ],
+            "planAnswer": "The pot holds 165 mL more.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T5.C22:4",
+            "worked": false,
+            "kind": "diff",
+            "planQuestion": "A green ribbon is 1 m 85 cm long and a red ribbon is 164 cm long. How much longer is the green ribbon?",
+            "question": {
+              "en": "The green ribbon is 1 m 85 cm, the red 164 cm: how much longer is the green?"
+            },
+            "ask": {
+              "en": "How much longer?"
+            },
+            "answer": [
+              21
+            ],
+            "planAnswer": "21 cm longer, because 1 m 85 cm is 185 cm and 185 - 164 = 21",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T5.C22:7",
+            "worked": false,
+            "kind": "diff",
+            "planQuestion": "A sack of flour weighs 5 kg 125 g and a sack of lentils weighs 4 kg 980 g. Which is heavier, and by how much?",
+            "question": {
+              "en": "Flour weighs 5 kg 125 g and lentils weigh 4 kg 980 g: what is the difference?"
+            },
+            "ask": {
+              "en": "The difference?"
+            },
+            "answer": [
+              145
+            ],
+            "planAnswer": "The flour, by 145 g, because 5125 - 4980 = 145",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T5.C23:CM4",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Put these weights in ascending order: 1 kg 400 g, 1040 g, 1 kg 4 g, 1410 g.",
+            "question": {
+              "en": "Put the four weights in ascending order."
+            },
+            "ask": {
+              "en": "Ascending order?"
+            },
+            "answer": "c3,c2,c1,c4",
+            "planAnswer": "1 kg 4 g, 1040 g, 1 kg 400 g, 1410 g.",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T5.C23:3",
+            "worked": false,
+            "kind": "word",
+            "planQuestion": "What does descending order mean?",
+            "question": {
+              "en": "What does descending order mean?"
+            },
+            "ask": {
+              "en": "Descending means?"
+            },
+            "answer": "lg",
+            "planAnswer": "From largest to smallest",
+            "choices": [
+              "lg",
+              "sm"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T5.C23:8",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Put these in descending order: 3 L 75 mL, 3570 mL, 3 L 7 mL, 3705 mL.",
+            "question": {
+              "en": "Now arrange these four capacities in descending order."
+            },
+            "ask": {
+              "en": "Descending order?"
+            },
+            "answer": "c4,c2,c1,c3",
+            "planAnswer": "3705 mL, 3570 mL, 3 L 75 mL, 3 L 7 mL",
+            "madeOn": "working area"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "measure_comparer",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "measure_comparer",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Same unit first",
+        "conceptId": "M2.S3.T5.C20",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C20:CM1",
+          "M2.S3.T5.C20:1",
+          "M2.S3.T5.C20:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Equal measures",
+        "conceptId": "M2.S3.T5.C21",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C21:CM2",
+          "M2.S3.T5.C21:2",
+          "M2.S3.T5.C21:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "By how much",
+        "conceptId": "M2.S3.T5.C22",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C22:CM3",
+          "M2.S3.T5.C22:4",
+          "M2.S3.T5.C22:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Putting measures in order",
+        "conceptId": "M2.S3.T5.C23",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C23:CM4",
+          "M2.S3.T5.C23:3",
+          "M2.S3.T5.C23:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "cards",
+    "c",
+    "same_unit",
+    "sign",
+    "difference",
+    "order",
+    "answer"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, cards, c, same_unit, sign, difference, order, answer, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "measure_comparer"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T5.C20.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Some measure cards, each written its own way."
+    },
+    {
+      "en": "Same unit first. Which bar stands taller?"
+    },
+    {
+      "en": "Same unit. Are they level?"
+    },
+    {
+      "en": "Lay the shorter one over. How much sticks out?"
+    },
+    {
+      "en": "Same unit first. Now smallest to largest."
+    },
+    {
+      "en": "New cards. Same unit first."
+    },
+    {
+      "en": "Free play. Lay out any cards and stand them up side by side."
+    },
+    {
+      "en": "Are they in the same unit yet? Press Same unit and look again."
+    },
+    {
+      "en": "You put every measure in one unit before you compared."
+    }
+  ],
+  "build": {
+    "source": "86afb3a3:632241",
+    "runtime": "class5/runtime/frozen/r65/runtime.tsx",
+    "runtimeVersion": "r65",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T14:57:35.456Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-18T14:57:35.329Z"
+    },
+    "tsxBytes": 551856,
+    "tsxMd5": "9e5b01caf4bbd5e35a70310415a3973a"
+  }
+}

@@ -49,6 +49,13 @@ export function capsOf(runtimeSrc) {
     answerBlink: /const keyAskOn\b/.test(r),              /* r24: the Answer key blinks, with its tap line, in EVERY board tool while it is what to press (and the Enter key once api.answerReady) */
     itemLadder: /Array\.isArray\(it\.ladder\)/.test(r),      /* r24: rungOf reads a question's own `it.ladder` (the maths and TR rows then read it too; an older pin ignores the field) */
     lastIt: /last: \{ item: L\.i, it:/.test(r),           /* r24: result.last.it is the item object (last.item stays the index); the Thumb gets `it` */
+    keyOnly: /const ZKEY\b/.test(r),                     /* class 4 r27: `keyOnly: true` (board tools): no question bar, only its key; the working area up, a tall bubble */
+    navDots: /function NavDot\b/.test(r),                /* class 4 r27: `navDots: true`: one small dot per phase, a control in user and AI mode */
+    oneSentence: /ONE SENTENCE A SCREEN/.test(r),         /* 2026-10-16: keyOnly shows ONE sentence of Kiko's speech a screen (a hint replaces the question, no type line, closing at a phase's last win, digits as written, no puff or bulb): the marker comment in Footer */
+    act: /ACTION_KIT_HELPER/.test(r),                    /* 2026-10-16: api.act, a real tool (the ACTION KIT) or the drawn hand performs the act on screen */
+    actTempo: Number((r.match(/const ACT_TEMPO = ([\d.]+)/) || [])[1]) || 1,   /* class 5 head after r65 / class 4 r28: every act plays this many times calmer (action-anim scales its limit) */
+    actBeat: Number((r.match(/\bACT_BEAT = (\d+)/) || [])[1]) || 0,            /* the pencil's hold after writing, ms */
+    fontKit: /function useFontKit\b/.test(r),             /* 2026-10-16: the FONT KIT (runtime/fontkit.tsx, FONT_KIT): Poppins inside the tool */
   };
 }
 

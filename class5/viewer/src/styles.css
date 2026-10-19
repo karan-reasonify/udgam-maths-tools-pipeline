@@ -21,7 +21,7 @@ body { background: var(--bg); color: var(--ink); font-size: 14px; }
 .app-header {
   display: flex; align-items: baseline; gap: 12px;
   padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
+  flex-shrink: 0; flex-wrap: wrap;
 }
 .app-title { font-weight: 600; }
 .app-current { margin-left: auto; }
@@ -88,8 +88,15 @@ body { background: var(--bg); color: var(--ink); font-size: 14px; }
 .seg-btn:hover { color: var(--ink); }
 .seg-btn.active { background: var(--panel); color: var(--accent); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
 
-.tool-frame-stage { flex: 1; min-height: 0; background: #eef0f3; display: flex; align-items: center; justify-content: center; overflow: auto; }
-.tool-iframe { width: 100%; height: 100%; border: none; background: #f8fafc; }
+.seg-btn .seg-dim { margin-left: 6px; font: 11px ui-monospace, Consolas, monospace; opacity: .75; }
+.devicebar { display: flex; align-items: center; align-self: center; gap: 10px; flex-wrap: wrap; }
+.devicebar-sep { width: 1px; height: 22px; background: var(--border); }
+
+.tool-frame-stage { position: relative; flex: 1; min-height: 0; background: #eef0f3; display: flex; align-items: center; justify-content: center; overflow: auto; }
+/* the shell is the scaled size of the device; the iframe inside is the TRUE device size, scaled from the top left (ToolFrame.tsx) */
+.frame-shell { flex: none; position: relative; overflow: hidden; border-radius: 6px; background: #f8fafc; box-shadow: 0 0 0 1px var(--border), 0 4px 16px rgba(16, 24, 40, .12); }
+.tool-iframe { position: absolute; top: 0; left: 0; transform-origin: 0 0; border: none; background: #f8fafc; }
+.frame-tag { position: absolute; bottom: 4px; left: 0; right: 0; text-align: center; font: 11px ui-monospace, Consolas, monospace; color: var(--muted); pointer-events: none; }
 
 .code-panel { flex: 1; min-height: 0; overflow: auto; background: var(--panel); }
 .code-block {
@@ -140,3 +147,25 @@ body { background: var(--bg); color: var(--ink); font-size: 14px; }
 .app.embed .rail-right .finding-row:hover { background: #d6dde8; }
 .app.embed .rail-right .count.info { background: #fff; }
 .app.embed .rail-right .btn, .app.embed .icon-btn { border-color: #b8c0cc; }
+
+/* a phone: one column for the tool; each side panel slides in over it (closed at start, App.tsx NARROW, the same width) */
+.scrim { display: none; }
+@media (max-width: 760px), (max-height: 500px) {
+  .app-header { padding: 8px 10px; gap: 8px; }
+  .app-body, .app-body.left-closed, .app-body.right-closed { grid-template-columns: 1fr; position: relative; }
+  .rail-left, .rail-right { position: absolute; top: 0; bottom: 0; z-index: 5; width: min(88vw, 380px); box-shadow: 0 0 18px rgba(16, 24, 40, .22); }
+  .rail-left { left: 0; }
+  .rail-right { right: 0; }
+  .scrim { display: block; position: absolute; inset: 0; z-index: 4; border: 0; padding: 0; background: rgba(15, 23, 42, .35); }
+  .toolbar { gap: 8px 10px; padding: 6px 8px; }
+  .toolbar-field { max-width: 100%; min-width: 0; }
+  .toolbar-field select { min-width: 0; max-width: 100%; flex: 1; } /* a long phase name must not push the page wider */
+  .tab { padding: 8px 10px; }
+  .devicebar { gap: 6px; }
+  .seg-btn .seg-dim { display: none; }
+}
+@media (max-height: 500px) {
+  .app-header { padding: 4px 10px; }
+  .tab { padding: 5px 10px; }
+  .toolbar { padding: 4px 8px; gap: 4px 10px; }
+}

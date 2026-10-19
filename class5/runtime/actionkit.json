@@ -1,0 +1,26 @@
+{
+  "$comment": "The ACTION KIT plan (docs/IMAGES.md §11): the tools api.act draws when a child taps an action key. `node cli.mjs actionkit` makes each picture once through the skin library and ledger and writes runtime/actionkit.tsx (generated, never read). Not a slot's skin: outside the 3-a-slot cap. len/ax/ay/rot say how the runtime holds the picture: len = its longest side in stage units, (ax, ay) = the point that acts (the blade's edge, the pencil's tip) as fractions of the picture, rot = the turn (degrees, clockwise) that puts it in its working pose: the knife tip down, the pencil tip down-left. The ruler is stretched along from->to with its top-left corner (0, 0) at from.",
+  "style": "soft 3D cartoon, top-down, warm and friendly",
+  "images": [
+    { "key": "knife", "object": "small kitchen knife", "kind": "tile", "aspect": "21:9", "px": [200, 64], "maxKB": 6,
+      "len": 210, "ax": 0.02, "ay": 0.6, "rot": -90,
+      "why": "Cut, Split: a knife slices along each cut line (owner 2026-10-16)",
+      "prompt": "A small kitchen knife lying flat: a mid-grey brushed-steel blade with a rounded tip and a warm honey-brown wooden handle with two small brass rivets" },
+    { "key": "scissors", "object": "child-safe scissors, open", "kind": "tile", "aspect": "1:1", "px": [140, 140], "maxKB": 6,
+      "len": 170, "ax": 0.55, "ay": 0.02, "rot": 0,
+      "why": "Snip: scissors open and close at each point (owner 2026-10-16)",
+      "prompt": "A pair of child-safe scissors, open in a wide V: short mid-grey steel blades with round blunt tips and chunky orange plastic finger loops"},
+    { "key": "ruler", "object": "plain light-wood ruler, blank face", "kind": "tile", "aspect": "21:9", "px": [200, 48], "maxKB": 4,
+      "len": 400, "ax": 0, "ay": 0, "rot": 0,
+      "why": "Measure: a ruler slides in along the length; blank face, the tool draws every mark in code (IMAGES.md §2)",
+      "prompt": "A plain flat wooden slat: one long smooth strip of pale honey-coloured wood with softly rounded corners and a completely empty, unmarked face" },
+    { "key": "pencil", "object": "yellow wooden pencil", "kind": "tile", "aspect": "21:9", "px": [200, 40], "maxKB": 4,
+      "len": 190, "ax": 0.01, "ay": 0.5, "rot": -45,
+      "why": "Draw: a pencil draws the line (owner 2026-10-16)",
+      "prompt": "A sharpened wooden pencil lying flat: an orange-yellow painted body, a pale wood cone ending in a dark grey graphite tip at one end, and a pink rubber in a gold band at the other end" },
+    { "key": "eraser", "object": "pink rubber eraser", "kind": "tile", "aspect": "4:3", "px": [120, 90], "maxKB": 4,
+      "len": 100, "ax": 0.5, "ay": 0.5, "rot": 0,
+      "why": "Rub out: an eraser rubs back and forth (owner 2026-10-16)",
+      "prompt": "A soft pink rubber eraser: a rounded rectangular block with gently bevelled edges and one slightly worn corner" }
+  ]
+}

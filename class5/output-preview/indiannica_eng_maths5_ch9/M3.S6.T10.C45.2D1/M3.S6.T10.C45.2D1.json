@@ -1,0 +1,1627 @@
+{
+  "slotId": "M3.S6.T10.C45.2D1",
+  "mediaId": "M3.S6.T10.C45.2D1",
+  "toolId": "three_ways",
+  "title": "Three Ways Recorder",
+  "component": "M3.S6.T10.C45.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch9_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_9/2dtool/M3.S6.T10.C45.2D1/M3.S6.T10.C45.2D1.tsx",
+  "description": "Write one real measure three ways, put a group's measures in order, add a group's weights, and measure the water a group drinks with a measuring jug.",
+  "conceptIds": [
+    "M3.S6.T10.C45",
+    "M3.S6.T10.C46",
+    "M3.S6.T10.C47",
+    "M3.S6.T10.C48"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Write one real measure in two units, in its smallest unit and as a decimal in the larger unit, put a group's measures in order in one unit, add a group's weights, and measure the water a group drinks with a measuring jug.",
+    "look": "A class record chart with a row for each child, record cards that flip through three forms, and a measuring jug marked in millilitres.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Three Ways Recorder' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of measures recorded. It is never a score. The working area is 1086 by 528 at x 64, y 202. The class record chart fills the left of the area from x 90 to x 760: five rows, one for each child of the group, each 72 tall from y 250, under a header row at y 210 with columns for a long jump, a school bag's weight and a drink of water, and a total row at y 620. The record card stands at x 800, y 230, 300 by 110, with the measure in deep blue, labelled Given, and the Flip button under it at x 800, y 360. Each flip shows the card's next form in green, labelled Same measure, with a violet Unit fact beside it and a grey zero, labelled Place holder, wherever a place is held open. A row being dragged is amber. On the third phase the total row fills in green, labelled Answer. On the fourth phase the measuring jug stands at x 820, y 420, 160 wide and 260 tall, its marks and numbers in near-black ink, and each drink poured from it is read off its marks and entered in the water column. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a point key, a delete key, and a key for each unit in use. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. The measure the question gives, in the unit it is given in, is deep blue, labelled Given or Measure. The measure the working reaches, and a reading on a scale, is green, labelled Answer, Reading or Same measure. The places moved across the unit chart, and the worth of one small mark on a scale, are vermilion, labelled Move or One mark. A unit fact, the unit names on the chart and the other temperature scale are violet, labelled Unit fact, Unit or Other scale. The part taken away, and a part left over after sharing, are rose, labelled Taken away or Left over. The unit, column, mark or step being worked on now is amber. Grey is kept for a zero holding a place open inside a number, labelled Place holder, and for nothing else. Rulers, tapes, jugs, scales, thermometer tubes, chart lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The group's chart stays up, every row in order, every card showing all three forms, and the totals in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the three forms stand side by side, all green, all one jump",
+        "does": "flips the card and types each form in turn",
+        "goal": "one measure can be written in two units, in its smallest unit and as a decimal in the larger unit",
+        "says": "Flip it. Say the same jump another way.",
+        "check": "Away from the screen: say your own height in metres and centimetres, then in centimetres.",
+        "feels": "three different-looking forms standing side by side, all green, all one jump",
+        "hands": "Measure a jump on the playground with a tape, write it in metres and centimetres, then in centimetres, then as a decimal in metres, on three sides of one folded card.",
+        "tries": "First rung: write only the smallest-unit form. Second rung: write it as a decimal in metres. Third rung: the same task on a jump with no empty place, before the question's own jump returns.",
+        "wrong": [
+          {
+            "why": "the centimetres look like they go straight after the point",
+            "move": "flips to the decimal form and writes the centimetres straight after the point with no place holder",
+            "screen": "the child's form stays, and the other two forms are laid beside it so the one that differs stands out, lit amber"
+          },
+          {
+            "why": "writing the parts next to each other feels like joining them",
+            "move": "writes the jump in centimetres by putting the metres and centimetres side by side",
+            "screen": "the child's form stays, the other two forms are laid beside it, and the one that differs is lit amber"
+          }
+        ],
+        "screen": "a long jump entered on a record card in metres and centimetres",
+        "soWhat": "one measure can be written in two units, in its smallest unit and as a decimal in the larger unit",
+        "concept": "One measure, three ways"
+      },
+      {
+        "n": 2,
+        "win": "the rows settle in order, and the jumps rise like steps",
+        "does": "flips every card to centimetres, then drags the rows into ascending order",
+        "goal": "put every measure in one unit, then order them",
+        "says": "One unit first. Then shortest to longest.",
+        "check": "Away from the screen: before you order the jumps of a group, what must you do first?",
+        "feels": "the rows settling into order and the jumps rising like steps",
+        "hands": "Write four jumps on slips in different forms. Rewrite each in centimetres on its back, then lay the slips from shortest to longest.",
+        "tries": "First rung: flip one card to centimetres. Second rung: flip them all. Third rung: the same task with three jumps, before the question's own four return.",
+        "wrong": [
+          {
+            "why": "the first number printed looks like it decides the length",
+            "move": "drags the rows into order by the first number on each card before flipping them",
+            "screen": "the rows stay where the child put them, and each row's jump is shown in the chart's one unit beside its neighbours so the one out of step is seen"
+          },
+          {
+            "why": "a single digit after the point looks smaller than two digits of centimetres",
+            "move": "puts a jump written as a decimal below a mixed one because its digits after the point look small",
+            "screen": "the row stays where it was put, and its jump is shown in centimetres beside its neighbours, lit amber"
+          }
+        ],
+        "screen": "four jumps on the chart, each written in a different form",
+        "soWhat": "put every measure in one unit, then order them",
+        "concept": "Ordering real measures"
+      },
+      {
+        "n": 3,
+        "win": "the total turns green, in grams, in kilograms and grams, and as a decimal",
+        "does": "writes each weight in grams, adds them, and writes the total in kilograms and grams",
+        "goal": "add weights in the smallest unit, then write the total back in the larger unit",
+        "says": "All in grams. Add them. How many kilograms is that?",
+        "check": "Away from the screen: why is it easier to add weights once they are all in grams?",
+        "feels": "three weights melting into one total that bundles back into kilograms",
+        "hands": "Weigh three school bags on a scale, write each weight in grams, add them, and write the total in kilograms and grams.",
+        "tries": "First rung: write one weight in grams. Second rung: add two of them. Third rung: the same task with two weights, before the question's own three return.",
+        "wrong": [
+          {
+            "why": "the grams column total is just what the adding gave",
+            "move": "adds the grams parts and leaves a thousand or more in the grams part of the total",
+            "screen": "the total stays, and the thousand grams inside its grams part are lit amber and outlined as one bundle, ready to become a kilogram"
+          },
+          {
+            "why": "a small grams part looks as if two digits are enough",
+            "move": "writes a weight in grams with a zero missing inside it",
+            "screen": "that row's card flips through its three forms beside the child's, and the one that differs is lit amber"
+          }
+        ],
+        "screen": "three weights on the chart in kilograms and grams, and an empty total row",
+        "soWhat": "add weights in the smallest unit, then write the total back in the larger unit",
+        "concept": "Weights of a group"
+      },
+      {
+        "n": 4,
+        "win": "the water column fills, and the total turns green in litres and millilitres",
+        "does": "pours each drink from the jug, reads its marks, enters it, and adds the drinks",
+        "goal": "measure each drink with a measuring jug, add the millilitres, and write the total in litres and millilitres",
+        "says": "Pour it and read the jug. Now add them all.",
+        "check": "Away from the screen: why use a measuring jug rather than a cup for each drink?",
+        "feels": "the water column filling and the total landing in litres and millilitres",
+        "hands": "Pour each child's drink into a measuring jug, read the millilitres off its marks, write them down, add them, and write the total in litres and millilitres.",
+        "tries": "First rung: pour and read one drink. Second rung: add two drinks. Third rung: the same task with three drinks, before the question's own group returns.",
+        "wrong": [
+          {
+            "why": "the numbered marks are the easiest to read",
+            "move": "reads the jug at the nearest numbered mark instead of the water's level",
+            "screen": "the marks between the numbered mark and the water's level light one at a time, and the child's reading stays in the water column beside the jug's"
+          },
+          {
+            "why": "metres and centimetres split after two digits, and that habit carries over",
+            "move": "writes the total in millilitres as litres by splitting it after two digits",
+            "screen": "the child's total stays, and beside it the thousand millilitres are bundled into one litre in steps"
+          }
+        ],
+        "screen": "a measuring jug marked in millilitres beside the water column of the chart",
+        "soWhat": "measure each drink with a measuring jug, add the millilitres, and write the total in litres and millilitres",
+        "concept": "Water drunk by a group"
+      }
+    ],
+    "delight": "On the fourth phase, as the last drink is entered, the water column of the chart fills like a glass from the bottom up, and the total lands at the top in litres and millilitres.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet recorded. On the first phase a long jump sits on a record card in metres and centimetres with the Flip button beside it. On the second four jumps sit on the chart, each written in a different form. On the third three weights sit on the chart in kilograms and grams above an empty total row. On the fourth a measuring jug marked in millilitres stands beside the water column of the chart. One thing moves, once: the Flip button, the first row, or the jug gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any measures the group takes, entered on cards, flipped through three forms, ordered and added. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on writing a measure three ways, ordering, adding weights and measuring water.",
+    "voiceLines": [
+      "A class record chart, with a card to fill in.",
+      "Flip it. Say the same jump another way.",
+      "One unit first. Then shortest to longest.",
+      "All in grams. Add them. How many kilograms is that?",
+      "Pour it and read the jug. Now add them all.",
+      "A new measure for the chart. Record it the same way.",
+      "Free play. Record any measure and flip it through its forms.",
+      "Flip the card through all three forms. Do they all say the same measure?",
+      "You wrote real measures three ways, put them in order and added them."
+    ],
+    "observations": [
+      {
+        "why": "a measure can be written in two units, in its smallest unit, or as a decimal in the larger unit.",
+        "soWhat": "choose the form that suits the job: one unit to compare, the smallest unit to add.",
+        "observe": "The three forms on the card looked different but were all one jump."
+      },
+      {
+        "why": "measures in one unit can be compared by their numbers alone.",
+        "soWhat": "put every measure in one unit, then order them.",
+        "observe": "The rows only fell into a clear order once every jump was in centimetres."
+      },
+      {
+        "why": "adding whole numbers in the smallest unit needs no carrying across units.",
+        "soWhat": "add in the smallest unit, then write the total back in the larger unit.",
+        "observe": "The weights added in grams gave a total that bundled back into kilograms and grams."
+      },
+      {
+        "why": "the jug is marked in millilitres.",
+        "soWhat": "a measuring jug turns a drink of water into a measure that can be added.",
+        "observe": "Each drink read off the jug's marks was a real measure, not a guess."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a long jump entered on a record card in metres and centimetres",
+        "win": "the three forms stand side by side, all green, all one jump",
+        "traceback": "a place chart under the cards puts the whole metres, the tenths and the hundredths in their places (a grey zero holding an empty place), and the card ends on the whole right form",
+        "ladder": [
+          "How many centimetres make 1 m?",
+          "How many grams make 1 kg?",
+          "Is 60 cm more or less than half a metre?",
+          "7 cm is 7 hundredths of a metre.",
+          "The tenths place is empty, so a zero must hold it."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "four jumps on the chart, each written in a different form",
+        "win": "the rows settle in order, and the jumps rise like steps",
+        "traceback": "every row's measure is shown in the chart's one unit beside it, the rows out of step are lit amber, and the right order is written under the chart",
+        "ladder": [
+          "Compare the jumps in centimetres, not by their first number.",
+          "Can you compare 2.5 m with 208 cm as they are?",
+          "Write every bag's weight in grams before you order them.",
+          "208 cm is less than 2 m 15 cm, which is 215 cm.",
+          "In centimetres they are 215, 250, 208 and 251: order those."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "three weights on the chart in kilograms and grams, and an empty total row",
+        "win": "the total turns green, in grams, in kilograms and grams, and as a decimal",
+        "traceback": "every bag is shown in grams, the grams column is added into the total row, and the total card ends on the whole right answer beside the unit fact",
+        "ladder": [
+          "Add the grams of the three fruits.",
+          "Add the grams of the two bags.",
+          "What is each parcel's weight in grams?",
+          "Add the thousands again.",
+          "Take 1,000 g out of the total for each kilogram."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a measuring jug marked in millilitres beside the water column of the chart",
+        "win": "the water column fills, and the total turns green in litres and millilitres",
+        "traceback": "the drinks column is lit, its total is written in millilitres, the thousand millilitres are bundled into one litre, and the total card ends on the whole right answer",
+        "ladder": [
+          "Add the millilitres of all five drinks.",
+          "Look at the lines on the side of the jug.",
+          "Add the four cups in millilitres first.",
+          "1,000 mL make 1 L.",
+          "Take 1,000 mL out of the total as one litre."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "jugMax": 500,
+    "units": {
+      "m": 100,
+      "kg": 1000,
+      "L": 1000,
+      "km": 1000
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M3.S6.T10.C45:TW1",
+        "kind": "dec",
+        "m": {
+          "big": 3,
+          "small": 7,
+          "per": 100,
+          "uL": "m",
+          "uS": "cm"
+        },
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "3",
+          "07"
+        ],
+        "cardName": "Decimal"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M3.S6.T10.C45:1",
+        "kind": "small",
+        "m": {
+          "big": 1,
+          "small": 250,
+          "per": 1000,
+          "uL": "kg",
+          "uS": "g"
+        },
+        "answer": 1250,
+        "ladder": [
+          "1 kg is 1,000 g, so start from 1,000.",
+          "Add the 250 g to the 1,000 g."
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M3.S6.T10.C45:2",
+        "kind": "dec",
+        "m": {
+          "big": 4,
+          "small": 60,
+          "per": 100,
+          "uL": "m",
+          "uS": "cm"
+        },
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "4",
+          "6"
+        ],
+        "cardName": "Decimal",
+        "ladder": [
+          "Every 10 cm is one tenth of a metre.",
+          "Count how many tenths of a metre 60 cm makes."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M3.S6.T10.C46:TW2",
+        "kind": "order",
+        "pad": "enter",
+        "unit": "cm",
+        "cols": [
+          "Name",
+          "Jump",
+          "In cm"
+        ],
+        "rows": [
+          {
+            "id": "a",
+            "name": "Asha",
+            "given": [
+              [
+                "2",
+                "m"
+              ],
+              [
+                "15",
+                "cm"
+              ]
+            ],
+            "v": 215
+          },
+          {
+            "id": "r",
+            "name": "Ravi",
+            "given": [
+              [
+                "2.5",
+                "m"
+              ]
+            ],
+            "v": 250
+          },
+          {
+            "id": "m",
+            "name": "Meena",
+            "given": [
+              [
+                "208",
+                "cm"
+              ]
+            ],
+            "v": 208
+          },
+          {
+            "id": "k",
+            "name": "Kabir",
+            "given": [
+              [
+                "2",
+                "m"
+              ],
+              [
+                "51",
+                "cm"
+              ]
+            ],
+            "v": 251
+          }
+        ],
+        "answer": [
+          "m",
+          "a",
+          "r",
+          "k"
+        ],
+        "conv": {
+          "id": "r",
+          "chips": [
+            25,
+            205,
+            250
+          ],
+          "means": {
+            "25": [
+              [
+                "0.25",
+                "m"
+              ]
+            ],
+            "205": [
+              [
+                "2.05",
+                "m"
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M3.S6.T10.C46:3",
+        "kind": "rule",
+        "unit": "cm",
+        "cols": [
+          "Name",
+          "Jump",
+          "In cm"
+        ],
+        "rows": [
+          {
+            "id": "a",
+            "name": "Asha",
+            "given": [
+              [
+                "2",
+                "m"
+              ],
+              [
+                "15",
+                "cm"
+              ]
+            ],
+            "v": 215
+          },
+          {
+            "id": "r",
+            "name": "Ravi",
+            "given": [
+              [
+                "2.5",
+                "m"
+              ]
+            ],
+            "v": 250
+          },
+          {
+            "id": "m",
+            "name": "Meena",
+            "given": [
+              [
+                "208",
+                "cm"
+              ]
+            ],
+            "v": 208
+          },
+          {
+            "id": "k",
+            "name": "Kabir",
+            "given": [
+              [
+                "2",
+                "m"
+              ],
+              [
+                "51",
+                "cm"
+              ]
+            ],
+            "v": 251
+          }
+        ],
+        "answer": "unit",
+        "ladder": [
+          "A first digit of 2 can mean 2 m or 208 cm.",
+          "How did the chart change once every card was flipped?"
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M3.S6.T10.C46:4",
+        "kind": "order",
+        "pad": "enter",
+        "unit": "g",
+        "cols": [
+          "Bag",
+          "Weight",
+          "In g"
+        ],
+        "rows": [
+          {
+            "id": "a",
+            "name": "Bag A",
+            "given": [
+              [
+                "1",
+                "kg"
+              ],
+              [
+                "80",
+                "g"
+              ]
+            ],
+            "v": 1080
+          },
+          {
+            "id": "b",
+            "name": "Bag B",
+            "given": [
+              [
+                "1",
+                "kg"
+              ],
+              [
+                "800",
+                "g"
+              ]
+            ],
+            "v": 1800
+          },
+          {
+            "id": "c",
+            "name": "Bag C",
+            "given": [
+              [
+                "1,008",
+                "g"
+              ]
+            ],
+            "v": 1008
+          }
+        ],
+        "answer": [
+          "c",
+          "a",
+          "b"
+        ],
+        "conv": {
+          "id": "a",
+          "chips": [
+            180,
+            1080,
+            1800
+          ],
+          "means": {
+            "180": [
+              [
+                "0",
+                "kg"
+              ],
+              [
+                "180",
+                "g"
+              ]
+            ],
+            "1800": [
+              [
+                "1",
+                "kg"
+              ],
+              [
+                "800",
+                "g"
+              ]
+            ]
+          }
+        },
+        "ladder": [
+          "1 kg 80 g is 1,080 g, not 1,800 g.",
+          "In grams they are 1,080 g, 1,800 g and 1,008 g: order those."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M3.S6.T10.C47:TW3",
+        "kind": "kgg",
+        "cols": [
+          "Item",
+          "Weight",
+          "In g"
+        ],
+        "rows": [
+          {
+            "id": "a",
+            "name": "Apples",
+            "given": [
+              [
+                "1",
+                "kg"
+              ],
+              [
+                "640",
+                "g"
+              ]
+            ],
+            "v": 1640
+          },
+          {
+            "id": "b",
+            "name": "Mangoes",
+            "given": [
+              [
+                "2",
+                "kg"
+              ],
+              [
+                "85",
+                "g"
+              ]
+            ],
+            "v": 2085
+          },
+          {
+            "id": "c",
+            "name": "Oranges",
+            "given": [
+              [
+                "1",
+                "kg"
+              ],
+              [
+                "900",
+                "g"
+              ]
+            ],
+            "v": 1900
+          }
+        ],
+        "conv": {
+          "id": "b",
+          "chips": [
+            285,
+            2085,
+            2850
+          ],
+          "means": {
+            "285": [
+              [
+                "0",
+                "kg"
+              ],
+              [
+                "285",
+                "g"
+              ]
+            ],
+            "2850": [
+              [
+                "2",
+                "kg"
+              ],
+              [
+                "850",
+                "g"
+              ]
+            ]
+          }
+        },
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          5,
+          625
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M3.S6.T10.C47:5",
+        "kind": "g",
+        "cols": [
+          "Bag",
+          "Weight",
+          "In g"
+        ],
+        "rows": [
+          {
+            "id": "a",
+            "name": "Bag A",
+            "given": [
+              [
+                "2",
+                "kg"
+              ],
+              [
+                "450",
+                "g"
+              ]
+            ],
+            "v": 2450
+          },
+          {
+            "id": "b",
+            "name": "Bag B",
+            "given": [
+              [
+                "1",
+                "kg"
+              ],
+              [
+                "675",
+                "g"
+              ]
+            ],
+            "v": 1675
+          }
+        ],
+        "conv": {
+          "id": "a",
+          "chips": [
+            245,
+            2045,
+            2450
+          ],
+          "means": {
+            "245": [
+              [
+                "0",
+                "kg"
+              ],
+              [
+                "245",
+                "g"
+              ]
+            ],
+            "2045": [
+              [
+                "2",
+                "kg"
+              ],
+              [
+                "45",
+                "g"
+              ]
+            ]
+          }
+        },
+        "answer": 4125,
+        "ladder": [
+          "Line the grams up by place, then add again.",
+          "Add 2,450 g and 1,675 g."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M3.S6.T10.C47:7",
+        "kind": "kgdec",
+        "cols": [
+          "Parcel",
+          "Weight",
+          "In g"
+        ],
+        "rows": [
+          {
+            "id": "a",
+            "name": "Parcel A",
+            "given": [
+              [
+                "850",
+                "g"
+              ]
+            ],
+            "v": 850
+          },
+          {
+            "id": "b",
+            "name": "Parcel B",
+            "given": [
+              [
+                "1",
+                "kg"
+              ],
+              [
+                "20",
+                "g"
+              ]
+            ],
+            "v": 1020
+          },
+          {
+            "id": "c",
+            "name": "Parcel C",
+            "given": [
+              [
+                "1.3",
+                "kg"
+              ]
+            ],
+            "v": 1300
+          }
+        ],
+        "conv": {
+          "id": "c",
+          "chips": [
+            130,
+            1003,
+            1300
+          ],
+          "means": {
+            "130": [
+              [
+                "0.13",
+                "kg"
+              ]
+            ],
+            "1003": [
+              [
+                "1.003",
+                "kg"
+              ]
+            ]
+          }
+        },
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "3",
+          "17"
+        ],
+        "cardName": "Decimal",
+        "ladder": [
+          "Add the three weights in grams again, place by place.",
+          "Write the grams total as kilograms: 1,000 g make 1 kg."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M3.S6.T10.C48:TW4",
+        "kind": "lml",
+        "cols": [
+          "Name",
+          "Water"
+        ],
+        "drinks": [
+          {
+            "id": "a",
+            "name": "Asha",
+            "ml": 210,
+            "x": 220
+          },
+          {
+            "id": "r",
+            "name": "Ravi",
+            "ml": 235,
+            "x": 225
+          },
+          {
+            "id": "m",
+            "name": "Meena",
+            "ml": 190,
+            "x": 195
+          },
+          {
+            "id": "k",
+            "name": "Kabir",
+            "ml": 260,
+            "x": 270
+          },
+          {
+            "id": "z",
+            "name": "Zara",
+            "ml": 255,
+            "x": 245
+          }
+        ],
+        "parts": [
+          {
+            "label": "L"
+          },
+          {
+            "label": "mL"
+          }
+        ],
+        "answer": [
+          1,
+          150
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M3.S6.T10.C48:6",
+        "kind": "why",
+        "cols": [
+          "Name",
+          "Water"
+        ],
+        "drinks": [
+          {
+            "id": "a",
+            "name": "Asha",
+            "ml": 210,
+            "x": 220
+          },
+          {
+            "id": "r",
+            "name": "Ravi",
+            "ml": 235,
+            "x": 225
+          },
+          {
+            "id": "m",
+            "name": "Meena",
+            "ml": 190,
+            "x": 195
+          },
+          {
+            "id": "k",
+            "name": "Kabir",
+            "ml": 260,
+            "x": 270
+          },
+          {
+            "id": "z",
+            "name": "Zara",
+            "ml": 255,
+            "x": 245
+          }
+        ],
+        "answer": "read",
+        "ladder": [
+          "A guess can change from one child to the next.",
+          "Which choice lets two children get the same number?"
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M3.S6.T10.C48:8",
+        "kind": "lml",
+        "cols": [
+          "Cup",
+          "Water"
+        ],
+        "drinks": [
+          {
+            "id": "1",
+            "name": "Cup 1",
+            "ml": 325,
+            "x": 315
+          },
+          {
+            "id": "2",
+            "name": "Cup 2",
+            "ml": 410,
+            "x": 405
+          },
+          {
+            "id": "3",
+            "name": "Cup 3",
+            "ml": 195,
+            "x": 205
+          },
+          {
+            "id": "4",
+            "name": "Cup 4",
+            "ml": 290,
+            "x": 280
+          }
+        ],
+        "parts": [
+          {
+            "label": "L"
+          },
+          {
+            "label": "mL"
+          }
+        ],
+        "answer": [
+          1,
+          220
+        ],
+        "ladder": [
+          "325 + 410 + 195 + 290 gives the total in mL.",
+          "Every 1,000 mL of the total is 1 L."
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: a place chart under the cards puts the whole metres, the tenths and the hundredths in their places (a grey zero holding an empty place), and the card ends on the whole right form",
+      "Phase 2: every row's measure is shown in the chart's one unit beside it, the rows out of step are lit amber, and the right order is written under the chart",
+      "Phase 3: every bag is shown in grams, the grams column is added into the total row, and the total card ends on the whole right answer beside the unit fact",
+      "Phase 4: the drinks column is lit, its total is written in millilitres, the thousand millilitres are bundled into one litre, and the total card ends on the whole right answer"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A class record chart, with a card to fill in.",
+    "onFreePlay": "Free play. Flip a card through its three forms.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You wrote real measures three ways, put them in order and added them.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M3.S6.T10.C45:TW1",
+            "worked": false,
+            "kind": "dec",
+            "planQuestion": "A long jump measures 3 m 7 cm. Write it in centimetres, and as a decimal in metres.",
+            "question": {
+              "en": "Now write a jump of 3 m 7 cm as a decimal in metres on the Decimal card."
+            },
+            "ask": {
+              "en": "3 m 7 cm in metres?"
+            },
+            "answer": [
+              "3",
+              "07"
+            ],
+            "planAnswer": "307 cm, and 3.07 m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M3.S6.T10.C45:1",
+            "worked": false,
+            "kind": "small",
+            "planQuestion": "A packet's label says 1 kg 250 g. Write the weight in grams.",
+            "question": {
+              "en": "A packet's label says 1 kg 250 g; write that weight in grams on the next card."
+            },
+            "ask": {
+              "en": "1 kg 250 g in grams?"
+            },
+            "answer": 1250,
+            "planAnswer": "1250 g",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M3.S6.T10.C45:2",
+            "worked": false,
+            "kind": "dec",
+            "planQuestion": "Write 4 m 60 cm as a decimal in metres.",
+            "question": {
+              "en": "Write 4 m 60 cm as a decimal in metres."
+            },
+            "ask": {
+              "en": "4 m 60 cm in metres?"
+            },
+            "answer": [
+              "4",
+              "6"
+            ],
+            "planAnswer": "4.6 m",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M3.S6.T10.C46:TW2",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Four jumps measure 2 m 15 cm, 2.5 m, 208 cm and 2 m 51 cm. Put them in ascending order.",
+            "question": {
+              "en": "Flip the cards, then drag the rows from the shortest jump to the longest."
+            },
+            "ask": {
+              "en": "Shortest first?"
+            },
+            "answer": "m|a|r|k",
+            "planAnswer": "208 cm, 2 m 15 cm, 2.5 m, 2 m 51 cm.",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M3.S6.T10.C46:3",
+            "worked": false,
+            "kind": "rule",
+            "planQuestion": "Before putting the jumps of a group in order, what must you do first?",
+            "question": {
+              "en": "Before you put jumps in order, what must you do first?"
+            },
+            "ask": {
+              "en": "First step?"
+            },
+            "answer": "unit",
+            "planAnswer": "Write all of them in one unit",
+            "choices": [
+              "unit",
+              "digit"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M3.S6.T10.C46:4",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "Put in ascending order: 1 kg 80 g, 1 kg 800 g, 1008 g.",
+            "question": {
+              "en": "Put the bags in order from the lightest to the heaviest."
+            },
+            "ask": {
+              "en": "Lightest first?"
+            },
+            "answer": "c|a|b",
+            "planAnswer": "1008 g, 1 kg 80 g, 1 kg 800 g",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M3.S6.T10.C47:TW3",
+            "worked": false,
+            "kind": "kgg",
+            "planQuestion": "Three bags of fruit weigh 1 kg 640 g, 2 kg 85 g and 1 kg 900 g. What do they weigh together?",
+            "question": {
+              "en": "Flip the cards, then add the three bags in kilograms and grams."
+            },
+            "ask": {
+              "en": "Total in kg and g?"
+            },
+            "answer": [
+              5,
+              625
+            ],
+            "planAnswer": "5 kg 625 g, which is 5.625 kg.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M3.S6.T10.C47:5",
+            "worked": false,
+            "kind": "g",
+            "planQuestion": "Two bags weigh 2 kg 450 g and 1 kg 675 g. What do they weigh together, in grams?",
+            "question": {
+              "en": "How many grams do the two bags weigh in all?"
+            },
+            "ask": {
+              "en": "Total in grams?"
+            },
+            "answer": 4125,
+            "planAnswer": "4125 g",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M3.S6.T10.C47:7",
+            "worked": false,
+            "kind": "kgdec",
+            "planQuestion": "Three parcels weigh 850 g, 1 kg 20 g and 1.3 kg. What is their total, as a decimal in kilograms?",
+            "question": {
+              "en": "Write the three parcels' total as a decimal in kilograms on the total card."
+            },
+            "ask": {
+              "en": "Total in kg?"
+            },
+            "answer": [
+              "3",
+              "17"
+            ],
+            "planAnswer": "3.17 kg, because 850 + 1020 + 1300 = 3170",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M3.S6.T10.C48:TW4",
+            "worked": false,
+            "kind": "lml",
+            "planQuestion": "Five children drink 210 mL, 235 mL, 190 mL, 260 mL and 255 mL of water, each poured from a measuring jug. How much is that in litres and millilitres?",
+            "question": {
+              "en": "Pour and read each drink, then write what the five drank in L and mL."
+            },
+            "ask": {
+              "en": "Total in L and mL?"
+            },
+            "answer": [
+              1,
+              150
+            ],
+            "planAnswer": "1 L 150 mL, which is 1.15 L.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M3.S6.T10.C48:6",
+            "worked": false,
+            "kind": "why",
+            "planQuestion": "Why is a measuring jug used for the water each child drinks?",
+            "question": {
+              "en": "Why is each drink poured into a measuring jug first?"
+            },
+            "ask": {
+              "en": "Why the jug?"
+            },
+            "answer": "read",
+            "planAnswer": "It is marked in millilitres, so each drink can be read, not guessed",
+            "choices": [
+              "read",
+              "big"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M3.S6.T10.C48:8",
+            "worked": false,
+            "kind": "lml",
+            "planQuestion": "Four cups hold 325 mL, 410 mL, 195 mL and 290 mL. How much is that altogether, in litres and millilitres?",
+            "question": {
+              "en": "Measure each cup in the jug, then total them in litres and millilitres."
+            },
+            "ask": {
+              "en": "Four cups in L and mL?"
+            },
+            "answer": [
+              1,
+              220
+            ],
+            "planAnswer": "1 L 220 mL, because 325 + 410 + 195 + 290 = 1220",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "three_ways",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "three_ways",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "One measure, three ways",
+        "conceptId": "M3.S6.T10.C45",
+        "objectiveIds": [
+          "O17"
+        ],
+        "items": [
+          "M3.S6.T10.C45:TW1",
+          "M3.S6.T10.C45:1",
+          "M3.S6.T10.C45:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Ordering real measures",
+        "conceptId": "M3.S6.T10.C46",
+        "objectiveIds": [
+          "O17"
+        ],
+        "items": [
+          "M3.S6.T10.C46:TW2",
+          "M3.S6.T10.C46:3",
+          "M3.S6.T10.C46:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Weights of a group",
+        "conceptId": "M3.S6.T10.C47",
+        "objectiveIds": [
+          "O18"
+        ],
+        "items": [
+          "M3.S6.T10.C47:TW3",
+          "M3.S6.T10.C47:5",
+          "M3.S6.T10.C47:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Water drunk by a group",
+        "conceptId": "M3.S6.T10.C48",
+        "objectiveIds": [
+          "O18"
+        ],
+        "items": [
+          "M3.S6.T10.C48:TW4",
+          "M3.S6.T10.C48:6",
+          "M3.S6.T10.C48:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "form",
+    "rows",
+    "r",
+    "r",
+    "order",
+    "jug",
+    "read"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, form, rows, r, r, order, jug, read, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "three_ways"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M3.S6.T10.C45.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A class record chart, with a card to fill in."
+    },
+    {
+      "en": "Flip it. Say the same jump another way."
+    },
+    {
+      "en": "One unit first. Then shortest to longest."
+    },
+    {
+      "en": "All in grams. Add them. How many kilograms is that?"
+    },
+    {
+      "en": "Pour it and read the jug. Now add them all."
+    },
+    {
+      "en": "A new measure for the chart. Record it the same way."
+    },
+    {
+      "en": "Free play. Record any measure and flip it through its forms."
+    },
+    {
+      "en": "Flip the card through all three forms. Do they all say the same measure?"
+    },
+    {
+      "en": "You wrote real measures three ways, put them in order and added them."
+    }
+  ],
+  "build": {
+    "source": "5f4b85e1:641061",
+    "runtime": "class5/runtime/frozen/r65/runtime.tsx",
+    "runtimeVersion": "r65",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T14:57:06.507Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-18T14:57:06.387Z"
+    },
+    "tsxBytes": 570381,
+    "tsxMd5": "148a536ebb65225a9ca80cb92bb7d614"
+  }
+}

@@ -4,6 +4,8 @@ import type { PipelineStatus, Sidecar, ToolSummary, ViewerMeta } from "./types";
 import { ToolList } from "./components/ToolList";
 import { CheckCounts } from "./components/CheckCounts";
 import { ToolFrame } from "./components/ToolFrame";
+import { DeviceBar } from "./components/DeviceBar";
+import type { Device } from "./lib/devices";
 import { SidebarJson } from "./components/SidebarJson";
 import { SidebarPipeline } from "./components/SidebarPipeline";
 import { SidebarLive } from "./components/SidebarLive";
@@ -12,12 +14,16 @@ import { useLiveTool } from "./lib/useLiveTool";
 type Tab = "preview" | "tsx" | "json";
 type SidebarTab = "checks" | "pipeline" | "live";
 
+/* a phone (styles.css, the same width): the side panels slide in over the tool, start closed and are not remembered */
+const NARROW = typeof matchMedia === "function" && matchMedia("(max-width: 760px), (max-height: 500px)").matches;
+
 function usePanelOpen(storageKey: string): [boolean, () => void] {
   const [open, setOpen] = useState<boolean>(() => {
+    if (NARROW) return false;
     try { return localStorage.getItem(storageKey) !== "0"; } catch { return true; }
   });
   const toggle = () => setOpen((was) => {
-    try { localStorage.setItem(storageKey, was ? "0" : "1"); } catch { /* storage blocked: the toggle still works */ }
+    if (!NARROW) try { localStorage.setItem(storageKey, was ? "0" : "1"); } catch { /* storage blocked: the toggle still works */ }
     return !was;
   });
   return [open, toggle];
@@ -55,6 +61,7 @@ export function App() {
   const [selected, setSelected] = useState<{ chapterId: string; id: string } | null>(null);
   const [tab, setTab] = useState<Tab>("preview");
   const [sideTab, setSideTab] = useState<SidebarTab>("checks");
+  const [device, setDevice] = useState<Device>("web");
 
   /* both side panels open and close at the user's choice; each choice is remembered in this browser */
   const [leftOpen, toggleLeft] = usePanelOpen("viewer.leftOpen");
@@ -133,14 +140,20 @@ export function App() {
           </span>
         )}
         {!EMBED && meta && <CheckCounts checks={meta.totals.checks} />}
+        <DeviceBar live={live} device={device} setDevice={setDevice} />
         {currentSummary && <span className="muted small app-current">{currentSummary.title ?? currentSummary.id} · {selected?.id}</span>}
         <PanelToggle side="right" open={rightOpen} onClick={toggleRight} className={currentSummary ? "" : "app-current"} />
       </header>
       <div className={"app-body" + (leftOpen && !EMBED ? "" : " left-closed") + (rightOpen ? "" : " right-closed")}>
         <aside className="rail-left">
           {toolsError && <p className="error small">{toolsError}</p>}
-          <ToolList tools={tools} chapters={meta?.chapters ?? []} classNo={meta?.class ?? null} selected={selectedKey} onSelect={(chapterId, id) => setSelected({ chapterId, id })} />
+          <ToolList tools={tools} chapters={meta?.chapters ?? []} classNo={meta?.class ?? null} selected={selectedKey} onSelect={(chapterId, id) => { setSelected({ chapterId, id }); if (NARROW && leftOpen) toggleLeft(); }} />
         </aside>
+
+        {/* a phone: tapping beside an open panel closes it (hidden by styles.css on a wide screen) */}
+        {((leftOpen && !EMBED) || rightOpen) && (
+          <button className="scrim" aria-label="Close panel" onClick={() => { if (leftOpen && !EMBED) toggleLeft(); if (rightOpen) toggleRight(); }} />
+        )}
 
         <main className="main">
           {loadError && <p className="error small">{loadError}</p>}
@@ -149,7 +162,7 @@ export function App() {
             <button className={"tab" + (tab === "tsx" ? " active" : "")} onClick={() => setTab("tsx")}>Source (.tsx)</button>
             <button className={"tab" + (tab === "json" ? " active" : "")} onClick={() => setTab("json")}>Sidecar (.json)</button>
           </div>
-          {tab === "preview" && <ToolFrame live={live} />}
+          {tab === "preview" && <ToolFrame live={live} device={device} />}
           {tab === "tsx" && (
             <div className="code-panel">
               {tsx ? <pre className="code-block">{tsx.text}</pre> : <p className="muted">loading…</p>}

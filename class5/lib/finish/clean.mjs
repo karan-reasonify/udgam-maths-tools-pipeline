@@ -1,6 +1,7 @@
 /* clean: when a tool is made, drop what was only there to review it. Run by the main session at the end of a chapter
  * (runbook step 8: `node cli.mjs clean --ch N` for every slot of the chapter, `node cli.mjs clean <MEDIA_ID>` for one).
- *   removed: review artefacts that every `shots` / `check` run makes again: sheet-*.png, phase-*.png, contrast-*.png,
+ *   removed: review artefacts that every `shots` / `check` / `approve` run makes again: sheet-*.png, phase-*.png, contrast-*.png,
+ *            approve-*.png (approve's frames of a hand-edited pair, lib/check/approve.mjs),
  *            any other image (png, jpg, webp, gif: images-preview.png goes here), .build/ (bundles, sheets,
  *            screenshots, check.json, model files), logs and editor leftovers (*.log, *.tmp, *.bak, *.orig), and the review
  *            pack's frames (pack/: every file in it but pack.json and pack.prev.json, which stay, so a review round after the
@@ -25,7 +26,7 @@ const KEEP = new Set(["tool.tsx", "voice.tsx", "images.tsx", "images.json", "bri
 const PACK = "pack", KEEP_IN_PACK = new Set(["pack.json", "pack.prev.json"]);
 /* images made to look at, and what an editor or a run leaves behind */
 const DISPOSABLE = /\.(png|jpe?g|webp|gif|log|tmp|bak|orig)$/i;
-const SCRATCH = /^(sheet|phase|contrast|shot)-/i;
+const SCRATCH = /^(sheet|phase|contrast|shot|approve)-/i;
 
 function sizeOf(p) {
   const st = fs.statSync(p);

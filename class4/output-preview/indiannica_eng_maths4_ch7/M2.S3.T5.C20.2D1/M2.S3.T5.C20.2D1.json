@@ -1,0 +1,1174 @@
+{
+  "slotId": "M2.S3.T5.C20.2D1",
+  "mediaId": "M2.S3.T5.C20.2D1",
+  "toolId": "same_amount_bench",
+  "title": "Same Amount Bench",
+  "component": "M2.S3.T5.C20.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch7",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch7_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_7/2dtool/M2.S3.T5.C16.2D1/M2.S3.T5.C16.2D1.tsx",
+  "description": "Build other names for one amount by moving both numbers together, and test any pair by crossing them.",
+  "conceptIds": [
+    "M2.S3.T5.C20",
+    "M2.S3.T5.C21",
+    "M2.S3.T5.C22",
+    "M2.S3.T5.C23"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find out that one amount can be written many ways, build those writings yourself, and learn a test that works when there is no picture to look at.",
+    "look": "Two strips of the same length laid one under the other from a common left edge, a builder above them and a cross bench along the foot.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Same Amount Bench' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the writings built against the writings this phase asks for, two numbers in ink, with the fraction they were all built from printed small underneath them and never changing while the phase runs. On the last phase it carries the two crossing products instead, one above the other in the order they were made. Nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The two strips lie in the upper half of the working area, each 720 by 108, the top one at 64,222 and the lower at 64,346, and both of them begin at x 64, which is a drawn edge 6 wide running down through both and is the one thing on this stage that never moves. Setting a fraction on a strip cuts it into that many equal parts with near-black score lines and fills as many as its upper number says in deep blue, leaving the rest amber and full size. A faint vertical guide line drops from the top strip's filled end straight down through the lower strip, so two fills ending together is what carries the claim rather than anything printed. The builder sits above the strips at 800,202, 240 by 76, with a multiply side and a divide side and a number dial between them; it takes the top fraction, works on both of its numbers at once, and redraws the lower strip step by step so the score lines multiply while the filled length holds exactly where it was. Run the multiples lays a row of equivalents across 1086 by 120 at 64,470, each written out with a small strip 140 by 36 beneath it, all of them cut differently and all filling to the same fraction of their own length. The target bay is 420 by 150 at 660,470: a fraction beside a partner with one of its two numbers printed and the other blank, and a factor slot in front of the pair which must be filled before the blank will take anything at all; a factor that does not turn the matching number into the printed one lights the two numbers it would have had to connect and the slot simply asks again. The cross bench runs 1086 by 96 at 64,626, two written fractions side by side with room between them; dragging from the upper number of one to the lower number of the other draws a line and writes its product at the middle of that line, both products landing in a row beneath the bench in the order they were made, and the verdict panel at the right stays blank until both products exist. Hide the strips clears every picture on the stage and leaves the written fractions and the bench. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever a number or a product is asked for, and on the third phase a small strip reading multiplied by and divided by, because the factor is named as one or the other before it is typed. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own: the parts a fraction counts are deep blue, the parts of that same whole which it leaves are amber, a whole shown entire or a bracket spanning one whole is green, a second writing of an amount already on the stage is rose, the greater of two fractions one of the chapter's rules can settle is vermilion, and a pair neither rule settles is sky blue. Chrome never borrows one of those and none of them is ever used for chrome. Every reading survives with the colour taken away, because a part is told from the rest by the drawn cut between them and by the label under it before it is ever told by a fill, and every cut, score line, cell edge and guide line is near-black. A fraction is drawn everywhere with its upper number above a level horizontal line and its lower number below, both upright and centred; the line is never slanted and the two numbers are never set side by side. Two strips are never drawn at different lengths and never laid from different edges, whatever a phase is asking. Equivalence on this bench is read off where the colour stops, and two strips that do not begin together prove nothing at all, however carefully the rest is done.",
+    "finish": "The card shows the row of equivalents the child built from one fraction, their strips still stacked from the common left edge, and the last pair tested on the cross bench with both products beside it.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the filled ends line up exactly and the guide line runs through both",
+        "does": "fills both strips from their own fractions and reads where the filled parts end",
+        "goal": "two fractions that look different can be the same amount",
+        "says": "Two children ate these shares of the same size. Who ate more?",
+        "check": "Two children eat 1/4 and 2/8 of identical bars. Who has eaten more, and how would you show it?",
+        "feels": "three glasses filled three different ways, and the level is the same on all three",
+        "hands": "Cut three paper strips of exactly one length. Fold the first into three parts and colour one, the second into six and colour two, the third into nine and colour three. Lay all three one under another against a ruler so their left ends are level, and ask which child ate the most.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: do your strips all begin at the same edge? Second rung, the phase's: where does the colour stop on each of them? Third rung: the bench is cut to two strips only, a half and two quarters, laid from the one edge. The number pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "bigger numbers have meant more for the whole of this child's arithmetic so far, and three is plainly more than one.",
+            "move": "picks the fraction with the largest numbers, because nine parts with three taken sounds like more than one part out of three.",
+            "screen": "the three strips are laid from the common edge with their cuts drawn and the guide line dropped through all three fills, and the colour stops in one place on every strip. The cuts are then counted out along each, three and six and nine, and the parts taken counted under them, one and two and three, with the child's choice still lit where it was made and nothing cleared."
+          },
+          {
+            "why": "two pictures on a page look comparable simply by being beside each other, and nothing in a drawn strip announces how long it is.",
+            "move": "lays the strips from wherever each happens to fall, or compares strips that were never the same length.",
+            "screen": "the bench slides every strip back to the common left edge one at a time, with the edge drawn through all of them, and redraws any strip that was not the full length at the full length with its cuts rescaled. The child's arrangement is drawn once more above the corrected one so the two can be read against each other, and the two verdicts, the one the loose arrangement gave and the one the common edge gives, are left standing together."
+          }
+        ],
+        "screen": "two equal strips, one showing a half and one showing two quarters",
+        "soWhat": "Fractions that look nothing alike can stand for exactly the same amount, and such fractions are called equivalent.",
+        "concept": "Same amount, different writing"
+      },
+      {
+        "n": 2,
+        "win": "the lower strip fills to the same end with twice as many cuts in it",
+        "does": "multiplies both numbers, watches the cuts double and the filled length hold",
+        "goal": "multiplying both numbers by the same number keeps the amount",
+        "says": "Double both numbers. Watch the cuts, and watch where the colour stops.",
+        "check": "Build three fractions equal to 5/12 by multiplying, and say what you did to each of the two numbers.",
+        "feels": "the cuts double while a hand watches and the colour stops in the very same place",
+        "hands": "Write 2/7 at the top of a page and build three more writings of it underneath by multiplying both numbers, by two, then three, then four. Draw a strip beside each one, all of the same length and all from one ruled margin, and check that the colour stops level down the whole page.",
+        "tries": "First rung, from the item: what number did you multiply the top by? Second rung, the phase's: what did you multiply the bottom by? Third rung: the builder is locked to double and run on a fraction in halves, so both numbers can be watched moving on a strip with two cuts in it. Nothing already built is cleared.",
+        "wrong": [
+          {
+            "why": "the instruction was to multiply and one number has been multiplied, and the fraction does look like it has been worked on.",
+            "move": "multiplies the upper number and leaves the lower number as it is, turning 2/7 into 4/7.",
+            "screen": "the lower strip is redrawn as the child built it, still in sevenths and now with four of them filled, and its colour runs plainly past the guide line dropped from the strip above. Both strips stay on the bench with their fractions written under them, and the builder then runs the same doubling on both numbers on a third strip, which cuts into fourteen and stops exactly on the line."
+          },
+          {
+            "why": "moving both numbers is what the rule sounded like, and nothing in the words said the two moves had to be the same one.",
+            "move": "multiplies the upper number by two and the lower number by three, because both numbers were multiplied.",
+            "screen": "the bench draws what the child built, four over twenty-one, cut into twenty-one with four filled, and its colour falls short of the guide line. Beside it the same starting fraction is written in twenty-firsts by multiplying both numbers by three, giving six over twenty-one, and that one lands on the line with two more parts filled than the child's. Both strips stay drawn and neither is marked."
+          }
+        ],
+        "screen": "a filled top strip with an empty lower strip and the builder set to two",
+        "soWhat": "Multiply the upper number and the lower number by the same number, or divide them both by a common factor, and the amount stays exactly where it was.",
+        "concept": "Building one by multiplying"
+      },
+      {
+        "n": 3,
+        "win": "the factor is named, the other number fills in by itself and the strips are drawn to match",
+        "does": "works out what that number was multiplied or divided by, then uses it on the other",
+        "goal": "the factor is found from the number that was given",
+        "says": "One number is already there. What was it multiplied by to get it?",
+        "check": "Write 45/72 as an equivalent fraction with a denominator of 8. What was seventy-two divided by, and how do you know?",
+        "feels": "the number that was handed to you turns out to be the instruction for the one that was not",
+        "hands": "Write 5/6 on the left of a page and 20 over a blank on the right. Before the blank is touched, ask out loud what the five was multiplied by to become twenty, and write that number between the two fractions. Then, and only then, use it on the six.",
+        "tries": "First rung, from the item: which of the two numbers has already been given to you? Second rung, the phase's: what was its partner multiplied or divided by to reach it? Third rung: the bay is cut to a pair whose factor is two, so the naming can be done by eye before a harder one returns. Nothing typed into the factor slot is ever marked wrong.",
+        "wrong": [
+          {
+            "why": "both numbers have moved by the same amount, which sounds like treating them the same way, and adding is the easier of the two moves.",
+            "move": "sees that five became twenty by going up fifteen and adds fifteen to the six as well.",
+            "screen": "the factor slot rejects nothing and prints nothing; instead the bench draws both readings as strips from the common edge. Twenty over twenty-one is cut into twenty-one with twenty filled and its colour runs almost to the end of the strip, while five over six stops well short, and the guide line shows the gap. Multiplying both by four gives twenty over twenty-four on a third strip, which lands on the line, and the child's answer stays in the slot beside it."
+          },
+          {
+            "why": "the question named one number and one number has been supplied, and the other one was already written down so it looks finished.",
+            "move": "works out the factor correctly and then fills in only the number that was asked for, writing thirty-six over five.",
+            "screen": "the factor the child named, twelve, is printed between the two fractions and stays there. The bench then draws an arrow from the sixty to the five labelled with that factor and a second arrow from the thirty-six to its blank, still empty, so the missing half of the move is the thing on the stage. The two strips are laid from the common edge and thirty-six over five will not cut at all, because a strip cannot be divided into five parts and have thirty-six of them filled; the bench says so in words and leaves the working standing."
+          }
+        ],
+        "screen": "the target bay holding a fraction with one number of its partner already printed",
+        "soWhat": "Find what the given number was multiplied or divided by, and then do exactly that to the number standing beside it.",
+        "concept": "Hitting a numerator or a denominator you are given"
+      },
+      {
+        "n": 4,
+        "win": "both products are written up, and the verdict follows from whether they match",
+        "does": "drags a line each way across the pair and reads the two products",
+        "goal": "equal crossing products mean equivalent fractions",
+        "says": "No pictures this time. Cross the pair both ways and compare what you get.",
+        "check": "Are 7/9 and 21/28 equivalent? Give me both crossing products before you say either way.",
+        "feels": "two numbers written in a row, and the verdict is read off them rather than off the fractions",
+        "hands": "Write two fractions side by side with a space between them and draw the two crossing lines in ink, one at a time. Write the product at the middle of each line as it is drawn, then read the two products out in the order you made them and only then say whether the pair is equivalent.",
+        "tries": "First rung, from the item: which two numbers did your first line join? Second rung, the phase's: which two are left for the second line? Third rung: the bench is cut to a pair in halves and quarters with both lines drawn and both products empty, so only the multiplying is left to do. Nothing already written is cleared and no verdict is ever marked.",
+        "wrong": [
+          {
+            "why": "multiplying straight across is the tidier arrangement to draw and it uses all four numbers, which is what crossing seemed to be about.",
+            "move": "multiplies upper number by upper number and lower number by lower number, and compares those two.",
+            "screen": "the two straight lines the child drew are left on the bench with their products, eighty-four and a hundred and eighty-nine, and they are not crossed out. The bench then draws the two crossing lines over them in a different weight, from the upper number of each fraction to the lower number of the other, and writes a hundred and twenty-six at the middle of each; the verdict panel fills only from the crossed pair, and the four products stay on the stage together."
+          },
+          {
+            "why": "one number has been produced by the method and it feels like the answer the method was for, and the second line is more work for something that already looks settled.",
+            "move": "draws one crossing line, writes its product and gives a verdict on that alone.",
+            "screen": "the verdict panel stays blank with the reason drawn rather than said: the second crossing line is drawn empty, from the upper number of the second fraction to the lower number of the first, with its product space ruled and waiting. The child's first product stays written at the middle of its own line, and the panel only fills once both spaces hold a number, whichever way the two then compare."
+          }
+        ],
+        "screen": "two written fractions on the cross bench with the strips hidden",
+        "soWhat": "Cross multiply both ways: equal products mean the two fractions are equivalent, and unequal products mean they are not.",
+        "concept": "Testing a pair without building anything"
+      }
+    ],
+    "delight": "The second phase, at the moment the builder is set to double and released. The lower strip does not redraw itself all at once. Every score line on it divides, one after another from the left, so the seven parts become fourteen while a hand watches, and each filled part splits into two filled parts of half the size. The colour spreads into the new cut at the very instant the cut appears, so nothing is ever briefly wrong, and the far edge of the fill never moves off the guide line by so much as a hair. When it settles, the two written fractions under the strips read two over seven and four over fourteen, and the guide line runs down through both fills as though it had been drawn for one of them. Push the builder back to one and the whole thing runs in reverse, the cuts pairing off again. Nothing else on the bench moves and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase two strips of identical length lie one directly under the other from a single left edge, each already carrying its own written fraction and neither of them cut or filled yet. On the second the top strip is cut and filled and the lower strip lies blank beside a builder already set to double. On the third the target bay stands open with a fraction in it and one number of its partner printed, the other blank and the factor slot empty in front of it. On the fourth the cross bench along the foot carries two written fractions side by side with the strips hidden and both product spaces drawn and empty. The running count at the top left holds the writings built against the writings this phase asks for, and the answer slot and the pad stand empty down the right. One thing moves, once: the common left edge of the two strips, or the builder dial, or the printed number in the target bay, or the first empty product space, gives one slow pulse while the voice asks whether these two are the same amount. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any fraction on the top strip, any multiplier or divisor, with the multiples row, the target bay and the cross bench all open and the strips shown or hidden. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on spotting two writings of one amount, building an equivalent by multiplying, hitting a given upper or lower number, and judging a pair by crossing.",
+    "voiceLines": [
+      "Two strips of one length, both starting at the same edge. Fill each from its own fraction.",
+      "Two children ate these shares of the same size. Who ate more?",
+      "Double both numbers. Watch the cuts, and watch where the colour stops.",
+      "One number is already there. What was it multiplied by to get it?",
+      "No pictures this time. Cross the pair both ways and compare what you get.",
+      "A new fraction on the top strip. What are you going to do to both of its numbers?",
+      "Free play. Any fraction, any multiplier, the multiples row, the target bay and the cross bench.",
+      "Lay them from the same edge again and watch where the colour stops, not how many cuts there are.",
+      "One amount wearing a great many names, and a test that still works with the pictures put away."
+    ],
+    "observations": [
+      {
+        "why": "Multiplying both numbers cuts every part into smaller ones and takes correspondingly more of them.",
+        "soWhat": "A fraction with bigger numbers is not a bigger amount; it is the same amount counted in smaller pieces.",
+        "observe": "One strip carried three cuts and the other carried nine, and the colour stopped in the same place on both."
+      },
+      {
+        "why": "Every whole number gives another pair, and there is no last whole number.",
+        "soWhat": "One amount has as many writings as you care to build, and the tidiest of them is the one in lowest terms.",
+        "observe": "The row of equivalents went on as long as the multiples did, and never ran out."
+      },
+      {
+        "why": "The number that was given is the one that says what was done, and the other number can only copy it.",
+        "soWhat": "Find the factor first, because guessing the second number is not the same piece of work at all.",
+        "observe": "The target bay would not fill the blank until the factor had been named."
+      },
+      {
+        "why": "Crossing multiplies each fraction up to the same lower number without either of them being written out.",
+        "soWhat": "The test is for the pairs too large to draw, and the pictures are what say why the test is allowed.",
+        "observe": "With every picture hidden, the two crossing products still settled the pair."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "two equal strips, one showing a half and one showing two quarters",
+        "win": "the filled ends line up exactly and the guide line runs through both",
+        "traceback": "Every strip is laid from the one edge, the guide line drops through the fills, the parts taken are counted out and the verdict is written under the line.",
+        "ladder": [
+          "Bigger numbers do not mean more, so lay all three strips and look.",
+          "An eighth is smaller than a quarter, and two are taken: where does each stop?",
+          "Lay both strips and see whether the two colours stop together.",
+          "Drop the guide line and see which colours reach it.",
+          "The number of cuts does not matter, only where the colour stops."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a filled top strip with an empty lower strip and the builder set to two",
+        "win": "the lower strip fills to the same end with twice as many cuts in it",
+        "traceback": "The child's fraction is cut on a strip against the guide line, then the same multiplier on both numbers is built below and lands on it.",
+        "ladder": [
+          "What did you multiply the upper number by, and the lower one?",
+          "Do the upper and the lower number get the same multiplier?",
+          "Pick one number and use it on the upper and the lower number.",
+          "Whatever you do to the upper number, do to the lower number too.",
+          "A right fraction makes the colour stop on the guide line."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the target bay holding a fraction with one number of its partner already printed",
+        "win": "the factor is named, the other number fills in by itself and the strips are drawn to match",
+        "traceback": "The factor goes on both arrows, the child's fraction and the right one are cut from the common edge, and the blank is filled in.",
+        "ladder": [
+          "What did the 5 become 20 by, and does the 6 get the same?",
+          "The 4 became 24 by multiplying, not by adding.",
+          "What divides the 72 to make 8, and does the 45 get the same?",
+          "Ask what the given number was multiplied or divided by.",
+          "Do exactly the same thing to the number beside it."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "two written fractions on the cross bench with the strips hidden",
+        "win": "both products are written up, and the verdict follows from whether they match",
+        "traceback": "After a wrong No the straight pair (upper times upper, lower times lower) is written lightly in a row below, then the crossing lines are drawn heavier with the true products; after a wrong Yes it goes straight to the heavy lines. The verdict (= or ≠, equivalent or not) is written.",
+        "ladder": [
+          "Tap the upper numbers to draw the lines, then read the two products.",
+          "Tap both upper numbers, then compare the two products.",
+          "Draw both lines, then compare the two products digit by digit.",
+          "Cross each upper number with the lower number of the other fraction.",
+          "Equal products mean the fractions are equivalent, and unequal ones do not."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "strip": {
+      "leftEdge": 44,
+      "length": 560,
+      "labelAt": 690
+    },
+    "colours": {
+      "counted": "hundred",
+      "left": "ten",
+      "whole": "one",
+      "secondWriting": "bead",
+      "cuts": "line"
+    },
+    "verdict": {
+      "straight": "upper x upper, lower x lower (the misconception, drawn lightly in a row below)",
+      "crossing": "upper x the other lower (heavier)"
+    },
+    "freePlay": {
+      "fraction": "any",
+      "cuts": "2 to 12",
+      "multiplier": "2 to 5",
+      "row": "times two, three and four"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T5.C20:ML1",
+        "kind": "choice",
+        "strips": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            9
+          ]
+        ],
+        "near": "bottom",
+        "tag": "all three the same",
+        "winMs": 3600,
+        "answer": "none",
+        "win": "All three colours stop in one place, so they hold the same amount."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T5.C20:1",
+        "kind": "choice",
+        "strips": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "near": "lower",
+        "tag": "the same amount",
+        "winMs": 3600,
+        "answer": "neither",
+        "win": "Two eighths fill what one quarter fills, so neither ate more."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T5.C20:2",
+        "kind": "choice",
+        "strips": [
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            15
+          ]
+        ],
+        "near": "no",
+        "tag": "the same amount",
+        "winMs": 3600,
+        "answer": "yes",
+        "win": "Yes, the colours stop together, so it is one amount written two ways."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T5.C21:ML2",
+        "kind": "build",
+        "base": [
+          2,
+          7
+        ],
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          4,
+          14
+        ],
+        "winMs": 4200,
+        "win": "Both numbers grew together, and the colour stopped in the very same place."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T5.C21:3",
+        "kind": "times",
+        "base": [
+          5,
+          9
+        ],
+        "k": 3,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          15,
+          27
+        ],
+        "winMs": 4200,
+        "win": "Three times each number made a new name for the same amount."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T5.C21:4",
+        "kind": "build",
+        "base": [
+          5,
+          12
+        ],
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          10,
+          24
+        ],
+        "winMs": 4200,
+        "win": "More cuts, the same colour: another name for the same amount."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T5.C22:ML3",
+        "kind": "target",
+        "base": [
+          5,
+          6
+        ],
+        "at": "top",
+        "given": 20,
+        "op": "×",
+        "f": 4,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          20,
+          24
+        ],
+        "winMs": 4200,
+        "win": "Four times the 5 is 20, and four times the 6 is 24."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T5.C22:5",
+        "kind": "target",
+        "base": [
+          4,
+          7
+        ],
+        "at": "top",
+        "given": 24,
+        "op": "×",
+        "f": 6,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          24,
+          42
+        ],
+        "winMs": 4200,
+        "win": "Six times the 4 is 24, and six times the 7 is 42."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T5.C22:6",
+        "kind": "target",
+        "base": [
+          45,
+          72
+        ],
+        "at": "bottom",
+        "given": 8,
+        "op": "÷",
+        "f": 9,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          5,
+          8
+        ],
+        "winMs": 4200,
+        "win": "Nine goes into 72 eight times and into 45 five times."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T5.C23:ML4",
+        "kind": "verdict",
+        "p": [
+          6,
+          9
+        ],
+        "q": [
+          14,
+          21
+        ],
+        "answer": "yes",
+        "pad": "enter",
+        "winMs": 4200,
+        "win": "Both products are 126, so the two fractions are equivalent."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T5.C23:7",
+        "kind": "verdict",
+        "p": [
+          3,
+          5
+        ],
+        "q": [
+          12,
+          20
+        ],
+        "answer": "yes",
+        "pad": "enter",
+        "winMs": 4200,
+        "win": "Equal products again, so these two are equivalent too."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T5.C23:8",
+        "kind": "verdict",
+        "p": [
+          7,
+          9
+        ],
+        "q": [
+          21,
+          28
+        ],
+        "answer": "no",
+        "pad": "enter",
+        "winMs": 4200,
+        "win": "The products are not equal, so these are not the same amount."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: Every strip is laid from the one edge, the guide line drops through the fills, the parts taken are counted out and the verdict is written under the line.",
+      "Phase 2: The child's fraction is cut on a strip against the guide line, then the same multiplier on both numbers is built below and lands on it.",
+      "Phase 3: The factor goes on both arrows, the child's fraction and the right one are cut from the common edge, and the blank is filled in.",
+      "Phase 4: After a wrong No the straight pair (upper times upper, lower times lower) is written lightly in a row below, then the crossing lines are drawn heavier with the true products; after a wrong Yes it goes straight to the heavy lines. The verdict (= or ≠, equivalent or not) is written."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Two strips of one length, both starting at the same edge. Fill each from its own fraction.",
+    "onFreePlay": "Free play. Set any fraction, multiply or divide it, and run the multiples.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "One amount wearing a great many names, and a test that still works with the pictures put away.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T5.C20:ML1",
+            "worked": false,
+            "kind": "choice",
+            "planQuestion": "Three glasses of the same size are filled. One is 1/3 full, one is 2/6 full and one is 3/9 full. Which of the three holds the most?",
+            "question": {
+              "en": "Which of these three strips of one length shows the most?"
+            },
+            "ask": {
+              "en": "Which shows the most?"
+            },
+            "answer": "none",
+            "planAnswer": "None of them. All three hold the same amount",
+            "choices": [
+              "top",
+              "middle",
+              "bottom",
+              "none"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T5.C20:1",
+            "worked": false,
+            "kind": "choice",
+            "planQuestion": "Two children eat 1/4 and 2/8 of identical bars. Who has eaten more?",
+            "question": {
+              "en": "Two children eat bars of one size, as the strips show: who ate more?"
+            },
+            "ask": {
+              "en": "Who ate more?"
+            },
+            "answer": "neither",
+            "planAnswer": "Neither, because 2/8 is the same amount as 1/4",
+            "choices": [
+              "top",
+              "lower",
+              "neither"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T5.C20:2",
+            "worked": false,
+            "kind": "choice",
+            "planQuestion": "Are 1/5 and 3/15 the same amount?",
+            "question": {
+              "en": "Do the two strips show the same amount?"
+            },
+            "ask": {
+              "en": "The same amount?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes, because multiplying both numbers of 1/5 by three gives 3/15",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T5.C21:ML2",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Build three fractions equal to 2/7 by multiplying.",
+            "question": {
+              "en": "Multiply both numbers by one number to build an equivalent fraction."
+            },
+            "ask": {
+              "en": "Build an equivalent fraction"
+            },
+            "answer": [
+              4,
+              14
+            ],
+            "planAnswer": "4/14, 6/21 and 8/28",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T5.C21:3",
+            "worked": false,
+            "kind": "times",
+            "planQuestion": "Multiply both numbers of 5/9 by three and write what you get.",
+            "question": {
+              "en": "Now multiply both numbers by three and write what you get."
+            },
+            "ask": {
+              "en": "Both numbers times three"
+            },
+            "answer": [
+              15,
+              27
+            ],
+            "planAnswer": "15/27",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T5.C21:4",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Build three fractions equal to 5/12 by multiplying.",
+            "question": {
+              "en": "This time choose your own number and build an equivalent fraction."
+            },
+            "ask": {
+              "en": "Another equivalent fraction"
+            },
+            "answer": [
+              10,
+              24
+            ],
+            "planAnswer": "10/24, 15/36 and 20/48",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T5.C22:ML3",
+            "worked": false,
+            "kind": "target",
+            "planQuestion": "Write 5/6 as an equivalent fraction with a numerator of 20, and write 36/60 as an equivalent fraction with a denominator of 5.",
+            "question": {
+              "en": "Make an equivalent fraction whose upper number is 20."
+            },
+            "ask": {
+              "en": "Its upper number is 20"
+            },
+            "answer": [
+              20,
+              24
+            ],
+            "planAnswer": "20/24 and 3/5",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T5.C22:5",
+            "worked": false,
+            "kind": "target",
+            "planQuestion": "Write 4/7 as an equivalent fraction with a numerator of 24.",
+            "question": {
+              "en": "Now the upper number must be 24: what fraction do you get?"
+            },
+            "ask": {
+              "en": "Its upper number is 24"
+            },
+            "answer": [
+              24,
+              42
+            ],
+            "planAnswer": "24/42, because four was multiplied by six",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T5.C22:6",
+            "worked": false,
+            "kind": "target",
+            "planQuestion": "Write 45/72 as an equivalent fraction with a denominator of 8.",
+            "question": {
+              "en": "Last one: the lower number is given as 8, so write the whole fraction."
+            },
+            "ask": {
+              "en": "Its lower number is 8"
+            },
+            "answer": [
+              5,
+              8
+            ],
+            "planAnswer": "5/8, because seventy-two was divided by nine",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T5.C23:ML4",
+            "worked": false,
+            "kind": "verdict",
+            "planQuestion": "Are 6/9 and 14/21 equivalent? Cross multiply and give both products.",
+            "question": {
+              "en": "Cross multiply the pair: are the two fractions equivalent?"
+            },
+            "ask": {
+              "en": "Are they equivalent?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes. Both products are 126, so the two fractions are equivalent",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T5.C23:7",
+            "worked": false,
+            "kind": "verdict",
+            "planQuestion": "Are 3/5 and 12/20 equivalent? Give both crossing products.",
+            "question": {
+              "en": "Cross this new pair the same way: are they equivalent?"
+            },
+            "ask": {
+              "en": "Equivalent?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes. Both products are 60",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T5.C23:8",
+            "worked": false,
+            "kind": "verdict",
+            "planQuestion": "Are 7/9 and 21/28 equivalent? Give both crossing products.",
+            "question": {
+              "en": "Last pair: are these two fractions equivalent?"
+            },
+            "ask": {
+              "en": "Equivalent?"
+            },
+            "answer": "no",
+            "planAnswer": "No. The products are 189 and 196, and they are not equal",
+            "madeOn": "working area"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "same_amount_bench",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "same_amount_bench",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Same amount, different writing",
+        "conceptId": "M2.S3.T5.C20",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C20:ML1",
+          "M2.S3.T5.C20:1",
+          "M2.S3.T5.C20:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Building one by multiplying",
+        "conceptId": "M2.S3.T5.C21",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C21:ML2",
+          "M2.S3.T5.C21:3",
+          "M2.S3.T5.C21:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Hitting a numerator or a denominator you are given",
+        "conceptId": "M2.S3.T5.C22",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C22:ML3",
+          "M2.S3.T5.C22:5",
+          "M2.S3.T5.C22:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Testing a pair without building anything",
+        "conceptId": "M2.S3.T5.C23",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C23:ML4",
+          "M2.S3.T5.C23:7",
+          "M2.S3.T5.C23:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "laid",
+    "verdict",
+    "answer"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, laid, verdict, answer",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "same_amount_bench"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T5.C20.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Two strips of one length, both starting at the same edge. Fill each from its own fraction."
+    },
+    {
+      "en": "Two children ate these shares of the same size. Who ate more?"
+    },
+    {
+      "en": "Double both numbers. Watch the cuts, and watch where the colour stops."
+    },
+    {
+      "en": "One number is already there. What was it multiplied by to get it?"
+    },
+    {
+      "en": "No pictures this time. Cross the pair both ways and compare what you get."
+    },
+    {
+      "en": "A new fraction on the top strip. What are you going to do to both of its numbers?"
+    },
+    {
+      "en": "Free play. Any fraction, any multiplier, the multiples row, the target bay and the cross bench."
+    },
+    {
+      "en": "Lay them from the same edge again and watch where the colour stops, not how many cuts there are."
+    },
+    {
+      "en": "One amount wearing a great many names, and a test that still works with the pictures put away."
+    }
+  ],
+  "build": {
+    "source": "539d8746:638658",
+    "runtime": "class4/runtime/frozen/r28/runtime.tsx",
+    "runtimeVersion": "r28",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-19T12:13:23.456Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-19T12:13:23.325Z"
+    },
+    "tsxBytes": 565456,
+    "tsxMd5": "3d469389a7e652a1aff8ef3f4d44ec72"
+  }
+}

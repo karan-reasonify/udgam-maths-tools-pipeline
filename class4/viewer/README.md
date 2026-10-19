@@ -20,6 +20,12 @@ a tap on the speech bubble showing the next piece, a tap with nothing waiting sk
 silent and the sound effects stay on). Untick it to see a child alone. A tool ported on a runtime older than r22 ignores the tick box.
 The default lives in `viewer/src/lib/useLiveTool.ts` (`classroom: true`).
 
+The **header** carries three switches (`components/DeviceBar.tsx`; in the hub that is the tinted bar above the tabs):
+**Teacher | Student** (`navigableDots` false | true: AI mode, where the phase dots only show progress, or user mode, where
+they are controls; a whole-lesson mount is always Student), **EN | हिं | ગુ** (`lang`) and **Mobile 844x390 | Web 1366x768 |
+Smartboard 1920x1080**. The device frame mounts the tool at that true size and scales the frame down to fit the stage (never up
+past 1:1; the size and the scale show under it), so media queries and `100vh` behave as they will on that device.
+
 The default port is `5175 + 2 x class` (for example 5183 for class 4 and 5187 for class 6), so every class has
 its own and they can run side by side. `viewerPort` in `pipeline.config.json` overrides it, `--port` beats both.
 
