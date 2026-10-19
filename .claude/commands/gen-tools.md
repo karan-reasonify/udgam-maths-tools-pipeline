@@ -14,7 +14,11 @@ Make Udgam maths tools. Arguments: $ARGUMENTS
    (step 5: the maths reviewer on every tool; visual and play only where a tool brings something new);
    without it, the full mode. The agents are `<pfx>-tool-builder` and the rest, `<pfx>` being the class's
    `agentPrefix` (`udgam` for class 4, `udgam<N>` otherwise).
+   Before launching agents, load the root token-policy.json. Adaptive mode is mandatory unless full review is explicitly requested: cap concurrency and Opus agents, keep contexts below policy limits, batch language/status/audit work, and run visual/play review only for new or risky patterns.
 2. If class, publication or school, or chapter is missing, ask for it. "udgam" means publication
    indiannica. A concept id such as `M1.S1.T2.C4` names the slot `M1.S1.T2.C4.2D1`.
 3. Stop at the report (step 8). Upload (step 10) only when the user says so. A remake of an already built
    chapter (the runbook's REMAKE section) and a `classctl sync --apply` also wait for the user's word.
+
+
+

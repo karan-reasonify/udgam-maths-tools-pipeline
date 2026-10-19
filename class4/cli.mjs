@@ -61,6 +61,9 @@
  *                         a chapter builds on ITS OWN frozen runtime (runtime/frozen/<rN>/), named in
  *                         work/<chapter_id>/runtime.json, so a runtime edit for one chapter can never
  *                         restale another chapter's finished tools
+ *                         freeze / pin (not a restore `freeze rN`) also need --ch N --gate prereview|postplay|step6|blocker
+ *                         (blocker: --proof "<real-input probe>"), or --ungated "why" (logged): the batched-runtime rule
+ *                         as code (../orchestration.json runtimeGates, ../orchlib/hooks.mjs)
  *   node cli.mjs fence    [--off | --on | --clear]   the read fence: a session that has opened one
  *                         chapter's work/ cannot read another chapter's
  *   node cli.mjs view     [--port N] [--watch]                   a local React app: every output-preview/
@@ -73,6 +76,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
+import { pathToFileURL } from "node:url";
 import { CONFIG, ROOT, PIPELINE_ROOT, CLASS_NUM, CLASS_DIR, AGE_BAND, agentName, skinLibraries, fenceFilePath, env, mask, lpDest, fromRoot } from "./lib/core/env.mjs";
 import { parseArgs, chapterList } from "./lib/core/args.mjs";
 import { chromePath, sweepChromeTempThorough, chromeTempReport } from "./lib/core/chrome.mjs";
@@ -105,6 +109,18 @@ const rel = (p) => path.relative(process.cwd(), p) || ".";
 const pad = (s, n) => String(s ?? "").padEnd(n);
 const D = CONFIG.defaults;
 const klass = () => Number(a.class || D.class);
+
+/* the root orchestration (../orchlib/hooks.mjs, policy ../orchestration.json): the check cache key, the runtime freeze gates and
+   the voice key, the same for every class. Fails open: no root orchlib, or an error inside it, never stops a command; only a
+   gate's refusal does (the caller throws it). */
+async function orchHook(name, args) {
+  const f = path.join(PIPELINE_ROOT, "orchlib", "hooks.mjs");
+  if (!fs.existsSync(f)) return null;
+  try {
+    const m = await import(pathToFileURL(f).href);
+    return typeof m[name] === "function" ? await m[name]({ classDir: ROOT, ...args }) : null;
+  } catch (e) { console.log(`  (orch ${name} skipped: ${e.message})`); return null; }
+}
 
 async function doctor() {
   const E = env();
@@ -331,6 +347,9 @@ async function doCheck() {
      every check passing ports straight away (output-preview/, proved in the host emulator) so the
      tool shows up in the viewer without a separate step; publish still waits on the user's word. */
   const { checked, ported, portError } = await checkAndPort(dir, { render: !a["no-render"], force: !!a.force });
+  let toolHash = null;
+  try { toolHash = hashOf(dir); } catch { /* no pin: the cache key says so */ }
+  await orchHook("recordCheck", { dir, render: !a["no-render"], summary: checked.summary, toolHash });
   if (checked.summary.fail) { process.exitCode = 1; return; }
   if (portError) { console.log(`  port failed: ${portError}`); process.exitCode = 1; return; }
   if (ported && !ported.hostsim.ok) process.exitCode = 1;
@@ -338,7 +357,9 @@ async function doCheck() {
 
 async function doVoice() {
   const dir = resolveTarget(a._[0], a);
-  await bakeVoice(dir, { langs: String(a.langs || "hi,gu").split(",").map((x) => x.trim()).filter(Boolean), kbps: Number(a.kbps || 16), log: console.log, force: !!a.force });
+  const langs = String(a.langs || "hi,gu").split(",").map((x) => x.trim()).filter(Boolean);
+  await bakeVoice(dir, { langs, kbps: Number(a.kbps || 16), log: console.log, force: !!a.force });
+  await orchHook("recordVoice", { dir, langs });
 }
 
 function doMascot() {
@@ -467,11 +488,20 @@ const chapterDirs = (spec) => (spec
 const slotDirs = (cdir) => (fs.existsSync(cdir) ? fs.readdirSync(cdir) : [])
   .map((x) => path.join(cdir, x)).filter((d) => fs.existsSync(path.join(d, "slot.json")));
 
-function doRuntime() {
+async function doRuntime() {
   const sub = String(a._[0] || "status");
+  const gateArgs = { ch: a.ch, gate: a.gate, proof: a.proof, ungated: a.ungated };
+  const gated = async (op, extra) => {
+    const g = await orchHook("runtimeGate", { op, ...gateArgs, ...extra });
+    if (g && g.refuse) throw new Error(g.refuse);
+    if (g && g.note) console.log(`  (${g.note})`);
+    return g;
+  };
 
   if (sub === "freeze") {
+    const g = await gated("freeze", { named: a._[1] ? String(a._[1]) : null });
     const r = freeze(a._[1] ? String(a._[1]) : null, { note: String(a.note && a.note !== true ? a.note : "") });
+    await orchHook("runtimeRecord", { op: "freeze", ...gateArgs, version: r.version, token: g && g.token });
     console.log(r.made
       ? `froze runtime ${r.version}: runtime ${r.runtime} · mascot ${r.mascot} · ${kb(r.bytes).trim()}  (runtime/frozen/${r.version}/)`
       : `runtime ${r.version} already holds this exact head (runtime ${r.runtime}); nothing to freeze`);
@@ -482,6 +512,7 @@ function doRuntime() {
   }
 
   if (sub === "pin") {
+    const g = await gated("pin", { version: a.version && a.version !== true ? String(a.version) : null });
     const version = a.version && a.version !== true ? String(a.version)
       : freeze(null, { note: "the head at pin time" }).version;
     const dirs = chapterDirs(a.ch);
@@ -498,6 +529,7 @@ function doRuntime() {
       if (was && was.version !== pin.version && moves >= 2) console.log(`  WARNING: ${path.basename(cdir)} has moved ${moves} times in the last 24 h (now ${pin.version}); every move re-checks every tool and rebuilds its packs. Move once, at step 6, unless a blocker (runbook non-negotiable 3).`);
     }
     console.log("a pinned chapter cannot be restaled by another chapter's runtime edit");
+    await orchHook("runtimeRecord", { op: "pin", ...gateArgs, version, token: g && g.token });
     return;
   }
 

@@ -71,7 +71,11 @@ Variants, same flow:
    of them; a hook also refuses `*.preview.html` and `.build/`). Every byte a session reads stays in its context and is
    paid for again on every later call, so the main session does not read tool sources, sheets or logs itself: the agent
    that owns the slot reads them and its report (at most 40 lines) is what lands here. Measure with `node usage.mjs`
-   (`session`: provider-reported tokens of a transcript; `static`: what each role loads before it starts).
+   (`session`: provider-reported tokens of a transcript; `static`: what each role loads before it starts). The root
+   `token-policy.json` is the enforceable budget: adaptive mode is the default, context targets stay below 100k tokens,
+   150k is the hard escalation threshold, builders are capped at 3 concurrent, reviewers at 2, and Opus agents at 2.
+   Maths review remains per tool; visual/play review is pattern- and risk-based. Batch language, status, deterministic
+   checks, image reuse and upload auditing. At a budget checkpoint write resumable state and continue from it after reset.
 7. **Never touch, and never read, another chapter's tools.** The read fence refuses it (one session,
    one chapter) and `class<N>/docs/PATTERNS.md` holds every pattern a builder used to copy out of a
    finished tool. A deliberate cross-chapter look is `node cli.mjs fence --off`, then `--on` again.

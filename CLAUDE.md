@@ -93,5 +93,8 @@
   bundle (`*.preview.html`, `.build/`: the `chapter-fence` hook refuses it; `fence --off` is the deliberate look); read the
   source, a `check` row, a docs section or a `Grep -n` hit instead. Read a big file (`tool.tsx`, a log, a diff) by range, and
   hand a long read-and-report job to an agent so only its report lands here. One task per session: a chapter build, a viewer
-  change and a git push are three sessions, not one.
+  change and a git push are three sessions, not one. The root `token-policy.json` is mandatory: adaptive mode targets
+  less than 100k-token contexts, treats 150k as a hard escalation threshold, caps builders at 3, reviewers at 2, and
+  Opus agents at 2. Maths review remains per tool; visual/play review is pattern- and risk-based. Batch language,
+  status, checks, image reuse and upload auditing. Checkpoint before a session limit and resume from state.
 - The old ICSE Class 6 pipeline is in `_archive/icse6_corpus.zip`; do not open it.

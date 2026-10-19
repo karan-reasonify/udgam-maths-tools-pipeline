@@ -1,0 +1,137 @@
+{
+  "$comment": "The ONE canonical orchestration policy of the Udgam maths pipeline (every class). Read by orch.mjs (gates, plans, tiered checks, checkpoints), usage.mjs (budgets, simulate), classctl.mjs (each agent file's `model:` line and the escalated twins) and the cli.mjs hooks (check cache keys, runtime freeze gates). A class overrides any key in class<N>/pipeline.config.json under \"orchestration\" (deep merge: objects merge, arrays and scalars replace). Change a model here, then regenerate the agents: node classctl.mjs sync --from <M> --to <N> --only agents (dry run, then --apply on the owner's word). See udgam_maths_claude.md \"Orchestration\" and TOKENS.md.",
+  "version": 1,
+
+  "models": {
+    "$comment": "Claude Code agent aliases (opus | sonnet | haiku | inherit) per role and stage. 'main' is advice for the session itself (/model), not a file. Opus only for: planning, difficult maths, pattern representatives, runtime work across tools, reviewer-conflict arbitration (routing below).",
+    "main": "sonnet",
+    "planner": "opus",
+    "tool-builder": "sonnet",
+    "tool-builder-escalated": "opus",
+    "maths-reviewer": "sonnet",
+    "maths-reviewer-escalated": "opus",
+    "language-agent": "sonnet",
+    "visual-reviewer": "sonnet",
+    "play-tester": "sonnet",
+    "image-agent": "sonnet",
+    "upload-auditor": "haiku"
+  },
+
+  "routing": {
+    "$comment": "Which tier a launch uses. 'escalated' = the <role>-escalated twin (models above). A follower builder starts on the base tier; it escalates only on a trigger.",
+    "representativeBuilder": "escalated",
+    "followerBuilder": "base",
+    "runtimeChange": "escalated",
+    "fixer": "base",
+    "conflictArbiter": "planner"
+  },
+
+  "escalation": {
+    "twins": ["tool-builder", "maths-reviewer"],
+    "suffix": "-escalated",
+    "triggers": ["cap-reached", "ambiguous", "high-risk", "reviewer-conflict", "runtime-multi-tool"],
+    "maxPerChapter": { "base": 2, "perTool": 0.2 }
+  },
+
+  "limits": {
+    "$comment": "Per chapter build. A number is fixed; { base, perTool } is base + perTool x tools, rounded up. orch gate refuses a launch past a limit (exit 3).",
+    "maxConcurrent": 4,
+    "maxAgentsPerChapter": { "base": 10, "perTool": 4 },
+    "maxOpusAgents": { "base": 2, "perTool": 0.35 },
+    "maxReviewAgents": { "base": 6, "perTool": 2.5 },
+    "maxRetryRounds": 2,
+    "maxFullChecksPerSlot": 4,
+    "staleAgentMinutes": 90
+  },
+
+  "batching": {
+    "$comment": "Items per agent. orch plan picks the size (1..max) with the lowest modelled context cost that keeps every agent under contextBudget.targetTokens and the chapter under its agent limits.",
+    "builderToolsPerAgent": 2,
+    "mathsToolsPerAgent": 4,
+    "languageToolsPerAgent": 4,
+    "imageSlotsPerAgent": 3,
+    "lightVisualToolsPerAgent": 2,
+    "playToolsPerAgent": 1
+  },
+
+  "contextBudget": {
+    "$comment": "Context is the cost driver (every call re-reads it). targetTokens: plan every agent under it. escalateTokens: a running agent past it is checkpointed and continued fresh, never resumed by SendMessage. Soft caps are what an agent can count itself.",
+    "targetTokens": 100000,
+    "escalateTokens": 150000,
+    "agentCallSoftCap": 45,
+    "agentReadKbSoftCap": 300,
+    "reportMaxLines": 40,
+    "envelopeMaxLines": 12,
+    "mainSessionTargetTokens": 80000
+  },
+
+  "checks": {
+    "$comment": "Tier 0 metadata, 1 quick (check --no-render), 2 one full check of a changed tool, 3 real-input play for new or risky interactions, 4 visual pack when visual changes justify it. A cached result is reused only when every key part matches.",
+    "tiers": ["metadata", "quick", "full", "play", "visual"],
+    "cacheVersion": 1,
+    "languages": ["en", "hi", "gu"],
+    "checkerFiles": ["lib/check/*.mjs", "lib/build/preview.mjs", "lib/build/pack.mjs", "lib/core/caps.mjs", "lib/core/pin.mjs", "lib/ship/port.mjs", "lib/ship/hostsim.mjs", "lib/ship/hostTemplate.mjs"],
+    "configKeys": ["defaults", "bundled", "mascot", "skinLibraries", "fontconfig", "runtime", "skeleton"],
+    "chromePool": 2
+  },
+
+  "review": {
+    "$comment": "Deduplication: maths on every tool (round 1), later rounds only where the maths digest changed; visual and play in full on each NEW pattern's representative; a repeat of an unchanged pattern gets a light visual pass (upgraded to full on a visual check WARN/FAIL or a new picture kind) and no play test unless risky; a re-review looks only at changed frames and named probes.",
+    "visualChunkFrames": 40,
+    "lightFrames": { "en": ["start", "ask-shut", "ask-open", "wrong", "summary"], "other": ["wrong", "stepwrong", "summary"] },
+    "visualWarnRows": ["board-fit", "picture-scale", "text-contrast", "hint-lines-clear", "summary-thumbs", "start-page", "font-kit", "one-line-bubble"],
+    "highRiskInteraction": ["drag", "two-box", "fraction-card", "decimal-card", "point-key", "card-answer", "act", "narrow-pad"],
+    "followerVisual": "light",
+    "playRepeats": false
+  },
+
+  "runtimeGates": {
+    "$comment": "Programmatic batching of runtime moves (runbook non-negotiable 3). `runtime freeze|pin` must name --ch N and --gate. prereview and postplay once each per chapter build; blocker only with --proof (a real-input probe), at most maxBlocker; step6 = a pin to the newest head at a chapter's own step 6. `freeze rN` (restore) is free; --ungated \"why\" is logged.",
+    "enforce": true,
+    "gates": ["prereview", "postplay", "step6", "blocker"],
+    "maxBlocker": 1,
+    "maxFreezesPerBuild": 3,
+    "minProofChars": 12
+  },
+
+  "session": {
+    "$comment": "Session-limit guard. Claude Code does not expose the plan's percentage on disk, so orch gate uses the freshest of (a) the owner's reading (node orch.mjs session --pct 72, from /usage) and (b) a rolling-window estimate from local transcripts against budgetUsd5h (list-price-weighted; calibrate once: node usage.mjs window --calibrate <pct shown by /usage>). Unset budget and no reading = only the agent-count fallback.",
+    "windowHours": 5,
+    "budgetUsd5h": null,
+    "stopExpensiveAt": 0.7,
+    "checkpointAt": 0.85,
+    "manualReadingTtlMinutes": 45,
+    "fallbackMaxAgentsPerWindow": 60
+  },
+
+  "images": { "dedupe": ["object", "style", "kind", "prompt"], "chapterBatch": true },
+  "voice": { "bakeOncePerStrings": true },
+
+  "estimates": {
+    "$comment": "The cost model of usage.mjs simulate (MODEL ASSUMPTIONS, not measurements: calibrate with `usage.mjs simulate --from <usage report.json>` once real transcripts exist). calls = model calls an agent makes; grow = tokens its context gains per call; start sizes are measured from the class's files.",
+    "windowTokens": 190000,
+    "outputPerCall": 450,
+    "baseline": {
+      "builder": { "calls": 90, "grow": 600, "langCalls": 30, "fixRounds": 2, "fixCalls": 20 },
+      "maths": { "calls": 25, "grow": 500, "rounds": 2 },
+      "visual": { "extraCalls": 15, "grow": 1800, "round2Share": 0.35 },
+      "play": { "calls": 60, "grow": 1200, "round2Calls": 15 },
+      "image": { "calls": 25, "grow": 1200 },
+      "main": { "callsPerTool": 25, "chapterCalls": 60, "grow": 600, "startExtra": 15000 },
+      "audit": { "calls": 30, "grow": 800 }
+    },
+    "optimized": {
+      "builderRep": { "calls": 90, "grow": 600 },
+      "builderFollower": { "calls": 70, "grow": 600 },
+      "fixer": { "calls": 20, "grow": 600, "perTool": 0.6 },
+      "maths": { "callsPerTool": 8, "grow": 700, "digestKb": 12, "briefKb": 8, "rulesKb": 12, "round2Share": 0.4 },
+      "language": { "callsPerTool": 6, "grow": 2500, "stringsKb": 12, "rulesKb": 12 },
+      "image": { "callsPerSlot": 10, "grow": 1100, "briefKb": 8 },
+      "visual": { "extraCalls": 4, "grow": 1800, "layoutKb": 36, "lightFrames": 22, "round2Share": 0.35 },
+      "play": { "calls": 60, "grow": 1200, "riskyFollowerShare": 0.15 },
+      "main": { "callsPerTool": 12, "chapterCalls": 60, "grow": 300, "sessions": 4, "startExtra": 9000 },
+      "audit": { "calls": 12, "grow": 800 },
+      "groupsPerTools": 0.27
+    }
+  }
+}

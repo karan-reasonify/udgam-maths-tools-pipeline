@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "defaults": {"mode": "adaptive", "maxConcurrentBuilders": 3, "maxConcurrentReviewers": 2, "maxOpusAgents": 2, "contextTargetTokens": 100000, "contextHardLimitTokens": 150000, "maxReviewRounds": 1, "maxRuntimeFreezesPerChapter": 2, "reportMaxLines": 40},
+  "models": {"builder": "opus", "mathsReviewer": "sonnet", "languageReviewer": "sonnet", "visualReviewer": "sonnet", "playTester": "sonnet", "imageAgent": "sonnet", "uploadAuditor": "haiku", "statusAndChecks": "haiku", "escalation": "opus"},
+  "review": {"mathsEveryTool": true, "visualOnlyForNewPatterns": true, "playOnlyForNewOrRiskyInteractions": true, "languageBatchPerChapter": true, "rerunOnlyChangedTools": true},
+  "tiers": {"tier0": "metadata", "tier1": "check --no-render", "tier2": "full check only for changed tools", "tier3": "real-input play test for new or risky interactions", "tier4": "review pack only for visual changes"}
+}
