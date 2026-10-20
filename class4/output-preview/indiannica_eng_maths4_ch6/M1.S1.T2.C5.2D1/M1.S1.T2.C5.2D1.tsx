@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S1.T2.C5.2D1 · divide_ladder · Divide Ladder — standalone build 2026-10-19, source fca478ee:625586.
+/* M1.S1.T2.C5.2D1 · divide_ladder · Divide Ladder — standalone build 2026-10-20, source fca478ee:625586.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */

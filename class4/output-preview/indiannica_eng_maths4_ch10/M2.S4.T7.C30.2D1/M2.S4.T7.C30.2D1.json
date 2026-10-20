@@ -61,7 +61,7 @@
       "phaseWithPanel": [
         64,
         108,
-        900,
+        1086,
         520
       ],
       "ask": [
@@ -277,7 +277,7 @@
         "traceback": "Both finders run over the child's own patch and the patch is named on a plate.",
         "ladder": [
           "Look along each row to see whether a brick sits right against the next.",
-          "Push the coins as close as you like and look between four of them.",
+          "The coins already touch: look in the space between four of them.",
           "Run the overlap finder over the pair and see if any part is covered twice.",
           "Is any space left over, or any part covered twice?",
           "Run both finders: a tessellation leaves both of them empty."
@@ -316,7 +316,7 @@
         "traceback": "The bracket lights every copy of the group, and the count is drawn beside it.",
         "ladder": [
           "Start at the first marigold and see where the next one hangs.",
-          "Look down one column, coin then cap: what is third?",
+          "Row 3 starts like row 1: count its coins too.",
           "Look at the four cards: which word did the bench lessons use?",
           "Which group of things comes round again?",
           "Read the string from the start and watch for the first thing that returns."
@@ -326,7 +326,7 @@
   },
   "model": {
     "bench": {
-      "w": 860,
+      "w": 1046,
       "h": 320
     },
     "cell": 8,
@@ -1088,9 +1088,10 @@
     "objects",
     "laid",
     "ticked",
-    "n"
+    "n",
+    "nudge"
   ],
-  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), tiles, gaps, nGap, overlaps, nLap, edgeTraced, carried, objects, laid, ticked, n, complete",
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), tiles, gaps, nGap, overlaps, nLap, edgeTraced, carried, objects, laid, ticked, n, complete, nudge",
   "valid_ids": {
     "highlightTargets": [
       "header",
@@ -1191,19 +1192,19 @@
     }
   ],
   "build": {
-    "source": "8a39897d:633729",
+    "source": "258e2c1a:641253",
     "runtime": "class4/runtime/frozen/r28/runtime.tsx",
     "runtimeVersion": "r28",
     "library": "@use-gesture/react@10.3.1",
-    "builtAt": "2026-10-19T11:19:42.811Z",
+    "builtAt": "2026-10-20T09:54:31.730Z",
     "checks": {
       "pass": 95,
       "warn": 0,
       "fail": 0,
       "info": 3,
-      "at": "2026-10-19T11:19:42.651Z"
+      "at": "2026-10-20T09:54:31.608Z"
     },
-    "tsxBytes": 568190,
-    "tsxMd5": "02bf54eaa2f63d1ada969dd5013a6ba5"
+    "tsxBytes": 573986,
+    "tsxMd5": "d961b47bcbc7a35367290b1063031cb7"
   }
 }

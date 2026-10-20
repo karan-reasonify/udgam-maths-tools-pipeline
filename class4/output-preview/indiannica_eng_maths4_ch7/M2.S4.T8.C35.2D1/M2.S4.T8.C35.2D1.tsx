@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M2.S4.T8.C35.2D1 · like_pieces_bench · Like Pieces Bench — standalone build 2026-10-19, source 49e96608:606915.
+/* M2.S4.T8.C35.2D1 · like_pieces_bench · Like Pieces Bench — standalone build 2026-10-20, source 1838f08f:619226.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -1190,7 +1190,7 @@ function useDrag(onDrop) {
       const s = stagePoint(event, xy[0], xy[1]);
       if (!s) return;
       const p0 = { x: s.x - W.x, y: s.y - W.y };
-      live.current = { payload, p0, p: p0, moved: false, svgEvent: event };
+      live.current = { payload, p0, p: p0, moved: false, svgEvent: event, xy0: [xy[0], xy[1]] };
       DRAGS.live++;
       setDrag({ payload, x: p0.x, y: p0.y, moved: false });
     }
@@ -1199,7 +1199,7 @@ function useDrag(onDrop) {
     if (!first) {
       const s = stagePoint(event, xy[0], xy[1]) || stagePoint(d.svgEvent, xy[0], xy[1]);
       if (s) d.p = { x: s.x - W.x, y: s.y - W.y };
-      if (Math.hypot(d.p.x - d.p0.x, d.p.y - d.p0.y) > 8) d.moved = true;
+      if (Math.hypot(xy[0] - d.xy0[0], xy[1] - d.xy0[1]) > 10) d.moved = true;
       if (!last) setDrag({ payload: d.payload, x: d.p.x, y: d.p.y, moved: d.moved });
     }
     if (last) {
@@ -2166,6 +2166,7 @@ function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, on
   const nCh = mode === "choices" ? (choices || []).length : 0;
   const cw = nCh ? choiceKeyW(choices, lang, TR2) : 150, cgap = 14;
   const kw = nCh ? nCh * cw + (nCh - 1) * cgap : 264, kh = 72, kx = x0 + bw - kw - 10, ky = Z.ask.y + (Z.ask.h - kh) / 2;
+  const rowSize = (choices || []).every((c) => lineFor(c.label, lang, TR2).length * T.prompt * 0.6 <= cw - 20) ? T.prompt : T.label;
   const noKey = mode === "card" || quiet && mode === "off";
   const room = (noKey ? x0 + bw - 10 : kx) - x0 - 40;
   const pick = [[T.prompt, 1], [T.label, 2], [T.micro, 2]].map(([s, l]) => ({ s, l, w: wrapText(ask, Math.floor(room / (s * 0.58))) })).find((c) => c.w.length <= c.l) || { s: T.micro, w: wrapText(ask, Math.floor(room / (T.micro * 0.58))).slice(0, 2) };
@@ -2177,7 +2178,7 @@ function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, on
       {!keyOnly && <rect x={x0} y={Z.ask.y} width={bw} height={Z.ask.h} rx={RAD.panel + 4} fill="#FFFFFF" stroke={C.rule} strokeWidth={2} filter="url(#fShadowSoft)" />}
       {!keyOnly && pick.w.map((ln, k) => <text key={k} x={x0 + 28} y={top + k * lh} fontSize={pick.s} fontWeight={500} fill={C.ink}>{ln}</text>)}
       {nCh > 0 && (choices || []).map((c, j) => {
-    const x = kx + j * (cw + cgap), lab = lineFor(c.label, lang, TR2), size = lab.length * T.prompt * 0.6 <= cw - 20 ? T.prompt : T.label;
+    const x = kx + j * (cw + cgap), lab = lineFor(c.label, lang, TR2), size = rowSize;
     return <g key={c.id}>
             <Key id={"choice-" + c.id} label={lab} x={x} y={ky} w={cw} h={kh} C={C} tone="key" onClick={() => onChoice && onChoice(c.id)}>
               <text y={size === T.prompt ? 14 : 11} textAnchor="middle" fontSize={size} fontWeight={600} fill={toneInk("key", C.ink)}>{lab}</text>
@@ -2479,7 +2480,14 @@ function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, don
   const over = pk < 0;
   if (over) pk = popts.length - 1;
   const size = popts[pk][0];
-  const lines = over && !KEYONLY ? wrapText(shown, per(popts[pk][2])).slice(0, popts[pk][1]) : wrapText(shown, per(popts[pk][2]));
+  const lines0 = over && !KEYONLY ? wrapText(shown, per(popts[pk][2])).slice(0, popts[pk][1]) : wrapText(shown, per(popts[pk][2]));
+  const lines = (() => {
+    const n2 = lines0.length, last = lines0[n2 - 1] || "", pv = wrapWords(lines0[n2 - 2] || "");
+    if (!KEYONLY || n2 < 2 || wrapWords(last).length !== 1 || last.length > 12 || pv.length < 2) return lines0;
+    const w = pv[pv.length - 1];
+    if ((w + " " + last).length > per(popts[pk][2])) return lines0;
+    return [...lines0.slice(0, n2 - 2), pv.slice(0, -1).join(" "), w + " " + last];
+  })();
   const lh = lhOf(size, pk);
   const top = b.y + b.h / 2 - (lines.length - 1) * lh / 2 + size * 0.36;
   const hintInk = hintType ? C.ink : THEME && THEME.key ? THEME.key[2] : shade(C.accent, 0.3);
@@ -2570,7 +2578,8 @@ function starPath(cx, cy, r) {
 function Summary({ C, phases, results, row, showScore, freePlay, onFree, onAgain, Thumb: Thumb2, UI, lang, TR: TR2 }) {
   const N = Math.max(phases.length, 1);
   const K = KEYONLY, dev = lang === "hi" || lang === "gu";
-  const top = K ? 166 : 188, rowH = Math.min(92, ((K ? 470 : 560) - top) / N);
+  const KD = K && dev;
+  const top = K ? KD ? 160 : 166 : 188, rowH = Math.min(92, ((K ? KD ? 488 : 470 : 560) - top) / N);
   const played = Object.keys(results).map(Number);
   const total = played.reduce((a, p) => a + (results[p].total || 0), 0);
   const first = played.reduce((a, p) => a + (results[p].firstTry || 0), 0);
@@ -2586,25 +2595,25 @@ function Summary({ C, phases, results, row, showScore, freePlay, onFree, onAgain
             {row === k && <rect className="c4-ring" x={68} y={y - 4} width={1464} height={rowH - 4} rx={18} fill="none" stroke={C.accent} strokeWidth={4} pointerEvents="none" />}
             <circle cx={100} cy={y + (K ? 24 : 29)} r={10} fill={r ? C.accent : "#FFFFFF"} stroke={C.accent} strokeWidth={3} />
             <text x={128} y={y + (K ? 34 : 40)} fontSize={T.label} fontWeight={700} fill={C.ink}>{lineFor(p.concept, lang, TR2)}</text>
-            <text x={128} y={y + (K ? dev ? 70 : 66 : dev ? 80 : 74)} fontSize={T.micro} fontWeight={500} fill={learnedInk}>{lineFor(p.learned, lang, TR2)}</text>
+            <text x={128} y={y + (K ? dev ? 74 : 66 : dev ? 80 : 74)} fontSize={T.micro} fontWeight={500} fill={learnedInk}>{lineFor(p.learned, lang, TR2)}</text>
             {r && r.last && Thumb2 && <g data-role="thumb" transform={`translate(1290,${y + 2})`}><Thumb2 n={k + 1} result={r} it={r.last.it} C={C} w={236} h={rowH - 10} lang={lang} tx={(v) => lineFor(v, lang, TR2)} /></g>}
           </g>;
   })}
       {showScore && played.length > 0 && <g role="img" aria-label={UI.starsLabel ? UI.starsLabel(first, total) : `Right first time: ${first} of ${total}`}>
           {[0, 1, 2].map((k) => <path
     key={k}
-    d={starPath(704 + k * 62, K ? 504 : 596, 24)}
+    d={starPath(704 + k * 62, K ? KD ? 520 : 504 : 596, 24)}
     fill={k < stars ? CONTENT.ten : "#FFFFFF"}
     stroke={k < stars ? shade(CONTENT.ten, 0.3) : C.rule}
     strokeWidth={3}
     strokeLinejoin="round"
   />)}
-          <text x={876} y={K ? 514 : 606} fontSize={T.micro} fontWeight={600} fill={C.ink}>{UI.rightFirstTime(first, total)}</text>
+          <text x={876} y={K ? KD ? 530 : 514 : 606} fontSize={T.micro} fontWeight={600} fill={C.ink}>{UI.rightFirstTime(first, total)}</text>
         </g>}
-      {freePlay && <Key id="free-play" label={UI.freePlay} x={490} y={K ? 544 : 628} w={300} h={K ? 80 : 96} C={C} tone="enter" primary onClick={onFree}>
+      {freePlay && <Key id="free-play" label={UI.freePlay} x={490} y={K ? KD ? 552 : 544 : 628} w={300} h={K ? KD ? 72 : 80 : 96} C={C} tone="enter" primary onClick={onFree}>
           <text y={13} textAnchor="middle" fontSize={T.prompt} fontWeight={600} fill={toneInk("enter", "#FFFFFF")}>{UI.freePlay}</text>
         </Key>}
-      <Key id="play-again" label={UI.playAgain} x={freePlay ? 810 : 650} y={K ? 544 : 628} w={300} h={K ? 80 : 96} C={C} tone="soft" onClick={onAgain}>
+      <Key id="play-again" label={UI.playAgain} x={freePlay ? 810 : 650} y={K ? KD ? 552 : 544 : 628} w={300} h={K ? KD ? 72 : 80 : 96} C={C} tone="soft" onClick={onAgain}>
         <text y={13} textAnchor="middle" fontSize={T.prompt} fontWeight={600} fill={toneInk("soft", C.ink)}>{UI.playAgain}</text>
       </Key>
     </g>;
@@ -2834,7 +2843,7 @@ function ToolFrame({ props, tool }) {
     if (!f) return false;
     nextRef.current = null;
     setHeldNext(false);
-    changeAt.current = Date.now();
+    changeAt.current = nextAt.current = Date.now();
     f();
     return true;
   };
@@ -2912,6 +2921,10 @@ function ToolFrame({ props, tool }) {
     setHintText(l, l ? "type" : "hint");
   };
   const openedAt = useRef(0);
+  const viaPtr = useRef(false);
+  const nextAt = useRef(0);
+  const closingSaid = useRef(false);
+  const caretAt = useRef(0);
   const choiceAt = useRef(0);
   const chooseNow = (id) => {
     if (lockedRef.current || live.current.locked) return;
@@ -3087,6 +3100,7 @@ function ToolFrame({ props, tool }) {
     const L = live.current, st = L.phase && L.phase.steps;
     if (L.stage !== "demo" || !st || !st[stepRef.current] || !st[stepRef.current].hint) return;
     if (Date.now() - didAt.current < 400) return;
+    if (Date.now() - nextAt.current < 500) return;
     setHintText(tx(st[stepRef.current].hint));
   };
   const workTap = (e) => {
@@ -3216,6 +3230,8 @@ function ToolFrame({ props, tool }) {
       later(go, Math.max(1400, PARTY_MS + 150 - (Date.now() - partyAt.current)));
     };
     const closing = [tx(L.phase.closing)].filter(Boolean);
+    const said = closingSaid.current;
+    closingSaid.current = false;
     if (nextKeyOn) {
       let skipped = false;
       const go = () => {
@@ -3228,14 +3244,24 @@ function ToolFrame({ props, tool }) {
       };
       pendingAdvance.current = null;
       if (holdRef.current) nextRef.current = go;
-      voice.speak(closing, void 0, { nopark: true });
+      if (!said) voice.speak(closing, void 0, { nopark: true });
       later(() => {
         if (!skipped) holdNext(go, lastPhase ? "summary" : "phase");
       }, Math.max(0, PARTY_MS + 150 - (Date.now() - partyAt.current)));
       return;
     }
     pendingAdvance.current = walk;
-    voice.speak(closing, walk, { nopark: true });
+    if (said) {
+      let waited = 0;
+      const poll = () => {
+        if (gone) return;
+        if (voice.reading() && waited < 8e3) {
+          waited += 150;
+          later(poll, 150);
+        } else walk();
+      };
+      poll();
+    } else voice.speak(closing, walk, { nopark: true });
     fallback(walk, closing.reduce((a, l) => a + readMs(speakable(l)), 0) + 6e3);
   };
   const freePlay = () => {
@@ -3269,6 +3295,7 @@ function ToolFrame({ props, tool }) {
       setTries(0);
       setWrong(null);
       setStage("ask");
+      setCardReady(true);
       voice.speak(say(L.items[next]));
     } else phaseEnd();
   };
@@ -3310,6 +3337,7 @@ function ToolFrame({ props, tool }) {
         last: { item: L.i, it, value, kind: it.kind, answer: it.answer, shared: { ...shared.current } }
       };
       L.stage = "win";
+      closingSaid.current = false;
       setWrong(null);
       setStage("win");
       emit("question_done", { phase: L.n, item: L.i + 1, firstTry: L.tries === 0, conceptId: L.phase.conceptId });
@@ -3393,14 +3421,19 @@ function ToolFrame({ props, tool }) {
     const parts = live.current.item.parts;
     const fresh = !staleParts.current.length || staleParts.current.some((s) => !s);
     if (k === "enter" && parts.some((p) => p.free)) {
+      const shut = board && !wantRef.current && !captureRef.current && !alwaysOpen;
       if (ps[at] !== "" && at < np - 1) {
+        if (shut) return;
+        caretAt.current = Date.now();
         setPart(at + 1);
         return;
       }
+      if (ps[at] === "" && Date.now() - caretAt.current < 300) return;
       if (fresh && slotComplete(parts, ps)) {
         commit(ps.join("|"));
         return;
       }
+      if (shut) return;
       const half = parts.findIndex((p, j) => (p.at === "top" || p.at === "bottom") && ps[j] === "" && parts.some((q, i2) => i2 !== j && (q.at === "top" || q.at === "bottom") && ps[i2] !== ""));
       if (half >= 0) setPart(half);
       else if (at < np - 1) setPart(at + 1);
@@ -3464,6 +3497,7 @@ function ToolFrame({ props, tool }) {
     setWrong(null);
     lockNow(false);
     setRing(null);
+    setCardReady(true);
     setStage(at > 0 ? "ask" : "teach");
     setRun((r) => r + 1);
   };
@@ -3499,6 +3533,7 @@ function ToolFrame({ props, tool }) {
     lockNow(false);
     forgetActed();
     setStage("ask");
+    setCardReady(true);
     if (same) setWorkN((n2) => n2 + 1);
     voice.speak(say(live.current.items[a] || {}));
   };
@@ -3675,7 +3710,6 @@ function ToolFrame({ props, tool }) {
         parts: item.parts ? item.parts.map((p) => p.label) : null,
         part: partRef.current,
         padTo: captureRef.current ? "work" : "slot",
-        answered: answered.current,
         firstTry: firstTry.current,
         score: answered.current * POINTS,
         maxScore: items.length * POINTS,
@@ -3693,7 +3727,9 @@ function ToolFrame({ props, tool }) {
         hint: hintText || null,
         ...shared.current,
         /* the runtime owns `complete`: true once `finished` is sent. A tool's shared `complete` (the plan's
-           field, often "stage is idle") would say it at every phase end, now that the tool walks on */
+           field, often "stage is idle") would say it at every phase end, now that the tool walks on.
+           It owns `answered` the same way (a shared `answered` hid the runtime's count) */
+        answered: answered.current,
         complete: fired.current
       };
     },
@@ -3783,7 +3819,10 @@ function ToolFrame({ props, tool }) {
     setTyped,
     say: (lines, doneFn) => {
       const L = live.current;
-      if (KEYONLY && L && L.stage === "win" && L.items && L.i === L.items.length - 1 && L.phase && L.phase.closing) lines = L.phase.closing;
+      if (KEYONLY && !tool.lastWinFirst && L && L.stage === "win" && L.items && L.i === L.items.length - 1 && L.phase && L.phase.closing) {
+        lines = L.phase.closing;
+        closingSaid.current = true;
+      }
       return voice.speak(Array.isArray(lines) ? lines.map((l) => tx(l)) : tx(lines), doneFn, { nopark: true });
     },
     sfx,
@@ -3840,9 +3879,15 @@ function ToolFrame({ props, tool }) {
   return <div
     className="c4-frame"
     style={{ position: "relative", margin: "0 auto", touchAction: "none", userSelect: "none", WebkitUserSelect: "none" }}
-    onPointerDownCapture={markActed}
+    onPointerDownCapture={() => {
+      viaPtr.current = true;
+      markActed();
+    }}
     onKeyDownCapture={(e) => {
-      if (e.key !== "Tab" && e.key !== "Shift") markActed();
+      if (e.key !== "Tab" && e.key !== "Shift") {
+        viaPtr.current = false;
+        markActed();
+      }
     }}
   >
       <style>{fontKitCss(CSS)}</style>
@@ -3931,11 +3976,15 @@ function ToolFrame({ props, tool }) {
       onPart={pickPart}
       side={!!tool.sideBySide}
     />;
+    const padPress = (k) => {
+      if (viaPtr.current && answerOn === "card" && Date.now() - openedAt.current < 500) return;
+      press(k);
+    };
     const padEl = <Pad
       C={C}
       enabled={(stage === "ask" || stage === "free" && captured) && !locked}
       digitsOff={stage !== "free" && item.pad === "enter" && !captured}
-      onKey={press}
+      onKey={padPress}
       point={!!tool.pointKey}
       pointOff={stage !== "free" && !!item.parts && !captured}
       choices={stage === "free" || KEYONLY && cardAnswerOn && item.choices ? null : item.choices}
@@ -4135,7 +4184,7 @@ const TR = {
     "Only the number of pieces grows when the heaps meet.": "ढेर मिलने पर सिर्फ़ टुकड़ों की गिनती बढ़ती है।",
     "Yes, 7 elevenths.": "हाँ, 11 में से 7 भाग।",
     "same size": "वही आकार",
-    "Pieces keep size": "आकार वही रहता है",
+    "Same size": "वही आकार",
     "just a rule": "बस एक नियम",
     "Just a rule": "बस एक नियम है",
     "When we add elevenths, why does the eleven stay the same?": "जब हम 11 वाले भाग जोड़ते हैं, तो 11 वही क्यों रहता है?",
@@ -4215,8 +4264,16 @@ const TR = {
     "Every answer counted and then looked at again, which is where most of the work was.": "हर उत्तर गिना गया। फिर उसे दोबारा देखा गया, यही सबसे बड़ा काम था।",
     "What stays the same when two heaps of pieces are pushed together?": "जब दो ढेर टुकड़े एक साथ धकेले जाते हैं, तब क्या वही रहता है?",
     "Free play. Push, lift and tidy as many sums as you like.": "मुक्त खेल। जितने चाहो उतने सवाल धकेलो, उठाओ और सँवारो।",
+    "counted": "गिने हुए",
+    "Answer": "उत्तर",
+    "No whole": "पूर्ण नहीं",
+    "Not shared": "साझा नहीं",
+    "None left": "शेष नहीं",
+    "Tap the blinking Push together key.": "चमकती 'एक साथ धकेलो' कुंजी दबाओ।",
+    "Tap the blinking Lift away key.": "चमकती 'उठाओ' कुंजी दबाओ।",
+    "Tap the blinking Gather wholes key.": "चमकती 'पूर्ण इकट्ठे करो' कुंजी दबाओ।",
+    "Tap the blinking Reduce key.": "चमकती 'सरल करो' कुंजी दबाओ।",
     "Each piece": "हर टुकड़ा",
-    "pieces": "टुकड़े",
     "Taken away": "हटाए गए",
     "Push together": "एक साथ धकेलो",
     "Lift away": "उठाओ",
@@ -4224,13 +4281,7 @@ const TR = {
     "Reduce": "सरल करो",
     "New sum": "नया सवाल",
     "Gather": "इकट्ठा",
-    "All done": "सब हो गया",
-    "Top is": "ऊपर की संख्या",
-    "smaller": "छोटी है",
-    "Nothing": "कुछ भी",
-    "shared": "साझा नहीं",
-    "No pieces": "कोई टुकड़ा",
-    "left over": "नहीं बचा"
+    "All done": "सब हो गया"
   },
   gu: {
     "Adding the tops and nothing else": "ફક્ત ઉપરની સંખ્યાઓ ઉમેરવી",
@@ -4247,7 +4298,7 @@ const TR = {
     "Only the number of pieces grows when the heaps meet.": "ઢગલા ભેગા થાય ત્યારે ફક્ત ટુકડાઓની ગણતરી વધે છે.",
     "Yes, 7 elevenths.": "હા, 11માંથી 7 ભાગ.",
     "same size": "એ જ માપ",
-    "Pieces keep size": "માપ એ જ રહે છે",
+    "Same size": "એ જ માપ",
     "just a rule": "બસ એક નિયમ",
     "Just a rule": "બસ એક નિયમ છે",
     "When we add elevenths, why does the eleven stay the same?": "જ્યારે આપણે 11 વાળા ભાગ ઉમેરીએ, ત્યારે 11 એ જ કેમ રહે છે?",
@@ -4327,8 +4378,16 @@ const TR = {
     "Every answer counted and then looked at again, which is where most of the work was.": "દરેક જવાબ ગણ્યો. પછી તેને ફરી જોયો, એ જ સૌથી મોટું કામ હતું.",
     "What stays the same when two heaps of pieces are pushed together?": "જ્યારે ટુકડાઓના બે ઢગલા ભેગા ધકેલાય, ત્યારે શું એ જ રહે છે?",
     "Free play. Push, lift and tidy as many sums as you like.": "મુક્ત રમત. તમને ગમે તેટલા દાખલા ધકેલો, ઉપાડો અને સુઘડ કરો.",
+    "counted": "ગણેલા",
+    "Answer": "જવાબ",
+    "No whole": "આખું નથી",
+    "Not shared": "સહિયારું નથી",
+    "None left": "કંઈ બચ્યું નથી",
+    "Tap the blinking Push together key.": "ઝબકતી 'ભેગા ધકેલો' કી દબાવો.",
+    "Tap the blinking Lift away key.": "ઝબકતી 'ઉપાડો' કી દબાવો.",
+    "Tap the blinking Gather wholes key.": "ઝબકતી 'આખા ભેગા કરો' કી દબાવો.",
+    "Tap the blinking Reduce key.": "ઝબકતી 'સાદું કરો' કી દબાવો.",
     "Each piece": "દરેક ટુકડો",
-    "pieces": "ટુકડા",
     "Taken away": "કાઢેલા",
     "Push together": "ભેગા ધકેલો",
     "Lift away": "ઉપાડો",
@@ -4336,13 +4395,7 @@ const TR = {
     "Reduce": "સાદું કરો",
     "New sum": "નવો દાખલો",
     "Gather": "ભેગું",
-    "All done": "બધું પૂરું",
-    "Top is": "ઉપરની સંખ્યા",
-    "smaller": "નાની છે",
-    "Nothing": "કંઈ",
-    "shared": "સહિયારું નથી",
-    "No pieces": "કોઈ ટુકડો",
-    "left over": "બચ્યો નથી"
+    "All done": "બધું પૂરું"
   }
 };
 const PHASES = [
@@ -4397,7 +4450,7 @@ const PHASES = [
         b: 5,
         answer: "same size",
         winMs: 3200,
-        choices: [{ id: "same size", label: "Pieces keep size" }, { id: "just a rule", label: "Just a rule" }],
+        choices: [{ id: "same size", label: "Same size" }, { id: "just a rule", label: "Just a rule" }],
         say: "When we add elevenths, why does the eleven stay the same?",
         ask: "Why does the bottom stay?",
         miss: "Is any piece bigger than another once the heaps have met?",
@@ -4609,8 +4662,7 @@ const FREE_SUMS = [
   { kind: "add", d: 12, a: 7, b: 8 },
   { kind: "add", d: 5, a: 3, b: 2 }
 ];
-const LP_R = 78;
-const MODEL = { pieceRadius: LP_R, designWidth: 880, colours: { counted: "hundred", left: "ten", whole: "one", second: "bead" } };
+const MODEL = { pieceRadiusMax: 128, designWidth: 880, colours: { counted: "hundred", left: "ten", whole: "one", second: "bead" } };
 const lpGcd = (x, y) => y === 0 ? x : lpGcd(y, x % y);
 const lpPlan = (it) => {
   const d = it.d, take = it.kind === "take", top = take ? it.a - it.b : it.a + it.b, W2 = Math.floor(top / d), rem = top % d, f = rem ? lpGcd(rem, d) : 1;
@@ -4670,7 +4722,7 @@ const nearMiss = (item) => {
   return item.kind === "take" ? `${raw}|0` : `${raw}|${2 * item.d}`;
 };
 const answerForms = (item) => {
-  if (!item.parts) return ["Pieces keep size"];
+  if (!item.parts) return ["Same size"];
   const a = item.answer, w = a.length === 3 ? a[0] : null, n = a[a.length - 2], d = a[a.length - 1];
   const out = [];
   if (n && d) {
@@ -4684,29 +4736,22 @@ const HOOK = {};
 const solve = (item, T2) => T2.state().stage === "demo" ? HOOK.demo && HOOK.demo() : T2.submit(item.answer);
 const answer = () => void 0;
 const check = () => HOOK.check ? HOOK.check() : void 0;
-const LP_CSS = ".lp-mv{transition:transform 420ms cubic-bezier(.3,.7,.25,1)}.lp-fd{transition:opacity 420ms linear}.lp-mf{transition:transform 420ms cubic-bezier(.3,.7,.25,1),opacity 420ms linear}@keyframes lpb{50%{opacity:0}}.lp-caret{animation:lpb 1s steps(1) infinite}@keyframes lpr{50%{opacity:.12}}.lp-blink{animation:lpr .9s ease-in-out infinite}@media (prefers-reduced-motion:reduce){.lp-mv,.lp-fd,.lp-mf{transition:none}.lp-caret,.lp-blink{animation:none}}";
+const LP_CSS = ".lp-mv{transition:transform 420ms cubic-bezier(.3,.7,.25,1)}.lp-fd{transition:opacity 420ms linear}.lp-mf{transition:transform 420ms cubic-bezier(.3,.7,.25,1),opacity 420ms linear}@keyframes lpb{50%{opacity:0}}.lp-caret{animation:lpb 1s steps(1) infinite}@keyframes lpr{0%{opacity:1}50%{opacity:.1}}.lp-blink{animation:lpr .9s steps(1,end) infinite}@media (prefers-reduced-motion:reduce){.lp-mv,.lp-fd,.lp-mf{transition:none}.lp-caret,.lp-blink{animation:none}}";
 const LP_DW = 880;
-const LP_PY = 200;
-const LP_RA = 190, LP_RB = 296;
-const LP_CARD_Y = 292;
+const LP_MAXW = 895;
+const LP_CARD_Y = 312;
 const LP_KEY = { w: 300, h: 72, y: 436 };
+const LP_RAIL = { y: 316, w: 204, h: 108, gap: 6 };
 const LP_ACT_LABEL = { push: "Push together", lift: "Lift away", gather: "Gather wholes", reduce: "Reduce" };
-const LP_NAVY = shade(CONTENT.hundred, 0.25), LP_EDGE = "#020B14", LP_SOLID = mix("#E8B25C", shade(CONTENT.hundred, 0.25), 0.8), LP_MARK = shade(CONTENT.ten, 0.6), LP_HALO = "#FFF7E6";
+const LP_NAVY = shade(CONTENT.hundred, 0.25), LP_EDGE = "#020B14", LP_MARK = shade(CONTENT.ten, 0.6), LP_HALO = "#FFF7E6", LP_WASH = 0.5;
 const lpRad = (a) => a * Math.PI / 180;
 const lpPt = (cx, cy, r, a) => ({ x: cx + r * Math.sin(lpRad(a)), y: cy - r * Math.cos(lpRad(a)) });
 const lpWedgeD = (cx, cy, r, a0, a1) => {
   const p = lpPt(cx, cy, r, a0), q = lpPt(cx, cy, r, a1);
   return `M ${cx} ${cy} L ${p.x.toFixed(2)} ${p.y.toFixed(2)} A ${r} ${r} 0 ${a1 - a0 > 180 ? 1 : 0} 1 ${q.x.toFixed(2)} ${q.y.toFixed(2)} Z`;
 };
-const lpPw = (d) => 2 * LP_R * Math.sin(Math.PI / d);
 const lpSlotRot = (s, d) => ((s + 0.5) * 360 / d + 180) % 360 - 180;
-const lpPlates = (plan) => plan.W + (plan.rem > 0 ? 1 : 0) <= 1 ? [{ x: 710, y: LP_PY }] : [{ x: 632, y: LP_PY }, { x: 808, y: LP_PY }];
-const lpRow = (i, count, d, x0, zw, y) => {
-  const pw = lpPw(d), pitch = pw + 5, per = Math.max(1, Math.floor((zw + 5) / pitch)), r = Math.floor(i / per), rows = Math.ceil(count / per);
-  const inRow = r < rows - 1 ? per : count - per * (rows - 1);
-  return { x: Math.max(LP_R + 2, x0 + (zw - (inRow * pitch - 5)) / 2 + pw / 2 + i % per * pitch), y: y + r * (LP_R + 14) };
-};
-const lpFresh = (qk) => ({ qk, done: 0, m: 0, g: 0, sg: 0, rd: false, corr: false, ct: null, cnt: false, lit: false, tracing: false });
+const lpFresh = (qk) => ({ qk, done: 0, m: 0, land: 0, g: 0, sg: 0, rd: false, corr: false, cnt: false, lit: false, tracing: false });
 const lpMFull = (it, plan) => plan.tidy && !plan.take ? it.a + it.b : it.b;
 const lpSeams = (plan) => {
   const out = [];
@@ -4715,46 +4760,84 @@ const lpSeams = (plan) => {
   }
   return out;
 };
-const lpFinal = (it, plan) => ({ done: plan.acts.length, m: lpMFull(it, plan), g: plan.W > 0 ? 1 : 0, sg: lpSeams(plan).length, rd: plan.f > 1 });
-const lpPlace = (it, plan, S) => {
-  const d = it.d, out = [], pc = lpPlates(plan), N = plan.take ? it.a : it.a + it.b, k = it.a - it.b;
-  const inPlate = (i) => {
+const lpFinal = (it, plan) => ({ done: plan.acts.length, m: lpMFull(it, plan), land: lpMFull(it, plan), g: plan.W > 0 ? 1 : 0, sg: lpSeams(plan).length, rd: plan.f > 1 });
+const lpG = (it, plan, R) => {
+  const sparse = !plan.tidy, top = sparse ? 146 : 112, np = plan.W + (plan.rem > 0 ? 1 : 0), cy = top + R;
+  const pc = !plan.tidy ? [] : np <= 1 ? [{ x: LP_MAXW - Math.ceil(1.42 * R), y: cy }] : [{ x: LP_MAXW - 3 * R - 27, y: cy }, { x: LP_MAXW - R - 5, y: cy }];
+  const left = pc.length ? Math.min(...pc.map((c) => c.x - R)) : 0;
+  return { R, top, sparse, yA: top + R, yB: top + 2 * R + 16, pc, xMax: plan.tidy ? left - 14 : 628, ledge: sparse ? 240 : 190 };
+};
+const lpPw = (d, R) => 2 * R * Math.sin(Math.PI / d);
+const lpRow = (i, count, d, R, x0, xMax, y) => {
+  const pw = lpPw(d, R), pitch = pw + 5, per = Math.max(1, Math.floor((xMax - x0 + 5) / pitch)), r = Math.floor(i / per), rows = Math.ceil(count / per);
+  const inRow = r < rows - 1 ? per : count - per * (rows - 1), rowW = inRow * pitch - 5;
+  const left = Math.max(R - pw / 2, x0 + (xMax - x0 - rowW) / 2);
+  return { x: left + pw / 2 + i % per * pitch, y: y + r * (R + 14), over: count > per };
+};
+const lpPlace = (it, plan, S, G) => {
+  const d = it.d, R = G.R, out = [], N = plan.take ? it.a : it.a + it.b, k = it.a - it.b;
+  const slot = (i) => {
     const p = plan.take ? 0 : Math.floor(i / d), s = plan.take ? i : i % d, up = !!S.g && p < plan.W;
-    return { x: pc[p].x, y: pc[p].y - (up ? 14 : 0), rot: lpSlotRot(s, d), tone: "blue", line: false, skin: false };
+    return { x: G.pc[p].x, y: G.pc[p].y - (up ? 14 : 0), rot: lpSlotRot(s, d), q: p };
   };
-  const loose = (pos, extra) => ({ x: pos.x, y: pos.y, rot: 0, tone: "blue", line: true, skin: true, ...extra });
+  const loose = (pos, extra) => ({ x: pos.x, y: pos.y, rot: 0, counted: true, line: true, skin: true, over: pos.over, ...extra });
   for (let i = 0; i < N; i++) {
     if (!plan.take) {
-      if (plan.tidy) out.push(i < S.m ? inPlate(i) : loose(i < it.a ? lpRow(i, it.a, d, 56, 490, LP_RA) : lpRow(i - it.a, it.b, d, 56, 490, LP_RB)));
-      else if (i < it.a) out.push(loose(lpRow(i, it.a + S.m, d, 56, 600, LP_RA)));
-      else out.push(loose(i - it.a < S.m ? lpRow(i, it.a + S.m, d, 56, 600, LP_RA) : lpRow(i - it.a, it.b, d, 56, 600, LP_RB)));
+      const j = i - it.a, counted = i < it.a || (plan.tidy ? i < S.m : j < S.m);
+      if (plan.tidy) {
+        if (i < S.land) out.push({ fill: true, q: Math.floor(i / d), counted: true });
+        else if (i < S.m) out.push({ ...slot(i), counted: true, line: false, skin: true });
+        else out.push(loose(i < it.a ? lpRow(i, it.a, d, R, 4, G.xMax, G.yA) : lpRow(j, it.b, d, R, 4, G.xMax, G.yB), { counted }));
+      } else if (i < it.a) out.push(loose(lpRow(i, it.a + S.m, d, R, 4, G.xMax, G.yA)));
+      else out.push(loose(j < S.m ? lpRow(i, it.a + S.m, d, R, 4, G.xMax, G.yA) : lpRow(j, it.b, d, R, 4, G.xMax, G.yB), { counted }));
     } else {
       const j = i - k;
-      if (j >= 0 && j < S.m) out.push(loose(lpRow(j, it.b, d, 190, plan.tidy ? 330 : 410, LP_RB), { tone: "amber", mark: true }));
-      else if (plan.tidy) out.push(j >= 0 ? { ...inPlate(i), mark: true } : inPlate(i));
-      else out.push(loose(lpRow(i, it.a, d, 56, 600, LP_RA), j >= 0 ? { mark: true } : {}));
+      if (j >= 0 && j < S.m) out.push(loose(lpRow(j, it.b, d, R, G.ledge, G.xMax, G.yB), { counted: false, mark: true }));
+      else if (plan.tidy) out.push(j < 0 ? { fill: true, q: 0, counted: true } : { ...slot(i), counted: true, line: false, skin: true, mark: true });
+      else out.push(loose(lpRow(i, it.a, d, R, 4, G.xMax, G.yA), j >= 0 ? { mark: true } : {}));
     }
   }
   return out;
 };
-const lpDesc = (on, it, plan, ox) => {
-  const pc = lpPlates(plan);
+const lpFits = (it, plan, R, rail) => {
+  const G = lpG(it, plan, R), full = lpFinal(it, plan);
+  if (G.pc.length && G.pc[0].y + R > 312) return false;
+  for (const S of [{ m: 0, land: 0, g: 0 }, full]) {
+    for (const p of lpPlace(it, plan, S, G)) {
+      if (p.fill) continue;
+      const rb = p.rot ? 1.42 * R : R;
+      if (p.over || p.x - rb < 0 || p.x + rb > LP_MAXW || p.y + rb > 520) return false;
+      if (p.line && (p.x + lpPw(it.d, R) / 2 > G.xMax + 2 || p.y > (rail ? 308 : 430))) return false;
+    }
+  }
+  return true;
+};
+const lpPickR = (it, plan, rail) => {
+  for (let R = 128; R >= 60; R -= 2) if (lpFits(it, plan, R, rail)) return R;
+  return 60;
+};
+const lpDesc = (on, it, plan, ox, G) => {
   if (on === "push" || on === "lift") {
-    const pcs = lpPlace(it, plan, { m: 0, g: 0 });
+    const pcs = lpPlace(it, plan, { m: 0, land: 0, g: 0 }, G);
     const idx = [];
     const first = plan.take ? it.a - it.b : plan.tidy ? 0 : it.a, last = plan.take ? it.a : it.a + it.b;
     for (let i = first; i < last; i++) idx.push(i);
-    const at2 = idx.map((i) => ({ x: ox + pcs[i].x, y: pcs[i].y - 36 }));
+    const at2 = idx.map((i) => pcs[i].fill ? { x: ox + G.pc[0].x, y: G.pc[0].y } : { x: ox + pcs[i].x, y: pcs[i].y - G.R * 0.45 });
     return { tool: "hand", moves: "push", at: at2, from: { x: at2[0].x - 50, y: at2[0].y }, to: { x: at2[at2.length - 1].x + 50, y: at2[at2.length - 1].y }, n: at2.length };
   }
-  if (on === "gather") return { tool: "hand", moves: "tap", at: [{ x: ox + pc[0].x, y: pc[0].y }], n: 1 };
-  const pcx = pc[plan.W];
-  const at = lpSeams(plan).map((k) => lpPt(ox + pcx.x, pcx.y, LP_R * 0.58, k * 360 / plan.d));
+  if (on === "gather") return { tool: "hand", moves: "tap", at: [{ x: ox + G.pc[0].x, y: G.pc[0].y }], n: 1 };
+  const pcx = G.pc[plan.W];
+  const at = lpSeams(plan).map((k) => lpPt(ox + pcx.x, pcx.y, G.R * 0.58, k * 360 / plan.d));
   return { tool: "eraser", moves: "rub", at, n: at.length };
+};
+const lpLand = (put, n) => {
+  if (reducedMotion()) put({ land: n });
+  else setTimeout(() => put({ land: n }), 450);
 };
 const lpApply = (on, i, put, api) => {
   if (on === "push" || on === "lift") {
     put({ m: i + 1 });
+    if (on === "push") lpLand(put, i + 1);
     api.sfx.tick();
   } else if (on === "gather") {
     put({ g: 1 });
@@ -4766,8 +4849,10 @@ const lpApply = (on, i, put, api) => {
 };
 const lpEnd = (on, it, plan, put, api) => {
   const k = plan.acts.indexOf(on);
-  if (on === "push" || on === "lift") put({ m: lpMFull(it, plan), done: k + 1 });
-  else if (on === "gather") put({ g: 1, done: k + 1 });
+  if (on === "push" || on === "lift") {
+    put({ m: lpMFull(it, plan), done: k + 1 });
+    if (on === "push") lpLand(put, lpMFull(it, plan));
+  } else if (on === "gather") put({ g: 1, done: k + 1 });
   else put({ sg: lpSeams(plan).length, rd: true, done: k + 1 });
   api.sfx.settle();
 };
@@ -4779,46 +4864,54 @@ function LpFrac({ x, y, n, d, size, C }) {
       <text x={x} y={y + size * 1.12} textAnchor="middle" fontSize={size} fontWeight={700} fill={C.ink}>{d}</text>
     </g>;
 }
-function LpPiece({ d, x, y, rot, counted, line, mark, skin, C }) {
-  const th = 180 / d, path = lpWedgeD(0, 0, LP_R, -(th + (line ? 0 : 0.7)), th + (line ? 0 : 0.7)), exact = lpWedgeD(0, 0, LP_R, -th, th);
-  const cw = "url(#lp-w" + d + ")";
+function LpPiece({ d, R, x, y, rot, counted, line, mark, skin, C }) {
+  const th = 180 / d, path = lpWedgeD(0, 0, R, -th, th), cw = "url(#lp-w" + d + ")";
   return <g className="lp-mv" style={{ transform: `translate(${x}px,${y}px) rotate(${rot}deg)` }}>
       <path d={path} fill="#FBEFD2" />
-      {skin && <Skin name="disc" x={-LP_R} y={-LP_R} w={2 * LP_R} h={2 * LP_R} clip={"url(#" + (line ? "lp-w" : "lp-p") + d + ")"} />}
-      {counted && <path d={path} fill={LP_NAVY} fillOpacity={0.8} />}
-      {counted && !line && <path d={path} fill="none" stroke={LP_SOLID} strokeWidth={2.6} strokeLinejoin="round" />}
-      {counted && line && <path d={exact} fill="none" stroke={LP_EDGE} strokeWidth={6} clipPath={cw} />}
-      {line && <path d={exact} fill="none" stroke={C.ink} strokeWidth={3} strokeLinejoin="round" />}
-      {mark && <path d={exact} fill="none" stroke={counted ? LP_HALO : LP_MARK} strokeWidth={9} strokeDasharray="10 8" clipPath={cw} />}
+      {skin && <Skin name="disc" x={-R} y={-R} w={2 * R} h={2 * R} clip={cw} />}
+      {counted && <path d={path} fill={LP_NAVY} fillOpacity={LP_WASH} />}
+      {counted && <path d={path} fill="none" stroke={LP_EDGE} strokeWidth={6} clipPath={cw} />}
+      {line && <path d={path} fill="none" stroke={C.ink} strokeWidth={3} strokeLinejoin="round" />}
+      {mark && <path d={path} fill="none" stroke={counted ? LP_HALO : LP_MARK} strokeWidth={9} strokeDasharray="10 8" clipPath={cw} />}
     </g>;
 }
-function LpWhole({ cx, cy, on }) {
+function LpFill({ cx, cy, R, d, c, q, closed }) {
+  if (c <= 0) return null;
+  const sec = (props) => c >= d ? <circle r={R} {...props} /> : <path d={lpWedgeD(0, 0, R, 0, c * 360 / d)} {...props} />;
+  const cl = "url(#lp-u" + q + ")";
+  return <g className="lp-mv" style={{ transform: `translate(${cx}px,${cy - (closed ? 14 : 0)}px)` }}>
+      {sec({ fill: "#FBEFD2" })}
+      <Skin name="disc" x={-R} y={-R} w={2 * R} h={2 * R} clip={cl} />
+      {sec({ fill: LP_NAVY, fillOpacity: LP_WASH })}
+      {sec({ fill: "none", stroke: LP_EDGE, strokeWidth: 6, clipPath: cl })}
+    </g>;
+}
+function LpWhole({ cx, cy, R, on, C }) {
   return <g className="lp-mf" style={{ transform: `translate(${cx}px,${cy - (on ? 14 : 0)}px)`, opacity: on ? 1 : 0 }}>
-      <circle r={LP_R} fill="#FBEFD2" />
-      <Skin name="disc" x={-LP_R} y={-LP_R} w={2 * LP_R} h={2 * LP_R} clip="url(#lp-circ)" />
-      <circle r={LP_R} fill={LP_NAVY} fillOpacity={0.8} />
-      <circle r={LP_R - 3} fill="none" stroke={LP_EDGE} strokeWidth={6} />
+      <circle r={R} fill="#FBEFD2" />
+      <Skin name="disc" x={-R} y={-R} w={2 * R} h={2 * R} clip="url(#lp-circ)" />
+      <circle r={R - 1.5} fill="none" stroke={C.ink} strokeWidth={3} />
     </g>;
 }
-function LpPlate({ cx, cy, d, alive, closed, top, C }) {
+function LpPlate({ cx, cy, R, d, alive, closed, top, C }) {
   const ln = [];
   if (top) for (let k = 0; k < d; k++) {
-    const q = lpPt(0, 0, LP_R, k * 360 / d);
+    const q = lpPt(0, 0, R, k * 360 / d);
     ln.push(<g key={k} className="lp-fd" style={{ opacity: closed ? 0 : alive[k] ? 1 : 0 }}><line x1={0} y1={0} x2={q.x} y2={q.y} stroke={LP_HALO} strokeWidth={7} strokeLinecap="round" /><line x1={0} y1={0} x2={q.x} y2={q.y} stroke={C.ink} strokeWidth={3} strokeLinecap="round" /></g>);
   }
   return <g className="lp-mv" style={{ transform: `translate(${cx}px,${cy - (closed ? 14 : 0)}px)` }}>
-      {top ? <g>{ln}<circle className="lp-fd" r={LP_R + 7} fill="none" stroke={CONTENT.one} strokeWidth={8} style={{ opacity: closed ? 1 : 0 }} /></g> : <circle r={LP_R} fill={tint(CONTENT.ten, 0.84)} stroke={C.ink} strokeWidth={3} strokeDasharray={closed ? void 0 : "10 8"} />}
+      {top ? <g>{ln}<circle className="lp-fd" r={R + 7} fill="none" stroke={CONTENT.one} strokeWidth={8} style={{ opacity: closed ? 1 : 0 }} /></g> : <circle r={R} fill={tint(CONTENT.ten, 0.84)} stroke={C.ink} strokeWidth={3} strokeDasharray={closed ? void 0 : "10 8"} />}
     </g>;
 }
-function LpChip({ x, y, label, state, reason, C, tx }) {
-  const skip = state === "skip", ran = state === "ran";
+function LpChip({ x, y, label, state, reason, C, tx, lang }) {
+  const skip = state === "skip", ran = state === "ran", pitch = lang === "en" ? 40 : 51;
   return <g>
-      <rect x={x} y={y} width={200} height={100} rx={16} fill={ran ? tint(CONTENT.one, 0.8) : skip ? "#EFEBE3" : "#FFFFFF"} stroke={ran ? CONTENT.one : skip ? C.dim : C.rule} strokeWidth={3} />
-      <text x={x + 100} y={y + 32} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={skip ? "#5E6670" : C.ink}>{tx(label)}</text>
-      {skip && reason.map((r, j) => <text key={j} x={x + 100} y={y + 64 + j * 30} textAnchor="middle" fontSize={T.micro} fontWeight={500} fill="#5E6670">{tx(r)}</text>)}
+      <rect x={x} y={y} width={LP_RAIL.w} height={LP_RAIL.h} rx={16} fill={ran ? tint(C.accent, 0.82) : skip ? tint(C.panel, 0.55) : "#FFFFFF"} stroke={ran ? C.accent : C.rule} strokeWidth={ran ? 5 : 3} strokeDasharray={skip ? "10 8" : void 0} />
+      <text x={x + LP_RAIL.w / 2} y={y + 38} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink}>{tx(label)}</text>
+      {skip && reason ? <text x={x + LP_RAIL.w / 2} y={y + 38 + pitch} textAnchor="middle" fontSize={T.label} fontWeight={600} fill={C.ink}>{tx(reason)}</text> : null}
     </g>;
 }
-function LpCard({ x, y, np, vals, part, open, ready, api, C, tx }) {
+function LpCard({ x, y, np, vals, part, open, ready, waiting, onWait, api, C }) {
   const mixed = np === 3, cw = mixed ? 244 : 168, ch = 200;
   const cells = mixed ? [{ x: 16, y: 16, w: 84, h: 168 }, { x: 116, y: 16, w: 112, h: 76 }, { x: 116, y: 108, w: 112, h: 76 }] : [{ x: 16, y: 16, w: 136, h: 76 }, { x: 16, y: 108, w: 136, h: 76 }];
   const names = mixed ? ["Whole", "Top", "Bottom"] : ["Top", "Bottom"];
@@ -4830,8 +4923,8 @@ function LpCard({ x, y, np, vals, part, open, ready, api, C, tx }) {
     const on = open && part === j;
     return <g key={j}>
               <rect x={c.x} y={c.y} width={c.w} height={c.h} rx={14} fill="#FFFFFF" stroke={on ? C.accent : C.ink} strokeWidth={on ? 6 : 3} />
-              <text x={c.x + c.w / 2} y={c.y + c.h / 2 + 18} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>{vals[j]}</text>
-              {on && !vals[j] && <rect className="lp-caret" x={c.x + c.w / 2 - 2} y={c.y + c.h / 2 - 22} width={4} height={44} fill={C.accent} />}
+              <text x={c.x + c.w / 2} y={c.y + c.h / 2 + 24} textAnchor="middle" fontSize={T.display} fontWeight={700} fill={C.ink}>{vals[j]}</text>
+              {on && !vals[j] && <rect className="lp-caret" x={c.x + c.w / 2 - 2} y={c.y + c.h / 2 - 26} width={4} height={52} fill={C.accent} />}
             </g>;
   })}
         <line x1={bar[0]} x2={bar[1]} y1={100} y2={100} stroke={C.ink} strokeWidth={5} strokeLinecap="round" />
@@ -4839,6 +4932,17 @@ function LpCard({ x, y, np, vals, part, open, ready, api, C, tx }) {
       {open && cells.map((c, j) => <SlotPartBox key={j} id={"part-" + (j + 1)} label={names[j]} x={x + c.x} y={y + c.y} w={c.w} h={c.h} on={part === j} enabled={true} onPick={() => api.pickPart(j)} />)}
       {!open && ready && <SlotPartBox id="answer-open" label="Answer card" x={x} y={y} w={cw} h={ch} enabled={true} onPick={api.openAnswer} />}
       {!open && ready && <BlinkRing x={x} y={y} w={cw} h={ch} rx={22} C={C} />}
+      {!open && !ready && waiting && <SlotPartBox id="card-wait" label="Answer card" x={x} y={y} w={cw} h={ch} enabled={true} onPick={onWait} />}
+    </g>;
+}
+function LpAnswer({ x, w, h, sparse, ans, C, tx }) {
+  const wh = ans.length === 3 ? ans[0] : null, tp = ans[ans.length - 2], bt = ans[ans.length - 1];
+  const size = sparse ? 64 : 36, y0 = sparse ? 55 : 33, fx = x + w - 64;
+  return <g>
+      <rect x={x} y={0} width={w} height={h} rx={20} fill={tint(C.panel, 0.6)} stroke={C.accent} strokeWidth={4} />
+      <text x={x + 18} y={sparse ? 84 : 50} fontSize={sparse ? T.prompt : T.label} fontWeight={700} fill={C.ink}>{tx("Answer")}</text>
+      {wh !== null && wh !== void 0 ? <text x={tp === null || tp === void 0 ? fx : fx - 62} y={y0 + size * 0.6} textAnchor="middle" fontSize={size * 1.25} fontWeight={700} fill={C.ink}>{wh}</text> : null}
+      {tp !== null && tp !== void 0 ? <LpFrac x={fx} y={y0} n={tp} d={bt} size={size} C={C} /> : null}
     </g>;
 }
 function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, step, stepOn, box, answerOn, cardKind, part, lang = "en", tx = (v) => v }) {
@@ -4848,6 +4952,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
   const [fi, setFi] = useState(0);
   const it = free ? FREE_SUMS[fi % FREE_SUMS.length] : demo ? WARM[n - 1] : item;
   const plan = lpPlan(it);
+  const showRail = free || n === 4;
+  const R = lpPickR(it, plan, showRail), G = lpG(it, plan, R), sparse = G.sparse;
   const qk = free ? "f" + fi : demo ? "w" + n : n + "." + index;
   const qkRef = useRef(qk);
   qkRef.current = qk;
@@ -4859,28 +4965,42 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
   const isCard = !!item.parts && !free && !demo;
   const cur = plan.acts[S.done];
   const ready = !isCard || stage !== "ask" || !plan.tidy || index > 0 || S.done >= plan.acts.length;
+  const waiting = isCard && stage === "ask" && !ready && !!cur && !S.tracing;
   const busy = useRef(false);
   const [acting, setActing] = useState(false);
   const lastKey = useRef(0);
+  const lastNew = useRef(0);
+  const nudged = useRef(false);
   const actNow = async (on) => {
     if (S.tracing || busy.current || on !== plan.acts[S.done]) return;
     busy.current = true;
     setActing(true);
-    const dsc = lpDesc(on, it, plan, ox);
+    const dsc = lpDesc(on, it, plan, ox, G);
     const ok = await api.act({ tool: dsc.tool, moves: dsc.moves, at: dsc.at, from: dsc.from, to: dsc.to, ms: 1e3, onPoint: (i) => lpApply(on, i, put, api) });
     busy.current = false;
     setActing(false);
     if (!ok) return;
     lpEnd(on, it, plan, put, api);
     if (stage === "demo") api.did(on);
+    else if (nudged.current && stage === "ask") {
+      nudged.current = false;
+      api.say(item.say);
+    }
   };
   const pressKey = (on) => {
     const t = Date.now();
-    if (t - lastKey.current < 400) return;
+    if (t - lastKey.current < 400 || t - lastNew.current < 500) return;
     lastKey.current = t;
     actNow(on);
   };
-  api.onEnter(demo && stepOn ? () => actNow(stepOn) : null);
+  const nudge = () => {
+    if (cur === "push") api.say("Tap the blinking Push together key.");
+    else if (cur === "lift") api.say("Tap the blinking Lift away key.");
+    else if (cur === "gather") api.say("Tap the blinking Gather wholes key.");
+    else if (cur === "reduce") api.say("Tap the blinking Reduce key.");
+    nudged.current = true;
+  };
+  api.onEnter(demo && stepOn ? () => actNow(stepOn) : waiting ? () => actNow(cur) : null);
   HOOK.demo = () => {
     if (stepOn) actNow(stepOn);
   };
@@ -4888,9 +5008,21 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     if (isCard && !ready) {
       put(lpFinal(it, plan));
       api.cardReady(true);
+      api.onEnter(null);
     }
     return void 0;
   } : null;
+  useEffect(() => {
+    if (!S.done || !cur) return;
+    const t = setTimeout(() => {
+      const ae = document.activeElement, id = ae && ae.getAttribute ? ae.getAttribute("data-control") : null;
+      if (!ae || ae === document.body || id === "push" || id === "lift" || id === "gather" || id === "reduce") {
+        const el = document.querySelector('[data-control="' + cur + '"]');
+        if (el && el.focus) el.focus();
+      }
+    }, 80);
+    return () => clearTimeout(t);
+  }, [S.done, qk]);
   useEffect(() => {
     if (!wrong || stage !== "ask") return;
     api.lock(true);
@@ -4898,11 +5030,11 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     const steps = [[700, () => {
     }]];
     plan.acts.forEach((on) => {
-      const dsc = lpDesc(on, it, plan, ox), dt = Math.max(70, Math.round(1e3 / Math.max(1, dsc.n)));
+      const dsc = lpDesc(on, it, plan, ox, G), dt = Math.max(70, Math.round(1e3 / Math.max(1, dsc.n)));
       for (let i = 0; i < dsc.n; i++) steps.push([dt, () => lpApply(on, i, put, api)]);
       steps.push([700, () => lpEnd(on, it, plan, put, api)]);
     });
-    steps.push([300, () => put({ corr: true, ct: typed, tracing: false, lit: false })]);
+    steps.push([300, () => put({ corr: true, tracing: false, lit: false })]);
     tl.run(steps, () => api.lock(false));
   }, [wrong]);
   useEffect(() => () => {
@@ -4917,56 +5049,65 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     else api.cardReady(true);
   }, [qk, ready, answerOn, stage]);
   api.share({ pieceSize: it.d, first: it.a, second: it.b, operation: plan.take ? "take" : "add", tidied: S.rd, complete: stage === "idle" });
-  const pcs = lpPlace(it, plan, S), pc = lpPlates(plan), np = plan.W + (plan.rem > 0 ? 1 : 0);
+  const pcs = lpPlace(it, plan, S, G), pc = G.pc;
+  const fills = pc.map(() => 0);
+  pcs.forEach((p) => {
+    if (p.fill) fills[p.q] += 1;
+  });
   const seams = lpSeams(plan);
   const showCount = S.cnt || stage !== "ask";
-  const count = plan.take ? it.a - S.m : plan.tidy ? Math.max(S.m, it.a) : it.a + S.m;
-  const showRail = free || n === 4;
-  const joined = S.done >= 1, gDone = !plan.W || S.g, rDone = plan.f <= 1 || S.rd;
+  const count = plan.take ? it.a - S.m : plan.tidy ? Math.max(S.m, it.a) - (S.g ? plan.W * it.d : 0) : it.a + S.m;
+  const joined = S.done >= 1, gDone = !plan.W || S.g;
   const rail = [
-    { label: "Gather", state: plan.W ? S.g ? "ran" : "wait" : joined ? "skip" : "wait", reason: ["Top is", "smaller"] },
-    { label: "Reduce", state: plan.f > 1 ? S.rd ? "ran" : "wait" : joined && gDone ? "skip" : "wait", reason: plan.rem ? ["Nothing", "shared"] : ["No pieces", "left over"] },
-    { label: "All done", state: S.done >= plan.acts.length && joined ? "ran" : "wait", reason: [] }
+    { label: "Gather", state: plan.W ? S.g ? "ran" : "wait" : joined ? "skip" : "wait", reason: "No whole" },
+    { label: "Reduce", state: plan.f > 1 ? S.rd ? "ran" : "wait" : joined && gDone ? "skip" : "wait", reason: plan.rem ? "Not shared" : "None left" },
+    { label: "All done", state: S.done >= plan.acts.length && joined ? "ran" : "wait", reason: "" }
   ];
-  const keyX = free ? cur ? 165 : 325 : (LP_DW - LP_KEY.w) / 2 - 150 + 150;
+  const keyX = free ? cur ? 165 : 325 : 290;
   const np3 = item.parts ? item.parts.length : 2;
-  const tv = slotPartsOf(typed, np3);
-  const vals = S.corr && typed === S.ct && Array.isArray(item.answer) ? item.answer.map((x) => x === null || x === void 0 ? "" : String(x)) : tv;
+  const vals = slotPartsOf(typed, np3);
   const showCard = isCard && (stage === "ask" || stage === "win" || stage === "idle");
   const cardW = np3 === 3 ? 244 : 168;
+  const bh = sparse ? 136 : 100, bwid = sparse ? 380 : 320, cntX = bwid + 24;
+  const showAns = isCard && S.corr && stage === "ask" && Array.isArray(item.answer);
   return <g>
       <style>{LP_CSS}</style>
       <defs>
-        <clipPath id={"lp-w" + it.d}><path d={lpWedgeD(0, 0, LP_R, -180 / it.d, 180 / it.d)} /></clipPath>
-        <clipPath id={"lp-p" + it.d}><path d={lpWedgeD(0, 0, LP_R, -180 / it.d - 0.7, 180 / it.d + 0.7)} /></clipPath>
-        <clipPath id="lp-circ"><circle r={LP_R} /></clipPath>
+        <clipPath id={"lp-w" + it.d}><path d={lpWedgeD(0, 0, R, -180 / it.d, 180 / it.d)} /></clipPath>
+        <clipPath id="lp-circ"><circle r={R} /></clipPath>
+        {pc.map((c, q) => <clipPath key={"u" + q} id={"lp-u" + q}>{fills[q] >= it.d ? <circle r={R} /> : <path d={lpWedgeD(0, 0, R, 0, Math.max(fills[q], 0) * 360 / it.d)} />}</clipPath>)}
       </defs>
       <g transform={`translate(${ox},0)`}>
-        <rect x={0} y={0} width={320} height={100} rx={20} fill={tint(C.panel, 0.6)} stroke={S.lit ? C.accent : C.rule} strokeWidth={S.lit ? 7 : 3} />
-        <text x={20} y={60} fontSize={T.label} fontWeight={700} fill={C.ink}>{tx("Each piece")}</text>
-        <LpFrac x={262} y={42} n={1} d={it.d} size={44} C={C} />
-        {showCount && <g><text x={350} y={56} fontSize={T.xl} fontWeight={700} fill={C.ink}>{count}</text><text x={350} y={94} fontSize={T.label} fontWeight={600} fill={C.ink}>{tx("pieces")}</text></g>}
-        {plan.take && <text x={0} y={LP_RB - 30} fontSize={T.label} fontWeight={700} fill={C.ink}>{tx("Taken away")}</text>}
-        {plan.tidy && pc.map((c, q) => <LpPlate key={qk + "b" + q} cx={c.x} cy={c.y} d={it.d} closed={!!S.g && q < plan.W} top={false} C={C} />)}
-        {pcs.map((p, i) => <LpPiece key={qk + ":" + i} d={it.d} x={p.x} y={p.y} rot={p.rot} counted={p.tone !== "amber"} line={p.line} mark={p.mark} skin={p.skin} C={C} />)}
-        {plan.tidy && plan.W > 0 && pc.slice(0, plan.W).map((c, q) => <LpWhole key={qk + "w" + q} cx={c.x} cy={c.y} on={!!S.g} />)}
+        <rect x={0} y={0} width={bwid} height={bh} rx={20} fill={tint(C.panel, 0.6)} stroke={S.lit ? C.accent : C.rule} strokeWidth={S.lit ? 7 : 3} />
+        <text x={20} y={sparse ? 82 : 60} fontSize={sparse ? T.prompt : T.label} fontWeight={700} fill={C.ink}>{tx("Each piece")}</text>
+        <LpFrac x={sparse ? 318 : 262} y={sparse ? 60 : 42} n={1} d={it.d} size={sparse ? 64 : 44} C={C} />
+        {showCount && <g><text x={cntX} y={sparse ? 66 : 56} fontSize={sparse ? T.display : T.xl} fontWeight={700} fill={C.ink}>{count}</text><text x={cntX} y={sparse ? 118 : 94} fontSize={T.label} fontWeight={600} fill={C.ink}>{tx("counted")}</text></g>}
+        {showAns && <LpAnswer x={sparse ? 580 : 540} w={sparse ? 300 : 340} h={sparse ? bh : 80} sparse={sparse} ans={item.answer} C={C} tx={tx} />}
+        {plan.take && <text x={0} y={G.yB - R * 0.45 + 12} fontSize={sparse ? T.prompt : T.label} fontWeight={700} fill={C.ink}>{tx("Taken away")}</text>}
+        {plan.tidy && pc.map((c, q) => <LpPlate key={qk + "b" + q} cx={c.x} cy={c.y} R={R} d={it.d} closed={!!S.g && q < plan.W} top={false} C={C} />)}
+        {plan.tidy && pc.map((c, q) => <LpFill key={qk + "f" + q} cx={c.x} cy={c.y} R={R} d={it.d} c={fills[q]} q={q} closed={!!S.g && q < plan.W} />)}
+        {pcs.map((p, i) => p.fill ? null : <LpPiece key={qk + ":" + i} d={it.d} R={R} x={p.x} y={p.y} rot={p.rot} counted={p.counted} line={p.line} mark={p.mark} skin={p.skin} C={C} />)}
+        {plan.tidy && plan.W > 0 && pc.slice(0, plan.W).map((c, q) => <LpWhole key={qk + "w" + q} cx={c.x} cy={c.y} R={R} on={!!S.g} C={C} />)}
         {plan.tidy && pc.map((c, q) => {
     const alive = [];
     for (let k = 0; k < it.d; k++) {
       const si = q === plan.W ? seams.indexOf(k) : -1;
       alive.push(!(si >= 0 && si < S.sg));
     }
-    return <LpPlate key={qk + "t" + q} cx={c.x} cy={c.y} d={it.d} alive={alive} closed={!!S.g && q < plan.W} top={true} C={C} />;
+    return <LpPlate key={qk + "t" + q} cx={c.x} cy={c.y} R={R} d={it.d} alive={alive} closed={!!S.g && q < plan.W} top={true} C={C} />;
   })}
-        {showRail && rail.map((r, j) => <LpChip key={j} x={j * 210} y={322} label={r.label} state={r.state} reason={r.reason} C={C} tx={tx} />)}
-        {showCard && <LpCard x={LP_DW - cardW} y={LP_CARD_Y} np={np3} vals={vals} part={part} open={!!(box && box.open)} ready={stage === "ask" && answerOn === "card" && ready} api={api} C={C} tx={tx} />}
+        {showRail && rail.map((r, j) => <LpChip key={j} x={j * (LP_RAIL.w + LP_RAIL.gap)} y={LP_RAIL.y} label={r.label} state={r.state} reason={r.reason} C={C} tx={tx} lang={lang} />)}
+        {showCard && <LpCard x={LP_DW - cardW} y={LP_CARD_Y} np={np3} vals={vals} part={part} open={!!(box && box.open)} ready={stage === "ask" && answerOn === "card" && ready} waiting={waiting} onWait={nudge} api={api} C={C} />}
         {cur && !S.tracing && (demo || stage === "ask" || free) && <Key id={cur} x={keyX} y={LP_KEY.y} w={LP_KEY.w} h={LP_KEY.h} C={C} tone="key" label={LP_ACT_LABEL[cur]} onClick={() => pressKey(cur)}>
             <text y={11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={toneInk("key", C.ink)}>{tx(LP_ACT_LABEL[cur])}</text>
           </Key>}
-        {isCard && !ready && stage === "ask" && cur && !S.tracing && !acting && <rect className="lp-blink" x={keyX - 5} y={LP_KEY.y - 5} width={LP_KEY.w + 10} height={LP_KEY.h + EDGE + 10} rx={RAD.key + 5} fill="none" strokeWidth={5} stroke={THEME && THEME.enter && THEME.enter[1] || C.accent} pointerEvents="none" />}
+        {waiting && !acting && !(box && box.open) && <rect className="lp-blink" x={keyX - 5} y={LP_KEY.y - 5} width={LP_KEY.w + 10} height={LP_KEY.h + EDGE + 10} rx={RAD.key + 5} fill="none" strokeWidth={5} stroke={THEME && THEME.enter && THEME.enter[1] || C.accent} pointerEvents="none" />}
         {demo && stepOn && stepOn === cur && <Invite x={keyX + LP_KEY.w / 2} y={LP_KEY.y + LP_KEY.h / 2} w={LP_KEY.w} h={LP_KEY.h} C={C} />}
-        {free && <Key id="new-sum" x={cur ? 485 : 325} y={LP_KEY.y} w={230} h={LP_KEY.h} C={C} tone="soft" label="New sum" onClick={() => {
-    if (!S.tracing && !busy.current) setFi(fi + 1);
+        {free && <Key id="new-sum" x={485} y={LP_KEY.y} w={230} h={LP_KEY.h} C={C} tone="soft" label="New sum" onClick={() => {
+    if (!S.tracing && !busy.current) {
+      lastNew.current = Date.now();
+      setFi(fi + 1);
+    }
   }}>
             <text y={11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={toneInk("soft", C.ink)}>{tx("New sum")}</text>
           </Key>}
@@ -4978,18 +5119,24 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v) => v }) {
   if (!last) return null;
   const item = it || last.it;
   const th = 180 / 8, path = lpWedgeD(0, 0, 40, -th, th);
-  const icon = [0, 1].map((k) => <g key={k} transform={`translate(${46 + k * 54},${h / 2 + 24})`}><path d={path} fill="#FBEFD2" /><path d={path} fill={LP_NAVY} fillOpacity={0.8} /><path d={path} fill="none" stroke={C.ink} strokeWidth={2.5} strokeLinejoin="round" /></g>);
+  const slice = (x, y, k, counted) => <g key={k} transform={`translate(${x},${y})`}><path d={path} fill="#FBEFD2" />{counted ? <path d={path} fill={LP_NAVY} fillOpacity={LP_WASH} /> : null}<path d={path} fill="none" stroke={C.ink} strokeWidth={2.5} strokeLinejoin="round" /></g>;
   let body = null;
   if (item && item.parts) {
-    const np = item.parts.length, v = slotPartsOf(last.value, np), whole = np === 3 ? v[0] : "", top = v[np - 2], bot = v[np - 1], cx = w - 70;
+    const np = item.parts.length, v = slotPartsOf(last.value, np), whole = np === 3 ? v[0] : "", top = v[np - 2], bot = v[np - 1], cx = w - 70, hasFrac = !!(top || bot);
     body = <g>
-        {whole ? <text x={cx - 62} y={h / 2 + 14} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={C.ink}>{whole}</text> : null}
-        {top || bot ? <LpFrac x={cx} y={h / 2 - 6} n={top} d={bot} size={36} C={C} /> : null}
+        {whole ? <text x={hasFrac ? cx - 62 : cx} y={h / 2 + 14} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={C.ink}>{whole}</text> : null}
+        {hasFrac ? <LpFrac x={cx} y={h / 2 - 6} n={top} d={bot} size={36} C={C} /> : null}
+        {slice(46, h / 2 + 24, 0, true)}{slice(100, h / 2 + 24, 1, true)}
+      </g>;
+  } else {
+    body = <g>
+        {slice(w / 2 - 60, h / 2 + 24, 0, true)}{slice(w / 2 + 60, h / 2 + 24, 1, true)}
+        <line x1={w / 2 - 16} x2={w / 2 + 16} y1={h / 2 - 5} y2={h / 2 - 5} stroke={C.ink} strokeWidth={5} strokeLinecap="round" />
+        <line x1={w / 2 - 16} x2={w / 2 + 16} y1={h / 2 + 9} y2={h / 2 + 9} stroke={C.ink} strokeWidth={5} strokeLinecap="round" />
       </g>;
   }
   return <g>
       <rect x={0} y={0} width={w} height={h} rx={14} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={1.5} />
-      {icon}
       {body}
     </g>;
 }

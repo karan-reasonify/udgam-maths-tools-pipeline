@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M2.S3.T6.C25.2D1 · overlap_rings · Overlap Rings — standalone build 2026-10-19, source ec2717a3:643180.
+/* M2.S3.T6.C25.2D1 · overlap_rings · Overlap Rings — standalone build 2026-10-20, source 3605187f:647323.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -4134,14 +4134,14 @@ const TR = {
     "One more number appears in both rings.": "एक और संख्या दोनों घेरों में आई है।",
     "A common factor must divide the first number and the second number.": "सार्व गुणनखंड पहली और दूसरी, दोनों संख्याओं को भाग देता है।",
     "Lift only the numbers written in both rings and leave the others.": "सिर्फ़ दोनों घेरों में लिखी संख्याएँ बीच में लाओ, बाकी छोड़ दो।",
-    "A common factor divides both numbers, and 1 goes into every number.": "सार्व गुणनखंड दोनों संख्याओं को भाग देता है, और 1 हर संख्या को भाग देता है।",
+    "A common factor divides both numbers, and 1 goes into every number.": "सार्व गुणनखंड दोनों संख्याओं को भाग देता है; 1 सबको भाग देता है।",
     "You learned: a common factor divides both numbers.": "तुमने सीखा: सार्व गुणनखंड दोनों संख्याओं को भाग देता है।",
     "Lift the numbers that are factors of both 42 and 70 into the middle.": "42 और 70, दोनों के गुणनखंड बीच में लाओ।",
     "Factors of both 42 and 70?": "42 और 70 दोनों के गुणनखंड?",
-    "Test each card in the middle: does it go into 42 and into 70 exactly?": "बीच के हर कार्ड को जाँचो: क्या वह 42 और 70 को पूरा भाग देता है?",
+    "Test a card from the rings: does it go into 42 and into 70 exactly?": "घेरों में से एक कार्ड जाँचो: क्या वह 42 और 70 को पूरा भाग देता है?",
     "Lift the common factors of 20 and 34 into the middle.": "20 और 34 के सार्व गुणनखंड बीच में लाओ।",
     "Factors of both 20 and 34?": "20 और 34 दोनों के गुणनखंड?",
-    "Did every card in the middle go into 20 and into 34?": "क्या बीच का हर कार्ड 20 और 34 को भाग देता है?",
+    "Test a card from the rings: does it go into 20 and into 34 exactly?": "घेरों में से एक कार्ड जाँचो: क्या वह 20 और 34 को पूरा भाग देता है?",
     "Change the numbers, then lift the card that is always in both rings.": "संख्याएँ बदलो, फिर वह कार्ड बीच में लाओ जो हमेशा दोनों घेरों में होता है।",
     "In both rings, every time?": "हर बार दोनों घेरों में?",
     "Which card goes into every number exactly, whatever the number is?": "कौन सा कार्ड हर संख्या को पूरा भाग देता है, संख्या चाहे जो हो?",
@@ -4201,13 +4201,13 @@ const TR = {
     "Tap the Write it key at the bottom.": "नीचे वाले लिखो बटन पर टैप करो।",
     "What does anything left on the shelf say about these two numbers?": "शेल्फ़ पर कुछ भी बचे, तो वह इन दो संख्याओं के बारे में क्या बताता है?",
     "With nothing on the shelf the bigger is a multiple; otherwise it is not.": "शेल्फ़ खाली हो तो बड़ी संख्या गुणज है, नहीं तो नहीं।",
-    "A remainder says the bigger is not a multiple and the smaller is not a factor.": "शेषफल बताता है कि बड़ी संख्या गुणज नहीं और छोटी संख्या गुणनखंड नहीं है।",
+    "A remainder says the bigger is not a multiple and the smaller is not a factor.": "शेषफल कहता है: बड़ी संख्या गुणज नहीं, छोटी संख्या गुणनखंड नहीं।",
     "You learned: a remainder rules out the multiple and the factor.": "तुमने सीखा: शेषफल गुणज और गुणनखंड को ग़लत साबित करता है।",
     "Divide 74 by 9 and see what the leftover tells you.": "74 को 9 से भाग दो और देखो बचा हुआ क्या बताता है।",
     "What does the leftover of 74 ÷ 9 say?": "74 ÷ 9 का बचा हुआ क्या कहता है?",
     "A leftover settles more than the multiple question: what else does it settle?": "बचा हुआ सिर्फ़ गुणज का सवाल हल नहीं करता: वह और क्या तय करता है?",
-    "74 isn't a multiple of 9": "74, 9 का गुणज नहीं",
-    "9 isn't a factor of 74": "9, 74 का गुणनखंड नहीं",
+    "not a multiple of 9": "9 का गुणज नहीं",
+    "not a factor of 74": "74 का गुणनखंड नहीं",
     "both of these": "ये दोनों",
     "Divide 135 by 8, then give the quotient and the remainder.": "135 को 8 से भाग दो, फिर भागफल और शेषफल लिखो।",
     "135 ÷ 8: quotient and remainder?": "135 ÷ 8: भागफल और शेषफल?",
@@ -4226,7 +4226,7 @@ const TR = {
     "Nothing is left over, so 112 is a multiple of 8.": "कुछ नहीं बचा, इसलिए 112, 8 का गुणज है।",
     "Nine full rows and an empty shelf show that 45 is a multiple of 5.": "नौ पूरी पंक्तियाँ और खाली शेल्फ़ बताते हैं कि 45, 5 का गुणज है।",
     "An empty shelf shows that 7 goes into 126 with nothing over.": "खाली शेल्फ़ बताता है कि 7, 126 को पूरा भाग देता है।",
-    "74 is not a multiple of 9, and 9 is not a factor of 74.": "74, 9 का गुणज नहीं है, और 9, 74 का गुणनखंड नहीं है।",
+    "74 is no multiple of 9, and 9 is no factor of 74.": "74, 9 का गुणज नहीं है, और 9, 74 का गुणनखंड नहीं है।",
     "Seven counters stay on the shelf, so 8 does not divide 135 exactly.": "शेल्फ़ पर सात गोटियाँ बचीं, इसलिए 8 से 135 पूरा भाग नहीं होता।",
     "57 is not a multiple of 4, so you may not land on it.": "57, 4 का गुणज नहीं है, इसलिए तुम वहाँ नहीं रुक सकते।",
     "Tap Change first, then lift the card in both rings.": "पहले बदलो पर टैप करो, फिर दोनों घेरों वाला कार्ड बीच में लाओ।",
@@ -4252,7 +4252,6 @@ const TR = {
     "Multiples": "गुणज",
     "Factors": "गुणनखंड",
     "Divide": "भाग दो",
-    "Go back": "पीछे जाओ",
     "Run on": "आगे चलाओ",
     "Count": "गिनो",
     "Write it": "लिखो",
@@ -4266,7 +4265,7 @@ const TR = {
   },
   gu: {
     "Overlap Rings": "સહિયારાં વર્તુળ",
-    "Free play: change numbers, switch factors and multiples, and divide.": "મુક્ત રમત: સંખ્યાઓ બદલો, અવયવ અને અવયવી બદલો, અને ભાગો.",
+    "Free play: change numbers, switch factors and multiples, and divide.": "મુક્ત રમત: સંખ્યાઓ બદલો, અવયવ અને ગુણિત બદલો, અને ભાગો.",
     "What can stand in both rings at once?": "બંને વર્તુળમાં એકસાથે શું આવી શકે?",
     "Numbers that divide both": "બંનેને ભાગતી સંખ્યાઓ",
     "Tap Fill to write the factors of 6 and of 9 in the rings.": "6 અને 9 ના અવયવ વર્તુળમાં લખવા ભરો પર ટૅપ કરો.",
@@ -4281,10 +4280,10 @@ const TR = {
     "You learned: a common factor divides both numbers.": "તમે શીખ્યા: સામાન્ય અવયવ બંને સંખ્યાને ભાગે છે.",
     "Lift the numbers that are factors of both 42 and 70 into the middle.": "42 અને 70, બંનેના અવયવ વચ્ચે લાવો.",
     "Factors of both 42 and 70?": "42 અને 70 બંનેના અવયવ?",
-    "Test each card in the middle: does it go into 42 and into 70 exactly?": "વચ્ચેના દરેક કાર્ડને તપાસો: શું તે 42 અને 70 ને પૂરેપૂરું ભાગે છે?",
+    "Test a card from the rings: does it go into 42 and into 70 exactly?": "વર્તુળમાંથી એક કાર્ડ તપાસો: શું તે 42 અને 70 ને પૂરેપૂરું ભાગે છે?",
     "Lift the common factors of 20 and 34 into the middle.": "20 અને 34 ના સામાન્ય અવયવ વચ્ચે લાવો.",
     "Factors of both 20 and 34?": "20 અને 34 બંનેના અવયવ?",
-    "Did every card in the middle go into 20 and into 34?": "શું વચ્ચેનું દરેક કાર્ડ 20 અને 34 ને ભાગે છે?",
+    "Test a card from the rings: does it go into 20 and into 34 exactly?": "વર્તુળમાંથી એક કાર્ડ તપાસો: શું તે 20 અને 34 ને પૂરેપૂરું ભાગે છે?",
     "Change the numbers, then lift the card that is always in both rings.": "સંખ્યાઓ બદલો, પછી એ કાર્ડ વચ્ચે લાવો જે હંમેશાં બંને વર્તુળમાં હોય છે.",
     "In both rings, every time?": "દર વખતે બંને વર્તુળમાં?",
     "Which card goes into every number exactly, whatever the number is?": "કયું કાર્ડ દરેક સંખ્યાને પૂરેપૂરું ભાગે છે, સંખ્યા ગમે તે હોય?",
@@ -4299,9 +4298,9 @@ const TR = {
     "The next meeting is further along the tracks.": "પછીનું મિલન પાટા પર હજી આગળ છે.",
     "Take one more step on each track and see if both land together.": "દરેક પાટા પર એક પગલું વધુ ભરો, જુઓ બંને સાથે પહોંચે છે કે નહીં.",
     "A meeting is a number that both tracks land on.": "મિલન એ સંખ્યા છે જેના પર બંને પાટા પહોંચે છે.",
-    "Common multiples never run out, but common factors always do.": "સામાન્ય અવયવી ક્યારેય ખૂટતા નથી, પણ સામાન્ય અવયવ ખૂટી જાય છે.",
-    "You learned: common multiples never run out.": "તમે શીખ્યા: સામાન્ય અવયવી ક્યારેય ખૂટતા નથી.",
-    "The multiples of 4 and 6 meet at 12, 24 and 36, so tap the next three meetings.": "4 અને 6 ના અવયવી 12, 24 અને 36 પર મળે છે, પછીનાં ત્રણ મિલન પસંદ કરો.",
+    "Common multiples never run out, but common factors always do.": "સામાન્ય ગુણિત ક્યારેય ખૂટતા નથી, પણ સામાન્ય અવયવ ખૂટી જાય છે.",
+    "You learned: common multiples never run out.": "તમે શીખ્યા: સામાન્ય ગુણિત ક્યારેય ખૂટતા નથી.",
+    "The multiples of 4 and 6 meet at 12, 24 and 36, so tap the next three meetings.": "4 અને 6 ના ગુણિત 12, 24 અને 36 પર મળે છે, પછીનાં ત્રણ મિલન પસંદ કરો.",
     "The next three meetings?": "પછીનાં ત્રણ મિલન?",
     "Run the tracks on past 36: which numbers have a flag on each track?": "પાટાને 36 પછી ચલાવો: કઈ સંખ્યાનો ઝંડો બંને પર છે?",
     "Tap the first four numbers where the tracks of 4 and 10 meet.": "જ્યાં 4 અને 10 ના પાટા મળે એવી પહેલી ચાર સંખ્યા પસંદ કરો.",
@@ -4309,7 +4308,7 @@ const TR = {
     "Does each number in the band have a flag on the 4 track and on the 10 track?": "શું પટ્ટીની દરેક સંખ્યાનો ઝંડો 4 અને 10 બંને પાટા પર છે?",
     "Do the common factors of 4 and 10 end, or go on for ever?": "શું 4 અને 10 ના સામાન્ય અવયવ ખૂટે છે, કે હંમેશાં ચાલે છે?",
     "Common factors of 4 and 10?": "4 અને 10 ના સામાન્ય અવયવ?",
-    "Think about how a list of factors differs from a list of multiples.": "વિચારો, અવયવની યાદી અવયવીની યાદીથી કેવી રીતે અલગ છે.",
+    "Think about how a list of factors differs from a list of multiples.": "વિચારો, અવયવની યાદી ગુણિતની યાદીથી કેવી રીતે અલગ છે.",
     "List the factors of 4 and the factors of 10: where does each list end?": "4 અને 10 ના અવયવ લખો: દરેક યાદી ક્યાં પૂરી થાય છે?",
     "Every common factor must divide 4, so how big can one be?": "દરેક સામાન્ય અવયવ 4 ને ભાગે છે, તો તે કેટલો મોટો હોઈ શકે?",
     "they stop": "અટકી જાય છે",
@@ -4321,9 +4320,9 @@ const TR = {
     "Tap the Count key at the bottom.": "નીચેના ગણો બટન પર ટૅપ કરો.",
     "Put the bigger number in the gate and divide it by the smaller.": "મોટી સંખ્યાને દરવાજામાં મૂકો અને નાની સંખ્યાથી ભાગો.",
     "The full rows are the quotient and the shelf holds the remainder.": "પૂરી હાર ભાગફળ છે અને છાજલી પર શેષ છે.",
-    "Divide the bigger number by the smaller: nothing left over means a multiple.": "મોટી સંખ્યાને નાનીથી ભાગો: કંઈ ન વધે તો તે અવયવી છે.",
-    "You learned: one division shows if a number is a multiple of another.": "તમે શીખ્યા: એક ભાગાકારથી ખબર પડે કે સંખ્યા અવયવી છે કે નહીં.",
-    "To test if 112 is a multiple of 8, divide and give the quotient and remainder.": "112, 8 નો અવયવી છે કે નહીં તે ચકાસો: ભાગો, ભાગફળ અને શેષ કહો.",
+    "Divide the bigger number by the smaller: nothing left over means a multiple.": "મોટી સંખ્યાને નાનીથી ભાગો: કંઈ ન વધે તો તે ગુણિત છે.",
+    "You learned: one division shows if a number is a multiple of another.": "તમે શીખ્યા: એક ભાગાકારથી ખબર પડે કે સંખ્યા ગુણિત છે કે નહીં.",
+    "To test if 112 is a multiple of 8, divide and give the quotient and remainder.": "112 એ 8 નો ગુણિત છે કે નહીં તે ચકાસો: ભાગો, ભાગફળ અને શેષ કહો.",
     "112 ÷ 8: quotient and remainder?": "112 ÷ 8: ભાગફળ અને શેષ?",
     "Share 112 into rows of 8: how many full rows, and what is left?": "112 ને દરેક હારમાં 8 મૂકીને વહેંચો: કેટલી પૂરી હાર, અને કેટલું વધ્યું?",
     "quotient": "ભાગફળ",
@@ -4331,11 +4330,11 @@ const TR = {
     "Rows of 5 from 45: type the quotient and the remainder.": "45 માં 5 ની હાર: ભાગફળ અને શેષ લખો.",
     "45 ÷ 5: quotient and remainder?": "45 ÷ 5: ભાગફળ અને શેષ?",
     "Count the full rows of 5, then count what sits on the shelf.": "5 ની પૂરી હાર ગણો, પછી છાજલી પર જે છે તે ગણો.",
-    "Divide to find out whether 126 is a multiple of 7.": "ભાગીને શોધો કે 126, 7 નો અવયવી છે કે નહીં.",
-    "Is 126 a multiple of 7?": "શું 126, 7 નો અવયવી છે?",
+    "Divide to find out whether 126 is a multiple of 7.": "ભાગીને શોધો કે 126 એ 7 નો ગુણિત છે કે નહીં.",
+    "Is 126 a multiple of 7?": "શું 126 એ 7 નો ગુણિત છે?",
     "Look at the shelf after the division: is anything left over?": "ભાગ પછી છાજલી જુઓ: શું કંઈ વધ્યું છે?",
     "Share 126 into rows of 7 and watch what lands on the shelf.": "126 ને દરેક હારમાં 7 મૂકીને વહેંચો, અને જુઓ છાજલી પર શું આવે છે.",
-    "An empty shelf means the bigger number is a multiple.": "છાજલી ખાલી હોય તો મોટી સંખ્યા અવયવી છે.",
+    "An empty shelf means the bigger number is a multiple.": "છાજલી ખાલી હોય તો મોટી સંખ્યા ગુણિત છે.",
     "yes, it is": "હા, છે",
     "no, it is not": "ના, નથી",
     "What a remainder rules out": "શેષ શું ખોટું સાબિત કરે છે",
@@ -4343,19 +4342,19 @@ const TR = {
     "Tap Write it to write down what the leftover tells you.": "વધેલું શું કહે છે તે લખવા લખો પર ટૅપ કરો.",
     "Tap the Write it key at the bottom.": "નીચેના લખો બટન પર ટૅપ કરો.",
     "What does anything left on the shelf say about these two numbers?": "છાજલી પર કંઈ પણ વધે, તો તે આ બે સંખ્યા વિશે શું કહે છે?",
-    "With nothing on the shelf the bigger is a multiple; otherwise it is not.": "છાજલી ખાલી હોય તો મોટી સંખ્યા અવયવી છે, નહીંતર નહીં.",
-    "A remainder says the bigger is not a multiple and the smaller is not a factor.": "શેષ કહે છે કે મોટી સંખ્યા અવયવી નથી અને નાની સંખ્યા અવયવ નથી.",
-    "You learned: a remainder rules out the multiple and the factor.": "તમે શીખ્યા: શેષ અવયવી અને અવયવને ખોટા સાબિત કરે છે.",
+    "With nothing on the shelf the bigger is a multiple; otherwise it is not.": "છાજલી ખાલી હોય તો મોટી સંખ્યા ગુણિત છે, નહીંતર નહીં.",
+    "A remainder says the bigger is not a multiple and the smaller is not a factor.": "શેષ કહે છે કે મોટી સંખ્યા ગુણિત નથી અને નાની સંખ્યા અવયવ નથી.",
+    "You learned: a remainder rules out the multiple and the factor.": "તમે શીખ્યા: શેષ ગુણિત અને અવયવને ખોટા સાબિત કરે છે.",
     "Divide 74 by 9 and see what the leftover tells you.": "74 ને 9 થી ભાગો અને જુઓ વધેલું શું કહે છે.",
     "What does the leftover of 74 ÷ 9 say?": "74 ÷ 9 નું વધેલું શું કહે છે?",
-    "A leftover settles more than the multiple question: what else does it settle?": "વધેલું ફક્ત અવયવીનો સવાલ નથી ઉકેલતું: તે બીજું શું નક્કી કરે છે?",
-    "74 isn't a multiple of 9": "74, 9 નો અવયવી નથી",
-    "9 isn't a factor of 74": "9, 74 નો અવયવ નથી",
+    "A leftover settles more than the multiple question: what else does it settle?": "વધેલું ફક્ત ગુણિતનો સવાલ નથી ઉકેલતું: તે બીજું શું નક્કી કરે છે?",
+    "not a multiple of 9": "9 નો ગુણિત નથી",
+    "not a factor of 74": "74 નો અવયવ નથી",
     "both of these": "આ બંને",
     "Divide 135 by 8, then give the quotient and the remainder.": "135 ને 8 થી ભાગો, પછી ભાગફળ અને શેષ લખો.",
     "135 ÷ 8: quotient and remainder?": "135 ÷ 8: ભાગફળ અને શેષ?",
     "Count the full rows of 8, then count the counters left on the shelf.": "8 ની પૂરી હાર ગણો, પછી છાજલી પર વધેલી કૂકરીઓ ગણો.",
-    "You may land only on a multiple of your throw: divide 57 by 4 to see.": "તમે ફક્ત પાસાની સંખ્યાના અવયવી પર ઊતરી શકો: 57 ને 4 થી ભાગો.",
+    "You may land only on a multiple of your throw: divide 57 by 4 to see.": "તમે ફક્ત પાસાની સંખ્યાના ગુણિત પર ઊતરી શકો: 57 ને 4 થી ભાગો.",
     "May you move onto 57?": "શું તમે 57 પર જઈ શકો?",
     "How many counters sit on the shelf, and does a small leftover still count?": "છાજલી પર કેટલી કૂકરીઓ છે, અને શું થોડું વધેલું પણ ગણાય?",
     "yes, I may": "હા",
@@ -4365,16 +4364,16 @@ const TR = {
     "1 goes into every number, so it is in both rings every time.": "1 દરેક સંખ્યાને ભાગે છે, એટલે તે દર વખતે બંને વર્તુળમાં છે.",
     "The next meetings are 48, 60 and 72, and the tracks keep meeting.": "પછીનાં મિલન 48, 60 અને 72 છે, અને પાટા મળતા જ રહે છે.",
     "The tracks of 4 and 10 meet at 20, 40, 60 and 80.": "4 અને 10 ના પાટા 20, 40, 60 અને 80 પર મળે છે.",
-    "The factors run out, but the multiples keep on going.": "અવયવ ખૂટી જાય છે, પણ અવયવી ચાલતા જ રહે છે.",
-    "Nothing is left over, so 112 is a multiple of 8.": "કંઈ વધ્યું નહીં, એટલે 112, 8 નો અવયવી છે.",
-    "Nine full rows and an empty shelf show that 45 is a multiple of 5.": "નવ પૂરી હાર અને ખાલી છાજલી બતાવે છે કે 45, 5 નો અવયવી છે.",
-    "An empty shelf shows that 7 goes into 126 with nothing over.": "ખાલી છાજલી બતાવે છે કે 7, 126 ને પૂરેપૂરો ભાગે છે.",
-    "74 is not a multiple of 9, and 9 is not a factor of 74.": "74, 9 નો અવયવી નથી, અને 9, 74 નો અવયવ નથી.",
+    "The factors run out, but the multiples keep on going.": "અવયવ ખૂટી જાય છે, પણ ગુણિત ચાલતા જ રહે છે.",
+    "Nothing is left over, so 112 is a multiple of 8.": "કંઈ વધ્યું નહીં, એટલે 112 એ 8 નો ગુણિત છે.",
+    "Nine full rows and an empty shelf show that 45 is a multiple of 5.": "નવ પૂરી હાર અને ખાલી છાજલી બતાવે છે કે 45 એ 5 નો ગુણિત છે.",
+    "An empty shelf shows that 7 goes into 126 with nothing over.": "ખાલી છાજલી બતાવે છે કે 7 એ 126 ને પૂરેપૂરો ભાગે છે.",
+    "74 is no multiple of 9, and 9 is no factor of 74.": "74 એ 9 નો ગુણિત નથી, અને 9 એ 74 નો અવયવ નથી.",
     "Seven counters stay on the shelf, so 8 does not divide 135 exactly.": "છાજલી પર સાત કૂકરીઓ વધી, એટલે 8 થી 135 પૂરો ભાગ થતો નથી.",
-    "57 is not a multiple of 4, so you may not land on it.": "57, 4 નો અવયવી નથી, એટલે તમે ત્યાં ઊતરી ન શકો.",
+    "57 is not a multiple of 4, so you may not land on it.": "57 એ 4 નો ગુણિત નથી, એટલે તમે ત્યાં ઊતરી ન શકો.",
     "Tap Change first, then lift the card in both rings.": "પહેલાં બદલો પર ટૅપ કરો, પછી બંને વર્તુળવાળું કાર્ડ વચ્ચે લાવો.",
     "left": "વધ્યા",
-    "multiples": "અવયવી",
+    "multiples": "ગુણિત",
     "of": "ના",
     "factors": "અવયવ",
     "in both": "બંનેમાં",
@@ -4383,8 +4382,8 @@ const TR = {
     "rows of": "દરેક હારમાં",
     "left over": "વધેલા",
     "no full row": "કોઈ હાર પૂરી નથી",
-    "is a multiple of": "નો અવયવી છે",
-    "isn't a multiple of": "નો અવયવી નથી",
+    "is a multiple of": "નો ગુણિત છે",
+    "isn't a multiple of": "નો ગુણિત નથી",
     "is a factor of": "નો અવયવ છે",
     "isn't a factor of": "નો અવયવ નથી",
     "so you may": "એટલે જઈ શકાય",
@@ -4392,10 +4391,9 @@ const TR = {
     "between two numbers": "એ",
     "Fill": "ભરો",
     "Change": "બદલો",
-    "Multiples": "અવયવી",
+    "Multiples": "ગુણિત",
     "Factors": "અવયવ",
     "Divide": "ભાગો",
-    "Go back": "પાછળ જાઓ",
     "Run on": "આગળ ચલાવો",
     "Count": "ગણો",
     "Write it": "લખો",
@@ -4404,7 +4402,7 @@ const TR = {
     "yes": "હા",
     "no": "ના",
     "factor": "અવયવ",
-    "multiple": "અવયવી",
+    "multiple": "ગુણિત",
     "both": "બંને"
   }
 };
@@ -4437,7 +4435,7 @@ const PHASES = [
         winMs: 2200,
         say: "Lift the numbers that are factors of both 42 and 70 into the middle.",
         ask: "Factors of both 42 and 70?",
-        miss: "Test each card in the middle: does it go into 42 and into 70 exactly?"
+        miss: "Test a card from the rings: does it go into 42 and into 70 exactly?"
       },
       /* practice 1: answer in the plan = 1 and 2 */
       {
@@ -4451,7 +4449,7 @@ const PHASES = [
         winMs: 2200,
         say: "Lift the common factors of 20 and 34 into the middle.",
         ask: "Factors of both 20 and 34?",
-        miss: "Did every card in the middle go into 20 and into 34?"
+        miss: "Test a card from the rings: does it go into 20 and into 34 exactly?"
       },
       /* practice 2: answer in the plan = Because 1 is a factor of every number, so it has to appear in both lists */
       {
@@ -4618,7 +4616,7 @@ const PHASES = [
         answer: "both",
         near: "multiple",
         winMs: 3200,
-        choices: [{ id: "multiple", label: "74 isn't a multiple of 9" }, { id: "factor", label: "9 isn't a factor of 74" }, { id: "both", label: "both of these" }],
+        choices: [{ id: "multiple", label: "not a multiple of 9" }, { id: "factor", label: "not a factor of 74" }, { id: "both", label: "both of these" }],
         say: "Divide 74 by 9 and see what the leftover tells you.",
         ask: "What does the leftover of 74 ÷ 9 say?",
         miss: "A leftover settles more than the multiple question: what else does it settle?"
@@ -4682,7 +4680,7 @@ const OR_BLUE = CONTENT.hundred, OR_ROSE = CONTENT.bead, OR_GREEN = CONTENT.one,
 const OR_KEY_Y = 442, OR_KEY_H = 72;
 const OR_COPRIME = [[9, 16], [8, 15], [10, 21], [14, 25], [6, 35], [12, 25]];
 const OR_FREE = [[12, 18], [4, 12], [8, 12], [5, 10], [6, 9], [20, 30], [16, 24], [15, 25], [14, 21], [10, 15], [4, 10]];
-const OR_G = { w: 896, tray: 190, bx: 206, bw: 690, cols: [224, 580], top: 6, pitch: 38, step: 31, r: 14, rows: 9, shelfY: 358, shelfH: 70 };
+const OR_G = { w: 896, tray: 190, bx: 206, bw: 690, cols: [224, 580], top: 4, pitch: 36, step: 31, r: 14, rows: 9, shelfY: 334, shelfH: 84 };
 const MODEL = {
   rings: { ellipses: "two rings of cord, the lists curving inside; the shared middle is the lens they make", cardSize: 72, middleCap: 7 },
   tracks: { flagPitch: 84, runStep: "a whole number of lowest common multiples, so meetings keep their places", band: "open at the right, like the tracks" },
@@ -4784,8 +4782,10 @@ const answerForms = (item) => {
   return [String(item.answer)];
 };
 const agentKey = (item) => item.kind === "always" ? "just " + item.answer : item.answer;
+const CHOICE_SHOWN = { stop: "they stop", never: "never stop", multiple: "not a multiple of 9", factor: "not a factor of 74", both: "both of these" };
 const format = (v) => {
   const s = String(v != null ? v : "");
+  if (CHOICE_SHOWN[s]) return CHOICE_SHOWN[s];
   if (s.length <= 14 || !/^\d+(, \d+)+$/.test(s)) return s;
   const xs = s.split(", ");
   for (let k = xs.length - 2; k >= 1; k--) {
@@ -4827,7 +4827,7 @@ const orWinSay = (api, qid) => {
     case "M2.S3.T6.C27:5":
       return api.say("An empty shelf shows that 7 goes into 126 with nothing over.");
     case "M2.S3.T6.C28:ML4":
-      return api.say("74 is not a multiple of 9, and 9 is not a factor of 74.");
+      return api.say("74 is no multiple of 9, and 9 is no factor of 74.");
     case "M2.S3.T6.C28:7":
       return api.say("Seven counters stay on the shelf, so 8 does not divide 135 exactly.");
     case "M2.S3.T6.C28:8":
@@ -5006,10 +5006,20 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
   const playing = useRef(false);
   const lastKey = useRef(0);
   const nudged = useRef(false);
+  const actN = useRef(0);
+  const missN = useRef(-1);
+  const lastTap = useRef({ k: "", t: 0 });
+  const tapOk = (k) => {
+    const t = Date.now();
+    if (lastTap.current.k === k && t - lastTap.current.t < 400) return false;
+    lastTap.current = { k, t };
+    return true;
+  };
   useEffect(() => () => {
     tl.stop();
     playing.current = false;
     nudged.current = false;
+    api.lock(false);
   }, [qk]);
   const bw = box ? box.w : 1472;
   const kx = box && box.key ? box.key.x - 12 : Math.min(bw, 1178);
@@ -5020,6 +5030,7 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
   const listItem = stage === "ask" && item0 && item0.pad === "enter";
   const valueOf = (x) => x.mode === "rings" ? orJoin(x.mid) : orJoin(x.caught);
   const echo = (x) => {
+    actN.current++;
     if (listItem) api.setTyped(valueOf(x));
   };
   const unDemo = (x) => x.demoMid || x.demoCaught ? { ...x, demoMid: null, demoCaught: null, readout: null, lit: [], glow: false, board: false, test: null } : x;
@@ -5027,8 +5038,8 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
     if (playing.current) return;
     const e0 = ent.current.n;
     playing.current = true;
-    api.act(o).then((ok) => {
-      playing.current = false;
+    api.act(o).then((ok) => ok, () => false).then((ok) => {
+      if (ent.current.n === e0) playing.current = false;
       if (ok && ent.current.n === e0) done();
     });
   };
@@ -5055,7 +5066,7 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
   const common = (v) => S.a % v === 0 && S.b % v === 0;
   const lift = (v, wantIn) => {
     const x0 = cur();
-    if (!live) return;
+    if (!live || !tapOk("c" + v)) return;
     const name = wantIn ? common(v) ? "lift" : "lone" : "back";
     if (!gated(name)) return;
     const x = unDemo(x0), has = x.mid.indexOf(v) >= 0;
@@ -5103,7 +5114,7 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
     });
   };
   const T0 = { headW: 190, yA: 108, yB: 338, fw: 80, fh: 120, bandTop: 170, bandBot: 276, lanes: [194, 252], cardH: 46, cardW: 72, fs: T.label, pitch: 84 };
-  const T1 = { headW: 170, yA: 52, yB: 196, fw: 60, fh: 90, bandTop: 100, bandBot: 150, lanes: [125, 125], cardH: 44, cardW: 56, fs: T.micro, pitch: 60 };
+  const T1 = { headW: 170, yA: 52, yB: 196, fw: 60, fh: 90, bandTop: 100, bandBot: 150, lanes: [125, 125], cardH: 46, cardW: 60, fs: T.label, pitch: 60 };
   const T2 = { headW: 170, yA: 100, yB: 312, fw: 60, fh: 90, bandTop: 150, bandBot: 262, lanes: [180, 232], cardH: 46, cardW: 60, fs: T.label, pitch: 60 };
   const TP = S.mode === "both" ? S.lists ? T1 : T2 : T0;
   const tw = Math.min(Wt, S.mode === "both" ? 900 : 1178);
@@ -5117,7 +5128,7 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
   };
   const catchV = (v, wantIn) => {
     const x0 = cur();
-    if (!live || x0.given.indexOf(v) >= 0) return;
+    if (!live || x0.given.indexOf(v) >= 0 || !tapOk("f" + v)) return;
     const isCommon = v % x0.p === 0 && v % x0.q === 0;
     const name = wantIn ? isCommon ? "catch" : "lone" : "back";
     if (!gated(name)) return;
@@ -5188,10 +5199,10 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
     });
   };
   const gx = Math.max(0, (Wt - OR_G.w) / 2);
-  const rowAt = (i) => ({ x: gx + OR_G.cols[i < OR_G.rows ? 0 : 1], y: OR_G.top + i % OR_G.rows * OR_G.pitch + OR_G.pitch / 2 - 3 });
+  const rowAt = (i) => ({ x: gx + OR_G.cols[i < OR_G.rows ? 0 : 1], y: OR_G.top + i % OR_G.rows * OR_G.pitch + OR_G.pitch / 2 - 2 });
   const doDivide = () => {
     const x = cur();
-    if (x.ran || playing.current || box && box.open) return;
+    if (x.ran || playing.current) return;
     if (!gated("divide")) return;
     const q = Math.floor(x.tray / x.per), r = x.tray % x.per, nRows = Math.min(q, 18);
     const at = Array.from({ length: nRows }, (_, i) => ({ x: rowAt(i).x + x.per * OR_G.step / 2, y: rowAt(i).y }));
@@ -5258,13 +5269,13 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
   };
   const enterFn = listItem ? () => {
     const x = cur();
-    if (tl.busy || x.needAct) return;
-    if (kind === "always" && !x.changed) {
+    if (tl.busy || x.needAct || actN.current <= missN.current) return;
+    const v = valueOf(x);
+    if (kind === "always" && !x.changed && v === "1") {
       nudged.current = true;
       api.say("Tap Change first, then lift the card in both rings.");
       return;
     }
-    const v = valueOf(x);
     if (v) api.submit(v);
   } : null;
   api.onEnter(stage === "demo" && stepOn ? () => act(stepOn) : enterFn);
@@ -5273,20 +5284,22 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
     let x = cur();
     if (stage !== "ask" || tl.busy) return false;
     const xs = orSet(orNums(v));
+    if (!xs.length) return false;
+    const same = (cur0) => missN.current >= actN.current && orJoin(xs) === (cur0.mode === "rings" ? orJoin(cur0.mid) : orJoin(cur0.caught));
     if (x.mode === "rings") {
+      if (same(x)) return true;
       if (kind === "always" && !x.changed) x = { ...x, a: OR_COPRIME[0][0], b: OR_COPRIME[0][1], pair: 0, mid: [], changed: true };
       const all = orSet([...orFactors(x.a), ...orFactors(x.b)]);
-      const mid = xs.filter((m) => all.indexOf(m) >= 0).slice(0, capM);
-      if (!mid.length) return false;
-      const nx = { ...unDemo(x), mid, touched: true, needAct: false };
+      if (xs.some((m) => all.indexOf(m) < 0) || xs.length > capM) return false;
+      const nx = { ...unDemo(x), mid: xs, touched: true, needAct: false };
       up(nx);
       echo(nx);
       return true;
     }
     if (x.mode === "tracks") {
-      const caught = xs.filter((c) => c > 0 && (c % x.p === 0 || c % x.q === 0) && x.given.indexOf(c) < 0);
-      if (!caught.length) return false;
-      const nx = { ...unDemo(x), caught, touched: true, needAct: false };
+      if (same(x)) return true;
+      if (xs.some((c) => c <= 0 || c % x.p !== 0 && c % x.q !== 0 || x.given.indexOf(c) >= 0)) return false;
+      const nx = { ...unDemo(x), caught: xs, touched: true, needAct: false };
       up(nx);
       echo(nx);
       return true;
@@ -5294,12 +5307,13 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
     return false;
   };
   const listVal = listItem ? valueOf(S) : "";
+  const armed = actN.current > missN.current;
   useEffect(() => {
-    if (listItem) api.answerReady(!!listVal && !S.needAct && (kind !== "always" || S.changed));
+    if (listItem) api.answerReady(!!listVal && !S.needAct && armed && (kind !== "always" || S.changed));
     return () => {
       if (listItem) api.answerReady(false);
     };
-  }, [listVal, listItem, S.needAct, S.changed, qk]);
+  }, [listVal, listItem, S.needAct, S.changed, qk, armed, wrong]);
   const tracebackSteps = (w) => {
     const x = cur(), Z2 = [];
     if (kind === "common" || kind === "always") {
@@ -5350,6 +5364,7 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
         const y = cur();
         up({ ...y, view: orViewFor(y, right[right.length - 1], px), lit: right, readout: orJoin(right) });
       }]);
+      Z2.push([1800, () => up({ ...cur(), view: 0, lit: [] })]);
       return Z2;
     }
     if (kind === "stops") {
@@ -5403,6 +5418,8 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
   };
   useEffect(() => {
     if (!wrong || stage !== "ask") return;
+    missN.current = actN.current;
+    api.answerReady(false);
     api.lock(true);
     tl.run(tracebackSteps(wrong), () => api.lock(false));
   }, [wrong]);
@@ -5580,12 +5597,16 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
         <rect x={P.headW - 10} y={P.bandTop} width={tr - P.headW + 10} height={P.bandBot - P.bandTop} fill={tint(OR_ROSE, 0.86)} />
         <path d={`M ${P.headW - 10} ${P.bandTop} H ${tr} M ${P.headW - 10} ${P.bandBot} H ${tr}`} stroke={tint(OR_ROSE, 0.4)} strokeWidth={2} />
         <text x={12} y={(P.bandTop + P.bandBot) / 2 + 10} fontSize={P.fs} fontWeight={600} fill={shade(OR_ROSE, 0.35)}>{tx("in both")}</text>
-        {S.bandNote && <text x={X0 - 8} y={P.bandBot - 8} fontSize={T.micro} fontWeight={700} fill={C.ink}>{tx("no end")}</text>}
+        {S.bandNote && <text x={X0 - 8} y={P.bandBot - 8} fontSize={T.label} fontWeight={700} fill={C.ink}>{tx("no end")}</text>}
         <path d={`M ${lineStart} ${P.yA} H ${tr} M ${lineStart} ${P.yB} H ${tr}`} stroke={cord} strokeWidth={8} strokeLinecap="butt" />
         {S.view === 0 && <path d={`M ${lineStart} ${P.yA - 16} V ${P.yA + 16} M ${lineStart} ${P.yB - 16} V ${P.yB + 16}`} stroke={cord} strokeWidth={6} strokeLinecap="round" />}
         {head(P.yA, S.p, "a")}
         {head(P.yB, S.q, "b")}
         {S.lit.filter(inView).map((v) => <rect key={"lt" + v} x={xOf(v) - 40} y={P.yA - P.fh / 2 - 4} width={80} height={P.yB - P.yA + P.fh + 8} rx={16} fill="none" stroke={C.accent} strokeWidth={4} pointerEvents="none" />)}
+        {
+      /* a lit meeting whose two flags slid into the band leaves a faint ghost of each on its track, never an empty outline */
+    }
+        {S.lit.filter((v) => inView(v) && band.indexOf(v) >= 0).map((v) => [P.yA, P.yB].map((gy) => <g key={"gh" + v + "-" + gy} opacity={0.28} pointerEvents="none"><OrFlag x={xOf(v)} y={gy} v={v} fw={P.fw} fh={P.fh} col={OR_GREEN} fs={P.fs} fast={true} C={C} /></g>))}
         {flags.map((f) => f.band ? <OrBand key={f.key} x={f.x} y={f.y} v={f.v} w={cardW} h={P.cardH} fast={fast} C={C} fs={P.fs} glow={S.glow} /> : <OrFlag key={f.key} x={f.x} y={f.y} v={f.v} fw={P.fw} fh={P.fh} col={OR_GREEN} fs={P.fs} fast={fast} C={C} />)}
         {flagsLive && fa.filter((v) => S.given.indexOf(v) < 0 && band.indexOf(v) < 0).map((v) => <Hit key={"ha" + v} id={"flag-a-" + v} x={xOf(v) - 40} y={P.yA - P.fh / 2} w={80} h={P.fh} onPress={() => catchV(v, true)} label={`${v} on the track of ${S.p}`} />)}
         {flagsLive && fb.filter((v) => S.given.indexOf(v) < 0 && band.indexOf(v) < 0).map((v) => <Hit key={"hb" + v} id={"flag-b-" + v} x={xOf(v) - 40} y={P.yB - P.fh / 2} w={80} h={P.fh} onPress={() => catchV(v, true)} label={`${v} on the track of ${S.q}`} />)}
@@ -5599,8 +5620,8 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
   const drawLists = () => {
     const y0 = 252, cs = 56, g = 8, Lx = 170, shared = orFactors(S.a).filter((v) => S.b % v === 0);
     const lh = (y, N) => <g>
-        {en ? <text x={12} y={y + 24} fontSize={T.micro} fontWeight={600} fill={C.ink}>{tx("factors")}</text> : <text x={12} y={y + 54} fontSize={T.micro} fontWeight={600} fill={C.ink}>{tx("factors")}</text>}
-        {en ? <text x={12} y={y + 54} fontSize={T.micro} fontWeight={700} fill={shade(OR_BLUE, 0.3)}>{`of ${N}`}</text> : <text x={12} y={y + 24} fontSize={T.micro} fontWeight={700} fill={shade(OR_BLUE, 0.3)}>{`${N} ${tx("of")}`}</text>}
+        {en ? <text x={12} y={y + 22} fontSize={T.label} fontWeight={600} fill={C.ink}>{tx("factors")}</text> : <text x={12} y={y + 58} fontSize={T.label} fontWeight={600} fill={C.ink}>{tx("factors")}</text>}
+        {en ? <text x={12} y={y + 58} fontSize={T.label} fontWeight={700} fill={shade(OR_BLUE, 0.3)}>{`of ${N}`}</text> : <text x={12} y={y + 20} fontSize={T.label} fontWeight={700} fill={shade(OR_BLUE, 0.3)}>{`${N} ${tx("of")}`}</text>}
       </g>;
     const row = (y, list, k, mk) => <g key={"lr" + k}>
         {list.map((v, j) => <OrCard key={k + v} id={"lc-" + k + v} x={Lx + 14 + j * (cs + g)} y={y} s={cs} v={v} mid={mk(v)} C={C} fast={fast} live={false} glow={false} lit={false} plain label="" />)}
@@ -5610,12 +5631,12 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
     return <g>
         {lh(y0, S.a)}
         {row(y0, orFactors(S.a), "a", () => false)}
-        <rect x={Lx - 6} y={y0 + 68} width={700} height={cs + 8} fill={tint(OR_ROSE, 0.86)} />
-        <text x={12} y={y0 + 68 + 40} fontSize={T.micro} fontWeight={600} fill={shade(OR_ROSE, 0.35)}>{tx("in both")}</text>
-        {row(y0 + 72, shared, "m", () => true)}
-        {lh(y0 + 148, S.b)}
-        {row(y0 + 144, orFactors(S.b), "b", () => false)}
-        {S.ringNote && <text x={Lx + 330} y={y0 + 100} fontSize={T.micro} fontWeight={700} fill={C.ink}>{tx("they stop")}</text>}
+        <rect x={Lx - 6} y={y0 + 74} width={700} height={cs + 8} fill={tint(OR_ROSE, 0.86)} />
+        <text x={12} y={y0 + 78 + 39} fontSize={T.label} fontWeight={600} fill={shade(OR_ROSE, 0.35)}>{tx("in both")}</text>
+        {row(y0 + 78, shared, "m", () => true)}
+        {lh(y0 + 156, S.b)}
+        {row(y0 + 156, orFactors(S.b), "b", () => false)}
+        {S.ringNote && <text x={Lx + 330} y={y0 + 78 + 39} fontSize={T.label} fontWeight={700} fill={C.ink}>{tx("they stop")}</text>}
       </g>;
   };
   const drawGate = () => {
@@ -5626,12 +5647,12 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
       const col = r < OR_G.rows ? 0 : 1, y = OR_G.top + r % OR_G.rows * OR_G.pitch, x0 = OR_G.cols[col];
       rowsDrawn.push(
         <g key={"r" + r}>
-          <rect x={x0 - 6} y={y} width={per * st + 10} height={OR_G.pitch - 6} rx={9} fill={tint(OR_AMBER, 0.85)} />
+          <rect x={x0 - 6} y={y} width={per * st + 10} height={OR_G.pitch - 4} rx={9} fill={tint(OR_AMBER, 0.85)} />
           {Array.from({ length: per }, (_, k) => <g key={k}>
-              <circle cx={x0 + st / 2 - 2 + k * st} cy={y + (OR_G.pitch - 6) / 2} r={skinRows ? 12 : OR_G.r} fill="url(#gTen)" stroke="#00000022" strokeWidth={1.5} />
-              {skinRows && <Skin name="bead" x={x0 + st / 2 - 2 + k * st - 15} y={y + (OR_G.pitch - 6) / 2 - 15} w={30} h={30} fit="stretch" />}
+              <circle cx={x0 + st / 2 - 2 + k * st} cy={y + (OR_G.pitch - 4) / 2} r={skinRows ? 12 : OR_G.r} fill="url(#gTen)" stroke="#00000022" strokeWidth={1.5} />
+              {skinRows && <Skin name="bead" x={x0 + st / 2 - 2 + k * st - 15} y={y + (OR_G.pitch - 4) / 2 - 15} w={30} h={30} fit="stretch" />}
             </g>)}
-          {S.count && r < S.countN && <text x={x0 + per * st + 12} y={y + OR_G.pitch - 9} fontSize={T.prompt} fontWeight={700} fill={C.ink}>{r + 1}</text>}
+          {S.count && r < S.countN && <text x={x0 + per * st + 12} y={y + OR_G.pitch - 9} fontSize={T.label} fontWeight={700} fill={C.ink}>{r + 1}</text>}
         </g>
       );
     }
@@ -5660,37 +5681,40 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
         {
       /* the mouth: what is shared out, and the size of each row */
     }
-        <rect x={0} y={0} width={OR_G.tray} height={118} rx={RAD.panel} fill={tint(OR_AMBER, 0.82)} stroke={shade(OR_AMBER, 0.1)} strokeWidth={3} />
-        <text x={OR_G.tray / 2} y={34} textAnchor="middle" fontSize={T.micro} fontWeight={600} fill={C.ink}>{tx("share out")}</text>
-        <text x={OR_G.tray / 2} y={96} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>{S.tray}</text>
-        <text x={OR_G.tray / 2} y={160} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>÷</text>
-        <rect x={0} y={184} width={OR_G.tray} height={118} rx={RAD.panel} fill={tint(OR_BLUE, 0.82)} stroke={shade(OR_BLUE, 0.1)} strokeWidth={3} />
-        <text x={OR_G.tray / 2} y={218} textAnchor="middle" fontSize={T.micro} fontWeight={600} fill={C.ink}>{tx("rows of")}</text>
-        <text x={OR_G.tray / 2} y={280} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>{S.per}</text>
+        <rect x={0} y={0} width={OR_G.tray} height={130} rx={RAD.panel} fill={tint(OR_AMBER, 0.82)} stroke={shade(OR_AMBER, 0.1)} strokeWidth={3} />
+        <text x={OR_G.tray / 2} y={46} textAnchor="middle" fontSize={T.label} fontWeight={600} fill={C.ink}>{tx("share out")}</text>
+        <text x={OR_G.tray / 2} y={112} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>{S.tray}</text>
+        <text x={OR_G.tray / 2} y={186} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>÷</text>
+        <rect x={0} y={202} width={OR_G.tray} height={130} rx={RAD.panel} fill={tint(OR_BLUE, 0.82)} stroke={shade(OR_BLUE, 0.1)} strokeWidth={3} />
+        <text x={OR_G.tray / 2} y={248} textAnchor="middle" fontSize={T.label} fontWeight={600} fill={C.ink}>{tx("rows of")}</text>
+        <text x={OR_G.tray / 2} y={314} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>{S.per}</text>
         {
       /* the ruled board: nine row places in each of two columns, a wall between every two */
     }
-        <rect x={OR_G.bx} y={0} width={OR_G.bw} height={352} rx={RAD.panel} fill={tint(C.panel, 0.6)} stroke={C.rule} strokeWidth={2} />
-        {OR_G.cols.map((x0, c) => Array.from({ length: OR_G.rows - 1 }, (_, r) => <path key={c + "-" + r} d={`M ${x0 - 12} ${OR_G.top + (r + 1) * OR_G.pitch - 3} H ${x0 + 9 * st + 8}`} stroke={C.rule} strokeWidth={2} />))}
+        <rect x={OR_G.bx} y={0} width={OR_G.bw} height={330} rx={RAD.panel} fill={tint(C.panel, 0.6)} stroke={C.rule} strokeWidth={2} />
+        {OR_G.cols.map((x0, c) => Array.from({ length: OR_G.rows - 1 }, (_, r) => <path key={c + "-" + r} d={`M ${x0 - 12} ${OR_G.top + (r + 1) * OR_G.pitch - 2} H ${x0 + 9 * st + 8}`} stroke={C.rule} strokeWidth={2} />))}
         {rowsDrawn}
         {
       /* the leftover shelf: outside the rows, at full strength */
     }
         <rect x={OR_G.bx} y={OR_G.shelfY} width={OR_G.bw} height={OR_G.shelfH} rx={RAD.panel} fill="#FFFFFF" stroke={C.rule} strokeWidth={2} />
-        <text x={OR_G.bx + 20} y={OR_G.shelfY + 46} fontSize={T.label} fontWeight={600} fill={C.ink}>{tx("left over")}</text>
+        <text x={OR_G.bx + 20} y={OR_G.shelfY + 53} fontSize={T.label} fontWeight={600} fill={C.ink}>{tx("left over")}</text>
         {Array.from({ length: Math.min(S.shelf, 12) }, (_, k) => <g key={"s" + k}>
             <circle cx={OR_G.bx + 210 + k * 38} cy={OR_G.shelfY + OR_G.shelfH / 2} r={skinRows ? 12 : OR_G.r} fill="url(#gPointer)" stroke="#00000022" strokeWidth={1.5} />
             {skinRows && <Skin name="bead" x={OR_G.bx + 210 + k * 38 - 16} y={OR_G.shelfY + OR_G.shelfH / 2 - 16} w={32} h={32} fit="stretch" />}
             <circle cx={OR_G.bx + 210 + k * 38} cy={OR_G.shelfY + OR_G.shelfH / 2} r={17} fill="none" stroke={C.ink} strokeWidth={2.5} />
           </g>)}
         {S.cap && <g>
-            <text x={OR_G.bx + OR_G.bw - 20} y={OR_G.shelfY + 30} textAnchor="end" fontSize={T.micro} fontWeight={600} fill={C.ink}>{`${tx("quotient")} ${S.dealt}`}</text>
-            <text x={OR_G.bx + OR_G.bw - 20} y={OR_G.shelfY + 62} textAnchor="end" fontSize={T.micro} fontWeight={600} fill={C.ink}>{`${tx("remainder")} ${S.shelf}`}</text>
+            <text x={OR_G.bx + OR_G.bw - 20} y={OR_G.shelfY + 37} textAnchor="end" fontSize={T.label} fontWeight={600} fill={C.ink}>{`${tx("quotient")} ${S.dealt}`}</text>
+            <text x={OR_G.bx + OR_G.bw - 20} y={OR_G.shelfY + 73} textAnchor="end" fontSize={T.label} fontWeight={600} fill={C.ink}>{`${tx("remainder")} ${S.shelf}`}</text>
           </g>}
-        {frame.map((row, k) => stmtRow(row, OR_KEY_Y + 22 + k * 42, k))}
+        {
+      /* the statements stand 11 under the shelf; Hindi and Gujarati lines (matras above, hooks below) get a 1.5 em pitch */
+    }
+        {frame.map((row, k) => stmtRow(row, OR_KEY_Y + 17 + k * (en ? 44 : 48), k))}
         {S.rev && <g>
-            <text x={230} y={OR_KEY_Y + 22} fontSize={T.label} fontWeight={700} fill={C.ink}>{`${S.rev.a} ÷ ${S.rev.b}`}</text>
-            <text x={330 + String(S.rev.a).length * 19 + String(S.rev.b).length * 19} y={OR_KEY_Y + 22} fontSize={T.label} fontWeight={600} fill={C.ink}>{en ? `no full row, ${S.rev.r} left` : `${tx("no full row")}, ${S.rev.r} ${tx("left")}`}</text>
+            <text x={230} y={OR_KEY_Y + 17} fontSize={T.label} fontWeight={700} fill={C.ink}>{`${S.rev.a} ÷ ${S.rev.b}`}</text>
+            <text x={330 + String(S.rev.a).length * 19 + String(S.rev.b).length * 19} y={OR_KEY_Y + 17} fontSize={T.label} fontWeight={600} fill={C.ink}>{en ? `no full row, ${S.rev.r} left` : `${tx("no full row")}, ${S.rev.r} ${tx("left")}`}</text>
           </g>}
       </g>;
   };
@@ -5701,19 +5725,16 @@ function Work({ phase, n, item: item0, index, stage, wrong, typed, api, MODEL: M
     if (kind === "always" && stage === "ask" || free) keys.push({ id: "change", label: "Change", onClick: doChange, disabled: false });
     if (free) keys.push({ id: "mode", label: S.mode === "rings" ? "Multiples" : "Factors", onClick: flipMode, disabled: false });
     if (free && S.mode === "rings") keys.push({ id: "freedivide", label: "Divide", onClick: freeDivide, disabled: false });
-    if (S.mode === "tracks") {
-      keys.push({ id: "goback", label: "Go back", onClick: () => doRun(-1), disabled: S.view === 0 });
-      keys.push({ id: "runon", label: "Run on", onClick: () => doRun(1), disabled: false });
-    }
+    if (S.mode === "tracks") keys.push({ id: "runon", label: "Run on", onClick: () => doRun(1), disabled: false });
   }
-  if (S.mode === "gate" && !(box && box.open)) {
+  if (S.mode === "gate") {
     if (!S.ran) keys.push({ id: "divide", label: "Divide", onClick: doDivide, disabled: false });
     else if (stage === "demo" && n === 3 && S.countN === 0) keys.push({ id: "count", label: "Count", onClick: doCount, disabled: false });
     else if (stage === "demo" && n === 4 && !S.frame) keys.push({ id: "say", label: "Write it", onClick: doSay, disabled: false });
   }
   const inviteKey = (() => {
     if (!live || wrong || S.touched && !(kind === "always" && !S.changed)) return null;
-    const want = stage === "demo" ? stepOn : S.mode === "gate" ? "divide" : S.mode === "tracks" ? "runon" : kind === "always" && !S.changed ? "change" : null;
+    const want = stage === "demo" ? stepOn : S.mode === "gate" ? stage === "ask" ? null : "divide" : S.mode === "tracks" ? "runon" : kind === "always" && !S.changed ? "change" : null;
     const ix = keys.findIndex((k) => k.id === want);
     if (ix < 0) return null;
     const kb = keyBox(keys.length, ix);
@@ -5739,12 +5760,19 @@ function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v) => v }) {
   const mono = (s, x, y, size, anchor = "start") => <text x={x} y={y} textAnchor={anchor} fontSize={size} fontWeight={700} fill={C.ink}>{s}</text>;
   let body = null;
   const top = 20, base = h - 8;
+  const card = (x, y, s, v, col, k) => <g key={k}>
+      <rect x={x} y={y} width={s} height={s} rx={8} fill={tint(col, 0.8)} stroke={shade(col, 0.08)} strokeWidth={2.5} />
+      <text x={x + s / 2} y={y + s / 2 + 10} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={C.ink}>{v}</text>
+    </g>;
+  const mid = h / 2, cs = 38;
   if (item.kind === "common" || item.kind === "always") {
+    const xs = orNums((_a = L.value) != null ? _a : item.answer);
     body = <g>
-        <circle cx={34} cy={top} r={14} fill="none" stroke={OR_BLUE} strokeWidth={3} />
-        <circle cx={52} cy={top} r={14} fill="none" stroke={OR_BLUE} strokeWidth={3} />
-        <ellipse cx={43} cy={top} rx={5} ry={11} fill={tint(OR_ROSE, 0.4)} />
-        {mono(String((_a = L.value) != null ? _a : item.answer), 16, base, T.micro)}
+        <ellipse cx={38} cy={mid} rx={22} ry={22} fill="none" stroke={OR_BLUE} strokeWidth={3} />
+        <ellipse cx={62} cy={mid} rx={22} ry={22} fill="none" stroke={OR_BLUE} strokeWidth={3} />
+        <ellipse cx={50} cy={mid} rx={10} ry={18} fill={tint(OR_ROSE, 0.55)} />
+        {xs.slice(0, 3).map((v, i) => card(96 + i * (cs + 8), mid - cs / 2, cs, v, OR_ROSE, i))}
+        {xs.length > 3 && mono("…", 96 + 3 * (cs + 8), mid + 10, T.micro)}
       </g>;
   } else if (item.kind === "next3" || item.kind === "first4") {
     body = <g>
@@ -5753,11 +5781,10 @@ function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v) => v }) {
         {mono(String((_b = L.value) != null ? _b : item.answer), 16, base, T.micro)}
       </g>;
   } else if (item.kind === "stops") {
-    const fs = orFactors(item.p).filter((v) => item.q % v === 0);
+    const fs = orFactors(item.p).filter((v) => item.q % v === 0), wx = 28, x1 = wx + 14 + fs.length * (cs + 8) + 6;
     body = <g>
-        <path d={`M 20 ${top - 16} V ${top + 16} M ${w - 20} ${top - 16} V ${top + 16}`} stroke={C.ink} strokeWidth={5} strokeLinecap="round" />
-        <path d={`M 20 ${top} H ${w - 20}`} stroke={OR_GREEN} strokeWidth={3} strokeDasharray="2 8" />
-        {mono(fs.join(" "), 40, base, T.micro)}
+        <path d={`M ${wx} ${mid - 26} V ${mid + 26} M ${x1} ${mid - 26} V ${mid + 26}`} stroke={C.ink} strokeWidth={6} strokeLinecap="round" />
+        {fs.map((v, i) => card(wx + 14 + i * (cs + 8), mid - cs / 2, cs, v, OR_BLUE, i))}
       </g>;
   } else {
     const q = Math.floor(item.big / item.small), r = item.big % item.small, wq = 22 + String(q).length * 17;

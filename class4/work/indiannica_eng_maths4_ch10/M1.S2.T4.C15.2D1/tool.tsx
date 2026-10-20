@@ -71,16 +71,16 @@ const TR: any = {
     "You learned: each box is the sum of the two boxes under it.": "तुमने सीखा: हर डिब्बा नीचे के दो डिब्बों का जोड़ है।",
     "Fill this adding tower up to the top.": "इस जोड़ वाली मीनार के सारे खाली डिब्बे ऊपर तक भरो।",
     "The top box?": "सबसे ऊपर का डिब्बा?",
-    "Add the two boxes just under the box you opened.": "जो डिब्बा खोला है, उसके ठीक नीचे के दो डिब्बे जोड़ो।",
+    "Each box stands on exactly two boxes below it.": "हर डिब्बा नीचे के ठीक दो डिब्बों पर टिका होता है।",
     "The top box is built from the pairs below it.": "सबसे ऊपर का डिब्बा नीचे की जोड़ियों से बना है।",
     "Fill the boxes above 8, 5 and 7, up to the top.": "8, 5 और 7 के ऊपर के डिब्बे भरो, सबसे ऊपर तक।",
-    "Look at the two boxes right under it.": "इस डिब्बे के ठीक नीचे के दो डिब्बों को ध्यान से देखो।",
+    "Add two boxes at a time, not all three.": "एक बार में दो डिब्बे जोड़ो, तीनों नहीं।",
     "Again, each box is its two neighbours added.": "फिर से, हर डिब्बा अपने दो पड़ोसियों का जोड़ है।",
     "What number sits at the top above 14, 16, 20 and 5?": "14, 16, 20 और 5 के ऊपर सबसे ऊपर कौन-सी संख्या है?",
     "Check the sum of the pair that holds it up.": "जिस जोड़ी पर यह टिका है, उसका जोड़ जाँचो।",
     "Four boxes at the bottom still build one top.": "नीचे के चार डिब्बे मिलकर एक सबसे ऊपर का डिब्बा बनाते हैं।",
     "Do the bottom pairs first, then the row above them.": "पहले नीचे की जोड़ियाँ करो, फिर उनके ऊपर की पंक्ति।",
-    "Start with 14 and 16, then 16 and 20, then 20 and 5.": "14 और 16 से शुरू करो, फिर 16 और 20, फिर 20 और 5।",
+    "Say the sum of the two boxes under the one you fill.": "जिस डिब्बे को भर रहे हो, उसके नीचे के दो डिब्बों का जोड़ बोलो।",
     "A tower that multiplies": "गुणा करने वाली मीनार",
     "This tower multiplies. Which two boxes hold this one up?": "यह मीनार गुणा करती है। यह डिब्बा किन दो डिब्बों पर टिका है?",
     "Tap the empty box to light the two boxes under it.": "खाली डिब्बे को टैप करो, उसके नीचे के दो डिब्बे चमक उठेंगे।",
@@ -107,13 +107,13 @@ const TR: any = {
     "Tap the first box above the bottom row to test it.": "सबसे नीचे की पंक्ति के ऊपर का पहला डिब्बा टैप करके जाँचो।",
     "Work out what the two lit boxes make, then tap Check to see it written.": "सोचो कि दोनों चमकते डिब्बे क्या बनाते हैं, फिर जाँचो टैप करके लिखा देखो।",
     "Tap the Check key at the foot.": "नीचे रखा जाँचो बटन टैप करो।",
-    "Does that box match the sign of the rest?": "क्या यह डिब्बा बाकी डिब्बों के चिह्न से मेल खाता है?",
+    "Does the same sign make this box too?": "क्या वही चिह्न इस डिब्बे को भी बनाता है?",
     "Look for one box that does not match its pair.": "ऐसा एक डिब्बा ढूँढो जो अपनी जोड़ी से मेल न खाए।",
     "Every box gets its turn, from the bottom row up.": "हर डिब्बे की बारी आती है, नीचे की पंक्ति से ऊपर तक।",
     "You learned: test every box, not only the top one.": "तुमने सीखा: हर डिब्बा जाँचो, सिर्फ़ सबसे ऊपर का नहीं।",
     "Yes": "हाँ",
     "No": "नहीं",
-    "Does every box match the same operation?": "क्या हर डिब्बा एक ही संक्रिया से मेल खाता है?",
+    "Does one operation make every box?": "क्या एक ही संक्रिया हर डिब्बा बनाती है?",
     "One sign for all?": "सबके लिए एक चिह्न?",
     "Which two boxes hold up the box you are checking?": "जिस डिब्बे को जाँच रहे हो, उसे कौन-से दो डिब्बे थामे हैं?",
     "One box broke the rule, so the answer is no.": "एक डिब्बे ने नियम तोड़ा, इसलिए उत्तर नहीं है।",
@@ -148,7 +148,7 @@ const TR: any = {
     "The top multiplied while the rest added.": "सबसे ऊपर वाले ने गुणा किया, बाकी ने जोड़।",
     "What goes in each box above the bottom row?": "सबसे नीचे की पंक्ति के ऊपर हर डिब्बे में क्या आएगा?",
     "Work along the bottom pairs first, then the row above.": "पहले नीचे की जोड़ियाँ करो, फिर ऊपर की पंक्ति।",
-    "Start with 2 times 3, then 3 times 5, then the pair above them.": "2 गुणा 3 से शुरू करो, फिर 3 गुणा 5, फिर उनके ऊपर की जोड़ी।",
+    "Say the product of the two boxes under the one you fill.": "जिस डिब्बे को भर रहे हो, उसके नीचे के दो डिब्बों का गुणनफल बोलो।",
     "Multiply the pair under the box you opened.": "जो डिब्बा खोला है, उसके नीचे की जोड़ी का गुणा करो।",
     "Every box above the bottom row was multiplied.": "सबसे नीचे की पंक्ति के ऊपर हर डिब्बे में गुणा हुआ।",
     "working": "हिसाब",
@@ -184,16 +184,16 @@ const TR: any = {
     "You learned: each box is the sum of the two boxes under it.": "તમે શીખ્યા: દરેક ડબ્બો નીચેના બે ડબ્બાનો સરવાળો છે.",
     "Fill this adding tower up to the top.": "આ સરવાળાવાળા મિનારના બધા ખાલી ડબ્બા ઉપર સુધી ભરો.",
     "The top box?": "સૌથી ઉપરનો ડબ્બો?",
-    "Add the two boxes just under the box you opened.": "જે ડબ્બો ખોલ્યો છે, તેની બરાબર નીચેના બે ડબ્બા ઉમેરો.",
+    "Each box stands on exactly two boxes below it.": "દરેક ડબ્બો નીચેના બરાબર બે ડબ્બા પર ટકેલો હોય છે.",
     "The top box is built from the pairs below it.": "સૌથી ઉપરનો ડબ્બો નીચેની જોડીઓથી બન્યો છે.",
     "Fill the boxes above 8, 5 and 7, up to the top.": "8, 5 અને 7 ની ઉપરના ડબ્બા ભરો, સૌથી ઉપર સુધી.",
-    "Look at the two boxes right under it.": "તેની બરાબર નીચેના બે ડબ્બા ધ્યાનથી જુઓ.",
+    "Add two boxes at a time, not all three.": "એક વારમાં બે ડબ્બા ઉમેરો, ત્રણેય નહીં.",
     "Again, each box is its two neighbours added.": "ફરી, દરેક ડબ્બો તેના બે પડોશીઓનો સરવાળો છે.",
     "What number sits at the top above 14, 16, 20 and 5?": "14, 16, 20 અને 5 ની ઉપર સૌથી ઉપર કઈ સંખ્યા છે?",
     "Check the sum of the pair that holds it up.": "જે જોડી પર તે ટકેલો છે, તેનો સરવાળો તપાસો.",
     "Four boxes at the bottom still build one top.": "નીચેના ચાર ડબ્બા મળીને એક સૌથી ઉપરનો ડબ્બો બનાવે છે.",
     "Do the bottom pairs first, then the row above them.": "પહેલાં નીચેની જોડીઓ કરો, પછી તેમની ઉપરની હરોળ.",
-    "Start with 14 and 16, then 16 and 20, then 20 and 5.": "14 અને 16 થી શરૂ કરો, પછી 16 અને 20, પછી 20 અને 5.",
+    "Say the sum of the two boxes under the one you fill.": "જે ડબ્બો ભરી રહ્યા છો, તેની નીચેના બે ડબ્બાનો સરવાળો બોલો.",
     "A tower that multiplies": "ગુણાકાર કરતો મિનાર",
     "This tower multiplies. Which two boxes hold this one up?": "આ મિનાર ગુણાકાર કરે છે. આ ડબ્બો કયા બે ડબ્બા પર ટકેલો છે?",
     "Tap the empty box to light the two boxes under it.": "ખાલી ડબ્બાને ટૅપ કરો, તેની નીચેના બે ડબ્બા ચમકી ઊઠશે.",
@@ -220,13 +220,13 @@ const TR: any = {
     "Tap the first box above the bottom row to test it.": "સૌથી નીચેની હરોળની ઉપરનો પહેલો ડબ્બો ટૅપ કરીને તપાસો.",
     "Work out what the two lit boxes make, then tap Check to see it written.": "વિચારો કે બંને ચમકતા ડબ્બા શું બનાવે, પછી તપાસો ટૅપ કરીને લખેલું જુઓ.",
     "Tap the Check key at the foot.": "નીચે રાખેલું તપાસો બટન ટૅપ કરો.",
-    "Does that box match the sign of the rest?": "શું આ ડબ્બો બાકીના ડબ્બાના ચિહ્ન સાથે મેળ ખાય છે?",
+    "Does the same sign make this box too?": "શું એ જ ચિહ્ન આ ડબ્બાને પણ બનાવે છે?",
     "Look for one box that does not match its pair.": "એવો એક ડબ્બો શોધો જે પોતાની જોડી સાથે મેળ ન ખાય.",
     "Every box gets its turn, from the bottom row up.": "દરેક ડબ્બાનો વારો આવે છે, નીચેની હરોળથી ઉપર સુધી.",
     "You learned: test every box, not only the top one.": "તમે શીખ્યા: દરેક ડબ્બો તપાસો, ફક્ત સૌથી ઉપરનો જ નહીં.",
     "Yes": "હા",
     "No": "ના",
-    "Does every box match the same operation?": "શું દરેક ડબ્બો એક જ ક્રિયા સાથે મેળ ખાય છે?",
+    "Does one operation make every box?": "શું એક જ ક્રિયા દરેક ડબ્બો બનાવે છે?",
     "One sign for all?": "બધા માટે એક ચિહ્ન?",
     "Which two boxes hold up the box you are checking?": "જે ડબ્બો તપાસી રહ્યા છો, તેને કયા બે ડબ્બા ટેકો આપે છે?",
     "One box broke the rule, so the answer is no.": "એક ડબ્બાએ નિયમ તોડ્યો, તેથી જવાબ ના છે.",
@@ -261,7 +261,7 @@ const TR: any = {
     "The top multiplied while the rest added.": "સૌથી ઉપરનાએ ગુણાકાર કર્યો, બાકીનાએ સરવાળો.",
     "What goes in each box above the bottom row?": "સૌથી નીચેની હરોળની ઉપર દરેક ડબ્બામાં શું આવશે?",
     "Work along the bottom pairs first, then the row above.": "પહેલાં નીચેની જોડીઓ પર કામ કરો, પછી ઉપરની હરોળ.",
-    "Start with 2 times 3, then 3 times 5, then the pair above them.": "2 ગુણ્યા 3 થી શરૂ કરો, પછી 3 ગુણ્યા 5, પછી તેમની ઉપરની જોડી.",
+    "Say the product of the two boxes under the one you fill.": "જે ડબ્બો ભરી રહ્યા છો, તેની નીચેના બે ડબ્બાનો ગુણાકાર બોલો.",
     "Multiply the pair under the box you opened.": "જે ડબ્બો ખોલ્યો છે, તેની નીચેની જોડીનો ગુણાકાર કરો.",
     "Every box above the bottom row was multiplied.": "સૌથી નીચેની હરોળની ઉપર દરેક ડબ્બામાં ગુણાકાર થયો.",
     "working": "હિસાબ",
@@ -303,15 +303,15 @@ const PHASES = [
       /* learn ML1: answer in the plan = 15, 13 and 15, then 28 and 28, then 56 at the top (each box is checked in its box; the answer is the top) */
       { qid: "M1.S2.T4.C15:ML1", kind: "build", answer: 56, near: 30, winMs: 3400,
         say: "Fill this adding tower up to the top.", ask: "The top box?",
-        miss: "Add the two boxes just under the box you opened.", win: "The top box is built from the pairs below it." },
+        miss: "Each box stands on exactly two boxes below it.", win: "The top box is built from the pairs below it." },
       /* practice 1: answer in the plan = 13 and 12, then 25 at the top */
       { qid: "M1.S2.T4.C15:1", kind: "build", answer: 25, near: 20, winMs: 2800,
         say: "Fill the boxes above 8, 5 and 7, up to the top.", ask: "The top box?",
-        miss: "Look at the two boxes right under it.", win: "Again, each box is its two neighbours added." },
+        miss: "Add two boxes at a time, not all three.", win: "Again, each box is its two neighbours added." },
       /* practice 2: answer in the plan = 127: the rows above the bottom are 30, 36 and 25, then 66 and 61, then 127 */
       { qid: "M1.S2.T4.C15:2", kind: "build", answer: 127, near: 55, winMs: 3400,
         say: "What number sits at the top above 14, 16, 20 and 5?", ask: "The top box?",
-        ladder: ["Do the bottom pairs first, then the row above them.", "Start with 14 and 16, then 16 and 20, then 20 and 5."],
+        ladder: ["Do the bottom pairs first, then the row above them.", "Say the sum of the two boxes under the one you fill."],
         miss: "Check the sum of the pair that holds it up.", win: "Four boxes at the bottom still build one top." },
     ],
   },
@@ -356,7 +356,7 @@ const PHASES = [
       { say: "Tap the first box above the bottom row to test it.", on: "box", hint: "Tap the box that has the pink ring around it." },
       { say: "Work out what the two lit boxes make, then tap Check to see it written.", on: "fill", hint: "Tap the Check key at the foot." },
     ],
-    ladder: ["Does that box match the sign of the rest?", "Look for one box that does not match its pair."],
+    ladder: ["Does the same sign make this box too?", "Look for one box that does not match its pair."],
     closing: "Every box gets its turn, from the bottom row up.",
     learned: "You learned: test every box, not only the top one.",
     traceback: "The walk climbs the tower box by box with each sign, writing every pair, and a box its sign cannot make stays lit.",
@@ -364,7 +364,7 @@ const PHASES = [
       /* learn ML3: answer in the plan = No. 8 is 6 + 2 and 18 is 8 + 10, but 10 is 2 x 5 and not 2 + 5 */
       { qid: "M1.S2.T4.C17:ML3", kind: "check", answer: "one breaks", near: "all follow", winMs: 3600,
         choices: [{ id: "all follow", label: "Yes" }, { id: "one breaks", label: "No" }],
-        say: "Does every box match the same operation?", ask: "One sign for all?",
+        say: "Does one operation make every box?", ask: "One sign for all?",
         miss: "Which two boxes hold up the box you are checking?", win: "One box broke the rule, so the answer is no." },
       /* practice 5: answer in the plan = Yes. 3 + 4 = 7, 4 + 6 = 10 and 7 + 10 = 17, so every box adds */
       { qid: "M1.S2.T4.C17:5", kind: "check", answer: "all follow", near: "one breaks", winMs: 3200,
@@ -407,7 +407,7 @@ const PHASES = [
       /* practice 8: answer in the plan = 6 and 15, then 90 at the top, because 2 x 3 = 6, 3 x 5 = 15 and 6 x 15 = 90 */
       { qid: "M1.S2.T4.C18:8", kind: "build", answer: 90, near: 30, winMs: 3000,
         say: "What goes in each box above the bottom row?", ask: "The top box?",
-        ladder: ["Work along the bottom pairs first, then the row above.", "Start with 2 times 3, then 3 times 5, then the pair above them."],
+        ladder: ["Work along the bottom pairs first, then the row above.", "Say the product of the two boxes under the one you fill."],
         miss: "Multiply the pair under the box you opened.", win: "Every box above the bottom row was multiplied." },
     ],
   },
@@ -601,6 +601,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
     vals: {} as any, part: null as any, open: null as any, typing: "", sel: null as any,
     demo: null as any, demoAt: null as any, tb: false, old: null as any, upd: {} as any, pend: {} as any,
     wn: { add: 0, mul: 0 } as any, sg: "add", worked: {} as any, reveal: false, done: false,
+    fix: null as any,
   });
   const [st, setSt] = useState<any>(() => fresh(keyOf));
   const S = st.key === keyOf ? st : fresh(keyOf);
@@ -655,6 +656,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
   /* ── the child's acts ───────────────────────────────────────────────────────────────────── */
   /* the pad is lent to the open box; the runtime holds one function, so it is sent through a ref and always runs against this render's tower */
   const inner = useRef(false);
+  /* wrong numbers so far in each box on the way (key = question + box): the third one has the pencil write that box */
+  const boxMiss = useRef<any>({});
   /* Free play: the pencil makes the boxes in `cells` again (row by row), each showing its new number as the tip reaches it */
   const cellsOf = (cells: any[]) => { const o: any = {}; cells.forEach((c: any) => { o[cellKey(c)] = true; }); return o; };
   /* a bottom box tapped (or Entered) while the pencil works waits and opens when it is done; a tap on the working area itself
@@ -710,7 +713,15 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
            two boxes still lit. The value goes as { inner } so it can never equal (win) the answer, and the traceback below skips it. */
         inner.current = true;
         put({ typing: "" });
+        const mk = keyOf + ":" + cellKey(cell);
+        boxMiss.current[mk] = (boxMiss.current[mk] || 0) + 1;
         api.submit({ inner: v });
+        /* the third miss at the same box: the pencil writes that box's pair working and its number, and the child goes on to the next */
+        if (boxMiss.current[mk] >= 3 && !busy.current) {
+          api.capture(null);
+          put({ open: null, typing: "", fix: { k: cellKey(cell), w: false } });
+          pencilBox(cell);
+        }
       }
       return;
     }
@@ -772,6 +783,23 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
     busy.current = false;
     if (!ok) { put({ part: null }); return; }
     put({ part: null, vals: { [k]: rows[cell.r][cell.c] } });
+    api.sfx.settle();
+  };
+  /* the pencil corrects a box after its third wrong number: it writes the result in that box's line of the working, then the
+     number into the box (the pair stays lit meanwhile). The miss itself was already a real runtime miss. */
+  const pencilBox = async (cell: any) => {
+    const k = cellKey(cell), val = rows[cell.r][cell.c], s = String(val);
+    const i = Math.max(0, order.findIndex((o: any) => cellKey(o) === k));
+    const dw = 34, cx = X(cell.r, cell.c) + B.w / 2, cy = Y(cell.r) + B.h / 2;
+    busy.current = true;
+    const ok = await api.act({
+      tool: "pencil", moves: "push", ms: 1300,
+      at: [{ x: L.x + L.w / 2 + 60, y: L.y + 120 + i * 44 }, ...s.split("").map((_: any, j: number) => ({ x: cx - (s.length * dw) / 2 + (j + 0.5) * dw, y: cy }))],
+      onPoint: (j: number) => (j === 0 ? put({ fix: { k, w: true } }) : put({ part: { k, s: s.slice(0, j) } })),
+    });
+    busy.current = false;
+    if (!ok) { put({ fix: null, part: null }); return; }
+    put({ fix: null, part: null, vals: { ...S.vals, [k]: val } });
     api.sfx.settle();
   };
   /* the pencil writes the result of the stepped box in the working (a warm-up step on a printed tower) */
@@ -898,6 +926,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
     return [{ r: 0, c: cell.c > 0 ? c : 1 }, { r: 1, c }];
   };
   const inPlay = S.open ? S.open
+    : S.fix ? cellOf(S.fix.k)
     : S.demoAt ? cellOf(S.demoAt)
     : kind === "build" && warm && S.sel ? S.sel
     : kind === "check" && !S.done && S.wn[S.sg] > 0 ? order[Math.min(S.wn[S.sg], order.length) - 1] : null;
@@ -987,11 +1016,12 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
     });
   } else {
     const wk = free ? twrWalk({ rows }) : order;
-    const lines = wk.filter((c: any) => (valueAt(c.r, c.c) !== null || (S.open && S.open.r === c.r && S.open.c === c.c))
+    const fixing = (c: any) => !!S.fix && S.fix.k === cellKey(c);
+    const lines = wk.filter((c: any) => (valueAt(c.r, c.c) !== null || fixing(c) || (S.open && S.open.r === c.r && S.open.c === c.c))
       && !(free && S.old && S.pend[cellKey(c)] && !S.upd[cellKey(c)]));   /* a box the pencil has not reached yet keeps no new working; the others keep theirs */
     ledger.push(<g key="hh">{twrSign(rail, L.x + L.w / 2, L.y + 74, 26, shade(STEP, 0.2))}</g>);
     lines.forEach((cell: any, i: number) => ledger.push(
-      ...lineAt("l" + i, L.x + L.w / 2, L.y + 130 + i * 44, lineOf(cell, rail, valueAt(cell.r, cell.c) !== null), C.ink)
+      ...lineAt("l" + i, L.x + L.w / 2, L.y + 130 + i * 44, lineOf(cell, rail, valueAt(cell.r, cell.c) !== null || (fixing(cell) && S.fix.w)), C.ink)
     ));
   }
 
@@ -1014,7 +1044,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
   if (warm) {
     if (stepOn === "box") { const cell = order[0]; if (cell) inv = { x: X(cell.r, cell.c) + B.w / 2, y: Y(cell.r) + B.h / 2, w: B.w, h: B.h, rx: RAD.piece + 4 }; }
     else { const j = keys.findIndex((q: any) => q.id === stepOn); if (j >= 0) inv = { x: keyX0 + j * (kw + kgap) + kw / 2, y: ky + kh / 2, w: kw, h: kh, rx: RAD.key }; }
-  } else if (!free && kind === "build" && nextFill && !S.open && !S.demo) {
+  } else if (!free && kind === "build" && nextFill && !S.open && !S.demo && !S.fix) {
     inv = { x: X(nextFill.r, nextFill.c) + B.w / 2, y: Y(nextFill.r) + B.h / 2, w: B.w, h: B.h, rx: RAD.piece + 4 };
   } else if (!free && kind === "check" && nextWalk && S.wn.add + S.wn.mul === 0) {
     inv = { x: X(nextWalk.r, nextWalk.c) + B.w / 2, y: Y(nextWalk.r) + B.h / 2, w: B.w, h: B.h, rx: RAD.piece + 4 };
@@ -1057,7 +1087,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
         <Hit id="box" x={X(order[0].r, order[0].c)} y={Y(order[0].r)} w={B.w} h={B.h} label={tx("The empty box")}
           onPress={() => press("box", () => selBox(order[0]))} />
       )}
-      {!free && kind === "build" && !warm && nextFill && !S.tb && (
+      {!free && kind === "build" && !warm && nextFill && !S.tb && !S.fix && (
         <Hit id="box" x={X(nextFill.r, nextFill.c)} y={Y(nextFill.r)} w={B.w} h={B.h} label={tx("The empty box")}
           enabled={!S.open} onPress={() => openBox(nextFill)} />
       )}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S2.T5.C20.2D1 · fact_both_ways · Fact Both Ways — standalone build 2026-10-19, source 097813ba:639810.
+/* M1.S2.T5.C20.2D1 · fact_both_ways · Fact Both Ways — standalone build 2026-10-20, source dcca03f1:642591.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -4186,7 +4186,7 @@ const TR = {
     "Push the shorter bar in with the same key.": "उसी कुंजी से छोटी पट्टी अंदर धकेलो।",
     "Can a bigger number go into a smaller one even once?": "क्या बड़ी संख्या छोटी संख्या में एक बार भी जा सकती है?",
     "Think small: 5 can never go into 2, so a longer number never fits inside.": "छोटी संख्याओं से सोचो: 5, 2 में कभी नहीं जाता, तो लंबी संख्या नहीं समाती।",
-    "A factor is never greater than the number it belongs to, though it may equal it.": "गुणनखंड अपनी संख्या से कभी बड़ा नहीं होता, पर उसके बराबर हो सकता है।",
+    "A factor is never greater than the number it belongs to, though it may equal it.": "गुणनखंड अपनी संख्या से बड़ा नहीं होता, बराबर हो सकता है।",
     "You learned: a factor fits inside its number, or matches it exactly.": "तुमने सीखा: गुणनखंड अपनी संख्या में समाता है, या उसके बराबर होता है।",
     "Could 35 be a factor of 21?": "क्या 35, 21 का गुणनखंड है?",
     "Which of the two numbers is the bigger?": "दोनों में से कौन-सी संख्या बड़ी है?",
@@ -4384,7 +4384,7 @@ const PHASES = [
     ],
     closing: "One exact division makes the smaller a factor and the bigger a multiple.",
     learned: "You learned: one exact division gives a factor and a multiple.",
-    traceback: "The rail draws both numbers to scale and the smaller one hops along it, landing exactly on the bigger; then both faces of the card stand up together, each naming its number.",
+    traceback: "The rail draws both numbers to scale and the smaller one hops along it, landing exactly on the bigger; then the right sentence stands up under the child's own.",
     items: [
       /* learn ML1: answer in the plan = 6 is a factor of 78, and 78 is a multiple of 6 */
       {
@@ -4773,7 +4773,8 @@ const FB_CSS = `
 .fb-grow{transform-box:fill-box;transform-origin:left center;animation:fbGrow 620ms ease-out both}
 @keyframes fbGrow{from{transform:scaleX(0.02)}to{transform:scaleX(1)}}
 .fb-lit{animation:fbLit 380ms ease-in-out 3}
-@keyframes fbLit{50%{stroke-opacity:.3}}`;
+@keyframes fbLit{50%{stroke-opacity:.3}}
+@media (prefers-reduced-motion:reduce){.fb-in,.fb-flip,.fb-grow,.fb-lit{animation:none}}`;
 function useFbBoard(qk, fresh) {
   const [raw, setRaw] = useState(() => ({ qk, ...fresh() }));
   const S = raw.qk === qk ? raw : { qk, ...fresh() };
@@ -4789,7 +4790,7 @@ function useFbBoard(qk, fresh) {
   return [S, set, SR];
 }
 function useFbRun(qk, api) {
-  const ep = useRef(0), busy = useRef(false), tb = useRef(false), last = useRef(0);
+  const ep = useRef(0), busy = useRef(false), tb = useRef(false), last = useRef(0), taps = useRef({});
   useEffect(() => () => {
     ep.current++;
     busy.current = false;
@@ -4804,7 +4805,23 @@ function useFbRun(qk, api) {
     last.current = t;
     fn();
   };
-  return { ep, busy, tb, ok: (my) => ep.current === my, once };
+  const tap = (id, fn) => () => {
+    const t = Date.now();
+    if (t - (taps.current[id] || 0) < 400) return;
+    taps.current[id] = t;
+    fn();
+  };
+  const hold = async (fn) => {
+    if (busy.current) return void 0;
+    const my = ep.current;
+    busy.current = true;
+    try {
+      return await fn();
+    } finally {
+      if (ep.current === my) busy.current = false;
+    }
+  };
+  return { ep, busy, tb, ok: (my) => ep.current === my, once, tap, hold };
 }
 function FbKey({ id, label, x, y, w = 260, h = 76, C, onClick }) {
   return <Key id={id} label={label} x={x} y={y} w={w} h={h} C={C} tone="key" onClick={onClick}>
@@ -4851,24 +4868,46 @@ const FB_LB = {
   gu: { factorsOf: (n) => `${n}ના અવયવ`, multiplesOf: (n) => `${n}ના ગુણિત`, rows: (r, per) => `${per}ની ${r} હાર`, counters: (n) => `${n} કૂકરી` }
 };
 const fbLb = (lang) => FB_LB[lang] || FB_LB.en;
-const fbSentLay = (parts, cx, lang = "en") => {
-  const em = lang === "gu" ? 25 : lang === "hi" ? 21 : 22;
-  const ws = parts.map((p) => p.t !== void 0 ? Math.max(p.t.length <= 2 ? 28 : 48, p.t.length * em) : FB_BW);
-  const total = ws.reduce((a, b) => a + b, 0) + FB_SG * (parts.length - 1);
+const fbSentLay = (parts, cx, lang = "en", mw = {}) => {
+  const em = lang === "gu" ? 22 : lang === "hi" ? 19 : 17;
+  const ws = parts.map((p, i) => p.t !== void 0 ? mw[i] || Math.max(p.t.length <= 2 ? 28 : 48, p.t.length * em) : FB_BW);
+  const gap = (p) => lang === "gu" && p.t !== void 0 && p.t.startsWith("નો") ? 4 : p.t === "," ? 2 : FB_SG;
+  const total = ws.reduce((a, b) => a + b, 0) + parts.reduce((a, p, i) => a + (i ? gap(p) : 0), 0);
   let x = cx - total / 2;
   return parts.map((p, i) => {
+    if (i) x += gap(p);
     const o = { ...p, x, w: ws[i] };
-    x += ws[i] + FB_SG;
+    x += ws[i];
     return o;
   });
 };
-function FbSentRow({ parts, cx, y, vals, dashed, cols, lit, C, live, onClear, tag, lang = "en" }) {
-  const lay = fbSentLay(parts, cx, lang);
+function FbSentRow({ parts, cx, y, vals, dashed, cols, lit, C, live, onClear, tag, lang = "en", ring = false }) {
+  const [mw, setMw] = useState({});
+  const refs = useRef({});
+  const sig = lang + "|" + parts.map((p) => p.t !== void 0 ? p.t : "#").join("¦");
+  useEffect(() => {
+    const m = () => {
+      const o = {};
+      Object.keys(refs.current).forEach((k) => {
+        const el = refs.current[k];
+        const w = el && el.getComputedTextLength ? el.getComputedTextLength() : 0;
+        if (w > 0) o[k] = Math.ceil(w);
+      });
+      setMw((p) => JSON.stringify(p) === JSON.stringify(o) ? p : o);
+    };
+    m();
+    const f = document.fonts;
+    if (f && f.ready) f.ready.then(m);
+  }, [sig]);
+  const lay = fbSentLay(parts, cx, lang, mw);
+  const first = ring ? lay.find((p) => p.b !== void 0 && (vals[p.b] === null || vals[p.b] === void 0)) : null;
   return <g>
       {lay.map((p, i) => {
     if (p.t !== void 0) {
       const k = p.kw && cols ? p.t.indexOf(p.kw) : -1;
-      return <text key={i} x={p.x + p.w / 2} y={y + FB_BH / 2 + T.prompt * 0.36} textAnchor="middle" fontSize={T.prompt} fontWeight={600} fill={C.ink}>
+      return <text key={i} ref={(el) => {
+        refs.current[i] = el;
+      }} x={p.x} y={y + FB_BH / 2 + T.prompt * 0.36} textAnchor="start" fontSize={T.prompt} fontWeight={600} fill={C.ink}>
               {k < 0 ? p.t : [p.t.slice(0, k), <tspan key="k" fill={fbInk(p.face === "factor" ? FB_F : FB_M)} fontWeight={700}>{p.kw}</tspan>, p.t.slice(k + p.kw.length)]}
             </text>;
     }
@@ -4878,6 +4917,7 @@ function FbSentRow({ parts, cx, y, vals, dashed, cols, lit, C, live, onClear, ta
             {live && p.b !== void 0 && vals[p.b] !== null && vals[p.b] !== void 0 && <Hit id={`${tag}-${p.b + 1}`} label={"Take " + vals[p.b] + " out"} x={p.x - 2} y={y - 2} w={FB_BW + 4} h={FB_BH + 4} onPress={() => onClear(p.b)} />}
           </g>;
   })}
+      {first && <Invite x={first.x + FB_BW / 2} y={y + FB_BH / 2} w={FB_BW + 8} h={FB_BH + 8} rx={16} C={C} />}
     </g>;
 }
 function FbTurnIcon({ x, y, C }) {
@@ -4895,7 +4935,7 @@ function FbRailDraw({ x = 50, w = 760, y, max, marks = [], zone = null, zoneLabe
           {zoneLabel && <text x={(X(0) + X(zone)) / 2} y={y + bandH / 2 + 66} textAnchor="middle" fontSize={T.label} fontWeight={600} fill={fbInk(FB_F)}>{zoneLabel}</text>}
         </g>}
       <line x1={X(0)} y1={y} x2={X(max)} y2={y} stroke={C.ink} strokeWidth={3} strokeLinecap="round" />
-      <text x={X(0) - 12} y={y + 10} textAnchor="end" fontSize={T.micro} fontWeight={600} fill={C.ink}>0</text>
+      <text x={X(0) - 12} y={y + 10} textAnchor="end" fontSize={T.label} fontWeight={600} fill={C.ink}>0</text>
       {ghosts.map((g, i) => <g key={"g" + i + g.v}>
           <rect x={X(0)} y={y + bandH / 2 + 8} width={X(g.v) - X(0)} height={12} rx={6} fill="none" stroke={fbInk(FB_F)} strokeWidth={2} strokeDasharray="6 5" />
           <rect x={X(g.past)} y={y + bandH / 2 + 8} width={X(g.v) - X(g.past)} height={12} rx={6} fill={FB_O} fillOpacity={0.55} />
@@ -4907,8 +4947,8 @@ function FbRailDraw({ x = 50, w = 760, y, max, marks = [], zone = null, zoneLabe
       {hops && Array.from({ length: hops.upto }).map((_, k) => {
     const x1 = X(k * hops.f), x2 = X((k + 1) * hops.f);
     return <g key={"h" + k} className="fb-in">
-            <path d={`M ${x1} ${y} Q ${(x1 + x2) / 2} ${y - 58} ${x2} ${y}`} fill="none" stroke={FB_F} strokeWidth={4} strokeLinecap="round" />
-            <text x={x2} y={y - 36} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={fbInk(FB_M)} stroke="#FFFFFF" strokeWidth={5} paintOrder="stroke">{(k + 1) * hops.f}</text>
+            <path d={`M ${x1} ${y} Q ${(x1 + x2) / 2} ${y - 40} ${x2} ${y}`} fill="none" stroke={FB_F} strokeWidth={4} strokeLinecap="round" />
+            <text x={x2} y={y - 28} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={fbInk(FB_M)} stroke="#FFFFFF" strokeWidth={5} paintOrder="stroke">{(k + 1) * hops.f}</text>
           </g>;
   })}
       {marks.map((m) => <g key={"m" + m.v}>
@@ -4934,7 +4974,7 @@ function FbCardDraw({ card, colored, flip, turnable, C, tx }) {
   const k = FB_CARD;
   return <g key={"card" + flip} className={flip ? "fb-flip" : void 0}>
       <rect x={k.x} y={k.y} width={k.w} height={k.h} rx={22} fill="url(#gCard)" stroke={C.rule} strokeWidth={2} filter="url(#fShadowSoft)" />
-      <text x={k.x + (turnable ? (k.w - 60) / 2 + 10 : k.w / 2)} y={k.y + k.h / 2 + T.xl * 0.36} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>{fbCardSpans(card, colored, tx)}</text>
+      <text x={k.x + (turnable ? (k.w - 76) / 2 : k.w / 2)} y={k.y + k.h / 2 + T.xl * 0.36} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>{fbCardSpans(card, colored, tx)}</text>
       {turnable && <FbTurnIcon x={k.x + k.w - 50} y={k.y + k.h / 2 - 4} C={C} />}
     </g>;
 }
@@ -4962,10 +5002,7 @@ function FbFacts(props) {
       api.did("turn");
       return;
     }
-    if (run.busy.current) return;
-    run.busy.current = true;
-    const ok = await api.act({ tool: "hand", moves: "tap", at: [{ x: ox + FB_CARD.x + FB_CARD.w / 2, y: FB_CARD.y + FB_CARD.h / 2 }] });
-    run.busy.current = false;
+    const ok = await run.hold(() => api.act({ tool: "hand", moves: "tap", at: [{ x: ox + FB_CARD.x + FB_CARD.w / 2, y: FB_CARD.y + FB_CARD.h / 2 }] }));
     if (!ok) return;
     set({ turned: true, flip: SR.current.flip + 1 });
     api.sfx.tick();
@@ -4977,10 +5014,7 @@ function FbFacts(props) {
       api.did("hop");
       return;
     }
-    if (run.busy.current) return;
-    run.busy.current = true;
-    const ok = await api.act({ tool: "hand", moves: "tap", at: hopPts(W1[0], W1[2]), onPoint: (i) => set({ hops: i + 1 }) });
-    run.busy.current = false;
+    const ok = await run.hold(() => api.act({ tool: "hand", moves: "tap", at: hopPts(W1[0], W1[2]), onPoint: (i) => set({ hops: i + 1 }) }));
     if (!ok) return;
     set({ hops: W1[0] / W1[2] });
     api.sfx.settle();
@@ -5028,7 +5062,7 @@ function FbFacts(props) {
   const ready = live && S.fill.every((x) => x !== null) && !(S.stale && !S.acted);
   useEffect(() => {
     if (!warm) api.answerReady(ready);
-  }, [ready, qk]);
+  }, [ready, qk, S.acted, S.stale]);
   useEffect(() => {
     if (!wrong || stage !== "ask" || warm) return;
     const my = ++run.ep.current;
@@ -5055,16 +5089,17 @@ function FbFacts(props) {
       api.lock(false);
     })();
   }, [wrong]);
-  const aVals = warm ? S.turned ? [W1[2], W1[0]] : [null, null] : S.ghost || S.fill;
+  const aVals = warm ? S.turned ? [W1[2], W1[0]] : [null, null] : S.fill;
+  const ghostB = !warm && !!S.ghost;
   const colored = warm ? S.turned : won || !!S.ghost;
-  const showB = warm ? S.turned : nb === 2 && (S.other || won && S.fill.every((x) => x !== null));
+  const showB = warm ? S.turned : !ghostB && nb === 2 && won && S.fill.every((x) => x !== null);
   const bVals = warm ? [W1[0], W1[2]] : [aVals[1], aVals[0]];
   const railNow = warm ? S.turned ? { max: W1[0], f: W1[2], hops: S.hops, pins: [W1[0]] } : null : S.rail || (item.pins ? { max: Math.max(...item.pins), f: 0, hops: 0, pins: item.pins } : null);
   const tiles = warm ? [] : item.tiles;
   const tw = 116, tg = 40, tx0 = (FB_W - (tiles.length * tw + (tiles.length - 1) * tg)) / 2;
   const frame = (y, filled) => <rect x={0} y={y} width={FB_W} height={FB_RH} rx={22} fill={filled ? "#FFFFFF" : "none"} stroke={C.rule} strokeWidth={2} strokeDasharray={filled ? void 0 : "10 10"} />;
   const cy = (y) => y + (FB_RH - FB_BH) / 2;
-  const joined = warm ? S.turned : S.other || won;
+  const joined = warm ? S.turned : S.other || won || ghostB;
   api.share({
     division: fbCardStr(card),
     faceUp: warm ? S.turned : true,
@@ -5078,21 +5113,20 @@ function FbFacts(props) {
       <style>{FB_CSS}</style>
       <FbCardDraw card={card} colored={colored} flip={S.flip} turnable={warm && !S.turned} C={C} tx={tx} />
       {warm && !S.turned && <Hit id="turn" label={tx("Turn the card")} x={FB_CARD.x} y={FB_CARD.y} w={FB_CARD.w} h={FB_CARD.h} onPress={doTurn} />}
-      {frame(FB_ROWA, colored || aVals.some((x) => x !== null))}
-      {nb === 2 && frame(FB_ROWB, !!showB)}
-      {nb === 2 && <line x1={FB_W / 2} y1={FB_ROWA + FB_RH} x2={FB_W / 2} y2={FB_ROWB} stroke={joined ? FB_B : C.rule} strokeWidth={joined ? 6 : 2} />}
-      {(!warm || S.turned) && <g key={"a" + S.flip + (S.ghost ? "g" : "")} className={warm ? "fb-in" : void 0}>
-          <FbSentRow parts={fbFace(face, nb === 1 ? item.of : void 0, lang)} cx={FB_W / 2} y={cy(FB_ROWA)} vals={aVals} dashed={!!S.ghost} cols={colored ? cols : null} lit={S.lit} C={C} live={live} onClear={clear} tag="gap" lang={lang} />
+      {frame(FB_ROWA, won || aVals.some((x) => x !== null))}
+      {(nb === 2 || ghostB) && frame(FB_ROWB, !!showB || ghostB)}
+      {(nb === 2 || ghostB) && <line x1={FB_W / 2} y1={FB_ROWA + FB_RH} x2={FB_W / 2} y2={FB_ROWB} stroke={joined ? FB_B : C.rule} strokeWidth={joined ? 6 : 2} />}
+      {(!warm || S.turned) && <g key={"a" + S.flip} className={warm ? "fb-in" : void 0}>
+          <FbSentRow parts={fbFace(face, nb === 1 ? item.of : void 0, lang)} cx={FB_W / 2} y={cy(FB_ROWA)} vals={aVals} cols={warm ? S.turned ? cols : null : won ? cols : null} lit={S.lit} C={C} live={live} onClear={(k) => run.tap("clr" + k, () => clear(k))()} tag="gap" lang={lang} ring={live && !S.acted && !S.stale} />
         </g>}
-      {showB && <g key={"b" + S.flip + (S.other ? "o" : "")} className="fb-in">
-          <FbSentRow parts={fbFace(otherFace, void 0, lang)} cx={FB_W / 2} y={cy(FB_ROWB)} vals={bVals} cols={face === "factor" ? [FB_M, FB_F] : [FB_F, FB_M]} C={C} tag="other" lang={lang} />
+      {(showB || ghostB) && <g key={"b" + S.flip + (ghostB ? "g" : "")} className="fb-in">
+          <FbSentRow parts={fbFace(ghostB ? face : otherFace, ghostB && nb === 1 ? item.of : void 0, lang)} cx={FB_W / 2} y={cy(FB_ROWB)} vals={ghostB ? S.ghost : bVals} dashed={ghostB} cols={ghostB ? cols : face === "factor" ? [FB_M, FB_F] : [FB_F, FB_M]} C={C} tag="other" lang={lang} />
         </g>}
       {railNow && <FbRailDraw y={FB_RAILY} max={railNow.max} marks={railNow.pins.map((v) => ({ v, col: warm || railNow.hops > 0 || won ? FB_M : null }))} hops={railNow.f ? { f: railNow.f, upto: railNow.hops } : null} C={C} />}
-      {tiles.map((v, i) => <g key={"t" + i}>
-          <FbTile x={tx0 + i * (tw + tg)} y={FB_TILEY} v={v} col={won ? S.fill.includes(v) ? cols[S.fill.indexOf(v)] : null : null} C={C} />
-          {live && <Hit id={"tile-" + v} label={"Number " + v} x={tx0 + i * (tw + tg)} y={FB_TILEY} w={tw} h={80} onPress={() => put(v)} />}
+      {tiles.map((v, i) => <g key={"t" + i} opacity={won && !S.fill.includes(v) ? 0.3 : 1}>
+          <FbTile x={tx0 + i * (tw + tg)} y={FB_TILEY + 6} v={v} col={won ? S.fill.includes(v) ? cols[S.fill.indexOf(v)] : null : null} C={C} />
+          {live && <Hit id={"tile-" + v} label={"Number " + v} x={tx0 + i * (tw + tg)} y={FB_TILEY + 6} w={tw} h={80} onPress={run.tap("tile-" + v, () => put(v))} />}
         </g>)}
-      {live && !S.acted && !S.stale && tiles.length > 0 && <Invite x={tx0 + tw / 2} y={FB_TILEY + 40} w={tw} h={80} rx={16} C={C} />}
       {warm && S.turned && <FbKey id="hop" label={tx("Hop")} x={(FB_W - 260) / 2} y={FB_TILEY} C={C} onClick={run.once(() => doHop())} />}
       {warm && stepOn === "turn" && !S.turned && <Invite x={FB_CARD.x + FB_CARD.w / 2} y={FB_CARD.y + FB_CARD.h / 2} w={FB_CARD.w} h={FB_CARD.h} rx={22} C={C} />}
       {warm && stepOn === "hop" && <Invite x={FB_W / 2} y={FB_TILEY + 38} w={260} h={76} C={C} />}
@@ -5112,19 +5146,18 @@ function FbRails(props) {
   const [S, set, SR] = useFbBoard(qk, () => ({ bar: null, ghosts: [], tried: 0, tb: false }));
   const X = (v) => 60 + v / max * 740;
   const tryOne = async (v) => {
-    if (run.busy.current) return false;
-    run.busy.current = true;
-    set({ bar: null, ghosts: [] });
-    const ok = await api.act({
-      tool: "hand",
-      moves: "push",
-      from: { x: ox + X(0), y: FB_RB },
-      at: [{ x: ox + X(0) + 24, y: FB_RB }, { x: ox + X(v), y: FB_RB }],
-      onPoint: (i) => {
-        if (i === 0) set({ bar: { v } });
-      }
+    const ok = await run.hold(() => {
+      set({ bar: null, ghosts: [] });
+      return api.act({
+        tool: "hand",
+        moves: "push",
+        from: { x: ox + X(0), y: FB_RB },
+        at: [{ x: ox + X(0) + 24, y: FB_RB }, { x: ox + X(v), y: FB_RB }],
+        onPoint: (i) => {
+          if (i === 0) set({ bar: { v } });
+        }
+      });
     });
-    run.busy.current = false;
     if (!ok) return false;
     if (v > zone) {
       await fbWait(600);
@@ -5163,7 +5196,7 @@ function FbRails(props) {
   }, [wrong]);
   const ghosts = warm || S.ghosts.length ? S.ghosts : won ? [{ v: item.claim[0], past: item.claim[1] }] : [];
   const bar = S.bar;
-  const marks = warm ? [{ v: W3.zone, col: FB_M }, { v: W3.max, col: FB_F }] : [{ v: item.claim[1], col: null }, { v: item.claim[0], col: null }];
+  const marks = warm ? [{ v: W3.zone, col: S.tried >= 2 ? FB_M : null }, { v: W3.max, col: S.tried >= 1 ? FB_O : null }] : [{ v: item.claim[1], col: null }, { v: item.claim[0], col: null }];
   const tryLabel = W3.tries[S.tried] !== void 0 ? tx("Try " + W3.tries[S.tried]) : "";
   api.share({ division: null, faceUp: null, bothHeld: false, namedNumber: null, railOrder: marks.map((m) => m.v).sort(fbNum), builtNumber: null, complete: stage === "idle" });
   return <g transform={`translate(${ox},0)`}>
@@ -5188,21 +5221,21 @@ function FbRails(props) {
 }
 const FB_BH2 = 292;
 function fbRowPos(rows, cols, i) {
-  const px = Math.min(44, (FB_W - 40) / cols), py = Math.min(62, 236 / rows);
-  return { x: (FB_W - cols * px) / 2 + px / 2 + i % cols * px, y: (FB_BH2 - rows * py) / 2 + py / 2 + Math.floor(i / cols) * py, r: Math.min(16, px * 0.4, py * 0.4), over: false };
+  const px = Math.min(70, (FB_W - 40) / cols), py = Math.min(90, 250 / rows);
+  return { x: (FB_W - cols * px) / 2 + px / 2 + i % cols * px, y: (FB_BH2 - rows * py) / 2 + py / 2 + Math.floor(i / cols) * py, r: Math.min(28, px * 0.4, py * 0.4), over: false };
 }
 function fbPairPos(i, t, whole) {
   if (!t) {
-    const r = 17 * Math.sqrt(i + 0.5), a = i * 2.39996;
-    return { x: 400 + r * Math.cos(a), y: 146 + r * Math.sin(a), r: 14, over: false };
+    const r = 25 * Math.sqrt(i + 0.5), a = i * 2.39996;
+    return { x: 400 + r * Math.cos(a), y: 146 + r * Math.sin(a), r: 20, over: false };
   }
   const per = Math.floor(whole / t), used = per * t;
   if (i < used) {
-    const px = Math.min(44, (FB_W - 220) / per), py = Math.min(62, 236 / t);
-    return { x: 40 + px / 2 + i % per * px, y: (FB_BH2 - t * py) / 2 + py / 2 + Math.floor(i / per) * py, r: Math.min(16, px * 0.4, py * 0.4), over: false };
+    const px = Math.min(70, (FB_W - 230) / per), py = Math.min(90, 250 / t);
+    return { x: 40 + px / 2 + i % per * px, y: (FB_BH2 - t * py) / 2 + py / 2 + Math.floor(i / per) * py, r: Math.min(28, px * 0.4, py * 0.4), over: false };
   }
   const j = i - used;
-  return { x: FB_W - 130 + j % 4 * 34, y: 90 + Math.floor(j / 4) * 34, r: 14, over: true };
+  return { x: FB_W - 160 + j % 4 * 44, y: 100 + Math.floor(j / 4) * 44, r: 18, over: true };
 }
 function FbPairs(props) {
   const { n, item, index, stage, wrong, api, stepOn, ox, lang = "en", tx = (v) => v } = props;
@@ -5228,10 +5261,7 @@ function FbPairs(props) {
       if (warm) api.did("lay");
       return;
     }
-    if (run.busy.current) return;
-    run.busy.current = true;
-    const ok = await api.act({ tool: "hand", moves: "tap", at: rowPts(), onPoint: (i) => set({ rows: i + 1 }) });
-    run.busy.current = false;
+    const ok = await run.hold(() => api.act({ tool: "hand", moves: "tap", at: rowPts(), onPoint: (i) => set({ rows: i + 1 }) }));
     if (!ok) return;
     set({ rows: a });
     api.sfx.settle();
@@ -5243,10 +5273,7 @@ function FbPairs(props) {
       api.did("name");
       return;
     }
-    if (run.busy.current) return;
-    run.busy.current = true;
-    const ok = await api.act({ tool: "hand", moves: "tap", at: [{ x: ox + builtBox.x + builtBox.w / 2, y: builtBox.y + builtBox.h / 2 }] });
-    run.busy.current = false;
+    const ok = await run.hold(() => api.act({ tool: "hand", moves: "tap", at: [{ x: ox + builtBox.x + builtBox.w / 2, y: builtBox.y + builtBox.h / 2 }] }));
     if (!ok) return;
     set({ shown: true, named: true });
     api.sfx.tick();
@@ -5282,14 +5309,16 @@ function FbPairs(props) {
   HOOK.enter = enterFn;
   HOOK.set = (v) => {
     if (kind !== "pairs") return false;
-    const m = [...new Set(fbPairs(v).map((p) => Math.min(p[0], p[1])))].filter((k) => whole % k === 0).sort(fbNum);
+    const ps = fbPairs(v);
+    if (!ps.length || ps.some((p) => p[0] * p[1] !== whole)) return false;
+    const m = [...new Set(ps.map((p) => Math.min(p[0], p[1])))].sort(fbNum);
     set({ ghost: null, marks: m, lay: m.length ? m[m.length - 1] : 0, acted: true, stale: false });
     return true;
   };
   const ready = kind === "pairs" && live && S.marks.length > 0 && !(S.stale && !S.acted);
   useEffect(() => {
     if (!warm) api.answerReady(ready);
-  }, [ready, qk]);
+  }, [ready, qk, S.acted, S.stale]);
   useEffect(() => {
     if (!wrong || stage !== "ask" || warm) return;
     const my = ++run.ep.current;
@@ -5360,7 +5389,7 @@ function FbPairs(props) {
             {p.over && <circle cx={0} cy={0} r={p.r + 3} fill="none" stroke={C.ink} strokeWidth={3} />}
           </g>)}
       </g>
-      {left > 0 && <text x={FB_W - 100} y={64} textAnchor="middle" fontSize={T.micro} fontWeight={600} fill={fbInk(FB_O)}>{tx("left over")}</text>}
+      {left > 0 && <text x={FB_W - 100} y={64} textAnchor="middle" fontSize={T.label} fontWeight={600} fill={fbInk(FB_O)}>{tx("left over")}</text>}
       {label && <text x={8} y={366} fontSize={T.label} fontWeight={700} fill={C.ink}>{label}</text>}
 
       {
@@ -5382,7 +5411,7 @@ function FbPairs(props) {
       {kind === "pairs" && chips.map((k, j) => <g key={"p" + k} className="fb-in">
           <rect x={250 + j * 182} y={312} width={170} height={76} rx={16} fill={tint(FB_F, 0.88)} stroke={FB_F} strokeWidth={S.ghost ? 3 : 4} strokeDasharray={S.ghost ? "8 6" : void 0} />
           <text x={250 + j * 182 + 85} y={312 + 38 + T.label * 0.36} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={fbInk(FB_F)}>{`${k} × ${whole / k}`}</text>
-          {live && !S.ghost && <Hit id={"pair-" + k} label={"Take out " + k + " times " + whole / k} x={250 + j * 182} y={312} w={170} h={76} onPress={() => dropPair(k)} />}
+          {live && !S.ghost && <Hit id={"pair-" + k} label={"Take out " + k + " times " + whole / k} x={250 + j * 182} y={312} w={170} h={76} onPress={run.tap("pair-" + k, () => dropPair(k))} />}
         </g>)}
 
       {
@@ -5393,14 +5422,14 @@ function FbPairs(props) {
       {kind === "pairs" && item.tiles.map((v, i) => <g key={"t" + v}>
           <rect x={tx0 + i * (tw + tg)} y={FB_TILEY} width={tw} height={tw} rx={16} fill={S.marks.includes(Math.min(v, whole / v)) && whole % v === 0 ? tint(FB_F, 0.82) : "url(#gKey)"} stroke={S.lay === v ? C.accent : C.rule} strokeWidth={S.lay === v ? 5 : 2} filter="url(#fShadowSoft)" />
           <text x={tx0 + i * (tw + tg) + tw / 2} y={FB_TILEY + tw / 2 + T.prompt * 0.36} textAnchor="middle" fontSize={T.prompt} fontWeight={700} fill={C.ink}>{v}</text>
-          {live && <Hit id={"tile-" + v} label={"Rows of " + v} x={tx0 + i * (tw + tg)} y={FB_TILEY} w={tw} h={tw} onPress={() => tapTile(v)} />}
+          {live && <Hit id={"tile-" + v} label={"Rows of " + v} x={tx0 + i * (tw + tg)} y={FB_TILEY} w={tw} h={tw} onPress={run.tap("tile-" + v, () => tapTile(v))} />}
         </g>)}
-      {kind === "pairs" && live && !S.acted && !S.stale && <Invite x={tx0 + tw / 2} y={FB_TILEY + tw / 2} w={tw} h={tw} rx={16} C={C} />}
       {kind === "pairs" && S.gate > 0 && !S.marks.length && <rect key={"gate" + S.gate} className="fb-lit" x={tx0 - 6} y={FB_TILEY - 6} width={10 * tw + 9 * tg + 12} height={tw + 12} rx={20} fill="none" stroke={C.accent} strokeWidth={5} pointerEvents="none" />}
     </g>;
 }
 const FB_PEN = { x: 0, y: 82, w: 380, h: 140 }, FB_TRK = { x: 420, y: 82, w: 440, h: 140 };
 const fbPenX = (i) => 24 + i * 84, fbTrkX = (i) => 436 + i * 80, FB_CY = 104;
+const FB_CY2 = 216, FB_PEN2_H = 242, FB_CDY = 44;
 function FbCard({ x, y, v, col, lit, dash, big, C }) {
   const w = big ? 130 : 72, h = big ? 112 : 96, has = v !== null && v !== void 0;
   const fs = big ? T.display : String(v).length >= 3 ? T.label : T.prompt;
@@ -5445,9 +5474,7 @@ function FbLists(props) {
       api.did(on);
       return;
     }
-    run.busy.current = true;
-    const ok = await api.act(on === "pen" ? { tool: "hand", moves: "tap", at: penArr.map((_, i) => penPt(i)), onPoint: (i) => set({ penN: i + 1 }) } : on === "track" ? { tool: "hand", moves: "tap", at: trkArr.map((_, i) => trkPt(i)), onPoint: (i) => set({ trkN: i + 1 }) } : { tool: "hand", moves: "tap", at: [{ x: ox + (FB_W - 130) / 2 + 65, y: 346 }] });
-    run.busy.current = false;
+    const ok = await run.hold(() => api.act(on === "pen" ? { tool: "hand", moves: "tap", at: penArr.map((_, i) => penPt(i)), onPoint: (i) => set({ penN: i + 1 }) } : on === "track" ? { tool: "hand", moves: "tap", at: trkArr.map((_, i) => trkPt(i)), onPoint: (i) => set({ trkN: i + 1 }) } : { tool: "hand", moves: "tap", at: [{ x: ox + (FB_W - 130) / 2 + 65, y: 346 }] }));
     if (!ok) return;
     if (on === "show") set({ lit: true });
     else set(on === "pen" ? { penN: penArr.length } : { trkN: trkArr.length });
@@ -5477,13 +5504,15 @@ function FbLists(props) {
   HOOK.enter = enterFn;
   HOOK.set = (v) => {
     if (kind !== "list") return false;
-    set({ picks: [...new Set(fbList(v))].sort(fbNum), ghost: null, acted: true, stale: false });
+    const got = fbList(v);
+    if (!got.length || got.some((x) => !(item.cands || []).includes(x))) return false;
+    set({ picks: [...new Set(got)].sort(fbNum), ghost: null, acted: true, stale: false });
     return true;
   };
   const ready = kind === "list" && live && S.picks.length > 0 && !(S.stale && !S.acted);
   useEffect(() => {
     if (!warm) api.answerReady(ready);
-  }, [ready, qk]);
+  }, [ready, qk, S.acted, S.stale]);
   useEffect(() => {
     if (!wrong || stage !== "ask" || warm) return;
     const my = ++run.ep.current;
@@ -5495,7 +5524,10 @@ function FbLists(props) {
       if (!run.ok(my)) return;
       if (kind === "list") {
         const right = fbList(item.answer);
-        await api.act({ tool: "hand", moves: "tap", at: right.map((v) => ({ x: ox + 7 + item.cands.indexOf(v) * 94 + 43, y: 300 + 52 })), onPoint: (i) => set({ ghost: right.slice(0, i + 1) }) });
+        set({ ghost: [] });
+        await fbWait(500);
+        if (!run.ok(my)) return;
+        await api.act({ tool: "hand", moves: "tap", at: right.map((_v, j) => ({ x: ox + 30 + j * 94 + 36, y: FB_CY2 + 48 })), onPoint: (i) => set({ ghost: right.slice(0, i + 1) }) });
       } else {
         await api.act({ tool: "hand", moves: "tap", at: [penPt(penArr.length), trkPt(0)], onPoint: (i) => set({ gap: i + 1 }) });
       }
@@ -5514,6 +5546,7 @@ function FbLists(props) {
   const penLen = warm ? penArr.length : penShown.length;
   const wallX = fbPenX(penLen) - 10;
   const cands = kind === "list" ? item.cands : [];
+  const open2 = kind === "list" && !!S.ghost;
   const key = warm ? stepOn : null;
   const keyLabel = key === "pen" ? tx("Fill pen") : key === "track" ? tx("Fill track") : key === "show" ? tx("Show " + num) : "";
   api.share({ division: null, faceUp: null, bothHeld: joined, namedNumber: kind === "list" ? S.picks : null, railOrder: null, builtNumber: null, complete: stage === "idle" });
@@ -5537,7 +5570,7 @@ function FbLists(props) {
   })}
           {trkShown.map((v, i) => {
     const first = warm ? i === 0 && S.lit : gap >= 2 && i === 0;
-    return <g key={"k" + v} className="fb-t" style={{ transform: `translate(${fbTrkX(i)}px, ${FB_CY}px)` }}><g className={warm || gap >= 2 && i === 0 ? "fb-in" : void 0}><FbCard x={0} y={0} v={v} col={FB_M} lit={first} C={C} /></g></g>;
+    return <g key={"k" + v} style={{ transform: `translate(${fbTrkX(i)}px, ${FB_CY}px)` }}><g className={warm || gap >= 2 && i === 0 ? "fb-in" : void 0}><FbCard x={0} y={0} v={v} col={FB_M} lit={first} C={C} /></g></g>;
   })}
           {joined && <path className="fb-in" d={`M ${fbPenX(penLen - 1) + 36} ${FB_CY - 10} V ${FB_CY - 14} H ${fbTrkX(0) + 36} V ${FB_CY - 10}`} fill="none" stroke={FB_B} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" />}
           <path d={`M ${FB_W - 22} ${FB_CY + 40} L ${FB_W - 6} ${FB_CY + 48} L ${FB_W - 22} ${FB_CY + 56}`} fill="none" stroke={fbInk(FB_M)} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
@@ -5545,20 +5578,23 @@ function FbLists(props) {
         </g>}
       {kind === "list" && <g>
           <text x={12} y={66} fontSize={T.label} fontWeight={700} fill={fbInk(FB_F)}>{fbLb(lang).factorsOf(num)}</text>
-          <rect x={0} y={FB_PEN.y} width={FB_W} height={FB_PEN.h} rx={20} fill={tint(FB_F, 0.92)} stroke={FB_F} strokeWidth={3} />
+          <rect x={0} y={FB_PEN.y} width={FB_W} height={open2 ? FB_PEN2_H : FB_PEN.h} rx={20} fill={tint(FB_F, 0.92)} stroke={FB_F} strokeWidth={3} style={{ transition: "height 460ms cubic-bezier(.3,.7,.25,1)" }} />
           <rect x={4} y={92} width={12} height={120} rx={5} fill={C.ink} />
           <rect x={24 + S.picks.length * 94 - 6} y={92} width={12} height={120} rx={5} fill={C.ink} />
           {S.picks.map((v, j) => <g key={"pk" + v} className="fb-in"><FbCard x={30 + j * 94} y={FB_CY} v={v} col={FB_F} C={C} /></g>)}
-          {cands.map((v, i) => {
+          {open2 && <rect x={4} y={206} width={12} height={112} rx={5} fill={C.ink} />}
+          {open2 && <rect x={24 + fbList(item.answer).length * 94 - 6} y={206} width={12} height={112} rx={5} fill={C.ink} />}
+          {open2 && S.ghost.map((v, j) => <g key={"gh" + v} className="fb-in"><FbCard x={30 + j * 94} y={FB_CY2} v={v} col={FB_F} dash C={C} /></g>)}
+          <g className="fb-t" style={{ transform: `translate(0px, ${open2 ? FB_CDY : 0}px)` }}>
+            {cands.map((v, i) => {
     const on = S.picks.includes(v), x = 7 + i * 94;
     return <g key={"cd" + v}>
-                <rect x={x} y={300} width={86} height={104} rx={14} fill={on ? tint(C.panel, 0.4) : "#FFFFFF"} stroke={on ? C.dim : C.ink} strokeWidth={on ? 2.5 : 3} strokeDasharray={on ? "9 7" : void 0} />
-                {!on && <text x={x + 43} y={300 + 52 + T.prompt * 0.36} textAnchor="middle" fontSize={T.prompt} fontWeight={700} fill={C.ink}>{v}</text>}
-                {S.ghost && S.ghost.includes(v) && <rect x={x - 5} y={295} width={96} height={114} rx={18} fill="none" stroke={FB_F} strokeWidth={5} strokeDasharray="10 7" pointerEvents="none" />}
-                {live && <Hit id={"cand-" + v} label={"Card " + v} x={x} y={300} w={86} h={104} onPress={() => pick(v)} />}
-              </g>;
+                  <rect x={x} y={300} width={86} height={104} rx={14} fill={on ? tint(C.panel, 0.4) : "#FFFFFF"} stroke={on ? C.dim : C.ink} strokeWidth={on ? 2.5 : 3} strokeDasharray={on ? "9 7" : void 0} />
+                  {!on && <text x={x + 43} y={300 + 52 + T.prompt * 0.36} textAnchor="middle" fontSize={T.prompt} fontWeight={700} fill={C.ink}>{v}</text>}
+                  {live && <Hit id={"cand-" + v} label={"Card " + v} x={x} y={300} w={86} h={104} onPress={run.tap("cand-" + v, () => pick(v))} />}
+                </g>;
   })}
-          {live && !S.acted && !S.stale && <Invite x={7 + 43} y={352} w={86} h={104} rx={14} C={C} />}
+          </g>
           {S.gate > 0 && !S.picks.length && <rect key={"gate" + S.gate} className="fb-lit" x={0} y={FB_PEN.y} width={FB_W} height={FB_PEN.h} rx={20} fill="none" stroke={C.accent} strokeWidth={5} pointerEvents="none" />}
         </g>}
       {warm && keyLabel && <FbKey id={key} label={keyLabel} x={(FB_W - 260) / 2} y={FB_TILEY} C={C} onClick={run.once(() => doStep(key))} />}
@@ -5575,20 +5611,16 @@ function FbFree(props) {
   const q = a / b;
   const railX = (v) => 50 + v / a * 760;
   const turn = async () => {
-    if (run.busy.current) return;
-    run.busy.current = true;
-    const ok = await api.act({ tool: "hand", moves: "tap", at: [{ x: ox + FB_CARD.x + FB_CARD.w / 2, y: FB_CARD.y + FB_CARD.h / 2 }] });
-    run.busy.current = false;
+    const ok = await run.hold(() => api.act({ tool: "hand", moves: "tap", at: [{ x: ox + FB_CARD.x + FB_CARD.w / 2, y: FB_CARD.y + FB_CARD.h / 2 }] }));
     if (!ok) return;
     set({ turned: !SR.current.turned, flip: SR.current.flip + 1 });
     api.sfx.tick();
   };
   const hop = async () => {
-    if (run.busy.current) return;
-    run.busy.current = true;
-    set({ hops: 0 });
-    const ok = await api.act({ tool: "hand", moves: "tap", at: Array.from({ length: q }, (_, k) => ({ x: ox + railX((k + 1) * b), y: FB_RAILY - 14 })), onPoint: (i) => set({ hops: i + 1 }) });
-    run.busy.current = false;
+    const ok = await run.hold(() => {
+      set({ hops: 0 });
+      return api.act({ tool: "hand", moves: "tap", at: Array.from({ length: q }, (_, k) => ({ x: ox + railX((k + 1) * b), y: FB_RAILY - 14 })), onPoint: (i) => set({ hops: i + 1 }) });
+    });
     if (!ok) return;
     set({ hops: q });
     api.sfx.settle();

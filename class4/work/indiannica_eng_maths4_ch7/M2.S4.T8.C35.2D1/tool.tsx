@@ -699,11 +699,11 @@ function LpCard({ x, y, np, vals, part, open, ready, waiting, onWait, api, C }: 
 /* after a miss: the right answer, stacked, in a box of its own beside the count (the child's own answer stays on the card) */
 function LpAnswer({ x, w, h, sparse, ans, C, tx }: any) {
   const wh = ans.length === 3 ? ans[0] : null, tp = ans[ans.length - 2], bt = ans[ans.length - 1];
-  const size = sparse ? 52 : 40, y0 = sparse ? 60 : 38, fx = x + w - 64;
+  const size = sparse ? 64 : 36, y0 = sparse ? 55 : 33, fx = x + w - 64;
   return (
     <g>
       <rect x={x} y={0} width={w} height={h} rx={20} fill={tint(C.panel, 0.6)} stroke={C.accent} strokeWidth={4} />
-      <text x={x + 18} y={sparse ? 84 : 62} fontSize={T.label} fontWeight={700} fill={C.ink}>{tx("Answer")}</text>
+      <text x={x + 18} y={sparse ? 84 : 50} fontSize={sparse ? T.prompt : T.label} fontWeight={700} fill={C.ink}>{tx("Answer")}</text>
       {wh !== null && wh !== undefined ? <text x={tp === null || tp === undefined ? fx : fx - 62} y={y0 + size * 0.6} textAnchor="middle" fontSize={size * 1.25} fontWeight={700} fill={C.ink}>{wh}</text> : null}
       {tp !== null && tp !== undefined ? <LpFrac x={fx} y={y0} n={tp} d={bt} size={size} C={C} /> : null}
     </g>
@@ -763,7 +763,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   };
   api.onEnter(demo && stepOn ? () => actNow(stepOn) : waiting ? () => actNow(cur) : null);
   HOOK.demo = () => { if (stepOn) actNow(stepOn); };
-  HOOK.check = stage === "ask" && !S.tracing ? () => { if (isCard && !ready) { put(lpFinal(it, plan)); api.cardReady(true); } return undefined; } : null;
+  HOOK.check = stage === "ask" && !S.tracing ? () => { if (isCard && !ready) { put(lpFinal(it, plan)); api.cardReady(true); api.onEnter(null); /* the agent answered without the acts: the Enter that follows this hook must SEND the typed answer, not play the first act (this render's waiting handler is still the one registered) */ } return undefined; } : null;
   /* after each act the focus goes on to the next act key */
   useEffect(() => {
     if (!S.done || !cur) return;
@@ -804,7 +804,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   const seams = lpSeams(plan);
   /* the count is the number of counted (navy) slices on show */
   const showCount = S.cnt || stage !== "ask";
-  const count = plan.take ? it.a - S.m : plan.tidy ? Math.max(S.m, it.a) : it.a + S.m;
+  const count = plan.take ? it.a - S.m : plan.tidy ? Math.max(S.m, it.a) - (S.g ? plan.W * it.d : 0) : it.a + S.m;
   const joined = S.done >= 1, gDone = !plan.W || S.g;
   const rail = [
     { label: "Gather", state: plan.W ? (S.g ? "ran" : "wait") : joined ? "skip" : "wait", reason: "No whole" },
@@ -832,7 +832,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
         <text x={20} y={sparse ? 82 : 60} fontSize={sparse ? T.prompt : T.label} fontWeight={700} fill={C.ink}>{tx("Each piece")}</text>
         <LpFrac x={sparse ? 318 : 262} y={sparse ? 60 : 42} n={1} d={it.d} size={sparse ? 64 : 44} C={C} />
         {showCount && <g><text x={cntX} y={sparse ? 66 : 56} fontSize={sparse ? T.display : T.xl} fontWeight={700} fill={C.ink}>{count}</text><text x={cntX} y={sparse ? 118 : 94} fontSize={T.label} fontWeight={600} fill={C.ink}>{tx("counted")}</text></g>}
-        {showAns && <LpAnswer x={540} w={340} h={bh} sparse={sparse} ans={item.answer} C={C} tx={tx} />}
+        {showAns && <LpAnswer x={sparse ? 580 : 540} w={sparse ? 300 : 340} h={sparse ? bh : 80} sparse={sparse} ans={item.answer} C={C} tx={tx} />}
         {plan.take && <text x={0} y={G.yB - R * 0.45 + 12} fontSize={sparse ? T.prompt : T.label} fontWeight={700} fill={C.ink}>{tx("Taken away")}</text>}
         {plan.tidy && pc.map((c, q) => <LpPlate key={qk + "b" + q} cx={c.x} cy={c.y} R={R} d={it.d} closed={!!S.g && q < plan.W} top={false} C={C} />)}
         {plan.tidy && pc.map((c, q) => <LpFill key={qk + "f" + q} cx={c.x} cy={c.y} R={R} d={it.d} c={fills[q]} q={q} closed={!!S.g && q < plan.W} />)}

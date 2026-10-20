@@ -1,0 +1,520 @@
+{
+ "version": 1,
+ "class": 4,
+ "chapter": "indiannica_eng_maths4_ch7",
+ "build": 1,
+ "phase": "build",
+ "round": 1,
+ "createdAt": "2026-10-20T08:59:10.829Z",
+ "updatedAt": "2026-10-20T11:20:03.474Z",
+ "agents": [
+  {
+   "id": "tool-builder-1.1",
+   "role": "tool-builder",
+   "tier": "escalated",
+   "model": "opus",
+   "file": "udgam-tool-builder-escalated",
+   "slots": [],
+   "mode": null,
+   "startedAt": "2026-10-20T08:59:59.139Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": "runtime-multi-tool: r29 step-6 runtime package (11 play-test gaps), prior agent killed by session limit mid-edit",
+   "over": null,
+   "endedAt": "2026-10-20T10:06:28.102Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-1.2",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S3.T5.C20.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-10-20T08:59:59.169Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-20T09:32:54.250Z",
+   "escalate": {
+    "trigger": "none;",
+    "why": "none; no runtime gap found. Probe scripts and my one contact sheet deleted."
+   }
+  },
+  {
+   "id": "tool-builder-1.3",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S4.T8.C35.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-10-20T08:59:59.201Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-20T09:32:33.942Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-1.4",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S4.T7.C30.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-10-20T09:32:34.025Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-20T10:03:05.981Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-1.5",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S4.T8.C35.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-10-20T10:39:08.696Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-20T11:06:13.169Z",
+   "escalate": {
+    "trigger": "none;",
+    "why": "none; no runtime blocker freeze needed. Scratch c35port deleted; no Playwright MCP used."
+   }
+  }
+ ],
+ "slots": {
+  "M2.S3.T5.C20.2D1": {
+   "stage": "final",
+   "decisions": [
+    "round-1 maths x3 + visual + play done; round-4 fix list (14 items) was being applied when the agent was killed 2026-10-19 17:43; audit then finish",
+    "round-4 fixes complete 2026-10-20 (12 already in, 2 finished; 95/0/0)",
+    "PUBLISHED 2026-10-20 16:49 IST on r29 (owner: publish); re-keyed to the plan's old-id url; stored+public md5 ok; live tsx == local"
+   ],
+   "fails": [],
+   "fixes": [],
+   "risks": [
+    "unknown which of the 14 round-4 items are already in tool.tsx"
+   ],
+   "reviews": {
+    "maths": {
+     "verdict": "pass",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "021bb725e6814edc",
+     "at": "2026-10-20T09:02:02.684Z"
+    },
+    "visual": {
+     "verdict": "fix",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "021bb725e6814edc",
+     "at": "2026-10-20T09:02:02.889Z"
+    },
+    "play": {
+     "verdict": "fix",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "021bb725e6814edc",
+     "at": "2026-10-20T09:02:03.150Z"
+    }
+   },
+   "retries": {},
+   "escalations": 0,
+   "history": [
+    "tool-builder-1.2 ok"
+   ],
+   "launches": {
+    "tool-builder": 1
+   },
+   "prevStage": "checked",
+   "toolSha": "ddb2b30c1cf3d645",
+   "at": "2026-10-20T11:20:03.334Z",
+   "quickChecks": 2,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 95,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-10-20T10:20:05.448Z"
+   },
+   "fullChecks": 3
+  },
+  "M2.S4.T8.C35.2D1": {
+   "stage": "final",
+   "decisions": [
+    "round-1 maths x2 + visual + play done; round-4 list (11 items) mid-edit when killed 2026-10-19 17:43 (source changed since last check); audit then finish",
+    "round-4 fixes applied 2026-10-20 (95/0/0); count after Gather = navy slices on screen (kept)",
+    "r29 port fix 2026-10-20: HOOK.check now calls api.onEnter(null) after releasing the card, so the agent's answer+check SENDS the answer (the stale waiting handler had played act 1 instead); full 95/0/0 + port 4/4 phases",
+    "PUBLISHED 2026-10-20 16:49 IST on r29 (owner: publish); re-keyed to the plan's old-id url; stored+public md5 ok; live tsx == local"
+   ],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {
+    "maths": {
+     "verdict": "pass",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "1047a15972cc9db8",
+     "at": "2026-10-20T09:02:02.786Z"
+    },
+    "visual": {
+     "verdict": "fix",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "1047a15972cc9db8",
+     "at": "2026-10-20T09:02:02.981Z"
+    },
+    "play": {
+     "verdict": "fix",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "1047a15972cc9db8",
+     "at": "2026-10-20T09:02:03.212Z"
+    }
+   },
+   "retries": {
+    "tool-builder": 1
+   },
+   "escalations": 0,
+   "history": [
+    "tool-builder-1.3 ok",
+    "tool-builder-1.5 ok"
+   ],
+   "launches": {
+    "tool-builder": 2
+   },
+   "prevStage": "checked",
+   "toolSha": "f72863ce601d5511",
+   "at": "2026-10-20T11:20:03.440Z",
+   "quickChecks": 3,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 95,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-10-20T10:55:54.183Z"
+   },
+   "fullChecks": 5
+  },
+  "M2.S4.T7.C30.2D1": {
+   "stage": "final",
+   "decisions": [
+    "round-4 visual fixes applied 2026-10-20 (95/0/0); play test skipped (adaptive: follower, not risky)",
+    "PUBLISHED 2026-10-20 16:49 IST on r29 (owner: publish); re-keyed to the plan's old-id url; stored+public md5 ok; live tsx == local"
+   ],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {
+    "maths": {
+     "verdict": "pass",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "4041c47ce59ccc00",
+     "at": "2026-10-20T09:02:02.748Z"
+    },
+    "visual": {
+     "verdict": "fix",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "4041c47ce59ccc00",
+     "at": "2026-10-20T09:02:02.951Z"
+    }
+   },
+   "retries": {},
+   "escalations": 0,
+   "history": [
+    "tool-builder-1.4 ok"
+   ],
+   "prevStage": "checked",
+   "toolSha": "4dbe9ed8501a2551",
+   "at": "2026-10-20T11:20:03.403Z",
+   "launches": {
+    "tool-builder": 1
+   },
+   "quickChecks": 2,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 95,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-10-20T10:26:20.622Z"
+   },
+   "fullChecks": 2
+  },
+  "M1.S1.T2.C5.2D1": {
+   "stage": "final",
+   "decisions": [
+    "round-4 visual+play fixes applied 2026-10-19 (95/0/0); no further review round (policy: 1 round); awaits r29 pin + step-6 check",
+    "PUBLISHED 2026-10-20 16:49 IST on r29 (owner: publish); re-keyed to the plan's old-id url; stored+public md5 ok; live tsx == local"
+   ],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {
+    "maths": {
+     "verdict": "pass",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "c2bcf03a5bbcf110",
+     "at": "2026-10-20T09:02:02.588Z"
+    },
+    "visual": {
+     "verdict": "fix",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "c2bcf03a5bbcf110",
+     "at": "2026-10-20T09:02:02.818Z"
+    },
+    "play": {
+     "verdict": "fix",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "c2bcf03a5bbcf110",
+     "at": "2026-10-20T09:02:03.082Z"
+    }
+   },
+   "retries": {},
+   "escalations": 0,
+   "history": [],
+   "prevStage": "checked",
+   "toolSha": "c2bcf03a5bbcf110",
+   "at": "2026-10-20T11:20:03.209Z",
+   "quickChecks": 1,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 95,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-10-20T10:12:53.212Z"
+   },
+   "fullChecks": 1
+  },
+  "M1.S2.T3.C10.2D1": {
+   "stage": "final",
+   "decisions": [
+    "all reviews clean (maths x2, visual x2, play); awaits r29 pin + step-6 check",
+    "PUBLISHED 2026-10-20 16:49 IST on r29 (owner: publish); re-keyed to the plan's old-id url; stored+public md5 ok; live tsx == local"
+   ],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {
+    "maths": {
+     "verdict": "pass",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "6a00d631a64a0b59",
+     "at": "2026-10-20T09:02:02.622Z"
+    },
+    "visual": {
+     "verdict": "pass",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "6a00d631a64a0b59",
+     "at": "2026-10-20T09:02:03.015Z"
+    },
+    "play": {
+     "verdict": "pass",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "6a00d631a64a0b59",
+     "at": "2026-10-20T09:02:03.045Z"
+    }
+   },
+   "retries": {},
+   "escalations": 0,
+   "history": [],
+   "prevStage": null,
+   "toolSha": "6a00d631a64a0b59",
+   "at": "2026-10-20T11:20:03.252Z",
+   "quickChecks": 1,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 94,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-10-20T10:12:21.480Z"
+   },
+   "fullChecks": 1
+  },
+  "M1.S2.T4.C15.2D1": {
+   "stage": "final",
+   "decisions": [
+    "round-4 visual+play fixes applied 2026-10-19 (95/0/0); no further review round (policy: 1 round); awaits r29 pin + step-6 check",
+    "PUBLISHED 2026-10-20 16:49 IST on r29 (owner: publish); re-keyed to the plan's old-id url; stored+public md5 ok; live tsx == local"
+   ],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {
+    "maths": {
+     "verdict": "pass",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "65d3f28a07cd7318",
+     "at": "2026-10-20T09:02:02.653Z"
+    },
+    "visual": {
+     "verdict": "fix",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "65d3f28a07cd7318",
+     "at": "2026-10-20T09:02:02.857Z"
+    },
+    "play": {
+     "verdict": "fix",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "65d3f28a07cd7318",
+     "at": "2026-10-20T09:02:03.118Z"
+    }
+   },
+   "retries": {},
+   "escalations": 0,
+   "history": [],
+   "prevStage": "checked",
+   "toolSha": "65d3f28a07cd7318",
+   "at": "2026-10-20T11:20:03.290Z",
+   "quickChecks": 1,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 95,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-10-20T10:18:35.579Z"
+   },
+   "fullChecks": 1
+  },
+  "M2.S3.T6.C25.2D1": {
+   "stage": "final",
+   "decisions": [
+    "round-4 visual+play fixes applied 2026-10-19 (95/0/0); no further review round (policy: 1 round); awaits r29 pin + step-6 check",
+    "PUBLISHED 2026-10-20 16:49 IST on r29 (owner: publish); re-keyed to the plan's old-id url; stored+public md5 ok; live tsx == local"
+   ],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {
+    "maths": {
+     "verdict": "pass",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "010ea3c5779e11f3",
+     "at": "2026-10-20T09:02:02.716Z"
+    },
+    "visual": {
+     "verdict": "fix",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "010ea3c5779e11f3",
+     "at": "2026-10-20T09:02:02.922Z"
+    },
+    "play": {
+     "verdict": "fix",
+     "mode": "full",
+     "round": 1,
+     "toolSha": "010ea3c5779e11f3",
+     "at": "2026-10-20T09:02:03.180Z"
+    }
+   },
+   "retries": {},
+   "escalations": 0,
+   "history": [],
+   "prevStage": "checked",
+   "toolSha": "010ea3c5779e11f3",
+   "at": "2026-10-20T11:20:03.372Z",
+   "quickChecks": 1,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 95,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-10-20T10:25:16.409Z"
+   },
+   "fullChecks": 1
+  }
+ },
+ "freezes": [
+  {
+   "op": "freeze",
+   "gate": "step6",
+   "version": "r29",
+   "made": true,
+   "at": "2026-10-20T10:06:28.168Z",
+   "build": 1
+  }
+ ],
+ "pins": [
+  {
+   "op": "pin",
+   "gate": "step6",
+   "version": "r29",
+   "made": false,
+   "at": "2026-10-20T10:06:47.623Z",
+   "build": 1
+  }
+ ],
+ "skipped": [],
+ "questions": [],
+ "gaps": [],
+ "counters": {
+  "fullChecks": 14,
+  "quickChecks": 11,
+  "cachedChecks": 0,
+  "packs": 0,
+  "escalations": 0
+ },
+ "session": {
+  "handoffAt": "2026-10-20T11:20:03.474Z"
+ },
+ "planAt": "2026-10-20T08:59:10.829Z"
+}

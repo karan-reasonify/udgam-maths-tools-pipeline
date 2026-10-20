@@ -65,3 +65,27 @@
 - 17:31 C25 round-2 fixes 93/0/0; 11 frames changed; final narrow visual + play looks running. C5 visual (3 must: malformed plus, invisible disabled-key label, hi summary matras; 10 should) + play (4 should) sent as one batch. Owner note: C5 flag-drag Delight not built (bend-into-ring is).
 - 17:41 DONE (staged review clean): C25 Pattern Lines (final visual + play CLEAN), C20 Code Wheel (final visual + play CLEAN). C15 round 2: 96 frames changed; visual + play + maths (changed lines) re-looks running. C30 play: 0 must / 4 should (Next/Play-again double tap spill = runtime, r29 has it; P3 Q1 keyboard seats; Enter with <3 seats silent; aria TR) + q; waiting for the C30 visual review. C5 fixing round 1.
 - (runtime) a double tap on Next phase / Play again spills the second tap onto the new guide step (C30 play); ch7's r29 package fixes this.
+
+## 2026-10-20 resume under token-policy.json (adaptive; builders ≤3, reviewers ≤2, 1 review round, agents < 100k, never resume past 150k)
+- orch state created (`orch plan`, checkpoints per slot in orch/ckpt/). C20 + C25 final. Stopped agents NOT resumed (contexts past 150k): fresh agents instead.
+- 14:35 launched (gated): tool-builder-1.1 C15 fixer (maths changed-line shoulds + 3rd-miss correction), tool-builder-1.2 C5 fixer (finish the 18-item batch, audit first), visual-reviewer-1.1 C10 chunk 1/4, visual-reviewer-1.2 C30 chunk 1/3.
+- C15: no round-2 visual/play (cap = 1 round); tier-2 full check only after the fix.
+- (runtime) gu Yes/No choice keys "હા" / "ના" draw ~28 px in 258x155 keys vs hi ~45 (runtime choice-key sizing). (C30 visual)
+- 14:37 C30 visual chunk 1: 0 must / 5 should (gap fill stair-step + pale mauve, thin hatch, hi/gu quoted key-name break, gu Yes/No runtime) + 2 q (decided: reword the coin hint and draw coins with a rim; the tray piece matches the bench copies). Chunk 2 running.
+- (runtime) single-letter choice keys (K L M N) draw ~41 font in 258x150 keys; one-letter labels could be 72+ (the runtime sizes keys by the longest word). (C10 visual)
+- Owner question (C10): the 26-letter strip stays one row (cells 32x58, letters ~28-32); two rows of 13 would allow 40+ letters but departs from the brief's single strip.
+- (pipeline, orch) `orch gate` counts each CHUNK of one visual review (orch chunks --chunk k) as a retry of that role on the slot, so a 4-chunk review hits maxRetryRounds 2 at chunk 4 (STOP). C10 chunk 4 (phase 4) not launched (no --over without the owner); the C10 fixer self-checks its phase 4 sheets instead. Owner: let chunked reviews count once?
+- (runtime) hi/gu summary rows: matras touch the line above on r28 (runtime row pitch); the class 4 head already has more hi/gu pitch (ch7's r29 package). Pinning r29 at step 6 would fix it. (C5 visual)
+- 15:04 C5 fixer done (17/18 + the runtime item); C15 final; C10 + C30 fixers running.
+- (runtime) the two-box answer slot draws its part labels ("next" / "end") at T.micro 28, weight 500, grey ink (runtime answer slot); 32+ dark ink would fit in hi/gu too. (C10)
+- 15:34 C10 fixer done: bigPad:false (standard 372 panel) so the track can be laid out once at the 1086 room (stones 139/117); owner may prefer bigPad (then stones ~115/97).
+- 15:38 r29 frozen by the ch7 session (b3092cc67631, pinned to ch7 only). r29 vs r28 for ch10: Next-phase double-tap guard (C30 play), hi/gu summary-row leading (C5 visual), bubble widow guard (C10/C15/C30 orphan words), one size per choice-key row, keyOnly closing once (last win first = opt-in tool.lastWinFirst), digit-key guard after a card drawer opens, drag threshold 10 px. Owner question: `runtime pin --ch 10 --version r29 --gate step6` + one full check of all six (no tool edits needed unless lastWinFirst is wanted).
+
+## 2026-10-20 15:45 — STEPS 6-8 DONE, review gate
+- Step 6: orch checks tier 2, all six 0 FAIL 0 WARN (C5/C10/C15/C20/C30 95, C25 93). Step 7: orch audit, 6/6 publish dry runs ok (re-keyed to the old-id folders, 0 lp2_media rows, hostsim ok; the audit table's "sidecar n" is an orch path bug). Step 8: clean --ch 10 (182 MB), tool.legacy.tsx + voice.tsx.off deleted (owner 10-19).
+- (pipeline, orch) `orch audit` sidecar flag looks for <work slot>/output-preview/<id>.json (wrong folder), so it prints "n" for every ported tool.
+- Owner questions batch (report 2026-10-20): upload; pin r29; bigPad false on C10/C30; C10 letter strip 1 vs 2 rows; C25 one typed total; C15 box misses count; in-ask act keys; native-speaker terms; class 5 carry of port.mjs; the two orch gaps.
+
+## 2026-10-20 15:48 — PUBLISHED (owner: "publish")
+- `node cli.mjs publish --ch 10 --upload`: 6/6 ok on r28, stored + public md5 ok, to plan v3's own old-id folders (V2/cbse/indiannica/english/class_4/mathematics/ch_10/2dtool/<OLD ID>/<OLD ID>.tsx|.json; .json component = <OLD ID>.tsx, mediaId = new id), 0 lp2_media rows. Independent curl: all six live .tsx byte-identical to output-preview. Rollback copies of the Sep-24 live files: output-preview/indiannica_eng_maths4_ch10/<ID>/backup/2026-10-20T10-18-*.
+- Still open (owner did not answer): r29 pin (now means a re-publish), Q2-Q9 of the 2026-10-20 report.

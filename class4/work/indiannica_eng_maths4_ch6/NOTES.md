@@ -52,7 +52,26 @@
 - Gujarati "multiple": ગુણિત in C15/C20/C30, અવયવી in C25 and in the old Sep (live) tools; અવયવી is one matra from અવયવ
   (factor) [chapter term ગુણિત; C25 switched; a native speaker confirms the chapter glossary: गुणनखंड/અવયવ, गुणज/ગુણિત,
   विभाज्य/ભાગી શકાય, भागफल/ભાગફળ, शेषफल/શેષ, place-value abbreviations ह स द इ / હ શ દ એ].
+- C25 Overlap Rings P4 Q1 labels: RESOLVED 2026-10-20 -> "not a multiple of 9" / "not a factor of 74" (en/hi/gu, fit checked, 95/0/0).
 - The word "pen" for a factor list (plan's word, in C5 "factor pen", C10 Pair Pen, C15, C20): a reviewer says a Class 4 child reads
   "pen" as a writing pen [keep chapter-wide: it is the plan's word and the picture draws a fenced pen; rename only chapter-wide].
-- C30 Digit Tester: P2 digit totals use a SOFT rail gate (a right total wins with cards up; a wrong one lights the cards still up)
-  [chosen over a hard gate, which would also block the keyboard row].
+- C30 Digit Tester: P2 digit totals: a right total wins even with cards still up; a wrong total is a normal miss (counts a try)
+  whose replay brings every card down and ends on the right total; the yes/no item stays gated [chosen over a hard gate, which
+  blocks the keyboard row; the runtime cannot hold a typed question's Answer blink until the act is done (runtime-gap list)].
+
+## Known small leftovers (no further review round: token policy, 1 round)
+- C15 Multiple Track: the P3 learn question "Is there a last multiple of 11, one that nothing comes after?" wraps to 3 bubble lines ending on "after?".
+- C20 Fact Both Ways: on a P4 list miss the pen's two rows (child's picks + ghost right list) have touching left walls (read as one tall bar), and the candidate row slides down 44 px.
+- C30 Digit Tester: the review pack is older than the last small fixes (no further visual round planned).
+- REVIEW COVERAGE (adaptive policy from 2026-10-20; the orch review-done records mean "the round ran", not "every final byte was re-viewed"):
+  maths review + a changes-only maths re-look on all 6; visual round 1 on all 6 (round 2 changed-frames only on C15 and C30);
+  play tests on C5 C10 C15 C30 (round 2 on C15 C30); C20 and C25 had NO play test (followers, no risky interaction) — their
+  fixers applied the chapter's play lessons instead (they found and fixed the same AI-value filter in C20 FbPairs/FbLists).
+  Fixes verified only by the builders' own real-input replays + full check (not re-run by the reviewer that found them):
+  C5 dead ladder after Enter mid-flight; C10 wrong AI list marked right. Never re-viewed after their fix: C25 hi/gu wraps
+  (p1-end, p4-end, p4-win), statement spacing and ghost flags; C20 measured gu sentence rows, bigger counters, pen walls;
+  C30's pack predates its last small fixes.
+- PLAN ORDER changed only because of the pad-shape check gap: C10 P1 opens on "65 counters in 5 rows" (typed) before the 4 x 17
+  choice; C20 P2 opens on the typed 46 before ML2.
+- orch.mjs audit's "sidecar n" column is a path bug (it looks for output-preview/<id>.json, not output-preview/<chapter>/<id>/<id>.json);
+  the sidecars exist and the publish dry run validated all six.

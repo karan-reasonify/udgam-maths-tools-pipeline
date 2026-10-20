@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S2.T3.C10.2D1 · share_out_bench · Share Out Bench — standalone build 2026-10-19, source bef7d971:604480.
+/* M1.S2.T3.C10.2D1 · share_out_bench · Share Out Bench — standalone build 2026-10-20, source 6b4b0a82:609740.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -1190,7 +1190,7 @@ function useDrag(onDrop) {
       const s = stagePoint(event, xy[0], xy[1]);
       if (!s) return;
       const p0 = { x: s.x - W.x, y: s.y - W.y };
-      live.current = { payload, p0, p: p0, moved: false, svgEvent: event };
+      live.current = { payload, p0, p: p0, moved: false, svgEvent: event, xy0: [xy[0], xy[1]] };
       DRAGS.live++;
       setDrag({ payload, x: p0.x, y: p0.y, moved: false });
     }
@@ -1199,7 +1199,7 @@ function useDrag(onDrop) {
     if (!first) {
       const s = stagePoint(event, xy[0], xy[1]) || stagePoint(d.svgEvent, xy[0], xy[1]);
       if (s) d.p = { x: s.x - W.x, y: s.y - W.y };
-      if (Math.hypot(d.p.x - d.p0.x, d.p.y - d.p0.y) > 8) d.moved = true;
+      if (Math.hypot(xy[0] - d.xy0[0], xy[1] - d.xy0[1]) > 10) d.moved = true;
       if (!last) setDrag({ payload: d.payload, x: d.p.x, y: d.p.y, moved: d.moved });
     }
     if (last) {
@@ -2166,6 +2166,7 @@ function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, on
   const nCh = mode === "choices" ? (choices || []).length : 0;
   const cw = nCh ? choiceKeyW(choices, lang, TR2) : 150, cgap = 14;
   const kw = nCh ? nCh * cw + (nCh - 1) * cgap : 264, kh = 72, kx = x0 + bw - kw - 10, ky = Z.ask.y + (Z.ask.h - kh) / 2;
+  const rowSize = (choices || []).every((c) => lineFor(c.label, lang, TR2).length * T.prompt * 0.6 <= cw - 20) ? T.prompt : T.label;
   const noKey = mode === "card" || quiet && mode === "off";
   const room = (noKey ? x0 + bw - 10 : kx) - x0 - 40;
   const pick = [[T.prompt, 1], [T.label, 2], [T.micro, 2]].map(([s, l]) => ({ s, l, w: wrapText(ask, Math.floor(room / (s * 0.58))) })).find((c) => c.w.length <= c.l) || { s: T.micro, w: wrapText(ask, Math.floor(room / (T.micro * 0.58))).slice(0, 2) };
@@ -2177,7 +2178,7 @@ function AskBar({ C, ask, hasRuns, mode, open, onKey, UI, nextLabel, choices, on
       {!keyOnly && <rect x={x0} y={Z.ask.y} width={bw} height={Z.ask.h} rx={RAD.panel + 4} fill="#FFFFFF" stroke={C.rule} strokeWidth={2} filter="url(#fShadowSoft)" />}
       {!keyOnly && pick.w.map((ln, k) => <text key={k} x={x0 + 28} y={top + k * lh} fontSize={pick.s} fontWeight={500} fill={C.ink}>{ln}</text>)}
       {nCh > 0 && (choices || []).map((c, j) => {
-    const x = kx + j * (cw + cgap), lab = lineFor(c.label, lang, TR2), size = lab.length * T.prompt * 0.6 <= cw - 20 ? T.prompt : T.label;
+    const x = kx + j * (cw + cgap), lab = lineFor(c.label, lang, TR2), size = rowSize;
     return <g key={c.id}>
             <Key id={"choice-" + c.id} label={lab} x={x} y={ky} w={cw} h={kh} C={C} tone="key" onClick={() => onChoice && onChoice(c.id)}>
               <text y={size === T.prompt ? 14 : 11} textAnchor="middle" fontSize={size} fontWeight={600} fill={toneInk("key", C.ink)}>{lab}</text>
@@ -2479,7 +2480,14 @@ function Footer({ C, line, hint, speaking, react, n, N, i, total, navigable, don
   const over = pk < 0;
   if (over) pk = popts.length - 1;
   const size = popts[pk][0];
-  const lines = over && !KEYONLY ? wrapText(shown, per(popts[pk][2])).slice(0, popts[pk][1]) : wrapText(shown, per(popts[pk][2]));
+  const lines0 = over && !KEYONLY ? wrapText(shown, per(popts[pk][2])).slice(0, popts[pk][1]) : wrapText(shown, per(popts[pk][2]));
+  const lines = (() => {
+    const n2 = lines0.length, last = lines0[n2 - 1] || "", pv = wrapWords(lines0[n2 - 2] || "");
+    if (!KEYONLY || n2 < 2 || wrapWords(last).length !== 1 || last.length > 12 || pv.length < 2) return lines0;
+    const w = pv[pv.length - 1];
+    if ((w + " " + last).length > per(popts[pk][2])) return lines0;
+    return [...lines0.slice(0, n2 - 2), pv.slice(0, -1).join(" "), w + " " + last];
+  })();
   const lh = lhOf(size, pk);
   const top = b.y + b.h / 2 - (lines.length - 1) * lh / 2 + size * 0.36;
   const hintInk = hintType ? C.ink : THEME && THEME.key ? THEME.key[2] : shade(C.accent, 0.3);
@@ -2570,7 +2578,8 @@ function starPath(cx, cy, r) {
 function Summary({ C, phases, results, row, showScore, freePlay, onFree, onAgain, Thumb: Thumb2, UI, lang, TR: TR2 }) {
   const N = Math.max(phases.length, 1);
   const K = KEYONLY, dev = lang === "hi" || lang === "gu";
-  const top = K ? 166 : 188, rowH = Math.min(92, ((K ? 470 : 560) - top) / N);
+  const KD = K && dev;
+  const top = K ? KD ? 160 : 166 : 188, rowH = Math.min(92, ((K ? KD ? 488 : 470 : 560) - top) / N);
   const played = Object.keys(results).map(Number);
   const total = played.reduce((a, p) => a + (results[p].total || 0), 0);
   const first = played.reduce((a, p) => a + (results[p].firstTry || 0), 0);
@@ -2586,25 +2595,25 @@ function Summary({ C, phases, results, row, showScore, freePlay, onFree, onAgain
             {row === k && <rect className="c4-ring" x={68} y={y - 4} width={1464} height={rowH - 4} rx={18} fill="none" stroke={C.accent} strokeWidth={4} pointerEvents="none" />}
             <circle cx={100} cy={y + (K ? 24 : 29)} r={10} fill={r ? C.accent : "#FFFFFF"} stroke={C.accent} strokeWidth={3} />
             <text x={128} y={y + (K ? 34 : 40)} fontSize={T.label} fontWeight={700} fill={C.ink}>{lineFor(p.concept, lang, TR2)}</text>
-            <text x={128} y={y + (K ? dev ? 70 : 66 : dev ? 80 : 74)} fontSize={T.micro} fontWeight={500} fill={learnedInk}>{lineFor(p.learned, lang, TR2)}</text>
+            <text x={128} y={y + (K ? dev ? 74 : 66 : dev ? 80 : 74)} fontSize={T.micro} fontWeight={500} fill={learnedInk}>{lineFor(p.learned, lang, TR2)}</text>
             {r && r.last && Thumb2 && <g data-role="thumb" transform={`translate(1290,${y + 2})`}><Thumb2 n={k + 1} result={r} it={r.last.it} C={C} w={236} h={rowH - 10} lang={lang} tx={(v) => lineFor(v, lang, TR2)} /></g>}
           </g>;
   })}
       {showScore && played.length > 0 && <g role="img" aria-label={UI.starsLabel ? UI.starsLabel(first, total) : `Right first time: ${first} of ${total}`}>
           {[0, 1, 2].map((k) => <path
     key={k}
-    d={starPath(704 + k * 62, K ? 504 : 596, 24)}
+    d={starPath(704 + k * 62, K ? KD ? 520 : 504 : 596, 24)}
     fill={k < stars ? CONTENT.ten : "#FFFFFF"}
     stroke={k < stars ? shade(CONTENT.ten, 0.3) : C.rule}
     strokeWidth={3}
     strokeLinejoin="round"
   />)}
-          <text x={876} y={K ? 514 : 606} fontSize={T.micro} fontWeight={600} fill={C.ink}>{UI.rightFirstTime(first, total)}</text>
+          <text x={876} y={K ? KD ? 530 : 514 : 606} fontSize={T.micro} fontWeight={600} fill={C.ink}>{UI.rightFirstTime(first, total)}</text>
         </g>}
-      {freePlay && <Key id="free-play" label={UI.freePlay} x={490} y={K ? 544 : 628} w={300} h={K ? 80 : 96} C={C} tone="enter" primary onClick={onFree}>
+      {freePlay && <Key id="free-play" label={UI.freePlay} x={490} y={K ? KD ? 552 : 544 : 628} w={300} h={K ? KD ? 72 : 80 : 96} C={C} tone="enter" primary onClick={onFree}>
           <text y={13} textAnchor="middle" fontSize={T.prompt} fontWeight={600} fill={toneInk("enter", "#FFFFFF")}>{UI.freePlay}</text>
         </Key>}
-      <Key id="play-again" label={UI.playAgain} x={freePlay ? 810 : 650} y={K ? 544 : 628} w={300} h={K ? 80 : 96} C={C} tone="soft" onClick={onAgain}>
+      <Key id="play-again" label={UI.playAgain} x={freePlay ? 810 : 650} y={K ? KD ? 552 : 544 : 628} w={300} h={K ? KD ? 72 : 80 : 96} C={C} tone="soft" onClick={onAgain}>
         <text y={13} textAnchor="middle" fontSize={T.prompt} fontWeight={600} fill={toneInk("soft", C.ink)}>{UI.playAgain}</text>
       </Key>
     </g>;
@@ -2834,7 +2843,7 @@ function ToolFrame({ props, tool }) {
     if (!f) return false;
     nextRef.current = null;
     setHeldNext(false);
-    changeAt.current = Date.now();
+    changeAt.current = nextAt.current = Date.now();
     f();
     return true;
   };
@@ -2912,6 +2921,10 @@ function ToolFrame({ props, tool }) {
     setHintText(l, l ? "type" : "hint");
   };
   const openedAt = useRef(0);
+  const viaPtr = useRef(false);
+  const nextAt = useRef(0);
+  const closingSaid = useRef(false);
+  const caretAt = useRef(0);
   const choiceAt = useRef(0);
   const chooseNow = (id) => {
     if (lockedRef.current || live.current.locked) return;
@@ -3087,6 +3100,7 @@ function ToolFrame({ props, tool }) {
     const L = live.current, st = L.phase && L.phase.steps;
     if (L.stage !== "demo" || !st || !st[stepRef.current] || !st[stepRef.current].hint) return;
     if (Date.now() - didAt.current < 400) return;
+    if (Date.now() - nextAt.current < 500) return;
     setHintText(tx(st[stepRef.current].hint));
   };
   const workTap = (e) => {
@@ -3216,6 +3230,8 @@ function ToolFrame({ props, tool }) {
       later(go, Math.max(1400, PARTY_MS + 150 - (Date.now() - partyAt.current)));
     };
     const closing = [tx(L.phase.closing)].filter(Boolean);
+    const said = closingSaid.current;
+    closingSaid.current = false;
     if (nextKeyOn) {
       let skipped = false;
       const go = () => {
@@ -3228,14 +3244,24 @@ function ToolFrame({ props, tool }) {
       };
       pendingAdvance.current = null;
       if (holdRef.current) nextRef.current = go;
-      voice.speak(closing, void 0, { nopark: true });
+      if (!said) voice.speak(closing, void 0, { nopark: true });
       later(() => {
         if (!skipped) holdNext(go, lastPhase ? "summary" : "phase");
       }, Math.max(0, PARTY_MS + 150 - (Date.now() - partyAt.current)));
       return;
     }
     pendingAdvance.current = walk;
-    voice.speak(closing, walk, { nopark: true });
+    if (said) {
+      let waited = 0;
+      const poll = () => {
+        if (gone) return;
+        if (voice.reading() && waited < 8e3) {
+          waited += 150;
+          later(poll, 150);
+        } else walk();
+      };
+      poll();
+    } else voice.speak(closing, walk, { nopark: true });
     fallback(walk, closing.reduce((a, l) => a + readMs(speakable(l)), 0) + 6e3);
   };
   const freePlay = () => {
@@ -3269,6 +3295,7 @@ function ToolFrame({ props, tool }) {
       setTries(0);
       setWrong(null);
       setStage("ask");
+      setCardReady(true);
       voice.speak(say(L.items[next]));
     } else phaseEnd();
   };
@@ -3310,6 +3337,7 @@ function ToolFrame({ props, tool }) {
         last: { item: L.i, it, value, kind: it.kind, answer: it.answer, shared: { ...shared.current } }
       };
       L.stage = "win";
+      closingSaid.current = false;
       setWrong(null);
       setStage("win");
       emit("question_done", { phase: L.n, item: L.i + 1, firstTry: L.tries === 0, conceptId: L.phase.conceptId });
@@ -3393,14 +3421,19 @@ function ToolFrame({ props, tool }) {
     const parts = live.current.item.parts;
     const fresh = !staleParts.current.length || staleParts.current.some((s) => !s);
     if (k === "enter" && parts.some((p) => p.free)) {
+      const shut = board && !wantRef.current && !captureRef.current && !alwaysOpen;
       if (ps[at] !== "" && at < np - 1) {
+        if (shut) return;
+        caretAt.current = Date.now();
         setPart(at + 1);
         return;
       }
+      if (ps[at] === "" && Date.now() - caretAt.current < 300) return;
       if (fresh && slotComplete(parts, ps)) {
         commit(ps.join("|"));
         return;
       }
+      if (shut) return;
       const half = parts.findIndex((p, j) => (p.at === "top" || p.at === "bottom") && ps[j] === "" && parts.some((q, i2) => i2 !== j && (q.at === "top" || q.at === "bottom") && ps[i2] !== ""));
       if (half >= 0) setPart(half);
       else if (at < np - 1) setPart(at + 1);
@@ -3464,6 +3497,7 @@ function ToolFrame({ props, tool }) {
     setWrong(null);
     lockNow(false);
     setRing(null);
+    setCardReady(true);
     setStage(at > 0 ? "ask" : "teach");
     setRun((r) => r + 1);
   };
@@ -3499,6 +3533,7 @@ function ToolFrame({ props, tool }) {
     lockNow(false);
     forgetActed();
     setStage("ask");
+    setCardReady(true);
     if (same) setWorkN((n2) => n2 + 1);
     voice.speak(say(live.current.items[a] || {}));
   };
@@ -3675,7 +3710,6 @@ function ToolFrame({ props, tool }) {
         parts: item.parts ? item.parts.map((p) => p.label) : null,
         part: partRef.current,
         padTo: captureRef.current ? "work" : "slot",
-        answered: answered.current,
         firstTry: firstTry.current,
         score: answered.current * POINTS,
         maxScore: items.length * POINTS,
@@ -3693,7 +3727,9 @@ function ToolFrame({ props, tool }) {
         hint: hintText || null,
         ...shared.current,
         /* the runtime owns `complete`: true once `finished` is sent. A tool's shared `complete` (the plan's
-           field, often "stage is idle") would say it at every phase end, now that the tool walks on */
+           field, often "stage is idle") would say it at every phase end, now that the tool walks on.
+           It owns `answered` the same way (a shared `answered` hid the runtime's count) */
+        answered: answered.current,
         complete: fired.current
       };
     },
@@ -3783,7 +3819,10 @@ function ToolFrame({ props, tool }) {
     setTyped,
     say: (lines, doneFn) => {
       const L = live.current;
-      if (KEYONLY && L && L.stage === "win" && L.items && L.i === L.items.length - 1 && L.phase && L.phase.closing) lines = L.phase.closing;
+      if (KEYONLY && !tool.lastWinFirst && L && L.stage === "win" && L.items && L.i === L.items.length - 1 && L.phase && L.phase.closing) {
+        lines = L.phase.closing;
+        closingSaid.current = true;
+      }
       return voice.speak(Array.isArray(lines) ? lines.map((l) => tx(l)) : tx(lines), doneFn, { nopark: true });
     },
     sfx,
@@ -3840,9 +3879,15 @@ function ToolFrame({ props, tool }) {
   return <div
     className="c4-frame"
     style={{ position: "relative", margin: "0 auto", touchAction: "none", userSelect: "none", WebkitUserSelect: "none" }}
-    onPointerDownCapture={markActed}
+    onPointerDownCapture={() => {
+      viaPtr.current = true;
+      markActed();
+    }}
     onKeyDownCapture={(e) => {
-      if (e.key !== "Tab" && e.key !== "Shift") markActed();
+      if (e.key !== "Tab" && e.key !== "Shift") {
+        viaPtr.current = false;
+        markActed();
+      }
     }}
   >
       <style>{fontKitCss(CSS)}</style>
@@ -3931,11 +3976,15 @@ function ToolFrame({ props, tool }) {
       onPart={pickPart}
       side={!!tool.sideBySide}
     />;
+    const padPress = (k) => {
+      if (viaPtr.current && answerOn === "card" && Date.now() - openedAt.current < 500) return;
+      press(k);
+    };
     const padEl = <Pad
       C={C}
       enabled={(stage === "ask" || stage === "free" && captured) && !locked}
       digitsOff={stage !== "free" && item.pad === "enter" && !captured}
-      onKey={press}
+      onKey={padPress}
       point={!!tool.pointKey}
       pointOff={stage !== "free" && !!item.parts && !captured}
       choices={stage === "free" || KEYONLY && cardAnswerOn && item.choices ? null : item.choices}

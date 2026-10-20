@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S1.T2.C5.2D1 · pattern_strip · Pattern Strip — standalone build 2026-10-19, source 05b7790b:636325.
+/* M1.S1.T2.C5.2D1 · pattern_strip · Pattern Strip — standalone build 2026-10-20, source 15953c86:637782.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -4912,7 +4912,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     stRef.current = { ...stRef.current, ...o };
     bump((x) => x + 1);
   };
-  const act = (o) => put({ ...o, demo: null, nudge: null });
+  const act = (o) => put({ ...o, demo: null, nudge: null, wrongRow: null });
   const dput = (o) => put({ demo: { ...stRef.current.demo || {}, ...o } });
   const won = !free && (stage === "win" || stage === "idle");
   const holding = stage === "demo" && (!stepOn || phase.steps && step >= phase.steps.length);
@@ -5084,12 +5084,12 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
   HOOK.set = (v) => {
     if (P === 2) {
       const f = String(v).trim().toLowerCase().split(/[\s,]+/).filter((x) => PS_DIRS.indexOf(x) >= 0);
-      put({ fills: f, demo: null });
+      put({ fills: f, demo: null, wrongRow: null });
       api.setTyped(f.join(" "));
       return true;
     }
     const parts = String(v).split("/").map((s) => s.trim().split(/\s+/).map((x) => +x).filter((x) => x > 0));
-    put({ drawn: md.drawn || null, order: parts[0] || [], order2: parts[1] || parts[0] || [], demo: null });
+    put({ drawn: md.drawn || null, order: parts[0] || [], order2: parts[1] || parts[0] || [], demo: null, wrongRow: null });
     api.setTyped(String(v));
     return true;
   };
@@ -5381,24 +5381,24 @@ function PsRows({ X }) {
 }
 const PsRingGeo = (md, box) => {
   const size = md.ring || 5, two = (md.teams || 1) > 1, first = !!md.last;
-  const R = first ? 132 : two ? 76 : 112, pr = first ? 44 : two ? 30 : 42, rw = 2 * (R + pr);
-  const bw = two ? 60 : 80, bg = two ? 14 : 8, lineW = size * bw + (size - 1) * bg, blockW = two ? Math.max(rw, lineW) : rw;
+  const R = first ? 140 : two ? 76 : 120, pr = first ? 50 : two ? 32 : 50, rw = 2 * (R + pr);
+  const bw = two ? 64 : 80, bg = two ? 12 : 8, lineW = size * bw + (size - 1) * bg, blockW = two ? Math.max(rw, lineW) : rw;
   const rings = [];
   let drum = { x: 0, y: 0 }, lineY = 232, corrY = 372;
   if (first) {
     rings.push({ cx: Math.round(box.w / 2), cy: 100 + R + pr });
     drum = { x: -999, y: -999 };
   } else if (two) {
-    const total = 120 + 24 + blockW + 24 + blockW, x0 = Math.max(10, Math.round((box.w - total) / 2));
-    const ax = x0 + 144, bx = ax + blockW + 24, cy = 140 + rw / 2;
+    const between = 72, total = blockW + between + blockW, x0 = Math.max(10, Math.round((box.w - total) / 2));
+    const ax = x0, bx = ax + blockW + between, cy = 136 + rw / 2;
     rings.push({ cx: ax + blockW / 2, cy, lx: ax + (blockW - lineW) / 2 }, { cx: bx + blockW / 2, cy, lx: bx + (blockW - lineW) / 2 });
-    drum = { x: x0, y: cy - 60 };
-    lineY = 358;
-    corrY = 432;
+    drum = { x: Math.round((ax + blockW / 2 + bx + blockW / 2) / 2 - 60), y: cy - 60 };
+    lineY = 366;
+    corrY = 438;
   } else {
     const total = rw + 56 + Math.max(lineW, 120), x0 = Math.max(10, Math.round((box.w - total) / 2));
     rings.push({ cx: x0 + rw / 2, cy: 100 + rw / 2 });
-    drum = { x: x0 + rw + 56 + Math.round((Math.max(lineW, 120) - 120) / 2), y: 100 };
+    drum = { x: x0 + rw + 56 + Math.round((Math.max(lineW, 120) - 120) / 2), y: 70 };
     rings[0].lx = x0 + rw + 56;
   }
   return { size, two, first, R, pr, bw, bg, lineW, rings, drum, lineY, corrY };
@@ -5409,7 +5409,7 @@ function PsRing({ X }) {
   const { size, two, first, R, pr, bw, bg, lineW, rings, drum, lineY, corrY } = G;
   const D = S.demo || (won ? { step: 9 } : null);
   const ln = psLine(C);
-  const dg = first ? 52 : two ? 40 : 48;
+  const dg = first ? 60 : two ? 44 : 60;
   const start = first ? md.last % size + 1 : S.drawn || md.drawn || 1;
   const rightOrder = psRound(size, start);
   const flagAt = first ? 0 : S.drawn || 0;
@@ -5420,7 +5420,7 @@ function PsRing({ X }) {
     return { x: r.cx + R * Math.cos(t), y: r.cy + R * Math.sin(t) };
   };
   const bend = !two && !first ? S.bend || 0 : 0;
-  const og = two ? 40 : 48;
+  const og = two ? 44 : 56;
   return <g>
       {rings.map((r, w) => {
     const mine = won && !S.demo && !first ? rightOrder : w ? S.order2 : S.order;
@@ -5462,7 +5462,7 @@ function PsRing({ X }) {
                   {first && S.demo && S.demo.step >= 1 && md.last === v && <circle cx={p.x} cy={p.y} r={pr + 9} fill="none" stroke={PS_INK.look} strokeWidth={4} />}
                   {isStart && <g>
                       <path d={`M ${p.x} ${p.y - pr - 2} V ${p.y - pr - 38}`} stroke={C.ink} strokeWidth={4} strokeLinecap="round" />
-                      <path d={`M ${p.x} ${p.y - pr - 38} L ${p.x + 28} ${p.y - pr - 28} L ${p.x} ${p.y - pr - 18} Z`} fill={PS_INK.blue} stroke={shade(PS_INK.blue, 0.3)} strokeWidth={2} strokeLinejoin="round" />
+                      <path d={`M ${p.x} ${p.y - pr - 38} L ${p.x + (p.x > r.cx + 4 ? -28 : 28)} ${p.y - pr - 28} L ${p.x} ${p.y - pr - 18} Z`} fill={PS_INK.blue} stroke={shade(PS_INK.blue, 0.3)} strokeWidth={2} strokeLinejoin="round" />
                     </g>}
                   {S.demo && !first && v === start && <circle cx={p.x} cy={p.y} r={pr + 9} fill="none" stroke={PS_INK.look} strokeWidth={4} />}
                 </g>;
@@ -5478,7 +5478,7 @@ function PsRing({ X }) {
             {!first && (() => {
       const lx = r.lx, ly = lineY;
       const full = mine.length === size && mine.every((v, i) => v === rightOrder[i]);
-      const tcx = lx + lineW / 2, tcy = 386, rr = 92, bs = 58;
+      const tcx = lx + lineW / 2, tcy = 388, rr = 92, bs = 60;
       const boxAt = (k) => {
         const sx = lx + k * (bw + bg) + bw / 2, sy = ly + bw / 2;
         if (!bend) return { cx: sx, cy: sy, s: bw };
@@ -5500,7 +5500,7 @@ function PsRing({ X }) {
             strokeWidth={vals[k] ? 4 : 3}
             strokeDasharray={vals[k] ? void 0 : "9 9"}
           />),
-          ...bs0.map((b, k) => vals[k] ? <text key={id + "t" + k} x={b.cx} y={b.cy + Math.round(og * 0.36)} textAnchor="middle" fontSize={og} fontWeight={700} fill={shade(PS_INK.made, 0.3)} fillOpacity={withBoxAt && bend > 0 && bend < 1 ? 0 : 1}>{String(vals[k])}</text> : null)
+          ...bs0.map((b, k) => vals[k] ? <text key={id + "t" + k} x={b.cx} y={b.cy + Math.round(og * (0.6 + 0.4 * b.s / bw) * 0.36)} textAnchor="middle" fontSize={Math.round(og * (0.6 + 0.4 * b.s / bw))} fontWeight={700} fill={shade(PS_INK.made, 0.3)} fillOpacity={withBoxAt && bend > 0 && bend < 1 ? 0 : 1}>{String(vals[k])}</text> : null)
         ];
       };
       const arcOf = (y) => <g>
@@ -5542,8 +5542,8 @@ function PsRing({ X }) {
     /* the numbers of the ring are the controls (not on the question that is typed) */
   }
       {live && !first && rings.map((r, w) => Array.from({ length: size }, (_, k) => k).map((k) => {
-    const p = at(r, k);
-    return <Hit key={w + "-" + k} id={`ring${w + 1}-place-${k + 1}`} x={p.x - 38} y={p.y - 38} w={76} h={76} label={`number ${k + 1}`} onPress={() => tapPlace(k + 1, w)} />;
+    const p = at(r, k), hs = Math.max(76, 2 * pr + 8);
+    return <Hit key={w + "-" + k} id={`ring${w + 1}-place-${k + 1}`} x={p.x - hs / 2} y={p.y - hs / 2} w={hs} h={hs} label={`number ${k + 1}`} onPress={() => tapPlace(k + 1, w)} />;
   }))}
       {stepping && stepOn === "place" && S.drawn && <Invite x={at(rings[0], rightOrder[S.order.length] - 1).x} y={at(rings[0], rightOrder[S.order.length] - 1).y} r={pr + 12} C={C} />}
     </g>;
@@ -5565,13 +5565,21 @@ function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v) => v }) {
       const t = -Math.PI / 2 + k * 2 * Math.PI / size, on = k + 1 === start;
       return <circle key={k} cx={rx + rr * Math.cos(t)} cy={cy + rr * Math.sin(t)} r={on ? 9 : 6} fill={on ? PS_INK.made : C.paper} stroke={md.last === k + 1 ? C.ink : on ? shade(PS_INK.made, 0.3) : ln} strokeWidth={2.5} />;
     })}
-        <text x={rx + rr + 24} y={cy + 10} fontSize={T.micro} fontWeight={700} fill={shade(PS_INK.made, 0.3)}>{list.join(" ")}</text>
+        {md.last ? (() => {
+      const x02 = rx + rr + 22;
+      return <g>
+              <text x={x02} y={cy + 10} fontSize={T.micro} fontWeight={700} fill={C.ink}>{String(md.last)}</text>
+              <path d={`M ${x02 + 28} ${cy} H ${x02 + 62} M ${x02 + 52} ${cy - 8} L ${x02 + 62} ${cy} L ${x02 + 52} ${cy + 8}`} fill="none" stroke={C.ink} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
+              <text x={x02 + 70} y={cy + 10} fontSize={T.micro} fontWeight={700} fill={shade(PS_INK.made, 0.3)}>{list.join(" ")}</text>
+            </g>;
+    })() : <text x={rx + rr + 24} y={cy + 10} fontSize={T.micro} fontWeight={700} fill={shade(PS_INK.made, 0.3)}>{list.join(" ")}</text>}
       </g>;
   }
   const pic = md.counts ? "sided" : md.pic;
   const given = md.strip || md.given || md.counts.map(String);
   const rt = psRight(md);
-  const cells = [...given.slice(-2), ...rt.slice(-4)], madeFrom = Math.min(2, given.length);
+  const few = pic === "arrow";
+  const cells = few ? [...given.slice(-1), ...rt.slice(-3)] : [...given.slice(-2), ...rt.slice(-4)], madeFrom = Math.min(few ? 1 : 2, given.length);
   const kinds = [];
   given.forEach((f) => {
     if (!kinds.includes(f)) kinds.push(f);

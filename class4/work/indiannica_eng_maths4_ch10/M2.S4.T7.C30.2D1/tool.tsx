@@ -36,10 +36,10 @@ function StartArt({ box, C, lang, tx }: any) {
       {bricks.map((b, i) => <rect key={"b" + i} x={b.x} y={b.y} width={b.w} height={b.h} fill="url(#gHundred)" stroke={shade(CONTENT.hundred, 0.25)} strokeWidth={3} />)}
       <g>
         <rect x={800} y={36} width={340} height={268} rx={RAD.panel} fill="url(#gPanel)" stroke={C.rule} strokeWidth={3} />
-        <rect x={832} y={72} width={84} height={84} rx={8} fill="url(#gOne)" stroke={shade(CONTENT.one, 0.25)} strokeWidth={3} />
-        <path d="M 1024 156 H 1108 L 1066 72 Z" fill="url(#gOne)" stroke={shade(CONTENT.one, 0.25)} strokeWidth={3} strokeLinejoin="round" />
-        <path d="M 874 188 L 916 230 L 874 272 L 832 230 Z" fill="url(#gOne)" stroke={shade(CONTENT.one, 0.25)} strokeWidth={3} strokeLinejoin="round" />
-        <circle cx={1066} cy={230} r={42} fill="url(#gOne)" stroke={shade(CONTENT.one, 0.25)} strokeWidth={3} />
+        <rect x={832} y={72} width={84} height={84} rx={8} fill="url(#gHundred)" stroke={shade(CONTENT.hundred, 0.25)} strokeWidth={3} />
+        <path d="M 1024 156 H 1108 L 1066 72 Z" fill="url(#gHundred)" stroke={shade(CONTENT.hundred, 0.25)} strokeWidth={3} strokeLinejoin="round" />
+        <path d="M 874 188 L 916 230 L 874 272 L 832 230 Z" fill="url(#gHundred)" stroke={shade(CONTENT.hundred, 0.25)} strokeWidth={3} strokeLinejoin="round" />
+        <circle cx={1066} cy={230} r={42} fill="url(#gHundred)" stroke={shade(CONTENT.hundred, 0.25)} strokeWidth={3} />
       </g>
     </g>
   );
@@ -55,7 +55,7 @@ const TR: any = {
     "Can copies of one shape fit with no gaps and no overlaps?": "क्या एक आकृति की टाइलें बिना खाली जगह और ओवरलैप के बैठ सकती हैं?",
     "Copies that fit with no gaps": "बिना खाली जगह वाली टाइलें",
     "Lay the copies side by side. Is anything left uncovered? Is anything doubled?": "टाइलें साथ-साथ रखो। क्या कोई जगह खाली रह गई? क्या कोई हिस्सा दो बार ढका है?",
-    "Tap Lay a copy to set the last square down.": "आखिरी वर्ग रखने के लिए “टाइल रखो” दबाओ।",
+    "Tap Lay a copy to set the last square down.": "आखिरी वर्ग रखने के लिए “टाइल रखो” दबाओ।",
     "Tap the key at the bottom.": "नीचे वाला बटन दबाओ।",
     "Tap Gap finder to look for any space left over.": "कोई खाली जगह बची है, यह देखने के लिए खाली जगह खोजक दबाओ।",
     "Tap the Gap finder key.": "खाली जगह खोजक दबाओ।",
@@ -73,7 +73,7 @@ const TR: any = {
     "Yes": "हाँ",
     "No": "नहीं",
     "Round coins lie touching on a table: do they make a tessellation?": "गोल सिक्के मेज़ पर सटे रखे हैं: क्या ये टेसेलेशन बनाते हैं?",
-    "Push the coins as close as you like and look between four of them.": "सिक्कों को जितना चाहो पास खिसकाओ और चार के बीच देखो।",
+    "The coins already touch: look in the space between four of them.": "सिक्के पहले से सटे हैं: चार सिक्कों के बीच की जगह देखो।",
     "No, the coins leave a space between them, so circles cannot tessellate.": "नहीं, सिक्कों के बीच जगह बचती है, इसलिए वृत्तों से टेसेलेशन नहीं बनता।",
     "Not a tessellation": "टेसेलेशन नहीं",
     "Two squares lie half over each other with nothing uncovered: a tessellation?": "दो वर्ग आधे एक-दूसरे पर हैं, कुछ खाली नहीं: क्या यह टेसेलेशन है?",
@@ -82,10 +82,10 @@ const TR: any = {
     "A gap or only the edge": "खाली जगह या सिर्फ़ किनारा",
     "Is this space closed in by tiles all round? Or is it where the tiling stops?": "क्या यह जगह चारों ओर से टाइलों से घिरी है? या यहीं टाइलें खत्म हो जाती हैं?",
     "Tap Gap finder and watch which spaces fill with colour.": "खाली जगह खोजक दबाओ और देखो कौन-सी जगहें रंग से भरती हैं।",
-    "Tap Trace to follow a notch out to the open bench.": "खाँचे से खुली बेंच तक जाने के लिए “रास्ता खोजो” दबाओ।",
-    "Tap the Trace key.": "“रास्ता खोजो” दबाओ।",
+    "Tap Trace to follow a notch out to the open bench.": "खाँचे से खुली बेंच तक जाने के लिए “रास्ता खोजो” दबाओ।",
+    "Tap the Trace key.": "“रास्ता खोजो” दबाओ।",
     "Can a finger run from it to the outside without crossing a tile?": "क्या उँगली टाइल पार किए बिना वहाँ से बाहर जा सकती है?",
-    "Tap Trace and see whether the pencil gets out to the open bench.": "“रास्ता खोजो” दबाओ और देखो पेंसिल खुली बेंच तक पहुँचती है या नहीं।",
+    "Tap Trace and see whether the pencil gets out to the open bench.": "“रास्ता खोजो” दबाओ और देखो पेंसिल खुली बेंच तक पहुँचती है या नहीं।",
     "A space with tiles all round it is a gap; a bumpy outer edge is not.": "जिस जगह के चारों ओर टाइलें हों, वह खाली जगह है; ऊबड़-खाबड़ किनारा नहीं।",
     "You learned: a gap is closed in; the outer edge is not.": "तुमने सीखा: खाली जगह घिरी होती है, बाहरी किनारा नहीं।",
     "This triangle patch has a bumpy top edge: is it a tessellation?": "इस त्रिभुज वाली बिछावट का ऊपरी किनारा ऊबड़-खाबड़ है: क्या यह टेसेलेशन है?",
@@ -118,7 +118,7 @@ const TR: any = {
     "A row has four two-square dominoes: how many squares long with three more?": "कतार में दो-दो खाने के चार डोमिनो हैं: तीन और रखने पर कितने खाने लंबी होगी?",
     "Squares in all": "कुल खाने",
     "Count the squares on one domino, then count the dominoes.": "एक डोमिनो के खाने गिनो, फिर डोमिनो गिनो।",
-    "Tap Carry on, then count every square in the row.": "“आगे बढ़ाओ” दबाओ, फिर कतार के सारे खाने गिनो।",
+    "Tap Carry on, then count every square in the row.": "“आगे बढ़ाओ” दबाओ, फिर कतार के सारे खाने गिनो।",
     "Each domino is two squares, so count the row by twos.": "हर डोमिनो दो खाने का है, इसलिए कतार दो-दो करके गिनो।",
     "Seven dominoes of two squares each make a row 14 squares long.": "दो-दो खाने के सात डोमिनो मिलकर 14 खाने लंबी कतार बनाते हैं।",
     "The first points up and they take turns: which way does the tenth point?": "पहला ऊपर की ओर है और वे बारी-बारी से आते हैं: दसवाँ किस ओर होगा?",
@@ -132,8 +132,8 @@ const TR: any = {
     "Down": "नीचे",
     "Patterns made from things around you": "आस-पास की चीज़ों से पैटर्न",
     "Make a pattern of your own. Which group comes round again?": "अपना एक पैटर्न बनाओ। कौन सा समूह बार-बार आता है?",
-    "Tap Lay things to hang the next ones on the string.": "डोरी पर अगली चीज़ें लटकाने के लिए “चीज़ें रखो” दबाओ।",
-    "Tap the Lay things key.": "“चीज़ें रखो” दबाओ।",
+    "Tap Lay things to hang the next ones on the string.": "डोरी पर अगली चीज़ें लटकाने के लिए “चीज़ें रखो” दबाओ।",
+    "Tap the Lay things key.": "“चीज़ें रखो” दबाओ।",
     "Tap Bracket to mark the group that comes round again.": "जो समूह बार-बार आता है उसे चिह्नित करने के लिए “ब्रैकेट” दबाओ।",
     "Tap the Bracket key.": "“ब्रैकेट” दबाओ।",
     "Which group of things comes round again?": "चीज़ों का कौन-सा समूह बार-बार आता है?",
@@ -148,8 +148,8 @@ const TR: any = {
     "Three marigolds, one in each group of four.": "तीन गेंदे, चार के हर समूह में एक।",
     "Coins and caps swap like a chessboard in three rows of five: how many coins?": "सिक्के और ढक्कन पाँच-पाँच की तीन कतारों में शतरंज जैसे बदलते हैं: कितने सिक्के?",
     "Coins?": "सिक्के?",
-    "Look down one column, coin then cap: what is third?": "एक स्तंभ में ऊपर से देखो, सिक्का फिर ढक्कन: तीसरा क्या है?",
-    "Tap Lay things to carry the third row on, then count the coins.": "तीसरी कतार रखने के लिए “चीज़ें रखो” दबाओ, फिर सिक्के गिनो।",
+    "Row 3 starts like row 1: count its coins too.": "कतार 3 कतार 1 की तरह शुरू होती है: उसके सिक्के भी गिनो।",
+    "Tap Lay things to carry the third row on, then count the coins.": "तीसरी कतार रखने के लिए “चीज़ें रखो” दबाओ, फिर सिक्के गिनो।",
     "Count the coins row by row and add them up.": "कतार-कतार सिक्के गिनो और जोड़ लो।",
     "Eight coins, because row 3 starts like row 1: three, two and three.": "आठ सिक्के, क्योंकि कतार 3 कतार 1 की तरह शुरू होती है: तीन, दो और तीन।",
     "Which chapter word names a floor of tiles with no gaps and no overlaps?": "कौन-सा शब्द बिना खाली जगह और ओवरलैप वाले टाइलों के फर्श को कहते हैं?",
@@ -167,6 +167,9 @@ const TR: any = {
     "Overlap finder": "ओवरलैप खोजक",
     "Trace": "रास्ता खोजो",
     "Bracket": "ब्रैकेट",
+    "Set all three seats first.": "पहले तीनों जगह भरो।",
+    "Seat": "जगह",
+    "Square": "वर्ग", "Brick": "ईंट", "Triangle": "त्रिभुज", "Diamond": "समचतुर्भुज", "Circle": "वृत्त", "L shape": "L आकार",
     "Carry on": "आगे बढ़ाओ",
     "Lay things": "चीज़ें रखो",
     "Marigold": "गेंदा",
@@ -196,7 +199,7 @@ const TR: any = {
     "Can copies of one shape fit with no gaps and no overlaps?": "શું એક આકૃતિની ટાઇલો ખાલી જગ્યા અને ઓવરલેપ વગર બેસી શકે?",
     "Copies that fit with no gaps": "ખાલી જગ્યા વગરની ટાઇલો",
     "Lay the copies side by side. Is anything left uncovered? Is anything doubled?": "ટાઇલો બાજુ બાજુમાં મૂકો. શું કોઈ જગ્યા ખાલી રહી? શું કોઈ ભાગ બે વાર ઢંકાયો?",
-    "Tap Lay a copy to set the last square down.": "છેલ્લો ચોરસ મૂકવા “ટાઇલ મૂકો” દબાવો.",
+    "Tap Lay a copy to set the last square down.": "છેલ્લો ચોરસ મૂકવા “ટાઇલ મૂકો” દબાવો.",
     "Tap the key at the bottom.": "નીચેનું બટન દબાવો.",
     "Tap Gap finder to look for any space left over.": "કોઈ ખાલી જગ્યા બચી છે કે નહીં તે જોવા ખાલી જગ્યા શોધક દબાવો.",
     "Tap the Gap finder key.": "ખાલી જગ્યા શોધક દબાવો.",
@@ -214,7 +217,7 @@ const TR: any = {
     "Yes": "હા",
     "No": "ના",
     "Round coins lie touching on a table: do they make a tessellation?": "ગોળ સિક્કા ટેબલ પર અડીને પડ્યા છે: શું તે ટેસેલેશન બનાવે છે?",
-    "Push the coins as close as you like and look between four of them.": "સિક્કાને ગમે તેટલા નજીક ખસેડો અને ચારની વચ્ચે જુઓ.",
+    "The coins already touch: look in the space between four of them.": "સિક્કા પહેલેથી અડેલા છે: ચાર સિક્કાની વચ્ચેની જગ્યા જુઓ.",
     "No, the coins leave a space between them, so circles cannot tessellate.": "ના, સિક્કા વચ્ચે જગ્યા બચે છે, તેથી વર્તુળોથી ટેસેલેશન બનતું નથી.",
     "Not a tessellation": "ટેસેલેશન નથી",
     "Two squares lie half over each other with nothing uncovered: a tessellation?": "બે ચોરસ અડધા એકબીજા પર છે, કંઈ ખાલી નથી: શું આ ટેસેલેશન છે?",
@@ -223,10 +226,10 @@ const TR: any = {
     "A gap or only the edge": "ખાલી જગ્યા કે ફક્ત કિનારો",
     "Is this space closed in by tiles all round? Or is it where the tiling stops?": "શું આ જગ્યા ચારે બાજુ ટાઇલોથી ઘેરાયેલી છે? કે અહીં ટાઇલો પૂરી થાય છે?",
     "Tap Gap finder and watch which spaces fill with colour.": "ખાલી જગ્યા શોધક દબાવો અને જુઓ કઈ જગ્યાઓ રંગથી ભરાય છે.",
-    "Tap Trace to follow a notch out to the open bench.": "ખાંચામાંથી ખુલ્લી બેન્ચ સુધી જવા “રસ્તો શોધો” દબાવો.",
-    "Tap the Trace key.": "“રસ્તો શોધો” દબાવો.",
+    "Tap Trace to follow a notch out to the open bench.": "ખાંચામાંથી ખુલ્લી બેન્ચ સુધી જવા “રસ્તો શોધો” દબાવો.",
+    "Tap the Trace key.": "“રસ્તો શોધો” દબાવો.",
     "Can a finger run from it to the outside without crossing a tile?": "શું આંગળી ટાઇલ પાર કર્યા વગર ત્યાંથી બહાર જઈ શકે?",
-    "Tap Trace and see whether the pencil gets out to the open bench.": "“રસ્તો શોધો” દબાવો અને જુઓ પેન્સિલ ખુલ્લી બેન્ચ સુધી પહોંચે છે કે નહીં.",
+    "Tap Trace and see whether the pencil gets out to the open bench.": "“રસ્તો શોધો” દબાવો અને જુઓ પેન્સિલ ખુલ્લી બેન્ચ સુધી પહોંચે છે કે નહીં.",
     "A space with tiles all round it is a gap; a bumpy outer edge is not.": "જે જગ્યાની ચારે બાજુ ટાઇલો હોય તે ખાલી જગ્યા છે; ઊબડખાબડ કિનારો નથી.",
     "You learned: a gap is closed in; the outer edge is not.": "તમે શીખ્યા: ખાલી જગ્યા ઘેરાયેલી હોય, બહારનો કિનારો નહીં.",
     "This triangle patch has a bumpy top edge: is it a tessellation?": "ત્રિકોણોની આ ગોઠવણીનો ઉપરનો કિનારો ઊબડખાબડ છે: શું આ ટેસેલેશન છે?",
@@ -259,7 +262,7 @@ const TR: any = {
     "A row has four two-square dominoes: how many squares long with three more?": "હરોળમાં બે-બે ખાનાંના ચાર ડોમિનો છે: ત્રણ વધુ મૂકતાં કેટલા ખાનાં લાંબી થશે?",
     "Squares in all": "કુલ ખાનાં",
     "Count the squares on one domino, then count the dominoes.": "એક ડોમિનોના ખાનાં ગણો, પછી ડોમિનો ગણો.",
-    "Tap Carry on, then count every square in the row.": "“આગળ વધારો” દબાવો, પછી હરોળના બધાં ખાનાં ગણો.",
+    "Tap Carry on, then count every square in the row.": "“આગળ વધારો” દબાવો, પછી હરોળના બધાં ખાનાં ગણો.",
     "Each domino is two squares, so count the row by twos.": "દરેક ડોમિનો બે ખાનાંનો છે, તેથી હરોળ બે-બેના ગણતરીથી ગણો.",
     "Seven dominoes of two squares each make a row 14 squares long.": "બે-બે ખાનાંના સાત ડોમિનો મળીને 14 ખાનાં લાંબી હરોળ બનાવે છે.",
     "The first points up and they take turns: which way does the tenth point?": "પહેલો ઉપર તરફ છે અને તે વારાફરતી આવે છે: દસમો કઈ તરફ હશે?",
@@ -273,8 +276,8 @@ const TR: any = {
     "Down": "નીચે",
     "Patterns made from things around you": "આસપાસની વસ્તુઓથી પેટર્ન",
     "Make a pattern of your own. Which group comes round again?": "તમારી પોતાની એક પેટર્ન બનાવો. કયો સમૂહ ફરી ફરી આવે છે?",
-    "Tap Lay things to hang the next ones on the string.": "દોરી પર આગળની વસ્તુઓ લટકાવવા “વસ્તુઓ મૂકો” દબાવો.",
-    "Tap the Lay things key.": "“વસ્તુઓ મૂકો” દબાવો.",
+    "Tap Lay things to hang the next ones on the string.": "દોરી પર આગળની વસ્તુઓ લટકાવવા “વસ્તુઓ મૂકો” દબાવો.",
+    "Tap the Lay things key.": "“વસ્તુઓ મૂકો” દબાવો.",
     "Tap Bracket to mark the group that comes round again.": "જે સમૂહ ફરી ફરી આવે છે તેને ચિહ્નિત કરવા “બ્રેકેટ” દબાવો.",
     "Tap the Bracket key.": "“બ્રેકેટ” દબાવો.",
     "Which group of things comes round again?": "વસ્તુઓનો કયો સમૂહ ફરી ફરી આવે છે?",
@@ -289,8 +292,8 @@ const TR: any = {
     "Three marigolds, one in each group of four.": "ત્રણ ગલગોટા, ચારના દરેક સમૂહમાં એક.",
     "Coins and caps swap like a chessboard in three rows of five: how many coins?": "સિક્કા અને ઢાંકણાં પાંચ-પાંચની ત્રણ હરોળમાં ચેસની જેમ બદલાય છે: કેટલા સિક્કા છે?",
     "Coins?": "સિક્કા?",
-    "Look down one column, coin then cap: what is third?": "એક સ્તંભમાં ઉપરથી જુઓ, સિક્કો પછી ઢાંકણ: ત્રીજું શું છે?",
-    "Tap Lay things to carry the third row on, then count the coins.": "ત્રીજી હરોળ મૂકવા “વસ્તુઓ મૂકો” દબાવો, પછી સિક્કા ગણો.",
+    "Row 3 starts like row 1: count its coins too.": "હરોળ 3 હરોળ 1ની જેમ શરૂ થાય છે: તેના સિક્કા પણ ગણો.",
+    "Tap Lay things to carry the third row on, then count the coins.": "ત્રીજી હરોળ મૂકવા “વસ્તુઓ મૂકો” દબાવો, પછી સિક્કા ગણો.",
     "Count the coins row by row and add them up.": "હરોળ પ્રમાણે સિક્કા ગણો અને ઉમેરો.",
     "Eight coins, because row 3 starts like row 1: three, two and three.": "આઠ સિક્કા, કારણ કે હરોળ 3 હરોળ 1ની જેમ શરૂ થાય છે: ત્રણ, બે અને ત્રણ.",
     "Which chapter word names a floor of tiles with no gaps and no overlaps?": "કયો શબ્દ ખાલી જગ્યા અને ઓવરલેપ વગરની ટાઇલોના ફર્શને કહેવાય?",
@@ -308,6 +311,9 @@ const TR: any = {
     "Overlap finder": "ઓવરલેપ શોધક",
     "Trace": "રસ્તો શોધો",
     "Bracket": "બ્રેકેટ",
+    "Set all three seats first.": "પહેલાં ત્રણેય જગ્યા ભરો.",
+    "Seat": "જગ્યા",
+    "Square": "ચોરસ", "Brick": "ઈંટ", "Triangle": "ત્રિકોણ", "Diamond": "સમચતુર્ભુજ", "Circle": "વર્તુળ", "L shape": "L આકાર",
     "Carry on": "આગળ વધારો",
     "Lay things": "વસ્તુઓ મૂકો",
     "Marigold": "ગલગોટો",
@@ -361,7 +367,7 @@ const PHASES = [
       { qid: "M2.S4.T7.C30:1", kind: "verdict", lay: "coin", pre: 12, all: 12, keys: ["gaps", "laps"], badge: "Not a tessellation",
         say: "Round coins lie touching on a table: do they make a tessellation?",
         ask: "Tessellation?", answer: "no", near: "yes", choices: YN,
-        miss: "Push the coins as close as you like and look between four of them.",
+        miss: "The coins already touch: look in the space between four of them.",
         win: "No, the coins leave a space between them, so circles cannot tessellate." },
       /* practice 2: answer in the plan = No. There are no gaps, but one tile overlaps the other */
       { qid: "M2.S4.T7.C30:2", kind: "verdict", lay: "lap", pre: 2, all: 2, keys: ["gaps", "laps"], badge: "Not a tessellation",
@@ -469,7 +475,7 @@ const PHASES = [
       { qid: "M2.S4.T7.C33:7", kind: "rows", pre: 10, all: 15, keys: ["lay"], layLab: "Lay things", ask: "Coins?", litk: "coin", leg: ["coin", "cap"],
         say: "Coins and caps swap like a chessboard in three rows of five: how many coins?",
         answer: 8, near: 7, ladder: ["Tap Lay things to carry the third row on, then count the coins.", "Count the coins row by row and add them up."],
-        miss: "Look down one column, coin then cap: what is third?",
+        miss: "Row 3 starts like row 1: count its coins too.",
         win: "Eight coins, because row 3 starts like row 1: three, two and three." },
       /* practice 8: answer in the plan = A tessellation; a secret code; a series. One of the three is asked. */
       { qid: "M2.S4.T7.C33:8", kind: "card", pre: 0, all: 0, keys: [],
@@ -498,8 +504,11 @@ const PNAME: any = { marigold: "Marigold", leaf: "Leaf", rose: "Rose", coin: "Co
 const FREE_SHAPES = [{ id: "sqr", label: "Square" }, { id: "brick", label: "Brick" }, { id: "tri", label: "Triangle" }, { id: "dia", label: "Diamond" }, { id: "coin", label: "Circle" }, { id: "ell", label: "L shape" }];
 const LAY_MAX: any = { sqr: 8, brick: 12, tri: 13, dia: 20, coin: 12, ell: 20 };
 
-/* ── the bench, in working-area units (the area is drawn 900 wide; shut, it is centred) ───────────── */
-const BW = 860, BH = 320, BX = 20, BY = 100, KEY_Y = 432, KEY_H = 72;
+/* ── the bench, in working-area units: laid out ONCE from the width the area has with the keypad open (1086, standard panel),
+   and kept at that size and place when the keypad is shut (LAYOUT §3) ───────────── */
+const BW = 1046, BH = 320, BX = 20, BY = 100, KEY_Y = 432, KEY_H = 72;
+const GAPC = "#9B1F6E", GAPE = "#5C0F40";   /* the deeper reddish purple of a gap and of an overlap, and its darker edge */
+const HALF = 42;                             /* half the width of one toran piece's bracket slot (pieces hang 84 apart) */
 const CELL = 8;                      /* the finders read the bench on a lattice this fine */
 
 /* the numbers, rows, sizes and targets the working area needs (they go into the sidecar too) */
@@ -526,7 +535,7 @@ const seatOf = (lay: string, i: number, par?: number): any => {
 const fitOf = (lay: string, n: number, par?: number) => {
   let x1 = 1, y1 = 1;
   for (let i = 0; i < n; i++) { const t = seatOf(lay, i, par); x1 = Math.max(x1, t.x + t.w); y1 = Math.max(y1, t.y + t.h); }
-  const s = Math.floor(Math.min(780 / x1, 280 / y1, 2.5) * 8) / 8;
+  const s = Math.floor(Math.min((BW - 80) / x1, (BH - 40) / y1, 2.5) * 8) / 8;
   return { s, x: (BW - x1 * s) / 2, y: (BH - y1 * s) / 2 };
 };
 const tileAt = (lay: string, i: number, par: number | undefined, f: any) => {
@@ -595,9 +604,9 @@ const walk = (pts: number[][], step: number) => {
 };
 /* the things of the last phase (a string and rows), in bench units */
 const pieceAt = (sc: any, i: number) => {
-  if (sc.kind === "rows") return { x: 150 + (i % 5) * 140, y: 50 + Math.floor(i / 5) * 80, k: (Math.floor(i / 5) + (i % 5)) % 2 ? "cap" : "coin", r: 30 };
-  const x = (BW - (sc.all - 1) * 66) / 2 + i * 66, t = (x - 30) / 800;
-  return { x, y: 50 + 120 * t * (1 - t) + 52, k: sc.str[i], r: 30 };
+  if (sc.kind === "rows") return { x: BW / 2 + ((i % 5) - 2) * 190, y: 46 + Math.floor(i / 5) * 78, k: (Math.floor(i / 5) + (i % 5)) % 2 ? "cap" : "coin", r: 34 };
+  const x = (BW - (sc.all - 1) * 2 * HALF) / 2 + i * 2 * HALF, t = (x - 30) / (BW - 60);
+  return { x, y: 50 + 120 * t * (1 - t) + 60, k: sc.str[i], r: 38 };
 };
 const periodOf = (str: string[]) => { for (let p = 1; p < str.length; p++) if (str.length % p === 0 && str.every((k, i) => k === str[i % p])) return p; return str.length; };
 
@@ -671,7 +680,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   const entry = useRef<any>({ last: "", n: 0 });
   if (entry.current.last !== qk) entry.current = { last: qk, n: entry.current.n + 1 };
   const ek = qk + "#" + entry.current.n;
-  const fresh = () => ({ ek, laid: 0, gaps: false, laps: false, wash: 1, trN: 0, seats: [null, null, null], brN: 0, br: false, shape: "sqr", demo: null });
+  const fresh = () => ({ ek, laid: 0, gaps: false, laps: false, wash: 1, trN: 0, seats: [null, null, null], nudge: false, brN: 0, br: false, shape: "sqr", demo: null });
   const [raw, setRaw] = useState<any>(() => fresh());
   const S: any = raw.ek === ek ? raw : fresh();
   const live = useRef(ek); live.current = ek;
@@ -690,14 +699,15 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   const nseat = sc.nseat || 0;
   const fit = useMemo(() => (lay ? fitOf(lay, N, sc.par) : null), [lay, N, sc.par]);
 
-  /* Work coordinates of a point on the bench, for api.act (the picture is shifted by ox when the panel is shut) */
-  const kx = box && box.key ? box.key.x - 12 : (box ? box.w : 1472);
-  const ox = Math.max(0, Math.min(Math.round(((box ? box.w : 900) - 900) / 2), kx - 906));
-  const WP = (x: number, y: number) => ({ x: ox + BX + x, y: BY + y });
-  const trayPt = { x: ox + 60, y: 46 };
+  /* Work coordinates of a point on the bench, for api.act (the bench never moves: same size and place, keypad open or shut) */
+  const WP = (x: number, y: number) => ({ x: BX + x, y: BY + y });
+  const trayPt = { x: 60, y: 46 };
 
   const padEnter = !free && !warm && !!item && item.pad === "enter";
-  const seatsKey = S.seats.join(",");
+  /* the seats the child set; a miss submitted without them (the dev driver, the agent) shows the submitted row instead */
+  const sentSeats = padEnter && wrong && typeof typed === "string" ? typed.split(",").map((s: string) => s.trim().toLowerCase()) : [];
+  const seatsNow: any[] = S.seats.some((v: any) => !!v) || sentSeats.length !== 3 || sentSeats.some((v: string) => v !== "up" && v !== "down") ? S.seats : sentSeats;
+  const seatsKey = seatsNow.join(",");
   const seatsDone = nseat === 3 && S.seats.slice(0, 3).every((v: any) => !!v);
 
   /* every tile standing on the bench: what the question gave, what the child laid, the seats the child turned */
@@ -706,11 +716,21 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     if (!lay || !fit) return out;
     const seats = kind === "place" || (warm && nseat > 0);
     for (let i = 0; i < pre; i++) out.push({ ...tileAt(lay, i, sc.par, fit), own: "given" });
-    if (seats) { for (let j = 0; j < nseat; j++) if (S.seats[j]) out.push({ ...tileAt(lay, pre + j, sc.par, fit), f: S.seats[j], own: "laid" }); }
+    if (seats) { for (let j = 0; j < nseat; j++) if (seatsNow[j]) out.push({ ...tileAt(lay, pre + j, sc.par, fit), f: seatsNow[j], own: "laid", seat: true }); }
     else for (let i = pre; i < pre + S.laid; i++) out.push({ ...tileAt(lay, i, sc.par, fit), own: "laid" });
     return out;
   }, [lay, N, pre, S.laid, seatsKey, kind, warm, sc.par]);
   const scan = useMemo(() => scanBench(tiles), [tiles]);
+  /* which pairs of tiles lie over each other: the overlap hatch is clipped to the true shared part of each pair, never to stair-step cells */
+  const lapPairs = useMemo(() => {
+    const seen: any = {}, out: number[][] = [];
+    for (const g of scan.laps) for (let px = g.x + 3.7; px < g.x + g.w; px += CELL) {
+      const hit: number[] = [];
+      for (let k = 0; k < tiles.length; k++) if (inTile(tiles[k], px, g.y + 4.1)) hit.push(k);
+      for (let a = 0; a < hit.length; a++) for (let b = a + 1; b < hit.length; b++) if (!seen[hit[a] + "_" + hit[b]]) { seen[hit[a] + "_" + hit[b]] = 1; out.push([hit[a], hit[b]]); }
+    }
+    return out;
+  }, [scan, tiles]);
 
   /* ── the acts: each one is performed on screen (api.act) and reacts only when it resolves true ───────────────── */
   const canTap = !busy && !tl.busy && (stage === "ask" || free || (stage === "demo" && !!stepOn));
@@ -721,7 +741,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     busyRef.current = false; setBusy(false);
     if (ok) after();
   };
-  const trailOf = (id: string) => { const r = sc.tr ? walk(sc.tr, 22) : []; return fit ? r.map((p) => [fit.x + p[0] * fit.s, fit.y + p[1] * fit.s]) : r; };
+  /* the tracer's path in bench units, kept inside the bench rim (the notch the pencil leaves by opens onto the bench, not past it) */
+  const trailOf = (id: string) => { const r = sc.tr ? walk(sc.tr, 22) : []; return fit ? r.map((p) => [Math.max(14, Math.min(BW - 14, fit.x + p[0] * fit.s)), Math.max(14, Math.min(BH - 14, fit.y + p[1] * fit.s))]) : r; };
   const doLay = () => {
     if (rest <= 0) return;
     const take = free ? 1 : rest, first = pre + S.laid, pts: any[] = [];
@@ -729,7 +750,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
       if (piece) { const p = pieceAt(sc, first + j); pts.push(WP(p.x, p.y)); }
       else { const t = tileAt(lay, first + j, sc.par, fit); pts.push(WP(t.x + t.w / 2, t.y + t.h / 2)); }
     }
-    const hold = piece ? undefined : <path d={tilePath({ ...tileAt(lay, first, sc.par, fit), x: -20, y: -20, w: 40, h: 40, u: 20 })} fill="url(#gOne)" stroke={shade(CONTENT.one, 0.25)} strokeWidth={3} />;
+    const hold = piece ? undefined : <path d={tilePath({ ...tileAt(lay, first, sc.par, fit), x: -20, y: -20, w: 40, h: 40, u: 20 })} fill={lay === "coin" ? "#D5DADD" : "url(#gHundred)"} stroke={lay === "coin" ? "#6F7A82" : shade(CONTENT.hundred, 0.25)} strokeWidth={3} />;
     const base = S.laid;
     runAct({ tool: "hand", moves: take > 1 ? "push" : "carry", from: trayPt, at: pts, hold: take > 1 ? undefined : hold,
       onPoint: (j: number) => { api.sfx.tick(); upd({ laid: base + j + 1 }); } }, () => { api.sfx.settle(); api.did("lay"); });
@@ -751,7 +772,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     runAct({ tool: "pencil", moves: "draw", at: pts.map((p) => WP(p[0], p[1])), onPoint: (j: number) => upd({ trN: j + 1 }) }, () => { upd({ trN: pts.length }); api.did("trace"); });
   };
   const doBracket = () => {
-    const p = periodOf(sc.str), a = pieceAt(sc, 0), b = pieceAt(sc, p - 1), x0 = a.x - 34, x1 = b.x + 34;
+    const p = periodOf(sc.str), a = pieceAt(sc, 0), b = pieceAt(sc, p - 1), x0 = a.x - HALF, x1 = b.x + HALF;
     const pts = walk([[x0, 205], [x0, 224], [x1, 224], [x1, 205]], 26);
     upd({ brN: 0 });
     runAct({ tool: "pencil", moves: "draw", at: pts.map((q) => WP(q[0], q[1])), onPoint: (j: number) => upd({ brN: j + 1 }) }, () => { upd({ br: true, brN: pts.length }); api.sfx.settle(); api.did("bracket"); });
@@ -760,7 +781,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     const t = tileAt(lay, pre + j, sc.par, fit);
     const next = S.seats[j] === "up" ? "down" : "up";
     runAct({ tool: "hand", moves: "tap", at: [WP(t.x + t.w / 2, t.y + t.h / 2)],
-      onPoint: () => { api.sfx.tick(); upd({ seats: S.seats.map((v: any, q: number) => (q === j ? next : v)) }); } }, () => api.did("seat"));
+      onPoint: () => { api.sfx.tick(); upd({ seats: S.seats.map((v: any, q: number) => (q === j ? next : v)), nudge: false }); if (S.nudge && item) api.say(item.say); } }, () => api.did("seat"));
   };
   const act = (on: string, j?: number) => {
     if (!canTap) return;
@@ -776,20 +797,31 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   const pickShape = (id: string) => { if (!canTap) return; upd({ shape: id, laid: 0, gaps: false, laps: false, wash: 1, trN: 0, demo: null }); api.sfx.tick(); };
 
   /* Enter, while the working area holds the answer; in a steps phase it performs the CURRENT step's act */
-  api.onEnter(stage === "demo" && stepOn ? () => act(stepOn) : padEnter && stage === "ask" ? () => { if (seatsDone) api.submit(S.seats.slice(0, 3).join(",")); } : null);
+  /* Enter (the pink key or the physical one) with a seat still empty only says so: it sends nothing and takes no try */
+  api.onEnter(stage === "demo" && stepOn ? () => act(stepOn)
+    : padEnter && stage === "ask" ? () => { if (seatsDone) api.submit(S.seats.slice(0, 3).join(",")); else { upd({ nudge: true }); api.say("Set all three seats first."); } } : null);
   HOOK.set = (v: any) => {
     if (!padEnter) return undefined;
-    const a = String(v).split(",").map((s) => s.trim());
-    if (a.length !== 3) return false;
+    const a = String(v).split(",").map((s) => s.trim().toLowerCase());
+    if (a.length !== 3 || a.some((s) => s !== "up" && s !== "down")) return false;
     upd({ seats: a }); return true;
   };
+  /* the keyboard reaches the seats: 1, 2 and 3 tap seat 1, 2 and 3 (the runtime ignores a digit on a working-area question) */
+  const actNow = useRef<any>(null); actNow.current = act;
+  useEffect(() => {
+    if (!padEnter || stage !== "ask") return;
+    const h = (e: any) => { if (!e.repeat && !e.metaKey && !e.ctrlKey && !e.altKey && /^[123]$/.test(e.key)) actNow.current("seat", Number(e.key) - 1); };
+    window.addEventListener("keydown", h);
+    return () => window.removeEventListener("keydown", h);
+  }, [padEnter, stage, ek]);
   useEffect(() => { if (padEnter && stage === "ask") api.answerReady(!!seatsDone); }, [seatsDone, stage, ek]);
 
   /* the win line, said once a right answer lands (the bubble then shows the phase's closing at the last one) */
   useEffect(() => { if (stage === "win" && item && item.win) api.say(item.win); }, [stage, ek]);
 
   /* ── the traceback: the maths redrawn on a demo layer, ending on the whole right answer ───────────────────── */
-  const rightSeats = () => [0, 1, 2].map((j) => ({ i: pre + j, f: (pre + j) % 2 ? "down" : "up" }));
+  /* the right way for each seat the child got wrong or left empty (a seat already right needs no ghost: the child's own copy stays where it lies) */
+  const rightSeats = () => [0, 1, 2].map((j) => ({ i: pre + j, f: (pre + j) % 2 ? "down" : "up" })).filter((g) => seatsNow[g.i - pre] !== g.f);
   const restSeats = () => { const o: any[] = []; for (let i = pre + S.laid; i < N; i++) o.push({ i, f: (i + (sc.par || 0)) % 2 ? "down" : "up" }); return o; };
   const finalDemo = (): any => {
     if (kind === "verdict" || kind === "space") return { gap: true, lap: true, tr: !!sc.tr, badge: sc.badge };
@@ -811,7 +843,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
       if (sc.tr) st.push([700, () => upd({ demo: { gap: true, lap: true, tr: true } })]);
       st.push([600, () => upd({ demo: finalDemo() })]);
     } else if (kind === "place") {
-      st.push([800, () => upd({ demo: { lap: true } })], [900, () => upd({ demo: { ghosts: rightSeats() } })], [800, () => upd({ demo: { ghosts: rightSeats(), badge: sc.badge } })]);
+      st.push([800, () => upd({ demo: { lap: true } })], [900, () => upd({ demo: { lap: true, ghosts: rightSeats() } })], [800, () => upd({ demo: { lap: true, ghosts: rightSeats(), badge: sc.badge } })]);
     } else if (kind === "count") {
       st.push([600, () => upd({ demo: { copies: restSeats() } })]);
       for (let k = 2; k <= 14; k += 2) { const q = k; st.push([180, () => upd({ demo: { copies: restSeats(), lit: q } })]); }
@@ -839,23 +871,33 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   api.share({
     tiles: tiles.length, gaps: showGap ? scan.nGap : null, overlaps: showLap ? scan.nLap : null,
     edgeTraced: showGap && S.wash >= 1, carried: S.laid, objects: piece ? pre + S.laid : 0, ticked: won ? n : 0, complete: stage === "idle",
+    nudge: S.nudge ? "Set all three seats first." : "",
   });
 
   /* ── drawing helpers (called, never mounted) ───────────────────────────────────────────────────────────────── */
   const ink = C.ink, quiet = mix(C.ink, C.panel, 0.55);
-  const bead = CONTENT.bead, stepInk = shade(CONTENT.pointer, 0.25), okInk = shade(CONTENT.one, 0.25);
-  const paintOf = (t: any) => (t.own === "given" ? "url(#gHundred)" : "url(#gOne)");
-  const edgeOf = (t: any) => (t.own === "given" ? shade(CONTENT.hundred, 0.25) : okInk);
+  const stepInk = shade(CONTENT.pointer, 0.25), okInk = shade(CONTENT.one, 0.25);
+  /* one paint for every copy: the tray, the copy in the hand, the given ones and the laid ones (a coin is a silver disc) */
+  const paintOf = (t: any) => (t.k === "disc" ? "url(#tbCoin)" : "url(#gHundred)");
+  const edgeOf = (t: any) => (t.k === "disc" ? "#6F7A82" : shade(CONTENT.hundred, 0.25));
   const thing = (k: string, cx: number, cy: number, r: number, key: any, lit?: boolean) => {
     const parts: any[] = [];
     if (lit) parts.push(<circle key="lit" cx={cx} cy={cy} r={r + 9} fill="none" stroke={okInk} strokeWidth={5} />);
-    if (k === "marigold" || k === "cap") {
-      const col = k === "marigold" ? CONTENT.ten : CONTENT.pointer, np = k === "marigold" ? 8 : 10, pr = k === "marigold" ? r * 0.42 : r * 0.22, ring = k === "marigold" ? r * 0.54 : r * 0.62;
+    if (k === "marigold") {
+      const col = CONTENT.ten, np = 8, pr = r * 0.42, ring = r * 0.54;
       let d = "";
       for (let i = 0; i < np; i++) { const a = (i / np) * Math.PI * 2, px = cx + Math.cos(a) * ring, py = cy + Math.sin(a) * ring;
         d += `M ${px - pr} ${py} a ${pr} ${pr} 0 1 0 ${2 * pr} 0 a ${pr} ${pr} 0 1 0 ${-2 * pr} 0 `; }
       parts.push(<path key="p" d={d} fill={col} stroke={shade(col, 0.35)} strokeWidth={1.5} />);
-      parts.push(<circle key="c" cx={cx} cy={cy} r={r * 0.46} fill={k === "marigold" ? shade(col, 0.3) : col} stroke={shade(col, 0.35)} strokeWidth={2} />);
+      parts.push(<circle key="c" cx={cx} cy={cy} r={r * 0.46} fill={shade(col, 0.3)} stroke={shade(col, 0.35)} strokeWidth={2} />);
+    } else if (k === "cap") {
+      /* a bottle cap at coin size: a flat disc with a fine crimped edge (24 teeth) and a lighter ring round its top */
+      const col = CONTENT.pointer, teeth = 24;
+      let d = "";
+      for (let i = 0; i < teeth * 2; i++) { const a = (i / (teeth * 2)) * Math.PI * 2, rr = i % 2 ? r * 0.92 : r; d += (i ? "L " : "M ") + (cx + Math.cos(a) * rr) + " " + (cy + Math.sin(a) * rr) + " "; }
+      parts.push(<path key="p" d={d + "Z"} fill={shade(col, 0.12)} stroke={shade(col, 0.45)} strokeWidth={1.5} strokeLinejoin="round" />);
+      parts.push(<circle key="c" cx={cx} cy={cy} r={r * 0.74} fill={col} stroke={shade(col, 0.4)} strokeWidth={1.5} />);
+      parts.push(<circle key="t" cx={cx} cy={cy} r={r * 0.6} fill="none" stroke={tint(col, 0.55)} strokeWidth={r * 0.12} />);
     } else if (k === "leaf") {
       parts.push(<path key="p" d={`M ${cx} ${cy - r} Q ${cx + r * 1.05} ${cy} ${cx} ${cy + r} Q ${cx - r * 1.05} ${cy} ${cx} ${cy - r} Z`} fill={CONTENT.one} stroke={shade(CONTENT.one, 0.3)} strokeWidth={2} />);
       parts.push(<path key="v" d={`M ${cx} ${cy - r * 0.7} V ${cy + r * 0.7}`} stroke={shade(CONTENT.one, 0.45)} strokeWidth={2.5} fill="none" />);
@@ -864,8 +906,9 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
       parts.push(<circle key="c" cx={cx} cy={cy} r={r} fill={col} stroke={shade(col, 0.3)} strokeWidth={2} />);
       parts.push(<path key="s" d={`M ${cx} ${cy - r * 0.55} a ${r * 0.55} ${r * 0.55} 0 1 1 ${-r * 0.55} ${r * 0.55} a ${r * 0.3} ${r * 0.3} 0 1 0 ${r * 0.3} ${-r * 0.3}`} fill="none" stroke={shade(col, 0.45)} strokeWidth={3} />);
     } else {
-      parts.push(<circle key="c" cx={cx} cy={cy} r={r} fill={CONTENT.hundred} stroke={shade(CONTENT.hundred, 0.3)} strokeWidth={2} />);
-      parts.push(<circle key="i" cx={cx} cy={cy} r={r * 0.55} fill="none" stroke={shade(CONTENT.hundred, 0.5)} strokeWidth={3} />);
+      /* a coin: a silver disc with a rim, a plain face and no value */
+      parts.push(<circle key="c" cx={cx} cy={cy} r={r} fill="url(#tbCoin)" stroke="#6F7A82" strokeWidth={2.5} />);
+      parts.push(<circle key="i" cx={cx} cy={cy} r={r * 0.78} fill="none" stroke="#8A949B" strokeWidth={Math.max(2, r * 0.08)} />);
     }
     /* the picture of the object over its plain shape (the shape stays the fallback); the leaf skin is 63 x 120, so its box is narrow */
     if (k === "marigold") parts.push(<Skin key="sk" name="marigold" x={cx - r} y={cy - r} w={2 * r} h={2 * r} />);
@@ -873,7 +916,9 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     else if (k === "leaf") parts.push(<Skin key="sk" name="leaf" x={cx - r * 0.525} y={cy - r} w={r * 1.05} h={2 * r} />);
     return <g key={key}>{parts}</g>;
   };
-  const keyW = (id: string) => Math.max(200, Math.round(tx(KEYLAB(id)).length * (lang === "en" ? 18 : lang === "hi" ? 21 : 17) + 48));
+  /* Gujarati letters draw smaller than Hindi at one size, so its key labels and word cards are set ~14% / 10% larger and its keys widened to match */
+  const guK = lang === "gu" ? 37 : T.label, guC = lang === "gu" ? 44 : T.prompt, guM = lang === "gu" ? 31 : T.micro;
+  const keyW = (id: string) => Math.max(200, Math.round(tx(KEYLAB(id)).length * (lang === "en" ? 18 : lang === "hi" ? 21 : 22) + 48));
   const KEYLAB = (id: string) => (id === "lay" ? (sc.layLab || "Lay a copy") : id === "gaps" ? "Gap finder" : id === "laps" ? "Overlap finder" : id === "trace" ? "Trace" : "Bracket");
 
   /* the keys at the foot: in a guide step only the one the step waits for; otherwise the scene's own */
@@ -895,11 +940,16 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   const dotsDef = (
     <defs>
       <pattern id="tbDots" width={40} height={40} patternUnits="userSpaceOnUse" x={BX} y={BY}><circle cx={20} cy={20} r={2.6} fill="#767676" /></pattern>
-      <pattern id="tbHatch" width={14} height={14} patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-        <rect x={0} y={0} width={14} height={14} fill={bead} fillOpacity={0.2} />
-        <path d="M 0 0 V 14" stroke={bead} strokeWidth={6} />
+      <pattern id="tbHatch" width={16} height={16} patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect x={0} y={0} width={16} height={16} fill="#FFFFFF" fillOpacity={0.6} />
+        <path d="M 8 0 V 16" stroke={GAPC} strokeWidth={7} />
       </pattern>
+      <radialGradient id="tbCoin" cx="35%" cy="30%" r="80%"><stop offset="0" stopColor="#F6F8F9" /><stop offset="1" stopColor="#AEB7BE" /></radialGradient>
       <clipPath id="tbWash"><rect x={0} y={BH * (1 - S.wash)} width={BW} height={BH * S.wash + 1} /></clipPath>
+      {/* the closed-in spaces, grown a little so the tiles painted over them leave the true gap and its smooth edge */}
+      <clipPath id="tbGapNear">{scan.gaps.map((g: any, i: number) => <rect key={i} x={g.x - 6} y={g.y - 6} width={g.w + 12} height={g.h + 12} />)}</clipPath>
+      {/* each tile a lap pair touches, to cut the hatch to the shared part */}
+      {Array.from(new Set(lapPairs.reduce((a: number[], p: number[]) => a.concat(p), [])) as any).map((k: any) => <clipPath key={"c" + k} id={"tbT" + k}><path d={tilePath(tiles[k])} /></clipPath>)}
     </defs>
   );
   const benchRect = (
@@ -915,18 +965,23 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     return (
       <g transform={`translate(${BX},${BY})`}>
         {showGap && S.wash >= 1 && <g>{tiles.map((t: any, i: number) => <path key={"rim" + i} d={tilePath(t)} fill="none" stroke={ink} strokeWidth={12} strokeLinejoin="round" />)}</g>}
+        {/* a gap: the closed-in spaces in a solid deeper purple UNDER the tiles, so the tiles' own outlines are the smooth edge of the true gap */}
+        {showGap && <g clipPath="url(#tbWash)">{scan.gaps.map((g: any, i: number) => <rect key={"g" + i} x={g.x - 4} y={g.y - 4} width={g.w + 8} height={g.h + 8} fill={GAPC} />)}</g>}
         {tiles.map((t: any, i: number) => (
           <g key={"t" + i}>
-            <path d={tilePath(t)} fill={paintOf(t)} stroke={edgeOf(t)} strokeWidth={2.5} strokeLinejoin="round" />
+            <path d={tilePath(t)} fill={paintOf(t)} stroke={t.seat ? ink : edgeOf(t)} strokeWidth={t.seat ? 4 : 2.5} strokeLinejoin="round" />
+            {t.k === "disc" && <circle cx={t.x + t.w / 2} cy={t.y + t.h / 2} r={t.w * 0.39} fill="none" stroke="#8A949B" strokeWidth={Math.max(2, t.w * 0.03)} />}
             {t.split && <path d={`M ${t.x + t.w / 2} ${t.y} V ${t.y + t.h}`} stroke={edgeOf(t)} strokeWidth={2.5} fill="none" />}
           </g>
         ))}
-        {showGap && <g clipPath="url(#tbWash)">{scan.gaps.map((g: any, i: number) => <rect key={"g" + i} x={g.x} y={g.y} width={g.w} height={g.h} fill={bead} fillOpacity={0.95} />)}</g>}
-        {showLap && scan.laps.map((g: any, i: number) => <rect key={"l" + i} x={g.x} y={g.y} width={g.w} height={g.h} fill="url(#tbHatch)" />)}
-        {/* the seats still waiting: a dashed circle, tapped to set a copy down and again to turn it */}
+        {/* the thin darker edge of the gap: the tile outlines, in deep purple, only where they bound a gap */}
+        {showGap && scan.gaps.length > 0 && <g clipPath="url(#tbWash)"><g clipPath="url(#tbGapNear)">{tiles.map((t: any, i: number) => <path key={"ge" + i} d={tilePath(t)} fill="none" stroke={GAPE} strokeWidth={4} strokeLinejoin="round" />)}</g></g>}
+        {/* an overlap: lines 7 wide in the same purple, cut to the shared part of each pair of tiles (the lines only; never a stair-step of cells) */}
+        {showLap && lapPairs.map((p: number[], i: number) => <g key={"l" + i} clipPath={"url(#tbT" + p[0] + ")"}><g clipPath={"url(#tbT" + p[1] + ")"}><rect x={0} y={0} width={BW} height={BH} fill="url(#tbHatch)" /></g></g>)}
+        {/* the seats still waiting: a dashed circle, tapped to set a copy down and again to turn it; gone once the seat is filled */}
         {nseat > 0 && fit && [0, 1, 2].slice(0, nseat).map((j) => {
           const t = tileAt(lay, pre + j, sc.par, fit);
-          return S.seats[j] ? null : <circle key={"sd" + j} cx={t.x + t.w / 2} cy={t.y + t.h / 2} r={34} fill="none" stroke={ink} strokeWidth={4} strokeDasharray="9 8" />;
+          return seatsNow[j] || (view && view.ghosts) ? null : <circle key={"sd" + j} cx={t.x + t.w / 2} cy={t.y + t.h / 2} r={34} fill="none" stroke={ink} strokeWidth={4} strokeDasharray="9 8" />;
         })}
         {/* the tenth triangle is the piece asked about: it waits as a dashed seat and Carry on never lays it */}
         {kind === "facing" && fit && !view && (() => { const t = tileAt(lay, N - 1, sc.par, fit);
@@ -941,8 +996,9 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
           {((view && view.tr) || S.trN > 0) && sc.tr && (() => {
             const pts = trailOf("tr"), upto = view && view.tr ? pts.length : S.trN, shown = pts.slice(0, upto);
             if (shown.length < 1) return null;
+            /* the pencil's dot rides the end of the line only while it is drawing; at rest nothing is left over but the line itself */
             return <g><path d={"M " + shown.map((p) => p[0] + " " + p[1]).join(" L ")} fill="none" stroke={stepInk} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" />
-              <circle cx={shown[shown.length - 1][0]} cy={shown[shown.length - 1][1]} r={9} fill={stepInk} /></g>;
+              {busy && !(view && view.tr) && upto < pts.length && <circle cx={shown[shown.length - 1][0]} cy={shown[shown.length - 1][1]} r={9} fill={stepInk} />}</g>;
           })()}
         </g>
       </g>
@@ -957,15 +1013,15 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     const p = kind === "string" ? periodOf(sc.str) : 0;
     const showBr = kind === "string" && (S.br || (view && view.br));
     const grp = (g: number, strong: boolean) => {
-      const a = pieceAt(sc, g * p), b = pieceAt(sc, g * p + p - 1), x0 = a.x - 34, x1 = b.x + 34;
+      const a = pieceAt(sc, g * p), b = pieceAt(sc, g * p + p - 1), x0 = a.x - HALF, x1 = b.x + HALF;
       return <path key={"br" + g} d={`M ${x0} 205 V 224 H ${x1} V 205`} fill="none" stroke={strong ? stepInk : okInk} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" />;
     };
-    const drawn = (S.brN > 0 && !showBr && kind === "string") ? walk([[pieceAt(sc, 0).x - 34, 205], [pieceAt(sc, 0).x - 34, 224], [pieceAt(sc, p - 1).x + 34, 224], [pieceAt(sc, p - 1).x + 34, 205]], 26).slice(0, S.brN) : [];
+    const drawn = (S.brN > 0 && !showBr && kind === "string") ? walk([[pieceAt(sc, 0).x - HALF, 205], [pieceAt(sc, 0).x - HALF, 224], [pieceAt(sc, p - 1).x + HALF, 224], [pieceAt(sc, p - 1).x + HALF, 205]], 26).slice(0, S.brN) : [];
     return (
       <g transform={`translate(${BX},${BY})`}>
-        {kind === "string" && <path d="M 30 50 Q 430 110 830 50" fill="none" stroke={ink} strokeWidth={4} />}
+        {kind === "string" && <path d={`M 30 50 Q ${BW / 2} 110 ${BW - 30} 50`} fill="none" stroke={ink} strokeWidth={4} />}
         {Array.from({ length: sc.all }).map((_, i) => {
-          if (i >= rowsAll) return kind === "rows" ? <circle key={"e" + i} cx={pieceAt(sc, i).x} cy={pieceAt(sc, i).y} r={30} fill="none" stroke={C.rule} strokeWidth={3} strokeDasharray="9 7" /> : null;
+          if (i >= rowsAll) return kind === "rows" ? <circle key={"e" + i} cx={pieceAt(sc, i).x} cy={pieceAt(sc, i).y} r={34} fill="none" stroke={C.rule} strokeWidth={3} strokeDasharray="9 7" /> : null;
           const q = pieceAt(sc, i);
           return <g key={"p" + i}>
             {kind === "string" && <path d={`M ${q.x} ${q.y - q.r - 24} V ${q.y - q.r}`} stroke={ink} strokeWidth={2.5} fill="none" />}
@@ -974,10 +1030,17 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
         })}
         {showBr && Array.from({ length: sc.all / p }).map((_, g) => (g * p + p <= shown ? grp(g, g === 0) : null))}
         {drawn.length > 1 && <path d={"M " + drawn.map((q) => q[0] + " " + q[1]).join(" L ")} fill="none" stroke={stepInk} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" />}
-        {sc.leg && sc.leg.map((k: string, j: number) => {
-          const xs = (BW * (j + 0.5)) / sc.leg.length, yy = kind === "rows" ? 288 : 272;
-          return <g key={"lg" + j}>{thing(k, xs - 70, yy, 26, "lgi" + j)}<text x={xs - 36} y={yy + 11} fontSize={T.label} fontWeight={600} fill={ink}>{tx(PNAME[k])}</text></g>;
-        })}
+        {/* the legend: a plain cream strip across the foot of the bench (no bench dot behind or after a label), names at 40 */}
+        {sc.leg && (() => {
+          const n = sc.leg.length, zw = (BW - 40) / n, fs = lang === "gu" ? 44 : T.prompt;
+          return <g>
+            <rect x={14} y={250} width={BW - 28} height={60} rx={14} fill={tint(C.panel, 0.6)} stroke={C.rule} strokeWidth={2} />
+            {sc.leg.map((k: string, j: number) => {
+              const lab = tx(PNAME[k]), tw = lab.length * fs * 0.6, x0 = 20 + zw * j + (zw - (58 + tw)) / 2;
+              return <g key={"lg" + j}>{thing(k, x0 + 23, 280, 23, "lgi" + j)}<text x={x0 + 58} y={280 + fs * 0.35} fontSize={fs} fontWeight={600} fill={ink}>{lab}</text></g>;
+            })}
+          </g>;
+        })()}
       </g>
     );
   };
@@ -985,15 +1048,17 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   /* the four word cards of the last question: words first, turned over to their meanings in the correction */
   const cardsArt = () => {
     const ids4 = Object.keys(CARD_MEANS), flip = !!(view && view.flip), pick = view && view.card;
+    /* the grid sits in the middle of the bench with 24 clear all round and 20 between the cards; the cards are flat paper (they are not tapped) */
+    const gm = 24, gg = 20, cw = (BW - 2 * gm - gg) / 2, ch = (BH - 2 * gm - gg) / 2;
     return (
       <g transform={`translate(${BX},${BY})`}>
         {ids4.map((id, j) => {
-          const x = 30 + (j % 2) * 420, y = 24 + Math.floor(j / 2) * 140, on = pick === id && !!(flip || (view && view.card));
+          const x = gm + (j % 2) * (cw + gg), y = gm + Math.floor(j / 2) * (ch + gg), on = pick === id && !!(flip || (view && view.card));
           const word = item.choices.filter((c: any) => c.id === id)[0].label;
           return <g key={id}>
-            <rect x={x} y={y} width={400} height={120} rx={RAD.panel} fill="url(#gPanel)" stroke={on ? okInk : C.rule} strokeWidth={on ? 6 : 3} />
-            <text x={x + 200} y={flip ? y + 52 : y + 74} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={ink}>{tx(word)}</text>
-            {flip && <text x={x + 200} y={y + 94} textAnchor="middle" fontSize={T.micro} fontWeight={500} fill={ink}>{tx(CARD_MEANS[id])}</text>}
+            <rect x={x} y={y} width={cw} height={ch} rx={RAD.panel} fill={tint(C.panel, 0.62)} stroke={on ? okInk : C.rule} strokeWidth={on ? 6 : 2} />
+            <text x={x + cw / 2} y={flip ? y + ch / 2 - 6 : y + ch / 2 + 12} textAnchor="middle" fontSize={guC} fontWeight={700} fill={ink}>{tx(word)}</text>
+            {flip && <text x={x + cw / 2} y={y + ch / 2 + 34} textAnchor="middle" fontSize={guM} fontWeight={500} fill={ink}>{tx(CARD_MEANS[id])}</text>}
           </g>;
         })}
       </g>
@@ -1009,7 +1074,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     return (
       <g>
         <rect x={BX} y={6} width={320} height={80} rx={RAD.panel} fill="url(#gPanel)" stroke={C.rule} strokeWidth={2} />
-        {Array.from({ length: cnt }).map((_, j) => <path key={j} d={tilePath({ ...base, x: BX + 40 + j * 88 + (64 - base.w * sz) / 2, y: 14 + (64 - base.h * sz) / 2, w: base.w * sz, h: base.h * sz, u: 40 * sz })} fill="url(#gOne)" stroke={okInk} strokeWidth={2.5} strokeLinejoin="round" />)}
+        {/* the copies waiting, as they will lie on the bench: the same paint and the facings the row will take (up, down, up ...) */}
+        {Array.from({ length: cnt }).map((_, j) => <path key={j} d={tilePath({ ...base, f: seatOf(lay, pre + S.laid + j, sc.par).f, x: BX + 40 + j * 88 + (64 - base.w * sz) / 2, y: 14 + (64 - base.h * sz) / 2, w: base.w * sz, h: base.h * sz, u: 40 * sz })} fill={paintOf(base)} stroke={edgeOf(base)} strokeWidth={2.5} strokeLinejoin="round" />)}
       </g>
     );
   };
@@ -1018,9 +1084,9 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
       {FREE_SHAPES.map((s, i) => {
         const base = seatOf(s.id, 0), sz = 60 / Math.max(base.w, base.h), cx = BX + 44 + i * 92, on = S.shape === s.id;
         return <g key={s.id}>
-          <rect x={cx - 42} y={6} width={84} height={84} rx={14} fill={on ? tint(CONTENT.one, 0.8) : "url(#gPanel)"} stroke={on ? okInk : C.rule} strokeWidth={on ? 4 : 2} />
-          <path d={tilePath({ ...base, x: cx - (base.w * sz) / 2, y: 48 - (base.h * sz) / 2, w: base.w * sz, h: base.h * sz, u: 40 * sz })} fill="url(#gOne)" stroke={okInk} strokeWidth={2.5} strokeLinejoin="round" />
-          <Hit id={"shape-" + s.id} label={s.label} x={cx - 42} y={6} w={84} h={84} onPress={() => pickShape(s.id)} enabled={canTap} />
+          <rect x={cx - 42} y={6} width={84} height={84} rx={14} fill={on ? tint(CONTENT.hundred, 0.8) : "url(#gPanel)"} stroke={on ? okInk : C.rule} strokeWidth={on ? 4 : 2} />
+          <path d={tilePath({ ...base, x: cx - (base.w * sz) / 2, y: 48 - (base.h * sz) / 2, w: base.w * sz, h: base.h * sz, u: 40 * sz })} fill={paintOf(base)} stroke={edgeOf(base)} strokeWidth={2.5} strokeLinejoin="round" />
+          <Hit id={"shape-" + s.id} label={tx(s.label)} x={cx - 42} y={6} w={84} h={84} onPress={() => pickShape(s.id)} enabled={canTap} />
         </g>;
       })}
     </g>
@@ -1042,7 +1108,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
 
   return (
     <g>
-      <g transform={`translate(${ox},0)`}>
+      <g>
         {dotsDef}
         {freeTray()}
         {looseCopies()}
@@ -1053,7 +1119,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
         {keyBoxes.map((b) => (
           <Key key={b.id} id={b.id} label={tx(KEYLAB(b.id))} x={b.x} y={KEY_Y} w={b.w} h={KEY_H} C={C}
             disabled={!canTap || (b.id === "lay" && rest <= 0)} onClick={() => act(b.id)}>
-            <text textAnchor="middle" y={11} fontSize={T.label} fontWeight={700} fill={!canTap || (b.id === "lay" && rest <= 0) ? quiet : ink}>{tx(KEYLAB(b.id))}</text>
+            <text textAnchor="middle" y={12} fontSize={guK} fontWeight={700} fill={!canTap || (b.id === "lay" && rest <= 0) ? quiet : ink}>{tx(KEYLAB(b.id))}</text>
           </Key>
         ))}
         {invite && <Invite x={invite.x} y={invite.y} w={invite.w} h={invite.h} rx={invite.rx} C={C} />}
@@ -1072,12 +1138,15 @@ function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v: any) => v }: any)
   if (item.choices) { const c = item.choices.filter((x: any) => x.id === v)[0]; if (c) label = c.label; }
   else if (item.pad === "enter") label = item.badge || label;
   const lay = item.lay || "blk", base = [0, 1, 2].map((i) => seatOf(lay === "domino" ? "sqr" : lay === "ring" ? "blk" : lay, i, 0));
-  const sz = 24 / Math.max(base[0].w, base[0].h);
+  const sz = 20 / Math.max(base[0].w, base[0].h);
+  /* phase 4 ends on the word "tessellation": its picture is a little wall of touching bricks, not three loose squares like phase 1's */
+  const wall = n === 4 && item.kind === "card";
   return (
     <g>
       <rect x={0} y={0} width={w} height={h} rx={14} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={1.5} />
-      {base.map((t: any, i: number) => <path key={i} d={tilePath({ ...t, x: 12 + i * 32 + (24 - t.w * sz) / 2, y: 6 + (24 - t.h * sz) / 2, w: t.w * sz, h: t.h * sz, u: 40 * sz })} fill={CONTENT.hundred} fillOpacity={0.3} stroke={shade(CONTENT.hundred, 0.25)} strokeWidth={1.5} />)}
-      <text x={w - 12} y={h - 10} textAnchor="end" fontSize={T.micro} fontWeight={700} fill={C.ink}>{tx(label)}</text>
+      {wall ? [0, 1].map((r) => [0, 1, 2].map((c) => <rect key={r + "_" + c} x={12 + c * 24 + r * 12} y={4 + r * 10} width={24} height={10} fill={CONTENT.hundred} fillOpacity={0.3} stroke={shade(CONTENT.hundred, 0.25)} strokeWidth={1.5} />))
+        : base.map((t: any, i: number) => <path key={i} d={tilePath({ ...t, x: 12 + i * 32 + (20 - t.w * sz) / 2, y: 4 + (20 - t.h * sz) / 2, w: t.w * sz, h: t.h * sz, u: 40 * sz })} fill={CONTENT.hundred} fillOpacity={0.3} stroke={shade(CONTENT.hundred, 0.25)} strokeWidth={1.5} />)}
+      <text x={w - 12} y={h - 8} textAnchor="end" fontSize={T.micro} fontWeight={700} fill={C.ink}>{tx(label)}</text>
     </g>
   );
 }
@@ -1090,8 +1159,8 @@ function TileBench(props: any) {
       board: true,
       /* KEY ONLY (the new look; LAYOUT.md §1d, PATTERNS.md §16): no question bar, only the blinking key at the top right; the question lives only in the bubble */
       keyOnly: true,
-      /* the wide keypad (PATTERNS.md 9g): the picture is drawn for x 64 to 964 while the panel is open */
-      bigPad: true,
+      /* the standard panel (PATTERNS.md 9g, `bigPad: false`): the bench is 1046 wide (the 1086 the area has with the keypad open), the toran needs it */
+      bigPad: false,
       /* the Next key (PATTERNS.md 9d): nothing moves on by itself */
       nextKey: true,
       /* NAV DOTS (the new look; LAYOUT.md §1d): one small clickable dot per phase */

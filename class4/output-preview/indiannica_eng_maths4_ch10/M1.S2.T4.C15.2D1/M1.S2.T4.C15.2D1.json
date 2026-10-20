@@ -276,8 +276,8 @@
         "win": "each row fills in turn and the top box lands last",
         "traceback": "The tower builds itself again row by row, each pair written in the ledger, ending on the top box.",
         "ladder": [
-          "Add the two boxes just under the box you opened.",
-          "Look at the two boxes right under it.",
+          "Each box stands on exactly two boxes below it.",
+          "Add two boxes at a time, not all three.",
           "Check the sum of the pair that holds it up.",
           "What do those two make when they are added?",
           "Ones first, then tens."
@@ -305,7 +305,7 @@
           "Which two boxes hold up the box you are checking?",
           "Add each pair and see whether the box matches.",
           "Try the bottom pair with each sign in turn.",
-          "Does that box match the sign of the rest?",
+          "Does the same sign make this box too?",
           "Look for one box that does not match its pair."
         ]
       },
@@ -705,7 +705,7 @@
         "winMs": 3400,
         "ladder": [
           "Do the bottom pairs first, then the row above them.",
-          "Start with 14 and 16, then 16 and 20, then 20 and 5."
+          "Say the sum of the two boxes under the one you fill."
         ],
         "win": "Four boxes at the bottom still build one top."
       },
@@ -807,7 +807,7 @@
         "winMs": 3000,
         "ladder": [
           "Work along the bottom pairs first, then the row above.",
-          "Start with 2 times 3, then 3 times 5, then the pair above them."
+          "Say the product of the two boxes under the one you fill."
         ],
         "win": "Every box above the bottom row was multiplied."
       }
@@ -975,7 +975,7 @@
             "kind": "check",
             "planQuestion": "A tower has 6, 2 and 5 at the bottom, 8 and 10 in the middle, and 18 at the top. Check each box. Does every box follow one operation?",
             "question": {
-              "en": "Does every box match the same operation?"
+              "en": "Does one operation make every box?"
             },
             "ask": {
               "en": "One sign for all?"
@@ -1321,19 +1321,19 @@
     }
   ],
   "build": {
-    "source": "6cd5884c:614241",
+    "source": "775aefa5:616013",
     "runtime": "class4/runtime/frozen/r28/runtime.tsx",
     "runtimeVersion": "r28",
     "library": "@use-gesture/react@10.3.1",
-    "builtAt": "2026-10-19T12:04:21.816Z",
+    "builtAt": "2026-10-20T09:14:26.383Z",
     "checks": {
       "pass": 95,
       "warn": 0,
       "fail": 0,
       "info": 3,
-      "at": "2026-10-19T12:04:21.696Z"
+      "at": "2026-10-20T09:14:26.272Z"
     },
-    "tsxBytes": 543984,
-    "tsxMd5": "5513ad8822ce0f0f95540723a0f41dee"
+    "tsxBytes": 545270,
+    "tsxMd5": "33c5fcf130f174d083f26448ac03e448"
   }
 }

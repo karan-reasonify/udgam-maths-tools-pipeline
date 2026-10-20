@@ -1,0 +1,8 @@
+STATUS: ok
+SLOTS: M1.S2.T4.C15.2D1 (Multiple Track, class 4 ch 6, r28)
+FILES: none edited by me (the previous builder's 2026-10-19 17:41 edit already held items a-f; verified, not redone)
+CHECKS: full check 95 pass / 0 warn / 0 fail / 3 info (1 of 4 runs); tr-coverage pass (86 lines hi+gu), free-play, board-fit, one-line-bubble pass; ported, host phases 1-4 finish
+FAILURES: none
+DECISIONS: a done (free play lays out for the keypad-open width always; real-click probe: 4 flags + Band = posts 7/28 "2 inside" before AND after opening the keypad, every post and flag at the same x; 6 flags = 14/35 unchanged). b done (ML3 laid 8, digits 40, no "twelve" anywhere). c done (gu P4 closing "વચ્ચે બંને છેડા છૂટે છે: પાંચ છે, ..." -> "વચ્ચે છેડા છૂટે છે: પાંચ છે, 33, 44, 55, 66 અને 77."; breaks after "છે,"). d done (gu P1 closing "લાગી ગયા:" -> "લાગ્યા:"; breaks after it). e done (en+hi+gu keys changed together: en "Any step size, the track as far as you like, the band on or off." -> "Any step size, any track length, band on or off."; hi -> "कोई भी कदम, कोई भी लंबाई, पट्टी चालू या बंद।"; gu -> "કોઈ પણ પગલું, કોઈ પણ લંબાઈ, પટ્ટી ચાલુ કે બંધ."; renders en 24/23 chars, hi 25/18, gu 2 lines, no one-word orphan). f done (comment now says the runtime draws Close off outside the ask stage so only Escape or a second tap on the step block leaves typing).
+RISKS: not in the six items, left alone: P3 learn question "Is there a last multiple of 11, one that nothing comes after?" wraps to 3 bubble lines with a one-word last line ("after?"); a reviewer may flag it (shorten to e.g. "Is there a last multiple of 11?" with its hi/gu TR keys). hi free-play line 2 is shorter than line 1 (about 18 vs 25 chars).
+ESCALATE: no

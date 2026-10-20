@@ -148,7 +148,7 @@ const TR: any = {
     "Multiply both numbers by the same number and the amount stays.": "दोनों संख्याओं को एक ही संख्या से गुणा करो तो मात्रा वही रहती है।",
     "Find the factor from the given number and use it on its partner.": "दी गई संख्या से गुणक ढूँढो और उसे साथी संख्या पर लगाओ।",
     "Tap the upper numbers to draw the lines, then read the two products.": "ऊपर की संख्याओं पर टैप करके रेखाएँ खींचो, फिर दोनों गुणनफल पढ़ो।",
-    "Draw both lines, then compare the two products digit by digit.": "दोनों रेखाएँ खींचो, फिर दोनों गुणनफल अंक-अंक करके मिलाओ।",
+    "Tap each upper number for its line, then compare the products digit by digit.": "हर ऊपर की संख्या पर टैप करके उसकी रेखा खींचो, फिर गुणनफल अंक-अंक करके मिलाओ।",
   },
   gu: {
     "Same Amount Bench": "સરખી માત્રા બેન્ચ",
@@ -261,7 +261,7 @@ const TR: any = {
     "Multiply both numbers by the same number and the amount stays.": "બંને સંખ્યાને એક જ સંખ્યાથી ગુણો તો માત્રા એ જ રહે છે.",
     "Find the factor from the given number and use it on its partner.": "આપેલી સંખ્યા પરથી ગુણક શોધો અને તેને સાથી સંખ્યા પર લગાવો.",
     "Tap the upper numbers to draw the lines, then read the two products.": "ઉપરની સંખ્યા પર ટૅપ કરીને રેખાઓ દોરો, પછી બંને ગુણનફળ વાંચો.",
-    "Draw both lines, then compare the two products digit by digit.": "બંને રેખાઓ દોરો, પછી બંને ગુણનફળ અંક-અંક સરખાવો.",
+    "Tap each upper number for its line, then compare the products digit by digit.": "દરેક ઉપરની સંખ્યા પર ટૅપ કરીને તેની રેખા દોરો, પછી ગુણનફળ અંક-અંક સરખાવો.",
   },
 };
 
@@ -432,7 +432,7 @@ const PHASES = [
       /* practice 8: answer in the plan = No. The products are 189 and 196, and they are not equal */
       { qid: "M2.S3.T5.C23:8", kind: "verdict", p: [7, 9], q: [21, 28], answer: "no", pad: "enter", winMs: 4200,
         say: "Last pair: are these two fractions equivalent?", ask: "Equivalent?",
-        miss: "Draw both lines, then compare the two products digit by digit.",
+        miss: "Tap each upper number for its line, then compare the products digit by digit.",
         win: "The products are not equal, so these are not the same amount." },
     ],
   },
@@ -708,7 +708,7 @@ function useSabLock(api: any, tl: any, ek: string, busy: any) {
 
 /* ── phase 1: the same amount, written differently ───────────────────────────────────────── */
 
-const P1_ROW = [104, 220, 336], P1_H = 100;
+const P1_ROW = [100, 218, 336], P1_H = 104;   /* row 0's ring (P1_ROW[0] - 6 + 108) must stay below the choice keys' bottom edge (y 195) */
 const P1_KEY = { x: 776, y: 234, w: 120, h: 72 };
 
 function SabSame({ phase, item, index, stage, wrong, api, off, stepOn, tx = (v: any) => v }: any) {
@@ -818,7 +818,7 @@ function SabSame({ phase, item, index, stage, wrong, api, off, stepOn, tx = (v: 
       {strips.map((st, i) => (
         <g key={i}>
           <SabStrip y={P1_ROW[i]} h={P1_H} n={st[1]} a={S.fill[i]} count={S.counted[i]} shown={S.cut[i]} blank={S.cut[i] === 0} />
-          <SabFrac cx={LX} y={P1_ROW[i] + P1_H / 2} a={st[0]} b={st[1]} size={60} C={C} />
+          <SabFrac cx={LX} y={P1_ROW[i] + P1_H / 2} a={st[0]} b={st[1]} size={64} C={C} />
           {S.lit === i && <rect x={LX - 72} y={P1_ROW[i] - 4} width={144} height={P1_H + 8} rx={16} fill="none" stroke={C.accent} strokeWidth={4} pointerEvents="none" />}
           <Hit id={"lay-" + (i + 1)} label={"Cut and fill strip " + (i + 1)} x={SX} y={P1_ROW[i]} w={SW} h={P1_H} onPress={() => press("lay-" + (i + 1))} />
         </g>

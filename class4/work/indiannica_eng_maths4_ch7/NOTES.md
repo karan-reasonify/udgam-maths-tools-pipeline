@@ -30,6 +30,7 @@
 | C20 visual | summary page (hi): row titles' descenders (ु ँ) touch the "तुमने सीखा" line below; the row pitch needs Devanagari leading | none | runtime (step 6): summary row leading for hi/gu |
 | C10 visual | the bubble leaves a one-word last line ("12.", "left."; hi "है?", gu "છે.") — runtime paging has no widow guard | none | runtime (step 6): balance the last two lines |
 | C5 play | **BLOCKER-class**: a 2nd tap on the blinking Fraction card (45-450 ms) lands on key-6 of the opening pad and types a digit ("4" -> "64"); r28's 300 ms `openedAt` guard covers `pickPart` only (runtime.tsx ~3494), not the digit keys — every cardAnswer tool (C5, C15, C25, C35, C20?) | none | runtime (step 6): guard the digit keys for ~500 ms after the drawer opens |
+| C35 r4 | the first Hint-key rung is always the item's `miss` (rungOf), so a tool cannot make it "Tap the blinking <act> key." while a card waits for the acts | card tap says it | runtime (later batch): a tool hint override while cardReady(false) |
 
 ## Chapter terms (hi / gu) — lead decision 16:25
 - "upper number" / "lower number" -> ऊपर की संख्या / नीचे की संख्या · ઉપરની સંખ્યા / નીચેની સંખ્યા (literal: C5 teaches "the upper number is the numerator")

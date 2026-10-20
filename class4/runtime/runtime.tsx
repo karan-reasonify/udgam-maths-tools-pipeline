@@ -3487,9 +3487,6 @@ function ToolFrame({ props, tool }: any) {
      on the last box it answers once every box is filled (else the caret goes to the empty one). Rub out
      on an empty box steps back to the box before it. */
   const pressPart = (k: string, np: number) => {
-    /* the board's card / drawer is shut and nothing is lent to the picture: Enter moves no hidden caret (it walked Whole -> Top -> Bottom of a mixed number, so the next digit,
-       typed after the card was tapped open, landed in the wrong box) */
-    if (k === "enter" && board && !wantRef.current && !captureRef.current && !alwaysOpen) return;
     const ps = slotPartsOf(typedRef.current, np), at = Math.min(partRef.current, np - 1);
     const parts = live.current.item.parts;
     /* after a miss every box is stale: the same answer is never sent again until one box is rewritten */
@@ -3498,11 +3495,15 @@ function ToolFrame({ props, tool }: any) {
       /* a mixed number, whose boxes may stay empty: Enter on a filled box moves on; on an empty box (or
          the last) it answers once what is typed is a whole answer, else the caret goes where a number is
          still missing (the other half of a fraction), or on to the next box */
-      if (ps[at] !== "" && at < np - 1) { caretAt.current = Date.now(); setPart(at + 1); return; }
+      /* ... but with the board's card / drawer shut and nothing lent to the picture, Enter moves no hidden caret (it walked Whole -> Top -> Bottom,
+         so the next digit, typed after the card was tapped open, landed in the wrong box); a whole answer still goes */
+      const shut = board && !wantRef.current && !captureRef.current && !alwaysOpen;
+      if (ps[at] !== "" && at < np - 1) { if (shut) return; caretAt.current = Date.now(); setPart(at + 1); return; }
       /* a double tap on Enter (45 ms) or two Enters 50 ms apart: the first moved the caret, the second would send the whole number alone as a miss;
          a deliberate whole-only answer ("45 ÷ 9 = 5") comes later than that */
       if (ps[at] === "" && Date.now() - caretAt.current < 300) return;
       if (fresh && slotComplete(parts, ps)) { commit(ps.join("|")); return; }
+      if (shut) return;
       const half = parts.findIndex((p: any, j: number) => (p.at === "top" || p.at === "bottom") && ps[j] === ""
         && parts.some((q: any, i: number) => i !== j && (q.at === "top" || q.at === "bottom") && ps[i] !== ""));
       if (half >= 0) setPart(half); else if (at < np - 1) setPart(at + 1);
@@ -3729,7 +3730,6 @@ function ToolFrame({ props, tool }: any) {
   const apiRef = useRef<any>({});
   apiRef.current = {
     getState: () => ({
-      ...shared.current,   /* first: the runtime's own fields below win over a tool's shared field of the same name (a shared `answered` hid the runtime's count) */
       toolId: tool.TOOL_ID, mediaId: tool.MEDIA_ID, mode: navigable ? "user" : "ai", mountPhase, lang,
       phase: n, phases: N, conceptId: phase.conceptId, objectiveIds: phase.objectiveIds || [],
       step: (offsets[idx] || 0) + i, steps, item: i + 1, items: items.length, stage,
@@ -3744,14 +3744,15 @@ function ToolFrame({ props, tool }: any) {
       party: party.on, acting: actor.busy(),
       ...(phase.steps && phase.steps.length ? { guideStep: stepNo, guideSteps: phase.steps.length, guideOn: stage === "demo" && phase.steps[stepNo] ? String(phase.steps[stepNo].on) : null } : {}),
       parts: item.parts ? item.parts.map((p: any) => p.label) : null, part: partRef.current, padTo: captureRef.current ? "work" : "slot",
-      answered: answered.current, firstTry: firstTry.current, score: answered.current * POINTS, maxScore: items.length * POINTS,
+      firstTry: firstTry.current, score: answered.current * POINTS, maxScore: items.length * POINTS,
       answerShown: stage === "win" || stage === "idle" ? item.answer ?? null : null,
       summaryRow, played: Object.keys(results.current).map(Number), questionCount: `${Math.min(i + 1, items.length)} / ${items.length}`,
       muted: mutedRef.current, speaking: voice.speaking, voice: voice.state().voice, mascot: mascotRef.current ? "image" : "drawn",
-      classroom, held: classroom && voice.held, instruction: voice.line, hint: hintText || null,
+      classroom, held: classroom && voice.held, instruction: voice.line, hint: hintText || null, ...shared.current,
       /* the runtime owns `complete`: true once `finished` is sent. A tool's shared `complete` (the plan's
-         field, often "stage is idle") would say it at every phase end, now that the tool walks on */
-      complete: fired.current,
+         field, often "stage is idle") would say it at every phase end, now that the tool walks on.
+         It owns `answered` the same way (a shared `answered` hid the runtime's count) */
+      answered: answered.current, complete: fired.current,
     }),
     gotoStep,
     say: (text: any) => { voice.speak(String(text ?? "")); return true; },

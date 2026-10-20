@@ -25,7 +25,7 @@ const START_HOOK = "Two fractions are on the rail. Which one is more?";
 const SIGNS = [{ id: "<", label: "<" }, { id: ">", label: ">" }, { id: "=", label: "=" }];
 function StartArt({ box, C, lang, tx }: any) {
   const w = box.w, h = box.h, ry = h - 70;
-  const gx = [w * 0.30, w * 0.52], gw = w * 0.17, bx = w * 0.74, bw = w * 0.19;
+  const gx = [w * 0.285, w * 0.51], gw = w * 0.17 + 30, bx = w * 0.74, bw = w * 0.19;
   const frac = (x: number, y: number, a: number, b: number, s: number) => (
     <g>
       <text x={x} y={y - s * 0.25} textAnchor="middle" fontSize={s} fontWeight={700} fill={C.ink}>{a}</text>
@@ -541,7 +541,7 @@ const answer = (item: any, v: any) => (item.choices ? undefined : HOOK.set ? HOO
 const check = () => undefined;
 
 /* ── the rail: sizes in working-area units (the area is 1472 x 520 shut, 900 x 520 with the wide keypad open) ───── */
-const RL = { rail: 205, top: 46, low0: 232, cartY: 54, X0: 150, rowA: 258, rowB: 358, stripH: 56, arm: 120, lift: 64 };
+const RL = { rail: 205, top: 46, low0: 232, cartY: 60, X0: 150, rowA: 258, rowB: 368, stripH: 56, arm: 120, lift: 64 };
 const SKY = "#56B4E9";           /* the undecided colour: the not yet bay */
 const VERM = CONTENT.pointer;    /* the greater of a pair one of the rules settles */
 const AMBER = CONTENT.ten;       /* the parts of the whole a fraction leaves */
@@ -565,8 +565,9 @@ function RlTap({ id, label, x, y, w, h, onPress, done }: any) {
 }
 
 /* a fraction, always stacked: the top number over a rule over the bottom number (never 3/4) */
-function RlFrac({ x, y, f, size, fill }: any) {
-  const w = Math.max(String(f[0]).length, String(f[1]).length) * size * 0.62 + 10;
+function RlFrac({ x, y, f, size, fill, maxW }: any) {
+  const w0 = Math.max(String(f[0]).length, String(f[1]).length) * size * 0.62 + 10;
+  const w = maxW ? Math.max(8, Math.min(w0, maxW)) : w0;
   return (
     <g>
       <text x={x} y={y - size * 0.25} textAnchor="middle" fontSize={size} fontWeight={700} fill={fill}>{f[0]}</text>
@@ -593,21 +594,21 @@ function RlCard({ x, y, w, h, f, size, C, litTop, litBottom, hot, mine }: any) {
 /* one fraction as a ribbon: wholes of one length, each cut into its lower number, filled up to its upper number.
    The plain ribbon is drawn first (the fallback), the satin skin over it (one texture a strip, the cuts are drawn here), then the colour code:
    a pale cream wash on the parts the fraction leaves, deep blue (0.72, so the satin shows through) on the parts it counts. */
-function RlStrip({ x, y, h, unit, f, wholes, cutDone, cutVis, fillOn, lift, C }: any) {
+function RlStrip({ x, y, h, unit, f, wholes, cutDone, cutVis, fillOn, lift, C, thin }: any) {
   const d = f[1], cells = wholes * d, cw = unit / d, w = wholes * unit;
   const parts: any[] = [<rect key="b" x={x} y={y} width={w} height={h} fill={tint(C.panel, 0.4)} />, <Skin key="sk" name="ribbon" x={x} y={y} w={w} h={h} />];
   if (cutDone) {
     for (let j = 0; j < cells; j++) {
       const taken = j < f[0];
-      if (!taken) parts.push(<rect key={"c" + j} x={x + j * cw} y={y} width={cw + 0.5} height={h} fill="#FFF8E6" fillOpacity={0.86} />);
+      if (!taken) parts.push(<rect key={"c" + j} x={x + j * cw} y={y} width={cw + 0.5} height={h} fill="#FFF8E6" fillOpacity={0.5} />);
       else if (fillOn(j)) parts.push(<rect key={"c" + j} x={x + j * cw} y={y} width={cw + 0.5} height={h} fill={CONTENT.hundred} fillOpacity={0.86} />);
     }
   }
   const lines: any[] = [];
   for (let j = 1; j < cells; j++) {
     const whole = j % d === 0;
-    if (!whole && (cw < 5 || !cutVis(j))) continue;
-    lines.push(<line key={"l" + j} x1={x + j * cw} y1={y} x2={x + j * cw} y2={y + h} stroke={CONTENT.line} strokeWidth={whole ? 4.5 : 3} />);
+    if (!whole && (cw < (thin ? 10 : 5) || !cutVis(j))) continue;
+    lines.push(<line key={"l" + j} x1={x + j * cw} y1={y} x2={x + j * cw} y2={y + h} stroke={CONTENT.line} strokeWidth={thin ? (whole ? 3 : 1.5) : whole ? 4.5 : 3} />);
   }
   return (
     <g className="rl-lift" style={{ transform: `translateY(${lift ? -10 : 0}px)` } as any}>
@@ -705,10 +706,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   const bigIdx = () => (isSet ? -1 : cards[0][0] * cards[1][1] > cards[1][0] * cards[0][1] ? 0 : 1);
 
   /* ── the line-up board of a set ── */
-  const MWb = ww - 232;
+  const MWb = ww - 272;
   const pitch = MWb / nC, bcw = Math.min(280, pitch - 24), bch = 136;
   const bx = (slot: number) => 6 + slot * pitch + (pitch - bcw) / 2;
-  const by = RL.low0 + 4, sy = by + bch + 8, sh = 36;
+  const by = RL.low0 + 4, sy = by + bch + 8, sh = 52;   /* 52: the strip ends at 432, just clear of the Next pair / Fill key at keyY 434 */
   const sUnit = (bcw - 12) / Math.max(1, ...cards.map((f: any) => Math.ceil(f[0] / f[1])));
   const ord: number[] = S.order.slice(0, nC);
   const orderText = (o: number[]) => railOrderText(o.map((k: number) => cards[k]));
@@ -746,7 +747,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     const steps: any[] = [];
     if (to === "bay") {
       if (takes("bay")) steps.push([420, () => { put({ parked: true, note: RL_BAY_NOTE }); api.sfx.tick(); if (stage === "ask") api.setTyped("not yet"); }]);
-      else steps.push([460, () => put({ note: shareNote() })], [760, () => put({ pos: "head" })], [320, () => put({ note: null })]);
+      /* the bay refuses a pair a gate takes: [ms, fn] runs fn, THEN waits ms. The cart waits at the bay, rolls back to the head, and only then the reason is printed on the bare bay and held 1.5 s (never behind the parked cart) */
+      else steps.push([320, () => {}], [560, () => put({ pos: "head" })], [1500, () => put({ note: shareNote() })], [0, () => put({ note: null })]);
     } else {
       steps.push([440, () => put({ lit: { [rowName(to)]: true } })]);
       if (takes(to)) {
@@ -1034,10 +1036,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
         <circle cx={cw - 44} cy={chh - 6} r={12} fill={shade(C.dim, 0.25)} />
         {isSet
           ? cards.map((f: any, k: number) => (
-            <rect key={k} x={10 + k * 14} y={6 + k * 10} width={cw - 20 - (nC - 1) * 14} height={86} rx={12} fill={k === nC - 1 ? "#FFFFFF" : tint(C.panel, 0.4)} stroke={C.rule} strokeWidth={2} filter="url(#fShadowSoft)" />
+            <rect key={k} x={10 + k * 14} y={6 + k * 10} width={cw - 20 - (nC - 1) * 14} height={80} rx={12} fill={k === nC - 1 ? "#FFFFFF" : tint(C.panel, 0.4)} stroke={C.rule} strokeWidth={2} filter="url(#fShadowSoft)" />
           ))
           : cards.map((f: any, k: number) => (
-            <g key={k} className="rl-lift" style={{ transform: `translateY(${S.picked === k ? -14 : 0}px)` } as any}>
+            <g key={k} className="rl-lift" style={{ transform: `translateY(${S.picked === k ? -8 : 0}px)` } as any}>
               <RlCard x={8 + k * (cardW + 8)} y={0} w={cardW} h={118} f={f} size={cardSize} C={C} litTop={!!S.lit.top} litBottom={!!S.lit.bottom}
                 hot={!!prog && prog.lift === k} mine={S.picked === k} />
             </g>
@@ -1083,7 +1085,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
       <g>
         <rect x={ST.bay.x} y={RL.top} width={ST.bay.w} height={RL.rail - RL.top} rx={16} fill={tint(SKY, 0.86)} stroke={tint(SKY, 0.3)} strokeWidth={2} />
         <rect x={ST.bay.x} y={0} width={ST.bay.w} height={RL.top} rx={12} fill={tint(SKY, 0.6)} stroke={S.parked ? shade(SKY, 0.45) : tint(SKY, 0.28)} strokeWidth={S.parked ? 4 : 2} filter="url(#fShadowSoft)" />
-        <text x={ST.bay.x + ST.bay.w / 2} y={34} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={shade(SKY, 0.5)}>{tx("not yet")}</text>
+        <text x={ST.bay.x + ST.bay.w / 2} y={lang === "en" ? 34 : 38} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={shade(SKY, 0.5)}>{tx("not yet")}</text>
         {S.note && !S.parked && S.note.map((ln: string, k: number) => (
           <text key={k} x={ST.bay.w < 280 ? ST.bay.x + ST.bay.w - 8 : ST.bay.x + ST.bay.w / 2} y={128 + k * 38} textAnchor={ST.bay.w < 280 ? "end" : "middle"} fontSize={T.micro} fontWeight={700} fill={shade(SKY, 0.5)}>{tx(ln)}</text>
         ))}
@@ -1106,7 +1108,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
       {S.reader && (() => {
         /* a fraction over one, read as that many whole circles: as large as the head zone allows, a green-washed cake when a circle is 28 across or more */
         const cnt = Math.min(S.reader[0], 12), cols = Math.ceil(cnt / 2), rows = cnt > cols ? 2 : 1;
-        const room = RL.rail - 34 - 14;
+        const room = RL.rail - 40 - 14;
         const r = Math.max(10, Math.min(40, Math.floor((hw - 16 - (cols - 1) * 4) / (2 * cols)), Math.floor((room - (rows - 1) * 6) / (2 * rows))));
         const tw = cols * 2 * r + (cols - 1) * 4, th = rows * 2 * r + (rows - 1) * 6;
         const x0 = (hw - tw) / 2 + r, y0 = 14 + (room - th) / 2 + r;
@@ -1121,13 +1123,13 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
                     <g>
                       <clipPath id={"rl-rd" + k}><circle cx={cx} cy={cy} r={r} /></clipPath>
                       <Skin name="disc" x={cx - r} y={cy - r} w={2 * r} h={2 * r} clip={"url(#rl-rd" + k + ")"} />
-                      <circle cx={cx} cy={cy} r={r} fill={CONTENT.one} fillOpacity={0.6} stroke={shade(CONTENT.one, 0.3)} strokeWidth={3} />
+                      <circle cx={cx} cy={cy} r={r} fill={CONTENT.one} fillOpacity={0.35} stroke={shade(CONTENT.one, 0.3)} strokeWidth={3} />
                     </g>
                   )}
                 </g>
               );
             })}
-            <text x={hw / 2} y={RL.rail - 6} textAnchor="middle" fontSize={T.micro} fontWeight={600} fill={shade(CONTENT.one, 0.3)}>{S.reader[0] + " " + tx("wholes")}</text>
+            <text x={hw / 2} y={RL.rail - 6} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={ink}>{S.reader[0] + " " + tx("wholes")}</text>
           </g>
         );
       })()}
@@ -1140,11 +1142,11 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
             return (
               <g key={r}>
                 {cutOk
-                  ? <RlFrac x={70} y={row.y + RL.stripH / 2 - (up ? 10 : 0)} f={row.f} size={T.label} fill={up ? shade(VERM, 0.25) : ink} />
+                  ? <RlFrac x={70} y={row.y + RL.stripH / 2 - (up ? 10 : 0)} f={row.f} size={T.prompt} fill={up ? shade(VERM, 0.25) : ink} />
                   : (
                     <g>
-                      <text x={70} y={row.y + 22} textAnchor="middle" fontSize={T.micro} fontWeight={600} fill={mix(C.ink, C.panel, 0.22)}>{tx("one")}</text>
-                      <text x={70} y={row.y + 52} textAnchor="middle" fontSize={T.micro} fontWeight={600} fill={mix(C.ink, C.panel, 0.22)}>{tx("whole")}</text>
+                      <text x={70} y={row.y + (lang === "en" ? 20 : 14)} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={ink}>{tx("one")}</text>
+                      <text x={70} y={row.y + 54} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={ink}>{tx("whole")}</text>
                     </g>
                   )}
                 <RlStrip x={RL.X0} y={row.y} h={RL.stripH} unit={unit} f={row.f} wholes={row.wholes} cutDone={cutOk}
@@ -1166,16 +1168,16 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
             );
           })()}
           {prog && cur.kind === "sign" && S.sign && (
-            <text x={70} y={(RL.rowA + RL.stripH + RL.rowB) / 2 + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={ink}>{S.sign}</text>
+            <text x={RL.X0 + 32} y={(RL.rowA + RL.stripH + RL.rowB) / 2 + 17} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={ink}>{S.sign}</text>
           )}
           {/* the bay's printed reason: a labelled plaque beside the wholes, a settled end state */}
           {S.parked && (() => {
-            const px = RL.X0 + Lp + 40, pw = Math.max(260, ww - px - 14);
+            const pw = Math.max(480, Math.min(ww - (RL.X0 + Lp + 40) - 14, 760)), px = Math.min(RL.X0 + Lp + 40, ww - 14 - pw);
             return (
               <g>
                 <rect x={px} y={RL.rowA} width={pw} height={RL.rowB + RL.stripH - RL.rowA} rx={16} fill={tint(SKY, 0.78)} stroke={tint(SKY, 0.3)} strokeWidth={2} />
                 {RL_BAY_NOTE.map((ln: string, k: number) => (
-                  <text key={k} x={px + pw / 2} y={RL.rowA + 76 + k * 48} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={shade(SKY, 0.5)}>{tx(ln)}</text>
+                  <text key={k} x={px + pw / 2} y={RL.rowA + 66 + k * 58} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={shade(SKY, 0.5)}>{tx(ln)}</text>
                 ))}
               </g>
             );
@@ -1197,7 +1199,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
                 <RlCard x={0} y={by} w={bcw} h={bch} f={f} size={T.xl} C={C} litTop={!!S.lit.top} litBottom={!!S.lit.bottom} mine={S.sel === k} />
                 {strips && (
                   <RlStrip x={6} y={sy} h={sh} unit={sUnit} f={f} wholes={Math.ceil(f[0] / f[1])} cutDone cutVis={() => true}
-                    fillOn={() => filled} lift={false} C={C} />
+                    fillOn={() => filled} lift={false} C={C} thin />
                 )}
                 {boardLive && (
                   <g className="rl-grab c4-piece" {...control("card-" + k, "Move " + fractionWords(f[0], f[1]) + " along the board")}
@@ -1211,12 +1213,12 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
           })}
           {/* which way the list runs, as the question sets it */}
           <g>
-            <rect x={ww - 212} y={by} width={202} height={bch} rx={16} fill={tint(C.panel, 0.45)} stroke={C.rule} strokeWidth={2} />
+            <rect x={ww - 252} y={by} width={242} height={bch} rx={16} fill={tint(C.panel, 0.45)} stroke={C.rule} strokeWidth={2} />
             {Array.from({ length: 3 }).map((_, k) => {
               const h = 22 + (cur.dir === "down" ? 2 - k : k) * 20;
-              return <rect key={k} x={ww - 212 + 56 + k * 32} y={by + 84 - h} width={24} height={h} rx={5} fill={shade(C.accent, 0.1)} />;
+              return <rect key={k} x={ww - 252 + 76 + k * 32} y={by + 80 - h} width={24} height={h} rx={5} fill={shade(C.accent, 0.1)} />;
             })}
-            <text x={ww - 111} y={by + 120} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={ink}>{tx(cur.dir === "down" ? "descending" : "ascending")}</text>
+            <text x={ww - 131} y={by + 118} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={ink}>{tx(cur.dir === "down" ? "descending" : "ascending")}</text>
           </g>
         </g>
       )}
@@ -1261,8 +1263,8 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v: any) => v }: any) {
         {box}
         {list.map((f: any, k: number) => (
           <g key={k}>
-            <RlFrac x={8 + step * (k + 0.5)} y={y} f={f} size={T.micro} fill={C.ink} />
-            {k > 0 && <text x={8 + step * k} y={y + 10} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={mix(C.ink, C.panel, 0.3)}>{q.dir === "down" ? ">" : "<"}</text>}
+            <RlFrac x={8 + step * (k + 0.5)} y={y} f={f} size={T.micro} fill={C.ink} maxW={step - 24} />
+            {k > 0 && step >= 50 && <text x={8 + step * k} y={y + 10} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={mix(C.ink, C.panel, 0.3)}>{q.dir === "down" ? ">" : "<"}</text>}
           </g>
         ))}
       </g>

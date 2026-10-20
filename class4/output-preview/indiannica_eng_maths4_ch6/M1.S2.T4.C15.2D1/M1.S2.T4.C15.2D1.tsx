@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S2.T4.C15.2D1 · multiple_track · Multiple Track — standalone build 2026-10-19, source 93959cbe:633622.
+/* M1.S2.T4.C15.2D1 · multiple_track · Multiple Track — standalone build 2026-10-20, source 4d7e2e71:633802.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -4103,7 +4103,7 @@ const CHROME = { "dim": "#9AA4AC", "ink": "#2B2B2B", "rule": "#C9BCA6", "panel":
 const VOICE = { "rate": 0.92, "pitch": 1.06 };
 const OPENING = ["A track, one step block, and no end mark anywhere along it."];
 const FINISH_LINE = "Still running off the edge, and you never did find a last one.";
-const FREE_LINE = "Free play. Any step size, the track as far as you like, the band on or off.";
+const FREE_LINE = "Free play. Any step size, any track length, band on or off.";
 const MTG = CONTENT.one;
 const MTB = CONTENT.hundred;
 const MTA = CONTENT.ten;
@@ -4179,7 +4179,7 @@ const TR = {
     "Multiple Track": "गुणजों का रास्ता",
     "A track, one step block, and no end mark anywhere along it.": "एक रास्ता, एक कदम का डिब्बा, और रास्ते में कहीं अंत का निशान नहीं।",
     "Still running off the edge, and you never did find a last one.": "रास्ता अब भी किनारे के पार जा रहा है, और तुम्हें आखिरी झंडा कभी नहीं मिला।",
-    "Free play. Any step size, the track as far as you like, the band on or off.": "मुक्त खेल। कदम का कोई भी माप चुनो, रास्ता जितना चाहो बढ़ाओ, पट्टी चालू या बंद।",
+    "Free play. Any step size, any track length, band on or off.": "मुक्त खेल। कोई भी कदम, कोई भी लंबाई, पट्टी चालू या बंद।",
     "What happens when you keep taking the same step?": "जब तुम एक ही कदम बार-बार रखते जाओ, तो क्या होता है?",
     /* phase 1 */
     "A times table read as a list": "सूची की तरह पढ़ा गया पहाड़ा",
@@ -4305,7 +4305,7 @@ const TR = {
     "Multiple Track": "ગુણિતનો રસ્તો",
     "A track, one step block, and no end mark anywhere along it.": "એક રસ્તો, એક પગલાનો ડબ્બો, અને રસ્તા પર ક્યાંય અંતનું નિશાન નથી.",
     "Still running off the edge, and you never did find a last one.": "રસ્તો હજી ધારની પાર જાય છે, અને તમને છેલ્લો ઝંડો ક્યારેય ન મળ્યો.",
-    "Free play. Any step size, the track as far as you like, the band on or off.": "મુક્ત રમત. પગલાનું કોઈ પણ માપ લો, રસ્તો ગમે તેટલો વધારો, પટ્ટી ચાલુ કે બંધ.",
+    "Free play. Any step size, any track length, band on or off.": "મુક્ત રમત. કોઈ પણ પગલું, કોઈ પણ લંબાઈ, પટ્ટી ચાલુ કે બંધ.",
     "What happens when you keep taking the same step?": "જ્યારે તમે એક જ પગલું ભરતા જાઓ, ત્યારે શું થાય?",
     /* phase 1 */
     "A times table read as a list": "યાદી તરીકે વાંચેલો ઘડિયો",
@@ -4315,7 +4315,7 @@ const TR = {
     "Count four more stones from your flag.": "તમારા ઝંડાથી ચાર પથ્થર વધુ ગણો.",
     "Which line of the table does each flag answer?": "દરેક ઝંડો ઘડિયાની કઈ લીટીનો જવાબ છે?",
     "Count the stones of one step, then count the same again from the last flag.": "એક પગલાના પથ્થર ગણો, પછી છેલ્લા ઝંડાથી એટલા જ ગણો.",
-    "Three more multiples of 11 are in place: a table is a list of multiples.": "11 ના ત્રણ વધુ ગુણિત લાગી ગયા: ઘડિયો ગુણિતની યાદી છે.",
+    "Three more multiples of 11 are in place: a table is a list of multiples.": "11 ના ત્રણ વધુ ગુણિત લાગ્યા: ઘડિયો ગુણિતની યાદી છે.",
     "You learned: a times table lists the multiples of its number.": "તમે શીખ્યા: ઘડિયો તેની સંખ્યાના ગુણિતની યાદી છે.",
     "First six in the table of 9": "9 ના ઘડિયાના પહેલા છ",
     "Plant a flag on each of the first six answers in the table of 9.": "9 ના ઘડિયાના પહેલા છ જવાબો પર એક-એક ઝંડો લગાવો.",
@@ -4391,7 +4391,7 @@ const TR = {
     "Tap the key that now says Count.": "જે બટન પર હવે ગણો લખ્યું છે, તે દબાવો.",
     "Is a flag on a post inside the band, or outside it?": "થાંભલા પરનો ઝંડો પટ્ટીની અંદર છે કે બહાર?",
     "Touch each flag between the posts and count aloud.": "થાંભલા વચ્ચેના દરેક ઝંડાને અડો અને મોટેથી ગણો.",
-    "Between leaves out both ends: five of them, 33, 44, 55, 66 and 77.": "વચ્ચે બંને છેડા છૂટે છે: પાંચ છે, 33, 44, 55, 66 અને 77.",
+    "Between leaves out both ends: five of them, 33, 44, 55, 66 and 77.": "વચ્ચે છેડા છૂટે છે: પાંચ છે, 33, 44, 55, 66 અને 77.",
     "You learned: a flag on a post stays out; count what is strictly inside.": "તમે શીખ્યા: થાંભલા પરનો ઝંડો બહાર રહે છે; ફક્ત અંદરના જ ગણો.",
     "How many between 18 and 63?": "18 અને 63 વચ્ચે કેટલા?",
     "How many multiples of 9 lie between 18 and 63?": "18 અને 63 વચ્ચે 9 ના કેટલા ગુણિત છે?",
@@ -4577,8 +4577,7 @@ const PHASES = [
         kind: "last",
         s: 11,
         sp: 92,
-        fs: 32,
-        laid: 12,
+        laid: 8,
         answer: "no",
         near: "yes",
         winMs: 3400,
@@ -4898,10 +4897,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
   const geoFor = (o, kk) => {
     const t = Math.max(kk === void 0 ? o.laid : kk, o.ghostTo);
     const p = mtPitch(o.sp, fs, Math.max(t, 1) * o.s);
-    return { p, ...mtTrack(bwRef.current, p, t) };
+    return { p, ...mtTrack(free ? Math.min(bwRef.current, MT_TW) : bwRef.current, p, t) };
   };
   const sp = mtPitch(S.sp, fs, Math.max(top, 1) * s);
-  const { shift, off, slots } = mtTrack(bw, sp, top);
+  const { shift, off, slots } = mtTrack(free ? Math.min(bw, MT_TW) : bw, sp, top);
   const X = (k) => MT_X0 + k * sp;
   const vx = (v) => MT_X0 + v / s * sp;
   const clampBand = (b, sh, L, ss) => {

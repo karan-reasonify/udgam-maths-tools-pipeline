@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M2.S3.T6.C25.2D1 · pattern_lines · Pattern Lines — standalone build 2026-10-19, source 498c6282:616356.
+/* M2.S3.T6.C25.2D1 · pattern_lines · Pattern Lines — standalone build 2026-10-20, source 498c6282:616356.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
