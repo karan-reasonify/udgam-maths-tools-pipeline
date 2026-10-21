@@ -16,6 +16,8 @@ import { fileURLToPath } from "node:url";
 import { CONFIG, fromRoot } from "../lib/core/env.mjs";
 import { workRoot, readStatus } from "../lib/core/work.mjs";
 import { hostsim } from "../lib/ship/hostsim.mjs";
+import { md5 } from "../lib/ship/port.mjs";
+import { publishedOf } from "../lib/ship/published.mjs";
 import { vendorLibs, HOST } from "../lib/ship/hostTemplate.mjs";
 import { checkAndPort } from "../lib/check/runAndShip.mjs";
 import { viewerPort, viewerMeta, checkState, isOwnChapter } from "./meta.mjs";
@@ -58,17 +60,30 @@ function listTools() {
       let title = null, toolId = null;
       if (hasJson) { try { const j = JSON.parse(fs.readFileSync(jsonFile, "utf8")); title = j.title ?? null; toolId = j.toolId ?? null; } catch {} }
       const workDir = path.join(workRoot(), chapterId, id);
+      const status = fs.existsSync(workDir) ? readStatus(workDir) : null;
       out.push({
         chapterId, id, title, toolId, hasTsx, hasJson,
         tsxBytes: hasTsx ? fs.statSync(tsxFile).size : null,
         jsonBytes: hasJson ? fs.statSync(jsonFile).size : null,
-        status: fs.existsSync(workDir) ? readStatus(workDir) : null,
+        status,
         checkState: fs.existsSync(workDir) ? checkState(workDir) : "unchecked", // the same fresh-or-stale reading as `status` and /api/meta
+        published: publishedFor(status, dir, id),
       });
     }
   }
   out.sort((a, b) => a.chapterId.localeCompare(b.chapterId) || a.id.localeCompare(b.id));
   return out;
+}
+
+/* "Published <time>" for a tool: lib/ship/published.mjs. The pair on disk is read (and hashed) only for a tool whose upload recorded its
+   md5s, to say "edited since"; an older record has no md5s to compare. */
+function publishedFor(status, dir, id) {
+  const rec = status?.published;
+  let now = null;
+  if (rec && rec.pair) {
+    try { now = { tsx: md5(fs.readFileSync(path.join(dir, `${id}.tsx`))), json: md5(fs.readFileSync(path.join(dir, `${id}.json`))) }; } catch { /* no pair on disk: nothing claimed */ }
+  }
+  return publishedOf(status, now);
 }
 
 function toolDir(chapterId, id) {
@@ -135,7 +150,8 @@ export async function startServer({ port = viewerPort(), watch = false } = {}) {
         }
         if (req.method === "GET" && action === "status") {
           const workDir = path.join(workRoot(), chapterId, id);
-          return sendJson(res, 200, fs.existsSync(workDir) ? readStatus(workDir) : {});
+          const st = fs.existsSync(workDir) ? readStatus(workDir) : {};
+          return sendJson(res, 200, { ...st, published: publishedFor(st, dir, id) }); // the derived reading replaces the raw record (it has `changed`)
         }
         if (req.method === "POST" && action === "hostsim") {
           const tsxFile = path.join(dir, `${id}.tsx`);

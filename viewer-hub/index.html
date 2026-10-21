@@ -76,6 +76,8 @@
   .tool-title { display: block; font-size: 13.5px; font-weight: 600; }
   .tool-item.selected .tool-title { font-weight: 700; }
   .tool-id { display: block; font-size: 11px; color: var(--muted); font-family: ui-monospace, Consolas, monospace; }
+  .tool-pub { display: block; font-size: 11px; color: var(--pass); }
+  .tool-pub.changed { color: var(--warn); }
   .note { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; background: var(--bg); }
   .note > div { max-width: 640px; }
   .note pre { text-align: left; white-space: pre-wrap; background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-size: 12px; }
@@ -307,6 +309,26 @@ function fillChapters() {
   sel.ch.title = sel.ch.selectedOptions[0]?.text ?? "";
 }
 
+/* "Published <time>" in the tool list. A class viewer that has the feature answers t.published (class<N>/lib/ship/published.mjs); a class
+   whose viewer has not been synced yet sends only t.status, which is read here by the same rule: the recorded upload, else a real upload's
+   publish record, else stage "published" with no time. "edited since" is known only from the viewer (it compares md5s). */
+const stampOf = (iso) => {
+  const d = new Date(iso); if (!iso || Number.isNaN(d.getTime())) return "";
+  const p = (n) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+};
+function publishedOf(t) {
+  if (t.published !== undefined) return t.published;
+  const st = t.status; if (!st) return null;
+  const real = st.published?.at ? st.published : st.publish && st.publish.dry === false && st.publish.ok ? st.publish : null;
+  if (real) return { at: real.at, changed: null };
+  return st.stage === "published" ? { at: null, changed: null } : null;
+}
+const pubHtml = (t) => {
+  const p = publishedOf(t); if (!p) return "";
+  return `<span class="tool-pub${p.changed ? " changed" : ""}" title="${p.at ? `uploaded ${esc(stampOf(p.at))}` : "uploaded; the time was not recorded"}">✓ published ${p.at ? esc(stampOf(p.at)) : "(time not recorded)"}${p.changed ? " · edited since" : ""}</span>`;
+};
+
 const chipsHtml = (checks) => Object.entries(checks).filter(([, n]) => n).map(([k, n]) => `<span class="chip ${k}" title="${k}">${n} ${k}</span>`).join("");
 
 /* the left panel: the tools of the chosen chapter, or of every chapter under their headings */
@@ -320,7 +342,7 @@ function renderRail() {
       + `<div class="rail-chapter-sub"><span>${c.ported} of ${c.slots} ported</span>${chipsHtml(c.checks)}</div>`
       + ts.map((t) => `<button type="button" class="tool-item" data-key="${esc(keyOf(t))}"${selectable(t) ? "" : " disabled"}>`
         + `<span class="badge ${esc(t.checkState || "unchecked")}" title="${esc(t.checkState || "unchecked")}"></span>`
-        + `<span><span class="tool-title">${esc(t.title ?? t.id)}</span><span class="tool-id">${esc(t.id)}</span></span></button>`).join("")
+        + `<span><span class="tool-title">${esc(t.title ?? t.id)}</span><span class="tool-id">${esc(t.id)}</span>${pubHtml(t)}</span></button>`).join("")
       + "</div>";
   }).join("") : `<p class="muted small" style="padding:8px">no tools ported yet</p>`;
   markSelected();

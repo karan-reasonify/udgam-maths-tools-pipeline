@@ -50,6 +50,8 @@ brings the newer one. Change the viewer in the newest class and carry it with `c
   viewer's bundle: a few seconds. A large class takes a second or two to list its tools (every tool's check freshness is read).
 - **Passes through** the class's `/api/meta` and `/api/tools` (a page on one port cannot read another port), and nothing else:
   no check, hostsim, port or publish route goes through the hub; those are the class viewer's own buttons.
+  The tool list's green "✓ published <time>" line is the viewer's `published` (a class viewer from before that feature sends only
+  `status`, which the hub reads by the same rule: `class<N>/viewer/README.md`, "Published, and when").
 - **Never** uploads, publishes, edits a class, or reads `.env` / `config.json` on the Preview page; the Editor (below) writes only
   on a click. It listens on `127.0.0.1` only, answers only a `localhost` Host header, and a POST only from its own page.
 - **Each class is shown by its own viewer**, so a tool is always rendered with that class's own host template and the runtime

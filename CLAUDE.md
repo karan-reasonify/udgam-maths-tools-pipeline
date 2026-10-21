@@ -55,6 +55,11 @@
   re-check of that chapter, with a decision logged in the build card. No other chapter is ever restaled.
   **Batch runtime moves** (2026-10-18; runbook non-negotiable 3): log a gap, freeze once per chapter before the review packs and
   once at step 6 (a third only for a blocker), and another chapter pins the newest head once at its own step 6, never mid-build.
+- **A published tool says so, with the time (the owner, 2026-10-21; every class, new classes get it from `classctl new`).** `publish --upload`
+  records `status.published` only after a verified upload (a dry run never does); the viewer (tool list, a pill in the preview bar, a step above the
+  side panel's tabs), the hub's tool list and `node cli.mjs status` show "Published <local time>", amber "edited since" when the pair changed after
+  the upload. Lib and viewer only: no runtime change, no re-pin. The sidecar .json is never stamped (publish and approve check its bytes).
+  `class<N>/viewer/README.md` "Published, and when"; `lib/ship/published.mjs`.
 - **Small changes to one tool: edit the pair, then `approve`** (the owner, 2026-10-16). An edit, fix or tweak of one existing tool
   is made straight away in its ported pair (`class<N>/output-preview/<chapter_id>/<slot_id>/<slot_id>.tsx` + `.json`), never in
   `work/.../tool.tsx`, and proved with `node cli.mjs approve <slot_id> --ch N --note "what changed"` instead of `check`; `publish`

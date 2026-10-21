@@ -4,6 +4,7 @@ import type { PipelineStatus, Sidecar, ToolSummary, ViewerMeta } from "./types";
 import { ToolList } from "./components/ToolList";
 import { CheckCounts } from "./components/CheckCounts";
 import { ToolFrame } from "./components/ToolFrame";
+import { PublishedChip, PublishedLine } from "./components/PublishedChip";
 import { DeviceBar } from "./components/DeviceBar";
 import type { Device } from "./lib/devices";
 import { SidebarJson } from "./components/SidebarJson";
@@ -161,6 +162,7 @@ export function App() {
             <button className={"tab" + (tab === "preview" ? " active" : "")} onClick={() => setTab("preview")}>Preview</button>
             <button className={"tab" + (tab === "tsx" ? " active" : "")} onClick={() => setTab("tsx")}>Source (.tsx)</button>
             <button className={"tab" + (tab === "json" ? " active" : "")} onClick={() => setTab("json")}>Sidecar (.json)</button>
+            <PublishedChip published={currentSummary?.published} className="tabs-end" />
           </div>
           {tab === "preview" && <ToolFrame live={live} device={device} />}
           {tab === "tsx" && (
@@ -176,6 +178,7 @@ export function App() {
         </main>
 
         <aside className="rail-right">
+          {selected && <PublishedLine published={currentSummary?.published} />}
           <div className="tabs">
             <button className={"tab" + (sideTab === "checks" ? " active" : "")} onClick={() => setSideTab("checks")}>Sidecar checks</button>
             <button className={"tab" + (sideTab === "pipeline" ? " active" : "")} onClick={() => setSideTab("pipeline")}>Pipeline</button>

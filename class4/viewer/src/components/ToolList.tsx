@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { ChapterMeta, CheckState, ToolSummary } from "../types";
 import { CheckCounts } from "./CheckCounts";
+import { publishedTitle, publishedWhen } from "../lib/published";
 
 const NO_CHECKS = { pass: 0, warn: 0, fail: 0, stale: 0, unchecked: 0 };
 
@@ -77,6 +78,11 @@ export function ToolList({
                   <span className="tool-list-item-text">
                     <span className="tool-list-item-title">{t.title ?? t.id}</span>
                     <span className="tool-list-item-id">{t.id}</span>
+                    {t.published && (
+                      <span className={"tool-list-item-pub" + (t.published.changed ? " changed" : "")} title={publishedTitle(t.published)}>
+                        ✓ published {publishedWhen(t.published)}{t.published.changed ? " · edited since" : ""}
+                      </span>
+                    )}
                   </span>
                 </button>
               );

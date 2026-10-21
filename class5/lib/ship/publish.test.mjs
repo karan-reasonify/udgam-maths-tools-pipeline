@@ -5,6 +5,7 @@ import assert from "node:assert/strict";
 import { pairProblems, mountTarget, rekeySidecar } from "./publish.mjs";
 import { handEditOf, handEditLine, md5 } from "./port.mjs";
 import { wrongOf } from "../check/approve.mjs";
+import { publishedRecord, publishedOf } from "./published.mjs";
 
 const id = "M1.S1.T2.C4.2D1", hash = "ec8ee32d:417752";
 const ported = Buffer.from(`/* ${id} */ export default Tool;`), edited = Buffer.from(`/* ${id} hand edit */ export default Tool;`);
@@ -100,5 +101,34 @@ t("the sidecar of a re-keyed upload names the object that is there, and nothing 
   assert.deepEqual({ ...b, component: a.component }, a);
   assert.ok(out.toString("utf8").endsWith("}\n"));
   assert.equal(rekeySidecar(src, "M1.S1.T2.C5.2D1").equals(src), true);   /* the same stem rewrites the same bytes: the format is port's */
+});
+/* published.mjs: "Published <time>" for the viewer and the hub */
+const AT = "2026-10-21T08:02:00.000Z", LATER = "2026-10-22T09:00:00.000Z";
+const rec = publishedRecord({ at: AT, plan: "plan_v3", urls: {}, tsx: ported, json });
+const nowPair = (tsx, js) => ({ tsx: md5(tsx), json: md5(js) });
+t("a recorded upload is published with its time; the pair on disk is the one that went up", () => {
+  assert.deepEqual(rec.pair, { tsx: md5(ported), json: md5(json) });
+  assert.deepEqual(publishedOf({ published: rec, stage: "published" }, nowPair(ported, json)), { at: AT, plan: "plan_v3", legacy: false, changed: false });
+});
+t("a pair edited after the upload says so, by md5 (.tsx or .json)", () => {
+  assert.equal(publishedOf({ published: rec }, nowPair(edited, json)).changed, true);
+  assert.equal(publishedOf({ published: rec }, nowPair(ported, json2)).changed, true);
+  assert.equal(publishedOf({ published: rec }, null).changed, null);   /* the pair was not read: nothing claimed */
+});
+t("a later dry run or failed upload does not take the time away", () => {
+  const st = { published: rec, stage: "ported", publish: { at: LATER, ok: false, dry: true } };
+  assert.equal(publishedOf(st, nowPair(ported, json)).at, AT);
+});
+t("an older tool: its real upload's time; a later approve means edited; a dry run in between loses only the time", () => {
+  assert.deepEqual(publishedOf({ stage: "published", publish: { at: AT, ok: true, dry: false, plan: "p" } }), { at: AT, plan: "p", legacy: true, changed: null });
+  assert.equal(publishedOf({ stage: "published", publish: { at: AT, ok: true, dry: false }, handEdit: { at: LATER } }).changed, true);
+  assert.equal(publishedOf({ stage: "published", publish: { at: AT, ok: true, dry: false }, handEdit: { at: "2026-10-20T08:00:00.000Z" } }).changed, null);
+  assert.deepEqual(publishedOf({ stage: "published", publish: { at: LATER, ok: true, dry: true } }), { at: null, plan: null, legacy: true, changed: null });
+});
+t("not published: a dry run only, a failed upload, a tool never uploaded", () => {
+  assert.equal(publishedOf({ stage: "ported", publish: { at: AT, ok: true, dry: true } }), null);
+  assert.equal(publishedOf({ stage: "ported", publish: { at: AT, ok: false, dry: false, problems: ["x"] } }), null);
+  assert.equal(publishedOf({ stage: "draft" }), null);
+  assert.equal(publishedOf(null), null);
 });
 console.log(`\n${n} passed`);

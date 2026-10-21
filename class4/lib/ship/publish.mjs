@@ -31,6 +31,7 @@ import { hashOf } from "../check/check.mjs";
 import { capsFor } from "../core/caps.mjs";
 import { outDir, shipScope, md5, handEditOf } from "./port.mjs";
 import { hostsim } from "./hostsim.mjs";
+import { publishedRecord } from "./published.mjs";
 import { shipVoice, checkShip, voiceMap, CLIP_DIR, CLIP_TYPE, CLIP_CACHE } from "./voiceship.mjs";
 import { idOf, chapterOf, readStatus, writeStatus } from "../core/work.mjs";
 
@@ -363,6 +364,12 @@ export async function publish(dir, { upload = false, apply = false, offline = fa
       [urls[".tsx"], chosen.plan_id, id])).rowCount);
     say("lp2_media", `${pushed} row updated`);
   } else if (dbFix) say("lp2_media", "url differs; not written (add --apply)");
-  writeStatus(dir, { stage: problems.length ? "ported" : "published", publish: { at: new Date().toISOString(), ok: !problems.length, dry: false, plan: chosen.plan_id, urls, results, voice: voiceRes, backup: fs.existsSync(backup) ? backup : null, rowsUpdated: pushed } });
+  const at = new Date().toISOString();
+  writeStatus(dir, {
+    stage: problems.length ? "ported" : "published",
+    publish: { at, ok: !problems.length, dry: false, plan: chosen.plan_id, urls, results, voice: voiceRes, backup: fs.existsSync(backup) ? backup : null, rowsUpdated: pushed },
+    /* the viewer's "Published <time>" line: only a verified upload sets it, and a later dry run or failed upload leaves it alone (published.mjs) */
+    ...(problems.length ? {} : { published: publishedRecord({ at, plan: chosen.plan_id, urls, tsx: data[".tsx"], json: data[".json"] }) }),
+  });
   return { ok: !problems.length, problems, urls, results };
 }

@@ -288,6 +288,9 @@ that tool's builder. Then steps 6 to 8 again.
 **10. Upload (only on the user's word).** For each tool: `node cli.mjs publish <slot_id> --ch <n>
 --upload` (md5-verified). If the dry run listed `lp2_media` rows to update, ask, then `--apply`. Report
 the live URLs.
+A verified upload stamps `status.published` (the time, the plan, the md5s of the pair), so the viewer's tool list, preview bar and
+side panel, the hub and `node cli.mjs status` all say "Published <time>" for it (amber "edited since" if the pair is changed afterwards;
+`class<N>/viewer/README.md`, "Published, and when"). Look for it after an upload; a dry run never sets it.
 
 ## Small changes to one tool: edit the pair (the owner's rule, 2026-10-16)
 

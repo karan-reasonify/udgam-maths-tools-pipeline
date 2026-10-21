@@ -13,7 +13,12 @@ export type ToolSummary = {
   jsonBytes: number | null;
   status: PipelineStatus | null;
   checkState: CheckState;
+  published: Published | null;
 };
+
+/* lib/ship/published.mjs: null = never uploaded. at is null for a tool uploaded before the time was recorded;
+   changed = the pair is no longer what went up (null when that cannot be told) */
+export type Published = { at: string | null; plan: string | null; legacy: boolean; changed: boolean | null };
 
 /* how a slot's check stands NOW (viewer/meta.mjs, the reading `node cli.mjs status` gives): "stale" is a
    check whose tool, runtime or mascot has changed since it ran */
@@ -52,6 +57,7 @@ export type PipelineStatus = {
   ported?: { source?: string; at?: string; tsx?: string; tsxBytes?: number; tsxMd5?: string };
   hostsim?: { ok?: boolean; at?: string };
   publish?: { ok?: boolean; dry?: boolean; at?: string; plan?: string; urls?: Record<string, string>; problems?: string[] };
+  published?: Published | null; // /api/tools/.../status answers the derived reading, not the raw record
   updatedAt?: string;
   [k: string]: unknown;
 };

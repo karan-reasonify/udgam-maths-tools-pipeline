@@ -92,8 +92,14 @@ export function SidebarPipeline({
         </dd>
         <dt>ported source fresh</dt><dd>{status?.ported ? (fresh ? "yes, matches last check" : "no — source changed since") : "not ported"}</dd>
         <dt>hostsim (at port)</dt><dd>{status?.hostsim ? (status.hostsim.ok ? `ok (${timeAgo(status.hostsim.at)})` : `FAILED (${timeAgo(status.hostsim.at)})`) : "not run"}</dd>
-        <dt>publish (dry run)</dt>
-        <dd>{status?.publish ? (status.publish.ok ? `ready (${timeAgo(status.publish.at)})` : `blocked: ${(status.publish.problems ?? []).join("; ") || "see log"}`) : "not run"}</dd>
+        <dt>last publish run</dt>
+        <dd>
+          {status?.publish
+            ? status.publish.dry === false
+              ? (status.publish.ok ? `uploaded (${timeAgo(status.publish.at)})` : `upload failed: ${(status.publish.problems ?? []).join("; ") || "see log"}`)
+              : (status.publish.ok ? `dry run: ready (${timeAgo(status.publish.at)})` : `dry run: blocked: ${(status.publish.problems ?? []).join("; ") || "see log"}`)
+            : "not run"}
+        </dd>
       </dl>
 
       <div className="btn-row">

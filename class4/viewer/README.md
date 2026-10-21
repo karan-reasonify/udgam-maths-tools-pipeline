@@ -56,6 +56,23 @@ of a chapter fetched into the wrong class folder.
 Once there is more than one chapter, a "chapter" dropdown appears above the list: pick one to narrow it, or
 "all chapters" to see everything. It only filters what's listed; it never triggers a check.
 
+## Published, and when
+
+A tool that has been uploaded says so, with the time (local, `2026-10-21 13:32`), in three places: a green
+"✓ published <time>" line under its name in the rail, a "Published <time>" pill at the right of the Preview /
+Source / Sidecar tab bar, and a "Published / <time>" step above the side panel's tabs (a tool never uploaded
+reads "Not published yet" there). `node cli.mjs status` ends its line with the same "published <time>", and the
+hub's own tool list shows it too.
+
+- **Where it comes from.** `publish --upload` writes `status.published = { at, plan, urls, pair: { tsx, json } }`
+  once the upload verified, never on a dry run or a failed upload, and a later dry run does not replace it
+  (`status.publish` is only the LAST attempt). `lib/ship/published.mjs` reads it.
+- **"edited since"** (amber) means the pair in `output-preview/` is no longer the one that went up (`pair` holds its
+  md5s; a hand-edit approved after an older upload counts too): the live copy is the older one, publish again.
+- **A tool uploaded before this key existed** is read from its old record: a real upload's `status.publish`
+  (`dry: false`, `ok`), else `stage: "published"`. When a later dry run replaced that record the time is lost and the
+  tool reads "published (time not recorded)".
+
 ## What the sidebar shows
 
 - **Sidecar checks** — structural validation of the `.json` sidecar, done in the browser the moment
@@ -85,10 +102,10 @@ own events without changing how the tool runs. No `sandbox` attribute, so the pa
 | route | what |
 |---|---|
 | `GET /api/meta` | the class (publication, class, subject, medium from `pipeline.config.json`), every chapter (number, title, slots, ported, check totals) and the class totals; `viewer/meta.mjs` |
-| `GET /api/tools` | every tool in `output-preview/`, joined with its `work/.../status.json`, plus its `checkState` (pass / warn / fail / stale / unchecked) |
+| `GET /api/tools` | every tool in `output-preview/`, joined with its `work/.../status.json`, plus its `checkState` (pass / warn / fail / stale / unchecked) and `published` (null, or `{ at, plan, legacy, changed }`) |
 | `GET /api/tools/:chapterId/:id/tsx` | the raw `.tsx` (headers `x-md5`, `x-bytes`) |
 | `GET /api/tools/:chapterId/:id/json` | the sidecar |
-| `GET /api/tools/:chapterId/:id/status` | `status.json`, or `{}` |
+| `GET /api/tools/:chapterId/:id/status` | `status.json` (its `published` the derived reading above), or `{}` |
 | `POST /api/tools/:chapterId/:id/hostsim` | runs `lib/ship/hostsim.mjs` against the current pair |
 | `POST /api/tools/:chapterId/:id/check` | runs `lib/build/preview.mjs` + `lib/check/check.mjs` against `work/<chapter>/<id>/tool.tsx`, exactly as `node cli.mjs check` does |
 | `GET /vendor/{react,react-dom,babel}.js` | the UMD libraries, for the live preview iframe |

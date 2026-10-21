@@ -96,6 +96,7 @@ import { cleanSlot } from "./lib/finish/clean.mjs";
 import { portAndVerify, pairState } from "./lib/ship/port.mjs";
 import { approve } from "./lib/check/approve.mjs";
 import { publish } from "./lib/ship/publish.mjs";
+import { publishedOf, stamp } from "./lib/ship/published.mjs";
 import { loadServiceAccount, accessToken, probeBucket } from "./lib/ship/gcs.mjs";
 import { freeze, headVersion, readVersions, readPin, writePin, pinState, sha, headHashes } from "./lib/core/pin.mjs";
 import { readFence, fenceSet } from "./lib/core/fence.mjs";
@@ -333,6 +334,8 @@ function status() {
         chk = `check ${st.checks.fail ? st.checks.fail + " FAIL" : "passed"} (${st.checks.pass} pass)${note}`;
       }
       if (hand) chk += ` · ${hand}`;
+      const pub = publishedOf(st);
+      if (pub) chk += ` · published ${pub.at ? stamp(pub.at) : "(time not recorded)"}${pub.changed ? ", edited since" : ""}`;
       console.log(`  ${pad(id, 20)}${pad(st.stage || "?", 10)}${st.toolBytes ? pad("tool " + kb(st.toolBytes).trim(), 16) : pad("", 16)}${fs.existsSync(path.join(dir, "tool.tsx")) ? chk : ""}`);
     }
   }
