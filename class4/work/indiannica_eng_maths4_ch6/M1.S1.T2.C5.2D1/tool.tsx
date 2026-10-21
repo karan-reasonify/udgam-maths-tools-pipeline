@@ -24,12 +24,19 @@ const FREE_LINE = "Free play. Pick a number for the tray, then climb the ladder 
 /* THE START PAGE: START_HOOK is ONE printed question to wonder at; StartArt is the object the lesson is about
    (1200 x 340, no digit, no sentence): a ladder, a tray of counters, walled rows and an empty pen of blank cards. */
 const START_HOOK = "Which rungs share the tray out with nothing left over?";
-function StartArt({ box, C, lang, tx }: any) {
-  const wood = "#A08C70";
+function StartArt({ box, C: C0, lang, tx }: any) {
+  const { C, wood, pan } = dlFrame(C0);
   const ys = [76, 142, 208, 274];
-  const dots = (x0: number, y0: number, c: number, r: number) => Array.from({ length: c }, (_, i) => (
-    <circle key={"d" + x0 + "_" + y0 + "_" + i} cx={x0 + r + i * (r * 2.5)} cy={y0} r={r} fill="url(#gTen)" stroke={shade(CONTENT.ten, 0.25)} strokeWidth={1.4} />
-  ));
+  /* the counters are apples here too (24 on the page, inside the 40-a-screen budget): the plain dot first, the apple over it */
+  const dots = (x0: number, y0: number, c: number, r: number) => Array.from({ length: c }, (_, i) => {
+    const cx = x0 + r + i * (r * 2.5);
+    return (
+      <g key={"d" + x0 + "_" + y0 + "_" + i}>
+        <circle cx={cx} cy={y0} r={r * 0.78} fill="url(#gTen)" stroke={shade(CONTENT.ten, 0.25)} strokeWidth={1.4} />
+        <Skin name="apple" x={cx - r * 1.05 * 0.96} y={y0 - r * 1.05} w={r * 2.1 * 0.96} h={r * 2.1} fit="stretch" />
+      </g>
+    );
+  });
   return (
     <g>
       <rect x={70} y={10} width={14} height={324} rx={7} fill={wood} />
@@ -37,7 +44,7 @@ function StartArt({ box, C, lang, tx }: any) {
       {ys.map((y, i) => (
         <rect key={"r" + i} x={84} y={y - 24} width={162} height={48} rx={14} fill={i === 0 ? "url(#gHundred)" : "#FFFFFF"} stroke={i === 0 ? shade(CONTENT.hundred, 0.2) : wood} strokeWidth={3} />
       ))}
-      <rect x={330} y={12} width={820} height={72} rx={18} fill="url(#gPanel)" stroke={C.rule} strokeWidth={2} />
+      <rect x={330} y={12} width={820} height={72} rx={18} fill={pan} stroke={C.rule} strokeWidth={2} />
       {dots(354, 48, 12, 15)}
       {[0, 1, 2].map((j) => (
         <g key={"w" + j}>
@@ -496,6 +503,13 @@ const DL_VERM = CONTENT.pointer;   /* what is left over, and a trial that fails 
 const DL_ROSE = CONTENT.bead;      /* a number standing twice: the repeat */
 const DL_INK: Record<string, string> = { blue: shade(DL_BLUE, 0.25), verm: shade(DL_VERM, 0.25), rose: shade(DL_ROSE, 0.25) };
 const DL_WOOD = "#A08C70";
+/* the frame colours follow the keypad THEME (the apple's olive family): the panel and its hairline, the ladder's rails and rung edges, the
+   pen walls, and the attention ring (the theme's Enter berry, the colour the Invite ring already wears). With no theme: the chrome's own tan. */
+const dlFrame = (C: any) => {
+  const T: any = THEME;
+  if (!T || !T.panel || !T.key || !T.enter) return { C, wood: DL_WOOD, pan: "url(#gPanel)" };
+  return { C: { ...C, panel: T.panel[1], rule: mix(T.panel[1], T.key[1], 0.45), accent: T.enter[1] }, wood: T.slot || T.key[1], pan: "url(#gTpanel)" };
+};
 const DL_CSS = `
 .dl-move{transition:transform 400ms cubic-bezier(.3,.7,.25,1)}
 .dl-slide{transition:transform 320ms ease}
@@ -602,20 +616,21 @@ const dlPen = (G: any, cnt: number) => {
 function DlCounters({ c, x, y, cell, paint, base, skin }: any) {
   const t = Math.floor(c / 10), o = c % 10, out: any[] = [], edge = shade(base, 0.25);
   let cx = x;
-  const h = Math.max(cell * 0.86, 4), sz = cell * 0.84;
-  /* a counter: the plain circle first (the fallback), the bead's picture over it in a SQUARE box (the tile stretches) */
-  const bead = (key: string, px: number) => (
+  const h = Math.max(cell * 0.86, 4), sz = cell * 0.9;
+  /* a counter: the plain circle first (the fallback; smaller under a skin, so its rim never rings the transparent apple), the apple's picture
+     over it in a NEAR-SQUARE box (the tile is 92 x 96: its own shape, never a pill) */
+  const apple = (key: string, px: number) => (
     <g key={key}>
-      <circle cx={px} cy={y} r={cell * 0.4} fill={`url(#${paint})`} stroke={edge} strokeWidth={1.2} />
-      {skin && <Skin name="bead" x={px - sz / 2} y={y - sz / 2} w={sz} h={sz} fit="stretch" />}
+      <circle cx={px} cy={y} r={cell * (skin ? 0.3 : 0.4)} fill={`url(#${paint})`} stroke={edge} strokeWidth={1.2} />
+      {skin && <Skin name="apple" x={px - sz * 0.48} y={y - sz / 2} w={sz * 0.96} h={sz} fit="stretch" />}
     </g>
   );
   for (let i = 0; i < t; i++) {
     out.push(<rect key={"rod" + i} x={cx - 1} y={y - h / 2 - 1.5} width={cell * 10 + 2} height={h + 3} rx={Math.min(h / 2, 7)} fill={tint(base, 0.78)} stroke={edge} strokeWidth={1.4} />);
-    for (let j = 0; j < 10; j++) out.push(bead("c" + i + "_" + j, cx + cell * (j + 0.5)));
+    for (let j = 0; j < 10; j++) out.push(apple("c" + i + "_" + j, cx + cell * (j + 0.5)));
     cx += cell * 10.5;
   }
-  for (let i = 0; i < o; i++) out.push(bead("o" + i, cx + cell * (i + 0.5)));
+  for (let i = 0; i < o; i++) out.push(apple("o" + i, cx + cell * (i + 0.5)));
   return <g>{out}</g>;
 }
 /* a factor card: white face, blue edge, the number in deep blue (v null = a card under its twin, no label) */
@@ -638,8 +653,8 @@ function DlCard({ x, y, v, w = 62, h = 76, edge, ring, ghost }: any) {
    and is never cleared. Right: the tray (the number as counters), the walled rows it is shared into, the leftover shelf outside
    the rows, and the factor pen with a wall at each end. One tap on a rung: the hand taps each row and the rows fill. */
 function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, stepOn, box, captured, lang = "en", tx = (v: any) => v }: any) {
-  const C = api.C;
-  const tl = useTimeline();          /* the correction, the win and the quick replays */
+  const { C, wood: WOOD, pan: PAN } = dlFrame(api.C);
+  const tl = useTimeline();         /* the correction, the win and the quick replays */
   const tlf = useTimeline();         /* the child's own card flights: a miss or a new number never cancels them, so a flight always lands */
   const free = stage === "free";
   const demo = stage === "demo" || stage === "teach";
@@ -962,8 +977,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   const count0 = G.bx0 + 18 + trayText.length * 19 + 18;
   const trayCell = Math.min(30, (G.bx1 - 14 - count0) / Math.max(dlUnits(S.n), 1));
   const inTray = d && share ? S.n - (S.dealt * share.q + (S.shelf ? share.r : 0)) : S.n;
-  /* ONE look per board: the tray, the rows and the leftover shelf always hold the whole number between them, so they are all beads when
-     that number fits the 40-picture budget and all plain dots when it does not (never bead leftovers beside dot rows) */
+  /* ONE look per board: the tray, the rows and the leftover shelf always hold the whole number between them, so they are all apples when
+     that number fits the 40-picture budget and all plain dots when it does not (never apple leftovers beside dot rows) */
   const skinOn = S.n <= 40;
   const skShelf = skinOn, skRows = skinOn, skTray = skinOn;
   const toneInk = S.tone === "ink" ? C.ink : DL_INK[S.tone] || C.ink;
@@ -983,7 +998,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     if (target && target.indexOf("rung-") === 0 && Lad.ks.indexOf(Number(target.slice(5))) >= 0) inv = { x: 134, y: Lad.y(Number(target.slice(5))), w: 224, h: 72, rx: 18 };
     else if (target === "card-a" || target === "card-b") { const wp = wcPos(target === "card-b" ? 1 : 0); inv = { x: wp.x + 36, y: wp.y + 40, w: 72, h: 80, rx: 12 }; }
   }
-  /* free play: the ring hugs the tray's number only, never the bead row beside it */
+  /* free play: the ring hugs the tray's number only, never the apple row beside it */
   if (free && live && !S.touched && S.draft === null) { const tw = trayText.length * 19 + 22; inv = { x: G.bx0 + 6 + tw / 2, y: 30, w: tw, h: 52, rx: 14 }; }
 
   return (
@@ -992,8 +1007,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
 
       {/* the ladder: two rails, a ground line, and a plate for every rung in view */}
       <g data-role="ladder">
-        <rect x={6} y={Lad.railTop} width={12} height={G.H - Lad.railTop - 6} rx={6} fill={DL_WOOD} />
-        <rect x={238} y={Lad.railTop} width={12} height={G.H - Lad.railTop - 6} rx={6} fill={DL_WOOD} />
+        <rect x={6} y={Lad.railTop} width={12} height={G.H - Lad.railTop - 6} rx={6} fill={WOOD} />
+        <rect x={238} y={Lad.railTop} width={12} height={G.H - Lad.railTop - 6} rx={6} fill={WOOD} />
         {/* a long run folds its oldest rungs into one chip (digits only) at the foot */}
         {Lad.fold && (
           <g data-role="ladder-fold">
@@ -1009,7 +1024,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
           return (
             <g key={"rg" + k}>
               <rect x={24} y={y - ph / 2} width={208} height={ph} rx={cp ? 12 : 16} fill={lit ? "url(#gHundred)" : stopped ? tint(C.panel, 0.6) : "#FFFFFF"}
-                stroke={ring ? C.accent : lit ? shade(DL_BLUE, 0.2) : t && t.r ? DL_VERM : stopped ? C.dim : DL_WOOD} strokeWidth={ring ? 5 : cp ? 2.5 : 3} strokeDasharray={(gt && !ring) || stopped ? "8 6" : undefined} />
+                stroke={ring ? C.accent : lit ? shade(DL_BLUE, 0.2) : t && t.r ? DL_VERM : stopped ? C.dim : WOOD} strokeWidth={ring ? 5 : cp ? 2.5 : 3} strokeDasharray={(gt && !ring) || stopped ? "8 6" : undefined} />
               <text x={62} y={cp ? y + 11 : y + 15} textAnchor="middle" fontSize={cp ? T.label : T.speech} fontWeight={700} fill={lit ? "#FFFFFF" : C.ink}>{k}</text>
               {t && <text x={100} y={y + 11} fontSize={T.label} fontWeight={700} fill={lit ? "#FFFFFF" : DL_INK.verm}>{t.r + " " + tx("over")}</text>}
               {!t && S.refused === k && <text x={100} y={y + 10} fontSize={T.micro} fontWeight={700} fill={shade(C.accent, 0.3)}>{tx("try") + " " + k}</text>}
@@ -1019,7 +1034,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
       </g>
 
       {/* the tray: the number in hand, tens tied into rods */}
-      <rect x={G.bx0} y={0} width={tray} height={60} rx={16} fill="url(#gPanel)" stroke={C.rule} strokeWidth={2} />
+      <rect x={G.bx0} y={0} width={tray} height={60} rx={16} fill={PAN} stroke={C.rule} strokeWidth={2} />
       <text x={G.bx0 + 18} y={42} fontSize={T.label} fontWeight={700} fill={C.ink}>{trayText}</text>
       {S.draft !== null && <rect className="c4-caret" x={G.bx0 + 22 + trayText.length * 19} y={14} width={4} height={34} rx={2} fill={C.accent} />}
       {inTray > 0 && S.draft === null && <DlCounters c={inTray} x={count0} y={30} cell={trayCell} paint="gTen" base={DL_AMBER} skin={skTray} />}
@@ -1046,12 +1061,12 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
           {dlRange(1, share.r).map((j) => {
             const x0 = G.bx0 + 150, pitch = Math.min(36, (G.rowsX1 - 24 - x0) / Math.max(share.r, 1));
             const lx = x0 + (j - 0.5) * pitch, ly = G.sy0 + G.shh / 2, rr = Math.min(14, pitch * 0.42);
-            /* a leftover bead: the plain vermilion circle, the bead over it in a square box, and a dark ring, so "left over" is told by its place
-               outside the rows, its ring and the "N over" label, never by the weak tint alone */
+            /* a leftover apple: the plain vermilion circle (smaller under the picture, so it never rims the apple), the apple over it in a near-square
+               box (92 x 96), and a dark ring, so "left over" is told by its place outside the rows, its ring and the "N over" label, never by tint */
             return (
               <g key={"lo" + j}>
-                <circle cx={lx} cy={ly} r={rr} fill="url(#gPointer)" stroke={DL_INK.verm} strokeWidth={1.2} />
-                {skShelf && <Skin name="bead" x={lx - rr * 1.05} y={ly - rr * 1.05} w={rr * 2.1} h={rr * 2.1} fit="stretch" />}
+                <circle cx={lx} cy={ly} r={skShelf ? rr * 0.72 : rr} fill="url(#gPointer)" stroke={DL_INK.verm} strokeWidth={1.2} />
+                {skShelf && <Skin name="apple" x={lx - rr * 1.05 * 0.96} y={ly - rr * 1.05} w={rr * 2.1 * 0.96} h={rr * 2.1} fit="stretch" />}
                 {skShelf && <circle cx={lx} cy={ly} r={rr * 1.05} fill="none" stroke={shade(DL_VERM, 0.4)} strokeWidth={3.5} />}
               </g>
             );
@@ -1081,8 +1096,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
             </g>
           )}
           <rect x={G.bx0} y={G.py0} width={tray} height={G.ph} rx={18} fill={tint(C.panel, 0.35)} stroke={C.rule} strokeWidth={2} />
-          <rect x={G.bx0} y={G.py0} width={12} height={G.ph} rx={6} fill={DL_WOOD} />
-          <rect x={G.bx1 - 12} y={G.py0} width={12} height={G.ph} rx={6} fill={DL_WOOD} />
+          <rect x={G.bx0} y={G.py0} width={12} height={G.ph} rx={6} fill={WOOD} />
+          <rect x={G.bx1 - 12} y={G.py0} width={12} height={G.ph} rx={6} fill={WOOD} />
           {S.ghost.filter((v: number) => !S.pen.some((c: any) => c.v === v)).map((v: number) => {
             const i = order.indexOf(v);
             return (
@@ -1133,7 +1148,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
 }
 
 /* the summary page's small drawing of the child's last right answer in a phase: the number, and the cards that answered it */
-function Thumb({ result, it, C, w, h, lang = "en", tx = (v: any) => v }: any) {
+function Thumb({ result, it, C: C0, w, h, lang = "en", tx = (v: any) => v }: any) {
+  const C = dlFrame(C0).C;
   const L = (result && result.last) || {};
   if (L.value === null || L.value === undefined || L.value === "") return null;
   const q = it || {};

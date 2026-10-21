@@ -39,7 +39,7 @@
 - AI mode: toolApi.next() during a guide jumps to question 2 (C30 play test) — this is the runtime's documented AI contract
   (check() is the step verb; next() moves on), per the ch7 session: not a defect.
 
-- Counters differ by tool (bead C5/C15/C25, button C10/C20, laddoo C30) [keep: each matches its own brief].
+- Counters differ by tool (apple C5/C10 since 2026-10-21 at the owner's word - one shared green apple, keypad theme follows it; bead C15/C25, button C20, laddoo C30) [keep: each matches its own brief]. C5 note: the ten-rods behind the tray apples keep the amber tint (question: make them olive/butter too?).
 - C5 Divide Ladder: a rung step takes ~3.3 s at the 1.5x act tempo, a 5-step climb ~17 s [keep 1.5x as chosen].
 - C25 Overlap Rings: plan practice 6 (common factors of 30, 45, 75: a third ring) dropped for 3 questions a phase [keep dropped:
   the textbook uses two numbers; alternative: drop 20/34, which repeats ML1's skill].

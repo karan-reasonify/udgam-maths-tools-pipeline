@@ -32,6 +32,8 @@ const PP_POST = CONTENT.line;
 const PP_BLUE_INK = shade(PP_BLUE, 0.25);
 const PP_AMBER_INK = shade(PP_AMBER, 0.42);
 const PP_VERM_INK = shade(PP_VERM, 0.25);
+/* the apple tile is 92 x 96: its box is near-square (0.96 : 1), centred on (cx, cy) and s tall, never stretched to a pill */
+const appleBox = (cx: number, cy: number, s: number) => ({ x: cx - s * 0.48, y: cy - s / 2, w: s * 0.96, h: s });
 
 /* word keys (the pad shows them two across); the id is the word itself, so the slot shows what was tapped */
 const ppChoices = (...ws: string[]) => ws.map((w) => ({ id: w, label: w }));
@@ -64,7 +66,7 @@ function StartArt({ box, C, lang, tx }: any) {
           <Disc key={i} x={bx + (i % perN) * cs + cs / 2} y={by + Math.floor(i / perN) * 52 + cs / 2 - 4} r={20} paint="gTen" flat />
         ))}
         {Array.from({ length: rowsN * perN }).map((_, i) => (
-          <Skin key={"sk" + i} name="button" x={bx + (i % perN) * cs + cs / 2 - 22} y={by + Math.floor(i / perN) * 52 + cs / 2 - 4 - 22} w={44} h={44} />
+          <Skin key={"sk" + i} name="apple" {...appleBox(bx + (i % perN) * cs + cs / 2, by + Math.floor(i / perN) * 52 + cs / 2 - 4, 44)} />
         ))}
       </g>
     </g>
@@ -605,7 +607,7 @@ const BRD_Y = 140;
 const ARR_X = 24, ARR_W = 600;
 const SHELF = { x: 636, w: 240 };
 const RUN = { y: 352, h: 68, pitch: 52, n: 14 };
-const NMAX = 40;   /* free play's biggest number: its rows of one and its pen cards fit the board, and every counter can be a button */
+const NMAX = 40;   /* free play's biggest number: its rows of one and its pen cards fit the board, and every counter can be an apple */
 const KEYB = { y: 440, w: 240, h: 72 };
 
 /* what each kind of question draws: strip = the run of first numbers, key = the one bottom key, posts = tappable posts */
@@ -1096,7 +1098,7 @@ function Work({ phase, n, item, index, stage, wrong, api, step, stepOn, box, lan
   const keyX = (WD - KEYB.w) / 2;
   const kLabel = key ? (key.k ? tx(key.label) + " " + key.k : tx(key.label)) : "";
 
-  /* the buttons: a real button (<Skin name="button">) over every counter, the plain disc under it as the fallback. Past 40 counters on a
+  /* the apples: a real apple (<Skin name="apple">) over every counter, the plain disc under it as the fallback. Past 40 counters on a
      screen (the check's cap) every counter is plain, so 46, 57, 65, 68, 78 and 99 are drawn plain and never half and half */
   const useSkin = N <= 40;
   /* counters: each is its own element with a clear box */
@@ -1107,7 +1109,7 @@ function Work({ phase, n, item, index, stage, wrong, api, step, stepOn, box, lan
       counters.push(grid.cs >= 16
         ? <Disc key={i} x={cx} y={cy} r={grid.cs * 0.42} paint="gTen" flat />
         : <circle key={i} cx={cx} cy={cy} r={Math.max(1.2, grid.cs * 0.42)} fill={PP_AMBER} />);
-      if (useSkin && grid.cs >= 16) counters.push(<Skin key={"sk" + i} name="button" x={cx - grid.cs * 0.46} y={cy - grid.cs * 0.46} w={grid.cs * 0.92} h={grid.cs * 0.92} />);
+      if (useSkin && grid.cs >= 16) counters.push(<Skin key={"sk" + i} name="apple" {...appleBox(cx, cy, grid.cs * 0.92)} />);
     }
   }
   /* a loose heap of the number's counters, before the first Try (the pair, the hunt and the comeback questions, and free play) */
@@ -1160,7 +1162,7 @@ function Work({ phase, n, item, index, stage, wrong, api, step, stepOn, box, lan
             ? <Disc key={"h" + i} x={p.x} y={p.y} r={heap.cell * 0.36} paint="gTen" flat />
             : <circle key={"h" + i} cx={p.x} cy={p.y} r={Math.max(1.5, heap.cell * 0.36)} fill={PP_AMBER} />))}
           {useSkin && heap.cell >= 16 && heap.pts.map((p: any, i: number) => (
-            <Skin key={"hs" + i} name="button" x={p.x - heap.cell * 0.4} y={p.y - heap.cell * 0.4} w={heap.cell * 0.8} h={heap.cell * 0.8} />
+            <Skin key={"hs" + i} name="apple" {...appleBox(p.x, p.y, heap.cell * 0.8)} />
           ))}
         </g>
       )}
@@ -1183,7 +1185,7 @@ function Work({ phase, n, item, index, stage, wrong, api, step, stepOn, box, lan
             return (
               <g key={"sp" + i}>
                 <Disc x={sx} y={sy} r={scs * 0.42} paint="gPointer" />
-                {useSkin && scs >= 16 && <Skin name="button" x={sx - scs * 0.46} y={sy - scs * 0.46} w={scs * 0.92} h={scs * 0.92} />}
+                {useSkin && scs >= 16 && <Skin name="apple" {...appleBox(sx, sy, scs * 0.92)} />}
                 {useSkin && scs >= 16 && <circle cx={sx} cy={sy} r={scs * 0.5} fill="none" stroke={PP_VERM} strokeWidth={3} />}
               </g>
             );
