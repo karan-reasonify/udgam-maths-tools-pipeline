@@ -189,7 +189,10 @@ step 2, and "report as your agent file says" (its file sends it to `docs/PREFLIG
 first, and builds on the quick check, then one full `check`). **If the owner chose the pilot,** launch only the
 first slot's builder, take that tool through step 5 to 5d, settle any finding about the runtime or the shared
 look (step 2's route), then launch the other builders in one message. Don't wait idle: while they build, nothing
-else runs in Chrome.
+else runs in Chrome. **The owner can watch every tool being built** in the viewer (`node viewhub.mjs`, or `node cli.mjs view`): a slot with a
+`tool.tsx` and no ported pair yet is listed "being built", and its **HTML preview** tab (beside Preview) shows the page the builder's quick
+check refreshes each time (`check --no-render`; `class<N>/viewer/README.md`, "HTML preview"). It needs nothing from the builder and nothing
+per class or chapter: a new class has it from `classctl new`, a new chapter from its first `scaffold`.
 
 **5. As each builder reports: the STAGED review.** Full mode keeps all three reviewers on every tool. Only the
 order and the timing change, so each look happens ONCE, on the tool as it will ship, and no look is dropped. The
@@ -266,6 +269,13 @@ runtime and checker; it ports on a pass), one after another with `C4_CHROME_POOL
 
 **8. Clean and report.** The pipeline tidies itself when the chapter is done: `node cli.mjs clean --ch <n>` ONCE
 for the whole chapter (add `--dry` first to see the list). It removes the least important files, the review
+**A pencil that writes digits, signs or capital letters WRITES them (the owner, 2026-10-22; every chapter fetched from then on).** On a runtime with
+the write move (`caps.pencilWrite`: the head of both classes; `fetch` freezes the head and pins a new chapter to it, so a new chapter has it with no
+step of yours) the tip follows each character's own path, the graphite grows behind it and the written text stays (`moves: "write"`, `<PencilText>`;
+PATTERNS §15 "PENCIL WRITING"; about 0.8 s a number, one written act 3 s at most). The binding rule is check `pencil-acts` (PREFLIGHT 26 in class 5, 27 in
+class 4): every pencil act is `moves: "write"` or says `marks: true` (it marks, shades, colours or draws a line and writes nothing). The builder gets it
+from PREFLIGHT and PATTERNS §15, which its readlist already points to; no prompt has to ask. A chapter fetched BEFORE this keeps its old pencil (an INFO
+row), and a READY pair of one is given the new pencil only on the owner's word, by the retrofit in `pencil-writing/README.md`.
 artefacts every `shots` / `check` run makes again: PNG sheets and other images, `.build/`, logs and editor
 leftovers. It tidies only a slot whose last check passed and is still fresh (a failing, stale or unchecked slot keeps
 its sheets: they may be all that shows what is wrong; `--force` overrides). It keeps the source, `voice.tsx`,

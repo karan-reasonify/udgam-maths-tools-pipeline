@@ -116,7 +116,7 @@ export function readPin(chapterDir) {
   return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : null;
 }
 
-export function writePin(chapterDir, version, { why = "", sealed = null } = {}) {
+export function writePin(chapterDir, version, { why = "", sealed = null, rules = null } = {}) {
   const v = String(version), row = readVersions().versions[v];
   if (!row) throw new Error(`no frozen runtime ${v}; run: node cli.mjs runtime freeze`);
   const was = readPin(chapterDir);
@@ -125,9 +125,19 @@ export function writePin(chapterDir, version, { why = "", sealed = null } = {}) 
   if (was && was.version !== v) pin.history = [...(was.history || []), { version: was.version, until: pin.pinnedAt }];
   if (sealed) pin.sealed = sealed;
   else if (was?.sealed) pin.sealed = was.sealed;
+  if (rules) pin.rules = { ...(was?.rules || {}), ...rules };   /* what the chapter is held to (fetchRules): never added by a later re-pin */
+  else if (was?.rules) pin.rules = was.rules;
   fs.mkdirSync(chapterDir, { recursive: true });
   fs.writeFileSync(pinFile(chapterDir), JSON.stringify(pin, null, 2) + "\n");
   return pin;
+}
+
+/* The rules a chapter is held to FROM the runtime it is fetched on (2026-10-22). A chapter fetched onto a runtime with the pencil write move is "strict":
+   every pencil act is a write or says marks: true (docs/PATTERNS.md 15, check pencil-acts). A chapter fetched earlier, or re-pinned later onto a newer
+   runtime, is not: writePin keeps the rules it had and never adds one. null = no rules. */
+export function fetchRules(version) {
+  try { return /function penPlan\(/.test(fs.readFileSync(path.join(snapshotDir(version), "runtime.tsx"), "utf8")) ? { pencilActs: "strict" } : null; }
+  catch { return null; }
 }
 
 /* the runtime + mascot a slot builds on: its chapter's pin, else the head */

@@ -78,6 +78,7 @@
   .tool-id { display: block; font-size: 11px; color: var(--muted); font-family: ui-monospace, Consolas, monospace; }
   .tool-pub { display: block; font-size: 11px; color: var(--pass); }
   .tool-pub.changed { color: var(--warn); }
+  .tool-wip { display: block; font-size: 11px; color: var(--accent); }
   .note { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; background: var(--bg); }
   .note > div { max-width: 640px; }
   .note pre { text-align: left; white-space: pre-wrap; background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-size: 12px; }
@@ -290,7 +291,11 @@ function chapterLabel(c) {
 const keyOf = (t) => `${t.chapterId}/${t.id}`;
 const currentTool = () => S.tools.find((t) => keyOf(t) === S.toolKey) ?? null;
 const visibleTools = () => S.tools.filter((t) => S.chapterId === "all" || t.chapterId === S.chapterId);
-const selectable = (t) => t.hasTsx && t.hasJson;
+/* a ported tool (tsx + json), or one still being built (inProgress: its viewer shows the HTML preview of work/); a class viewer that has not
+   been synced yet never sends inProgress, so for it nothing changes. A pick with no choice made goes to a ported tool first. */
+const ready = (t) => t.hasTsx && t.hasJson;
+const selectable = (t) => ready(t) || !!t.inProgress;
+const firstSelectable = (list) => list.find(ready) ?? list.find(selectable);
 
 /* ---- the dropdowns, the tool list and the header ---------------------------------------------------- */
 
@@ -329,6 +334,9 @@ const pubHtml = (t) => {
   return `<span class="tool-pub${p.changed ? " changed" : ""}" title="${p.at ? `uploaded ${esc(stampOf(p.at))}` : "uploaded; the time was not recorded"}">✓ published ${p.at ? esc(stampOf(p.at)) : "(time not recorded)"}${p.changed ? " · edited since" : ""}</span>`;
 };
 
+/* a tool with no tsx + json pair yet: the class viewer shows its HTML preview (work/<chapter>/<id>/<id>.preview.html) */
+const wipHtml = (t) => t.inProgress ? `<span class="tool-wip" title="no tsx + json pair yet: its HTML preview shows what is being built">being built · ${t.hasPreview ? "HTML preview" : "no preview yet"}</span>` : "";
+
 const chipsHtml = (checks) => Object.entries(checks).filter(([, n]) => n).map(([k, n]) => `<span class="chip ${k}" title="${k}">${n} ${k}</span>`).join("");
 
 /* the left panel: the tools of the chosen chapter, or of every chapter under their headings */
@@ -339,10 +347,10 @@ function renderRail() {
     const ts = list.filter((t) => t.chapterId === c.chapterId);
     if (!ts.length) return "";
     return `<div class="rail-chapter"><div class="rail-chapter-title" title="${esc(c.chapterId)}">${esc(c.number == null ? c.chapterId : `Chapter ${c.number}`)}${c.title ? ` · ${esc(c.title)}` : ""}</div>`
-      + `<div class="rail-chapter-sub"><span>${c.ported} of ${c.slots} ported</span>${chipsHtml(c.checks)}</div>`
+      + `<div class="rail-chapter-sub"><span>${c.ported} of ${c.slots} ported${ts.some((t) => t.inProgress) ? ` · ${ts.filter((t) => t.inProgress).length} being built` : ""}</span>${chipsHtml(c.checks)}</div>`
       + ts.map((t) => `<button type="button" class="tool-item" data-key="${esc(keyOf(t))}"${selectable(t) ? "" : " disabled"}>`
         + `<span class="badge ${esc(t.checkState || "unchecked")}" title="${esc(t.checkState || "unchecked")}"></span>`
-        + `<span><span class="tool-title">${esc(t.title ?? t.id)}</span><span class="tool-id">${esc(t.id)}</span>${pubHtml(t)}</span></button>`).join("")
+        + `<span><span class="tool-title">${esc(t.title ?? t.id)}</span><span class="tool-id">${esc(t.id)}</span>${wipHtml(t)}${pubHtml(t)}</span></button>`).join("")
       + "</div>";
   }).join("") : `<p class="muted small" style="padding:8px">no tools ported yet</p>`;
   markSelected();
@@ -442,7 +450,7 @@ async function chooseClass(n, want = {}) {
     c.running = true; fillClasses();
     const chapterIds = new Set(meta.chapters.map((x) => x.chapterId));
     S.chapterId = want.chapterId && chapterIds.has(want.chapterId) ? want.chapterId : "all";
-    const first = visibleTools().find(selectable);
+    const first = firstSelectable(visibleTools());
     const wanted = S.tools.find((t) => keyOf(t) === want.toolKey && selectable(t));
     S.toolKey = wanted ? keyOf(wanted) : first ? keyOf(first) : null;
     if (S.chapterId === "all" && wanted) S.chapterId = "all";
@@ -468,7 +476,7 @@ sel.cls.addEventListener("change", () => chooseClass(Number(sel.cls.value)));
 sel.ch.addEventListener("change", () => {
   S.chapterId = sel.ch.value;
   sel.ch.title = sel.ch.selectedOptions[0]?.text ?? "";
-  const first = visibleTools().find(selectable);
+  const first = firstSelectable(visibleTools());
   S.toolKey = first ? keyOf(first) : null;
   renderRail();
   chooseTool(S.toolKey);

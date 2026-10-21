@@ -1,6 +1,6 @@
-import { useLayoutEffect, useRef, useState } from "react";
 import type { useLiveTool } from "../lib/useLiveTool";
 import { DEVICES, type Device } from "../lib/devices";
+import { useFitScale } from "../lib/useFitScale";
 
 /* the language and Teacher/Student controls are in the header (DeviceBar.tsx), beside the device frames */
 export function ToolFrame({ live, device }: { live: ReturnType<typeof useLiveTool>; device: Device }) {
@@ -9,18 +9,7 @@ export function ToolFrame({ live, device }: { live: ReturnType<typeof useLiveToo
   /* the tool is mounted at the device's TRUE size and the frame is scaled down to fit the stage (never up past 1:1), so a
      tool lays out (media queries, 100vh, the 390 px height of a phone) exactly as it will on that device */
   const dev = DEVICES[device];
-  const stageRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
-  useLayoutEffect(() => {
-    const el = stageRef.current;
-    if (!el) return;
-    /* client*, not a rect: a scrollbar's gutter would otherwise feed back into the fit and the scale would flicker */
-    const fit = () => setScale(Math.max(0.05, Math.min((el.clientWidth - 24) / dev.w, (el.clientHeight - 40) / dev.h, 1)));
-    fit();
-    const ro = new ResizeObserver(fit);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [dev.w, dev.h]);
+  const { stageRef, scale } = useFitScale(dev);
 
   return (
     <div className="tool-frame">

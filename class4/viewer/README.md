@@ -73,6 +73,30 @@ hub's own tool list shows it too.
   (`dry: false`, `ok`), else `stage: "published"`. When a later dry run replaced that record the time is lost and the
   tool reads "published (time not recorded)".
 
+## HTML preview: see a tool while it is being built
+
+The tab bar reads **Preview | HTML preview | Source (.tsx) | Sidecar (.json)**. The HTML preview tab shows the slot's
+`work/<chapter>/<id>/<id>.preview.html`, the one offline page `node cli.mjs preview` and every `check` build from `tool.tsx`
+(`lib/build/preview.mjs`). So a tool can be looked at before its `.tsx` + `.json` pair exists:
+
+- **A slot being built is listed too.** A `work/` slot with a `tool.tsx` and no ported pair appears in the left list ("being built ·
+  HTML preview", "being built · no preview yet"), and the chapter line says "7 of 8 ported · 1 being built". Selecting it opens the HTML
+  preview; Preview, Source and Sidecar are greyed ("not ported yet") and the side panel says so. They come alive when `check` passes
+  and ports the pair. `/api/tools` marks such a slot `inProgress: true` with `hasTsx` and `hasJson` false, so nothing that gates on the
+  pair (the hub's Editor, publish) ever sees it as a tool.
+- **The header's switches apply.** Teacher sends `?mode=ai`, हिं / ગુ send `?lang=hi|gu`, the classroom tick sends `?classroom=1`, and the
+  device frame (Mobile / Web / Smartboard) sizes the page the same way it sizes the live Preview.
+- **The bar says how old the page is:** "built <time>", and amber "tool.tsx saved since" when the source is newer than the page (it
+  refreshes at the next `preview` or `check`; the **reload** button fetches it again; **open in a tab** opens it full size).
+- **It follows the build.** The builder's inner loop is the quick check (`check --no-render`), and from 2026-10-21 that refreshes the
+  page too (`lib/check/runAndShip.mjs`: esbuild only, about half a second, never ports; a tool that does not build yet leaves the old page
+  and one log line). So a chapter's tools show "being built · no preview yet" from their first `scaffold` until the builder's first
+  check, and then the page, newer after every check. Every class has it: a new class gets it from `classctl new`, a new chapter needs nothing.
+- **A ported tool has the tab too:** it is the build in `work/`, not the shipped pair (the Preview tab runs the pair). `clean` removes
+  the page, then the tab says how to make it again.
+- **View only.** The viewer never builds the page: a build writes the same `.build/` a running `check` ports from, so a click here must
+  not be able to race a builder. The route serves exactly `<id>.preview.html` (never `<id>.kiko.preview.html`).
+
 ## What the sidebar shows
 
 - **Sidecar checks** — structural validation of the `.json` sidecar, done in the browser the moment
@@ -102,7 +126,8 @@ own events without changing how the tool runs. No `sandbox` attribute, so the pa
 | route | what |
 |---|---|
 | `GET /api/meta` | the class (publication, class, subject, medium from `pipeline.config.json`), every chapter (number, title, slots, ported, check totals) and the class totals; `viewer/meta.mjs` |
-| `GET /api/tools` | every tool in `output-preview/`, joined with its `work/.../status.json`, plus its `checkState` (pass / warn / fail / stale / unchecked) and `published` (null, or `{ at, plan, legacy, changed }`) |
+| `GET /api/tools` | every tool in `output-preview/`, joined with its `work/.../status.json`, plus its `checkState` (pass / warn / fail / stale / unchecked) and `published` (null, or `{ at, plan, legacy, changed }`); and every `work/` slot with a `tool.tsx` and no pair yet (`inProgress: true`); each with `hasPreview`, `previewAt`, `previewBytes`, `previewStale` |
+| `GET /api/tools/:chapterId/:id/preview` | the slot's `work/.../<id>.preview.html` (`text/html`, `no-store`); 404 until a `preview` or `check` has built it; needs no ported pair |
 | `GET /api/tools/:chapterId/:id/tsx` | the raw `.tsx` (headers `x-md5`, `x-bytes`) |
 | `GET /api/tools/:chapterId/:id/json` | the sidecar |
 | `GET /api/tools/:chapterId/:id/status` | `status.json` (its `published` the derived reading above), or `{}` |

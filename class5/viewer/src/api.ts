@@ -17,6 +17,8 @@ export const api = {
   },
   sidecar: (chapterId: string, id: string) => json<Sidecar>(`api/tools/${chapterId}/${id}/json`),
   status: (chapterId: string, id: string) => json<PipelineStatus>(`api/tools/${chapterId}/${id}/status`),
+  /* the slot's HTML preview page (work/, view only); `v` is its build time, so a rebuilt page is fetched again */
+  previewUrl: (chapterId: string, id: string, query: URLSearchParams) => `api/tools/${chapterId}/${id}/preview?${query}`,
   hostTemplate: async () => (await fetch("api/host-template")).text(),
   vendor: async () => {
     const [react, reactDom, babel] = await Promise.all([

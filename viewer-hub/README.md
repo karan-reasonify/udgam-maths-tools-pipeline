@@ -52,6 +52,10 @@ brings the newer one. Change the viewer in the newest class and carry it with `c
   no check, hostsim, port or publish route goes through the hub; those are the class viewer's own buttons.
   The tool list's green "✓ published <time>" line is the viewer's `published` (a class viewer from before that feature sends only
   `status`, which the hub reads by the same rule: `class<N>/viewer/README.md`, "Published, and when").
+  A tool still being built (`inProgress: true`: a `work/` source with no tsx + json pair yet) is listed too, with "being built ·
+  HTML preview" under its name, and picking it opens the viewer's **HTML preview** tab (`class<N>/viewer/README.md`, "HTML preview").
+  A class viewer from before that feature never sends `inProgress`, so its list is as it was. Picking with no choice made goes to a
+  ported tool first.
 - **Never** uploads, publishes, edits a class, or reads `.env` / `config.json` on the Preview page; the Editor (below) writes only
   on a click. It listens on `127.0.0.1` only, answers only a `localhost` Host header, and a POST only from its own page.
 - **Each class is shown by its own viewer**, so a tool is always rendered with that class's own host template and the runtime

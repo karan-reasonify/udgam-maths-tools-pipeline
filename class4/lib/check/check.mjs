@@ -40,6 +40,8 @@ import { decodePng, contrast, parseRgb } from "../core/png.mjs";
 import { idOf, writeStatus } from "../core/work.mjs";
 import { pinState } from "../core/pin.mjs";
 import { capsOf } from "../core/caps.mjs";
+import { pencilRows } from "./pencil.mjs";
+import { readPin } from "../core/pin.mjs";
 import { judgePictureScale, PICTURE_SCALE_DETAIL } from "./picturescale.mjs";
 import { layoutProblems, phoneProblems, inter, inside, fmt, PHONE, PHONE_TEXT_PX } from "./layoutfit.mjs";
 
@@ -171,6 +173,8 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   /* the chapter builds on its own frozen runtime, so no other chapter can restale this tool */
   const pin = pinState(dir);
   ok("source", "runtime-pin", pin.ok, pin.msg, pin.msg);
+  /* 2026-10-22 (pencil-acts, docs/CHECKS.md): a row only for a runtime with the pencil write move or a tool that writes; none for a finished chapter. A bug here never stops a check. */
+  try { for (const r of pencilRows(tool, { caps, strict: !!(readPin(path.dirname(dir)) && readPin(path.dirname(dir)).rules && readPin(path.dirname(dir)).rules.pencilActs === "strict") })) add("source", r.id, r.level, r.msg); } catch (e) { /* not a tool problem */ }
 
   /* ── maths ────────────────────────────────────────────────────────────────────── */
   let m = await loadModel(dir);

@@ -98,7 +98,7 @@ import { approve } from "./lib/check/approve.mjs";
 import { publish } from "./lib/ship/publish.mjs";
 import { publishedOf, stamp } from "./lib/ship/published.mjs";
 import { loadServiceAccount, accessToken, probeBucket } from "./lib/ship/gcs.mjs";
-import { freeze, headVersion, readVersions, readPin, writePin, pinState, sha, headHashes } from "./lib/core/pin.mjs";
+import { freeze, headVersion, readVersions, readPin, writePin, fetchRules, pinState, sha, headHashes } from "./lib/core/pin.mjs";
 import { readFence, fenceSet } from "./lib/core/fence.mjs";
 import { imagesCommand, makeActionKit } from "./lib/images/make.mjs";
 
@@ -214,7 +214,7 @@ function writeChapter(j) {
      re-fetching a plan must not move a finished chapter onto a newer runtime. */
   if (!readPin(cdir)) {
     const v = freeze(null, { note: `head at ${j.chapterId} fetch` }).version;
-    writePin(cdir, v, { why: `fetched ${new Date().toISOString().slice(0, 10)}` });
+    writePin(cdir, v, { why: `fetched ${new Date().toISOString().slice(0, 10)}`, rules: fetchRules(v) });
     console.log(`  runtime ${v} pinned for ${j.chapterId} (runtime/frozen/${v})`);
   }
   fs.writeFileSync(path.join(cdir, "plan.json"), JSON.stringify(raw));

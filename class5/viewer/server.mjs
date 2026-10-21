@@ -1,6 +1,7 @@
 /* viewer: a small local React app that renders a ported output-preview/<id>.tsx the way
  * the host runs it (lib/ship/hostTemplate.mjs), with a sidebar of sidecar JSON checks, the
- * pipeline's own status, and live diagnostics off the running tool.
+ * pipeline's own status, and live diagnostics off the running tool. A tool still being built
+ * (work/.../tool.tsx, nothing ported yet) is listed too and shows its HTML preview page.
  *
  * Started by `node cli.mjs view [--port N] [--watch]`; see viewer/README.md for the routes.
  * Nothing here writes to the pipeline except the two buttons that call the pipeline's own
@@ -49,11 +50,17 @@ async function buildClient({ watch = false } = {}) {
 
 // ---- data: scan output-preview/, join with work/<chapter>/<id>/status.json ---------------
 
+const dirsOf = (base) => (fs.existsSync(base)
+  ? fs.readdirSync(base, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name)
+  : []);
+
+/* every tool of output-preview/, plus every slot still being built: a work/ slot with a tool.tsx and no ported pair yet is listed
+   with inProgress: true (hasTsx and hasJson stay false, so anything gating on the pair is unchanged) so its HTML preview can be seen. */
 function listTools() {
-  if (!fs.existsSync(OUT_ROOT)) return [];
   const out = [];
-  for (const chapterId of fs.readdirSync(OUT_ROOT).filter((c) => fs.statSync(path.join(OUT_ROOT, c)).isDirectory() && isOwnChapter(c))) {
-    for (const id of fs.readdirSync(path.join(OUT_ROOT, chapterId)).filter((x) => fs.statSync(path.join(OUT_ROOT, chapterId, x)).isDirectory())) {
+  for (const chapterId of new Set([...dirsOf(OUT_ROOT), ...dirsOf(workRoot())].filter(isOwnChapter))) {
+    const building = dirsOf(path.join(workRoot(), chapterId)).filter((x) => fs.existsSync(path.join(workRoot(), chapterId, x, "tool.tsx")));
+    for (const id of new Set([...dirsOf(path.join(OUT_ROOT, chapterId)), ...building])) {
       const dir = path.join(OUT_ROOT, chapterId, id);
       const tsxFile = path.join(dir, `${id}.tsx`), jsonFile = path.join(dir, `${id}.json`);
       const hasTsx = fs.existsSync(tsxFile), hasJson = fs.existsSync(jsonFile);
@@ -65,6 +72,8 @@ function listTools() {
         chapterId, id, title, toolId, hasTsx, hasJson,
         tsxBytes: hasTsx ? fs.statSync(tsxFile).size : null,
         jsonBytes: hasJson ? fs.statSync(jsonFile).size : null,
+        inProgress: !(hasTsx && hasJson) && building.includes(id),
+        ...previewInfo(workDir, id),
         status,
         checkState: fs.existsSync(workDir) ? checkState(workDir) : "unchecked", // the same fresh-or-stale reading as `status` and /api/meta
         published: publishedFor(status, dir, id),
@@ -73,6 +82,29 @@ function listTools() {
   }
   out.sort((a, b) => a.chapterId.localeCompare(b.chapterId) || a.id.localeCompare(b.id));
   return out;
+}
+
+/* the slot's <id>.preview.html (lib/build/preview.mjs: every preview/check rebuilds it from tool.tsx); stale = tool.tsx was saved after it was built.
+   Only stat'ed here: the page is megabytes and is read when the HTML preview tab asks for it. */
+function previewInfo(workDir, id) {
+  let page = null, toolMs = 0;
+  try { page = fs.statSync(path.join(workDir, `${id}.preview.html`)); } catch { /* not built yet */ }
+  try { toolMs = fs.statSync(path.join(workDir, "tool.tsx")).mtimeMs; } catch { /* no source */ }
+  return page
+    ? { hasPreview: true, previewAt: page.mtime.toISOString(), previewBytes: page.size, previewStale: toolMs > page.mtimeMs }
+    : { hasPreview: false, previewAt: null, previewBytes: null, previewStale: false };
+}
+
+/* GET .../preview: exactly work/<chapter>/<id>/<id>.preview.html (never the <id>.kiko.preview.html beside it), uncached so a rebuilt page shows.
+   View only: the viewer never builds it (a build writes the same .build/ a running check ports from). */
+function sendPreview(res, chapterId, id) {
+  const bad = (s) => !ID_RE.test(s) || /^\.+$/.test(s);
+  if (bad(chapterId) || bad(id) || !isOwnChapter(chapterId)) return sendJson(res, 404, { error: "no such tool" });
+  const file = path.join(workRoot(), chapterId, id, `${id}.preview.html`);
+  if (!fs.existsSync(file)) return sendJson(res, 404, { error: `no preview page for ${chapterId}/${id} yet: \`preview\` or \`check\` builds it` });
+  const buf = fs.readFileSync(file);
+  res.writeHead(200, { "content-type": CONTENT_TYPES[".html"], "content-length": buf.length, "cache-control": "no-store" });
+  res.end(buf);
 }
 
 /* "Published <time>" for a tool: lib/ship/published.mjs. The pair on disk is read (and hashed) only for a tool whose upload recorded its
@@ -133,9 +165,10 @@ export async function startServer({ port = viewerPort(), watch = false } = {}) {
       if (req.method === "GET" && url.pathname === "/api/tools") return sendJson(res, 200, listTools());
       if (req.method === "GET" && url.pathname === "/api/meta") return sendJson(res, 200, viewerMeta());
 
-      // /api/tools/:chapterId/:id/(tsx|json|status|hostsim|check)
+      // /api/tools/:chapterId/:id/(preview|tsx|json|status|hostsim|check); preview needs only the work/ slot, the rest the ported pair
       if (parts[0] === "api" && parts[1] === "tools" && parts.length === 5) {
         const [, , chapterId, id, action] = parts;
+        if (req.method === "GET" && action === "preview") return sendPreview(res, chapterId, id);
         const dir = toolDir(chapterId, id);
         if (!dir) return sendJson(res, 404, { error: `no output-preview pair for ${chapterId}/${id}` });
 
@@ -176,5 +209,5 @@ export async function startServer({ port = viewerPort(), watch = false } = {}) {
   });
 
   await new Promise((resolve) => server.listen(port, resolve));
-  return { server, port, toolCount: listTools().length };
+  return { server, port, toolCount: listTools().filter((t) => !t.inProgress).length }; // cli.mjs prints it as "N tool(s) in output-preview/"
 }

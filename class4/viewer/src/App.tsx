@@ -4,6 +4,7 @@ import type { PipelineStatus, Sidecar, ToolSummary, ViewerMeta } from "./types";
 import { ToolList } from "./components/ToolList";
 import { CheckCounts } from "./components/CheckCounts";
 import { ToolFrame } from "./components/ToolFrame";
+import { HtmlPreview } from "./components/HtmlPreview";
 import { PublishedChip, PublishedLine } from "./components/PublishedChip";
 import { DeviceBar } from "./components/DeviceBar";
 import type { Device } from "./lib/devices";
@@ -12,7 +13,7 @@ import { SidebarPipeline } from "./components/SidebarPipeline";
 import { SidebarLive } from "./components/SidebarLive";
 import { useLiveTool } from "./lib/useLiveTool";
 
-type Tab = "preview" | "tsx" | "json";
+type Tab = "preview" | "html" | "tsx" | "json";
 type SidebarTab = "checks" | "pipeline" | "live";
 
 /* a phone (styles.css, the same width): the side panels slide in over the tool, start closed and are not remembered */
@@ -87,7 +88,8 @@ export function App() {
   useEffect(() => { document.title = meta ? `${meta.pubLabel} Class ${meta.class} — tool viewer` : "Tool viewer"; }, [meta]);
   useEffect(() => {
     if (!tools.length) return;
-    setSelected((prev) => prev ?? (FIRST && tools.some((t) => t.chapterId === FIRST.chapterId && t.id === FIRST.id) ? FIRST : { chapterId: tools[0].chapterId, id: tools[0].id }));
+    const first = tools.find((t) => t.hasTsx && t.hasJson) ?? tools[0]; // a ported tool first; one still being built only when nothing is ported
+    setSelected((prev) => prev ?? (FIRST && tools.some((t) => t.chapterId === FIRST.chapterId && t.id === FIRST.id) ? FIRST : { chapterId: first.chapterId, id: first.id }));
   }, [tools]);
 
   /* in the hub's iframe: say when ready, take its selection, report a pick made in here */
@@ -109,14 +111,22 @@ export function App() {
   useEffect(() => { api.vendor().then(setVendor).catch((e) => setLoadError(String(e.message))); }, []);
   useEffect(() => { api.hostTemplate().then(setHostTemplate).catch((e) => setLoadError(String(e.message))); }, []);
 
+  const selectedKey = selected ? `${selected.chapterId}/${selected.id}` : null;
+  const currentSummary = useMemo(() => tools.find((t) => selected && t.chapterId === selected.chapterId && t.id === selected.id) ?? null, [tools, selected]);
+
+  /* a tool with no ported pair yet (work/ only) has nothing to load but its HTML preview: no tsx, sidecar or status to fetch (they would 404) */
+  const pairKey = !currentSummary ? "unknown" : currentSummary.hasTsx && currentSummary.hasJson ? "pair" : "pending";
+  const pending = pairKey === "pending";
+
   useEffect(() => {
     if (!selected) return;
     setTsx(null); setSidecar(null); setStatus(null); setLoadError(null);
+    if (pairKey !== "pair") return; // "unknown": the tool list is still loading, this runs again when it has
     const { chapterId, id } = selected;
     api.tsx(chapterId, id).then(setTsx).catch((e) => setLoadError(String(e.message)));
     api.sidecar(chapterId, id).then(setSidecar).catch((e) => setLoadError(String(e.message)));
     api.status(chapterId, id).then(setStatus).catch((e) => setLoadError(String(e.message)));
-  }, [selected]);
+  }, [selected, pairKey]);
 
   /* a re-run check changes this tool's status, its badge and the totals in the header and the rail */
   const refreshStatus = () => {
@@ -127,8 +137,9 @@ export function App() {
 
   const live = useLiveTool({ tsx: tsx?.text ?? null, sidecar, vendor, hostTemplate });
 
-  const selectedKey = selected ? `${selected.chapterId}/${selected.id}` : null;
-  const currentSummary = useMemo(() => tools.find((t) => selected && t.chapterId === selected.chapterId && t.id === selected.id) ?? null, [tools, selected]);
+  /* the tab the user chose, except for a tool with no pair: it can only show its HTML preview */
+  const shownTab: Tab = pending ? "html" : tab;
+  const NOT_PORTED = "not ported yet: this fills in when check passes";
 
   return (
     <div className={"app" + (EMBED ? " embed" : "")}>
@@ -159,18 +170,20 @@ export function App() {
         <main className="main">
           {loadError && <p className="error small">{loadError}</p>}
           <div className="tabs">
-            <button className={"tab" + (tab === "preview" ? " active" : "")} onClick={() => setTab("preview")}>Preview</button>
-            <button className={"tab" + (tab === "tsx" ? " active" : "")} onClick={() => setTab("tsx")}>Source (.tsx)</button>
-            <button className={"tab" + (tab === "json" ? " active" : "")} onClick={() => setTab("json")}>Sidecar (.json)</button>
+            <button className={"tab" + (shownTab === "preview" ? " active" : "")} onClick={() => setTab("preview")} disabled={pending} title={pending ? NOT_PORTED : undefined}>Preview</button>
+            <button className={"tab" + (shownTab === "html" ? " active" : "")} onClick={() => setTab("html")} title="the page built from the source in work/: it shows what is being built before the tsx + json pair exists">HTML preview</button>
+            <button className={"tab" + (shownTab === "tsx" ? " active" : "")} onClick={() => setTab("tsx")} disabled={pending} title={pending ? NOT_PORTED : undefined}>Source (.tsx)</button>
+            <button className={"tab" + (shownTab === "json" ? " active" : "")} onClick={() => setTab("json")} disabled={pending} title={pending ? NOT_PORTED : undefined}>Sidecar (.json)</button>
             <PublishedChip published={currentSummary?.published} className="tabs-end" />
           </div>
-          {tab === "preview" && <ToolFrame live={live} device={device} />}
-          {tab === "tsx" && (
+          {shownTab === "preview" && <ToolFrame live={live} device={device} />}
+          {shownTab === "html" && currentSummary && <HtmlPreview key={selectedKey ?? undefined} tool={currentSummary} live={live} device={device} onReload={refreshTools} />}
+          {shownTab === "tsx" && (
             <div className="code-panel">
               {tsx ? <pre className="code-block">{tsx.text}</pre> : <p className="muted">loading…</p>}
             </div>
           )}
-          {tab === "json" && (
+          {shownTab === "json" && (
             <div className="code-panel">
               {sidecar ? <pre className="code-block">{JSON.stringify(sidecar, null, 2)}</pre> : <p className="muted">loading…</p>}
             </div>
@@ -185,14 +198,15 @@ export function App() {
             <button className={"tab" + (sideTab === "live" ? " active" : "")} onClick={() => setSideTab("live")}>Live</button>
           </div>
           <div className="sidebar-body">
-            {selected && sideTab === "checks" && (
+            {selected && pending && <p className="muted small">Being built: no tsx + json pair yet, so there is nothing to check here. These panels fill in when <code>check</code> passes; until then the HTML preview shows the work.</p>}
+            {selected && !pending && sideTab === "checks" && (
               <SidebarJson sidecar={sidecar} chapterId={selected.chapterId} id={selected.id} actualTsxBytes={tsx?.bytes ?? null} actualTsxMd5={tsx?.md5 ?? null} />
             )}
-            {selected && sideTab === "pipeline" && (
+            {selected && !pending && sideTab === "pipeline" && (
               // keyed by tool: a fresh mount per tool cleanly drops any in-flight monitor/retry timer
               <SidebarPipeline key={selectedKey ?? undefined} chapterId={selected.chapterId} id={selected.id} status={status} onStatusChanged={refreshStatus} />
             )}
-            {selected && sideTab === "live" && <SidebarLive sidecar={sidecar} live={live} />}
+            {selected && !pending && sideTab === "live" && <SidebarLive sidecar={sidecar} live={live} />}
             {!selected && <p className="muted small">pick a tool on the left</p>}
           </div>
         </aside>

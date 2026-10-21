@@ -54,16 +54,17 @@ export function ToolList({
       )}
       {visible.map((c) => {
         const list = tools.filter((t) => t.chapterId === c.chapterId);
+        const building = list.filter((t) => t.inProgress).length;
         return (
           <div key={c.chapterId} className="tool-list-chapter">
             <div className="tool-list-chapter-title" title={c.chapterId}>{chapterLabel(c, classNo)}</div>
             {c.slots > 0 && (
               <div className="tool-list-chapter-sub">
-                <span>{c.ported} of {c.slots} ported</span>
+                <span>{c.ported} of {c.slots} ported{building ? ` · ${building} being built` : ""}</span>
                 <CheckCounts checks={c.checks} />
               </div>
             )}
-            {!list.length && <p className="muted small tool-list-empty">no tools ported yet</p>}
+            {!list.length && <p className="muted small tool-list-empty">no tools ported or being built yet</p>}
             {list.map((t) => {
               const key = `${t.chapterId}/${t.id}`;
               const badge = t.checkState && t.checkState !== "unchecked" ? t.checkState : null;
@@ -72,12 +73,17 @@ export function ToolList({
                   key={key}
                   className={"tool-list-item" + (selected === key ? " selected" : "")}
                   onClick={() => onSelect(t.chapterId, t.id)}
-                  disabled={!t.hasTsx || !t.hasJson}
+                  disabled={!(t.hasTsx && t.hasJson) && !t.inProgress}
                 >
                   <span className={"tool-badge" + (badge ? ` ${badge}` : "")} title={badgeTitle(t.checkState, t)} />
                   <span className="tool-list-item-text">
                     <span className="tool-list-item-title">{t.title ?? t.id}</span>
                     <span className="tool-list-item-id">{t.id}</span>
+                    {t.inProgress && (
+                      <span className="tool-list-item-wip" title="no tsx + json pair yet: its HTML preview shows what is being built">
+                        being built · {t.hasPreview ? "HTML preview" : "no preview yet"}
+                      </span>
+                    )}
                     {t.published && (
                       <span className={"tool-list-item-pub" + (t.published.changed ? " changed" : "")} title={publishedTitle(t.published)}>
                         ✓ published {publishedWhen(t.published)}{t.published.changed ? " · edited since" : ""}

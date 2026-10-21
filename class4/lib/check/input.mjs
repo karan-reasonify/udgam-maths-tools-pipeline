@@ -918,7 +918,7 @@ export function judgeNavDots(runs = [], N = 1) {
    on must move on at once, within 400 ms). */
 const ACT_REC = `(() => { if (!window.__actRec) { const tick = () => { const r = window.__actRec, now = performance.now(), on = !!document.querySelector('[data-role="act-layer"]');
     if (r.t0) {
-      if (on) { if (r.seen === null) r.seen = now - r.t0; r.samples++;
+      if (on) { if (r.seen === null) r.seen = now - r.t0; r.samples++; if (document.querySelector('[data-role="pen-writing"]')) r.pen = true;
         if (!(window.__tool && window.__tool.state().locked)) r.lockedAll = false;
         if (!window.toolApi.getState().acting) r.actingAll = false;
         if (Array.from(document.querySelectorAll('[data-zone="pad"]:not(.c4-quiet) [data-control], [data-zone="ask"] [data-control]')).some((e) => e.getAttribute('aria-disabled') !== 'true')) r.quietAll = false; }
@@ -926,7 +926,7 @@ const ACT_REC = `(() => { if (!window.__actRec) { const tick = () => { const r =
     requestAnimationFrame(tick); };
   const start = () => { const r = window.__actRec; if (!r.t0) r.t0 = performance.now(); };
   window.addEventListener('pointerdown', start, true); window.addEventListener('keydown', start, true); requestAnimationFrame(tick); }
-  window.__actRec = { t0: 0, seen: null, gone: null, lockedAll: true, actingAll: true, quietAll: true, samples: 0 }; return true; })()`;
+  window.__actRec = { t0: 0, seen: null, gone: null, lockedAll: true, actingAll: true, quietAll: true, samples: 0, pen: false }; return true; })()`;
 const ACT_STATE = `(() => { const g = window.toolApi.getState(); return { stage: g.stage, step: g.guideStep, on: g.guideOn, acting: !!g.acting, phase: g.phase,
   locked: !!(window.__tool && window.__tool.state().locked), layer: !!document.querySelector('[data-role="act-layer"]') }; })()`;
 /* the enabled controls of the working area, by their data-control (the first of each name) */
@@ -966,13 +966,13 @@ async function actionAnimRun(base, N) {
       const tried = new Set();
       while (out.tries.length < 8) {
         const before = await s.ev(ACT_STATE);
-        await s.ev("(() => { window.__actRec.t0 = 0; window.__actRec.seen = null; window.__actRec.gone = null; window.__actRec.samples = 0; return true; })()");
+        await s.ev("(() => { window.__actRec.t0 = 0; window.__actRec.seen = null; window.__actRec.gone = null; window.__actRec.samples = 0; window.__actRec.pen = false; return true; })()");
         const t = await press(tried);
         if (!t) break;
         out.tries.push({ n, ...t });
         if (await s.until(`(() => { const g = window.toolApi.getState(); return !!g.acting || !!document.querySelector('[data-role="act-layer"]'); })()`, 700)) {
           found = { n, before, t };
-          await s.until(`!document.querySelector('[data-role="act-layer"]') && !window.toolApi.getState().acting`, 4000);
+          await s.until(`!document.querySelector('[data-role="act-layer"]') && !window.toolApi.getState().acting`, 6000);
           await s.wait(120);
           out.motion = { rec: await s.ev("window.__actRec"), before, after: await s.ev(ACT_STATE) };
           break;
@@ -1012,8 +1012,8 @@ export function judgeActionAnim(o = {}, c = {}) {
   if (!r.lockedAll) bad.push("the pad was not locked while the act played");
   if (!r.quietAll) bad.push("a pad or bar key was live while the act played");
   if (!r.actingAll) bad.push("getState().acting was not true while the act played");
-  if (r.gone === null) bad.push("the act was still on screen 4 s after the press");
-  else if (r.gone > lim) bad.push(`the act ended ${Math.round(r.gone)} ms after the press (want ${lim} ms at most)`);
+  if (r.gone === null) bad.push(r.pen ? "the written act was still on screen 6 s after the press (one written act: 3 s at most, PATTERNS 15)" : "the act was still on screen 4 s after the press");
+  else if (r.gone > (r.pen ? Math.max(lim, 3400) : lim)) bad.push(`the act ended ${Math.round(r.gone)} ms after the press (want ${r.pen ? Math.max(lim, 3400) : lim} ms at most${r.pen ? ", a written act" : ""})`);
   if (a.acting) bad.push("getState().acting stayed true after the act");
   if (a.locked && !b.locked) bad.push("the pad stayed locked after the act");
   const d = o.reduced;

@@ -11,6 +11,13 @@ export type ToolSummary = {
   hasJson: boolean;
   tsxBytes: number | null;
   jsonBytes: number | null;
+  /* a work/ source with no ported pair yet (hasTsx / hasJson stay false): only its HTML preview can be shown */
+  inProgress: boolean;
+  /* work/<chapter>/<id>/<id>.preview.html, built from tool.tsx by every preview / check; stale = tool.tsx was saved after it */
+  hasPreview: boolean;
+  previewAt: string | null;
+  previewBytes: number | null;
+  previewStale: boolean;
   status: PipelineStatus | null;
   checkState: CheckState;
   published: Published | null;

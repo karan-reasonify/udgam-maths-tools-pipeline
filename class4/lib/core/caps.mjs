@@ -52,6 +52,7 @@ export function capsOf(runtimeSrc) {
     keyOnly: /const ZKEY\b/.test(r),                     /* class 4 r27: `keyOnly: true` (board tools): no question bar, only its key; the working area up, a tall bubble */
     navDots: /function NavDot\b/.test(r),                /* class 4 r27: `navDots: true`: one small dot per phase, a control in user and AI mode */
     oneSentence: /ONE SENTENCE A SCREEN/.test(r),         /* 2026-10-16: keyOnly shows ONE sentence of Kiko's speech a screen (a hint replaces the question, no type line, closing at a phase's last win, digits as written, no puff or bulb): the marker comment in Footer */
+    pencilWrite: /function penPlan\(/.test(r),            /* 2026-10-22: api.act moves "write" (the pencil WRITES digits, signs and capital letters stroke by stroke), <PencilText>, <PencilLine>, { dab } / { line } tokens; docs/PATTERNS.md 15, check pencil-acts */
     act: /ACTION_KIT_HELPER/.test(r),                    /* 2026-10-16: api.act, a real tool (the ACTION KIT) or the drawn hand performs the act on screen */
     actTempo: Number((r.match(/const ACT_TEMPO = ([\d.]+)/) || [])[1]) || 1,   /* class 5 head after r65 / class 4 r28: every act plays this many times calmer (action-anim scales its limit) */
     actBeat: Number((r.match(/\bACT_BEAT = (\d+)/) || [])[1]) || 0,            /* the pencil's hold after writing, ms */

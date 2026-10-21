@@ -60,6 +60,21 @@
   side panel's tabs), the hub's tool list and `node cli.mjs status` show "Published <local time>", amber "edited since" when the pair changed after
   the upload. Lib and viewer only: no runtime change, no re-pin. The sidecar .json is never stamped (publish and approve check its bytes).
   `class<N>/viewer/README.md` "Published, and when"; `lib/ship/published.mjs`.
+- **A tool is seen while it is being built: the viewer's "HTML preview" tab (the owner, 2026-10-21; classes 4 and 5; carried to class 4 with `classctl sync --from 5 --to 4 --only code --keep-target "lib/**,runtime/**,viewer/public/bundle.*"`, so only `viewer/**` moved).**
+  The tab sits beside Preview and shows `work/<chapter>/<id>/<id>.preview.html` (the page `preview` and every `check` build from `tool.tsx`), so a
+  slot with a `tool.tsx` and no ported pair yet is listed ("being built") and can be looked at before its `.tsx` + `.json` exist; the hub lists
+  it too. View only (the viewer never builds the page: a build writes the `.build/` a running `check` ports from). The builder's quick check
+  (`check --no-render`) refreshes the page too (`lib/check/runAndShip.mjs`), so it follows the build from the first check. Every class has it: a
+  new class from `classctl new`, a new chapter from its first `scaffold`. Viewer, hub and that one lib file: no runtime change, no re-pin.
+  `class<N>/viewer/README.md` "HTML preview".
+- **Pencil writing is standard for new chapters (the owner, 2026-10-22; classes 4 and 5; `pencil-writing/README.md`).** A pencil that writes digits, signs or capital
+  letters WRITES them, stroke by stroke (`api.act({ tool: "pencil", moves: "write", ... })`, `<PencilText>`; PATTERNS §15 "PENCIL WRITING"; about 0.8 s a number). It
+  is in the HEAD runtime of both classes (put there by `node pencil-writing/standard/standardise.mjs --class N`, with `standard/verify.mjs`); nothing was frozen or
+  pinned, so no chapter moved. `fetch` freezes the head and pins a NEW chapter to it, so a chapter fetched from now on has it, builds on it (PREFLIGHT 26 in class 5, 27
+  in class 4) and is held to it: `fetch` writes `rules.pencilActs: "strict"` into its `runtime.json`, and check `pencil-acts` fails a pencil act that is neither
+  `moves: "write"` nor `marks: true`. A chapter fetched earlier keeps its runtime and its old pencil (an INFO row, never a fail, even after a re-pin). A READY pair of
+  such a chapter (class 4 ch 11 after its own pipeline) gets it by the retrofit `node pencil-writing/apply.mjs --file <pair.tsx>` and a hand edit of its call sites, only on
+  the owner's word. Never copy the `lib/check` edits between classes by hand: `standardise.mjs` is the one way (every anchor exact, each live file swapped in one rename).
 - **Small changes to one tool: edit the pair, then `approve`** (the owner, 2026-10-16). An edit, fix or tweak of one existing tool
   is made straight away in its ported pair (`class<N>/output-preview/<chapter_id>/<slot_id>/<slot_id>.tsx` + `.json`), never in
   `work/.../tool.tsx`, and proved with `node cli.mjs approve <slot_id> --ch N --note "what changed"` instead of `check`; `publish`

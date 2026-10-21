@@ -694,7 +694,7 @@ api.onEnter(stage === "demo" && stepOn ? () => cut() : null);
   phase change, restart or new question ended it. While it plays the pad, the keys and the working area wait, so start it from the
   child's act with the answer panel shut (a guide step, or before Answer). Your own `api.lock(true)` held before it stays.
 - Never draw the tool yourself and never put a knife or a hand in `images.json`; the helper prints no text, so nothing goes in `TR`.
-- **A pencil WRITES AS IT GOES (the owner, 2026-10-18, class 5 ch 6).** Nothing it writes pops in at the end. Text (digits, signs,
+- **On a runtime WITHOUT the write move (no `caps.pencilWrite`: every chapter fetched before 2026-10-22; below for the newer one), a pencil WRITES AS IT GOES (the owner, 2026-10-18, class 5 ch 6).** Nothing it writes pops in at the end. Text (digits, signs,
   words): the tip travels left to right with a small writing wiggle (a short loop or zigzag inside each character's box) and each
   character appears the moment the tip passes it (`onPoint`); use `moves: "push"` for text, because `draw` leaves a straight grey
   trail that vanishes, which is not a pencil mark. A line that stays (a fraction bar, a bracket, a cut, a strike-through): `draw`
@@ -706,6 +706,39 @@ api.onEnter(stage === "demo" && stepOn ? () => cut() : null);
   (`ACT_TEMPO`), so keep giving `ms` in 0.7 to 1.5 s and never slow an act yourself. A pencil act plays the writing "tick" at
   its points and holds a 400 ms beat (`ACT_BEAT`) before it resolves. A chain of acts in one guide step must end within
   `approve`'s 10 s wait.
+- **PENCIL WRITING (the owner, 2026-10-22): on a runtime WITH the write move (`function penPlan(` in it, `caps.pencilWrite`: every chapter fetched from 2026-10-22 on), a pencil that writes digits, signs or capital letters WRITES them.**
+  The tip follows each character's own single-line path, the graphite grows behind it, the pencil tilts, a scratch sounds at each stroke, and the written text STAYS as neat pencil digits (`<PencilText>`):
+  about 0.8 s a number, no 400 ms beat. **The rule (`pencil-acts`, PREFLIGHT 27):** every `api.act({ tool: "pencil", ... })` is `moves: "write"` or says `marks: true` (it marks, shades, colours
+  or draws a line, and writes nothing). A pencil `push` that reveals a printed `<text>` is the old way: on this runtime it fails.
+
+```tsx
+await api.act({
+  tool: "pencil", moves: "write",
+  text: [String(n), { line: [x1, y, x2, y], size }, { dab: [mx, my] }, String(d)],   /* a string, or an array of: a string, a bar, a touch */
+  at: [pn, null, null, pd], size: [s, s, s, s], align: "middle",                      /* one value, or one per token (null for a bar or a touch) */
+  onPoint: (j) => put({ pc: j + 1 }),                                                 /* the tip FINISHED character j (a bar and a touch count one) */
+});
+/* what the tool draws, from the SAME geometry function the act used, so nothing jumps when the act ends */
+<PencilText text={String(n)} x={cx} y={y + size * 0.36} size={size} align="middle" chars={pc} />
+<PencilLine x1={x1} y1={y} x2={x2} y2={y} size={size} />
+```
+
+  - **Options.** `text` is a string or an array. `{ line: [x1, y1, x2, y2], size }` is a bar the pencil writes (180 ms); `{ dab: [x, y], size }` is a touch (110 ms, no ink: the tool's own arrow or tick appears
+    when `onPoint` runs), so the marks and the numbers of ONE step are ONE act (the pencil comes in and leaves once). `align` (start | middle | end: what `x` of `at` is), `size`, `color` and `step` (px: every
+    character of a string in its own cell that wide, so a row of cards is ONE token) are one value or an array with one per token. `size` is the fontSize the tool printed that text with: a pencil digit is
+    0.72 of it tall, so `y` is the baseline (box centre + `size * 0.36`) and it is a drop-in for the printed `<text textAnchor="middle">`. `ms` is ignored: a write has its own pace.
+  - **Wiring.** ONE geometry function used by the act AND by the drawing (a scene translate included), so the act's last frame and the finished text are the same drawing. Keep `pc` (characters finished) in state
+    and derive what the tool shows from it; what was on screen BEFORE the act stays a printed `<text>`, only what the pencil writes is `PencilText`. Delete the `api.sfx.tick()` after a write (the act scratches
+    itself); no `nap` is needed between two acts. A character with no stroke (a space) reports its `onPoint` when the one before it finishes.
+  - **Pace and limits.** A string of 1-4 characters is about 0.5 s of ink (150 ms in, 150 out); each character past 4 adds 80 ms. A lone `=` costs a whole 0.5 s, so join neighbouring terms into runs
+    ("64 ÷ 8 = 8"). **One written act lasts 3 s at most** (`action-anim` allows 3.4 s), and a guide step's chain of acts ends inside `approve`'s 10 s wait: a working line that takes 4 s is too slow, write fewer
+    terms. A stroke is never thinner than 3.2 px. Reduced motion: no motion, every `onPoint` runs, it resolves `true` at once.
+  - **What is written.** `0-9`, `+ - × ÷ = / , .` and the capital letters `A-Z`. Never lowercase, Hindi or Gujarati letters, so a translated sentence is NEVER revealed by a pencil: reveal it with the tool's own
+    clip and no pencil act. Shading, colouring, rubbing and drawing a line stay `moves: "draw" | "push" | "rub"` with `marks: true`.
+  - **Proving it.** `pencil-acts` (a source row, also in the quick check) and `action-anim` (a written act is recognised by `data-role="pen-writing"` on the layer); the visual reviewer looks at a frame
+    mid-act and after it (the graphite grows behind the tip; the finished digits are the same drawing).
+  - **A chapter fetched earlier.** It keeps its runtime and its old pencil: with the write move in its runtime `pencil-acts` is an INFO row, never a fail (`fetch` writes `rules.pencilActs: "strict"` into
+    `runtime.json` for a NEW chapter only; a re-pin keeps what it had). To give a READY pair the new pencil: `pencil-writing/README.md` (a retrofit, only on the owner's word).
 - `check`: `action-anim` clicks the act's control for real (name a step's button after its act: `data-control="cut"`).
 
 ## 16. Authoring under keyOnly (the new look; the owner, 2026-10-16; a runtime with `keyOnly`, LAYOUT.md §1d and §1e)

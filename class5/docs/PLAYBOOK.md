@@ -64,4 +64,6 @@ then `await t.dragging()` (above 0 after release = a stuck drag).
 **8. The whole lesson**: `play({ id: ID, ch: CH, phase: "none", nextKey: true })`; per question `h.solveQuestion(t)` then `h.pressNext(t, "click")` (or `"enter"`, `"api"`) to the summary;
 `await t.eval("(window.__events || []).length")` is the `finished` count (one, only from the summary). Walk it once by finger and once by keys.
 
+**9. A written pencil act** (a tool with `moves: "write"`, PATTERNS §15): play the act through its own control with motion ON and take a screenshot about 150 ms and about 450 ms after the press. The graphite must grow behind the tip and a character must be partly drawn mid-act; after the act the written text is the SAME drawing, where the printed one would sit (no printed digit swapping in, no jump, no ink flash at the start); a second tap while it plays does nothing; one written act lasts 3 s at most; nothing written is a translated sentence. `pencil-acts` and `action-anim` already prove the rule and the timing: you look at it.
+
 Report as your agent file says: at most 30 lines, `[must-fix | should-fix] phase n, what you did, what happened, what should happen, repro lines`; delete your scratch folder.
