@@ -50,6 +50,10 @@ card's sections 1-6, `LAYOUT.md` and `PATTERNS.md`), then the slot's `brief.md` 
 3  build tool.tsx                       MODEL, Work, short asks, the traceback, judge / oracle / nearMiss /
                                         answerForms / agentKey / answer / check (LAYOUT.md §11)
                                         (read PREFLIGHT.md first; inner loop: check <id> --ch N --no-render)
+3b node cli.mjs design <id> --ch N   the Gemini visual pass, ONCE, when the quick check is clean (runbook 4b): looks
+                                        only; logic, TR, PHASES, <Skin> and api.* kept; syntax and printed text checked,
+                                        else reverted to tool.tsx.pre-design. Then check --no-render, shots and
+                                        shots --state start; the full check is its gate
 4  node cli.mjs preview <id> --ch N     <id>.preview.html: open it in a browser (user mode; ?mode=ai)
 5  node cli.mjs check <id> --ch N       every check (CHECKS.md): ONE full check once the quick one is clean. Every
                                         FAIL is fixed before review. A pass ports straight away (output-preview/
@@ -76,7 +80,7 @@ and the last check).
    history: search them with grep, never read them through; take a `CHECKS.md` row by grep. Never read `slot.json`, `plan.json`,
    previews, `.build/`, `out/`, `runtime/mascot.tsx`, PDFs, `node_modules`, `.env`, `config.json` or
    `_archive/`. Open the reference tool only to copy a pattern, and only the block you need.
-2. Edit, never rewrite: change the smallest block that does the job.
+2. Edit, never rewrite: change the smallest block that does the job (the one exception is the design pass, 3b: Gemini rewrites the file for looks, and you never read the result back whole).
 3. The runtime owns the chrome (`LAYOUT.md` §11). Never re-implement it in a tool.
 4. Let `check` find problems (the quick check, `--no-render`, while building; one full check at the end); look at one
    contact sheet per round.

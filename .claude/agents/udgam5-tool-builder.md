@@ -165,6 +165,16 @@ Never read `slot.json`, `plan.json`, `*.preview.html`, `.build/`, `output-previe
 4. **The inner loop, while you build:** `node cli.mjs check <slot_id> --ch <n> --no-render` after each block of work (the
    quick check: no browser, seconds, the source and maths rows; it never certifies or ports). Fix every FAIL it names.
    Do not run the full check to find out whether a block is right, and do not chase a visual by repeating full checks.
+4b. **Visual pass, once, when the quick check is clean:** `node cli.mjs design <slot_id> --ch <n>`. Gemini rewrites `tool.tsx`
+   for looks only (SVG art, colour, depth, motion); it keeps the logic, `TR`, `PHASES`, `<Skin>` and every `api.*` call, checks the
+   syntax, repairs a slip once or reverts, puts back any printed sentence it damaged (it has turned "bigger" into "meger"; if one
+   cannot be restored it reverts), and leaves the original beside it as `tool.tsx.pre-design`. It needs `GEMINI_API_KEY`
+   (missing: skip it and say so in your report). It proves syntax and printed text only, and a run can still break the layout
+   or draw a NaN, so the full check at step 5 is its gate: when that fails because of 4b, copy `tool.tsx.pre-design` back over
+   `tool.tsx` and run 4b once more, or skip it and say so. Look at `shots` too, and at `shots --state start` (the start page is where
+   it changed most): a label off its pill, a small figure left small, or words it ADDED (it once turned "+3" into "Check: +3", English
+   only and over the table edge; no check sees that) are yours to fix by hand. Never run it after the language pass or as `design --ch <n>`; the CLI refuses a tool already ported or
+   published (`--force` overrides, and a remade tool is not refused).
 5. When the quick check is clean: `node cli.mjs preview <slot_id> --ch <n>` (fix build errors and host-scope warnings),
    then **one full** `C4_CHROME_POOL=2 node cli.mjs check <slot_id> --ch <n>` until **0 FAIL and 0 WARN**. It rebuilds the
    preview, runs real mouse, finger and key input, and ports on a pass. A few rows exist only in a full run (PREFLIGHT

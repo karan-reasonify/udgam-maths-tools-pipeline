@@ -39,6 +39,7 @@ chapter with builder and reviewer agents (the runbook is `../udgam_maths_claude.
 | 1 plan | `node cli.mjs fetch --ch N` | lpv2 -> `work/<chapter_id>/<id>/` for every 2D mount: `brief.md`, `slot.json`, `status.json` |
 | 2 scaffold | `node cli.mjs scaffold <id> --ch N` | `tool.tsx` from the skeleton the pinned runtime asks for, pre-filled from the plan (the new style: `board: true`, a start page, a guide step with a hint a phase, `TR`, free play), and `readlist.md`: the builder's reading list (pointers into the docs by their real headings; `node lib/build/readlist.mjs <id> --ch N` makes it again) |
 | 3 build | edit `tool.tsx` | the working area and the maths only (`docs/LAYOUT.md` §11); read `docs/PREFLIGHT.md` first (what tools are failed on); inner loop `node cli.mjs check <id> --ch N --no-render` |
+| 3b visual pass | `node cli.mjs design <id> --ch N` | ONCE, when the quick check is clean (runbook step 4b): Gemini restyles `tool.tsx` for looks only (logic, `TR`, `PHASES`, `<Skin>`, `api.*` and every printed sentence kept; syntax and printed text are checked, else it reverts to `tool.tsx.pre-design`); then `check --no-render`, `shots` and `shots --state start`; the full check is its gate. Needs `GEMINI_API_KEY`; the CLI refuses a tool already ported or published (`--force`) |
 | 4 preview | `node cli.mjs preview <id> --ch N` | `<id>.preview.html`: open it in a browser (user mode; `?mode=ai` for AI mode) |
 | 5 check | `node cli.mjs check <id> --ch N` | ONE full check once the quick one is clean; every check in `docs/CHECKS.md`; fix every FAIL. A pass ports straight away (`output-preview/`, proved in the host emulator): the tool is in `node cli.mjs view` the same run |
 | 6 look | `node cli.mjs shots <id> --ch N` | one contact sheet of every phase (`--state wrong` for the traceback; `--state party`, `--panel open` on a runtime that has them); `shots <id> --ch N --pack [--changed]` makes the review pack (every frame at full size in en, hi, gu: `docs/REVIEW_PACK.md`) |
@@ -108,6 +109,7 @@ tree ships them empty and `classctl` merges a class's own rows in.
     check/               check (all checks), model, input (real mouse/finger/keys), silent (the silent-lesson judges), playkit, playhelpers, padshape, approve (a hand-edited pair, proved)
     finish/              clean
     images/              the skin and theme pipeline (`images make`, `sheet`, `status`, `list`) and the ACTION KIT (`actionkit`)
+    design/              the Gemini visual pass (`design`): prompts, the Gemini call, the syntax check, the printed-text guard and its test
     ship/                port (standalone pair), hostsim (the app's loader, copied), publish, voiceship, gcs, hostTemplate
   cli.mjs                one CLI for every step
   pipeline.config.json   this class's config (see the table above)

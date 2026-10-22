@@ -120,7 +120,7 @@ Variants, same flow:
 
 | agent | when | does | edits |
 |---|---|---|---|
-| `<pfx>-tool-builder` | step 4, one per slot, in parallel (after the pilot, if the owner chose one); step 5b (language pass) and every fix by SendMessage | reads `docs/PREFLIGHT.md` and its `readlist.md` first, builds `tool.tsx` on the quick check (`check --no-render`) and ONE full `check`, reports; then adds the Hindi/Gujarati `TR` table (and, on a voiced runtime, bakes the voice) | its slot's `tool.tsx` (and the generated `voice.tsx`) only |
+| `<pfx>-tool-builder` | step 4, one per slot, in parallel (after the pilot, if the owner chose one); step 5b (language pass) and every fix by SendMessage | reads `docs/PREFLIGHT.md` and its `readlist.md` first, builds `tool.tsx` on the quick check (`check --no-render`), runs the Gemini visual pass once (4b), then ONE full `check`, reports; then adds the Hindi/Gujarati `TR` table (and, on a voiced runtime, bakes the voice) | its slot's `tool.tsx` (and the generated `voice.tsx`) only |
 | `<pfx>-maths-reviewer` | step 5, per tool, FIRST, on the final English tool | maths, textbook method, giveaways, corrections, plan fidelity | nothing |
 | `<pfx>-visual-reviewer` | step 5d, per tool, ONCE, on the near-final tool (after the language pass) | English, Hindi and Gujarati in one pass, from the review pack (`shots --pack`: every frame at full size; `--pack --changed` on a re-review), vs LAYOUT | nothing (makes PNGs) |
 | `<pfx>-play-tester` | step 5d, per tool, ONCE, on the near-final tool | starts from the rows `check` already played (`lib/check/playhelpers.mjs`, `docs/PLAYBOOK.md`) and adds exploratory probes with a real mouse, finger and keys | nothing (makes PNGs) |
@@ -186,7 +186,15 @@ brief and its pinned runtime). For a slot whose `tool.tsx` already exists: `node
 **4. Build.** Launch one `<pfx>-tool-builder` per slot, all in one message, in the background. The prompt:
 the class and chapter number, the slot id, the tool's name, the chapter's notes row, any §7 decision from
 step 2, and "report as your agent file says" (its file sends it to `docs/PREFLIGHT.md` and the slot's `readlist.md`
-first, and builds on the quick check, then one full `check`). **If the owner chose the pilot,** launch only the
+first, and builds on the quick check, then one full `check`). **4b. Visual pass:** once its quick check is clean, each builder runs
+`node cli.mjs design <slot_id> --ch <n>` (the Gemini pass: looks only, logic, `TR`, `PHASES`, `<Skin>` and `api.*` kept; syntax checked, one
+repair, else a revert to `tool.tsx.pre-design`; a printed sentence Gemini damaged is put back, or the pass reverts), then the quick check again and
+`shots` and `shots --state start` (words it ADDED, such as "+3" turned into "Check: +3", and the start page are seen by no check), since only syntax
+and printed text are proved: a run can still break the layout or draw a NaN, so the full check is its gate (when it
+fails because of 4b, copy `tool.tsx.pre-design` back and run 4b once more, or skip it). Once per tool, before the language pass (5b); the CLI
+refuses a tool already ported or published (`--force` overrides; a remade tool is not refused); `design --ch <n>` (a whole chapter) is the main
+session's call, not a builder's.
+**If the owner chose the pilot,** launch only the
 first slot's builder, take that tool through step 5 to 5d, settle any finding about the runtime or the shared
 look (step 2's route), then launch the other builders in one message. Don't wait idle: while they build, nothing
 else runs in Chrome. **The owner can watch every tool being built** in the viewer (`node viewhub.mjs`, or `node cli.mjs view`): a slot with a

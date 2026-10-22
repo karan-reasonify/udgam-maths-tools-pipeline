@@ -55,7 +55,11 @@
  *                         pinned runtime has a THEME)
  *   node cli.mjs images   make --ch N [--batch] | batch submit|status|apply|cancel --ch N
  *                         every slot of a chapter, each unique picture once; --batch = one Gemini batch job, half price
- *   node cli.mjs images   sheet <MEDIA_ID> [--ch N] | status [--ch N] | list
+ *   node cli.mjs design   <MEDIA_ID> [--ch N] [--force] [--model name]
+ *                         the GEMINI VISUAL PASS: elevates SVG visuals, colors, layout and styling in tool.tsx,
+ *                         validates syntax with Babel standalone, automatically repairs syntax slips, and safely
+ *                         reverts on unresolvable errors; updates preview page immediately
+ *   node cli.mjs design   --ch N [--force] [--model name]       run the Gemini visual pass on every slot of a chapter
  *   node cli.mjs status   [--ch N]
  *   node cli.mjs runtime  freeze [rN] [--note "why"] | pin --ch N [--version rN] | status | seal --ch N
  *                         a chapter builds on ITS OWN frozen runtime (runtime/frozen/<rN>/), named in
@@ -101,6 +105,7 @@ import { loadServiceAccount, accessToken, probeBucket } from "./lib/ship/gcs.mjs
 import { freeze, headVersion, readVersions, readPin, writePin, fetchRules, pinState, sha, headHashes } from "./lib/core/pin.mjs";
 import { readFence, fenceSet } from "./lib/core/fence.mjs";
 import { imagesCommand, makeActionKit } from "./lib/images/make.mjs";
+import { runDesignPass, designChapter } from "./lib/design/design.mjs";
 
 const BOOLEANS = ["force", "full", "json", "help", "no-render", "upload", "apply", "offline", "watch", "off", "on", "clear", "html", "dry", "pack", "changed"];
 const a = parseArgs(process.argv.slice(3), BOOLEANS);
@@ -599,9 +604,25 @@ async function doImages() {
   await imagesCommand(process.argv.slice(3), { log: console.log });
 }
 
+/* visual design pass: elevates SVGs, layout, styling via Gemini, validates syntax, auto-repairs */
+async function doDesign() {
+  const model = a.model && a.model !== true ? String(a.model) : null;
+  const force = !!a.force;
+  if (!a._[0]) {
+    if (!a.ch) throw new Error("name a slot: <MEDIA_ID> [--ch N], or pass --ch N alone to run the visual design pass on every slot of that chapter");
+    const chapterId = a["chapter-id"] || chapterIdFor({ klass: klass(), pub: a.pub, medium: a.medium, subject: a.subject, ch: a.ch });
+    const cdir = path.join(workRoot(), chapterId);
+    if (!fs.existsSync(cdir)) throw new Error(`no work folder for ${chapterId}; run fetch first`);
+    await designChapter(cdir, { model, force, log: console.log });
+    return;
+  }
+  const dir = resolveTarget(a._[0], a);
+  await runDesignPass(dir, { model, force, log: console.log });
+}
+
 const COMMANDS = { doctor, list, fetch: fetchChapters, scaffold: doScaffold, preview: doPreview, shots: doShots, check: doCheck,
   port: doPort, approve: doApprove, publish: doPublish, mascot: doMascot, clean: doClean, status, view: doView, runtime: doRuntime, fence: doFence, voice: doVoice,
-  images: doImages, actionkit: doActionKit, fontkit: () => makeFontKit() };
+  images: doImages, actionkit: doActionKit, fontkit: () => makeFontKit(), design: doDesign };
 
 if (!cmd || a.help || !COMMANDS[cmd]) {
   const head = fs.readFileSync(path.join(ROOT, "cli.mjs"), "utf8").split("*/")[0];

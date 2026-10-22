@@ -14,7 +14,7 @@
   `<pfx>-tool-builder` (one per slot) and five that only report: `-maths-reviewer`, `-visual-reviewer`,
   `-play-tester`, `-upload-auditor`, `-image-agent` (generated from `_templates/agents/`).
 - CLI (run in `class<N>/`): `doctor | list | fetch | scaffold | preview | check | shots | clean | status | port |
-  approve | publish | runtime | fence | view | voice | images` (`check` ports on a pass, never over a hand-edited pair;
+  approve | publish | runtime | fence | view | voice | images | design` (`check` ports on a pass, never over a hand-edited pair;
   `publish` is a dry run unless `--upload`; `runtime freeze|pin|seal|status` is the per-chapter runtime).
 - **Every class on one page: `node viewhub.mjs`** (this folder, http://localhost:5170; `viewer-hub/README.md`): Class and Chapter
   dropdowns and a tool list, each class's own viewer embedded; it starts the viewers and finds a new `class<N>/` itself. Change a
@@ -105,7 +105,8 @@
   GCS key is `config.json`. Never open `.env` or `config.json`; they hold secrets.
 - Token rules (full mode, no look removed): a builder reads `class<N>/docs/PREFLIGHT.md`, the slot's `readlist.md` (pointers
   into the build card §1-6, all of LAYOUT, the PATTERNS sections the tool needs), its `brief.md` and `tool.tsx`; it edits, never
-  rewrites; its inner loop is `check --no-render`, then one full `check`. Reviewers run in a staged order (maths, then the language
+  rewrites (the one whole-file rewrite is the Gemini design pass, runbook step 4b: it costs no Claude tokens and the builder does not
+  read the result back whole, only its quick check and `shots`); its inner loop is `check --no-render`, then one full `check`. Reviewers run in a staged order (maths, then the language
   pass, then visual + play once) and the visual reviewer works from the review pack (`node cli.mjs shots <slot> --pack`: every
   frame at full 1600x900 in en, hi, gu; `--changed` on a re-review looks only at what changed). `clean --ch N` tidies at the end.
 - Session hygiene (measured: `node usage.mjs session`; what a role loads: `node usage.mjs static --class <N>`). A session re-reads

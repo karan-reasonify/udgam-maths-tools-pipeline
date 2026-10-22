@@ -48,7 +48,7 @@ export function cleanSlot(dir, opts = {}) {
       if (gone.length) removed.push(`${PACK}/ (${gone.length} file${gone.length === 1 ? "" : "s"}; ${[...KEEP_IN_PACK].filter((x) => fs.existsSync(path.join(p, x))).join(" and ") || "no json"} kept)`);
       continue;
     }
-    const drop = name === ".build" || DISPOSABLE.test(name) || SCRATCH.test(name) || (!!opts.html && name === `${id}.preview.html`);
+    const drop = name === ".build" || name === "tool.tsx.pre-design" || DISPOSABLE.test(name) || SCRATCH.test(name) || (!!opts.html && name === `${id}.preview.html`);
     if (!drop) continue;
     bytes += sizeOf(p);
     if (!opts.dry) fs.rmSync(p, { recursive: true, force: true });
