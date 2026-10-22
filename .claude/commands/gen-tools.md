@@ -15,6 +15,7 @@ Make Udgam maths tools. Arguments: $ARGUMENTS
    without it, the full mode. The agents are `<pfx>-tool-builder` and the rest, `<pfx>` being the class's
    `agentPrefix` (`udgam` for class 4, `udgam<N>` otherwise).
    Before launching agents, load the root token-policy.json. Adaptive mode is mandatory unless full review is explicitly requested: cap concurrency and Opus agents, keep contexts below policy limits, batch language/status/audit work, and run visual/play review only for new or risky patterns.
+   Resuming a chapter (`continue`, or after a session limit, reset or compaction): before continuing, read the root token-policy.json and apply it to the resumed chapter. Do not recreate the previous context and do not restart completed agents. Resume from the existing chapter state and checkpoint (`node orch.mjs resume --class <N> --ch <n>`, `node cli.mjs status --ch <n>`; the runbook's "Resume rule", step 0), and launch only what is unfinished.
 2. If class, publication or school, or chapter is missing, ask for it. "udgam" means publication
    indiannica. A concept id such as `M1.S1.T2.C4` names the slot `M1.S1.T2.C4.2D1`.
 3. Stop at the report (step 8). Upload (step 10) only when the user says so. A remake of an already built

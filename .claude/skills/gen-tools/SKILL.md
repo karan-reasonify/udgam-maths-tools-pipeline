@@ -21,5 +21,11 @@ The same as `.claude/commands/gen-tools.md`; both are shortcuts into the runbook
 3. Everything in the runbook's lessons and the "standard look" bullets of the root `CLAUDE.md` applies without the user saying it: the image
    pass (step 5c) runs for EVERY tool and gives real objects instead of plain blocks; the runtime's header buttons, berry keys, Kiko's
    thinking pose and the Answer key's blink are never redone by a tool; a decimal is answered on the Decimal card where the picture has one.
-4. Stop at the report (step 8). Upload (step 10) only when the user says so. A remake of an already built
+4. Before launching agents, load the root `token-policy.json`: adaptive mode is mandatory unless full review is explicitly requested (cap
+   concurrency and Opus agents, keep contexts below the policy limits, batch language/status/audit work, run visual/play review only for
+   new or risky patterns). **Resuming a chapter** (`continue`, or after a session limit, reset or compaction): before continuing, read the
+   root `token-policy.json` and apply it to the resumed chapter. Do not recreate the previous context and do not restart completed
+   agents. Resume from the existing chapter state and checkpoint (`node orch.mjs resume --class <N> --ch <n>`,
+   `node cli.mjs status --ch <n>`; the runbook's "Resume rule", step 0), and launch only what is unfinished.
+5. Stop at the report (step 8). Upload (step 10) only when the user says so. A remake of an already built
    chapter (the runbook's REMAKE section) and a `classctl sync --apply` also wait for the user's word.
