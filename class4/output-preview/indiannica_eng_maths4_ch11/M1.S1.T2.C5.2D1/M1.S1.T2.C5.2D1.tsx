@@ -1482,6 +1482,7 @@ function actPic(k) {
   return { src, fit: fit || { w: 1, h: 1, len: 140, ax: 0.5, ay: 0.5, rot: 0 } };
 }
 function actPlan(o) {
+  if (String(o.moves || o.move || "") === "write") return penPlan(o);
   const move = String(o.moves || o.move || "tap"), tool = String(o.tool || "hand");
   const at = (o.at || []).filter(actOk), path = [o.from, ...at, o.to].filter(actOk);
   if (!path.length) return null;
@@ -1552,6 +1553,7 @@ function ActLayer({ play, w, h, C }) {
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
   }, [play]);
+  if (play.move === "write") return penWriteLayer(play, Math.min(t, performance.now() - play.t0), w, h, C);
   const q = actPose(play, t), d = q.u >= 0 ? Math.sin(Math.PI * q.u) : 0, m = play.move, pic = play.pic;
   let dx = 0, dy = 0, rot = 0, sx = 1;
   if (m === "slice") dy = -56 + 86 * d;
@@ -1626,7 +1628,7 @@ function useActionKit(lockNow, lockedRef, sfx, key) {
       }
     };
     if (!p || reducedMotion()) {
-      if (p) p.at.forEach((_, i) => hit(i));
+      if (p) (p.move === "write" ? p.hits : p.at).forEach((_, i) => hit(i));
       resolve(true);
       return;
     }
@@ -1642,16 +1644,289 @@ function useActionKit(lockNow, lockedRef, sfx, key) {
         fx();
       }
     };
+    const writing = p.move === "write";
     if (fx && p.travel) c.timers.push(setTimeout(() => fx(), ACT_IN));
+    if (writing) p.ticks.forEach((ms) => c.timers.push(setTimeout(tick, ms)));
     p.hits.forEach((ms, i) => c.timers.push(setTimeout(() => {
       hit(i);
+      if (writing) return;
       if (pen) tick();
       else if (fx && !p.travel) fx();
     }, ms)));
-    c.timers.push(setTimeout(() => end(true), p.total + (pen ? ACT_BEAT : 0)));
+    c.timers.push(setTimeout(() => end(true), p.total + (pen && !writing ? ACT_BEAT : 0)));
     setPlay({ ...p, hold: o.hold || null, t0: performance.now() });
   });
   return { act, play, busy: () => !!cur.current };
+}
+const PEN_H = 0.72, PEN_X0 = 0.12, PEN_W = 0.1, PEN_INK = "#3F3F3F";
+const PEN_IN = 150, PEN_OUT = 150, PEN_NUM = 500, PEN_LINE = 180, PEN_DAB = 110, PEN_MIN = 40, PEN_HOP = 22, PEN_GAP = 40, PEN_TILT = -12, PEN_WMIN = 3.2;
+function penSw(size) {
+  return Math.max(size * PEN_W, PEN_WMIN);
+}
+function penEll(cx, cy, rx, ry, a0, a1, n) {
+  const out = [];
+  for (let i = 0; i < n; i++) {
+    const a = (a0 + (a1 - a0) * i / (n - 1)) * Math.PI / 180;
+    out.push([cx + rx * Math.cos(a), cy + ry * Math.sin(a)]);
+  }
+  return out;
+}
+const PEN_GLYPHS = (function() {
+  const g = {};
+  const make = (adv, x0, strokes) => ({ a: adv, s: strokes.map((st) => ({ k: st[0], p: st[1].map((q) => [q[0] + x0, q[1]]) })) });
+  const dig = (strokes) => make(0.84, PEN_X0, strokes);
+  g["0"] = dig([[2, penEll(0.3, 0.5, 0.29, 0.5, -90, -90 - 324, 10)]]);
+  g["1"] = dig([[0, [[0.1, 0.22], [0.32, 0], [0.32, 1]]]]);
+  g["2"] = dig([
+    [1, [[0.02, 0.24], [0.1, 0.07], [0.28, 0], [0.46, 0.05], [0.56, 0.2], [0.52, 0.38], [0.38, 0.54], [0.16, 0.76], [0, 1]]],
+    [0, [[0, 1], [0.6, 1]]]
+  ]);
+  g["3"] = dig([[1, [[0.02, 0.18], [0.14, 0.04], [0.32, 0], [0.48, 0.07], [0.54, 0.22], [0.46, 0.38], [0.3, 0.47], [0.2, 0.49], [0.34, 0.5], [0.52, 0.6], [0.58, 0.78], [0.48, 0.94], [0.3, 1], [0.12, 0.96], [0, 0.84]]]]);
+  g["4"] = dig([
+    [0, [[0.46, 0], [0, 0.72], [0.62, 0.72]]],
+    [0, [[0.46, 0], [0.46, 1]]]
+  ]);
+  g["5"] = dig([
+    [0, [[0.54, 0], [0.08, 0], [0.04, 0.46]]],
+    [1, [[0.04, 0.46], [0.2, 0.4], [0.38, 0.4], [0.52, 0.5], [0.58, 0.68], [0.54, 0.86], [0.4, 0.98], [0.24, 1], [0.08, 0.95], [0, 0.86]]]
+  ]);
+  g["6"] = dig([[1, [[0.52, 0.06], [0.36, 0], [0.18, 0.1], [0.06, 0.34], [0.02, 0.62], [0.07, 0.86], [0.22, 0.99], [0.38, 0.98], [0.52, 0.86], [0.57, 0.7], [0.5, 0.55], [0.36, 0.48], [0.2, 0.5], [0.08, 0.6]]]]);
+  g["7"] = dig([[0, [[0, 0], [0.6, 0], [0.22, 1]]]]);
+  g["8"] = dig([[1, [[0.46, 0.1], [0.32, 0], [0.16, 0.05], [0.08, 0.22], [0.16, 0.38], [0.3, 0.47], [0.46, 0.58], [0.54, 0.76], [0.46, 0.93], [0.3, 1], [0.13, 0.94], [0.05, 0.77], [0.13, 0.59], [0.3, 0.47], [0.44, 0.36], [0.52, 0.2], [0.46, 0.08]]]]);
+  g["9"] = dig([[1, [[0.54, 0.3], [0.46, 0.1], [0.3, 0], [0.14, 0.08], [0.04, 0.28], [0.1, 0.48], [0.26, 0.58], [0.42, 0.54], [0.54, 0.36], [0.56, 0.58], [0.5, 0.82], [0.38, 0.96], [0.22, 1], [0.08, 0.93]]]]);
+  g[","] = make(0.4, 0, [[1, [[0.13, 0.88], [0.14, 0.97], [0.08, 1.1], [0.02, 1.16]]]]);
+  g["."] = make(0.4, 0, [[0, [[0.13, 0.965], [0.135, 0.97]]]]);
+  g["="] = dig([[0, [[0.04, 0.34], [0.56, 0.34]]], [0, [[0.04, 0.66], [0.56, 0.66]]]]);
+  g["-"] = dig([[0, [[0.06, 0.5], [0.54, 0.5]]]]);
+  g["+"] = dig([[0, [[0.3, 0.2], [0.3, 0.8]]], [0, [[0.04, 0.5], [0.56, 0.5]]]]);
+  g["×"] = dig([[0, [[0.06, 0.28], [0.54, 0.76]]], [0, [[0.54, 0.28], [0.06, 0.76]]]]);
+  g["÷"] = dig([[0, [[0.04, 0.5], [0.56, 0.5]]], [0, [[0.3, 0.26], [0.305, 0.265]]], [0, [[0.3, 0.74], [0.305, 0.745]]]]);
+  g["/"] = make(0.6, 0, [[0, [[0.46, 0], [0.06, 1]]]]);
+  const cap = (strokes) => make(0.84, PEN_X0, strokes);
+  const ell = (cx, cy, rx, ry, n) => penEll(cx, cy, rx, ry, -90, -90 - 360 * (n - 1) / n, n);
+  const bowl = (y0, y1) => [[0.04, y0], [0.3, y0], [0.5, y0 + (y1 - y0) * 0.16], [0.56, y0 + (y1 - y0) * 0.5], [0.46, y0 + (y1 - y0) * 0.86], [0.28, y1], [0.04, y1]];
+  g["A"] = cap([[0, [[0, 1], [0.3, 0], [0.6, 1]]], [0, [[0.1, 0.68], [0.5, 0.68]]]]);
+  g["B"] = cap([[0, [[0.04, 0], [0.04, 1]]], [1, bowl(0, 0.5)], [1, [[0.04, 0.5], [0.34, 0.5], [0.54, 0.6], [0.58, 0.78], [0.5, 0.94], [0.3, 1], [0.04, 1]]]]);
+  g["C"] = cap([[1, [[0.56, 0.18], [0.44, 0.04], [0.28, 0], [0.1, 0.1], [0.02, 0.35], [0.02, 0.65], [0.1, 0.9], [0.28, 1], [0.44, 0.96], [0.56, 0.82]]]]);
+  g["D"] = cap([[0, [[0.04, 0], [0.04, 1]]], [1, [[0.04, 0], [0.3, 0.02], [0.5, 0.14], [0.58, 0.4], [0.58, 0.62], [0.5, 0.86], [0.3, 0.98], [0.04, 1]]]]);
+  g["E"] = cap([[0, [[0.56, 0], [0.04, 0], [0.04, 1], [0.56, 1]]], [0, [[0.04, 0.5], [0.46, 0.5]]]]);
+  g["F"] = cap([[0, [[0.56, 0], [0.04, 0], [0.04, 1]]], [0, [[0.04, 0.5], [0.46, 0.5]]]]);
+  g["G"] = cap([[1, [[0.56, 0.18], [0.44, 0.04], [0.28, 0], [0.1, 0.1], [0.02, 0.35], [0.02, 0.65], [0.1, 0.9], [0.28, 1], [0.46, 0.94], [0.56, 0.78], [0.56, 0.55]]], [0, [[0.56, 0.55], [0.32, 0.55]]]]);
+  g["H"] = cap([[0, [[0.04, 0], [0.04, 1]]], [0, [[0.56, 0], [0.56, 1]]], [0, [[0.04, 0.5], [0.56, 0.5]]]]);
+  g["I"] = make(0.56, 0.06, [[0, [[0.04, 0], [0.4, 0]]], [0, [[0.22, 0], [0.22, 1]]], [0, [[0.04, 1], [0.4, 1]]]]);
+  g["J"] = cap([[1, [[0.5, 0], [0.5, 0.45], [0.48, 0.75], [0.38, 0.94], [0.24, 1], [0.1, 0.94], [0.02, 0.8]]]]);
+  g["K"] = cap([[0, [[0.04, 0], [0.04, 1]]], [0, [[0.56, 0], [0.04, 0.56], [0.58, 1]]]]);
+  g["L"] = cap([[0, [[0.04, 0], [0.04, 1], [0.54, 1]]]]);
+  g["M"] = make(0.98, 0.08, [[0, [[0.04, 1], [0.04, 0], [0.42, 0.7], [0.8, 0], [0.8, 1]]]]);
+  g["N"] = cap([[0, [[0.04, 1], [0.04, 0], [0.56, 1], [0.56, 0]]]]);
+  g["O"] = cap([[2, ell(0.3, 0.5, 0.3, 0.5, 12)]]);
+  g["P"] = cap([[0, [[0.04, 0], [0.04, 1]]], [1, [[0.04, 0], [0.32, 0], [0.52, 0.1], [0.56, 0.3], [0.46, 0.48], [0.28, 0.55], [0.04, 0.55]]]]);
+  g["Q"] = cap([[2, ell(0.3, 0.5, 0.3, 0.5, 12)], [0, [[0.36, 0.72], [0.62, 1.04]]]]);
+  g["R"] = cap([[0, [[0.04, 0], [0.04, 1]]], [1, [[0.04, 0], [0.32, 0], [0.52, 0.1], [0.56, 0.3], [0.46, 0.48], [0.28, 0.55], [0.04, 0.55]]], [0, [[0.3, 0.55], [0.58, 1]]]]);
+  g["S"] = cap([[1, [[0.54, 0.16], [0.42, 0.04], [0.26, 0], [0.1, 0.08], [0.05, 0.25], [0.16, 0.4], [0.32, 0.5], [0.5, 0.6], [0.56, 0.76], [0.48, 0.93], [0.3, 1], [0.12, 0.95], [0.02, 0.82]]]]);
+  g["T"] = cap([[0, [[0, 0], [0.6, 0]]], [0, [[0.3, 0], [0.3, 1]]]]);
+  g["U"] = cap([[1, [[0.04, 0], [0.04, 0.55], [0.1, 0.85], [0.3, 1], [0.5, 0.85], [0.56, 0.55], [0.56, 0]]]]);
+  g["V"] = cap([[0, [[0, 0], [0.3, 1], [0.6, 0]]]]);
+  g["W"] = make(0.98, 0.08, [[0, [[0, 0], [0.2, 1], [0.41, 0.3], [0.62, 1], [0.82, 0]]]]);
+  g["X"] = cap([[0, [[0.04, 0], [0.56, 1]]], [0, [[0.56, 0], [0.04, 1]]]]);
+  g["Y"] = cap([[0, [[0, 0], [0.3, 0.52]]], [0, [[0.6, 0], [0.3, 0.52], [0.3, 1]]]]);
+  g["Z"] = cap([[0, [[0.02, 0], [0.58, 0], [0.02, 1], [0.58, 1]]]]);
+  g[" "] = { a: 0.4, s: [] };
+  g["x"] = g["×"];
+  g["−"] = g["-"];
+  return g;
+})();
+function penRand(i, c) {
+  const s = Math.sin(i * 12.9898 + c * 78.233) * 43758.5453;
+  return s - Math.floor(s);
+}
+function penFlat(k, p) {
+  if (k === 0) return p.map((q) => [q[0], q[1]]);
+  const n = p.length, closed = k === 2, per = 7;
+  const P = (i) => closed ? p[(i % n + n) % n] : p[Math.max(0, Math.min(n - 1, i))];
+  const out = [[p[0][0], p[0][1]]];
+  const segs = closed ? n : n - 1;
+  for (let i = 0; i < segs; i++) {
+    const p0 = P(i - 1), p1 = P(i), p2 = P(i + 1), p3 = P(i + 2);
+    for (let s = 1; s <= per; s++) {
+      const t = s / per, t2 = t * t, t3 = t2 * t;
+      const f = (a, b, c, d) => 0.5 * (2 * b + (-a + c) * t + (2 * a - 5 * b + 4 * c - d) * t2 + (-a + 3 * b - 3 * c + d) * t3);
+      out.push([f(p0[0], p1[0], p2[0], p3[0]), f(p0[1], p1[1], p2[1], p3[1])]);
+    }
+  }
+  return out;
+}
+function penStroke(pts) {
+  const cum = [0];
+  for (let j = 1; j < pts.length; j++) cum.push(cum[j - 1] + Math.hypot(pts[j][0] - pts[j - 1][0], pts[j][1] - pts[j - 1][1]));
+  return { pts, cum, len: cum[cum.length - 1] || 1e-3 };
+}
+const PEN_CACHE = {};
+function penLayout(text, x, y, size, anchor, step) {
+  const key = text + "|" + x + "|" + y + "|" + size + "|" + anchor + "|" + (step || 0);
+  if (PEN_CACHE[key]) return PEN_CACHE[key];
+  const u = size * PEN_H;
+  let adv = 0;
+  for (let i = 0; i < text.length; i++) adv += (PEN_GLYPHS[text[i]] || { a: 0.84 }).a;
+  const w = step ? step * text.length : adv * u, ox = anchor === "middle" ? x - w / 2 : anchor === "end" ? x - w : x;
+  const chars = [];
+  let cx = ox;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i], gl = PEN_GLYPHS[ch], code = ch.charCodeAt(0), a = gl ? gl.a : 0.84;
+    const cell = step || a * u, gx = cx + (cell - a * u) / 2;
+    const rot = (penRand(i + 1, code) - 0.5) * 3.6 * Math.PI / 180, sc = 0.97 + 0.06 * penRand(i + 7, code), dy = (penRand(i + 13, code) - 0.5) * 0.024 * u;
+    const mx = gx + a * u / 2, my = y - u / 2, co = Math.cos(rot), si = Math.sin(rot);
+    const strokes = (gl ? gl.s : []).map((st) => penStroke(penFlat(st.k, st.p).map((q) => {
+      const px = gx + q[0] * u - mx, py = y - u + q[1] * u - my;
+      return [mx + (px * co - py * si) * sc, my + dy + (px * si + py * co) * sc];
+    })));
+    chars.push({ ch, i, strokes, cx: gx, adv: a * u, known: !!gl });
+    cx += cell;
+  }
+  const out = { chars, w, ox, u, size };
+  PEN_CACHE[key] = out;
+  return out;
+}
+function penCut(st, f) {
+  const fmt = (q) => q[0].toFixed(1) + "," + q[1].toFixed(1);
+  if (f >= 1) return st.pts.map(fmt).join(" ");
+  const s = f * st.len, out = [];
+  for (let j = 0; j < st.pts.length; j++) {
+    if (st.cum[j] <= s) out.push(st.pts[j]);
+    else {
+      const a = st.pts[j - 1], b = st.pts[j], k = (s - st.cum[j - 1]) / (st.cum[j] - st.cum[j - 1] || 1);
+      out.push([a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k]);
+      break;
+    }
+  }
+  if (out.length < 2) out.push([out[0][0] + 0.01, out[0][1]]);
+  return out.map(fmt).join(" ");
+}
+function penAt(st, f) {
+  const s = Math.max(0, Math.min(1, f)) * st.len;
+  for (let j = 1; j < st.pts.length; j++) {
+    if (st.cum[j] >= s) {
+      const a = st.pts[j - 1], b = st.pts[j], k = (s - st.cum[j - 1]) / (st.cum[j] - st.cum[j - 1] || 1);
+      return [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k];
+    }
+  }
+  const e = st.pts[st.pts.length - 1];
+  return [e[0], e[1]];
+}
+function penPlan(o) {
+  const texts = Array.isArray(o.text) ? o.text : [o.text], ats = o.at || [];
+  const alignOf = (k) => String((Array.isArray(o.align) ? o.align[k] : o.align) || o.anchor || "start"), colorOf = (k) => String((Array.isArray(o.color) ? o.color[k] : o.color) || PEN_INK);
+  const toks = [];
+  let lastSize = 48;
+  texts.forEach((tx, k) => {
+    const size = Number(Array.isArray(o.size) ? o.size[k] : o.size) || tx && typeof tx === "object" && Number(tx.size) || lastSize;
+    if (tx && typeof tx === "object" && Array.isArray(tx.dab)) {
+      const D = tx.dab.map(Number);
+      if (D.length < 2 || !D.every(isFinite)) return;
+      toks.push({ text: ".", size, color: colorOf(k), dab: true, lay: { u: size * PEN_H, chars: [{ ch: ".", i: 0, strokes: [penStroke([[D[0], D[1]], [D[0], D[1]]])], known: true, cx: D[0], adv: 0 }] } });
+      return;
+    }
+    if (tx && typeof tx === "object" && Array.isArray(tx.line)) {
+      const L = tx.line.map(Number);
+      if (L.length < 4 || !L.every(isFinite)) return;
+      toks.push({ text: "|", size, color: colorOf(k), line: true, lay: { u: size * PEN_H, chars: [{ ch: "|", i: 0, strokes: [penStroke([[L[0], L[1]], [L[2], L[3]]])], known: true, cx: L[0], adv: Math.abs(L[2] - L[0]) }] } });
+      return;
+    }
+    const s = String(tx == null ? "" : tx), a = ats[k] || ats[ats.length - 1];
+    if (!s || !actOk(a)) return;
+    lastSize = size;
+    toks.push({ text: s, size, color: colorOf(k), lay: penLayout(s, a.x, a.y, size, alignOf(k), Number(Array.isArray(o.step) ? o.step[k] : o.step) || 0) });
+  });
+  if (!toks.length) return null;
+  const strokes = [], hits = [], ticks = [];
+  let t = PEN_IN;
+  toks.forEach((tk, ti) => {
+    const chars = tk.lay.chars, flat = [];
+    chars.forEach((c, ci) => c.strokes.forEach((st) => flat.push({ st, ci })));
+    const gaps = flat.map((e, j) => {
+      if (!j) return 0;
+      const a = flat[j - 1].st.pts[flat[j - 1].st.pts.length - 1], b = e.st.pts[0];
+      return e.ci !== flat[j - 1].ci || Math.hypot(a[0] - b[0], a[1] - b[1]) > 0.05 * tk.lay.u ? PEN_HOP : 0;
+    });
+    const B = tk.dab ? PEN_DAB : tk.line ? PEN_LINE : PEN_NUM + 80 * Math.max(0, tk.text.length - 4), hopSum = gaps.reduce((s, g) => s + g, 0);
+    const drawMs = Math.max(B * 0.5, B - hopSum), base = PEN_MIN * flat.length, lenSum = flat.reduce((s, e) => s + e.st.len, 0) || 1;
+    const ends = chars.map(() => null), tokStart = t;
+    flat.forEach((e, j) => {
+      const d = drawMs >= base ? PEN_MIN + (drawMs - base) * e.st.len / lenSum : drawMs / flat.length;
+      t += gaps[j];
+      strokes.push({ st: e.st, t0: t, t1: t + d, sw: penSw(tk.size), color: tk.color, dab: !!tk.dab });
+      ticks.push(Math.round(t));
+      t += d;
+      ends[e.ci] = t;
+    });
+    let prev = tokStart;
+    chars.forEach((_, ci) => {
+      if (ends[ci] != null) prev = ends[ci];
+      hits.push(Math.round(prev));
+    });
+    if (ti < toks.length - 1) t += PEN_GAP;
+  });
+  if (!strokes.length) return null;
+  const total = Math.round(t + PEN_OUT), first = strokes[0].st.pts[0];
+  return { move: "write", tool: "pencil", pic: actPic("pencil"), total, hits, ticks, strokes, at: ats.filter(actOk), off: ACT_OFF.pencil, path: [{ x: first[0], y: first[1] }] };
+}
+function penTip(p, t) {
+  const S = p.strokes;
+  let pt = S[0].st.pts[0], j = -1;
+  for (let k = 0; k < S.length; k++) if (S[k].t0 <= t) j = k;
+  if (j >= 0) {
+    const s = S[j];
+    if (t <= s.t1) pt = penAt(s.st, (t - s.t0) / (s.t1 - s.t0 || 1));
+    else {
+      const a = s.st.pts[s.st.pts.length - 1];
+      if (j + 1 < S.length) {
+        const b = S[j + 1].st.pts[0], k = Math.min(1, (t - s.t1) / (S[j + 1].t0 - s.t1 || 1));
+        pt = [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k];
+      } else pt = a;
+    }
+  }
+  const lead = t < PEN_IN ? 1 - Math.max(0, Math.min(1, t / PEN_IN)) : t > p.total - PEN_OUT ? 1 - Math.max(0, Math.min(1, (p.total - t) / PEN_OUT)) : 0;
+  return { x: pt[0] + p.off[0] * lead * lead, y: pt[1] + p.off[1] * lead * lead, o: 1 - lead };
+}
+function penWriteLayer(p, t, w, h, C) {
+  const q = penTip(p, t), pic = p.pic;
+  const ink = [];
+  p.strokes.forEach((e, j) => {
+    const f = Math.max(0, Math.min(1, (t - e.t0) / (e.t1 - e.t0 || 1)));
+    if (f > 0 && !e.dab) ink.push(<polyline key={j} data-role="pen-ink" points={penCut(e.st, f)} fill="none" stroke={e.color} strokeWidth={e.sw} strokeLinecap="round" strokeLinejoin="round" />);
+  });
+  let body;
+  if (pic) {
+    const f = pic.fit, k = f.len / Math.max(f.w, f.h), pw = f.w * k, ph = f.h * k;
+    body = <g transform={`translate(${q.x} ${q.y}) rotate(${(f.rot || 0) + PEN_TILT + 3 * Math.sin(t / 55)})`}>
+        <image data-role="act" href={pic.src} x={-f.ax * pw} y={-f.ay * ph} width={pw} height={ph} preserveAspectRatio="none" />
+      </g>;
+  } else {
+    body = <g transform={`translate(${q.x} ${q.y}) rotate(-18) scale(1.4)`}>
+        <ActHand pose="point" ink={C.ink} />
+      </g>;
+  }
+  return <g>
+      <g data-role="pen-writing">{ink}</g>
+      <g opacity={q.o}>
+        <clipPath id="c4ActClip"><rect x={0} y={0} width={w} height={h} /></clipPath>
+        <g clipPath="url(#c4ActClip)" filter="url(#fShadowSoft)">{body}</g>
+      </g>
+    </g>;
+}
+function PencilLine({ x1, y1, x2, y2, size, color, width, opacity }) {
+  const st = penStroke([[x1, y1], [x2, y2]]);
+  return <polyline data-role="pencil-line" points={penCut(st, 1)} fill="none" stroke={color || PEN_INK} strokeWidth={width || penSw(size)} strokeLinecap="round" strokeLinejoin="round" opacity={opacity == null ? 1 : opacity} />;
+}
+function PencilText({ text, x, y, size, align, anchor, step, color, chars, width, opacity }) {
+  const s = String(text == null ? "" : text), L = penLayout(s, x, y, size, String(align || anchor || "start"), Number(step) || 0);
+  const n = chars == null ? s.length : Math.max(0, Math.min(s.length, chars)), sw = width || penSw(size), col = color || PEN_INK, out = [];
+  L.chars.forEach((c) => {
+    if (c.i >= n) return;
+    if (!c.known) out.push(<text key={c.i} x={c.cx + c.adv / 2} y={y} textAnchor="middle" fontSize={size} fontWeight={500} fill={col}>{c.ch}</text>);
+    c.strokes.forEach((st, j) => out.push(<polyline key={c.i + "." + j} points={penCut(st, 1)} fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round" />));
+  });
+  return <g data-role="pencil-text" opacity={opacity == null ? 1 : opacity}>{out}</g>;
 }
 const CSS = `
 .c4-frame{width:min(100vw,177.78vh);height:min(100vh,56.25vw)}
@@ -4881,6 +5156,13 @@ const RB3 = { Z: 84, sc: 52, y: 182, h: 108, objY: 110, brY: 306, keyY: 442, key
 const RB_RULER_CM = 15;
 const RB4 = { Z: 62, sc: 27, cm: 30, objY: 60, scaleY: 150, scaleH: 76, barY: 232, cntY: 290, cardY: 296, cardH: 128, keyY: 438, keyH: 72, pickY: 288, pickH: 222 };
 const RB_CARD4_X = [110, 510];
+/* where the pencil writes the guess on the guess card and where the card draws it: the card's start x, the baseline the printed guess sat on (card y + 116), the size it was
+   printed with (T.xl); ux = where the printed unit starts (after the pencil digits' own width and a Poppins space). The act (pressGuess, shifted by ox through WP) and
+   drawScaleQ (inside translate(ox, 0)) use these very numbers, so nothing moves when the act ends. */
+const rbGuessPen = (ds) => {
+  const x = RB_CARD4_X[0] + 64, y = RB4.cardY + 116, size = T.xl;
+  return { x, y, size, ux: x + penLayout(ds, x, y, size, "start").w + Math.round(size * 0.26) };
+};
 const rbBinOf = (u) => MODEL.bins.find((b) => MODEL.families[b].indexOf(u) >= 0) || "length";
 const rbCardBox = (u) => {
   const bin = rbBinOf(u), b = MODEL.bins.indexOf(bin), fam = MODEL.families[bin], k = fam.indexOf(u);
@@ -5494,11 +5776,9 @@ function Work({ n, item, index, stage, wrong, api, step, stepOn, box, lang = "en
       return;
     }
     if (busy()) return;
-    const ds = String(it.estimate), N = ds.length + 1, x0 = RB_CARD4_X[0] + 64, y = RB4.cardY + 108;
-    const at = [];
-    for (let j = 0; j < N; j++) at.push(WP({ x: x0 + 18 + j * 34, y }));
+    const ds = String(it.estimate), N = ds.length + 1, gp = rbGuessPen(ds);
     run(
-      { tool: "pencil", moves: "push", at, onPoint: (i) => put({ gw: i + 1 }) },
+      { tool: "pencil", moves: "write", text: ds, at: [WP({ x: gp.x, y: gp.y })], size: gp.size, align: "start", color: C.ink, onPoint: (i) => put({ gw: i + 1 }) },
       () => {
         put({ gw: N });
         stepDone("guess");
@@ -5929,7 +6209,7 @@ function Work({ n, item, index, stage, wrong, api, step, stepOn, box, lang = "en
       </g>;
   };
   const drawScaleQ = () => {
-    const isWarm = K === "warm4", E = it.estimate, M = it.measure;
+    const isWarm = K === "warm4", E = it.estimate, M = it.measure, gp = rbGuessPen(String(E));
     const showScale = !isWarm || st.measured;
     const guessW = isWarm ? st.gw : 99, guessDone = !isWarm || st.gw > String(E).length;
     const measured = !isWarm || st.measured;
@@ -5953,7 +6233,10 @@ function Work({ n, item, index, stage, wrong, api, step, stepOn, box, lang = "en
         {[0, 1].map((j) => <g key={"cd" + j}>
             <rect x={RB_CARD4_X[j]} y={RB4.cardY} width={280} height={RB4.cardH} rx={18} fill="#FFFFFF" stroke={C.ink} strokeWidth={3} />
             <text x={RB_CARD4_X[j] + 140} y={RB4.cardY + 44} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink}>{tx(j === 0 ? "guess" : "measure")}</text>
-            {j === 0 && isWarm ? <text x={RB_CARD4_X[0] + 64} y={RB4.cardY + 116} textAnchor="start" fontSize={T.xl} fontWeight={700} fill={C.ink}>{cardVal(0)}</text> : <text x={RB_CARD4_X[j] + 140} y={RB4.cardY + 116} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>{cardVal(j)}</text>}
+            {j === 0 && isWarm ? <g>
+              <PencilText text={String(E)} x={gp.x} y={gp.y} size={gp.size} align="start" color={C.ink} chars={Math.min(guessW, String(E).length)} />
+              {guessW > String(E).length && <text x={gp.ux} y={gp.y} textAnchor="start" fontSize={T.xl} fontWeight={700} fill={C.ink}>{tx("cm")}</text>}
+            </g> : <text x={RB_CARD4_X[j] + 140} y={RB4.cardY + 116} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>{cardVal(j)}</text>}
           </g>)}
         {D && D.done && <text x={RB_DW / 2} y={500} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={RB_GAP_INK}>{hi - lo + " " + tx("cm")}</text>}
         {keyId && <Key key="act0" id={keyId} label={tx(keyId === "guess" ? "Guess" : "Measure")} x={330} y={RB4.keyY} w={240} h={RB4.keyH} C={C} tone="key" onClick={() => act(keyId)}>

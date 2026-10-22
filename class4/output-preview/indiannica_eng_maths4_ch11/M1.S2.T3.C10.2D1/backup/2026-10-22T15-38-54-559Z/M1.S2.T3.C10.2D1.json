@@ -1,0 +1,1095 @@
+{
+  "slotId": "M1.S2.T3.C10.2D1",
+  "mediaId": "M1.S2.T3.C10.2D1",
+  "toolId": "unit_ladder",
+  "title": "Unit Ladder",
+  "component": "M1.S2.T3.C8.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch11",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch11_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_11/2dtool/M1.S2.T3.C8.2D1/M1.S2.T3.C8.2D1.tsx",
+  "description": "Step a length up and down a ladder of units, each step painted with its own number, keeping the remainder in the smaller unit and a zero in every empty place.",
+  "conceptIds": [
+    "M1.S2.T3.C10",
+    "M1.S2.T3.C11",
+    "M1.S2.T3.C12",
+    "M1.S2.T3.C13"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find the number that joins each pair of length units, and use it to change a length both ways without losing what is left or an empty place.",
+    "look": "A ladder of four rungs with a number painted on each step, a remainder slot on each rung, and a place board underneath.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Unit Ladder' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the steps crossed against the steps this phase lays out, two numbers in ink, the first climbing by one as each tile settles on its step or each card crosses a step, and the second fixed at what this phase holds. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The ladder stands at the left of the working area, 300 by 500 at 64,214, four rungs one above the other, millimetres at the bottom, then centimetres, metres and kilometres, each rung labelled with its unit in ink. Each step between two rungs carries a painted panel, 120 by 56, holding the number that joins them: ten between millimetres and centimetres, a hundred between centimetres and metres, and a thousand between metres and kilometres. On the first phase the three panels are blank and three number tiles, each 110 by 56, wait beside the ladder at 380,214; a tile set on a step it does not belong to slides back, and the ruler or the metre stick at that step lights. A small centimetre ruler stands beside the centimetre rung, a metre stick beside the metre rung and a kilometre road sign beside the kilometre rung. A remainder slot, 150 by 56, sits inside the ladder at the right end of each of the three lower rungs, labelled with that rung's unit. The measure card, 300 by 80, rides on the rung it is in, starting at 380 across; a card in two units shows its larger part in deep blue and its smaller part in green. The step down control, 150 by 56 at 700,300, multiplies the card's larger part by the painted number of the step it crosses and adds the smaller part. The step up control, 150 by 56 at 700,370, divides by that number: the quotient climbs onto the rung above in deep blue, and the remainder drops into the slot on the rung the card came from, in green, where it stays at full size. The slot writes the remainder as a number, as any remainder is written, with no zero standing in front of its other digits. A card sent across a step by any number other than that step's own is handed back with the painted number lit. The rebuild control, 150 by 56 at 700,440, walks the quotient back down, multiplying it by the step's number, and adds the remainder, so the card the child began with is written again beside the answer. The place board runs under the controls, 560 by 120 at 380,580: four boxes one digit each, headed thousands, hundreds, tens and ones, with a fifth box for ten thousands at the left that opens only when a free play length needs it. A box the smaller part leaves empty takes a grey zero drawn at the same size as every other digit. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across and has no dot key. The answer slot is a measure card of its own with one box for each unit the question asks for, the unit names printed beside the boxes, so an answer asked in two units cannot be given in one. On the first phase the slot holds three small step boxes instead, one for each step. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The larger unit of any pair, kilometres beside metres, metres beside centimetres, centimetres beside millimetres, kilograms and litres, is deep blue wherever it is drawn: its digits in a column, a bar standing for whole units, or a kilogram weight. The smaller unit of the pair, and the part left over after the whole units, is green: metres beside kilometres, centimetres beside metres, millimetres, grams and millilitres. One larger unit carried from the smaller column, or broken into smaller units to borrow, and every digit that move rewrites, is amber. A zero that fills an empty place of the smaller unit is grey. What is left after taking away, and the difference between two measures, is reddish purple. A count of things, handspans, glasses, jars, pourings or bags, is sky blue. The zero mark of a ruler or tape, and the mark where a reading is taken, are vermilion. Water and every other liquid is pale blue. Chrome never borrows one of those and none of them is ever used for chrome: every other tick and numeral on a ruler, and every rule, column line, bracket, strike line, table rule and panel edge, is near-black. Every reading survives with the colour taken away, because a unit is told apart by its column heading and its unit name, a padding zero by the box it sits in, a carried or broken unit by the chip it rides on, and a count by the slot that names what is counted, before any of them is told by a colour. Grey never means faint: a zero in the smaller unit's places is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. A figure that goes down by one when a unit is broken is struck through once with the new figure written above it, and never rubbed out. No measure in two units is written as a decimal anywhere on the stage. A step takes only its own number: crossing it by any other number is refused before anything is worked, so no wrong conversion is ever drawn on the ladder as if it were a measure. A remainder is smaller than the number of the step it was divided by, so a slot never holds a whole larger unit.",
+    "finish": "The card shows the ladder with every step painted, the last card the child moved, its remainder in the slot and its answer on the place board.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "each step carries its own number, and ten sits only between millimetres and centimetres",
+        "does": "sets each number tile on the step it belongs to, checking it against the ruler and the metre stick",
+        "goal": "ten millimetres make a centimetre, a hundred centimetres make a metre and a thousand metres make a kilometre",
+        "says": "How many centimetres make a metre? Is it the same number as millimetres in a centimetre?",
+        "check": "Away from the screen: how many centimetres are there in two metres, and how many millimetres in two centimetres?",
+        "feels": "each gap on the ladder is a different size, so each step carries a different number",
+        "hands": "Lay a metre stick beside a thirty centimetre ruler and count with the class how many centimetres the stick covers, moving the ruler along it. Then look closely at one centimetre on the ruler and count its millimetres. Write the two numbers on the board side by side, a hundred and ten, and ask whether one number could do for both steps. Then tell the class that a thousand metres make a kilometre, a long walk.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which two units does this step join? Second rung, the phase's: how many of the smaller unit fit into one of the larger, by the ruler or the stick beside it? Third rung: the ladder is cut to one step, and the child counts along the ruler or the stick before the other steps come back. The number pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "ten is the first joining number met, and one number for every step sounds tidier than three.",
+            "move": "sets the ten tile on the step between centimetres and metres, and writes four metres as forty centimetres.",
+            "screen": "the tile slides back off the step, and the metre stick beside the metre rung lights, laid against the centimetre ruler: forty centimetres cover less than half of one stick, while four metres are four whole sticks laid end to end. The hundred tile then settles on that step, and the child's forty stays in the slot, nothing marked."
+          },
+          {
+            "why": "a hundred was the number on the step just below, and the step above looks like more of the same.",
+            "move": "sets the hundred tile on the step between metres and kilometres, and writes two kilometres as two hundred metres.",
+            "screen": "the tile slides back, and the road sign's kilometre is laid out beside the ladder in metre sticks: two hundred metres reach only a fifth of the way along the first kilometre. The thousand tile settles on the step, and the child's two hundred stays in the slot beside the road."
+          }
+        ],
+        "screen": "the ladder with its three steps unpainted, three number tiles beside it, and the ruler, the metre stick and the road sign at their rungs",
+        "soWhat": "Ten millimetres make a centimetre, a hundred centimetres make a metre, and a thousand metres make a kilometre. Each step has its own number.",
+        "concept": "Each step has its own number"
+      },
+      {
+        "n": 2,
+        "win": "the card lands on the metre rung with the kilometres turned into thousands of metres and the metres added on",
+        "does": "steps the card down to the metre rung, multiplies the kilometres by the step's number and adds the metres",
+        "goal": "a larger unit becomes a smaller one by multiplying by the number that joins them, and the smaller part is added on",
+        "says": "Step it down. Which number is on this step? Now add on the metres.",
+        "check": "How many metres are there in 8 km 425 m? And in 8 km?",
+        "feels": "the kilometres change their name as they step down, and the metres just come along",
+        "hands": "Write 3 km 250 m on the board. Ask how many metres are in one kilometre, then in three, and write three thousand. Add the two hundred and fifty on and read the whole number aloud. Then cover the metres and ask what the answer would have said if they had been forgotten.",
+        "tries": "First rung, from the item: which step is the card crossing? Second rung, the phase's: what happens to the smaller part? Third rung: the card is cut to one kilometre and a few metres, and the child steps it down before the larger card comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "a hundred joined the last pair of units met, and multiplying by it has become a habit.",
+            "move": "multiplies the kilometres by a hundred and writes eight hundred and eighteen metres for five kilometres three hundred and eighteen metres.",
+            "screen": "the card is handed back to the kilometre rung with the step's own number, a thousand, lit on its panel. The step is taken again: five thousand metres drop down beside the three hundred and eighteen, and the card lands on the metre rung reading five thousand three hundred and eighteen. The child's eight hundred and eighteen stays in the slot, nothing marked."
+          },
+          {
+            "why": "the multiplying feels like the whole job, and the three hundred and eighteen metres look finished already.",
+            "move": "multiplies the kilometres correctly but leaves the metres behind, and writes five thousand metres.",
+            "screen": "the three hundred and eighteen metres stay lit on the kilometre rung after the card has stepped down, left behind. They then step down after it, already metres, and join the five thousand, and the card reads five thousand three hundred and eighteen. The child's five thousand stays in the slot beside it."
+          }
+        ],
+        "screen": "a card in kilometres and metres on the kilometre rung",
+        "soWhat": "Larger to smaller: multiply the larger part by the step's number, then add the smaller part.",
+        "concept": "Larger to smaller: multiply"
+      },
+      {
+        "n": 3,
+        "win": "the metres stand on the upper rung and the centimetres left sit in the slot, and together they rebuild the card",
+        "does": "steps the card up, divides by a hundred, sends the quotient up as metres and drops the remainder in the slot",
+        "goal": "divide by the number that joins the units; the quotient is the larger unit and the remainder stays as the smaller unit",
+        "says": "How many whole metres are in it? What is left stays in centimetres.",
+        "check": "Write 638 cm in metres and centimetres. Then write 94 mm in centimetres and millimetres.",
+        "feels": "the whole metres climb away, and what cannot make a metre stays behind in centimetres",
+        "hands": "Give each group a paper strip five hundred and seventy centimetres long and a metre stick. They lay the stick along the strip as many whole times as it fits, marking each metre, and measure the piece left over with a ruler. Write five metres and the seventy centimetres left over, and ask why the seventy did not become a sixth metre.",
+        "tries": "First rung, from the item: which number joins these two units? Second rung, the phase's: how many whole larger units fit, and what is left? Third rung: the card is cut to a little more than one larger unit, and the child steps it up and rebuilds it before the larger card comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "dividing by moving a point gives a decimal, and the digit after the point looks like the centimetres.",
+            "move": "divides five hundred and seventy by a hundred to get five point seven, and reads it as five metres seven centimetres.",
+            "screen": "the step up drops the remainder into the centimetres slot, seventy, and the quotient climbs to the metre rung, five. The child's five metres seven centimetres is rebuilt down the ladder beside it, five hundred and seven centimetres, which stands sixty-three short of the card's five hundred and seventy. Both stay drawn, and the child's answer stays in the slot."
+          },
+          {
+            "why": "a division's answer is its quotient, and the remainder looks like something left over and finished with.",
+            "move": "writes eight metres for eight hundred and forty-six centimetres and stops, leaving the remainder out.",
+            "screen": "the remainder slot on the centimetre rung holds forty-six in green, lit, beside the eight metres on the rung above. The rebuild control walks the eight metres back down, eight hundred centimetres, and lays them beside the card, forty-six centimetres short. The forty-six then join them and the card is whole again, the child's eight metres still in the slot."
+          },
+          {
+            "why": "the metres beside kilometres take three places, and sixty-five looks short, so it is moved to the front.",
+            "move": "writes four kilometres six hundred and fifty metres for four thousand and sixty-five metres, pushing the sixty-five to the front of the three places.",
+            "screen": "the remainder slot writes sixty-five as a number, and the rebuild puts it back: four thousand metres and sixty-five metres make four thousand and sixty-five. The child's answer is rebuilt beside it, four thousand six hundred and fifty metres, five hundred and eighty-five too many, and both stay drawn."
+          }
+        ],
+        "screen": "a card in centimetres alone on the centimetre rung, with an empty remainder slot beside it",
+        "soWhat": "Smaller to larger: divide by the step's number. The quotient is the larger unit and the remainder stays as the smaller unit.",
+        "concept": "Smaller to larger: divide and keep the rest"
+      },
+      {
+        "n": 4,
+        "win": "a zero drops into the empty hundreds box and the answer reads with every place filled",
+        "does": "steps the card down and writes the answer on the place board, one digit to a box",
+        "goal": "when the smaller part does not fill its places, a zero holds each empty one",
+        "says": "The metres fill the tens and the ones. What goes in the hundreds?",
+        "check": "Write 5 km 9 m in metres. How many zeros did you write, and which places do they hold?",
+        "feels": "the empty place does not disappear; it waits for a zero to hold it open",
+        "hands": "Draw four boxes on the board headed thousands, hundreds, tens and ones. Ask the class to write eight kilometres forty-seven metres in metres, one digit to a box: the eight thousands first, then the forty-seven in the tens and the ones. Point to the empty hundreds box and ask what goes there. Then ask what four hundred and six centimetres is in metres and centimetres, and what its zero was holding.",
+        "tries": "First rung, from the item: how many places do the metres take beside kilometres? Second rung, the phase's: which boxes are still empty? Third rung: the card is cut to one kilometre and a few metres, and the child fills the board before the larger card comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "numbers are written down in the order they are said, and nothing said out loud names the empty hundreds.",
+            "move": "writes eight thousand four hundred and seventy metres for eight kilometres forty-seven metres, putting the forty-seven straight after the eight.",
+            "screen": "the place board takes the eight thousands in its thousands box and the forty-seven in the tens and the ones, and the hundreds box stays empty and pulses until a grey zero drops into it at full size: eight thousand and forty-seven. The child's number is laid on a second board beside it, four hundred and twenty-three metres more, and both stay drawn."
+          },
+          {
+            "why": "the zero sits in the middle of the number, and it looks like padding that could go anywhere.",
+            "move": "writes four metres sixty centimetres for four hundred and six centimetres, reading the zero as if it came after the six.",
+            "screen": "the step up drops the remainder into the centimetres slot as a number, six, and the four metres climb. The place board shows the card's zero in its tens box, holding that place, and the child's four metres sixty centimetres is rebuilt beside it, four hundred and sixty centimetres, fifty-four too many."
+          }
+        ],
+        "screen": "a card in kilometres and a two-digit number of metres, and the place board with four empty boxes",
+        "soWhat": "A zero holds each place the smaller part leaves empty. Beside kilometres the metres take three places.",
+        "concept": "A zero that holds a place"
+      }
+    ],
+    "delight": "The third phase, the moment the rebuild control is pressed after a step up. The whole metres on the upper rung step back down one at a time, each unrolling into a strip of a hundred centimetres that lays itself along the lower rung, and the remainder slides out of its slot and joins the end of the row. The card that began the phase is written again beside the answer, digit for digit. It can be stepped up and rebuilt as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the ladder stands with its three step panels blank and three number tiles waiting beside it, the ruler, the metre stick and the road sign at their rungs. On the second a card in kilometres and metres rests on the kilometre rung. On the third a card in centimetres alone rests on the centimetre rung, with the remainder slot beside it empty. On the fourth a card in kilometres and a two-digit number of metres rests on the kilometre rung above the place board's four empty boxes. The running count at the top left holds the steps crossed against the steps this phase lays out, and the answer slot and the pad stand empty down the right. One thing moves, once: a blank step panel, or the card, or the empty remainder slot, or the hundreds box, gives one slow pulse while the voice asks which number belongs on each step. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any length up to ninety-nine kilometres on any rung, stepped up or down, with the remainder slots and the place board open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first: the number joining each pair of units, larger units to smaller, smaller to larger with the remainder kept, and zeros in empty places.",
+    "voiceLines": [
+      "A ladder of length units. Which number belongs on each step?",
+      "How many centimetres make a metre? Is it the same number as millimetres in a centimetre?",
+      "Step it down. Which number is on this step? Now add on the metres.",
+      "How many whole metres are in it? What is left stays in centimetres.",
+      "The metres fill the tens and the ones. What goes in the hundreds?",
+      "A new card. Name the two units before you use any number.",
+      "Free play. Any length on any rung, stepped up or down, with the slots and the place board open.",
+      "Find the step you are crossing, and read the number painted on it.",
+      "Every step given its own number, every remainder kept in the smaller unit, and every empty place holding a zero."
+    ],
+    "observations": [
+      {
+        "why": "Ten millimetres make a centimetre, but a hundred centimetres make a metre and a thousand metres make a kilometre.",
+        "soWhat": "Each step between units has its own number, and on this ladder ten belongs only between millimetres and centimetres.",
+        "observe": "The ten tile would sit only on the lowest step, and the metre stick lined up with a hundred centimetres on the ruler."
+      },
+      {
+        "why": "Each kilometre is a thousand metres, and the metres were metres already.",
+        "soWhat": "Larger to smaller: multiply the larger part by the step's number, then add the smaller part.",
+        "observe": "Stepping down, the kilometres became thousands of metres and the metres on the card were added on."
+      },
+      {
+        "why": "Seventy centimetres are not enough to make another metre, so they cannot climb.",
+        "soWhat": "Smaller to larger: divide by the step's number. The quotient is the larger unit and the remainder stays as the smaller unit.",
+        "observe": "Stepping up, the whole metres climbed to the rung above and seventy centimetres stayed in the slot."
+      },
+      {
+        "why": "Beside kilometres the metres have three places, and a number of metres below a hundred leaves the hundreds place empty.",
+        "soWhat": "A zero holds each place the smaller part leaves empty, so eight kilometres forty-seven metres is eight thousand and forty-seven metres.",
+        "observe": "The metres filled only the tens and the ones, and a zero dropped into the empty hundreds box."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the ladder with its three steps unpainted, three number tiles beside it, and the ruler, the metre stick and the road sign at their rungs",
+        "win": "each step carries its own number, and ten sits only between millimetres and centimetres",
+        "traceback": "The step that joins the two units lights, metre sticks are laid out in centimetres, the right number shows on the step and the length is written in both units.",
+        "ladder": [
+          "The long marks on the metre stick are 10 cm apart: count the gaps.",
+          "Read the metre stick for the first box and the ruler for the second.",
+          "Start with the bottom step, the two smallest units.",
+          "How many of the smaller unit fit into one of the larger?",
+          "Check each step against the ruler, the metre stick or the road sign."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a card in kilometres and metres on the kilometre rung",
+        "win": "the card lands on the metre rung with the kilometres turned into thousands of metres and the metres added on",
+        "traceback": "The card steps down with the step's number lit, the larger part is multiplied by it and the smaller part added, and the card reads the whole length.",
+        "ladder": [
+          "Which step is the card crossing, and what number is on it?",
+          "Read the number painted between metres and centimetres.",
+          "Multiply the centimetres first, then bring the millimetres along.",
+          "Which part of the card gets multiplied, and by which number?",
+          "Start with 1 of the larger unit: how many of the smaller unit is that?"
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a card in centimetres alone on the centimetre rung, with an empty remainder slot beside it",
+        "win": "the metres stand on the upper rung and the centimetres left sit in the slot, and together they rebuild the card",
+        "traceback": "The card steps up: the quotient climbs to the larger rung, the remainder drops into the slot, the rebuild gives the card again, and the child's answer is rebuilt beside it.",
+        "ladder": [
+          "Which number joins centimetres and metres?",
+          "How many whole centimetres fit in 83 mm?",
+          "How many whole thousands are in 4,608?",
+          "How many whole larger units fit, and what is left over?",
+          "Check: whole units times the step's number, plus the rest, give the card again."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a card in kilometres and a two-digit number of metres, and the place board with four empty boxes",
+        "win": "a zero drops into the empty hundreds box and the answer reads with every place filled",
+        "traceback": "The place board takes the larger part and the smaller part in their own boxes, the empty box is ringed, and a grey zero drops into it.",
+        "ladder": [
+          "How many places do the metres take beside kilometres?",
+          "7 m takes only the ones place: what fills the two places before it?",
+          "Beside metres, centimetres take two places: which two digits are they?",
+          "Which place does each digit on the card sit in?",
+          "Start the smaller part at the ones place and work to the left."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "rungs": [
+      "millimetres",
+      "centimetres",
+      "metres",
+      "kilometres"
+    ],
+    "units": [
+      "mm",
+      "cm",
+      "m",
+      "km"
+    ],
+    "stepNumbers": [
+      10,
+      100,
+      1000
+    ],
+    "tray": [
+      100,
+      1000,
+      10
+    ],
+    "placeBoard": [
+      "thousands",
+      "hundreds",
+      "tens",
+      "ones"
+    ],
+    "warmUps": [
+      "3 km 125 m (phase 2)",
+      "250 cm (phase 3)",
+      "5 km 26 m (phase 4)"
+    ],
+    "freePlayStart": "4,065 m on the metre rung",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T3.C10:ML1",
+        "kind": "claim",
+        "step": 1,
+        "count": 3,
+        "answer": 300,
+        "near": 30,
+        "winMs": 3600,
+        "win": "Yes, 3 m is 300 cm, not 30 cm."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T3.C10:1",
+        "kind": "pair",
+        "parts": [
+          {
+            "label": "1 m",
+            "unit": "cm"
+          },
+          {
+            "label": "1 cm",
+            "unit": "mm"
+          }
+        ],
+        "answer": [
+          100,
+          10
+        ],
+        "near": "10|10",
+        "winMs": 3600,
+        "win": "Yes, 100 cm make 1 m and 10 mm make 1 cm."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T3.C10:2",
+        "kind": "tiles",
+        "pad": "enter",
+        "answer": "10|100|1000",
+        "near": "100|10|1000",
+        "winMs": 3600,
+        "win": "Yes, the 10 sits only between millimetres and centimetres."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T3.C11:ML2",
+        "kind": "down",
+        "from": 3,
+        "big": 7,
+        "small": 245,
+        "answer": 7245,
+        "near": 945,
+        "winMs": 3600,
+        "win": "Yes, 7 km 245 m is 7,245 m."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T3.C11:3",
+        "kind": "down",
+        "from": 2,
+        "big": 9,
+        "small": 0,
+        "answer": 900,
+        "near": 90,
+        "winMs": 3600,
+        "win": "Yes, 9 m is 900 cm."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T3.C11:4",
+        "kind": "down",
+        "from": 1,
+        "big": 12,
+        "small": 7,
+        "answer": 127,
+        "near": 120,
+        "winMs": 3600,
+        "win": "Yes, 12 cm 7 mm is 127 mm."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T3.C12:ML3",
+        "kind": "up",
+        "from": 1,
+        "total": 570,
+        "parts": [
+          {
+            "label": "m"
+          },
+          {
+            "label": "cm"
+          }
+        ],
+        "answer": [
+          5,
+          70
+        ],
+        "near": "5|7",
+        "winMs": 3600,
+        "win": "Yes, 570 cm is 5 m 70 cm."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T3.C12:5",
+        "kind": "up",
+        "from": 0,
+        "total": 83,
+        "parts": [
+          {
+            "label": "cm"
+          },
+          {
+            "label": "mm"
+          }
+        ],
+        "answer": [
+          8,
+          3
+        ],
+        "near": "8|0",
+        "winMs": 3600,
+        "win": "Yes, 83 mm is 8 cm 3 mm."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T3.C12:6",
+        "kind": "up",
+        "from": 2,
+        "total": 4608,
+        "parts": [
+          {
+            "label": "km"
+          },
+          {
+            "label": "m"
+          }
+        ],
+        "answer": [
+          4,
+          608
+        ],
+        "near": "46|8",
+        "winMs": 3600,
+        "win": "Yes, the path is 4 km 608 m."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T3.C13:ML4",
+        "kind": "down",
+        "pb": true,
+        "from": 3,
+        "big": 6,
+        "small": 38,
+        "answer": 6038,
+        "near": 6380,
+        "winMs": 3600,
+        "win": "Yes, 6 km 38 m is 6,038 m."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T3.C13:7",
+        "kind": "down",
+        "pb": true,
+        "from": 3,
+        "big": 9,
+        "small": 7,
+        "answer": 9007,
+        "near": 9700,
+        "winMs": 3600,
+        "win": "Yes, 9 km 7 m is 9,007 m."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T3.C13:8",
+        "kind": "up",
+        "pb": true,
+        "from": 1,
+        "total": 305,
+        "parts": [
+          {
+            "label": "m"
+          },
+          {
+            "label": "cm"
+          }
+        ],
+        "answer": [
+          3,
+          5
+        ],
+        "near": "3|50",
+        "winMs": 3600,
+        "win": "Yes, the ribbon is 3 m 5 cm."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The step that joins the two units lights, metre sticks are laid out in centimetres, the right number shows on the step and the length is written in both units.",
+      "Phase 2: The card steps down with the step's number lit, the larger part is multiplied by it and the smaller part added, and the card reads the whole length.",
+      "Phase 3: The card steps up: the quotient climbs to the larger rung, the remainder drops into the slot, the rebuild gives the card again, and the child's answer is rebuilt beside it.",
+      "Phase 4: The place board takes the larger part and the smaller part in their own boxes, the empty box is ringed, and a grey zero drops into it."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Here is a ladder of length units, from millimetres up to kilometres.",
+    "onFreePlay": "Free play: step the card up and down the ladder as often as you like.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Each step has its own number, and the rest stays in the smaller unit.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T3.C10:ML1",
+            "worked": false,
+            "kind": "claim",
+            "planQuestion": "A child uses ten for every step and writes 3 m as 30 cm. Is the child right?",
+            "question": {
+              "en": "A child writes 3 m as 30 cm: how many centimetres is 3 m really?"
+            },
+            "ask": {
+              "en": "3 m is how many cm?"
+            },
+            "answer": 300,
+            "planAnswer": "No. 3 m is 300 cm, because a hundred centimetres make a metre",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T3.C10:1",
+            "worked": false,
+            "kind": "pair",
+            "planQuestion": "How many centimetres make a metre, and how many millimetres make a centimetre?",
+            "question": {
+              "en": "How many centimetres make a metre, and how many millimetres make a centimetre?"
+            },
+            "ask": {
+              "en": "cm in 1 m? mm in 1 cm?"
+            },
+            "answer": [
+              100,
+              10
+            ],
+            "planAnswer": "100 cm make a metre, and 10 mm make a centimetre",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T3.C10:2",
+            "worked": false,
+            "kind": "tiles",
+            "planQuestion": "Which number joins each pair: millimetres and centimetres, centimetres and metres, metres and kilometres?",
+            "question": {
+              "en": "Set each number tile on the step it belongs to, then press Enter."
+            },
+            "ask": {
+              "en": "Set each tile on its step."
+            },
+            "answer": "10|100|1000",
+            "planAnswer": "10, 100 and 1000",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T3.C11:ML2",
+            "worked": false,
+            "kind": "down",
+            "planQuestion": "Convert 7 km 245 m into metres.",
+            "question": {
+              "en": "Convert 7 km 245 m into metres."
+            },
+            "ask": {
+              "en": "7 km 245 m in m?"
+            },
+            "answer": 7245,
+            "planAnswer": "7245 m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T3.C11:3",
+            "worked": false,
+            "kind": "down",
+            "planQuestion": "Convert 9 m into centimetres.",
+            "question": {
+              "en": "How many centimetres is 9 m?"
+            },
+            "ask": {
+              "en": "9 m in cm?"
+            },
+            "answer": 900,
+            "planAnswer": "900 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T3.C11:4",
+            "worked": false,
+            "kind": "down",
+            "planQuestion": "Convert 12 cm 7 mm into millimetres.",
+            "question": {
+              "en": "Write 12 cm 7 mm all in millimetres."
+            },
+            "ask": {
+              "en": "12 cm 7 mm in mm?"
+            },
+            "answer": 127,
+            "planAnswer": "127 mm, because 12 cm is 120 mm and 7 mm more makes 127 mm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T3.C12:ML3",
+            "worked": false,
+            "kind": "up",
+            "planQuestion": "Write 570 cm in metres and centimetres.",
+            "question": {
+              "en": "Write 570 cm in metres and centimetres."
+            },
+            "ask": {
+              "en": "570 cm in m and cm?"
+            },
+            "answer": [
+              5,
+              70
+            ],
+            "planAnswer": "5 m 70 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T3.C12:5",
+            "worked": false,
+            "kind": "up",
+            "planQuestion": "Convert 83 mm into centimetres and millimetres.",
+            "question": {
+              "en": "Change 83 mm into centimetres and millimetres."
+            },
+            "ask": {
+              "en": "83 mm in cm and mm?"
+            },
+            "answer": [
+              8,
+              3
+            ],
+            "planAnswer": "8 cm 3 mm, because 83 divided by 10 is 8 remainder 3",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T3.C12:6",
+            "worked": false,
+            "kind": "up",
+            "planQuestion": "A path is 4608 m long. Write its length in kilometres and metres.",
+            "question": {
+              "en": "A path is 4,608 m long: write its length in kilometres and metres."
+            },
+            "ask": {
+              "en": "4,608 m in km and m?"
+            },
+            "answer": [
+              4,
+              608
+            ],
+            "planAnswer": "4 km 608 m, because 4608 divided by 1000 is 4 remainder 608",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T3.C13:ML4",
+            "worked": false,
+            "kind": "down",
+            "planQuestion": "Convert 6 km 38 m into metres.",
+            "question": {
+              "en": "Convert 6 km 38 m into metres."
+            },
+            "ask": {
+              "en": "6 km 38 m in m?"
+            },
+            "answer": 6038,
+            "planAnswer": "6038 m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T3.C13:7",
+            "worked": false,
+            "kind": "down",
+            "planQuestion": "Is 9 km 7 m the same as 9700 m? Write it in metres.",
+            "question": {
+              "en": "A child writes 9 km 7 m as 9,700 m: write it in metres yourself."
+            },
+            "ask": {
+              "en": "9 km 7 m in m?"
+            },
+            "answer": 9007,
+            "planAnswer": "No. It is 9007 m. The 7 m fill the ones, so zeros hold the tens and the hundreds",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T3.C13:8",
+            "worked": false,
+            "kind": "up",
+            "planQuestion": "A ribbon is 305 cm long. Write its length in metres and centimetres.",
+            "question": {
+              "en": "A ribbon is 305 cm long: write its length in metres and centimetres."
+            },
+            "ask": {
+              "en": "305 cm in m and cm?"
+            },
+            "answer": [
+              3,
+              5
+            ],
+            "planAnswer": "3 m 5 cm. 305 divided by 100 is 3 remainder 5; the zero was holding the tens, so it is not 3 m 50 cm",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "unit_ladder",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "unit_ladder",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Each step has its own number",
+        "conceptId": "M1.S2.T3.C10",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C10:ML1",
+          "M1.S2.T3.C10:1",
+          "M1.S2.T3.C10:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Larger to smaller: multiply",
+        "conceptId": "M1.S2.T3.C11",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C11:ML2",
+          "M1.S2.T3.C11:3",
+          "M1.S2.T3.C11:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Smaller to larger: divide and keep the rest",
+        "conceptId": "M1.S2.T3.C12",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C12:ML3",
+          "M1.S2.T3.C12:5",
+          "M1.S2.T3.C12:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A zero that holds a place",
+        "conceptId": "M1.S2.T3.C13",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C13:ML4",
+          "M1.S2.T3.C13:7",
+          "M1.S2.T3.C13:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "card",
+    "rung",
+    "r1",
+    "stepNumber",
+    "F",
+    "quotient",
+    "q",
+    "remainder",
+    "rem",
+    "places"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), card, rung, r1, stepNumber, F, quotient, q, remainder, rem, places, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "unit_ladder"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T3.C10.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A ladder of length units. Which number belongs on each step?"
+    },
+    {
+      "en": "How many centimetres make a metre? Is it the same number as millimetres in a centimetre?"
+    },
+    {
+      "en": "Step it down. Which number is on this step? Now add on the metres."
+    },
+    {
+      "en": "How many whole metres are in it? What is left stays in centimetres."
+    },
+    {
+      "en": "The metres fill the tens and the ones. What goes in the hundreds?"
+    },
+    {
+      "en": "A new card. Name the two units before you use any number."
+    },
+    {
+      "en": "Free play. Any length on any rung, stepped up or down, with the slots and the place board open."
+    },
+    {
+      "en": "Find the step you are crossing, and read the number painted on it."
+    },
+    {
+      "en": "Every step given its own number, every remainder kept in the smaller unit, and every empty place holding a zero."
+    }
+  ],
+  "build": {
+    "source": "33b48bd2:647300",
+    "runtime": "class4/runtime/frozen/r29/runtime.tsx",
+    "runtimeVersion": "r29",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-22T08:52:28.092Z",
+    "checks": {
+      "pass": 94,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-22T08:52:27.842Z"
+    },
+    "tsxBytes": 563694,
+    "tsxMd5": "877747d1326c92155934343a6d6305a3"
+  }
+}

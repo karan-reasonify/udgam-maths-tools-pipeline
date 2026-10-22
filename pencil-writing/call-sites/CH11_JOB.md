@@ -1,12 +1,14 @@
-# Class 4 chapter 11: pencil writing for the READY pairs (the owner, 2026-10-22: "add pencil writing first and then upload")
+# Class 4 chapter 11: pencil writing for the READY pairs (the owner, 2026-10-22: "do that pencil writing for ch 11 tools")
 
-One tool per agent. This is NOT a build: do not run `check`, do not touch `class4/work/`, do not upload, do not edit any `.json`.
+One tool per agent. This is NOT a build: do not run `check`, do not touch `class4/work/` (except that `approve` writes its own `approve-*.png` there), do not UPLOAD, do not edit any `.json` by hand.
 
-## State at the start
-- The seven chapter 11 tools are finished and ported in `class4/output-preview/indiannica_eng_maths4_ch11/<slot>/<slot>.tsx` (+ `.json`). Chapter 11 is pinned to runtime r29.
-- The new `write` helper block has ALREADY been put into your pair by the main session (`node pencil-writing/apply.mjs --file <pair> --apply`). Do not run apply.mjs again except to refresh. Your pair is now "hand-edited (NOT approved)" until you run `approve`.
-- A copy of the pair as it was before this job: `_archive/class4_ch11_pre_pencil/<slot>/` (tsx, json, status.json). Never edit that.
-- litre_jug (M2.S4.T7.C30.2D1) has no pencil act and is left as it is.
+## State at the start (2026-10-22, second attempt)
+- The seven chapter 11 tools are finished, ported AND PUBLISHED (live) in `class4/output-preview/indiannica_eng_maths4_ch11/<slot>/<slot>.tsx` (+ `.json`). Chapter 11 is pinned to runtime r29. Your pair is byte-identical to what is live and to `_archive/class4_ch11_pre_pencil/<slot>/` (tsx, json, status.json): that is the pre-pencil copy and the rollback. Never edit the archive.
+- The helper block is NOT in your pair yet (a first attempt was stopped and its changes were rolled back). **STEP 1 of your job is yours:** `node pencil-writing/apply.mjs --file class4/output-preview/indiannica_eng_maths4_ch11/<slot>/<slot>.tsx` (a dry run: it must say `1 to change, 0 refused`), then the same with `--apply`. From then on your pair is "hand-edited (NOT approved)" until you run `approve`. If the owner stops the job again, a tool whose agent has not started stays byte-identical to what is live.
+- `pencil-writing/call-sites/11__M2.S3.T5.C20.2D1.mjs.stale` is an UNFINISHED draft written against a pair that has since been restored: never run it as it is (the weighing_bench agent may read it as a draft and must re-check every anchor against the current file).
+- litre_jug (M2.S4.T7.C30.2D1) has no pencil act at all (zero `pencil` in its tool source) and is left as it is, as published.
+- Pencil digits are THINNER than the bold Poppins digits beside them (a pencil line is a tenth of the font size, 3.2 px at the least): do not "fix" that in the tool; the owner decides (the knob is `PEN_W` in `pen-core.js`, rebuilt by `build-helper.mjs`).
+- Timings inflate when several Chromes run at once: if `capture` shows a number over about 1 s, re-run `capture` ONCE before changing anything.
 
 ## Read first (docs only, in this order)
 1. `pencil-writing/README.md` (the API of `moves: "write"`, `<PencilText>`, `<PencilLine>`, "Adapting a tool's call sites", "Proving a tool").

@@ -1482,6 +1482,7 @@ function actPic(k) {
   return { src, fit: fit || { w: 1, h: 1, len: 140, ax: 0.5, ay: 0.5, rot: 0 } };
 }
 function actPlan(o) {
+  if (String(o.moves || o.move || "") === "write") return penPlan(o);
   const move = String(o.moves || o.move || "tap"), tool = String(o.tool || "hand");
   const at = (o.at || []).filter(actOk), path = [o.from, ...at, o.to].filter(actOk);
   if (!path.length) return null;
@@ -1552,6 +1553,7 @@ function ActLayer({ play, w, h, C }) {
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
   }, [play]);
+  if (play.move === "write") return penWriteLayer(play, Math.min(t, performance.now() - play.t0), w, h, C);
   const q = actPose(play, t), d = q.u >= 0 ? Math.sin(Math.PI * q.u) : 0, m = play.move, pic = play.pic;
   let dx = 0, dy = 0, rot = 0, sx = 1;
   if (m === "slice") dy = -56 + 86 * d;
@@ -1626,7 +1628,7 @@ function useActionKit(lockNow, lockedRef, sfx, key) {
       }
     };
     if (!p || reducedMotion()) {
-      if (p) p.at.forEach((_, i) => hit(i));
+      if (p) (p.move === "write" ? p.hits : p.at).forEach((_, i) => hit(i));
       resolve(true);
       return;
     }
@@ -1642,16 +1644,289 @@ function useActionKit(lockNow, lockedRef, sfx, key) {
         fx();
       }
     };
+    const writing = p.move === "write";
     if (fx && p.travel) c.timers.push(setTimeout(() => fx(), ACT_IN));
+    if (writing) p.ticks.forEach((ms) => c.timers.push(setTimeout(tick, ms)));
     p.hits.forEach((ms, i) => c.timers.push(setTimeout(() => {
       hit(i);
+      if (writing) return;
       if (pen) tick();
       else if (fx && !p.travel) fx();
     }, ms)));
-    c.timers.push(setTimeout(() => end(true), p.total + (pen ? ACT_BEAT : 0)));
+    c.timers.push(setTimeout(() => end(true), p.total + (pen && !writing ? ACT_BEAT : 0)));
     setPlay({ ...p, hold: o.hold || null, t0: performance.now() });
   });
   return { act, play, busy: () => !!cur.current };
+}
+const PEN_H = 0.72, PEN_X0 = 0.12, PEN_W = 0.1, PEN_INK = "#3F3F3F";
+const PEN_IN = 150, PEN_OUT = 150, PEN_NUM = 500, PEN_LINE = 180, PEN_DAB = 110, PEN_MIN = 40, PEN_HOP = 22, PEN_GAP = 40, PEN_TILT = -12, PEN_WMIN = 3.2;
+function penSw(size) {
+  return Math.max(size * PEN_W, PEN_WMIN);
+}
+function penEll(cx, cy, rx, ry, a0, a1, n) {
+  const out = [];
+  for (let i = 0; i < n; i++) {
+    const a = (a0 + (a1 - a0) * i / (n - 1)) * Math.PI / 180;
+    out.push([cx + rx * Math.cos(a), cy + ry * Math.sin(a)]);
+  }
+  return out;
+}
+const PEN_GLYPHS = (function() {
+  const g = {};
+  const make = (adv, x0, strokes) => ({ a: adv, s: strokes.map((st) => ({ k: st[0], p: st[1].map((q) => [q[0] + x0, q[1]]) })) });
+  const dig = (strokes) => make(0.84, PEN_X0, strokes);
+  g["0"] = dig([[2, penEll(0.3, 0.5, 0.29, 0.5, -90, -90 - 324, 10)]]);
+  g["1"] = dig([[0, [[0.1, 0.22], [0.32, 0], [0.32, 1]]]]);
+  g["2"] = dig([
+    [1, [[0.02, 0.24], [0.1, 0.07], [0.28, 0], [0.46, 0.05], [0.56, 0.2], [0.52, 0.38], [0.38, 0.54], [0.16, 0.76], [0, 1]]],
+    [0, [[0, 1], [0.6, 1]]]
+  ]);
+  g["3"] = dig([[1, [[0.02, 0.18], [0.14, 0.04], [0.32, 0], [0.48, 0.07], [0.54, 0.22], [0.46, 0.38], [0.3, 0.47], [0.2, 0.49], [0.34, 0.5], [0.52, 0.6], [0.58, 0.78], [0.48, 0.94], [0.3, 1], [0.12, 0.96], [0, 0.84]]]]);
+  g["4"] = dig([
+    [0, [[0.46, 0], [0, 0.72], [0.62, 0.72]]],
+    [0, [[0.46, 0], [0.46, 1]]]
+  ]);
+  g["5"] = dig([
+    [0, [[0.54, 0], [0.08, 0], [0.04, 0.46]]],
+    [1, [[0.04, 0.46], [0.2, 0.4], [0.38, 0.4], [0.52, 0.5], [0.58, 0.68], [0.54, 0.86], [0.4, 0.98], [0.24, 1], [0.08, 0.95], [0, 0.86]]]
+  ]);
+  g["6"] = dig([[1, [[0.52, 0.06], [0.36, 0], [0.18, 0.1], [0.06, 0.34], [0.02, 0.62], [0.07, 0.86], [0.22, 0.99], [0.38, 0.98], [0.52, 0.86], [0.57, 0.7], [0.5, 0.55], [0.36, 0.48], [0.2, 0.5], [0.08, 0.6]]]]);
+  g["7"] = dig([[0, [[0, 0], [0.6, 0], [0.22, 1]]]]);
+  g["8"] = dig([[1, [[0.46, 0.1], [0.32, 0], [0.16, 0.05], [0.08, 0.22], [0.16, 0.38], [0.3, 0.47], [0.46, 0.58], [0.54, 0.76], [0.46, 0.93], [0.3, 1], [0.13, 0.94], [0.05, 0.77], [0.13, 0.59], [0.3, 0.47], [0.44, 0.36], [0.52, 0.2], [0.46, 0.08]]]]);
+  g["9"] = dig([[1, [[0.54, 0.3], [0.46, 0.1], [0.3, 0], [0.14, 0.08], [0.04, 0.28], [0.1, 0.48], [0.26, 0.58], [0.42, 0.54], [0.54, 0.36], [0.56, 0.58], [0.5, 0.82], [0.38, 0.96], [0.22, 1], [0.08, 0.93]]]]);
+  g[","] = make(0.4, 0, [[1, [[0.13, 0.88], [0.14, 0.97], [0.08, 1.1], [0.02, 1.16]]]]);
+  g["."] = make(0.4, 0, [[0, [[0.13, 0.965], [0.135, 0.97]]]]);
+  g["="] = dig([[0, [[0.04, 0.34], [0.56, 0.34]]], [0, [[0.04, 0.66], [0.56, 0.66]]]]);
+  g["-"] = dig([[0, [[0.06, 0.5], [0.54, 0.5]]]]);
+  g["+"] = dig([[0, [[0.3, 0.2], [0.3, 0.8]]], [0, [[0.04, 0.5], [0.56, 0.5]]]]);
+  g["×"] = dig([[0, [[0.06, 0.28], [0.54, 0.76]]], [0, [[0.54, 0.28], [0.06, 0.76]]]]);
+  g["÷"] = dig([[0, [[0.04, 0.5], [0.56, 0.5]]], [0, [[0.3, 0.26], [0.305, 0.265]]], [0, [[0.3, 0.74], [0.305, 0.745]]]]);
+  g["/"] = make(0.6, 0, [[0, [[0.46, 0], [0.06, 1]]]]);
+  const cap = (strokes) => make(0.84, PEN_X0, strokes);
+  const ell = (cx, cy, rx, ry, n) => penEll(cx, cy, rx, ry, -90, -90 - 360 * (n - 1) / n, n);
+  const bowl = (y0, y1) => [[0.04, y0], [0.3, y0], [0.5, y0 + (y1 - y0) * 0.16], [0.56, y0 + (y1 - y0) * 0.5], [0.46, y0 + (y1 - y0) * 0.86], [0.28, y1], [0.04, y1]];
+  g["A"] = cap([[0, [[0, 1], [0.3, 0], [0.6, 1]]], [0, [[0.1, 0.68], [0.5, 0.68]]]]);
+  g["B"] = cap([[0, [[0.04, 0], [0.04, 1]]], [1, bowl(0, 0.5)], [1, [[0.04, 0.5], [0.34, 0.5], [0.54, 0.6], [0.58, 0.78], [0.5, 0.94], [0.3, 1], [0.04, 1]]]]);
+  g["C"] = cap([[1, [[0.56, 0.18], [0.44, 0.04], [0.28, 0], [0.1, 0.1], [0.02, 0.35], [0.02, 0.65], [0.1, 0.9], [0.28, 1], [0.44, 0.96], [0.56, 0.82]]]]);
+  g["D"] = cap([[0, [[0.04, 0], [0.04, 1]]], [1, [[0.04, 0], [0.3, 0.02], [0.5, 0.14], [0.58, 0.4], [0.58, 0.62], [0.5, 0.86], [0.3, 0.98], [0.04, 1]]]]);
+  g["E"] = cap([[0, [[0.56, 0], [0.04, 0], [0.04, 1], [0.56, 1]]], [0, [[0.04, 0.5], [0.46, 0.5]]]]);
+  g["F"] = cap([[0, [[0.56, 0], [0.04, 0], [0.04, 1]]], [0, [[0.04, 0.5], [0.46, 0.5]]]]);
+  g["G"] = cap([[1, [[0.56, 0.18], [0.44, 0.04], [0.28, 0], [0.1, 0.1], [0.02, 0.35], [0.02, 0.65], [0.1, 0.9], [0.28, 1], [0.46, 0.94], [0.56, 0.78], [0.56, 0.55]]], [0, [[0.56, 0.55], [0.32, 0.55]]]]);
+  g["H"] = cap([[0, [[0.04, 0], [0.04, 1]]], [0, [[0.56, 0], [0.56, 1]]], [0, [[0.04, 0.5], [0.56, 0.5]]]]);
+  g["I"] = make(0.56, 0.06, [[0, [[0.04, 0], [0.4, 0]]], [0, [[0.22, 0], [0.22, 1]]], [0, [[0.04, 1], [0.4, 1]]]]);
+  g["J"] = cap([[1, [[0.5, 0], [0.5, 0.45], [0.48, 0.75], [0.38, 0.94], [0.24, 1], [0.1, 0.94], [0.02, 0.8]]]]);
+  g["K"] = cap([[0, [[0.04, 0], [0.04, 1]]], [0, [[0.56, 0], [0.04, 0.56], [0.58, 1]]]]);
+  g["L"] = cap([[0, [[0.04, 0], [0.04, 1], [0.54, 1]]]]);
+  g["M"] = make(0.98, 0.08, [[0, [[0.04, 1], [0.04, 0], [0.42, 0.7], [0.8, 0], [0.8, 1]]]]);
+  g["N"] = cap([[0, [[0.04, 1], [0.04, 0], [0.56, 1], [0.56, 0]]]]);
+  g["O"] = cap([[2, ell(0.3, 0.5, 0.3, 0.5, 12)]]);
+  g["P"] = cap([[0, [[0.04, 0], [0.04, 1]]], [1, [[0.04, 0], [0.32, 0], [0.52, 0.1], [0.56, 0.3], [0.46, 0.48], [0.28, 0.55], [0.04, 0.55]]]]);
+  g["Q"] = cap([[2, ell(0.3, 0.5, 0.3, 0.5, 12)], [0, [[0.36, 0.72], [0.62, 1.04]]]]);
+  g["R"] = cap([[0, [[0.04, 0], [0.04, 1]]], [1, [[0.04, 0], [0.32, 0], [0.52, 0.1], [0.56, 0.3], [0.46, 0.48], [0.28, 0.55], [0.04, 0.55]]], [0, [[0.3, 0.55], [0.58, 1]]]]);
+  g["S"] = cap([[1, [[0.54, 0.16], [0.42, 0.04], [0.26, 0], [0.1, 0.08], [0.05, 0.25], [0.16, 0.4], [0.32, 0.5], [0.5, 0.6], [0.56, 0.76], [0.48, 0.93], [0.3, 1], [0.12, 0.95], [0.02, 0.82]]]]);
+  g["T"] = cap([[0, [[0, 0], [0.6, 0]]], [0, [[0.3, 0], [0.3, 1]]]]);
+  g["U"] = cap([[1, [[0.04, 0], [0.04, 0.55], [0.1, 0.85], [0.3, 1], [0.5, 0.85], [0.56, 0.55], [0.56, 0]]]]);
+  g["V"] = cap([[0, [[0, 0], [0.3, 1], [0.6, 0]]]]);
+  g["W"] = make(0.98, 0.08, [[0, [[0, 0], [0.2, 1], [0.41, 0.3], [0.62, 1], [0.82, 0]]]]);
+  g["X"] = cap([[0, [[0.04, 0], [0.56, 1]]], [0, [[0.56, 0], [0.04, 1]]]]);
+  g["Y"] = cap([[0, [[0, 0], [0.3, 0.52]]], [0, [[0.6, 0], [0.3, 0.52], [0.3, 1]]]]);
+  g["Z"] = cap([[0, [[0.02, 0], [0.58, 0], [0.02, 1], [0.58, 1]]]]);
+  g[" "] = { a: 0.4, s: [] };
+  g["x"] = g["×"];
+  g["−"] = g["-"];
+  return g;
+})();
+function penRand(i, c) {
+  const s = Math.sin(i * 12.9898 + c * 78.233) * 43758.5453;
+  return s - Math.floor(s);
+}
+function penFlat(k, p) {
+  if (k === 0) return p.map((q) => [q[0], q[1]]);
+  const n = p.length, closed = k === 2, per = 7;
+  const P = (i) => closed ? p[(i % n + n) % n] : p[Math.max(0, Math.min(n - 1, i))];
+  const out = [[p[0][0], p[0][1]]];
+  const segs = closed ? n : n - 1;
+  for (let i = 0; i < segs; i++) {
+    const p0 = P(i - 1), p1 = P(i), p2 = P(i + 1), p3 = P(i + 2);
+    for (let s = 1; s <= per; s++) {
+      const t = s / per, t2 = t * t, t3 = t2 * t;
+      const f = (a, b, c, d) => 0.5 * (2 * b + (-a + c) * t + (2 * a - 5 * b + 4 * c - d) * t2 + (-a + 3 * b - 3 * c + d) * t3);
+      out.push([f(p0[0], p1[0], p2[0], p3[0]), f(p0[1], p1[1], p2[1], p3[1])]);
+    }
+  }
+  return out;
+}
+function penStroke(pts) {
+  const cum = [0];
+  for (let j = 1; j < pts.length; j++) cum.push(cum[j - 1] + Math.hypot(pts[j][0] - pts[j - 1][0], pts[j][1] - pts[j - 1][1]));
+  return { pts, cum, len: cum[cum.length - 1] || 1e-3 };
+}
+const PEN_CACHE = {};
+function penLayout(text, x, y, size, anchor, step) {
+  const key = text + "|" + x + "|" + y + "|" + size + "|" + anchor + "|" + (step || 0);
+  if (PEN_CACHE[key]) return PEN_CACHE[key];
+  const u = size * PEN_H;
+  let adv = 0;
+  for (let i = 0; i < text.length; i++) adv += (PEN_GLYPHS[text[i]] || { a: 0.84 }).a;
+  const w = step ? step * text.length : adv * u, ox = anchor === "middle" ? x - w / 2 : anchor === "end" ? x - w : x;
+  const chars = [];
+  let cx = ox;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i], gl = PEN_GLYPHS[ch], code = ch.charCodeAt(0), a = gl ? gl.a : 0.84;
+    const cell = step || a * u, gx = cx + (cell - a * u) / 2;
+    const rot = (penRand(i + 1, code) - 0.5) * 3.6 * Math.PI / 180, sc = 0.97 + 0.06 * penRand(i + 7, code), dy = (penRand(i + 13, code) - 0.5) * 0.024 * u;
+    const mx = gx + a * u / 2, my = y - u / 2, co = Math.cos(rot), si = Math.sin(rot);
+    const strokes = (gl ? gl.s : []).map((st) => penStroke(penFlat(st.k, st.p).map((q) => {
+      const px = gx + q[0] * u - mx, py = y - u + q[1] * u - my;
+      return [mx + (px * co - py * si) * sc, my + dy + (px * si + py * co) * sc];
+    })));
+    chars.push({ ch, i, strokes, cx: gx, adv: a * u, known: !!gl });
+    cx += cell;
+  }
+  const out = { chars, w, ox, u, size };
+  PEN_CACHE[key] = out;
+  return out;
+}
+function penCut(st, f) {
+  const fmt = (q) => q[0].toFixed(1) + "," + q[1].toFixed(1);
+  if (f >= 1) return st.pts.map(fmt).join(" ");
+  const s = f * st.len, out = [];
+  for (let j = 0; j < st.pts.length; j++) {
+    if (st.cum[j] <= s) out.push(st.pts[j]);
+    else {
+      const a = st.pts[j - 1], b = st.pts[j], k = (s - st.cum[j - 1]) / (st.cum[j] - st.cum[j - 1] || 1);
+      out.push([a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k]);
+      break;
+    }
+  }
+  if (out.length < 2) out.push([out[0][0] + 0.01, out[0][1]]);
+  return out.map(fmt).join(" ");
+}
+function penAt(st, f) {
+  const s = Math.max(0, Math.min(1, f)) * st.len;
+  for (let j = 1; j < st.pts.length; j++) {
+    if (st.cum[j] >= s) {
+      const a = st.pts[j - 1], b = st.pts[j], k = (s - st.cum[j - 1]) / (st.cum[j] - st.cum[j - 1] || 1);
+      return [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k];
+    }
+  }
+  const e = st.pts[st.pts.length - 1];
+  return [e[0], e[1]];
+}
+function penPlan(o) {
+  const texts = Array.isArray(o.text) ? o.text : [o.text], ats = o.at || [];
+  const alignOf = (k) => String((Array.isArray(o.align) ? o.align[k] : o.align) || o.anchor || "start"), colorOf = (k) => String((Array.isArray(o.color) ? o.color[k] : o.color) || PEN_INK);
+  const toks = [];
+  let lastSize = 48;
+  texts.forEach((tx, k) => {
+    const size = Number(Array.isArray(o.size) ? o.size[k] : o.size) || tx && typeof tx === "object" && Number(tx.size) || lastSize;
+    if (tx && typeof tx === "object" && Array.isArray(tx.dab)) {
+      const D = tx.dab.map(Number);
+      if (D.length < 2 || !D.every(isFinite)) return;
+      toks.push({ text: ".", size, color: colorOf(k), dab: true, lay: { u: size * PEN_H, chars: [{ ch: ".", i: 0, strokes: [penStroke([[D[0], D[1]], [D[0], D[1]]])], known: true, cx: D[0], adv: 0 }] } });
+      return;
+    }
+    if (tx && typeof tx === "object" && Array.isArray(tx.line)) {
+      const L = tx.line.map(Number);
+      if (L.length < 4 || !L.every(isFinite)) return;
+      toks.push({ text: "|", size, color: colorOf(k), line: true, lay: { u: size * PEN_H, chars: [{ ch: "|", i: 0, strokes: [penStroke([[L[0], L[1]], [L[2], L[3]]])], known: true, cx: L[0], adv: Math.abs(L[2] - L[0]) }] } });
+      return;
+    }
+    const s = String(tx == null ? "" : tx), a = ats[k] || ats[ats.length - 1];
+    if (!s || !actOk(a)) return;
+    lastSize = size;
+    toks.push({ text: s, size, color: colorOf(k), lay: penLayout(s, a.x, a.y, size, alignOf(k), Number(Array.isArray(o.step) ? o.step[k] : o.step) || 0) });
+  });
+  if (!toks.length) return null;
+  const strokes = [], hits = [], ticks = [];
+  let t = PEN_IN;
+  toks.forEach((tk, ti) => {
+    const chars = tk.lay.chars, flat = [];
+    chars.forEach((c, ci) => c.strokes.forEach((st) => flat.push({ st, ci })));
+    const gaps = flat.map((e, j) => {
+      if (!j) return 0;
+      const a = flat[j - 1].st.pts[flat[j - 1].st.pts.length - 1], b = e.st.pts[0];
+      return e.ci !== flat[j - 1].ci || Math.hypot(a[0] - b[0], a[1] - b[1]) > 0.05 * tk.lay.u ? PEN_HOP : 0;
+    });
+    const B = tk.dab ? PEN_DAB : tk.line ? PEN_LINE : PEN_NUM + 80 * Math.max(0, tk.text.length - 4), hopSum = gaps.reduce((s, g) => s + g, 0);
+    const drawMs = Math.max(B * 0.5, B - hopSum), base = PEN_MIN * flat.length, lenSum = flat.reduce((s, e) => s + e.st.len, 0) || 1;
+    const ends = chars.map(() => null), tokStart = t;
+    flat.forEach((e, j) => {
+      const d = drawMs >= base ? PEN_MIN + (drawMs - base) * e.st.len / lenSum : drawMs / flat.length;
+      t += gaps[j];
+      strokes.push({ st: e.st, t0: t, t1: t + d, sw: penSw(tk.size), color: tk.color, dab: !!tk.dab });
+      ticks.push(Math.round(t));
+      t += d;
+      ends[e.ci] = t;
+    });
+    let prev = tokStart;
+    chars.forEach((_, ci) => {
+      if (ends[ci] != null) prev = ends[ci];
+      hits.push(Math.round(prev));
+    });
+    if (ti < toks.length - 1) t += PEN_GAP;
+  });
+  if (!strokes.length) return null;
+  const total = Math.round(t + PEN_OUT), first = strokes[0].st.pts[0];
+  return { move: "write", tool: "pencil", pic: actPic("pencil"), total, hits, ticks, strokes, at: ats.filter(actOk), off: ACT_OFF.pencil, path: [{ x: first[0], y: first[1] }] };
+}
+function penTip(p, t) {
+  const S = p.strokes;
+  let pt = S[0].st.pts[0], j = -1;
+  for (let k = 0; k < S.length; k++) if (S[k].t0 <= t) j = k;
+  if (j >= 0) {
+    const s = S[j];
+    if (t <= s.t1) pt = penAt(s.st, (t - s.t0) / (s.t1 - s.t0 || 1));
+    else {
+      const a = s.st.pts[s.st.pts.length - 1];
+      if (j + 1 < S.length) {
+        const b = S[j + 1].st.pts[0], k = Math.min(1, (t - s.t1) / (S[j + 1].t0 - s.t1 || 1));
+        pt = [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k];
+      } else pt = a;
+    }
+  }
+  const lead = t < PEN_IN ? 1 - Math.max(0, Math.min(1, t / PEN_IN)) : t > p.total - PEN_OUT ? 1 - Math.max(0, Math.min(1, (p.total - t) / PEN_OUT)) : 0;
+  return { x: pt[0] + p.off[0] * lead * lead, y: pt[1] + p.off[1] * lead * lead, o: 1 - lead };
+}
+function penWriteLayer(p, t, w, h, C) {
+  const q = penTip(p, t), pic = p.pic;
+  const ink = [];
+  p.strokes.forEach((e, j) => {
+    const f = Math.max(0, Math.min(1, (t - e.t0) / (e.t1 - e.t0 || 1)));
+    if (f > 0 && !e.dab) ink.push(<polyline key={j} data-role="pen-ink" points={penCut(e.st, f)} fill="none" stroke={e.color} strokeWidth={e.sw} strokeLinecap="round" strokeLinejoin="round" />);
+  });
+  let body;
+  if (pic) {
+    const f = pic.fit, k = f.len / Math.max(f.w, f.h), pw = f.w * k, ph = f.h * k;
+    body = <g transform={`translate(${q.x} ${q.y}) rotate(${(f.rot || 0) + PEN_TILT + 3 * Math.sin(t / 55)})`}>
+        <image data-role="act" href={pic.src} x={-f.ax * pw} y={-f.ay * ph} width={pw} height={ph} preserveAspectRatio="none" />
+      </g>;
+  } else {
+    body = <g transform={`translate(${q.x} ${q.y}) rotate(-18) scale(1.4)`}>
+        <ActHand pose="point" ink={C.ink} />
+      </g>;
+  }
+  return <g>
+      <g data-role="pen-writing">{ink}</g>
+      <g opacity={q.o}>
+        <clipPath id="c4ActClip"><rect x={0} y={0} width={w} height={h} /></clipPath>
+        <g clipPath="url(#c4ActClip)" filter="url(#fShadowSoft)">{body}</g>
+      </g>
+    </g>;
+}
+function PencilLine({ x1, y1, x2, y2, size, color, width, opacity }) {
+  const st = penStroke([[x1, y1], [x2, y2]]);
+  return <polyline data-role="pencil-line" points={penCut(st, 1)} fill="none" stroke={color || PEN_INK} strokeWidth={width || penSw(size)} strokeLinecap="round" strokeLinejoin="round" opacity={opacity == null ? 1 : opacity} />;
+}
+function PencilText({ text, x, y, size, align, anchor, step, color, chars, width, opacity }) {
+  const s = String(text == null ? "" : text), L = penLayout(s, x, y, size, String(align || anchor || "start"), Number(step) || 0);
+  const n = chars == null ? s.length : Math.max(0, Math.min(s.length, chars)), sw = width || penSw(size), col = color || PEN_INK, out = [];
+  L.chars.forEach((c) => {
+    if (c.i >= n) return;
+    if (!c.known) out.push(<text key={c.i} x={c.cx + c.adv / 2} y={y} textAnchor="middle" fontSize={size} fontWeight={500} fill={col}>{c.ch}</text>);
+    c.strokes.forEach((st, j) => out.push(<polyline key={c.i + "." + j} points={penCut(st, 1)} fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round" />));
+  });
+  return <g data-role="pencil-text" opacity={opacity == null ? 1 : opacity}>{out}</g>;
 }
 const CSS = `
 .c4-frame{width:min(100vw,177.78vh);height:min(100vh,56.25vw)}
@@ -4756,6 +5031,52 @@ const wcBM = (F, k) => k < 0 ? F.bar : wcBX(F, k) + F.bw / 2;
 const wcRowY = (F, r) => F.row0 + r * F.step;
 const wcGW = (F) => 3 * F.bw + 2 * F.gap;
 const wcAnsY = (F, nR) => wcRowY(F, nR) + 6;
+/* where the pencil writes in the column frame. The acts (Work's pen) and the PencilText that keeps the digits use these very pieces, so nothing jumps when an act
+   ends. A piece is { s, x, y (the baseline the frame prints on), size, align, step, color } or a touch { dab: [x, y] } (the tool's own strike or weight appears
+   there). A grams row: a thousand on the divider alone, then each run of same-coloured boxes as ONE string in cells a box apart (a grey place zero stays grey);
+   the kilograms end where kgText ends them; the amber figures a break writes over the top row; free play's whole sum with the carried kilogram's chip */
+const wcPenRuns = (F, cells, y, ink, size = T.xl) => {
+  const step = F.bw + F.gap, x0 = wcBM(F, 0) - step / 2, out = [];
+  (cells || []).filter((c) => c && c.ch !== "" && c.ch !== void 0).forEach((c) => {
+    const col = c.grey ? WC_ZERO : ink, last = out[out.length - 1];
+    if (c.k < 0) out.push({ s: c.ch, x: F.bar, y, size, align: "middle", step: 0, color: col, bar: true });
+    else if (last && !last.bar && last.color === col && last.k1 === c.k - 1) {
+      last.s += c.ch;
+      last.k1 = c.k;
+    } else out.push({ s: c.ch, x: x0 + c.k * step, y, size, align: "start", step, color: col, k1: c.k });
+  });
+  return out;
+};
+const wcPenKg = (F, v, top, ink) => ({ s: String(v), x: F.kgR - 4, y: top + 56, size: T.xl, align: "end", step: 0, color: ink });
+const wcPenAbove = (F, kg, gs) => [{ s: String(kg), x: F.kgR - 4, y: 150, size: T.prompt, align: "end", step: 0, color: WC_INK.move }, { s: String(gs), x: F.gL + wcGW(F) / 2, y: 150, size: T.prompt, align: "middle", step: 0, color: WC_INK.move }];
+const wcFreePen = (F, op, top, bot) => {
+  const yA = wcAnsY(F, 2), y0 = wcRowY(F, 0) + 38;
+  if (op === "+") {
+    const sol = wcAddCols([[top.kg, top.g], [bot.kg, bot.g]]);
+    const carry = sol.carry ? [{ dab: [F.kgR - 43, 129], is: "carry" }, { s: "1", x: F.kgR - 43, y: 144, size: T.label, align: "middle", step: 0, color: WC_INK.move, is: "carry" }] : [];
+    return [...carry, ...wcPenRuns(F, wcCellsR(sol.g), yA + 56, WC_INK.g), wcPenKg(F, sol.kg, yA, WC_INK.kg)];
+  }
+  const sol = wcTakeCols([top.kg, top.g], [bot.kg, bot.g]), ab = wcPenAbove(F, sol.tk, indian(sol.tg));
+  const brk = sol.need ? [{ dab: [F.kgR - 8 - String(top.kg).length * 17, y0], is: "sk" }, ab[0], { dab: [wcBM(F, 1), y0], is: "sg" }, ab[1]] : [];
+  return [...brk, ...wcPenRuns(F, wcCellsR(sol.g), yA + 56, WC_INK.left), wcPenKg(F, sol.kg, yA, WC_INK.left)];
+};
+const wcPenC0 = (pcs) => {
+  let c = 0;
+  return pcs.map((q) => {
+    const r = { ...q, c0: c };
+    c += q.dab ? 1 : q.s.length;
+    return r;
+  });
+};
+const wcPenTok = (pcs, ox) => ({
+  text: pcs.map((q) => q.dab ? { dab: [q.dab[0] + ox, q.dab[1]] } : q.s),
+  at: pcs.map((q) => q.dab ? null : { x: q.x + ox, y: q.y }),
+  size: pcs.map((q) => q.dab ? T.xl : q.size),
+  align: pcs.map((q) => q.dab ? "start" : q.align),
+  step: pcs.map((q) => q.dab ? 0 : q.step),
+  color: pcs.map((q) => q.dab ? PEN_INK : q.color)
+});
+const wcPenDraw = (pcs, n, key, hide) => wcPenC0(pcs).filter((q) => !q.dab && n > q.c0 && !(hide && hide(q))).map((q) => <PencilText key={key + q.c0} text={q.s} x={q.x} y={q.y} size={q.size} align={q.align} step={q.step} color={q.color} chars={n - q.c0} />);
 const wcHeavier = (a, b) => a.kg !== b.kg ? a.kg - b.kg : a.g - b.g;
 const wcAddCols = (rows) => {
   const gs = rows.reduce((a, r) => a + r[1], 0), carry = Math.floor(gs / 1e3);
@@ -4888,7 +5209,7 @@ function wcFrame(F, s, C, tx) {
     return <g key={key}>
         {off && <rect x={F.bar - size * 0.36} y={y - size * 0.8} width={size * 0.72} height={size * 0.9} rx={6} fill="#FFFFFF" />}
         <text y={y} textAnchor="middle" fontSize={size} fontWeight={700}>
-          {cs.map((c, j) => <tspan key={j} x={wcBM(F, c.k)} fill={c.grey ? WC_ZERO : ink}>{c.ch}</tspan>)}
+          {cs.filter((c) => !c.pen).map((c, j) => <tspan key={j} x={wcBM(F, c.k)} fill={c.grey ? WC_ZERO : ink}>{c.ch}</tspan>)}
         </text>
       </g>;
   };
@@ -4912,7 +5233,7 @@ function wcFrame(F, s, C, tx) {
       {s.carry && <g>
           {wcWeight(F.kgR - 80, 110, 72, 46, WC_KG, shade(WC_KG, 0.3))}
           <rect x={F.kgR - 61} y={117} width={36} height={32} rx={9} fill={tint(WC_MOVE, 0.72)} stroke={shade(WC_MOVE, 0.35)} strokeWidth={2.5} />
-          <text x={F.kgR - 43} y={144} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={WC_INK.move}>1</text>
+          {!s.carryPen && <text x={F.kgR - 43} y={144} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={WC_INK.move}>1</text>}
           {s.carryLit && <rect x={F.kgR - 84} y={102} width={82} height={62} rx={12} fill="none" stroke={C.accent} strokeWidth={5} />}
         </g>}
       {
@@ -4940,6 +5261,7 @@ function wcFrame(F, s, C, tx) {
           {s.ans && kgText(s.ans.kg, ansTop, s.ans.kgInk || WC_INK.kg, "ak2")}
           {s.ans && digits(s.ans.g, ansTop + 56, s.ans.gInk || WC_INK.g, "ag2")}
         </g>}
+      {s.pens || null}
       {(s.labels || []).map((t, i) => t ? <text key={"lb" + i} x={F.w + 14} y={wcRowY(F, i) + 48} fontSize={T.label} fontWeight={700} fill={C.ink}>{tx(t)}</text> : null)}
       {(s.reads || []).map((q, i) => <text key={"rd" + i} x={F.w + 14} y={wcRowY(F, q.r) + 48} fontSize={T.label} fontWeight={700} fill={q.f || C.ink}>{q.t}</text>)}
       {(s.rings || []).map((q, i) => <rect key={"ring" + i} x={q.x} y={q.y} width={q.w} height={q.h} rx={12} fill="none" stroke={C.accent} strokeWidth={5} />)}
@@ -5063,7 +5385,8 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
   const [, setBusy] = useState(false);
   const lastKey = useRef(0);
   const setP = (k, name, p) => putE(k, { prog: { on: name, p } });
-  const pen = (pts, onP, ms) => api.act({ tool: "pencil", moves: "push", at: pts.map(ax), onPoint: onP, ms: ms || 900 });
+  /* the pencil WRITES the pieces (wcPen*: digits, the comma, dabs where the tool's strike or weight appears); onPoint(i) runs when the tip finishes character i */
+  const pen = (pcs, onP) => api.act({ tool: "pencil", moves: "write", ...wcPenTok(pcs, ox), onPoint: onP });
   const carryTo = (from, to, hold, onP, ms) => api.act({ tool: "hand", moves: "carry", from: ax(from), at: [ax(to)], hold, onPoint: onP, ms: ms || 950 });
   const holdBag = (look = "sack") => wcBag(-48, -60, 96, 120, [], C, T.micro, look);
   const holdKg = () => wcWeight(-36, -23, 72, 46, WC_KG, shade(WC_KG, 0.3));
@@ -5099,7 +5422,8 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
     const sg = [0, 1, 2].map((i) => ({ x: wcBM(F, i), y: top + 38 }));
     const tgS = tsol ? indian(tsol.tg) : "";
     const ag = tgS.split("").map((_, j) => ({ x: F.gL + wcGW(F) / 2 + (j - (tgS.length - 1) / 2) * 25, y: 136 }));
-    return { sk, ak, sg, ag };
+    const ab = wcPenAbove(F, tkS, tgS);
+    return { sk, ak, sg, ag, pk: ab[0], pg: ab[1] };
   };
   const cmp = kind === "compare" && bags.length === 2 ? (() => {
     const h = wcHeavier(bags[0], bags[1]) > 0 ? 0 : 1, H = bags[h], Lb = bags[1 - h];
@@ -5131,7 +5455,7 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
       const at = wcAnsY(F, 2) + 36;
       if (on === "add") {
         setP(k, on, 0);
-        return pen([-1, 0, 1, 2].map((kk) => ({ x: wcBM(F, kk), y: at })), (i) => setP(k, on, i + 1));
+        return pen(wcPenRuns(F, wcCellsR(wcAddCols(rows).gs), wcAnsY(F, 2) + 56, WC_INK.g), (i) => setP(k, on, i + 1));
       }
       if (on === "carry") {
         setP(k, on, 0);
@@ -5139,14 +5463,15 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
           setP(k, on, 1);
           api.sfx.trade();
         })) return false;
-        return pen([{ x: F.kgR - 20, y: at }], () => setP(k, on, 2));
+        return pen([wcPenKg(F, wcAddCols(rows).kg, wcAnsY(F, 2), WC_INK.kg)], () => setP(k, on, 2));
       }
     }
     if (kind === "w-break" || kind === "take" && on === "break") {
       const P = brkPlan();
       if (kind === "w-break" && on === "break") {
         setP(k, on, 0);
-        return pen([...P.sk, ...P.ak], (i) => setP(k, on, i + 1));
+        /* the dab strikes the kilograms (the old 3rd point), each amber digit is its old point (4 + j) */
+        return pen([{ dab: [P.sk[1].x, P.sk[1].y] }, P.pk], (i) => setP(k, on, i + 3));
       }
       if (kind === "w-break" && on === "open") {
         setP(k, on, 0);
@@ -5154,12 +5479,14 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
           setP(k, on, i + 1);
           if (i === 8) api.sfx.trade();
         } })) return false;
-        return pen([...P.sg, ...P.ag], (i) => setP(k, on, 10 + i));
+        return pen([{ dab: [P.sg[1].x, P.sg[1].y] }, P.pg], (i) => setP(k, on, 12 + i));
       }
       if (kind === "take") {
         setP(k, on, 0);
         const all = [...P.sk, ...P.ak, ...P.sg, ...P.ag];
-        if (!await pen(all, (i) => setP(k, on, i + 1), 1100)) return false;
+        /* one write [strike dab, amber kg, strike dab, amber g]: each character lands on its old point (dabs on the last strike point), so the weight, the knife's
+           cuts (all.length + 1 + i) and the bars come as before */
+        if (!await pen([{ dab: [P.sk[1].x, P.sk[1].y] }, P.pk, { dab: [P.sg[1].x, P.sg[1].y] }, P.pg], (i) => setP(k, on, i <= P.ak.length ? i + 3 : i + 5))) return false;
         return api.act({ tool: "knife", moves: "slice", at: cutXs.map((x) => ax({ x, y: KW.y + KW.h / 2 })), ms: 900, onPoint: (i) => {
           setP(k, on, all.length + 1 + i);
           if (i === 8) api.sfx.trade();
@@ -5243,15 +5570,9 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
     const ord = op === "-" && wcHeavier(A, B) < 0 ? [f.rows[1], f.rows[0]] : f.rows.slice();
     const top = fBag(ord[0]), bot = fBag(ord[1]);
     setFp((p) => ({ ...p, ord, opP: op, p: 0 }));
-    const at = wcAnsY(F, 2) + 36, pts = [];
-    const sol = op === "+" ? wcAddCols([[top.kg, top.g], [bot.kg, bot.g]]) : wcTakeCols([top.kg, top.g], [bot.kg, bot.g]);
-    if (op === "+" && sol.carry) pts.push({ x: F.kgR - 43, y: 129 });
-    if (op === "-" && sol.need) pts.push({ x: F.kgR - 20, y: 124 }, { x: wcBM(F, 1), y: 136 });
-    [0, 1, 2].forEach((kk) => pts.push({ x: wcBM(F, kk), y: at }));
-    pts.push({ x: F.kgR - 20, y: at });
     playing.current = true;
     setBusy(true);
-    let ok = await pen(pts, (i) => setFp((p) => ({ ...p, p: i + 1 })), 1e3);
+    let ok = await pen(wcFreePen(F, op, top, bot), (i) => setFp((p) => ({ ...p, p: Math.max(p.p, i + 1) })));
     if (ok && op === "-") {
       const light = ord[1] === f.rows[0] ? 0 : 1;
       ok = await carryTo({ x: 300, y: 470 }, { x: panAt(light).x, y: WC_B4.py + WC_B4.S - 18 }, holdGrams(0), () => {
@@ -5518,9 +5839,12 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
     const sol = wcAddCols(rows);
     if (kind === "w-carry") {
       const pa = R("add"), pc = R("carry");
-      const cells = wcCellsR(sol.gs).filter((c, i) => i < pa && !(pc >= 1 && c.k < 0));
+      /* the pencil writes 1,300 (the thousand on the divider alone, then 300 in the boxes) and the 1 kg, at the act's own pieces: the row keeps the cells only as
+         pen cells (the divider's white patch is there from the act's start); the thousand goes when the Carry hand lifts it */
+      const addOn = pa > 0 || !!(S.prog && S.prog.on === "add"), yA = wcAnsY(F, 2);
       fs.carry = pc >= 1;
-      fs.ans = { kg: pc >= 2 ? String(sol.kg) : "", g: cells };
+      fs.ans = { kg: "", g: addOn ? wcCellsR(sol.gs).filter((c) => !(pc >= 1 && c.k < 0)).map((c) => ({ ...c, pen: true })) : [] };
+      fs.pens = [...addOn ? wcPenDraw(wcPenRuns(F, wcCellsR(sol.gs), yA + 56, WC_INK.g), pa, "pa", (q) => pc >= 1 && q.bar) : [], ...pc >= 2 ? wcPenDraw([wcPenKg(F, sol.kg, yA, WC_INK.kg)], 1, "pk") : []];
     } else if (d >= 1) {
       const cells = d >= 2 ? wcCellsR(sol.g) : wcCellsR(sol.gs);
       fs.carry = d >= 2 && sol.carry > 0;
@@ -5543,7 +5867,11 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
     const tkS = String(tsol ? tsol.tk : "");
     const akS = tkS.split("").filter((_, j) => vAk(j)).join("");
     const agS = (tsol ? indian(tsol.tg) : "").split("").filter((_, j) => vAg(j)).join("");
-    if (akS || agS) fs.above = { kg: akS, gs: agS };
+    /* the pencil writes the amber figures (brkPlan's pk, pg; each strike stays the tool's line, shown at its dab): in the guide, and after a real Break (also on the
+       win page and in a later trace); amber that only the trace or the win shows (no Break tapped) stays printed */
+    const bkPen = kind === "w-break" || pb > 0 || !!(S.prog && S.prog.on === "break");
+    if (akS || agS) fs.above = bkPen ? { kg: "", gs: "" } : { kg: akS, gs: agS };
+    if (bkPen) fs.pens = [...wcPenDraw([P.pk], akS.length, "pk"), ...wcPenDraw([P.pg], agS.length, "pg")];
     if (kind === "take") {
       const sol = tsol;
       if (d >= 2) fs.ans = { kg: d >= 3 ? String(sol.kg) : "", kgInk: WC_INK.left, g: wcCellsR(sol.g), gInk: WC_INK.left };
@@ -5575,18 +5903,22 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
       fs.sign = fp.opP === "-" ? "−" : "+";
       fs.rule = true;
       const top = fBag(ord[0]), bot = fBag(ord[1]);
+      /* every number of a free sum is written by the pencil (wcFreePen, the act's own pieces): fp.p counts the characters finished (a dab counts one; 99 once the
+         act is over); the carried weight and its chip, and each strike, appear at their dabs */
+      const pcs = wcPenC0(wcFreePen(F, fp.opP, top, bot)), past = (is) => pcs.some((q) => q.is === is && fp.p > q.c0);
       if (fp.opP === "+") {
-        const sol = wcAddCols([[top.kg, top.g], [bot.kg, bot.g]]), off = sol.carry ? 1 : 0;
-        fs.carry = sol.carry > 0 && fp.p >= 1;
-        fs.ans = { kg: fp.p >= off + 4 ? String(sol.kg) : "", g: wcCellsR(sol.g).filter((_, j) => fp.p >= off + 1 + j) };
+        const sol = wcAddCols([[top.kg, top.g], [bot.kg, bot.g]]);
+        fs.carry = sol.carry > 0 && past("carry");
+        fs.carryPen = true;
       } else {
-        const sol = wcTakeCols([top.kg, top.g], [bot.kg, bot.g]), off = sol.need ? 2 : 0;
-        if (sol.need && fp.p >= 1) {
-          fs.rows[0] = { ...fs.rows[0], struck: true, gStruck: fp.p >= 2 };
-          fs.above = { kg: String(sol.tk), gs: fp.p >= 2 ? indian(sol.tg) : "" };
+        const sol = wcTakeCols([top.kg, top.g], [bot.kg, bot.g]);
+        if (sol.need && past("sk")) {
+          fs.rows[0] = { ...fs.rows[0], struck: true, gStruck: past("sg") };
+          fs.above = { kg: "", gs: "" };
         }
-        fs.ans = { kg: fp.p >= off + 4 ? String(sol.kg) : "", kgInk: WC_INK.left, g: wcCellsR(sol.g).filter((_, j) => fp.p >= off + 1 + j), gInk: WC_INK.left };
       }
+      fs.ans = { kg: "", g: [] };
+      fs.pens = wcPenDraw(pcs, fp.p, "fp");
     }
   }
   api.share({

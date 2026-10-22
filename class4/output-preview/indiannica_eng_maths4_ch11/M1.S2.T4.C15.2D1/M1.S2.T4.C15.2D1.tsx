@@ -1482,6 +1482,7 @@ function actPic(k) {
   return { src, fit: fit || { w: 1, h: 1, len: 140, ax: 0.5, ay: 0.5, rot: 0 } };
 }
 function actPlan(o) {
+  if (String(o.moves || o.move || "") === "write") return penPlan(o);
   const move = String(o.moves || o.move || "tap"), tool = String(o.tool || "hand");
   const at = (o.at || []).filter(actOk), path = [o.from, ...at, o.to].filter(actOk);
   if (!path.length) return null;
@@ -1552,6 +1553,7 @@ function ActLayer({ play, w, h, C }) {
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
   }, [play]);
+  if (play.move === "write") return penWriteLayer(play, Math.min(t, performance.now() - play.t0), w, h, C);
   const q = actPose(play, t), d = q.u >= 0 ? Math.sin(Math.PI * q.u) : 0, m = play.move, pic = play.pic;
   let dx = 0, dy = 0, rot = 0, sx = 1;
   if (m === "slice") dy = -56 + 86 * d;
@@ -1626,7 +1628,7 @@ function useActionKit(lockNow, lockedRef, sfx, key) {
       }
     };
     if (!p || reducedMotion()) {
-      if (p) p.at.forEach((_, i) => hit(i));
+      if (p) (p.move === "write" ? p.hits : p.at).forEach((_, i) => hit(i));
       resolve(true);
       return;
     }
@@ -1642,16 +1644,289 @@ function useActionKit(lockNow, lockedRef, sfx, key) {
         fx();
       }
     };
+    const writing = p.move === "write";
     if (fx && p.travel) c.timers.push(setTimeout(() => fx(), ACT_IN));
+    if (writing) p.ticks.forEach((ms) => c.timers.push(setTimeout(tick, ms)));
     p.hits.forEach((ms, i) => c.timers.push(setTimeout(() => {
       hit(i);
+      if (writing) return;
       if (pen) tick();
       else if (fx && !p.travel) fx();
     }, ms)));
-    c.timers.push(setTimeout(() => end(true), p.total + (pen ? ACT_BEAT : 0)));
+    c.timers.push(setTimeout(() => end(true), p.total + (pen && !writing ? ACT_BEAT : 0)));
     setPlay({ ...p, hold: o.hold || null, t0: performance.now() });
   });
   return { act, play, busy: () => !!cur.current };
+}
+const PEN_H = 0.72, PEN_X0 = 0.12, PEN_W = 0.1, PEN_INK = "#3F3F3F";
+const PEN_IN = 150, PEN_OUT = 150, PEN_NUM = 500, PEN_LINE = 180, PEN_DAB = 110, PEN_MIN = 40, PEN_HOP = 22, PEN_GAP = 40, PEN_TILT = -12, PEN_WMIN = 3.2;
+function penSw(size) {
+  return Math.max(size * PEN_W, PEN_WMIN);
+}
+function penEll(cx, cy, rx, ry, a0, a1, n) {
+  const out = [];
+  for (let i = 0; i < n; i++) {
+    const a = (a0 + (a1 - a0) * i / (n - 1)) * Math.PI / 180;
+    out.push([cx + rx * Math.cos(a), cy + ry * Math.sin(a)]);
+  }
+  return out;
+}
+const PEN_GLYPHS = (function() {
+  const g = {};
+  const make = (adv, x0, strokes) => ({ a: adv, s: strokes.map((st) => ({ k: st[0], p: st[1].map((q) => [q[0] + x0, q[1]]) })) });
+  const dig = (strokes) => make(0.84, PEN_X0, strokes);
+  g["0"] = dig([[2, penEll(0.3, 0.5, 0.29, 0.5, -90, -90 - 324, 10)]]);
+  g["1"] = dig([[0, [[0.1, 0.22], [0.32, 0], [0.32, 1]]]]);
+  g["2"] = dig([
+    [1, [[0.02, 0.24], [0.1, 0.07], [0.28, 0], [0.46, 0.05], [0.56, 0.2], [0.52, 0.38], [0.38, 0.54], [0.16, 0.76], [0, 1]]],
+    [0, [[0, 1], [0.6, 1]]]
+  ]);
+  g["3"] = dig([[1, [[0.02, 0.18], [0.14, 0.04], [0.32, 0], [0.48, 0.07], [0.54, 0.22], [0.46, 0.38], [0.3, 0.47], [0.2, 0.49], [0.34, 0.5], [0.52, 0.6], [0.58, 0.78], [0.48, 0.94], [0.3, 1], [0.12, 0.96], [0, 0.84]]]]);
+  g["4"] = dig([
+    [0, [[0.46, 0], [0, 0.72], [0.62, 0.72]]],
+    [0, [[0.46, 0], [0.46, 1]]]
+  ]);
+  g["5"] = dig([
+    [0, [[0.54, 0], [0.08, 0], [0.04, 0.46]]],
+    [1, [[0.04, 0.46], [0.2, 0.4], [0.38, 0.4], [0.52, 0.5], [0.58, 0.68], [0.54, 0.86], [0.4, 0.98], [0.24, 1], [0.08, 0.95], [0, 0.86]]]
+  ]);
+  g["6"] = dig([[1, [[0.52, 0.06], [0.36, 0], [0.18, 0.1], [0.06, 0.34], [0.02, 0.62], [0.07, 0.86], [0.22, 0.99], [0.38, 0.98], [0.52, 0.86], [0.57, 0.7], [0.5, 0.55], [0.36, 0.48], [0.2, 0.5], [0.08, 0.6]]]]);
+  g["7"] = dig([[0, [[0, 0], [0.6, 0], [0.22, 1]]]]);
+  g["8"] = dig([[1, [[0.46, 0.1], [0.32, 0], [0.16, 0.05], [0.08, 0.22], [0.16, 0.38], [0.3, 0.47], [0.46, 0.58], [0.54, 0.76], [0.46, 0.93], [0.3, 1], [0.13, 0.94], [0.05, 0.77], [0.13, 0.59], [0.3, 0.47], [0.44, 0.36], [0.52, 0.2], [0.46, 0.08]]]]);
+  g["9"] = dig([[1, [[0.54, 0.3], [0.46, 0.1], [0.3, 0], [0.14, 0.08], [0.04, 0.28], [0.1, 0.48], [0.26, 0.58], [0.42, 0.54], [0.54, 0.36], [0.56, 0.58], [0.5, 0.82], [0.38, 0.96], [0.22, 1], [0.08, 0.93]]]]);
+  g[","] = make(0.4, 0, [[1, [[0.13, 0.88], [0.14, 0.97], [0.08, 1.1], [0.02, 1.16]]]]);
+  g["."] = make(0.4, 0, [[0, [[0.13, 0.965], [0.135, 0.97]]]]);
+  g["="] = dig([[0, [[0.04, 0.34], [0.56, 0.34]]], [0, [[0.04, 0.66], [0.56, 0.66]]]]);
+  g["-"] = dig([[0, [[0.06, 0.5], [0.54, 0.5]]]]);
+  g["+"] = dig([[0, [[0.3, 0.2], [0.3, 0.8]]], [0, [[0.04, 0.5], [0.56, 0.5]]]]);
+  g["×"] = dig([[0, [[0.06, 0.28], [0.54, 0.76]]], [0, [[0.54, 0.28], [0.06, 0.76]]]]);
+  g["÷"] = dig([[0, [[0.04, 0.5], [0.56, 0.5]]], [0, [[0.3, 0.26], [0.305, 0.265]]], [0, [[0.3, 0.74], [0.305, 0.745]]]]);
+  g["/"] = make(0.6, 0, [[0, [[0.46, 0], [0.06, 1]]]]);
+  const cap = (strokes) => make(0.84, PEN_X0, strokes);
+  const ell = (cx, cy, rx, ry, n) => penEll(cx, cy, rx, ry, -90, -90 - 360 * (n - 1) / n, n);
+  const bowl = (y0, y1) => [[0.04, y0], [0.3, y0], [0.5, y0 + (y1 - y0) * 0.16], [0.56, y0 + (y1 - y0) * 0.5], [0.46, y0 + (y1 - y0) * 0.86], [0.28, y1], [0.04, y1]];
+  g["A"] = cap([[0, [[0, 1], [0.3, 0], [0.6, 1]]], [0, [[0.1, 0.68], [0.5, 0.68]]]]);
+  g["B"] = cap([[0, [[0.04, 0], [0.04, 1]]], [1, bowl(0, 0.5)], [1, [[0.04, 0.5], [0.34, 0.5], [0.54, 0.6], [0.58, 0.78], [0.5, 0.94], [0.3, 1], [0.04, 1]]]]);
+  g["C"] = cap([[1, [[0.56, 0.18], [0.44, 0.04], [0.28, 0], [0.1, 0.1], [0.02, 0.35], [0.02, 0.65], [0.1, 0.9], [0.28, 1], [0.44, 0.96], [0.56, 0.82]]]]);
+  g["D"] = cap([[0, [[0.04, 0], [0.04, 1]]], [1, [[0.04, 0], [0.3, 0.02], [0.5, 0.14], [0.58, 0.4], [0.58, 0.62], [0.5, 0.86], [0.3, 0.98], [0.04, 1]]]]);
+  g["E"] = cap([[0, [[0.56, 0], [0.04, 0], [0.04, 1], [0.56, 1]]], [0, [[0.04, 0.5], [0.46, 0.5]]]]);
+  g["F"] = cap([[0, [[0.56, 0], [0.04, 0], [0.04, 1]]], [0, [[0.04, 0.5], [0.46, 0.5]]]]);
+  g["G"] = cap([[1, [[0.56, 0.18], [0.44, 0.04], [0.28, 0], [0.1, 0.1], [0.02, 0.35], [0.02, 0.65], [0.1, 0.9], [0.28, 1], [0.46, 0.94], [0.56, 0.78], [0.56, 0.55]]], [0, [[0.56, 0.55], [0.32, 0.55]]]]);
+  g["H"] = cap([[0, [[0.04, 0], [0.04, 1]]], [0, [[0.56, 0], [0.56, 1]]], [0, [[0.04, 0.5], [0.56, 0.5]]]]);
+  g["I"] = make(0.56, 0.06, [[0, [[0.04, 0], [0.4, 0]]], [0, [[0.22, 0], [0.22, 1]]], [0, [[0.04, 1], [0.4, 1]]]]);
+  g["J"] = cap([[1, [[0.5, 0], [0.5, 0.45], [0.48, 0.75], [0.38, 0.94], [0.24, 1], [0.1, 0.94], [0.02, 0.8]]]]);
+  g["K"] = cap([[0, [[0.04, 0], [0.04, 1]]], [0, [[0.56, 0], [0.04, 0.56], [0.58, 1]]]]);
+  g["L"] = cap([[0, [[0.04, 0], [0.04, 1], [0.54, 1]]]]);
+  g["M"] = make(0.98, 0.08, [[0, [[0.04, 1], [0.04, 0], [0.42, 0.7], [0.8, 0], [0.8, 1]]]]);
+  g["N"] = cap([[0, [[0.04, 1], [0.04, 0], [0.56, 1], [0.56, 0]]]]);
+  g["O"] = cap([[2, ell(0.3, 0.5, 0.3, 0.5, 12)]]);
+  g["P"] = cap([[0, [[0.04, 0], [0.04, 1]]], [1, [[0.04, 0], [0.32, 0], [0.52, 0.1], [0.56, 0.3], [0.46, 0.48], [0.28, 0.55], [0.04, 0.55]]]]);
+  g["Q"] = cap([[2, ell(0.3, 0.5, 0.3, 0.5, 12)], [0, [[0.36, 0.72], [0.62, 1.04]]]]);
+  g["R"] = cap([[0, [[0.04, 0], [0.04, 1]]], [1, [[0.04, 0], [0.32, 0], [0.52, 0.1], [0.56, 0.3], [0.46, 0.48], [0.28, 0.55], [0.04, 0.55]]], [0, [[0.3, 0.55], [0.58, 1]]]]);
+  g["S"] = cap([[1, [[0.54, 0.16], [0.42, 0.04], [0.26, 0], [0.1, 0.08], [0.05, 0.25], [0.16, 0.4], [0.32, 0.5], [0.5, 0.6], [0.56, 0.76], [0.48, 0.93], [0.3, 1], [0.12, 0.95], [0.02, 0.82]]]]);
+  g["T"] = cap([[0, [[0, 0], [0.6, 0]]], [0, [[0.3, 0], [0.3, 1]]]]);
+  g["U"] = cap([[1, [[0.04, 0], [0.04, 0.55], [0.1, 0.85], [0.3, 1], [0.5, 0.85], [0.56, 0.55], [0.56, 0]]]]);
+  g["V"] = cap([[0, [[0, 0], [0.3, 1], [0.6, 0]]]]);
+  g["W"] = make(0.98, 0.08, [[0, [[0, 0], [0.2, 1], [0.41, 0.3], [0.62, 1], [0.82, 0]]]]);
+  g["X"] = cap([[0, [[0.04, 0], [0.56, 1]]], [0, [[0.56, 0], [0.04, 1]]]]);
+  g["Y"] = cap([[0, [[0, 0], [0.3, 0.52]]], [0, [[0.6, 0], [0.3, 0.52], [0.3, 1]]]]);
+  g["Z"] = cap([[0, [[0.02, 0], [0.58, 0], [0.02, 1], [0.58, 1]]]]);
+  g[" "] = { a: 0.4, s: [] };
+  g["x"] = g["×"];
+  g["−"] = g["-"];
+  return g;
+})();
+function penRand(i, c) {
+  const s = Math.sin(i * 12.9898 + c * 78.233) * 43758.5453;
+  return s - Math.floor(s);
+}
+function penFlat(k, p) {
+  if (k === 0) return p.map((q) => [q[0], q[1]]);
+  const n = p.length, closed = k === 2, per = 7;
+  const P = (i) => closed ? p[(i % n + n) % n] : p[Math.max(0, Math.min(n - 1, i))];
+  const out = [[p[0][0], p[0][1]]];
+  const segs = closed ? n : n - 1;
+  for (let i = 0; i < segs; i++) {
+    const p0 = P(i - 1), p1 = P(i), p2 = P(i + 1), p3 = P(i + 2);
+    for (let s = 1; s <= per; s++) {
+      const t = s / per, t2 = t * t, t3 = t2 * t;
+      const f = (a, b, c, d) => 0.5 * (2 * b + (-a + c) * t + (2 * a - 5 * b + 4 * c - d) * t2 + (-a + 3 * b - 3 * c + d) * t3);
+      out.push([f(p0[0], p1[0], p2[0], p3[0]), f(p0[1], p1[1], p2[1], p3[1])]);
+    }
+  }
+  return out;
+}
+function penStroke(pts) {
+  const cum = [0];
+  for (let j = 1; j < pts.length; j++) cum.push(cum[j - 1] + Math.hypot(pts[j][0] - pts[j - 1][0], pts[j][1] - pts[j - 1][1]));
+  return { pts, cum, len: cum[cum.length - 1] || 1e-3 };
+}
+const PEN_CACHE = {};
+function penLayout(text, x, y, size, anchor, step) {
+  const key = text + "|" + x + "|" + y + "|" + size + "|" + anchor + "|" + (step || 0);
+  if (PEN_CACHE[key]) return PEN_CACHE[key];
+  const u = size * PEN_H;
+  let adv = 0;
+  for (let i = 0; i < text.length; i++) adv += (PEN_GLYPHS[text[i]] || { a: 0.84 }).a;
+  const w = step ? step * text.length : adv * u, ox = anchor === "middle" ? x - w / 2 : anchor === "end" ? x - w : x;
+  const chars = [];
+  let cx = ox;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i], gl = PEN_GLYPHS[ch], code = ch.charCodeAt(0), a = gl ? gl.a : 0.84;
+    const cell = step || a * u, gx = cx + (cell - a * u) / 2;
+    const rot = (penRand(i + 1, code) - 0.5) * 3.6 * Math.PI / 180, sc = 0.97 + 0.06 * penRand(i + 7, code), dy = (penRand(i + 13, code) - 0.5) * 0.024 * u;
+    const mx = gx + a * u / 2, my = y - u / 2, co = Math.cos(rot), si = Math.sin(rot);
+    const strokes = (gl ? gl.s : []).map((st) => penStroke(penFlat(st.k, st.p).map((q) => {
+      const px = gx + q[0] * u - mx, py = y - u + q[1] * u - my;
+      return [mx + (px * co - py * si) * sc, my + dy + (px * si + py * co) * sc];
+    })));
+    chars.push({ ch, i, strokes, cx: gx, adv: a * u, known: !!gl });
+    cx += cell;
+  }
+  const out = { chars, w, ox, u, size };
+  PEN_CACHE[key] = out;
+  return out;
+}
+function penCut(st, f) {
+  const fmt = (q) => q[0].toFixed(1) + "," + q[1].toFixed(1);
+  if (f >= 1) return st.pts.map(fmt).join(" ");
+  const s = f * st.len, out = [];
+  for (let j = 0; j < st.pts.length; j++) {
+    if (st.cum[j] <= s) out.push(st.pts[j]);
+    else {
+      const a = st.pts[j - 1], b = st.pts[j], k = (s - st.cum[j - 1]) / (st.cum[j] - st.cum[j - 1] || 1);
+      out.push([a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k]);
+      break;
+    }
+  }
+  if (out.length < 2) out.push([out[0][0] + 0.01, out[0][1]]);
+  return out.map(fmt).join(" ");
+}
+function penAt(st, f) {
+  const s = Math.max(0, Math.min(1, f)) * st.len;
+  for (let j = 1; j < st.pts.length; j++) {
+    if (st.cum[j] >= s) {
+      const a = st.pts[j - 1], b = st.pts[j], k = (s - st.cum[j - 1]) / (st.cum[j] - st.cum[j - 1] || 1);
+      return [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k];
+    }
+  }
+  const e = st.pts[st.pts.length - 1];
+  return [e[0], e[1]];
+}
+function penPlan(o) {
+  const texts = Array.isArray(o.text) ? o.text : [o.text], ats = o.at || [];
+  const alignOf = (k) => String((Array.isArray(o.align) ? o.align[k] : o.align) || o.anchor || "start"), colorOf = (k) => String((Array.isArray(o.color) ? o.color[k] : o.color) || PEN_INK);
+  const toks = [];
+  let lastSize = 48;
+  texts.forEach((tx, k) => {
+    const size = Number(Array.isArray(o.size) ? o.size[k] : o.size) || tx && typeof tx === "object" && Number(tx.size) || lastSize;
+    if (tx && typeof tx === "object" && Array.isArray(tx.dab)) {
+      const D = tx.dab.map(Number);
+      if (D.length < 2 || !D.every(isFinite)) return;
+      toks.push({ text: ".", size, color: colorOf(k), dab: true, lay: { u: size * PEN_H, chars: [{ ch: ".", i: 0, strokes: [penStroke([[D[0], D[1]], [D[0], D[1]]])], known: true, cx: D[0], adv: 0 }] } });
+      return;
+    }
+    if (tx && typeof tx === "object" && Array.isArray(tx.line)) {
+      const L = tx.line.map(Number);
+      if (L.length < 4 || !L.every(isFinite)) return;
+      toks.push({ text: "|", size, color: colorOf(k), line: true, lay: { u: size * PEN_H, chars: [{ ch: "|", i: 0, strokes: [penStroke([[L[0], L[1]], [L[2], L[3]]])], known: true, cx: L[0], adv: Math.abs(L[2] - L[0]) }] } });
+      return;
+    }
+    const s = String(tx == null ? "" : tx), a = ats[k] || ats[ats.length - 1];
+    if (!s || !actOk(a)) return;
+    lastSize = size;
+    toks.push({ text: s, size, color: colorOf(k), lay: penLayout(s, a.x, a.y, size, alignOf(k), Number(Array.isArray(o.step) ? o.step[k] : o.step) || 0) });
+  });
+  if (!toks.length) return null;
+  const strokes = [], hits = [], ticks = [];
+  let t = PEN_IN;
+  toks.forEach((tk, ti) => {
+    const chars = tk.lay.chars, flat = [];
+    chars.forEach((c, ci) => c.strokes.forEach((st) => flat.push({ st, ci })));
+    const gaps = flat.map((e, j) => {
+      if (!j) return 0;
+      const a = flat[j - 1].st.pts[flat[j - 1].st.pts.length - 1], b = e.st.pts[0];
+      return e.ci !== flat[j - 1].ci || Math.hypot(a[0] - b[0], a[1] - b[1]) > 0.05 * tk.lay.u ? PEN_HOP : 0;
+    });
+    const B = tk.dab ? PEN_DAB : tk.line ? PEN_LINE : PEN_NUM + 80 * Math.max(0, tk.text.length - 4), hopSum = gaps.reduce((s, g) => s + g, 0);
+    const drawMs = Math.max(B * 0.5, B - hopSum), base = PEN_MIN * flat.length, lenSum = flat.reduce((s, e) => s + e.st.len, 0) || 1;
+    const ends = chars.map(() => null), tokStart = t;
+    flat.forEach((e, j) => {
+      const d = drawMs >= base ? PEN_MIN + (drawMs - base) * e.st.len / lenSum : drawMs / flat.length;
+      t += gaps[j];
+      strokes.push({ st: e.st, t0: t, t1: t + d, sw: penSw(tk.size), color: tk.color, dab: !!tk.dab });
+      ticks.push(Math.round(t));
+      t += d;
+      ends[e.ci] = t;
+    });
+    let prev = tokStart;
+    chars.forEach((_, ci) => {
+      if (ends[ci] != null) prev = ends[ci];
+      hits.push(Math.round(prev));
+    });
+    if (ti < toks.length - 1) t += PEN_GAP;
+  });
+  if (!strokes.length) return null;
+  const total = Math.round(t + PEN_OUT), first = strokes[0].st.pts[0];
+  return { move: "write", tool: "pencil", pic: actPic("pencil"), total, hits, ticks, strokes, at: ats.filter(actOk), off: ACT_OFF.pencil, path: [{ x: first[0], y: first[1] }] };
+}
+function penTip(p, t) {
+  const S = p.strokes;
+  let pt = S[0].st.pts[0], j = -1;
+  for (let k = 0; k < S.length; k++) if (S[k].t0 <= t) j = k;
+  if (j >= 0) {
+    const s = S[j];
+    if (t <= s.t1) pt = penAt(s.st, (t - s.t0) / (s.t1 - s.t0 || 1));
+    else {
+      const a = s.st.pts[s.st.pts.length - 1];
+      if (j + 1 < S.length) {
+        const b = S[j + 1].st.pts[0], k = Math.min(1, (t - s.t1) / (S[j + 1].t0 - s.t1 || 1));
+        pt = [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k];
+      } else pt = a;
+    }
+  }
+  const lead = t < PEN_IN ? 1 - Math.max(0, Math.min(1, t / PEN_IN)) : t > p.total - PEN_OUT ? 1 - Math.max(0, Math.min(1, (p.total - t) / PEN_OUT)) : 0;
+  return { x: pt[0] + p.off[0] * lead * lead, y: pt[1] + p.off[1] * lead * lead, o: 1 - lead };
+}
+function penWriteLayer(p, t, w, h, C) {
+  const q = penTip(p, t), pic = p.pic;
+  const ink = [];
+  p.strokes.forEach((e, j) => {
+    const f = Math.max(0, Math.min(1, (t - e.t0) / (e.t1 - e.t0 || 1)));
+    if (f > 0 && !e.dab) ink.push(<polyline key={j} data-role="pen-ink" points={penCut(e.st, f)} fill="none" stroke={e.color} strokeWidth={e.sw} strokeLinecap="round" strokeLinejoin="round" />);
+  });
+  let body;
+  if (pic) {
+    const f = pic.fit, k = f.len / Math.max(f.w, f.h), pw = f.w * k, ph = f.h * k;
+    body = <g transform={`translate(${q.x} ${q.y}) rotate(${(f.rot || 0) + PEN_TILT + 3 * Math.sin(t / 55)})`}>
+        <image data-role="act" href={pic.src} x={-f.ax * pw} y={-f.ay * ph} width={pw} height={ph} preserveAspectRatio="none" />
+      </g>;
+  } else {
+    body = <g transform={`translate(${q.x} ${q.y}) rotate(-18) scale(1.4)`}>
+        <ActHand pose="point" ink={C.ink} />
+      </g>;
+  }
+  return <g>
+      <g data-role="pen-writing">{ink}</g>
+      <g opacity={q.o}>
+        <clipPath id="c4ActClip"><rect x={0} y={0} width={w} height={h} /></clipPath>
+        <g clipPath="url(#c4ActClip)" filter="url(#fShadowSoft)">{body}</g>
+      </g>
+    </g>;
+}
+function PencilLine({ x1, y1, x2, y2, size, color, width, opacity }) {
+  const st = penStroke([[x1, y1], [x2, y2]]);
+  return <polyline data-role="pencil-line" points={penCut(st, 1)} fill="none" stroke={color || PEN_INK} strokeWidth={width || penSw(size)} strokeLinecap="round" strokeLinejoin="round" opacity={opacity == null ? 1 : opacity} />;
+}
+function PencilText({ text, x, y, size, align, anchor, step, color, chars, width, opacity }) {
+  const s = String(text == null ? "" : text), L = penLayout(s, x, y, size, String(align || anchor || "start"), Number(step) || 0);
+  const n = chars == null ? s.length : Math.max(0, Math.min(s.length, chars)), sw = width || penSw(size), col = color || PEN_INK, out = [];
+  L.chars.forEach((c) => {
+    if (c.i >= n) return;
+    if (!c.known) out.push(<text key={c.i} x={c.cx + c.adv / 2} y={y} textAnchor="middle" fontSize={size} fontWeight={500} fill={col}>{c.ch}</text>);
+    c.strokes.forEach((st, j) => out.push(<polyline key={c.i + "." + j} points={penCut(st, 1)} fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round" />));
+  });
+  return <g data-role="pencil-text" opacity={opacity == null ? 1 : opacity}>{out}</g>;
 }
 const CSS = `
 .c4-frame{width:min(100vw,177.78vh);height:min(100vh,56.25vw)}
@@ -4830,6 +5105,42 @@ function lcDeal(pair, op) {
 const lcBlank = (e) => ({ e, done: [], prog: null, at: null, atN: 0 });
 const LC_KEY = { "add-small": "Add", carry: "Carry", "add-big": "Add", break: "Break", split: "Split", take: "Take away", brk: "Break" };
 const LC_SEQ = { add: ["add-small", "carry", "add-big"], sub: ["break", "split", "take"] };
+/* the pencil's figures: ONE list of tokens for the act and for the drawing, so nothing moves when an act ends. A token is { s, x, y, size, align, step, color }
+   (or { dab: [x, y], size }); y is the baseline the tool printed on */
+const LC_CELL = LC.boxW + LC.gap;
+/* a figure right-aligned at x, where lcCharXs printed it (the km column, the sum in the carry box, the amber figures) */
+const lcPenR = (s, x, y, size, color) => ({ s: String(s), x, y, size, align: "end", step: 0, color });
+/* the characters of s in the boxes from box k0 on, one box a cell (a space skips a box); grey true: the leading zeros are the placeholder grey, as greyOf
+   draws them (never the last box); "all": every character is a grey zero */
+const lcPenBoxes = (s, B, k0, top, grey) => {
+  const y = top + LC.base, cell = (t, k, color) => ({ s: t, x: lcBoxX(B, k) - LC.gap / 2, y, size: T.xl, align: "start", step: LC_CELL, color });
+  let z = 0;
+  if (grey === "all") z = s.length;
+  else if (grey) while (z < s.length - 1 && s[z] === "0") z++;
+  const out = [];
+  if (z > 0) out.push(cell(s.slice(0, z), k0, LC_ZERO));
+  if (z < s.length) out.push(cell(s.slice(z), k0 + z, LC_INK_SMALL));
+  return out;
+};
+/* ML1: the number in box `at`, then a grey zero in every other box, left to right (a space skips box `at`), as rowCells shows them */
+const lcPenPut = (v, B, at, top) => {
+  const y = top + LC.base, others = lcSeq(B).filter((j) => j !== at);
+  const toks = [{ s: String(v), x: lcBoxX(B, at) + LC.boxW / 2, y, size: T.xl, align: "middle", step: 0, color: LC_INK_SMALL }];
+  if (others.length) {
+    const z0 = others[0];
+    toks.push({ s: lcSeq(others[others.length - 1] - z0 + 1).map((j) => j + z0 === at ? " " : "0").join(""), x: lcBoxX(B, z0) - LC.gap / 2, y, size: T.xl, align: "start", step: LC_CELL, color: LC_ZERO });
+  }
+  return toks;
+};
+/* what the tool draws for a written run: the first n characters of the act's tokens (a dab counts one and draws nothing), each token its own PencilText */
+const lcPenDraw = (toks, n, key) => {
+  let c0 = 0;
+  return <g key={key}>{toks.map((t, i) => {
+    const a = c0;
+    c0 += t.dab ? 1 : t.s.length;
+    return t.dab ? null : <PencilText key={i} text={t.s} x={t.x} y={t.y} size={t.size} align={t.align} step={t.step} color={t.color} chars={Math.max(0, Math.min(t.s.length, n - a))} />;
+  })}</g>;
+};
 function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, box, lang = "en", tx = (v) => v }) {
   const C = api.C;
   const tl = useTimeline();
@@ -4893,7 +5204,7 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
   const split = kind === "sub" && sol.need && spN >= 9;
   const sPad = sol ? lcPad(sol.small, B) : "";
   const bigS = sol ? String(sol.big) : "";
-  let ansCells = [], ansOver = "", ansBig = "";
+  let ansCells = [], ansOver = "", ansBig = "", ansPen = null;
   if (hasAns && rowsIn) {
     if (full) {
       ansCells = sPad.split("");
@@ -4909,6 +5220,7 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
       const nS = kind === "add" ? Math.max(0, Math.min(B, carryN - 1)) : Math.min(tkN, B);
       const nB = kind === "add" ? addBigN : Math.max(0, tkN - B);
       ansCells = lcSeq(B).map((k) => k < nS ? sPad[k] : "");
+      ansPen = [nS, nB];
       ansBig = bigS.slice(0, nB);
       if (ansBig.length < bigS.length && nB > 0) ansBig = bigS.slice(0, nB);
     }
@@ -4967,11 +5279,37 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     if (kind === "warm1") return String(v).slice(0, R("big"));
     return String(v);
   };
+  /* the digits of a row that the pencil wrote (phase 1's warm-up row; ML1's place row while it shows the layout the pencil wrote): [tokens, characters] pairs, or null */
+  const rowPen = (i, rc) => {
+    if (!rowsIn) return null;
+    if (kind === "warm1" && i === 0) {
+      const s = String(rows[0][1]), off = B - s.length;
+      return [[lcPenBoxes(s, B, off, lcRowY(0), false), R("ones")], [lcPenBoxes("0".repeat(off), B, 0, lcRowY(0), "all"), R("hundreds")]];
+    }
+    const v = i === placeRow ? String(rows[i][1]) : "";
+    if (!v || S.at === null || S.at === void 0 || rc.cells[S.at] !== v) return null;
+    const z0 = lcSeq(B).find((j) => j !== S.at);
+    let last = -1;
+    rc.cells.forEach((c, j) => {
+      if (j !== S.at && c === "0") last = j;
+    });
+    return [[lcPenPut(v, B, S.at, lcRowY(i)), v.length + (last >= 0 ? last - z0 + 1 : 0)]];
+  };
   const playing = useRef(false);
   const [actOn, setActOn] = useState(false);
   const lastKey = useRef(0);
   const ptsAt = (pts) => pts.map(ax);
-  const pen = (pts, onP, ms) => api.act({ tool: "pencil", moves: "push", at: ptsAt(pts), onPoint: onP, ms: ms || 900 });
+  const pen = (toks, onP) => api.act({
+    tool: "pencil",
+    moves: "write",
+    text: toks.map((t) => t.dab ? { dab: [t.dab[0] + ox, t.dab[1]], size: t.size } : t.s),
+    at: toks.map((t) => t.dab ? null : ax(t)),
+    size: toks.map((t) => t.size),
+    align: toks.map((t) => t.align || "start"),
+    step: toks.map((t) => t.step || 0),
+    color: toks.map((t) => t.color || PEN_INK),
+    onPoint: onP
+  });
   const chipTall = lang !== "en";
   const chipNode = (label) => <g>
       <rect x={-54} y={chipTall ? -26 : -22} width={108} height={chipTall ? 52 : 44} rx={11} fill={tint(LC_AMBER, 0.45)} stroke={shade(LC_AMBER, 0.3)} strokeWidth={2} />
@@ -4980,17 +5318,14 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
   const trayC = { x: LC.cx, y: LC.trayY + 62 };
   const addChipC = { x: 72, y: LC.chipY + (chipTall ? 26 : 24) };
   const subChipC = { x: 118, y: LC.chipY + 21 };
-  const boxPt = (k, top) => ({ x: lcBoxX(B, k) + LC.boxW / 2, y: top + 30 });
-  const bigPts = (s, top) => lcCharXs(s, LC.bigR, T.xl).map((x) => ({ x, y: top + 30 }));
   const runAct = async (on, k) => {
     const setP = (name, p) => putE(k, { prog: { on: name, p } });
     const doBreak = async (name, ms) => {
       const xs = lcCharXs(String(rows[0][0]), LC.bigR, T.xl);
       const x1 = xs[0] - 22, x2 = LC.bigR + 6, y = lcRowY(0) + 26;
-      const strike = lcSeq(5).map((i) => ({ x: x1 + (x2 - x1) * (i + 1) / 5, y }));
-      const nb = lcCharXs(topBigS, LC.bigR, T.prompt).map((x) => ({ x, y: LC.chipY + 20 }));
+      const strike = lcSeq(5).map((i) => ({ dab: [x1 + (x2 - x1) * (i + 1) / 5, y], size: T.xl }));
       setP(name, 0);
-      if (!await pen([...strike, ...nb], (i) => setP(name, i + 1), ms)) return false;
+      if (!await pen([...strike, lcPenR(topBigS, LC.bigR, LC.amber, T.prompt, LC_INK_AMBER)], (i) => setP(name, i + 1))) return false;
       await lcWait(70);
       return api.act({
         tool: "hand",
@@ -5010,19 +5345,15 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
         if (i === 8) api.sfx.trade();
       } })) return false;
       await lcWait(70);
-      const ns = lcCharXs(topSmallS, LC.boxR, T.prompt).map((x) => ({ x, y: LC.chipY + 20 }));
-      return pen(ns, (i) => setP(name, 10 + i), ms);
+      return pen([lcPenR(topSmallS, LC.boxR, LC.amber, T.prompt, LC_INK_AMBER)], (i) => setP(name, 10 + i));
     };
-    if (on === "big") return pen(bigPts(String(rows[0][0]), lcRowY(0)), (i) => setP(on, i + 1));
+    if (on === "big") return pen([lcPenR(rows[0][0], LC.bigR, lcRowY(0) + LC.base, T.xl, LC_INK_BIG)], (i) => setP(on, i + 1));
     if (on === "ones") {
       const s = String(rows[0][1]);
-      return pen(s.split("").map((_, j) => boxPt(B - s.length + j, lcRowY(0))), (i) => setP(on, i + 1));
+      return pen(lcPenBoxes(s, B, B - s.length, lcRowY(0), false), (i) => setP(on, i + 1));
     }
-    if (on === "hundreds") return pen(lcSeq(B - String(rows[0][1]).length).map((j) => boxPt(j, lcRowY(0))), (i) => setP(on, i + 1));
-    if (on === "add-small") {
-      const xs = lcCharXs(sumS, LC.cx + 40, T.xl);
-      return pen(xs.map((x) => ({ x, y: 128 })), (i) => setP(on, i + 1));
-    }
+    if (on === "hundreds") return pen(lcPenBoxes("0".repeat(B - String(rows[0][1]).length), B, 0, lcRowY(0), "all"), (i) => setP(on, i + 1));
+    if (on === "add-small") return pen([lcPenR(sumS, LC.cx + 40, (placeRow !== void 0 ? 188 : LC.top) + 76, T.xl, LC_INK_SMALL)], (i) => setP(on, i + 1));
     if (on === "carry") {
       setP(on, 0);
       if (!await api.act({
@@ -5038,12 +5369,12 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
         }
       })) return false;
       await lcWait(70);
-      return pen(lcSeq(B).map((j) => boxPt(j, ansTop)), (i) => setP(on, 2 + i));
+      return pen(lcPenBoxes(sPad, B, 0, ansTop, true), (i) => setP(on, 2 + i));
     }
-    if (on === "add-big") return pen(bigPts(bigS, ansTop), (i) => setP(on, i + 1));
+    if (on === "add-big") return pen([lcPenR(bigS, LC.bigR, ansTop + LC.base, T.xl, LC_INK_BIG)], (i) => setP(on, i + 1));
     if (on === "break") return doBreak(on);
     if (on === "split") return doSplit(on);
-    if (on === "take") return pen([...lcSeq(B).map((j) => boxPt(j, ansTop)), ...bigPts(bigS, ansTop)], (i) => setP(on, i + 1));
+    if (on === "take") return pen([...lcPenBoxes(sPad, B, 0, ansTop, true), lcPenR(bigS, LC.bigR, ansTop + LC.base, T.xl, LC_INK_BIG)], (i) => setP(on, i + 1));
     if (on === "brk") {
       setP("break", 0);
       if (!await api.act({
@@ -5073,9 +5404,10 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     if (on === "pair-cm") return api.act({ tool: "hand", moves: "tap", at: [ax({ x: 2 * LC.swP + LC.swW / 2, y: 36 })], onPoint: () => setP(on, 1) });
     if (on.indexOf("box-") === 0) {
       const kk = Number(on.slice(4)) - 1;
-      const order = [kk, ...lcSeq(B).filter((j) => j !== kk)];
       putE(k, { at: kk, atN: 0 });
-      return pen(order.map((j) => boxPt(j, lcRowY(0))), (i) => putE(k, { atN: i + 1 }));
+      /* the number in box kk, then the zeros left to right: atN counts as before (the number = 1, then one for each zero) */
+      const v = String(rows[placeRow][1]), toks = lcPenPut(v, B, kk, lcRowY(placeRow)), zs = toks.length > 1 ? toks[1].s : "";
+      return pen(toks, (i) => putE(k, (b) => ({ atN: Math.max(b.atN || 0, i < v.length - 1 ? 0 : 1 + zs.slice(0, i + 1 - v.length).replace(/ /g, "").length) })));
     }
     return false;
   };
@@ -5100,10 +5432,7 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
       putE(k, { prog: null });
       return;
     }
-    if (on.indexOf("box-") === 0) {
-      api.sfx.tick();
-      return;
-    }
+    if (on.indexOf("box-") === 0) return;
     const names = on === "brk" ? ["break", "split"] : [on];
     putE(k, (b) => ({ done: b.done.concat(names), prog: null }));
     if (on === "take" || on === "add-big") api.sfx.settle();
@@ -5349,9 +5678,11 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     const top = lcRowY(i);
     const rc = rowCells(i);
     const ring = kind === "place" && asking && !!box && box.open;
+    const rp = rowPen(i, rc);
     return <g key={"row" + i}>
-            {boxRow(top, "bx" + i, rc.cells, rc.grey, ring)}
-            {bigText(rowBig(i), top, "big" + i, LC_INK_BIG)}
+            {boxRow(top, "bx" + i, rp ? rc.cells.map(() => "") : rc.cells, rc.grey, ring)}
+            {rp && rp.map((q, j) => lcPenDraw(q[0], q[1], "rp" + i + "-" + j))}
+            {kind === "warm1" && i === 0 && rowsIn ? lcPenDraw([lcPenR(r[0], LC.bigR, top + LC.base, T.xl, LC_INK_BIG)], R("big"), "big" + i) : bigText(rowBig(i), top, "big" + i, LC_INK_BIG)}
           </g>;
   })}
       {strikeF > 0 && (() => {
@@ -5379,8 +5710,9 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     stroke={asking && box && box.open && part === 0 ? C.accent : tint(C.ink, 0.45)}
     strokeWidth={asking && box && box.open && part === 0 ? 4 : 2.5}
   />
-          {boxRow(ansTop, "ans", ansCells, greyOf(ansCells), asking && !!box && box.open && part === 1)}
-          {bigText(ansBig, ansTop, "ansbig", LC_INK_BIG)}
+          {boxRow(ansTop, "ans", ansPen ? ansCells.map(() => "") : ansCells, greyOf(ansCells), asking && !!box && box.open && part === 1)}
+          {ansPen ? lcPenDraw(lcPenBoxes(sPad, B, 0, ansTop, true), ansPen[0], "anspen") : null}
+          {ansPen ? lcPenDraw([lcPenR(bigS, LC.bigR, ansTop + LC.base, T.xl, LC_INK_BIG)], ansPen[1], "ansbig") : bigText(ansBig, ansTop, "ansbig", LC_INK_BIG)}
           {
     /* Enter on an empty answer box: that box is ringed for 1.6 s */
   }
@@ -5427,9 +5759,9 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     );
     if (kind === "sub" && sol.need) {
       const nb = Math.max(0, Math.min(topBigS.length, brN - 5));
-      out.push(spread(lcCharXs(topBigS, LC.bigR, T.prompt).slice(0, nb).map((x, j) => ({ ch: topBigS[j], x, fill: LC_INK_AMBER })), LC.amber, T.prompt, "nb"));
+      out.push(warm || free ? lcPenDraw([lcPenR(topBigS, LC.bigR, LC.amber, T.prompt, LC_INK_AMBER)], nb, "nb") : spread(lcCharXs(topBigS, LC.bigR, T.prompt).slice(0, nb).map((x, j) => ({ ch: topBigS[j], x, fill: LC_INK_AMBER })), LC.amber, T.prompt, "nb"));
       const ns = Math.max(0, Math.min(topSmallS.length, spN - 9));
-      out.push(spread(lcCharXs(topSmallS, LC.boxR, T.prompt).slice(0, ns).map((x, j) => ({ ch: topSmallS[j], x, fill: LC_INK_AMBER })), LC.amber, T.prompt, "ns"));
+      out.push(warm || free ? lcPenDraw([lcPenR(topSmallS, LC.boxR, LC.amber, T.prompt, LC_INK_AMBER)], ns, "ns") : spread(lcCharXs(topSmallS, LC.boxR, T.prompt).slice(0, ns).map((x, j) => ({ ch: topSmallS[j], x, fill: LC_INK_AMBER })), LC.amber, T.prompt, "ns"));
     }
     return <g>{out}</g>;
   }
@@ -5476,7 +5808,7 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     const by = two ? y0 + 44 : y0 + 76;
     return <g>
         <rect x={600} y={y0} width={296} height={116} rx={RAD.panel} fill="#FFFFFF" stroke={C.ink} strokeWidth={2} />
-        {spread(xs.slice(0, nS).map((x, j) => ({ ch: sumS[j], x, fill: LC_INK_SMALL })), by, two ? T.label : T.xl, "sum")}
+        {warm || free ? lcPenDraw([lcPenR(sumS, LC.cx + 40, by, two ? T.label : T.xl, LC_INK_SMALL)], nS, "sum") : spread(xs.slice(0, nS).map((x, j) => ({ ch: sumS[j], x, fill: LC_INK_SMALL })), by, two ? T.label : T.xl, "sum")}
         {nS >= sumS.length && sumS.length > 0 && <text
       x={LC.cx + (two ? 50 : 54)}
       y={by}
