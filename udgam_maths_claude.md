@@ -22,7 +22,8 @@ Variants, same flow:
 - `... chapter <n> lean`: **lean mode**, fewer tokens (step 5): the maths reviewer on every tool, the visual
   reviewer and play tester only where a tool brings something new. Without `lean` it is the full mode.
 - `make ONE tool for class <N> udgam chapter <n> [M1.S1.T2.C4]`: one slot only (add `lean` the same way).
-- `continue chapter <n> of class <N>`: pick up where the chapter stands (`node cli.mjs status --ch <n>`).
+- `continue chapter <n> of class <N>`: pick up where the chapter stands (`node cli.mjs status --ch <n>`), under the **Resume rule**
+  (step 0).
 - `review round for chapter <n> of class <N>: <answers>`: apply the user's review answers (step 9).
 - `upload chapter <n> of class <N>`: step 10, only when the user says it.
 - `remake chapter <n> of class <N>`: the REMAKE path below, only when the user says it.
@@ -152,6 +153,15 @@ makes a one-line fix itself, and it batches the questions for the user. Reviewer
   (no frozen snapshot until `runtime freeze`), docs with a fresh §7, and no work. If `class<N>/` exists but
   is behind the newest class (`status` shows how many files differ), say so and offer a `classctl sync`
   (non-negotiable 10); do not sync unasked.
+- *Resume rule (the owner, 2026-10-21; for every session that picks a chapter up again: `continue`, after a session limit, a reset or
+  a compaction).* **Before continuing, read the root `token-policy.json` and apply it to the resumed chapter** (adaptive mode, the
+  context targets, the agent caps, one review round, reports of at most 40 lines). **Do not recreate the previous context** (do not
+  re-read tool sources, briefs, sheets or logs to rebuild it) **and do not restart completed agents.** **Resume from the existing
+  chapter state and checkpoint:** `node orch.mjs resume --class <N> --ch <n>` (agents done, each slot's stage and decisions) and
+  `node cli.mjs status --ch <n>` (fresh, stale, hand-edited, published). Launch only what they show unfinished: a slot whose check is
+  stale or failing, a review a changed tool still needs (looking only at what changed), or an agent stopped mid-edit (quick-check its
+  slot first, then resume it by SendMessage or start one fresh builder). At a budget checkpoint run
+  `node orch.mjs handoff --class <N> --ch <n>` and stop; the next session starts from that file.
 - *The database.* In `class<N>/`: `node cli.mjs doctor`. The DB must say `ok`. If it refuses, the error names
   this machine's IP: tell the user that IP must be whitelisted and stop; build from a saved plan only if
   they say so (`fetch --plan-file`).
@@ -267,6 +277,13 @@ shapes (`docs/PATTERNS.md`, the skins section); `check` proves `skin-keys` and `
 The tools that PERFORM an act (a knife, scissors, a ruler, a pencil, an eraser) are not this pass: they are the shared ACTION KIT,
 made once for every tool (`node cli.mjs actionkit`, `class<N>/docs/IMAGES.md` §11), and every act a tool offers is done on screen by one
 of them or the drawn hand through `api.act` (`class<N>/docs/PATTERNS.md` §15, the owner 2026-10-16).
+**A pencil that writes digits, signs or capital letters WRITES them (the owner, 2026-10-22; every chapter fetched from then on).** On a runtime with
+the write move (`caps.pencilWrite`: the head of both classes; `fetch` freezes the head and pins a new chapter to it, so a new chapter has it with no
+step of yours) the tip follows each character's own path, the graphite grows behind it and the written text stays (`moves: "write"`, `<PencilText>`;
+PATTERNS §15 "PENCIL WRITING"; about 0.8 s a number, one written act 3 s at most). The binding rule is check `pencil-acts` (PREFLIGHT 26 in class 5, 27 in
+class 4): every pencil act is `moves: "write"` or says `marks: true` (it marks, shades, colours or draws a line and writes nothing). The builder gets it
+from PREFLIGHT and PATTERNS §15, which its readlist already points to; no prompt has to ask. A chapter fetched BEFORE this keeps its old pencil (an INFO
+row), and a READY pair of one is given the new pencil only on the owner's word, by the retrofit in `pencil-writing/README.md`.
 The FONT KIT is the same kind of shared kit: Poppins is carried inside every tool (`node cli.mjs fontkit` -> generated `runtime/fontkit.tsx`,
 `class<N>/docs/LAYOUT.md` §9), so no pass and no tool asks for a font.
 
@@ -277,13 +294,6 @@ runtime and checker; it ports on a pass), one after another with `C4_CHROME_POOL
 
 **8. Clean and report.** The pipeline tidies itself when the chapter is done: `node cli.mjs clean --ch <n>` ONCE
 for the whole chapter (add `--dry` first to see the list). It removes the least important files, the review
-**A pencil that writes digits, signs or capital letters WRITES them (the owner, 2026-10-22; every chapter fetched from then on).** On a runtime with
-the write move (`caps.pencilWrite`: the head of both classes; `fetch` freezes the head and pins a new chapter to it, so a new chapter has it with no
-step of yours) the tip follows each character's own path, the graphite grows behind it and the written text stays (`moves: "write"`, `<PencilText>`;
-PATTERNS §15 "PENCIL WRITING"; about 0.8 s a number, one written act 3 s at most). The binding rule is check `pencil-acts` (PREFLIGHT 26 in class 5, 27 in
-class 4): every pencil act is `moves: "write"` or says `marks: true` (it marks, shades, colours or draws a line and writes nothing). The builder gets it
-from PREFLIGHT and PATTERNS §15, which its readlist already points to; no prompt has to ask. A chapter fetched BEFORE this keeps its old pencil (an INFO
-row), and a READY pair of one is given the new pencil only on the owner's word, by the retrofit in `pencil-writing/README.md`.
 artefacts every `shots` / `check` run makes again: PNG sheets and other images, `.build/`, logs and editor
 leftovers. It tidies only a slot whose last check passed and is still fresh (a failing, stale or unchecked slot keeps
 its sheets: they may be all that shows what is wrong; `--force` overrides). It keeps the source, `voice.tsx`,
