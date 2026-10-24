@@ -29,6 +29,10 @@ pictures and report. **You never edit `tool.tsx`, `voice.tsx`, the runtime, the 
    shapes, people, hands, characters and the mascot, a piece too thin to show a picture, anything past the 40 skins a screen, or a
    skin that would teach a wrong model (say what). The report names, element by element, the skin or the reason it stays plain;
    `"images": []` is right only when every element has such a reason.
+   **Then read the WHOLE brief once more for every real, countable or measurable object it NAMES** (a roti, a jug, buttons, a ribbon, a
+   kitchen scale, a chocolate bar), in the description, the writeup, the concepts, the student controls and the question stems. Each
+   named object gets a skin or a one-line reason it stays plain. A named object with neither is a gap: the visual pass (below) designs
+   from your list, so an object you leave out is drawn as a plain block.
 2. Choose each object from the words, starting from the table in IMAGES.md §3. Prefer one skin reused for
    every piece and state; at most three (more than one only when the tool names different wholes). Keep `object` and `style` words identical to other slots of the chapter
    that use the same object (a library hit is free): `node cli.mjs images list` shows what exists.
@@ -55,6 +59,9 @@ Shape in IMAGES.md §5. `why` quotes the brief's words. `prompt` is one or two p
 object (what it is, its warm colour, its surface, its edge: for a tile its bevel and gloss, for a disc its rim or
 crust): no digits, no number words, no "slices, cut, parts, segments, lines" ("piece" and "square" are fine in a
 tile), no mascot or character; the CLI adds the style, the view, the white background and every negative. No skin: write `{ "slot": "<id>", "style": "...", "images": [] }` and say why in the report.
+**The Gemini visual pass (runbook 4b) reads this file to draw `<Skin>` over the tool's plain shapes**, and it sees only `key`, `object`, `kind`,
+`aspect` and `why`. So make each one say WHERE the picture is used (`why`: "the counters laid in each rod", "the whole roti that is cut"), keep a
+`key` a plain noun (`counter`, `roti`, `jug`), and never reuse one key for two different objects.
 
 ## Run (in `class5/`)
 1. `node cli.mjs images make <slot_id> --ch <n> --dry`: read the warnings and the final prompts; fix

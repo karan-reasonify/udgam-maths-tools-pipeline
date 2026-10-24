@@ -120,6 +120,8 @@ export async function callGeminiGenerate({
           promptTokens: usage.promptTokenCount || 0,
           candidatesTokens: usage.candidatesTokenCount || 0,
           totalTokens: usage.totalTokenCount || 0,
+          thoughtsTokens: usage.thoughtsTokenCount || 0,
+          cachedTokens: usage.cachedContentTokenCount || 0,
         },
       };
     } catch (e) {

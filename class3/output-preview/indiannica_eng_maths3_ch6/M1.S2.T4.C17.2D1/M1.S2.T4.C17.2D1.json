@@ -1,0 +1,1058 @@
+{
+  "slotId": "M1.S2.T4.C17.2D1",
+  "mediaId": "M1.S2.T4.C17.2D1",
+  "toolId": "share_into_groups",
+  "title": "Share Into Groups",
+  "component": "M1.S2.T4.C17.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch6",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch6_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_6/2dtool/M1.S2.T4.C17.2D1/M1.S2.T4.C17.2D1.tsx",
+  "description": "Share a tray of real things into equal baskets, plates or pouches, take the groups the top number names, and then do the same sharing under a cloth with numbers only.",
+  "conceptIds": [
+    "M1.S2.T4.C17",
+    "M1.S2.T4.C18",
+    "M1.S2.T4.C19",
+    "M1.S2.T4.C20"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find a half, a third, a quarter or another fraction of a collection of real things by sharing it into the equal groups the bottom number names and taking the groups the top number names, first with baskets, plates and pouches and then under a cloth with numbers only.",
+    "look": "A market tray of real things at the top left, a row of matching holders under it with a dial and an object picker beside them, a fraction card, a counter of what the taken holders hold, and on the last phase number boxes behind a cloth.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Share Into Groups' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many things are in the holders that have been taken. It is never a score. The working area is 1086 by 528 at x 64, y 202. The market tray is a wooden rounded card 640 by 220 at x 90, y 232, holding up to thirty separate real things in three rows of ten, each about 44 across with a clear gap, drawn as recognisable flat illustrations in their own natural colours: mangoes, laddoos, bananas, pencils, marbles, flowers, books or bangles, so a thing can be counted at a glance. The object picker is a row of eight small pictures at x 90, y 470, each 56 across. The row of holders stands under it at y 540, up to six holders each 150 by 150 with a 16 gap, from x 90, drawn to match the thing: baskets for mangoes, plates for laddoos, trays for bananas, pouches for pencils, bowls for marbles and bangles, vases for flowers, shelves for books. Each holder takes a deep blue rim and the label Taken once the child has tapped it, or keeps an amber rim and the label Left, so the stage reads with the colour taken away, and the things inside keep their own colours. The holders dial is five buttons in a row at x 780, y 240, each 36 across and labelled with a count from two to six. The Share button stands at x 780, y 336 (200 by 70) and the Cover the tray button at x 780, y 424 (200 by 60), both labelled in words. The fraction card stands at x 1000, y 232, 140 by 250, with its top number above a level line and its bottom number below it, and the name of the thing beneath. A line in words under the tray says when the groups are not equal, and the leftover things wait on the tray. On the fourth phase a warm cloth lies over the tray and the holders, with a small tag tied on that names the thing, and in its place five number boxes stand in a column, labelled Total, Groups, In each group, Groups taken and Answer, each filled from the pad. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys for typing the size of one group and the number of things taken into the answer slot. On the first three phases the answer slot asks how many things are in the holders taken. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours, and the chapter's four roles are carried by what holds the object, never by tinting it. The parts a fraction counts, the ones coloured or taken, sit on a deep blue plate, in a deep blue basket or inside a deep blue ring, labelled Coloured or Taken, and a plain drawn part that is coloured is deep blue. The other parts of the same whole, the ones left, sit on an amber plate or in an amber basket, labelled Left. A whole shown entire sits inside a green outline, labelled Whole, and a bracket spanning one whole is green. The bigger of two like fractions gets a vermilion ring, labelled Bigger. A part of a plain drawn shape that is not coloured stays warm white inside its near-black outline, every cut line is near-black, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of the four, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The tray, the holders and the counter show the last sharing, with the holders taken in deep blue and the holders left in amber, and the things in their own colours.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the tapped basket takes a deep blue rim and the counter reads 7",
+        "does": "taps Share, watches the mangoes roll into the two baskets, then taps one basket",
+        "goal": "half of a collection is what one of two equal groups holds",
+        "says": "Half means two equal groups. Share them out. How many are in one group?",
+        "check": "Away from the screen: you share a handful of small fruit between two bowls. What must you check before you say one bowl is half?",
+        "feels": "a tray of mangoes rolling into two baskets, one at a time, until both are the same",
+        "hands": "Share a handful of small fruit, or bottle caps, into two bowls, one at a time, and say how many are in each bowl.",
+        "tries": "First rung: count the things in one basket. Second rung: count the things in the other basket and say if they match. Third rung: the same task with a smaller tray, before the full tray returns.",
+        "wrong": [
+          {
+            "why": "two is the first number met, and it sits right there on the fraction card",
+            "move": "says the number of baskets as the answer",
+            "screen": "the baskets lift off the tray one at a time and the mangoes in one basket are counted aloud, one number for each mango"
+          },
+          {
+            "why": "both baskets are full and they look alike",
+            "move": "takes both baskets",
+            "screen": "the basket not taken keeps its amber rim with the word Left under it, and the counter reads only the basket that took the deep blue rim"
+          }
+        ],
+        "screen": "a tray of 14 mangoes, two empty baskets and the Share button lit",
+        "soWhat": "half of a collection is what one of two equal groups holds",
+        "concept": "Share into equal groups: half of a collection"
+      },
+      {
+        "n": 2,
+        "win": "one pouch takes a deep blue rim, three keep amber rims, and the counter reads 7",
+        "does": "sets the dial to the bottom number, taps Share, watches the pencils slide into the pouches, and taps one pouch",
+        "goal": "a third or a quarter is what one holder has when the things are shared into three or four equal holders",
+        "says": "The bottom number says how many groups. Set them, share, and take one.",
+        "check": "Away from the screen: a heap of pencils is shared into four equal pouches. How many pouches do you take for one quarter?",
+        "feels": "the same tray of pencils sliding into three pouches, then into four, each pouch holding fewer than before",
+        "hands": "Share a heap of pencils into three pouches, then into four, and take one pouch each time.",
+        "tries": "First rung: read the bottom number on the fraction card. Second rung: set that many pouches and share. Third rung: the same task with a smaller tray, before the full tray returns.",
+        "wrong": [
+          {
+            "why": "half was just done with two baskets, so two feels like the usual number",
+            "move": "uses two pouches for a third or a quarter",
+            "screen": "the dial lights amber at the bottom number of the fraction card, and the word third or quarter is written beside the pouches"
+          },
+          {
+            "why": "every pouch looks alike, so they all seem to count",
+            "move": "gives the total of all the pouches instead of one pouch",
+            "screen": "the pouches that were not tapped keep their amber rims with the word Left under them, and the counter reads only the pouch that took the deep blue rim"
+          }
+        ],
+        "screen": "a tray of 28 pencils, the dial at four pouches, and the fraction card showing one over four",
+        "soWhat": "a third or a quarter is what one holder has when the things are shared into three or four equal holders",
+        "concept": "Take one group: a third or a quarter"
+      },
+      {
+        "n": 3,
+        "win": "two bowls take deep blue rims, three keep amber rims, and the counter reads 10",
+        "does": "shares the marbles into the bowls, then taps two bowls and watches the counter",
+        "goal": "two fifths, two thirds and the like mean taking as many equal groups as the top number names",
+        "says": "Share into the groups the bottom number asks for. Then take as many groups as the top number says.",
+        "check": "Away from the screen: a heap of marbles is shared into three equal bowls. What does two thirds ask you to do with the bowls?",
+        "feels": "two bowls taking deep blue rims and the counter growing by the same amount each time",
+        "hands": "Share a heap of marbles into the bowls the bottom number names, then take two bowls and count what they hold together.",
+        "tries": "First rung: read the top number on the fraction card. Second rung: tap one bowl and read the counter, then tap another. Third rung: the same task with the marbles already shared, before the full task returns.",
+        "wrong": [
+          {
+            "why": "one holder was just taken in the last phase, so one feels like the usual number",
+            "move": "takes only one bowl for two thirds or two fifths",
+            "screen": "the top number on the fraction card is lit, and a small number two is written above the bowls, so the bowls to take are counted against it"
+          },
+          {
+            "why": "each bowl is a full group of its own, and one bowl is easy to read",
+            "move": "gives the size of one bowl as the answer",
+            "screen": "the two taken bowls are rimmed deep blue in turn, and the counter adds the second bowl to the first"
+          }
+        ],
+        "screen": "a tray of 25 marbles, the dial at five bowls, and the fraction card showing two over five",
+        "soWhat": "two thirds or two fifths means taking as many equal groups as the top number names",
+        "concept": "Take more than one group: two thirds"
+      },
+      {
+        "n": 4,
+        "win": "the cloth lifts, the laddoos settle on their plates, and the groups match the numbers typed",
+        "does": "types the size of one group, then the number of things taken, then lifts the cloth to check",
+        "goal": "a fraction of any collection is found by dividing by the bottom number and then taking the groups the top number names",
+        "says": "The cloth hides everything. Share the number first. Then take the groups the top number names.",
+        "check": "Away from the screen: say the two steps for finding three fifths of a covered tray of laddoos, in order, before you work it.",
+        "feels": "the same sharing done with numbers under a cloth, and then the cloth lifting to show it was right",
+        "hands": "Put a cloth over a bowl of marbles or a tray of fruit, say how many there are and the fraction, and work out the answer on paper before the cloth is lifted to check.",
+        "tries": "First rung: divide the total by the bottom number only. Second rung: say how many groups the top number takes. Third rung: the same task with the cloth lifted for one look at the plates.",
+        "wrong": [
+          {
+            "why": "the top number comes first when a fraction is read, so it seems to come first in the working",
+            "move": "takes the groups before sharing, using the top number first",
+            "screen": "the cloth lifts for one beat and the plates are shown filled before any are taken, then it settles again"
+          },
+          {
+            "why": "the sharing feels like the whole job, and the answer looks like a number already",
+            "move": "stops after dividing and gives the size of one group",
+            "screen": "the top number is lit, and the number of plates to take is counted out loud one plate at a time"
+          }
+        ],
+        "screen": "a cloth over a tray of laddoos with a tag that reads laddoos, and number boxes for the total, the size of one group and the groups taken",
+        "soWhat": "a fraction of any collection is found by dividing by the bottom number and then taking the groups the top number names",
+        "concept": "A fraction of a collection without the picture"
+      }
+    ],
+    "delight": "Two small surprises. When the last thing lands in the first sharing, the holders give one slow rock like a balanced scale and settle level, because every holder has the same. On the fourth phase, the moment the cloth lifts, the laddoos or bananas slide back onto their plates and trays one at a time to match the numbers the child typed, and the counter reads the same count.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet tapped. On the first phase a wooden market tray of mangoes sits at the top left with two empty baskets under it, and the fraction card shows one over two. On the second the tray holds pencils, the dial is at three or four, four empty pouches stand under it, and the fraction card shows a one over a bottom number. On the third the tray holds marbles, empty bowls stand ready, and the fraction card shows a top number of two or more over a bottom number. On the fourth a cloth is already laid over a tray of laddoos with a small tag that reads laddoos, and only number boxes show. One thing moves, once: the Share button, or the first number box on the fourth phase, gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any of the eight things from two to thirty on the tray, any number of holders from two to six, any holders taken, and the cloth on or off. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on halves, a third, a total that will not share equally, taking more than one group, and fractions of bigger numbers under a cloth, each on a real thing: bananas, books, laddoos, bangles, flowers, mangoes, pencils.",
+    "voiceLines": [
+      "A tray from the market, and some empty baskets and plates. Let us share it out.",
+      "Half means two equal groups. Share them out. How many are in one group?",
+      "The bottom number says how many groups. Set them, share, and take one.",
+      "Share into the groups the bottom number asks for. Then take as many groups as the top number says.",
+      "The cloth hides everything. Share the number first. Then take the groups the top number names.",
+      "A new tray. How many groups does the bottom number ask for?",
+      "Free play. Pick any thing, share it into any groups, and cover the tray when you like.",
+      "Look at one group. How many are in it? Then count the groups you take.",
+      "You shared the tray into equal groups, then took the groups the top number names."
+    ],
+    "observations": [
+      {
+        "why": "Share deals one thing at a time round the holders in turn, so no holder can get ahead.",
+        "soWhat": "to find a fraction of a collection, the groups must be equal.",
+        "observe": "After Share, every basket, plate or pouch held the same number of things."
+      },
+      {
+        "why": "the bottom number counts the equal groups the collection is shared into.",
+        "soWhat": "the bottom number says how many equal groups to make.",
+        "observe": "The bottom number of the fraction card was always the number of holders."
+      },
+      {
+        "why": "every holder has the same number of things, so each one adds the same.",
+        "soWhat": "the top number says how many groups to take.",
+        "observe": "Each extra holder tapped made the counter grow by the same amount."
+      },
+      {
+        "why": "dividing by the bottom number is the same as sharing into that many holders.",
+        "soWhat": "a fraction of a collection can be found with numbers: divide by the bottom number, then take the groups the top number names.",
+        "observe": "Under the cloth, the numbers gave the count the holders gave when the cloth came off."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a tray of 14 mangoes, two empty baskets and the Share button lit",
+        "win": "the tapped basket takes a deep blue rim and the counter reads 7",
+        "traceback": "The tray is shared into the holders, the taken one is rimmed blue and counted, and the count is written.",
+        "ladder": [
+          "The 2 baskets must hold the same number of rotis.",
+          "Both boxes get the same number of bars.",
+          "Compare the 2 parts: is one bigger than the other?",
+          "Make 2 equal groups, then take 1 of them.",
+          "Half is the count in just 1 of the groups."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a tray of 28 pencils, the dial at four pouches, and the fraction card showing one over four",
+        "win": "one pouch takes a deep blue rim, three keep amber rims, and the counter reads 7",
+        "traceback": "The tray is shared into the holders, one is taken and counted; for 22 bars the 2 left over are ringed.",
+        "ladder": [
+          "One quarter is what one plate holds.",
+          "The bottom number 3 means 3 baskets: count one.",
+          "After sharing, is any bar left on the tray?",
+          "The bottom number of the card says how many groups.",
+          "Read the bottom number, then look at one group."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a tray of 25 marbles, the dial at five bowls, and the fraction card showing two over five",
+        "win": "two bowls take deep blue rims, three keep amber rims, and the counter reads 10",
+        "traceback": "The tray is shared, the groups the top number names are rimmed blue, each is counted and the sum is written.",
+        "ladder": [
+          "One plate of the 5 is one fifth.",
+          "Each of the 3 baskets is one third.",
+          "First find how many bars one box gets.",
+          "Read the top number of the card again.",
+          "Add up all the groups you take."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a cloth over a tray of laddoos with a tag that reads laddoos, and number boxes for the total, the size of one group and the groups taken",
+        "win": "the cloth lifts, the laddoos settle on their plates, and the groups match the numbers typed",
+        "traceback": "The cloth lifts: one plate a group with its count, the taken plates rimmed blue, and the two sums written in full.",
+        "ladder": [
+          "First divide 50 by the bottom number, 5.",
+          "Share 90 into 2 equal groups: one group is half.",
+          "Divide 63 by 9 first: use the 9 times table.",
+          "Say how many groups the top number takes.",
+          "Find one group first, then take that many groups."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "things": [
+      "roti",
+      "pizza",
+      "bar"
+    ],
+    "trayMax": 30,
+    "holdersMin": 2,
+    "holdersMax": 6,
+    "freeTotal": 24,
+    "wholeDisc": 300,
+    "wholeBar": [
+      320,
+      85
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T4.C17:SG1",
+        "kind": "share",
+        "thing": "roti",
+        "total": 14,
+        "den": 2,
+        "num": 1,
+        "near": 2,
+        "answer": 7,
+        "ladder": [
+          "Take 1 of the 2 baskets: that is half.",
+          "Count the rotis in one basket only."
+        ],
+        "win": "Yes, 7 rotis are half of 14 rotis."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T4.C17:1",
+        "kind": "share",
+        "thing": "bar",
+        "total": 28,
+        "den": 2,
+        "num": 1,
+        "near": 28,
+        "answer": 14,
+        "ladder": [
+          "Only 1 of the 2 boxes is half, not both.",
+          "Count that one box's bars in twos: 2, 4, 6."
+        ],
+        "win": "Yes, half of 28 bars is 14 bars."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": null,
+        "kind": "fair",
+        "thing": "roti",
+        "cuts": [
+          30,
+          246
+        ],
+        "answer": "no",
+        "ladder": [
+          "Fair means both parts are exactly the same size.",
+          "Look at the 2 cut lines: do they make one straight line?"
+        ],
+        "win": "Right, the parts are not equal, so neither is a half."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T4.C18:SG2",
+        "kind": "share",
+        "thing": "pizza",
+        "total": 28,
+        "den": 4,
+        "num": 1,
+        "near": 14,
+        "answer": 7,
+        "ladder": [
+          "The 4 plates hold the same number each.",
+          "Count the pizzas on one plate only."
+        ],
+        "win": "Yes, one quarter of 28 pizzas is 7 pizzas."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T4.C18:2",
+        "kind": "share",
+        "thing": "roti",
+        "total": 30,
+        "den": 3,
+        "num": 1,
+        "near": 15,
+        "answer": 10,
+        "ladder": [
+          "Each of the 3 baskets gets the same number.",
+          "Count the rotis in the first basket only."
+        ],
+        "win": "Yes, one third of 30 rotis is 10 rotis."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T4.C18:6",
+        "kind": "even",
+        "thing": "bar",
+        "total": 22,
+        "den": 4,
+        "answer": "no",
+        "ladder": [
+          "Fair shares use every bar, and every box gets the same.",
+          "Count the bars on the tray after sharing."
+        ],
+        "win": "Right, No: 2 bars are left over, so the 4 boxes are not equal."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T4.C19:SG3",
+        "kind": "share",
+        "thing": "pizza",
+        "total": 25,
+        "den": 5,
+        "num": 2,
+        "near": 5,
+        "answer": 10,
+        "ladder": [
+          "Two fifths is 2 of the 5 plates, not 1.",
+          "Count one plate, then add the second plate's pizzas."
+        ],
+        "win": "Yes, two fifths of 25 pizzas is 10 pizzas."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T4.C19:3",
+        "kind": "share",
+        "thing": "roti",
+        "total": 21,
+        "den": 3,
+        "num": 2,
+        "near": 7,
+        "answer": 14,
+        "ladder": [
+          "The top number 2 says take 2 of the baskets.",
+          "Add the rotis in 2 baskets together."
+        ],
+        "win": "Yes, two thirds of 21 rotis is 14 rotis."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T4.C19:7",
+        "kind": "share",
+        "thing": "bar",
+        "total": 30,
+        "den": 6,
+        "num": 5,
+        "near": 5,
+        "answer": 25,
+        "ladder": [
+          "Five sixths takes 5 boxes and leaves 1.",
+          "Add 5 of the boxes, one box at a time."
+        ],
+        "win": "Yes, five sixths of 30 bars is 25 bars."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T4.C20:SG4",
+        "kind": "cloth",
+        "thing": "roti",
+        "total": 50,
+        "den": 5,
+        "num": 3,
+        "near": 10,
+        "answer": 30,
+        "ladder": [
+          "One fifth is one of 5 equal groups: now take 3 groups.",
+          "Add one group 3 times to find three fifths."
+        ],
+        "win": "Yes, each group has 10, so three fifths of 50 is 30."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T4.C20:4",
+        "kind": "cloth",
+        "thing": "bar",
+        "total": 90,
+        "den": 2,
+        "num": 1,
+        "near": 2,
+        "answer": 45,
+        "ladder": [
+          "Split 90 into 80 and 10, then halve each part.",
+          "Join the two halves you found into one group."
+        ],
+        "win": "Yes, half of 90 bars is 45 bars."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T4.C20:8",
+        "kind": "cloth",
+        "thing": "pizza",
+        "total": 63,
+        "den": 9,
+        "num": 4,
+        "near": 7,
+        "answer": 28,
+        "ladder": [
+          "Then take 4 of the 9 equal groups.",
+          "Use the times table for 4 groups of that size."
+        ],
+        "win": "Yes, each group has 7, so four ninths of 63 is 28."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The tray is shared into the holders, the taken one is rimmed blue and counted, and the count is written.",
+      "Phase 2: The tray is shared into the holders, one is taken and counted; for 22 bars the 2 left over are ringed.",
+      "Phase 3: The tray is shared, the groups the top number names are rimmed blue, each is counted and the sum is written.",
+      "Phase 4: The cloth lifts: one plate a group with its count, the taken plates rimmed blue, and the two sums written in full."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A tray from the market, and some empty baskets and plates. Let us share it out.",
+    "onFreePlay": "Free play. Pick a thing and a number of groups, then share and take groups.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You shared things into equal groups, then took the groups the top number names.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T4.C17:SG1",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A tray has 14 mangoes to share into baskets. How many mangoes are half of them?",
+            "question": {
+              "en": "Share the 14 rotis into 2 equal baskets: how many rotis make half?"
+            },
+            "ask": {
+              "en": "Half of 14 rotis?"
+            },
+            "answer": 7,
+            "planAnswer": "7 mangoes",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T4.C17:1",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A tray has 28 bananas. How many bananas are half of them?",
+            "question": {
+              "en": "What is half of these 28 chocolate bars, shared into 2 boxes?"
+            },
+            "ask": {
+              "en": "Half of 28 bars?"
+            },
+            "answer": 14,
+            "planAnswer": "14 bananas, because two equal trays of 14 bananas make 28",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "fair",
+            "planQuestion": null,
+            "question": {
+              "en": "This roti is cut for 2 children: is it a fair share?"
+            },
+            "ask": {
+              "en": "Is it fair?"
+            },
+            "answer": "no",
+            "planAnswer": null,
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T4.C18:SG2",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A box has 28 pencils to share into pouches. How many pencils are one quarter of them?",
+            "question": {
+              "en": "Share the 28 pizzas onto 4 equal plates: how many pizzas are one quarter?"
+            },
+            "ask": {
+              "en": "One quarter of 28?"
+            },
+            "answer": 7,
+            "planAnswer": "7 pencils",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T4.C18:2",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A cupboard has 30 books on its shelves. How many books are one third of them?",
+            "question": {
+              "en": "How many of these 30 rotis are one third, once shared into 3 baskets?"
+            },
+            "ask": {
+              "en": "One third of 30?"
+            },
+            "answer": 10,
+            "planAnswer": "10 books, because three equal shelves of 10 books make 30",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T4.C18:6",
+            "worked": false,
+            "kind": "even",
+            "planQuestion": "A tray has 22 mangoes. Can you find one quarter of them by sharing into four equal baskets?",
+            "question": {
+              "en": "Can these 22 bars be shared into 4 equal boxes to find one quarter?"
+            },
+            "ask": {
+              "en": "4 equal boxes?"
+            },
+            "answer": "no",
+            "planAnswer": "No. 22 mangoes cannot be shared into four equal baskets, because two mangoes are left over",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T4.C19:SG3",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A bag has 25 marbles to share into bowls. How many marbles are two fifths of them?",
+            "question": {
+              "en": "Share the 25 pizzas onto 5 plates: how many pizzas are two fifths?"
+            },
+            "ask": {
+              "en": "Two fifths of 25?"
+            },
+            "answer": 10,
+            "planAnswer": "10 marbles",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T4.C19:3",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A table has 21 laddoos on plates. How many laddoos are two thirds of them?",
+            "question": {
+              "en": "How many of these 21 rotis are two thirds, once shared into 3 baskets?"
+            },
+            "ask": {
+              "en": "Two thirds of 21?"
+            },
+            "answer": 14,
+            "planAnswer": "14 laddoos, because each of the three plates holds 7 laddoos and two plates hold 14",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T4.C19:7",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A box has 30 pencils. How many pencils are five sixths of them?",
+            "question": {
+              "en": "What is five sixths of these 30 bars, shared into 6 boxes?"
+            },
+            "ask": {
+              "en": "Five sixths of 30?"
+            },
+            "answer": 25,
+            "planAnswer": "25 pencils, because each of the six pouches holds 5 pencils and five pouches hold 25",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T4.C20:SG4",
+            "worked": false,
+            "kind": "cloth",
+            "planQuestion": "A covered tray holds 50 laddoos. What is three fifths of the laddoos? Work it with numbers only.",
+            "question": {
+              "en": "50 rotis are under the cloth: how many rotis are three fifths of them?"
+            },
+            "ask": {
+              "en": "Three fifths of 50?"
+            },
+            "answer": 30,
+            "planAnswer": "30 laddoos",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T4.C20:4",
+            "worked": false,
+            "kind": "cloth",
+            "planQuestion": "A covered box holds 90 bangles. What is half of the bangles? Work it with numbers only.",
+            "question": {
+              "en": "90 bars are under the cloth: how many bars are half of them?"
+            },
+            "ask": {
+              "en": "Half of 90?"
+            },
+            "answer": 45,
+            "planAnswer": "45 bangles, because 90 bangles shared into two equal groups gives 45 in each group",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T4.C20:8",
+            "worked": false,
+            "kind": "cloth",
+            "planQuestion": "A covered tray holds 63 bananas. What is four ninths of the bananas? Work it with numbers only.",
+            "question": {
+              "en": "63 pizzas are under the cloth: how many pizzas are four ninths of them?"
+            },
+            "ask": {
+              "en": "Four ninths of 63?"
+            },
+            "answer": 28,
+            "planAnswer": "28 bananas, because 63 bananas shared into nine equal groups gives 7 in each group and four groups hold 28",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S2.T4.C17:5"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "share_into_groups",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "share_into_groups",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Share into equal groups: half of a collection",
+        "conceptId": "M1.S2.T4.C17",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C17:SG1",
+          "M1.S2.T4.C17:1",
+          "M1.S2.T4.C17.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Take one group: a third or a quarter",
+        "conceptId": "M1.S2.T4.C18",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C18:SG2",
+          "M1.S2.T4.C18:2",
+          "M1.S2.T4.C18:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Take more than one group: two thirds",
+        "conceptId": "M1.S2.T4.C19",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C19:SG3",
+          "M1.S2.T4.C19:3",
+          "M1.S2.T4.C19:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A fraction of a collection without the picture",
+        "conceptId": "M1.S2.T4.C20",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C20:SG4",
+          "M1.S2.T4.C20:4",
+          "M1.S2.T4.C20:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "thing",
+    "total",
+    "holders",
+    "n",
+    "taken",
+    "takenN",
+    "covered"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), complete, thing, total, holders, n, taken, takenN, covered",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "share_into_groups"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T4.C17.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A tray from the market, and some empty baskets and plates. Let us share it out."
+    },
+    {
+      "en": "Half means two equal groups. Share them out. How many are in one group?"
+    },
+    {
+      "en": "The bottom number says how many groups. Set them, share, and take one."
+    },
+    {
+      "en": "Share into the groups the bottom number asks for. Then take as many groups as the top number says."
+    },
+    {
+      "en": "The cloth hides everything. Share the number first. Then take the groups the top number names."
+    },
+    {
+      "en": "A new tray. How many groups does the bottom number ask for?"
+    },
+    {
+      "en": "Free play. Pick any thing, share it into any groups, and cover the tray when you like."
+    },
+    {
+      "en": "Look at one group. How many are in it? Then count the groups you take."
+    },
+    {
+      "en": "You shared the tray into equal groups, then took the groups the top number names."
+    }
+  ],
+  "build": {
+    "source": "6b18bc58:714106",
+    "runtime": "class3/runtime/frozen/r1/runtime.tsx",
+    "runtimeVersion": "r1",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-23T19:38:55.559Z",
+    "checks": {
+      "pass": 96,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-23T19:38:55.421Z"
+    },
+    "tsxBytes": 636090,
+    "tsxMd5": "499ba660d04ce2cab357d77d925ca090"
+  }
+}

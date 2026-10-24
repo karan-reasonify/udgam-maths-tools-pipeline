@@ -1,0 +1,12 @@
+{
+  "$comment": "The FONT KIT plan (the owner, 2026-10-16; LAYOUT.md §9): Poppins carried INSIDE every tool, because staging and some devices have no Poppins. `node cli.mjs fontkit` subsets each face with fontTools to these ranges (Latin, the rupee and the maths signs, Devanagari for Hindi; Gujarati stays on the device's font) as woff2 and writes runtime/fontkit.tsx (generated, never read). The family name is private, so it never clashes with a page's own Poppins.",
+  "family": "C4 Poppins",
+  "display": "swap",
+  "unicodes": "U+0020-007E,U+00A0-00FF,U+2013-2014,U+2018-201D,U+2022,U+2026,U+20B9,U+00D7,U+00F7,U+2212,U+0900-097F,U+1CD0-1CFF,U+200C-200D,U+25CC,U+A8E0-A8FF",
+  "faces": [
+    { "file": "assets/fonts/Poppins-Medium.ttf", "weight": 500 },
+    { "file": "assets/fonts/Poppins-SemiBold.ttf", "weight": 600 },
+    { "file": "assets/fonts/Poppins-Bold.ttf", "weight": 700 }
+  ],
+  "licence": "assets/fonts/OFL.txt"
+}

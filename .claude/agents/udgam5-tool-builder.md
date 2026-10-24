@@ -165,16 +165,7 @@ Never read `slot.json`, `plan.json`, `*.preview.html`, `.build/`, `output-previe
 4. **The inner loop, while you build:** `node cli.mjs check <slot_id> --ch <n> --no-render` after each block of work (the
    quick check: no browser, seconds, the source and maths rows; it never certifies or ports). Fix every FAIL it names.
    Do not run the full check to find out whether a block is right, and do not chase a visual by repeating full checks.
-4b. **Visual pass, once, when the quick check is clean:** `node cli.mjs design <slot_id> --ch <n>`. Gemini rewrites `tool.tsx`
-   for looks only (SVG art, colour, depth, motion); it keeps the logic, `TR`, `PHASES`, `<Skin>` and every `api.*` call, checks the
-   syntax, repairs a slip once or reverts, puts back any printed sentence it damaged (it has turned "bigger" into "meger"; if one
-   cannot be restored it reverts), and leaves the original beside it as `tool.tsx.pre-design`. It needs `GEMINI_API_KEY`
-   (missing: skip it and say so in your report). It proves syntax and printed text only, and a run can still break the layout
-   or draw a NaN, so the full check at step 5 is its gate: when that fails because of 4b, copy `tool.tsx.pre-design` back over
-   `tool.tsx` and run 4b once more, or skip it and say so. Look at `shots` too, and at `shots --state start` (the start page is where
-   it changed most): a label off its pill, a small figure left small, or words it ADDED (it once turned "+3" into "Check: +3", English
-   only and over the table edge; no check sees that) are yours to fix by hand. Never run it after the language pass or as `design --ch <n>`; the CLI refuses a tool already ported or
-   published (`--force` overrides, and a remade tool is not refused).
+   (The Gemini visual pass is NOT part of this loop: it comes later, only when the main session asks, see "Visual pass" below.)
 5. When the quick check is clean: `node cli.mjs preview <slot_id> --ch <n>` (fix build errors and host-scope warnings),
    then **one full** `C4_CHROME_POOL=2 node cli.mjs check <slot_id> --ch <n>` until **0 FAIL and 0 WARN**. It rebuilds the
    preview, runs real mouse, finger and key input, and ports on a pass. A few rows exist only in a full run (PREFLIGHT
@@ -185,6 +176,24 @@ Never read `slot.json`, `plan.json`, `*.preview.html`, `.build/`, `output-previe
    row answers, one sheet at a time.
 7. To try real input yourself, use `class5/lib/check/playkit.mjs` in your own headless Chrome. Never use
    the shared Playwright browser: other builders are using it.
+
+## Visual pass (the Gemini design pass, step 4b): only when the main session asks, after the maths review is clean
+It comes AFTER the maths is final and the pictures exist, so Gemini designs the layout around the real objects and never changes a number.
+Run `node cli.mjs design <slot_id> --ch <n>` once. Gemini rewrites `tool.tsx` for looks only (SVG art, colour, depth, layout, motion); it keeps every
+`api.*` call; `TR`, `PHASES`, `MODEL` and the maths are never sent. **It is told the keys of the slot's pictures (`images.json`) and draws `<Skin>` over every plain shape
+that stands for one of them, in that shape's own box, the plain shape kept under it as the fallback** (nothing is added on a runtime without `Skin`).
+It checks the syntax, repairs a slip once or reverts, puts back any printed sentence it damaged (it has turned "bigger" into "meger"; if one
+cannot be restored it reverts), refuses a result that dropped a skin, named a picture that does not exist or added an `<image>`, a data: URI or a URL, draws a picture that was made and left undrawn in one follow-up call, mounts every phase in headless Chrome (a blank or throwing result gets one repair, else it reverts),
+and leaves the original beside it as `tool.tsx.pre-design`. It needs `GEMINI_API_KEY` (missing: skip it and say so in your report).
+If it prints "no pictures yet", the image pass has not landed: tell the main session, do not run it blind. If it prints "made but drawn by no
+<Skin>", draw that skin yourself or give the reason the element stays plain.
+It proves syntax, printed text and pictures only, and a run can still break the layout or draw a NaN, so the full check is its gate: when that fails
+because of 4b, copy `tool.tsx.pre-design` back over `tool.tsx` and run it once more, or skip it and say so. Then look: `shots`, `shots --state wrong` and
+`shots --state start` (the start page is where it changed most). Fix by hand: a skin drawn ABOVE a colour tint so that two pieces that should differ now look
+the same (a blue rod and an amber rod both plain wood: the skin goes UNDER the tint; "NOTE: colour lost" names it); a `skins` FAIL "N skins on one screen" (Gemini skinned every piece of a loop:
+keep `<Skin>` on the pieces the child acts on, the rest plain); a label off its pill, a picture that does not read as its object, a skin over a digit,
+a small figure left small, or words it ADDED (it once turned "+3" into "Check: +3", English only and over the table edge; the CLI names them: "NOTE: words added") are
+yours to fix by hand. Never run it after the language pass or as `design --ch <n>`; the CLI refuses a PUBLISHED tool (`--force` overrides).
 
 ## Language pass (Hindi and Gujarati): only when the main session asks, after the English is final
 The tool keeps every English string exactly as it is (the checks, the sidecar and the model read them) and

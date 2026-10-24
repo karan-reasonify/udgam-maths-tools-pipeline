@@ -271,3 +271,35 @@ cartoon hand stays drawn in code (§2: hands are never generated) and stands in 
 - **Made 2026-10-16:** knife 200x37, scissors 111x140, ruler 200x42, pencil 190x40, eraser 110x90; about 14.6 KB of data URIs in
   every tool built on it. Look at a new picture before keeping it (one re-make, as §9).
 - **The FONT KIT is carried the same way** (`node cli.mjs fontkit` -> generated `runtime/fontkit.tsx`, Poppins inside the tool; LAYOUT.md §9).
+
+## 12. The design pass and the pictures (the owner, 2026-10-22)
+
+The Gemini visual pass (`node cli.mjs design <slot_id> --ch N`, runbook step 4b) is where the real objects the brief names meet the layout. The order is fixed:
+the image agent (5c) runs BESIDE the builder, the builder draws `<Skin>` over its plain shapes, the maths review is clean, and only then does the design pass run, so
+it designs around the final maths AND the real pictures, never before them.
+
+- **What Gemini is given:** the slot's `images.json` (each made picture's `key`, `object`, `kind`, `aspect` and `why`), the layout rules (LAYOUT §1, 3, 9, 10) and this
+  section's contract (§7: plain shape first, `<Skin>` over it, a tile once per piece, a disc clipped per wedge, no digit in a picture). **Never `images.tsx`**: base64 does
+  not travel through a design model. So `why` must say where the picture is used and a `key` must be a plain noun (`counter`, `roti`). Nor do `TR`, `PHASES`, `MODEL`, the
+  maths, the printed constants or the runtime wiring: `lib/design/scope.mjs` swaps each for a one-line placeholder and puts it back byte for byte after every call
+  (a reply that drops, repeats or moves one is refused), so they are neither paid for twice nor exposed to the text damage a whole-file rewrite brought.
+- **What it does with them:** it draws `<Skin name="key" x y w h />` over every plain shape that stands for one of those objects, in that shape's own box, the plain
+  shape kept under it as the fallback; it uses each key at least once; it lays the working area out around the objects (about a third of it or more, at most about 70 %,
+  at most 40 skins on a screen). It never draws a picture any other way: no `<image>`, no data: URI, no URL, no emoji, no placeholder box.
+- **Which runtimes:** only a chapter whose pinned runtime has `Skin` (`caps.skin`). On an older pin the pass adds no `<Skin>` and removes none, and says so.
+- **What the CLI proves (`lib/design/skins.mjs`, run with `lib/design/design.test.mjs`):** no skin dropped; no `<Skin name>` for a key that has no picture (it would draw
+  nothing, silently); no `<image>`, data: URI, URL, `href` or `new Image()` added; `TOOL_IMAGES` untouched. Any of these reverts the pass to `tool.tsx.pre-design`. A picture that
+  was made and that no `<Skin>` draws first gets ONE narrow follow-up call (add only those skins, accepted only through the same guards) and, if it is still undrawn, is printed ("made but drawn by no <Skin>") for the builder to draw or to justify as plain.
+- **It also proves the tool mounts (`lib/design/mount.mjs`):** the rebuilt preview is mounted once per phase in headless Chrome. Gemini twice moved a declaration so that `Work` threw "Cannot access 'a' before initialization" (a blank tool that parses and passes every static check); a tool that does not mount, throws or draws a NaN gets ONE repair call, else the pass reverts.
+- **Measured on a real tool (class 4 ch 10 C25, its skins stripped, 2026-10-22):** the first run drew the picture but put it ABOVE the colour tint (a blue rod and an amber rod both became plain wood) and
+  skinned every counter of a loop (73 skins; the cap is 40, and the `skins` row failed it). The prompt now states the layer order (plain shape, `<Skin>`, then the tint, outline, labels) and to count
+  a loop's skins. Neither is provable by a script, so the builder's look at `shots` and the full `check` stay the gate.
+- **What it cannot prove:** that a picture reads as its object, that a skin does not sit over a digit, that the layout is good, or that a drawing is not broken. The full
+  `check` (it fails a NaN, a skin outside the working area, `skins-fallback`) and the builder's look at `shots`, `shots --state wrong` and `shots --state start` are the gate.
+  Words it ADDED are named by the CLI ("NOTE: words added": a new literal holding a word that is not CSS); the builder removes them, the pass is kept.
+  So is a meaning COLOUR it took away ("NOTE: colour lost: the start page: blue ..."): the start page and each question are shot before and after the pass, and a hue that
+  faded in place (under half kept in a 100 px tile) and over the frame is named. On C25 it was a `<Skin>` put in the shared counter helper, over a piece whose colour is its
+  own fill, turning the start page's blue rod grey: draw that colour over the skin as a tint (about 0.7 opacity), as the builder's own skins do (they keep 74 % of the blue).
+- **Cost, measured (C25, 8 runs an arm, 2026-10-23):** holding those blocks back and putting the prompt's fixed text first cut the Gemini tokens of a pass from ~88k to
+  ~44k a run and the usable rate rose from 3 in 8 to 7 in 8 (most old failures were the pipeline's own: a `TOOL_IMAGES` line the prompt asked for, and code between two quotes
+  read as a sentence). Rejected: replies as search/replace edits (thinking rose as output fell; 3 in 8 fell back to a whole file) and a thinking budget of 2048 (near no-op designs).

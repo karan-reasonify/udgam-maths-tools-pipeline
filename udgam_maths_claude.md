@@ -121,12 +121,12 @@ Variants, same flow:
 
 | agent | when | does | edits |
 |---|---|---|---|
-| `<pfx>-tool-builder` | step 4, one per slot, in parallel (after the pilot, if the owner chose one); step 5b (language pass) and every fix by SendMessage | reads `docs/PREFLIGHT.md` and its `readlist.md` first, builds `tool.tsx` on the quick check (`check --no-render`), runs the Gemini visual pass once (4b), then ONE full `check`, reports; then adds the Hindi/Gujarati `TR` table (and, on a voiced runtime, bakes the voice) | its slot's `tool.tsx` (and the generated `voice.tsx`) only |
+| `<pfx>-tool-builder` | step 4, one per slot, in parallel (after the pilot, if the owner chose one); step 5b (language pass) and every fix by SendMessage | reads `docs/PREFLIGHT.md` and its `readlist.md` first, builds `tool.tsx` on the quick check (`check --no-render`), draws `<Skin>` over its plain shapes once its pictures exist, then ONE full `check`, reports; then on SendMessage the Gemini visual pass (4b, after the maths review) and the Hindi/Gujarati `TR` table (and, on a voiced runtime, bakes the voice) | its slot's `tool.tsx` (and the generated `voice.tsx`) only |
 | `<pfx>-maths-reviewer` | step 5, per tool, FIRST, on the final English tool | maths, textbook method, giveaways, corrections, plan fidelity | nothing |
 | `<pfx>-visual-reviewer` | step 5d, per tool, ONCE, on the near-final tool (after the language pass) | English, Hindi and Gujarati in one pass, from the review pack (`shots --pack`: every frame at full size; `--pack --changed` on a re-review), vs LAYOUT | nothing (makes PNGs) |
 | `<pfx>-play-tester` | step 5d, per tool, ONCE, on the near-final tool | starts from the rows `check` already played (`lib/check/playhelpers.mjs`, `docs/PLAYBOOK.md`) and adds exploratory probes with a real mouse, finger and keys | nothing (makes PNGs) |
 | `<pfx>-upload-auditor` | step 7, per chapter | output files vs the live plan, host emulator, dry run | nothing |
-| `<pfx>-image-agent` | step 5c, **the default for EVERY tool** (no prompt has to ask; the rule is `docs/IMAGES.md`: real objects, not plain blocks); it reads the brief only, so it may start beside the builders at step 4, and the builder draws the skins after the maths review | gives every thing the child shares, cuts, counts, pours, weighs or measures a real everyday object, names the reason for each element left plain, writes `images.json`, runs `node cli.mjs images make`, views the pictures | nothing in `tool.tsx` (writes `images.json`; the CLI writes `images.tsx`) |
+| `<pfx>-image-agent` | step 5c, **the default for EVERY tool** (no prompt has to ask; the rule is `docs/IMAGES.md`: real objects, not plain blocks); it reads the brief only, so it is launched BESIDE the builders at step 4, and its pictures must exist before the visual pass (4b), which designs around them | gives every thing the child shares, cuts, counts, pours, weighs or measures, and every real object the brief NAMES, a real everyday object, names the reason for each element left plain, writes `images.json`, runs `node cli.mjs images make`, views the pictures | nothing in `tool.tsx` (writes `images.json`; the CLI writes `images.tsx`) |
 
 The agent files are generated from `_templates/agents/*.md.tpl` by `classctl` (`new` and `sync`), so they are
 the same for every class except the class number, the prefix and the age band. Models (the `model:` line of
@@ -196,14 +196,7 @@ brief and its pinned runtime). For a slot whose `tool.tsx` already exists: `node
 **4. Build.** Launch one `<pfx>-tool-builder` per slot, all in one message, in the background. The prompt:
 the class and chapter number, the slot id, the tool's name, the chapter's notes row, any §7 decision from
 step 2, and "report as your agent file says" (its file sends it to `docs/PREFLIGHT.md` and the slot's `readlist.md`
-first, and builds on the quick check, then one full `check`). **4b. Visual pass:** once its quick check is clean, each builder runs
-`node cli.mjs design <slot_id> --ch <n>` (the Gemini pass: looks only, logic, `TR`, `PHASES`, `<Skin>` and `api.*` kept; syntax checked, one
-repair, else a revert to `tool.tsx.pre-design`; a printed sentence Gemini damaged is put back, or the pass reverts), then the quick check again and
-`shots` and `shots --state start` (words it ADDED, such as "+3" turned into "Check: +3", and the start page are seen by no check), since only syntax
-and printed text are proved: a run can still break the layout or draw a NaN, so the full check is its gate (when it
-fails because of 4b, copy `tool.tsx.pre-design` back and run 4b once more, or skip it). Once per tool, before the language pass (5b); the CLI
-refuses a tool already ported or published (`--force` overrides; a remade tool is not refused); `design --ch <n>` (a whole chapter) is the main
-session's call, not a builder's.
+first, and builds on the quick check, then one full `check`). **Launch each slot's `<pfx>-image-agent` in the same message** (5c: it reads the brief only), so the pictures of the real objects the brief names exist while the builder works; the builder draws `<Skin>` over its plain shapes as soon as `images.tsx` lands. The Gemini visual pass is NOT run at this step: it comes at 4b, after the maths review, so it designs around the final maths and the real pictures. 
 **If the owner chose the pilot,** launch only the
 first slot's builder, take that tool through step 5 to 5d, settle any finding about the runtime or the shared
 look (step 2's route), then launch the other builders in one message. Don't wait idle: while they build, nothing
@@ -214,8 +207,8 @@ per class or chapter: a new class has it from `classctl new`, a new chapter from
 
 **5. As each builder reports: the STAGED review.** Full mode keeps all three reviewers on every tool. Only the
 order and the timing change, so each look happens ONCE, on the tool as it will ship, and no look is dropped. The
-order for a tool: **5** maths reviewer on the final English, the builder fixes -> **5c** image pass (if any) -> **5b**
-language pass -> **5d** visual reviewer and play tester, once.
+order for a tool: **5c** image pass (launched with the builder at step 4; its pictures drawn as skins) -> **5** maths reviewer on the final English, the builder fixes ->
+**4b** Gemini visual pass (designs around the final maths and the real pictures) -> **5b** language pass -> **5d** visual reviewer and play tester, once.
 - read its report; `node cli.mjs status --ch <n>` shows the check is fresh. A builder stops after 6 full `check` runs
   (per build, and per fix message) and reports a blocker with the failing rows: decide whether to send it on (SendMessage),
   raise its limit in the message, or fix the cause yourself (often a runtime gap, which is step 2's route);
@@ -248,6 +241,19 @@ language pass -> **5d** visual reviewer and play tester, once.
   input from step 2, a hand to turn, a bar height to drag, a new drag mechanic). `check` already drags, taps and
   types for real on every tool. When unsure, run it. The report says which reviewers ran for each tool and why.
 
+**4b. Visual pass (Gemini, ONE per tool, after the maths reviewer is clean and the pictures exist; before the language pass).** SendMessage the tool's builder
+"visual pass" (its agent file says how): `node cli.mjs design <slot_id> --ch <n>`. Gemini restyles `tool.tsx` for looks and layout only and every `api.*` call is
+kept; `TR`, `PHASES`, `MODEL`, the maths and the runtime wiring never travel (`lib/design/scope.mjs` holds them back and puts them back byte for byte). **It is given the slot's `images.json` (the key, object and use of every picture the image pass made) and draws `<Skin>`
+over every plain shape that stands for one of those objects, in that shape's own box, the plain shape kept under it as the fallback, and it lays the screen out
+around the objects** (the one picture rule: `docs/IMAGES.md` §7 and §12). Only the keys travel to Gemini, never `images.tsx`. On a chapter whose pinned runtime has no
+`Skin` it adds no pictures. The CLI proves what a script can: the syntax (one repair, else a revert to `tool.tsx.pre-design`), every printed sentence
+(a damaged one is put back, or the pass reverts), the pictures (no skin dropped, no key that does not exist, no `<image>`, data: URI or URL added; a picture made and left undrawn gets ONE narrow follow-up call), and that the tool MOUNTS (every phase is mounted in headless Chrome: a blank or throwing result gets ONE repair, else the pass reverts). It
+cannot prove the look or the layout: the full `check` is its gate (when it fails because of 4b, copy `tool.tsx.pre-design` back and run 4b once more, or skip it and say so),
+and the builder then reads `shots`, `shots --state wrong` and `shots --state start` for a picture that does not read as its object, a skin over a digit, a label off its
+pill, or words Gemini ADDED ("+3" became "Check: +3") or a meaning colour it took away (the CLI names both: "NOTE: words added", "NOTE: colour lost"). It prints "no pictures yet" when 5c has not landed (do not run it blind) and
+"made but drawn by no <Skin>" for a picture nobody draws (the builder draws it or says why the element stays plain). The CLI refuses a PUBLISHED tool (`--force`);
+`design --ch <n>` (a whole chapter) is the main session's call, not a builder's. Needs `GEMINI_API_KEY`; missing, skip 4b and say so.
+
 **5b. Language pass (Hindi and Gujarati).** When a tool's English is final (the maths reviewer is clean and any image
 pass is done), SendMessage its builder "language pass": its agent file says how. In both flows the tool gets its `TR` table,
 `tx` in `Work` and `Thumb`, the `shots --lang hi|gu` fit sheets, and `check` on 0 FAIL 0 WARN.
@@ -263,8 +269,7 @@ pass is done), SendMessage its builder "language pass": its agent file says how.
 A native speaker should read the first translations (terms, Gujarati especially). A later fix that changes an English
 line changes its `TR` key in the same edit (step 5d).
 
-**5c. Image pass (the default for EVERY tool, in full and lean mode; before 5b, once the maths reviewer is clean; it reads the brief only, so it
-may start beside the builders at step 4).** The rule is `docs/IMAGES.md` and no prompt has to ask for it: wherever a tool draws a thing the
+**5c. Image pass (the default for EVERY tool, in full and lean mode; launched BESIDE the builders at step 4, because it reads the brief only and the pictures must exist before 4b).** The rule is `docs/IMAGES.md` and no prompt has to ask for it: wherever a tool draws a thing the
 child shares, cuts, counts, pours, weighs, measures or builds with, it is a REAL everyday object that matches the content and the operation
 (a chocolate bar, a roti, buttons, a jug, a kitchen scale), not a plain block. Plain is right only for the marks and digits themselves, a
 geometry lesson's shapes, people and the mascot, a piece too thin to show a picture or past the 40 skins a screen, or a skin that would teach a
@@ -511,4 +516,4 @@ Announce a runtime or lib edit to the other chapter sessions of the class before
 | carrying code between classes, a new class | `node classctl.mjs status \| sync \| new \| restore \| rootdocs` · `classctl.manifest.json` · `CLASSCTL.md` |
 | the agent templates | `_templates/agents/*.md.tpl` (the files in `.claude/agents/` are generated from them) |
 | tokens: what a session or a role costs | `node usage.mjs session [FILE.jsonl]` · `node usage.mjs static --class <N> [--ch <n>]` (pipeline root; prices in `usage.pricing.json`) |
-| CLI (in `class<N>/`) | `doctor` · `list` · `fetch` · `scaffold` · `preview` · `check` · `shots` · `clean` · `status` · `port` · `approve` · `publish` · `runtime` · `fence` · `view` · `voice` · `images` |
+| CLI (in `class<N>/`) | `doctor` · `list` · `fetch` · `scaffold` · `preview` · `check` · `shots` · `clean` · `status` · `port` · `approve` · `publish` · `runtime` · `fence` · `view` · `voice` · `images` · `design` |
