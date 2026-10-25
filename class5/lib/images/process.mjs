@@ -21,7 +21,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { fromRoot } from "../core/env.mjs";
 import { dumpDomAsync } from "../core/chrome.mjs";
-import { BUDGET, Q_START, KINDS } from "./rules.mjs";
+import { skinBudget, Q_START, KINDS } from "./rules.mjs";
 
 export const LIMITS = {
   nearWhite: 0.02,        /* interior crop: any white left is background or glare */
@@ -81,6 +81,9 @@ function run() {
     if (dr * dr + dg * dg + db * db <= 36 * 36) return true;     /* like the border */
     if (mn >= 234 && spread <= 18) return true;                   /* near-white */
     if (spread <= 12 && mx >= (OPT.tool ? 226 : 110)) return true; /* grey: a shadow on the floor (an action-kit tool's steel is darker) */
+    /* ponytail: a photo object's cast shadow is a WARM grey (spread up to ~30, its dark contact core under 130 up to ~40; measured on two pizzas and a roti), its
+       food edge far more saturated (55+); a grey or steel object would be eaten from its rim: give it a cartoon look until a real matte cut exists */
+    if (OPT.photo && mx >= 90 && (spread <= 30 || (spread <= 40 && mx <= 130))) return true;
     return false;
   };
 
@@ -127,6 +130,31 @@ function run() {
       }
     }
   }
+  /* a PHOTOGRAPHIC FIGURE (2026-10-24): the studio floor leaves a soft light-neutral haze between the legs, under the arms and round the hair that the
+     border flood (tolerant of white and plain grey only) cannot reach or stops at: it shipped as a pale slab between the knees and a halo behind the
+     head. So (a) the background grows through light, nearly colourless pixels (no skin, no clothes: a figure wears no white or grey) touching it, and
+     (b) any large light-neutral region it still did not reach, enclosed by the figure, is background too. Small ones (eye whites, teeth: under 0.04 % of the picture) stay. */
+  if (OPT.kind === "figure") {
+    const lite = (i) => { const mx = Math.max(d[i], d[i + 1], d[i + 2]), mn = Math.min(d[i], d[i + 1], d[i + 2]); return mn >= 205 && mx - mn <= 12; };
+    const grow = [];
+    for (let p = 0; p < N; p++) if (isBg[p]) grow.push(p);
+    for (let h = 0; h < grow.length; h++) {
+      const p = grow[h], x = p % W;
+      for (const k of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, p >= W ? p - W : -1, p < N - W ? p + W : -1])
+        if (k >= 0 && !isBg[k] && lite(k * 4)) { isBg[k] = 1; grow.push(k); }
+    }
+    const seenL = new Uint8Array(N);
+    for (let s0 = 0; s0 < N; s0++) {
+      if (isBg[s0] || seenL[s0] || !lite(s0 * 4)) continue;
+      const reg = [s0]; seenL[s0] = 1;
+      for (let h = 0; h < reg.length; h++) {
+        const p = reg[h], x = p % W;
+        for (const k of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, p >= W ? p - W : -1, p < N - W ? p + W : -1])
+          if (k >= 0 && !isBg[k] && !seenL[k] && lite(k * 4)) { seenL[k] = 1; reg.push(k); }
+      }
+      if (reg.length >= N * 0.0004) for (const p of reg) isBg[p] = 1;
+    }
+  }
   let objN = 0; for (let p = 0; p < N; p++) if (!isBg[p]) objN++;
   const objFrac = objN / N;
   const reasons = [], warnings = [], extra = {};
@@ -165,11 +193,13 @@ function run() {
     /* how many source pixels make one output pixel, then erode the fringe by about half of that (2 to 4 px) */
     const side = Math.max(obox.w, obox.h);
     const s = OPT.kind === "disc" ? side / TW : Math.max(obox.w / TW, obox.h / TH);
-    const e = Math.max(2, Math.min(4, Math.round(s * 0.5)));
+    /* a photographic figure has hair and skin edges blended with the white: erode more and feather over two source pixels (no halo) */
+    const fig = OPT.kind === "figure";
+    const e = fig ? Math.max(3, Math.min(6, Math.round(s * 0.8))) : Math.max(2, Math.min(4, Math.round(s * 0.5)));
     extra.erode = e;
     const D = chamfer(gone, W, H);
     for (let p = 0; p < N; p++) {
-      const a = gone[p] ? 0 : Math.max(0, Math.min(1, (D[p] - 3 * e) / 3));
+      const a = gone[p] ? 0 : Math.max(0, Math.min(1, (D[p] - 3 * e) / (fig ? 6 : 3)));
       d[p * 4 + 3] = Math.round(a * 255);
     }
     const ca = document.createElement("canvas"); ca.width = W; ca.height = H;
@@ -270,7 +300,7 @@ function run() {
   if (stats.lumStd < OPT.limits.flatStd) reasons.push("flat: almost no variance (luminance sd " + stats.lumStd + ")");
   if (cutout && stats.opaque < OPT.limits.minOpaque) reasons.push("the cut-out is mostly empty (" + (stats.opaque * 100).toFixed(0) + "% opaque)");
   if (cutout && stats.halo > OPT.limits.halo) warnings.push("a white fringe on the edge (" + (stats.halo * 100).toFixed(0) + "% of edge pixels near-white)");
-  if (stats.cool > OPT.limits.cool) warnings.push("cool colours " + (stats.cool * 100).toFixed(0) + "% (blue or green would fight the tool's tint)");
+  if (stats.cool > OPT.limits.cool && OPT.kind !== "figure") warnings.push("cool colours " + (stats.cool * 100).toFixed(0) + "% (blue or green would fight the tool's tint)");
 
   /* WebP: from q 0.78 down until the data URI fits; then 10 % smaller, up to three times */
   let enc = null, w = ow, h = oh, canvas = o;
@@ -309,12 +339,12 @@ export function stripIcc(buf) {
 }
 
 /* raw bytes -> { ok, reasons, warnings, webp (Buffer), uri, w, h, q, bytes, uriBytes, crop, stats, ... } */
-export async function makeSkin(raw, mime, { kind, px, inset, maxKB, tool = false, label = "skin" }) {
+export async function makeSkin(raw, mime, { kind, px, inset, maxKB, look, tool = false, label = "skin" }) {
   const tmp = fromRoot(".build");
   fs.mkdirSync(tmp, { recursive: true });
   const page = path.join(tmp, `skin-${process.pid}-${Math.random().toString(36).slice(2, 8)}.html`);
-  const budget = Math.min(BUDGET.skin, maxKB ? Math.round(Number(maxKB) * 1024) : BUDGET.skin);
-  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS, tool: !!tool };
+  const budget = skinBudget(kind, maxKB, look);
+  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS, tool: !!tool, photo: look === "photo" && kind !== "figure" };
   fs.writeFileSync(page, `<!doctype html><meta charset="utf-8"><body><pre id="out">pending</pre>`
     + `<script id="raw">window.__RAW = "data:${mime || "image/png"};base64,${raw.toString("base64")}"; window.__OPT = ${JSON.stringify(opt)};</script>`
     + `<script>${PAGE}</script></body>`);

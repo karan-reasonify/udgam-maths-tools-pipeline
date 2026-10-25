@@ -81,6 +81,9 @@ function run() {
     if (dr * dr + dg * dg + db * db <= 36 * 36) return true;     /* like the border */
     if (mn >= 234 && spread <= 18) return true;                   /* near-white */
     if (spread <= 12 && mx >= (OPT.tool ? 226 : 110)) return true; /* grey: a shadow on the floor (an action-kit tool's steel is darker) */
+    /* ponytail: a photo object's cast shadow is a WARM grey (spread up to ~30, its dark contact core under 130 up to ~40; measured on two pizzas and a roti), its
+       food edge far more saturated (55+); a grey or steel object would be eaten from its rim: give it a cartoon look until a real matte cut exists */
+    if (OPT.photo && mx >= 90 && (spread <= 30 || (spread <= 40 && mx <= 130))) return true;
     return false;
   };
 
@@ -336,12 +339,12 @@ export function stripIcc(buf) {
 }
 
 /* raw bytes -> { ok, reasons, warnings, webp (Buffer), uri, w, h, q, bytes, uriBytes, crop, stats, ... } */
-export async function makeSkin(raw, mime, { kind, px, inset, maxKB, tool = false, label = "skin" }) {
+export async function makeSkin(raw, mime, { kind, px, inset, maxKB, look, tool = false, label = "skin" }) {
   const tmp = fromRoot(".build");
   fs.mkdirSync(tmp, { recursive: true });
   const page = path.join(tmp, `skin-${process.pid}-${Math.random().toString(36).slice(2, 8)}.html`);
-  const budget = skinBudget(kind, maxKB);
-  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS, tool: !!tool };
+  const budget = skinBudget(kind, maxKB, look);
+  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS, tool: !!tool, photo: look === "photo" && kind !== "figure" };
   fs.writeFileSync(page, `<!doctype html><meta charset="utf-8"><body><pre id="out">pending</pre>`
     + `<script id="raw">window.__RAW = "data:${mime || "image/png"};base64,${raw.toString("base64")}"; window.__OPT = ${JSON.stringify(opt)};</script>`
     + `<script>${PAGE}</script></body>`);

@@ -564,8 +564,10 @@
     "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
   },
   "guide": {
+    "rotiPicture": "owner-supplied roti photograph, round crop 300x300, 2026-10-24",
     "tour": [],
-    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act.",
+    "answerGate": "User mode (the owner, 2026-10-24): once the child has acted on the board (a real tap on a key or a piece of the working area, or the Enter key on a guide step), the Answer key and the keypad stay locked (api.lock: flat, dimmed, no blink, digits ignored) at each question until the child has done that question's own act in the ask stage: Share (the deal) on the share questions of phases 1-3 and the 22-bars question, then on phase 3's 'more than one group' questions also one tap on a group (a line and a ring say so); Check on the fair-roti question. Phase 4's cloth questions offer no act, so they are not gated. A new question or a restart locks again. The agent's check() performs the waiting act at once (the mount is then agent-driven and ungated); AI mode, and a run driven only through toolApi, are never gated. getState carries no answer."
   },
   "palette": {
     "content": {
@@ -1037,6 +1039,9 @@
     },
     {
       "en": "You shared the tray into equal groups, then took the groups the top number names."
+    },
+    {
+      "en": "Now tap the groups the top number names."
     }
   ],
   "build": {
@@ -1052,7 +1057,8 @@
       "info": 3,
       "at": "2026-10-23T19:38:55.421Z"
     },
-    "tsxBytes": 636090,
-    "tsxMd5": "499ba660d04ce2cab357d77d925ca090"
+    "tsxBytes": 651613,
+    "tsxMd5": "5b724a9d1e4e7abe6af2dc2fe657b150",
+    "handEdited": true
   }
 }

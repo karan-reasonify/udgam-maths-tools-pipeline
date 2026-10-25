@@ -99,7 +99,8 @@ plain; vary it.
    the bubble there in a classroom (nothing may change). The last phase's bigger party starts at its last right answer, before
    the summary page, which sends `finished` 5 s after it opens; Free play (every free control), Play again, and `finished` is
    not sent when Free play or Play again is tapped first.
-7. **Anything stuck**: a control that stays disabled, a piece that vanishes, an animation that never ends, a question you
+7. **The answer gate** (every question with an act on the working area; `class4/docs/PLAYBOOK.md` item 10): `check` and `approve` never see it, so play it with real clicks in en, hi and gu. Before the act the Answer key and the keypad/choice keys are dimmed and untappable (a tap changes nothing), typed digits are ignored, nothing blinks, and the Hint key only re-shows the question; after the act they are enabled and blinking and the answer goes through; a repeated act does not re-lock; a re-deal or the next question does not stay locked by mistake; restart resets the gate; AI mode and `toolApi.answer` still work. Report a key tappable before the act, dead after it, or a hint that names a key in the wrong state.
+8. **Anything stuck**: a control that stays disabled, a piece that vanishes, an animation that never ends, a question you
    cannot finish.
 
 ## Report (at most 30 lines)

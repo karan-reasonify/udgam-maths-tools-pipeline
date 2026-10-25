@@ -59,11 +59,22 @@ Never read `slot.json`, `plan.json`, `*.preview.html`, `.build/`, `output-previe
      cuts, counts, pours, weighs or measures as its own element with a clear box, and where `images.tsx` holds a skin for it draw
      `<Skin>` over EVERY such piece (the plain shape first, only as the fallback). Never leave a plain block where the image pass
      made an object for it; before the pass has run, keep the pieces skin-ready. Digits and marks stay in code, never in a picture.
+     People (children, a shopkeeper, friends) are drawn with `<Skin name=...>` from the figure skins in `images.tsx`, never as SVG figures; keep each figure
+     in a box of its own aspect (`made.w` x `made.h` in images.json: a standing child is about 1:3.3) and clip nothing.
    - **Every act is performed on screen** (the owner, 2026-10-16; a pinned runtime with `ACTION_KIT_HELPER`, `class5/docs/PATTERNS.md` §15):
      each action key or act the tool offers (cut, split, measure, count, carry, tidy ...) calls `await api.act({ tool, moves, at, onPoint })`,
      so a knife, scissors, a ruler, a pencil, an eraser (the shared ACTION KIT, never a slot skin) or the drawn hand does it in about
      1 to 1.5 s; split each piece in `onPoint`, part and settle the pieces when it resolves `true`, do nothing on `false`. `check`'s
      `action-anim` row clicks the act's control for real.
+   - **The answer is gated by the act** (the owner, 2026-10-24, every tool; `class5/docs/PATTERNS.md` "Answer gated by the act", PREFLIGHT 27): in a
+     question where the child has an act to perform on the working area (share, cut, check, take, lift, put together, tap cards into a bin, deal, count), the
+     corner Answer key and the keypad/choice keys stay DISABLED (flat, dimmed, untappable, no blink) until the child has performed that act, then are enabled,
+     berry and blinking. `api.lock(true)` ONLY when the question still needs its act AND it is user mode AND the child has already touched the board for real
+     (a tap on a key or piece, or Enter on a guide step); `api.lock(false)` as soon as the act is done; a restart or the next question resets the gate, repeating
+     the act does not re-lock. The agent's `check()` performs the act at once, so AI mode and `toolApi`-only runs are never gated (while locked the Hint key only
+     re-shows the question and `toolApi.answer` is refused). Hints never name a key in the wrong state; a new nudge line needs hi and gu `TR`; write
+     `guide.answerGate` in the sidecar `.json` (a remake regenerates it). A question with no real act stays ungated: never invent one. `check` and `approve` do not
+     play the gate, so open real clicks (playkit) before and after the act yourself. List the acts per question, and any ungated question, in your report.
    - **What the runtime does for you from r24** (when your pinned runtime has it; `check` proves each, PATTERNS 9e and 9f): the pink Answer
      key and its "Tap the blinking Answer key." line show only while a typed question waits with the keypad shut; Kiko THINKS (a third
      picture, a thought puff) from a question's opening until the child's first tap; the Hint key pops a bulb; a held or doubled Enter
@@ -238,5 +249,5 @@ endings as they are.
   the limit or fix a runtime gap.
 
 ## Report (to the main session, at most 40 lines)
-Preview path · one line per phase (what the child does) · the check summary · every departure from the
+Preview path · one line per phase (what the child does) · the act that gates each question's answer, and any ungated question · the check summary · every departure from the
 writeup, with the reason · runtime gaps · the one design choice you are least sure of, as a question.

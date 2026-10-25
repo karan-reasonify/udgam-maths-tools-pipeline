@@ -3,8 +3,9 @@
  * The key is read only through lib/core/env.mjs and travels only in the x-goog-api-key header: never in a
  * URL, never in a log line, and every error message is scrubbed of it before it is thrown.
  *
- *   generateImage({ prompt, aspect, model })            one picture, one model -> { buf, mime, model, usage }
- *   generateWithFallback({ prompt, aspect, models })    cheapest model first, the next only on an error
+ *   generateImage({ prompt, aspect, model, refs })      one picture, one model -> { buf, mime, model, usage }
+ *   generateWithFallback({ prompt, aspect, models, refs })  cheapest model first, the next only on an error
+ *   refs: [{ mime, data (base64) }], reference photographs sent after the prompt as inline_data parts (a photo skin's `reference`)
  *   batchSubmit / batchStatus / batchCollect / batchCancel   Gemini batch mode (half price, slower)
  *
  * Error kinds (GeminiError.kind): auth · quota · server · network · not-found · bad-request · blocked · no-image.
@@ -65,9 +66,9 @@ async function call(method, pathname, body, { timeout = 180000, raw = false } = 
   return j;
 }
 
-export function requestBody(prompt, aspect, modalities = ["IMAGE"]) {
+export function requestBody(prompt, aspect, modalities = ["IMAGE"], refs = []) {
   return {
-    contents: [{ role: "user", parts: [{ text: prompt }] }],
+    contents: [{ role: "user", parts: [{ text: prompt }, ...refs.map((r) => ({ inline_data: { mime_type: r.mime, data: r.data } }))] }],
     generationConfig: { responseModalities: modalities, ...(aspect ? { imageConfig: { aspectRatio: aspect } } : {}) },
   };
 }
@@ -99,14 +100,14 @@ export function imageFrom(resp) {
 
 /* one picture from one model. A 400 about the request shape (an image-only answer, the aspect field) is retried
    once in the plainer shape; 400s are not billed. */
-export async function generateImage({ prompt, aspect, model }) {
+export async function generateImage({ prompt, aspect, model, refs = [] }) {
   const shapes = [{ mod: ["IMAGE"], aspect }, { mod: ["TEXT", "IMAGE"], aspect }, { mod: ["TEXT", "IMAGE"], aspect: null }];
   let last;
   for (let i = 0; i < shapes.length; i++) {
     const s = shapes[i];
     if (i === 2 && !aspect) break;
     try {
-      const resp = await call("POST", `models/${encodeURIComponent(model)}:generateContent`, requestBody(prompt, s.aspect, s.mod));
+      const resp = await call("POST", `models/${encodeURIComponent(model)}:generateContent`, requestBody(prompt, s.aspect, s.mod, refs));
       const got = imageFrom(resp);
       return { ...got, model, aspectSent: s.aspect || null };
     } catch (e) {
@@ -120,12 +121,12 @@ export async function generateImage({ prompt, aspect, model }) {
 
 /* the cheapest model first; a quota or server error waits once and retries the same model, then moves on.
    `onBilled(info)` is called for every 200 (so the ledger sees a refused or text-only answer too). */
-export async function generateWithFallback({ prompt, aspect, models, log = () => {}, onBilled = () => {} }) {
+export async function generateWithFallback({ prompt, aspect, models, refs = [], log = () => {}, onBilled = () => {} }) {
   const errors = [];
   for (const model of models) {
     for (let tryNo = 1; tryNo <= 2; tryNo++) {
       try {
-        const got = await generateImage({ prompt, aspect, model });
+        const got = await generateImage({ prompt, aspect, model, refs });
         onBilled({ model, ok: true, usage: got.usage, bytes: got.buf.length, mime: got.mime });
         return { ...got, errors };
       } catch (e) {
@@ -161,7 +162,7 @@ export async function batchSubmit({ model, items, label = "images" }) {
   const body = {
     batch: {
       display_name: `udgam${CLASS_NUM}-${label}`.slice(0, 60),
-      input_config: { requests: { requests: items.map((it) => ({ request: requestBody(it.prompt, it.aspect, ["IMAGE"]), metadata: { key: it.key } })) } },
+      input_config: { requests: { requests: items.map((it) => ({ request: requestBody(it.prompt, it.aspect, ["IMAGE"], it.refs || []), metadata: { key: it.key } })) } },
     },
   };
   const op = await call("POST", `models/${encodeURIComponent(model)}:batchGenerateContent`, body, { timeout: 120000 });

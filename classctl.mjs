@@ -199,7 +199,8 @@ const ageVars = (M, n) => {
   const lo = n + a.from, hi = n + a.to;
   return { AGE: `${lo} to ${hi}`, AGE_DASH: `${lo}-${hi}`, AGE_LOW: lo, AGE_HIGH: hi };
 };
-const agentVars = (M, n, pfx) => ({ N: n, PFX: pfx, DIR: `class${n}`, ...ageVars(M, n) });
+// GATE = the PREFLIGHT number of the answer-gate row (class 4 carries one extra row, the a/b fraction rule)
+const agentVars = (M, n, pfx) => ({ N: n, PFX: pfx, DIR: `class${n}`, GATE: (M.preflightAnswerGate || {})[String(n)] ?? (M.preflightAnswerGate || {}).default ?? 27, ...ageVars(M, n) });
 
 /* ── walking a class folder (allowlist by manifest; skips never-touch, device names, links) ── */
 const isNever = (M, rel) => matchAny(M.neverTouch, rel);

@@ -73,6 +73,7 @@ with `--rows all`). `check` makes no review frames: the full-size frames a visua
 | no-raster-in-tool | the tool draws everything it shows |
 | key-only (class 4 r27; a tool with `keyOnly: true` or `navDots: true`) | the chapter's runtime has the switch (`const ZKEY`, `function NavDot`), a keyOnly tool is on the board layout and has no runs box (`Runs`: not supported yet). LAYOUT §1d |
 | runtime-pin | the chapter names a frozen runtime (`work/<chapter_id>/runtime.json` -> `runtime/frozen/<rN>/`) and that snapshot is untouched, so no other chapter's runtime edit can reach this tool. A FAIL is the main session's to fix (`node cli.mjs runtime pin --ch N`), never the tool's |
+| answer-gate (warn; 2026-10-24, a SOURCE row, so in the quick check too; `lib/check/answergate.mjs`, tests in `answergate.test.mjs`) | the tool calls `api.lock(` somewhere besides the skeleton's own traceback lock (comments stripped). WARN when it never does: the Answer key is then never gated by the act, which is fine only when no question has a real act (the builder says so in the report). **It does not prove the gate**: it cannot tell a real act from an invented one, and neither `check` nor `approve` plays it (both are `toolApi`-driven, which is never gated); the play tester and the visual reviewer judge it with real clicks (PATTERNS 19, PREFLIGHT 27) |
 
 ## Maths (runs the tool's own data in Node: the same PHASES, judge and oracle the child meets)
 

@@ -819,8 +819,10 @@
     "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
   },
   "guide": {
+    "rotiPicture": "owner-supplied roti photograph, round crop 300x300, 2026-10-24",
     "tour": [],
-    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act.",
+    "answerGate": "Sort questions (pad 'enter': phase 1 questions 2-3, phase 2 question 3, phase 3 question 3): in user mode, once a real finger or mouse has touched the board, the Enter key is disabled (flat, untappable, no blink) until the child moves a card in that question; the agent's toolApi path is never gated. The word-key questions (Yes/No, Proper/Improper, Like/Unlike, Greater/Smaller/Equal) have no act and are never gated."
   },
   "palette": {
     "content": {
@@ -1294,7 +1296,8 @@
       "info": 4,
       "at": "2026-10-23T20:02:27.453Z"
     },
-    "tsxBytes": 585627,
-    "tsxMd5": "9eb417ba09016b308147460b1728b4b4"
+    "tsxBytes": 599762,
+    "tsxMd5": "fd925f4d26a3993153e5035615bbf398",
+    "handEdited": true
   }
 }

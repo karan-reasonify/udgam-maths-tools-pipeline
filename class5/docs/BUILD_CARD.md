@@ -69,6 +69,8 @@ card's sections 1-6, `LAYOUT.md` and `PATTERNS.md`), then the slot's `brief.md` 
 9  later, once every chapter is made:   node cli.mjs publish <id>  (dry run; --upload only on the user's word)
 ```
 
+**The answer is gated by the act** (the owner, 2026-10-24, every tool): in step 3, a question with an act on the working area (share, cut, check, take, lift, put together, tap cards into a bin, deal, count) has its corner Answer key and keypad/choice keys DISABLED until the child has performed that act, then enabled, berry and blinking. `api.lock(true)` only when the question still needs its act AND it is user mode AND the child has touched the board for real; `api.lock(false)` the moment the act is done; the agent's `check()` performs the act at once, so AI mode and `toolApi` runs are never gated. A question with no real act stays ungated (never invent one) and your report says so. Recipe and side effects: PATTERNS "Answer gated by the act"; PREFLIGHT 27. `check` and `approve` never play it.
+
 A slot's folder holds `brief.md` (read), `tool.tsx` (edit), `<id>.preview.html` (open; never read),
 `sheet-*.png` (look, then `clean`), `slot.json` and `status.json` (scripts only; `status` shows the stage
 and the last check).

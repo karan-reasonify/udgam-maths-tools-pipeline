@@ -102,6 +102,8 @@ Look at each PNG (they are in the slot's folder). Use `--full --phase n --state 
    frame: a grid that jumps or sits small beside an empty band is a should-fix). Counting numbers, chips, ladder names, card titles and word tiles are 32 or
    more, dark, bold and on one line, in hi and gu too. A key that only undoes the last act (a "Lay flat") is a should-fix.
 
+13. **The answer gate looks right** (the owner, 2026-10-24; PATTERNS "Answer gated by the act"): in a gated question, before the act the corner Answer key and the keypad/choice keys look flat and quiet (dimmed, no ring, no blink) and nothing else on the screen competes; after the act they are berry and blinking, the same key as in an ungated question. A dimmed key still readable, a berry key before the act, or a blink on a dimmed key is a should-fix (a must-fix when the key looks live and does nothing).
+
 ## Report (at most 25 lines)
 Verdict: CLEAN or ISSUES. One line per finding:
 `[must-fix | should-fix | question] phase n, <state>, <lang> — what you see (where on the stage) — the fix`.

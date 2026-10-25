@@ -48,6 +48,12 @@ pictures and report. **You never edit `tool.tsx`, `voice.tsx`, the runtime, the 
    object with its rim, cut out, square, at most 360); **strip** only for a texture that is the same everywhere
    (an interior crop of a bar loses the edge and gloss that make it read); **figure** for a person (aspect 3:4, px 120x240, `maxKB` 14 is plenty; the cut is the person's own box, about 1:3.3).
    A figure never drives the theme: derive the theme from an object skin, or write none.
+   **The object look (IMAGES.md §4, "Look"): a NEW images.json is `"look": "photo"`** (write it at the top of the plan: a real top-down studio
+   photograph, made on the better model first). An images.json that already has `made` entries keeps the look it was made with: never add or change
+   `look` there unless the main session asks (it re-makes the picture, billed). `"cartoon"` only when the brief asks for it, or for a grey or steel
+   object (the photo cut eats a grey rim). **A reference photograph:** `ls class3/assets/refs/`; when one shows the SAME object (`roti.png` for a
+   roti, chapati or phulka), name it on that image: `"reference": "assets/refs/roti.png"`. Never put another object's photograph on a skin (a roti
+   reference would push its char onto a chocolate bar).
 4. Choose the **keypad theme** from the object you chose (IMAGES.md §8): a preset when one fits (`chocolate`,
    `cake` for a cake, roti, pizza base or biscuit, `ribbon`, `juice`, `paper`), else `{ "derive": "<key>" }` (from
    that skin's colour), else a full palette. The logic: keys in the object's own colour family, Enter a joyful
@@ -63,7 +69,10 @@ pictures and report. **You never edit `tool.tsx`, `voice.tsx`, the runtime, the 
 ## Write `class3/work/<chapter_id>/<slot_id>/images.json`
 Shape in IMAGES.md §5. `why` quotes the brief's words. `prompt` is one or two plain, positive sentences about the
 object (what it is, its warm colour, its surface, its edge: for a tile its bevel and gloss, for a disc its rim or
-crust): no digits, no number words, no "slices, cut, parts, segments, lines" ("piece" and "square" are fine in a
+crust). **For a photo, describe the real thing in real-world terms**: its variety, how it is cooked or made, its doneness and texture
+("a freshly cooked whole-wheat phulka: pale golden-cream dough with many dark-brown char blisters, a matte floury surface, a thin slightly
+uneven edge"; a pizza's cheese "golden browned", never white, which the cut would reject), never cartoon words (cartoon, 3D, cute, stylised,
+illustration, toy): no digits, no number words, no "slices, cut, parts, segments, lines" ("piece" and "square" are fine in a
 tile), no mascot or character; the CLI adds the style, the view, the white background and every negative. No skin: write `{ "slot": "<id>", "style": "...", "images": [] }` and say why in the report.
 **The Gemini visual pass (runbook 4b) reads this file to draw `<Skin>` over the tool's plain shapes**, and it sees only `key`, `object`, `kind`,
 `aspect` and `why`. So make each one say WHERE the picture is used (`why`: "the counters laid in each rod", "the whole roti that is cut"), keep a
@@ -82,10 +91,11 @@ tile), no mascot or character; the CLI adds the style, the view, the white backg
 - View each raw picture: `class3/.images-cache/raw/<hash>.png` (the hash is `raw` in
   `class3/assets/skins/index.json` for the slot's skin). Say what you see: one object, plain white background,
   and no text, digits, letters, logo, wrapper, foil or hands; for a strip or disc no cut lines, grooves, segments
-  or slices; for a tile exactly one whole piece; for a figure exactly one child, whole body head to shoes, front-facing, empty hands, no text, a photographic look (not a cartoon, no uncanny face or hands), a clean cut-out.
+  or slices; for a tile exactly one whole piece; for a photo object that it reads as a real photograph (real texture and char, no airbrushed
+  or cartoon smoothing; say honestly if it does not); for a figure exactly one child, whole body head to shoes, front-facing, empty hands, no text, a photographic look (not a cartoon, no uncanny face or hands), a clean cut-out.
 - View `images-preview.png`: the crop (dashed) hugs the object; the skin on the checkerboard has no white fringe
   or shadow and nothing cut off; a tile drawn ten times reads as ten pieces of the object; a disc in ten sectors
-  shows its rim on every outer arc; a figure on white, cream and pale blue has no white fringe and no cut-off feet or head; tinted pieces stand apart from plain ones; the mini keypad at the bottom is in
+  shows its rim on every outer arc; a photo object has no grey or dark shadow crescent left under it; a figure on white, cream and pale blue has no white fringe and no cut-off feet or head; tinted pieces stand apart from plain ones; the mini keypad at the bottom is in
   the theme, its numbers are readable, and the keys look like they belong with the picture.
 - A rejected attempt is kept as `<hash>.rejectedN.png`: view it and say why it failed.
 
@@ -94,7 +104,7 @@ Verdict: SKINS MADE, EVERY ELEMENT PLAIN WITH A REASON, or ISSUES. First one lin
 `element · skin key | plain: <the IMAGES.md §2 reason>`. Then one line per key:
 `key · object · kind · WxH · KB · library hit | new $cost (model) · why (the brief's words)`; one line
 `theme · preset <name> | derived from <key> · themeWhy` (the CLI prints the validator's numbers; a theme that fails
-is never written: fix `"theme"` and run again); the slot's total KB against 60 KB (+20 KB per figure); the money this run (`node cli.mjs images status --ch <n>` prints the ledger). Then findings, one
+is never written: fix `"theme"` and run again); the slot's total KB against 60 KB (+10 KB per photo object, +20 KB per figure); the look of each object skin (photo, with its reference if any, or cartoon); the money this run (`node cli.mjs images status --ch <n>` prints the ledger). Then findings, one
 line each: `[must-fix | question] key — what you see — the fix`. must-fix: text, digits or segments in a picture,
 a rejected or over-budget skin, the wrong object. question: a doubt the main session should settle (the object,
 the brief asking for a colour the skin changes). Leave `images.json`, `images.tsx` and the preview in place.

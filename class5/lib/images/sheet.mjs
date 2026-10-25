@@ -31,7 +31,7 @@ export function tintNumbers(mean) {
   return { blue, green, cBlue: +contrast(mean, blue).toFixed(2), cGreen: +contrast(mean, green).toFixed(2) };
 }
 
-const BAND = { tile: 540, disc: 350, strip: 330 };
+const BAND = { tile: 540, disc: 350, strip: 330, figure: 330 };
 const tintFor = (k) => (k < 3 ? "tb" : k < 5 ? "tg" : null);
 
 /* the keypad theme band: a mini answer panel (answer box, 3x4 keys: 1-9, rub out, 0, Enter), an Answer key, the
@@ -89,7 +89,7 @@ export function contactSheet(dir, rows, { title = "", theme = null, themeFrom = 
   rows.forEach((r, i) => {
     const parts = [];
     if (i) parts.push(`<line x1="0" y1="${y0}" x2="${W}" y2="${y0}" stroke="#ddd"/>`);
-    parts.push(`<text x="20" y="${y0 + 26}" class="h">${esc(r.key)} · ${esc(r.object)} · ${esc(r.kind)} · ${r.w}x${r.h} · ${(r.uriBytes / 1024).toFixed(1)} KB (q ${r.q}) · ${esc(r.model || "")}</text>`);
+    parts.push(`<text x="20" y="${y0 + 26}" class="h">${esc(r.key)} · ${esc(r.object)} · ${esc(r.kind)}${r.look ? ` · ${esc(r.look)}` : ""} · ${r.w}x${r.h} · ${(r.uriBytes / 1024).toFixed(1)} KB (q ${r.q}) · ${esc(r.model || "")}</text>`);
     /* the raw picture, scaled into 360x220, with the crop drawn on it */
     if (r.rawFile && fs.existsSync(r.rawFile) && r.src) {
       const s = Math.min(360 / r.src.w, 220 / r.src.h), rw = r.src.w * s, rh = r.src.h * s;
@@ -115,6 +115,13 @@ export function contactSheet(dir, rows, { title = "", theme = null, themeFrom = 
         }
         parts.push(`<text x="20" y="${y + PIECE.h + 22}" class="s">${mode === "plain" ? `the one piece drawn ten times, each stretched to ${PIECE.w}x${PIECE.h}, gap ${PIECE.gap}` : `3 blue, 2 green at ${TINT.alpha}, the tint following the piece's alpha`}</text>`);
       });
+    } else if (r.kind === "figure") {
+      /* the person at its own aspect on white, cream and pale blue: a white fringe or a cut limb shows on the tinted ones */
+      [["#FFFFFF", 0], ["#FFF1D6", 1], ["#DCEBFA", 2]].forEach(([bg, k]) => {
+        const x = 760 + k * (r.w + 40);
+        parts.push(`<rect x="${x - 10}" y="${y0 + 40}" width="${r.w + 20}" height="${r.h + 20}" fill="${bg}" stroke="#ccc"/><image href="${r.uri}" x="${x}" y="${y0 + 50}" width="${r.w}" height="${r.h}"/>`);
+      });
+      parts.push(`<text x="760" y="${y0 + r.h + 90}" class="s">the figure at shipped size on white, cream and pale blue (no fringe, nothing cut off)</text>`);
     } else if (r.kind === "disc") {
       const cx = 1060, cy = y0 + 175, R = 130, n = 10;
       const pt = (k) => [cx + R * Math.sin((2 * Math.PI * k) / n), cy - R * Math.cos((2 * Math.PI * k) / n)];

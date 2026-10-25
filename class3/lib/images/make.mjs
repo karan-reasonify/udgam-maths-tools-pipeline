@@ -21,7 +21,7 @@ import { pool, chromePath } from "../core/chrome.mjs";
 import { resolveTarget, workRoot, idOf, chapterOf } from "../core/work.mjs";
 import { chapterIdFor } from "../plan/lp.mjs";
 import { env, mask, fromRoot } from "../core/env.mjs";
-import { BUDGET, slotBudget, skinBudget, CONCURRENCY, MAX_ATTEMPTS, MODELS, KINDS, price, rawHash, skinHash, buildPrompt, validatePlan, kitPrompt } from "./rules.mjs";
+import { BUDGET, slotBudget, skinBudget, CONCURRENCY, MAX_ATTEMPTS, MODELS, modelsFor, KINDS, price, rawKey, skinHash, buildPrompt, validatePlan, kitPrompt } from "./rules.mjs";
 import { generateWithFallback, batchSubmit, batchStatus, batchCollect, batchCancel, batchPending, batchSucceeded, GeminiError } from "./gemini.mjs";
 import { makeSkin } from "./process.mjs";
 import { findRaw, saveRaw, saveRejected, getSkin, putSkin, markUsed, pruneUsed, skinUri, readIndex, ledgerAdd, ledgerTotals, LIB_DIR, writeJsonAtomic, siblings, readSiblingIndex } from "./library.mjs";
@@ -34,7 +34,9 @@ const kb = (n) => `${(n / 1024).toFixed(1)} KB`;
 const usd = (n) => `$${n.toFixed(3)}`;
 const pad = (s, n) => String(s ?? "").padEnd(n);
 const BATCH_FILE = "_images_batch.json";
-const budgetOf = (img) => skinBudget(img.kind, img.maxKB);
+const budgetOf = (img) => skinBudget(img.kind, img.maxKB, img.look);
+/* a photo object's reference photograph, inline (rules.mjs validatePlan resolved and keyed it) */
+const refsOf = (img) => (img.refFile ? [{ mime: /\.png$/i.test(img.refFile) ? "image/png" : /\.webp$/i.test(img.refFile) ? "image/webp" : "image/jpeg", data: fs.readFileSync(img.refFile).toString("base64") }] : []);
 
 /* the run's own cap: at most MAX_ATTEMPTS billed generations per picture per process */
 const attemptsUsed = new Map();
@@ -65,7 +67,7 @@ function resolveSlot(dir, { force = false, only = null, recut = null, log }) {
   for (const w of p.warnings) log(`  warning ${w}`);
   if (p.errors.length) { for (const e of p.errors) log(`  ERROR ${e}`); throw new Error(`${who}: images.json has ${p.errors.length} error(s)`); }
   const items = p.images.filter((img) => !only || only.includes(img.key)).map((img) => {
-    const rh = rawHash({ object: img.object, kind: img.kind, style: p.plan.style, aspect: img.aspect, look: img.look });
+    const rh = rawKey(p.plan, img);
     const sh = skinHash(rh, img);
     /* `recut`: raw pictures that were just replaced (a batch apply), so their library skins are stale */
     const skin = force || (recut && recut.has(rh)) ? null : getSkin(sh);
@@ -81,6 +83,7 @@ function resolveSlot(dir, { force = false, only = null, recut = null, log }) {
    size asked of it cuts cleanly. Returns { ok, raw: {file, mime}, cuts: Map(sh -> skin result) } */
 async function generateGroup(group, { models, log, lane = "inline" }) {
   const first = group[0];
+  models = models || modelsFor(first.img);   /* --model names one; else the look's own order */
   let last = null;
   while ((attemptsUsed.get(first.rh) || 0) < MAX_ATTEMPTS) {
     const attempt = (attemptsUsed.get(first.rh) || 0) + 1;
@@ -88,7 +91,7 @@ async function generateGroup(group, { models, log, lane = "inline" }) {
     log(`  generating ${first.img.key} (${first.img.object}) · attempt ${attempt} of ${MAX_ATTEMPTS} · ${models[0]}${models.length > 1 ? " then " + models.slice(1).join(", ") : ""}`);
     let got;
     try {
-      got = await generateWithFallback({ prompt: first.prompt, aspect: first.img.aspect, models, log,
+      got = await generateWithFallback({ prompt: first.prompt, aspect: first.img.aspect, models, refs: refsOf(first.img), log,
         onBilled: (b) => ledgerAdd({ model: b.model, lane, key: first.who + ":" + first.img.key, object: first.img.object, raw: first.rh,
           bytes: b.bytes || 0, mime: b.mime || null, usd: b.ok ? price(b.model, lane) : 0, tokens: b.usage || null,
           attempt, outcome: b.ok ? "image" : b.kind }) });
@@ -100,7 +103,7 @@ async function generateGroup(group, { models, log, lane = "inline" }) {
     const bad = [...cuts.values()].filter((c) => !c.ok);
     if (!bad.length) {
       const file = saveRaw(first.rh, got.buf, got.mime, { object: first.img.object, kind: first.img.kind, style: first.style, aspect: first.img.aspect,
-        model: got.model, lane, prompt: first.prompt, aspectSent: got.aspectSent });
+        model: got.model, lane, prompt: first.prompt, aspectSent: got.aspectSent, look: first.img.look, reference: first.img.reference || null });
       return { ok: true, raw: { file, mime: got.mime }, cuts, model: got.model };
     }
     const rej = saveRejected(first.rh, attempt, got.buf, got.mime);
@@ -110,7 +113,7 @@ async function generateGroup(group, { models, log, lane = "inline" }) {
   return last || { ok: false, error: `no attempts left this run (${MAX_ATTEMPTS} per picture)` };
 }
 
-const cutOpts = (it) => ({ kind: it.img.kind, px: it.img.px, inset: it.img.inset, maxKB: it.img.maxKB, tool: !!it.img.tool, label: `skin ${it.img.key}` });
+const cutOpts = (it) => ({ kind: it.img.kind, px: it.img.px, inset: it.img.inset, maxKB: it.img.maxKB, look: it.img.look, tool: !!it.img.tool, label: `skin ${it.img.key}` });
 
 async function cutAll(group, buf, mime) {
   const cuts = new Map();
@@ -122,7 +125,7 @@ async function cutAll(group, buf, mime) {
 }
 
 function storeSkin(it, cut, model) {
-  putSkin(it.sh, cut.webp, { raw: it.rh, object: it.img.object, kind: it.img.kind, style: it.style, aspect: it.img.aspect,
+  putSkin(it.sh, cut.webp, { raw: it.rh, object: it.img.object, kind: it.img.kind, look: it.img.look, style: it.style, aspect: it.img.aspect,
     px: it.img.px, inset: it.img.inset, maxKB: it.img.maxKB || null, cut: cut.cut, w: cut.w, h: cut.h, bytes: cut.bytes, uriBytes: cut.uriBytes,
     q: cut.q, model, prompt: it.prompt, crop: cut.crop, src: cut.src, stats: cut.stats, warnings: cut.warnings });
 }
@@ -139,10 +142,11 @@ async function run(slotDirs, { force, only, dry, models, log, noGenerate = false
   const groups = new Map();
   for (const it of all) if (it.how === "generate") (groups.get(it.rh) || groups.set(it.rh, []).get(it.rh)).push(it);
   if (noGenerate) groups.clear();
-  const est = groups.size * price(models[0]);
+  const firstModel = (g) => (models || modelsFor(g[0].img))[0];
+  const est = [...groups.values()].reduce((n, g) => n + price(firstModel(g)), 0);
 
   if (dry) {
-    for (const it of all) log(`  ${pad(it.who.split("/")[1] + ":" + it.img.key, 26)}${pad(it.img.object, 28)}${pad(it.img.kind, 7)}${pad(it.img.px.join("x"), 9)}${it.how === "generate" ? (groups.get(it.rh)[0] === it ? `generate (${usd(price(models[0]))} on ${models[0]})` : "generate (shared with an earlier key)") : it.how === "library" ? `library hit${fromNote(it)} (free)` : `re-cut the cached raw${fromNote(it)} (free)`}`);
+    for (const it of all) log(`  ${pad(it.who.split("/")[1] + ":" + it.img.key, 26)}${pad(it.img.object, 28)}${pad(it.img.kind, 7)}${pad(it.img.px.join("x"), 9)}${it.how === "generate" ? (groups.get(it.rh)[0] === it ? `generate (${usd(price(firstModel(groups.get(it.rh))))} on ${firstModel(groups.get(it.rh))})` : "generate (shared with an earlier key)") : it.how === "library" ? `library hit${fromNote(it)} (free)` : `re-cut the cached raw${fromNote(it)} (free)`}`);
     log(`  dry run: ${groups.size} new picture(s), about ${usd(est)} inline (${usd(est / 2)} by batch); nothing was called`);
     for (const g of groups.values()) log(`\n  prompt for ${g[0].img.key}:\n    ${g[0].prompt}`);
     return { slots, spent: 0, planned: groups.size };
@@ -189,7 +193,7 @@ async function run(slotDirs, { force, only, dry, models, log, noGenerate = false
     }
     /* keep keys that were not part of this run (--only) as they are in the library */
     const keep = s.images.filter((img) => !s.items.some((it) => it.img.key === img.key)).map((img) => {
-      const rh = rawHash({ object: img.object, kind: img.kind, style: s.plan.style, aspect: img.aspect, look: img.look });
+      const rh = rawKey(s.plan, img);
       const sk = getSkin(skinHash(rh, img));
       return sk ? { key: img.key, uri: skinUri(sk.file), w: sk.w, h: sk.h, bytes: sk.bytes, uriBytes: sk.uriBytes, q: sk.q, hash: skinHash(rh, img) } : null;
     }).filter(Boolean);
@@ -264,15 +268,16 @@ async function batch(sub, a, { models, log }) {
       for (const it of s.items) if (it.how === "generate") (groups.get(it.rh) || groups.set(it.rh, []).get(it.rh)).push(it);
     }
     if (!groups.size) { log("nothing missing: every skin is in the library or its raw picture is cached (run `images make --ch N` to cut and emit)"); return; }
-    const model = models[0];
+    /* ponytail: one batch job runs on one model, the first group's; split the job by model if photo and cartoon ever need different ones */
+    const model = (models || modelsFor([...groups.values()][0][0].img))[0];
     const items = [...groups.values()].map((g, i) => ({ key: `img-${String(i + 1).padStart(4, "0")}`, rh: g[0].rh, prompt: g[0].prompt, aspect: g[0].img.aspect,
-      object: g[0].img.object, kind: g[0].img.kind, style: g[0].style, wanted: g.map((it) => `${it.who}:${it.img.key}`) }));
+      object: g[0].img.object, kind: g[0].img.kind, style: g[0].style, look: g[0].img.look, refFile: g[0].img.refFile || null, wanted: g.map((it) => `${it.who}:${it.img.key}`) }));
     if (a.dry) {
       for (const it of items) log(`  ${it.key}  ${pad(it.object, 28)}${pad(it.kind, 7)}for ${it.wanted.join(", ")}`);
       log(`  dry run: one batch of ${items.length} picture(s) on ${model}, about ${usd(items.length * price(model, "batch"))}; nothing was called`);
       return;
     }
-    const job = await batchSubmit({ model, items, label: path.basename(cdir) });
+    const job = await batchSubmit({ model, items: items.map((it) => ({ ...it, refs: refsOf(it) })), label: path.basename(cdir) });
     writeJsonAtomic(stateFile, { provider: "gemini", name: job.name, model, submitted: new Date().toISOString(), items });
     log(`submitted ${items.length} picture(s) as one batch on ${model}: ${job.name} (${job.state})`);
     log(`  about ${usd(items.length * price(model, "batch"))} when it completes · state in ${path.relative(process.cwd(), stateFile)}`);
@@ -310,7 +315,7 @@ async function batch(sub, a, { models, log }) {
       }
       ledgerAdd({ model: state.model, lane: "batch", key: it.wanted[0], object: it.object, raw: it.rh, bytes: r.buf.length, mime: r.mime,
         usd: price(state.model, "batch"), tokens: r.usage || null, outcome: "image", batch: state.name });
-      saveRaw(it.rh, r.buf, r.mime, { object: it.object, kind: it.kind, style: it.style, aspect: it.aspect, model: state.model, lane: "batch", prompt: it.prompt, batch: state.name });
+      saveRaw(it.rh, r.buf, r.mime, { object: it.object, kind: it.kind, style: it.style, aspect: it.aspect, model: state.model, lane: "batch", prompt: it.prompt, batch: state.name, look: it.look, reference: it.refFile });
       delivered.add(it.rh);
     }
     log(`${state.name}: ${state.items.length - outstanding.length} of ${state.items.length} picture(s) arrived`);
@@ -368,11 +373,11 @@ async function sheet(dir, log) {
   if (!p) throw new Error("no images.json in this slot");
   const rows = [];
   for (const img of p.images) {
-    const rh = rawHash({ object: img.object, kind: img.kind, style: p.plan.style, aspect: img.aspect, look: img.look });
+    const rh = rawKey(p.plan, img);
     const sk = getSkin(skinHash(rh, img));
     if (!sk) { log(`  ${img.key}: not made yet (skipped)`); continue; }
     const raw = findRaw(rh);
-    rows.push({ key: img.key, object: img.object, kind: img.kind, uri: skinUri(sk.file), w: sk.w, h: sk.h, q: sk.q, uriBytes: sk.uriBytes, model: sk.model,
+    rows.push({ key: img.key, object: img.object, kind: img.kind, look: img.look, uri: skinUri(sk.file), w: sk.w, h: sk.h, q: sk.q, uriBytes: sk.uriBytes, model: sk.model,
       rawFile: raw && raw.file, rawMime: raw && raw.mime, crop: sk.crop, src: sk.src, stats: sk.stats });
   }
   if (!rows.length) { log("no skins to show"); return; }
@@ -388,7 +393,7 @@ export async function imagesCommand(argv, { log = console.log } = {}) {
   const a = parseArgs(argv, ["force", "dry", "batch", "json", "help"]);
   const sub = String(a._[0] || "status");
   const only = a.only && a.only !== true ? String(a.only).split(",").map((s) => s.trim()).filter(Boolean) : null;
-  const models = a.model && a.model !== true ? [String(a.model)] : MODELS;
+  const models = a.model && a.model !== true ? [String(a.model)] : null;   /* null: each picture's look picks its order (modelsFor) */
   if (sub === "make") {
     if (a._[1]) {
       const dir = slotDir(a._[1], a);
@@ -417,11 +422,11 @@ export async function makeActionKit({ force = false, only = null, dry = false, m
   const plan = JSON.parse(fs.readFileSync(planFile, "utf8"));
   const items = (plan.images || []).map((raw) => {
     /* each picture validated as a one-picture plan: every skin rule but the per-slot cap */
-    const v = validatePlan({ images: [raw] });
+    const v = validatePlan({ look: "cartoon", images: [raw] });   /* the kit stays cartoon (its keys and pictures unchanged) */
     if (v.errors.length) throw new Error(`actionkit.json: ${v.errors.join("; ")}`);
     for (const w of v.warnings) log(`  warning ${w}`);
     const img = { ...v.images[0], tool: true };   /* cut as a tool: steel and graphite are object, finger loops are holes */
-    const rh = rawHash({ object: img.object, kind: img.kind, style: plan.style, aspect: img.aspect, look: img.look }), sh = skinHash(rh, img);
+    const rh = rawKey(plan, img), sh = skinHash(rh, img);
     const skin = force ? null : getSkin(sh), rawPic = findRaw(rh);
     const how = skin ? "library" : rawPic && !force ? "recut" : "generate";
     return { who: "actionkit", img, rh, sh, how, from: (skin || rawPic || {}).from, prompt: kitPrompt(plan.style, img), style: plan.style };
@@ -457,11 +462,11 @@ export async function makeActionKit({ force = false, only = null, dry = false, m
   const all = (plan.images || []).map((raw) => {
     const mine = items.find((it) => it.img.key === raw.key);
     if (mine) return mine;
-    const img = { ...validatePlan({ images: [raw] }).images[0], tool: true }, rh = rawHash({ object: img.object, kind: img.kind, style: plan.style, aspect: img.aspect, look: img.look });
+    const img = { ...validatePlan({ look: "cartoon", images: [raw] }).images[0], tool: true }, rh = rawKey(plan, img);
     return { img, skin: getSkin(skinHash(rh, img)), note: "kept" };
   });
   const made = all.filter((it) => it.skin);
-  pruneUsed("actionkit", Object.fromEntries(made.map((it) => [it.img.key, skinHash(rawHash({ object: it.img.object, kind: it.img.kind, style: plan.style, aspect: it.img.aspect, look: it.img.look }), it.img)])));
+  pruneUsed("actionkit", Object.fromEntries(made.map((it) => [it.img.key, skinHash(rawKey(plan, it.img), it.img)])));
   const fit = (it) => ({ w: it.skin.w, h: it.skin.h, len: it.img.len || 160, ax: it.img.ax ?? 0.5, ay: it.img.ay ?? 0.5, rot: it.img.rot || 0 });
   const uris = made.map((it) => [it.img.key, skinUri(it.skin.file)]);
   const bytes = uris.reduce((n, [, u]) => n + u.length, 0);

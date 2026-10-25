@@ -69,6 +69,8 @@ card's sections 1-6, `LAYOUT.md` and `PATTERNS.md`), then the slot's `brief.md` 
 9  later, once every chapter is made:   node cli.mjs publish <id>  (dry run; --upload only on the user's word)
 ```
 
+**The answer is gated by the act** (the owner, 2026-10-24, every tool): in step 3, a question with an act on the working area (share, cut, check, take, lift, put together, tap cards into a bin, deal, count) has its corner Answer key and keypad/choice keys DISABLED until the child has performed that act, then enabled, berry and blinking. `api.lock(true)` only when the question still needs its act AND it is user mode AND the child has touched the board for real; `api.lock(false)` the moment the act is done; the agent's `check()` performs the act at once, so AI mode and `toolApi` runs are never gated. A question with no real act stays ungated (never invent one) and your report says so. Recipe and side effects: PATTERNS "Answer gated by the act"; PREFLIGHT 27. `check` and `approve` never play it.
+
 A slot's folder holds `brief.md` (read), `tool.tsx` (edit), `<id>.preview.html` (open; never read),
 `sheet-*.png` (look, then `clean`), `slot.json` and `status.json` (scripts only; `status` shows the stage
 and the last check).
@@ -272,6 +274,7 @@ Publish follows TOOL_PASS: latest plan version, exact mount, md5-verified upload
 | date | decision | why |
 |---|---|---|
 | 2026-10-23 | **`class3/` is a copy of `class5/`'s code** (made by `classctl new`): docs, lib, runtime head, viewer; no work, no output, no frozen runtime. Sections 1-6 above are the rules and their reasons as they stood in class 5; this table is class 3's own from here on, and `classctl sync` never overwrites it. Chapter ids `indiannica_eng_maths3_ch<n>`, viewer port 5187, textbook folder `C:/Users/Karan Shah/Desktop/reasonify/maths_lp/textbooks/class-3-udgam` | the owner asked for class 3 |
+| 2026-10-24 | **The answer is gated by the act** (every tool of every class): a question with a real act on the working area keeps the corner Answer key and the keypad/choice keys disabled (flat, dimmed, untappable, no blink) until the act is done, then enabled, berry and blinking; restart or a new question resets it, repeating the act does not re-lock; a question with no real act stays ungated and the builder says so; guide steps and free play unchanged. Built with `api.lock` (PATTERNS "Answer gated by the act"); the static `answer-gate` row only WARNs when a tool never calls `api.lock` | The owner: a child should not be able to tap an answer in before doing the maths on the board. No check plays it (`approve` and the host emulator are toolApi-driven, which is never gated), so the play tester and the visual reviewer judge it with real clicks |
 
 ## 8. Open questions
 

@@ -89,6 +89,7 @@ const TR: any = {
     "Now both children have a fair share.": "अब दोनों बच्चों के पास बराबर हिस्सा है।",
     "Now all 4 children have a fair share.": "अब चारों बच्चों के पास बराबर हिस्सा है।",
     "You have taken two thirds of the bar.": "तुमने चॉकलेट का दो तिहाई ले लिया।",
+    "Now tap the groups the top number names.": "अब ऊपर की संख्या जितने समूह दबाओ।",
     "The plates under the cloth match the sums.": "कपड़े के नीचे की प्लेटें हिसाब से मेल खाती हैं।",
     "Share Into Groups": "बराबर समूहों में बाँटो",
     "How can a roti, a pizza or a whole tray be shared fairly?": "एक रोटी, एक पिज़्ज़ा या पूरी ट्रे बराबर कैसे बाँटें?",
@@ -225,6 +226,7 @@ const TR: any = {
     "Now both children have a fair share.": "હવે બંને બાળકો પાસે સરખો ભાગ છે.",
     "Now all 4 children have a fair share.": "હવે ચારેય બાળકો પાસે સરખો ભાગ છે.",
     "You have taken two thirds of the bar.": "તમે ચોકલેટના 3 માંથી 2 ભાગ લીધા.",
+    "Now tap the groups the top number names.": "હવે ઉપરની સંખ્યા જેટલા જૂથ દબાવો.",
     "The plates under the cloth match the sums.": "કપડા નીચેની થાળીઓ હિસાબ સાથે મળે છે.",
     "Share Into Groups": "સરખા જૂથોમાં વહેંચો",
     "How can a roti, a pizza or a whole tray be shared fairly?": "એક રોટલી, એક પિઝા કે આખી ટ્રે સરખી કેવી રીતે વહેંચાય?",
@@ -563,6 +565,12 @@ const agentKey = (item: any) => item.answer;
 
 /* the dev driver (stripped at port) and the agent reach the working area only through HOOK */
 const HOOK: any = {};
+/* THE ANSWER GATE (the owner, 2026-10-24; first made in the ported pair, carried here): once the child has acted on the board (SG_CHILD: a real
+   tap on a key or a piece, or Enter on a guide step), each question's Answer key and keypad stay locked (api.lock: the corner key is drawn flat
+   and dimmed, no blink, digits ignored) until the child has done that question's act. The agent's check() performs the act (SG_AGENT: the mount
+   is then agent-driven and ungated); AI mode, and a run driven only through toolApi (approve, hostsim), are never gated. */
+const SG_AGENT = { on: false };
+const SG_CHILD = { on: false };
 const solve = (item: any, T: any) => (T.state().stage === "demo" ? HOOK.demo && HOOK.demo() : T.submit(item.answer));
 /* the agent's answer() for an item made on the working area: none here, every answer is typed or chosen */
 const answer = (item: any, v: any) => undefined;
@@ -819,6 +827,11 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   let taken: boolean[] = L ? Array.from({ length: L.n }, (_, h) => !!S.taken[h]) : [];
   if (L && level && kind === "share" && taken.filter(Boolean).length !== it.num) taken = taken.map((_, h) => h < it.num);
   const takenN = taken.filter(Boolean).length;
+  /* the question's own act: Share (the deal); on "more than one group" questions also one tap on a group after it; Check on the fair roti.
+     Phase 4's cloth questions offer no act, so they are not gated */
+  const needAct = !free && !warm && stage === "ask" && (kind === "share" || kind === "even" || kind === "fair");
+  const actDone = kind === "fair" ? !!S.eq : kind === "share" ? shared && (it.num < 2 || !!S.took) : kind === "even" ? shared : true;
+  const gated = needAct && !actDone;
 
   const s1 = CL ? sgSum(it, CL, 0) : [], s2 = CL ? sgSum(it, CL, 1) : [];
   const len1 = s1.join("").length, len2 = s2.join("").length;
@@ -859,14 +872,20 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     const hb = L.bar ? { x: -45, y: -12, w: 90, h: 90 / SG_AR } : { x: -24, y: -24, w: 48, h: 48 };
     run({ tool: "hand", moves: "carry", from: X({ x: SG_TRAY.w / 2, y: SG_TRAY.h / 2 }), at, hold: <g>{sgThing(it.thing, hb, "", "hold", skinned)}</g>,
       onPoint: (i: number) => put({ dealt: i + 1 }) },
-      () => { put({ dealt: L.full }); api.sfx.settle(); api.did("share"); });
+      () => {
+        put({ dealt: L.full }); api.sfx.settle();
+        if (needAct && kind === "share" && it.num >= 2 && !S.took) api.say("Now tap the groups the top number names.");
+        api.did("share");
+      });
   };
   const takeHolder = (h: number) => {
     if (busy.current) return;
+    SG_CHILD.on = true;
     missTyped.current = undefined;
     tl.stop();
     const t = taken.map((v, j) => (j === h ? !v : v));
-    put({ taken: t, demo: 0 });
+    if (gated && it.num >= 2 && item && item.say) api.say(item.say);   /* the nudge has done its job: the question comes back */
+    put({ taken: t, demo: 0, took: true });
     api.sfx.tick();
     api.did("take");
   };
@@ -905,6 +924,30 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   /* Enter, the agent's check() and the dev solve() perform the CURRENT step */
   api.onEnter(stage === "demo" && stepOn ? () => act(stepOn) : null);
   HOOK.demo = () => act(stepOn);
+  const gateHeld = useRef(false);
+  const stageNow = useRef(stage);
+  stageNow.current = stage;
+  useEffect(() => {
+    const f = (e: any) => { if (e.isTrusted && e.key === "Enter" && stageNow.current === "demo") SG_CHILD.on = true; };
+    window.addEventListener("keydown", f, true);
+    return () => window.removeEventListener("keydown", f, true);
+  }, []);
+  useEffect(() => () => { if (gateHeld.current) { gateHeld.current = false; api.lock(false); } }, [ek]);
+  useEffect(() => {
+    let ai = false;
+    try { ai = (window as any).toolApi.getState().mode === "ai"; } catch (e) {}
+    const want = gated && SG_CHILD.on && !ai && !SG_AGENT.on;
+    if (want && !gateHeld.current) { gateHeld.current = true; api.lock(true); }
+    else if (!want && gateHeld.current) { gateHeld.current = false; api.lock(false); }
+  }, [gated, ek, stage]);
+  /* the agent's check() at a gated question performs the act at once (no Enter while the gate was held: its answer was refused) */
+  HOOK.check = stage === "ask" && gated ? () => {
+    const held = gateHeld.current;
+    SG_AGENT.on = true;
+    if (kind === "fair") put({ eq: true, ghost: ghostAt(big) });
+    else put({ dealt: L.full, ...(it.num >= 2 ? { taken: taken.map((_, h) => h === 0), took: true } : {}) });
+    return held ? true : undefined;
+  } : undefined;
 
   /* the traceback: redraw the maths in three beats, ending on the whole right answer. The pad is NOT locked (the play test): the child
      may retry at once, and the first key or tap takes the worked answer off the screen so it cannot be copied (the owner's decision) */
@@ -945,6 +988,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     const t = Date.now();
     if (t - lastKey.current < 400) return;
     lastKey.current = t;
+    SG_CHILD.on = true;
     act(id);
   };
   const keyBox = free ? { x: 696, y: SG_KY, w: 160, h: 72 } : { x: SG_FW / 2 - 120, y: SG_KY, w: 240, h: 72 };
@@ -1016,7 +1060,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
               {S.parted && <rect x={pr.x} y={pr.y} width={pr.w} height={pr.h} fill={on ? SG.taken : SG.cream} fillOpacity={on ? 0.5 : 0.62} />}
               <rect x={pr.x} y={pr.y} width={pr.w} height={pr.h} fill="none" stroke={on ? SG.taken : "#2B2B2B"} strokeWidth={on ? 7 : 3.5} />
               {on && sgChip(pr.x + pr.w / 2 - 56, pr.y + pr.h + 8, 112, 42, tx("Taken"), "taken", 28)}
-              {S.parted && !on && asking && <Hit id="take" x={pr.x - 3} y={pr.y - 14} w={pr.w + 6} h={pr.h + 28} label={"Part " + (i + 1)} onPress={() => act("take", i)} />}
+              {S.parted && !on && asking && <Hit id="take" x={pr.x - 3} y={pr.y - 14} w={pr.w + 6} h={pr.h + 28} label={"Part " + (i + 1)} onPress={() => { SG_CHILD.on = true; act("take", i); }} />}
             </g>
           );
         })}
@@ -1061,6 +1105,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
               {Array.from({ length: fillN[h] }, (_, j) => sgThing(it.thing, L.inHolder(h, j), roles && L.bar ? role : "", "i" + h + "-" + j, skinned))}
               {role && sgChip(b.x + b.w / 2 - cw / 2, SG_HY - 16, cw, 38, tx(role === "taken" ? "Taken" : "Left") + (counted && cw >= 128 ? " " + fillN[h] : ""), role, 28)}
               {tapOk && kind === "share" && <Hit id={"holder-" + (h + 1)} x={b.x} y={b.y} w={b.w} h={b.h} label={"Group " + (h + 1)} onPress={() => takeHolder(h)} />}
+              {gated && shared && h === 0 && <Invite x={b.x + b.w / 2} y={b.y + b.h / 2} w={b.w} h={b.h} rx={16} C={C} />}
             </g>
           );
         })}

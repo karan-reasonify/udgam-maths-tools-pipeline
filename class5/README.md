@@ -118,6 +118,7 @@ tree ships them empty and `classctl` merges a class's own rows in.
   output-preview/<chapter_id>/<id>/    <slot_id>.tsx + <slot_id>.json (made by port; slot id = the plan's mount id)
 ```
 
+
 This folder is a copy of `class4/` (docs, lib, runtime with its frozen snapshots, viewer) made on 2026-10-06 for Udgam
 Class 5; it has no finished tool to copy from. Every pattern a tool uses is in `docs/PATTERNS.md`. Chapter ids here
 read `indiannica_eng_maths5_ch<n>`. The viewer runs on port 5185 (Class 4's is 5183); the read-fence state file is

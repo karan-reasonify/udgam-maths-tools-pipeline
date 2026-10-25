@@ -197,6 +197,7 @@ function scCard(c: any[], x: number, y: number, w: number, h: number, C: any, o:
   );
 }
 /* the bin's contents as a set ("k1,k3"), so the order of the taps never matters */
+let scTouched = false;   /* a real finger or mouse has touched the working area in this page (the gate below) */
 const scSet = (v: any) => String(v ?? "").split(",").map((s) => s.trim()).filter(Boolean).sort().join(",");
 
 /* Hindi and Gujarati (docs/PATTERNS.md §11): every line above and below stays English, exactly as the checks
@@ -781,6 +782,21 @@ function Work({ phase, n, item, index, stage, wrong, api, stepOn, box, tx = (v: 
   /* ── the acts (every one performed on screen by the hand, PATTERNS §15) ── */
   /* a tap on another card while one is being carried is queued and carried next (never swallowed) */
   const queue = useRef<number[]>([]), tapRef = useRef<any>(null), nudged = useRef(false);
+  /* THE GATE (the owner, 2026-10-24): a sort's Enter key is disabled (api.lock: flat, dimmed, untappable, no blink) until the
+     child has moved a card in this question. Only in user mode and once a real finger or mouse has touched the board, so the
+     teacher agent's and approve's toolApi path is never locked. A pick question has no act of its own and is never gated. */
+  const acted = useRef(""), gated = useRef(false);
+  const gateNow = () => {
+    let user = false;
+    try { user = window.toolApi.getState().mode === "user"; } catch (e) { user = false; }
+    const want = ask && !free && V.kind === "bin" && acted.current !== ek && scTouched && user;
+    if (want !== gated.current) { gated.current = want; api.lock(want); }
+  };
+  useEffect(() => {
+    const on = (e: any) => { if (e.isTrusted && e.target && e.target.closest && e.target.closest('[data-zone="work"]')) scTouched = true; };
+    window.addEventListener("pointerdown", on, true);
+    return () => window.removeEventListener("pointerdown", on, true);
+  }, []);
   const tapCard = (i: number) => {
     const name = "card-" + (i + 1);
     if (stage === "demo" && stepOn !== name) { api.did(name); return; }
@@ -797,6 +813,7 @@ function Work({ phase, n, item, index, stage, wrong, api, stepOn, box, tx = (v: 
       api.sfx.settle();
       upd((b) => { const bin = b.bin.slice(); bin[i] = !bin[i]; return { bin, moving: -1, dirty: true }; });
       if (stage === "demo") api.did(name);
+      if (ask && !free) { acted.current = ek; gateNow(); }
       if (nudged.current && ask) { nudged.current = false; api.say(item.say); }   /* the nudge is answered: the question again */
       const next = queue.current.shift();
       if (next !== undefined) setTimeout(() => tapRef.current && tapRef.current(next), 0);
@@ -871,6 +888,10 @@ function Work({ phase, n, item, index, stage, wrong, api, stepOn, box, tx = (v: 
   };
   const cnt = S.bin.filter(Boolean).length;
   useEffect(() => { if (ask && V.kind === "bin") api.answerReady(cnt > 0 && S.dirty); }, [ek, stage, cnt, S.dirty]);
+  useEffect(() => {
+    gateNow();
+    return () => { if (gated.current) { gated.current = false; api.lock(false); } };
+  }, [ek, stage]);
 
   /* the traceback: the numbers that decide light in turn, then the whole right answer (a demo layer). Nothing is locked: the
      child's next tap stops it at once and is taken (the play test: a locked 1.5 to 3.5 s swallowed taps with no sign) */

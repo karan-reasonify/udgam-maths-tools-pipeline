@@ -613,6 +613,11 @@ const check = () => (HOOK.check ? HOOK.check() : undefined);
    drawn in one 900 x 520 frame placed at ox: centred while there is room, never under the key's corner, at 0 with the panel open.
    Layouts: "one" (a whole and the name card), "pair" (two equal rotis), "two" (the amber board, the blue plate, the fraction
    card), "group" (a shelf and a basket of rotis, the card). */
+/* THE ANSWER GATE (the owner, 2026-10-24): on a question whose answer comes from an act on the board (the make question: lifting
+   pieces onto the plate) the answer key is locked (flat, dim, untappable, no blink) until the child has done that act once in this
+   entry. It locks only after a REAL touch on the page (a trusted pointer or key event) and never in AI mode, so the agent and the
+   checks, which act at once through HOOK.set, are never gated. */
+const FM_GATE = { real: false, demo: false };
 function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, stepOn, box, answerOn, lang = "en", tx = (v: any) => v }: any) {
   const C = api.C;
   const tl = useTimeline();
@@ -641,8 +646,12 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
   const liftRef = useRef(0);
   const queue = useRef<any[]>([]);
   const liftNow = useRef<any>(null);
+  const gateRef = useRef(false);
+  FM_GATE.demo = isDemo;
+  const gateDone = useRef(-1);
   useEffect(() => () => {
     tl.stop(); playing.current = false; queue.current = []; nudged.current = false;
+    if (gateRef.current) { gateRef.current = false; api.lock(false); }
     if (lockRef.current) { lockRef.current = false; api.lock(false); }
   }, [qk]);
 
@@ -701,7 +710,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
     go({ tool: "hand", moves: "tap", at: [wp(at(i))], ms: 800,
       onPoint: () => upd((p: any) => { const t = p.taken.slice(); t[i] = !t[i]; return { taken: t, together: false }; }) },
       () => {
-        acted.current = true; api.did("lift");
+        acted.current = true; gateDone.current = E; if (gateRef.current) { gateRef.current = false; api.lock(false); } api.did("lift");
         if (nudged.current && make) { nudged.current = false; api.say(item.say); }
         const nx = queue.current.shift();
         if (nx !== undefined) setTimeout(() => liftNow.current && liftNow.current(nx), 0);
@@ -750,12 +759,33 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
   HOOK.demo = isDemo && stepOn ? () => act(stepOn) : null;
   HOOK.set = make ? (v: any) => {
     const k = Math.max(0, Math.min(S.np, Math.round(Number(v) || 0)));
-    liftRef.current = k; acted.current = true;
+    liftRef.current = k; acted.current = true; gateDone.current = E; if (gateRef.current) { gateRef.current = false; api.lock(false); }
     upd(() => ({ taken: Array.from({ length: S.np }, (_, i) => i < k) }));
     return true;
   } : null;
   HOOK.check = null;
   useEffect(() => { if (make && asking) api.answerReady(lifted > 0); }, [lifted, stage, qk]);
+  useEffect(() => {
+    const on = (e: any) => {
+      /* the child has touched the BOARD: a real tap inside the working area, or a real Enter on a guide step (not the Start key) */
+      if (!e || !e.isTrusted) return;
+      if (e.type === "keydown") { if (e.key === "Enter" && FM_GATE.demo) FM_GATE.real = true; return; }
+      const t: any = e.target;
+      if (t && t.closest && t.closest('[data-zone="work"]')) FM_GATE.real = true;
+    };
+    window.addEventListener("pointerdown", on, true);
+    window.addEventListener("keydown", on, true);
+    return () => { window.removeEventListener("pointerdown", on, true); window.removeEventListener("keydown", on, true); };
+  }, []);
+  useEffect(() => {
+    if (!(make && asking) || gateDone.current === E || liftRef.current > 0 || !FM_GATE.real) return;
+    let mode = "user";
+    try { mode = (window as any).toolApi.getState().mode; } catch (e) { mode = "user"; }
+    if (mode === "ai") return;
+    /* a tick later: the runtime settles the new question's own lock after the tool's effects */
+    const t = setTimeout(() => { if (gateDone.current !== E && liftRef.current === 0) { gateRef.current = true; api.lock(true); } }, 30);
+    return () => clearTimeout(t);
+  }, [stage, qk]);
   /* every right answer has its own one-sentence line (a phase's last is replaced by its closing) */
   /* said a tick later: the runtime's own state reads "win" only after its effects, and only then does it swap a phase's last win line for the closing */
   useEffect(() => {

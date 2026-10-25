@@ -656,6 +656,8 @@ Answer key and the sliding panel; the tool changes only how its `Work` is laid o
   equal widths come from the model, never from the picture:
   `{cells.map((c, i) => <Skin key={i} name="piece" x={c.x} y={c.y} w={c.w} h={c.h} fit="stretch" />)}`.
   `fit="stretch"` keeps the piece's own rim and bevel (the default `slice` would crop them).
+- **A figure** (`kind: "figure"`, a person; a photo-style child by default): draw people with `<Skin name="child_a" x y w h />` from the figure skins, never as SVG; one `<Skin>` per person, in a box
+  of the made picture's own aspect (`made.w` x `made.h` in images.json, e.g. 72 x 240: a standing person is about 1:3.3, not 3:4), no `clip`, no `fit="stretch"` (`Skin` slices, so a wrong box crops the head or the feet).
 - **A disc** (`kind: "disc"`): one `<clipPath>` per sector (the tool's own sector path), and the skin drawn into the
   circle's box once per sector, clipped: `<Skin name="cake" x={cx - r} y={cy - r} w={2 * r} h={2 * r} clip={"url(#sec" + i + ")"} />`.
   The crust then shows on every sector's outer arc; the equal sector lines are drawn over it in ink.
@@ -924,3 +926,13 @@ child names (`s.name`) picks the drawing.
   pieces may be plain, "buttons" only where every one is a button).
 - **A counted or labelled pile keeps its letters clear:** a Devanagari hook or matra under a label needs 10-12 px above the first
   row of pieces; a verdict label never prints over another label or a table row (give it its own line).
+
+## 20. Answer gated by the act (the owner, 2026-10-24; every tool, proven on class 3 ch 6 C17)
+
+A question with a real act on the working area keeps the corner Answer key and the keypad/choice keys disabled until the child has done the act; then they are enabled, berry and blinking. Three runtime verbs, each does ONE thing: `api.lock(true | false)` is the only thing that disables the corner key (and the pad); `api.answerReady(true)` only blinks the Enter key of a working-area question; `api.cardReady(false)` only stops a card's blink.
+
+- **Recipe, in `Work`:** `api.lock(true)` ONLY when (the question still needs its act) AND (user mode) AND (the child has touched the board for real: a tap on a key or piece, or Enter on a guide step); `api.lock(false)` as soon as the act is done (and on a restart or a new question: the gate resets, a repeated act does not re-lock). The agent's `check()` performs the act at once, so AI mode and `toolApi`-only runs are never gated. Lock your own `useEffect` on those flags, not the skeleton's traceback lock (`[wrong]`), which stays as it is.
+- **Side effect 1:** while locked the Hint key only re-shows the question. Word the hints so none names a key in the wrong state, and add a nudge line for the act ("Now tap the groups the top number names.") with hi and gu `TR`.
+- **Side effect 2:** `toolApi.answer` is refused while locked (`L.stage !== 'ask' || L.locked`). That is why the lock is user mode and after a real touch only: `approve`, the host emulator and the agent drive through `toolApi` and would break if the board were locked before they touched it.
+- **Ungated is allowed:** a question with no real act (a recall, a read-off) is left alone, never given an invented act; the report names it. Guide steps and free play are unchanged.
+- **Proof:** the sidecar `.json` carries a `guide.answerGate` note (the acts per question, the ungated ones). Nothing in `check` plays the gate: the static `answer-gate` row only WARNs when `api.lock` is never called. Look at real clicks (playkit) before and after the act.

@@ -905,3 +905,13 @@ child names (`s.name`) picks the drawing.
   has a margin can leave the working area (`zones`).
 - **No-break spaces do not hold a line together in the bubble:** it turns every space-like character into a plain space before it
   wraps. To keep an equation on one line in hi/gu write it without spaces ("5.23+1.6=6.83"); the English stays as written.
+
+## 19. Answer gated by the act (the owner, 2026-10-24; every tool, proven on class 3 ch 6 C17)
+
+A question with a real act on the working area keeps the corner Answer key and the keypad/choice keys disabled until the child has done the act; then they are enabled, berry and blinking. Three runtime verbs, each does ONE thing: `api.lock(true | false)` is the only thing that disables the corner key (and the pad); `api.answerReady(true)` only blinks the Enter key of a working-area question; `api.cardReady(false)` only stops a card's blink.
+
+- **Recipe, in `Work`:** `api.lock(true)` ONLY when (the question still needs its act) AND (user mode) AND (the child has touched the board for real: a tap on a key or piece, or Enter on a guide step); `api.lock(false)` as soon as the act is done (and on a restart or a new question: the gate resets, a repeated act does not re-lock). The agent's `check()` performs the act at once, so AI mode and `toolApi`-only runs are never gated. Lock your own `useEffect` on those flags, not the skeleton's traceback lock (`[wrong]`), which stays as it is.
+- **Side effect 1:** while locked the Hint key only re-shows the question. Word the hints so none names a key in the wrong state, and add a nudge line for the act ("Now tap the groups the top number names.") with hi and gu `TR`.
+- **Side effect 2:** `toolApi.answer` is refused while locked (`L.stage !== 'ask' || L.locked`). That is why the lock is user mode and after a real touch only: `approve`, the host emulator and the agent drive through `toolApi` and would break if the board were locked before they touched it.
+- **Ungated is allowed:** a question with no real act (a recall, a read-off) is left alone, never given an invented act; the report names it. Guide steps and free play are unchanged.
+- **Proof:** the sidecar `.json` carries a `guide.answerGate` note (the acts per question, the ungated ones). Nothing in `check` plays the gate: the static `answer-gate` row only WARNs when `api.lock` is never called. Look at real clicks (playkit) before and after the act.

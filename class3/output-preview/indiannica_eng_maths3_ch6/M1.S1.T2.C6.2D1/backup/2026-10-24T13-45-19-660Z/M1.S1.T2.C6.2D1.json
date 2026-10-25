@@ -1,0 +1,1231 @@
+{
+  "slotId": "M1.S1.T2.C6.2D1",
+  "mediaId": "M1.S1.T2.C6.2D1",
+  "toolId": "fraction_maker",
+  "title": "Fraction Maker",
+  "component": "M1.S1.T2.C6.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch6",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch6_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_6/2dtool/M1.S1.T2.C6.2D1/M1.S1.T2.C6.2D1.tsx",
+  "description": "Cut a chapati, a pizza or a cake into equal parts, lift some onto the plate, and write the fraction that names what you took.",
+  "conceptIds": [
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7",
+    "M1.S1.T2.C8",
+    "M1.S1.T2.C9"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Cut a real thing into equal parts and name them, take some parts and write the fraction with a top and a bottom number, see that equal top and bottom numbers make one whole, and write a fraction of a group of real things.",
+    "look": "A kitchen table with a shelf of wholes along the top, an amber board with the chosen whole and a Cut dial, a deep blue plate beside it, a fraction card and a words card at the right, Put together, Shape view and Group view buttons, and the number pad down the right of the canvas.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Fraction Maker' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many parts are taken, out of how many parts there are in all. It is never a score. The working area is 1086 by 528 at x 64, y 202. A kitchen table fills the working area. A shelf of wholes runs across the top at x 90, y 214, 980 by 76, holding five small real things: a round chapati with toasted spots, a pizza with toppings, a round cake, a chocolate bar with its squares and a jug of juice with equal marks, and a torn roti at its far end. The chosen whole comes down onto an amber board 360 by 320 at x 100, y 306, labelled Left: the chapati, pizza or cake about 300 across, the bar 320 long, the jug 150 wide and 280 tall. Near-black cut lines are drawn before anything is taken. A deep blue plate 300 by 320 at x 490, y 306, labelled Taken, waits beside the board: tapping a part lifts it onto the plate, where it keeps its natural colours and its shape, and tapping it there puts it back. In the plain Shape view the same cut whole is drawn as a flat shape and a part that is taken is deep blue, labelled Coloured. The fraction card stands at x 810, y 306, 290 by 220: a top box, a level line and a bottom box, the top labelled numerator and the bottom labelled denominator once the child has met the words. The words card stands under it at x 810, y 540, 290 by 80, and says the name in writing, such as one-third. The Cut dial stands at x 100, y 650, 300 wide, with the numbers two to ten written on it, and the Uneven cut slider beside it at x 420, y 650, 200 wide. The Put together button stands at x 650, y 640, 160 by 60, the Shape view button at x 830, y 640, 130 by 60 and the Group view button at x 980, y 640, 120 by 60, each labelled in words. When the parts are put together the slices slide off the plate and click one by one back into their places, and the last click closes the pizza box into one whole inside a green outline, labelled Whole. In Group view the board is swapped for a long shelf at x 90, y 300, 1000 by 200, holding up to twenty separate real things, mangoes, laddoos, kites, balloons, bananas or bangles, each 80 across with a clear gap, in rows of ten. Tapping one lifts it into the deep blue basket at x 90, y 530, 400 by 170, labelled Taken, and the things still on the shelf are lit amber and labelled Left. In Group view the fraction card shrinks to 240 by 190 at x 540, y 520, the words card moves to x 810, y 540, and the Cut dial and Put together button fade to half strength. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys and a clear key, for typing the top number and then the bottom number into the fraction card. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours, and the chapter's four roles are carried by what holds the object, never by tinting it. The parts a fraction counts, the ones coloured or taken, sit on a deep blue plate, in a deep blue basket or inside a deep blue ring, labelled Coloured or Taken, and a plain drawn part that is coloured is deep blue. The other parts of the same whole, the ones left, sit on an amber plate or in an amber basket, labelled Left. A whole shown entire sits inside a green outline, labelled Whole, and a bracket spanning one whole is green. The bigger of two like fractions gets a vermilion ring, labelled Bigger. A part of a plain drawn shape that is not coloured stays warm white inside its near-black outline, every cut line is near-black, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of the four, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The card shows the last fraction as a stacked number and in words, with its whole or its group still in the frame beside it.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the cuts settle into equal parts and the name card reads one-third on the pizza",
+        "does": "turns the Cut dial to two on the chapati, three on the pizza and four on the cake, reads the name card, then tries the torn roti",
+        "goal": "equal parts of one whole have names: two are halves, three are thirds, four are quarters",
+        "says": "Cut the chapati into equal parts. What is one part called?",
+        "check": "Away from the screen: a roti is torn into two pieces, one bigger than the other. Can each piece be called a half? Why?",
+        "feels": "the pieces becoming equal and a name arriving only when they do",
+        "hands": "Fold a roti or a paper plate pizza into two, three and four parts of the same size, tear one roti on purpose, and say the name of one part aloud each time.",
+        "tries": "First rung: count the parts aloud. Second rung: check that every part is the same size, laying one on another. Third rung: the same task with two parts only, before three and four return.",
+        "wrong": [
+          {
+            "why": "half is the first part name a child learns, so it feels like the name for any part",
+            "move": "calls every part a half, whatever the number of cuts",
+            "screen": "the Cut dial runs from two up to four on the pizza and the cake with the parts counted aloud in amber, and the name card changes its name each time the count changes"
+          },
+          {
+            "why": "the pieces are still parts of the same roti, so a name seems fair",
+            "move": "names the pieces of the torn roti",
+            "screen": "the name card stays blank and says in words that the pieces are not equal, and the slider slides back so the roti closes into equal parts"
+          }
+        ],
+        "screen": "a chapati, a pizza and a cake on the shelf with their cuts drawn and nothing taken, and a torn roti at the end",
+        "soWhat": "equal parts have names: two are halves, three are thirds, four are quarters",
+        "concept": "Equal parts: halves, thirds and quarters"
+      },
+      {
+        "n": 2,
+        "win": "the card shows the stacked fraction and its two boxes light up as numerator and denominator",
+        "does": "lifts pieces onto the blue plate, or fills the jug mark by mark, then types the taken count above the line and all the parts below it",
+        "goal": "the bottom number counts all the equal parts and the top number counts the parts taken",
+        "says": "Take some pieces. Count the pieces you took, then count all the pieces.",
+        "check": "Away from the screen: a jug of juice has some marks filled. Which number tells how many equal marks the whole jug has?",
+        "feels": "the card filling from two counts: all the parts below the line, the parts taken above it",
+        "hands": "Break a chocolate bar or fold a paper bar along its squares, take some pieces, write the number taken on a card, then write the number of all the pieces under it.",
+        "tries": "First rung: count all the parts, taken or not. Second rung: count the parts on the blue plate only. Third rung: the same task with just one part taken, before more are taken.",
+        "wrong": [
+          {
+            "why": "the bigger number looks as if it belongs on top",
+            "move": "types the taken count at the bottom and the count of all the parts on top",
+            "screen": "the card turns the numbers round once, and the parts are counted in amber: first all of them, which light the bottom box, then the taken ones on the blue plate, which light the top box"
+          },
+          {
+            "why": "the parts on the board are just as easy to count",
+            "move": "counts the parts left on the board as the top number",
+            "screen": "the parts on the blue plate are numbered in turn in deep blue, and the parts left on the amber board stay unnumbered and labelled Left"
+          }
+        ],
+        "screen": "a chocolate bar, a jug of juice and a pizza on the shelf, the blue plate empty, and a card with a line and two empty boxes",
+        "soWhat": "the bottom number counts all the equal parts and the top number counts the parts taken",
+        "concept": "Coloured parts: the top and bottom numbers"
+      },
+      {
+        "n": 3,
+        "win": "the last slice clicks in, the pizza closes inside the green outline and the card shows the same number twice",
+        "does": "puts the slices back into the box one by one, or taps Put together, and types the missing top or bottom number",
+        "goal": "when the top and bottom numbers are the same, every part is taken and together they make one whole",
+        "says": "Put the slices back in the box. What do they make?",
+        "check": "Away from the screen: you eat all four quarters of a chapati. How many chapatis have you eaten? What is the top number and what is the bottom number?",
+        "feels": "the slices clicking back one by one until the pizza closes with no gap",
+        "hands": "Cut a paper plate pizza into equal slices, take every slice, then lay the slices back together into one circle and write the fraction. Then hide one slice and ask how many are missing.",
+        "tries": "First rung: count all the slices below the line. Second rung: count the slices in the box above it. Third rung: the same task with only two slices, before more slices return.",
+        "wrong": [
+          {
+            "why": "one whole sounds like the number one",
+            "move": "writes the number one on top when every slice is taken",
+            "screen": "every slice is numbered in turn as it clicks into the box, the last number lands on the top box, and the card shows the same number above and below"
+          },
+          {
+            "why": "most of the pizza is back in the box, so it looks finished",
+            "move": "calls the fraction a whole while a slice is still missing",
+            "screen": "the box stays open with a gap where the missing slice belongs, the slices still on the plate are lit amber and labelled Left, and the gap closes only when the last slice is put back"
+          }
+        ],
+        "screen": "a pizza cut into equal slices, every slice on the blue plate, an empty pizza box on the board and the card empty",
+        "soWhat": "when the top and bottom numbers are the same, every part is taken and the fraction is one whole",
+        "concept": "All the parts make one whole"
+      },
+      {
+        "n": 4,
+        "win": "the card shows the stacked fraction and the words card names it, such as three-sevenths",
+        "does": "counts all the things on the shelf and in the basket, counts the things in the basket, types both, then reads the name in words",
+        "goal": "a group is counted like a whole: all the things go below the line and the things taken go above it",
+        "says": "Here is a group of things. Count them all, then count the ones in the basket.",
+        "check": "Away from the screen: some of the children in the class are wearing blue. How would you write the fraction of the class that wears blue?",
+        "feels": "the same card that named part of a pizza naming part of a shelf of things",
+        "hands": "Line up a row of mangoes, laddoos or counters on the desk, move some of them into a bowl, and write how many are in the bowl above the line and how many there are in all below it.",
+        "tries": "First rung: count every thing on the shelf and in the basket. Second rung: count the things in the basket. Third rung: the same task with a smaller shelf, before the full shelf returns.",
+        "wrong": [
+          {
+            "why": "the two kinds sit side by side, so they feel like the pair to compare",
+            "move": "puts the things in the basket over the things left on the shelf",
+            "screen": "all the things on the shelf and in the basket light amber and are counted in turn, the count lands in the bottom box, and the things in the basket are counted into the top box"
+          },
+          {
+            "why": "the things in the basket are the ones being asked about, so the others seem not to count",
+            "move": "counts only the things in the basket and leaves the bottom box empty",
+            "screen": "the whole shelf stays in the frame, the things left on it are lit amber, labelled Left, and the bottom box waits lit until every thing has been counted"
+          }
+        ],
+        "screen": "Group view with a shelf of mangoes, some already in the blue basket, and an empty fraction card",
+        "soWhat": "all the things go below the line and the things taken go above it",
+        "concept": "A fraction of a group of things"
+      }
+    ],
+    "delight": "On the third phase, the last slice clicks into the pizza box and the pizza closes into one whole inside a green outline with no gap and no slice left on the plate, while the card still shows the same number above the line and below it. On the first phase the torn roti wobbles, and its pieces slide back to equal parts when the slider returns to the middle.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet typed. On the first phase a chapati, a pizza and a cake stand on the shelf with their cuts drawn and nothing taken, the chosen whole on the amber board, the Cut dial set low, and the name card blank. On the second a chocolate bar, a jug of juice and a pizza wait on the shelf, the deep blue plate is empty, and the fraction card shows an empty line with two empty boxes. On the third a pizza is cut into slices that all lie on the blue plate, with an empty pizza box open on the board. On the fourth the Group view is on, with a shelf of separate mangoes, some already in the deep blue basket, and the card empty. One thing moves, once: the first cut line, or the first thing on the shelf on the fourth phase, gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any whole from the shelf cut into two to ten parts, taken any way, torn unevenly and put back together again, and the Group view with any shelf of things. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on naming equal parts, refusing a torn roti, writing a fraction from the parts taken, making one whole and counting a group, each on a real thing.",
+    "voiceLines": [
+      "A kitchen table with a chapati, a pizza and a cake.",
+      "Cut the chapati into equal parts. What is one part called?",
+      "Take some pieces. Count the pieces you took, then count all the pieces.",
+      "Put the slices back in the box. What do they make?",
+      "Here is a group of things. Count them all, then count the ones in the basket.",
+      "A new whole. Look at the cuts first.",
+      "Free play. Cut, take and put back as you like.",
+      "Count the parts again, one cut line at a time.",
+      "You named every fraction by counting."
+    ],
+    "observations": [
+      {
+        "why": "a name like third means one of three parts that are all the same size.",
+        "soWhat": "the parts must be equal before a fraction can name them.",
+        "observe": "The torn roti made one piece bigger, and the words card would not name any piece."
+      },
+      {
+        "why": "the whole was cut into the same number of parts every time.",
+        "soWhat": "the denominator counts all the equal parts, taken or not.",
+        "observe": "The bottom number stayed the same while more pieces went onto the blue plate."
+      },
+      {
+        "why": "all the parts of a whole make that whole.",
+        "soWhat": "when the top and bottom numbers are the same, the fraction is one whole.",
+        "observe": "The last slice clicked into the pizza box and the pizza closed with no gap left."
+      },
+      {
+        "why": "a group of separate things works like a whole cut into parts.",
+        "soWhat": "a fraction can name part of a group as well as part of a thing.",
+        "observe": "The same card named part of a pizza and part of a shelf of mangoes."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a chapati, a pizza and a cake on the shelf with their cuts drawn and nothing taken, and a torn roti at the end",
+        "win": "the cuts settle into equal parts and the name card reads one-third on the pizza",
+        "traceback": "The cut runs from 2 to 4 equal parts with the name card changing each time, and ends on the right name.",
+        "ladder": [
+          "Count the equal parts of the roti.",
+          "Count the slices, one cut line at a time.",
+          "Look at the two coloured parts side by side.",
+          "Lay one part on another to check they match.",
+          "The name tells how many equal parts make the whole."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a chocolate bar, a jug of juice and a pizza on the shelf, the blue plate empty, and a card with a line and two empty boxes",
+        "win": "the card shows the stacked fraction and its two boxes light up as numerator and denominator",
+        "traceback": "All the parts are counted in amber into the bottom box, then the plate's parts in blue into the top box.",
+        "ladder": [
+          "The bottom number counts all the parts of the bar.",
+          "Count every slice of the pizza for the bottom number.",
+          "The top number tells how many pieces go on the plate.",
+          "Touch each part once as you count it.",
+          "A fraction has two counts, one above and one below the line."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a pizza cut into equal slices, every slice on the blue plate, an empty pizza box on the board and the card empty",
+        "win": "the last slice clicks in, the pizza closes inside the green outline and the card shows the same number twice",
+        "traceback": "Every part is counted in amber into the bottom box, then the asked parts in blue into the top box.",
+        "ladder": [
+          "Count the pizza slices on the plate.",
+          "Count only the pieces on the board for the top number.",
+          "Count every slice on the plate for the top number.",
+          "Count slowly and touch each part once.",
+          "Look at both places, the board and the plate, before you write."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "Group view with a shelf of mangoes, some already in the blue basket, and an empty fraction card",
+        "win": "the card shows the stacked fraction and the words card names it, such as three-sevenths",
+        "traceback": "Every roti is counted in amber into the bottom box, then the asked rotis in blue into the top box.",
+        "ladder": [
+          "The bottom number counts all the rotis, not only the shelf.",
+          "Every roti, lifted or not, is counted below the line.",
+          "The top number counts the rotis that were not lifted.",
+          "Point at each roti once as you count.",
+          "A fraction of a group is written like a fraction of a whole."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "wholes": [
+      "roti",
+      "pizza",
+      "bar"
+    ],
+    "disc": 300,
+    "bar": [
+      320,
+      85
+    ],
+    "groupThing": 80,
+    "cutDial": [
+      2,
+      3,
+      4
+    ],
+    "names": {
+      "2": "one half",
+      "3": "one third",
+      "4": "one quarter"
+    },
+    "plate": "blue (taken)",
+    "board": "amber (left)",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:1",
+        "kind": "name",
+        "obj": "roti",
+        "np": 2,
+        "col": [
+          0
+        ],
+        "answer": "half",
+        "near": "third",
+        "ladder": [
+          "Each part is just the same size as the other one.",
+          "Two friends sharing the roti fairly get one part each."
+        ],
+        "win": "Yes, one of 2 equal parts is one half."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T2.C6:FM1",
+        "kind": "name",
+        "obj": "pizza",
+        "np": 3,
+        "col": [
+          0
+        ],
+        "answer": "third",
+        "near": "half",
+        "ladder": [
+          "Lay one slice on another: every slice matches.",
+          "The name of one slice comes from the number of slices."
+        ],
+        "win": "Yes, one of 3 equal slices is one third."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": null,
+        "kind": "compare",
+        "obj": "roti",
+        "pair": [
+          2,
+          4
+        ],
+        "answer": "half",
+        "near": "quarter",
+        "ladder": [
+          "Count the parts of each roti before you choose.",
+          "The more parts a roti is cut into, the smaller each part."
+        ],
+        "win": "Yes, a half is bigger than a quarter of the same roti."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": null,
+        "kind": "frac",
+        "obj": "bar",
+        "np": 2,
+        "tk": [
+          0
+        ],
+        "cnt": "taken",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          1,
+          2
+        ],
+        "near": "2|1",
+        "ladder": [
+          "Count the bar's parts on the board and on the plate together.",
+          "Then count only the part on the plate for the top number."
+        ],
+        "win": "Yes, 1 part of 2 is on the plate."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": null,
+        "kind": "frac",
+        "obj": "pizza",
+        "np": 3,
+        "tk": [
+          0,
+          1
+        ],
+        "cnt": "taken",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          2,
+          3
+        ],
+        "near": "3|2",
+        "ladder": [
+          "The slices sitting on the blue plate give the top number.",
+          "Write the plate's slices on top and every slice of the pizza below."
+        ],
+        "win": "Yes, 2 of the 3 slices are on the plate."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": null,
+        "kind": "make",
+        "obj": "bar",
+        "np": 4,
+        "tk": [],
+        "target": [
+          3,
+          4
+        ],
+        "pad": "enter",
+        "answer": 3,
+        "near": 4,
+        "ladder": [
+          "Look at the top number on the card, then count your plate.",
+          "Lift or put back pieces until the plate holds the top number."
+        ],
+        "win": "Yes, 3 of the 4 pieces make the card's fraction."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C8:3",
+        "kind": "num",
+        "obj": "pizza",
+        "np": 3,
+        "tk": [
+          0,
+          1,
+          2
+        ],
+        "answer": 3,
+        "near": 1,
+        "ladder": [
+          "Point at each slice on the plate as you count it.",
+          "Each slice is one third, so the slices tell how many thirds."
+        ],
+        "win": "Yes, 3 thirds make the whole pizza."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": null,
+        "kind": "frac",
+        "obj": "bar",
+        "np": 4,
+        "tk": [
+          0
+        ],
+        "cnt": "left",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          3,
+          4
+        ],
+        "near": "1|4",
+        "ladder": [
+          "Count every piece of the bar, board and plate, for the bottom.",
+          "Leave out the piece on the plate when you count the top."
+        ],
+        "win": "Yes, 3 quarters on the board and 1 quarter on the plate make the whole bar."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": null,
+        "kind": "frac",
+        "obj": "pizza",
+        "np": 4,
+        "tk": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cnt": "taken",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          4,
+          4
+        ],
+        "near": "1|4",
+        "ladder": [
+          "Count all the slices of the pizza for the bottom number.",
+          "Every slice is on the plate, so both numbers count the same slices."
+        ],
+        "win": "Yes, all 4 quarters on the plate are the whole pizza."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T2.C9:FM4",
+        "kind": "frac",
+        "obj": "group",
+        "np": 10,
+        "tk": [
+          0,
+          2,
+          3,
+          5,
+          7,
+          8
+        ],
+        "cnt": "taken",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          6,
+          10
+        ],
+        "near": "6|4",
+        "ladder": [
+          "Count the rotis in the basket for the top number.",
+          "Add the shelf rotis and the basket rotis for the bottom number."
+        ],
+        "win": "Yes, 6 of the 10 rotis are in the basket."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T2.C9:4",
+        "kind": "frac",
+        "obj": "group",
+        "np": 9,
+        "tk": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          7,
+          8
+        ],
+        "cnt": "taken",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          7,
+          9
+        ],
+        "near": "7|2",
+        "ladder": [
+          "The top number counts only the lifted rotis.",
+          "Count the basket, then count the shelf and the basket together."
+        ],
+        "win": "Yes, 7 of the 9 rotis went into the basket."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T2.C9:8",
+        "kind": "frac",
+        "obj": "group",
+        "np": 10,
+        "tk": [
+          1,
+          4,
+          8
+        ],
+        "cnt": "left",
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          7,
+          10
+        ],
+        "near": "3|10",
+        "ladder": [
+          "Count the rotis on the shelf, not the basket.",
+          "All the rotis go below the line and the shelf ones above it."
+        ],
+        "win": "Yes, 7 of the 10 rotis are still on the shelf."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The cut runs from 2 to 4 equal parts with the name card changing each time, and ends on the right name.",
+      "Phase 2: All the parts are counted in amber into the bottom box, then the plate's parts in blue into the top box.",
+      "Phase 3: Every part is counted in amber into the bottom box, then the asked parts in blue into the top box.",
+      "Phase 4: Every roti is counted in amber into the bottom box, then the asked rotis in blue into the top box."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A kitchen table with a roti, a pizza and a chocolate bar.",
+    "onFreePlay": "Free play. Cut, take and put back as you like.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You named every fraction by counting.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C6:1",
+            "worked": false,
+            "kind": "name",
+            "planQuestion": "A chapati is cut into 2 equal parts. What is one part called?",
+            "question": {
+              "en": "This roti is cut into 2 equal parts, so what is the coloured part called?"
+            },
+            "ask": {
+              "en": "Name the coloured part"
+            },
+            "answer": "half",
+            "planAnswer": "A half",
+            "choices": [
+              "half",
+              "third",
+              "quarter"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T2.C6:FM1",
+            "worked": false,
+            "kind": "name",
+            "planQuestion": "A pizza is cut into 3 equal slices. What is one slice called?",
+            "question": {
+              "en": "Now the pizza has 3 equal slices: what do we call the coloured one?"
+            },
+            "ask": {
+              "en": "Name the slice"
+            },
+            "answer": "third",
+            "planAnswer": "One-third",
+            "choices": [
+              "half",
+              "third",
+              "quarter"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "compare",
+            "planQuestion": null,
+            "question": {
+              "en": "One roti is in halves and one in quarters, so which coloured part is bigger?"
+            },
+            "ask": {
+              "en": "Which is bigger?"
+            },
+            "answer": "half",
+            "planAnswer": null,
+            "choices": [
+              "half",
+              "quarter"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": null,
+            "question": {
+              "en": "What fraction of the chocolate bar is on the blue plate?"
+            },
+            "ask": {
+              "en": "Fraction on the plate"
+            },
+            "answer": [
+              1,
+              2
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": null,
+            "question": {
+              "en": "Count the slices on the plate and on the board, then write the plate's fraction."
+            },
+            "ask": {
+              "en": "Slices on the plate"
+            },
+            "answer": [
+              2,
+              3
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "make",
+            "planQuestion": null,
+            "question": {
+              "en": "Lift pieces onto the plate to make the card's fraction."
+            },
+            "ask": {
+              "en": "Make the card's fraction"
+            },
+            "answer": 3,
+            "planAnswer": null,
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C8:3",
+            "worked": false,
+            "kind": "num",
+            "planQuestion": "A pizza is cut into thirds. How many thirds make the whole pizza?",
+            "question": {
+              "en": "Every slice is on the plate, so how many thirds make the whole pizza?"
+            },
+            "ask": {
+              "en": "Thirds in the whole"
+            },
+            "answer": 3,
+            "planAnswer": "3 thirds, because 3/3 is one whole",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": null,
+            "question": {
+              "en": "One piece is on the plate, so what fraction of the bar is still on the board?"
+            },
+            "ask": {
+              "en": "Fraction still on the board"
+            },
+            "answer": [
+              3,
+              4
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": null,
+            "question": {
+              "en": "Write the fraction for this pizza, whose slices are all on the plate."
+            },
+            "ask": {
+              "en": "Fraction on the plate"
+            },
+            "answer": [
+              4,
+              4
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T2.C9:FM4",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "A tray has 10 laddoos. 6 are yellow and the rest are orange. What fraction of the laddoos are yellow? Write it in numbers and in words.",
+            "question": {
+              "en": "What fraction of all the rotis is in the blue basket?"
+            },
+            "ask": {
+              "en": "Fraction in the basket"
+            },
+            "answer": [
+              6,
+              10
+            ],
+            "planAnswer": "6/10, six-tenths",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T2.C9:4",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "A shelf holds 9 balloons and 7 of them are red. What fraction of the balloons are red?",
+            "question": {
+              "en": "Write the fraction of these rotis that we lifted into the basket."
+            },
+            "ask": {
+              "en": "Rotis lifted"
+            },
+            "answer": [
+              7,
+              9
+            ],
+            "planAnswer": "7/9",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T2.C9:8",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "A box has 10 bangles and 3 of them are red. What fraction of the bangles are red, and what fraction are not red?",
+            "question": {
+              "en": "What fraction of the rotis is still on the shelf?"
+            },
+            "ask": {
+              "en": "Fraction on the shelf"
+            },
+            "answer": [
+              7,
+              10
+            ],
+            "planAnswer": "3/10 are red and 7/10 are not red",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S1.T2.C6:5",
+    "M1.S1.T2.C7:FM2",
+    "M1.S1.T2.C7:2",
+    "M1.S1.T2.C7:7",
+    "M1.S1.T2.C8:FM3",
+    "M1.S1.T2.C8:6"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "fraction_maker",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "fraction_maker",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Equal parts: halves, thirds and quarters",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C6:1",
+          "M1.S1.T2.C6:FM1",
+          "M1.S1.T2.C6.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Coloured parts: the top and bottom numbers",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C6.2D1:p2_1",
+          "M1.S1.T2.C6.2D1:p2_2",
+          "M1.S1.T2.C6.2D1:p2_3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "All the parts make one whole",
+        "conceptId": "M1.S1.T2.C8",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C8:3",
+          "M1.S1.T2.C6.2D1:p3_2",
+          "M1.S1.T2.C6.2D1:p3_3"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A fraction of a group of things",
+        "conceptId": "M1.S1.T2.C9",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C9:FM4",
+          "M1.S1.T2.C9:4",
+          "M1.S1.T2.C9:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "whole",
+    "uneven",
+    "together",
+    "group"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), whole, uneven, together, group, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "fraction_maker"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C6.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A kitchen table with a chapati, a pizza and a cake."
+    },
+    {
+      "en": "Cut the chapati into equal parts. What is one part called?"
+    },
+    {
+      "en": "Take some pieces. Count the pieces you took, then count all the pieces."
+    },
+    {
+      "en": "Put the slices back in the box. What do they make?"
+    },
+    {
+      "en": "Here is a group of things. Count them all, then count the ones in the basket."
+    },
+    {
+      "en": "A new whole. Look at the cuts first."
+    },
+    {
+      "en": "Free play. Cut, take and put back as you like."
+    },
+    {
+      "en": "Count the parts again, one cut line at a time."
+    },
+    {
+      "en": "You named every fraction by counting."
+    }
+  ],
+  "build": {
+    "source": "69cb2499:671723",
+    "runtime": "class3/runtime/frozen/r1/runtime.tsx",
+    "runtimeVersion": "r1",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-23T17:41:56.258Z",
+    "checks": {
+      "pass": 96,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-23T17:41:56.123Z"
+    },
+    "tsxBytes": 599048,
+    "tsxMd5": "eefc8fb6e607ed261be2b3c012684d90",
+    "handEdited": true
+  }
+}

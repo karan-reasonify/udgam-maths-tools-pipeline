@@ -51,6 +51,8 @@ and small `node -e` calculations. Nothing else that writes.
 8. **Free play and the summary.** Free play is the tool's own no-target mode; "You learned" lines are true
    and at most 72 characters.
 
+9. **The answer is gated by the act** (the owner, 2026-10-24; PATTERNS "Answer gated by the act"). For each question the builder reports as gated: the act it waits for is a REAL act (a share, cut, check, take, lift, put together, bin or deal that does the maths on the board), not an invented tap, and the gate does not give the answer away (the nudge line, the hint, the lock state or what the dimmed key shows never names or hints the number). A question with no real act is ungated and says so; an invented act there, or a missing gate on a real act, is a should-fix.
+
 ## Report (at most 30 lines)
 Verdict: CLEAN or ISSUES. Then one line per finding:
 `[must-fix | should-fix | question] phase n, item k (tool.tsx:line) — what is wrong — the rule — the fix`.

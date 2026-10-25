@@ -25,10 +25,13 @@ user's word; one fetched new gets it with its first pin. On an older pin a tool 
 
 | a skin is | a skin is not |
 |---|---|
-| ONE piece of the object (a square of chocolate) or the WHOLE round object (a cake), cut out with alpha | a scene, a background, a character, the mascot |
+| ONE piece of the object (a square of chocolate) or the WHOLE round object (a cake), cut out with alpha | a scene, a background, the mascot Kiko (a PERSON the lesson is about is a **figure** skin, below) |
 | one picture reused for every piece and every state (the tool draws it N times, or clips it) | one picture per piece, per phase or per answer, or a picture of N pieces |
 | warm (browns, creams, caramels, golden oranges) so the tool's blue and green tints read on it | red, blue or green (they fight the content colours) |
-| small: a data URI of 1 to 25 KB (a piece at most 12 KB) | a photo, a PNG, anything over 25 KB |
+| small: a data URI of 1 to 25 KB (a photo-look skin 30 KB; a piece at most 12 KB) | a PNG, anything over its budget |
+
+**A person who is part of the lesson's situation (children sharing a roti, a shopkeeper, friends, a teacher, a family) is a FIGURE skin** (owner, 2026-10-23):
+a real generated picture of ONE person, drawn by `<Skin>`, never an SVG figure. Figures are outside the 3 object skins (§3, §4).
 
 ## 2. Which elements get an object, and which stay plain
 
@@ -52,7 +55,7 @@ over a strip (PATTERNS §17, the owner 2026-10-17). A ribbon, a bar or paper sta
   still be a skin with its face left BLANK and the marks drawn over it in code (a kitchen scale with an empty display, a jug with no
   scale lines): prompt it "blank face, no marks, no numbers"; if the picture shows any mark or digit, one re-make, then plain;
 - **the subject of a geometry lesson** (an angle, a polygon, a net, a circle's centre and radius): the shape is what is studied;
-- **people, hands, characters, the mascot**, a background, decoration;
+- **the mascot Kiko, hands that perform an act (the action kit, §11)**, a background, decoration. A person the lesson is about is NOT plain: it is a figure (§4);
 - a piece **too thin to show a picture** (a hundredth, a thousandth sliver) or beyond the **40 skins a screen** the `skins` check
   allows: skin the pieces the child acts on and draw the rest plain (a hundred-cell grid: skin the whole it comes from and the pieces
   lifted out of it; a "sheet" kind or a higher cap is an open question, BUILD_CARD §8);
@@ -83,6 +86,7 @@ Read these fields of `brief.md`, in this order: **Description**, **For the child
 | cake, slices, a circle cut into equal sectors | round golden sponge cake with a crust ring | disc |
 | pizza | round golden sponge cake (pizza is red, with toppings and slice lines) | disc |
 | roti, chapati, paratha (shared, torn) | roti | disc |
+| children, friends, a shopkeeper, a teacher, a family (people named in Description / For the child / Look / Stage) | one figure per distinct person shown, at most 4, each looking different | figure |
 | ribbon, rope, string, a length cut into parts | a satin ribbon or a jute rope, warm colour | strip |
 | coins, notes, price tags, clock, ruler, calendar, money | none: drawn (their value or marks are the digits) | - |
 
@@ -90,8 +94,12 @@ Start from this table and extend it in the same spirit; a new row is a one-line 
 still choose one**: the everyday object a child of this age would cut, count, pour, weigh or measure for exactly this content and
 operation, and say why in the image's `why`. "No object named" is never a reason for plain blocks.
 
-**Prefer the smallest set.** One skin reused for every piece and state; **at most 3 skins a slot** (the CLI
-refuses a fourth; a second or third only when the tool names different wholes, e.g. ch 8 C4's chocolate bar, ribbon and chapati). Two slots asking for the same object, kind and style share one generated picture (a library
+**People.** If the brief's Description, For the child, Look or Stage names people (children, friends, a shopkeeper, a teacher, a family), the image
+agent makes **one figure per distinct person shown** (at most 4) and gives each a clearly different look in its `object` and `prompt` (gender, skin tone, hair,
+clothes colour; photo look by default). People the tool does not show get no figure.
+
+**Prefer the smallest set.** One skin reused for every piece and state; **at most 3 object skins a slot** (figures are counted apart, at most 4; the CLI
+refuses a fourth object; a second or third only when the tool names different wholes, e.g. ch 8 C4's chocolate bar, ribbon and chapati). Two slots asking for the same object, kind and style share one generated picture (a library
 hit costs nothing), so keep the `object` and `style` words the same across a chapter.
 
 ## 4. The kinds (how the CLI cuts the picture)
@@ -102,10 +110,46 @@ hit costs nothing), so keep the `object` and `style` words the same across a cha
   The tool draws it N times, each stretched to its piece rectangle, so **equal widths come from code**.
 - **disc**: the WHOLE round object (crust, rim, top-light), cut out with alpha, square, at most 360. The tool clips
   it by its circle and sector paths, so the crust shows on every sector's outer arc.
+- **figure**: ONE person, whole body head to shoes, front-facing, standing, simple everyday clothes, empty hands, cut out with alpha by the tile recipe (a harder erosion and a
+  two-pixel feather for hair and skin edges, so no white halo). **Children are PHOTO-style by default** (`look: "photo"`, the owner 2026-10-23): a realistic, well-lit studio
+  photograph of a synthetic child of 7 to 9 (not a real or recognisable person, fully and modestly clothed, a school uniform or casual clothes, a relaxed friendly smile);
+  `look: "cartoon"` is the soft 3D alternative. `look` is part of the library key, and the chapter's `style` is not sent to a photo figure. Each child in a slot looks
+  different (gender, skin tone, hair, clothes colour), 2 to 4 a slot. Aspect 3:4 is what Gemini draws, but the cut is the PERSON's own bounding box, so the shipped size is
+  narrower (a measured test: 72x240, about 1:3.3): `px` at most 180x300 (default 120x240), a data URI of about 6 to 10 KB (20 KB at most; a photo compresses worse than a
+  cartoon, WebP steps quality down). Its prompt rules are in `lib/images/rules.mjs` (`FIGURE_STYLES`, `FIGURE_NEGATIVES`): natural colours; no text, no props (no food,
+  plate or objects in the hands: the maths objects are separate skins), one person only, plain white background; no "warm colours only", no "no people". The tool draws
+  it ONCE per person with `<Skin name="child_a" x y w h />` in a box with the aspect of the MADE size (`made.w` x `made.h` in images.json, e.g. 72 x 240; `<Skin>` slices, so
+  any other box crops the head or feet); never clipped, never stretched. Different children are different keys (`child_a` ... `child_d`) whose `object` words differ (the
+  library key). A figure never sets the keypad theme. Real photographs may be supplied later; there is no file import yet.
 - **strip** (kept, rarely right): the largest rectangle INSIDE a long object, inset 6 %, opaque. **Why it loses**:
   what makes a bar read as chocolate is its edge, bevel and gloss; an interior crop throws all three away and
   leaves a flat brown gradient (a decimals tool's first `bar`, 2026-10-07). Use it only for a texture that is the
   same everywhere (a ribbon, a rope).
+
+### Look: photo (default for new plans) / cartoon (the owner, 2026-10-24)
+
+An object skin (tile, disc, strip) has a `look`, as a figure does. **`photo`** is a real top-down studio photograph (flat-lay, soft daylight from one
+side, true colour and texture, char, blisters, crust and grain, imperfect real edges, plain white, no cast shadow; `OBJECT_PHOTO_STYLE` in
+`lib/images/rules.mjs`); the chapter's `style` is NOT sent with it (a cartoon look would contradict the photograph), every object negative is (one
+object, no text or digits, no plate, hands or people, warm colours only, no cuts for a disc or strip). **`cartoon`** is the soft 3D look every skin
+had before (STYLE + the chapter's `style`), byte for byte.
+- **Which look:** the image's own `look`, else the plan's `look`, else **`photo` for a NEW plan** (no image has `made` yet; the first make writes
+  `"look": "photo"` into images.json, so it stays photo) and **`cartoon` for a plan made before**. Nothing already made changes: a cartoon skin keeps
+  its library key, so every published tool's picture is a free hit and is never re-made. To move an old slot to photo, write `"look": "photo"` and run
+  `images make` (a new picture, billed). The action kit stays cartoon.
+- **The key:** `look` is in a raw picture's key only when it is not `cartoon` (a figure's always), and a reference adds its file's sha1.
+- **Model:** a photo object tries `gemini-3.1-flash-image` first (about $0.067), then `gemini-2.5-flash-image` (`PHOTO_MODELS`; a cartoon skin and a
+  figure keep the cheap model first). Measured 2026-10-24: 2.5 drew a clean but even, "polka-dot" roti; 3.1 drew real char, crust and texture.
+- **The cut:** a photo's soft WARM-grey cast shadow joins the background (`process.mjs`, photo objects only). A grey or steel object would lose its
+  rim to that rule: give it `look: "cartoon"`.
+- **Reference photograph (`reference`, optional):** a png, jpg or webp under the class folder (`assets/refs/`, e.g. `assets/refs/roti.png`, the
+  owner's real phulka), on the plan (every photo object) or on one image (`"reference": null` turns the plan's off). It is sent with the prompt
+  ("match the realism, lighting and texture of this reference photograph; do not copy its composition or any text") and its sha1 is in the key.
+  Use it for the SAME object only (a roti reference for a roti or chapati): 3.1 copies a same-object reference closely (the trial roti came back
+  almost blister for blister), and a roti photo would push its char onto a chocolate bar. A reference should show the object on white with a
+  margin round it (an edge-to-edge crop came back edge to edge).
+- **The tint on a photo:** a photograph is busier and darker than a cartoon (the trial pizza: blue 1.5:1, green 1.09:1 against the skin), so the
+  written label carries the reading and a counted piece may need the cream wash of §7; measure it on the built sheet.
 
 ## 5. The plan file: `<slot>/images.json` (written by the agent, read by the CLI)
 
@@ -113,14 +157,18 @@ hit costs nothing), so keep the `object` and `style` words the same across a cha
 { "slot": "M1.S1.T2.C4.2D1", "style": "soft 3D cartoon, top-down, warm and friendly",
   "theme": { "preset": "chocolate" }, "themeWhy": "chocolate pieces: chocolate keys, a raspberry Enter ...",
   "images": [ { "key": "piece", "object": "milk chocolate piece", "kind": "tile", "aspect": "1:1", "px": [160, 160],
-                "maxKB": 12, "why": "Description 'Cut a strip into ten equal parts' ...", "prompt": "One single square of milk chocolate ..." } ] }
+                "maxKB": 12, "why": "Description 'Cut a strip into ten equal parts' ...", "prompt": "One single square of milk chocolate ..." },
+              { "key": "child_a", "object": "girl, brown skin, black plait, yellow kurta", "kind": "figure", "look": "photo", "aspect": "3:4", "px": [120, 240],
+                "why": "Description 'Meera and three friends share a roti' ...", "prompt": "An eight year old girl with brown skin and a long black plait, wearing a yellow kurta, blue leggings and simple sandals." } ] }
 ```
 
 - `key`: what the tool calls it (`<Skin name="piece">`), lower case, short.
-- `aspect`: one Gemini makes (1:1, 3:2, 4:3, 16:9, 21:9 ...): 1:1 for a tile or a disc, 21:9 for a strip.
+- `aspect`: one Gemini makes (1:1, 3:2, 4:3, 16:9, 21:9 ...): 1:1 for a tile or a disc, 21:9 for a strip, 3:4 for a figure.
 - `px`: the largest the skin may be. A tile keeps its own aspect inside it; a disc is square; a strip is exactly
   `px` (match the box the tool draws: `<Skin>` slices, so a 6:1 strip in a 15:1 box wastes 60 % of its rows).
-- `maxKB` (optional): a smaller budget than 25 KB for this skin.
+- `maxKB` (optional): a smaller budget than 25 KB (30 KB for a photo object) for this skin.
+- `look` (optional, an image or the whole plan): `photo` or `cartoon` (§4, "Look"); a new plan is photo and gets `"look": "photo"` written on its first make.
+- `reference` (optional, the plan or one image): a reference photograph under the class folder, e.g. `assets/refs/roti.png` (§4, "Look").
 - `prompt`: one or two plain sentences about the object: what it is, its warm colour, its surface, its edge.
   **The CLI adds every rule** (style, top-down view, plain white background, the negatives in
   `lib/images/rules.mjs`; for strip and disc also "no cut lines, segments, slices", for a tile "only one piece");
@@ -132,14 +180,16 @@ hit costs nothing), so keep the `object` and `style` words the same across a cha
 
 ## 6. Sizes, money, the library
 
-- **Budgets** (counted on the data URI, which is what lands in `images.tsx`): 25 KB a skin (or its `maxKB`), 60 KB a
-  slot. WebP from q 0.78 down, then 10 % smaller at a time; Chrome's ICC profile (456 bytes) is stripped.
+- **Budgets** (counted on the data URI, which is what lands in `images.tsx`): 25 KB an object skin (or its `maxKB`), **30 KB a photo object
+  skin**, 60 KB a slot **plus 10 KB for each photo object skin** (three photos: 90 KB) **and 20 KB for each figure** (a figure itself at most
+  20 KB; at most 3 object skins and 4 figures: 60 + 80 = 140 KB, 170 KB when the three objects are photos). A photo disc stays at `px` 320 (at most
+  360): the trial pizza fitted 30 KB at q 0.54 at 320 and needed q 0.36 at 360, the roti q 0.72 and q 0.60. WebP from q 0.78 down, then 10 % smaller at a time; Chrome's ICC profile (456 bytes) is stripped.
 - **Automatic rejects** (never emitted): no object found; a cut-out mostly empty, or more than 15 % near-white
   inside it (a white object or background left); an interior crop with more than 2 % near-white or reaching the
   background; almost no variance (flat). Warnings: a white fringe on the edge, the object touching the picture's
   edge, cool colours over 10 %, a non-white background, an upscale, a disc not round from above.
 - **Models**: `gemini-2.5-flash-image` first (about $0.039 a picture), `gemini-3.1-flash-image` only when it errors
-  (about $0.067). `gemini-3.1-flash-lite-image` (about $0.034) exists: `--model` names it for one run.
+  (about $0.067); a **photo object** the other way round (§4, "Look"). A batch job runs on one model, the first picture's. `gemini-3.1-flash-lite-image` (about $0.034) exists: `--model` names it for one run.
 - **Batch** (proved 2026-10-07: two jobs, each done in about 3 minutes): `images make --ch N --batch` sends every
   missing picture of the chapter as ONE Gemini batch job at half price; `images batch status --ch N`, then
   `images batch apply --ch N`. Whatever a batch did not return is made inline by `images make --ch N`.
@@ -232,7 +282,8 @@ numbers. A chapter has the theme when its pinned runtime reads one (`grep -c TOO
 
 1. View each raw picture in `.images-cache/raw/` (the Read tool shows images) and say what you see: one object,
    plain white background, no text, digits, letters, logo, wrapper, hands; for a strip or a disc no cut lines,
-   grooves or segments; for a tile exactly one piece.
+   grooves or segments; for a tile exactly one piece; for a photo, that it reads as a photograph (real texture, no airbrushed or
+   cartoon smoothing) and that no grey or dark shadow crescent is left under it on the sheet.
 2. `node cli.mjs images sheet <slot> --ch N` -> `<slot>/images-preview.png`: the raw with the crop drawn on it, the
    skin as shipped on a checkerboard (alpha) and on white, a tile ten times in a row plain and tinted, a disc in
    ten sectors, the contrast numbers. Look at it: no white fringe, nothing cut off, the pieces read as the object.

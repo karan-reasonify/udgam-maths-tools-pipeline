@@ -89,7 +89,7 @@ export function contactSheet(dir, rows, { title = "", theme = null, themeFrom = 
   rows.forEach((r, i) => {
     const parts = [];
     if (i) parts.push(`<line x1="0" y1="${y0}" x2="${W}" y2="${y0}" stroke="#ddd"/>`);
-    parts.push(`<text x="20" y="${y0 + 26}" class="h">${esc(r.key)} · ${esc(r.object)} · ${esc(r.kind)} · ${r.w}x${r.h} · ${(r.uriBytes / 1024).toFixed(1)} KB (q ${r.q}) · ${esc(r.model || "")}</text>`);
+    parts.push(`<text x="20" y="${y0 + 26}" class="h">${esc(r.key)} · ${esc(r.object)} · ${esc(r.kind)}${r.look ? ` · ${esc(r.look)}` : ""} · ${r.w}x${r.h} · ${(r.uriBytes / 1024).toFixed(1)} KB (q ${r.q}) · ${esc(r.model || "")}</text>`);
     /* the raw picture, scaled into 360x220, with the crop drawn on it */
     if (r.rawFile && fs.existsSync(r.rawFile) && r.src) {
       const s = Math.min(360 / r.src.w, 220 / r.src.h), rw = r.src.w * s, rh = r.src.h * s;

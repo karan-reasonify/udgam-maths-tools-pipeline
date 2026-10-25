@@ -10,7 +10,10 @@
  * Positive wording leads (a model primed with "no grooves" draws grooves): the negatives come last.
  */
 import crypto from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
 import { checkThemePlan } from "./theme.mjs";
+import { ROOT } from "../core/env.mjs";
 
 /* Gemini's supported aspect ratios for image output (generationConfig.imageConfig.aspectRatio) */
 export const ASPECTS = ["1:1", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16", "16:9", "21:9"];
@@ -53,7 +56,13 @@ export const FIGURE_STYLES = {
   photo: "A natural, well-lit, realistic studio photograph of one ordinary school-age child (a synthetic child, not a real or recognisable person), full body from the top of the head to the shoes, standing upright, front-facing, a relaxed friendly smile, fully and modestly clothed in simple everyday clothes (a school uniform or casual clothes), centred and filling most of the frame with a margin all round. Plain pure white seamless studio background (#FFFFFF), soft even lighting, sharp focus, realistic skin and hair: no floor, no gradient, no texture.",
   cartoon: "A soft 3D cartoon illustration in the style of a children's animated film: rounded, appealing, clean shapes with smooth soft shading, cheerful natural colours and a gentle satin sheen (no hard white glare), a friendly neutral expression. Exactly one person, a full-length standing character seen from the front at eye level, centred, filling most of the frame from head to feet with a margin of background all round. The background is perfectly plain pure white (#FFFFFF): no floor, no table, no gradient, no texture.",
 };
-export const FIGURE_NEGATIVES = "Strict rules: exactly one person and nothing else, fully and modestly clothed, not a celebrity or any recognisable real person. No text, no digits, no numbers, no letters, no logos, no labels, no brand marks, no writing on the clothes. Empty hands relaxed at the sides: no food, no plate, no objects, no tools, no bag, no props of any kind. No second person, no animals, no mascot, no speech bubble, no sign. No white clothes (they would vanish into the background). No shadow on the ground, no floor, no scenery.";
+/* an OBJECT skin's look (the owner 2026-10-24, from a real photograph of a roti): `look` per image, or the plan's `look` for all its objects.
+   "photo" is the default for a NEW plan only (no image `made` yet; validatePlan writes plan.look "photo" so it stays photo after its first make);
+   a plan made before keeps "cartoon" (STYLE + the chapter's style), so nothing already made is re-keyed or re-made. A photo never gets the chapter's
+   `style` (a cartoon look would contradict it) and keeps every object negative. Its key carries `look:photo` (and the reference's sha1); a cartoon key is unchanged. */
+export const OBJECT_PHOTO_STYLE = "A real, unretouched studio photograph, not an illustration and not a render: one everyday object photographed from directly above (a flat-lay) in natural soft daylight from one side, sharp focus across the whole object, true-to-life colour and texture with fine real surface detail (char spots, blisters, flakes, seeds, grain, a soft satin sheen where the object has one) and slightly imperfect real-world edges. Exactly one object, centred, filling most of the frame with a margin of background all round. The background is perfectly plain pure white (#FFFFFF), as for a cut-out: no floor, no table, no gradient, no texture, no cast shadow.";
+export const REFERENCE_NOTE = "The attached picture is a reference photograph: match its realism, lighting and texture; do not copy its composition or any text.";
+export const FIGURE_NEGATIVES ="Strict rules: exactly one person and nothing else, fully and modestly clothed, not a celebrity or any recognisable real person. No text, no digits, no numbers, no letters, no logos, no labels, no brand marks, no writing on the clothes. Empty hands relaxed at the sides: no food, no plate, no objects, no tools, no bag, no props of any kind. No second person, no animals, no mascot, no speech bubble, no sign. No white clothes (they would vanish into the background). No shadow on the ground, no floor, no scenery.";
 
 export const NEGATIVES = "Strict rules: exactly one object and nothing else. No text, no digits, no numbers, no letters, no logos, no labels, no brand marks. No wrapper, no foil, no packaging, no plate, no board, no knife, no hands, no people, no faces, no characters. No shadow outside the object. Warm colours only (browns, creams, caramels, golden oranges); no blue, no green, very little red.";
 /* for a whole the tool cuts itself (strip, disc): equal widths are the lesson, so the picture has no divisions */
@@ -71,11 +80,13 @@ export const kitPrompt = (style, img) => [STYLE, style ? `Look: ${String(style).
 
 /* budgets count the data-URI length, which is what lands in images.tsx; the WebP file is about 3/4 of it.
    An image may ask for less (`maxKB` in images.json), never more. */
-export const BUDGET = { skin: 25 * 1024, slot: 60 * 1024, figure: 20 * 1024, figureShare: 20 * 1024 };
-/* a slot's budget: 60 KB for its object skins, plus 20 KB for each figure (a photographic portrait compresses worse than a cartoon) */
-export const slotBudget = (images = []) => BUDGET.slot + BUDGET.figureShare * images.filter((i) => i.kind === "figure").length;
-/* one picture's cap: 25 KB for an object skin, 20 KB for a figure; an image may ask for less (`maxKB`), never more */
-export const skinBudget = (kind, maxKB) => Math.min(kind === "figure" ? BUDGET.figure : BUDGET.skin, maxKB ? Math.round(Number(maxKB) * 1024) : Infinity);
+export const BUDGET = { skin: 25 * 1024, photo: 30 * 1024, slot: 60 * 1024, photoShare: 10 * 1024, figure: 20 * 1024, figureShare: 20 * 1024 };
+const isPhotoObject = (i) => i.kind !== "figure" && i.look === "photo";
+/* a slot's budget: 60 KB for its object skins, plus 10 KB for each photo object skin (3 photos: 90 KB) and 20 KB for each figure (a photograph compresses worse than a cartoon) */
+export const slotBudget = (images = []) => BUDGET.slot + BUDGET.photoShare * images.filter(isPhotoObject).length + BUDGET.figureShare * images.filter((i) => i.kind === "figure").length;
+/* one picture's cap: 25 KB for a cartoon object skin, 30 KB for a photo one, 20 KB for a figure; an image may ask for less (`maxKB`), never more */
+const capOf = (kind, look) => (kind === "figure" ? BUDGET.figure : look === "photo" ? BUDGET.photo : BUDGET.skin);
+export const skinBudget = (kind, maxKB, look) => Math.min(capOf(kind, look), maxKB ? Math.round(Number(maxKB) * 1024) : Infinity);
 export const MAX_SKINS_PER_SLOT = 3;   /* OBJECT skins only; figures are counted apart */
 export const MAX_FIGURES_PER_SLOT = 4;  /* one per distinct person the brief shows (children, a shopkeeper), each looking clearly different */   /* a third only for a tool that names different wholes (ch 8 C4: chocolate bar, ribbon, chapati) */
 export const MAX_ATTEMPTS = 2;          /* billed generations per picture per run, a rejected picture included */
@@ -84,6 +95,10 @@ export const Q_START = 0.78;
 
 /* cheapest image model first; the next one is tried only when the first errors (quota, outage, refusal of the request) */
 export const MODELS = ["gemini-2.5-flash-image", "gemini-3.1-flash-image"];
+/* a photo object's own order: the better model FIRST (trial 2026-10-24, roti / pizza / chocolate bar: 3.1 drew real char, crust and texture where 2.5
+   drew a clean but even, polka-dot roti; with the owner's reference roti it matched the photograph). 2.5 only when 3.1 errors. `--model` overrides both. */
+export const PHOTO_MODELS = ["gemini-3.1-flash-image", "gemini-2.5-flash-image"];
+export const modelsFor = (img) => (isPhotoObject(img) ? PHOTO_MODELS : MODELS);
 
 /* USD per generated image, interactive lane (estimates: 2.5 flash image is 1290 output tokens at $30 per million;
    the others from the Tool_Pipeline notes). The batch lane is half price. Unknown models are costed high on purpose. */
@@ -103,15 +118,22 @@ export const sha1 = (s) => crypto.createHash("sha1").update(String(s)).digest("h
 
 /* the raw picture is keyed WITHOUT its pixel size, so re-cutting it at another size never bills again;
    the prompt is not in the key either: two slots asking for the same object, kind and style share it */
-export const rawHash = ({ object, kind, style, aspect, look }) => sha1(["raw", norm(object), kind, norm(style), aspect, ...(look ? [`look:${look}`] : [])].join("|"));   /* look: figures only, so every object's key is unchanged */
+/* `look` is in a figure's key always, in an object's key only when it is not "cartoon" (so every cartoon object keeps the key it was made under);
+   `ref` is the reference photograph's sha1 (a photo object with a `reference`) */
+export const rawHash = ({ object, kind, style, aspect, look, ref }) => sha1(["raw", norm(object), kind, norm(style), aspect,
+  ...(look && (kind === "figure" || look !== "cartoon") ? [`look:${look}`] : []), ...(ref ? [`ref:${ref}`] : [])].join("|"));
+/* the one way every caller keys a validated image (validatePlan fills look and refSha) */
+export const rawKey = (plan, img) => rawHash({ object: img.object, kind: img.kind, style: plan.style, aspect: img.aspect, look: img.look, ref: img.refSha });
 export const skinHash = (raw, { kind, px, inset, maxKB, tool }) => sha1(["skin", `cut${CUT_VERSION}`, (KINDS[kind] || {}).cut, raw,
   `${px[0]}x${px[1]}`, Number(inset).toFixed(3), maxKB || "", ...(tool ? [`tool${TOOL_CUT}`] : []), ...(kind === "figure" ? [`fig${FIGURE_CUT}`] : [])].join("|"));
 
 export function buildPrompt(plan, img) {
   const k = KINDS[img.kind];
-  /* the chapter's `style` is the object skins' cartoon look: it is left out of a photographic figure (it would contradict the photograph) */
+  /* the chapter's `style` is the object skins' cartoon look: it is left out of a photographic figure or object (it would contradict the photograph) */
   if (k.figure) return [FIGURE_STYLES[img.look] || FIGURE_STYLES.photo, plan.style && img.look === "cartoon" ? `Look: ${String(plan.style).trim().replace(/\.?$/, ".")}` : "", k.frame,
     `The person: ${String(img.prompt).trim().replace(/\.?$/, ".")}`, FIGURE_NEGATIVES].filter(Boolean).join(" ");
+  if (img.look === "photo") return [OBJECT_PHOTO_STYLE, k.frame, `The object: ${String(img.prompt).trim().replace(/\.?$/, ".")}`,
+    img.refSha ? REFERENCE_NOTE : "", NEGATIVES, k.oneSurface ? ONE_SURFACE : ONE_PIECE].filter(Boolean).join(" ");
   return [STYLE, plan.style ? `Look: ${String(plan.style).trim().replace(/\.?$/, ".")}` : "", k.frame,
     `The object: ${String(img.prompt).trim().replace(/\.?$/, ".")}`, NEGATIVES, k.oneSurface ? ONE_SURFACE : ONE_PIECE].filter(Boolean).join(" ");
 }
@@ -144,6 +166,12 @@ export function validatePlan(plan, slotId) {
   if (slotId && plan.slot && plan.slot !== slotId) errors.push(`images.json is for ${plan.slot}, not ${slotId}`);
   const list = Array.isArray(plan.images) ? plan.images : [];
   if (!Array.isArray(plan.images)) errors.push("images.json needs an \"images\" array (empty when the slot needs no skin)");
+  /* the object look: the plan's own, else "photo" for a NEW plan (nothing made yet) and "cartoon" for one made before; a new plan
+     gets look "photo" written into the returned plan, so the first make records it in images.json and it never flips back */
+  const isNew = !list.some((i) => i && i.made);
+  if (plan.look !== undefined && !LOOKS.includes(plan.look)) errors.push(`look must be one of ${LOOKS.join(", ")}`);
+  const planLook = plan.look || (isNew ? "photo" : "cartoon");
+  if (!plan.look && isNew) plan = { ...plan, look: "photo" };
   const nFig = list.filter((i) => i && i.kind === "figure").length, nObj = list.length - nFig;
   if (nObj > MAX_SKINS_PER_SLOT) errors.push(`${nObj} object skins; at most ${MAX_SKINS_PER_SLOT} a slot (one skin is reused for every piece and state; figures are counted apart)`);
   if (nFig > MAX_FIGURES_PER_SLOT) errors.push(`${nFig} figures; at most ${MAX_FIGURES_PER_SLOT} a slot (one per distinct person shown)`);
@@ -158,13 +186,22 @@ export function validatePlan(plan, slotId) {
     if (!KINDS[img.kind]) errors.push(`${at}: kind must be one of ${Object.keys(KINDS).join(", ")}`);
     const K = KINDS[img.kind] || KINDS.tile;
     img.aspect = img.aspect || K.aspect;
-    if (img.kind === "figure") { img.look = img.look || "photo"; if (!LOOKS.includes(img.look)) errors.push(`${at}: look must be one of ${LOOKS.join(", ")}`); }
+    img.look = img.look || (img.kind === "figure" ? "photo" : planLook);
+    if (!LOOKS.includes(img.look)) errors.push(`${at}: look must be one of ${LOOKS.join(", ")}`);
+    /* a reference photograph (the image's own `reference`, else the plan's): sent with the prompt and keyed by its bytes, for a photo object only */
+    const ref = img.reference !== undefined ? img.reference : plan.reference;
+    delete img.refFile; delete img.refSha;
+    if (ref && isPhotoObject(img)) {
+      const abs = path.resolve(ROOT, String(ref));
+      if (!abs.startsWith(ROOT + path.sep) || !/\.(png|jpe?g|webp)$/i.test(abs) || !fs.existsSync(abs)) errors.push(`${at}: reference "${ref}" must be a png, jpg or webp file under the class folder (e.g. assets/refs/roti.png)`);
+      else { img.refFile = abs; img.refSha = crypto.createHash("sha1").update(fs.readFileSync(abs)).digest("hex"); }
+    } else if (img.reference) warnings.push(`${at}: reference is used by a photo object skin only; ignored`);
     if (!ASPECTS.includes(img.aspect)) errors.push(`${at}: aspect ${img.aspect} is not one Gemini makes (${ASPECTS.join(", ")})`);
     img.px = Array.isArray(img.px) && img.px.length === 2 ? img.px.map(Number) : [...K.px];
     if (!img.px.every((n) => Number.isInteger(n) && n >= 16)) errors.push(`${at}: px must be [width, height] in whole pixels`);
     if (img.px[0] > K.maxW || img.px[1] > K.maxH) errors.push(`${at}: px ${img.px.join("x")} is over the ${img.kind} limit ${K.maxW}x${K.maxH}`);
     if (img.kind === "disc" && img.px[0] !== img.px[1]) errors.push(`${at}: a disc skin is square (the tool clips it to a circle)`);
-    const capKB = (img.kind === "figure" ? BUDGET.figure : BUDGET.skin) / 1024;
+    const capKB = capOf(img.kind, img.look) / 1024;
     if (img.maxKB !== undefined && !(Number(img.maxKB) > 0 && Number(img.maxKB) <= capKB)) errors.push(`${at}: maxKB must be above 0 and at most ${capKB}`);
     /* the object text is the library key (rawHash): two figures of one slot with the same words would be one picture */
     if (img.kind === "figure") { const n = norm(img.object); if (figSeen.has(n)) errors.push(`${at}: two figures share the object "${img.object}"; each person needs its own words (hair, skin tone, clothes) so the library keeps them apart`); figSeen.add(n); }

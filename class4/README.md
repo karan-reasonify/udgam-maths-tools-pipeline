@@ -118,4 +118,5 @@ tree ships them empty and `classctl` merges a class's own rows in.
   output-preview/<chapter_id>/<id>/    <slot_id>.tsx + <slot_id>.json (made by port; slot id = the plan's mount id)
 ```
 
+
 The reference tool is `work/indiannica_eng_maths4_ch1/M1.S1.T2.C4.2D1/tool.tsx`.
