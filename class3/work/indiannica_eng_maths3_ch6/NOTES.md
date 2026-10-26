@@ -41,3 +41,6 @@ ordinary skins in `TOOL_IMAGES`. A `fit="meet"` would let a tool pass any box; w
 - A double tap on the Next key lands its second tap on the new screen.
 - Tap boxes under 110 are the runtime's standard keys (77 high): no change wanted.
 - (Sort and Compare, re-review 2026-10-24) Still open: the corner Enter key on the one-tap answer-key questions cannot be drawn dim or neutral without `api.lock` (askMode "enter" is chosen by the runtime); the hi summary rows' pitch is the runtime's summary page.
+
+## M1.S2.T4.C17.2D1 answer gate: a known blind spot (2026-10-26, owner's decision: leave)
+- The gate (Answer key locked until the things are shared equally) engages only after a real child input on the board (SG_CHILD: a tap/drag on a key, thing or group, or Enter on a guide step). A mount driven only through toolApi / gotoStep / the dev driver (approve, hostsim, an agent) is never gated, and the agent's check() places the things itself. A real child always passes the guide steps first, so the child's flow is gated. A runtime way for a tool to tell a child's input from an agent's would remove the heuristic.

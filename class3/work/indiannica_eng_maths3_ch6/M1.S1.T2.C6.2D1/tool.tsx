@@ -58,9 +58,9 @@ function fmMid(cx: number, cy: number, r: number, a: number, b: number) {
 function fmGeo(kind: string, obj: string, np: number, which: number) {
   if (obj === "group") {
     const big = np <= 5;
-    return big ? { big, s: 120, pitch: 132, rowH: 132, x0: 12, y0: 74, mv: [0, 212] } : { big, s: 96, pitch: 106, rowH: 106, x0: 10, y0: 62, mv: [0, 234] };
+    return big ? { big, s: 112, pitch: 124, rowH: 124, x0: 12, y0: 74, mv: [0, 210] } : { big, s: 88, pitch: 104, rowH: 94, x0: 14, y0: 60, mv: [0, 252] };
   }
-  if (obj === "bar") return { x: 30, y: 86, w: 460, h: 122, mv: [0, 200] };
+  if (obj === "bar") { const s = Math.min(150, (530 - (np - 1) * 10) / np), w = np * s + (np - 1) * 10; return { x: 20, y: 56, w, h: 150, tray: w + 40, mv: [0, 214] }; }
   if (kind === "one") return { cx: 235, cy: 255, R: 215, mv: [0, 0] };
   if (kind === "pair") return { cx: which ? 670 : 220, cy: 270, R: 185, mv: [0, 0] };
   return { cx: 168, cy: 232, R: 150, mv: [350, 0] };
@@ -68,8 +68,8 @@ function fmGeo(kind: string, obj: string, np: number, which: number) {
 /* the pieces of one whole in its geometry g: wedges of a disc, parts of the bar, or rotis of a group */
 function fmPieces(obj: string, np: number, uneven: boolean, g: any) {
   if (obj === "bar") {
-    const w = g.w / np;
-    return Array.from({ length: np }, (_, i) => ({ i, rect: [g.x + i * w, g.y, w, g.h], mid: [g.x + (i + 0.5) * w, g.y + g.h / 2] }));
+    const q = fmSq(g, np, 10);
+    return Array.from({ length: np }, (_, i) => ({ i, rect: [q.x + i * (q.s + 10), q.y, q.s, q.s], mid: [q.x + i * (q.s + 10) + q.s / 2, q.y + q.s / 2] }));
   }
   if (obj === "group") return Array.from({ length: np }, (_, i) => {
     const x = g.x0 + (i % 5) * g.pitch, y = g.y0 + Math.floor(i / 5) * g.rowH;
@@ -78,12 +78,20 @@ function fmPieces(obj: string, np: number, uneven: boolean, g: any) {
   const an = fmAngles(np, uneven);
   return an.map((a, i) => {
     const b = i + 1 < an.length ? an[i + 1] : 360;
-    return { i, d: fmWedge(g.cx, g.cy, g.R, a, b), mid: fmMid(g.cx, g.cy, g.R, a, b) };
+    return { i, d: fmWedge(g.cx, g.cy, g.R, a, b), mid: fmMid(g.cx, g.cy, g.R, a, b), ma: (a + b) / 2 };
   });
 }
-/* where each cut falls: an x for the bar, an angle for a disc */
-const fmCuts = (obj: string, np: number, uneven: boolean, g: any) => (obj === "bar"
-  ? Array.from({ length: np - 1 }, (_, k) => g.x + ((k + 1) * g.w) / np) : fmAngles(np, uneven));
+/* the bar as a row of np real chocolate squares (the picture is one moulded square, 1:1): side s, row start x, y; gap 0 while uncut */
+function fmSq(g: any, np: number, gap: number) {
+  const s = Math.min(g.h, (g.w - (np - 1) * 10) / np), w = np * s + (np - 1) * gap;
+  return { s, x: g.x + (g.w - w) / 2, y: g.y + (g.h - s) / 2, w };
+}
+/* where each cut falls: an x for the bar (between two squares), an angle for a disc */
+const fmCuts = (obj: string, np: number, uneven: boolean, g: any) => {
+  if (obj !== "bar") return fmAngles(np, uneven);
+  const q = fmSq(g, np, 0);
+  return Array.from({ length: np - 1 }, (_, k) => q.x + (k + 1) * q.s);
+};
 const fmCutDone = (S: any) => S.obj === "group" || S.cut >= (S.obj === "bar" ? S.np - 1 : S.np);
 function fmFresh(sc: any, e: number) {
   const np = sc.np || 2;
@@ -136,7 +144,7 @@ function StartArt({ box }: any) {
 /* Hindi and Gujarati: filled in the language pass, once the English is final (PATTERNS §11). */
 /* For the language pass, besides the lines check lists: every item's `win` line (said by Work) and the words Work draws through
    tx(): Left, Taken, Whole, Bigger, numerator, denominator, One part is, one half, one third, one quarter, Not equal,
-   Cut into, By eye, Cut, Write, Put together, Count, Roti, Pizza, Chocolate, Fraction card; and the nudge said at a repeated Enter. */
+   Cut into, By eye, Cut, Write, Put together, Count, Roti, Pizza, Chocolate, Fraction card, Coloured; and the nudge said at a repeated Enter. */
 const TR: any = {
   hi: {
       "Fraction Maker": "भिन्न बनाओ",
@@ -273,7 +281,8 @@ const TR: any = {
       "Bigger": "बड़ा",
       "Left": "बाकी",
       "Taken": "लिए गए",
-      "Whole": "पूरा"
+      "Whole": "पूरा",
+      "Coloured": "रंगा भाग"
   },
   gu: {
       "Fraction Maker": "અપૂર્ણાંક બનાવો",
@@ -410,7 +419,8 @@ const TR: any = {
       "Bigger": "મોટો",
       "Left": "બાકી",
       "Taken": "લીધેલા",
-      "Whole": "આખું"
+      "Whole": "આખું",
+      "Coloured": "રંગેલો ભાગ"
   },
 };
 
@@ -674,11 +684,18 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
   const makeWon = make && won;
   const tkOf = (i: number) => (allBack ? false : makeWon ? i < item.target[0] : !!S.taken[i]);
   const P: any[] = fmPieces(S.obj, S.np, S.uneven, g);
+  /* the two holders, in frame units: where a left piece is dropped to be taken (the plate or the basket), and back */
+  const holders = (): any => {
+    if (S.obj === "group") { const cw = g.big ? 632 : 532, ch = Math.ceil(S.np / 5) * g.rowH + 12, sy = g.y0 - 12; return { left: [0, sy, cw, ch], taken: [0, sy + ch + 4, cw, g.mv[1] + 11] }; }   /* the basket with its handle */
+    if (S.obj === "bar") return { left: [0, 46, g.tray, 176], taken: [0, 252, g.tray, 188] };
+    return { left: [g.cx - 168, 64, 336, 336], taken: [g.cx + g.mv[0] - 168, g.cy - 168, 336, 336] };
+  };
+  const inRect = (r: any, x: number, y: number) => x >= r[0] && x <= r[0] + r[2] && y >= r[1] && y <= r[1] + r[3];
   const mv = g.mv;
   /* a group is packed left to right in each place (no holes where a roti was lifted): its k-th roti on the shelf, or in the basket */
   const gpos = (i: number) => {
     const role = tkOf(i), k = P.slice(0, i).filter((_: any, j: number) => tkOf(j) === role).length;
-    return [g.x0 + (k % 5) * g.pitch, g.y0 + Math.floor(k / 5) * g.rowH + (role ? mv[1] : 0)];
+    return [g.x0 + (k % 5) * g.pitch, g.y0 + Math.floor(k / 5) * g.rowH + (role ? mv[1] + 15 : 0)];
   };
   const at = (i: number) => {
     if (S.obj === "group") { const q = gpos(i); return [q[0] + g.s / 2, q[1] + g.s / 2]; }
@@ -701,6 +718,30 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
     go({ tool: "knife", moves: "slice", at: pts, ms: 1000, onPoint: (k: number) => upd(() => ({ cut: k + 1 })) },
       () => { upd(() => ({ cut: 99 })); api.sfx.settle(); api.did(on); });
   };
+  const afterLift = () => {
+    acted.current = true; gateDone.current = E; if (gateRef.current) { gateRef.current = false; api.lock(false); } api.did("lift");
+    if (nudged.current && make) { nudged.current = false; api.say(item.say); }
+  };
+  /* a drop: a tap (or Enter / Space) lifts as before; a real drag counts only when it lands on the other holder, else it snaps back */
+  const dropPiece = (i: number, pt: any, moved: boolean) => {
+    if (!moved) { lift(i); return; }
+    if (isDemo && stepOn !== "lift") { api.did("lift"); return; }
+    if (!cutDone || playing.current) return;
+    if (isDemo && S.taken[i]) { api.did("putback"); return; }
+    const h = holders(), x = pt.x - ox, y = pt.y;
+    if (!inRect(S.taken[i] ? h.left : h.taken, x, y)) return;
+    upd((p: any) => { const t = p.taken.slice(); t[i] = !t[i]; return { taken: t, together: false }; });
+    api.sfx.tick();
+    afterLift();
+  };
+  const dragK = useDrag((pl: any, pt: any, moved: boolean) => dropPiece(Number(pl), pt, moved));
+  const dragStart = useRef<any>(null);
+  const dg: any = dragK.drag;
+  if (dg && (!dragStart.current || dragStart.current.i !== dg.payload)) dragStart.current = { i: dg.payload, x: dg.x, y: dg.y };
+  if (!dg) dragStart.current = null;
+  const dragOff = (i: number) => (dg && dg.moved && dragStart.current && dragStart.current.i === i ? [dg.x - dragStart.current.x, dg.y - dragStart.current.y] : null);
+  const dropOn = dg && dg.moved && P[Number(dg.payload)] ? (S.taken[Number(dg.payload)] ? "left" : "taken") : "";
+  const dropHot = dropOn ? inRect(holders()[dropOn], dg.x - ox, dg.y) : false;
   const lift = (i: number) => {
     if (isDemo && stepOn !== "lift") { api.did("lift"); return; }
     if (!cutDone) return;
@@ -710,8 +751,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
     go({ tool: "hand", moves: "tap", at: [wp(at(i))], ms: 800,
       onPoint: () => upd((p: any) => { const t = p.taken.slice(); t[i] = !t[i]; return { taken: t, together: false }; }) },
       () => {
-        acted.current = true; gateDone.current = E; if (gateRef.current) { gateRef.current = false; api.lock(false); } api.did("lift");
-        if (nudged.current && make) { nudged.current = false; api.say(item.say); }
+        afterLift();
         const nx = queue.current.shift();
         if (nx !== undefined) setTimeout(() => liftNow.current && liftNow.current(nx), 0);
       });
@@ -835,27 +875,51 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
       <text x={cx} y={y + 28} textAnchor="middle" dominantBaseline="central" fontSize={fs || (dev ? T.label : T.prompt)} fontWeight={700} fill={ink}>{tx(label)}</text>
     </g>
   );
-  const numChip = (c: any, t: number, blue: boolean, k: string) => (
+  const numChip = (c0: any, t: number, blue: boolean, k: string) => S.obj === "group" ? badge(c0, t, blue, k) : numChip0(c0, t, blue, k);
+  const badge = (c0: any, t: number, blue: boolean, k: string) => {
+    const x = c0[0] + g.s / 2 - 16, y = c0[1] - g.s / 2 + 16, w = String(t).length > 1 ? 50 : 36;
+    return (
+      <g key={k}>
+        <rect x={x - w / 2} y={y - 18} width={w} height={36} rx={18} fill="#FFFFFF" stroke={blue ? FM_BLUE : FM_AMBER_EDGE} strokeWidth={3} />
+        <text x={x} y={y} textAnchor="middle" dominantBaseline="central" fontSize={T.micro} fontWeight={700} fill={blue ? FM_BLUE_INK : FM_AMBER_INK}>{t}</text>
+      </g>
+    );
+  };
+  const numChip0 = (c: any, t: number, blue: boolean, k: string) => (
     <g key={k} filter="url(#fmShadowSoft)">
       <circle cx={c[0]} cy={c[1]} r={27} fill="#FFFFFF" stroke={blue ? FM_BLUE : FM_AMBER_EDGE} strokeWidth={4} />
       <text x={c[0]} y={c[1]} textAnchor="middle" dominantBaseline="central" fontSize={T.label} fontWeight={700} fill={blue ? FM_BLUE_INK : FM_AMBER_INK}>{t}</text>
     </g>
   );
+  const colTab = (x: number, y: number) => {
+    const t = String(tx("Coloured")), w = Math.max(132, Math.ceil(t.length * T.micro * (dev ? 0.7 : 0.58)) + 28);
+    return (
+      <g pointerEvents="none">
+        <rect x={x - w / 2} y={y - 22} width={w} height={44} rx={22} fill="#E3ECFA" stroke={FM_BLUE} strokeWidth={3} />
+        <text x={x} y={y} textAnchor="middle" dominantBaseline="central" fontSize={T.micro} fontWeight={700} fill={FM_BLUE_INK}>{t}</text>
+      </g>
+    );
+  };
   /* one whole in its geometry gg: uncut (with the cut lines made so far) or its pieces, each with its skin clipped to it */
   const objEl = (Sd: any, gg: any, tag: string, o: any = {}) => {
     const obj = Sd.obj, isBar = obj === "bar";
     if (!fmCutDone(Sd)) {
       const cuts: any[] = fmCuts(obj, Sd.np, Sd.uneven, gg).slice(0, Sd.cut);
-      if (isBar) return (
-        <g>
-          <clipPath id={tag + "w"}><rect x={gg.x} y={gg.y} width={gg.w} height={gg.h} rx={8} /></clipPath>
-          <rect x={gg.x} y={gg.y} width={gg.w} height={gg.h} fill={FM_PLAIN.bar} rx={8} />
-          <Skin name="bar" x={gg.x} y={gg.y} w={gg.w} h={gg.h} fit="stretch" clip={"url(#" + tag + "w)"} />
-          <rect x={gg.x} y={gg.y} width={gg.w} height={gg.h} fill={FM_CREAM} fillOpacity={FM_CREAM_A} rx={8} />
-          <rect x={gg.x} y={gg.y} width={gg.w} height={gg.h} fill="none" stroke={FM_LINE} strokeWidth={4} rx={8} />
-          {cuts.map((x: number, k: number) => <line key={k} x1={x} y1={gg.y} x2={x} y2={gg.y + gg.h} stroke={FM_LINE} strokeWidth={4} strokeLinecap="round" />)}
-        </g>
-      );
+      if (isBar) {
+        const q = fmSq(gg, Sd.np, 0);
+        return (
+          <g>
+            {Array.from({ length: Sd.np }, (_, k) => (
+              <g key={k}>
+                <rect x={q.x + k * q.s} y={q.y} width={q.s} height={q.s} fill={FM_PLAIN.bar} />
+                <Skin name="bar" x={q.x + k * q.s} y={q.y} w={q.s} h={q.s} />
+              </g>
+            ))}
+            <rect x={q.x} y={q.y} width={q.w} height={q.s} fill="none" stroke={FM_LINE} strokeWidth={3} rx={8} />
+            {cuts.map((x: number, k: number) => <line key={k} x1={x} y1={q.y} x2={x} y2={q.y + q.s} stroke={FM_LINE} strokeWidth={4} strokeLinecap="round" />)}
+          </g>
+        );
+      }
       return (
         <g>
           <clipPath id={tag + "w"}><circle cx={gg.cx} cy={gg.cy} r={gg.R} /></clipPath>
@@ -870,25 +934,30 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
     return (
       <g>
         {PP.map((p: any) => {
-          const tk = o.taken ? o.taken(p.i) : false, blue = tk || (o.col || []).includes(p.i), id = tag + "p" + p.i;
+          const tk = o.taken ? o.taken(p.i) : false, coloured = (o.col || []).includes(p.i), id = tag + "p" + p.i;
           const sh = (pr: any) => (p.d ? <path d={p.d} {...pr} /> : obj === "group" ? <circle cx={p.mid[0]} cy={p.mid[1]} r={gg.s / 2} {...pr} />
-            : <rect x={p.rect[0] + 2} y={p.rect[1]} width={p.rect[2] - 4} height={p.rect[3]} rx={6} {...pr} />);
-          const hw = obj === "bar" ? p.rect[2] - 4 : 110, hh = obj === "bar" ? gg.h : 110;
+            : <rect x={p.rect[0]} y={p.rect[1]} width={p.rect[2]} height={p.rect[3]} rx={10} {...pr} />);
+          const hw = Math.max(110, obj === "bar" ? p.rect[2] : 0), hh = hw;
+          const off = o.live ? dragOff(p.i) : null;
+          const base = o.pos ? [o.pos(p.i)[0] - p.rect[0], o.pos(p.i)[1] - p.rect[1]] : tk ? mvv : [0, 0];
           const nm = obj === "group" ? "roti" : obj === "bar" ? "square" : "slice";
           return (
-            <g key={p.i} style={{ transform: o.pos ? `translate(${o.pos(p.i)[0] - p.rect[0]}px, ${o.pos(p.i)[1] - p.rect[1]}px)` : tk ? `translate(${mvv[0]}px, ${mvv[1]}px)` : "translate(0px, 0px)", transition: rm ? "none" : "transform 0.5s ease" } as any}>
+            <g key={p.i} filter={off ? "url(#fmShadowSoft)" : undefined}
+              style={{ transform: `translate(${base[0] + (off ? off[0] : 0)}px, ${base[1] + (off ? off[1] : 0)}px)`, transition: rm || off ? "none" : "transform 0.5s ease" } as any}>
               <clipPath id={id}>{sh({})}</clipPath>
               {sh({ fill: FM_PLAIN[obj === "group" ? "roti" : obj] })}
-              {obj === "bar" ? <Skin name="bar" x={gg.x} y={gg.y} w={gg.w} h={gg.h} fit="stretch" clip={"url(#" + id + ")"} />
+              {obj === "bar" ? <Skin name="bar" x={p.rect[0]} y={p.rect[1]} w={p.rect[2]} h={p.rect[3]} clip={"url(#" + id + ")"} />
                 : obj === "group" ? <Skin name="roti" x={p.rect[0]} y={p.rect[1]} w={gg.s} h={gg.s} clip={"url(#" + id + ")"} />
                 : <Skin name={obj} x={gg.cx - gg.R} y={gg.cy - gg.R} w={2 * gg.R} h={2 * gg.R} clip={"url(#" + id + ")"} />}
-              {/* the colour code: a taken bar part deep blue, a left one cream (4:1 apart on the dark chocolate); a round thing keeps its
-                  own detail under a blue hue (blend "color") with a blue rim */}
-              {isBar && !blue ? sh({ fill: FM_CREAM, fillOpacity: FM_CREAM_A }) : null}
-              {blue ? sh({ fill: FM_HUE, fillOpacity: isBar ? 1 : 0.85, style: { mixBlendMode: "color" } }) : null}
-              {blue ? sh({ fill: "none", stroke: FM_BLUE, strokeWidth: 8, strokeOpacity: 0.85 }) : null}
-              {sh({ fill: "none", stroke: FM_LINE, strokeWidth: isBar ? 4 : 3.5, strokeLinejoin: "round", strokeLinecap: "round" })}
-              {o.live && <Hit id={nm + "-" + (p.i + 1)} x={p.mid[0] - hw / 2} y={p.mid[1] - hh / 2} w={hw} h={hh} label={nm + " " + (p.i + 1)} onPress={() => lift(p.i)} />}
+              {/* the object keeps its natural colour everywhere (the owner, 2026-10-26): the roles live on the holders (blue plate and
+                  basket, amber board and shelf); a part that is only COLOURED gets a thick blue outline and a small blue tab */}
+              {coloured ? sh({ fill: "none", stroke: FM_BLUE, strokeWidth: 20, clipPath: "url(#" + id + ")" }) : null}
+              {sh({ fill: "none", stroke: FM_LINE, strokeWidth: isBar ? 3 : 3.5, strokeLinejoin: "round", strokeLinecap: "round" })}
+              {coloured ? (p.d ? colTab(fmPol(gg.cx, gg.cy, gg.R * 0.62, p.ma)[0], fmPol(gg.cx, gg.cy, gg.R * 0.62, p.ma)[1]) : colTab(p.mid[0], p.mid[1])) : null}
+              {o.live && (
+                <rect className="c4-hit" {...control(nm + "-" + (p.i + 1), nm + " " + (p.i + 1))} {...dragK.bind(p.i)} {...dragK.keys(p.i)}
+                  x={p.mid[0] - hw / 2} y={p.mid[1] - hh / 2} width={hw} height={hh} fill="transparent" style={{ touchAction: "none", cursor: "grab" } as any} />
+              )}
             </g>
           );
         })}
@@ -1013,6 +1082,45 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
       <rect x={x + 8} y={y + 8} width={w - 16} height={h - 16} rx={rx - 6} fill="none" stroke="#FFFFFF" strokeWidth={2} opacity={0.4} />
     </g>
   );
+  /* the plate: a rim ring round a well; rectangular for the bar (a serving plate), round for a disc */
+  const platter = (x: number, y: number, w: number, h: number) => (
+    <g filter="url(#fmShadowSoft)">
+      <rect x={x} y={y} width={w} height={h} rx={58} fill="#E9F0FB" stroke={FM_BLUE} strokeWidth={8} />
+      <rect x={x + 16} y={y + 16} width={w - 32} height={h - 32} rx={44} fill="#D3E1F6" stroke={FM_BLUE} strokeWidth={2.5} strokeOpacity={0.6} />
+    </g>
+  );
+  const roundPlate = (cx: number, cy: number) => (
+    <g filter="url(#fmShadowSoft)">
+      <circle cx={cx} cy={cy} r={168} fill="#E9F0FB" stroke={FM_BLUE} strokeWidth={8} />
+      <circle cx={cx} cy={cy} r={152} fill="#D3E1F6" stroke={FM_BLUE} strokeWidth={2.5} strokeOpacity={0.6} />
+    </g>
+  );
+  /* the basket: blue-dyed wicker, a tapered body with weave rows and stakes, a rim, a handle arc */
+  const basket = (x: number, y: number, w: number, h: number, hh: number) => {
+    const tp = 20, rows: any[] = [], stakes: any[] = [];
+    let k = 0;
+    for (let yy = y + 34; yy < y + h - 10; yy += 18, k++) {
+      const f = (yy - y) / h * tp;
+      rows.push(<line key={"r" + yy} x1={x + f + 6} y1={yy} x2={x + w - f - 6} y2={yy} stroke="#8FAEE6" strokeWidth={7} strokeDasharray="26 18" strokeDashoffset={k % 2 ? 22 : 0} strokeLinecap="round" />);
+    }
+    for (let xx = x + 26; xx < x + w - 20; xx += 22) stakes.push(<line key={"s" + xx} x1={xx} y1={y + 22} x2={xx + (xx < x + w / 2 ? 1 : -1) * tp * 0.8} y2={y + h - 6} stroke="#1D3F86" strokeWidth={5} />);
+    return (
+      <g filter="url(#fmShadowSoft)">
+        <path d={`M ${x + 0.32 * w} ${y + 6} C ${x + 0.32 * w} ${y - hh}, ${x + 0.68 * w} ${y - hh}, ${x + 0.68 * w} ${y + 6}`} fill="none" stroke={FM_BLUE_INK} strokeWidth={14} strokeLinecap="round" />
+        <path d={`M ${x + 0.32 * w} ${y + 6} C ${x + 0.32 * w} ${y - hh}, ${x + 0.68 * w} ${y - hh}, ${x + 0.68 * w} ${y + 6}`} fill="none" stroke="#9DB8E8" strokeWidth={3} strokeLinecap="round" />
+        <path d={`M ${x + 2} ${y + 14} H ${x + w - 2} L ${x + w - tp} ${y + h - 16} Q ${x + w - tp} ${y + h} ${x + w - tp - 16} ${y + h} H ${x + tp + 16} Q ${x + tp} ${y + h} ${x + tp} ${y + h - 16} Z`}
+          fill="#3567B8" stroke={FM_BLUE_INK} strokeWidth={4} strokeLinejoin="round" />
+        {stakes}
+        {rows}
+        <rect x={x - 4} y={y} width={w + 8} height={24} rx={12} fill={FM_BLUE} stroke={FM_BLUE_INK} strokeWidth={3} />
+        <line x1={x + 14} y1={y + 7} x2={x + w - 14} y2={y + 7} stroke="#FFFFFF" strokeOpacity={0.45} strokeWidth={3} strokeLinecap="round" />
+      </g>
+    );
+  };
+  /* the holder under a dragged piece lights up */
+  const hot = (r: any, round: boolean) => (dropHot && r ? (round
+    ? <circle cx={r[0] + r[2] / 2} cy={r[1] + r[3] / 2} r={r[2] / 2 + 10} fill="none" stroke={dropOn === "left" ? FM_AMBER_EDGE : FM_BLUE} strokeWidth={8} strokeDasharray="16 10" pointerEvents="none" />
+    : <rect x={r[0] - 8} y={r[1] - 8} width={r[2] + 16} height={r[3] + 16} rx={34} fill="none" stroke={dropOn === "left" ? FM_AMBER_EDGE : FM_BLUE} strokeWidth={8} strokeDasharray="16 10" pointerEvents="none" />) : null);
   let body: any = null;
   if (kind === "one") {
     const Sd = tb.cyc ? { ...fmFresh({ obj: S.obj, np: tb.cyc }, E) } : S;
@@ -1042,12 +1150,15 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
         {objEl(B, gB, uid + "b", { col: [0] })}
         {tb.lay ? (
           <g pointerEvents="none" style={{ transform: tb.lay > 1 ? `translate(${gA.cx - gB.cx}px, 0px)` : "translate(0px, 0px)", transition: rm ? "none" : "transform 0.9s ease" } as any}>
-            <path d={fmWedge(gB.cx, gB.cy, gB.R, 0, 90)} fill={FM_BLUE} fillOpacity={0.6} stroke={FM_BLUE_INK} strokeWidth={5} strokeDasharray="12 8" />
+            <clipPath id={uid + "lay"}><path d={fmWedge(gB.cx, gB.cy, gB.R, 0, 90)} /></clipPath>
+            <path d={fmWedge(gB.cx, gB.cy, gB.R, 0, 90)} fill={FM_PLAIN.roti} />
+            <Skin name="roti" x={gB.cx - gB.R} y={gB.cy - gB.R} w={2 * gB.R} h={2 * gB.R} clip={"url(#" + uid + "lay)"} />
+            <path d={fmWedge(gB.cx, gB.cy, gB.R, 0, 90)} fill="none" stroke={FM_BLUE} strokeWidth={7} strokeDasharray="14 9" />
           </g>
         ) : null}
         {ring ? (
           <g pointerEvents="none">
-            <path d={fmWedge(gA.cx, gA.cy, gA.R + 9, 0, 180)} fill="none" stroke={FM_VERM} strokeWidth={7} strokeLinejoin="round" />
+            <path d={fmWedge(gA.cx, gA.cy, gA.R + 9, 0, 180)} fill="none" stroke={FM_VERM} strokeWidth={4} strokeLinejoin="round" />
             {chip(gA.cx + 90, 8, "Bigger", FM_VERM_INK, "#FCE9DC", FM_VERM, 180)}
           </g>
         ) : null}
@@ -1060,14 +1171,15 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
       </g>
     );
   } else if (kind === "group") {
-    const big = g.big, rows = Math.ceil(S.np / 5), cw = big ? 672 : 540, ch = rows * g.rowH + 12, sy = g.y0 - 12;
+    const big = g.big, rows = Math.ceil(S.np / 5), cw = big ? 632 : 532, ch = rows * g.rowH + 12, sy = g.y0 - 12, hs = holders();
     body = (
       <g>
         {board(0, sy, cw, ch, 18)}
         {Array.from({ length: rows }, (_, r) => <rect key={r} x={8} y={g.y0 + g.s + 2 + r * g.rowH} width={cw - 16} height={8} rx={4} fill={FM_AMBER_EDGE} />)}
-        <rect x={0} y={sy + g.mv[1]} width={cw} height={ch} rx={30} fill="url(#fmPlateGrad)" stroke={FM_BLUE} strokeWidth={8} filter="url(#fmShadowSoft)" />
+        {basket(0, sy + g.mv[1], cw, ch + 15, big ? 46 : 34)}
+        {hot(hs[dropOn], false)}
         {big ? chip(85, sy - 62, "Left", FM_AMBER_INK, "#FFF4DD", FM_AMBER_EDGE, 160) : chip(617, sy + ch / 2 - 28, "Left", FM_AMBER_INK, "#FFF4DD", FM_AMBER_EDGE, 140, T.label)}
-        {big ? chip(85, sy + ch + 6, "Taken", FM_BLUE_INK, "#E3ECFA", FM_BLUE, 160) : chip(617, sy + g.mv[1] + ch / 2 - 28, "Taken", FM_BLUE_INK, "#E3ECFA", FM_BLUE, 140, T.label)}
+        {big ? chip(85, sy + ch + 8, "Taken", FM_BLUE_INK, "#E3ECFA", FM_BLUE, 160) : chip(617, sy + g.mv[1] + ch / 2 - 28, "Taken", FM_BLUE_INK, "#E3ECFA", FM_BLUE, 140, T.label)}
         {objEl(S, g, uid + "g", { taken: tkOf, pos: gpos, live: free || make || isDemo })}
         {cardEl}
       </g>
@@ -1075,15 +1187,16 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
   } else if (kind === "bar") {
     body = (
       <g>
-        {board(0, 62, 520, 170, 24)}
-        <rect x={0} y={262} width={520} height={170} rx={30} fill="url(#fmPlateGrad)" stroke={FM_BLUE} strokeWidth={8} filter="url(#fmShadowSoft)" />
-        {chip(605, 119, "Left", FM_AMBER_INK, "#FFF4DD", FM_AMBER_EDGE, 160)}
-        {chip(605, 319, "Taken", FM_BLUE_INK, "#E3ECFA", FM_BLUE, 160)}
+        {board(0, 46, g.tray, 176, 24)}
+        {platter(0, 252, g.tray, 188)}
+        {hot(holders()[dropOn], false)}
+        {chip(g.tray + 90, 106, "Left", FM_AMBER_INK, "#FFF4DD", FM_AMBER_EDGE, 160)}
+        {chip(g.tray + 90, 318, "Taken", FM_BLUE_INK, "#E3ECFA", FM_BLUE, 160)}
         {objEl(S, g, uid + "r", { taken: tkOf, live: cutDone && (free || make) })}
         {wholeBoth ? (
           <g pointerEvents="none">
-            <rect x={-2} y={56} width={526} height={382} rx={34} fill="none" stroke={FM_GREEN} strokeWidth={7} />
-            {chip(260, 446, "Whole", FM_GREEN_INK, "#E5F4EA", FM_GREEN)}
+            <rect x={-6} y={40} width={g.tray + 12} height={406} rx={34} fill="none" stroke={FM_GREEN} strokeWidth={7} />
+            {chip(g.tray / 2, 454, "Whole", FM_GREEN_INK, "#E5F4EA", FM_GREEN)}
           </g>
         ) : null}
         {cardEl}
@@ -1094,7 +1207,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
     body = (
       <g>
         {board(g.cx - 168, 64, 336, 336)}
-        <circle cx={g.cx + g.mv[0]} cy={g.cy} r={168} fill="url(#fmPlateGrad)" stroke={FM_BLUE} strokeWidth={8} filter="url(#fmShadowSoft)" />
+        {roundPlate(g.cx + g.mv[0], g.cy)}
+        {hot(holders()[dropOn], dropOn === "taken")}
         {whole ? chip(g.cx, 2, "Whole", FM_GREEN_INK, "#E5F4EA", FM_GREEN) : chip(g.cx, 2, "Left", FM_AMBER_INK, "#FFF4DD", FM_AMBER_EDGE)}
         {chip(g.cx + g.mv[0], 2, "Taken", FM_BLUE_INK, "#E3ECFA", FM_BLUE)}
         {objEl(S, g, uid + "t", { taken: tkOf, live: cutDone && (free || make || (isDemo && n >= 2)) })}
@@ -1164,37 +1278,51 @@ function Thumb({ result, it, C, w, h }: any) {
   if (!last) return null;
   const item = it || last.it || {};
   const r = Math.max(18, h * 0.38), cy = h / 2, cx = r + 16;
+  const tag = "fmth" + String(item.qid || item.kind || "x").replace(/[^A-Za-z0-9]/g, "") + (last.item || 0);
   let top = "", bot = "";
   if (item.parts) { const v = slotPartsOf(last.value, 2); top = v[0]; bot = v[1]; }
   else if (item.kind === "make") { top = String(last.value); bot = String(item.target[1]); }
   else if (item.kind === "num") { top = String(last.value); bot = String(item.np); }
-  const disc = (x: number, np: number, col: number, k: string) => (
+  const disc = (x: number, np: number, col: number, obj: string, k: string) => (
     <g key={k}>
-      {fmAngles(np).map((a, i) => (
-        <path key={i} d={np === 1 ? "" : fmWedge(x, cy, r, a, i + 1 < np ? ((i + 1) * 360) / np : 360)} fill={i < col ? FM_BLUE : FM_PLAIN.roti}
-          fillOpacity={i < col ? 0.8 : 1} stroke={FM_LINE} strokeWidth={2} />
-      ))}
+      {fmAngles(np).map((a, i) => {
+        const d = fmWedge(x, cy, r, a, i + 1 < np ? ((i + 1) * 360) / np : 360), id = tag + k + i;
+        return (
+          <g key={i}>
+            <clipPath id={id}><path d={d} /></clipPath>
+            <path d={d} fill={FM_PLAIN[obj] || FM_PLAIN.roti} />
+            <Skin name={obj} x={x - r} y={cy - r} w={2 * r} h={2 * r} clip={"url(#" + id + ")"} />
+            {i < col ? <path d={d} fill="none" stroke={FM_BLUE} strokeWidth={9} clipPath={"url(#" + id + ")"} /> : null}
+            <path d={d} fill="none" stroke={FM_LINE} strokeWidth={1.5} />
+          </g>
+        );
+      })}
     </g>
   );
-  const dots = (np: number, col: number) => Array.from({ length: np }, (_, i) => (
-    <circle key={i} cx={14 + (i % 5) * (r * 0.62) + r * 0.3} cy={cy - r * 0.36 + Math.floor(i / 5) * r * 0.72} r={r * 0.28}
-      fill={i < col ? FM_BLUE : FM_PLAIN.roti} stroke={FM_LINE} strokeWidth={1.5} />
-  ));
-  const strip = (np: number, col: number) => {
-    const bw0 = Math.min(w - 96, r * 3.4), bh = r * 0.9;
-    return Array.from({ length: np }, (_, i) => (
-      <rect key={i} x={14 + (i * bw0) / np} y={cy - bh / 2} width={bw0 / np} height={bh} fill={i < col ? FM_BLUE : FM_PLAIN.bar}
-        fillOpacity={i < col ? 0.85 : 1} stroke={FM_LINE} strokeWidth={1.5} />
-    ));
+  const row = (np: number, col: number, obj: string) => {
+    const per = obj === "group" ? Math.min(5, np) : np, room = w - 100, gap = 4, sq = Math.min(obj === "group" ? r * 0.8 : r * 1.3, (room - (per - 1) * gap) / per);
+    const rowsN = Math.ceil(np / per), y0 = cy - (rowsN * sq + (rowsN - 1) * gap) / 2;
+    return Array.from({ length: np }, (_, i) => {
+      const x = 12 + (i % per) * (sq + gap), y = y0 + Math.floor(i / per) * (sq + gap), id = tag + "q" + i;
+      return (
+        <g key={i}>
+          <clipPath id={id}>{obj === "group" ? <circle cx={x + sq / 2} cy={y + sq / 2} r={sq / 2} /> : <rect x={x} y={y} width={sq} height={sq} rx={3} />}</clipPath>
+          <rect x={x} y={y} width={sq} height={sq} fill={obj === "group" ? "none" : FM_PLAIN.bar} />
+          <Skin name={obj === "group" ? "roti" : "bar"} x={x} y={y} w={sq} h={sq} clip={"url(#" + id + ")"} />
+          {i < col ? (obj === "group" ? <circle cx={x + sq / 2} cy={y + sq / 2} r={sq / 2 - 2} fill="none" stroke={FM_BLUE} strokeWidth={4} />
+            : <rect x={x + 2} y={y + 2} width={sq - 4} height={sq - 4} rx={3} fill="none" stroke={FM_BLUE} strokeWidth={4} />) : null}
+        </g>
+      );
+    });
   };
   const tx0 = w - 44;
   return (
     <g>
       <rect x={0} y={0} width={w} height={h} rx={14} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={1.5} />
-      {item.pair ? [disc(cx, item.pair[0], 1, "a"), disc(cx + 2 * r + 14, item.pair[1], 1, "b")]
-        : item.obj === "group" ? dots(item.np, Number(top) || 0)
-        : item.obj === "bar" ? strip(item.target ? item.target[1] : item.np, Number(top) || 0)
-        : disc(cx, item.target ? item.target[1] : item.np || 2, item.choices ? 1 : Number(top) || 0, "o")}
+      {item.pair ? [disc(cx, item.pair[0], 1, "roti", "a"), disc(cx + 2 * r + 14, item.pair[1], 1, "roti", "b")]
+        : item.obj === "group" ? row(item.np, Number(top) || 0, "group")
+        : item.obj === "bar" ? row(item.target ? item.target[1] : item.np, Number(top) || 0, "bar")
+        : disc(cx, item.target ? item.target[1] : item.np || 2, item.choices ? 1 : Number(top) || 0, item.obj || "roti", "o")}
       {top !== "" && (
         <g>
           <text x={tx0} y={cy - 20} textAnchor="middle" dominantBaseline="central" fontSize={T.micro} fontWeight={700} fill={C.ink}>{top}</text>

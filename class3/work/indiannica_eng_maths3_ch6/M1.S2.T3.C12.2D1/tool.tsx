@@ -69,64 +69,45 @@ function scDisc(o: string, cx: number, cy: number, r: number, parts: number, tak
       <circle cx={cx} cy={cy + 3} r={r} fill="#000000" fillOpacity={0.08} />
       <circle cx={cx} cy={cy} r={r} fill={SC_PLAIN[o]} />
       <Skin name={o} x={cx - r} y={cy - r} w={2 * r} h={2 * r} clip={`url(#${id})`} />
-      {/* taken: a blue HUE over the picture (its toppings and texture stay), a little deeper blue, and a blue rim */}
-      {Array.from({ length: taken }).map((_, i) => { const d = scWedge(cx, cy, r, i * w, w); return (
-        <g key={"t" + i}>
-          <path d={d} fill={SC_BLUE} fillOpacity={0.9} style={{ mixBlendMode: "color" } as any} />
-          <path d={d} fill={SC_HUE} fillOpacity={0.3} />
-          <path d={d} fill="none" stroke={SC_RIM} strokeWidth={4} strokeLinejoin="round" />
-        </g>); })}
       {Array.from({ length: parts }).map((_, i) => { const [x, y] = scPol(cx, cy, r, i * w); return <line key={"l" + i} x1={cx} y1={cy} x2={x} y2={y} stroke={C.ink} strokeWidth={3} strokeLinecap="round" />; })}
       <circle cx={cx} cy={cy} r={r} fill="none" stroke={C.ink} strokeWidth={3.5} />
+      {Array.from({ length: parts - taken }).map((_, j) => <path key={"u" + j} d={scWedge(cx, cy, r, (taken + j) * w, w)} fill="none" stroke="#6B6B6B" strokeWidth={2} strokeLinejoin="round" />)}
+      {Array.from({ length: taken }).map((_, i) => { const d = scWedge(cx, cy, r, i * w, w); return (
+        <g key={"t" + i}>
+          <path d={d} fill="none" stroke="#FFFFFF" strokeWidth={10} strokeLinejoin="round" />
+          <path d={d} fill="none" stroke={SC_BLUE} strokeWidth={6} strokeLinejoin="round" />
+        </g>); })}
     </g>
   );
 }
 /* a chocolate bar cut into equal pieces, each piece the chocolate tile stretched to its own box (PATTERNS §14 tile: the bevel
    and gloss on every piece). Taken: the chocolate keeps its light and texture under a BLUE HUE (blend "color") with a blue rim;
    the rest: a cream wash over the chocolate; thin dark cut lines between pieces. */
-const SC_RIM = "#4A90E2", SC_HUE = "#0559EE", SC_CREAM2 = "#FFF6E0", SC_BROWN = "#4A2A17";
-/* the foil end, as a share of the counted bar, and the box a bar with its foil fills (the counted part keeps the skin's 3.77:1) */
-const SC_FOIL = 0.15, SC_BAR_BOX = 3.77 * (1 + 0.15);
-function scBar(x: number, y: number, w: number, h: number, parts: number, taken: number, C: any) {
-  /* the counted bar is w / (1 + SC_FOIL); the rest is the silver foil folded back over its right end, outside every part */
-  const bw = w / (1 + SC_FOIL), fl = w - bw, cw = bw / parts, rx = Math.min(12, h * 0.18), e = Math.max(3, h * 0.07);
-  const id = "scb" + Math.round(x) + "_" + Math.round(y) + "_" + Math.round(w);
-  const skinned = parts > 0 && parts <= 40;
-  const fx = x + bw + 3, teeth = 7, zig = Array.from({ length: teeth + 1 }).map((_, k) => (fx + (k % 2 ? 6 : 0)) + " " + (y - 5 + ((h + 10) * k) / teeth)).join(" L ");
+const SC_GAP = 6, SC_DARK = "#3B2214";
+/* a chocolate bar is a row (or two rows) of real chocolate squares, each part one 1:1 tile, never stretched; a part that is
+   counted wears a thick blue outline on a white halo (reads without colour); the picture itself stays natural */
+function scBarFit(parts, w, h, rows) {
+  const fit = (r) => { const cols = Math.ceil(parts / r), s = Math.min((w - (cols - 1) * SC_GAP) / cols, (h - (r - 1) * SC_GAP) / r);
+    return { rows: r, cols, s, W: cols * s + (cols - 1) * SC_GAP, H: r * s + (r - 1) * SC_GAP }; };
+  if (rows) return fit(rows);
+  const a = fit(1), b = parts > 3 ? fit(2) : a;
+  return b.s > a.s + 6 ? b : a;
+}
+function scBar(x, y, w, h, parts, taken, C, rows) {
+  const f = scBarFit(parts, w, h, rows), s = f.s, rx = Math.max(3, s * 0.08), x0 = x + (w - f.W) / 2, y0 = y + (h - f.H) / 2;
+  const at = (i) => ({ x: x0 + (i % f.cols) * (s + SC_GAP), y: y0 + Math.floor(i / f.cols) * (s + SC_GAP) });
   return (
     <g>
-      <defs>
-        <clipPath id={id}><rect x={x} y={y} width={bw} height={h} rx={rx} /></clipPath>
-        <linearGradient id={id + "f"} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#F5F6F8" /><stop offset="0.4" stopColor="#B4B9C1" /><stop offset="0.65" stopColor="#E6E8EC" /><stop offset="1" stopColor="#979DA6" />
-        </linearGradient>
-      </defs>
-      <rect x={x} y={y + 3} width={w} height={h} rx={rx} fill="#000000" fillOpacity={0.08} />
-      <g clipPath={`url(#${id})`}>
-      {Array.from({ length: parts }).map((_, i) => (
+      {Array.from({ length: parts }).map((_, i) => { const p = at(i); return (
         <g key={"c" + i}>
-          <rect x={x + i * cw} y={y} width={cw} height={h} fill={SC_PLAIN.bar} />
-          {skinned && <Skin name="bar" x={x + i * cw} y={y} w={cw} h={h} fit="stretch" />}
-          {i < taken
-            ? <g><rect x={x + i * cw} y={y} width={cw} height={h} fill={SC_BLUE} fillOpacity={0.9} style={{ mixBlendMode: "color" } as any} />
-                <rect x={x + i * cw} y={y} width={cw} height={h} fill={SC_HUE} fillOpacity={0.6} />
-                <rect x={x + i * cw + 3} y={y + 3} width={cw - 6} height={h - 6} rx={3} fill="none" stroke={SC_RIM} strokeWidth={4} /></g>
-            : <rect x={x + i * cw} y={y} width={cw} height={h} fill={SC_CREAM2} fillOpacity={0.78} />}
-          {/* each piece's bevel: light along the top, chocolate brown along the bottom and the right */}
-          <rect x={x + i * cw + 2} y={y + 2} width={cw - 4} height={e} fill="#FFFFFF" fillOpacity={0.35} />
-          <rect x={x + i * cw + 2} y={y + h - e - 2} width={cw - 4} height={e} fill={SC_BROWN} fillOpacity={0.55} />
-          <rect x={x + (i + 1) * cw - e - 2} y={y + 2} width={e} height={h - 4} fill={SC_BROWN} fillOpacity={0.45} />
-        </g>
-      ))}
-      </g>
-      {Array.from({ length: parts - 1 }).map((_, i) => <line key={"l" + i} x1={x + (i + 1) * cw} y1={y} x2={x + (i + 1) * cw} y2={y + h} stroke={C.ink} strokeWidth={2.5} />)}
-      {/* a glossy highlight along the bar, and its thin dark-brown frame */}
-      <line x1={x + rx} y1={y + h * 0.17} x2={x + bw - rx} y2={y + h * 0.17} stroke="#FFFFFF" strokeOpacity={0.45} strokeWidth={Math.max(2, h * 0.035)} strokeLinecap="round" />
-      <rect x={x} y={y} width={bw} height={h} rx={rx} fill="none" stroke={SC_BROWN} strokeWidth={4} />
-      {/* the crinkled silver foil, folded back over the right end: never a part */}
-      <path d={`M ${zig} L ${x + w - 6} ${y + h + 5} Q ${x + w} ${y + h + 5} ${x + w} ${y + h - 4} L ${x + w} ${y + 4 - 5} Q ${x + w} ${y - 5} ${x + w - 6} ${y - 5} Z`}
-        fill={`url(#${id}f)`} stroke="#80868F" strokeWidth={2} strokeLinejoin="round" />
-      {[0.3, 0.55, 0.8].map((f, k) => <line key={"fd" + k} x1={fx + 8 + (fl - 14) * f - 6} y1={y - 2} x2={fx + 8 + (fl - 14) * f + 6} y2={y + h + 2} stroke={k % 2 ? "#FFFFFF" : "#8A9099"} strokeOpacity={0.8} strokeWidth={2} />)}
+          <rect x={p.x} y={p.y} width={s} height={s} rx={rx} fill={SC_PLAIN.bar} stroke={SC_DARK} strokeWidth={1.5} />
+          <Skin name="bar" x={p.x} y={p.y} w={s} h={s} fit="stretch" />
+        </g>); })}
+      {Array.from({ length: Math.min(taken, parts) }).map((_, i) => { const p = at(i); return (
+        <g key={"t" + i}>
+          <rect x={p.x + 2} y={p.y + 2} width={s - 4} height={s - 4} rx={rx} fill="none" stroke="#FFFFFF" strokeWidth={10} />
+          <rect x={p.x + 2} y={p.y + 2} width={s - 4} height={s - 4} rx={rx} fill="none" stroke={SC_BLUE} strokeWidth={6} />
+        </g>); })}
     </g>
   );
 }
@@ -165,8 +146,7 @@ function scFrac(cx: number, cy: number, t: number, b: number, fs: number, C: any
 function scObj(c: any[], x: number, y: number, w: number, h: number, C: any, o: any = {}) {
   const [k, t, b] = c, taken = o.taken ?? t, tx = o.tx || ((v: any) => v);
   if (k === "bar") {
-    const bw = Math.min(w, h * SC_BAR_BOX, o.barMax || 9999), bh = bw / SC_BAR_BOX;
-    return scBar(x + (w - bw) / 2, y + (h - bh) / 2, bw, bh, b, Math.min(taken, b), C);
+    return scBar(x, y, w, h, b, Math.min(taken, b), C);
   }
   const n = Math.max(1, Math.ceil(t / b)), whole = t === b, lab = whole ? 58 : 0, gap = 16;
   const d = Math.min(h - lab, (w - (n - 1) * gap) / n, o.discMax || 9999), r = d / 2;
@@ -186,7 +166,7 @@ function scCard(c: any[], x: number, y: number, w: number, h: number, C: any, o:
   const fw = scFw(c, o.fs), FH = scFH(o.fs);
   /* a bar on a narrow card goes UNDER the fraction, across the card's width, so it is not a sliver beside it; the fraction
      (highlight included) stays 10 clear of the card's top and 8 clear of the bar */
-  const under = c[0] === "bar" && Math.min(w - 24, (h - FH - 30) * SC_BAR_BOX) > Math.min(w - fw - 36, (h - 24) * SC_BAR_BOX);
+  const under = c[0] === "bar" && scBarFit(c[2], w - 24, h - FH - 30).s > scBarFit(c[2], w - fw - 36, h - 24).s;
   return (
     <g>
       <rect x={x} y={y + 3} width={w} height={h} rx={18} fill="#000000" fillOpacity={0.06} />
@@ -314,7 +294,7 @@ const TR: any = {
     "Find the card whose bottom number is different from the rest.": "वह कार्ड ढूँढो जिसकी नीचे की संख्या बाकियों से अलग है।",
     "Both chocolate bars have 10 equal squares, so count the blue squares.": "दोनों चॉकलेट में 10 बराबर टुकड़े हैं, तो नीले टुकड़े गिनो।",
     "More blue squares of the same size reach further along the chocolate bar.": "एक नाप के ज़्यादा नीले टुकड़े चॉकलेट पर आगे तक जाते हैं।",
-    "Which roti has more of its round covered in blue?": "किस रोटी का ज़्यादा हिस्सा नीला है?",
+    "Which roti has the bigger part ringed in blue?": "किस रोटी का नीले घेरे वाला भाग बड़ा है?",
     "Trace each blue part with a finger and see which one is wider.": "हर नीले भाग पर उँगली फेरो और देखो कौन-सा चौड़ा है।",
     "Does one blue part cover more of its pizza than the other?": "क्या एक नीला भाग अपने पिज़्ज़ा का दूसरे से ज़्यादा ढकता है?",
     "Picture one pizza laid on the other: which blue part is wider?": "सोचो एक पिज़्ज़ा दूसरे पर रखा है: कौन-सा नीला भाग चौड़ा है?",
@@ -434,7 +414,7 @@ const TR: any = {
     "Find the card whose bottom number is different from the rest.": "જેની નીચેની સંખ્યા બીજાથી જુદી હોય તે કાર્ડ શોધો.",
     "Both chocolate bars have 10 equal squares, so count the blue squares.": "બંને ચોકલેટમાં 10 સરખા ટુકડા છે, તો વાદળી ટુકડા ગણો.",
     "More blue squares of the same size reach further along the chocolate bar.": "એક માપના વધુ વાદળી ટુકડા ચોકલેટ પર આગળ સુધી જાય છે.",
-    "Which roti has more of its round covered in blue?": "કઈ રોટલીનો વધુ ભાગ વાદળી છે?",
+    "Which roti has the bigger part ringed in blue?": "કઈ રોટલીનો વાદળી ઘેરાવાળો ભાગ મોટો છે?",
     "Trace each blue part with a finger and see which one is wider.": "દરેક વાદળી ભાગ પર આંગળી ફેરવો અને જુઓ કયો પહોળો છે.",
     "Does one blue part cover more of its pizza than the other?": "શું એક વાદળી ભાગ પોતાના પિઝાનો બીજા કરતાં વધુ ઢાંકે છે?",
     "Picture one pizza laid on the other: which blue part is wider?": "કલ્પના કરો એક પિઝા બીજા પર મૂક્યો છે: કયો વાદળી ભાગ પહોળો છે?",
@@ -628,7 +608,7 @@ const PHASES = [
       { qid: null, kind: "cmp", rule: "cmp", cards: [["roti", 1, 2], ["roti", 1, 4]], pad: "enter", opts: SC_GSE, answer: "c-gt", near: "c-sm",
         say: "The two rotis are the same size: how does 1/2 compare with 1/4?", ask: "Compare the rotis",
         miss: "Different bottom numbers: look at the pictures, the numbers cannot tell us yet.",
-        ladder: ["Which roti has more of its round covered in blue?", "Trace each blue part with a finger and see which one is wider."],
+        ladder: ["Which roti has the bigger part ringed in blue?", "Trace each blue part with a finger and see which one is wider."],
         win: "Yes, half a roti is more than a quarter of the same roti." },
       /* the owner's: a half and two quarters of two identical pizzas, the same half coloured */
       { qid: null, kind: "cmp", rule: "cmp", cards: [["pizza", 1, 2], ["pizza", 2, 4]], pad: "enter", opts: SC_GSE, answer: "c-eq", near: "c-sm",
@@ -741,7 +721,7 @@ function Work({ phase, n, item, index, stage, wrong, api, stepOn, box, tx = (v: 
      the cards are taller; with the panel open it sits on top of the bin. */
   const sortLay = () => {
     const cs = V.cards, k = cs.length, gap = 16, room = kx - 16, roomy = W - kx >= 250;
-    const ch = roomy ? 240 : 200, fs = roomy ? 52 : 46;
+    const ch = roomy ? 240 : 200, fs = roomy ? 46 : 42;
     const wt = cs.map((c: any) => (c[0] === "bar" ? 1.12 : Math.ceil(c[1] / c[2]) > 1 ? 1.3 : 1));
     const sum = wt.reduce((a: number, b: number) => a + b, 0), unit = Math.min(k <= 2 ? 520 : 340, (room - (k - 1) * gap) / sum);
     const ws = wt.map((v: number) => v * unit), span = ws.reduce((a: number, b: number) => a + b, 0) + (k - 1) * gap;
@@ -771,8 +751,8 @@ function Work({ phase, n, item, index, stage, wrong, api, stepOn, box, tx = (v: 
     const fs = V.cards[0][0] === "bar" ? 72 : 80, fw = fs * 1.45;
     if (V.cards[0][0] === "bar") {
       /* the bar box carries its foil end, so the counted bar keeps 3.77:1; room for "Bigger" on the right */
-      const bh = 165, bw = Math.min(bh * SC_BAR_BOX, 1072 - fw - 24 - 196), span = fw + 24 + bw + 196, ox = LX(span), bx = ox + fw + 24;
-      const hh = bw / SC_BAR_BOX, y1 = 32, y2 = y1 + hh + 30;
+      const bh = 100, bw = scBarFit(V.cards[0][2], 1150 - fw - 24 - 20, bh, 1).W, span = fw + 24 + bw, ox = LX(span), bx = ox + fw + 24;
+      const hh = scBarFit(V.cards[0][2], 1150 - fw - 24 - 20, bh, 1).H, row = Math.max(hh, scFH(fs)), y1 = 8 + (row - hh) / 2, y2 = y1 + row + 20;
       return { fs, bar: true, mid: ox + span / 2, wholes: [0, 1].map((i) => ({ x: bx, y: i ? y2 : y1, w: bw, h: hh, fx: ox + fw / 2, fy: (i ? y2 : y1) + hh / 2 })) };
     }
     const d = Math.min(300, (LW - 2 * (fw + 16) - 110 - 40) / 2), span = 2 * (fw + 16 + d) + 110, x0 = LX(span), y = 30;
@@ -1021,10 +1001,10 @@ function Work({ phase, n, item, index, stage, wrong, api, stepOn, box, tx = (v: 
           return (
             <g key={"w" + i}>
               {scFrac(w.fx, w.fy, c[1], c[2], L.fs, C, lit)}
-              {L.bar ? scBar(w.x, w.y, w.w, w.h, c[2], c[1], C) : scDisc(c[0], w.x + w.w / 2, w.y + w.h / 2, w.w / 2, c[2], c[1], C)}
+              {L.bar ? scBar(w.x, w.y, w.w, w.h, c[2], c[1], C, 1) : scDisc(c[0], w.x + w.w / 2, w.y + w.h / 2, w.w / 2, c[2], c[1], C)}
               {big === i + 1 && (L.bar
                 ? <g pointerEvents="none"><rect x={w.x - 10} y={w.y - 10} width={w.w + 20} height={w.h + 20} rx={14} fill="none" stroke={SC_VERM} strokeWidth={7} />
-                    <text x={w.x + w.w + 26} y={w.y + w.h / 2 + 14} fontSize={T.prompt} fontWeight={700} fill={SC_VINK}>{tx("Bigger")}</text></g>
+                    <text x={w.x} y={w.y + w.h + 50} fontSize={T.prompt} fontWeight={700} fill={SC_VINK}>{tx("Bigger")}</text></g>
                 : <g pointerEvents="none"><circle cx={w.x + w.w / 2} cy={w.y + w.h / 2} r={w.w / 2 + 12} fill="none" stroke={SC_VERM} strokeWidth={7} />
                     <text x={w.x + w.w / 2} y={w.y + w.h + 46} textAnchor="middle" dominantBaseline="central" fontSize={T.prompt} fontWeight={700} fill={SC_VINK}>{tx("Bigger")}</text></g>)}
               {demo && (() => {

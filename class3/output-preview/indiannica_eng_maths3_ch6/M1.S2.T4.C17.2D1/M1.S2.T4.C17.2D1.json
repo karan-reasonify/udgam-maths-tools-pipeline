@@ -276,7 +276,7 @@
         "win": "the tapped basket takes a deep blue rim and the counter reads 7",
         "traceback": "The tray is shared into the holders, the taken one is rimmed blue and counted, and the count is written.",
         "ladder": [
-          "The 2 baskets must hold the same number of rotis.",
+          "Count the rotis in one basket, not in both.",
           "Both boxes get the same number of bars.",
           "Compare the 2 parts: is one bigger than the other?",
           "Make 2 equal groups, then take 1 of them.",
@@ -353,7 +353,7 @@
         "answer": 7,
         "ladder": [
           "Take 1 of the 2 baskets: that is half.",
-          "Count the rotis in one basket only."
+          "Touch each roti in one basket as you count it."
         ],
         "win": "Yes, 7 rotis are half of 14 rotis."
       },
@@ -567,7 +567,7 @@
     "rotiPicture": "owner-supplied roti photograph, round crop 300x300, 2026-10-24",
     "tour": [],
     "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act.",
-    "answerGate": "User mode (the owner, 2026-10-24): once the child has acted on the board (a real tap on a key or a piece of the working area, or the Enter key on a guide step), the Answer key and the keypad stay locked (api.lock: flat, dimmed, no blink, digits ignored) at each question until the child has done that question's own act in the ask stage: Share (the deal) on the share questions of phases 1-3 and the 22-bars question, then on phase 3's 'more than one group' questions also one tap on a group (a line and a ring say so); Check on the fair-roti question. Phase 4's cloth questions offer no act, so they are not gated. A new question or a restart locks again. The agent's check() performs the waiting act at once (the mount is then agent-driven and ungated); AI mode, and a run driven only through toolApi, are never gated. getState carries no answer."
+    "answerGate": "User mode (the owner, 2026-10-24/26): in the share questions of phases 1-3 the child shares the things by hand: drag a thing from the tray into a group (or tap a thing, then tap a group; a group is also the drag source for the thing it holds last, and a tapped group with nothing chosen picks that thing up). No Share key, no count, total or Left tab while filling. Once the child has acted on the board, the Answer key and keypad stay locked (api.lock) until every thing is placed and the groups are equal (the 22-bars question: until no further equal round is possible and the groups are equal); all placed but unequal says 'Make the groups equal.'; phase 3 then also wants one tap on a group. Check on the fair-roti question. Phase 4: the slate's boxes are answered step by step (the keypad is lent to them with api.capture once the child opens it; each box is checked on Enter, a wrong first or second box gets its own two rungs, the last box is submitted as the question's answer). The agent's check() places the things at once (a toolApi-only run, AI mode and the agent are never gated; the agent answers phase 4 with the final number in the slot). getState carries no answer or count."
   },
   "palette": {
     "content": {
@@ -1042,6 +1042,36 @@
     },
     {
       "en": "Now tap the groups the top number names."
+    },
+    {
+      "en": "Make the groups equal."
+    },
+    {
+      "en": "Count in fives up to 50: how many fives?"
+    },
+    {
+      "en": "Write the size of one group from the first line."
+    },
+    {
+      "en": "It is the number at the end of the first line."
+    },
+    {
+      "en": "Half takes just 1 of the 2 groups."
+    },
+    {
+      "en": "Taking 1 group means writing that group's size again."
+    },
+    {
+      "en": "Multiply one group by the top number, 1."
+    },
+    {
+      "en": "Multiply one group by the top number, 3."
+    },
+    {
+      "en": "Multiply one group by the top number, 4."
+    },
+    {
+      "en": "Count in nines up to 63: how many nines?"
     }
   ],
   "build": {
@@ -1057,8 +1087,8 @@
       "info": 3,
       "at": "2026-10-23T19:38:55.421Z"
     },
-    "tsxBytes": 651613,
-    "tsxMd5": "5b724a9d1e4e7abe6af2dc2fe657b150",
+    "tsxBytes": 671769,
+    "tsxMd5": "31fa4198c1320c7b815c2b88714a6db8",
     "handEdited": true
   }
 }
