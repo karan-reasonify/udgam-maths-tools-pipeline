@@ -68,7 +68,17 @@ feedback loop as Tool_Pipeline's preview Editor, run on THIS pipeline:
 
 - **Review queue**: the pending rows of the `toolfeedback` table (what educators file from the Content-Validator) for every chapter
   that has a `class<N>/work/<chapter_id>/` folder, filtered by board, medium, publication, subject, std and chapter, and in the
-  filter popup by date and teacher. Copy puts every filtered item (with its screenshot) on the clipboard.
+  filter popup by date and teacher. Copy puts every filtered item (with its screenshot) on the clipboard. Times are shown (and the
+  date filter reads days) in **IST**; the table keeps them in UTC.
+  **Feedback never depends on the tool's id.** Teachers file it under the LIVE plan's media id, and a re-keyed plan renames mounts
+  (class 4 ch 10: live v6 `C14` / `C19`, work folder still v3's `C15` / `C20`) while keeping each mount's `2d_tool_url`. The list
+  joins an id the disk lacks to the tool on disk by that url (`<stem>/<stem>.tsx` against the folder the tool was published to;
+  else by its `M#.S#.T#` place), shows it under that tool with "filed as <live id>" on each item, and **Mark solved** / a publish
+  resolve the rows filed under either id. A tool with no counterpart on disk is listed "Not on disk", never hidden unless the
+  popup's "Hide tools that have no work folder" box is ticked. The live plan (active, else latest) is read with the feedback
+  (`feedback.mjs list` -> `live`): a tool on disk that the live plan no longer has is tagged **Re-key needed**, the fix can still
+  be made and checked, and the publish dialog disables it ("Not in live plan") because `publish` runs against the live plan
+  (re-key the chapter first: CLAUDE.md, "A re-keyed plan"). `2d_tool` and `tool_2d` items, and `pending` in any case, all count.
 - **Mark solved / Mark chapter solved**: sets those rows' `status` to `resolved`, no publish (a confirm first).
 - **Apply feedback in the IDE / In a terminal**: writes `work/<ch>/<id>/_feedback/REVISE_PROMPT.md` (the feedback, the downloaded
   screenshots, the udgam steps: edit `tool.tsx` -> `check`, which ports on a pass; never publish), snapshots the baseline

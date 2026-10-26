@@ -18,6 +18,11 @@
     if (!r.ok) throw new Error(d.error || `HTTP ${r.status}`);
     return d;
   };
+  /* the table keeps feedback times in UTC; the educators and the owner work in IST, so the page shows (and filters by) IST */
+  const IST = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+  const istParts = (iso) => { const t = Date.parse(iso); return Number.isFinite(t) ? Object.fromEntries(IST.formatToParts(t).map((p) => [p.type, p.value])) : null; };
+  const istDay = (iso) => { const p = istParts(iso); return p ? `${p.year}-${p.month}-${p.day}` : ""; };
+  const istStamp = (iso) => { const p = istParts(iso); return p ? `${p.year}-${p.month}-${p.day} ${p.hour}:${p.minute} IST` : ""; };
 
   const DEVICES = { mobile: { label: "Mobile", w: 844, h: 390 }, web: { label: "Web", w: 1366, h: 768 }, smartboard: { label: "Smartboard", w: 1920, h: 1080 } };
   const LANGS = [["en", "EN"], ["hi", "हिं"], ["gu", "ગુ"]];
@@ -32,7 +37,7 @@
   const S = {
     view: "preview", data: null, loading: false, offline: "",
     f: Object.assign({ board: "", medium: "", pub: "", subject: "", std: "", chapter: "" }, store.get("ed.filters", {})),
-    fb: { from: "", to: "", teacher: "", hideNotInPlan: true },
+    fb: { from: "", to: "", teacher: "", hideNotInPlan: false }, // a tool with no work folder is still feedback to read (a re-keyed plan files it under ids the disk lacks)
     sel: store.get("ed.sel", null), tool: null, device: store.get("ed.device", "web"), lang: store.get("ed.lang", "en"),
     run: null, term: null, es: null, poll: null, renderKey: "",
   };
@@ -84,7 +89,7 @@
     if (S.fb.hideNotInPlan) list = list.filter((i) => i.in_plan);
     if (!(S.fb.from || S.fb.to || S.fb.teacher)) return list;
     return list.map((i) => ({ ...i, items: i.items.filter((it) => {
-      const day = (it.created_at || "").slice(0, 10);
+      const day = istDay(it.created_at);
       return !(S.fb.from && day < S.fb.from) && !(S.fb.to && day > S.fb.to) && !(S.fb.teacher && (it.teacher || "unknown") !== S.fb.teacher);
     }) })).filter((i) => i.items.length);
   };
@@ -127,7 +132,7 @@
         ${groups.size > 1 ? `<div class="rail-chapter-title" title="${esc(ch)}">${esc(chapterLabel(ch))}</div>` : ""}
         ${rows.map((i) => `<button type="button" class="tool-item ed-item${on(i) ? " selected" : ""}" role="option" aria-selected="${on(i)}" data-ch="${esc(i.chapter)}" data-slot="${esc(i.slot)}">
           <span style="min-width:0;flex:1"><span class="tool-title">${esc(i.title)}</span><span class="tool-id">${esc(i.slot)}</span>
-          <span class="ed-tags"><span class="tag warn">&#128172; ${i.items.length}</span>${i.revised ? '<span class="tag info">Revised</span>' : i.prepared ? '<span class="tag muted">In the IDE</span>' : ""}${i.in_plan && !i.ported ? '<span class="tag muted">Not ported</span>' : ""}${!i.in_plan ? '<span class="tag err">Not on disk</span>' : ""}</span></span></button>`).join("")}`).join("")}</div>`;
+          <span class="ed-tags"><span class="tag warn">&#128172; ${i.items.length}</span>${i.revised ? '<span class="tag info">Revised</span>' : i.prepared ? '<span class="tag muted">In the IDE</span>' : ""}${i.in_plan && !i.ported ? '<span class="tag muted">Not ported</span>' : ""}${i.in_plan && i.in_live_plan === false ? '<span class="tag warn" title="The live plan no longer has a tool with this id: re-key the chapter before publishing">Re-key needed</span>' : ""}${!i.in_plan ? '<span class="tag err">Not on disk</span>' : ""}</span></span></button>`).join("")}`).join("")}</div>`;
   }
 
   $("editor").addEventListener("change", (e) => {
@@ -199,7 +204,7 @@
         <section class="ed-pane"><div class="ed-pane-head"><span class="ed-title" style="flex:1">Before / After</span><span class="seg" id="edLangs"></span><span class="seg" id="edDevices"></span></div><div class="ed-pane-body ed-renders" id="edRenders"></div></section></div>`;
       $("edFb").innerHTML = cur.items.map((it, i) => `<div class="fb-item"><div class="fb-n">${i + 1}</div><div style="min-width:0;flex:1">
         <div class="fb-text">${esc(it.text) || '<em class="muted">(no text)</em>'}</div>
-        <div class="fb-meta">${esc(it.teacher || "unknown")} · ${esc((it.created_at || "").replace("T", " ").slice(0, 16))}</div>
+        <div class="fb-meta">${esc(it.teacher || "unknown")} · ${esc(istStamp(it.created_at))}${it.filed_as && it.filed_as !== cur.slot ? ` · filed as <code>${esc(it.filed_as)}</code>` : ""}</div>
         ${it.image_url ? `<a class="fb-shot" href="/api/feedback/shot?url=${encodeURIComponent(it.image_url)}" target="_blank" rel="noopener"><img alt="Annotated screenshot ${i + 1}" src="/api/feedback/shot?url=${encodeURIComponent(it.image_url)}" onerror="this.parentNode.outerHTML='<div class=&quot;fb-missing&quot;>&#9888; the screenshot could not be read from GCS: check the class&rsquo;s config.json key</div>'"></a>` : ""}
       </div></div>`).join("");
       S.renderKey = "";
@@ -217,7 +222,11 @@
       </div>`;
     $("edNotes").innerHTML = !cur.in_plan
       ? `<div class="issue err">&#9888; This slot has no work folder on this machine (<code>class&lt;N&gt;/work/${esc(cur.chapter)}/${esc(cur.slot)}</code>): fetch the chapter before it can be fixed or published.</div>`
-      : t && !t.ported ? `<div class="issue info">Not ported yet: the After render appears once <code>node cli.mjs check ${esc(cur.chapter)}/${esc(cur.slot)}</code> passes (it ports on a pass).</div>` : "";
+      : [
+        cur.aliases?.length ? `<div class="issue info">Some of this feedback was filed under the live plan&rsquo;s id${cur.aliases.length > 1 ? "s" : ""} ${cur.aliases.map((a) => `<code>${esc(a)}</code>`).join(", ")} &mdash; the same tool as this one (matched by ${esc(cur.alias_via[cur.aliases[0]])}), so it is all here.</div>` : "",
+        cur.in_live_plan === false ? `<div class="issue err">&#9888; The live plan (v${esc(cur.live_version)}) no longer has a tool with this id: the chapter on this machine is older than the live plan. The fix can be made and checked here, but <strong>publishing is blocked</strong> until the chapter is re-keyed to the live plan (&ldquo;A re-keyed plan&rdquo; in CLAUDE.md). <strong>Mark solved</strong> still works.</div>` : "",
+        t && !t.ported ? `<div class="issue info">Not ported yet: the After render appears once <code>node cli.mjs check ${esc(cur.chapter)}/${esc(cur.slot)}</code> passes (it ports on a pass).</div>` : "",
+      ].join("");
     renderTerm();
     renderDiff();
     renderRenders();
@@ -426,7 +435,8 @@
     try { tools = (await api(`/api/feedback/local-tools?chapter=${encodeURIComponent(c.chapter)}`)).tools; }
     catch (e) { d.querySelector("#pubBody").innerHTML = `<div class="issue err">${esc(e.message)}</div>`; return; }
     const counts = Object.fromEntries(items().filter((i) => i.chapter === c.chapter).map((i) => [i.slot, i.items.length]));
-    const picked = new Set(onlyThis ? [c.slot] : tools.filter((t) => t.revised || t.slot_id === c.slot).map((t) => t.slot_id));
+    const pubOk = (t) => t.ported && t.in_live_plan !== false; // publish runs against the live plan: a tool it no longer has cannot go
+    const picked = new Set((onlyThis ? tools.filter((t) => t.slot_id === c.slot) : tools.filter((t) => t.revised || t.slot_id === c.slot)).filter(pubOk).map((t) => t.slot_id));
     const body = d.querySelector("#pubBody");
     body.innerHTML = `<div class="ed-pbar"><input type="search" id="pubQ" placeholder="Search tool id or title&hellip;"><button class="btn sm" data-p="all" type="button">All</button><button class="btn sm" data-p="edited" type="button">Edited</button><button class="btn sm" data-p="none" type="button">None</button></div>
       <div class="ed-plist" id="pubList"></div>
@@ -434,10 +444,10 @@
       <div class="ed-dact"><button class="btn" data-close type="button">Cancel</button><button class="btn" id="pubDry" type="button">Dry run</button><button class="btn publish" id="pubGo" type="button"></button></div>`;
     const paint = () => {
       const q = d.querySelector("#pubQ").value.trim().toLowerCase();
-      d.querySelector("#pubList").innerHTML = tools.filter((t) => !q || `${t.title} ${t.slot_id}`.toLowerCase().includes(q)).map((t) => `<label class="ed-prow${t.ported ? "" : " off"}"><input type="checkbox" data-id="${esc(t.slot_id)}"${picked.has(t.slot_id) ? " checked" : ""}${t.ported ? "" : " disabled"}>
+      d.querySelector("#pubList").innerHTML = tools.filter((t) => !q || `${t.title} ${t.slot_id}`.toLowerCase().includes(q)).map((t) => `<label class="ed-prow${pubOk(t) ? "" : " off"}"><input type="checkbox" data-id="${esc(t.slot_id)}"${picked.has(t.slot_id) ? " checked" : ""}${pubOk(t) ? "" : " disabled"}>
         <span style="flex:1;min-width:0"><span class="tool-title">${esc(t.title)}</span><span class="tool-id">${esc(t.slot_id)}</span></span>
-        <span class="ed-tags">${counts[t.slot_id] ? `<span class="tag warn">&#128172; ${counts[t.slot_id]}</span>` : ""}${t.revised ? '<span class="tag info">Revised</span>' : ""}${t.stage ? `<span class="tag muted">${esc(t.stage)}</span>` : ""}${t.checks ? `<span class="tag ${t.checks.fail ? "err" : t.checks.warn ? "warn" : "ok"}">${t.checks.pass}/${t.checks.warn}/${t.checks.fail}</span>` : ""}${t.ported ? "" : '<span class="tag err">Not ported</span>'}</span></label>`).join("") || '<p class="muted small">No tool matches.</p>';
-      const n = [...picked].filter((id) => tools.some((t) => t.slot_id === id && t.ported)).length;
+        <span class="ed-tags">${counts[t.slot_id] ? `<span class="tag warn">&#128172; ${counts[t.slot_id]}</span>` : ""}${t.revised ? '<span class="tag info">Revised</span>' : ""}${t.stage ? `<span class="tag muted">${esc(t.stage)}</span>` : ""}${t.checks ? `<span class="tag ${t.checks.fail ? "err" : t.checks.warn ? "warn" : "ok"}">${t.checks.pass}/${t.checks.warn}/${t.checks.fail}</span>` : ""}${t.ported ? "" : '<span class="tag err">Not ported</span>'}${t.in_live_plan === false ? '<span class="tag err" title="The live plan no longer has a tool with this id: re-key the chapter first">Not in live plan</span>' : ""}</span></label>`).join("") || '<p class="muted small">No tool matches.</p>';
+      const n = [...picked].filter((id) => tools.some((t) => t.slot_id === id && pubOk(t))).length;
       d.querySelector("#pubGo").innerHTML = `&#9729; Publish ${n} tool${n === 1 ? "" : "s"}`;
       d.querySelector("#pubGo").disabled = d.querySelector("#pubDry").disabled = !n;
     };
@@ -446,11 +456,11 @@
     d.querySelector("#pubList").addEventListener("change", (e) => { const id = e.target.dataset.id; if (id) { if (e.target.checked) picked.add(id); else picked.delete(id); paint(); } });
     for (const b of d.querySelectorAll("[data-p]")) b.addEventListener("click", () => {
       picked.clear();
-      for (const t of tools) if (t.ported && (b.dataset.p === "all" || (b.dataset.p === "edited" && t.revised))) picked.add(t.slot_id);
+      for (const t of tools) if (pubOk(t) && (b.dataset.p === "all" || (b.dataset.p === "edited" && t.revised))) picked.add(t.slot_id);
       paint();
     });
     const go = async (upload) => {
-      const slots = [...picked].filter((id) => tools.some((t) => t.slot_id === id && t.ported));
+      const slots = [...picked].filter((id) => tools.some((t) => t.slot_id === id && pubOk(t)));
       try {
         const { runId } = await api("/api/feedback/publish-many", { chapter: c.chapter, slots, upload, apply: upload && d.querySelector("#pubApply").checked });
         ss.set(`ed.run:${c.chapter}`, { runId, kind: upload ? "publish" : "dry run" });

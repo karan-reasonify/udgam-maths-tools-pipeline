@@ -28,6 +28,14 @@ const outDirOf = (c) => {
   try { return path.join(c.dir, JSON.parse(fs.readFileSync(path.join(c.dir, "pipeline.config.json"), "utf8").replace(/^﻿/, "")).outDir || "output-preview"); }
   catch { return path.join(c.dir, "output-preview"); }
 };
+const IST = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+/* the table keeps feedback times in UTC; the prompt (like the page) shows them in IST */
+const istStamp = (iso) => {
+  const t = Date.parse(iso);
+  if (!Number.isFinite(t)) return "";
+  const p = Object.fromEntries(IST.formatToParts(t).map((x) => [x.type, x.value]));
+  return `${p.year}-${p.month}-${p.day} ${p.hour}:${p.minute} IST`;
+};
 const read = (f) => { try { return fs.readFileSync(f, "utf8"); } catch { return null; } };
 const readJson = (f) => { try { return JSON.parse(fs.readFileSync(f, "utf8")); } catch { return null; } };
 
@@ -77,6 +85,27 @@ export function makeEditorApi({ discoverClasses, ensureRunning, send }) {
     };
   }
 
+  /* A re-keyed plan renumbers a chapter's media ids (C15 -> C14) but keeps each mount's 2d_tool_url, and teachers file feedback
+     under the LIVE id. So feedback is joined to the tool on disk by the url's <stem>/<stem>.tsx (id-independent): the folder the
+     live mount names is the folder our tool was published to. Where that cannot be told (a tool never published from here), the one
+     tool on disk at the same M#.S#.T# place stands in. Either way the feedback shows up under the tool that can be fixed. */
+  const stemOf = (url) => /\/([^/]+)\/\1\.tsx$/.exec(String(url || ""))?.[1] || "";
+  const localSlots = (c, chapter) => {
+    const dir = path.join(c.dir, "work", chapter);
+    try { return fs.readdirSync(dir).filter((x) => SAFE.test(x) && fs.existsSync(path.join(dir, x, "slot.json"))); } catch { return []; }
+  };
+  function localFor(c, chapter, sid, live) {
+    const have = localSlots(c, chapter);
+    const stem = stemOf(live?.mounts.find((m) => m.id === sid)?.url);
+    if (stem) {
+      const hit = have.filter((x) => stemOf(readJson(path.join(c.dir, "work", chapter, x, "status.json"))?.published?.urls?.[".tsx"]) === stem);
+      if (hit.length === 1) return { slot: hit[0], via: "its published url" };
+    }
+    const place = /^(M\d+\.S\d+\.T\d+)\./.exec(sid)?.[1];
+    const hits = place ? have.filter((x) => x.startsWith(`${place}.`)) : [];
+    return hits.length === 1 ? { slot: hits[0], via: "its place in the chapter" } : null;
+  }
+
   const newestClassDir = () => discoverClasses().at(-1)?.dir;
 
   function runNode(argv, cwd, { onLine } = {}) {
@@ -120,14 +149,32 @@ export function makeEditorApi({ discoverClasses, ensureRunning, send }) {
     for (const [chapter, slots] of Object.entries(raw.chapters || {})) {
       const c = chs.get(chapter);
       if (!c) continue;
-      const bySlot = {};
+      const live = raw.live?.[chapter] || null;
+      const merged = {}; // the tool the feedback is about (on disk when it can be told) -> everything filed for it, under any id
       for (const [sid, g] of Object.entries(slots)) {
-        const s = slotOf(chapter, sid);
-        bySlot[sid] = s ? { ...g, ...slotInfo(s) } : { ...g, slot_id: sid, class: c.class, title: sid, in_plan: false };
+        const hit = slotOf(chapter, sid) ? null : localFor(c, chapter, sid, live);
+        const to = hit?.slot || sid;
+        const m = (merged[to] ??= { slot_id: to, rows: [], items: [], filed_as: {} });
+        for (const r of g.rows) if (!m.rows.includes(r)) m.rows.push(r);
+        m.items.push(...g.items.map((it) => ({ ...it, filed_as: sid })));
+        if (to !== sid) m.filed_as[sid] = hit.via;
+      }
+      const bySlot = {};
+      for (const [sid, m] of Object.entries(merged)) {
+        m.items.sort((a, b) => String(a.created_at).localeCompare(String(b.created_at)));
+        const { filed_as, ...g } = m, s = slotOf(chapter, sid);
+        bySlot[sid] = s
+          ? { ...g, ...slotInfo(s), aliases: Object.keys(filed_as), alias_via: filed_as, in_live_plan: live ? live.mounts.some((x) => x.id === sid) : null, live_version: live?.version ?? null }
+          : { ...g, slot_id: sid, class: c.class, title: sid, in_plan: false, aliases: [] };
       }
       out.chapters[chapter] = { class: c.class, slots: bySlot };
     }
     return out;
+  }
+
+  /* a tool's own id plus every id its feedback was filed under (a re-keyed plan): what "Mark solved" and a publish resolve */
+  async function feedbackIds(chapter, slot) {
+    try { return [slot, ...((await list(false)).chapters?.[chapter]?.slots?.[slot]?.aliases || [])]; } catch { return [slot]; }
   }
 
   /* ---- runs (publish), streamed over SSE so a reload re-attaches ------------------------------------ */
@@ -168,7 +215,7 @@ export function makeEditorApi({ discoverClasses, ensureRunning, send }) {
     }
     if (upload && ok.length) {
       try {
-        const d = await feedback(["shipped", "--chapter", chapter, "--slots", ok.join(",")]);
+        const d = await feedback(["shipped", "--chapter", chapter, "--slots", (await Promise.all(ok.map((sid) => feedbackIds(chapter, sid)))).flat().join(",")]);
         log(`feedback: ${d.resolved} row(s) resolved${d.pending.length ? `; ${d.pending.length} row(s) left pending because they also name a tool or media that did not ship (${d.pending.join(", ")})` : ""}`);
       } catch (e) { log(`could not mark the feedback resolved: ${e.message}`, "err"); }
     }
@@ -209,7 +256,7 @@ export function makeEditorApi({ discoverClasses, ensureRunning, send }) {
       "## Feedback",
       ...items.map((it, i) => {
         const shot = shots.find((p) => p.endsWith(`feedback-${i + 1}.png`));
-        return `${i + 1}. ${it.text || "(no text)"}  \n   _${it.teacher || "unknown"} · ${(it.created_at || "").slice(0, 16).replace("T", " ")}_` + (shot ? `  \n   screenshot: \`${rel(shot)}\`` : it.image_url ? "  \n   screenshot: could not be downloaded" : "");
+        return `${i + 1}. ${it.text || "(no text)"}  \n   _${it.teacher || "unknown"} · ${istStamp(it.created_at)}${it.filed_as && it.filed_as !== s.slot ? ` · filed under the live plan's id ${it.filed_as}: the same tool` : ""}_` + (shot ? `  \n   screenshot: \`${rel(shot)}\`` : it.image_url ? "  \n   screenshot: could not be downloaded" : "");
       }),
       "",
       "## Steps",
@@ -317,7 +364,10 @@ catch (e) { document.body.innerHTML = '<pre style="color:#cf222e;padding:12px;wh
       const s = slotOf(q("chapter"));
       if (!s) return json(res, 404, { error: "no such chapter on disk" });
       const ids = fs.readdirSync(s.work).filter((x) => SAFE.test(x) && fs.existsSync(path.join(s.work, x, "slot.json"))).sort();
-      return json(res, 200, { chapter: s.chapter, class: s.c.class, tools: ids.map((id) => slotInfo(slotOf(s.chapter, id))) });
+      /* publish uploads against the live plan: a tool whose id the plan no longer has cannot go until the chapter is re-keyed */
+      const live = (await rows(false).catch(() => ({}))).live?.[s.chapter] || null;
+      return json(res, 200, { chapter: s.chapter, class: s.c.class, live_version: live?.version ?? null,
+        tools: ids.map((id) => ({ ...slotInfo(slotOf(s.chapter, id)), in_live_plan: live ? live.mounts.some((m) => m.id === id) : null })) });
     }
 
     if (req.method !== "POST") return json(res, 404, { error: "not found" });
@@ -327,7 +377,7 @@ catch (e) { document.body.innerHTML = '<pre style="color:#cf222e;padding:12px;wh
 
     if (p === "/resolve") {
       if (!slotOf(b.chapter) || (b.slot != null && !SAFE.test(String(b.slot)))) return json(res, 400, { error: "bad chapter/slot" });
-      try { const d = await feedback(["resolve", "--chapter", b.chapter, ...(b.slot ? ["--slot", b.slot] : [])]); listCache = null; return json(res, 200, d); }
+      try { const d = await feedback(["resolve", "--chapter", b.chapter, ...(b.slot ? ["--slot", (await feedbackIds(b.chapter, b.slot)).join(",")] : [])]); listCache = null; return json(res, 200, d); }
       catch (e) { return json(res, 500, { error: e.message }); }
     }
 
