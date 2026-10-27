@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /* feedback.mjs: the Editor's one door to the educator feedback (the `toolfeedback` table) and its screenshots.
  *
- *   node viewer-hub/feedback.mjs list    --class-dir <dir> --chapters a,b,c          JSON {rows:[...]} on stdout
+ *   node viewer-hub/feedback.mjs list    --class-dir <dir> --chapters a,b,c          JSON {chapters:{...}, live:{...}} on stdout
+ *   node viewer-hub/feedback.mjs live    --class-dir <dir> --chapters a,b,c          JSON {<chapter>: {plan_id, version, mounts}} (the live plan)
  *   node viewer-hub/feedback.mjs resolve --class-dir <dir> --chapter c [--slot s]   JSON {resolved, rows}
  *   node viewer-hub/feedback.mjs shipped --class-dir <dir> --chapter c --slots a,b  JSON {resolved, rows, pending}
  *   node viewer-hub/feedback.mjs shot    --class-dir <dir> --url <feedback_url> --out <file>
@@ -158,6 +159,8 @@ try {
     const chapters = String(opt("chapters") || "").split(",").filter(Boolean);
     const grouped = chapters.length ? group(await rowsFor(chapters)) : {};
     process.stdout.write(JSON.stringify({ chapters: grouped, live: await liveFor(Object.keys(grouped)) }));
+  } else if (cmd === "live") {
+    process.stdout.write(JSON.stringify(await liveFor(String(opt("chapters") || "").split(",").filter(Boolean))));
   } else if (cmd === "resolve") {
     process.stdout.write(JSON.stringify(await resolve(opt("chapter"), opt("slot"))));
   } else if (cmd === "shipped") {

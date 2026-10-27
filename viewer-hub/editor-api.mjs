@@ -172,6 +172,16 @@ export function makeEditorApi({ discoverClasses, ensureRunning, send }) {
     return out;
   }
 
+  /* the live plan of one chapter (also one with no feedback: the Preview page's publish buttons ask), a minute at most between reads */
+  const liveCache = new Map();
+  async function liveOf(chapter) {
+    const hit = liveCache.get(chapter);
+    if (hit && Date.now() - hit.at < LIST_TTL_MS) return hit.live;
+    const live = (await feedback(["live", "--chapters", chapter]).catch(() => ({})))[chapter] || null;
+    liveCache.set(chapter, { at: Date.now(), live });
+    return live;
+  }
+
   /* a tool's own id plus every id its feedback was filed under (a re-keyed plan): what "Mark solved" and a publish resolve */
   async function feedbackIds(chapter, slot) {
     try { return [slot, ...((await list(false)).chapters?.[chapter]?.slots?.[slot]?.aliases || [])]; } catch { return [slot]; }
@@ -199,7 +209,7 @@ export function makeEditorApi({ discoverClasses, ensureRunning, send }) {
     return runId;
   }
 
-  async function publishMany(chapter, slots, { upload, apply }, log) {
+  async function publishMany(chapter, slots, { upload, apply, resolve = true }, log) {
     const ok = [];
     for (const sid of slots) {
       const s = slotOf(chapter, sid);
@@ -213,7 +223,7 @@ export function makeEditorApi({ discoverClasses, ensureRunning, send }) {
       // shipped: its revision baseline is spent
       if (upload) for (const f of ["tool.before.tsx", "port.before.tsx"]) fs.rmSync(path.join(s.fb, f), { force: true });
     }
-    if (upload && ok.length) {
+    if (upload && ok.length && resolve) { // the Editor's Approve & publish resolves what it fixed; the Preview page's buttons leave the feedback alone
       try {
         const d = await feedback(["shipped", "--chapter", chapter, "--slots", (await Promise.all(ok.map((sid) => feedbackIds(chapter, sid)))).flat().join(",")]);
         log(`feedback: ${d.resolved} row(s) resolved${d.pending.length ? `; ${d.pending.length} row(s) left pending because they also name a tool or media that did not ship (${d.pending.join(", ")})` : ""}`);
@@ -365,7 +375,7 @@ catch (e) { document.body.innerHTML = '<pre style="color:#cf222e;padding:12px;wh
       if (!s) return json(res, 404, { error: "no such chapter on disk" });
       const ids = fs.readdirSync(s.work).filter((x) => SAFE.test(x) && fs.existsSync(path.join(s.work, x, "slot.json"))).sort();
       /* publish uploads against the live plan: a tool whose id the plan no longer has cannot go until the chapter is re-keyed */
-      const live = (await rows(false).catch(() => ({}))).live?.[s.chapter] || null;
+      const live = await liveOf(s.chapter);
       return json(res, 200, { chapter: s.chapter, class: s.c.class, live_version: live?.version ?? null,
         tools: ids.map((id) => ({ ...slotInfo(slotOf(s.chapter, id)), in_live_plan: live ? live.mounts.some((m) => m.id === id) : null })) });
     }
@@ -384,7 +394,7 @@ catch (e) { document.body.innerHTML = '<pre style="color:#cf222e;padding:12px;wh
     if (p === "/publish-many") {
       const ok = slotOf(b.chapter) && Array.isArray(b.slots) && b.slots.length && b.slots.length <= 100 && b.slots.every((x) => slotOf(b.chapter, x));
       if (!ok) return json(res, 400, { error: "bad chapter/slots" });
-      try { return json(res, 200, { runId: startRun(b.chapter, (log) => publishMany(b.chapter, b.slots, { upload: !!b.upload, apply: !!b.apply }, log)) }); }
+      try { return json(res, 200, { runId: startRun(b.chapter, (log) => publishMany(b.chapter, b.slots, { upload: !!b.upload, apply: !!b.apply, resolve: b.resolveFeedback !== false }, log)) }); }
       catch (e) { return json(res, e.status || 500, { error: e.message }); }
     }
 

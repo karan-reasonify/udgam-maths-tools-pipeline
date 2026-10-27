@@ -347,11 +347,19 @@
   function reattach() {
     const c = current();
     const saved = c && ss.get(`ed.run:${c.chapter}`);
-    if (saved) attach(saved.runId, saved.kind, c.chapter);
+    if (saved) attach(saved.runId, saved.kind, c.chapter, saved);
   }
-  function attach(runId, kind, chapter) {
+  /* the Preview page's "Logs" button: there while a run started from its Publish / Publish all buttons is the one being followed */
+  function pubLogBtn() {
+    const b = $("btnPubLog"); if (!b) return;
+    const r = S.run;
+    b.hidden = !(r && r.preview);
+    if (r?.preview) b.innerHTML = `${r.done ? "&gt;_" : '<span class="spin"></span>'} Logs <span class="tag ${r.done ? (r.code === 0 ? "ok" : "err") : "info"}">${r.done ? (r.code === 0 ? "done" : `exit ${r.code}`) : "running"}</span>`;
+  }
+  function attach(runId, kind, chapter, opts = {}) {
     closeStream();
-    S.run = { kind, chapter, lines: [], done: false, code: null };
+    S.run = { kind, chapter, lines: [], done: false, code: null, resolves: opts.resolves !== false, preview: !!opts.preview };
+    pubLogBtn();
     const es = new EventSource(`/api/feedback/stream?runId=${encodeURIComponent(runId)}`);
     S.es = es;
     es.onopen = () => { if (S.run) S.run.lines = []; };
@@ -362,12 +370,12 @@
       if (ev.type === "done") {
         es.close(); ss.del(`ed.run:${chapter}`);
         Object.assign(S.run, { done: true, code: ev.code });
-        toast(ev.code === 0 ? (kind === "publish" ? "Published: feedback of what shipped is resolved" : "Dry run done: read the log") : `${kind === "publish" ? "Publish" : "Dry run"} failed: see the log`, ev.code === 0 ? "ok" : "err");
-        renderBody(); logRefresh();
-        if (kind === "publish") load(true);
+        toast(ev.code === 0 ? (kind === "publish" ? (S.run.resolves ? "Published: feedback of what shipped is resolved" : "Published: see the log for each tool") : "Dry run done: read the log") : `${kind === "publish" ? "Publish" : "Dry run"} failed: see the log`, ev.code === 0 ? "ok" : "err");
+        renderBody(); logRefresh(); pubLogBtn();
+        if (kind === "publish") { load(true); window.dispatchEvent(new CustomEvent("udgam:published", { detail: { chapter } })); }
       }
     };
-    es.onerror = () => { es.close(); if (S.run && !S.run.done) { Object.assign(S.run, { done: true, code: -1 }); renderBody(); logRefresh(); } };
+    es.onerror = () => { es.close(); if (S.run && !S.run.done) { Object.assign(S.run, { done: true, code: -1 }); renderBody(); logRefresh(); pubLogBtn(); } };
     renderBody();
   }
 
@@ -427,18 +435,22 @@
   }
 
   /* Publish local changes: the chapter's tools on disk, ticked ones published one after another by the class
-     CLI. Dry run writes nothing; Publish uploads (and --apply only when its own box is ticked). */
-  async function publishDialog(onlyThis) {
-    const c = current();
-    const d = pop(`<div class="ed-dtitle">Publish local changes</div><p class="fb-note">Tools on disk for <strong>${esc(c.chapter)}</strong>. Each one you tick runs <code>node cli.mjs publish ${esc(c.chapter)}/&lt;id&gt;</code> in its class folder. <strong>Dry run</strong> writes nothing and says what is live and what an upload would change; <strong>Publish</strong> adds <code>--upload</code> (md5-verified) and marks the feedback of each tool that ships resolved.</p><div id="pubBody"><p class="muted small"><span class="spin"></span>Reading the chapter&hellip;</p></div>`, "wide");
+     CLI. Dry run writes nothing; Publish uploads (and --apply only when its own box is ticked).
+     `from` is set by the Preview page's Publish / Publish all buttons ({ chapter, slot, all }): the same dialog and log, but the
+     Editor's feedback is left alone (only the Editor's own Approve & publish resolves what it fixed). */
+  async function publishDialog(onlyThis, from) {
+    const c = from || current();
+    const resolves = !from;
+    const d = pop(`<div class="ed-dtitle">${from ? (from.all ? "Publish all" : "Publish") : "Publish local changes"}</div><p class="fb-note">Tools on disk for <strong>${esc(c.chapter)}</strong>. Each one you tick runs <code>node cli.mjs publish ${esc(c.chapter)}/&lt;id&gt;</code> in its class folder. <strong>Dry run</strong> writes nothing and says what is live and what an upload would change; <strong>Publish</strong> adds <code>--upload</code> (md5-verified)${resolves ? " and marks the feedback of each tool that ships resolved" : ". Educator feedback in the Editor is not touched"}.</p><div id="pubBody"><p class="muted small"><span class="spin"></span>Reading the chapter&hellip;</p></div>`, "wide");
     let tools;
     try { tools = (await api(`/api/feedback/local-tools?chapter=${encodeURIComponent(c.chapter)}`)).tools; }
     catch (e) { d.querySelector("#pubBody").innerHTML = `<div class="issue err">${esc(e.message)}</div>`; return; }
     const counts = Object.fromEntries(items().filter((i) => i.chapter === c.chapter).map((i) => [i.slot, i.items.length]));
     const pubOk = (t) => t.ported && t.in_live_plan !== false; // publish runs against the live plan: a tool it no longer has cannot go
-    const picked = new Set((onlyThis ? tools.filter((t) => t.slot_id === c.slot) : tools.filter((t) => t.revised || t.slot_id === c.slot)).filter(pubOk).map((t) => t.slot_id));
+    const start = from ? (from.all ? tools : tools.filter((t) => t.slot_id === c.slot)) : onlyThis ? tools.filter((t) => t.slot_id === c.slot) : tools.filter((t) => t.revised || t.slot_id === c.slot);
+    const picked = new Set(start.filter(pubOk).map((t) => t.slot_id));
     const body = d.querySelector("#pubBody");
-    body.innerHTML = `<div class="ed-pbar"><input type="search" id="pubQ" placeholder="Search tool id or title&hellip;"><button class="btn sm" data-p="all" type="button">All</button><button class="btn sm" data-p="edited" type="button">Edited</button><button class="btn sm" data-p="none" type="button">None</button></div>
+    body.innerHTML = `<div class="ed-pbar"><input type="search" id="pubQ" placeholder="Search tool id or title&hellip;"><button class="btn sm" data-p="all" type="button">All</button>${from ? "" : '<button class="btn sm" data-p="edited" type="button">Edited</button>'}<button class="btn sm" data-p="none" type="button">None</button></div>
       <div class="ed-plist" id="pubList"></div>
       <label class="ed-switch"><input type="checkbox" id="pubApply"> Also <code>--apply</code>: write <code>lp2_media.url</code> where the dry run says it differs (needs its own approval)</label>
       <div class="ed-dact"><button class="btn" data-close type="button">Cancel</button><button class="btn" id="pubDry" type="button">Dry run</button><button class="btn publish" id="pubGo" type="button"></button></div>`;
@@ -462,14 +474,18 @@
     const go = async (upload) => {
       const slots = [...picked].filter((id) => tools.some((t) => t.slot_id === id && pubOk(t)));
       try {
-        const { runId } = await api("/api/feedback/publish-many", { chapter: c.chapter, slots, upload, apply: upload && d.querySelector("#pubApply").checked });
-        ss.set(`ed.run:${c.chapter}`, { runId, kind: upload ? "publish" : "dry run" });
-        closePop(); attach(runId, upload ? "publish" : "dry run", c.chapter); logDialog();
+        const { runId } = await api("/api/feedback/publish-many", { chapter: c.chapter, slots, upload, apply: upload && d.querySelector("#pubApply").checked, resolveFeedback: resolves });
+        ss.set(`ed.run:${c.chapter}`, { runId, kind: upload ? "publish" : "dry run", resolves, preview: !!from });
+        closePop(); attach(runId, upload ? "publish" : "dry run", c.chapter, { resolves, preview: !!from }); logDialog();
       } catch (e) { toast(`Could not start: ${e.message}`, "err"); }
     };
     d.querySelector("#pubDry").addEventListener("click", () => go(false));
     d.querySelector("#pubGo").addEventListener("click", () => go(true));
   }
+
+  /* the Preview page's Publish / Publish all buttons (index.html) open this same dialog, for one tool or a whole chapter */
+  window.udgamPublish = (from) => publishDialog(false, from).catch((e) => toast(`Could not open the publish dialog: ${e.message}`, "err"));
+  window.udgamPublishLogs = () => logDialog();
 
   /* Copy every filtered feedback item: chapter, then "slot -> text" with the screenshot inlined (HTML), and a
      plain-text copy beside it for targets that cannot take HTML */

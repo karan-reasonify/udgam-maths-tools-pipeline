@@ -56,8 +56,15 @@ brings the newer one. Change the viewer in the newest class and carry it with `c
   HTML preview" under its name, and picking it opens the viewer's **HTML preview** tab (`class<N>/viewer/README.md`, "HTML preview").
   A class viewer from before that feature never sends `inProgress`, so its list is as it was. Picking with no choice made goes to a
   ported tool first.
-- **Never** uploads, publishes, edits a class, or reads `.env` / `config.json` on the Preview page; the Editor (below) writes only
-  on a click. It listens on `127.0.0.1` only, answers only a `localhost` Host header, and a POST only from its own page.
+- **Publish / Publish all (Preview header, the owner 2026-10-27).** Two green buttons beside Refresh. **Publish** is the selected tool;
+  **Publish all** is every ready tool of the chapter chosen in the Chapter dropdown (with "All Chapters", the chapter of the selected
+  tool). A click only opens the Editor's publish dialog (tick the tools; **Dry run** = `node cli.mjs publish <chapter>/<id>`, **Publish** =
+  `--upload`, md5-verified; `--apply` only in its own unticked box), so nothing uploads without the dialog's Publish button. A tool the
+  live plan no longer has is greyed out ("Not in live plan"); a tool that is stale or hand-edited and not approved fails its own `publish`
+  and the run goes on with the next. The log streams in the dialog and stays behind the header's **Logs** button; the tool list reloads
+  when an upload ends. Unlike the Editor's Approve & publish, this never marks educator feedback solved.
+- **Never** uploads, edits a class, or reads `.env` / `config.json` on its own; the Preview page uploads only from that dialog's Publish
+  button, and the Editor (below) writes only on a click. It listens on `127.0.0.1` only, answers only a `localhost` Host header, and a POST only from its own page.
 - **Each class is shown by its own viewer**, so a tool is always rendered with that class's own host template and the runtime
   it is pinned to, and the hub never needs to know how a class differs from another.
 

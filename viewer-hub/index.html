@@ -113,6 +113,7 @@
     label.pick.preview-only, .stepper { flex: 0 0 auto; } #selClass { flex: none; width: auto; }
     .views button { padding: 4px 8px; }
     #btnRefresh { white-space: nowrap; }
+    .pubbtns { display: inline-flex; gap: 6px; } .pubbtns .btn { white-space: nowrap; } .pubbtns [hidden] { display: none; }
   }
   /* ---- Preview | Editor (editor.js) ---------------------------------------------------------------- */
   .views { display: inline-flex; padding: 3px; gap: 2px; border: 1px solid var(--btn-border); border-radius: 9px; background: var(--panel); }
@@ -240,6 +241,11 @@
     </span>
   </span>
   <button class="btn" id="btnRefresh" title="Reload the lists and the tool (after a check or port)" disabled>&#8635; Refresh</button>
+  <span class="pubbtns preview-only">
+    <button class="btn publish" id="btnPublish" type="button" title="Publish the selected tool (node cli.mjs publish): a dialog with Dry run and Publish opens first" disabled>&#9729; Publish</button>
+    <button class="btn publish" id="btnPublishAll" type="button" title="Publish every ready tool of the selected chapter (node cli.mjs publish, one after another): a dialog with Dry run and Publish opens first" disabled>&#9729; Publish all</button>
+    <button class="btn" id="btnPubLog" type="button" title="The log of the publish run from this page" hidden>Logs</button>
+  </span>
   <span class="spacer"></span>
   <span class="nav" id="navMeta" hidden>
     <span class="muted small" id="totals"></span>
@@ -388,7 +394,19 @@ function syncControls() {
   $("btnPrev").disabled = i <= 0;
   $("btnNext").disabled = i < 0 || i >= list.length - 1;
   $("btnRefresh").disabled = S.cls == null;
+  /* Publish: the selected tool, once it has a tsx + json pair; Publish all: the chapter chosen in the dropdown (with "All Chapters", the
+     chapter of the selected tool). Both only open the dialog in editor.js: nothing is uploaded from a click on these buttons. */
+  const t = live ? currentTool() : null, chap = publishChapter();
+  $("btnPublish").disabled = !(t && ready(t));
+  $("btnPublishAll").disabled = !(live && chap);
 }
+function publishChapter() {
+  if (!(S.ready && S.frameClass === S.cls)) return "";
+  return S.chapterId !== "all" ? S.chapterId : currentTool()?.chapterId ?? "";
+}
+$("btnPublish").addEventListener("click", () => { const t = currentTool(); if (t && ready(t)) window.udgamPublish?.({ chapter: t.chapterId, slot: t.id, all: false }); });
+$("btnPublishAll").addEventListener("click", () => { const chapter = publishChapter(); if (chapter) window.udgamPublish?.({ chapter, slot: currentTool()?.id ?? "", all: true }); });
+$("btnPubLog").addEventListener("click", () => window.udgamPublishLogs?.());
 
 function writeHash() {
   if (document.body.classList.contains("editor-on")) return; // the Editor owns the link and the title while it is shown
@@ -496,6 +514,8 @@ $("btnRefresh").addEventListener("click", async () => {
   frame.removeAttribute("src"); S.frameClass = null;
   chooseClass(S.cls, { chapterId: S.chapterId, toolKey: S.toolKey });
 });
+// a publish started from here has finished: reload the lists so the tool list's "published <time>" is the new one
+window.addEventListener("udgam:published", () => { if (!document.body.classList.contains("editor-on")) $("btnRefresh").click(); });
 
 /* ---- start ---------------------------------------------------------------------------------------- */
 
