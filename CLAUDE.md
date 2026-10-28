@@ -98,6 +98,14 @@
   (`<concept id>:<slot>`) in the pair and the work folder in ONE pass that never touches a url, `fetch` the new version, and `approve`
   again; `publish` then uploads to the folder and file name the mount's OWN `2d_tool_url` names (a stem that is another mount's id, or not a
   media id, is refused) and writes the .json with `component` set to that file name.
+- **Sprint mode: ONE tool ready in about 40 minutes, every review kept (the owner, 2026-10-28; runbook "Sprint mode").** `... SLOT_ID sprint`
+  or `/gen-tools <N> udgam <n> SLOT_ID sprint`. The maths review, the Gemini pass (the owner's choice), the language pass, the full visual review in
+  en/hi/gu, the play tester and the final check all still run; the time comes from the owner's decisions asked ONCE before the builder (pictures,
+  start page, wording, scope, input, design pass, complexity), the work overlapping (maths and a hi/gu draft start at the first green quick check) and
+  parallel agents (6 at once instead of 4, and Opus agents 3 for a simple tool, 4 for a complex one: token-policy's default of 2 is lifted; the gate's own one-tool figure was already 3, so the real gain is the 4th). The clock is `node orch.mjs sprint start|status|lap|stop`
+  (`orchestration.json` `sprint`; the gate lifts its caps only while a sprint runs). A late stage never drops a review: add agents and report the true finish.
+  Headless Chrome's `--window-size` is the OUTER window on this machine's Chrome; `class3/lib/core/chrome.mjs` measures the offset (class 4 and 5 get it
+  by `classctl sync` on the owner's word).
 - **One session, one chapter, one class.** A read fence refuses another chapter's `work/`; every pattern a
   builder needs is in `class<N>/docs/PATTERNS.md`. A deliberate look: `node cli.mjs fence --off`, then `--on`.
   Slot ids repeat across classes: work only in your class's folder.

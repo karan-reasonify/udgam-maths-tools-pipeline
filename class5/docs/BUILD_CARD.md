@@ -18,7 +18,8 @@ card's sections 1-6, `LAYOUT.md` and `PATTERNS.md`), then the slot's `brief.md` 
 - **Wrong answer:** a hint (a SILENT runtime: at once under the pinned instruction, kept until the child acts again, r34; a VOICED runtime: a spoken rung) and a traceback that redraws the maths and **ends on the whole right
   answer** (the full correct row, the value, the sign, the order), so the child sees it done right and
   then gives it; first-try credit is already gone. The control stays live. Nothing is
-  marked, nothing resets. The ladder: rung 1 is the item's `miss`, rungs 2-3 are the phase's `ladder`;
+  marked; the only thing reset is the answer slot, emptied at the miss (MISS CLEARS THE SLOT, `LAYOUT.md` §3; a runtime
+  before 2026-10-28 kept the answer in it). The ladder: rung 1 is the item's `miss`, rungs 2-3 are the phase's `ladder`;
   none of them gives the answer.
 - **The voice (a silent runtime, r30+: the bubble) never repeats itself** (the rule was made for the voice; the lesson is printed since r30). A teach never restates what its first question then says, and a
   closing never says what the next teach says. Every question has its own `miss` (the error of that

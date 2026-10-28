@@ -1,6 +1,6 @@
 /* The picture rules: node lib/images/rules.test.mjs (no browser, no Gemini). Cartoon objects are unchanged byte for byte; a new plan is photo; a figure is a front-facing person with its own caps. */
 import assert from "node:assert/strict";
-import { buildPrompt, validatePlan, lintPrompt, slotBudget, skinBudget, rawHash, rawKey, sha1, modelsFor, MODELS, STYLE, NEGATIVES, OBJECT_PHOTO_STYLE, REFERENCE_NOTE, BUDGET } from "./rules.mjs";
+import { buildPrompt, validatePlan, lintPrompt, slotBudget, skinBudget, rawHash, rawKey, sha1, modelsFor, MODELS, STYLE, NEGATIVES, OBJECT_PHOTO_STYLE, REFERENCE_NOTE, BUDGET, MAX_SKINS_PER_SLOT } from "./rules.mjs";
 
 const obj = (key, object = key) => ({ key, object, kind: "tile", prompt: `One ${object}.`, why: "w" });
 const fig = (key, object) => ({ key, object, kind: "figure", prompt: `A girl about eight years old with a plait and a yellow kurta, ${key}.`, why: "w" });
@@ -32,7 +32,7 @@ const figs = (n) => Array.from({ length: n }, (_, i) => fig(`child_${"abcde"[i]}
 const ok = validatePlan(plan([...objs(3), ...figs(4)]));
 assert.deepEqual(ok.errors, []);
 assert.equal(ok.images.find((i) => i.key === "child_a").aspect, "3:4");
-assert.ok(validatePlan(plan(objs(4))).errors.some((e) => /4 object skins/.test(e)));
+assert.ok(validatePlan(plan(objs(MAX_SKINS_PER_SLOT + 1))).errors.some((e) => new RegExp(`${MAX_SKINS_PER_SLOT + 1} object skins`).test(e)));   /* class 3: the cap is 20, not 3 (BUILD_CARD 7, 2026-10-28) */
 assert.ok(validatePlan(plan(figs(5))).errors.some((e) => /5 figures/.test(e)));
 assert.ok(validatePlan(plan([fig("a", "same girl"), fig("b", "Same  girl")])).errors.some((e) => /share the object/.test(e)));
 

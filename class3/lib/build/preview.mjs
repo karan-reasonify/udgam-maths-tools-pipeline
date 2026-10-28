@@ -750,7 +750,8 @@ if (drive) {
       if (RT.silent) {
         /* A SILENT runtime: the bubble from the miss on, every 30 ms for 1.2 s, each change with its time: getState()'s instruction
            and hint, the bubble's two drawn roles and what the slot held (hint-pinned: the hint is under the pinned instruction at
-           once, the child's answer still in the slot); then the same 4 s after the miss (the hint stays as it is) */
+           once; the child's answer still in the slot, or on a runtime with MISS CLEARS THE SLOT the slot already empty: miss-clears-slot);
+           then the same 4 s after the miss (the hint stays as it is) */
         const timeline: any[] = [], before = { instruction: A.getState().instruction, domInstr: roleText("instruction") }, t0 = performance.now();
         let last = "";
         t.submit();
@@ -763,14 +764,14 @@ if (drive) {
         const after4s = pinSnap();
         await until(() => !t.state().locked); await wait(200);
         const s1 = t.state();
-        log.push({ nearMiss: v, typedKept: String(s1.typed) === String(v) || String(s1.typed) === "", sameItem: s1.item === s0.item, stage: s1.stage, key: s0.key, item: s0.item,
+        log.push({ nearMiss: v, typedKept: String(s1.typed) === String(v) || String(s1.typed) === "", typedAfter: s1.typed, sameItem: s1.item === s0.item, stage: s1.stage, key: s0.key, item: s0.item,
           pin: { nearMiss: v, before, timeline, after4s } });
       } else {
         /* a VOICED runtime: its rung is spoken, there is no bubble timeline to sample; this is the run class 4 always made */
         t.submit(); await wait(300);
         await until(() => !t.state().locked); await wait(200);
         const s1 = t.state();
-        log.push({ nearMiss: v, typedKept: String(s1.typed) === String(v) || String(s1.typed) === "", sameItem: s1.item === s0.item, stage: s1.stage, key: s0.key });
+        log.push({ nearMiss: v, typedKept: String(s1.typed) === String(v) || String(s1.typed) === "", typedAfter: s1.typed, sameItem: s1.item === s0.item, stage: s1.stage, key: s0.key });
       }
     }
     if (drive === "solve") { t.solve(); await until(() => t.state().stage !== "ask"); }

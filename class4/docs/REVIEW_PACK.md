@@ -30,7 +30,7 @@ simply has no such frame; a voiced runtime has the frames that exist for it (no 
 | `stepwrong` | a wrong act on that step: the step's hint under the pinned instruction | steps phase, runtime with the hint (r34+) |
 | `ask-shut` | the phase's first question as it first appears (a board tool: the answer panel shut) | always; `kind` in pack.json says `key`, `card` or `choices` |
 | `ask-open` | the same question with the answer panel open | a board tool |
-| `wrong` | a wrong answer on the first question once the tool has traced the right one: the hint under the instruction, the child's answer still in the slot | always |
+| `wrong` | a wrong answer on the first question once the tool has traced the right one: the hint under the instruction, the slot EMPTY (MISS CLEARS THE SLOT; on an older runtime the child's answer still in it) | always |
 | `win` | the right answer on the first question (with the Next key on show, when the tool has one) | always |
 | `hintkey` | the header's Hint key pressed on the second question of the first phase | runtime with the Hint key (r35+) |
 | `choice`, `choice-line`, `choice-wrong` | the first Yes/No question of the tool, its "Choose your answer." line (neutral band, only a tool whose Answer key brings it) and a wrong choice with its hint | the tool has a choice question that is not already a phase's first question |

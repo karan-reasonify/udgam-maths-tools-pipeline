@@ -121,8 +121,9 @@ async function enterRun(url) {
 /* a two-part answer (quotient and remainder), by a real mouse, finger and keyboard, on the first
    question that has one: digits go to the box with the caret, Enter moves on, Enter on the last box
    answers, a tap on a box moves the caret, a digit after a miss starts only its own box afresh, rub
-   out on an empty box steps back, and Enter on a focused box is never a trap */
-async function partsRun(url) {
+   out on an empty box steps back, and Enter on a focused box is never a trap. missClears (a runtime with MISS CLEARS THE SLOT): the
+   miss empties every box, so after the fresh digit the second box is typed again (refill) and the rest of the walk is the same */
+async function partsRun(url, missClears = false) {
   return cdpSession(url, async (s) => {
     if (!(await s.until("!!(window.toolApi && window.__tool)", 20000))) return { error: "the tool did not mount" };
     const steps = await s.ev("window.toolApi.getState().steps");
@@ -144,7 +145,7 @@ async function partsRun(url) {
       if (!(await s.until(live, 25000))) continue;
       await s.wait(400);
       if (!(await s.ev(live))) continue;
-      if (kind === "mixed") { out.mixed = await mixedRun(s, t, st, tap, enter, live); continue; }
+      if (kind === "mixed") { out.mixed = await mixedRun(s, t, st, tap, enter, live, missClears); continue; }
       const log = { step: t + 1 };
       await s.click('[data-control="key-1"]'); await s.wait(120);
       await s.click('[data-control="key-6"]'); await s.wait(200);
@@ -157,8 +158,9 @@ async function partsRun(url) {
         await enter(); log.noResend = await st();                 /* nothing retyped: the miss is never sent again */
         await s.click('[data-control="part-2"]'); await s.wait(200); log.clickBox = await st();
         await tap('[data-control="part-1"]'); log.tapBox = await st();
-        await s.click('[data-control="key-3"]'); await s.wait(200); log.fresh = await st(); /* "3|2": only box 1 starts afresh */
+        await s.click('[data-control="key-3"]'); await s.wait(200); log.fresh = await st(); /* "3|2": only box 1 starts afresh ("3|" when the miss emptied both) */
         await enter(); log.moved2 = await st();
+        if (missClears) { await s.click('[data-control="key-2"]'); await s.wait(200); log.refill = await st(); }   /* "3|2" again */
         await s.key("Backspace", "Backspace", 8); await s.wait(200); log.rub = await st();   /* "3|" */
         await s.key("Backspace", "Backspace", 8); await s.wait(200); log.back = await st();  /* caret back in box 1 */
         await s.ev(`document.querySelector('[data-control="part-2"]').focus()`);
@@ -175,8 +177,9 @@ async function partsRun(url) {
 
 /* a mixed number (SLOT_MIXED): Enter moves on from a filled box, a fraction missing its denominator never
    answers, a whole number alone answers with Enter on the empty numerator, a tap picks a box, a digit
-   after a miss starts only its own box, rub out steps back, and Enter on a focused box is no trap */
-async function mixedRun(s, t, st, tap, enter, live) {
+   after a miss starts only its own box, rub out steps back, and Enter on a focused box is no trap. missClears: the miss empties every
+   box, so after the fresh digit the numerator and denominator are typed again (refill: "4|2|3", caret back on the numerator) */
+async function mixedRun(s, t, st, tap, enter, live, missClears = false) {
   const log = { step: t + 1 };
   await s.click('[data-control="key-1"]'); await s.wait(120);
   await s.click('[data-control="key-6"]'); await s.wait(200);
@@ -192,8 +195,13 @@ async function mixedRun(s, t, st, tap, enter, live) {
     await enter(); log.noResend = await st();                   /* nothing retyped: the miss is never sent again */
     await s.click('[data-control="part-2"]'); await s.wait(200); log.clickBox = await st();
     await tap('[data-control="part-1"]'); log.tapBox = await st();
-    await s.click('[data-control="key-4"]'); await s.wait(200); log.fresh = await st();  /* "4|2|3" */
+    await s.click('[data-control="key-4"]'); await s.wait(200); log.fresh = await st();  /* "4|2|3" ("4||" when the miss emptied them) */
     await enter(); log.movedAfter = await st();
+    if (missClears) {
+      await s.click('[data-control="key-2"]'); await s.wait(200); await enter();
+      await s.click('[data-control="key-3"]'); await s.wait(200);
+      await s.click('[data-control="part-2"]'); await s.wait(200); log.refill = await st();   /* "4|2|3", caret on the numerator */
+    }
     await s.key("Backspace", "Backspace", 8); await s.wait(200); log.rub = await st();    /* "4||3" */
     await s.key("Backspace", "Backspace", 8); await s.wait(200); log.back = await st();   /* back in the whole box */
     await s.click('[data-control="part-3"]'); await s.wait(200);
@@ -304,7 +312,9 @@ function judgePoint(p) {
   return b;
 }
 
-function judgeMixed(p) {
+const emptySlot = (v) => /^\|*$/.test(String(v ?? ""));
+/* mc: a runtime with MISS CLEARS THE SLOT (the miss empties every box, the caret in the first); without it the old walk, unchanged */
+function judgeMixed(p, mc = false) {
   const b = [], q = `question ${p.step} (mixed number)`;
   const want = (row, name, fn, msg) => { if (!row) return; if (!fn(row)) b.push(`${q}: ${msg} (${name}: ${JSON.stringify(row)})`); };
   want(p.typed, "typed", (r) => r.typed === "16||" && r.part === 0, "a mouse press on 1 then 6 did not fill the whole box");
@@ -313,11 +323,14 @@ function judgeMixed(p) {
   want(p.moved2, "moved2", (r) => r.part === 2 && r.tries === 0, "Enter on the numerator did not move to the denominator");
   want(p.halfStays, "halfStays", (r) => r.part === 2 && r.tries === 0 && r.stage === "ask", "Enter with no denominator answered or moved away");
   want(p.answered, "answered", (r) => r.tries === 1 || r.stage === "win", "Enter on the filled denominator did not answer");
-  want(p.noResend, "noResend", (r) => r.tries === 1 && r.stage === "ask", "Enter after a miss sent the same answer again, with nothing retyped (it costs a try)");
+  if (mc) want(p.answered, "cleared", (r) => r.stage === "win" || (emptySlot(r.typed) && r.part === 0), "the miss did not empty every box with the caret in the whole box (MISS CLEARS THE SLOT)");
+  want(p.noResend, "noResend", (r) => r.tries === 1 && r.stage === "ask" && (!mc || emptySlot(r.typed)), "Enter after a miss sent the same answer again, with nothing retyped (it costs a try)");
   want(p.clickBox, "clickBox", (r) => r.part === 1, "a mouse press on the numerator did not move the caret there");
   want(p.tapBox, "tapBox", (r) => r.part === 0, "a finger tap on the whole box did not move the caret there");
-  want(p.fresh, "fresh", (r) => r.typed === "4|2|3", "after a miss a digit did not start its own box afresh (and keep the others)");
+  if (mc) want(p.fresh, "fresh", (r) => r.typed === "4||", "after a miss a digit did not stand alone in the whole box (the miss empties every box)");
+  else want(p.fresh, "fresh", (r) => r.typed === "4|2|3", "after a miss a digit did not start its own box afresh (and keep the others)");
   want(p.movedAfter, "movedAfter", (r) => r.part === 1 && r.tries === 1, "Enter on the whole box did not move on");
+  if (mc) want(p.refill, "refill", (r) => r.typed === "4|2|3" && r.part === 1 && r.tries === 1, "typing the numerator and denominator again after the miss did not fill them (or a tap did not put the caret back on the numerator)");
   want(p.rub, "rub", (r) => r.typed === "4||3", "rub out did not clear the numerator's old number");
   want(p.back, "back", (r) => r.part === 0, "rub out on an empty numerator did not step back to the whole box");
   want(p.rubBottom, "rubBottom", (r) => r.typed === "4||" && r.part === 2, "a press on the denominator and rub out did not clear it");
@@ -327,18 +340,21 @@ function judgeMixed(p) {
   return b;
 }
 
-function judgeParts(p) {
+function judgeParts(p, mc = false) {
   const b = [], q = `question ${p.step}`;
   const want = (row, name, fn, msg) => { if (!row) return; if (!fn(row)) b.push(`${q}: ${msg} (${name}: ${JSON.stringify(row)})`); };
   want(p.typed, "typed", (r) => r.typed === "16|" && r.part === 0, "a mouse press on 1 then 6 did not fill the first box");
   want(p.moved, "moved", (r) => r.part === 1 && r.tries === 0 && r.stage === "ask", "Enter on a filled first box did not move to the second (or it answered)");
   want(p.second, "second", (r) => r.typed === "16|2" && r.part === 1, "a finger tap on 2 did not go into the second box");
   want(p.answered, "answered", (r) => r.tries === 1 || r.stage === "win", "Enter on the last box did not answer");
-  want(p.noResend, "noResend", (r) => r.tries === 1 && r.stage === "ask", "Enter after a miss sent the same answer again, with nothing retyped (it costs a try)");
+  if (mc) want(p.answered, "cleared", (r) => r.stage === "win" || (emptySlot(r.typed) && r.part === 0), "the miss did not empty both boxes with the caret in the first (MISS CLEARS THE SLOT)");
+  want(p.noResend, "noResend", (r) => r.tries === 1 && r.stage === "ask" && (!mc || (emptySlot(r.typed) && r.part === 0)), "Enter after a miss sent the same answer again, with nothing retyped (it costs a try)");
   want(p.clickBox, "clickBox", (r) => r.part === 1, "a mouse press on the second box did not move the caret there");
   want(p.tapBox, "tapBox", (r) => r.part === 0, "a finger tap on the first box did not move the caret there");
-  want(p.fresh, "fresh", (r) => r.typed === "3|2", "after a miss a digit did not start its own box afresh (and keep the other)");
+  if (mc) want(p.fresh, "fresh", (r) => r.typed === "3|", "after a miss a digit did not stand alone in the first box (the miss empties both)");
+  else want(p.fresh, "fresh", (r) => r.typed === "3|2", "after a miss a digit did not start its own box afresh (and keep the other)");
   want(p.moved2, "moved2", (r) => r.part === 1 && r.tries === 1, "Enter on the first box did not move on");
+  if (mc) want(p.refill, "refill", (r) => r.typed === "3|2" && r.part === 1, "a digit in the emptied second box did not go there");
   want(p.rub, "rub", (r) => r.typed === "3|", "rub out did not clear the second box's old number");
   want(p.back, "back", (r) => r.part === 0, "rub out on an empty box did not step back to the first");
   want(p.focusPick, "focusPick", (r) => r.part === 1 && r.tries === 1, "Enter on a focused box did not pick it");
@@ -350,8 +366,8 @@ function judgeParts(p) {
 /* the BOARD layout's answer panel (runtime r27), by a real mouse, a real finger and the keyboard, on the first typed
    question, with motion ON (the other runs hold still): it opens shut with the picture at its widest, a tap on Answer
    opens it and the picture narrows to the classic width, a tap on Close shuts it, a finger does the same, a digit typed
-   on the keyboard opens it and lands in the box, and a miss shuts it for the traceback and brings it back with the
-   child's answer still in the box */
+   on the keyboard opens it and lands in the box, and a miss shuts it for the traceback and brings it back open (with the
+   child's answer still in the box on an older runtime; EMPTY on a runtime with MISS CLEARS THE SLOT) */
 async function boardRun(url) {
   return cdpSession(url, async (s) => {
     if (!(await s.until("!!(window.toolApi && window.__tool)", 20000))) return { error: "the tool did not mount" };
@@ -383,7 +399,7 @@ async function boardRun(url) {
     await s.touch("touchStart", b.x, b.y); await s.wait(60); await s.touch("touchEnd", b.x, b.y); out.finger = await settle("open");
     await s.click('[data-control="answer-open"]'); await settle("closed");
     await s.key("5", "Digit5", 53, "5"); out.typedOpens = await settle("open");
-    /* a miss: shut for the traceback (when the tool locks the pad for it), back with the answer kept */
+    /* a miss: shut for the traceback (when the tool locks the pad for it), back open (the answer kept, or emptied: MISS CLEARS THE SLOT) */
     await s.ev("window.__tool.nearMiss(); window.__tool.submit()");
     const sawLock = await s.until("!!window.__tool.state().locked", 2500);
     if (sawLock) { await s.wait(500); out.during = await g(); }
@@ -440,7 +456,7 @@ function judgeThink(p, mb = null, one = false) {
   return b;
 }
 
-function judgeBoard(v) {
+function judgeBoard(v, mc = false) {
   const b = [];
   const s = v.start, o = v.opened, h = v.shut, f = v.finger, t = v.typedOpens, a = v.after, d = v.during;
   if (s.panel !== "closed" || s.key1) b.push(`a question opens with the answer panel shut (panel ${s.panel}, keys drawn ${s.key1})`);
@@ -452,7 +468,11 @@ function judgeBoard(v) {
   if (f.panel !== "open") b.push("a finger tap on Answer did not open the panel");
   if (t.panel !== "open" || !/5/.test(String(t.typed))) b.push(`a digit typed on the keyboard did not open the panel with the digit in the box (panel ${t.panel}, typed "${t.typed}")`);
   if (v.sawLock && d && d.panel !== "closed") b.push("a miss's traceback ran with the answer panel still open: it must shut so the correction has the whole area");
-  if (a.panel !== "open" || !String(a.typed) || a.stage !== "ask") b.push(`after the traceback the panel did not come back with the answer in the box (panel ${a.panel}, typed "${a.typed}", stage ${a.stage})`);
+  /* runtime 2026-10-27 (owner): a wrong typed answer clears itself once the correction has played, so the box may be empty; the panel must be open at stage ask */
+  if (a.panel !== "open" || a.stage !== "ask") b.push(`after the traceback the panel did not come back open at the question (panel ${a.panel}, typed "${a.typed}", stage ${a.stage})`);
+  /* MISS CLEARS THE SLOT (mc, 2026-10-28): the box is EMPTY when the panel comes back (and during the traceback) */
+  else if (mc && !emptySlot(a.typed)) b.push(`after the traceback the answer box still holds "${a.typed}": a miss empties it (miss-clears-slot)`);
+  if (mc && v.sawLock && d && !emptySlot(d.typed)) b.push(`during the traceback the answer box still holds "${d.typed}": a miss empties it at once`);
   (v.logs || []).forEach((l) => b.push(`console while the panel moved: ${l.slice(0, 140)}`));
   return b;
 }
@@ -1491,6 +1511,133 @@ export function judgeCardAnswer(rec) {
   return bad;
 }
 
+/* MISS-CLEARS-SLOT (the owner, 2026-10-28; a runtime with MISS CLEARS THE SLOT, caps.missClears, LAYOUT §3): one DevTools session
+   with motion ON, real mouse and keys, the keypad held open on a board tool (?answer=open). Every question is scanned once (gotoStep)
+   and the first question of each kind is played: a single box (digits; a decimal with the point key), answer boxes (two parts, a
+   fraction, a mixed number, a decimal card; up to three different sets of boxes) and a choice key. The tool's own near miss is typed key by key (each
+   box's digits, Enter between boxes) and sent with the physical Enter, or a wrong choice key is clicked; then the slot is read at
+   once, while the pad is locked for the traceback (when the tool locks it) and after it unlocks: getState().typed holds nothing,
+   part is 0 (the caret in the first box), and the runtime slot's own value text (font-weight 600 under data-zone slot; its ask lines
+   and labels are 500) is blank; then one real digit stands ALONE in the slot (in the first box). A card answer (cardAnswer: the card
+   is the tool's drawing and may show the correction's own answer) and a pad lent to the working area are judged on the state only. */
+const MC_SNAP = `(() => { const a = window.toolApi.getState(), d = window.__tool.state();
+  const vals = Array.from(document.querySelectorAll('[data-zone="slot"] text[font-weight="600"]')).map((t) => String(t.textContent).trim()).filter(Boolean);
+  return { typed: a.typed, part: a.part, tries: a.tries, stage: a.stage, item: a.step, locked: !!d.locked, padTo: a.padTo, answerOn: a.answerOn || null, vals }; })()`;
+const MC_SHAPE = `(() => { const a = window.toolApi.getState(), z = document.querySelector('[data-control="key-0"]');
+  return { parts: a.parts ? a.parts.join(",") : null, choices: !!a.choices, digits: !!z && z.getAttribute('aria-disabled') !== 'true' }; })()`;
+
+async function missClearsRun(url) {
+  return cdpSession(url, async (s) => {
+    if (!(await s.until("!!(window.toolApi && window.__tool)", 20000))) return { error: "the tool did not mount" };
+    const steps = await s.ev("window.toolApi.getState().steps");
+    const goAsk = async (t) => {
+      await s.ev(`window.toolApi.gotoStep(${t})`);
+      for (let k = 0; k < 60; k++) {
+        const g = await s.ev("window.toolApi.getState().stage");
+        if (g === "ask") break;
+        if (g === "demo") await s.ev("window.toolApi.getState().stage === 'demo' && window.__tool.solve()");
+        await s.wait(250);
+      }
+      await s.wait(800);   /* past the runtime's 600 ms guard after a stage change (a choice key) */
+      return s.ev("window.toolApi.getState().stage === 'ask' && !window.__tool.state().locked");
+    };
+    /* scan: candidates of each kind, in order (a working-area answer, pad "enter", has no slot to clear: its digits type nothing,
+       so the play moves on to the next candidate of that kind) */
+    const cands = { box: [], choice: [], parts: [] }, partSets = [];
+    for (let t = 0; t < steps; t++) {
+      await s.ev(`window.toolApi.gotoStep(${t})`);
+      await s.wait(200);
+      const k = await s.ev(MC_SHAPE);
+      if (k.choices) { if (cands.choice.length < 2) cands.choice.push({ t, kind: "choice" }); }
+      else if (k.parts) {
+        if (!partSets.includes(k.parts) && partSets.length < 3) partSets.push(k.parts);
+        if (partSets.includes(k.parts) && cands.parts.filter((c) => c.labels === k.parts).length < 2) cands.parts.push({ t, kind: "parts", labels: k.parts });
+      }
+      else if (cands.box.length < 3 && /^[\d.]+$/.test(String(await s.ev("window.__tool.state().key")))) cands.box.push({ t, kind: "box" });
+    }
+    const plays = [], notes = [];
+    const groups = [cands.box, cands.choice, ...partSets.map((l) => cands.parts.filter((c) => c.labels === l))];
+    for (const group of groups) for (const w of group) {
+      const tag = `question ${w.t + 1} (${w.kind === "parts" ? `boxes ${w.labels}` : w.kind === "box" ? "one box" : "a choice key"})`;
+      const next = (why) => { notes.push(`${tag}: ${why}`); };
+      if (!(await goAsk(w.t))) { next("not reached open (the stage or a lock never let it be answered)"); continue; }
+      const st0 = await s.ev(MC_SNAP);
+      if (st0.answerOn === "card" && (await s.ev("window.toolApi.getState().cardReady === false"))) { next("the card waits for an act on the picture (cardReady false): not played"); continue; }
+      const p = { tag, kind: w.kind, card: st0.answerOn === "card" };
+      if (w.kind === "choice") {
+        const asked = await s.ev("window.__tool.state().asked");
+        const ids = await s.ev(`Array.from(document.querySelectorAll('[data-control^="choice-"]')).filter((e) => !e.closest('[display="none"]') && e.getAttribute('aria-disabled') !== 'true').map((e) => e.getAttribute('data-control').replace(/^choice-/, ''))`);
+        const wrongId = (ids || []).find((x) => x !== String(asked));
+        if (!wrongId) { next("no live wrong choice key to click"); continue; }
+        await s.click(`[data-control="choice-${wrongId}"]`);
+        p.sent = wrongId;
+      } else {
+        /* the tool's own near miss, typed by real keys (the dev driver only names it): Escape first empties the slot again */
+        const v = await s.ev("window.__tool.nearMiss()");
+        await s.key("Escape", "Escape", 27); await s.wait(150);
+        const boxes = String(v ?? "").split("|");
+        if (!boxes.every((b) => /^[\d.]*$/.test(b)) || boxes.every((b) => b === "")) { next(`the near miss ${JSON.stringify(v)} cannot be typed on the keys: not played`); continue; }
+        let landed = true;
+        for (let j = 0; j < boxes.length; j++) {
+          for (const ch of boxes[j]) { if (ch === ".") await s.key(".", "Period", 190, "."); else await s.key(ch, "Digit" + ch, 48 + Number(ch), ch); await s.wait(60); }
+          if (j === 0 && boxes[0] !== "" && emptySlot(await s.ev("window.toolApi.getState().typed"))) { landed = false; break; }
+          await s.key("Enter", "Enter", 13, "\r"); await s.wait(200);   /* between boxes it moves on; on the last (or a whole answer) it sends */
+          if ((await s.ev("window.toolApi.getState().tries")) > st0.tries || (await s.ev("window.toolApi.getState().stage")) !== "ask") break;
+        }
+        if (!landed) { next("the digit keys type nothing here (an answer made on the working area, or the answer gate): not played"); continue; }
+        p.sent = v;
+      }
+      await s.wait(60);
+      p.at = await s.ev(MC_SNAP);
+      if (p.at.tries <= st0.tries && p.at.stage === "ask") { await s.wait(500); p.at = await s.ev(MC_SNAP); }
+      if (p.at.stage === "win") { notes.push(`${tag}: the wrong answer ${JSON.stringify(p.sent)} was judged right: not a miss`); await s.until("window.toolApi.getState().stage !== 'win'", 8000); continue; }
+      if (p.at.tries <= st0.tries) { notes.push(`${tag}: the wrong answer ${JSON.stringify(p.sent)} was not taken as a miss (tries ${st0.tries} -> ${p.at.tries}; a gate or a working-area answer)`); continue; }
+      p.sawLock = await s.until("!!window.__tool.state().locked", 1500);
+      if (p.sawLock) { await s.wait(200); p.during = await s.ev(MC_SNAP); await s.until("!window.__tool.state().locked", 40000); }
+      await s.wait(400);
+      p.after = await s.ev(MC_SNAP);
+      if (w.kind !== "choice" && p.after.stage === "ask" && !p.after.locked) {
+        await s.key("7", "Digit7", 55, "7"); await s.wait(250);
+        p.fresh = await s.ev(MC_SNAP);
+        await s.key("Escape", "Escape", 27); await s.wait(150);
+      }
+      plays.push(p);
+      break;   /* one played question of this kind is enough */
+    }
+    return { plays, notes, logs: s.logs.slice(0, 3) };
+  }, { label: "miss-clears-slot", timeout: 200000, reducedMotion: false });   /* motion on: the traceback really holds the pad locked */
+}
+
+export async function missClearsInput({ base, board = false }) {
+  const r = await pool([() => missClearsRun(`${base}?muted=1&probe=1${board ? "&answer=open" : ""}`)], 1);
+  return r[0].ok ? r[0].value : { error: r[0].error && r[0].error.message };
+}
+
+/* rec = missClearsInput(). Returns problems. */
+export function judgeMissClears(rec) {
+  const bad = [];
+  if (!rec || rec.error) return [`miss-clears-slot run: ${rec && rec.error}`];
+  for (const p of rec.plays || []) {
+    const stateOnly = p.card || (p.at && p.at.padTo === "work");
+    const look = (x, when) => {
+      if (!x) return;
+      if (!emptySlot(x.typed)) bad.push(`${p.tag}: ${when} the slot still holds ${JSON.stringify(x.typed)} (sent ${JSON.stringify(p.sent)}): a miss empties it`);
+      if (p.kind === "parts" && x.part !== 0 && when !== "after the digit") bad.push(`${p.tag}: ${when} the caret is in box ${x.part + 1}, want the first box`);
+      if (!stateOnly && (x.vals || []).length) bad.push(`${p.tag}: ${when} the answer box still draws ${JSON.stringify(x.vals)}`);
+    };
+    look(p.at, "at the miss");
+    if (p.sawLock) look(p.during, "during the traceback (the pad locked)");
+    if (p.after && p.after.stage === "ask") look(p.after, "after the traceback (the pad unlocked)");
+    else if (p.after) bad.push(`${p.tag}: after the traceback the question is not open again (stage ${p.after.stage})`);
+    if (p.fresh) {
+      const ps = String(p.fresh.typed ?? "").split("|");
+      if (ps[0] !== "7" || ps.slice(1).some((x) => x !== "")) bad.push(`${p.tag}: after the miss a digit typed did not stand alone in the ${p.kind === "parts" ? "first box" : "slot"} (it reads ${JSON.stringify(p.fresh.typed)})`);
+    }
+  }
+  (rec.logs || []).forEach((l) => bad.push(`console during the miss-clears-slot run: ${String(l).slice(0, 140)}`));
+  return bad;
+}
+
 /* ONE-LINE-BUBBLE (ONE SENTENCE A SCREEN; keyOnly on a runtime with caps.oneSentence, LAYOUT §1d): one DevTools session per phase, motion ON, a
    user-mode mount from the phase's start. The guide steps are walked (the agent's act), the first question opens, then: its bubble; a wrong
    answer (dev miss, the pad unlocked again); a REAL digit key; a REAL click on the header's Hint key; and the phase's last question answered
@@ -1580,14 +1727,16 @@ export async function startPageInput({ base, poolSize = 2, first = "", backToSta
 /* `point`: the tool's source asks for the point key (pointKey: true). Without it the run is skipped
    altogether — a 12-key pad has no key-point element, so every wait for one would run to its timeout
    (it timed out the whole session on ch 7's tools, which have fraction boxes on several questions) */
-export async function realInput({ base, N, poolSize = 2, point: hasPoint = false, board = false, think = false, blink = false, mascotBox = null, oneSentence = false, typedAsk = true }) {
+/* `missClears`: the pinned runtime has MISS CLEARS THE SLOT (caps.missClears): the parts and board runs then expect the slot EMPTIED by a
+   miss; without it they judge exactly as before */
+export async function realInput({ base, N, poolSize = 2, point: hasPoint = false, board = false, think = false, blink = false, mascotBox = null, oneSentence = false, typedAsk = true, missClears = false }) {
   const jobs = [];
   /* a board tool keeps its answer panel open for the key, box and point runs (the host's `answerOpen`, ?answer=open),
      since they press the keypad's keys; its own behaviour is judged by boardRun */
   const open = board ? "&answer=open" : "";
   for (let n = 1; n <= N; n++) jobs.push(() => dragRun(`${base}?phase=${n}&muted=1&probe=1`, n));
   jobs.push(() => enterRun(`${base}?phase=1&muted=1&probe=1${open}`));
-  jobs.push(() => partsRun(`${base}?muted=1&probe=1${open}`));
+  jobs.push(() => partsRun(`${base}?muted=1&probe=1${open}`, missClears));
   if (hasPoint) jobs.push(() => pointRun(`${base}?muted=1&probe=1${open}`));
   if (board) jobs.push(() => boardRun(`${base}?muted=1&probe=1`));
   const res = await pool(jobs, poolSize);
@@ -1610,9 +1759,9 @@ export async function realInput({ base, N, poolSize = 2, point: hasPoint = false
   else if (pr.value.error) parts = { ok: false, detail: "", bad: [pr.value.error] };
   else if (pr.value.none) parts = { ok: true, detail: "no two-part answer (quotient and remainder boxes) in this tool", bad: [] };
   else {
-    const v = pr.value, b = [...(v.two ? judgeParts(v.two) : []), ...(v.mixed ? judgeMixed(v.mixed) : [])];
+    const v = pr.value, b = [...(v.two ? judgeParts(v.two, missClears) : []), ...(v.mixed ? judgeMixed(v.mixed, missClears) : [])];
     const which = [v.two ? `two boxes, question ${v.two.step}` : "", v.mixed ? `mixed number, question ${v.mixed.step}` : ""].filter(Boolean).join("; ");
-    parts = { ok: !b.length, detail: `answer boxes by real mouse, finger and keys: Enter moves on, the last box answers, a miss is never sent again unchanged (a mixed number: a whole alone or a whole fraction, never half a fraction), a tap picks a box, a digit after a miss starts only its box, rub out steps back, no keyboard trap (${which})`, bad: b };
+    parts = { ok: !b.length, detail: `answer boxes by real mouse, finger and keys: Enter moves on, the last box answers, a miss is never sent again unchanged (a mixed number: a whole alone or a whole fraction, never half a fraction), a tap picks a box, ${missClears ? "a miss empties every box (the caret in the first) and a digit then stands alone" : "a digit after a miss starts only its box"}, rub out steps back, no keyboard trap (${which})`, bad: b };
   }
   const bad = [], seen = [];
   drags.forEach((r, k) => {
@@ -1652,8 +1801,8 @@ export async function realInput({ base, N, poolSize = 2, point: hasPoint = false
     else if (bo.value.none && !typedAsk) panel = { ok: true, detail: "board layout with no typed question (every item a choice or answered on the working area), so there is no answer panel to exercise", bad: [] };
     else if (bo.value.none) panel = { ok: false, detail: "", bad: ["no typed question with an Answer key was reached, so the answer panel was never exercised"] };
     else {
-      const b = judgeBoard(bo.value);
-      panel = { ok: !b.length, detail: `board layout, by a real mouse, finger and keys: it opens shut, Answer opens it (the picture narrows to ${bo.value.opened.w}), Close shuts it, a typed digit opens it, a miss shuts it for the traceback${bo.value.sawLock ? "" : " (this tool does not lock the pad)"} and brings it back with the answer kept`, bad: b };
+      const b = judgeBoard(bo.value, missClears);
+      panel = { ok: !b.length, detail: `board layout, by a real mouse, finger and keys: it opens shut, Answer opens it (the picture narrows to ${bo.value.opened.w}), Close shuts it, a typed digit opens it, a miss shuts it for the traceback${bo.value.sawLock ? "" : " (this tool does not lock the pad)"} and brings it back ${missClears ? "with the box emptied by the miss" : "open"}`, bad: b };
     }
   }
   /* r24: the thinking pose (any tool whose runtime has it) and the Answer key's blink (a board tool without cardAnswer) */

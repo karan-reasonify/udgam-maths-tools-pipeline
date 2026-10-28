@@ -164,6 +164,8 @@ const check = () => (HOOK.check ? HOOK.check() : undefined);
    taps = <Hit id x y w h onPress label />. One <Invite/> marks the one thing to touch.
    Nothing is written here that the bubble already says. `wrong` = { value, tries } after a miss:
    lock, redraw the mathematics in steps (the traceback), unlock; never mark it, never reset it.
+   The slot is the runtime's: a miss empties it (MISS CLEARS THE SLOT), so `typed` is "" from the miss on and
+   wrong.value is what the child sent; never write the slot (api.setTyped) during the traceback.
    stage === "free" is Free play (the plan's writeup.freePlay): no target, every control unlocked.
    Sound effects where the picture moves: api.sfx.cut() (a knife), settle() (pieces come to rest),
    trade() (pieces close into one), tick() (a snap); correct, wrong, win and cheer are the runtime's.

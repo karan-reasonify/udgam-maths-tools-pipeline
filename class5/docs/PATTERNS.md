@@ -39,7 +39,9 @@ The slot splits into one box a part; the pad stays 12 keys.
 - `typed` reads `"16|1"`; `agentKey` gives `[16, 1]`; `toolApi.answer` takes `[16, 1]`, `"16|1"` or
   `"16 remainder 1"`. A perfect division still types remainder 0.
 - Enter moves to the next box; the last box answers once all are filled; a tap picks a box; rub out on
-  an empty box steps back. After a miss a digit starts only its own box afresh.
+  an empty box steps back. After a miss EVERY box is empty and the caret is in the first box (MISS CLEARS THE
+  SLOT, `LAYOUT.md` §3; the runtime does it, nothing to write), so the child types the whole answer again.
+  (A runtime before 2026-10-28 kept both numbers and a digit started only its own box afresh.)
 - Leave `judge` to the skeleton (`judgeSlotParts`) unless the maths accepts another form.
 - An item **without** `parts` runs none of this code.
 
@@ -87,8 +89,8 @@ const TOOL = { ..., pointKey: true, ... }
   7 8 9 beside a tall Enter / a wide 0 and the point; keys 88 wide, still at least 72), so the pad's
   shape never hints that an answer has a point.
 - The point key is **flat and off on a `parts` question** (a fraction, two boxes) and "." types nothing
-  there. A second point in one answer is refused. After a miss a point starts a fresh answer, as a
-  digit does. The keyboard's "." (and the number pad's) types it; a captured pad receives `"point"`.
+  there. A second point in one answer is refused. After a miss the slot is empty (MISS CLEARS THE SLOT), so a
+  point or a digit starts a fresh answer. The keyboard's "." (and the number pad's) types it; a captured pad receives `"point"`.
 - A decimal answer is a **string in its written form**, judged exactly: `"0.3"` is not `".3"` and not
   `"0.30"`; `"4.500"` keeps its zeros. The book writes the zero in front every time, and a zero on the
   end changes the written form. A tool that accepts another form says so in its own `judge`.
@@ -122,7 +124,13 @@ if (s.kind === "left") { api.capture(null); put({ typing: null }); api.submit(x)
 
 - Take it **only after the child taps the cell**, never when a question opens. Give it back with
   `api.capture(null)`; a new question, a phase change, the summary and Free play give it back too.
-- `fn(key)` receives digits, `"back"`, `"enter"`, `"clear"` (Escape) and `"point"`.
+- `fn(key)` receives digits, `"back"`, `"enter"`, `"clear"` (Escape) and `"point"`. **`"clear"` also comes at a miss**
+  (MISS CLEARS THE SLOT, 2026-10-28): when a wrong answer is sent while the pad is still lent, the runtime sends that same
+  handler `"clear"` once, just after the miss, so handle `"clear"` by emptying the cell it types into (exactly as for Escape)
+  and do not write the cell again after `api.submit` returns. That is the whole hook: no clearing code of your own. A cell
+  that gives the pad back before it sends (`api.capture(null)`, then `api.submit(x)`, as above) has closed itself; draw a sent
+  value from `typed` (the runtime empties it at the miss), never from a copy of your own. `check`: `miss-clears-slot` WARNs
+  when a tool lends the pad and never handles `"clear"`.
 - **No keyboard trap:** a cell opened with Tab + Enter must let Enter pass to the window while it holds
   the pad (skip its own press handler when `captured`), or the next Enter re-opens the cell and the
   typed number is never taken.
@@ -163,7 +171,15 @@ still lands.
 ## 7. The correction (traceback)
 
 After a miss the traceback **redraws the maths and ends on the whole right answer**, unmarked: no red,
-no cross, no "wrong". The child's answer stays in the slot; the pad re-opens.
+no cross, no "wrong". The pad re-opens with the slot EMPTY.
+
+**A miss empties the slot: nothing to write (MISS CLEARS THE SLOT; the owner, 2026-10-28, a runtime with the marker).** At
+the miss the runtime clears every typed digit, every box of a `parts` / fraction / mixed / decimal answer (the caret back in
+the first box) and a picked choice key, so the child types or picks a fresh answer; the slot stays empty through the
+traceback. `typed` is `""` from the miss on and `wrong.value` is what the child sent: run the traceback from `wrong`, never
+from `typed`, and never write the slot (`api.setTyped`) during the correction (a right answer left in the slot would be one
+Enter from a free win). A pad lent with `api.capture` gets `"clear"` (§5); a card answer (§9e) reads `typed` and so shows
+empty boxes. `check`: `miss-clears-slot` (INFO on an older runtime, which keeps the child's answer in the slot).
 
 **A correction must end in a state the child's next act confirms, never one it undoes** (found on three
 ch 6 tools). When the traceback fills the child's own pieces (a toggle, a tap-to-pick list, a pen of
@@ -406,7 +422,7 @@ the picture that holds the form it asks for, not through the Answer key, the key
   (`onPick={() => api.pickPart(j)}`, the card's halves) and shows the typed digits (`slotPartsOf(typed, 2)`) IN its own
   boxes, the active box solid with the caret. Call `api.cardReady(false)` while an act on the picture still waits (Cut,
   Lots of, Trade) or the picture is animating: the card then neither blinks nor takes a tap, the bubble says nothing about it
-  and a digit typed on the keyboard is ignored, so the picture comes first. After a miss show the correction's own answer on the card until the child types something new, then clear the correction's cards (keep its strips) so the typed digits show. Set the typed digits at ONE size in both boxes, the size the finished answer is drawn at, stepping down together only for a long number.
+  and a digit typed on the keyboard is ignored, so the picture comes first. After a miss show the correction's own answer on the card until the child types something new, then clear the correction's cards (keep its strips) so the typed digits show. The miss empties `typed` at once (MISS CLEARS THE SLOT, §7), so "something new" is `typed` turning non-empty again, never `typed` differing from `wrong.value` (that already holds at the miss). Set the typed digits at ONE size in both boxes, the size the finished answer is drawn at, stepping down together only for a long number.
 - **The pieces' props** (2026-10-17; three ch 5 builders had to probe them): `<SlotPartBox id label x y w h on enabled onPick />`
   (a labelled finger box; `on` = the active box, solid with the caret), `<BlinkRing x y w h rx C sw={4} m={2} />` (the blinking
   ring round a box; `m` its margin), `<Invite x y r={56} C />` (a pulsing CIRCLE round a centre, not a box: ring a rect with
@@ -563,7 +579,8 @@ costing a fix round. Build them in from the start.
   with a rAF loop and a MutationObserver on `[data-zone=slot]`.
 - **After a miss the answer is stale and the next digit REPLACES it** (Backspace edits it, §7
   2026-09-22). So show no `_` placeholders while it stands untouched, or the placeholder invites typing
-  the one missing digit and the child gets "Rs 0".
+  the one missing digit and the child gets "Rs 0". On a runtime with MISS CLEARS THE SLOT (2026-10-28) the miss
+  empties the slot outright (§7): the same rule holds for the empty slot, no `_` placeholders in it.
 - **Which forms are right.** A whole-rupee money answer (no paise) accepts "141" and "141.00"; an answer
   with paise stays exact and two-place ("130.5" and "130.05" miss); a count or a paise total accepts
   digits only ("3600.00" and "0009" miss); any other form with a point ("9.", "9.0", ".") is an ordinary

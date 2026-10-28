@@ -216,7 +216,9 @@ ${silent
     }) },
     model: { ...(m.MODEL || {}), items: m.PHASES.flatMap((p) => p.items.map(({ say, ask, miss, choices, ...rest }, k) => ({ phase: p.n, item: k + 1, ...rest }))) },
     onWrong: {
-      marks: "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+      /* MISS CLEARS THE SLOT (caps.missClears, 2026-10-28); an older runtime's sidecar keeps its words byte for byte */
+      marks: caps.missClears ? "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it."
+        : "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
       tracebacks: m.PHASES.map((p) => `Phase ${p.n}: ${p.traceback || "the working area redraws the mathematics in steps."}`),
     },
     /* the key keeps its NCERT shape. A SILENT runtime (r30+): nothing is spoken (rate and pitch are kept for the shape

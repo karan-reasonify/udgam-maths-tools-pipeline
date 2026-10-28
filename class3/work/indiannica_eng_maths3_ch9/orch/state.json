@@ -1,0 +1,116 @@
+{
+ "version": 1,
+ "build": 1,
+ "phase": "plan",
+ "round": 1,
+ "createdAt": "2026-10-28T07:08:10.296Z",
+ "updatedAt": "2026-10-28T09:21:22.692Z",
+ "agents": [],
+ "slots": {
+  "M1.S1.T2.C5.2D1": {
+   "stage": "new",
+   "decisions": [],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {},
+   "retries": {},
+   "escalations": 0,
+   "history": [],
+   "quickChecks": 19,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 97,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-10-28T09:21:22.688Z"
+   },
+   "fullChecks": 8
+  }
+ },
+ "freezes": [
+  {
+   "op": "freeze",
+   "gate": "prereview",
+   "version": "r3",
+   "made": true,
+   "at": "2026-10-28T07:54:36.395Z",
+   "build": 1
+  }
+ ],
+ "pins": [
+  {
+   "op": "pin",
+   "gate": "prereview",
+   "version": "r3",
+   "made": false,
+   "at": "2026-10-28T07:54:53.083Z",
+   "build": 1
+  }
+ ],
+ "skipped": [],
+ "questions": [],
+ "gaps": [],
+ "counters": {
+  "fullChecks": 8,
+  "quickChecks": 19,
+  "cachedChecks": 0,
+  "packs": 0,
+  "escalations": 0
+ },
+ "session": {},
+ "class": 3,
+ "chapter": "indiannica_eng_maths3_ch9",
+ "sprint": {
+  "startedAt": "2026-10-28T07:36:00.000Z",
+  "budgetMin": 54,
+  "design": true,
+  "complexity": "complex",
+  "limits": {
+   "maxOpusAgents": 4
+  },
+  "slot": "M1.S1.T2.C5.2D1",
+  "stages": [
+   {
+    "key": "build",
+    "label": "builder + image agent from minute 0; green quick check, <Skin> drawn. At the FIRST green quick check start, in parallel: the maths reviewer and the language draft agent (TR hi/gu into tr.draft.md from node orch.mjs digest --strings)",
+    "dueMin": 14,
+    "doneAt": "2026-10-28T07:54:11.231Z"
+   },
+   {
+    "key": "maths",
+    "label": "maths findings in and applied in ONE builder message (with the runtime freeze/pin if a gap is logged); a changed English line changes its TR draft line",
+    "dueMin": 17,
+    "doneAt": "2026-10-28T07:54:11.418Z"
+   },
+   {
+    "key": "design",
+    "label": "Gemini visual pass (4b: node cli.mjs design, then the builder reads shots); after the maths fixes and the pin, before the merge of the TR draft (it never touches TR or the printed sentences, so the language draft is not redone)",
+    "dueMin": 26,
+    "doneAt": null
+   },
+   {
+    "key": "fold",
+    "label": "builder merges the TR draft (language pass: tx in Work and Thumb, fit sheets), then ONE full check on the final pin and the final English",
+    "dueMin": 34,
+    "doneAt": null
+   },
+   {
+    "key": "review",
+    "label": "shots --pack ONCE (every frame, en + hi + gu); visual reviewers IN PARALLEL (one per language, or per 40-frame chunk: node orch.mjs chunks) and play testers IN PARALLEL (rows check already played, then split probes); all of it, all frames",
+    "dueMin": 43,
+    "doneAt": null
+   },
+   {
+    "key": "final",
+    "label": "every must-fix AND should-fix in ONE builder message, quick check, shots --pack --changed, the reviewers re-look ONLY at the changed frames (in parallel), the final full check (ports), status, report",
+    "dueMin": 54,
+    "doneAt": null
+   }
+  ],
+  "endedAt": null
+ }
+}

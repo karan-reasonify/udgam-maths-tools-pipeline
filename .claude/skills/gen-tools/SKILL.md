@@ -1,7 +1,7 @@
 ---
 name: gen-tools
 description: Make the 2D tools of an Udgam maths chapter of any class (or one slot) from the lpv2 plan by the runbook udgam_maths_claude.md - one builder agent per slot, check, maths / visual / play reviewers, upload audit, report; upload only on the user's word. Use whenever asked to make, start, continue, remake or review tools for an Udgam chapter or slot of any class (e.g. "make tools for class 4 udgam chapter 2", "make tools for class 3 udgam chapter 1", "make the tool for M1.S1.T2.C4"), or when /gen-tools is invoked. Arguments - <class> <publication|school> <chapter> [SLOT_ID] [lean] (lean = fewer reviewers, fewer tokens).
-argument-hint: <class> <publication|school> <chapter> [SLOT_ID] [lean]
+argument-hint: <class> <publication|school> <chapter> [SLOT_ID] [lean|sprint]
 ---
 
 # Make Udgam maths tools (any class)
@@ -13,7 +13,11 @@ The same as `.claude/commands/gen-tools.md`; both are shortcuts into the runbook
    `class<N>/` does not exist, run `node classctl.mjs new --class <N>` and tell the user the defaults it prints
    (children's age, plan ids, textbook folder, viewer port, agent prefix, skin libraries). With a SLOT_ID, make
    only that slot ("make ONE tool"). With `lean`, use the lean mode (step 5: the maths reviewer on every tool;
-   visual and play only where a tool brings something new); without it, the full mode. The agents are
+   visual and play only where a tool brings something new); without it, the full mode. With `sprint` (one SLOT_ID), use the
+   runbook's "Sprint mode": ONE tool in about 40 minutes with EVERY review kept (maths, the Gemini pass when the owner keeps it,
+   language, the full visual review in en/hi/gu, play, the final check); the time comes from the owner's decisions asked once before
+   the builder, overlap and parallel agents (up to 3 Opus, 4 for a complex tool), run by the clock
+   `node orch.mjs sprint start|status|lap|stop`. The agents are
    `<pfx>-tool-builder` and the rest, `<pfx>` being the class's `agentPrefix` (`udgam` for class 4,
    `udgam<N>` otherwise).
 2. If class, publication or school, or chapter is missing, ask for it. "udgam" means publication

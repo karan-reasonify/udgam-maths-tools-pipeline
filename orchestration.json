@@ -85,6 +85,34 @@
     "playRepeats": false
   },
 
+  "sprint": {
+    "$comment": "SPRINT MODE (runbook 'Sprint mode'; the owner, 2026-10-28: ONE tool fully ready in 40 minutes, where a normal build plus staged review took 1-2 hours, AND no review dropped: maths, the Gemini visual pass when kept, the language pass, the FULL visual review in en/hi/gu and the play tester all still run). Time comes from overlap and parallel agents, never from a skipped look. The clock: node orch.mjs sprint start|lap|status|stop. dueMin = minutes from the start; --minutes N scales them. What cost the hour in class 3 ch 9 was not the agents: it was owner decisions arriving after the builder started (photo or generated pictures, which objects, the start page, a new runtime rule), a checker row that failed on the machine (fixed in lib/core/chrome.mjs, 2026-10-28), a full check spent before the runtime pin, and every review waiting for the one before it. So a sprint needs every decision in ONE question before the builder; a decision after that is a line under 'after the sprint' in NOTES.md unless the owner restarts the clock.",
+    "budgetMinutes": 40,
+    "stages": [
+      { "key": "build",  "dueMin": 12, "label": "builder + image agent from minute 0; green quick check, <Skin> drawn. At the FIRST green quick check start, in parallel: the maths reviewer and the language draft agent (TR hi/gu into tr.draft.md from node orch.mjs digest --strings)" },
+      { "key": "maths",  "dueMin": 15, "label": "maths findings in and applied in ONE builder message (with the runtime freeze/pin if a gap is logged); a changed English line changes its TR draft line" },
+      { "key": "fold",   "dueMin": 22, "label": "builder merges the TR draft (language pass: tx in Work and Thumb, fit sheets), then ONE full check on the final pin and the final English" },
+      { "key": "review", "dueMin": 30, "label": "shots --pack ONCE (every frame, en + hi + gu); visual reviewers IN PARALLEL (one per language, or per 40-frame chunk: node orch.mjs chunks) and play testers IN PARALLEL (rows check already played, then split probes); all of it, all frames" },
+      { "key": "final",  "dueMin": 40, "label": "every must-fix AND should-fix in ONE builder message, quick check, shots --pack --changed, the reviewers re-look ONLY at the changed frames (in parallel), the final full check (ports), status, report" }
+    ],
+    "designStage": { "key": "design", "after": "maths", "minutes": 8, "label": "Gemini visual pass (4b: node cli.mjs design, then the builder reads shots); after the maths fixes and the pin, before the merge of the TR draft (it never touches TR or the printed sentences, so the language draft is not redone)" },
+    "designNote": "The Gemini design pass is the OWNER'S choice, asked once in step 2 with its cost stated (sprint start --design adds designStage and its minutes to every later deadline and to the budget). It is never skipped silently and never cut when late.",
+    "parallel": {
+      "visual": "one reviewer per language (en, hi, gu) on the full pack, or per chunk of visualChunkFrames frames; each reports at most 40 lines",
+      "play": "two play testers on the same tool: phases 1-2 and 3-4 (each with its own headless Chrome through playkit), the keyboard, classroom and Hindi/Gujarati probes split between them",
+      "translation": "a language agent drafts hi/gu from the English strings as soon as the first quick check is green, in a scratch file; only changed lines are re-translated after the maths fixes",
+      "gateOver": "launches beyond the normal agent caps pass --over \"sprint: <role> <part>\" to node orch.mjs gate; the cost is accepted by the owner"
+    },
+    "ifLate": ["start the next stage on the part that is already final", "add parallel agents for the stage that is behind (gate --over sprint)", "write what is open into NOTES.md and report the TRUE finish time; a review is never dropped to meet the clock"],
+    "neverCut": ["the maths review of the final English", "the Gemini visual pass when the owner kept it", "the language pass (tr-coverage passes)", "the visual review of every frame in en, hi and gu", "the play tester", "the final full check with 0 FAIL", "the owner's decisions written down before the builder starts"],
+    "opusAgents": { "simple": 3, "complex": 4, "complexWhen": "the tool has an interaction in review.highRiskInteraction (a drag, two-box, fraction or decimal card, point key, card answer, an act, a narrow pad), a kind of picture no finished tool of the class has, or hard maths; otherwise simple. sprint start --complexity simple|complex sets it (limits.maxOpusAgents is 2 + 0.35 per tool, rounded up: already 3 for one tool, so a complex sprint adds the 4th)" },
+    "limits": { "maxConcurrent": 6, "maxAgentsPerChapter": 24, "maxReviewAgents": 12, "maxRetryRounds": 3, "maxFullChecksPerSlot": 5, "$comment": "Read by orch gate while a sprint runs (state.sprint, not stopped); maxOpusAgents comes from opusAgents above. maxConcurrent stays at 6 because every builder check and play tester drives its own headless Chrome (more than 6 turns the machine's load into false timeouts)." },
+    "opusSlots": "spend the Opus slots where they shorten the critical path, in this order: 1 the tool-builder; 2 the maths reviewer, escalated (the hard maths is what a wrong tool costs most); 3 a second builder, escalated, for the fold and the fix messages while the first builder keeps the tool moving; 4 (complex only) the play tester or the visual reviewer on the riskiest part. A sonnet agent does every other look.",
+    "maxFullChecks": 3,
+    "maxFixRounds": 1,
+    "skip": ["upload-auditor (nothing is published)", "pilot (one tool)", "second full-pack visual round (the re-look is --changed)"]
+  },
+
   "runtimeGates": {
     "$comment": "Programmatic batching of runtime moves (runbook non-negotiable 3). `runtime freeze|pin` must name --ch N and --gate. prereview and postplay once each per chapter build; blocker only with --proof (a real-input probe), at most maxBlocker; step6 = a pin to the newest head at a chapter's own step 6. `freeze rN` (restore) is free; --ungated \"why\" is logged.",
     "enforce": true,

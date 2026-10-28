@@ -55,6 +55,7 @@ export function capsOf(runtimeSrc) {
     pencilWrite: /function penPlan\(/.test(r),            /* 2026-10-22: api.act moves "write" (the pencil WRITES digits, signs and capital letters stroke by stroke), <PencilText>, <PencilLine>, { dab } / { line } tokens; docs/PATTERNS.md 15, check pencil-acts */
     act: /ACTION_KIT_HELPER/.test(r),                    /* 2026-10-16: api.act, a real tool (the ACTION KIT) or the drawn hand performs the act on screen */
     fontKit: /function useFontKit\b/.test(r),             /* 2026-10-16: the FONT KIT (runtime/fontkit.tsx, FONT_KIT): Poppins inside the tool */
+    missClears: /MISS CLEARS THE SLOT/.test(r),           /* 2026-10-28: a miss empties the slot at once (digits, every part box, a picked choice; a lent pad gets "clear"): check miss-clears-slot, LAYOUT §3 */
   };
 }
 

@@ -32,7 +32,7 @@ export const KINDS = {
     frame: "The object is one long, straight, flat rectangular bar lying horizontally across the picture, about six times as long as it is wide, with straight parallel long sides and one smooth, unbroken, even top surface from end to end: one solid, smooth slab." },
   disc: { aspect: "1:1", px: [320, 320], maxW: 360, maxH: 360, inset: 0, cut: "cutout", oneSurface: true,
     frame: "The object is perfectly round and seen exactly from straight above, so it appears as a circle, whole and complete, with a clear margin of white all round it." },
-  tile: { aspect: "1:1", px: [160, 160], maxW: 200, maxH: 200, inset: 0, cut: "cutout", oneSurface: false,
+  tile: { aspect: "1:1", px: [160, 160], maxW: 800, maxH: 400, inset: 0, cut: "cutout", oneSurface: false,   /* class 3 only: maxW/maxH 200 in class 5; 800x400 so a long photo object (a pencil, a ruler) drawn across the bench is not a 4x upscale */
     frame: "The object is one single small piece, whole and complete, seen exactly from straight above, centred, with a clear margin of white all round it." },
   /* a PERSON the lesson is about (children sharing a roti, a shopkeeper): one standing character, front view, cut out with alpha, portrait.
      Not an object: its own style, frame and negatives (FIGURE_*), outside the 3 object skins, at most MAX_FIGURES_PER_SLOT. */
@@ -62,6 +62,8 @@ export const FIGURE_STYLES = {
    `style` (a cartoon look would contradict it) and keeps every object negative. Its key carries `look:photo` (and the reference's sha1); a cartoon key is unchanged. */
 export const OBJECT_PHOTO_STYLE = "A real, unretouched studio photograph, not an illustration and not a render: one everyday object photographed from directly above (a flat-lay) in natural soft daylight from one side, sharp focus across the whole object, true-to-life colour and texture with fine real surface detail (char spots, blisters, flakes, seeds, grain, a soft satin sheen where the object has one) and slightly imperfect real-world edges. Exactly one object, centred, filling most of the frame with a margin of background all round. The background is perfectly plain pure white (#FFFFFF), as for a cut-out: no floor, no table, no gradient, no texture, no cast shadow.";
 export const REFERENCE_NOTE = "The attached picture is a reference photograph: match its realism, lighting and texture; do not copy its composition or any text.";
+/* NEGATIVES without the warm-colours-only sentence: for `colours: "natural"` (class 3 only) */
+export const NEGATIVES_NATURAL = "Strict rules: exactly one object and nothing else. No text, no digits, no numbers, no letters, no logos, no labels, no brand marks, no number plates, no signs. No wrapper, no foil, no packaging, no plate, no board, no knife, no hands, no people, no faces, no characters. No shadow outside the object. True-to-life natural colours.";
 export const FIGURE_NEGATIVES ="Strict rules: exactly one person and nothing else, fully and modestly clothed, not a celebrity or any recognisable real person. No text, no digits, no numbers, no letters, no logos, no labels, no brand marks, no writing on the clothes. Empty hands relaxed at the sides: no food, no plate, no objects, no tools, no bag, no props of any kind. No second person, no animals, no mascot, no speech bubble, no sign. No white clothes (they would vanish into the background). No shadow on the ground, no floor, no scenery.";
 
 export const NEGATIVES = "Strict rules: exactly one object and nothing else. No text, no digits, no numbers, no letters, no logos, no labels, no brand marks. No wrapper, no foil, no packaging, no plate, no board, no knife, no hands, no people, no faces, no characters. No shadow outside the object. Warm colours only (browns, creams, caramels, golden oranges); no blue, no green, very little red.";
@@ -87,7 +89,7 @@ export const slotBudget = (images = []) => BUDGET.slot + BUDGET.photoShare * ima
 /* one picture's cap: 25 KB for a cartoon object skin, 30 KB for a photo one, 20 KB for a figure; an image may ask for less (`maxKB`), never more */
 const capOf = (kind, look) => (kind === "figure" ? BUDGET.figure : look === "photo" ? BUDGET.photo : BUDGET.skin);
 export const skinBudget = (kind, maxKB, look) => Math.min(capOf(kind, look), maxKB ? Math.round(Number(maxKB) * 1024) : Infinity);
-export const MAX_SKINS_PER_SLOT = 3;   /* OBJECT skins only; figures are counted apart */
+export const MAX_SKINS_PER_SLOT = 12;  /* OBJECT skins only; figures are counted apart */   /* class 3 only: 3 in class 5; raised to 8, then 12 (11 used), on the owner's word, 2026-10-28, for ch 9 C5 Measure It ("real photos of whatever object the tool has") */
 export const MAX_FIGURES_PER_SLOT = 4;  /* one per distinct person the brief shows (children, a shopkeeper), each looking clearly different */   /* a third only for a tool that names different wholes (ch 8 C4: chocolate bar, ribbon, chapati) */
 export const MAX_ATTEMPTS = 2;          /* billed generations per picture per run, a rejected picture included */
 export const CONCURRENCY = 3;
@@ -120,10 +122,12 @@ export const sha1 = (s) => crypto.createHash("sha1").update(String(s)).digest("h
    the prompt is not in the key either: two slots asking for the same object, kind and style share it */
 /* `look` is in a figure's key always, in an object's key only when it is not "cartoon" (so every cartoon object keeps the key it was made under);
    `ref` is the reference photograph's sha1 (a photo object with a `reference`) */
-export const rawHash = ({ object, kind, style, aspect, look, ref }) => sha1(["raw", norm(object), kind, norm(style), aspect,
-  ...(look && (kind === "figure" || look !== "cartoon") ? [`look:${look}`] : []), ...(ref ? [`ref:${ref}`] : [])].join("|"));
+export const rawHash = ({ object, kind, style, aspect, look, ref, view, colours }) => sha1(["raw", norm(object), kind, norm(style), aspect,
+  ...(look && (kind === "figure" || look !== "cartoon") ? [`look:${look}`] : []), ...(ref ? [`ref:${ref}`] : []),
+  /* class 3 only (2026-10-28): `view: "side"` and `colours: "natural"` are in a key only when set, so no earlier picture is re-keyed */
+  ...(view === "side" ? ["view:side"] : []), ...(colours === "natural" ? ["colours:natural"] : [])].join("|"));
 /* the one way every caller keys a validated image (validatePlan fills look and refSha) */
-export const rawKey = (plan, img) => rawHash({ object: img.object, kind: img.kind, style: plan.style, aspect: img.aspect, look: img.look, ref: img.refSha });
+export const rawKey = (plan, img) => rawHash({ object: img.object, kind: img.kind, style: plan.style, aspect: img.aspect, look: img.look, ref: img.refSha, view: img.view, colours: img.colours });
 export const skinHash = (raw, { kind, px, inset, maxKB, tool }) => sha1(["skin", `cut${CUT_VERSION}`, (KINDS[kind] || {}).cut, raw,
   `${px[0]}x${px[1]}`, Number(inset).toFixed(3), maxKB || "", ...(tool ? [`tool${TOOL_CUT}`] : []), ...(kind === "figure" ? [`fig${FIGURE_CUT}`] : [])].join("|"));
 
@@ -132,8 +136,15 @@ export function buildPrompt(plan, img) {
   /* the chapter's `style` is the object skins' cartoon look: it is left out of a photographic figure or object (it would contradict the photograph) */
   if (k.figure) return [FIGURE_STYLES[img.look] || FIGURE_STYLES.photo, plan.style && img.look === "cartoon" ? `Look: ${String(plan.style).trim().replace(/\.?$/, ".")}` : "", k.frame,
     `The person: ${String(img.prompt).trim().replace(/\.?$/, ".")}`, FIGURE_NEGATIVES].filter(Boolean).join(" ");
-  if (img.look === "photo") return [OBJECT_PHOTO_STYLE, k.frame, `The object: ${String(img.prompt).trim().replace(/\.?$/, ".")}`,
-    img.refSha ? REFERENCE_NOTE : "", NEGATIVES, k.oneSurface ? ONE_SURFACE : ONE_PIECE].filter(Boolean).join(" ");
+  if (img.look === "photo") {
+    /* class 3 only (2026-10-28, ch 9 Measure It: a door, a bus and a train cannot be photographed from above): `view: "side"` photographs the object
+       straight on from the side; `colours: "natural"` drops the warm-colours-only rule (a road is grey, a bus is yellow) and the no-lines rule */
+    const side = img.view === "side", natural = img.colours === "natural";
+    const style = side ? OBJECT_PHOTO_STYLE.replace("photographed from directly above (a flat-lay)", "photographed straight on from the side at eye level (a side elevation), the whole object upright in its natural position and seen from end to end") : OBJECT_PHOTO_STYLE;
+    const frame = side ? k.frame.replace("seen exactly from straight above", "seen exactly from the side, straight on") : k.frame;
+    return [style, frame, `The object: ${String(img.prompt).trim().replace(/\.?$/, ".")}`,
+      img.refSha ? REFERENCE_NOTE : "", natural ? NEGATIVES_NATURAL : NEGATIVES, natural ? "Only one object: no second object, no crumbs." : (k.oneSurface ? ONE_SURFACE : ONE_PIECE)].filter(Boolean).join(" ");
+  }
   return [STYLE, plan.style ? `Look: ${String(plan.style).trim().replace(/\.?$/, ".")}` : "", k.frame,
     `The object: ${String(img.prompt).trim().replace(/\.?$/, ".")}`, NEGATIVES, k.oneSurface ? ONE_SURFACE : ONE_PIECE].filter(Boolean).join(" ");
 }
@@ -188,6 +199,9 @@ export function validatePlan(plan, slotId) {
     img.aspect = img.aspect || K.aspect;
     img.look = img.look || (img.kind === "figure" ? "photo" : planLook);
     if (!LOOKS.includes(img.look)) errors.push(`${at}: look must be one of ${LOOKS.join(", ")}`);
+    if (img.view !== undefined && !["top", "side"].includes(img.view)) errors.push(`${at}: view must be "top" or "side"`);
+    if (img.colours !== undefined && !["warm", "natural"].includes(img.colours)) errors.push(`${at}: colours must be "warm" or "natural"`);
+    if ((img.view === "side" || img.colours === "natural") && img.look !== "photo") warnings.push(`${at}: view "side" and colours "natural" apply to a photo object only; ignored`);
     /* a reference photograph (the image's own `reference`, else the plan's): sent with the prompt and keyed by its bytes, for a photo object only */
     const ref = img.reference !== undefined ? img.reference : plan.reference;
     delete img.refFile; delete img.refSha;

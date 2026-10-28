@@ -14,11 +14,12 @@ node cli.mjs view --port 5555    # a different port
 node cli.mjs view --watch        # rebuild the viewer's own UI as you edit viewer/src
 ```
 
-The preview toolbar starts with **classroom** ticked (the schools' use: a teacher in the room; from runtime r34 the
+The preview toolbar starts with **classroom** UNticked (the owner, 2026-10-28: it was ticked before and never needed; a child alone is what the
+preview shows). Tick it to see the schools' use (a teacher in the room; from runtime r34 the
 lesson is action-driven in every mode, and a classroom only pages a long line piece by piece with the blinking arrow,
 a tap on the speech bubble showing the next piece, a tap with nothing waiting skipping ahead; no score; the lesson is
-silent and the sound effects stay on). Untick it to see a child alone. A tool ported on a runtime older than r22 ignores the tick box.
-The default lives in `viewer/src/lib/useLiveTool.ts` (`classroom: true`).
+silent and the sound effects stay on). A tool ported on a runtime older than r22 ignores the tick box.
+The default lives in `viewer/src/lib/useLiveTool.ts` (`classroom: false`).
 
 The **header** carries three switches (`components/DeviceBar.tsx`; in the hub that is the tinted bar above the tabs):
 **Teacher | Student** (`navigableDots` false | true: AI mode, where the phase dots only show progress, or user mode, where

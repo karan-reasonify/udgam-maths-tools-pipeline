@@ -30,7 +30,7 @@ export function useLiveTool(args: {
   hostTemplate: string | null;
 }) {
   const { tsx, sidecar, vendor, hostTemplate } = args;
-  const [props, setProps] = useState<LiveProps>({ phase: 1, navigableDots: true, muted: false, lang: "en", classroom: true /* ticked by default: the schools' use (a teacher paces); untick to see a child alone */ });
+  const [props, setProps] = useState<LiveProps>({ phase: 1, navigableDots: true, muted: false, lang: "en", classroom: false /* unticked by default (the owner, 2026-10-28): a child alone; tick it to see the schools' use (a teacher paces) */ });
   const [nonce, setNonce] = useState(0);
   const [live, setLive] = useState<LiveState>(EMPTY);
   const [autoPlaying, setAutoPlaying] = useState(false);

@@ -23,6 +23,8 @@
  *   node orch.mjs resume | handoff --class N --ch n           the compact state to continue from (handoff writes HANDOFF.md)
  *   node orch.mjs session     --pct P                          record the /usage 5-hour figure (the gate reads it)
  *   node orch.mjs new-build   --class N --ch n --why ".."      a remake: a new build number (runtime gates and limits restart)
+ *   node orch.mjs sprint      start|lap|status|stop --class N --ch n [--slot ID] [--minutes 40] [--at HH:MM] [--stage K] [--design] [--complexity simple|complex]
+ *                             the wall clock of ONE tool built in a fixed time (runbook "Sprint mode"): stage deadlines, what to cut when late
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -250,6 +252,11 @@ async function cmdChecks() {
   const { hashOf } = await classLib(info.dir, "lib/check/check.mjs");
   const render = tier === 2;
   const keyOf = (f) => { let th = null; try { th = hashOf(f.dir); } catch { return null; } return cacheKey({ classDir: info.dir, slotDir: f.dir, pol, toolHash: th, render }); };
+  /* a running sprint counts its own full checks (sprint.maxFullChecks) from when the sprint began (or from this first look, if it began before this code existed), not the checks an earlier, machine-failed build spent */
+  const sprintOn = st.sprint && !st.sprint.endedAt;
+  if (sprintOn && !st.sprint.fullBase) updateState(chap.dir, (s) => { s.sprint.fullBase = Object.fromEntries(Object.entries(s.slots).map(([k, r]) => [k, r.fullChecks || 0])); }, meta(info, chap));
+  const fullBase = sprintOn ? (readState(chap.dir, meta(info, chap)).sprint.fullBase || {}) : {};
+  const fullCap = sprintOn ? (pol.sprint && pol.sprint.maxFullChecks) || 3 : pol.limits.maxFullChecksPerSlot || Infinity;
   const todo = [], cached = [], refused = [];
   for (const f of facts) {
     if (slots && !slots.includes(f.id)) continue;
@@ -260,8 +267,8 @@ async function cmdChecks() {
     if (render) {
       const q = f.status.quickCache, qk = (() => { try { return cacheKey({ classDir: info.dir, slotDir: f.dir, pol, toolHash: hashOf(f.dir), render: false }).key; } catch { return null; } })();
       if (!a.force && !(q && q.key === qk && q.pass)) { todo.push({ f, why: "quick first", quickFirst: true }); continue; }
-      const n = (st.slots[f.id] && st.slots[f.id].fullChecks) || 0;
-      if (n >= (pol.limits.maxFullChecksPerSlot || Infinity) && !(a.over && String(a.over).length >= 8)) { refused.push(`${f.id} (${n} full checks this build ≥ maxFullChecksPerSlot ${pol.limits.maxFullChecksPerSlot}; batch the fixes, then --over "why")`); continue; }
+      const n = ((st.slots[f.id] && st.slots[f.id].fullChecks) || 0) - (fullBase[f.id] || 0);
+      if (n >= fullCap && !(a.over && String(a.over).length >= 8)) { refused.push(`${f.id} (${n} full checks ${sprintOn ? "this sprint" : "this build"} ≥ ${sprintOn ? "sprint.maxFullChecks" : "maxFullChecksPerSlot"} ${fullCap}; batch the fixes, then --over "why")`); continue; }
     }
     todo.push({ f, why: rec ? keyDiff(rec, k).join("+") || "failed before" : "never checked" });
   }
@@ -451,9 +458,64 @@ async function cmdNewBuild() {
   out(`build ${s.build} of ${chap.id}: runtime gates, agent limits and retry counts restart; reviews and snapshots are kept (a re-review still sees only what changed)`);
 }
 
+/* ---------------- sprint: one tool, a wall-clock budget (orchestration.json "sprint"; runbook "Sprint mode") ---------------- */
+function cmdSprint() {
+  const { info, pol, chap } = ctx();
+  const sp = pol.sprint || {}, sub = a._[0] || "status", hhmm = (t) => new Date(t).toTimeString().slice(0, 5);
+  if (!Array.isArray(sp.stages) || !sp.stages.length) throw new Error("orchestration.json has no sprint.stages");
+  if (sub === "start") {
+    const minutes = Number(a.minutes) > 0 ? Number(a.minutes) : sp.budgetMinutes || 40;
+    let startedAt = Date.now();
+    if (a.at && a.at !== true) {  /* the clock began earlier (the owner asked at 13:06): --at HH:MM, today, not in the future */
+      const m = /^(\d{1,2}):(\d{2})$/.exec(String(a.at));
+      if (!m) throw new Error("--at HH:MM (24-hour, today)");
+      const d = new Date(); d.setHours(+m[1], +m[2], 0, 0);
+      if (d.getTime() > Date.now()) throw new Error("--at is in the future");
+      startedAt = d.getTime();
+    }
+    /* --design: the owner keeps the Gemini pass; its stage is inserted after sp.designStage.after and every later deadline moves by its minutes */
+    let plan = sp.stages.map((s) => ({ ...s })), base = sp.budgetMinutes || 40;
+    if (a.design && sp.designStage) {
+      const d = sp.designStage, at = plan.findIndex((s) => s.key === d.after);
+      if (at < 0) throw new Error(`sprint.designStage.after "${d.after}" is not a stage`);
+      for (let i = at + 1; i < plan.length; i++) plan[i].dueMin += d.minutes;
+      plan.splice(at + 1, 0, { key: d.key, label: d.label, dueMin: plan[at].dueMin + d.minutes });
+      base += d.minutes;
+    }
+    const scale = minutes === (sp.budgetMinutes || 40) ? 1 : minutes / base;  /* --minutes N scales the plan; no --minutes keeps the planned minutes */
+    const total = a.design && !(Number(a.minutes) > 0) ? base : minutes;
+    const stages = plan.map((s) => ({ key: s.key, label: s.label, dueMin: Math.max(1, Math.round(s.dueMin * scale)), doneAt: null }));
+    const cx = a.complexity === "complex" ? "complex" : "simple";  /* sets the Opus cap for the sprint: sprint.opusAgents (3 simple, 4 complex); the gate's normal one-tool figure is 3 */
+    if (a.complexity && a.complexity !== true && !["simple", "complex"].includes(a.complexity)) throw new Error("--complexity simple|complex");
+    const opusCap = (sp.opusAgents || {})[cx];
+    updateState(chap.dir, (s) => { s.sprint = { startedAt: new Date(startedAt).toISOString(), budgetMin: total, design: !!a.design, complexity: cx, limits: opusCap ? { maxOpusAgents: opusCap } : {}, slot: a.slot && a.slot !== true ? String(a.slot) : null, stages, fullBase: Object.fromEntries(Object.entries(s.slots).map(([k, r]) => [k, r.fullChecks || 0])), endedAt: null }; }, meta(info, chap));
+  } else if (sub === "lap") {
+    if (!a.stage || a.stage === true) throw new Error(`--stage <${sp.stages.map((s) => s.key).join("|")}>`);
+    updateState(chap.dir, (s) => {
+      const g = s.sprint && s.sprint.stages.find((x) => x.key === a.stage);
+      if (!g) throw new Error(`no sprint stage "${a.stage}" (sprint start first)`);
+      g.doneAt = new Date().toISOString();
+    }, meta(info, chap));
+  } else if (sub === "stop") {
+    updateState(chap.dir, (s) => { if (s.sprint) s.sprint.endedAt = new Date().toISOString(); }, meta(info, chap));
+  } else if (sub !== "status") throw new Error("node orch.mjs sprint start [--minutes 40] [--at HH:MM] [--slot ID] | lap --stage K | status | stop");
+  const z = readState(chap.dir, meta(info, chap)).sprint;
+  if (!z) { out("no sprint running (node orch.mjs sprint start --class N --ch n --slot ID [--at HH:MM])"); return; }
+  const t0 = Date.parse(z.startedAt), end = z.endedAt ? Date.parse(z.endedAt) : Date.now();
+  const used = Math.round((end - t0) / 60000), left = z.budgetMin - used;
+  out(`sprint ${chap.id}${z.slot ? " " + z.slot : ""} · ${z.budgetMin} min${z.design ? " (with the design pass)" : ""} · ${z.complexity || "simple"}: up to ${(z.limits || {}).maxOpusAgents || "the normal"} Opus agents · started ${hhmm(t0)} · due ${hhmm(t0 + z.budgetMin * 60000)} · used ${used} min · ${z.endedAt ? "STOPPED" : left >= 0 ? left + " min left" : "OVER by " + -left + " min"}`);
+  const next = z.stages.find((g) => !g.doneAt);
+  for (const g of z.stages) {
+    const late = !g.doneAt && used > g.dueMin;
+    out(`  [${g.doneAt ? "x" : " "}] ${g.key.padEnd(7)} by ${hhmm(t0 + g.dueMin * 60000)} (+${String(g.dueMin).padStart(2)})  ${g.label}${g.doneAt ? "  (done " + hhmm(Date.parse(g.doneAt)) + ")" : late ? "  <- LATE" : g === next ? "  <- NOW" : ""}`);
+  }
+  if (!z.endedAt && next && used > next.dueMin) out(`LATE on "${next.key}": a review is never dropped to meet the clock; instead\n  ${(sp.ifLate || []).map((x, i) => `${i + 1}. ${x}`).join("\n  ")}\n  never cut: ${(sp.neverCut || []).join(" · ")}`);
+  if (!z.endedAt && left < 0) out("OVER the budget: keep going on the open reviews, run `sprint stop` when done, and report the TRUE finish time and what ran late; do not hide it.");
+}
+
 const COMMANDS = { plan: cmdPlan, readlists: cmdReadlists, gate: cmdGate, done: cmdDone, report: cmdReport, checkpoint: cmdCheckpoint, diff: cmdDiff, checks: cmdChecks,
   "review-plan": cmdReviewPlan, "review-done": cmdReviewDone, digest: cmdDigest, chunks: cmdChunks, images: cmdImages, audit: cmdAudit,
-  resume: () => cmdResume(false), handoff: () => cmdResume(true), session: cmdSession, "new-build": cmdNewBuild };
+  resume: () => cmdResume(false), handoff: () => cmdResume(true), session: cmdSession, "new-build": cmdNewBuild, sprint: cmdSprint };
 
 if (!cmd || !COMMANDS[cmd] || a.help) {
   const head = fs.readFileSync(new URL(import.meta.url), "utf8").split("*/")[0];

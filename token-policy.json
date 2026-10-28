@@ -2,6 +2,7 @@
   "version": 1,
   "defaults": {"mode": "adaptive", "maxConcurrentBuilders": 3, "maxConcurrentReviewers": 2, "maxOpusAgents": 2, "contextTargetTokens": 100000, "contextHardLimitTokens": 150000, "maxReviewRounds": 1, "maxRuntimeFreezesPerChapter": 2, "reportMaxLines": 40},
   "models": {"builder": "opus", "mathsReviewer": "sonnet", "languageReviewer": "sonnet", "visualReviewer": "sonnet", "playTester": "sonnet", "imageAgent": "sonnet", "uploadAuditor": "haiku", "statusAndChecks": "haiku", "escalation": "opus"},
+  "sprint": {"note": "While `node orch.mjs sprint` runs for ONE tool (runbook 'Sprint mode', the owner 2026-10-28): up to 6 agents at once, 12 review agents, and Opus agents 3 (simple tool) or 4 (complex tool) instead of the default 2 below. No review is dropped; the extra agents run the looks in parallel. Everything else in `defaults` still applies, and it ends with `sprint stop`.", "maxConcurrentAgents": 6, "maxConcurrentReviewers": 6, "maxOpusAgents": {"simple": 3, "complex": 4}},
   "review": {"mathsEveryTool": true, "visualOnlyForNewPatterns": true, "playOnlyForNewOrRiskyInteractions": true, "languageBatchPerChapter": true, "rerunOnlyChangedTools": true},
   "tiers": {"tier0": "metadata", "tier1": "check --no-render", "tier2": "full check only for changed tools", "tier3": "real-input play test for new or risky interactions", "tier4": "review pack only for visual changes"}
 }

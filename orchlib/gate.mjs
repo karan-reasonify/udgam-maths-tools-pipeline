@@ -52,7 +52,9 @@ export function builderStartTokens({ classDir, chapterDir, slots, rep }) {
 
 /* decide. -> { verdict: "GO"|"STOP"|"CHECKPOINT", lines: [...], agent?: {...} } (pure apart from the session reading) */
 export async function decide({ root, pol, st, info, chapter, tools, role, slots = [], tier = "base", mode = null, reason = null, over = null, plan = null, now = Date.now(), estimate = true }) {
-  const L = pol.limits || {}, lines = [], refuse = [];
+  /* a running sprint (orch.mjs sprint start) lifts the agent caps for ONE tool built in a fixed time: more agents at once, 3-4 Opus by complexity */
+  const sprint = st.sprint && !st.sprint.endedAt ? st.sprint : null;
+  const L = sprint ? { ...(pol.limits || {}), ...((pol.sprint && pol.sprint.limits) || {}), ...(sprint.limits || {}) } : pol.limits || {}, lines = [], refuse = [];
   if (!ROLES.includes(role)) return { verdict: "STOP", lines: [`unknown role ${role}; one of ${ROLES.join(", ")}`] };
   if (tier === "escalated" && !isTwin(pol, role) && role !== "planner") return { verdict: "STOP", lines: [`${role} has no escalated twin (twins: ${(pol.escalation.twins || []).join(", ")})`] };
   const model = role === "planner" ? modelOf(pol, "planner") : modelOf(pol, role, tier);

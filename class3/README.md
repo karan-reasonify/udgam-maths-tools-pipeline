@@ -117,7 +117,6 @@ tree ships them empty and `classctl` merges a class's own rows in.
   work/<chapter_id>/<id>/   brief.md · slot.json · tool.tsx · status.json · <id>.preview.html
   output-preview/<chapter_id>/<id>/    <slot_id>.tsx + <slot_id>.json (made by port; slot id = the plan's mount id)
 ```
-
 <!-- classctl:notes -->
 This folder was made on 2026-10-23 by `node classctl.mjs new --class 3 --from 5` from the code of `class5/` (docs, lib, runtime head, viewer).
 It has no finished tool and no frozen runtime: the first `node cli.mjs runtime freeze` makes r1 from the head. Chapter ids read `indiannica_eng_maths3_ch<n>`;

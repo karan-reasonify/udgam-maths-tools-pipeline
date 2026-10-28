@@ -2950,7 +2950,7 @@ function ringBox(key: string, workW?: number, panelOpen?: boolean): any {
            slide in from the right and the area shrinks to 1086 (box.w follows the slide). Work lays itself out from
            props.box ({ w, h, open }), not from api.W. A tap on Answer, or any digit typed, opens the panel; a right
            answer, the next question, a phase change and a miss's traceback (while the pad is locked) close it, and
-           after the traceback it returns with the answer still in the box. A question answered on the working area
+           after the traceback it returns with the box empty (MISS CLEARS THE SLOT). A question answered on the working area
            (pad: "enter") has no panel: the key in the bar reads Enter and commits it. The spoken line is drawn as the
            hint pill (same box). Skin (name from the slot's images.tsx) draws a generated picture as the object's look.
            pointKey: the tool types decimals; the pad has a point key on every question (off on a
@@ -3086,11 +3086,8 @@ function ToolFrame({ props, tool }: any) {
   const [locked, setLocked] = useState(false);
   /* r24: `locked` mirrored in a ref, written the moment a tool calls api.lock, so an effect of the same commit sees it */
   const lockedRef = useRef(false);
-  /* a wrong typed answer clears itself once the correction has played (owner, 2026-10-27, class 4 ch 11 feedback): the child retypes without Backspace */
-  const lockNow = (b: boolean) => {
-    lockedRef.current = b; setLocked(b);
-    if (!b) setTimeout(() => { if (staleRef.current && !lockedRef.current) setTyped(""); }, 400);
-  };
+  /* a wrong answer no longer waits for the unlock to clear: MISS CLEARS THE SLOT (submit, 2026-10-28) empties it at the miss itself */
+  const lockNow = (b: boolean) => { lockedRef.current = b; setLocked(b); };
   /* CLASSROOM mode (props.classroom): read on every render, so the host can switch it on or off mid-lesson */
   const classroom = (P.classroom ?? (P.additionalProps && P.additionalProps.classroom)) === true;
   const holdRef = useRef(false);
@@ -3207,8 +3204,8 @@ function ToolFrame({ props, tool }: any) {
   const [typed, setTypedState] = useState("");
   const typedRef = useRef("");
   /* typed is mirrored in a ref, so an agent's answer() then check() in the same tick agree.
-     after a miss the child's answer stays in the slot but is stale: the next digit starts a new
-     answer (never 9 then 6 read as 96); back or any other write takes the old answer over again */
+     after a miss the slot is emptied and stays stale until the next write: Enter on it does nothing (r60),
+     the next digit starts a new answer; any write clears the stale mark */
   const staleRef = useRef(false);
   /* a two-part answer: the box with the caret, and which boxes still hold a missed answer (stale) */
   const [part, setPartState] = useState(0);
@@ -3233,7 +3230,7 @@ function ToolFrame({ props, tool }: any) {
   const capture = (fn: any) => { captureRef.current = typeof fn === "function" ? fn : null; setCaptured(!!captureRef.current); };
   /* BOARD layout: does the child (or a digit typed, or an agent's answer) want the answer panel open? What shows is
      derived below: only while a question is open and the working area is not busy, so after a miss the panel goes
-     away for the traceback and comes back by itself with the child's answer still in the box. */
+     away for the traceback and comes back by itself with the box empty (the miss emptied it). */
   const [openWanted, setOpenWanted] = useState(false);
   const wantRef = useRef(false);
   const setPanel = (b: boolean) => { wantRef.current = b; setOpenWanted(b); };
@@ -3719,7 +3716,7 @@ function ToolFrame({ props, tool }: any) {
       paceNext(advance, it.winMs ?? tool.winMs ?? 1600);
       return true;
     }
-    /* a miss: said three ways and none of them is the number; nothing marked, nothing reset */
+    /* a miss: said three ways and none of them is the number; nothing marked, only the slot is emptied (below) */
     sfx.wrong();
     mascotDo("nod");
     forgetActed(); setReadyKey("");
@@ -3727,10 +3724,17 @@ function ToolFrame({ props, tool }: any) {
     L.tries = t;
     setTries(t);
     setWrong({ value, tries: t });
+    /* MISS CLEARS THE SLOT (the owner, 2026-10-28; caps.missClears, check miss-clears-slot): at the miss the slot is emptied, so it
+       is empty through the traceback and when the pad unlocks: every typed digit, every box of a two-part / fraction / mixed /
+       decimal answer (the caret back in the first box) and a picked choice. `wrong.value` keeps what the child sent, for the
+       tool's traceback. A pad still lent to the working area (api.capture) gets its documented "clear" key (Escape's), once,
+       just after this call returns, and only if that same handler still holds the pad. setTyped("") first (it resets the
+       stale marks), then the marks again: Enter on the emptied slot still does nothing and the hint stays (r60). Supersedes the
+       2026-10-27 clear 400 ms after the unlock (or 1.5 s after the miss). */
+    const lent = captureRef.current;
+    if (lent) later(() => { if (captureRef.current === lent) { try { lent("clear"); } catch (e) {} } }, 0);
+    setTyped("");
     staleRef.current = true;
-    setTimeout(() => { if (staleRef.current && !lockedRef.current && live.current.tries === t) setTyped(""); }, 1500);
-    /* two boxes: both keep the child's numbers, the caret goes back to the first, and a digit typed
-       into a box starts that box afresh */
     if (it.parts) { staleParts.current = it.parts.map(() => true); setPart(0); }
     const ladder = L.phase.ladder || [];
     /* r34: the hint shows at once in every mode (a classroom included) UNDER the instruction, which stays pinned on the
@@ -3978,7 +3982,7 @@ function ToolFrame({ props, tool }: any) {
         press("enter"); e.preventDefault();
       }
       else if (e.key === "Backspace") { press("back"); e.preventDefault(); pointerBlur(); }
-      /* Escape clears the typed answer, but never while the pad is locked (a miss's traceback: the answer stays in the box) */
+      /* Escape clears the typed answer, but never while the pad is locked (a miss's traceback: the miss already emptied the box) */
       else if (e.key === "Escape") { if (captureRef.current) press("clear"); else if (live.current.stage === "ask" && !live.current.locked) setTyped(""); e.preventDefault(); }
       /* classroom: the next-line keys of a presentation clicker or a keyboard, from anywhere on the page */
       else if (holdRef.current && (e.key === "ArrowRight" || e.key === "PageDown")) { nudge(); e.preventDefault(); }
@@ -3988,7 +3992,7 @@ function ToolFrame({ props, tool }: any) {
   });
 
   /* BOARD layout: the answer panel shows only while a question is open and the working area is not busy (a traceback
-     locks the pad, so the panel leaves for it and returns with the answer still in the box). A pad lent to the working
+     locks the pad, so the panel leaves for it and returns with the box empty). A pad lent to the working
      area (api.capture) opens it by itself and shuts it when it is given back. `slide` eases 0..1 and the working area's
      width follows it frame by frame, so the picture rearranges into the room that is left. */
   /* `props.answerOpen: true` (the host's, or a teacher's, choice) keeps the panel open on every question, as the classic

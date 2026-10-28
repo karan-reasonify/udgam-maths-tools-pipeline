@@ -43,6 +43,40 @@ export const HEADLESS = [
 
 const CONTENTION = /Abnormal renderer termination|DevToolsActivePort|ProcessSingleton|profile.*in use/i;
 
+/* --window-size is the OUTER window on some Chrome builds (found 2026-10-28 on a Windows Chrome with --headless=new:
+   1600x900 gave a 1576x745 viewport, 844x390 gave 820x235, always 24 x 155 less), so every frame was drawn at the
+   wrong scale and the phone rows (phone-frame, phone-type) failed for EVERY tool. The offset is measured once per
+   Chrome binary (a blank page reports its own innerWidth x innerHeight), kept in a small file in the temp folder, and
+   added to the flag of the two --dump-dom runs (dumpDom, dumpDomAsync), whose scripts read innerWidth/innerHeight; a Chrome
+   whose window is the viewport measures 0 and nothing changes. NOT added to --screenshot: it lays the page out at the whole
+   window and writes that size (checked 2026-10-28: 1600x900 -> a 1600x900 PNG), so an offset there made 1624x1055 frames.
+   C4_WINDOW_OFFSET=DWxDH (for example 0x0) overrides the measurement. cdpSession sets its viewport through the DevTools
+   protocol and does not need it. */
+let winOffset = null;
+export function windowOffset() {
+  if (winOffset) return winOffset;
+  const forced = /^(\d+)x(\d+)$/.exec(process.env.C4_WINDOW_OFFSET || "");
+  if (forced) return (winOffset = { dw: +forced[1], dh: +forced[2] });
+  const chrome = chromePath();
+  let key = "none";
+  try { const st = fs.statSync(chrome); key = `${st.size}-${Math.round(st.mtimeMs)}`.replace(/\W/g, ""); } catch {}
+  const cache = path.join(os.tmpdir(), `c4winoffset-${key}.json`);
+  try { const c = JSON.parse(fs.readFileSync(cache, "utf8")); if (Number.isInteger(c.dw) && Number.isInteger(c.dh)) return (winOffset = c); } catch {}
+  let off = { dw: 0, dh: 0 };
+  try {
+    const W = 1000, H = 700;
+    const out = runChrome([...HEADLESS, `--window-size=${W},${H}`, "--virtual-time-budget=2000", "--dump-dom",
+      "data:text/html,<body><script>document.body.textContent='VP '+innerWidth+'x'+innerHeight</script>"], { label: "window-probe", timeout: 60000 });
+    const m = /VP (\d+)x(\d+)/.exec(out);
+    if (m) {
+      const dw = W - +m[1], dh = H - +m[2];
+      if (dw >= 0 && dh >= 0 && dw < 400 && dh < 400) { off = { dw, dh }; try { fs.writeFileSync(cache, JSON.stringify(off)); } catch {} }  /* only a real measurement is kept */
+    }
+  } catch {}
+  return (winOffset = off);
+}
+const windowArg = (width, height) => { const { dw, dh } = windowOffset(); return `--window-size=${width + dw},${height + dh}`; };
+
 /* A SIGKILLed Chrome (below, and cdpSession's own timeout) gets no chance to clean its own temp
    scratch, and a killed node process skips the try/finally that removes our --user-data-dir too.
    Run across several parallel sessions for three days this filled a 276 GB drive with leftover
@@ -128,7 +162,7 @@ export function runChrome(args, { attempts = 3, label = "chrome", timeout = 1800
 export function screenshot(url, png, { width = 1600, height = 900, budget = 8000, label = "shot" } = {}) {
   const before = fs.existsSync(png) ? fs.statSync(png).mtimeMs : null;
   runChrome([...HEADLESS, `--window-size=${width},${height}`, `--virtual-time-budget=${budget}`,
-    `--screenshot=${png}`, url], { label });
+    `--screenshot=${png}`, url], { label });  /* raw size: --screenshot lays the page out at, and writes, the full window (1600x900 -> a 1600x900 PNG), so it needs no offset */
   const st = fs.existsSync(png) ? fs.statSync(png) : null;
   if (!st || st.size === 0 || st.mtimeMs === before)
     throw new Error(`NOT CAPTURED: ${png} (${!st ? "no file" : st.size === 0 ? "0 bytes" : "unchanged"})`);
@@ -137,7 +171,7 @@ export function screenshot(url, png, { width = 1600, height = 900, budget = 8000
 
 /* The page's DOM after its scripts ran under virtual time (used to read results a page writes). */
 export function dumpDom(url, { width = 1600, height = 900, budget = 8000, label = "dom" } = {}) {
-  return runChrome([...HEADLESS, `--window-size=${width},${height}`, `--virtual-time-budget=${budget}`,
+  return runChrome([...HEADLESS, windowArg(width, height), `--virtual-time-budget=${budget}`,
     "--dump-dom", url], { label });
 }
 
@@ -157,7 +191,7 @@ export function runChromeAsync(args, { label = "chrome", timeout = 240000 } = {}
   });
 }
 export const dumpDomAsync = (url, { width = 1600, height = 900, budget = 8000, label = "dom" } = {}) =>
-  runChromeAsync([...HEADLESS, `--window-size=${width},${height}`, `--virtual-time-budget=${budget}`, "--dump-dom", url], { label });
+  runChromeAsync([...HEADLESS, windowArg(width, height), `--virtual-time-budget=${budget}`, "--dump-dom", url], { label });
 export async function screenshotAsync(url, png, { width = 1600, height = 900, budget = 8000, label = "shot" } = {}) {
   await runChromeAsync([...HEADLESS, `--window-size=${width},${height}`, `--virtual-time-budget=${budget}`, `--screenshot=${png}`, url], { label });
   const st = fs.existsSync(png) ? fs.statSync(png) : null;

@@ -57,6 +57,7 @@ export function capsOf(runtimeSrc) {
     actTempo: Number((r.match(/const ACT_TEMPO = ([\d.]+)/) || [])[1]) || 1,   /* class 5 head after r65 / class 4 r28: every act plays this many times calmer (action-anim scales its limit) */
     actBeat: Number((r.match(/\bACT_BEAT = (\d+)/) || [])[1]) || 0,            /* the pencil's hold after writing, ms */
     fontKit: /function useFontKit\b/.test(r),             /* 2026-10-16: the FONT KIT (runtime/fontkit.tsx, FONT_KIT): Poppins inside the tool */
+    missClears: /MISS CLEARS THE SLOT/.test(r),           /* 2026-10-28: a miss empties the slot at once (digits, every part box, a picked choice; a lent pad gets "clear"): check miss-clears-slot, LAYOUT §3 */
   };
 }
 

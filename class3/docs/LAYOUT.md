@@ -101,7 +101,8 @@ footer (mascot, bubble, phase bar) and summary page are the same. What changes i
   lands in the box), when the pad is lent to the working area (`api.capture`), and for an agent's `answer()`. **It
   shuts** on a right answer, the next question, a phase change, the summary, the end of a capture, and on a miss: the
   traceback locks the pad, so the panel leaves for it (the correction gets the whole area) and **returns by itself
-  with the child's answer still in the box** when the pad unlocks. `props.answerOpen: true` (the host's or a
+  with the box EMPTY** when the pad unlocks (the miss emptied it: MISS CLEARS THE SLOT, §3; on a runtime before
+  2026-10-28 the child's answer was still in the box). `props.answerOpen: true` (the host's or a
   teacher's choice; `?answer=open` in the preview) keeps it open on every question.
 - **What a board tool must do.** Draw from `box.w`, so that with the panel open nothing of the working area runs
   under it (`board-fit`) and with it shut the picture uses the room (a strip as long as the card allows, the cards
@@ -272,8 +273,16 @@ Each is 56 across with a 72-unit finger box; 72 apart, so the boxes tile and nev
   is answerable. A tap on a piece means "put it where it belongs".
 - **One invite.** `<Invite/>` pulses on the one thing to touch; everything else is still.
 - **Winning is the maths moving; a miss is the traceback.** On a miss the tool locks the pad, redraws the
-  mathematics in steps **ending on the whole right answer**, then unlocks. Nothing is marked (no red, no cross, no "wrong"), nothing resets,
-  and the child's answer stays in the slot.
+  mathematics in steps **ending on the whole right answer**, then unlocks. Nothing is marked (no red, no cross, no "wrong") and the score,
+  the tries, the hint ladder and the answer gate go on as before.
+- **A miss empties the slot (MISS CLEARS THE SLOT; the owner, 2026-10-28; every tool on a runtime with the marker, `caps.missClears`).** At the
+  moment the miss is registered (the pad locks for the traceback) the runtime clears what the child answered: every typed digit (and a typed
+  point), every box of a two-part, fraction, mixed-number or decimal answer, with the caret back in the first box, and a picked choice or
+  word-choice key. The slot is empty all through the traceback and when the pad unlocks, so the child types or picks a fresh answer; Enter on
+  the empty slot does nothing and the hint stays. A pad lent to the working area (`api.capture`) is sent its `"clear"` key; a card answer
+  (`cardAnswer`) shows the empty boxes, or the correction's own answer until the child types. A right answer behaves as before. The tool writes
+  nothing for it: `wrong.value` keeps what the child sent, for the traceback. `check` proves it: `miss-clears-slot` (an INFO row on an older
+  runtime, which keeps the child's answer in the slot).
 - **Colour.** A place or a counter keeps one colour across the book. Coloured numerals and words use a
   deeper ink, `shade(colour, 0.25)`, so they read at 4.5:1 on white and on the panel; the counters keep
   the true colour. Zero digits holding a place are grey `#767676`.
@@ -303,8 +312,9 @@ Each is 56 across with a 72-unit finger box; 72 apart, so the boxes tile and nev
   its top-left in quiet ink at 28 (at most 10 characters: "quotient", "remainder", "each bowl") and
   carrying its unit after the number at 28 ("mL"). The caret's box has the accent edge. Digits go to that
   box; Enter moves on, and on the last box answers once every box is filled; a tap on a box moves the
-  caret; rub out on an empty box steps back. After a miss both numbers stay, the caret goes to the first
-  box, and a digit starts only the box it is typed into afresh. The pad is unchanged.
+  caret; rub out on an empty box steps back. After a miss every box is empty (MISS CLEARS THE SLOT, §3) and the
+  caret is in the first box, so the child types the whole answer again; a runtime before 2026-10-28 kept both numbers
+  and a digit started only the box it was typed into afresh. The pad is unchanged.
 - **Fraction answer** (from ch 7): `parts: SLOT_FRACTION` draws the fraction stacked in the slot's one
   white box, the numerator cell (132 x 38) over an ink bar over the denominator cell, digits at 32;
   `parts: SLOT_MIXED` adds a whole-number cell (110 x 84, digits at 44) on the left. Each cell's finger box

@@ -1,0 +1,1114 @@
+{
+  "slotId": "M1.S1.T2.C5.2D1",
+  "mediaId": "M1.S1.T2.C5.2D1",
+  "toolId": "measure_it",
+  "title": "Measure It",
+  "component": "M1.S1.T2.C5.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch9_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_9/2dtool/M1.S1.T2.C5.2D1/M1.S1.T2.C5.2D1.tsx",
+  "description": "Measure real things with a handspan, a ruler, a tape and a metre rod, and choose the unit that fits each one.",
+  "conceptIds": [
+    "M1.S1.T2.C5",
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7",
+    "M1.S1.T2.C8"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "See that a handspan is not fair and a fixed unit is, choose centimetres, metres or kilometres for a real thing, read a length at a mark on a ruler or a tape that starts at 0, and tell a thing longer than a metre from one shorter, with half a metre and a quarter of a metre.",
+    "look": "A workbench with real things on it, a ruler, a tape and a metre rod beside them, three unit bins with benchmark chips, a My list board, and the number pad down the right of the canvas.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Measure It' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many things have been measured or sorted so far. It is never a score. The working area is 1086 by 528 at x 64, y 202. A workbench fills the working area, a pale wooden surface drawn flat with every real thing in its natural colours. On the first phase a desk 880 long and 90 deep lies at x 100, y 330. Under it a small handspan strip 80 long at x 100, y 450 and a bigger handspan strip 110 long at x 100, y 500 wait to be laid along the desk, and each takes a count tag in deep blue once laid. On the second phase a shelf of real things runs across the top at x 90, y 214, 980 by 110, holding a paper clip, a rope across a playground, a bus on a road, a classroom wall and a train, each on a card 180 by 100. Three bins stand below at y 430, 280 wide each, at x 100, x 420 and x 740, labelled cm, m and km. Above each bin a benchmark chip 250 by 50 says about: a finger is about 1 cm, a door handle is about 1 m from the floor, about a quarter of an hour of travel is about 1 km. The unit facts 1 m = 100 cm and 1 km = 1000 m sit in a vermilion ring at x 100, y 610, labelled Unit fact. On the third phase a ruler 900 long at x 100, y 330 starts at 0 with sixteen marks evenly spaced and labelled in cm, each 56 apart, and a measuring tape 980 long at x 90, y 470 starts at 0 with a mark every 10 cm. A paper clip, a pencil, a ribbon or a shelf is dragged along them from the zero mark and shown in natural colours. The reading the child types lands in a deep blue tag labelled Given, and a confirmed length lands in a green tag labelled Answer. On the fourth phase the metre rod stands at x 140, y 230, 400 tall, in ten equal tens marked in near-black, from a floor line to the height of a door handle on a classroom door 520 tall at x 260, y 110. Two bins stand at x 560 and x 820, y 360, 240 by 230, labelled longer than the rod and shorter than the rod. The Fold button at x 140, y 650, 150 by 60 folds the rod in half and then in half again, each fold drawing the rod shorter and labelling it half a metre and a quarter of a metre. A My list board 440 by 120 at x 640, y 100 holds four things in each bin. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys and a clear key, for typing a reading or a count into the answer slot, with the keys cm, m and km for the unit. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours, and the chapter's four roles are carried by what holds the object or the number, never by tinting the object. The measure the question gives, or the reading taken from the ruler, the balance or the jug, sits in a deep blue tag or on a deep blue plate, labelled Given. The measure the working reaches, a converted or total amount, sits in a green tag, labelled Answer. The times 100 or times 1000 step and the unit fact it comes from sit inside a vermilion ring, labelled Unit fact. The second amount of a sum or a difference, an amount carried and a part left over sit in an amber tag, labelled Second or Left. Every ruler mark, scale mark and plain edge is near-black, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of the four, and each reading survives with the colour taken away, because a measure is told by its written label before it is told by its colour.",
+    "finish": "The bench shows the last thing measured with its length and its unit in a deep blue tag, beside the metre rod and the ruler that measured it.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the two counts light up side by side, then both strips fade and the ruler shows one length for everyone",
+        "does": "lays each strip along the desk, reads the two different counts, then lays the ruler along the desk and reads the one length",
+        "goal": "a handspan changes from person to person, so it gives different counts, and a fixed unit gives one answer for everyone",
+        "says": "Measure the desk with one strip, then with the other. Are the counts the same?",
+        "check": "Away from the screen: two friends measure the same table with their own footspans. One counts more than the other. Who counted wrongly?",
+        "feels": "two honest counts for one desk, and then one ruler making them agree",
+        "hands": "Let two children measure the same desk with their own handspans and say their counts aloud, then measure it with a ruler and say the length together.",
+        "tries": "First rung: look at the two strips side by side. Second rung: count how many times each strip lies along the desk. Third rung: the same desk with only the ruler, before the strips return.",
+        "wrong": [
+          {
+            "why": "two counts are two numbers, so it feels as if there were two lengths",
+            "move": "says the desk has two different lengths",
+            "screen": "the desk stays one desk in the middle of the bench, each strip's count lights up beside the strip that made it, and the ruler laid along the desk gives one length that both strips agree on"
+          },
+          {
+            "why": "a smaller count seems to be a smaller number of mistakes",
+            "move": "says the bigger strip counted wrongly",
+            "screen": "the two strips are laid side by side on the bench and the bigger strip is seen to cover more of the desk with each lay, so fewer lays are needed"
+          }
+        ],
+        "screen": "a desk with a small handspan strip and a bigger handspan strip beside it, and a ruler waiting under the bench",
+        "soWhat": "a handspan changes from person to person, so we use fixed units that are the same for everyone",
+        "concept": "Hands and feet are not fair: we need fixed units"
+      },
+      {
+        "n": 2,
+        "win": "the thing settles in its bin and a mark on the bin counts how many things fit that unit",
+        "does": "drags each real thing into the bin whose unit fits it, reading the benchmark chips for help",
+        "goal": "centimetres fit short things, metres fit longer things and kilometres fit far places",
+        "says": "Which unit fits this thing? Drag it into a bin.",
+        "check": "Away from the screen: pick three things in the room and say which unit fits each, and one thing that no unit of the three could measure well.",
+        "feels": "each thing finding a bin where its number is easy to say",
+        "hands": "Hold a pencil, stand beside a door and point down a road, and say out loud which of centimetres, metres or kilometres each one needs.",
+        "tries": "First rung: read the three benchmark chips aloud. Second rung: stand the thing beside the metre rod and ask if it is shorter than a rod or longer. Third rung: the same task with only two bins, cm and m, before km returns.",
+        "wrong": [
+          {
+            "why": "a playground feels very big to a child, so the biggest unit seems to fit",
+            "move": "puts the rope across the playground in the km bin",
+            "screen": "the benchmark chip above the km bin lights, saying about a quarter of an hour of travel, and the rope is stood beside the road to show it is much shorter"
+          },
+          {
+            "why": "a metre is the unit a child hears first, so it feels like the unit for everything",
+            "move": "puts the paper clip in the m bin",
+            "screen": "the benchmark chip above the cm bin lights, saying a finger is about 1 cm, and the paper clip is laid beside a finger to show they are alike"
+          }
+        ],
+        "screen": "a row of real things on the bench with three bins below, cm, m and km, and a benchmark chip above each",
+        "soWhat": "centimetres fit short things, metres fit longer things and kilometres fit far places",
+        "concept": "Centimetres, metres and kilometres"
+      },
+      {
+        "n": 3,
+        "win": "the centimetre marks light one by one up to the end of the thing and the length lands in a deep blue tag",
+        "does": "lays a thing along the ruler or the tape from the zero mark, reads the number at its other end and types it",
+        "goal": "to measure, put one end of the thing at 0 and read the number at its other end, taken at a mark",
+        "says": "Put one end at zero. Read the number at the other end.",
+        "check": "Away from the screen: lay a pencil along a ruler with its end at the 3 mark instead of 0. Why is the last number not the length?",
+        "feels": "the marks lighting one by one from the edge of the ruler to the end of the thing",
+        "hands": "Lay a pencil along a paper ruler from the zero mark, read the number at the other end, and then start again with the pencil at the 2 mark to see what goes wrong.",
+        "tries": "First rung: slide the thing back so one end sits on the zero mark. Second rung: count the marks aloud from 0. Third rung: the same task with a thing that is only a few centimetres long, before the longer things return.",
+        "wrong": [
+          {
+            "why": "the first mark a child sees is the one, so counting seems to start there",
+            "move": "starts counting from the 1 mark",
+            "screen": "the zero mark is lit at the edge of the ruler and the thing is slid back to it, and the marks are counted aloud from 0"
+          },
+          {
+            "why": "the last number looks like the length, whatever the starting mark",
+            "move": "reads the number at the end of the thing when it does not start at 0",
+            "screen": "a second ruler tag shows the starting mark in deep blue and the ending mark in deep blue, and the marks between them are counted in amber, labelled Left"
+          }
+        ],
+        "screen": "a ruler that starts at 0 and a measuring tape lying across the bench, and a paper clip, a pencil, a ribbon and a shelf waiting",
+        "soWhat": "to measure, put one end of the thing at 0 and read the number at the other end",
+        "concept": "Measuring with a ruler and a tape"
+      },
+      {
+        "n": 4,
+        "win": "the rod folds in half and in half again, and each folded rod is labelled half a metre and a quarter of a metre",
+        "does": "drags real things into longer than the rod or shorter than the rod, then folds the rod in half and in half again",
+        "goal": "a thing is longer than one metre if it goes past the top of the metre rod, and half a metre and a quarter of a metre are the rod folded",
+        "says": "Is it longer or shorter than the metre rod? Put it in a bin.",
+        "check": "Away from the screen: fold a strip of paper in half and again. How many equal parts does the strip have, and what fraction of the whole is one part?",
+        "feels": "the metre rod bending in the middle and each fold making a shorter piece",
+        "hands": "Stand a one metre rod or a strip of card beside a door, fold it once and then again, and see which things in the room are longer or shorter than each piece.",
+        "tries": "First rung: stand the thing beside the rod from the floor line. Second rung: look at the top of the rod and ask if the thing goes past it. Third rung: the same task with only very short and very long things, before the close ones return.",
+        "wrong": [
+          {
+            "why": "a thin thing looks small, so it feels short",
+            "move": "puts a long thin thing in shorter than the rod because it is thin",
+            "screen": "the thing is stood beside the rod from the same floor line and its top is carried across to the rod, so the length is seen past the top of the rod"
+          },
+          {
+            "why": "the second fold is also a fold in half, so it feels like the same fold",
+            "move": "calls the rod folded twice half a metre",
+            "screen": "the first fold is labelled half a metre and the second fold is labelled a quarter of a metre, and the two folded rods are laid side by side"
+          }
+        ],
+        "screen": "the metre rod standing from the floor to a door handle beside a classroom door, two empty bins, and a Fold button",
+        "soWhat": "a thing is longer than a metre if it goes past the top of the rod, and a quarter of a metre is half of half",
+        "concept": "Longer or shorter than one metre"
+      }
+    ],
+    "delight": "On the first phase, when the ruler is laid along the desk, the two handspan strips slide off to the side, and both counts fade into one length on the ruler. On the fourth phase, when the Fold button is pressed, the metre rod bends in the middle and folds over itself with a small click, then folds again, and the folded pieces take their labels.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet typed. On the first phase a wooden desk lies across the bench with a small handspan strip and a bigger handspan strip beside it, both counts blank, and the ruler waiting under the bench. On the second phase a row of real things sits on the bench, a paper clip, a rope across a playground, a bus on a road, a classroom wall and a train, with the three bins cm, m and km empty below and a benchmark chip above each. On the third the ruler that starts at 0 and the tape lie across the bench with a paper clip, a pencil, a ribbon and a shelf waiting beside them. On the fourth the metre rod stands from the floor to a door handle beside a classroom door, with two empty bins and the Fold button lit. One thing moves, once: the first handspan strip, the first thing on the bench, the zero mark of the ruler or the top of the metre rod gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any real thing on the bench measured with a strip, the ruler, the tape or the metre rod, sorted into the unit bins, and the My list board filled as you like. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on why a handspan is not fair, choosing a unit, reading a ruler or a tape from 0, and longer or shorter than a metre, each on a real thing.",
+    "voiceLines": [
+      "A workbench with a desk, a ruler and a metre rod.",
+      "Measure the desk with one strip, then with the other. Are the counts the same?",
+      "Which unit fits this thing? Drag it into a bin.",
+      "Put one end at zero. Read the number at the other end.",
+      "Is it longer or shorter than the metre rod? Put it in a bin.",
+      "A new thing. Look at how long it is before you choose.",
+      "Free play. Measure, sort and fold the rod as you like.",
+      "Start again at zero and count the marks one by one.",
+      "You chose the unit and measured from zero every time."
+    ],
+    "observations": [
+      {
+        "why": "a handspan is a different size for different hands, but a centimetre is always the same.",
+        "soWhat": "a fixed unit gives the same answer for everyone.",
+        "observe": "The small strip and the bigger strip gave two different counts for one desk, and the ruler gave one length."
+      },
+      {
+        "why": "a unit that is much too small or much too big gives a number that is hard to say.",
+        "soWhat": "centimetres fit short things, metres fit longer things and kilometres fit far places.",
+        "observe": "The rope across the playground sat in the m bin and the paper clip in the cm bin."
+      },
+      {
+        "why": "the zero mark is where counting starts, so the last mark is the length.",
+        "soWhat": "to measure, put one end of the thing at 0 and read the number at the other end.",
+        "observe": "The ribbon began at the zero mark and its far end lit the number to type."
+      },
+      {
+        "why": "each fold cuts the length of the rod in two equal parts.",
+        "soWhat": "half a metre is half of the rod and a quarter of a metre is half of that.",
+        "observe": "The metre rod folded in half and again, and the second fold was shorter than the first."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a desk with a small handspan strip and a bigger handspan strip beside it, and a ruler waiting under the bench",
+        "win": "the two counts light up side by side, then both strips fade and the ruler shows one length for everyone",
+        "traceback": "The right card's size (finger width, a big step, a long walk) lights beside the thing, then the card is ringed and its unit pinned in a green chip.",
+        "ladder": [
+          "Is this road longer than your classroom?",
+          "Is a pencil longer or shorter than your hand?",
+          "Is a door taller than you are?",
+          "Compare it with your hand, your classroom and the road to school.",
+          "Picture walking along it: does it take a moment or a long time?"
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a row of real things on the bench with three bins below, cm, m and km, and a benchmark chip above each",
+        "win": "the thing settles in its bin and a mark on the bin counts how many things fit that unit",
+        "traceback": "The ruler slides so its 0 meets the left end, the marks light one by one to the right end and the length shows in a blue tag.",
+        "ladder": [
+          "Start your count at the 0 mark, not at 1.",
+          "Read the number just under the pencil's sharp tip.",
+          "Find the mark where this ribbon stops.",
+          "Touch each space between two marks and count them.",
+          "Look straight down from the far end to the ruler's number."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a ruler that starts at 0 and a measuring tape lying across the bench, and a paper clip, a pencil, a ribbon and a shelf waiting",
+        "win": "the centimetre marks light one by one up to the end of the thing and the length lands in a deep blue tag",
+        "traceback": "The rod is cut into the asked equal parts and a blue bracket from 0 gives their length in cm.",
+        "ladder": [
+          "Half a metre is 1 of 2 equal parts of the rod.",
+          "A quarter is half of a half, so it ends before the half.",
+          "Put the 2 coloured quarters together: what part of the rod is that?",
+          "The whole rod is 100 cm: split it into equal parts.",
+          "How many cm is one of the equal parts?"
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the metre rod standing from the floor to a door handle beside a classroom door, two empty bins, and a Fold button",
+        "win": "the rod folds in half and in half again, and each folded rod is labelled half a metre and a quarter of a metre",
+        "traceback": "The thing or the ruler slides so 0 meets one end, the marks light to the other end and a blue tag gives the length.",
+        "ladder": [
+          "Read the number under the comb's far end.",
+          "Look at where the key starts on the ruler.",
+          "Which number is under the crayon's left end?",
+          "Count each centimetre space from one end of it to the other.",
+          "Say each number as you pass it, starting from 0."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "ruler": {
+      "cmFrom": 0,
+      "cmTo": 16,
+      "unitsPerCm": 42
+    },
+    "rod": {
+      "cmFrom": 0,
+      "cmTo": 100,
+      "unitsPerCm": 7.2
+    },
+    "units": [
+      "cm",
+      "m",
+      "km"
+    ],
+    "free": [
+      "eraser",
+      "crayon",
+      "key",
+      "comb",
+      "pencil",
+      "ribbon"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": null,
+        "kind": "unit",
+        "obj": "road",
+        "pad": "enter",
+        "answer": "km",
+        "near": "m",
+        "winMs": 2400,
+        "ladder": [
+          "Could you walk from one town to the next in a few steps?",
+          "Is the road longer than a hundred doors put end to end?"
+        ],
+        "win": "Correct, a road between towns is measured in kilometres."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": null,
+        "kind": "unit",
+        "obj": "pencil",
+        "pad": "enter",
+        "answer": "cm",
+        "near": "m",
+        "winMs": 2400,
+        "ladder": [
+          "Can you hold a whole pencil in one hand?",
+          "Would you need even one big step to pass a pencil?"
+        ],
+        "win": "Correct, a pencil can be measured in centimetres."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": null,
+        "kind": "unit",
+        "obj": "door",
+        "pad": "enter",
+        "answer": "m",
+        "near": "km",
+        "winMs": 2400,
+        "ladder": [
+          "Is a door much taller than a pencil?",
+          "Is a door as long as the road between two towns?"
+        ],
+        "win": "Correct, a door can be measured in metres."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": null,
+        "kind": "measure",
+        "obj": "ribbon",
+        "cm": 9,
+        "parts": [
+          {
+            "label": "length",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          9
+        ],
+        "win": "Correct, the ribbon is 9 cm long."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": null,
+        "kind": "measure",
+        "obj": "pencil",
+        "cm": 12,
+        "parts": [
+          {
+            "label": "length",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          12
+        ],
+        "win": "Correct, the pencil is 12 cm long."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": null,
+        "kind": "measure",
+        "obj": "ribbon",
+        "cm": 14,
+        "parts": [
+          {
+            "label": "length",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          14
+        ],
+        "win": "Correct, this ribbon is 14 cm long."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": null,
+        "kind": "rod",
+        "div": 2,
+        "take": 1,
+        "near": 25,
+        "parts": [
+          {
+            "label": "length",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          50
+        ],
+        "win": "Correct, half a metre is 50 cm."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": null,
+        "kind": "rod",
+        "div": 4,
+        "take": 1,
+        "near": 50,
+        "parts": [
+          {
+            "label": "length",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          25
+        ],
+        "win": "Correct, a quarter of a metre is 25 cm."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": null,
+        "kind": "rod",
+        "div": 4,
+        "take": 2,
+        "near": 25,
+        "parts": [
+          {
+            "label": "length",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          50
+        ],
+        "win": "Correct, 2 quarters are 50 cm long."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": null,
+        "kind": "measure",
+        "obj": "comb",
+        "cm": 13,
+        "parts": [
+          {
+            "label": "length",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          13
+        ],
+        "win": "Correct, the comb is 13 cm long."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": null,
+        "kind": "measure",
+        "obj": "key",
+        "cm": 6,
+        "mode": "slide",
+        "start": 3,
+        "near": 9,
+        "parts": [
+          {
+            "label": "length",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          6
+        ],
+        "ladder": [
+          "A length is counted from the 0 mark, not from 3.",
+          "Slide the key so its round end sits on the 0 mark."
+        ],
+        "win": "Correct, the key is 6 cm long."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": null,
+        "kind": "measure",
+        "obj": "crayon",
+        "cm": 8,
+        "mode": "nudge",
+        "start": 1,
+        "near": 9,
+        "parts": [
+          {
+            "label": "length",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          8
+        ],
+        "ladder": [
+          "Measuring starts at 0, so this ruler is in the wrong place.",
+          "This ruler starts at 1 under the crayon, so move the ruler to 0."
+        ],
+        "win": "Correct, the crayon is 8 cm long."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The right card's size (finger width, a big step, a long walk) lights beside the thing, then the card is ringed and its unit pinned in a green chip.",
+      "Phase 2: The ruler slides so its 0 meets the left end, the marks light one by one to the right end and the length shows in a blue tag.",
+      "Phase 3: The rod is cut into the asked equal parts and a blue bracket from 0 gives their length in cm.",
+      "Phase 4: The thing or the ruler slides so 0 meets one end, the marks light to the other end and a blue tag gives the length."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Let us measure real things with the right unit.",
+    "onFreePlay": "Free play: drag the ruler to measure each thing from 0.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You chose the unit and measured from 0 every time.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": null,
+            "question": {
+              "en": "Drag the card with the best unit for the road from one town to the next."
+            },
+            "ask": {
+              "en": "Unit for a road?"
+            },
+            "answer": "km",
+            "planAnswer": null,
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": null,
+            "question": {
+              "en": "Now drag the card that fits a pencil."
+            },
+            "ask": {
+              "en": "Unit for a pencil?"
+            },
+            "answer": "cm",
+            "planAnswer": null,
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": null,
+            "question": {
+              "en": "Which card fits the height of a classroom door?"
+            },
+            "ask": {
+              "en": "Unit for a door?"
+            },
+            "answer": "m",
+            "planAnswer": null,
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "measure",
+            "planQuestion": null,
+            "question": {
+              "en": "Measure the ribbon with the ruler, then type its length."
+            },
+            "ask": {
+              "en": "Ribbon length?"
+            },
+            "answer": [
+              9
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "measure",
+            "planQuestion": null,
+            "question": {
+              "en": "Now measure the pencil the same way."
+            },
+            "ask": {
+              "en": "Pencil length?"
+            },
+            "answer": [
+              12
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "measure",
+            "planQuestion": null,
+            "question": {
+              "en": "Measure this longer ribbon from 0 as well."
+            },
+            "ask": {
+              "en": "Ribbon length?"
+            },
+            "answer": [
+              14
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "rod",
+            "planQuestion": null,
+            "question": {
+              "en": "Tap Halves, colour one half, then type how many cm half a metre is."
+            },
+            "ask": {
+              "en": "Half a metre?"
+            },
+            "answer": [
+              50
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "rod",
+            "planQuestion": null,
+            "question": {
+              "en": "Now tap Quarters and colour one quarter: how many cm is it?"
+            },
+            "ask": {
+              "en": "A quarter of a metre?"
+            },
+            "answer": [
+              25
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "rod",
+            "planQuestion": null,
+            "question": {
+              "en": "Colour 2 quarters of the rod: how many cm do they make together?"
+            },
+            "ask": {
+              "en": "2 quarters?"
+            },
+            "answer": [
+              50
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "measure",
+            "planQuestion": null,
+            "question": {
+              "en": "Measure the comb with the ruler and type its length."
+            },
+            "ask": {
+              "en": "Comb length?"
+            },
+            "answer": [
+              13
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "measure",
+            "planQuestion": null,
+            "question": {
+              "en": "Find the key's length."
+            },
+            "ask": {
+              "en": "Key length?"
+            },
+            "answer": [
+              6
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "measure",
+            "planQuestion": null,
+            "question": {
+              "en": "How long is the crayon?"
+            },
+            "ask": {
+              "en": "Crayon length?"
+            },
+            "answer": [
+              8
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S1.T2.C5:ME1",
+    "M1.S1.T2.C5:1",
+    "M1.S1.T2.C5:5",
+    "M1.S1.T2.C6:ME2",
+    "M1.S1.T2.C6:2",
+    "M1.S1.T2.C6:6",
+    "M1.S1.T2.C7:ME3",
+    "M1.S1.T2.C7:3",
+    "M1.S1.T2.C7:7",
+    "M1.S1.T2.C8:ME4",
+    "M1.S1.T2.C8:4",
+    "M1.S1.T2.C8:8"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "measure_it",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "measure_it",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Choosing cm, m or km",
+        "conceptId": "M1.S1.T2.C5",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C5.2D1:p1_1",
+          "M1.S1.T2.C5.2D1:p1_2",
+          "M1.S1.T2.C5.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Measuring with a ruler from 0",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C5.2D1:p2_1",
+          "M1.S1.T2.C5.2D1:p2_2",
+          "M1.S1.T2.C5.2D1:p2_3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "The metre rod: halves and quarters",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C5.2D1:p3_1",
+          "M1.S1.T2.C5.2D1:p3_2",
+          "M1.S1.T2.C5.2D1:p3_3"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Measuring new things",
+        "conceptId": "M1.S1.T2.C8",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C5.2D1:p4_1",
+          "M1.S1.T2.C5.2D1:p4_2",
+          "M1.S1.T2.C5.2D1:p4_3"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "thing",
+    "unit",
+    "card",
+    "aligned",
+    "parts",
+    "div",
+    "coloured",
+    "length"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), thing, unit, card, aligned, parts, div, coloured, length",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "measure_it"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C5.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A workbench with a desk, a ruler and a metre rod."
+    },
+    {
+      "en": "Measure the desk with one strip, then with the other. Are the counts the same?"
+    },
+    {
+      "en": "Which unit fits this thing? Drag it into a bin."
+    },
+    {
+      "en": "Put one end at zero. Read the number at the other end."
+    },
+    {
+      "en": "Is it longer or shorter than the metre rod? Put it in a bin."
+    },
+    {
+      "en": "A new thing. Look at how long it is before you choose."
+    },
+    {
+      "en": "Free play. Measure, sort and fold the rod as you like."
+    },
+    {
+      "en": "Start again at zero and count the marks one by one."
+    },
+    {
+      "en": "You chose the unit and measured from zero every time."
+    }
+  ],
+  "build": {
+    "source": "88d02596:789856",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-28T09:21:16.217Z",
+    "checks": {
+      "pass": 97,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-28T09:21:15.964Z"
+    },
+    "tsxBytes": 709552,
+    "tsxMd5": "756a317b5d226def49bcd4eebc8e5e3d"
+  }
+}

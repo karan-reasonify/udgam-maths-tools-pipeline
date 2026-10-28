@@ -25,6 +25,8 @@ export function shows(shown, piece) {
 }
 const first = (line, m) => bubblePieces(line, m)[0] || "";
 const cut = (s, n = 48) => JSON.stringify(norm(s).slice(0, n));
+/* MISS CLEARS THE SLOT: a slot holds nothing ("" or only the "|" between empty part boxes) */
+export const slotEmpty = (v) => /^\|*$/.test(String(v ?? ""));
 
 /* ── silent ───────────────────────────────────────────────────────────────────────────────────
    runs: [{ key, probe, api }] (every scripted run that carried ?probe=1). The probe counts speechSynthesis.speak calls
@@ -371,7 +373,11 @@ export function judgeHintPinned(rec, phase, item, m, tag = `phase ${phase.n}`) {
   /* ONE SENTENCE A SCREEN (m.oneSentence, keyOnly): the hint REPLACES the question on the bubble: only the hint is drawn */
   if (m.oneSentence) { if (hit.domInstr) bad.push(`${tag}: with the hint up the bubble still draws the question ${cut(hit.domInstr)} (one sentence a screen: the hint replaces it)`); }
   else if (!hit.domInstr || !isQ(hit.domInstr)) bad.push(`${tag}: with the hint up, the bubble's instruction reads ${cut(hit.domInstr)}, not the question's line`);
-  if (rec.nearMiss !== undefined && hit.typed !== undefined && String(hit.typed) !== String(rec.nearMiss)) bad.push(`${tag}: the child's answer ${cut(rec.nearMiss, 20)} was not in the slot while the hint showed (${cut(hit.typed, 20)})`);
+  /* MISS CLEARS THE SLOT (m.missClears, 2026-10-28): the slot is EMPTY while the hint shows; an older runtime keeps the child's answer */
+  if (rec.nearMiss !== undefined && hit.typed !== undefined) {
+    if (m.missClears) { if (!slotEmpty(hit.typed) && !(item && item.pad === "enter")) bad.push(`${tag}: the child's answer is still in the slot while the hint shows (${cut(hit.typed, 20)}): a miss empties the slot (miss-clears-slot)`); }
+    else if (String(hit.typed) !== String(rec.nearMiss)) bad.push(`${tag}: the child's answer ${cut(rec.nearMiss, 20)} was not in the slot while the hint showed (${cut(hit.typed, 20)})`);
+  }
   const a = rec.after4s;
   if (a) {
     if (norm(a.hint) !== want1) bad.push(`${tag}: 4 s after the miss the hint is ${cut(a.hint)}, want the same ${cut(want1)} (it stays until the child acts again)`);
@@ -613,7 +619,10 @@ export function judgeHintOnMiss(rec, phase, item, m) {
   else {
     if (hit.t > 700) bad.push(`${tag}: the hint showed after ${hit.t} ms (want within 700 ms)`);
     const nm = rec.nearMiss;
-    if (nm !== undefined && hit.typed !== undefined && String(hit.typed) !== String(nm)) bad.push(`${tag}: the child's answer ${cut(nm, 20)} was not in the slot while the hint showed (${cut(hit.typed, 20)})`);
+    if (nm !== undefined && hit.typed !== undefined) {
+      if (m.missClears) { if (!slotEmpty(hit.typed) && !(item && item.pad === "enter")) bad.push(`${tag}: the child's answer is still in the slot while the hint showed (${cut(hit.typed, 20)}): a miss empties the slot`); }
+      else if (String(hit.typed) !== String(nm)) bad.push(`${tag}: the child's answer ${cut(nm, 20)} was not in the slot while the hint showed (${cut(hit.typed, 20)})`);
+    }
   }
   return bad;
 }

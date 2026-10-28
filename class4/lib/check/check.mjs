@@ -29,12 +29,12 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { sources, hostScope } from "../build/preview.mjs";
 import { loadModel } from "./model.mjs";
-import { actLimit, realInput, startPageInput, stepClickInput, partyInput, realWrongInput, hintFramesInput, partyDotInput, summaryInput, nextKeyInput, judgeNextKey, cardAnswerInput, judgeCardAnswer, judgeSummaryThumbs, navDotsInput, judgeNavDots, actionAnimInput, judgeActionAnim, fontKitInput, judgeFontKit, oneLineInput } from "./input.mjs";
+import { actLimit, realInput, startPageInput, stepClickInput, partyInput, realWrongInput, hintFramesInput, partyDotInput, summaryInput, nextKeyInput, judgeNextKey, cardAnswerInput, judgeCardAnswer, missClearsInput, judgeMissClears, judgeSummaryThumbs, navDotsInput, judgeNavDots, actionAnimInput, judgeActionAnim, fontKitInput, judgeFontKit, oneLineInput } from "./input.mjs";
 import { padShapeProblems } from "./padshape.mjs";
 import { judgeSilent, judgeNoArrow, judgeSoundButton, stepsShape, judgeGuideSteps, judgeHintOnMiss, judgeHintPinned, judgeHintFit, judgeHintAlone, judgeOneLine, DEV_RULE,
   judgeClassroom, judgePaging, judgeOnePage, judgeHintKey, judgePhaseParty, judgeNoFreeBetween,
   judgeClassroomPieces, judgeRealWrong, judgeLadderMonotonic, judgeHintLines, judgeChoiceLine, judgePartyExtras, judgeSummarySimple, devRuleKey,
-  printedLines, trCoverage, trMessage, bubblePieces } from "./silent.mjs";
+  printedLines, trCoverage, trMessage, bubblePieces, slotEmpty } from "./silent.mjs";
 import { dumpDomAsync, screenshotAsync, pool } from "../core/chrome.mjs";
 import { decodePng, contrast, parseRgb } from "../core/png.mjs";
 import { idOf, writeStatus } from "../core/work.mjs";
@@ -239,6 +239,8 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   /* ONE SENTENCE A SCREEN: from here on every bubble row reads the bubble's text AS WRITTEN (m.speakable / m.speakableIn are the identity)
      and knows the switch (m.oneSentence). The `speakable` and `number-words` rows above judged the real functions. */
   if (oneSentence) m = { ...m, oneSentence: true, ...(asWritten ? { speakable: (s) => String(s ?? ""), speakableIn: (s) => String(s ?? "") } : {}) };
+  /* MISS CLEARS THE SLOT (2026-10-28, caps.missClears): the hint rows then read an EMPTY slot after a miss, not the child's answer */
+  if (caps.missClears) m = { ...m, missClears: true };
   /* NCERT V13 + V19 (silent runtime: kept for the printed bubble): no en or em dash, and each piece at most 20 words and 110 characters */
   const allSpoken = [...(m.OPENING || []), summaryRt ? null : m.FINISH_LINE, ...m.PHASES.flatMap((p) => [...(p.says || []), ...stepSays(p), ...(p.demoLines || []), ...(p.ladder || []), p.closing,
     ...p.items.flatMap((it) => [it.say, it.miss, ...(it.ladder || [])])])].filter(Boolean);
@@ -490,7 +492,7 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   const mascotKey = keyOnly && m.mascotBoxOf && FB ? { ...m.mascotBoxOf(true), bubbleX: FB.bubble.x } : null;
   /* a question typed on the keypad (not a choice, not answered on the working area): board-panel and pad-shape need one to judge */
   const typedAsk = m.PHASES.some((ph) => ph.items.some((it) => it && !it.choices && it.pad !== "enter"));
-  const RI = await realInput({ base, N, poolSize: Math.min(Number(process.env.C4_CHROME_POOL) || 4, 3), point: wantsPoint, board, think: thinkRt, blink: blinkRt, mascotBox: mascotKey, oneSentence, typedAsk }).catch((e) => ({ drag: fail(e), key: fail(e), parts: fail(e), point: fail(e), panel: fail(e) }));
+  const RI = await realInput({ base, N, poolSize: Math.min(Number(process.env.C4_CHROME_POOL) || 4, 3), point: wantsPoint, board, think: thinkRt, blink: blinkRt, mascotBox: mascotKey, oneSentence, typedAsk, missClears: !!caps.missClears }).catch((e) => ({ drag: fail(e), key: fail(e), parts: fail(e), point: fail(e), panel: fail(e) }));
   log(`  real mouse, finger and key input in ${((Date.now() - t1) / 1000).toFixed(0)} s`);
   /* a tool with a start page (runtime r28: StartArt and/or START_HOOK in its source) is asked to prove it */
   const hasStart = /\b(StartArt|START_HOOK)\b/.test(tool.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, "")) && caps.startPage;
@@ -514,6 +516,9 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   /* r49: a tool with `cardAnswer: true` is answered ON its cards (and Yes / No in the question bar); one real-input session proves it */
   const wantsCard = /\bcardAnswer\s*:\s*true/.test(toolPlain), cardRt = /const cardAnswerOn\b/.test(runtime);
   const CA = wantsCard && cardRt && board ? await cardAnswerInput({ base }).catch((e) => ({ error: String(e && e.message) })) : null;
+  /* 2026-10-28 (miss-clears-slot): a runtime with MISS CLEARS THE SLOT: a wrong answer of each kind by real input, the slot read at the miss,
+     during the traceback and after it; an older runtime opens no Chrome for it (an INFO row) */
+  const MC = caps.missClears ? await missClearsInput({ base, board }).catch((e) => ({ error: String(e && e.message) })) : null;
   /* r41: a real wrong act at every guide step (an inert click on the working area, a digit key); the bubble's lines by their
      ink, every phase, in English and each language TR has begun; a phase dot pressed while the party is on */
   const cdpPool = Math.min(Number(process.env.C4_CHROME_POOL) || 4, 3);
@@ -681,12 +686,20 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   ok("render", "modes", !mode.length, navDots ? "nav dots (r27): the dots are buttons \"Step k of N\", one current, in user AND AI mode" : "user mode: phase dots are buttons; AI mode: progress only", cap(mode));
 
   /* behaviour, per phase */
-  const bad = { wrong: [], finished: [], agent: [], api: [], probe: [], mute: [], mascot: [], hint: [], fitDrawn: [] };
+  const bad = { wrong: [], finished: [], agent: [], api: [], probe: [], mute: [], mascot: [], hint: [], fitDrawn: [], cleared: [] };
   const unshown = [], unjudged = [];
   for (let n = 1; n <= N; n++) {
     const P = m.PHASES[n - 1], w = D[`wrong${n}`], idle = D[`idle${n}`], ag = D[`agent${n}`];
     if (w && w.log && w.log[0]) {
       const L = w.log[0];
+      /* MISS CLEARS THE SLOT (caps.missClears): the scripted miss of every phase leaves the slot EMPTY from the miss on (every 30 ms sample of
+         the silent timeline, the pad locked or not) and after the unlock; miss-clears-slot reads it with the real-input session */
+      /* (a working-area answer, pad "enter", is the tool's own picture: a word the tool mirrors into the slot is not the child's typing) */
+      if (caps.missClears && (P.items[L.item ?? 0] || P.items[0] || {}).pad !== "enter") {
+        const kept = ((L.pin && L.pin.timeline) || []).find((s) => s.typed !== undefined && !slotEmpty(s.typed));
+        if (kept) bad.cleared.push(`phase ${n}: ${kept.t} ms after the scripted miss the slot holds ${JSON.stringify(kept.typed)}`);
+        if (L.typedAfter !== undefined && !slotEmpty(L.typedAfter)) bad.cleared.push(`phase ${n}: after the traceback the slot holds ${JSON.stringify(L.typedAfter)}`);
+      }
       /* a SILENT runtime: the hint is on the bubble at once (r30), under the pinned instruction and unchanged 4 s later
          (r34: hint-pinned). A voiced runtime speaks its rung instead: no such rows. */
       if (silentRt) {
@@ -695,7 +708,8 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
         else bad.hint.push(...judgeHintOnMiss(L.pin ? { nearMiss: L.nearMiss, timeline: L.pin.timeline } : L, P, itW, m));
         if (hintRt && L.pin) for (const [k, s] of (L.pin.timeline || []).entries()) if (undrawnHint(s, L.pin.timeline[k + 1])) { bad.fitDrawn.push(`phase ${n}: a hint in getState() was not drawn (${String(s.hint).slice(0, 40)})`); break; }
       }
-      if (!L.typedKept) bad.wrong.push(`${n}: the typed answer was cleared`);
+      /* an older runtime keeps the child's answer (r2's 2026-10-27 clear after the traceback is tolerated); MISS CLEARS THE SLOT is judged by miss-clears-slot */
+      if (!caps.missClears && !L.typedKept) bad.wrong.push(`${n}: the typed answer was cleared`);
       if (!L.sameItem) bad.wrong.push(`${n}: a miss moved to another question`);
       if (L.stage !== "ask") bad.wrong.push(`${n}: not answerable again after the traceback (${L.stage})`);
       const g = w.geometry;
@@ -767,7 +781,18 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   if (ag1 && ag1.api) { const miss = need.filter((k) => !(k in ag1.api)); if (miss.length) bad.api.push(`getState() lacks ${miss.join(", ")}`); }
   ok("render", "miss-shows-answer", !unshown.length, `after a miss the correction ends on the whole right answer${unjudged.length ? ` (phase ${unjudged.join(", ")}: not a number, judged at review)` : ""}`,
     `after the correction the right answer is not on the working area: ${unshown.join("; ")}`, "warn");
-  ok("render", "wrong-is-unmarked", !bad.wrong.length, "a miss is never marked (no red, no cross), keeps the child's answer and the question, and re-opens", cap(bad.wrong));
+  ok("render", "wrong-is-unmarked", !bad.wrong.length, caps.missClears ? "a miss is never marked (no red, no cross), keeps the question and re-opens (the slot is emptied: miss-clears-slot)" : "a miss is never marked (no red, no cross), keeps the child's answer and the question, and re-opens", cap(bad.wrong));
+  /* 2026-10-28 (miss-clears-slot, docs/CHECKS.md; the owner): a runtime with MISS CLEARS THE SLOT empties the slot at every miss (digits, every
+     part box with the caret in the first, a picked choice); an older runtime keeps the answer: one INFO row, never a fail, no Chrome opened */
+  if (caps.missClears) {
+    const MC_HINT = "builder: nothing to write for the slot (the runtime empties it at the miss); never write the slot during the correction (api.setTyped), show the correction on the working area; a pad lent with api.capture handles \"clear\" by emptying its cell (PATTERNS.md §5); `wrong.value` is what the child sent";
+    const mcBad = [...bad.cleared, ...judgeMissClears(MC)];
+    const lends = /\bapi\.capture\s*\(\s*(?!null\b|\))/.test(toolPlain), clearKey = /["'`]clear["'`]/.test(toolPlain);
+    const plays = MC && !MC.error ? (MC.plays || []).map((p) => p.tag) : [], notes = MC && !MC.error ? (MC.notes || []) : [];
+    if (mcBad.length) add("render", "miss-clears-slot", "fail", `${cap(mcBad)} | ${MC_HINT}`);
+    else if (lends && !clearKey) add("render", "miss-clears-slot", "warn", `the slot is emptied at every miss, but the tool lends the pad (api.capture) and its handler never handles "clear": a miss (or Escape) while the pad is lent cannot empty the cell it types into | ${MC_HINT}`);
+    else add("render", "miss-clears-slot", "pass", `a miss empties the slot at once, through the traceback and after it (the scripted miss of every phase${plays.length ? `; by real keys and clicks: ${plays.join("; ")}` : "; no question typed or chosen on the pad was reached for the real-input play"})${notes.length ? ` [not played: ${notes.slice(0, 4).join("; ")}]` : ""}; a card answer and a lent pad are judged on the state`);
+  } else add("render", "miss-clears-slot", "info", "not asked: the chapter's pinned runtime keeps the child's answer in the slot after a miss (no MISS CLEARS THE SLOT in its source; the head from 2026-10-28 has it, a chapter gets it by runtime freeze + pin on the owner's word)");
   if (hintRt) {
     /* the whole sequence on phase 1's first question, without and with a classroom: a second miss, then a right answer */
     const P1h = m.PHASES[0];

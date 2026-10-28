@@ -22,13 +22,15 @@ Variants, same flow:
 - `... chapter <n> lean`: **lean mode**, fewer tokens (step 5): the maths reviewer on every tool, the visual
   reviewer and play tester only where a tool brings something new. Without `lean` it is the full mode.
 - `make ONE tool for class <N> udgam chapter <n> [M1.S1.T2.C4]`: one slot only (add `lean` the same way).
+- `make ONE tool for class <N> udgam chapter <n> SLOT_ID sprint`: **sprint mode**, one tool ready in about 40 minutes with EVERY review kept
+  (the section "Sprint mode" below; the time comes from decisions made first, overlap and more agents, never from a dropped look).
 - `continue chapter <n> of class <N>`: pick up where the chapter stands (`node cli.mjs status --ch <n>`), under the **Resume rule**
   (step 0).
 - `review round for chapter <n> of class <N>: <answers>`: apply the user's review answers (step 9).
 - `upload chapter <n> of class <N>`: step 10, only when the user says it.
 - `remake chapter <n> of class <N>`: the REMAKE path below, only when the user says it.
 
-`/gen-tools <N> udgam <n> [SLOT_ID] [lean]` is a shortcut into this same flow.
+`/gen-tools <N> udgam <n> [SLOT_ID] [lean|sprint]` is a shortcut into this same flow.
 
 ## Non-negotiables
 
@@ -116,6 +118,51 @@ Variants, same flow:
     the target's own `BUILD_CARD.md` §7. Read `CLASSCTL.md` before a sync. A sync can carry code that does
     not fit a class's pinned chapters (a silent class's checks into a voiced class): read the dry run's
     "review before --apply" and "capability" notes and ask.
+
+## Sprint mode: ONE tool ready in about 40 minutes, every review kept (the owner, 2026-10-28)
+
+`... SLOT_ID sprint` (or "ready within 40 minutes"). One tool, not a chapter. The first tool of class 3 chapter 9 took 1-2 hours of review. The hour
+was not the reviewing, it was waiting and doing things twice: owner decisions that arrived after the builder started (real photos or generated
+pictures, which objects, how many, the start page, a new runtime rule), a checker row that failed on the machine and not in the tool (headless Chrome's
+outer window size, fixed in `lib/core/chrome.mjs` on 2026-10-28), a full check spent before the runtime pin, and every review waiting for the one
+before it. A sprint removes those. **It drops no look:** the maths review, the Gemini visual pass (the owner's choice, below), the language pass, the
+FULL visual review of every frame in English, Hindi and Gujarati, the play tester and the final full check on 0 FAIL all still run. The owner said
+the necessary checks and the visual pass are not compromised: the answer to "faster" is more agents, not fewer looks.
+
+1. **Step 2 carries every decision, once, before any builder starts** (batched, with a recommended option each; this is the list that cost ch 9 its
+   hour): the pictures (real photos or generated, which objects, how many skins), the start page, the feedback wording, what the owner's description
+   drops from the plan brief, the answer input and any runtime gap (an answer that empties after a miss), and two sprint choices: **the Gemini design
+   pass** (kept costs about 8 minutes; skipping it is the owner's word, never a silent default) and **complexity** (`complex` when the tool has an
+   interaction in `orchestration.json` `review.highRiskInteraction`, a drag, two boxes, a card answer, an act, a kind of picture no finished tool of
+   the class has, or hard maths; else `simple`). Write the answers into `NOTES.md` "Owner decisions" and into every agent prompt. After the builder has
+   launched, a new wish is a line under "after the sprint" in `NOTES.md`, unless the owner says to restart the clock.
+2. **Machine first.** `node cli.mjs doctor`. A row that fails the same way on a blank page is the machine's, not the tool's: the main session fixes the
+   machine at once and tells the builder not to chase it (it costs no full check).
+3. **The clock** (`orchestration.json` `sprint`): `node orch.mjs sprint start --class N --ch n --slot ID [--design] [--complexity simple|complex]
+   [--at HH:MM] [--minutes N]`, then `sprint status` at every stage boundary and `sprint lap --stage K` when a stage is done. `--at` is when the owner asked.
+   While a sprint runs `node orch.mjs gate` lifts the caps: 6 agents at once (normally 4), 12 review agents (normally 9 for one tool) and **Opus agents 3 for a
+   simple tool, 4 for a complex one** (token-policy's default of 2 is lifted; the gate's own one-tool figure is already 3, so the real gain is the 4th), with no
+   `--over` needed. The sprint also counts ITS OWN full checks (`sprint.maxFullChecks`, 3) from the sprint's start; the cap is only enforced by `orch checks --tier 2`, a direct `node cli.mjs check` is never refused. Stay at 6 at once: each builder check and play tester drives its own headless Chrome and more
+   than 6 gives false timeouts.
+4. **The order, with what overlaps** (minutes from the start; `--design` adds 8 after "maths" and moves the later ones):
+   | stage | by | what runs |
+   |---|---|---|
+   | build | 12 | builder AND image agent from minute 0 (brief only). At the builder's FIRST green quick check, in parallel: the maths reviewer (it reads the tool as it stands and points at strings and identifiers, not line numbers) and a **language draft agent** (hi/gu into a scratch `tr.draft.md` from `node orch.mjs digest --strings`) |
+   | maths | 15 | the findings go to the builder in ONE message, with the one runtime freeze + `runtime pin` if a gap is logged (before any full check); a changed English line changes its draft line |
+   | design | +8 | only if the owner kept it: `node cli.mjs design`, the builder reads `shots`. It never touches TR or printed sentences, so the draft is not redone |
+   | fold | 22 | the builder MERGES the draft (`tx` in `Work` and `Thumb`, fit sheets), then ONE full check on the final pin and the final English |
+   | review | 30 | `shots --pack` ONCE; **visual reviewers in parallel, one per language** (or per 40-frame chunk: `node orch.mjs chunks`) on every frame; **play testers in parallel, two** (phases 1-2 and 3-4; keyboard, classroom, Hindi and Gujarati probes split between them), each from the rows `check` already played |
+   | final | 40 | every must-fix AND should-fix in ONE builder message, quick check, `shots --pack --changed`, the reviewers re-look ONLY at the changed frames (in parallel), the final full check (it ports), `status`, report |
+5. **Where the Opus slots go** (they shorten the critical path): the builder; the maths reviewer, escalated; a second builder, escalated, for the fold and
+   the fix messages (never two writers on one `tool.tsx` at once: hand over); on a complex tool the play tester or a visual reviewer on the riskiest part.
+   Everything else is Sonnet. Full checks: 3 for the sprint, and the runtime freeze happens before the first of them. After the freeze, pin with an explicit
+   version (`runtime pin --ch N --version rM --gate prereview`): a pin with `--gate` and no `--version` counts as a SECOND freeze in `orchlib/hooks.mjs` and the
+   gate refuses it (found by the class 3 ch 9 sprint).
+6. **Late.** `sprint status` says so. A review is never dropped to meet the clock. Start the next stage on the part that is already final, add parallel
+   agents to the stage that is behind, and report the TRUE finish time. The report adds one line: `sprint: used X of N min, finished hh:mm; late: ..;
+   open: ..`. A fresh tool whose builder is green by minute 12 lands in about 40 minutes (about 48 with the design pass); a builder that needs 20
+   minutes lands later, and the clock shows it instead of hiding it.
+7. Not run in a sprint because they do not apply: the pilot (one tool), the upload auditor (nothing is published), a second FULL visual round (the re-look is `--changed`).
 
 ## Agents (`.claude/agents/`, named `<pfx>-<role>`)
 
