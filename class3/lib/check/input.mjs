@@ -452,7 +452,8 @@ function judgeBoard(v) {
   if (f.panel !== "open") b.push("a finger tap on Answer did not open the panel");
   if (t.panel !== "open" || !/5/.test(String(t.typed))) b.push(`a digit typed on the keyboard did not open the panel with the digit in the box (panel ${t.panel}, typed "${t.typed}")`);
   if (v.sawLock && d && d.panel !== "closed") b.push("a miss's traceback ran with the answer panel still open: it must shut so the correction has the whole area");
-  if (a.panel !== "open" || !String(a.typed) || a.stage !== "ask") b.push(`after the traceback the panel did not come back with the answer in the box (panel ${a.panel}, typed "${a.typed}", stage ${a.stage})`);
+  /* runtime 2026-10-27 (owner): a wrong typed answer clears itself once the correction has played, so the box may be empty; the panel must be open at stage ask */
+  if (a.panel !== "open" || a.stage !== "ask") b.push(`after the traceback the panel did not come back open at the question (panel ${a.panel}, typed "${a.typed}", stage ${a.stage})`);
   (v.logs || []).forEach((l) => b.push(`console while the panel moved: ${l.slice(0, 140)}`));
   return b;
 }

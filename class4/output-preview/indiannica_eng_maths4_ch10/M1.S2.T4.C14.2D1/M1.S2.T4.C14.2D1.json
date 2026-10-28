@@ -1,0 +1,1340 @@
+{
+  "slotId": "M1.S2.T4.C14.2D1",
+  "mediaId": "M1.S2.T4.C14.2D1",
+  "toolId": "tower_builder",
+  "title": "Tower Builder",
+  "component": "M1.S2.T4.C14.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch10_v8",
+  "planVersion": 8,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_10/2dtool/M1.S2.T4.C12.2D1/M1.S2.T4.C12.2D1.tsx",
+  "description": "Build a number tower up from its bottom row by adding or by multiplying, then check every box against one operation.",
+  "conceptIds": [
+    "M1.S2.T4.C15",
+    "M1.S2.T4.C16",
+    "M1.S2.T4.C17",
+    "M1.S2.T4.C18"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Build a number tower up from the bottom by adding or by multiplying, and check every box to decide whether a tower is correct.",
+    "look": "A tower of boxes, each resting on two below, with an operation switch at its foot and a check walk that climbs it box by box.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only. 'Tower Builder' sits in ink at the far left, with a small dot set clear of the name by measuring it. The phase title sits beside the dot on the same line, then the host's navigation, and again, sound and restart stand as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the boxes filled or checked against the boxes the tower holds, two numbers in ink. The first climbs by one as each box is filled or passed by a walk, and the second is fixed at the size of the tower. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The tower stands in the left of the working area, three to five boxes wide at the bottom and one box narrower in each row above. A box is 130 by 72 with 28 between neighbours. Each row sits 14 above the one below, shifted along by half a box and half a gap. A bottom row of five spans 762 at 100,566, and a tower of five rows reaches up to 222. Every box rests visibly on exactly two boxes, with a short near-black strut from each of them up to it. The sign rail draws the chosen sign in every gap between neighbours in every row, so a tower that keeps to one operation shows the same sign all the way up. The operation switch stands at the foot, 262 by 60 at 350,656, and must be set before any box takes a number. Other operation stands beside it, 200 by 60 at 632,656. Tapping an empty box lights the two boxes it rests on, and the box slot takes the number for it. The box keeps a number only if the chosen operation makes it from those two, and hands it back otherwise with both still lit. The ledger stands down the right of the working area, 270 by 416 at 876,222, one line to a box, and writes the working in words as each box is reached. The check walk climbs a filled tower box by box from the bottom row up. At each box it lights the two boxes underneath, then the box above, and writes the working in the ledger. A box that does not follow keeps its reddish purple light after the walk has moved past, and the walk carries on to the top rather than stopping. Missing box leaves any one box blank at any level, as an empty outlined box, to be found from the boxes around it. Down the right of the canvas the question sits above the answer slot at 1186,250 (356 by 92), which holds what the child has given. That rectangle is the same on every phase and is never animated in or out. Under it is the pad at 1170,368 (388 by 363). The pad is twelve number keys three across, with an add key and a times key above them that set the switch as well as the sign. On the third and fourth phases two verdict keys stand under them, every box follows and a box breaks it, so a verdict can be given by press. The footer runs 758 to 900. The voice caption sits at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling. The phase bar sits at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, taken from its pictures. Whatever the stage hands over is deep blue: a given term, a bead, the bottom row of a tower, a plain letter, a tile already laid. The first member of a repeating group is deep blue too, and the second member, or a second kind set beside the first, is amber. The step itself is vermilion in every tool without exception: a jump arc and its label, a quarter turn, an operation sign, a key's shift. Whatever the rule makes is green: a next term, a built box, a coded or decoded letter, a copy just laid, a tick. Whatever the child is asked to notice is reddish purple: a broken box, a closed-in gap, a doubled part, a leftover counter, a line put back. The dots of dotted paper are grey and nothing else is. Every bracket, outline, rule and blank is near-black chrome. Chrome never borrows a content colour, and no content colour is ever used for chrome. Every reading survives with the colour taken away, because a thing is told by its label or its place before it is told by its colour. A blank waiting for the child is an empty outlined box, never a faded copy of its answer. A box is never drawn resting on one box or on three, and never off centre over its pair. A box that does not sit squarely on its two is a box whose pair can be misread, and the whole of this tool is which two boxes make which box.",
+    "finish": "The card shows the last tower the child built, its sign drawn between every pair of neighbours, and the tower they checked with the box that broke the rule still lit.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "each row fills in turn and the top box lands last",
+        "does": "taps an empty box, adds the two boxes it rests on, and works up one row at a time",
+        "goal": "each box is made from the two boxes side by side beneath it",
+        "says": "Which two boxes hold this one up? Add them together.",
+        "check": "Away from the screen: build a tower of your own on three, five and two. What is at the top?",
+        "feels": "every box stands on its own two, and the tower is built one row at a time from the bottom",
+        "hands": "Stand four paper cups in a row with a sticky note on each, carrying a number. Build the next row of cups on top, each resting on two, and have the class say which two cups hold each new cup up. Write each new cup's number as the sum of those two. Then ask what the top cup would hold if every bottom number were simply added together, and compare that with the top the tower actually makes.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which two boxes hold this one up? Second rung, the phase's: what do those two make when they are added? Third rung: the tower is cut to a bottom row of two and one box on top, and the child fills that one box. The number keys stay open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the top box looks like the total of the tower, and adding every number in sight is what a total has always meant.",
+            "move": "adds the whole bottom row and writes that total in the top box, thirty for six, nine, four and eleven.",
+            "screen": "the top box is tapped and lights the two boxes it rests on, not the bottom row. The child's thirty stays written beside the tower. The rows are then built up one at a time with the working written in the ledger, and the top lands on fifty-six."
+          },
+          {
+            "why": "the rows are staggered, and the eye slides back to the pair it has just used.",
+            "move": "fills a box from the wrong pair, sliding one box along, so the box over nine and four gets six add nine again.",
+            "screen": "tapping the box lights the two it rests on, nine and four, and the child's fifteen is handed back with those two still lit. The struts from nine and four up to the box light as well, and the ledger writes nine add four."
+          }
+        ],
+        "screen": "an adding tower with its bottom row filled and every box above it empty",
+        "soWhat": "Each box in an adding tower is the sum of the two boxes side by side beneath it.",
+        "concept": "Two neighbours make the box above"
+      },
+      {
+        "n": 2,
+        "win": "the times sign shows between every pair and the top box fills",
+        "does": "multiplies each pair of neighbours and fills the tower up to the top",
+        "goal": "a multiplying tower has the same shape and multiplies in every box",
+        "says": "This tower multiplies. Which two boxes hold this one up?",
+        "check": "A multiplying tower has two, three and two along the bottom. What goes in the two boxes above, and at the top?",
+        "feels": "the same tower and the same pairs, and only the sign in the gaps has changed",
+        "hands": "Build a second cup tower beside the first, and turn a card at its foot that says times. Have the class multiply each pair of neighbours and write the product on the cup above. Put a one in the bottom row on purpose, and ask what a number times one makes before anyone writes it. Then set the two towers side by side and ask what is the same and what has changed.",
+        "tries": "First rung, from the item: which sign does this tower use? Second rung, the phase's: what do the two boxes below make when they are multiplied? Third rung: the tower is cut to two bottom boxes and one box above, and the child multiplies once. The number keys and the sign keys stay open.",
+        "wrong": [
+          {
+            "why": "the first tower of the lesson added, and the first row is where the old habit is still in the hand.",
+            "move": "adds the bottom pair out of habit, writing four above three and one, and multiplies only higher up.",
+            "screen": "the box slot hands the four back with the times sign drawn between three and one, and the sign rail draws the times sign again in every gap of every row. The ledger writes three times one. The child's four stays beside the box."
+          },
+          {
+            "why": "one is the smallest number in the row, and multiplying by it seems as though it should make things small.",
+            "move": "writes one above three and one, taking times one to leave only the one.",
+            "screen": "the ledger lays out three groups of one counter each, and they are counted aloud. The child's one stays beside the box, and the count stands next to it."
+          }
+        ],
+        "screen": "the same tower with the switch turned to multiplying and a new bottom row filled",
+        "soWhat": "A multiplying tower has the same shape as an adding one, and each box is the product of the two below it.",
+        "concept": "A tower that multiplies"
+      },
+      {
+        "n": 3,
+        "win": "the walk lights each box in turn and one box keeps its light, its working written beside it",
+        "does": "runs the check walk box by box and stops on the box that breaks the rule",
+        "goal": "a tower is tested by checking each box against the two below it, one at a time",
+        "says": "Check each box against the two below it. Does every box follow?",
+        "check": "A tower has two, six and three at the bottom, then eight and nine, then seventeen. Check each box aloud.",
+        "feels": "one box at a time, the two below it named every time, and the top box last of all",
+        "hands": "Swap cup towers between groups, planting one cup whose number breaks the rule before the swap. Each group checks every cup from the bottom row up, saying aloud the two cups below it and what they make. Ask how many cups they had to check before they could say the tower did not follow its rule. Then ask why checking only the top cup would not have been enough.",
+        "tries": "First rung, from the item: which two boxes hold up the box you are checking? Second rung, the phase's: does that box follow the same sign as the rest? Third rung: the tower is cut to its bottom row and one box, and the child checks that single box. The number keys and the verdict keys stay open.",
+        "wrong": [
+          {
+            "why": "the top box is the answer the tower was built to reach, so if it adds up the tower seems to be finished.",
+            "move": "checks only the top box, finds that eight add ten is eighteen, and calls the whole tower correct without testing each box.",
+            "screen": "the check walk climbs from the bottom row and tests each box in turn, writing its working in the ledger. The box holding ten keeps its reddish purple light, because two add five is seven. The top box's working is written too, and it adds, so both stand together."
+          },
+          {
+            "why": "the first tower met in class added, and adding is the operation a stack of boxes suggests.",
+            "move": "tests every tower by adding, so a tower that multiplies all the way up is called broken at its first box.",
+            "screen": "the walk with adding lights the first box, because two add three is five, not six. Other operation then runs the same walk with the times sign, and every box follows. Both walks stay written side by side in the ledger."
+          }
+        ],
+        "screen": "a tower that arrives already filled, with one box that does not follow",
+        "soWhat": "A tower is tested by checking each box against the two below it, and one box that breaks the rule is enough.",
+        "concept": "Checking a tower box by box"
+      },
+      {
+        "n": 4,
+        "win": "each walk runs the whole tower, and the boxes its sign cannot make stay lit",
+        "does": "walks the tower with adding, then with multiplying, and decides whether either works all the way up",
+        "goal": "a tower is correct only when one operation works for every box, from the bottom row to the top",
+        "says": "Try one sign for every box. Does it work all the way up?",
+        "check": "A tower has two, five and one at the bottom, seven and five above, and twelve at the top. Does one sign work for every box?",
+        "feels": "one sign, set once at the foot, and every box in the tower answering to it",
+        "hands": "Show the tower page's two towers side by side, one that only adds and one that only multiplies. Then build a cup tower that multiplies to make its middle row and adds to make its top, and ask whether it is one of those two kinds. Say the rule aloud and say where it comes from. The page's own towers keep one operation all the way up, and a tower is correct when one operation works for every box.",
+        "tries": "First rung, from the item: which sign makes the first box? Second rung, the phase's: does that same sign make every other box? Third rung: the tower is cut to two rows, and the child runs one walk with each sign. The verdict keys stay open.",
+        "wrong": [
+          {
+            "why": "every box can be made from its two by one sign or the other, and the page never says a tower keeps to one.",
+            "move": "accepts a tower whose middle row multiplies and whose top adds, because each box works with some operation.",
+            "screen": "both walks run the whole tower. With adding, five add one is six, not five, and that box stays lit. With multiplying, five times three is fifteen, not eight, and the top stays lit. Neither walk runs clean, and both stay in the ledger."
+          },
+          {
+            "why": "a box that works with both signs looks as though it belongs to both kinds at once.",
+            "move": "calls the tower page's multiplying tower mixed, because two and two make four by adding and by multiplying.",
+            "screen": "both walks run on that tower, and the box holding four stays unlit in both, because it follows either sign. The adding walk lights box after box, starting beside it, where two add one is three, not two. The multiplying walk runs clean all the way to sixty-four at the top."
+          }
+        ],
+        "screen": "a tower that multiplies in one row and adds in the next, with both walks waiting",
+        "soWhat": "A tower is correct only when one operation works for every box, from the bottom row to the top.",
+        "concept": "One operation all the way up"
+      }
+    ],
+    "delight": "The first phase, once the top box has landed. Any number in the bottom row can then be tapped and changed, and the tower rebuilds itself upward from it. Only the boxes resting on that number, directly or through the rows between, make themselves again, one row at a time; every box it cannot reach stays still. The top box lands last with its new number. It runs as often as a finger likes, nothing is marked, and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase an adding tower stands with its bottom row filled, every box above it empty and the switch already set to adding. On the second the same frame stands with the switch turned to times and a new bottom row filled. On the third a tower arrives already filled, with the check walk waiting at its foot and the ledger empty. On the fourth a filled tower stands with both walks waiting side by side at its foot. The running count at the top left holds the boxes filled or checked against the boxes the tower holds, and the answer slot and the pad stand empty down the right. One thing moves, once: the lowest empty box, or the switch, or the second row's first box, gives one slow pulse while the voice asks which two boxes hold it up. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any bottom row of up to five numbers, either operation, with the check walk and the other operation control open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on adding towers, multiplying towers, checking a tower box by box, and whether one operation works for every box from the bottom row to the top.",
+    "voiceLines": [
+      "A tower of empty boxes, and a switch at its foot. Choose the sign first.",
+      "Which two boxes hold this one up? Add them together.",
+      "This tower multiplies. Which two boxes hold this one up?",
+      "Check each box against the two below it. Does every box follow?",
+      "Try one sign for every box. Does it work all the way up?",
+      "Another tower. One sign, and every box made the same way.",
+      "Free play. Any bottom row, either sign, with both walks open.",
+      "Tap the box again, and look at the two boxes holding it up.",
+      "Every tower built from the bottom, and every box checked against one sign."
+    ],
+    "observations": [
+      {
+        "why": "A box is made from the two it rests on, and the rows are staggered so each box sits on its own pair.",
+        "soWhat": "A tower is built up one row at a time, each box from its own two.",
+        "observe": "Each box lit exactly two boxes when it was tapped, and never the box beside it."
+      },
+      {
+        "why": "Which two boxes make a box does not depend on the operation.",
+        "soWhat": "Adding towers and multiplying towers are built the same way, and only the operation changes.",
+        "observe": "The multiplying tower had the same shape and the same struts, and only the sign in every gap changed."
+      },
+      {
+        "why": "Every other box followed the rule, so the top could come out right with one box wrong beneath it.",
+        "soWhat": "A tower is checked box by box, because the top box alone cannot show a broken box below it.",
+        "observe": "The walk left one box lit after passing it, while the top box above it still added up."
+      },
+      {
+        "why": "One row followed adding and another followed multiplying, so no single sign made every box.",
+        "soWhat": "A tower is correct only when one operation works for every box, from the bottom row to the top.",
+        "observe": "On the tower that switched signs, each walk left a different box lit, and neither walk ran clean."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "an adding tower with its bottom row filled and every box above it empty",
+        "win": "each row fills in turn and the top box lands last",
+        "traceback": "The tower builds itself again row by row, each pair written in the ledger, ending on the top box.",
+        "ladder": [
+          "Each box stands on exactly two boxes below it.",
+          "Add two boxes at a time, not all three.",
+          "Check the sum of the pair that holds it up.",
+          "What do those two make when they are added?",
+          "Ones first, then tens."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the same tower with the switch turned to multiplying and a new bottom row filled",
+        "win": "the times sign shows between every pair and the top box fills",
+        "traceback": "Each pair is multiplied again in the ledger, row by row, ending on the top box.",
+        "ladder": [
+          "Look at the sign between the boxes.",
+          "A number times one stays just as it was.",
+          "The blank and the 3 beside it make the 12 above.",
+          "Multiply the two boxes below: what do they make?",
+          "Take the pair below, one box at a time."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a tower that arrives already filled, with one box that does not follow",
+        "win": "the walk lights each box in turn and one box keeps its light, its working written beside it",
+        "traceback": "The walk climbs the tower box by box with each sign, writing every pair, and a box its sign cannot make stays lit.",
+        "ladder": [
+          "Which two boxes hold up the box you are checking?",
+          "Add each pair and see whether the box matches.",
+          "Try the bottom pair with each sign in turn.",
+          "Does the same sign make this box too?",
+          "Look for one box that does not match its pair."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a tower that multiplies in one row and adds in the next, with both walks waiting",
+        "win": "each walk runs the whole tower, and the boxes its sign cannot make stay lit",
+        "traceback": "Both walks run the whole tower side by side, and the box each sign cannot make stays lit.",
+        "ladder": [
+          "Which sign makes the lowest box on the left?",
+          "Check the middle row first, then the top box.",
+          "Multiply the pair under the box you opened.",
+          "Does that same sign make every other box?",
+          "A tower that changes sign halfway is neither kind."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "box": {
+      "w": 118,
+      "h": 80,
+      "gx": 28,
+      "gy": 16
+    },
+    "box3": {
+      "w": 160,
+      "h": 110,
+      "gx": 34,
+      "gy": 22
+    },
+    "box3c": {
+      "w": 136,
+      "h": 108,
+      "gx": 26,
+      "gy": 20
+    },
+    "footY": 396,
+    "towers": {
+      "M1.S2.T4.C15:ML1": {
+        "kind": "build",
+        "op": "add",
+        "rows": [
+          [
+            6,
+            9,
+            4,
+            11
+          ],
+          [
+            15,
+            13,
+            15
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            56
+          ]
+        ]
+      },
+      "M1.S2.T4.C15:1": {
+        "kind": "build",
+        "op": "add",
+        "rows": [
+          [
+            8,
+            5,
+            7
+          ],
+          [
+            13,
+            12
+          ],
+          [
+            25
+          ]
+        ]
+      },
+      "M1.S2.T4.C15:2": {
+        "kind": "build",
+        "op": "add",
+        "rows": [
+          [
+            14,
+            16,
+            20,
+            5
+          ],
+          [
+            30,
+            36,
+            25
+          ],
+          [
+            66,
+            61
+          ],
+          [
+            127
+          ]
+        ]
+      },
+      "M1.S2.T4.C16:ML2": {
+        "kind": "build",
+        "op": "mul",
+        "rows": [
+          [
+            3,
+            1,
+            2,
+            2
+          ],
+          [
+            3,
+            2,
+            4
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            48
+          ]
+        ]
+      },
+      "M1.S2.T4.C16:3": {
+        "kind": "build",
+        "op": "mul",
+        "rows": [
+          [
+            2,
+            5,
+            1
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            50
+          ]
+        ]
+      },
+      "M1.S2.T4.C16:4": {
+        "kind": "build",
+        "op": "mul",
+        "rows": [
+          [
+            3,
+            4,
+            2
+          ],
+          [
+            12,
+            8
+          ],
+          [
+            96
+          ]
+        ],
+        "show": [
+          [
+            true,
+            false,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false
+          ]
+        ],
+        "target": [
+          0,
+          1
+        ]
+      },
+      "M1.S2.T4.C17:ML3": {
+        "kind": "check",
+        "rows": [
+          [
+            6,
+            2,
+            5
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            18
+          ]
+        ]
+      },
+      "M1.S2.T4.C17:5": {
+        "kind": "check",
+        "rows": [
+          [
+            3,
+            4,
+            6
+          ],
+          [
+            7,
+            10
+          ],
+          [
+            17
+          ]
+        ]
+      },
+      "M1.S2.T4.C17:6": {
+        "kind": "check",
+        "rows": [
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            6,
+            12
+          ],
+          [
+            72
+          ]
+        ]
+      },
+      "M1.S2.T4.C18:ML4": {
+        "kind": "check",
+        "rows": [
+          [
+            5,
+            1,
+            3
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            8
+          ]
+        ]
+      },
+      "M1.S2.T4.C18:7": {
+        "kind": "check",
+        "rows": [
+          [
+            2,
+            4,
+            3
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            42
+          ]
+        ]
+      },
+      "M1.S2.T4.C18:8": {
+        "kind": "build",
+        "op": "mul",
+        "rows": [
+          [
+            2,
+            3,
+            5
+          ],
+          [
+            6,
+            15
+          ],
+          [
+            90
+          ]
+        ]
+      }
+    },
+    "warm": {
+      "1": {
+        "kind": "build",
+        "op": "add",
+        "rows": [
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            9
+          ]
+        ]
+      },
+      "2": {
+        "kind": "build",
+        "op": "mul",
+        "rows": [
+          [
+            3,
+            2,
+            1
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            12
+          ]
+        ]
+      },
+      "3": {
+        "kind": "check",
+        "rows": [
+          [
+            4,
+            1,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            8
+          ]
+        ]
+      },
+      "4": {
+        "kind": "check",
+        "rows": [
+          [
+            3,
+            2,
+            2
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            10
+          ]
+        ]
+      }
+    },
+    "free": {
+      "base": [
+        2,
+        3,
+        4
+      ],
+      "op": "add",
+      "max": 9
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T4.C15:ML1",
+        "kind": "build",
+        "answer": 56,
+        "near": 30,
+        "winMs": 3400,
+        "win": "The top box is built from the pairs below it."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T4.C15:1",
+        "kind": "build",
+        "answer": 25,
+        "near": 20,
+        "winMs": 2800,
+        "win": "Again, each box is its two neighbours added."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T4.C15:2",
+        "kind": "build",
+        "answer": 127,
+        "near": 55,
+        "winMs": 3400,
+        "ladder": [
+          "Do the bottom pairs first, then the row above them.",
+          "Say the sum of the two boxes under the one you fill."
+        ],
+        "win": "Four boxes at the bottom still build one top."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T4.C16:ML2",
+        "kind": "build",
+        "answer": 48,
+        "near": 144,
+        "winMs": 3400,
+        "win": "Same shape, and each box multiplied its pair."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T4.C16:3",
+        "kind": "build",
+        "answer": 50,
+        "near": 10,
+        "winMs": 2800,
+        "win": "Each row was multiplied, and the top landed last."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T4.C16:4",
+        "kind": "build",
+        "answer": 4,
+        "near": 9,
+        "winMs": 3200,
+        "ladder": [
+          "Which number multiplied by 3 gives 12?",
+          "Count in threes up to 12 and see how many you say."
+        ],
+        "win": "That box fits, and the tower builds up from it."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T4.C17:ML3",
+        "kind": "check",
+        "answer": "one breaks",
+        "near": "all follow",
+        "winMs": 3600,
+        "win": "One box broke the rule, so the answer is no."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T4.C17:5",
+        "kind": "check",
+        "answer": "all follow",
+        "near": "one breaks",
+        "winMs": 3200,
+        "win": "Every box added, so the tower is correct."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T4.C17:6",
+        "kind": "check",
+        "answer": "multiplying",
+        "near": "adding",
+        "winMs": 3200,
+        "ladder": [
+          "Step up the tower, then tap Other sign and step up again.",
+          "Keep the sign that always matches, box after box."
+        ],
+        "win": "Every box was multiplied, so times is the sign."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T4.C18:ML4",
+        "kind": "check",
+        "answer": "two signs",
+        "near": "one sign",
+        "winMs": 3600,
+        "win": "Two signs were needed, so it is not correct."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T4.C18:7",
+        "kind": "check",
+        "answer": "two signs",
+        "near": "one sign",
+        "winMs": 3200,
+        "win": "The top multiplied while the rest added."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T4.C18:8",
+        "kind": "build",
+        "answer": 90,
+        "near": 30,
+        "winMs": 3000,
+        "ladder": [
+          "Work along the bottom pairs first, then the row above.",
+          "Say the product of the two boxes under the one you fill."
+        ],
+        "win": "Every box above the bottom row was multiplied."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The tower builds itself again row by row, each pair written in the ledger, ending on the top box.",
+      "Phase 2: Each pair is multiplied again in the ledger, row by row, ending on the top box.",
+      "Phase 3: The walk climbs the tower box by box with each sign, writing every pair, and a box its sign cannot make stays lit.",
+      "Phase 4: Both walks run the whole tower side by side, and the box each sign cannot make stays lit."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A tower of empty boxes, and a sign stands at its foot.",
+    "onFreePlay": "Free play. Change any bottom number and switch the sign.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Every tower built from the bottom, and every box checked against one sign.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T4.C15:ML1",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "An adding tower has 6, 9, 4 and 11 along its bottom row. Fill the boxes above, one row at a time, up to the top.",
+            "question": {
+              "en": "Fill this adding tower up to the top."
+            },
+            "ask": {
+              "en": "The top box?"
+            },
+            "answer": 56,
+            "planAnswer": "15, 13 and 15, then 28 and 28, then 56 at the top",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T4.C15:1",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "An adding tower has 8, 5 and 7 along the bottom. What goes in the two boxes above them, and at the top?",
+            "question": {
+              "en": "Fill the boxes above 8, 5 and 7, up to the top."
+            },
+            "ask": {
+              "en": "The top box?"
+            },
+            "answer": 25,
+            "planAnswer": "13 and 12, then 25 at the top",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T4.C15:2",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "An adding tower has 14, 16, 20 and 5 along the bottom. What number is at the top?",
+            "question": {
+              "en": "What number sits at the top above 14, 16, 20 and 5?"
+            },
+            "ask": {
+              "en": "The top box?"
+            },
+            "answer": 127,
+            "planAnswer": "127: the rows above the bottom are 30, 36 and 25, then 66 and 61, then 127",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T4.C16:ML2",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "A multiplying tower has 3, 1, 2 and 2 along its bottom row. Fill it up to the top.",
+            "question": {
+              "en": "Fill this multiplying tower up to the top."
+            },
+            "ask": {
+              "en": "The top box?"
+            },
+            "answer": 48,
+            "planAnswer": "3, 2 and 4, then 6 and 8, then 48 at the top",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T4.C16:3",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "A multiplying tower has 2, 5 and 1 along the bottom. What goes in the two boxes above them, and at the top?",
+            "question": {
+              "en": "Fill the boxes above 2, 5 and 1, up to the top."
+            },
+            "ask": {
+              "en": "The top box?"
+            },
+            "answer": 50,
+            "planAnswer": "10 and 5, then 50 at the top",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T4.C16:4",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "A multiplying tower has 3, a missing box and 2 along the bottom, and 12 and 8 above them. What is the missing box, and what is at the top?",
+            "question": {
+              "en": "What number goes in the missing box?"
+            },
+            "ask": {
+              "en": "The missing box?"
+            },
+            "answer": 4,
+            "planAnswer": "4, because 3 x 4 = 12 and 4 x 2 = 8, and the top is 12 x 8 = 96",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T4.C17:ML3",
+            "worked": false,
+            "kind": "check",
+            "planQuestion": "A tower has 6, 2 and 5 at the bottom, 8 and 10 in the middle, and 18 at the top. Check each box. Does every box follow one operation?",
+            "question": {
+              "en": "Does one operation make every box?"
+            },
+            "ask": {
+              "en": "One sign for all?"
+            },
+            "answer": "one breaks",
+            "planAnswer": "No. 8 is 6 + 2 and 18 is 8 + 10, but 10 is 2 x 5 and not 2 + 5, so the box holding 10 breaks the adding rule",
+            "choices": [
+              "all follow",
+              "one breaks"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T4.C17:5",
+            "worked": false,
+            "kind": "check",
+            "planQuestion": "A tower has 3, 4 and 6 at the bottom, 7 and 10 in the middle, and 17 at the top. Check each box. Does it add all the way up?",
+            "question": {
+              "en": "Does it add all the way up the tower?"
+            },
+            "ask": {
+              "en": "Adds all the way?"
+            },
+            "answer": "all follow",
+            "planAnswer": "Yes. 3 + 4 = 7, 4 + 6 = 10 and 7 + 10 = 17, so every box adds",
+            "choices": [
+              "all follow",
+              "one breaks"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T4.C17:6",
+            "worked": false,
+            "kind": "check",
+            "planQuestion": "A tower has 2, 3 and 4 at the bottom, 6 and 12 in the middle, and 72 at the top. Check each box. Which operation does every box use?",
+            "question": {
+              "en": "Which operation builds every box in this tower?"
+            },
+            "ask": {
+              "en": "Which sign works?"
+            },
+            "answer": "multiplying",
+            "planAnswer": "Multiplying: 2 x 3 = 6, 3 x 4 = 12 and 6 x 12 = 72",
+            "choices": [
+              "adding",
+              "multiplying"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T4.C18:ML4",
+            "worked": false,
+            "kind": "check",
+            "planQuestion": "A tower has 5, 1 and 3 at the bottom, 5 and 3 in the middle, and 8 at the top. Every box works with some operation. Is it a correct tower?",
+            "question": {
+              "en": "Is this a correct tower, with one sign for every box?"
+            },
+            "ask": {
+              "en": "A correct tower?"
+            },
+            "answer": "two signs",
+            "planAnswer": "No. The middle boxes multiply, 5 x 1 = 5 and 1 x 3 = 3, but the top adds, 5 + 3 = 8. A correct tower uses one operation for every box",
+            "choices": [
+              "one sign",
+              "two signs"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T4.C18:7",
+            "worked": false,
+            "kind": "check",
+            "planQuestion": "A tower has 2, 4 and 3 at the bottom, 6 and 7 in the middle, and 42 at the top. Is the tower correct, if one operation must work for every box?",
+            "question": {
+              "en": "Is this one a correct tower too?"
+            },
+            "ask": {
+              "en": "One sign only?"
+            },
+            "answer": "two signs",
+            "planAnswer": "No. The middle row adds, 2 + 4 = 6 and 4 + 3 = 7, but the top multiplies, 6 x 7 = 42, so no one operation works for every box",
+            "choices": [
+              "one sign",
+              "two signs"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T4.C18:8",
+            "worked": false,
+            "kind": "build",
+            "planQuestion": "Build a tower of your own on 2, 3 and 5, multiplying in every box. What goes in each box above the bottom row?",
+            "question": {
+              "en": "What goes in each box above the bottom row?"
+            },
+            "ask": {
+              "en": "The top box?"
+            },
+            "answer": 90,
+            "planAnswer": "6 and 15, then 90 at the top, because 2 x 3 = 6, 3 x 5 = 15 and 6 x 15 = 90",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "tower_builder",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "tower_builder",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Two neighbours make the box above",
+        "conceptId": "M1.S2.T4.C15",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C15:ML1",
+          "M1.S2.T4.C15:1",
+          "M1.S2.T4.C15:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "A tower that multiplies",
+        "conceptId": "M1.S2.T4.C16",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C16:ML2",
+          "M1.S2.T4.C16:3",
+          "M1.S2.T4.C16:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Checking a tower box by box",
+        "conceptId": "M1.S2.T4.C17",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C17:ML3",
+          "M1.S2.T4.C17:5",
+          "M1.S2.T4.C17:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "One operation all the way up",
+        "conceptId": "M1.S2.T4.C18",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C18:ML4",
+          "M1.S2.T4.C18:7",
+          "M1.S2.T4.C18:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "operation",
+    "bottomRow",
+    "_",
+    "c",
+    "boxes",
+    "checked",
+    "brokenBoxes",
+    "length",
+    "missing"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), operation, bottomRow, _, c, boxes, checked, brokenBoxes, length, missing, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "tower_builder"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T4.C14.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A tower of empty boxes, and a switch at its foot. Choose the sign first."
+    },
+    {
+      "en": "Which two boxes hold this one up? Add them together."
+    },
+    {
+      "en": "This tower multiplies. Which two boxes hold this one up?"
+    },
+    {
+      "en": "Check each box against the two below it. Does every box follow?"
+    },
+    {
+      "en": "Try one sign for every box. Does it work all the way up?"
+    },
+    {
+      "en": "Another tower. One sign, and every box made the same way."
+    },
+    {
+      "en": "Free play. Any bottom row, either sign, with both walks open."
+    },
+    {
+      "en": "Tap the box again, and look at the two boxes holding it up."
+    },
+    {
+      "en": "Every tower built from the bottom, and every box checked against one sign."
+    }
+  ],
+  "build": {
+    "source": "775aefa5:616013",
+    "runtime": "class4/runtime/frozen/r28/runtime.tsx",
+    "runtimeVersion": "r28",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-20T09:14:26.383Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-20T09:14:26.272Z"
+    },
+    "tsxBytes": 580912,
+    "tsxMd5": "9d00d1e854d52bc0428d6980d4470dc2",
+    "handEdited": true
+  }
+}

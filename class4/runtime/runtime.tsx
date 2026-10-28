@@ -3104,7 +3104,11 @@ function ToolFrame({ props, tool }: any) {
   const [locked, setLocked] = useState(false);
   /* r24: `locked` mirrored in a ref, written the moment a tool calls api.lock, so an effect of the same commit sees it */
   const lockedRef = useRef(false);
-  const lockNow = (b: boolean) => { lockedRef.current = b; setLocked(b); };
+  /* a wrong typed answer clears itself once the correction has played (owner, 2026-10-27, class 4 ch 11 feedback): the child retypes without Backspace */
+  const lockNow = (b: boolean) => {
+    lockedRef.current = b; setLocked(b);
+    if (!b) setTimeout(() => { if (staleRef.current && !lockedRef.current) setTyped(""); }, 400);
+  };
   /* CLASSROOM mode (props.classroom): read on every render, so the host can switch it on or off mid-lesson */
   const classroom = (P.classroom ?? (P.additionalProps && P.additionalProps.classroom)) === true;
   const holdRef = useRef(false);
@@ -3756,6 +3760,7 @@ function ToolFrame({ props, tool }: any) {
     setTries(t);
     setWrong({ value, tries: t });
     staleRef.current = true;
+    setTimeout(() => { if (staleRef.current && !lockedRef.current && live.current.tries === t) setTyped(""); }, 1500);
     /* two boxes: both keep the child's numbers, the caret goes back to the first, and a digit typed
        into a box starts that box afresh */
     if (it.parts) { staleParts.current = it.parts.map(() => true); setPart(0); }
@@ -3849,6 +3854,23 @@ function ToolFrame({ props, tool }: any) {
       return;
     }
     const stale = staleParts.current.slice();
+    /* opt-in column entry (parts[1].rtl, a two-unit measure such as km|m): digits are typed in arithmetic order, ones first, each new digit
+       going in front of the ones already typed; the small-unit box fills (parts[1].digits, else 3) and the caret moves to the big unit;
+       rub out takes the last typed digit off the front. Every other two-part answer keeps the left-to-right entry below. */
+    if (np === 2 && parts[1] && parts[1].rtl) {
+      const need = parts[1].digits || 3;
+      if (k === "back") {
+        if (at === 0) { if (ps[0] === "") { setPart(1); return; } ps[0] = ps[0].slice(1); }
+        else { if (ps[1] === "") return; ps[1] = ps[1].slice(1); }
+      } else if (stale[at]) ps[at] = k;
+      else if (at === 1) { if (ps[1].length < need) ps[1] = k + ps[1]; }
+      else if (ps[0].length < 5) ps[0] = k + ps[0];
+      stale[at] = false;
+      setTyped(ps.join("|"));
+      staleParts.current = stale;
+      if (k !== "back" && at === 1 && ps[0] === "" && ps[1].length >= need) setPart(0);
+      return;
+    }
     if (k === "back") {
       if (ps[at] === "" && at > 0) { setPart(at - 1); return; }
       ps[at] = ps[at].slice(0, -1);

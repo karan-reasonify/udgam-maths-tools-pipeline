@@ -1,0 +1,1348 @@
+{
+  "slotId": "M2.S3.T6.C25.2D1",
+  "mediaId": "M2.S3.T6.C25.2D1",
+  "toolId": "weight_columns",
+  "title": "Weight Columns",
+  "component": "M2.S3.T6.C20.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch11",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch11_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_11/2dtool/M2.S3.T6.C20.2D1/M2.S3.T6.C20.2D1.tsx",
+  "description": "Add and take away weights in kilograms and grams, three places for the grams, carrying or breaking a kilogram as a thousand grams, and say which is heavier and by how much.",
+  "conceptIds": [
+    "M2.S3.T6.C25",
+    "M2.S3.T6.C26",
+    "M2.S3.T6.C27",
+    "M2.S3.T6.C28"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Add and take away weights in kilograms and grams, keeping three places for the grams, and answer which is heavier and by how much.",
+    "look": "A kilograms and grams frame in the middle, a shelf of tagged bags at the left, and a balance with a two-blank answer card at the right.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Weight Columns' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the columns worked against the two columns in the frame, grams and kilograms, two numbers in ink, the first climbing by one as each column's answer lands and the second fixed at two. On the first phase it counts the bags entered against the bags waiting, and on the fourth the answer card is counted as a third step, so the second number reads three. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The bag shelf stands at the left of the working area, 240 by 500 at 64,214, holding up to five bags, each with a weight tag in kilograms and grams or in grams alone. The column frame stands in the middle, 510 by 380 at 324,214: a kilograms column at the left headed kg, a grams column at the right headed g and cut into exactly three digit boxes, a near-black line between them, and the joining sign over the frame reading a thousand. A bag dragged to the frame drops its weight into a row one digit to a box, each digit sliding down into the column it belongs to; a tag in grams alone sends its last three digits into the grams boxes and the rest into the kilograms. Up to three rows, then a rule, then the answer row. Carry weights ride in a row over the kilograms column. Adding works the grams first, and each full thousand grams gathers into one deep blue kilogram weight that rises over the kilograms column, while what is left goes down as three digits. Taking away starts at the grams too. When the grams on top are fewer than the grams below, or read zero zero zero, the grams column stays shut and the break control, 220 by 56 at 324,610, lights over the kilograms on top. Break strikes them through, writes one less above in amber, and opens one kilogram weight into a thousand grams, drawn as ten green bars of a hundred grams, which join the grams on top, rewritten above them in amber. At the right the balance stands, 290 by 260 at 850,214, holding two bags, one on each pan. It tips toward the heavier bag as soon as both are on, before anything is worked. The answer card stands under it, 290 by 150 at 850,500, with two blanks, which bag is heavier and by how much, and it will not close while either blank is empty. On a take-away told as a story, the answer slot's label names what the question asks for, such as left in the sack. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across and has no dot key. The answer slot is a two-part measure, kilograms and then three grams boxes, with the unit names printed beside them. On the fourth phase the answer card's first blank takes one of two keys, each naming a bag by what is in it, and its second takes the measure. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The larger unit of any pair, kilometres beside metres, metres beside centimetres, centimetres beside millimetres, kilograms and litres, is deep blue wherever it is drawn: its digits in a column, a bar standing for whole units, or a kilogram weight. The smaller unit of the pair, and the part left over after the whole units, is green: metres beside kilometres, centimetres beside metres, millimetres, grams and millilitres. One larger unit carried from the smaller column, or broken into smaller units to borrow, and every digit that move rewrites, is amber. A zero that fills an empty place of the smaller unit is grey. What is left after taking away, and the difference between two measures, is reddish purple. A count of things, handspans, glasses, jars, pourings or bags, is sky blue. The zero mark of a ruler or tape, and the mark where a reading is taken, are vermilion. Water and every other liquid is pale blue. Chrome never borrows one of those and none of them is ever used for chrome: every other tick and numeral on a ruler, and every rule, column line, bracket, strike line, table rule and panel edge, is near-black. Every reading survives with the colour taken away, because a unit is told apart by its column heading and its unit name, a padding zero by the box it sits in, a carried or broken unit by the chip it rides on, and a count by the slot that names what is counted, before any of them is told by a colour. Grey never means faint: a zero in the smaller unit's places is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. A figure that goes down by one when a unit is broken is struck through once with the new figure written above it, and never rubbed out. No measure in two units is written as a decimal anywhere on the stage. The grams column keeps exactly three boxes whatever the number of grams. A kilogram weight opened by the break control is exactly a thousand grams, and a carried one is gathered from exactly a thousand. The balance judges the whole weight of each bag and tips before anything is worked, so the frame's answer can be checked against it, and once the difference is worked, a weight of exactly that much can be dropped onto the lighter bag's pan.",
+    "finish": "The card shows the last sum or difference the child worked in the frame, and the balance with its answer card filled in.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "both weights stand in the frame with every grams box filled",
+        "does": "drops each bag's weight into the frame, filling every grams box",
+        "goal": "beside kilograms, grams take three places, so a short number of grams is written with zeros in front",
+        "says": "The grams column has three boxes. How is a two-digit number of grams written?",
+        "check": "Away from the screen: write 16 kg 5 g and 16 kg 50 g in columns. What goes in each grams column?",
+        "feels": "the grams get three boxes whatever their number, and a short number waits behind a zero",
+        "hands": "Draw two columns on the board headed kg and g, with three boxes under the g. Write 2 kg 350 g in the frame, then ask the class to write 1 kg 68 g under it. Let anyone who writes 680 show where the six and the eight went, and fill the hundreds box with a zero. Then write a weight in grams alone, 4070 g, and split it into the columns, its last three digits under the grams.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: how many grams boxes are there? Second rung, the phase's: which places does this number of grams fill? Third rung: the tag is cut to a single-digit number of grams, and the child fills all three boxes before the longer tag comes back. The number pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "digits are written from the left, and the first box is where writing begins.",
+            "move": "types the sixty-eight grams of thirty-two kilograms sixty-eight grams into the first two grams boxes, so the row reads six hundred and eighty grams.",
+            "screen": "the row is read back aloud as it stands, six hundred and eighty grams, more than half a kilogram, and its bag is drawn heavier than the tag beside it says. The six and the eight slide one box to the right, and a grey zero drops into the hundreds box at full size, zero six eight. The child's row stays drawn above the new one, nothing marked."
+          },
+          {
+            "why": "seventy has two digits and the grams have three boxes, so a zero is added at the end, where zeros usually go.",
+            "move": "reads a tag of four thousand and seventy grams as four kilograms seven hundred grams, putting the seven in the first grams box.",
+            "screen": "the tag's four digits slide down into the frame in the columns they stand in: the four under the kilograms, and zero, seven, zero into the three grams boxes, the first zero grey at full size. The grams are counted out beside the frame as seven bars of ten grams, where the child's seven hundred would need seven bars of a hundred. The child's answer stays in the slot."
+          }
+        ],
+        "screen": "the frame with two tagged bags waiting, one with a two-digit number of grams",
+        "soWhat": "Beside kilograms the grams take three places. A zero holds each place a short number of grams leaves empty.",
+        "concept": "Three places for grams"
+      },
+      {
+        "n": 2,
+        "win": "a kilogram weight rides over the kilograms column, and the sum stands with fewer than a thousand grams",
+        "does": "adds the grams, carries a kilogram weight, writes what is left, then adds the kilograms",
+        "goal": "each full thousand grams is carried as one kilogram",
+        "says": "The grams make more than a thousand. What is written, and what is carried?",
+        "check": "Add 18 kg 650 g and 24 kg 575 g. What is written in the grams column, and what is carried?",
+        "feels": "a thousand grams are too many for three boxes, so they become one kilogram and move across",
+        "hands": "Weigh two bags of rice on a kitchen scale and write both weights in columns. Add the grams first. When the grams come to more than a thousand, ask how many whole kilograms that is, write what is left in three places, and carry one kilogram. Put both bags on the scale together and compare its reading with the sum.",
+        "tries": "First rung, from the item: what do the grams add up to? Second rung, the phase's: is that a thousand or more? Third rung: the frame is cut to two weights whose grams make just over a thousand, and the child carries before the larger sum comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the grams sum is one number, and splitting a number that has just been made feels wrong.",
+            "move": "writes all of one thousand two hundred and forty-five in the grams column, and gets seventy-five kilograms and a four-digit number of grams.",
+            "screen": "the grams sum shows one thousand two hundred and forty-five, and a thousand of those grams gather into one deep blue kilogram weight that rises over the kilograms, leaving two hundred and forty-five below. The child's four digits are laid over the three grams boxes and the first has no box to stand in. The kilograms are added again with the carried weight, and the child's answer stays in the slot."
+          },
+          {
+            "why": "a hundred joins metres and centimetres, and that number is easy to reach for when the joining sign is passed over.",
+            "move": "carries twelve kilograms and writes forty-five grams, splitting the sum at a hundred as for centimetres.",
+            "screen": "the joining sign lights, a thousand, and the grams are laid out as weights: one kilogram's worth, a thousand grams, and two hundred and forty-five more. Twelve kilograms would need twelve thousand grams. One kilogram weight rises, and the child's eighty-seven kilograms forty-five grams stays in the slot beside seventy-six kilograms two hundred and forty-five grams."
+          },
+          {
+            "why": "once the grams are written the grams column looks finished, and the carried weight is easy to leave behind.",
+            "move": "carries the kilogram but forgets to add it, and writes seventy-five kilograms two hundred and forty-five grams.",
+            "screen": "the carried kilogram weight over the kilograms column glows, and the kilograms are added again with it travelling down into the sum: forty-six and twenty-nine make seventy-five, and one more makes seventy-six. The child's answer stays in the slot beside the new sum."
+          }
+        ],
+        "screen": "two weights in the frame whose grams add up to more than a thousand",
+        "soWhat": "Add the grams first. Each full thousand grams is carried as one kilogram, and only the grams left are written.",
+        "concept": "Carrying a kilogram"
+      },
+      {
+        "n": 3,
+        "win": "the kilogram opens into a thousand grams, the kilograms go down by one, and the grams can be taken away",
+        "does": "opens one kilogram into a thousand grams and takes away the grams, then the kilograms",
+        "goal": "from zero grams, one kilogram is broken into a thousand grams",
+        "says": "No grams on top. Open one kilogram. How many grams does it give?",
+        "check": "A sack holds 25 kg of flour and 9 kg 350 g is used. How much flour is left in the sack?",
+        "feels": "with no grams on top, the opened kilogram makes all of them, and the kilograms pay for it",
+        "hands": "Write 20 kg on the board and write zero zero zero under the grams, as the chapter's worked take-away from a truck's load does. Ask the class to take 6 kg 250 g away. There are no grams on top, so break one kilogram: strike through the twenty, write nineteen above it, and write a thousand above the zeros. Take the grams, then the kilograms, and say the answer as what is left.",
+        "tries": "First rung, from the item: how many grams are on top? Second rung, the phase's: where can grams come from when there are none? Third rung: the frame is cut to one kilogram, written with zero zero zero, and a few grams below, and the child opens it before the larger take-away comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "with nothing on top in the grams column, the grams below look as if there is nothing to take them from, so they come down as they are.",
+            "move": "writes the four hundred and eighty grams from the bottom line straight down, and gets twenty-three kilograms four hundred and eighty grams for thirty-five kilograms less twelve kilograms four hundred and eighty grams.",
+            "screen": "the grams column stays shut over the grey zeros, and the child's four hundred and eighty is written small beside it. The break control then strikes through thirty-five and writes thirty-four above it, and one kilogram weight opens into a thousand grams, ten bars of a hundred, over the zeros. Four hundred and eighty is taken from the thousand, and the child's answer stays in the slot."
+          },
+          {
+            "why": "the thousand grams are the part that gets written, and the kilogram they came from is easy to forget to take off.",
+            "move": "breaks a kilogram into a thousand grams but leaves the thirty-five kilograms as they were, and gets twenty-three kilograms five hundred and twenty grams.",
+            "screen": "the thirty-five on top is lit with nothing struck through it, beside a thousand grams that came from nowhere, and the top weight's bag is drawn a kilogram heavier than its tag. The thirty-five is then struck through and thirty-four written above it, the take-away runs again, and the child's answer stays in the slot a kilogram too heavy."
+          },
+          {
+            "why": "both weights stand in a story about one sack, and adding is the first thing tried with two numbers.",
+            "move": "adds the twelve kilograms four hundred and eighty grams sold to the thirty-five kilograms in the sack, and writes forty-seven kilograms four hundred and eighty grams for what is left.",
+            "screen": "the sack is drawn with its thirty-five kilograms, and the weight sold is lifted out of it as a bag of its own, so the sack left is plainly lighter. The child's sum is drawn as a sack beside it, heavier than the full sack was. The answer slot's label, left in the sack, lights, and the take-away runs in the frame."
+          }
+        ],
+        "screen": "a weight of whole kilograms with zero zero zero in its grams column, and a weight with grams to take away",
+        "soWhat": "To take grams from zero grams, break one kilogram into a thousand grams. The kilograms on top go down by one, and the grams on top become a thousand.",
+        "concept": "Borrowing from zero grams"
+      },
+      {
+        "n": 4,
+        "win": "the heavier bag and the difference fill the two blanks, and the card closes",
+        "does": "reads which way the balance tips, takes the lighter weight from the heavier in the frame, and fills both blanks",
+        "goal": "a question that asks which is heavier and by how much needs two answers",
+        "says": "Which bag is heavier? Now how much heavier? Fill both blanks.",
+        "check": "One box weighs 8 kg 450 g and another 8 kg 45 g. Which is heavier, and by how much?",
+        "feels": "the balance already knows which bag is heavier; the frame finds out by how much",
+        "hands": "Put two bags of different weights on a pan balance, or weigh each on a kitchen scale, and ask which is heavier before anything is written. Write both weights, compare the kilograms first, and take the lighter from the heavier. Then ask the whole question again, which is heavier and by how much, and let the class answer both parts aloud.",
+        "tries": "First rung, from the item: which way does the balance tip? Second rung, the phase's: what does the question ask for, one thing or two? Third rung: the bags are cut to two whose kilograms differ and whose grams are both zero, and the child fills both blanks before the larger pair comes back. The bag keys and the number pad stay open.",
+        "wrong": [
+          {
+            "why": "the grams are the bigger number on the tags, and the eye goes to the biggest number.",
+            "move": "chooses thirteen kilograms eight hundred and seventy-five grams as heavier than fourteen kilograms ninety grams, because eight hundred and seventy-five is more than ninety.",
+            "screen": "the balance, tipped since both bags went on, is lit: the pan holding fourteen kilograms ninety grams hangs lower. The kilograms are compared first, fourteen against thirteen, and they decide it. The take-away runs with a kilogram broken, and the difference comes to two hundred and fifteen grams, the child's choice staying on the card beside it."
+          },
+          {
+            "why": "working out the difference is the long part, and its answer feels like the whole answer.",
+            "move": "writes two hundred and fifteen grams and stops, without saying which bag is heavier.",
+            "screen": "the card's first blank, which bag is heavier, stays empty and pulses, and the card will not close. The balance's lower pan is lit, and the child's two hundred and fifteen grams stays in the second blank, waiting for the first."
+          },
+          {
+            "why": "with the zeros passed over, the two tags look alike, and the kilograms are equal.",
+            "move": "says twenty-one kilograms seventy grams and twenty-one kilograms seven hundred grams weigh the same, because both show twenty-one and a seven.",
+            "screen": "the balance tips toward the second bag. The grams slide into their three boxes, zero seven zero and seven zero zero, and with the kilograms equal, the grams decide it. The difference comes to six hundred and thirty grams, and the child's answer stays on the card beside it."
+          }
+        ],
+        "screen": "two bags on the balance, and the answer card with both blanks empty",
+        "soWhat": "As weights are written, with fewer than a thousand grams, compare the kilograms first and the grams only when the kilograms are equal. Answer both parts: which is heavier, and by how much.",
+        "concept": "Heavier, and by how much"
+      }
+    ],
+    "delight": "The fourth phase, the moment a weight of exactly the difference is dropped onto the lighter bag's pan. The beam, tipped since the bags went on, lifts, wobbles and settles dead level, and the two pans hang side by side at one height. Take the weight off and the beam tips back. It can be tried with any two bags as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase two tagged bags wait on the shelf, one with a two-digit number of grams, and the frame is empty down to its rule. On the second two weights already stand in the frame whose grams will add up past a thousand, the carry row empty. On the third the top line is a weight of whole kilograms with zero zero zero in its grams boxes, above a weight with grams, and the grams column is shut. On the fourth two bags hang on the balance, already tipped, and the answer card's two blanks are empty. The running count at the top left holds the columns worked against the columns in the frame, and the answer slot and the pad stand empty down the right. One thing moves, once: the short tag, or the grams column, or the break control, or the answer card, gives one slow pulse while the voice asks how many boxes the grams take. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any two or three weights added or taken away, with the carry weights, the break control and the balance open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on three places for grams, carrying a kilogram, borrowing a kilogram from zero grams, and saying which is heavier and by how much.",
+    "voiceLines": [
+      "Bags with weight tags and a frame. How many boxes do the grams take?",
+      "The grams column has three boxes. How is a two-digit number of grams written?",
+      "The grams make more than a thousand. What is written, and what is carried?",
+      "No grams on top. Open one kilogram. How many grams does it give?",
+      "Which bag is heavier? Now how much heavier? Fill both blanks.",
+      "A new pair of bags. Read both tags before anything is added or taken.",
+      "Free play. Any weights in the frame, with the carry, the break and the balance open.",
+      "Read the question again, fill all three grams boxes, and work the grams first.",
+      "Every gram in its three places, every thousand carried or broken, and every question answered in full."
+    ],
+    "observations": [
+      {
+        "why": "The last three digits of four thousand and seventy are the grams left over after the whole kilograms, and seventy fills only the tens and the ones.",
+        "soWhat": "Beside kilograms the grams take three places, so seventy grams are written zero seven zero, and a zero holds the hundreds.",
+        "observe": "Four thousand and seventy grams dropped in as four kilograms and zero seven zero, the zero in the hundreds box at full size."
+      },
+      {
+        "why": "A thousand grams are one kilogram, so they belong with the kilograms and cannot stay in three boxes.",
+        "soWhat": "Each full thousand grams is carried as one kilogram, and only the grams left are written.",
+        "observe": "Each time the grams passed a thousand, one kilogram weight rose over the kilograms and only what was left went down."
+      },
+      {
+        "why": "There were no grams on top for it to join, so its thousand grams were all there was.",
+        "soWhat": "To take grams from zero grams, break one kilogram into a thousand grams. The kilograms on top go down by one.",
+        "observe": "From zero zero zero, the opened kilogram alone made the grams on top, a thousand."
+      },
+      {
+        "why": "The question asked two things, which bag and how much, and a difference on its own says only how much.",
+        "soWhat": "With each weight written with fewer than a thousand grams, compare the kilograms first and the grams only when the kilograms are equal. Then answer both parts.",
+        "observe": "The balance tipped toward the heavier bag before any working, and the card would not close on the difference alone."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the frame with two tagged bags waiting, one with a two-digit number of grams",
+        "win": "both weights stand in the frame with every grams box filled",
+        "traceback": "The bags drop into the frame with a grey zero in each empty grams place and the columns are added; a typed grams row is read back as it stands and redrawn in its right boxes.",
+        "ladder": [
+          "How many grams boxes are there?",
+          "Which box does the 7 stand in?",
+          "Do your three boxes read 90 grams?",
+          "Which places does this number of grams fill?",
+          "Put a 0 in each empty box in front, so the number ends in the ones box."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "two weights in the frame whose grams add up to more than a thousand",
+        "win": "a kilogram weight rides over the kilograms column, and the sum stands with fewer than a thousand grams",
+        "traceback": "The grams are added in full, a thousand of them is carried as one kilogram weight over the kilograms, only the grams left stay, and the kilograms are added with the carry.",
+        "ladder": [
+          "What do the grams add up to?",
+          "Did the carried kilogram join the kilograms?",
+          "The three grams together make how many whole thousands?",
+          "Is that a thousand or more?",
+          "Take 1,000 out of the grams sum and carry it as one kilogram."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a weight of whole kilograms with zero zero zero in its grams column, and a weight with grams to take away",
+        "win": "the kilogram opens into a thousand grams, the kilograms go down by one, and the grams can be taken away",
+        "traceback": "One kilogram on top is broken: the kilograms are struck and written one less in amber, 1,000 g join the grams on top, then the grams and the kilograms are taken away.",
+        "ladder": [
+          "How many grams are on top?",
+          "Can you take 425 g from 000 g?",
+          "Are the 215 g on top enough to take 780 g away?",
+          "Where can grams come from when there are none?",
+          "The kilograms on top get one less, and the grams on top get 1,000 more."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "two bags on the balance, and the answer card with both blanks empty",
+        "win": "the heavier bag and the difference fill the two blanks, and the card closes",
+        "traceback": "The heavier pan is ringed, the lighter weight is taken from the heavier in the frame (a kilogram broken where the grams are too few), and the difference is written.",
+        "ladder": [
+          "Which way does the balance tip?",
+          "Which bag has more whole kilograms?",
+          "The kilograms are equal, so which grams are more?",
+          "What does the question ask for, one thing or two?",
+          "Pick the heavier one, then subtract grams first, breaking a kilogram if needed."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "gramsPerKilogram": 1000,
+    "gramsBoxes": 3,
+    "frame": {
+      "width": 540,
+      "compactWidth": 428,
+      "rowHeight": 72,
+      "gramsBox": 84,
+      "rows": "up to three, a rule, then the answer row"
+    },
+    "kinds": [
+      "add",
+      "write",
+      "carry",
+      "take",
+      "compare"
+    ],
+    "warmUps": {
+      "1": {
+        "kind": "w-drop",
+        "bags": [
+          {
+            "id": "w",
+            "kg": 2,
+            "g": 305,
+            "grams": 2305
+          }
+        ]
+      },
+      "2": {
+        "kind": "w-carry",
+        "rows": [
+          [
+            null,
+            600
+          ],
+          [
+            null,
+            700
+          ]
+        ]
+      },
+      "3": {
+        "kind": "w-break",
+        "rows": [
+          [
+            5,
+            0
+          ]
+        ]
+      },
+      "4": {
+        "kind": "w-level",
+        "bags": [
+          {
+            "id": "rice",
+            "label": "rice",
+            "kg": 3,
+            "g": 900
+          },
+          {
+            "id": "sugar",
+            "label": "sugar",
+            "kg": 4,
+            "g": 100
+          }
+        ],
+        "diff": 200
+      }
+    },
+    "freePlayBags": [
+      {
+        "id": "f1",
+        "kg": 3,
+        "g": 450
+      },
+      {
+        "id": "f2",
+        "kg": 1,
+        "g": 800
+      },
+      {
+        "id": "f3",
+        "kg": 2,
+        "g": 75
+      },
+      {
+        "id": "f4",
+        "kg": 5,
+        "g": 0
+      },
+      {
+        "id": "f5",
+        "kg": 4,
+        "g": 625
+      }
+    ],
+    "colours": {
+      "kilograms": "#0072B2",
+      "grams": "#009E73",
+      "carriedOrBroken": "#E69F00",
+      "leftOrDifference": "#CC79A7",
+      "bags": "#56B4E9",
+      "paddingZero": "#767676"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T6.C25:ML1",
+        "kind": "add",
+        "rows": [
+          [
+            26,
+            48
+          ],
+          [
+            13,
+            705
+          ]
+        ],
+        "bags": [
+          {
+            "id": "b0",
+            "kg": 26,
+            "g": 48
+          },
+          {
+            "id": "b1",
+            "kg": 13,
+            "g": 705
+          }
+        ],
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          39,
+          753
+        ],
+        "near": "40|185",
+        "winMs": 3200,
+        "win": "Yes, 39 kg 753 g, with 48 g written as 048."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T6.C25:1",
+        "kind": "write",
+        "rows": [
+          [
+            null,
+            7
+          ]
+        ],
+        "bags": [
+          {
+            "id": "t",
+            "kg": null,
+            "g": 7
+          }
+        ],
+        "answer": "007",
+        "near": "700",
+        "winMs": 3600,
+        "win": "Right, 007: two zeros hold the hundreds and the tens."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T6.C25:2",
+        "kind": "write",
+        "rows": [
+          [
+            12,
+            90
+          ]
+        ],
+        "bags": [
+          {
+            "id": "t",
+            "kg": 12,
+            "g": 90
+          }
+        ],
+        "answer": "090",
+        "near": "900",
+        "winMs": 4200,
+        "win": "Good, 090: the 9 sits in the tens box, with a zero in front."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T6.C26:ML2",
+        "kind": "carry",
+        "rows": [
+          [
+            58,
+            675
+          ],
+          [
+            34,
+            812
+          ]
+        ],
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          93,
+          487
+        ],
+        "near": "92|1487",
+        "winMs": 3200,
+        "win": "Yes, 1,487 g is 1 kg 487 g, so 93 kg 487 g."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T6.C26:3",
+        "kind": "carry",
+        "rows": [
+          [
+            34,
+            760
+          ],
+          [
+            27,
+            385
+          ]
+        ],
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          62,
+          145
+        ],
+        "near": "61|145",
+        "winMs": 3200,
+        "win": "Right, 62 kg 145 g, with one kilogram carried."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T6.C26:4",
+        "kind": "carry",
+        "rows": [
+          [
+            15,
+            640
+          ],
+          [
+            22,
+            75
+          ],
+          [
+            9,
+            480
+          ]
+        ],
+        "labels": [
+          "flour",
+          "rice",
+          "sugar"
+        ],
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          47,
+          195
+        ],
+        "near": "46|1195",
+        "winMs": 2800,
+        "win": "Good, the shop sold 47 kg 195 g in all."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T6.C27:ML3",
+        "kind": "take",
+        "rows": [
+          [
+            60,
+            0
+          ],
+          [
+            18,
+            350
+          ]
+        ],
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          41,
+          650
+        ],
+        "near": "42|350",
+        "winMs": 3400,
+        "win": "Yes, 41 kg 650 g of mangoes is left in the crate."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T6.C27:5",
+        "kind": "take",
+        "rows": [
+          [
+            20,
+            0
+          ],
+          [
+            7,
+            425
+          ]
+        ],
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          12,
+          575
+        ],
+        "near": "13|425",
+        "winMs": 3400,
+        "win": "Right, 12 kg 575 g, once one kilogram was broken."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T6.C27:6",
+        "kind": "take",
+        "rows": [
+          [
+            81,
+            215
+          ],
+          [
+            36,
+            780
+          ]
+        ],
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          44,
+          435
+        ],
+        "near": "45|435",
+        "winMs": 3800,
+        "ladder": [
+          "After the break, how many kilograms are on top?",
+          "Break one of the 81 kg into 1,000 g and add it to the 215 g."
+        ],
+        "win": "Good, 44 kg 435 g, once the break made 1,215 g on top."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T6.C28:ML4",
+        "kind": "compare",
+        "pad": "enter",
+        "winMs": 3400,
+        "answer": "second|3|765",
+        "near": "first|3|765",
+        "bags": [
+          {
+            "id": "first",
+            "label": "suitcase 1",
+            "kg": 17,
+            "g": 280,
+            "look": "case"
+          },
+          {
+            "id": "second",
+            "label": "suitcase 2",
+            "kg": 21,
+            "g": 45,
+            "look": "case"
+          }
+        ],
+        "win": "Yes, suitcase 2 is heavier, by 3 kg 765 g."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T6.C28:7",
+        "kind": "compare",
+        "pad": "enter",
+        "winMs": 4500,
+        "answer": "onions|1|890",
+        "near": "potatoes|1|890",
+        "bags": [
+          {
+            "id": "onions",
+            "label": "onions",
+            "kg": 11,
+            "g": 40
+          },
+          {
+            "id": "potatoes",
+            "label": "potatoes",
+            "kg": 9,
+            "g": 150
+          }
+        ],
+        "win": "Right, onions: 11 kg beats 9 kg, so they are 1 kg 890 g heavier."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T6.C28:8",
+        "kind": "compare",
+        "pad": "enter",
+        "winMs": 4400,
+        "answer": "B||540",
+        "near": "B|0|0",
+        "bags": [
+          {
+            "id": "A",
+            "label": "parcel A",
+            "kg": 12,
+            "g": 60,
+            "look": "parcel"
+          },
+          {
+            "id": "B",
+            "label": "parcel B",
+            "kg": 12,
+            "g": 600,
+            "look": "parcel"
+          }
+        ],
+        "win": "Good, parcel B: the kilograms tie, so the grams decide, by 540 g."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The bags drop into the frame with a grey zero in each empty grams place and the columns are added; a typed grams row is read back as it stands and redrawn in its right boxes.",
+      "Phase 2: The grams are added in full, a thousand of them is carried as one kilogram weight over the kilograms, only the grams left stay, and the kilograms are added with the carry.",
+      "Phase 3: One kilogram on top is broken: the kilograms are struck and written one less in amber, 1,000 g join the grams on top, then the grams and the kilograms are taken away.",
+      "Phase 4: The heavier pan is ringed, the lighter weight is taken from the heavier in the frame (a kilogram broken where the grams are too few), and the difference is written."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Bags with weight tags and a frame. How many boxes do the grams take?",
+    "onFreePlay": "Free play: tap two bags, then add or take away, and watch the balance.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Every gram in its three places, every thousand carried or broken, and every question answered in full.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T6.C25:ML1",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "Add 26 kg 48 g and 13 kg 705 g in columns.",
+            "question": {
+              "en": "Tap both bags, then add 26 kg 48 g and 13 kg 705 g in columns."
+            },
+            "ask": {
+              "en": "Add 26 kg 48 g and 13 kg 705 g"
+            },
+            "answer": [
+              39,
+              753
+            ],
+            "planAnswer": "39 kg 753 g",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T6.C25:1",
+            "worked": false,
+            "kind": "write",
+            "planQuestion": "How is 7 g written in the grams column beside kilograms?",
+            "question": {
+              "en": "How is 7 g written in the grams column beside kilograms?"
+            },
+            "ask": {
+              "en": "7 g in the grams boxes"
+            },
+            "answer": "007",
+            "planAnswer": "007, because grams take three places",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T6.C25:2",
+            "worked": false,
+            "kind": "write",
+            "planQuestion": "12 kg 90 g is written in columns. What goes in the grams column?",
+            "question": {
+              "en": "12 kg 90 g is written in columns, so what goes in the grams column?"
+            },
+            "ask": {
+              "en": "Grams boxes for 12 kg 90 g"
+            },
+            "answer": "090",
+            "planAnswer": "090",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T6.C26:ML2",
+            "worked": false,
+            "kind": "carry",
+            "planQuestion": "Add 58 kg 675 g and 34 kg 812 g.",
+            "question": {
+              "en": "Add 58 kg 675 g and 34 kg 812 g."
+            },
+            "ask": {
+              "en": "58 kg 675 g + 34 kg 812 g"
+            },
+            "answer": [
+              93,
+              487
+            ],
+            "planAnswer": "93 kg 487 g",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T6.C26:3",
+            "worked": false,
+            "kind": "carry",
+            "planQuestion": "Add 34 kg 760 g and 27 kg 385 g.",
+            "question": {
+              "en": "What do 34 kg 760 g and 27 kg 385 g make together?"
+            },
+            "ask": {
+              "en": "34 kg 760 g + 27 kg 385 g"
+            },
+            "answer": [
+              62,
+              145
+            ],
+            "planAnswer": "62 kg 145 g. The grams make 1145, so write 145 and carry 1 kg",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T6.C26:4",
+            "worked": false,
+            "kind": "carry",
+            "planQuestion": "A shop sold 15 kg 640 g of flour, 22 kg 75 g of rice and 9 kg 480 g of sugar. What total weight did it sell?",
+            "question": {
+              "en": "A shop sold 15 kg 640 g, 22 kg 75 g and 9 kg 480 g: find the total weight."
+            },
+            "ask": {
+              "en": "Total weight sold"
+            },
+            "answer": [
+              47,
+              195
+            ],
+            "planAnswer": "47 kg 195 g. The grams make 1195, so write 195 and carry 1 kg",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T6.C27:ML3",
+            "worked": false,
+            "kind": "take",
+            "planQuestion": "A crate holds 60 kg of mangoes. 18 kg 350 g of them are sold. How much is left in the crate?",
+            "question": {
+              "en": "A crate holds 60 kg of mangoes and 18 kg 350 g are sold; how much is left?"
+            },
+            "ask": {
+              "en": "Left in the crate?"
+            },
+            "answer": [
+              41,
+              650
+            ],
+            "planAnswer": "41 kg 650 g of mangoes is left in the crate",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T6.C27:5",
+            "worked": false,
+            "kind": "take",
+            "planQuestion": "Take 7 kg 425 g from 20 kg.",
+            "question": {
+              "en": "Take 7 kg 425 g from 20 kg."
+            },
+            "ask": {
+              "en": "Take 7 kg 425 g from 20 kg"
+            },
+            "answer": [
+              12,
+              575
+            ],
+            "planAnswer": "12 kg 575 g. Write 20 kg as 20 kg 000 g and break one kilogram into a thousand grams",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T6.C27:6",
+            "worked": false,
+            "kind": "take",
+            "planQuestion": "Take 36 kg 780 g from 81 kg 215 g.",
+            "question": {
+              "en": "From 81 kg 215 g, take away 36 kg 780 g."
+            },
+            "ask": {
+              "en": "81 kg 215 g − 36 kg 780 g"
+            },
+            "answer": [
+              44,
+              435
+            ],
+            "planAnswer": "44 kg 435 g. Break one kilogram: 80 kg 1215 g, and 1215 less 780 is 435",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T6.C28:ML4",
+            "worked": false,
+            "kind": "compare",
+            "planQuestion": "One suitcase weighs 17 kg 280 g and another weighs 21 kg 45 g. Which is heavier, and by how much?",
+            "question": {
+              "en": "Which suitcase is heavier, 17 kg 280 g or 21 kg 45 g, and by how much?"
+            },
+            "ask": {
+              "en": "Heavier, and by how much?"
+            },
+            "answer": "second|3|765",
+            "planAnswer": "The second suitcase is heavier, by 3 kg 765 g",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T6.C28:7",
+            "worked": false,
+            "kind": "compare",
+            "planQuestion": "A bag of potatoes weighs 9 kg 150 g and a bag of onions weighs 11 kg 40 g. Which bag is heavier, and by how much?",
+            "question": {
+              "en": "Potatoes 9 kg 150 g, onions 11 kg 40 g: name the heavier bag and how much more."
+            },
+            "ask": {
+              "en": "Which bag, how much more?"
+            },
+            "answer": "onions|1|890",
+            "planAnswer": "The bag of onions is heavier, by 1 kg 890 g",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T6.C28:8",
+            "worked": false,
+            "kind": "compare",
+            "planQuestion": "Parcel A weighs 12 kg 60 g and parcel B weighs 12 kg 600 g. Which parcel is heavier, and by how much?",
+            "question": {
+              "en": "Parcel A 12 kg 60 g, parcel B 12 kg 600 g: which is heavier, and by how much?"
+            },
+            "ask": {
+              "en": "Which parcel, how much more?"
+            },
+            "answer": "B||540",
+            "planAnswer": "Parcel B is heavier, by 540 g. The kilograms are equal, and 600 g is more than 060 g",
+            "madeOn": "working area"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "weight_columns",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "weight_columns",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Three places for grams",
+        "conceptId": "M2.S3.T6.C25",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S3.T6.C25:ML1",
+          "M2.S3.T6.C25:1",
+          "M2.S3.T6.C25:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Carrying a kilogram",
+        "conceptId": "M2.S3.T6.C26",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S3.T6.C26:ML2",
+          "M2.S3.T6.C26:3",
+          "M2.S3.T6.C26:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Borrowing from zero grams",
+        "conceptId": "M2.S3.T6.C27",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S3.T6.C27:ML3",
+          "M2.S3.T6.C27:5",
+          "M2.S3.T6.C27:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Heavier, and by how much",
+        "conceptId": "M2.S3.T6.C28",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S3.T6.C28:ML4",
+          "M2.S3.T6.C28:7",
+          "M2.S3.T6.C28:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "operation",
+    "rows",
+    "r",
+    "r",
+    "c",
+    "carries",
+    "breaks",
+    "heavier",
+    "null",
+    "difference",
+    "answerCard",
+    "heavier",
+    "kg",
+    "g"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, operation, rows, r, r, c, carries, breaks, heavier, null, difference, answerCard, heavier, kg, g, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "weight_columns"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T6.C25.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Bags with weight tags and a frame. How many boxes do the grams take?"
+    },
+    {
+      "en": "The grams column has three boxes. How is a two-digit number of grams written?"
+    },
+    {
+      "en": "The grams make more than a thousand. What is written, and what is carried?"
+    },
+    {
+      "en": "No grams on top. Open one kilogram. How many grams does it give?"
+    },
+    {
+      "en": "Which bag is heavier? Now how much heavier? Fill both blanks."
+    },
+    {
+      "en": "A new pair of bags. Read both tags before anything is added or taken."
+    },
+    {
+      "en": "Free play. Any weights in the frame, with the carry, the break and the balance open."
+    },
+    {
+      "en": "Read the question again, fill all three grams boxes, and work the grams first."
+    },
+    {
+      "en": "Every gram in its three places, every thousand carried or broken, and every question answered in full."
+    }
+  ],
+  "build": {
+    "source": "09f987cb:662368",
+    "runtime": "class4/runtime/frozen/r29/runtime.tsx",
+    "runtimeVersion": "r29",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-22T09:22:31.774Z",
+    "checks": {
+      "pass": 94,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-22T09:22:31.434Z"
+    },
+    "tsxBytes": 605147,
+    "tsxMd5": "6b5e83aee36b285cf5d306d9d7b66b2d",
+    "handEdited": true
+  }
+}

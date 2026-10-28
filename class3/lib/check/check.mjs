@@ -619,8 +619,9 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
          (ask and wrong are question 1; the last phase's idle and agent runs end on its last question; a
          phase before the last has walked on, so its idle and agent runs end on the next phase's question 1),
          later ones empty */
-      const cur = (d.api && d.api.phase) || n, walked = cur !== n;
-      const qs = Math.max(m.PHASES[cur - 1].items.length, 1), want = /^(ask|wrong)/.test(key) || walked ? 1 / qs : 1;
+      const cur = Math.min(Math.max((d.api && d.api.phase) || n, 1), m.PHASES.length), walked = cur !== n;
+      const ph = m.PHASES[cur - 1] || m.PHASES[n - 1] || m.PHASES[0];
+      const qs = Math.max((ph.items || []).length, 1), want = /^(ask|wrong)/.test(key) || walked ? 1 / qs : 1;
       dots.forEach((x, k) => {
         const st = k < cur - 1 ? "done" : k === cur - 1 ? "now" : "later";
         if (x.state !== st) phaseBar.push(`${tag}: phase ${k + 1} ${navDots ? "dot" : "segment"} shows "${x.state}", want "${st}"`);

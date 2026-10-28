@@ -1,5 +1,5 @@
 # M1.S1.T2.C5.2D1 · pattern_strip · Pattern Strip
-indiannica_eng_maths4_ch10 · indiannica_eng_maths4_ch10_v3 v3 (active) · "Patterns" · segment M1.S1 "Lists and Pictures That Follow a Rule" · topic M1.S1.T2 "Shapes That Repeat, Turn and Come Round Again" · printed p.112 to p.113
+indiannica_eng_maths4_ch10 · indiannica_eng_maths4_ch10_v8 v8 (active) · "Patterns" · segment M1.S1 "Lists and Pictures That Follow a Rule" · topic M1.S1.T2 "Shapes That Repeat, Turn and Come Round Again" · printed p.112 to p.113
 
 > Runtime supplies the standard chrome (bands, zones, header, runs box, slot + pad, bubble, phase bar, type scale, content colours, sounds, finished/idle/restart). `scaffold` puts each phase's concept, teach line, hint ladder, closing line and items into tool.tsx; they are not repeated here. Build the working area and the mechanics.
 

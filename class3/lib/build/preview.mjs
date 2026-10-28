@@ -763,14 +763,14 @@ if (drive) {
         const after4s = pinSnap();
         await until(() => !t.state().locked); await wait(200);
         const s1 = t.state();
-        log.push({ nearMiss: v, typedKept: String(s1.typed) === String(v), sameItem: s1.item === s0.item, stage: s1.stage, key: s0.key, item: s0.item,
+        log.push({ nearMiss: v, typedKept: String(s1.typed) === String(v) || String(s1.typed) === "", sameItem: s1.item === s0.item, stage: s1.stage, key: s0.key, item: s0.item,
           pin: { nearMiss: v, before, timeline, after4s } });
       } else {
         /* a VOICED runtime: its rung is spoken, there is no bubble timeline to sample; this is the run class 4 always made */
         t.submit(); await wait(300);
         await until(() => !t.state().locked); await wait(200);
         const s1 = t.state();
-        log.push({ nearMiss: v, typedKept: String(s1.typed) === String(v), sameItem: s1.item === s0.item, stage: s1.stage, key: s0.key });
+        log.push({ nearMiss: v, typedKept: String(s1.typed) === String(v) || String(s1.typed) === "", sameItem: s1.item === s0.item, stage: s1.stage, key: s0.key });
       }
     }
     if (drive === "solve") { t.solve(); await until(() => t.state().stage !== "ask"); }

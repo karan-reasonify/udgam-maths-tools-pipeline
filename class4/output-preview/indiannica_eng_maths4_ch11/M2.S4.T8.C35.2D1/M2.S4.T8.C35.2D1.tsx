@@ -2952,6 +2952,8 @@ function ToolFrame({ props, tool }) {
   const lockNow = (b) => {
     lockedRef.current = b;
     setLocked(b);
+    /* ch11 feedback: a wrong typed answer clears itself once the correction has played, so the child retypes without Backspace */
+    if (!b) setTimeout(() => { if (staleRef.current && !lockedRef.current) setTyped(""); }, 400);
   };
   const classroom = ((_b = P.classroom) != null ? _b : P.additionalProps && P.additionalProps.classroom) === true;
   const holdRef = useRef(false);
@@ -3087,7 +3089,7 @@ function ToolFrame({ props, tool }) {
     if (nv !== "") markActed();
     staleRef.current = false;
     staleParts.current = [];
-    if (nv === "") setPart(0);
+    if (nv === "") setPart(live.current && live.current.item && live.current.item.parts && live.current.item.parts.length === 2 ? 1 : 0);
     setTypedState(nv);
   };
   const [tries, setTries] = useState(0);
@@ -3171,7 +3173,7 @@ function ToolFrame({ props, tool }) {
   const cardAnswerOn = !!tool.cardAnswer && board;
   const cardKindOf = (it) => !cardAnswerOn || !it || it.choices || !it.parts || !it.parts.some((p) => p.at) ? null : it.parts.some((p) => p.at === "dwhole") ? "decimal" : "fraction";
   const cardKind = cardKindOf(item);
-  if (KEYONLY && cardKind) Object.assign(Z.pad, { y: Z.slot.y, h: Z.pad.y + Z.pad.h - Z.slot.y });
+  if (KEYONLY && (cardKind || tool.boxAnswer)) Object.assign(Z.pad, { y: Z.slot.y, h: Z.pad.y + Z.pad.h - Z.slot.y });
   const answerOn = !cardAnswerOn || stage !== "ask" ? null : item.choices ? "choices" : cardKind ? "card" : item.pad === "enter" ? null : "key";
   const [cardReady, setCardReadyState] = useState(true);
   const cardReadyRef = useRef(true);
@@ -3633,9 +3635,10 @@ function ToolFrame({ props, tool }) {
     setTries(t);
     setWrong({ value, tries: t });
     staleRef.current = true;
+    setTimeout(() => { if (staleRef.current && !lockedRef.current && live.current.tries === t) setTyped(""); }, 1500);
     if (it.parts) {
       staleParts.current = it.parts.map(() => true);
-      setPart(0);
+      setPart(it.parts.length === 2 ? 1 : 0);
     }
     const ladder = L.phase.ladder || [];
     const kRung = Math.min(Math.max(t - 1, rungShown.current), 2);
@@ -3695,6 +3698,10 @@ function ToolFrame({ props, tool }) {
     const ps = slotPartsOf(typedRef.current, np), at = Math.min(partRef.current, np - 1);
     const parts = live.current.item.parts;
     const fresh = !staleParts.current.length || staleParts.current.some((s) => !s);
+    if (k === "enter" && parts[at].digit && fresh && ps.every((p) => p !== "")) {
+      commit(ps.join("|"));
+      return;
+    }
     if (k === "enter" && parts.some((p) => p.free)) {
       const shut = board && !wantRef.current && !captureRef.current && !alwaysOpen;
       if (ps[at] !== "" && at < np - 1) {
@@ -3712,6 +3719,66 @@ function ToolFrame({ props, tool }) {
       const half = parts.findIndex((p, j) => (p.at === "top" || p.at === "bottom") && ps[j] === "" && parts.some((q, i2) => i2 !== j && (q.at === "top" || q.at === "bottom") && ps[i2] !== ""));
       if (half >= 0) setPart(half);
       else if (at < np - 1) setPart(at + 1);
+      return;
+    }
+    if (parts.length === 2) {
+      if (k === "enter") {
+        if (ps[at] === "") return;
+        if (at === 1) {
+          if (ps[0] === "") {
+            setPart(0);
+            return;
+          }
+          if (!fresh) return;
+          commit(ps.join("|"));
+          return;
+        }
+        if (at === 0) {
+          if (ps[1] === "") {
+            setPart(1);
+            return;
+          }
+          if (!fresh) return;
+          commit(ps.join("|"));
+          return;
+        }
+      }
+      const stale = staleParts.current.slice();
+      const needDigits = parts[1].label === "mm" ? 1 : parts[1].label === "cm" ? 2 : 3;
+      if (k === "back") {
+        if (at === 0) {
+          if (ps[0] === "") {
+            setPart(1);
+            return;
+          }
+          ps[0] = ps[0].slice(1);
+        } else {
+          if (ps[1] === "") {
+            return;
+          }
+          ps[1] = ps[1].slice(1);
+        }
+      } else {
+        if (stale[at]) {
+          ps[at] = k;
+        } else if (at === 1) {
+          if (ps[1].length < needDigits) {
+            ps[1] = k + ps[1];
+          }
+        } else {
+          if (ps[0].length < 5) {
+            ps[0] = k + ps[0];
+          }
+        }
+      }
+      stale[at] = false;
+      setTyped(ps.join("|"));
+      staleParts.current = stale;
+      if (k !== "back" && at === 1 && ps[0] === "") {
+        if (ps[1].length >= needDigits) {
+          setPart(0);
+        }
+      }
       return;
     }
     if (k === "enter") {
@@ -3736,15 +3803,25 @@ function ToolFrame({ props, tool }) {
         return;
       }
       ps[at] = ps[at].slice(0, -1);
-    } else ps[at] = stale[at] ? k : ps[at].length >= 7 ? ps[at] : ps[at] + k;
+    } else ps[at] = stale[at] || parts[at].digit ? k : ps[at].length >= 7 ? ps[at] : ps[at] + k;
     stale[at] = false;
     setTyped(ps.join("|"));
     staleParts.current = stale;
+    if (k !== "back" && parts[at].digit && at < np - 1) {
+      const nx = ps.findIndex((p, j) => j > at && p === "");
+      setPart(nx >= 0 ? nx : at + 1);
+    }
   };
   const pickPart = (k) => {
     const L = live.current;
-    if (L.stage !== "ask" || L.locked || !L.item.parts) return;
-    if (Date.now() - openedAt.current < 300) return;
+    if (L.stage !== "ask" || L.locked) return;
+    if (!L.item.parts) {
+      if (tool.boxAnswer && !L.item.choices && L.item.pad !== "enter") openAnswer();
+      return;
+    }
+    /* boxAnswer (ch11 feedback): a tap on a stage box opens the keypad AND picks the box in one tap */
+    if (tool.boxAnswer) openAnswer();
+    else if (Date.now() - openedAt.current < 300) return;
     if (captureRef.current) capture(null);
     setPart(Math.min(Math.max(k, 0), L.item.parts.length - 1));
   };
@@ -4313,7 +4390,7 @@ function ToolFrame({ props, tool }) {
               {!KEYONLY && askEl}
               <g data-zone="drawer" display={slide < 2e-3 ? "none" : void 0} transform={`translate(${((1 - slide) * (Z.drawer.w + 56)).toFixed(1)},0)`}>
                 <rect x={Z.drawer.x} y={Z.drawer.y} width={Z.drawer.w} height={Z.drawer.h} rx={RAD.card - 4} fill={THEME && THEME.panel ? "url(#gTpanel)" : "url(#gPanel)"} stroke={THEME && THEME.panel ? THEME.slot || C.rule : C.rule} strokeWidth={2} filter="url(#fShadow)" />
-                {cardKind ? KEYONLY ? null : <Key
+                {cardKind || tool.boxAnswer ? KEYONLY ? null : <Key
       id="answer-open"
       label={UI.answerClose}
       x={Z.slot.x}
@@ -4759,6 +4836,8 @@ const TR = {
   }
 };
 const CC_LML = [{ label: "L" }, { label: "mL" }];
+/* ch11 feedback: a "write" question is typed INTO the three millilitres boxes, one digit a box (a box may stay empty: that is a miss) */
+const CC_DIG3 = [0, 1, 2].map(() => ({ label: "mL", free: true, digit: true }));
 const PHASES = [
   {
     n: 1,
@@ -4796,6 +4875,7 @@ const PHASES = [
       {
         qid: "M2.S4.T8.C35:1",
         kind: "write",
+        parts: CC_DIG3,
         say: "How is 8 mL written in the millilitres boxes?",
         ask: "8 mL in the boxes",
         answer: "008",
@@ -4810,6 +4890,7 @@ const PHASES = [
       {
         qid: "M2.S4.T8.C35:2",
         kind: "write",
+        parts: CC_DIG3,
         say: "19 L 65 mL goes in the frame: what goes in its millilitres boxes?",
         ask: "mL boxes of 19 L 65 mL",
         answer: "065",
@@ -5053,6 +5134,7 @@ const judge = (item, v) => {
     if (w && w !== item.words) return false;
     return judgeSlotParts(item, Array.isArray(v) ? v.slice(0, 2) : String(v != null ? v : "").split("|").slice(0, 2).join("|"));
   }
+  if (item.kind === "write") return String(v != null ? v : "").replace(/[^0-9]/g, "") === String(item.answer);
   if (item.parts) return judgeSlotParts(item, v);
   if (typeof item.answer === "number") return leadNumber(v) === item.answer;
   return String(v != null ? v : "").trim() === String(item.answer);
@@ -5089,11 +5171,12 @@ const oracle = () => PHASES.every((p) => p.items.every((it) => {
   return false;
 }));
 const nearMiss = (item) => item.near !== void 0 ? Array.isArray(item.near) ? item.near.join("|") : String(item.near) : typeof item.answer === "number" ? item.answer + 1 : "~";
-const answerForms = (item) => item.parts === CC_LML ? [`${item.answer[0]} L ${item.answer[1]} mL`, `${item.answer[0]} litres ${item.answer[1]} millilitres`] : item.parts ? item.answer.flatMap((x) => [String(x), words(x)]) : typeof item.answer === "number" ? [String(item.answer), words(item.answer)] : [String(item.answer)];
+const answerForms = (item) => item.parts === CC_LML ? [`${item.answer[0]} L ${item.answer[1]} mL`, `${item.answer[0]} litres ${item.answer[1]} millilitres`] : item.parts && Array.isArray(item.answer) ? item.answer.flatMap((x) => [String(x), words(x)]) : typeof item.answer === "number" ? [String(item.answer), words(item.answer)] : [String(item.answer)];
 const agentKey = (item) => item.answer;
 const HOOK = {};
 const solve = (item, T2) => T2.state().stage === "demo" ? HOOK.demo && HOOK.demo() : T2.submit(item.answer);
 const answer = (item, v) => {
+  if (item.kind === "write" && HOOK.type) return HOOK.type(v);
   if (item.words && HOOK.pickWords) HOOK.pickWords();
   return void 0;
 };
@@ -5191,9 +5274,11 @@ function ccFrame(G, F, C, tx) {
       {ds.map((d, i) => <tspan key={i} x={ccBoxC(G, i)} fill={d.c}>{d.d}</tspan>)}
     </text>;
   const row = (r, y, k) => {
+    const hi = F.hi && F.hi.k === k ? F.hi : null;
     const lw = String(r.L).length * G.fs * 0.62;
     return <g key={"r" + k} opacity={r.dim ? 0.42 : 1}>
-        {[0, 1, 2].map((i) => <rect key={i} x={G.bx[i]} y={y} width={G.bw} height={G.bh} rx={10 * G.s} fill="#FFFFFF" stroke={C.ink} strokeWidth={2.4} />)}
+        {hi && hi.lbox && <rect x={G.cellL} y={y} width={G.cellR - G.cellL + 10 * G.s} height={G.bh} rx={10 * G.s} fill={hi.L ? tint(C.accent, 0.88) : "#FFFFFF"} stroke={hi.L ? C.accent : C.ink} strokeWidth={hi.L ? 4 : 2.4} />}
+        {[0, 1, 2].map((i) => hi && hi.m.indexOf(i) >= 0 ? <rect key={i} x={G.bx[i]} y={y} width={G.bw} height={G.bh} rx={10 * G.s} fill={tint(C.accent, 0.88)} stroke={C.accent} strokeWidth={4} /> : <rect key={i} x={G.bx[i]} y={y} width={G.bw} height={G.bh} rx={10 * G.s} fill="#FFFFFF" stroke={C.ink} strokeWidth={2.4} />)}
         {r.sign ? <text x={G.signX} y={ccBase(G, y)} textAnchor="middle" fontSize={G.fs} fontWeight={700} fill={C.ink}>{r.sign}</text> : null}
         <text x={G.cellR - (r.over && r.over.length ? 16 * G.s : 0)} y={ccBase(G, y)} textAnchor="end" fontSize={ccFit(r.L, G.fs, G.cellR - G.cellL - 34 * G.s)} fontWeight={700} fill={r.Lc || CC_INK.big}>{r.L}</text>
         {r.over && r.over.length ? <rect x={G.div - G.fs * 0.36 - 5} y={y + 2} width={G.fs * 0.72 + 10} height={G.bh - 4} rx={8} fill="#FFFFFF" /> : null}
@@ -5333,7 +5418,7 @@ const CC_ARIA = {
   b1: "Choose the 1 L bottle",
   b2: "Choose the 2 L bottle"
 };
-function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, step, stepOn, box, lang = "en", tx = (v) => v }) {
+function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL: MODEL2, step, stepOn, box, lang = "en", tx = (v) => v }) {
   const C = api.C;
   const U = (s) => String(s).replace(/\b(mL|L)\b/g, (m) => tx(m));
   const tl = useTimeline();
@@ -5796,6 +5881,11 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     if (stage !== "win" || free || !it || !it.win) return;
     api.say(it.win);
   }, [stage, ek]);
+  useEffect(() => {
+    if (stage === "ask" && it && it.parts && it.parts.length === 2) {
+      api.pickPart(1);
+    }
+  }, [ek, stage]);
   api.share({
     operation: kind === "carry" || kind === "place" ? "add" : kind === "break" || kind === "story" ? "take away" : kind === "write" ? "write" : "pour",
     unit: CC_UNITS[st.unit][0] + " " + CC_UNITS[st.unit][1],
@@ -5807,6 +5897,21 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
   const sumL = (rows) => rows.reduce((a, r) => a + r.L, 0);
   const sumMl = (rows) => rows.reduce((a, r) => a + r.ml, 0);
   const tp = slotPartsOf(typed, 2);
+  /* ch11 feedback: the answer is typed INTO the boxes on the working area; a tap picks one (the keypad has no answer field of its own) */
+  const asking = stage === "ask", open = asking && !!box && box.open;
+  const hiOf = (k, m, withL) => asking ? { k, lbox: !!withL, L: !!withL && open && part === 0, m: open ? m : [] } : null;
+  const pick = (id, label, x, y, w, h, k) => <SlotPartBox key={id} id={id} label={label} x={x} y={y} w={w} h={h} on={part === k} enabled onPick={() => api.pickPart(k)} />;
+  const colPicks = (G) => asking ? [
+    pick("part-1", "type in the litres box", G.cellL - 6, G.ansY - 6, G.cellR - G.cellL + 22 * G.s, G.bh + 12, 0),
+    pick("part-2", "type in the millilitres boxes", G.bx[0] - 4, G.ansY - 6, G.bx[2] + G.bw - G.bx[0] + 8, G.bh + 12, 1)
+  ] : null;
+  const colHi = (L) => hiOf("a", part === 1 ? [Math.max(0, 2 - (tp[1] || "").length)] : [], true);
+  const wrCells = (c) => String(typed).includes("|") ? slotPartsOf(typed, 3).map((x) => ({ d: x.slice(-1), c })) : ccLeft(typed, c);
+  HOOK.type = (v) => {
+    api.setTyped(String(v).replace(/[^0-9]/g, "").slice(0, 3).split("").join("|"));
+    api.pickPart(2);
+    return true;
+  };
   const typedRow = (Lc, mc) => {
     if (!typed) return null;
     const r = ccRight(tp[1], mc);
@@ -5884,7 +5989,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       const cardOn = !place && st.mv !== "card" && !solved;
       return <g>
           {joinChip(552, 0, 0, 344)}
-          {ccFrame(G1, { unit: 0, rows, rule: true, ans: ans || { L: "", ml: [{ d: "" }, { d: "" }, { d: "" }] } }, C, tx)}
+          {ccFrame(G1, { unit: 0, rows, rule: true, ans: ans || { L: "", ml: [{ d: "" }, { d: "" }, { d: "" }] }, hi: colHi() }, C, tx)}
+          {colPicks(G1)}
           {cardOn && card(it.card)}
           {stage === "ask" && !tl.busy && ["h", "t"].map((w, i) => <Hit
         key={w}
@@ -5899,12 +6005,13 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
         </g>;
     }
     const G = ccGeo(0, 76, 1.3, false, 1);
-    const own = { L: it.L === "" ? "" : String(it.L), Lc: CC_INK.big, ml: won ? ccRow({ L: "", ml: it.ml }).ml : ccLeft(typed, C.ink) };
+    const own = { L: it.L === "" ? "" : String(it.L), Lc: CC_INK.big, ml: won ? ccRow({ L: "", ml: it.ml }).ml : wrCells(C.ink) };
     let extra = null;
     if (dm) extra = { L: it.L === "" ? "" : String(it.L), Lc: CC_INK.big, ...ccRight(String(it.ml), CC_INK.small, ds >= 2) };
     return <g>
         {joinChip(552, 0, 0, 344)}
-        {ccFrame(G, { unit: 0, rows: [own], extra }, C, tx)}
+        {ccFrame(G, { unit: 0, rows: [own], extra, hi: hiOf(0, [Math.min(part, 2)], false) }, C, tx)}
+        {asking && [0, 1, 2].map((i) => pick("part-" + (i + 1), "type in millilitres box " + (i + 1), G.bx[i] - 3, G.rowY[0] - 6, G.bw + 6, G.bh + 12, i))}
         {card(it.card)}
       </g>;
   };
@@ -5952,7 +6059,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       }
       return <g>
           {joinChip(560, 0, 0)}
-          {ccFrame(G2, { unit: 0, rows: rows2, rule: true, ans: ans2 || { L: "", ml: [{ d: "" }, { d: "" }, { d: "" }] }, chip: chip2 }, C, tx)}
+          {ccFrame(G2, { unit: 0, rows: rows2, rule: true, ans: ans2 || { L: "", ml: [{ d: "" }, { d: "" }, { d: "" }] }, chip: chip2, hi: colHi() }, C, tx)}
+          {colPicks(G2)}
         </g>;
     }
     const sw = dm || won ? true : st.swapped;
@@ -5973,7 +6081,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     const bk = canBreak && stage === "ask" && !tl.busy;
     return <g>
         {joinChip(560, 0, 0)}
-        {ccFrame(G2, { unit: 0, rows, rule: true, ans: ans || { L: "", ml: [{ d: "" }, { d: "" }, { d: "" }] }, amber }, C, tx)}
+        {ccFrame(G2, { unit: 0, rows, rule: true, ans: ans || { L: "", ml: [{ d: "" }, { d: "" }, { d: "" }] }, amber, hi: colHi() }, C, tx)}
+        {colPicks(G2)}
         {bkPen && showBrk && <g pointerEvents="none">
             <PencilText text={bkL} x={pB.aLx} y={pB.aY} size={pB.aSize} align="end" color={CC_INK.amber} chars={bc - 1} />
             <PencilText text={bkM} x={pB.aMx} y={pB.aY} size={pB.aSize} align="middle" color={CC_INK.amber} chars={bc - 1 - bkL.length} />
@@ -6055,10 +6164,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     }
           {!isWarm && <g>
               <rect x={AC.x} y={AC.y} width={AC.w} height={AC.h} rx={16} fill="#FFFFFF" stroke={C.ink} strokeWidth={3} />
-              <rect x={LB.x} y={LB.y} width={LB.w} height={LB.h} rx={10} fill="#FFFFFF" stroke={C.ink} strokeWidth={2.4} />
+              <rect x={LB.x} y={LB.y} width={LB.w} height={LB.h} rx={10} fill={open && part === 0 ? tint(C.accent, 0.88) : "#FFFFFF"} stroke={open && part === 0 ? C.accent : C.ink} strokeWidth={open && part === 0 ? 4 : 2.4} />
               <text x={LB.x + LB.w / 2} y={LB.y + 52} textAnchor="middle" fontSize={ccFit(Lv, T.xl, LB.w - 10)} fontWeight={700} fill={cardDone ? CC_INK.left : CC_INK.big}>{Lv}</text>
               <text x={LB.x + LB.w + 5} y={LB.y + 50} fontSize={ccFit(tx("L"), T.label, (MB.x - LB.x - LB.w - 12) / (dev ? 1.15 : 1))} fontWeight={700} fill={CC_INK.big}>{tx("L")}</text>
-              <rect x={MB.x} y={MB.y} width={MB.w} height={MB.h} rx={10} fill="#FFFFFF" stroke={C.ink} strokeWidth={2.4} />
+              <rect x={MB.x} y={MB.y} width={MB.w} height={MB.h} rx={10} fill={open && part === 1 ? tint(C.accent, 0.88) : "#FFFFFF"} stroke={open && part === 1 ? C.accent : C.ink} strokeWidth={open && part === 1 ? 4 : 2.4} />
               <text x={MB.x + MB.w / 2} y={MB.y + 52} textAnchor="middle" fontSize={ccFit(Mv, T.xl, MB.w - 10)} fontWeight={700} fill={cardDone ? CC_INK.left : CC_INK.small}>{Mv}</text>
               <text x={MB.x + MB.w + 6} y={MB.y + 50} fontSize={ccFit(tx("mL"), T.label, (AC.x + AC.w - MB.x - MB.w - 16) / (dev ? 1.15 : 1))} fontWeight={700} fill={CC_INK.small}>{tx("mL")}</text>
               {words2 ? <text x={AC.x + AC.w / 2} y={AC.y + 146} textAnchor="middle" fontSize={ccFit(tx(phraseOf(words2)), T.label, AC.w - 24)} fontWeight={700} fill={vc}>{tx(phraseOf(words2))}</text> : <line x1={AC.x + 40} y1={AC.y + 146} x2={AC.x + AC.w - 40} y2={AC.y + 146} stroke={C.ink} strokeWidth={2.5} />}
@@ -6067,6 +6176,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
         {
       /* the phrase keys: the question's own words */
     }
+        {!isWarm && asking && [
+      pick("part-1", "type in the litres box", LB.x - 6, LB.y - 6, LB.w + 12, LB.h + 12, 0),
+      pick("part-2", "type in the millilitres box", MB.x - 6, MB.y - 6, MB.w + 12, MB.h + 12, 1)
+    ]}
         {phrases.map((p, j) => {
       const b = PK(j), sel = (won ? it.words : st.words) === p.id;
       const can = stage === "ask" && !tl.busy || isDemo && !!stepOn;
@@ -6153,8 +6266,9 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       return <g key={j.id}>
                     <rect x={RT.x} y={y} width={RT.w} height={84} rx={12} fill="#FFFFFF" stroke={C.ink} strokeWidth={2.4} />
                     <text x={RT.x + 14} y={y + 53} fontSize={ccFit(tx(j.name), T.label, RT.w - 112)} fontWeight={700} fill={C.ink}>{tx(j.name)}</text>
-                    <rect x={RT.x + RT.w - 82} y={y + 8} width={72} height={68} rx={10} fill={tint(CC.count, 0.85)} stroke={C.ink} strokeWidth={2.4} />
+                    <rect x={RT.x + RT.w - 82} y={y + 8} width={72} height={68} rx={10} fill={open && part === r ? tint(C.accent, 0.88) : tint(CC.count, 0.85)} stroke={open && part === r ? C.accent : C.ink} strokeWidth={open && part === r ? 4 : 2.4} />
                     {cellShown && <text x={RT.x + RT.w - 46} y={y + 58} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={CC_INK.count}>{v}</text>}
+                    {!cellShown && typed && (two ? tp[r] : String(typed).replace(/[^0-9]/g, "")) && <text x={RT.x + RT.w - 46} y={y + 58} textAnchor="middle" fontSize={ccFit(two ? tp[r] : String(typed).replace(/[^0-9]/g, ""), T.speech, 62)} fontWeight={700} fill={C.ink}>{two ? tp[r] : String(typed).replace(/[^0-9]/g, "")}</text>}
                   </g>;
     })}
             </g>}
@@ -6197,6 +6311,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
         onPress={() => press(id, () => actPour(j.id, kind === "warm4" ? stepOn || "pour" : "both"))}
       />;
     })}
+        {asking && kind !== "warm4" && !pw.free && (two ? it.jars : [{ id: "j", name: it.jarName }]).map((j, r) => pick("part-" + (r + 1), "type the number of " + j.name + " pourings", RT.x - 4, RT.y + 4 + r * 92, RT.w + 8, 92, r))}
         {free && pw.pots.map((p) => <Hit
       key={"s" + p.id}
       id={"bottle-" + p.id}
@@ -6270,7 +6385,7 @@ function Thumb({ result, it, n, C, w, h, lang = "en", tx = (v) => v }) {
   let L = "", ml = [];
   if (item.kind === "write") {
     L = item.L === "" ? "" : String((_b = item.L) != null ? _b : "");
-    ml = ccRow({ L: "", ml: Number(String(v)) }).ml;
+    ml = ccRow({ L: "", ml: Number(String(v).replace(/[^0-9]/g, "")) }).ml;
   } else {
     const ps = slotPartsOf(Array.isArray(v) ? v.slice(0, 2) : v, 2);
     L = String((_c = ps[0]) != null ? _c : "");
@@ -6321,6 +6436,8 @@ function CapacityColumns(props) {
        panel is 556 wide and the picture has x 64 to 964 while it is open. Keep it when the picture fits there; set it to false (or
        delete it) when the picture needs the full 1086 width: `check`'s board-fit names what runs under the panel. */
     bigPad: true,
+    /* ch11 feedback: the answer is typed INTO the boxes drawn on the working area (a tap picks one); the keypad panel has no answer field of its own */
+    boxAnswer: true,
     /* the Next key (PATTERNS.md 9d): nothing moves on by itself; after a right answer the win picture waits for the child's tap on
        the blinking Next key (the question bar's right end; the classic layout: the answer slot's place). Delete to keep the timers. */
     nextKey: true,

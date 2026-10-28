@@ -3086,7 +3086,11 @@ function ToolFrame({ props, tool }: any) {
   const [locked, setLocked] = useState(false);
   /* r24: `locked` mirrored in a ref, written the moment a tool calls api.lock, so an effect of the same commit sees it */
   const lockedRef = useRef(false);
-  const lockNow = (b: boolean) => { lockedRef.current = b; setLocked(b); };
+  /* a wrong typed answer clears itself once the correction has played (owner, 2026-10-27, class 4 ch 11 feedback): the child retypes without Backspace */
+  const lockNow = (b: boolean) => {
+    lockedRef.current = b; setLocked(b);
+    if (!b) setTimeout(() => { if (staleRef.current && !lockedRef.current) setTyped(""); }, 400);
+  };
   /* CLASSROOM mode (props.classroom): read on every render, so the host can switch it on or off mid-lesson */
   const classroom = (P.classroom ?? (P.additionalProps && P.additionalProps.classroom)) === true;
   const holdRef = useRef(false);
@@ -3724,6 +3728,7 @@ function ToolFrame({ props, tool }: any) {
     setTries(t);
     setWrong({ value, tries: t });
     staleRef.current = true;
+    setTimeout(() => { if (staleRef.current && !lockedRef.current && live.current.tries === t) setTyped(""); }, 1500);
     /* two boxes: both keep the child's numbers, the caret goes back to the first, and a digit typed
        into a box starts that box afresh */
     if (it.parts) { staleParts.current = it.parts.map(() => true); setPart(0); }

@@ -1636,7 +1636,7 @@ function ToolFrame({ props, tool }) {
     typedRef.current = nv;
     staleRef.current = false;
     staleParts.current = [];
-    if (nv === "") setPart(0);
+    if (nv === "") setPart(live.current && live.current.item && live.current.item.parts ? live.current.item.parts.length - 1 : 0);
     setTypedState(nv);
   };
   const [tries, setTries] = useState(0);
@@ -1906,7 +1906,7 @@ function ToolFrame({ props, tool }) {
     staleRef.current = true;
     if (it.parts) {
       staleParts.current = it.parts.map(() => true);
-      setPart(0);
+      setPart(it.parts.length - 1);
     }
     const ladder = L.phase.ladder || [];
     const rung = t === 1 ? it.miss || ladder[0] : t === 2 ? ladder[0] || it.miss : ladder[1] || ladder[0];
@@ -1960,13 +1960,13 @@ function ToolFrame({ props, tool }) {
     }
     if (k === "enter") {
       if (ps[at] === "") return;
-      if (at < np - 1) {
-        setPart(at + 1);
+      if (at > 0 && ps[at - 1] === "") {
+        setPart(at - 1);
         return;
       }
-      const empty = ps.findIndex((p) => p === "");
+      const empty = [...ps].reverse().findIndex((p) => p === "");
       if (empty >= 0) {
-        setPart(empty);
+        setPart(np - 1 - empty);
         return;
       }
       if (!fresh) return;
@@ -1975,8 +1975,8 @@ function ToolFrame({ props, tool }) {
     }
     const stale = staleParts.current.slice();
     if (k === "back") {
-      if (ps[at] === "" && at > 0) {
-        setPart(at - 1);
+      if (ps[at] === "" && at < np - 1) {
+        setPart(at + 1);
         return;
       }
       ps[at] = ps[at].slice(0, -1);
@@ -1984,6 +1984,11 @@ function ToolFrame({ props, tool }) {
     stale[at] = false;
     setTyped(ps.join("|"));
     staleParts.current = stale;
+    if (k !== "back" && at > 0 && ps[at - 1] === "") {
+      if (ps[at].length >= 2) {
+        setPart(at - 1);
+      }
+    }
   };
   const pickPart = (k) => {
     const L = live.current;

@@ -4102,8 +4102,8 @@ const TOOL_NAME = "Pattern Strip";
 const CHROME = { "dim": "#9AA4AC", "ink": "#2B2B2B", "rule": "#C9BCA6", "panel": "#F2E4CE", "paper": "#FFFDF7", "accent": "#5B6770" };
 const VOICE = { "rate": 0.92, "pitch": 1.06 };
 const OPENING = ["A strip of shapes, and some cells still empty. Find what comes round again."];
-const FINISH_LINE = "Every row carried on, and every order brought round to its start.";
-const FREE_LINE = "Free play. Draw a number, then tap the ring round from it.";
+const FINISH_LINE = "Every row carried on, and every side counted.";
+const FREE_LINE = "Free play. Tap each side of a shape and count them.";
 const START_HOOK = "What comes next in a pattern that goes round and round?";
 function StartArt({ box, C, lang, tx }) {
   const kinds = ["star", "moon", "star", "moon", "star"];
@@ -4141,26 +4141,21 @@ const TR = {
   hi: {
     "Pattern Strip": "पैटर्न पट्टी",
     "Fill every box first.": "पहले हर खाना भरो।",
-    "Free play. Draw a number, then tap the ring round from it.": "मुक्त खेल। एक संख्या निकालो, फिर उससे शुरू करके चक्र पर बारी-बारी छुओ।",
+    "Free play. Tap each side of a shape and count them.": "मुक्त खेल। आकृति की हर भुजा छुओ और गिनो।",
     "What comes next in a pattern that goes round and round?": "जो पैटर्न घूम-घूमकर दोहराता है, उसमें आगे क्या आएगा?",
     "A strip of shapes, and some cells still empty. Find what comes round again.": "आकृतियों की एक पट्टी है, कुछ खाने अभी खाली हैं। देखो, क्या फिर से आता है।",
-    "Every row carried on, and every order brought round to its start.": "हर पंक्ति आगे बढ़ाई, और हर क्रम घूमकर अपनी शुरुआत पर आया।",
-    "Copy light": "नकल चमकाओ",
+    "Every row carried on, and every side counted.": "हर पंक्ति आगे बढ़ाई, और हर भुजा गिनी।",
+    "Pattern": "पैटर्न",
     "Turn": "घुमाओ",
-    "Count": "गिनो",
-    "One fewer": "एक कम",
-    "Draw": "निकालो",
-    "Team 1": "टीम 1",
-    "Team 2": "टीम 2",
-    "last": "आखिरी",
+    "Next shape": "अगली आकृति",
     "The group that repeats": "दोहराने वाला समूह",
     "Which shapes come round again? Put a bracket over them.": "कौन-सी आकृतियाँ फिर आती हैं? उन पर कोष्ठक लगाओ।",
-    "Tap Copy light to see where the first shape comes again.": "'नकल चमकाओ' दबाओ और देखो पहली आकृति कहाँ फिर आती है।",
-    "The key at the bottom is Copy light.": "नीचे का बटन 'नकल चमकाओ' है।",
+    "Tap Pattern to see where the first shape comes again.": "'पैटर्न' दबाओ और देखो पहली आकृति कहाँ फिर आती है।",
+    "The key at the bottom is Pattern.": "नीचे का बटन 'पैटर्न' है।",
     "Now tap the fourth box to bracket four boxes.": "अब चौथे खाने को छुओ, ताकि चार खानों पर कोष्ठक लगे।",
     "Tap the box where you want the bracket to end.": "जिस खाने पर कोष्ठक खत्म करना है, उसे छुओ।",
-    "Tap Copy light again, and see if every copy matches.": "'नकल चमकाओ' फिर दबाओ और देखो हर नकल मेल खाती है या नहीं।",
-    "Press Copy light once more.": "'नकल चमकाओ' एक बार और दबाओ।",
+    "Tap Pattern again, and see if every copy matches.": "'पैटर्न' फिर दबाओ और देखो हर नकल मेल खाती है या नहीं।",
+    "Press Pattern once more.": "'पैटर्न' एक बार और दबाओ।",
     "Does every copy of your group match?": "क्या तुम्हारे समूह की हर नकल मेल खाती है?",
     "Bracket until the same shapes come round in the same order.": "तब तक कोष्ठक बढ़ाओ जब तक वही आकृतियाँ उसी क्रम में फिर न आ जाएँ।",
     "The smallest group that repeats fills every blank.": "सबसे छोटा दोहराने वाला समूह हर खाली खाना भर देता है।",
@@ -4219,20 +4214,20 @@ const TR = {
     "Yes, two full turns bring it back round.": "हाँ, दो पूरे घुमाव उसे वापस वहीं ले आते हैं।",
     "One side fewer, then start again": "एक भुजा कम, फिर शुरू",
     "Count the sides of each one. What happens after three?": "हर एक की भुजाएँ गिनो। तीन के बाद क्या होता है?",
-    "Tap Count to write the sides under each shape.": "'गिनो' दबाओ और हर आकृति के नीचे भुजाएँ लिखो।",
-    "The key at the bottom is Count.": "नीचे का बटन 'गिनो' है।",
-    "Tap One fewer to draw the next shape.": "अगली आकृति बनाने के लिए 'एक कम' दबाओ।",
-    "The key now reads One fewer.": "अब बटन पर 'एक कम' लिखा है।",
-    "Tap One fewer once more, and look at the picture.": "'एक कम' फिर दबाओ और चित्र को देखो।",
-    "Press One fewer again.": "'एक कम' फिर दबाओ।",
+    "Tap one side of the shape, and it lights up.": "आकृति की एक भुजा को छुओ, वह चमक उठेगी।",
+    "Tap any side of the triangle.": "त्रिभुज की कोई भी भुजा छुओ।",
+    "Tap another side, and the count goes up.": "दूसरी भुजा छुओ, गिनती बढ़ जाएगी।",
+    "Tap a side that is not lit yet.": "जो भुजा अभी नहीं चमकी, उसे छुओ।",
+    "Tap the last side, and read the count.": "आखिरी भुजा छुओ और गिनती पढ़ो।",
+    "Only one side is still dark.": "बस एक भुजा में अभी चमक नहीं है।",
     "Can a closed shape with straight sides have fewer than three?": "क्या सीधी भुजाओं वाली बंद आकृति की तीन से कम भुजाएँ हो सकती हैं?",
     "Say the side counts out loud, and listen for the jump.": "भुजाओं की गिनती ज़ोर से बोलो और देखो कहाँ छलाँग लगती है।",
     "A row can lose or gain a side each step, then starts again.": "पंक्ति हर चरण पर एक भुजा खो या पा सकती है, फिर दोबारा शुरू होती है।",
     "You learned: a row gains or loses a side, then starts again.": "तुमने सीखा: पंक्ति एक भुजा पाती या खोती है, फिर शुरू।",
-    "The row loses one side each step: how many shapes before it must start again?": "पंक्ति हर चरण एक भुजा खोती है: फिर शुरू होने से पहले कितनी आकृतियाँ?",
-    "How many shapes?": "कितनी आकृतियाँ?",
-    "Lay each shape with the key, and stop where it cannot go on.": "बटन से हर आकृति बनाओ और जहाँ आगे न बढ़े, वहाँ रुक जाओ।",
-    "Yes, the row has that many shapes.": "हाँ, पंक्ति में उतनी ही आकृतियाँ हैं।",
+    "The row loses one side each step: how many sides will the next shape have?": "पंक्ति हर चरण एक भुजा खोती है: अगली आकृति की कितनी भुजाएँ होंगी?",
+    "How many sides?": "कितनी भुजाएँ?",
+    "Tap each side of the shape to count, then take one away.": "आकृति की हर भुजा छूकर गिनो, फिर एक घटा दो।",
+    "Yes, one side fewer makes five sides.": "हाँ, एक भुजा कम होने पर पाँच भुजाएँ बनती हैं।",
     "How many sides do the shapes in the two empty boxes have?": "दोनों खाली खानों की आकृतियों की कितनी-कितनी भुजाएँ हैं?",
     "Sides of the two?": "दोनों की भुजाएँ?",
     "3, then 5": "3, फिर 5",
@@ -4246,58 +4241,27 @@ const TR = {
     "Square": "वर्ग",
     "Pentagon": "पंचभुज",
     "Hexagon": "षट्भुज",
-    "Look at where the counts begin again.": "देखो गिनती कहाँ से फिर शुरू होती है।",
+    "Tap each side, and see how the counts change.": "हर भुजा छुओ और देखो गिनती कैसे बदलती है।",
     "Yes, the climb ends on five sides.": "हाँ, बढ़त पाँच भुजाओं पर रुकती है।",
-    "After the last comes the first": "आखिरी के बाद पहला आता है",
-    "Who goes first? Now go round. Who comes after the last one?": "पहले कौन जाता है? अब घूमते चलो। आखिरी के बाद कौन आता है?",
-    "Tap Draw to find out who goes first.": "'निकालो' दबाओ और जानो कि पहले कौन जाएगा।",
-    "The key at the bottom is Draw.": "नीचे का बटन 'निकालो' है।",
-    "Tap the player who comes after the flag.": "झंडे के बाद आने वाले खिलाड़ी को छुओ।",
-    "Go round the ring, the way a clock goes.": "चक्र पर घड़ी की दिशा में आगे बढ़ो।",
-    "Tap the next player round the ring.": "चक्र पर अगले खिलाड़ी को छुओ।",
-    "Keep going to the next number.": "अगली संख्या की ओर बढ़ते जाओ।",
-    "Keep going, past the highest number, and tap the next player.": "सबसे बड़ी संख्या के बाद भी चलते रहो और अगले खिलाड़ी को छुओ।",
-    "Look for where the numbers start again.": "देखो संख्याएँ कहाँ से फिर शुरू होती हैं।",
-    "Who comes next when the numbers run out?": "संख्याएँ खत्म होने पर अगला कौन आता है?",
-    "A ring has no end, so it carries on from its first number.": "चक्र का कोई अंत नहीं होता, इसलिए वह पहली संख्या से चलता रहता है।",
-    "Whoever is drawn goes first, and the ring comes back to the start.": "जिसका नाम निकले वह पहले जाता है, और चक्र शुरुआत पर लौट आता है।",
-    "You learned: after the last number on a ring comes the first.": "तुमने सीखा: चक्र में आखिरी के बाद पहली आती है।",
-    "Child 4 bats first, going round: tap all five in batting order.": "बच्चा 4 पहले खेलता है: पाँचों को खेलने के क्रम में छुओ।",
-    "Whole order?": "पूरा क्रम?",
-    "Read the ring from the flag, one number at a time.": "झंडे से चक्र पढ़ो, एक-एक संख्या करके।",
-    "Yes, it goes round from 4 and back to 1.": "हाँ, यह 4 से घूमकर वापस 1 पर आता है।",
-    "One draw of 3 starts both teams: tap each team's order on its own ring.": "3 की एक पर्ची दोनों टीमें शुरू करती है: हर टीम का क्रम अपने चक्र पर छुओ।",
-    "Both orders?": "दोनों क्रम?",
-    "Both rings begin at the number drawn.": "दोनों चक्र निकाली गई संख्या से शुरू होते हैं।",
-    "Yes, both teams share one starting number.": "हाँ, दोनों टीमों की शुरुआत की संख्या एक ही है।",
-    "Six players take turns going round: if player 2 goes last, who went first?": "छह खिलाड़ी बारी-बारी जाते हैं: खिलाड़ी 2 आखिरी में जाए तो पहले कौन गया?",
-    "Who went first?": "पहले कौन गया?",
-    "Go round from the player who went last.": "आखिर में गए खिलाड़ी से आगे घूमो।",
-    "Yes, player 3 went first.": "हाँ, खिलाड़ी 3 पहले गया।"
   },
   gu: {
     "Pattern Strip": "પેટર્ન પટ્ટી",
     "Fill every box first.": "પહેલા દરેક ખાનું ભરો.",
-    "Free play. Draw a number, then tap the ring round from it.": "મુક્ત રમત. એક સંખ્યા કાઢો, પછી ચક્ર પર તેનાથી શરૂ કરીને ટેપ કરો.",
+    "Free play. Tap each side of a shape and count them.": "મુક્ત રમત. આકૃતિની દરેક બાજુ ટેપ કરો અને ગણો.",
     "What comes next in a pattern that goes round and round?": "ફરી ફરીને આવતી પેટર્નમાં આગળ શું આવશે?",
     "A strip of shapes, and some cells still empty. Find what comes round again.": "આકૃતિઓની એક પટ્ટી છે, કેટલાંક ખાનાં હજી ખાલી છે. જુઓ, શું ફરી આવે છે.",
-    "Every row carried on, and every order brought round to its start.": "દરેક હરોળ આગળ વધારી, અને દરેક ક્રમ ફરીને શરૂઆત પર આવ્યો.",
-    "Copy light": "નકલ ચમકાવો",
+    "Every row carried on, and every side counted.": "દરેક હરોળ આગળ વધારી, અને દરેક બાજુ ગણી.",
+    "Pattern": "પેટર્ન",
     "Turn": "ફેરવો",
-    "Count": "ગણો",
-    "One fewer": "એક ઓછી",
-    "Draw": "કાઢો",
-    "Team 1": "ટીમ 1",
-    "Team 2": "ટીમ 2",
-    "last": "છેલ્લો",
+    "Next shape": "આગળની આકૃતિ",
     "The group that repeats": "ફરી ફરી આવતું જૂથ",
     "Which shapes come round again? Put a bracket over them.": "કઈ આકૃતિઓ ફરી આવે છે? તેમના પર કૌંસ મૂકો.",
-    "Tap Copy light to see where the first shape comes again.": "'નકલ ચમકાવો' દબાવો અને જુઓ પહેલી આકૃતિ ક્યાં ફરી આવે છે.",
-    "The key at the bottom is Copy light.": "નીચેનું બટન 'નકલ ચમકાવો' છે.",
+    "Tap Pattern to see where the first shape comes again.": "'પેટર્ન' દબાવો અને જુઓ પહેલી આકૃતિ ક્યાં ફરી આવે છે.",
+    "The key at the bottom is Pattern.": "નીચેનું બટન 'પેટર્ન' છે.",
     "Now tap the fourth box to bracket four boxes.": "હવે ચોથા ખાનાને ટેપ કરો, જેથી ચાર ખાના પર કૌંસ લાગે.",
     "Tap the box where you want the bracket to end.": "જ્યાં કૌંસ પૂરો કરવો હોય તે ખાનું ટેપ કરો.",
-    "Tap Copy light again, and see if every copy matches.": "'નકલ ચમકાવો' ફરી દબાવો અને જુઓ દરેક નકલ મેળ ખાય છે કે નહીં.",
-    "Press Copy light once more.": "'નકલ ચમકાવો' ફરી એક વાર દબાવો.",
+    "Tap Pattern again, and see if every copy matches.": "'પેટર્ન' ફરી દબાવો અને જુઓ દરેક નકલ મેળ ખાય છે કે નહીં.",
+    "Press Pattern once more.": "'પેટર્ન' ફરી એક વાર દબાવો.",
     "Does every copy of your group match?": "શું તમારા જૂથની દરેક નકલ મેળ ખાય છે?",
     "Bracket until the same shapes come round in the same order.": "જ્યાં સુધી એ જ આકૃતિઓ એ જ ક્રમમાં ફરી ન આવે ત્યાં સુધી કૌંસ વધારો.",
     "The smallest group that repeats fills every blank.": "સૌથી નાનું ફરી આવતું જૂથ દરેક ખાલી ખાનું ભરી દે છે.",
@@ -4356,20 +4320,20 @@ const TR = {
     "Yes, two full turns bring it back round.": "હા, બે પૂરા ફેરા તેને પાછું ત્યાં લાવે છે.",
     "One side fewer, then start again": "એક બાજુ ઓછી, પછી ફરી શરૂ",
     "Count the sides of each one. What happens after three?": "દરેકની બાજુઓ ગણો. ત્રણ પછી શું થાય છે?",
-    "Tap Count to write the sides under each shape.": "'ગણો' દબાવો અને દરેક આકૃતિ નીચે બાજુઓ લખો.",
-    "The key at the bottom is Count.": "નીચેનું બટન 'ગણો' છે.",
-    "Tap One fewer to draw the next shape.": "આગળની આકૃતિ દોરવા 'એક ઓછી' દબાવો.",
-    "The key now reads One fewer.": "હવે બટન પર 'એક ઓછી' લખ્યું છે.",
-    "Tap One fewer once more, and look at the picture.": "'એક ઓછી' ફરી દબાવો અને ચિત્ર જુઓ.",
-    "Press One fewer again.": "'એક ઓછી' ફરી દબાવો.",
+    "Tap one side of the shape, and it lights up.": "આકૃતિની એક બાજુને ટેપ કરો, તે ચમકી ઊઠશે.",
+    "Tap any side of the triangle.": "ત્રિકોણની કોઈ પણ બાજુ ટેપ કરો.",
+    "Tap another side, and the count goes up.": "બીજી બાજુ ટેપ કરો, ગણતરી વધશે.",
+    "Tap a side that is not lit yet.": "જે બાજુ હજી ચમકી નથી તેને ટેપ કરો.",
+    "Tap the last side, and read the count.": "છેલ્લી બાજુ ટેપ કરો અને ગણતરી વાંચો.",
+    "Only one side is still dark.": "બસ એક જ બાજુ હજી ચમકી નથી.",
     "Can a closed shape with straight sides have fewer than three?": "શું સીધી બાજુઓવાળી બંધ આકૃતિની ત્રણથી ઓછી બાજુઓ હોઈ શકે?",
     "Say the side counts out loud, and listen for the jump.": "બાજુઓની ગણતરી મોટેથી બોલો અને કૂદકો સાંભળો.",
     "A row can lose or gain a side each step, then starts again.": "હરોળ દરેક પગલે એક બાજુ ગુમાવી કે મેળવી શકે છે, પછી ફરી શરૂ થાય છે.",
     "You learned: a row gains or loses a side, then starts again.": "તમે શીખ્યા: હરોળ એક બાજુ મેળવે કે ગુમાવે, પછી ફરી શરૂ.",
-    "The row loses one side each step: how many shapes before it must start again?": "હરોળ દરેક પગલે એક બાજુ ગુમાવે છે: ફરી શરૂ થતા પહેલાં કેટલી આકૃતિઓ?",
-    "How many shapes?": "કેટલી આકૃતિઓ?",
-    "Lay each shape with the key, and stop where it cannot go on.": "બટનથી દરેક આકૃતિ બનાવો અને જ્યાં આગળ ન વધે ત્યાં અટકો.",
-    "Yes, the row has that many shapes.": "હા, હરોળમાં એટલી જ આકૃતિઓ છે.",
+    "The row loses one side each step: how many sides will the next shape have?": "હરોળ દરેક પગલે એક બાજુ ગુમાવે છે: આગળની આકૃતિની કેટલી બાજુઓ હશે?",
+    "How many sides?": "કેટલી બાજુઓ?",
+    "Tap each side of the shape to count, then take one away.": "આકૃતિની દરેક બાજુ ટેપ કરીને ગણો, પછી એક ઓછી કરો.",
+    "Yes, one side fewer makes five sides.": "હા, એક બાજુ ઓછી થતાં પાંચ બાજુઓ બને છે.",
     "How many sides do the shapes in the two empty boxes have?": "બંને ખાલી ખાનાંની આકૃતિઓની કેટલી કેટલી બાજુઓ છે?",
     "Sides of the two?": "બંનેની બાજુઓ?",
     "3, then 5": "3, પછી 5",
@@ -4383,34 +4347,8 @@ const TR = {
     "Square": "ચોરસ",
     "Pentagon": "પંચકોણ",
     "Hexagon": "ષટ્કોણ",
-    "Look at where the counts begin again.": "જુઓ ગણતરી ક્યાંથી ફરી શરૂ થાય છે.",
+    "Tap each side, and see how the counts change.": "દરેક બાજુ ટેપ કરો અને જુઓ ગણતરી કેવી બદલાય છે.",
     "Yes, the climb ends on five sides.": "હા, વધારો પાંચ બાજુ પર અટકે છે.",
-    "After the last comes the first": "છેલ્લા પછી પહેલું આવે છે",
-    "Who goes first? Now go round. Who comes after the last one?": "પહેલા કોણ જાય છે? હવે ફરતા જાઓ. છેલ્લા પછી કોણ આવે છે?",
-    "Tap Draw to find out who goes first.": "'કાઢો' દબાવો અને જાણો કે પહેલા કોણ જશે.",
-    "The key at the bottom is Draw.": "નીચેનું બટન 'કાઢો' છે.",
-    "Tap the player who comes after the flag.": "ઝંડા પછી આવનાર ખેલાડીને ટેપ કરો.",
-    "Go round the ring, the way a clock goes.": "ચક્ર પર ઘડિયાળની દિશામાં આગળ વધો.",
-    "Tap the next player round the ring.": "ચક્ર પર આગળના ખેલાડીને ટેપ કરો.",
-    "Keep going to the next number.": "આગળની સંખ્યા તરફ વધતા જાઓ.",
-    "Keep going, past the highest number, and tap the next player.": "સૌથી મોટી સંખ્યા પછી પણ ચાલતા રહો અને આગળના ખેલાડીને ટેપ કરો.",
-    "Look for where the numbers start again.": "જુઓ સંખ્યાઓ ક્યાંથી ફરી શરૂ થાય છે.",
-    "Who comes next when the numbers run out?": "સંખ્યાઓ પૂરી થાય ત્યારે આગળ કોણ આવે છે?",
-    "A ring has no end, so it carries on from its first number.": "ચક્રનો કોઈ અંત નથી, એટલે તે પહેલી સંખ્યાથી આગળ ચાલે છે.",
-    "Whoever is drawn goes first, and the ring comes back to the start.": "જેનું નામ નીકળે તે પહેલા જાય છે, અને ચક્ર શરૂઆત પર પાછું આવે છે.",
-    "You learned: after the last number on a ring comes the first.": "તમે શીખ્યા: ચક્રમાં છેલ્લા પછી પહેલી આવે છે.",
-    "Child 4 bats first, going round: tap all five in batting order.": "બાળક 4 પહેલા રમે છે: પાંચેયને રમવાના ક્રમમાં ટેપ કરો.",
-    "Whole order?": "આખો ક્રમ?",
-    "Read the ring from the flag, one number at a time.": "ઝંડાથી ચક્ર વાંચો, એક એક સંખ્યા કરીને.",
-    "Yes, it goes round from 4 and back to 1.": "હા, તે 4 થી ફરીને પાછું 1 પર આવે છે.",
-    "One draw of 3 starts both teams: tap each team's order on its own ring.": "3 ની ચિઠ્ઠી બંને ટીમ શરૂ કરે છે: દરેકનો ક્રમ પોતાના ચક્ર પર ટેપ કરો.",
-    "Both orders?": "બંને ક્રમ?",
-    "Both rings begin at the number drawn.": "બંને ચક્ર કાઢેલી સંખ્યાથી શરૂ થાય છે.",
-    "Yes, both teams share one starting number.": "હા, બંને ટીમની શરૂઆતની સંખ્યા એક જ છે.",
-    "Six players take turns going round: if player 2 goes last, who went first?": "છ ખેલાડી વારાફરતી જાય છે: ખેલાડી 2 છેલ્લે જાય તો પહેલા કોણ ગયો?",
-    "Who went first?": "પહેલા કોણ ગયો?",
-    "Go round from the player who went last.": "છેલ્લે ગયેલા ખેલાડીથી આગળ ફરો.",
-    "Yes, player 3 went first.": "હા, ખેલાડી 3 પહેલા ગયો."
   }
 };
 const PHASES = [
@@ -4421,9 +4359,9 @@ const PHASES = [
     objectiveIds: ["O1"],
     says: ["Which shapes come round again? Put a bracket over them."],
     steps: [
-      { say: "Tap Copy light to see where the first shape comes again.", on: "copy", hint: "The key at the bottom is Copy light." },
+      { say: "Tap Pattern to see where the first shape comes again.", on: "copy", hint: "The key at the bottom is Pattern." },
       { say: "Now tap the fourth box to bracket four boxes.", on: "bracket", hint: "Tap the box where you want the bracket to end." },
-      { say: "Tap Copy light again, and see if every copy matches.", on: "copy", hint: "Press Copy light once more." }
+      { say: "Tap Pattern again, and see if every copy matches.", on: "copy", hint: "Press Pattern once more." }
     ],
     ladder: ["Does every copy of your group match?", "Bracket until the same shapes come round in the same order."],
     closing: "The smallest group that repeats fills every blank.",
@@ -4536,25 +4474,25 @@ const PHASES = [
     objectiveIds: ["O2"],
     says: ["Count the sides of each one. What happens after three?"],
     steps: [
-      { say: "Tap Count to write the sides under each shape.", on: "count", hint: "The key at the bottom is Count." },
-      { say: "Tap One fewer to draw the next shape.", on: "fewer", hint: "The key now reads One fewer." },
-      { say: "Tap One fewer once more, and look at the picture.", on: "fewer", hint: "Press One fewer again." }
+      { say: "Tap one side of the shape, and it lights up.", on: "side", hint: "Tap any side of the triangle." },
+      { say: "Tap another side, and the count goes up.", on: "side", hint: "Tap a side that is not lit yet." },
+      { say: "Tap the last side, and read the count.", on: "side", hint: "Only one side is still dark." }
     ],
     ladder: ["Can a closed shape with straight sides have fewer than three?", "Say the side counts out loud, and listen for the jump."],
     closing: "A row can lose or gain a side each step, then starts again.",
     learned: "You learned: a row gains or loses a side, then starts again.",
-    traceback: "The side counts are read along the row, the spot where they turn back is marked, and the shapes the row makes fill the blanks.",
+    traceback: "The sides of the shown shapes are counted one by one, then the next shape comes with its sides counted.",
     items: [
       {
         qid: "M1.S1.T2.C7:6",
         kind: "count",
         mk: "3.1",
-        say: "The row loses one side each step: how many shapes before it must start again?",
-        ask: "How many shapes?",
+        say: "The row loses one side each step: how many sides will the next shape have?",
+        ask: "How many sides?",
         answer: 5,
         near: 6,
-        miss: "Lay each shape with the key, and stop where it cannot go on.",
-        win: "Yes, the row has that many shapes."
+        miss: "Tap each side of the shape to count, then take one away.",
+        win: "Yes, one side fewer makes five sides."
       },
       {
         qid: "M1.S1.T2.C7:ML3",
@@ -4579,62 +4517,8 @@ const PHASES = [
         answer: "pentagon",
         near: "square",
         forms: ["pentagon"],
-        miss: "Look at where the counts begin again.",
+        miss: "Tap each side, and see how the counts change.",
         win: "Yes, the climb ends on five sides."
-      }
-    ]
-  },
-  {
-    n: 4,
-    concept: "After the last comes the first",
-    conceptId: "M1.S1.T2.C8",
-    objectiveIds: ["O2"],
-    says: ["Who goes first? Now go round. Who comes after the last one?"],
-    steps: [
-      { say: "Tap Draw to find out who goes first.", on: "draw", hint: "The key at the bottom is Draw." },
-      { say: "Tap the player who comes after the flag.", on: "place", hint: "Go round the ring, the way a clock goes." },
-      { say: "Tap the next player round the ring.", on: "place", hint: "Keep going to the next number." },
-      { say: "Keep going, past the highest number, and tap the next player.", on: "place", hint: "Look for where the numbers start again." }
-    ],
-    ladder: ["Who comes next when the numbers run out?", "A ring has no end, so it carries on from its first number."],
-    closing: "Whoever is drawn goes first, and the ring comes back to the start.",
-    learned: "You learned: after the last number on a ring comes the first.",
-    traceback: "The ring is walked from the drawn number, each number lights as it is passed, and an arc joins the last number back to the first.",
-    items: [
-      {
-        qid: "M1.S1.T2.C8:ML4",
-        kind: "order",
-        mk: "4.1",
-        pad: "enter",
-        say: "Child 4 bats first, going round: tap all five in batting order.",
-        ask: "Whole order?",
-        answer: "4 5 1 2 3",
-        near: "4 5",
-        miss: "Read the ring from the flag, one number at a time.",
-        win: "Yes, it goes round from 4 and back to 1."
-      },
-      {
-        qid: "M1.S1.T2.C8:7",
-        kind: "order",
-        mk: "4.2",
-        pad: "enter",
-        say: "One draw of 3 starts both teams: tap each team's order on its own ring.",
-        ask: "Both orders?",
-        answer: "3 4 5 1 2",
-        near: "3 4 5",
-        miss: "Both rings begin at the number drawn.",
-        win: "Yes, both teams share one starting number."
-      },
-      {
-        qid: "M1.S1.T2.C8:8",
-        kind: "first",
-        mk: "4.3",
-        say: "Six players take turns going round: if player 2 goes last, who went first?",
-        ask: "Who went first?",
-        answer: 3,
-        near: 1,
-        miss: "Go round from the player who went last.",
-        win: "Yes, player 3 went first."
       }
     ]
   }
@@ -4649,15 +4533,11 @@ const MODEL = {
     "2.1": { pic: "arrow", given: ["down", "left"], blanks: 4, tray: true },
     "2.2": { pic: "plus", given: ["down", "left", "up"], blanks: 1 },
     "2.3": { pic: "arrow", given: ["right", "down"], blanks: 8 },
-    "3.0": { counts: [6, 5, 4], blanks: 2, lay: true, hidden: true },
-    "3.1": { counts: [7], blanks: 7, lay: true },
-    "3.2": { counts: [5, 4, 3, 5, 4], blanks: 2 },
-    "3.3": { counts: [3, 4, 5, 3, 4], blanks: 1 },
-    "4.0": { ring: 4, drawn: 2, warm: true },
-    "4.1": { ring: 5, drawn: 4, teams: 1 },
-    "4.2": { ring: 5, drawn: 3, teams: 2 },
-    "4.3": { ring: 6, last: 2 },
-    "4.f": { ring: 5, free: true }
+    "3.0": { sh: [3], nx: [], blanks: 0 },
+    "3.1": { sh: [6], nx: [5], blanks: 1, rule: "down" },
+    "3.2": { sh: [5, 4], nx: [3, 5], blanks: 2, rule: "down" },
+    "3.3": { sh: [3, 4], nx: [5], blanks: 1, rule: "up" },
+    "3.f": { sh: [3], nx: [], blanks: 0, free: true }
   }
 };
 const PS_DIRS = ["up", "right", "down", "left"];
@@ -4695,15 +4575,6 @@ const oracle = () => {
     }
     return x === 0 && y === -1 ? "up" : x === 1 ? "right" : y === 1 ? "down" : "left";
   };
-  const walk = (size, from) => {
-    const out = [];
-    let at = from;
-    for (let k = 0; k < size; k++) {
-      out.push(at);
-      at = at === size ? 1 : at + 1;
-    }
-    return out;
-  };
   const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
   const labelOf = (it, id) => String((it.choices.find((c) => c.id === id) || {}).label || "").replace(/\u00A0/g, " ").toLowerCase();
   const want = {};
@@ -4715,17 +4586,20 @@ const oracle = () => {
   want["2.1"] = [1, 2, 3, 4].map((s) => spin(lastOf("2.1"), s)).join(" ");
   want["2.2"] = spin(lastOf("2.2"), 1);
   want["2.3"] = spin(lastOf("2.3"), 8);
-  const names = (c, k) => carry(c, k).map((x) => PS_NAME[x]);
-  const sides = (c, k) => carry(c, k).join(", then ");
-  let run = 0;
-  for (let s = M["3.1"].counts[0]; s >= 3; s--) run++;
-  want["3.1"] = run;
-  want["3.2"] = sides(M["3.2"].counts, 2);
-  want["3.3"] = names(M["3.3"].counts, 1).join(", then ");
-  want["4.1"] = walk(M["4.1"].ring, M["4.1"].drawn).join(" ");
-  want["4.2"] = walk(M["4.2"].ring, M["4.2"].drawn).join(" ");
-  want["4.3"] = walk(M["4.3"].ring, M["4.3"].last)[1];
-  return PHASES.every((p, k) => p.items.every((it, j) => {
+  const follow = (md, k) => {
+    const out = [];
+    let at = md.sh[md.sh.length - 1];
+    for (let j = 0; j < k; j++) {
+      at = md.rule === "up" ? at < 5 ? at + 1 : md.sh[0] : at > 3 ? at - 1 : md.sh[0];
+      out.push(at);
+    }
+    return out;
+  };
+  want["3.1"] = follow(M["3.1"], 1)[0];
+  want["3.2"] = follow(M["3.2"], 2).join(", then ");
+  want["3.3"] = follow(M["3.3"], 1).map((x) => PS_NAME[x]).join(", then ");
+  const shown3 = ["3.1", "3.2", "3.3"].every((k) => follow(M[k], M[k].nx.length).join() === M[k].nx.join());
+  return shown3 && PHASES.every((p, k) => p.items.every((it, j) => {
     const w = want[`${k + 1}.${j + 1}`];
     const got = it.choices ? labelOf(it, it.answer) : String(it.answer);
     return got === String(w).toLowerCase() || it.choices && labelOf(it, it.answer) === cap(String(w)).toLowerCase();
@@ -4764,16 +4638,24 @@ const psBlocks = (given, k) => {
   if (out.length === 1) out[0] = { ...out[0], ok: false, bad: -1 };
   return out;
 };
-const psPeriod = (a) => {
-  for (let p = 1; p <= a.length; p++) {
-    let ok = true;
-    for (let i = p; i < a.length; i++) if (a[i] !== a[i - p]) {
-      ok = false;
-      break;
-    }
-    if (ok) return p;
+const psVerts = (k, cx, cy, r) => {
+  const out = [], off = k === 4 ? Math.PI / 4 : 0;
+  for (let i = 0; i < k; i++) {
+    const t = -Math.PI / 2 + off + i * 2 * Math.PI / k;
+    out.push([cx + r * Math.cos(t), cy + r * Math.sin(t)]);
   }
-  return a.length;
+  return out;
+};
+const PS_SHIFT = { 3: 0.25, 4: 0, 5: 0.095, 6: 0 };
+const psSideGeo = (k, cx, cy, cell) => {
+  const r = Math.round(cell * 0.46), v = psVerts(k, cx, cy + PS_SHIFT[k] * r, r);
+  const mids = v.map((p, i) => [(p[0] + v[(i + 1) % k][0]) / 2, (p[1] + v[(i + 1) % k][1]) / 2]);
+  let hs = 96;
+  mids.forEach((m, i) => {
+    const o = mids[(i + 1) % k];
+    hs = Math.min(hs, Math.floor(Math.max(Math.abs(m[0] - o[0]), Math.abs(m[1] - o[1]))));
+  });
+  return { v, mids, hs: Math.max(72, hs), pts: v.map((p) => p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" ") };
 };
 const psRight = (md) => {
   const out = [];
@@ -4790,17 +4672,6 @@ const psRight = (md) => {
     }
     return out;
   }
-  if (md.lay) {
-    for (let s = md.counts[0] - 1; s >= 3; s--) out.push(String(s));
-    return out;
-  }
-  const c = md.counts.slice(), p = psPeriod(c);
-  for (let j = 0; j < md.blanks; j++) c.push(c[c.length - p]);
-  return c.slice(md.counts.length).map(String);
-};
-const psRound = (size, from) => {
-  const out = [];
-  for (let k = 0; k < size; k++) out.push((from - 1 + k) % size + 1);
   return out;
 };
 const psPoly = (k, cx, cy, r) => {
@@ -4887,13 +4758,7 @@ function PsCell({ x, y, s, filled, made, C }) {
 const psFresh = (key, n, md) => {
   if (n === 1) return { key, k: 1, touched: false, lit: null, demo: null };
   if (n === 2) return { key, dial: PS_DIRS.indexOf(md.given[md.given.length - 1]), turns: 0, replay: false, fills: [], demo: null };
-  if (n === 3) return { key, counted: 0, laid: [], demo: null };
-  return { key, drawn: md.free || md.warm ? null : md.drawn || null, order: [], order2: [], bend: 0, demo: null };
-};
-const psOrderValue = (S, md) => {
-  const a = S.order.join(" "), b = S.order2.join(" ");
-  if (!a && !b) return "";
-  return (md.teams || 1) > 1 && a !== b ? a + " / " + b : a;
+  return { key, tapped: md.sh.map(() => []), fk: 3, demo: null };
 };
 function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, step, stepOn, box, lang = "en", tx = (v) => v }) {
   const C = api.C;
@@ -4903,10 +4768,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
   const free = stage === "free";
   const warm = !free && (stage === "teach" || stage === "demo");
   const at = Math.max(0, Math.min(index || 0, ((phase.items || []).length || 1) - 1));
-  const key = free ? "4.f" : warm ? `${n}.0` : `${n}.${at + 1}`;
+  const key = free ? "3.f" : warm ? `${n}.0` : `${n}.${at + 1}`;
   const md = MODEL2.items[key] || MODEL2.items[`${n}.1`];
   const stRef = useRef(null);
-  if (!stRef.current || stRef.current.key !== key) stRef.current = psFresh(key, free ? 4 : n, md);
+  if (!stRef.current || stRef.current.key !== key) stRef.current = psFresh(key, free ? 3 : n, md);
   const S = stRef.current;
   const put = (o) => {
     stRef.current = { ...stRef.current, ...o };
@@ -4918,8 +4783,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
   const holding = stage === "demo" && (!stepOn || phase.steps && step >= phase.steps.length);
   const stepping = stage === "demo" && !!stepOn && !holding;
   const live = (stage === "ask" || free || stepping) && !tl.busy && !won;
-  const P = free ? 4 : n;
-  const right = md.strip || md.given || md.counts ? psRight(md) : [];
+  const P = free ? 3 : n;
+  const right = md.strip || md.given ? psRight(md) : [];
   const press = (name, fn) => {
     if (stepping && name !== stepOn) {
       api.did(name);
@@ -4944,8 +4809,22 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       if (st) api.did(name);
     });
   };
-  const given = md.strip || md.given || (md.counts ? md.counts.map(String) : []);
-  const g = psGeo(given.length + (md.blanks || 0), box, P === 1 ? 140 : P === 3 ? 130 : 108, P === 2 ? 112 : 136);
+  const shs = md.sh ? free ? [S.fk] : md.sh : null;
+  const given = md.strip || md.given || (shs ? shs.map(String) : []);
+  const gcount = given.length + (md.blanks || 0);
+  let g = psGeo(gcount, box, P === 1 ? 140 : 108, P === 2 ? 112 : 136);
+  let cw = () => g.cell;
+  if (P === 3) {
+    const nG = shs.length, nB = md.blanks || 0, tight = nG + nB > 3, avail = box.w - 40, gap2 = tight ? 24 : PS_GAP;
+    const cG = Math.min(nG + nB <= 2 ? 250 : 230, Math.floor((avail - (nG + nB - 1) * PS_GAP) / (nG + nB)));
+    const cB = tight ? Math.max(100, Math.min(150, Math.floor((avail - nG * cG - (nG - 1) * PS_GAP - gap2 - (nB - 1) * PS_GAP) / nB))) : cG;
+    const total = nG * cG + (nG - 1) * PS_GAP + (nB ? gap2 + nB * cB + (nB - 1) * PS_GAP : 0);
+    const x0 = Math.round((box.w - total) / 2);
+    const xs = (i) => i < nG ? x0 + i * (cG + PS_GAP) : x0 + nG * (cG + PS_GAP) - PS_GAP + gap2 + (i - nG) * (cB + PS_GAP);
+    cw = (i) => i < nG ? cG : cB;
+    g = { cell: cG, top: 112, bot: 112 + cG, cy: 112 + cG / 2, x: xs, cx: (i) => xs(i) + cw(i) / 2 };
+  }
+  const sgeo = (s) => psSideGeo(shs[s], g.cx(s), g.cy, cw(s));
   const KW = 264, KH = 72, KX = Math.round((box.w - KW) / 2), KY = box.h - KH - EDGE - 8;
   const dcx = g.x0 + 104, dcy = g.bot + 102;
   const blocks = P === 1 ? psBlocks(given, S.k) : [];
@@ -4971,40 +4850,6 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       else put({ dial: (stRef.current.dial + 1) % 4, turns: stRef.current.turns + 1, demo: null });
     }
   );
-  const lastSides = S.laid && S.laid.length ? S.laid[S.laid.length - 1] : md.counts ? md.counts[md.counts.length - 1] : 0;
-  const nextSides = lastSides - 1 >= 3 ? lastSides - 1 : 2;
-  const count = () => perform("count", {
-    tool: "pencil",
-    moves: "push",
-    ms: 700,
-    at: md.counts ? md.counts.map((_, i) => ({ x: g.cx(i), y: g.bot + 36 })) : [],
-    onPoint: (i) => put({ counted: i + 1 })
-  }, () => put({ counted: 999 }));
-  const fewer = () => perform(
-    "fewer",
-    {
-      tool: "pencil",
-      moves: "push",
-      ms: 700,
-      at: [{ x: g.cx(given.length + S.laid.length), y: g.cy }]
-    },
-    () => {
-      api.sfx.settle();
-      put({ laid: [...stRef.current.laid, nextSides], demo: null });
-    }
-  );
-  const size = md.ring || 5;
-  const ringStart = md.last ? md.last % size + 1 : S.drawn || md.drawn || 1;
-  const draw = () => perform(
-    "draw",
-    { tool: "hand", moves: "tap", ms: 700, at: [{ x: PsRingGeo(md, box).drum.x + 60, y: PsRingGeo(md, box).drum.y + 60 }] },
-    () => {
-      api.sfx.tick();
-      const d = free ? (stRef.current.drawn || 0) % size + 1 : md.drawn;
-      act({ drawn: d, order: md.warm ? [d] : [], order2: [] });
-    }
-  );
-  const expectNext = () => psRound(size, S.drawn || md.drawn || 1)[S.order.length];
   const lastTap = useRef({ w: -1, v: -1, t: 0 });
   const dbl = (w, v) => {
     const now = Date.now(), L = lastTap.current;
@@ -5019,44 +4864,49 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       if (item && item.say) api.say(item.say);
     }
   };
-  const tapPlace = (v, which) => {
-    if (dbl(which, v)) return;
-    const ord = which ? S.order2 : S.order, f = which ? "order2" : "order";
-    if (stepping) {
-      if (stepOn !== "place") {
-        api.did("place");
-        return;
-      }
-      if (v !== expectNext() || !S.drawn) {
-        api.did("not-this-place");
-        return;
-      }
-      put({ order: [...S.order, v], demo: null });
-      api.sfx.tick();
-      api.did("place");
+  const addTap = (s, i) => {
+    const t = stRef.current.tapped.map((a) => a.slice());
+    if (t[s].indexOf(i) < 0) t[s].push(i);
+    return t;
+  };
+  const nextSide = () => {
+    for (let s = 0; s < (shs || []).length; s++) for (let i = 0; i < shs[s]; i++) if (S.tapped[s].indexOf(i) < 0) return [s, i];
+    return null;
+  };
+  const tapSide = (s, i) => {
+    if (dbl(s, i)) return;
+    if (S.tapped[s].indexOf(i) >= 0) {
+      if (stepping) api.did("lit-side");
       return;
     }
-    unnudge();
-    const k = ord.indexOf(v);
-    const o = k >= 0 ? ord.slice(0, k) : [...ord, v];
-    act({ [f]: o });
+    press("side", () => {
+      api.sfx.tick();
+      act({ tapped: addTap(s, i) });
+    });
+  };
+  const nextShape = () => {
+    act({ fk: S.fk >= 6 ? 3 : S.fk + 1, tapped: [[]] });
     api.sfx.tick();
-    if (!free) api.setTyped(psOrderValue({ ...stRef.current, [f]: o }, md));
   };
   const doStep = (on) => {
     if (on === "copy") copyLight();
     else if (on === "bracket") press("bracket", () => setK(md.group));
     else if (on === "turn") turn();
-    else if (on === "count") count();
-    else if (on === "fewer") fewer();
-    else if (on === "draw") draw();
-    else if (on === "place") tapPlace(expectNext(), 0);
+    else if (on === "side") {
+      const at2 = nextSide();
+      if (at2) {
+        const m = sgeo(at2[0]).mids[at2[1]];
+        perform("side", { tool: "hand", moves: "tap", ms: 700, at: [{ x: m[0], y: m[1] }] }, () => {
+          api.sfx.tick();
+          act({ tapped: addTap(at2[0], at2[1]) });
+        });
+      }
+    }
   };
-  const padVal = (st) => P === 2 ? st.fills.join(" ") : psOrderValue(st, md);
   api.onEnter(stepping ? () => doStep(stepOn) : stage === "ask" && item && item.pad === "enter" ? () => {
-    const st = stRef.current, v = padVal(st);
+    const st = stRef.current, v = st.fills.join(" ");
     if (!v) return;
-    const whole = P === 2 ? st.fills.length === md.blanks : st.order.length === size && ((md.teams || 1) < 2 || st.order2.length === size);
+    const whole = st.fills.length === md.blanks;
     if (!whole) {
       nudged.current = true;
       put({ nudge: "Fill every box first." });
@@ -5082,28 +4932,17 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     api.setTyped(f.join(" "));
   };
   HOOK.set = (v) => {
-    if (P === 2) {
-      const f = String(v).trim().toLowerCase().split(/[\s,]+/).filter((x) => PS_DIRS.indexOf(x) >= 0);
-      put({ fills: f, demo: null, wrongRow: null });
-      api.setTyped(f.join(" "));
-      return true;
-    }
-    const parts = String(v).split("/").map((s) => s.trim().split(/\s+/).map((x) => +x).filter((x) => x > 0));
-    put({ drawn: md.drawn || null, order: parts[0] || [], order2: parts[1] || parts[0] || [], demo: null, wrongRow: null });
-    api.setTyped(String(v));
+    if (P !== 2) return void 0;
+    const f = String(v).trim().toLowerCase().split(/[\s,]+/).filter((x) => PS_DIRS.indexOf(x) >= 0);
+    put({ fills: f, demo: null, wrongRow: null });
+    api.setTyped(f.join(" "));
     return true;
   };
   const padItem = !free && !warm && item && item.pad === "enter";
-  const full = padItem && (P === 4 ? S.order.length === size && ((md.teams || 1) < 2 || S.order2.length === size) : P === 2 ? S.fills.length === md.blanks : false);
+  const full = padItem && P === 2 && S.fills.length === md.blanks;
   useEffect(() => {
     if (api.answerReady) api.answerReady(!!full && stage === "ask");
   }, [full, stage, key]);
-  useEffect(() => {
-    if (stage !== "win" || free || P !== 4 || (md.teams || 1) > 1 || md.last || !item || item.kind !== "order") return;
-    const st = [];
-    for (let i = 1; i <= 8; i++) st.push([i === 8 ? 100 : 190, () => put({ bend: i / 8 })]);
-    tl.run(st);
-  }, [stage, key]);
   useEffect(() => {
     if (stage === "win" && item && item.win) api.say(item.win);
   }, [stage, key]);
@@ -5122,9 +4961,14 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       const ccwVal = md.tray ? Array.from({ length: md.blanks }, (_, i) => ccwOf(i + 1)).join(" ") : md.blanks === 1 ? ccwOf(1) : "";
       steps = [[500, () => put({ demo: { step: 1, q: 0, ccw: !!ccwVal && wv === ccwVal } })]];
       for (let q = 1; q <= md.blanks; q++) steps.push([q === md.blanks ? 800 : md.blanks > 4 ? 420 : 650, () => dput({ q })]);
-    } else if (P === 4 && !md.last) {
-      steps = [[500, () => put({ demo: { step: 1, walk: 0 } })]];
-      for (let w = 1; w <= size; w++) steps.push([w === size ? 800 : 550, () => dput({ walk: w })]);
+    } else if (P === 3) {
+      const tot = shs.reduce((a, b) => a + b, 0), totN = (md.nx || []).reduce((a, b) => a + b, 0);
+      steps = [[500, () => put({ demo: { step: 1, c: 0 } })]];
+      for (let c = 1; c <= tot; c++) steps.push([c === tot ? 800 : 240, () => dput({ c })]);
+      steps.push([300, () => dput({ step: 2, d: 0 })]);
+      for (let d = 1; d <= totN; d++) steps.push([d === totN ? 900 : 240, () => dput({ d })]);
+      steps.push([500, () => {
+      }]);
     } else {
       steps = [[500, () => put({ demo: { step: 1 } })], [1400, () => dput({ step: 2 })]];
       if (P === 1) steps.push([1400, () => dput({ step: 3 })]);
@@ -5138,39 +4982,25 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     bracket: P === 1 ? S.k : null,
     turns: P === 2 ? S.turns : null,
     fills: P === 2 && S.fills.length ? S.fills : null,
-    sideCounts: P === 3 ? [...md.counts, ...S.laid || []] : null,
-    ringSize: P === 4 ? size : null,
-    drawn: P === 4 ? S.drawn || null : null,
-    order: P === 4 && S.order && S.order.length ? S.order : null,
+    sideCounts: P === 3 ? S.tapped.map((a) => a.length) : null,
     nudge: S.nudge || null,
     complete: stage === "idle"
   });
   let keyId = null, keyLabel = "", keyOn = null, keyOff = false;
   if (!won && (stage === "ask" || stepping || free)) {
-    if (P === 1 && !free) {
+    if (free) {
+      keyId = "shape";
+      keyLabel = "Next shape";
+      keyOn = nextShape;
+    } else if (P === 1) {
       keyId = "copy";
-      keyLabel = "Copy light";
+      keyLabel = "Pattern";
       keyOn = copyLight;
       keyOff = !stepping && !S.touched;
-    } else if (P === 2 && !free) {
+    } else if (P === 2) {
       keyId = "turn";
       keyLabel = "Turn";
       keyOn = turn;
-    } else if (P === 3 && !free && md.lay) {
-      if (md.hidden && S.counted < 1) {
-        keyId = "count";
-        keyLabel = "Count";
-        keyOn = count;
-      } else {
-        keyId = "fewer";
-        keyLabel = "One fewer";
-        keyOn = fewer;
-        keyOff = lastSides <= 2;
-      }
-    } else if (P === 4 && (md.warm || free) && (free || !S.drawn)) {
-      keyId = "draw";
-      keyLabel = "Draw";
-      keyOn = draw;
     }
   }
   const lastKey = useRef(0);
@@ -5180,9 +5010,9 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     lastKey.current = t;
     if (live && keyOn) keyOn();
   };
-  const X = { C, S, md, n: P, box, tx, lang, won, live, stepping, stepOn, item, put, act, press, perform, g, right, blocks, given, setK, tapPlace, trayTap, trayUndo, api, free, warm, dcx, dcy, key };
+  const X = { C, S, md, n: P, box, tx, lang, won, live, stepping, stepOn, item, put, act, press, perform, g, right, blocks, given, setK, trayTap, trayUndo, api, free, warm, dcx, dcy, key, shs, sgeo, tapSide, cw };
   return <g>
-      {P === 4 ? PsRing({ X }) : PsRows({ X })}
+      {P === 3 ? PsSides({ X }) : PsRows({ X })}
       {keyId && <Key id={keyId} label={tx(keyLabel)} x={KX} y={KY} w={KW} h={KH} C={C} tone="key" disabled={keyOff || !live} onClick={pressKey}>
           <text y={11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={keyOff || !live ? mix(C.ink, C.panel, 0.5) : toneInk("key", C.ink)}>{tx(keyLabel)}</text>
         </Key>}
@@ -5193,7 +5023,7 @@ function PsRows({ X }) {
   const { C, S, md, n, box, tx, won, live, stepping, stepOn, put, act, press, g, right, blocks, given, setK, api, warm, trayTap, trayUndo } = X;
   const D = S.demo || (won ? { step: 9 } : null);
   const nb = md.blanks || 0;
-  const pic = n === 3 ? "sided" : md.pic;
+  const pic = md.pic;
   const kinds = [];
   given.forEach((f) => {
     if (!kinds.includes(f)) kinds.push(f);
@@ -5202,10 +5032,6 @@ function PsRows({ X }) {
   const fillStep = n === 1 ? 3 : 2;
   const q = D ? D.q !== void 0 ? D.q : nb : 0;
   const blank = (j) => {
-    if (md.lay) {
-      if (S.laid[j] !== void 0) return String(S.laid[j]);
-      return D && D.step >= 1 && j < right.length ? right[j] : null;
-    }
     if (n === 2) {
       if (D && j < q && j < right.length) return right[j];
       return md.tray && S.fills[j] !== void 0 ? S.fills[j] : null;
@@ -5215,22 +5041,8 @@ function PsRows({ X }) {
   };
   const faceR = Math.round(g.cell * 0.34);
   const ln = psLine(C);
-  const fullChain = n === 3 && !md.lay ? [...md.counts, ...right.map(Number)] : [];
-  const sgn = n === 3 && md.counts.length > 1 ? Math.sign(md.counts[1] - md.counts[0]) || -1 : -1;
-  const rIdxs = fullChain.map((k, i) => i > 0 && (k - fullChain[i - 1]) * sgn < 0 ? i : -1).filter((i) => i > 0);
-  const sx = (i) => D && rIdxs.length ? rIdxs.filter((r) => i >= r).length * 16 - rIdxs.length * 8 : 0;
-  const gx = (i) => g.x(i) + sx(i), gcx = (i) => g.cx(i) + sx(i);
-  const countAt = (i) => gcx(i);
+  const gx = (i) => g.x(i), gcx = (i) => g.cx(i);
   const cellKind = (i) => i < given.length ? given[i] : blank(i - given.length);
-  const showCount = (i) => i < given.length ? !(md.hidden && i >= S.counted) : cellKind(i) !== null;
-  const chain = [];
-  if (n === 3) for (let i = 0; i < given.length + nb; i++) {
-    const k = cellKind(i);
-    if (k !== null) chain.push(+k);
-    else break;
-  }
-  const sign = n === 3 && md.counts.length > 1 ? Math.sign(md.counts[1] - md.counts[0]) || -1 : -1;
-  const restarts = n === 3 && !md.lay ? chain.map((k, i) => i > 0 && (k - chain[i - 1]) * sign < 0 ? i : -1).filter((i) => i > 0) : [];
   const lit = S.lit && S.lit.k === S.k ? psBlocks(given, S.lit.k) : [];
   const shown = S.lit ? S.lit.shown : 0;
   const rightGroup = md.group || 0, rb = n === 1 ? psBlocks(given, rightGroup) : [];
@@ -5269,35 +5081,7 @@ function PsRows({ X }) {
   })}
 
       {
-    /* phase 3: the side counts under the row (big, so a sparse screen is read from the last bench) */
-  }
-      {n === 3 && Array.from({ length: given.length + nb }, (_, i) => i).map((i) => showCount(i) ? <text
-    key={"c" + i}
-    x={countAt(i)}
-    y={g.bot + 56}
-    textAnchor="middle"
-    fontSize={T.speech}
-    fontWeight={700}
-    fill={i >= given.length ? shade(PS_INK.made, 0.3) : C.ink}
-  >{String(cellKind(i))}</text> : null)}
-      {
-    /* where the row turns back: a mark in the gap (the correction and the win) */
-  }
-      {D && restarts.map((i) => {
-    const x = (gx(i - 1) + g.cell + gx(i)) / 2;
-    return <g key={"r" + i}>
-            <path d={`M ${x} ${g.top - 8} V ${g.bot + 8}`} stroke={PS_INK.step} strokeWidth={7} strokeLinecap="round" />
-            <path d={`M ${x + 30} ${g.top - 18} C ${x + 18} ${g.top - 44}, ${x - 18} ${g.top - 44}, ${x - 30} ${g.top - 18}`} fill="none" stroke={PS_INK.step} strokeWidth={7} strokeLinecap="round" />
-            <path d={`M ${x - 42} ${g.top - 30} L ${x - 30} ${g.top - 18} L ${x - 16} ${g.top - 30}`} fill="none" stroke={PS_INK.step} strokeWidth={7} strokeLinecap="round" strokeLinejoin="round" />
-          </g>;
-  })}
-      {
-    /* the open end of a figure that cannot close: ringed (it is noticed, never marked) */
-  }
-      {n === 3 && md.lay && S.laid.map((k, j) => k <= 2 ? <circle key={"o" + j} cx={gcx(given.length + j)} cy={g.cy + 20} r={Math.round(g.cell * 0.34)} fill="none" stroke={PS_INK.look} strokeWidth={5} /> : null)}
-
-      {
-    /* phase 1: the child's bracket on its rail, and the copies Copy light lights */
+    /* phase 1: the child's bracket on its rail, and the copies Pattern lights */
   }
       {n === 1 && <g>
           <path d={`M ${bx1} ${by - 14} V ${by} H ${bx2} V ${by - 14}`} fill="none" stroke={C.ink} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" />
@@ -5363,189 +5147,54 @@ function PsRows({ X }) {
             {live && S.fills.map((f, j) => <Hit key={"u" + j} id={"undo-" + (j + 1)} x={g.x(given.length + j)} y={g.top} w={g.cell} h={g.cell} label={`take back arrow ${j + 1}`} onPress={() => trayUndo(j)} />)}
           </g>;
   })()}
-      {
-    /* phase 3: the cell the key lays next */
-  }
-      {n === 3 && md.lay && stepping && stepOn === "fewer" && S.laid.length < nb && <Invite x={g.cx(given.length + S.laid.length)} y={g.cy} w={g.cell} h={g.cell} C={C} />}
-      {
-    /* phase 3, the question that asks how many: the row stands, and the whole row is counted */
-  }
-      {n === 3 && md.lay && D && D.step >= 2 && (() => {
-    const cnt = 1 + right.length;
-    return <g>
-            <path d={`M ${g.x(0) - 4} ${g.bot + 82} V ${g.bot + 96} H ${g.x(cnt - 1) + g.cell + 4} V ${g.bot + 82}`} fill="none" stroke={shade(PS_INK.made, 0.3)} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" />
-            <text x={(g.x(0) + g.x(cnt - 1) + g.cell) / 2} y={g.bot + 148} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={shade(PS_INK.made, 0.3)}>{String(cnt)}</text>
-          </g>;
-  })()}
     </g>;
 }
-const PsRingGeo = (md, box) => {
-  const size = md.ring || 5, two = (md.teams || 1) > 1, first = !!md.last;
-  const R = first ? 140 : two ? 76 : 120, pr = first ? 50 : two ? 32 : 50, rw = 2 * (R + pr);
-  const bw = two ? 64 : 80, bg = two ? 12 : 8, lineW = size * bw + (size - 1) * bg, blockW = two ? Math.max(rw, lineW) : rw;
-  const rings = [];
-  let drum = { x: 0, y: 0 }, lineY = 232, corrY = 372;
-  if (first) {
-    rings.push({ cx: Math.round(box.w / 2), cy: 100 + R + pr });
-    drum = { x: -999, y: -999 };
-  } else if (two) {
-    const between = 72, total = blockW + between + blockW, x0 = Math.max(10, Math.round((box.w - total) / 2));
-    const ax = x0, bx = ax + blockW + between, cy = 136 + rw / 2;
-    rings.push({ cx: ax + blockW / 2, cy, lx: ax + (blockW - lineW) / 2 }, { cx: bx + blockW / 2, cy, lx: bx + (blockW - lineW) / 2 });
-    drum = { x: Math.round((ax + blockW / 2 + bx + blockW / 2) / 2 - 60), y: cy - 60 };
-    lineY = 366;
-    corrY = 438;
-  } else {
-    const total = rw + 56 + Math.max(lineW, 120), x0 = Math.max(10, Math.round((box.w - total) / 2));
-    rings.push({ cx: x0 + rw / 2, cy: 100 + rw / 2 });
-    drum = { x: x0 + rw + 56 + Math.round((Math.max(lineW, 120) - 120) / 2), y: 70 };
-    rings[0].lx = x0 + rw + 56;
-  }
-  return { size, two, first, R, pr, bw, bg, lineW, rings, drum, lineY, corrY };
-};
-function PsRing({ X }) {
-  const { C, S, md, box, tx, won, live, stepping, stepOn, item, tapPlace, free, api } = X;
-  const G = PsRingGeo(md, box);
-  const { size, two, first, R, pr, bw, bg, lineW, rings, drum, lineY, corrY } = G;
+function PsSides({ X }) {
+  const { C, S, md, won, live, stepping, stepOn, g, shs, sgeo, tapSide, cw } = X;
   const D = S.demo || (won ? { step: 9 } : null);
-  const ln = psLine(C);
-  const dg = first ? 60 : two ? 44 : 60;
-  const start = first ? md.last % size + 1 : S.drawn || md.drawn || 1;
-  const rightOrder = psRound(size, start);
-  const flagAt = first ? 0 : S.drawn || 0;
-  const walk = S.demo && !first ? S.demo.walk || 0 : 0;
-  const walked = rightOrder.slice(0, walk);
-  const at = (r, k) => {
-    const t = -Math.PI / 2 + k * 2 * Math.PI / size;
-    return { x: r.cx + R * Math.cos(t), y: r.cy + R * Math.sin(t) };
+  const nx = md.nx || [];
+  const tot = shs.reduce((a, b) => a + b, 0), totN = nx.reduce((a, b) => a + b, 0);
+  const upto = (arr, s) => arr.slice(0, s).reduce((a, b) => a + b, 0);
+  const litOf = (grp, s, i) => {
+    if (grp === "n") return upto(nx, s) + i < (D.d !== void 0 ? D.d : totN);
+    if (D) return upto(shs, s) + i < (D.c !== void 0 ? D.c : tot);
+    return S.tapped[s].indexOf(i) >= 0;
   };
-  const bend = !two && !first ? S.bend || 0 : 0;
-  const og = two ? 44 : 56;
+  const cells = [...shs.map((k, s) => ({ k, s, grp: "g", at: s })), ...nx.map((k, s) => ({ k, s, grp: "n", at: shs.length + s }))];
+  const inv = stepping && stepOn === "side" ? (() => {
+    for (let s = 0; s < shs.length; s++) for (let i = 0; i < shs[s]; i++) if (S.tapped[s].indexOf(i) < 0) return [sgeo(s).mids[i][0], sgeo(s).mids[i][1], sgeo(s).hs];
+    return null;
+  })() : null;
   return <g>
-      {rings.map((r, w) => {
-    const mine = won && !S.demo && !first ? rightOrder : w ? S.order2 : S.order;
-    const lit = S.demo ? first ? D.step >= 2 ? [start] : [] : walked : first ? D ? [start] : [] : mine;
-    const now = S.demo && !first && walk > 0 ? rightOrder[walk - 1] : 0;
-    return <g key={w}>
-            <circle cx={r.cx} cy={r.cy} r={R} fill="none" stroke={ln} strokeWidth={4} />
-            {two && <text x={r.cx} y={r.cy - R - pr - 12} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink}>{tx(w ? "Team 2" : "Team 1")}</text>}
-            {Array.from({ length: size }, (_, k) => k).map((k) => {
-      const p = at(r, k), v = k + 1, isStart = flagAt === v, inOrder = lit.indexOf(v) >= 0, isNow = now === v;
-      return <g key={k}>
-                  <circle
-        cx={p.x}
-        cy={p.y}
-        r={pr}
-        fill={inOrder ? tint(PS_INK.made, 0.72) : isStart ? tint(PS_INK.blue, 0.72) : C.paper}
-        stroke={isNow ? PS_INK.step : inOrder ? shade(PS_INK.made, 0.3) : isStart ? shade(PS_INK.blue, 0.3) : ln}
-        strokeWidth={isNow ? 7 : isStart || inOrder ? 5 : 3}
-      />
-                  <text
-        x={p.x}
-        y={p.y + Math.round(dg * 0.36)}
-        textAnchor="middle"
-        fontSize={dg}
-        fontWeight={700}
-        fill={inOrder ? shade(PS_INK.made, 0.3) : isStart ? shade(PS_INK.blue, 0.3) : C.ink}
-      >{String(v)}</text>
-                  {first && md.last === v && (() => {
-        const ux = (p.x - r.cx) / R, uy = (p.y - r.cy) / R;
-        return <text
-          x={p.x + ux * (pr + 12)}
-          y={p.y + uy * (pr + 12) + (uy > 0.5 ? 36 : uy < -0.5 ? -8 : 14)}
-          textAnchor={ux > 0.3 ? "start" : ux < -0.3 ? "end" : "middle"}
-          fontSize={T.prompt}
-          fontWeight={700}
-          fill={C.ink}
-        >{tx("last")}</text>;
-      })()}
-                  {first && S.demo && S.demo.step >= 1 && md.last === v && <circle cx={p.x} cy={p.y} r={pr + 9} fill="none" stroke={PS_INK.look} strokeWidth={4} />}
-                  {isStart && <g>
-                      <path d={`M ${p.x} ${p.y - pr - 2} V ${p.y - pr - 38}`} stroke={C.ink} strokeWidth={4} strokeLinecap="round" />
-                      <path d={`M ${p.x} ${p.y - pr - 38} L ${p.x + (p.x > r.cx + 4 ? -28 : 28)} ${p.y - pr - 28} L ${p.x} ${p.y - pr - 18} Z`} fill={PS_INK.blue} stroke={shade(PS_INK.blue, 0.3)} strokeWidth={2} strokeLinejoin="round" />
-                    </g>}
-                  {S.demo && !first && v === start && <circle cx={p.x} cy={p.y} r={pr + 9} fill="none" stroke={PS_INK.look} strokeWidth={4} />}
-                </g>;
-    })}
-            {first && D && D.step >= 2 && (() => {
-      const off = 2 * Math.asin(Math.min(1, (pr + 6) / (2 * R)));
-      const a0 = -Math.PI / 2 + (md.last - 1) * 2 * Math.PI / size + off, a1 = -Math.PI / 2 + (start - 1) * 2 * Math.PI / size - off;
-      return psTurn(r.cx, r.cy, R, a0, a1, false, PS_INK.step, "walk");
-    })()}
-            {
-      /* the order line: one box a number, filled as the ring is read off; the child's own line is never covered */
-    }
-            {!first && (() => {
-      const lx = r.lx, ly = lineY;
-      const full = mine.length === size && mine.every((v, i) => v === rightOrder[i]);
-      const tcx = lx + lineW / 2, tcy = 388, rr = 92, bs = 60;
-      const boxAt = (k) => {
-        const sx = lx + k * (bw + bg) + bw / 2, sy = ly + bw / 2;
-        if (!bend) return { cx: sx, cy: sy, s: bw };
-        const t = -Math.PI / 2 + k * 2 * Math.PI / size, ex = tcx + rr * Math.cos(t), ey = tcy + rr * Math.sin(t);
-        return { cx: sx + (ex - sx) * bend, cy: sy + (ey - sy) * bend, s: bw + (bs - bw) * bend };
-      };
-      const rowOf = (vals, y, id, withBoxAt) => {
-        const bs0 = Array.from({ length: size }, (_, k) => withBoxAt ? boxAt(k) : { cx: lx + k * (bw + bg) + bw / 2, cy: y + bw / 2, s: bw });
-        return [
-          ...bs0.map((b, k) => <rect
-            key={id + "r" + k}
-            x={b.cx - b.s / 2}
-            y={b.cy - b.s / 2}
-            width={b.s}
-            height={b.s}
-            rx={RAD.piece}
-            fill={vals[k] ? "url(#gCard)" : C.paper}
-            stroke={vals[k] ? shade(PS_INK.made, 0.25) : ln}
-            strokeWidth={vals[k] ? 4 : 3}
-            strokeDasharray={vals[k] ? void 0 : "9 9"}
-          />),
-          ...bs0.map((b, k) => vals[k] ? <text key={id + "t" + k} x={b.cx} y={b.cy + Math.round(og * (0.6 + 0.4 * b.s / bw) * 0.36)} textAnchor="middle" fontSize={Math.round(og * (0.6 + 0.4 * b.s / bw))} fontWeight={700} fill={shade(PS_INK.made, 0.3)} fillOpacity={withBoxAt && bend > 0 && bend < 1 ? 0 : 1}>{String(vals[k])}</text> : null)
-        ];
-      };
-      const arcOf = (y) => <g>
-                  <path
-        d={`M ${lx + (size - 1) * (bw + bg) + bw / 2} ${y + bw + 6} C ${lx + (size - 1) * (bw + bg)} ${y + bw + 56}, ${lx + bw} ${y + bw + 56}, ${lx + bw / 2} ${y + bw + 6}`}
-        fill="none"
-        stroke={PS_INK.step}
-        strokeWidth={5}
-        strokeLinecap="round"
-      />
-                  <path d={`M ${lx + bw / 2 - 12} ${y + bw + 22} L ${lx + bw / 2} ${y + bw + 4} L ${lx + bw / 2 + 12} ${y + bw + 22}`} fill="none" stroke={PS_INK.step} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
-                </g>;
-      return <g>
-                  {bend > 0 && <circle cx={tcx} cy={tcy} r={rr} fill="none" stroke={ln} strokeWidth={4} strokeOpacity={bend} />}
-                  {rowOf(mine, ly, "m", true)}
-                  {bend >= 1 && <g>
-                      <path d={`M ${tcx} ${tcy - rr - bs / 2 - 2} V ${tcy - rr - bs / 2 - 38}`} stroke={C.ink} strokeWidth={4} strokeLinecap="round" />
-                      <path d={`M ${tcx} ${tcy - rr - bs / 2 - 38} L ${tcx + 28} ${tcy - rr - bs / 2 - 28} L ${tcx} ${tcy - rr - bs / 2 - 18} Z`} fill={PS_INK.blue} stroke={shade(PS_INK.blue, 0.3)} strokeWidth={2} strokeLinejoin="round" />
-                    </g>}
-                  {full && !two && !bend && arcOf(ly)}
-                  {S.demo && rowOf(walked, corrY, "c", false)}
-                  {S.demo && !two && walk >= size && arcOf(corrY)}
-                </g>;
-    })()}
+      {cells.map(({ k, s, grp, at }) => {
+    const cx = g.cx(at), cy = g.cy;
+    if (grp === "n" && !(D && D.step >= 2)) return <g key={"n" + s}>
+            <PsCell x={g.x(at) + 8} y={cy - cw(at) / 2 + 8} s={cw(at) - 16} filled={false} made={false} C={C} />
+            <text x={cx} y={cy + (cw(at) >= 200 ? 24 : 18)} textAnchor="middle" fontSize={cw(at) >= 200 ? T.display : T.xl} fontWeight={700} fill={C.dim}>?</text>
+          </g>;
+    const sg = psSideGeo(k, cx, cy, cw(at)), paint = grp === "n" ? PS_INK.made : PS_INK.blue, edge = shade(paint, 0.4);
+    const on = (i) => litOf(grp, s, i);
+    const sides = Array.from({ length: k }, (_, i) => i);
+    const seg = (i, col, w) => <line key={col + i} x1={sg.v[i][0]} y1={sg.v[i][1]} x2={sg.v[(i + 1) % k][0]} y2={sg.v[(i + 1) % k][1]} stroke={col} strokeWidth={w} strokeLinecap="round" />;
+    const n = sides.filter(on).length;
+    return <g key={grp + s}>
+            <polygon points={sg.pts} fill={tint(paint, 0.78)} />
+            {sides.filter((i) => !on(i)).map((i) => seg(i, edge, 8))}
+            {sides.filter(on).map((i) => seg(i, PS_INK.step, 14))}
+            {n > 0 && <text x={cx} y={g.bot + 52} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={grp === "n" ? shade(paint, 0.3) : C.ink}>{String(n)}</text>}
           </g>;
   })}
-
-      {
-    /* the draw drum: a clay pot, the drawn number on a cream chip over its dark mouth */
-  }
-      {!first && <g>
-          <rect x={drum.x} y={drum.y} width={120} height={120} rx={RAD.panel} fill="url(#gPanel)" stroke={ln} strokeWidth={3} filter="url(#fShadowSoft)" />
-          <Skin name="pot" x={drum.x} y={drum.y} w={120} h={120} />
-          <rect x={drum.x + 21} y={drum.y + 28} width={78} height={64} rx={14} fill="#FFF4E0" stroke={C.rule} strokeWidth={2} />
-          {S.drawn ? <text x={drum.x + 60} y={drum.y + 74} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={shade(PS_INK.blue, 0.3)}>{String(S.drawn)}</text> : <path d={`M ${drum.x + 42} ${drum.y + 60} h 36 M ${drum.x + 60} ${drum.y + 42} v 36`} stroke={C.dim} strokeWidth={6} strokeLinecap="round" />}
-        </g>}
-
-      {
-    /* the numbers of the ring are the controls (not on the question that is typed) */
-  }
-      {live && !first && rings.map((r, w) => Array.from({ length: size }, (_, k) => k).map((k) => {
-    const p = at(r, k), hs = Math.max(76, 2 * pr + 8);
-    return <Hit key={w + "-" + k} id={`ring${w + 1}-place-${k + 1}`} x={p.x - hs / 2} y={p.y - hs / 2} w={hs} h={hs} label={`number ${k + 1}`} onPress={() => tapPlace(k + 1, w)} />;
-  }))}
-      {stepping && stepOn === "place" && S.drawn && <Invite x={at(rings[0], rightOrder[S.order.length] - 1).x} y={at(rings[0], rightOrder[S.order.length] - 1).y} r={pr + 12} C={C} />}
+      {live && shs.map((k, s) => sgeo(s).mids.map((m, i) => <Hit
+    key={s + "-" + i}
+    id={`side-${s + 1}-${i + 1}`}
+    x={m[0] - sgeo(s).hs / 2}
+    y={m[1] - sgeo(s).hs / 2}
+    w={sgeo(s).hs}
+    h={sgeo(s).hs}
+    label={`side ${i + 1} of shape ${s + 1}`}
+    onPress={() => tapSide(s, i)}
+  />))}
+      {inv && live && <Invite x={inv[0]} y={inv[1]} r={inv[2] / 2 + 8} C={C} />}
     </g>;
 }
 function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v) => v }) {
@@ -5556,28 +5205,9 @@ function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v) => v }) {
   const cy = h / 2, ln = psLine(C);
   const box = <rect x={0} y={0} width={w} height={h} rx={14} fill={tint(C.panel, 0.55)} stroke={ln} strokeWidth={1.5} />;
   if (!md) return <g>{box}</g>;
-  if (md.ring) {
-    const list = String(last.value).split("/")[0].trim().split(/\s+/).filter((x) => x);
-    const size = md.ring, rr = Math.min(26, h / 2 - 12), rx = 8 + rr + 8, start = +(list[0] || 1);
-    return <g>{box}
-        <circle cx={rx} cy={cy} r={rr} fill="none" stroke={ln} strokeWidth={2.5} />
-        {Array.from({ length: size }, (_, k) => {
-      const t = -Math.PI / 2 + k * 2 * Math.PI / size, on = k + 1 === start;
-      return <circle key={k} cx={rx + rr * Math.cos(t)} cy={cy + rr * Math.sin(t)} r={on ? 9 : 6} fill={on ? PS_INK.made : C.paper} stroke={md.last === k + 1 ? C.ink : on ? shade(PS_INK.made, 0.3) : ln} strokeWidth={2.5} />;
-    })}
-        {md.last ? (() => {
-      const x02 = rx + rr + 22;
-      return <g>
-              <text x={x02} y={cy + 10} fontSize={T.micro} fontWeight={700} fill={C.ink}>{String(md.last)}</text>
-              <path d={`M ${x02 + 28} ${cy} H ${x02 + 62} M ${x02 + 52} ${cy - 8} L ${x02 + 62} ${cy} L ${x02 + 52} ${cy + 8}`} fill="none" stroke={C.ink} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
-              <text x={x02 + 70} y={cy + 10} fontSize={T.micro} fontWeight={700} fill={shade(PS_INK.made, 0.3)}>{list.join(" ")}</text>
-            </g>;
-    })() : <text x={rx + rr + 24} y={cy + 10} fontSize={T.micro} fontWeight={700} fill={shade(PS_INK.made, 0.3)}>{list.join(" ")}</text>}
-      </g>;
-  }
-  const pic = md.counts ? "sided" : md.pic;
-  const given = md.strip || md.given || md.counts.map(String);
-  const rt = psRight(md);
+  const pic = md.sh ? "sided" : md.pic;
+  const given = md.strip || md.given || md.sh.map(String);
+  const rt = md.sh ? md.nx.map(String) : psRight(md);
   const few = pic === "arrow";
   const cells = few ? [...given.slice(-1), ...rt.slice(-3)] : [...given.slice(-2), ...rt.slice(-4)], madeFrom = Math.min(few ? 1 : 2, given.length);
   const kinds = [];

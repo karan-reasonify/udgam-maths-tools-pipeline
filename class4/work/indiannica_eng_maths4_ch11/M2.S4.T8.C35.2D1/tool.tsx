@@ -315,7 +315,7 @@ const TR: any = {
 
 /* the two answer boxes of a measure in litres and millilitres, labelled with the unit symbol alone
    (BUILD_CARD §7, 2026-09-24 'Two-unit answer boxes') */
-const CC_LML = [{ label: "L" }, { label: "mL" }];
+const CC_LML = [{ label: "L" }, { label: "mL", rtl: true, digits: 3 }];
 
 /* One entry per phase = one mount. Every phase opens on GUIDE STEPS that work a WARM-UP (CC_WARM below:
    numbers in no question), then its three questions. Item fields of this tool: rows (the frame's measures),

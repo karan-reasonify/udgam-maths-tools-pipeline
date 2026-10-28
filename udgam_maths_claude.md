@@ -169,6 +169,10 @@ makes a one-line fix itself, and it batches the questions for the user. Reviewer
 **1. Fetch.** `node cli.mjs fetch --class <N> --pub udgam --ch <n>`. Show the mount table (slot id, tool,
 phases). Confirm it is the right chapter. Say which plan version is live, and which runtime the chapter
 was pinned to (fetch pins a new chapter to the head of that day; it never re-pins an existing one).
+**If the live plan renumbered a tool's id** (a new plan version does this), `fetch` renames the local slot by itself (matched by tool_id, then
+title, then description; `node cli.mjs remap --ch <n> --dry` lists it first; a backup goes to `.remap-backups/`) and refreshes the plan id and
+version; then `approve` each renamed pair (its bytes changed) before `publish`. It never touches a url: publish still uploads where the plan's
+`2d_tool_url` says. A fetch that cannot decide (two live mounts fit) renames nothing and says so.
 
 **2. Read the chapter once.** Skim each slot's `brief.md` headings (not whole briefs). Using the chapter
 notes below (or, for a class without notes, the plan and the textbook pages the briefs name), list what

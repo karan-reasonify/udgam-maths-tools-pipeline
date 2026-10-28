@@ -268,7 +268,7 @@ const WC_ZERO = "#767676";
 const WC_INK: any = { kg: shade(WC_KG, 0.25), g: shade(WC_G, 0.25), move: shade(WC_MOVE, 0.42), left: shade(WC_LEFT, 0.35) };
 /* a measure in two units: the slot's two boxes, kilograms then grams, each named by its unit symbol
    (BUILD_CARD §7, 2026-09-24) */
-const WC_PARTS = [{ label: "kg" }, { label: "g" }];
+const WC_PARTS = [{ label: "kg" }, { label: "g", rtl: true, digits: 3 }];
 /* Free play's bags: pairs that carry (3 kg 450 g + 1 kg 800 g), break (5 kg less 2 kg 75 g) and neither */
 const WC_FREE_BAGS = [{ id: "f1", kg: 3, g: 450 }, { id: "f2", kg: 1, g: 800 }, { id: "f3", kg: 2, g: 75 }, { id: "f4", kg: 5, g: 0 }, { id: "f5", kg: 4, g: 625 }];
 /* the guide steps work a WARM-UP of a different kind from the phase's questions, on numbers that are no

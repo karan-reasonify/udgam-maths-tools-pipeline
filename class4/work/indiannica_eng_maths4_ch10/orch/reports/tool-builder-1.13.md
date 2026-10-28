@@ -1,0 +1,15 @@
+STATUS: ok
+Tile Bench M2.S4.T7.C29.2D1 (class 4 ch 10, r30): fix batch applied. 2 full checks (97/0/0 both, ported with --force), shots + --state wrong once, hi/gu frames once, approve done (note recorded, guide.answerGate re-added after the port).
+MUST
+- Answer gate (motion ON): fixed in tool.tsx. The gate effect now has `busy` in its deps and calls api.lock(true) again once the act has ended while the question still needs its act. Real-input probe (playkit, motion:true, phases mounted via gotoQuestion): P1 Q2 gaps -> answer-open DISABLED, then laps -> ENABLED; P1 Q3 laps first -> disabled, then gaps -> enabled; P2 Q2 and Q3 trace first -> DISABLED, then gaps -> ENABLED. Same results at reduced motion. Before touching the board the key is enabled, as designed.
+- Runtime gap (log it): useActionKit's `if (!c.was) lockNow(false)` unlocks a tool that locked while an act was running; the tool works round it, a runtime fix would be to skip the unlock when the tool locked during the act.
+- P3 win: all three right copies (down, up, down) now show whoever sent the answer (the agent/dev path set no seats); agent win frame checked.
+- hi P1 closing shortened to 2 lines; hi and gu P3 closing shortened to 2 lines (keeps "repeat" and "no gap"); new TR keys byte for byte.
+- gu free-play row: tighter widths/padding for the 5-key row, now x 104-1110 and all five labels fit; hi gallery plate taller, hi label 36 (clear of the picture).
+SHOULD done
+- P1 step 1: the warm bench starts on a hexagon, so "Tap the square" visibly does something. P3: triangles up to 3.5x (row ~2x bigger), seat circles scale with them; P3 correction: teal hatch only, wrong copies faded; P3 ML3 now gated after the first seat tap until all 3 seats are set (nudge "Set all three seats, then answer." hi+gu; probe: Enter flat after first tap, enabled when all set; sidecar answerGate ML3 line updated).
+- P2: open-notch trace ends in a 22 px arrowhead; the brown diamond in the coins gap is now a small ring (closed loop, no arrow).
+- Free play: Keep placeholder darker, empty seats dashes 3.5 px / .55, verdict plate one line (size fitted), gallery dots r8 and 12 px clear of the blue 2x2, wall match bricks ~2.4x bigger (picture narrowed to 160), toran/bracket inset 23 px (pitch), hi legend strip raised/baseline lowered, double tap on the picture card ignored within 300 ms (probe: click + double tap = 2 steps), seat Hits keyed by seat so a put -> spin swap keeps focus (not probed).
+- Summary thumbs ~40-46% of the card, row 1 now touching squares labelled "No gaps" (hi/gu TR added); rangoli frame looked at: 124 px disc, fine next to the ~54 px toran flowers.
+NOT done: the word-card grid centred in the working area (the bench is fixed at x 20-1066 whether the panel is open or shut by LAYOUT section 3; centring in the shut area would make it move: needs a decision). gu key labels already 44 vs hi 40 in 1-3 key rows (35 vs 32 in free play): left.
+Question: P1 row-1 thumb says "No gaps" for every answer (the lesson), not the child's Yes/No; OK?

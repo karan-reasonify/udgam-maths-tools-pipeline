@@ -1,0 +1,1210 @@
+{
+  "slotId": "M2.S4.T7.C30.2D1",
+  "mediaId": "M2.S4.T7.C30.2D1",
+  "toolId": "tile_bench",
+  "title": "Tile Bench",
+  "component": "M2.S4.T7.C24.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch10_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_10/2dtool/M2.S4.T7.C24.2D1/M2.S4.T7.C24.2D1.tsx",
+  "description": "Lay copies of one shape side by side, test for gaps and for overlaps, carry a tiling on, and make a pattern from everyday things.",
+  "conceptIds": [
+    "M2.S4.T7.C30",
+    "M2.S4.T7.C31",
+    "M2.S4.T7.C32",
+    "M2.S4.T7.C33"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        1086,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Lay copies of one shape side by side, test the patch for gaps and for overlaps, carry a tiling on, and make a pattern out of everyday things.",
+    "look": "A bench of dotted paper with a tray of shapes along its top edge, a gap finder and an overlap finder, and an object tray at one side.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only. 'Tile Bench' sits in ink at the far left, with a small dot set clear of the name by measuring it. The phase title sits beside the dot on the same line, then the host's navigation, and again, sound and restart stand as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the copies laid against the copies this phase asks for, two numbers in ink. The first climbs by one as each copy or each thing is set down, and the second is fixed at what this phase holds. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The shape tray runs along the top edge of the working area, 1086 by 90 at 64,206. It holds squares, rectangles, triangles, hexagons, circles and a few shapes made of joined squares, all at matching sizes. A tile drawn taller than it is wide is a rectangle and is never called a square. The bench of dotted paper lies under the tray, 760 by 320 at 64,306, with grey dots every 40 in both directions. Copies are dragged down from the tray, turned with the turn control before they are set down, and snap to the dots. The gap finder washes over the patch when it is tapped. It fills every space that has tiles closed round it on every side, solid reddish purple. It traces the uneven outline round the outside of the patch in a plain near-black line and leaves it unfilled, because that is where the tiling stops. The overlap finder shades any part where two copies lie on top of each other, in reddish purple hatching. A doubled part and a gap are told apart by their marks as well as by the finder that found them. A patch is named a tessellation only when both finders come back empty. Carry on offers a near-black dashed outline of the next copy where the tiling would repeat it, which the child sets down or moves. The object tray stands at the right, 310 by 320 at 840,306, holding marigolds, roses, leaves, coins, bottle caps and buttons. Things are laid along a string or in rows on the bench, and the bracket lights every copy of a chosen group. The can do list runs along the foot of the working area, 1086 by 72 at 64,648, carrying the chapter's four statements with a tick box beside each. A statement can be ticked only against work standing on the bench. Down the right of the canvas the question sits above the answer slot at 1186,250 (356 by 92), which holds what the child has given. That rectangle is the same on every phase and is never animated in or out. Under it is the pad at 1170,368 (388 by 363). The pad is two verdict keys, tessellation and not a tessellation, over two keys for a space, gap and edge. Twelve number keys three across take over wherever a count is asked for. On the fourth phase the pad holds the four word cards, number pattern, series, secret code and tessellation, each turning over to a meaning. The footer runs 758 to 900. The voice caption sits at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling. The phase bar sits at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, taken from its pictures. Whatever the stage hands over is deep blue: a given term, a bead, the bottom row of a tower, a plain letter, a tile already laid. The first member of a repeating group is deep blue too, and the second member, or a second kind set beside the first, is amber. The step itself is vermilion in every tool without exception: a jump arc and its label, a quarter turn, an operation sign, a key's shift. Whatever the rule makes is green: a next term, a built box, a coded or decoded letter, a copy just laid, a tick. Whatever the child is asked to notice is reddish purple: a broken box, a closed-in gap, a doubled part, a leftover counter, a line put back. The dots of dotted paper are grey and nothing else is. Every bracket, outline, rule and blank is near-black chrome. Chrome never borrows a content colour, and no content colour is ever used for chrome. Every reading survives with the colour taken away, because a thing is told by its label or its place before it is told by its colour. A blank waiting for the child is an empty outlined box, never a faded copy of its answer. A circle is never squeezed or flattened to close a gap, and two tiles are never drawn overlapping unless the frame is showing an overlap on purpose. The bench draws shapes as they are, so what the finders report is about the shapes and never about the drawing.",
+    "finish": "The card shows the patch the child tiled with both finders empty, the pattern of things they laid out with its repeating group bracketed, and the can do list as they ticked it.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "both finders come back empty and the patch is named a tessellation",
+        "does": "lays copies of one shape side by side, then runs the gap finder and the overlap finder",
+        "goal": "copies of one shape set side by side with no gaps and no overlaps make a tessellation",
+        "says": "Lay the copies side by side. Is anything left uncovered? Is anything doubled?",
+        "check": "Away from the screen: lay coins touching on a table. Is anything left uncovered? Is anything doubled?",
+        "feels": "a patch passes only when nothing is left uncovered and nothing lies on top of anything else",
+        "hands": "Cut squares, triangles, hexagons and circles to matching sizes, and give each group one kind of shape to cover a sheet of paper with. Keep both halves of the test from the first sentence the page prints: no gaps and no overlaps. Lay one square half over another and ask whether that counts. Then ask which groups managed it, which were left with spaces, and why the circles could not.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: is any space left between the copies? Second rung, the phase's: does any copy lie over another? Third rung: the patch is cut to two copies side by side, and the child runs both finders on them. The verdict keys stay open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the page's definition and its summary box speak only of gaps, and a patch with nothing uncovered seems to pass that test.",
+            "move": "lays copies overlapping to cover every bit of the bench, and names the patch a tessellation because nothing is left uncovered.",
+            "screen": "the overlap finder shades every doubled part in reddish purple hatching, while the gap finder comes back empty. The patch is not named, and the child's tiles stay exactly where they were laid. The voice asks whether anything is doubled."
+          },
+          {
+            "why": "a space that shrinks each time the circles are pushed closer seems as though it must close if they are pushed hard enough.",
+            "move": "pushes the circles harder together to close the spaces between them, and calls the gaps gone once every circle touches its neighbours.",
+            "screen": "the gap finder fills the curved spaces between the circles, and they stay however the circles are pushed. A circle pushed further lands over its neighbour, and the overlap finder shades that part. No circle is ever squeezed out of shape to close a space."
+          }
+        ],
+        "screen": "an empty bench with the shape tray loaded and both finders waiting",
+        "soWhat": "Copies of one shape set side by side with no gaps and no overlaps make a tessellation.",
+        "concept": "Copies that fit with no gaps"
+      },
+      {
+        "n": 2,
+        "win": "a closed-in space fills while the outer edge is traced plain and left empty",
+        "does": "runs the gap finder and decides whether each space it shows is a gap or only the edge",
+        "goal": "a gap is a space with tiles closed round it, and the bumpy outer edge is not a gap",
+        "says": "Is this space closed in by tiles all round? Or is it where the tiling stops?",
+        "check": "Away from the screen: lay six tiles in a patch. Point to its edge, and say whether the patch has any gap.",
+        "feels": "a gap is shut in by tiles all round, and the bumpy outside edge is only where the tiles stop",
+        "hands": "Lay a patch of paper hexagons on a desk and ask whether the bumps round its outline are gaps. Run a finger round each space: a gap is a space with tiles closed round it on every side. Settle that the outline is only where the tiling stops. Then lay octagons in rows, and ask about the small square spaces closed in between them.",
+        "tries": "First rung, from the item: is this space closed in by tiles on every side? Second rung, the phase's: can a finger run from it to the outside without crossing a tile? Third rung: the patch is cut to three tiles round one space, and the child traces it. The verdict keys and the space keys stay open.",
+        "wrong": [
+          {
+            "why": "the page tests for gaps and never says what a gap is, and a notch is a space the eye can see.",
+            "move": "calls the notches round the outer edge gaps, and rejects a patch that fits perfectly inside.",
+            "screen": "the gap finder washes over the patch and fills nothing, and the outer edge is traced in its plain line and left empty. A tracer is run into one notch and straight out again to the outside. The child's verdict stays in the slot, and the patch is named."
+          },
+          {
+            "why": "the edge has just been set aside as not a gap, and a space near it seems to belong to it.",
+            "move": "calls a space closed in near the outline only the edge, because it sits close to where the tiling stops.",
+            "screen": "the gap finder fills that space solid, because tiles close round it on every side. The tracer runs round inside it and never reaches the outside. The child's answer stays beside the patch."
+          }
+        ],
+        "screen": "a patch of tiles with a bumpy outline and, in some patches, a space closed in the middle",
+        "soWhat": "A gap is a space with tiles closed round it on every side, and the uneven outer edge of a patch is not a gap.",
+        "concept": "A gap or only the edge"
+      },
+      {
+        "n": 3,
+        "win": "each new copy snaps into place against the last and both finders stay empty",
+        "does": "sets down the next copies one at a time where the tiling repeats",
+        "goal": "a tiling is carried on by repeating the same shape the same way, with no gap and no overlap",
+        "says": "Where does the next one go? Which way must it face?",
+        "check": "A row of triangles starts point up, and they take turns. Which way does the seventh point?",
+        "feels": "each copy fits against the last one in the same way, so the tiling can go on across the bench",
+        "hands": "On dotted paper, draw two copies of a shape made of joined squares side by side, and ask where the third goes. Count the dots from the start of one copy to the start of the next. Draw five more the same way, each starting the same number of dots after the last. Then do the same with a row of triangles, and ask which way each new one must point.",
+        "tries": "First rung, from the item: which way does the last copy face? Second rung, the phase's: where does the next copy touch the last? Third rung: the row is cut to two copies and one dashed outline, and the child sets one copy down. The verdict keys stay open.",
+        "wrong": [
+          {
+            "why": "the first triangle pointed up, and copying the first one looks like repeating the shape.",
+            "move": "sets every new triangle point up, leaving a space between each pair.",
+            "screen": "the gap finder fills the triangular space between each pair in reddish purple. Carry on then offers the next copy as a dashed outline turned point down, fitted against the last. The child's triangles stay where they were set."
+          },
+          {
+            "why": "copies of one shape look alike wherever they sit, and one dot is a small distance to see.",
+            "move": "starts the next copy one dot too far along, leaving a thin space, or one dot too near, so it lies over the last.",
+            "screen": "both finders run, and a thin space fills with the wash or a doubled strip is hatched. Carry on's dashed outline stands where the tiling repeats, and the child's copy stays beside it. The dots between the starts of two copies are counted aloud."
+          }
+        ],
+        "screen": "two or three copies of a shape laid on the dotted paper, with room for more to the right",
+        "soWhat": "A tiling is carried on by repeating the same shape the same way, with no gap and no overlap.",
+        "concept": "Carrying a tiling on"
+      },
+      {
+        "n": 4,
+        "win": "the bracket lights every copy of the group along the string",
+        "does": "lays out things in a pattern, then brackets the group that repeats",
+        "goal": "everyday things make a pattern when a group of them repeats",
+        "says": "Make a pattern of your own. Which group comes round again?",
+        "check": "Away from the screen: make a pattern with pencils, erasers and caps. Ask a friend to find the group.",
+        "feels": "any things at all make a pattern, once a group of them comes round again",
+        "hands": "Let groups make a toran of paper marigolds, roses and leaves on a string, each group choosing its own group to repeat. Swap torans and have the others find the group that repeats and say it aloud. Then set bottle caps in rows whose colours swap like a chessboard, and ask what the next row starts with. The can do list's last statement says the child can make tessellation patterns, and no printed exercise asks for one. So let every child make one on the bench and tick the statement against it.",
+        "tries": "First rung, from the item: which group comes round again? Second rung, the phase's: how many things are in one group? Third rung: the string is cut to two copies of the group, and the child brackets one. The number keys and the word cards stay open.",
+        "wrong": [
+          {
+            "why": "marigolds and roses are both flowers, and the question asks about one kind of flower among several.",
+            "move": "counts every flower as a marigold, writing six for a string of marigold, leaf, leaf, rose repeated three times.",
+            "screen": "the bracket over the group of four lights every copy along the string, and the marigold of each copy is lit on its own. The roses stay unlit. The child's six stays in the slot beside the three lit marigolds."
+          },
+          {
+            "why": "the second row ended on red, and the colour after red along a row has always been cream.",
+            "move": "starts the third row of caps with cream, carrying the second row straight on from its last cap.",
+            "screen": "the rows are bracketed one under another, and the colour at the start of each row is lit down the left edge: red, cream, and the one still to come. The child's third row stays drawn under the bench's own."
+          }
+        ],
+        "screen": "the object tray open beside an empty string and two empty rows",
+        "soWhat": "Everyday things make a pattern when a group of them repeats.",
+        "concept": "Patterns made from things around you"
+      }
+    ],
+    "delight": "The second phase, the moment the gap finder is tapped. A wash pours down over the patch from the top of the bench like water. It runs off every notch and bump of the outline and away off the bench, and settles only in the spaces with tiles closed round them. Those fill slowly from the bottom up, and the outline is left traced in its plain line with nothing in its notches. It pours as often as a finger likes, nothing is marked, and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the bench stands empty with the shape tray loaded and both finders waiting. On the second a patch of tiles stands with a bumpy outline, and in some patches a space closed in somewhere inside. On the third two or three copies of a shape lie on the dotted paper with room for more to their right. On the fourth the object tray is open beside an empty string and two empty rows, with the can do list along the foot. The running count at the top left holds the copies laid against the copies this phase asks for, and the answer slot and the pad stand empty down the right. One thing moves, once, the first shape in the tray or the gap finder or the last copy laid or the first thing in the object tray. It gives one slow pulse while the voice asks what goes next. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any shape from the tray on the bench, and any things from the object tray, with both finders and the carry on control open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on gaps and overlaps, a gap against the edge, carrying a tiling on, and patterns and words from the whole chapter.",
+    "voiceLines": [
+      "A bench of dotted paper and a tray of shapes. Lay the first copy down.",
+      "Lay the copies side by side. Is anything left uncovered? Is anything doubled?",
+      "Is this space closed in by tiles all round? Or is it where the tiling stops?",
+      "Where does the next one go? Which way must it face?",
+      "Make a pattern of your own. Which group comes round again?",
+      "Another patch. Look for spaces inside it, and for tiles lying on top.",
+      "Free play. Any shape, any things from the tray, with both finders open.",
+      "Run both finders again, and look at what each one shows.",
+      "Every patch tested for gaps and for overlaps, and a pattern of your own laid out."
+    ],
+    "observations": [
+      {
+        "why": "The test has two halves, and covering everything answers only one of them.",
+        "soWhat": "A tessellation needs no gaps and no overlaps, both at once.",
+        "observe": "The patch of overlapping squares covered everything, and still the overlap finder shaded it."
+      },
+      {
+        "why": "A gap has tiles closed round it on every side, while the outline is open to the outside.",
+        "soWhat": "The uneven outer edge of a patch is not a gap; it is only where the tiling stops.",
+        "observe": "The wash filled the space closed in between four circles, and ran off the bumpy outline of the hexagons."
+      },
+      {
+        "why": "The same shape turned the same way repeats the same fit, copy after copy.",
+        "soWhat": "A tiling is carried on by repeating the same shape the same way.",
+        "observe": "Each copy the carry on control offered touched the last one exactly, and both finders stayed empty."
+      },
+      {
+        "why": "Things make a pattern when a group of them comes round again, whatever the things are.",
+        "soWhat": "Everyday things make a pattern when a group of them repeats.",
+        "observe": "The bracket lit every copy of the group along the string of flowers and leaves."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "an empty bench with the shape tray loaded and both finders waiting",
+        "win": "both finders come back empty and the patch is named a tessellation",
+        "traceback": "Both finders run over the child's own patch and the patch is named on a plate.",
+        "ladder": [
+          "Look along each row to see whether a brick sits right against the next.",
+          "The coins already touch: look in the space between four of them.",
+          "Run the overlap finder over the pair and see if any part is covered twice.",
+          "Is any space left over, or any part covered twice?",
+          "Run both finders: a tessellation leaves both of them empty."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a patch of tiles with a bumpy outline and, in some patches, a space closed in the middle",
+        "win": "a closed-in space fills while the outer edge is traced plain and left empty",
+        "traceback": "The colour fills the closed-in spaces, a tracer runs from the space, and the plate names it.",
+        "ladder": [
+          "Look inside the patch for any space with tiles closed all round it.",
+          "Look at one tooth: are there tiles on every side of it?",
+          "Look at what touches that space, all the way round it.",
+          "Can a finger run from it to the outside without crossing a tile?",
+          "Tap Trace and see whether the pencil gets out to the open bench."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "two or three copies of a shape laid on the dotted paper, with room for more to the right",
+        "win": "each new copy snaps into place against the last and both finders stay empty",
+        "traceback": "The next copies are set down the right way up on a demo layer.",
+        "ladder": [
+          "Look at the copy just before it: which way does that one face?",
+          "Count the squares on one domino, then count the dominoes.",
+          "Carry the row on and count the copies as they land.",
+          "Where does the next copy touch the last one?",
+          "Turn each copy until its slanting side lies flat on the last."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the object tray open beside an empty string and two empty rows",
+        "win": "the bracket lights every copy of the group along the string",
+        "traceback": "The bracket lights every copy of the group, and the count is drawn beside it.",
+        "ladder": [
+          "Start at the first marigold and see where the next one hangs.",
+          "Row 3 starts like row 1: count its coins too.",
+          "Look at the four cards: which word did the bench lessons use?",
+          "Which group of things comes round again?",
+          "Read the string from the start and watch for the first thing that returns."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "bench": {
+      "w": 1046,
+      "h": 320
+    },
+    "cell": 8,
+    "dot": 40,
+    "free": {
+      "sqr": 8,
+      "brick": 12,
+      "tri": 13,
+      "dia": 20,
+      "coin": 12,
+      "ell": 20
+    },
+    "toran": [
+      "marigold",
+      "leaf",
+      "leaf",
+      "rose",
+      "marigold",
+      "leaf",
+      "leaf",
+      "rose",
+      "marigold",
+      "leaf",
+      "leaf",
+      "rose"
+    ],
+    "cards": [
+      "pattern",
+      "series",
+      "code",
+      "tessellation"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T7.C30:ML1",
+        "kind": "verdict",
+        "lay": "brick",
+        "pre": 12,
+        "all": 12,
+        "keys": [
+          "gaps",
+          "laps"
+        ],
+        "badge": "A tessellation",
+        "answer": "yes",
+        "near": "no",
+        "win": "Yes, the bricks fit side by side with no space and no overlap.",
+        "winMs": 4216
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T7.C30:1",
+        "kind": "verdict",
+        "lay": "coin",
+        "pre": 12,
+        "all": 12,
+        "keys": [
+          "gaps",
+          "laps"
+        ],
+        "badge": "Not a tessellation",
+        "answer": "no",
+        "near": "yes",
+        "win": "No, the coins leave a space between them, so circles cannot tessellate.",
+        "winMs": 4828
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T7.C30:2",
+        "kind": "verdict",
+        "lay": "lap",
+        "pre": 2,
+        "all": 2,
+        "keys": [
+          "gaps",
+          "laps"
+        ],
+        "badge": "Not a tessellation",
+        "answer": "no",
+        "near": "yes",
+        "win": "No, one tile lies over the other, so it is not a tessellation.",
+        "winMs": 4216
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T7.C31:ML2",
+        "kind": "verdict",
+        "lay": "spike",
+        "pre": 13,
+        "all": 13,
+        "keys": [
+          "gaps",
+          "trace"
+        ],
+        "badge": "A tessellation",
+        "tr": [
+          [
+            80,
+            70
+          ],
+          [
+            80,
+            10
+          ],
+          [
+            80,
+            -8
+          ]
+        ],
+        "answer": "yes",
+        "near": "no",
+        "win": "Yes, the notches are only where the tiling stops, so there is no gap.",
+        "winMs": 4692
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T7.C31:3",
+        "kind": "space",
+        "lay": "dia",
+        "pre": 20,
+        "all": 20,
+        "keys": [
+          "gaps",
+          "trace"
+        ],
+        "badge": "Only the edge",
+        "tr": [
+          [
+            50,
+            80
+          ],
+          [
+            0,
+            80
+          ],
+          [
+            -30,
+            80
+          ]
+        ],
+        "answer": "edge",
+        "near": "gap",
+        "win": "Only the edge, because every tooth opens out to the bench.",
+        "winMs": 3944
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T7.C31:4",
+        "kind": "space",
+        "lay": "coin",
+        "pre": 18,
+        "all": 18,
+        "keys": [
+          "gaps",
+          "trace"
+        ],
+        "badge": "A gap",
+        "tr": [
+          [
+            80,
+            68
+          ],
+          [
+            92,
+            80
+          ],
+          [
+            80,
+            92
+          ],
+          [
+            68,
+            80
+          ],
+          [
+            80,
+            68
+          ],
+          [
+            92,
+            80
+          ]
+        ],
+        "answer": "gap",
+        "near": "edge",
+        "win": "A gap, because the circles close round that space on every side.",
+        "winMs": 4352
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T7.C32:ML3",
+        "kind": "place",
+        "lay": "tri",
+        "par": 0,
+        "pre": 3,
+        "all": 6,
+        "nseat": 3,
+        "pad": "enter",
+        "keys": [],
+        "badge": "Down, up, down",
+        "answer": "down,up,down",
+        "near": "up,up,up",
+        "win": "Each copy fits against the last when it is turned the right way.",
+        "winMs": 4352
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T7.C32:5",
+        "kind": "count",
+        "lay": "domino",
+        "pre": 4,
+        "all": 7,
+        "keys": [
+          "lay"
+        ],
+        "layLab": "Carry on",
+        "answer": 14,
+        "near": 7,
+        "ladder": [
+          "Tap Carry on, then count every square in the row.",
+          "Each domino is two squares, so count the row by twos."
+        ],
+        "win": "Seven dominoes of two squares each make a row 14 squares long.",
+        "winMs": 4216
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T7.C32:6",
+        "kind": "facing",
+        "lay": "tri",
+        "par": 0,
+        "pre": 3,
+        "all": 10,
+        "keys": [
+          "lay"
+        ],
+        "layLab": "Carry on",
+        "badge": "Points down",
+        "answer": "down",
+        "near": "up",
+        "ladder": [
+          "Say the facings in order, one for each place along the row.",
+          "Count along the row to the tenth place and say which way it faces."
+        ],
+        "win": "The tenth triangle points down, because every even place points down.",
+        "winMs": 4692
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T7.C33:ML4",
+        "kind": "string",
+        "str": [
+          "marigold",
+          "leaf",
+          "leaf",
+          "rose",
+          "marigold",
+          "leaf",
+          "leaf",
+          "rose",
+          "marigold",
+          "leaf",
+          "leaf",
+          "rose"
+        ],
+        "pre": 12,
+        "all": 12,
+        "keys": [
+          "bracket"
+        ],
+        "litk": "marigold",
+        "leg": [
+          "marigold",
+          "leaf",
+          "rose"
+        ],
+        "answer": 3,
+        "near": 6,
+        "ladder": [
+          "How many things hang in one group?",
+          "Count the marigolds in one bracket, then count the brackets."
+        ],
+        "win": "Three marigolds, one in each group of four.",
+        "winMs": 2924
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T7.C33:7",
+        "kind": "rows",
+        "pre": 10,
+        "all": 15,
+        "keys": [
+          "lay"
+        ],
+        "layLab": "Lay things",
+        "litk": "coin",
+        "leg": [
+          "coin",
+          "cap"
+        ],
+        "answer": 8,
+        "near": 7,
+        "ladder": [
+          "Tap Lay things to carry the third row on, then count the coins.",
+          "Count the coins row by row and add them up."
+        ],
+        "win": "Eight coins, because row 3 starts like row 1: three, two and three.",
+        "winMs": 4556
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T7.C33:8",
+        "kind": "card",
+        "pre": 0,
+        "all": 0,
+        "keys": [],
+        "answer": "tessellation",
+        "near": "series",
+        "ladder": [
+          "Read each word again and match it to what you see on the bench.",
+          "Pick the word the lesson used for copies of one shape that fit together."
+        ],
+        "win": "A tessellation is a floor of tiles with no gaps and no overlaps.",
+        "winMs": 4352
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: Both finders run over the child's own patch and the patch is named on a plate.",
+      "Phase 2: The colour fills the closed-in spaces, a tracer runs from the space, and the plate names it.",
+      "Phase 3: The next copies are set down the right way up on a demo layer.",
+      "Phase 4: The bracket lights every copy of the group, and the count is drawn beside it."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A bench of dotted paper and a tray of shapes. Lay the first copy down.",
+    "onFreePlay": "Free play. Pick a shape, lay copies to make a tessellation of your own, then test it.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Every patch tested for gaps and for overlaps, and a pattern of your own laid out.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T7.C30:ML1",
+            "worked": false,
+            "kind": "verdict",
+            "planQuestion": "Rectangular bricks are laid in rows on a wall, each row moved along by half a brick. Is any space left between them, and does any brick lie over another? Is the wall a tessellation?",
+            "question": {
+              "en": "This wall has each row moved half a brick: is it a tessellation?"
+            },
+            "ask": {
+              "en": "Tessellation?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes. The bricks fit side by side with no gaps and no overlaps, so the wall is a tessellation",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T7.C30:1",
+            "worked": false,
+            "kind": "verdict",
+            "planQuestion": "Round coins are laid touching one another on a table. Is this a tessellation?",
+            "question": {
+              "en": "Round coins lie touching on a table: do they make a tessellation?"
+            },
+            "ask": {
+              "en": "Tessellation?"
+            },
+            "answer": "no",
+            "planAnswer": "No. Circles leave gaps between them, however they are pushed together",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T7.C30:2",
+            "worked": false,
+            "kind": "verdict",
+            "planQuestion": "Two square tiles are laid so that one lies half over the other. Nothing is left uncovered between them. Is this a tessellation?",
+            "question": {
+              "en": "Two squares lie half over each other with nothing uncovered: a tessellation?"
+            },
+            "ask": {
+              "en": "Tessellation?"
+            },
+            "answer": "no",
+            "planAnswer": "No. There are no gaps, but one tile overlaps the other, and a tessellation needs no gaps and no overlaps",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T7.C31:ML2",
+            "worked": false,
+            "kind": "verdict",
+            "planQuestion": "A patch of triangle tiles has a zig-zag outline, with notches all along its top edge. No space is left inside the patch. Is it a tessellation?",
+            "question": {
+              "en": "This triangle patch has a bumpy top edge: is it a tessellation?"
+            },
+            "ask": {
+              "en": "Tessellation?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes. The notches are only where the tiling stops, so they are not a gap, and nothing inside the patch is left uncovered",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T7.C31:3",
+            "worked": false,
+            "kind": "space",
+            "planQuestion": "A patch of diamond-shaped tiles has a saw-tooth outline down both sides. Are the teeth gaps?",
+            "question": {
+              "en": "Are the saw teeth of these diamonds gaps, or only the edge?"
+            },
+            "ask": {
+              "en": "Gap or edge?"
+            },
+            "answer": "edge",
+            "planAnswer": "No. The saw-tooth outline is only where the tiling stops, so it is not a gap",
+            "choices": [
+              "gap",
+              "edge"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T7.C31:4",
+            "worked": false,
+            "kind": "space",
+            "planQuestion": "Circles are packed in rows, and a small space with four curved sides is closed in between every four circles. Is that space a gap, or only the edge?",
+            "question": {
+              "en": "Is the little space between four packed circles a gap, or only the edge?"
+            },
+            "ask": {
+              "en": "Gap or edge?"
+            },
+            "answer": "gap",
+            "planAnswer": "A gap, because circles close round it on every side, so the circles are not a tessellation",
+            "choices": [
+              "gap",
+              "edge"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T7.C32:ML3",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "A row of triangles on dotted paper goes point up, point down, point up. Three more are to be added. Which way does each one point?",
+            "question": {
+              "en": "The row goes up, down, up, so set the next three triangles the right way."
+            },
+            "ask": {
+              "en": "Set them down"
+            },
+            "answer": "down,up,down",
+            "planAnswer": "Point down, point up, point down",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T7.C32:5",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "Dominoes, each two squares long and one square high, are laid end to end in a row. Four are down. How long is the row, in squares, after three more are added?",
+            "question": {
+              "en": "A row has four two-square dominoes: how many squares long with three more?"
+            },
+            "ask": {
+              "en": "Squares in all"
+            },
+            "answer": 14,
+            "planAnswer": "14 squares, because seven dominoes each two squares long make 14",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T7.C32:6",
+            "worked": false,
+            "kind": "facing",
+            "planQuestion": "In a row of triangles, the first points up and they take turns, up and down. Which way does the tenth triangle point?",
+            "question": {
+              "en": "The first points up and they take turns: which way does the tenth point?"
+            },
+            "ask": {
+              "en": "The tenth one"
+            },
+            "answer": "down",
+            "planAnswer": "Down. The odd-numbered triangles point up and the even-numbered ones point down, and ten is even",
+            "choices": [
+              "up",
+              "down"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T7.C33:ML4",
+            "worked": false,
+            "kind": "string",
+            "planQuestion": "A toran repeats marigold, leaf, leaf, rose along its string. The string holds twelve pieces. How many marigolds are on it?",
+            "question": {
+              "en": "The toran repeats marigold, leaf, leaf, rose over twelve: how many marigolds?"
+            },
+            "ask": {
+              "en": "Marigolds?"
+            },
+            "answer": 3,
+            "planAnswer": "Three, because the group of four repeats three times in twelve pieces",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T7.C33:7",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "Blue and yellow buttons are set out in three rows of five, with the colours swapping like a chessboard. The first row starts with blue. What colour starts the third row, and how many buttons are blue?",
+            "question": {
+              "en": "Coins and caps swap like a chessboard in three rows of five: how many coins?"
+            },
+            "ask": {
+              "en": "Coins?"
+            },
+            "answer": 8,
+            "planAnswer": "Blue starts the third row, and 8 buttons are blue: 3 in the first row, 2 in the second and 3 in the third",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T7.C33:8",
+            "worked": false,
+            "kind": "card",
+            "planQuestion": "Name the chapter word for each of these. A floor of tiles with no gaps and no overlaps. A message that can be read only with its key. A list of numbers in order that follows a rule.",
+            "question": {
+              "en": "Which chapter word names a floor of tiles with no gaps and no overlaps?"
+            },
+            "ask": {
+              "en": "Which word?"
+            },
+            "answer": "tessellation",
+            "planAnswer": "A tessellation; a secret code; a series, whose rule is its number pattern",
+            "choices": [
+              "pattern",
+              "series",
+              "code",
+              "tessellation"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "tile_bench",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "tile_bench",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Copies that fit with no gaps",
+        "conceptId": "M2.S4.T7.C30",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C30:ML1",
+          "M2.S4.T7.C30:1",
+          "M2.S4.T7.C30:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "A gap or only the edge",
+        "conceptId": "M2.S4.T7.C31",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C31:ML2",
+          "M2.S4.T7.C31:3",
+          "M2.S4.T7.C31:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Carrying a tiling on",
+        "conceptId": "M2.S4.T7.C32",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C32:ML3",
+          "M2.S4.T7.C32:5",
+          "M2.S4.T7.C32:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Patterns made from things around you",
+        "conceptId": "M2.S4.T7.C33",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C33:ML4",
+          "M2.S4.T7.C33:7",
+          "M2.S4.T7.C33:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "tiles",
+    "gaps",
+    "nGap",
+    "overlaps",
+    "nLap",
+    "edgeTraced",
+    "carried",
+    "objects",
+    "laid",
+    "ticked",
+    "n",
+    "nudge"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), tiles, gaps, nGap, overlaps, nLap, edgeTraced, carried, objects, laid, ticked, n, complete, nudge",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "tile_bench"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T7.C30.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A bench of dotted paper and a tray of shapes. Lay the first copy down."
+    },
+    {
+      "en": "Lay the copies side by side. Is anything left uncovered? Is anything doubled?"
+    },
+    {
+      "en": "Is this space closed in by tiles all round? Or is it where the tiling stops?"
+    },
+    {
+      "en": "Where does the next one go? Which way must it face?"
+    },
+    {
+      "en": "Make a pattern of your own. Which group comes round again?"
+    },
+    {
+      "en": "Another patch. Look for spaces inside it, and for tiles lying on top."
+    },
+    {
+      "en": "Free play. Any shape, any things from the tray, with both finders open."
+    },
+    {
+      "en": "Run both finders again, and look at what each one shows."
+    },
+    {
+      "en": "Every patch tested for gaps and for overlaps, and a pattern of your own laid out."
+    }
+  ],
+  "build": {
+    "source": "258e2c1a:641253",
+    "runtime": "class4/runtime/frozen/r28/runtime.tsx",
+    "runtimeVersion": "r28",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-20T09:54:31.730Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-20T09:54:31.608Z"
+    },
+    "tsxBytes": 573986,
+    "tsxMd5": "d961b47bcbc7a35367290b1063031cb7"
+  }
+}

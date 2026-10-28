@@ -6,6 +6,9 @@
  *   node cli.mjs doctor
  *   node cli.mjs list     [--class 4] [--pub udgam]
  *   node cli.mjs fetch    --ch 1[,2|1-3] [--class 4] [--pub udgam] [--version active|latest|N] [--plan-file f.json]
+ *                         fetch also RENAMES local slots whose ids the live plan changed (by tool_id, title, description; backup in
+ *                         .remap-backups/); --no-remap skips that
+ *   node cli.mjs remap    --ch N [--dry] [--class 4] [--pub udgam]   only that rename (a dry run lists it); then `approve` each renamed pair
  *   node cli.mjs scaffold <MEDIA_ID> [--ch N] [--force]
  *   node cli.mjs preview  <MEDIA_ID> [--ch N]
  *   node cli.mjs shots    <MEDIA_ID> [--ch N] [--state ask|mount|wrong|solve|idle|party] [--full --phase n] [--lang hi|gu] [--panel open]
@@ -86,6 +89,7 @@ import { parseArgs, chapterList } from "./lib/core/args.mjs";
 import { chromePath, sweepChromeTempThorough, chromeTempReport } from "./lib/core/chrome.mjs";
 import { withDb, listChapters, chapterRow, plansFor, choosePlan, blobFor, planFromFile, mounts, chapterIdFor } from "./lib/plan/lp.mjs";
 import { buildBrief } from "./lib/plan/brief.mjs";
+import { remapChapter } from "./lib/plan/remap.mjs";
 import { scaffold } from "./lib/build/scaffold.mjs";
 import { resolveTarget, readStatus, writeStatus, workRoot, idOf } from "./lib/core/work.mjs";
 import { bakeVoice } from "./lib/build/voice.mjs";
@@ -107,7 +111,7 @@ import { readFence, fenceSet } from "./lib/core/fence.mjs";
 import { imagesCommand, makeActionKit } from "./lib/images/make.mjs";
 import { runDesignPass, designChapter } from "./lib/design/design.mjs";
 
-const BOOLEANS = ["force", "full", "json", "help", "no-render", "upload", "apply", "offline", "watch", "off", "on", "clear", "html", "dry", "pack", "changed"];
+const BOOLEANS = ["force", "full", "json", "help", "no-render", "upload", "apply", "offline", "watch", "off", "on", "clear", "html", "dry", "pack", "changed", "no-remap", "remap-only"];
 const a = parseArgs(process.argv.slice(3), BOOLEANS);
 const cmd = process.argv[2];
 const kb = (n) => (n / 1024).toFixed(1).padStart(6) + " KB";
@@ -208,7 +212,20 @@ async function fetchChapters() {
       return got;
     });
   }
-  for (const j of jobs) writeChapter(j);
+  for (const j of jobs) { remapSlots(j); if (!a["remap-only"]) writeChapter(j); }
+}
+
+/* the live plan renumbered a tool's ids: rename the local slot (work/ and output-preview/) instead of writing a second, empty one beside it
+   (lib/plan/remap.mjs). `fetch` does it by itself; `remap --ch N [--dry]` is the same step alone; `--no-remap` skips it. */
+function remapSlots(j) {
+  if (a["no-remap"]) return;
+  const raw = typeof j.raw === "string" ? JSON.parse(j.raw) : j.raw;
+  const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const r = remapChapter({ workChapterDir: path.join(workRoot(), j.chapterId), outChapterDir: path.join(fromRoot(CONFIG.outDir), j.chapterId),
+    chapterId: j.chapterId, planId: j.planId, version: j.version, liveMounts: mounts(raw).map((m) => m.slot), dry: !!a.dry,
+    backupDir: fromRoot(path.join(".remap-backups", `${j.chapterId}-${stamp}`)) });
+  r.lines.forEach((l) => console.log(l));
+  if (r.problems && r.problems.length) throw new Error(`${j.chapterId}: the live plan's ids do not map cleanly onto the local slots (see PROBLEM above); nothing was renamed. Fix by hand, or fetch with --no-remap`);
 }
 
 function writeChapter(j) {
@@ -620,7 +637,7 @@ async function doDesign() {
   await runDesignPass(dir, { model, force, log: console.log });
 }
 
-const COMMANDS = { doctor, list, fetch: fetchChapters, scaffold: doScaffold, preview: doPreview, shots: doShots, check: doCheck,
+const COMMANDS = { doctor, list, fetch: fetchChapters, remap: () => { a["remap-only"] = true; return fetchChapters(); }, scaffold: doScaffold, preview: doPreview, shots: doShots, check: doCheck,
   port: doPort, approve: doApprove, publish: doPublish, mascot: doMascot, clean: doClean, status, view: doView, runtime: doRuntime, fence: doFence, voice: doVoice,
   images: doImages, actionkit: doActionKit, fontkit: () => makeFontKit(), design: doDesign };
 

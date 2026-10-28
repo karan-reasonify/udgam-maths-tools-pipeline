@@ -1,0 +1,1173 @@
+{
+  "slotId": "M1.S1.T2.C5.2D1",
+  "mediaId": "M1.S1.T2.C5.2D1",
+  "toolId": "ruler_bench",
+  "title": "Ruler Bench",
+  "component": "M1.S1.T2.C4.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch11",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch11_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_11/2dtool/M1.S1.T2.C4.2D1/M1.S1.T2.C4.2D1.tsx",
+  "description": "Sort measures into length, weight and capacity, see why handspans disagree, lay a thing on a ruler from its zero mark, and pick a unit before estimating.",
+  "conceptIds": [
+    "M1.S1.T2.C5",
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7",
+    "M1.S1.T2.C8"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Sort each measure into its kind and its units, find out why handspans disagree, measure from the zero mark, and choose a unit before guessing a size.",
+    "look": "A workbench: a tray of everyday things and three bins at the left, two hands at a bench top in the middle, and a ruler with no 0 at the right.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Ruler Bench' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the things sorted, the readings taken or the cards filled against what this phase lays out, two numbers in ink, the first climbing by one as each thing settles in a bin, each reading is taken or each card is filled, and the second fixed at what this phase holds. On the second phase it holds only the handspans stamped with the hand showing, with no second number, because how many fit is the thing being found, and switching hands starts that hand's own count beside the first rather than clearing it. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The thing tray lies along the top left of the working area, 520 by 90 at 64,214, holding a rope, a ribbon, a bag of flour, a bottle of water, a school bag and a spoon, each drawn plainly and apart. The three measure bins stand under it, each 164 by 170, at 64,318, 242,318 and 420,318, labelled length, weight and capacity in ink, with each bin's unit cards in a row along its foot: millimetres, centimetres, metres and kilometres; grams and kilograms; millilitres and litres. A thing dropped in a bin stays where it is dropped. A card lifted from one bin sticks only to a thing sorted into that bin; set on a thing in another bin it slides home to its own row, and that bin's label lights. The bench top runs along the foot of the left half, 520 by 56 at 64,540, with the hand switch under it, 250 by 56 at 64,612, showing a large hand and a small hand. Each tap stamps one handspan of the chosen hand along the bench as a sky blue outline, the large hand's stamps in a row above the bench and the small hand's in a row below it, so the two rows stand one over the other and neither is cleared. The centimetre tape lies coiled at the bench's right end. Pulled, it runs along the bench with its zero mark vermilion at the bench's left end, and its reading in centimetres is written at the bench's right end; it gives that one reading whichever hand's row is showing. At the right of the working area the ruler lies across, 540 by 70 at 600,300: fifteen centimetres, a long near-black tick at every centimetre and a short one at every half, the numerals one to fifteen above the long ticks, and the first tick carrying the letters cm and no numeral, as the chapter's own ruler does. That first tick is the zero mark, and it lights vermilion whenever an object's end sits on it. The object slider sits above the ruler, 540 by 76 at 600,214, holding one object at a time, a crayon, an eraser, a key or a pencil, which slides along the ruler half a centimetre at a time and settles with its left end on a tick; the tick under its right end is the reading mark and lights vermilion. With the left end on the zero mark, the reading is the length. With it on any other tick, a near-black bracket opens under the ruler and counts the centimetre spaces the object covers, one at a time from its left end, a half space counted as a half, and the count is written in sky blue beside the reading. The estimate card and the measure card sit under the ruler side by side, each 250 by 80, at 600,400 and 890,400, each with a unit tag, and once both are filled a reddish purple bar between them, drawn to scale, shows the gap. The unit picker stands under them, 540 by 150 at 600,520, offering three sizes for one thing, such as centimetres, metres or kilometres, each with a small picture beside it: a fingertip across a centimetre, one big step for a metre, and a road between two towns for a kilometre. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across, with a unit tag under the slot naming the unit the answer is in, filled in beside the number and never left off. It has no dot key. On the first phase a word pad sits over it with keys reading length, weight and capacity; on the second, keys reading the hands differ, the bench changed and a child miscounted; on the third the slot is a measure in centimetres with a millimetres box beside it, for a reading that ends on a half mark; and on the fourth the unit tag becomes a picker of millimetres, centimetres, metres and kilometres. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The larger unit of any pair, kilometres beside metres, metres beside centimetres, centimetres beside millimetres, kilograms and litres, is deep blue wherever it is drawn: its digits in a column, a bar standing for whole units, or a kilogram weight. The smaller unit of the pair, and the part left over after the whole units, is green: metres beside kilometres, centimetres beside metres, millimetres, grams and millilitres. One larger unit carried from the smaller column, or broken into smaller units to borrow, and every digit that move rewrites, is amber. A zero that fills an empty place of the smaller unit is grey. What is left after taking away, and the difference between two measures, is reddish purple. A count of things, handspans, glasses, jars, pourings or bags, is sky blue. The zero mark of a ruler or tape, and the mark where a reading is taken, are vermilion. Water and every other liquid is pale blue. Chrome never borrows one of those and none of them is ever used for chrome: every other tick and numeral on a ruler, and every rule, column line, bracket, strike line, table rule and panel edge, is near-black. Every reading survives with the colour taken away, because a unit is told apart by its column heading and its unit name, a padding zero by the box it sits in, a carried or broken unit by the chip it rides on, and a count by the slot that names what is counted, before any of them is told by a colour. Grey never means faint: a zero in the smaller unit's places is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. A figure that goes down by one when a unit is broken is struck through once with the new figure written above it, and never rubbed out. No measure in two units is written as a decimal anywhere on the stage. The ruler shows no 0, as the chapter's does not, so the zero mark is found by where it is, the first tick, and not by a numeral. The bracket counts the spaces between ticks and not the ticks themselves, so the count it shows is the object's length in centimetres wherever the object lies.",
+    "finish": "The card shows the three bins with the things the child sorted, the two handspan counts beside the tape reading, and the last object on the ruler with its estimate and measure.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "every thing settles in its bin wearing a unit of that kind, and a card of the wrong kind will not stick",
+        "does": "drops each thing in the bin for the measure asked, then gives it a unit card from that bin",
+        "goal": "length, weight and capacity each have their own units, and a thing's measure takes a unit of its own kind",
+        "says": "Is it a length, a weight or a capacity? Which units belong to it?",
+        "check": "Away from the screen: give one unit for how long a bus is, how heavy a bag of rice is, and how much a bucket holds.",
+        "feels": "each kind of measure has its own family of units, and a card from the wrong family will not stay on",
+        "hands": "Put a rope, a stone and a cup of water on a desk and ask how each could be measured. Sort the answers into three piles on the board, how long, how heavy and how much it holds, and write each pile's units under it: millimetres, centimetres, metres and kilometres; grams and kilograms; millilitres and litres. Then say a sentence with the wrong kind of unit, a rope six kilograms long, and let the class say what is wrong with it.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: is the question about how long, how heavy or how much it holds? Second rung, the phase's: which bin's cards can say that? Third rung: the tray is cut to one thing and one question, and the child sorts it before the other things come back. The word pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "a bottle has a height, a weight and a capacity all at once, and its height is the one the eye meets first.",
+            "move": "puts the bottle of water in the length bin, because the bottle is tall and its height is easy to see.",
+            "screen": "the question's words, how much water it holds, light under the slot. The length bin's four cards are held up against those words one at a time, and none of them can say an amount of water; the capacity bin's two cards, millilitres and litres, then light beside it. The bottle stays in the bin where the child set it, nothing marked."
+          },
+          {
+            "why": "kilograms are a unit heard at many a shop counter, and a unit feels like a unit whatever it measures.",
+            "move": "gives the rope a kilograms card, reaching for the unit heard most often at the shop.",
+            "screen": "the card slides off the rope and home to the weight bin's row, and the length bin's label lights with its four cards. The tape then runs out along the rope, reading it in centimetres, a length's own unit, and the child's card stays lit in the weight bin's row, nothing marked."
+          }
+        ],
+        "screen": "the tray of things, the three bins, and the unit cards in a row",
+        "soWhat": "Length, weight and capacity each have their own units, and a measure takes a unit of its own kind.",
+        "concept": "A unit for every kind of measure"
+      },
+      {
+        "n": 2,
+        "win": "the two handspan counts stand apart, and the tape gives one reading for both hands",
+        "does": "stamps handspans along the bench with each hand in turn, counts each, then runs the tape along it",
+        "goal": "handspans change from person to person, and a standard unit gives everyone the same reading",
+        "says": "Two hands, two counts. Now the tape. Does it matter whose hand lays it?",
+        "check": "Measure your desk in your own handspans, then ask a grown-up to do the same. Whose count is bigger, and why?",
+        "feels": "the bench stayed the same, and only the hand measuring it changed the count",
+        "hands": "Ask two children, one with a large hand and one with a small hand, to measure the same desk in handspans while the class counts aloud. Write both counts on the board and ask which is right. Let the class argue, then lay a measuring tape along the desk and read it once. Ask whether the tape's reading would change if the other child held it.",
+        "tries": "First rung, from the item: did the bench change between the two counts? Second rung, the phase's: which hand fits more times along it? Third rung: the bench is cut short, and the child stamps both hands along it and reads the tape before the long bench comes back. The word pad stays open.",
+        "wrong": [
+          {
+            "why": "two different numbers for one bench sound as if one of them must be a mistake.",
+            "move": "decides the child who counted nine handspans measured wrongly, because the other child counted only six for the same bench.",
+            "screen": "both hands stamp along the one bench, the large hand's six outlines above it and the small hand's nine below it, and both rows end exactly at the bench's right end. The tape then runs along the bench and reads one hundred and eight centimetres, the same under either row, and the child's choice stays lit on the word pad, nothing marked."
+          },
+          {
+            "why": "a count of handspans sounds like a length, and nine is nine whoever says it.",
+            "move": "tells a friend with a larger hand that a bench is nine handspans long, and expects the friend to make the same bench.",
+            "screen": "the large hand stamps nine of its own handspans along a fresh strip laid beside the bench, and the strip runs past the bench's end by three of the large hand's spans. The tape reads the bench, one hundred and eight centimetres, and then the strip, one hundred and sixty-two, and both readings stay on the stage with the child's answer beside them."
+          }
+        ],
+        "screen": "one bench top with a large hand and a small hand beside it, and the centimetre tape coiled at one end",
+        "soWhat": "Handspans change from person to person, so standard units such as the centimetre are used. They give everyone the same reading.",
+        "concept": "Why everyone uses the same units"
+      },
+      {
+        "n": 3,
+        "win": "the zero mark lights under the object's end, and the reading matches the count",
+        "does": "reads the other end, counts the centimetres the object covers, then slides it back to the first mark and reads again",
+        "goal": "a length is read from the zero mark, the first mark on the ruler, even where no 0 is printed",
+        "says": "Where does the ruler start? Count the centimetres it really covers.",
+        "check": "Away from the screen: a pencil lies with one end on the mark for two and the other on the mark for ten. How long is it?",
+        "feels": "the object did not grow when it sat on the mark for one; only the reading did",
+        "hands": "Hand out rulers and ask everyone to find the 0. Some rulers print one and some do not, like the chapter's. Show that the first mark is the zero mark whether or not a 0 is printed there. Then lay an eraser with one end on the mark for one, read the other end, and count the centimetre spaces it covers with a finger. Ask why the two numbers differ.",
+        "tries": "First rung, from the item: where does the object's left end sit? Second rung, the phase's: which mark is the zero mark on this ruler? Third rung: the object is cut to one only a few centimetres long, and the child counts its spaces with the bracket before the longer object comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "no 0 is printed on this ruler, so the mark for one looks like the place a ruler starts.",
+            "move": "reads nine for a crayon laid from the mark for one to the mark for nine, and gives nine centimetres as its length.",
+            "screen": "the bracket opens under the crayon and counts the centimetre spaces it covers one at a time, eight of them, and writes eight in sky blue beside the reading of nine. The crayon then slides back until its left end sits on the first tick, which lights vermilion as the zero mark, and its other end now sits on eight. The child's nine stays in the slot beside it."
+          },
+          {
+            "why": "on this ruler numbers are printed only at the long marks, so the nearest printed number looks like the reading.",
+            "move": "reads seven for a pencil laid from the zero mark whose far end lies on the short mark halfway between six and seven, giving the nearest printed number.",
+            "screen": "the short mark under the pencil's end lights vermilion, halfway between the long marks for six and seven, and the bracket counts six whole centimetre spaces and then half of the seventh, drawn as half a space. The measure is written six centimetres five millimetres, because half of the ten millimetres in a centimetre is five, and the child's seven stays in the slot beside it."
+          }
+        ],
+        "screen": "the ruler with no numeral at its first mark, and an object lying with one end on the mark for one",
+        "soWhat": "Measure from the zero mark, the first mark on the ruler, even where no 0 is printed. Then the reading at the other end is the length.",
+        "concept": "Measuring from the zero mark"
+      },
+      {
+        "n": 4,
+        "win": "the estimate and the measure stand side by side, with the gap between them drawn as a short bar",
+        "does": "picks the unit that suits the thing, writes an estimate in it, then measures from the zero mark",
+        "goal": "a unit is chosen to suit the size before measuring or estimating",
+        "says": "Pick a unit that fits. Now guess. How close was your guess?",
+        "check": "Is a matchbox about five millimetres, five centimetres or five metres long? Guess first, then measure one.",
+        "feels": "the unit comes first, and a guess in that unit can then be held up against the measure",
+        "hands": "Hold up a matchbox, a door key and a school bag, and for each ask whether millimetres, centimetres, metres or kilometres would suit it. Then choose one thing, a pencil box, and let every child write an estimate with its unit before anyone measures. Measure it from the zero mark, and ask how close the guesses came, not who was right.",
+        "tries": "First rung, from the item: how big is the thing, about a finger, a step or a journey? Second rung, the phase's: which unit's picture matches that size? Third rung: the picker is cut to two sizes, one plainly too small and one that fits, before the third comes back. The unit picker and the number pad stay open.",
+        "wrong": [
+          {
+            "why": "a classroom feels big to a child walking across it, and kilometres are the biggest unit on the list.",
+            "move": "picks kilometres for the length of a classroom, because a classroom feels big to walk across.",
+            "screen": "the picker lays its pictures beside the classroom: the road between two towns for a kilometre, with the classroom a small dot on it, and one big step for a metre. A metre stick is laid along the drawn classroom and fits eight times, and the child's kilometres stay lit on the picker, nothing marked."
+          },
+          {
+            "why": "a guess that differs from the measure feels like a wrong answer, and nobody wants a wrong answer on the card.",
+            "move": "writes the estimate after measuring, or rubs it out and writes the measure in its place, so the gap comes to nothing.",
+            "screen": "the estimate card locks once the measure card is filled, and a new number set on it is written on a fresh card beside the first, both kept. The gap bar is drawn from the first estimate, a pencil box guessed at twenty-five centimetres and measured at twenty-one, four centimetres, and the voice asks only how close it was."
+          }
+        ],
+        "screen": "one thing on the bench, the unit picker offering three sizes, and the estimate and measure cards empty",
+        "soWhat": "Choose a unit that suits the size, guess, then measure. A good estimate is a close one, and the gap tells how close.",
+        "concept": "Choosing a sensible unit"
+      }
+    ],
+    "delight": "The third phase, the moment the object is slid from the mark for one back to the zero mark. The bracket under the ruler keeps its count, space for space, while both ends of the object glide one centimetre left together; the reading mark steps down one tick, the first tick lights vermilion, and the reading and the count come to the same number and hold. Slide it back to the mark for one and the reading climbs by one while the bracket's count does not move. It can be slid back and forth as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the tray holds its things and the three bins stand empty, each with its own unit cards in a row along its foot. On the second the bench top lies bare, with the large hand and the small hand beside it and the tape coiled at its right end. On the third an object already lies along the ruler with its left end on the mark for one, the reading mark at its other end unlit and the bracket folded away. On the fourth one thing stands on the bench beside the unit picker, and the estimate card and the measure card are both empty. The running count at the top left holds the things sorted, readings taken or cards filled against what this phase lays out, and the answer slot and the pad stand empty down the right. One thing moves, once: the first thing in the tray, or the small hand, or the ruler's first tick, the one with no numeral, or the unit picker, gives one slow pulse while the voice asks what kind of measure each thing needs. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any thing from the tray in any bin, the handspan bench with either hand, the ruler with any object, and the estimate cards open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on sorting measures and their units, handspans against centimetres, reading a ruler from its zero mark, and choosing a sensible unit for an estimate.",
+    "voiceLines": [
+      "A bench of things to measure. What kind of measure does each one need?",
+      "Is it a length, a weight or a capacity? Which units belong to it?",
+      "Two hands, two counts. Now the tape. Does it matter whose hand lays it?",
+      "Where does the ruler start? Count the centimetres it really covers.",
+      "Pick a unit that fits. Now guess. How close was your guess?",
+      "A new thing. Decide what kind of measure it needs before you choose a unit.",
+      "Free play. Any thing, either hand, the ruler and the estimate cards, all open.",
+      "Look at what is being measured, then at where the measuring starts.",
+      "Every thing given a unit of its own kind, every reading taken from the zero mark, and every guess set beside a measure."
+    ],
+    "observations": [
+      {
+        "why": "A rope is measured for how long it is, and kilograms say how heavy something is.",
+        "soWhat": "Length, weight and capacity each have their own units, and a measure takes a unit of its own kind.",
+        "observe": "The kilograms card slid off the rope and went home to the weight bin."
+      },
+      {
+        "why": "The bench did not change. A smaller handspan simply fits more times along it.",
+        "soWhat": "Handspans change from person to person, so standard units such as the centimetre are used.",
+        "observe": "The small hand's row held more stamps than the large hand's, and the tape gave one reading under both."
+      },
+      {
+        "why": "The object's length never changed. Starting at the mark for one had moved both of its ends one centimetre along.",
+        "soWhat": "Measure from the zero mark, the first mark on the ruler, even where no 0 is printed.",
+        "observe": "Sliding the object back to the zero mark made the reading drop by one, while the bracket's count stayed the same."
+      },
+      {
+        "why": "A guess and a measure in the same unit can be set side by side, and the gap is a length too.",
+        "soWhat": "Choose a unit that suits the size first, then guess, then measure, and see how close the guess was.",
+        "observe": "Once a unit was picked to suit the thing, the estimate and the measure stood in the same unit, with the gap drawn between them."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the tray of things, the three bins, and the unit cards in a row",
+        "win": "every thing settles in its bin wearing a unit of that kind, and a card of the wrong kind will not stick",
+        "traceback": "Each thing in a wrong bin is drawn again, dashed, in the bin of its own kind wearing a unit card from that bin, while the child's own pieces stay where they were set.",
+        "ladder": [
+          "Take one thing at a time and ask what you want to know about it.",
+          "Think of filling the bucket: which kind of measure tells how much goes in?",
+          "Would you lift it, lay it out straight, or pour it to measure it?",
+          "Each bin's cards can say only its own kind of measure.",
+          "Cards like km and cm say how long, kg how heavy, and L how much it holds."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "one bench top with a large hand and a small hand beside it, and the centimetre tape coiled at one end",
+        "win": "the two handspan counts stand apart, and the tape gives one reading for both hands",
+        "traceback": "Both hands lay their handspans along the one bench, each row ending at its end, and the tape reads the bench once in centimetres under both rows.",
+        "ladder": [
+          "Did the bench change between the two counts?",
+          "Lay both hands along the table: whose handspan is longer?",
+          "Would the buyer's bigger handspans give the same cloth?",
+          "Which hand fits more times along it?",
+          "Pull out the tape: does its reading care whose hand it is?"
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the ruler with no numeral at its first mark, and an object lying with one end on the mark for one",
+        "win": "the zero mark lights under the object's end, and the reading matches the count",
+        "traceback": "A bracket under the object counts the centimetre spaces it covers, the object slides back to the zero mark, and its length is written in centimetres.",
+        "ladder": [
+          "Count the spaces between the marks, not the marks themselves.",
+          "The pencil starts at the zero mark: which number sits under its tip?",
+          "Does the key's left end sit on the first mark, or on another mark?",
+          "Which mark is the zero mark on this ruler?",
+          "Put a finger on the object's left end and count one centimetre space at a time."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "one thing on the bench, the unit picker offering three sizes, and the estimate and measure cards empty",
+        "win": "the estimate and the measure stand side by side, with the gap between them drawn as a short bar",
+        "traceback": "Metre sticks are laid along the thing and counted until it is covered, or the gap between the guess and the measure is counted on centimetre by centimetre.",
+        "ladder": [
+          "How big is a bus: about a finger, a step or a journey?",
+          "Walk the pitch in your head: is it a short walk, or a long ride?",
+          "Compare the two cards: how far is the guess from the measure?",
+          "Which unit's picture matches that size?",
+          "A fingertip is about 1 cm, a big step about 1 m, and towns are many km apart."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "families": {
+      "length": [
+        "mm",
+        "cm",
+        "m",
+        "km"
+      ],
+      "weight": [
+        "g",
+        "kg"
+      ],
+      "capacity": [
+        "mL",
+        "L"
+      ]
+    },
+    "bins": [
+      "length",
+      "weight",
+      "capacity"
+    ],
+    "things": {
+      "rope": {
+        "name": "rope",
+        "kind": "length",
+        "unit": "m"
+      },
+      "bag": {
+        "name": "school bag",
+        "kind": "weight",
+        "unit": "kg"
+      },
+      "milk": {
+        "name": "jug of milk",
+        "kind": "capacity",
+        "unit": "L"
+      },
+      "rice": {
+        "name": "bag of rice",
+        "kind": "weight",
+        "unit": "kg"
+      },
+      "ribbon": {
+        "name": "ribbon",
+        "kind": "length",
+        "unit": "cm"
+      },
+      "juice": {
+        "name": "glass of juice",
+        "kind": "capacity",
+        "unit": "mL"
+      },
+      "bucket": {
+        "name": "bucket",
+        "kind": "capacity",
+        "unit": "L"
+      },
+      "bottle": {
+        "name": "bottle of water",
+        "kind": "capacity",
+        "unit": "L"
+      },
+      "coin": {
+        "name": "coin",
+        "kind": "weight",
+        "unit": "g"
+      }
+    },
+    "bench": {
+      "cmScale": 6.8,
+      "clothScale": 5
+    },
+    "ruler": {
+      "cm": 15,
+      "zeroPrinted": false,
+      "unitsPerCm": 52
+    },
+    "scale": {
+      "cm": 30,
+      "unitsPerCm": 27
+    },
+    "picker": [
+      {
+        "id": "cm",
+        "name": "centimetres"
+      },
+      {
+        "id": "m",
+        "name": "metres"
+      },
+      {
+        "id": "km",
+        "name": "kilometres"
+      }
+    ],
+    "freeThings": [
+      {
+        "id": "crayon",
+        "cm": 7
+      },
+      {
+        "id": "eraser",
+        "cm": 4
+      },
+      {
+        "id": "key",
+        "cm": 5
+      },
+      {
+        "id": "pencil",
+        "cm": 12
+      }
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C5:ML1",
+        "kind": "sort",
+        "things": [
+          "rope",
+          "bag",
+          "milk"
+        ],
+        "pad": "enter",
+        "winMs": 4300,
+        "answer": "rope=length:m|bag=weight:kg|milk=capacity:L",
+        "near": "rope=length:m|bag=weight:kg|milk=length:cm",
+        "win": "Yes, each one went in the right bin with a card that fits."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T2.C5:1",
+        "kind": "blank",
+        "things": [
+          "bucket"
+        ],
+        "amount": 12,
+        "winMs": 2800,
+        "answer": "L",
+        "near": "kg",
+        "ladder": [
+          "Which bin has the cards that say how much a thing holds?",
+          "Of cm, kg and L, which one is a unit for water, milk and juice?"
+        ],
+        "win": "Yes, the bucket holds 12 litres."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S1.T2.C5:2",
+        "kind": "sort",
+        "things": [
+          "rice",
+          "ribbon",
+          "juice"
+        ],
+        "pad": "enter",
+        "winMs": 4800,
+        "answer": "rice=weight:kg|ribbon=length:cm|juice=capacity:mL",
+        "near": "rice=weight:kg|ribbon=length:cm|juice=length:cm",
+        "win": "Yes, the rice, ribbon and juice each got a card from the right bin."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:ML2",
+        "kind": "whose",
+        "thing": "bench",
+        "bench": 108,
+        "hands": [
+          12,
+          9
+        ],
+        "who": [
+          "big hand",
+          "small hand"
+        ],
+        "counts": [
+          9,
+          12
+        ],
+        "note": "both are right",
+        "winMs": 2800,
+        "answer": "bothright",
+        "near": "only12",
+        "win": "Yes, both are right, each by their hand."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T2.C6:3",
+        "kind": "why",
+        "thing": "table",
+        "bench": 108,
+        "hands": [
+          18,
+          12
+        ],
+        "who": [
+          "grown-up",
+          "child"
+        ],
+        "counts": [
+          6,
+          9
+        ],
+        "note": "the hands differ in size",
+        "winMs": 2800,
+        "answer": "handsize",
+        "near": "miscount",
+        "win": "Yes, a bigger hand fits fewer times."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T2.C6:4",
+        "kind": "cloth",
+        "thing": "cloth",
+        "bench": 108,
+        "hands": [
+          12,
+          18
+        ],
+        "who": [
+          "seller",
+          "buyer"
+        ],
+        "counts": [
+          9,
+          9
+        ],
+        "note": "a metre never changes",
+        "winMs": 2800,
+        "answer": "sameforall",
+        "near": "longerunit",
+        "win": "Yes, a metre is the same for everyone."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C7:ML3",
+        "kind": "read",
+        "obj": "crayon",
+        "from": 0,
+        "to": 7,
+        "answer": 7,
+        "winMs": 2800,
+        "win": "Yes, the crayon is 7 cm long."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T2.C7:5",
+        "kind": "read",
+        "obj": "pencil",
+        "from": 0,
+        "to": 12,
+        "answer": 12,
+        "winMs": 2800,
+        "win": "Yes, the pencil is 12 cm long."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T2.C7:6",
+        "kind": "read",
+        "obj": "key",
+        "from": 1,
+        "to": 6,
+        "answer": 5,
+        "winMs": 2800,
+        "win": "Yes, 5 spaces, so the key is 5 cm long."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T2.C8:ML4",
+        "kind": "unit",
+        "thing": "bus",
+        "amount": 10,
+        "realCm": 1100,
+        "pad": "enter",
+        "winMs": 2800,
+        "answer": "m",
+        "near": "cm",
+        "win": "Yes, a bus is about 10 metres long."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T2.C8:7",
+        "kind": "unit",
+        "thing": "pitch",
+        "amount": 20,
+        "realCm": 2012,
+        "pad": "enter",
+        "winMs": 2800,
+        "answer": "m",
+        "near": "km",
+        "win": "Yes, a pitch is about 20 metres long."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T2.C8:8",
+        "kind": "gap",
+        "thing": "notebook",
+        "estimate": 30,
+        "measure": 24,
+        "answer": 6,
+        "winMs": 2800,
+        "ladder": [
+          "Look from the notebook's end to the dashed line: the bar fills that gap.",
+          "Count the centimetre spaces under the bar, one at a time."
+        ],
+        "win": "Yes, the guess was 6 cm too long."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: Each thing in a wrong bin is drawn again, dashed, in the bin of its own kind wearing a unit card from that bin, while the child's own pieces stay where they were set.",
+      "Phase 2: Both hands lay their handspans along the one bench, each row ending at its end, and the tape reads the bench once in centimetres under both rows.",
+      "Phase 3: A bracket under the object counts the centimetre spaces it covers, the object slides back to the zero mark, and its length is written in centimetres.",
+      "Phase 4: Metre sticks are laid along the thing and counted until it is covered, or the gap between the guess and the measure is counted on centimetre by centimetre."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A bench of things to measure. What kind of measure does each one need?",
+    "onFreePlay": "Free play: pick a thing, slide it along the ruler, read it from the zero mark.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Every thing got a unit of its own kind, every reading started at the zero mark, and every unit suited the size.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C5:ML1",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "A skipping rope, a school bag and a jug of milk are to be measured. Which kind of measure does each need, and which unit could each take?",
+            "question": {
+              "en": "Sort the rope, the school bag and the jug of milk into bins, with unit cards."
+            },
+            "ask": {
+              "en": "Bin and unit for each"
+            },
+            "answer": "rope=length:m|bag=weight:kg|milk=capacity:L",
+            "planAnswer": "The rope needs a length, in metres; the bag needs a weight, in kilograms; the milk needs a capacity, in litres or millilitres",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T2.C5:1",
+            "worked": false,
+            "kind": "blank",
+            "planQuestion": "Which unit fits the gap: a bucket holds 12 ___ of water? Choose from cm, kg and L.",
+            "question": {
+              "en": "A bucket holds 12 ___ of water: which unit fills the gap, cm, kg or L?"
+            },
+            "ask": {
+              "en": "A bucket holds 12 ___ of water."
+            },
+            "answer": "L",
+            "planAnswer": "L, because how much water a bucket holds is a capacity",
+            "choices": [
+              "cm",
+              "kg",
+              "L"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S1.T2.C5:2",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "Say which kind of measure each is, and give each a unit: the weight of a bag of rice, the length of a ribbon, the juice in a glass.",
+            "question": {
+              "en": "Now a bag of rice, a ribbon and a glass of juice: sort them the same way."
+            },
+            "ask": {
+              "en": "Sort all three."
+            },
+            "answer": "rice=weight:kg|ribbon=length:cm|juice=capacity:mL",
+            "planAnswer": "The rice is a weight, in kg; the ribbon is a length, in cm or m; the juice is a capacity, in mL",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T2.C6:ML2",
+            "worked": false,
+            "kind": "whose",
+            "planQuestion": "Two children measure the same bench with their hands. One counts 9 handspans and the other counts 12. Which count is right?",
+            "question": {
+              "en": "Two children count 9 and 12 handspans along the same bench: which is right?"
+            },
+            "ask": {
+              "en": "Which count is right?"
+            },
+            "answer": "bothright",
+            "planAnswer": "Both counted correctly with their own hands. Their hands are different sizes, so the counts differ, and a centimetre tape gives both of them the same length",
+            "choices": [
+              "only9",
+              "only12",
+              "bothright"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T2.C6:3",
+            "worked": false,
+            "kind": "why",
+            "planQuestion": "A grown-up measures a table as 6 handspans and a child measures it as 9 handspans. Why are the numbers different?",
+            "question": {
+              "en": "A table is 6 handspans for a grown-up and 9 for a child: why do they differ?"
+            },
+            "ask": {
+              "en": "Why do the counts differ?"
+            },
+            "answer": "handsize",
+            "planAnswer": "Their hands are different sizes, so the same table takes more of the child's handspans. A standard unit such as the centimetre gives one answer",
+            "choices": [
+              "handsize",
+              "tablegrew",
+              "miscount"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T2.C6:4",
+            "worked": false,
+            "kind": "cloth",
+            "planQuestion": "Why is cloth sold by the metre and not by the handspan?",
+            "question": {
+              "en": "Why is cloth sold by the metre and not by the handspan?"
+            },
+            "ask": {
+              "en": "Why sell cloth by the metre?"
+            },
+            "answer": "sameforall",
+            "planAnswer": "A metre is the same for everyone, so the seller and the buyer get the same length. Handspans change from person to person",
+            "choices": [
+              "sameforall",
+              "longerunit",
+              "quicker"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C7:ML3",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A crayon lies along a ruler. Its left end is on the first mark, which has no 0 printed on it, and its right end is on the mark for 7. How long is the crayon?",
+            "question": {
+              "en": "The crayon lies from the zero mark: how many centimetres long is it?"
+            },
+            "ask": {
+              "en": "Crayon's length in cm?"
+            },
+            "answer": 7,
+            "planAnswer": "7 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T2.C7:5",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A pencil's left end is on the first mark of a ruler, where no 0 is printed. Its right end is at 12. How long is the pencil?",
+            "question": {
+              "en": "Now a pencil, laid from the same first mark: what is its length in cm?"
+            },
+            "ask": {
+              "en": "Pencil's length in cm?"
+            },
+            "answer": 12,
+            "planAnswer": "12 cm, because the first mark is the zero mark",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T2.C7:6",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A child lays a key with one end on the mark for 1 and reads 6 at the other end. How long is the key?",
+            "question": {
+              "en": "A key lies from the mark for 1 to the mark for 6: how long is the key, in cm?"
+            },
+            "ask": {
+              "en": "Key's length in cm?"
+            },
+            "answer": 5,
+            "planAnswer": "5 cm. From the mark for 1 to the mark for 6 is five centimetres; laid from the zero mark, its other end would sit at 5",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T2.C8:ML4",
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": "Is a school bus about 10 cm, 10 m or 10 km long?",
+            "question": {
+              "en": "Tap the unit that fits: is a school bus about 10 cm, 10 m or 10 km long?"
+            },
+            "ask": {
+              "en": "A bus is about 10 ___ long."
+            },
+            "answer": "m",
+            "planAnswer": "About 10 m",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T2.C8:7",
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": "Is a cricket pitch about 20 cm, 20 m or 20 km long?",
+            "question": {
+              "en": "And a cricket pitch: is it about 20 cm, 20 m or 20 km long?"
+            },
+            "ask": {
+              "en": "A pitch is about 20 ___ long."
+            },
+            "answer": "m",
+            "planAnswer": "About 20 m. 20 cm is about the length of a new pencil, and 20 km is a long journey",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T2.C8:8",
+            "worked": false,
+            "kind": "gap",
+            "planQuestion": "A child estimates a notebook to be 30 cm long, then measures it from the zero mark and finds 24 cm. By how much was the estimate out?",
+            "question": {
+              "en": "A notebook guessed at 30 cm measures 24 cm: by how many cm was the guess out?"
+            },
+            "ask": {
+              "en": "Out by how many cm?"
+            },
+            "answer": 6,
+            "planAnswer": "By 6 cm; the estimate was 6 cm too long",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "ruler_bench",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "ruler_bench",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "A unit for every kind of measure",
+        "conceptId": "M1.S1.T2.C5",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C5:ML1",
+          "M1.S1.T2.C5:1",
+          "M1.S1.T2.C5:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Why everyone uses the same units",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C6:ML2",
+          "M1.S1.T2.C6:3",
+          "M1.S1.T2.C6:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Measuring from the zero mark",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C7:ML3",
+          "M1.S1.T2.C7:5",
+          "M1.S1.T2.C7:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Choosing a sensible unit",
+        "conceptId": "M1.S1.T2.C8",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C8:ML4",
+          "M1.S1.T2.C8:7",
+          "M1.S1.T2.C8:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "bins",
+    "place",
+    "spanCount",
+    "tapeReading",
+    "x",
+    "objectStart",
+    "left",
+    "unitPicked",
+    "pick"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), complete, bins, place, spanCount, tapeReading, x, objectStart, left, unitPicked, pick",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "ruler_bench"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C5.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A bench of things to measure. What kind of measure does each one need?"
+    },
+    {
+      "en": "Is it a length, a weight or a capacity? Which units belong to it?"
+    },
+    {
+      "en": "Two hands, two counts. Now the tape. Does it matter whose hand lays it?"
+    },
+    {
+      "en": "Where does the ruler start? Count the centimetres it really covers."
+    },
+    {
+      "en": "Pick a unit that fits. Now guess. How close was your guess?"
+    },
+    {
+      "en": "A new thing. Decide what kind of measure it needs before you choose a unit."
+    },
+    {
+      "en": "Free play. Any thing, either hand, the ruler and the estimate cards, all open."
+    },
+    {
+      "en": "Look at what is being measured, then at where the measuring starts."
+    },
+    {
+      "en": "Every thing given a unit of its own kind, every reading taken from the zero mark, and every guess set beside a measure."
+    }
+  ],
+  "build": {
+    "source": "578ff0e8:676922",
+    "runtime": "class4/runtime/frozen/r29/runtime.tsx",
+    "runtimeVersion": "r29",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-22T08:43:01.364Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-22T08:43:01.038Z"
+    },
+    "tsxBytes": 621571,
+    "tsxMd5": "8b22610913149aa5cc75e2a332cf00f5",
+    "handEdited": true
+  }
+}

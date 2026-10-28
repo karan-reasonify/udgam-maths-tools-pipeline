@@ -2952,6 +2952,8 @@ function ToolFrame({ props, tool }) {
   const lockNow = (b) => {
     lockedRef.current = b;
     setLocked(b);
+    /* ch11 feedback: a wrong typed answer clears itself once the correction has played, so the child retypes without Backspace */
+    if (!b) setTimeout(() => { if (staleRef.current && !lockedRef.current) setTyped(""); }, 400);
   };
   const classroom = ((_b = P.classroom) != null ? _b : P.additionalProps && P.additionalProps.classroom) === true;
   const holdRef = useRef(false);
@@ -3087,7 +3089,7 @@ function ToolFrame({ props, tool }) {
     if (nv !== "") markActed();
     staleRef.current = false;
     staleParts.current = [];
-    if (nv === "") setPart(0);
+    if (nv === "") setPart(live.current && live.current.item && live.current.item.parts && live.current.item.parts.length === 2 ? 1 : 0);
     setTypedState(nv);
   };
   const [tries, setTries] = useState(0);
@@ -3633,9 +3635,10 @@ function ToolFrame({ props, tool }) {
     setTries(t);
     setWrong({ value, tries: t });
     staleRef.current = true;
+    setTimeout(() => { if (staleRef.current && !lockedRef.current && live.current.tries === t) setTyped(""); }, 1500);
     if (it.parts) {
       staleParts.current = it.parts.map(() => true);
-      setPart(0);
+      setPart(it.parts.length === 2 ? 1 : 0);
     }
     const ladder = L.phase.ladder || [];
     const kRung = Math.min(Math.max(t - 1, rungShown.current), 2);
@@ -3712,6 +3715,66 @@ function ToolFrame({ props, tool }) {
       const half = parts.findIndex((p, j) => (p.at === "top" || p.at === "bottom") && ps[j] === "" && parts.some((q, i2) => i2 !== j && (q.at === "top" || q.at === "bottom") && ps[i2] !== ""));
       if (half >= 0) setPart(half);
       else if (at < np - 1) setPart(at + 1);
+      return;
+    }
+    if (parts.length === 2) {
+      if (k === "enter") {
+        if (ps[at] === "") return;
+        if (at === 1) {
+          if (ps[0] === "") {
+            setPart(0);
+            return;
+          }
+          if (!fresh) return;
+          commit(ps.join("|"));
+          return;
+        }
+        if (at === 0) {
+          if (ps[1] === "") {
+            setPart(1);
+            return;
+          }
+          if (!fresh) return;
+          commit(ps.join("|"));
+          return;
+        }
+      }
+      const stale = staleParts.current.slice();
+      const needDigits = parts[1].label === "mm" ? 1 : parts[1].label === "cm" ? 2 : 3;
+      if (k === "back") {
+        if (at === 0) {
+          if (ps[0] === "") {
+            setPart(1);
+            return;
+          }
+          ps[0] = ps[0].slice(1);
+        } else {
+          if (ps[1] === "") {
+            return;
+          }
+          ps[1] = ps[1].slice(1);
+        }
+      } else {
+        if (stale[at]) {
+          ps[at] = k;
+        } else if (at === 1) {
+          if (ps[1].length < needDigits) {
+            ps[1] = k + ps[1];
+          }
+        } else {
+          if (ps[0].length < 5) {
+            ps[0] = k + ps[0];
+          }
+        }
+      }
+      stale[at] = false;
+      setTyped(ps.join("|"));
+      staleParts.current = stale;
+      if (k !== "back" && at === 1 && ps[0] === "") {
+        if (ps[1].length >= needDigits) {
+          setPart(0);
+        }
+      }
       return;
     }
     if (k === "enter") {
@@ -4908,7 +4971,7 @@ const PHASES = [
     ladder: ["What does the question ask for, one thing or two?", "Pick the heavier one, then subtract grams first, breaking a kilogram if needed."],
     closing: "Kilograms decide first; only a tie sends you on to the grams.",
     learned: "You learned: compare kilograms first, and give both answers.",
-    traceback: "The heavier pan is ringed, the lighter weight is taken from the heavier in the frame (a kilogram broken where the grams are too few), and the difference is written.",
+    traceback: "The heavier pan is ringed, the lighter weight is taken from the heavier on the balance, and the difference is named under the lighter pan.",
     items: [
       /* learn ML4: answer in the plan = The second suitcase is heavier, by 3 kg 765 g. The answer card has two blanks on
          the working area: a key for the heavier one, and kilograms and grams cells that borrow the pad (api.capture).
@@ -5049,17 +5112,6 @@ const wcPenRuns = (F, cells, y, ink, size = T.xl) => {
 };
 const wcPenKg = (F, v, top, ink) => ({ s: String(v), x: F.kgR - 4, y: top + 56, size: T.xl, align: "end", step: 0, color: ink });
 const wcPenAbove = (F, kg, gs) => [{ s: String(kg), x: F.kgR - 4, y: 150, size: T.prompt, align: "end", step: 0, color: WC_INK.move }, { s: String(gs), x: F.gL + wcGW(F) / 2, y: 150, size: T.prompt, align: "middle", step: 0, color: WC_INK.move }];
-const wcFreePen = (F, op, top, bot) => {
-  const yA = wcAnsY(F, 2), y0 = wcRowY(F, 0) + 38;
-  if (op === "+") {
-    const sol = wcAddCols([[top.kg, top.g], [bot.kg, bot.g]]);
-    const carry = sol.carry ? [{ dab: [F.kgR - 43, 129], is: "carry" }, { s: "1", x: F.kgR - 43, y: 144, size: T.label, align: "middle", step: 0, color: WC_INK.move, is: "carry" }] : [];
-    return [...carry, ...wcPenRuns(F, wcCellsR(sol.g), yA + 56, WC_INK.g), wcPenKg(F, sol.kg, yA, WC_INK.kg)];
-  }
-  const sol = wcTakeCols([top.kg, top.g], [bot.kg, bot.g]), ab = wcPenAbove(F, sol.tk, indian(sol.tg));
-  const brk = sol.need ? [{ dab: [F.kgR - 8 - String(top.kg).length * 17, y0], is: "sk" }, ab[0], { dab: [wcBM(F, 1), y0], is: "sg" }, ab[1]] : [];
-  return [...brk, ...wcPenRuns(F, wcCellsR(sol.g), yA + 56, WC_INK.left), wcPenKg(F, sol.kg, yA, WC_INK.left)];
-};
 const wcPenC0 = (pcs) => {
   let c = 0;
   return pcs.map((q) => {
@@ -5315,11 +5367,11 @@ function WcPress({ id, label, x, y, w, h, onPress, live = true, passEnter = fals
   />;
 }
 const WC_BAGS1 = { w: { x: 650, y: 140, w: 200, h: 170 }, b0: { x: 620, y: 14, w: 240, h: 190 }, b1: { x: 620, y: 230, w: 240, h: 190 }, t: { x: 716, y: 16, w: 184, h: 210 } };
-const WC_B4 = { px: 676, py: 44, L: 132, S: 132, PW: 168, bw: 152, bh: 120, base: 272, baseW: 70 };
+const WC_B4 = { px: 450, py: 40, L: 168, S: 132, PW: 184, bw: 160, bh: 120, base: 272, baseW: 70 };
 const WC_BW = { px: 450, py: 66, L: 200, S: 140, PW: 230, bw: 172, bh: 128, base: 330 };
 const WC_WFLOOR = { rice: { x: 30, y: 336, w: 172, h: 128 }, sugar: { x: 700, y: 336, w: 172, h: 128 }, wt: { x: 236, y: 410, w: 76, h: 49 } };
 const WC_KEYBOX = { x: 620, y: 432, w: 240, h: 72 };
-const WC_CARD = { x: 452, y: 290, w: 448, h: 214 };
+const WC_CARD = { x: 212, y: 298, w: 476, h: 214 };
 const wcBlank = (k) => ({ e: k, done: [], prog: null, placed: [], card: null });
 function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn, box, lang = "en", tx = (v) => v }) {
   const C = api.C;
@@ -5541,7 +5593,7 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
     if (wasWarm) api.did(on);
   };
   const fBag = (id) => WC_FREE_BAGS.find((b) => b.id === id) || WC_FREE_BAGS[0];
-  const fShelf = (i) => i < 3 ? { x: 458 + i * 148, y: 292, w: 140, h: 92 } : { x: 532 + (i - 3) * 148, y: 392, w: 140, h: 92 };
+  const fShelf = (i) => i < 3 ? { x: 232 + i * 148, y: 306, w: 140, h: 92 } : { x: 306 + (i - 3) * 148, y: 408, w: 140, h: 92 };
   const panAt = (side) => ({ x: WC_B4.px + (side ? WC_B4.L : -WC_B4.L), y: WC_B4.py + WC_B4.S - WC_B4.bh / 2 - 2 });
   const freeBag = async (id) => {
     let f = fpRef.current;
@@ -5568,14 +5620,13 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
     if (f.rows.length < 2 || f.op) return;
     const A = fBag(f.rows[0]), B = fBag(f.rows[1]);
     const ord = op === "-" && wcHeavier(A, B) < 0 ? [f.rows[1], f.rows[0]] : f.rows.slice();
-    const top = fBag(ord[0]), bot = fBag(ord[1]);
     setFp((p) => ({ ...p, ord, opP: op, p: 0 }));
     playing.current = true;
     setBusy(true);
-    let ok = await pen(wcFreePen(F, op, top, bot), (i) => setFp((p) => ({ ...p, p: Math.max(p.p, i + 1) })));
-    if (ok && op === "-") {
+    if (op === "+") await api.act({ tool: "hand", moves: "tap", at: [ax(panAt(0)), ax(panAt(1))], ms: 900 });
+    else {
       const light = ord[1] === f.rows[0] ? 0 : 1;
-      ok = await carryTo({ x: 300, y: 470 }, { x: panAt(light).x, y: WC_B4.py + WC_B4.S - 18 }, holdGrams(0), () => {
+      await carryTo({ x: panAt(light).x, y: 290 }, { x: panAt(light).x, y: WC_B4.py + WC_B4.S - 18 }, holdGrams(0), () => {
         setFp((p) => ({ ...p, lvl: true }));
         api.sfx.settle();
       });
@@ -5774,6 +5825,11 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
       if (nx !== ty) api.setTyped(nx);
     }
   }, [ty]);
+  useEffect(() => {
+    if (asking && item && item.parts && item.parts.length === 2) {
+      api.pickPart(1);
+    }
+  }, [qk, asking]);
   const saidWin = useRef("");
   useEffect(() => {
     if (free || !item || stage !== "win" || !item.win) return;
@@ -5899,27 +5955,6 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
     const ord = fp.ord || fp.rows;
     fs.rows = ord.length ? ord.map((id) => rowOf(fBag(id).kg, fBag(id).g)) : [{ kg: "", g: [] }];
     while (fs.rows.length < 2) fs.rows.push({ kg: "", g: [] });
-    if (fp.opP) {
-      fs.sign = fp.opP === "-" ? "−" : "+";
-      fs.rule = true;
-      const top = fBag(ord[0]), bot = fBag(ord[1]);
-      /* every number of a free sum is written by the pencil (wcFreePen, the act's own pieces): fp.p counts the characters finished (a dab counts one; 99 once the
-         act is over); the carried weight and its chip, and each strike, appear at their dabs */
-      const pcs = wcPenC0(wcFreePen(F, fp.opP, top, bot)), past = (is) => pcs.some((q) => q.is === is && fp.p > q.c0);
-      if (fp.opP === "+") {
-        const sol = wcAddCols([[top.kg, top.g], [bot.kg, bot.g]]);
-        fs.carry = sol.carry > 0 && past("carry");
-        fs.carryPen = true;
-      } else {
-        const sol = wcTakeCols([top.kg, top.g], [bot.kg, bot.g]);
-        if (sol.need && past("sk")) {
-          fs.rows[0] = { ...fs.rows[0], struck: true, gStruck: past("sg") };
-          fs.above = { kg: "", gs: "" };
-        }
-      }
-      fs.ans = { kg: "", g: [] };
-      fs.pens = wcPenDraw(pcs, fp.p, "fp");
-    }
   }
   api.share({
     phase: n,
@@ -6034,19 +6069,25 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
   };
   const sideBoard = () => {
     const B = WC_B4;
-    let pans = [null, null], theta = 0, ring = -1, diffOn = -1, diffLabel = "";
+    /* the correction and the win run the same steps on the balance: the heavier pan is ringed, the difference weight settles on the lighter pan and the difference is named under it */
+    const kk = full ? wk : Math.max(wk, d);
+    let pans = [null, null], theta = 0, ring = -1, diffOn = -1, diffLabel = "", sumLabel = "";
     if (kind === "compare" && cmp) {
       pans = bags;
       const tip = cmp.h === 1 ? 10 : -10;
-      theta = wk >= 4 ? 0 : wk === 3 ? -tip * 0.3 : wk === 2 ? -tip * 0.5 : tip;
-      if (d >= 1 && !full) ring = cmp.h;
-      if (wk >= 2) diffOn = 1 - cmp.h;
+      theta = kk >= 4 ? 0 : kk === 3 ? -tip * 0.3 : kk === 2 ? -tip * 0.5 : tip;
+      if (d >= 1) ring = cmp.h;
+      if (kk >= 2) diffOn = 1 - cmp.h;
     } else if (free) {
       const ids = fp.rows;
       pans = [ids[0] ? fBag(ids[0]) : null, ids[1] ? fBag(ids[1]) : null];
       if (pans[0] && pans[1]) {
         const hv = wcHeavier(pans[0], pans[1]);
         theta = fp.lvl ? 0 : hv > 0 ? -10 : hv < 0 ? 10 : 0;
+        if (fp.op === "+") {
+          const sm = wcAddCols([[pans[0].kg, pans[0].g], [pans[1].kg, pans[1].g]]);
+          sumLabel = wcMeasure(sm.kg, sm.g, tx);
+        }
         if (fp.lvl) {
           diffOn = hv > 0 ? 1 : 0;
           const top = hv > 0 ? pans[0] : pans[1], bot = hv > 0 ? pans[1] : pans[0], sol = wcTakeCols([top.kg, top.g], [bot.kg, bot.g]);
@@ -6073,7 +6114,7 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
     const below = (side) => kind === "compare" && pans[side] ? <g>
         <rect x={-86} y={B.S + 20} width={172} height={54} rx={10} fill="#FFFFFF" stroke={C.rule} strokeWidth={2} />
         <text x={0} y={B.S + 58} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink}>{tx(pans[side].label)}</text>
-        {side === diffOn && cmp && wk >= 4 && <g>
+        {side === diffOn && cmp && kk >= 4 && <g>
             <rect x={-92} y={B.S + 78} width={184} height={33} rx={10} fill="#FFFFFF" stroke={shade(WC_LEFT, 0.35)} strokeWidth={2.5} />
             {
       /* at the 28 floor a Hindi or Gujarati value is as wide as the chip: it is fitted to 168, never smaller in size */
@@ -6091,10 +6132,10 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
           </g>}
       </g> : null;
     const out = [<g key="bal">{wcBalance(B, theta, content, C, below)}</g>];
-    if (diffLabel) out.push(
+    if (diffLabel || sumLabel) out.push(
       <g key="dlab">
-        <rect x={B.px - 140} y={B.base - 46} width={280} height={40} rx={10} fill="#FFFFFF" stroke={shade(WC_LEFT, 0.35)} strokeWidth={2} />
-        <text x={B.px} y={B.base - 17} textAnchor="middle" fontSize={wcFit(diffLabel, T.micro, 264)} fontWeight={700} fill={WC_INK.left}>{diffLabel}</text>
+        <rect x={B.px - 140} y={B.base - 46} width={280} height={40} rx={10} fill="#FFFFFF" stroke={diffLabel ? shade(WC_LEFT, 0.35) : C.rule} strokeWidth={2} />
+        <text x={B.px} y={B.base - 17} textAnchor="middle" fontSize={wcFit(diffLabel || sumLabel, T.micro, 264)} fontWeight={700} fill={diffLabel ? WC_INK.left : C.ink}>{diffLabel || sumLabel}</text>
       </g>
     );
     if (free) {
@@ -6108,8 +6149,8 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
         out.push(<WcPress key={"fp" + i} id={"fbag-" + bg.id} label={"bag of " + bg.kg + " kilograms " + bg.g + " grams"} x={b.x} y={b.y} w={b.w} h={b.h} onPress={() => tap("fbag-" + bg.id)} live={live} />);
       });
       if (fp.rows.length === 2 && !fp.op && !fp.opP) {
-        out.push(keyAt("fadd", "fadd", 14, 432, 196, live));
-        out.push(keyAt("ftake", "ftake", 222, 432, 196, live));
+        out.push(keyAt("fadd", "fadd", 14, 360, 196, live));
+        out.push(keyAt("ftake", "ftake", 690, 360, 196, live));
       }
     }
     return <g>{out}</g>;
@@ -6163,17 +6204,7 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
     if (asking && kind === "compare" && nudge === e && !card.pick) return <Invite x={WC_CARD.x + 116} y={WC_CARD.y + 128} w={214} h={150} rx={18} C={C} />;
     return null;
   };
-  const cmpLabel = () => {
-    if (kind !== "compare" || !cmp || d < 4) return null;
-    const plate = tx("heavier") + ": " + tx(cmp.H.label), ms = wcMeasure(cmp.sol.kg, cmp.sol.g, tx);
-    const top = wcAnsY(F, 2) + F.bh + 16;
-    return <g pointerEvents="none">
-        <rect x={8} y={top} width={F.w - 16} height={88} rx={14} fill="#FFFFFF" stroke={shade(WC_LEFT, 0.35)} strokeWidth={2.5} />
-        <text x={F.w / 2} y={top + 38} textAnchor="middle" fontSize={wcFit(plate, T.label, F.w - 40)} fontWeight={700} fill={C.ink}>{plate}</text>
-        <text x={F.w / 2} y={top + 76} textAnchor="middle" fontSize={wcFit(ms, T.label, F.w - 40)} fontWeight={700} fill={WC_INK.left}>{ms}</text>
-      </g>;
-  };
-  const showFrame = kind !== "w-level";
+  const showFrame = kind !== "w-level" && kind !== "compare" && !free;
   return <g transform={`translate(${ox},0)`}>
       {
     /* a one-row grams question draws its frame 1.3 times as big (x 0 to 702), the bag beside it, so the last bench reads it */
@@ -6183,7 +6214,6 @@ function Work({ n, item, index, stage, wrong, typed, captured, api, step, stepOn
       {kind === "compare" || free ? sideBoard() : null}
       {panel()}
       {cardDraw()}
-      {cmpLabel()}
       {invite()}
     </g>;
 }

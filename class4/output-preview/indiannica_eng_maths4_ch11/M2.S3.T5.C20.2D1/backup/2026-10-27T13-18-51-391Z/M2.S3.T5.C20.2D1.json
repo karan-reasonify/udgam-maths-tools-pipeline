@@ -1,0 +1,1078 @@
+{
+  "slotId": "M2.S3.T5.C20.2D1",
+  "mediaId": "M2.S3.T5.C20.2D1",
+  "toolId": "weighing_bench",
+  "title": "Weighing Bench",
+  "component": "M2.S3.T5.C16.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch11",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch11_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_11/2dtool/M2.S3.T5.C16.2D1/M2.S3.T5.C16.2D1.tsx",
+  "description": "Sort things into grams or kilograms, level a kilogram against a thousand grams, and change weights between the two by a thousand only, keeping the remainder as grams.",
+  "conceptIds": [
+    "M2.S3.T5.C20",
+    "M2.S3.T5.C21",
+    "M2.S3.T5.C22",
+    "M2.S3.T5.C23"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Sort things into grams or kilograms, see that a thousand grams make a kilogram, and change weights both ways by a thousand only.",
+    "look": "A pan balance with a shelf of things at the left, a converter with one number on it at the right, and a place board below.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Weighing Bench' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the things sorted or the cards passed against what this phase lays out, two numbers in ink, the first climbing by one as each thing settles in a tray or each card comes through, and the second fixed at what this phase holds. On the second phase it counts the hundred gram weights added and shows no second number, because how many level the kilogram is the thing being found. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The thing shelf stands at the top left of the working area, 460 by 90 at 64,214, holding a spoon, a letter, a bunch of keys, a bag of cement and a sack of onions, each drawn plainly. The pan balance stands under it, 460 by 280 at 64,320: a near-black beam on a post with a pan hanging from each end. The beam tilts toward the heavier pan and levels only when the two loads weigh the same, and a small near-black arrow under it points to the pan that has gone down. A kilogram weight is a deep blue iron block marked 1 kg, and a gram weight is a small green block marked 100 g; the grams set on a pan are counted in that pan's own counter under it. The grams tray and the kilograms tray stand under the balance, each 220 by 100, at 64,620 and 304,620, labelled in ink. At the right the converter stands, 380 by 200 at 560,214, a machine with one number printed on its front, a thousand, and no dial or setting for any other number; a weight card, 360 by 80, goes in at its top and comes out at its foot. Passed through going down, a card in kilograms and grams comes out in grams, the kilograms multiplied by a thousand and the grams added on. Passed back going up, a card in grams is divided by a thousand, and the quotient lands in the kilograms slot, 170 by 70 at 560,440, and the remainder in the grams slot, 170 by 70 at 770,440, written as a number, where it stays. The place board runs under them, 560 by 110 at 560,560, four boxes headed thousands, hundreds, tens and ones, with a fifth box for ten thousands that opens only when a weight needs it, and a box the grams leave empty takes a grey zero at full size. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve number keys three across with no dot key, and a unit tag under the slot reading grams or kilograms, filled in beside the number and never left off. On the first phase a word pad sits over it with two keys, grams and kilograms. On the third the slot is a card of two parts, kilograms and grams, with the unit names printed beside them. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The larger unit of any pair, kilometres beside metres, metres beside centimetres, centimetres beside millimetres, kilograms and litres, is deep blue wherever it is drawn: its digits in a column, a bar standing for whole units, or a kilogram weight. The smaller unit of the pair, and the part left over after the whole units, is green: metres beside kilometres, centimetres beside metres, millimetres, grams and millilitres. One larger unit carried from the smaller column, or broken into smaller units to borrow, and every digit that move rewrites, is amber. A zero that fills an empty place of the smaller unit is grey. What is left after taking away, and the difference between two measures, is reddish purple. A count of things, handspans, glasses, jars, pourings or bags, is sky blue. The zero mark of a ruler or tape, and the mark where a reading is taken, are vermilion. Water and every other liquid is pale blue. Chrome never borrows one of those and none of them is ever used for chrome: every other tick and numeral on a ruler, and every rule, column line, bracket, strike line, table rule and panel edge, is near-black. Every reading survives with the colour taken away, because a unit is told apart by its column heading and its unit name, a padding zero by the box it sits in, a carried or broken unit by the chip it rides on, and a count by the slot that names what is counted, before any of them is told by a colour. Grey never means faint: a zero in the smaller unit's places is drawn at the same size and weight as every other digit and is never dimmed, shrunk or left out. A figure that goes down by one when a unit is broken is struck through once with the new figure written above it, and never rubbed out. No measure in two units is written as a decimal anywhere on the stage. The converter carries one number and has no way to set another, so grams and kilograms are joined here only by a thousand. The beam is drawn to tip toward the heavier pan and to level only for equal loads, so the pan that goes down is the pan holding the heavier load.",
+    "finish": "The card shows the two trays with the things the child sorted, the levelled balance, and the last card with its kilograms and grams slots and place board.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "each thing settles in its tray, the light ones in grams and the heavy ones in kilograms",
+        "does": "lifts each thing onto the pan and sends it to the tray for its unit",
+        "goal": "heavy things are weighed in kilograms and light things in grams",
+        "says": "Is it heavy or light? Grams or kilograms?",
+        "check": "Away from the screen: would you weigh a school bag in grams or kilograms? And a pencil?",
+        "feels": "the balance tips toward the heavier thing, and heavy things go with kilograms",
+        "hands": "Let children lift pairs of things, a school bag and a pencil, a water bottle and an eraser, and say which is heavier. Sort a pile of things into heavy and light on two sheets marked kilograms and grams. If the school has a pan balance, put a kilogram packet on one pan and a light thing on the other, and ask which pan went down and why.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: is the thing heavy or light in the hand? Second rung, the phase's: which pan went down? Third rung: the shelf is cut to one heavy thing and one light one, and the child weighs them against each other before the other things come back. The word pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "higher often means more, as a taller stack or a taller bar does, and the keys' pan is the higher one.",
+            "move": "reads the pan holding the keys, riding high, as the heavier one, and sends the keys to kilograms.",
+            "screen": "the beam is drawn again with the small near-black arrow under it lit, pointing to the pan that has gone down, the kilogram's. The keys go to the grams tray beside the spoon and the letter, and the child's choice stays lit on the word pad, nothing marked."
+          },
+          {
+            "why": "the unit is picked from the number the child wants to write, not from how heavy the thing is.",
+            "move": "gives the sack of onions a weight of twenty grams, because twenty is a small, easy number.",
+            "screen": "twenty grams is set on the other pan as one small green weight, and the sack's pan stays down and does not stir. Kilogram weights then go on one at a time, and the sack's pan stays down under several of them, and the kilograms tray lights. The child's twenty grams stays on the pad beside it."
+          }
+        ],
+        "screen": "the shelf of things, the grams tray and the kilograms tray",
+        "soWhat": "Heavy things are usually weighed in kilograms and light things in grams. On a pan balance, the pan that goes down holds the heavier load.",
+        "concept": "Grams or kilograms"
+      },
+      {
+        "n": 2,
+        "win": "the pans level at a thousand grams, and the card comes out in grams",
+        "does": "adds hundred gram weights until the pans level, counts the grams, then passes a card in kilograms through the converter",
+        "goal": "a kilogram is a thousand grams, so kilograms become grams by multiplying by a thousand, and only by a thousand",
+        "says": "How many grams level the kilogram? Now use that number.",
+        "check": "How many grams are there in 7 kg? And in 7 kg 60 g?",
+        "feels": "a kilogram and a thousand grams balance exactly, so there is one number to use",
+        "hands": "Put a one kilogram packet on one pan of a school balance and add hundred gram packets to the other one at a time, counting the grams aloud: one hundred, two hundred, and on. Stop when the pans are level and write the total. Then ask how many grams nine kilogram packets would balance, and write nine thousand.",
+        "tries": "First rung, from the item: what number is printed on the converter? Second rung, the phase's: how many grams levelled one kilogram? Third rung: the card is cut to one kilogram, and the child levels it on the balance before the larger card comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "the summary box printed after the weight conversions copies the length box and offers a hundred among its numbers, though for grams and kilograms the only number is a thousand.",
+            "move": "writes nine hundred grams for nine kilograms, multiplying by a hundred.",
+            "screen": "the converter's one number, a thousand, lights on its front. Nine kilogram weights go on one pan and nine hundred grams of hundred gram weights on the other, and the beam stays tipped hard toward the kilograms. The card then passes through, nine times a thousand, nine thousand grams, and the child's nine hundred stays in the slot, nothing marked."
+          },
+          {
+            "why": "the multiplying feels like the whole job, and the grams on the card look done already.",
+            "move": "multiplies the kilograms and leaves the grams behind, writing four thousand grams for four kilograms three hundred and seventy-five grams.",
+            "screen": "the three hundred and seventy-five grams stay lit on the card at the converter's top after the four thousand have come out. They then drop through after it, already grams, and join the four thousand, and the card reads four thousand three hundred and seventy-five grams. The child's four thousand stays in the slot beside it."
+          }
+        ],
+        "screen": "a kilogram weight on one pan and a pile of hundred gram weights beside the other",
+        "soWhat": "A thousand grams make a kilogram. Kilograms become grams by multiplying by a thousand, and only by a thousand, with any grams added on.",
+        "concept": "A thousand grams make a kilogram"
+      },
+      {
+        "n": 3,
+        "win": "the kilograms and the grams stand in their slots and rebuild the card together",
+        "does": "passes the card back through the converter and reads the two slots",
+        "goal": "divide by a thousand; the quotient is the kilograms and the remainder stays as grams",
+        "says": "How many whole kilograms are in it? What is left stays in grams.",
+        "check": "Write 8315 g in kilograms and grams. What is the remainder, and which slot does it go in?",
+        "feels": "the whole kilograms come out, and the grams that cannot make another kilogram stay grams",
+        "hands": "Write 3615 g on the board. Ask how many whole kilograms are in it, counting in thousands: one thousand, two thousand, three thousand. Ask what is left over, six hundred and fifteen, and whether it could make another kilogram. Write three kilograms six hundred and fifteen grams, and check it by putting the three thousand and the six hundred and fifteen back together.",
+        "tries": "First rung, from the item: how many grams make one kilogram? Second rung, the phase's: how many whole kilograms fit, and what is left? Third rung: the card is cut to a little more than one kilogram, and the child passes it back before the larger card returns. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "a hundred was the number for metres and centimetres, and dividing by it has become a habit.",
+            "move": "divides by a hundred and writes fifty-two kilograms forty grams for five thousand two hundred and forty grams.",
+            "screen": "the converter's one number, a thousand, lights, and the card passes back through it: five whole kilograms land in the kilograms slot and two hundred and forty grams stay in the grams slot. The child's fifty-two kilograms is set beside it as fifty-two kilogram weights, a heap far larger than the card, and the child's answer stays in the slot."
+          },
+          {
+            "why": "the whole kilograms are the answer to the dividing, and what is left over looks finished with.",
+            "move": "writes five kilograms and stops, leaving the two hundred and forty grams out.",
+            "screen": "the grams slot holds two hundred and forty in green, lit, beside the five kilograms. The two slots are put back together through the converter, five thousand grams and two hundred and forty grams, and the card is whole again. The child's five kilograms stays in the slot, two hundred and forty grams short."
+          }
+        ],
+        "screen": "a card in grams alone, and the empty kilograms and grams slots",
+        "soWhat": "Grams become kilograms and grams by dividing by a thousand. The quotient is the kilograms and the remainder stays as grams.",
+        "concept": "Grams into kilograms and grams"
+      },
+      {
+        "n": 4,
+        "win": "a zero drops into every empty box and the grams read correctly",
+        "does": "passes the card into grams and writes it on the place board, one digit to a box",
+        "goal": "when the grams do not fill three places, a zero holds each empty one",
+        "says": "The grams leave some places empty. What goes in each one?",
+        "check": "Write 2 kg 5 g in grams. Which places hold zeros?",
+        "feels": "the empty places do not vanish; each one waits for a zero",
+        "hands": "Draw four boxes on the board headed thousands, hundreds, tens and ones. Ask the class to write five kilograms six grams in grams, one digit to a box: the five goes in the thousands and the six in the ones. Point to the two empty boxes and ask what goes in them. Then do three kilograms forty grams the same way.",
+        "tries": "First rung, from the item: which boxes do the grams fill? Second rung, the phase's: which boxes are still empty? Third rung: the card is cut to one kilogram and a few grams, and the child fills the board before the larger card comes back. The number pad stays open.",
+        "wrong": [
+          {
+            "why": "zeros usually come at the end of a number, as in five thousand, so the empty places seem to belong there.",
+            "move": "writes five thousand six hundred grams for five kilograms six grams, setting the six straight after the five and filling the end with zeros.",
+            "screen": "the place board takes the five in its thousands box and the six in its ones box, because six grams are six ones, and grey zeros drop into the hundreds and the tens at full size: five thousand and six. The child's number is laid on a second board beside it, five hundred and ninety-four grams more, and both stay drawn."
+          },
+          {
+            "why": "the two parts are said one after the other, three and forty, so they are written one after the other.",
+            "move": "writes three hundred and forty grams for three kilograms forty grams, setting the digits side by side as they are said.",
+            "screen": "the child's three hundred and forty is laid on the place board, the three standing in the hundreds box, three hundred grams, less than one kilogram. The card then passes through, three thousand grams and forty more, and a grey zero drops into the empty hundreds box. The two boards stand side by side, two thousand seven hundred grams apart."
+          }
+        ],
+        "screen": "a card in kilograms and a small number of grams, and the place board with four empty boxes",
+        "soWhat": "Beside kilograms the grams take three places, and a zero holds each place they leave empty.",
+        "concept": "A zero that holds a place in grams"
+      }
+    ],
+    "delight": "The second phase, the moment the last hundred gram weight goes on. The beam, tipped hard toward the kilogram, stays tipped as each weight is added, and on the last one it lifts, wobbles and settles dead level, and the counter under the pan reads one thousand grams. Then the kilogram weight and the pile of gram weights swap pans in one slow arc, and the beam stays level. It can be tried again as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the shelf holds its five things, a kilogram weight sits on the right pan and the two trays stand empty. On the second the kilogram weight sits on one pan with a pile of hundred gram weights beside the other, the beam tipped down toward the kilogram. On the third a card in grams alone waits at the converter's foot, with the kilograms slot and the grams slot empty. On the fourth a card in kilograms and a small number of grams waits at the converter's top, above the place board's four empty boxes. The running count at the top left holds the things sorted or the cards passed against what this phase lays out, and the answer slot and the pad stand empty down the right. One thing moves, once: the spoon, or the first hundred gram weight, or the card, or the hundreds box, gives one slow pulse while the voice asks whether each thing is heavy or light. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any thing from the shelf on the balance, and any weight up to ninety-nine kilograms through the converter either way, with the place board open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on choosing grams or kilograms, kilograms into grams, grams into kilograms and grams, and zeros that hold empty places in the grams.",
+    "voiceLines": [
+      "A balance and a shelf of things. Is each one heavy or light?",
+      "Is it heavy or light? Grams or kilograms?",
+      "How many grams level the kilogram? Now use that number.",
+      "How many whole kilograms are in it? What is left stays in grams.",
+      "The grams leave some places empty. What goes in each one?",
+      "A new weight. Is it in kilograms, in grams, or in both?",
+      "Free play. Anything on the balance, and any weight through the converter either way.",
+      "Lift it again and watch the balance, or read the one number on the converter.",
+      "Every thing weighed in a unit that suits it, and every weight changed by a thousand, the remainder kept as grams."
+    ],
+    "observations": [
+      {
+        "why": "The pan that goes down holds the heavier load, and the keys were lighter than the kilogram.",
+        "soWhat": "Heavy things are usually weighed in kilograms and light things in grams. Choose the unit that suits the thing.",
+        "observe": "The keys' pan rode up against the kilogram weight, and the keys went to grams with the spoon and the letter."
+      },
+      {
+        "why": "A kilogram weighs the same as a thousand grams, so they balance.",
+        "soWhat": "A thousand grams make a kilogram, so kilograms become grams by multiplying by a thousand, and only by a thousand.",
+        "observe": "The beam levelled when the hundred gram weights on one pan came to a thousand grams."
+      },
+      {
+        "why": "The grams left over were fewer than a thousand, not enough for another kilogram.",
+        "soWhat": "Grams become kilograms and grams by dividing by a thousand. The quotient is the kilograms and the remainder stays as grams.",
+        "observe": "Passed back through the converter, the whole kilograms landed in one slot and the grams left over stayed in the other."
+      },
+      {
+        "why": "Beside kilograms the grams take three places, and six grams fill only the ones.",
+        "soWhat": "A zero holds each place the grams leave empty, so five kilograms six grams is five thousand and six grams.",
+        "observe": "Six grams went into the ones box, and zeros dropped into the hundreds and the tens."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the shelf of things, the grams tray and the kilograms tray",
+        "win": "each thing settles in its tray, the light ones in grams and the heavy ones in kilograms",
+        "traceback": "Each thing in the wrong tray goes back on the pan against the kilogram, the arrow lit on the pan that went down, then into its right tray (the eraser's 20 kg is set against it first, then 20 g, which balances).",
+        "ladder": [
+          "Is each thing heavy or light in the hand?",
+          "Which of the two could you lift with one finger?",
+          "Could an eraser weigh as much as 20 bags of sugar?",
+          "Which pan went down?",
+          "Lift each thing in turn: if its pan goes down, it needs kilograms."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a kilogram weight on one pan and a pile of hundred gram weights beside the other",
+        "win": "the pans level at a thousand grams, and the card comes out in grams",
+        "traceback": "The converter's 1,000 lights; the card's kilograms go on one pan and the child's grams on the other, and the beam tips; the card passes down and comes out in grams, and the grams pan levels at the right number.",
+        "ladder": [
+          "What number is printed on the converter?",
+          "Each of the 5 kilogram weights is as heavy as the pile that levelled 1 kg.",
+          "Change the 13 kg first, and the 640 g are grams already.",
+          "How many grams levelled one kilogram?",
+          "Multiply the kilograms by the one number on the converter, then add any grams."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a card in grams alone, and the empty kilograms and grams slots",
+        "win": "the kilograms and the grams stand in their slots and rebuild the card together",
+        "traceback": "The converter's 1,000 lights and the card passes back up through it: the quotient lands in the kilograms slot and the remainder stays in the grams slot.",
+        "ladder": [
+          "How many grams make one kilogram?",
+          "How many whole thousands are there in 2,750?",
+          "Count every 1,000 g in 25,400 g, even if there are many.",
+          "How many whole kilograms fit, and what is left?",
+          "Each 1,000 g makes a kilogram; the grams that cannot make one more stay grams."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a card in kilograms and a small number of grams, and the place board with four empty boxes",
+        "win": "a zero drops into every empty box and the grams read correctly",
+        "traceback": "The card passes through the converter and the place board fills: kilograms in blue, grams in green in their own places, grey zeros dropping into every empty place.",
+        "ladder": [
+          "Which boxes do the grams fill?",
+          "Where do the 8 g go: hundreds, tens or ones?",
+          "Change your kilograms and grams back into grams: do they make 4,070 g?",
+          "Which boxes are still empty?",
+          "Each empty place between the digits needs a zero."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "converter": 1000,
+    "thingsGrams": {
+      "spoon": 40,
+      "letter": 20,
+      "keys": 100,
+      "eraser": 20,
+      "onions": 10000,
+      "cement": 50000
+    },
+    "reference": "one 1 kg weight",
+    "gramWeight": 100,
+    "trays": [
+      "grams",
+      "kilograms"
+    ],
+    "placeBoard": [
+      "TTh",
+      "Th",
+      "H",
+      "T",
+      "O"
+    ],
+    "warmUps": {
+      "1": {
+        "kind": "sort",
+        "things": [
+          "keys"
+        ]
+      },
+      "2": {
+        "kind": "level"
+      },
+      "3": {
+        "kind": "toKg",
+        "grams": 3250,
+        "answer": [
+          3,
+          250
+        ]
+      },
+      "4": {
+        "kind": "place",
+        "kg": 2,
+        "g": 5,
+        "answer": 2005
+      }
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T5.C20:ML1",
+        "kind": "sort",
+        "things": [
+          "cement",
+          "spoon"
+        ],
+        "pad": "enter",
+        "answer": "kg,g",
+        "winMs": 3900,
+        "win": "Yes, cement is weighed in kilograms and a spoon in grams."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T5.C20:1",
+        "kind": "sort",
+        "things": [
+          "letter",
+          "onions"
+        ],
+        "pad": "enter",
+        "answer": "g,kg",
+        "winMs": 4100,
+        "win": "Right, the letter goes in grams and the onions in kilograms."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T5.C20:2",
+        "kind": "unit",
+        "things": [
+          "eraser"
+        ],
+        "pad": "enter",
+        "answer": "g",
+        "winMs": 3000,
+        "win": "Yes, an eraser weighs about 20 g, not 20 kg."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T5.C21:ML2",
+        "kind": "toG",
+        "kg": 9,
+        "g": 0,
+        "answer": 9000,
+        "winMs": 3000,
+        "win": "Yes, 9 kg is 9,000 g."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T5.C21:3",
+        "kind": "toG",
+        "kg": 5,
+        "g": 0,
+        "answer": 5000,
+        "winMs": 3000,
+        "win": "Right, 5 kilograms make 5,000 grams."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T5.C21:4",
+        "kind": "toG",
+        "kg": 13,
+        "g": 640,
+        "answer": 13640,
+        "winMs": 3400,
+        "win": "Yes, 13,000 g and 640 g more make 13,640 g."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T5.C22:ML3",
+        "kind": "toKg",
+        "grams": 6385,
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          6,
+          385
+        ],
+        "winMs": 3000,
+        "win": "Yes, 6,385 g is 6 kg 385 g."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T5.C22:5",
+        "kind": "toKg",
+        "grams": 2750,
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          2,
+          750
+        ],
+        "winMs": 3300,
+        "win": "Right: 2 whole kilograms, and 750 g left over."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T5.C22:6",
+        "kind": "toKg",
+        "grams": 25400,
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          25,
+          400
+        ],
+        "winMs": 3400,
+        "win": "Yes: 25 whole kilograms, and 400 g stay as grams."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T5.C23:ML4",
+        "kind": "place",
+        "kg": 7,
+        "g": 9,
+        "answer": 7009,
+        "winMs": 3400,
+        "win": "Yes, 7 kg 9 g is 7,009 g."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T5.C23:7",
+        "kind": "place",
+        "kg": 30,
+        "g": 8,
+        "answer": 30008,
+        "winMs": 3400,
+        "win": "Right, zeros hold the places, so it is 30,008 g."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T5.C23:8",
+        "kind": "fix",
+        "grams": 4070,
+        "wrote": [
+          4,
+          700
+        ],
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          4,
+          70
+        ],
+        "winMs": 3800,
+        "ladder": [
+          "Which three digits of 4,070 are the grams?",
+          "The 0 in the hundreds is a grams digit that holds a place."
+        ],
+        "win": "Yes, 4,070 g is 4 kg 70 g, with a zero in the hundreds."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: Each thing in the wrong tray goes back on the pan against the kilogram, the arrow lit on the pan that went down, then into its right tray (the eraser's 20 kg is set against it first, then 20 g, which balances).",
+      "Phase 2: The converter's 1,000 lights; the card's kilograms go on one pan and the child's grams on the other, and the beam tips; the card passes down and comes out in grams, and the grams pan levels at the right number.",
+      "Phase 3: The converter's 1,000 lights and the card passes back up through it: the quotient lands in the kilograms slot and the remainder stays in the grams slot.",
+      "Phase 4: The card passes through the converter and the place board fills: kilograms in blue, grams in green in their own places, grey zeros dropping into every empty place."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A balance and a shelf of things. Is each one heavy or light?",
+    "onFreePlay": "Free play: weigh things on the balance with up to 30 weights of 1 kg and 100 g.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Every thing weighed in a unit that suits it, and every weight changed by a thousand, the remainder kept as grams.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T5.C20:ML1",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "Which unit suits each weight: a bag of cement, and a steel spoon?",
+            "question": {
+              "en": "Send the bag of cement and the steel spoon each to its tray."
+            },
+            "ask": {
+              "en": "Cement, spoon: which tray?"
+            },
+            "answer": "kg,g",
+            "planAnswer": "The bag of cement in kilograms, and the spoon in grams",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T5.C20:1",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "Grams or kilograms: a letter in an envelope, and a sack of onions?",
+            "question": {
+              "en": "Now a letter in an envelope and a sack of onions: grams or kilograms for each?"
+            },
+            "ask": {
+              "en": "Letter, onions: which tray?"
+            },
+            "answer": "g,kg",
+            "planAnswer": "The letter in grams, and the sack of onions in kilograms",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T5.C20:2",
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": "A child weighs an eraser and writes 20 kg. Which unit should it be?",
+            "question": {
+              "en": "A child wrote 20 kg for an eraser: which tray is right for it?"
+            },
+            "ask": {
+              "en": "Eraser: 20 kg? Which unit?"
+            },
+            "answer": "g",
+            "planAnswer": "20 g. An eraser is light, so it is weighed in grams",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T5.C21:ML2",
+            "worked": false,
+            "kind": "toG",
+            "planQuestion": "How many grams are there in 9 kg?",
+            "question": {
+              "en": "How many grams are there in 9 kg?"
+            },
+            "ask": {
+              "en": "9 kg in grams?"
+            },
+            "answer": 9000,
+            "planAnswer": "9000 g",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T5.C21:3",
+            "worked": false,
+            "kind": "toG",
+            "planQuestion": "Convert 5 kg into grams.",
+            "question": {
+              "en": "Change 5 kg into grams the same way."
+            },
+            "ask": {
+              "en": "5 kg is how many grams?"
+            },
+            "answer": 5000,
+            "planAnswer": "5000 g",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T5.C21:4",
+            "worked": false,
+            "kind": "toG",
+            "planQuestion": "Convert 13 kg 640 g into grams.",
+            "question": {
+              "en": "A bag holds 13 kg 640 g, so change it all into grams."
+            },
+            "ask": {
+              "en": "13 kg 640 g in grams?"
+            },
+            "answer": 13640,
+            "planAnswer": "13,640 g. 13 kg is 13,000 g, and 640 g more makes 13,640 g",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T5.C22:ML3",
+            "worked": false,
+            "kind": "toKg",
+            "planQuestion": "Write 6385 g in kilograms and grams.",
+            "question": {
+              "en": "Write 6,385 g in kilograms and grams."
+            },
+            "ask": {
+              "en": "6,385 g in kilograms and grams"
+            },
+            "answer": [
+              6,
+              385
+            ],
+            "planAnswer": "6 kg 385 g",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T5.C22:5",
+            "worked": false,
+            "kind": "toKg",
+            "planQuestion": "Write 2750 g in kilograms and grams.",
+            "question": {
+              "en": "Now split 2,750 g the same way."
+            },
+            "ask": {
+              "en": "2,750 g in kilograms and grams"
+            },
+            "answer": [
+              2,
+              750
+            ],
+            "planAnswer": "2 kg 750 g",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T5.C22:6",
+            "worked": false,
+            "kind": "toKg",
+            "planQuestion": "A sack of rice weighs 25,400 g. How many kilograms and grams is that?",
+            "question": {
+              "en": "A sack of rice weighs 25,400 g: how many kilograms and grams is that?"
+            },
+            "ask": {
+              "en": "25,400 g in kilograms and grams"
+            },
+            "answer": [
+              25,
+              400
+            ],
+            "planAnswer": "25 kg 400 g, because 25,400 divided by 1000 is 25 remainder 400",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T5.C23:ML4",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "Write 7 kg 9 g in grams.",
+            "question": {
+              "en": "Write 7 kg 9 g in grams."
+            },
+            "ask": {
+              "en": "7 kg 9 g in grams?"
+            },
+            "answer": 7009,
+            "planAnswer": "7009 g",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T5.C23:7",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "Write 30 kg 8 g in grams.",
+            "question": {
+              "en": "Now 30 kg 8 g: how many grams in all?"
+            },
+            "ask": {
+              "en": "30 kg 8 g in grams?"
+            },
+            "answer": 30008,
+            "planAnswer": "30,008 g. Zeros hold the hundreds and the tens of the grams",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T5.C23:8",
+            "worked": false,
+            "kind": "fix",
+            "planQuestion": "A child writes 4070 g as 4 kg 700 g. What went wrong, and what is right?",
+            "question": {
+              "en": "A child wrote 4,070 g as 4 kg 700 g: what is right?"
+            },
+            "ask": {
+              "en": "4,070 g in kilograms and grams"
+            },
+            "answer": [
+              4,
+              70
+            ],
+            "planAnswer": "Dividing by 1000 leaves a remainder of 70, read from the last three digits 070, whose zero holds the hundreds. The weight is 4 kg 70 g",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "weighing_bench",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "weighing_bench",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Grams or kilograms",
+        "conceptId": "M2.S3.T5.C20",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C20:ML1",
+          "M2.S3.T5.C20:1",
+          "M2.S3.T5.C20:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "A thousand grams make a kilogram",
+        "conceptId": "M2.S3.T5.C21",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C21:ML2",
+          "M2.S3.T5.C21:3",
+          "M2.S3.T5.C21:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Grams into kilograms and grams",
+        "conceptId": "M2.S3.T5.C22",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C22:ML3",
+          "M2.S3.T5.C22:5",
+          "M2.S3.T5.C22:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A zero that holds a place in grams",
+        "conceptId": "M2.S3.T5.C23",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C23:ML4",
+          "M2.S3.T5.C23:7",
+          "M2.S3.T5.C23:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "thing",
+    "tray",
+    "panWeights",
+    "card",
+    "pass"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), complete, thing, tray, panWeights, card, pass",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "weighing_bench"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T5.C20.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A balance and a shelf of things. Is each one heavy or light?"
+    },
+    {
+      "en": "Is it heavy or light? Grams or kilograms?"
+    },
+    {
+      "en": "How many grams level the kilogram? Now use that number."
+    },
+    {
+      "en": "How many whole kilograms are in it? What is left stays in grams."
+    },
+    {
+      "en": "The grams leave some places empty. What goes in each one?"
+    },
+    {
+      "en": "A new weight. Is it in kilograms, in grams, or in both?"
+    },
+    {
+      "en": "Free play. Anything on the balance, and any weight through the converter either way."
+    },
+    {
+      "en": "Lift it again and watch the balance, or read the one number on the converter."
+    },
+    {
+      "en": "Every thing weighed in a unit that suits it, and every weight changed by a thousand, the remainder kept as grams."
+    }
+  ],
+  "build": {
+    "source": "553bf8bd:668073",
+    "runtime": "class4/runtime/frozen/r29/runtime.tsx",
+    "runtimeVersion": "r29",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-22T09:12:41.903Z",
+    "checks": {
+      "pass": 94,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-22T09:12:41.590Z"
+    },
+    "tsxBytes": 597814,
+    "tsxMd5": "3646c65450537d596917522761c01e03",
+    "handEdited": true
+  }
+}

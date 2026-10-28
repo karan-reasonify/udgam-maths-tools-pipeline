@@ -1,0 +1,1404 @@
+{
+  "slotId": "M2.S3.T6.C24.2D1",
+  "mediaId": "M2.S3.T6.C24.2D1",
+  "toolId": "pattern_lines",
+  "title": "Pattern Lines",
+  "component": "M2.S3.T6.C24.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch10_v8",
+  "planVersion": 8,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_10/2dtool/M2.S3.T6.C20.2D1/M2.S3.T6.C20.2D1.tsx",
+  "description": "Line up sums and products one under another, read the pattern down the lines, and check it by working one line in full.",
+  "conceptIds": [
+    "M2.S3.T6.C25",
+    "M2.S3.T6.C26",
+    "M2.S3.T6.C27",
+    "M2.S3.T6.C28"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Read the pattern down a board of sums and products, carry it on, and check it by working one line in full.",
+    "look": "A board of ruled lines with the answers down the right, jump labels in the margin, and a slate beside it for working one line out.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only. 'Pattern Lines' sits in ink at the far left, with a small dot set clear of the name by measuring it. The phase title sits beside the dot on the same line, then the host's navigation, and again, sound and restart stand as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the lines read against the lines on this phase's board, two numbers in ink. The first climbs by one as each line is read, filled or worked, and the second is fixed at the size of the board. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The board fills the left of the working area, 560 by 400 at 64,222, ruled into six lines each 60 tall with 8 between. Each line holds one calculation, with its answer in a column down the right of the board. The numbers being multiplied or added are always written in full on every line. The jump margin stands beside the answers, 110 by 400 at 634,222. A jump label sits across the rule between every pair of neighbouring answers, as the lower answer less the upper. The growth margin stands beside that, 100 by 400 at 754,222, and writes how much each jump differs from the one above it. The slate stands at the right, 286 by 400 at 864,222. Work it out takes any line and works it in full there, digit by digit in columns, with every part of the working written. Hide or put back takes a line out of the board or slides it back into its place between its neighbours. When a line is put back, the jump labels either side of it are rewritten where they stand, never cleared, and the line itself is reddish purple. The next line slot is the empty line under the last, and takes the child's answer. On the second phase the digit bay splits each answer on the board into two columns, its number of tens and its ones. The tens column carries on as a whole number past ninety. On the first phase the side-by-side bay runs along the foot of the working area, 1086 by 96 at 64,632. It holds up to three rods of counters, one above the other, the counters drawn at one size and sized so the longest rod fits. Rods can be joined end to end, doubled, tripled, and laid one along another to compare. The smaller number's rod is deep blue, the greater's amber, and a rod the child builds from them is green. Down the right of the canvas the question sits above the answer slot at 1186,250 (356 by 92), which holds what the child has given. That rectangle is the same on every phase and is never animated in or out. Under it is the pad at 1170,368 (388 by 363). The pad is twelve number keys three across wherever an answer, a jump or a count is asked for, with yes and no keys under them. On the first two phases a word pad carries this board's words: consecutive, greater, middle, tens, ones and jump. The footer runs 758 to 900. The voice caption sits at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling. The phase bar sits at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, taken from its pictures. Whatever the stage hands over is deep blue: a given term, a bead, the bottom row of a tower, a plain letter, a tile already laid. The first member of a repeating group is deep blue too, and the second member, or a second kind set beside the first, is amber. The step itself is vermilion in every tool without exception: a jump arc and its label, a quarter turn, an operation sign, a key's shift. Whatever the rule makes is green: a next term, a built box, a coded or decoded letter, a copy just laid, a tick. Whatever the child is asked to notice is reddish purple: a broken box, a closed-in gap, a doubled part, a leftover counter, a line put back. The dots of dotted paper are grey and nothing else is. Every bracket, outline, rule and blank is near-black chrome. Chrome never borrows a content colour, and no content colour is ever used for chrome. Every reading survives with the colour taken away, because a thing is told by its label or its place before it is told by its colour. A blank waiting for the child is an empty outlined box, never a faded copy of its answer. A hidden line leaves no gap. The board closes up round it exactly as the printed exercise closes up round the line it leaves out, so the trap is met here as it will be met on paper. Only the numbers being multiplied, written in full on every line, show that one was skipped, for a child who reads them.",
+    "finish": "The card shows the last board the child read, with its jump labels in the margin, the line they worked in full on the slate, and any line they put back standing in its place.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the doubled rod, one counter short, lies exactly along the two rods joined end to end",
+        "does": "adds the two numbers, then doubles the longer rod, takes one counter away and compares",
+        "goal": "two consecutive numbers make one less than twice the greater, and three make three times the middle",
+        "says": "Double the bigger one and take one away. Is it the same as the sum?",
+        "check": "Add nineteen and twenty. Then check it by doubling the greater and taking one away.",
+        "feels": "two rods side by side are nearly two of the bigger one, short by just one counter",
+        "hands": "Before the tool is opened, give each group a wall calendar and have them add three dates side by side in one row. Then multiply the middle date by three and compare. Try two dates side by side against twice the later date, less one. The page calls these patterns a shortcut, but working them is no shorter than adding, so use them as patterns that always hold and to check a sum.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: which of the two numbers is the greater? Second rung, the phase's: what does doubling it and taking one away give? Third rung: the numbers are cut to four and five, and the child lays out the rods. The number keys and the word pad stay open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the rule names a doubling and a taking away, and the smaller number is the first one read.",
+            "move": "doubles the smaller number and takes one away, getting twenty-three for twelve and thirteen.",
+            "screen": "the rod of twelve is doubled and one counter taken off, and the result is laid under the two rods joined end to end, where it falls two counters short. The rod of thirteen, doubled with one counter taken off, is then laid beside it and lies exactly along. Both stay on the bay."
+          },
+          {
+            "why": "the greater number was the one to use in the rule for two, so it seems to be the one to use for three.",
+            "move": "for three numbers side by side, multiplies the greatest by three, writing seventy-eight for twenty-four, twenty-five and twenty-six.",
+            "screen": "three rods of the greatest are laid under the three numbers' rods, and they overhang by three counters. The longest of the three rods then gives one counter to the shortest, and three level rods of the middle number stand. The child's seventy-eight stays in the slot."
+          }
+        ],
+        "screen": "the side-by-side bay with two rods of counters, one a counter longer than the other",
+        "soWhat": "Two consecutive numbers add up to one less than twice the greater, and three add up to three times the middle one.",
+        "concept": "Adding numbers that sit side by side"
+      },
+      {
+        "n": 2,
+        "win": "each column lights from top to bottom as its pattern is named",
+        "does": "reads down each column, says what it does, then writes the next line",
+        "goal": "the ones digits of the table of nine count down while the number of tens counts up",
+        "says": "Read down the ones. Now read down the tens. What does each one do?",
+        "check": "Write ten times ten, eleven times ten and twelve times ten. Say what the ones do and what the tens do.",
+        "feels": "one column counts down while the other counts up, and past ninety the tens just keep counting",
+        "hands": "Write the table of nine down the board from one nine to fourteen nines, with the tens of each answer in one colour of chalk and the ones in another. Read the ones down together, then the tens. When the tens reach nine and then ten, stop and ask how many tens one hundred and eight holds. Call ten and eleven numbers of tens, not digits, and let the class say why.",
+        "tries": "First rung, from the item: what is the ones digit of each answer? Second rung, the phase's: how many tens does each answer hold? Third rung: the board is cut to two lines, and the child splits each answer into tens and ones. The number keys and the word pad stay open.",
+        "wrong": [
+          {
+            "why": "the page's commentary calls the tens column digits, and one hundred and eight has a zero where a tens digit sits.",
+            "move": "reads the tens digit of one hundred and eight as zero, and decides the pattern has broken past ninety.",
+            "screen": "the digit bay splits one hundred and eight into ten tens and eight ones, and the tens column reads ten under nine. The tens then carry on, eleven and twelve, with the ones counting down beside them. The child's zero stays written beside the line."
+          },
+          {
+            "why": "the table read just before went up by one ten on each line, and a pattern in one table looks like the pattern for all of them.",
+            "move": "expects the tens of the table of five to go up on every line, as they do in the table of nine.",
+            "screen": "the digit bay lights the tens of the table of five two lines at a time: none, one, one, two, two. The ones take turns beside them, five then zero. The child's line stays on the board with the bay's split under it."
+          }
+        ],
+        "screen": "the digit bay writing a times table down the board, tens in one column and ones in another",
+        "soWhat": "In the table of nine the ones count down while the number of tens counts up, and in the table of five the ones take turns.",
+        "concept": "Digits marching down a times table"
+      },
+      {
+        "n": 3,
+        "win": "the next jump label writes itself in and the next total lands under it",
+        "does": "reads how much each jump grows by, finds the next jump, then writes the next total",
+        "goal": "when the jumps between answers grow, the next jump is found from how they grow",
+        "says": "Look at the jumps. How much bigger is each one than the last?",
+        "check": "The totals are two, six, twelve, twenty. Find the jumps, then the next total.",
+        "feels": "the jumps get bigger, but they get bigger in a steady way that can be carried on",
+        "hands": "Have the class add one, then two, then three, then four, writing each running total on a new line. Write the jump between each pair of totals in a column beside them, and the growth between the jumps in a column beside that. Ask what the growth column says, and use it to find the next jump before the next total.",
+        "tries": "First rung, from the item: what are the jumps between the totals? Second rung, the phase's: how much bigger is each jump than the last? Third rung: the board is cut to three totals, and the child writes the two jumps before anything else. The number keys stay open.",
+        "wrong": [
+          {
+            "why": "a jump found once has always been the jump for the rest of the list, and the growth between jumps is one more thing to hold.",
+            "move": "uses the last jump again, writing fourteen and eighteen after one, three, six, ten.",
+            "screen": "the jump margin reads two, three and four, and the growth margin writes one and one beside them. The next jump label is left empty with its growth already written. The child's fourteen stays on the next line."
+          },
+          {
+            "why": "the growth is the newest number on the board, and adding the newest number to the last total is how every earlier line was made.",
+            "move": "adds the growth to the last total instead of to the last jump, writing eleven after ten.",
+            "screen": "the growth label is carried from its margin to the jump margin first, where it joins the last jump and makes the next one. Only then is the next jump carried to the total. The child's eleven stays on the next line beside it."
+          }
+        ],
+        "screen": "a board of running totals with the jump labels written and the next line empty",
+        "soWhat": "When the jumps between answers grow, find how they grow, and use that to find the next jump.",
+        "concept": "When the jumps grow"
+      },
+      {
+        "n": 4,
+        "win": "the hidden line slides back in and the equal jumps split into jumps that grow",
+        "does": "guesses the next answer from the equal jumps, works that line in full on the slate, then puts the hidden line back",
+        "goal": "a line left out can make jumps that grow look equal, so one line is worked in full to check",
+        "says": "Work this line out in full. Does it agree with the guess?",
+        "check": "A list was copied as one, four, seven, but the two after the one was left out. Put it back. What comes after seven?",
+        "feels": "the jumps only looked equal, and one line worked in full was enough to show it",
+        "hands": "Before anyone completes the printed multiplication pattern, write its lines on the board as printed: five fives, twenty-five twenty-fives and thirty-five thirty-fives. Ask what the answers seem to do. They seem to go up by six hundred each time, only because fifteen fifteens is missing. Have the class work forty-five forty-fives in full, with the two partial products the multiplication chapter taught, and set it beside the guess. Then put fifteen fifteens back, two hundred and twenty-five, and read the jumps again: two hundred, four hundred, six hundred. They grow, and they are not equal. Do not teach a rule for multiplying a number ending in five by itself; the chapter never teaches one.",
+        "tries": "First rung, from the item: what does the next line come to when it is worked in full? Second rung, the phase's: do the numbers being multiplied skip one? Third rung: the board is cut to two lines with the hidden one between them, and the child puts it back. The number keys and the slate stay open.",
+        "wrong": [
+          {
+            "why": "every pattern met so far was carried on by its jump, and two equal jumps look like a pattern already found.",
+            "move": "carries on the equal jumps of twenty-four read off three lines, and writes seventy-three for nine nines.",
+            "screen": "the child's seventy-three stays on the next line, and the slate beside it lights. Nine nines is worked in full there, and the two answers stand side by side. The hide control then lights on the place between one and twenty-five. When three threes slides back in, the first jump label is rewritten where it stands as eight and sixteen, and the jumps are seen to grow."
+          },
+          {
+            "why": "the jumps were equal and looked settled, and a long piece of working feels easier to get wrong than a pattern.",
+            "move": "works the line in full, gets a different answer from the guess, and decides the working must be the slip.",
+            "screen": "the slate works the line again with every part of the working written in its column, and lands on the same answer. The guess and the worked line stand together on the board. The numbers being multiplied are then read down the board aloud, one, five, seven, and the skipped three is found between them."
+          }
+        ],
+        "screen": "a board with one line hidden, its answers seeming to go up by equal jumps, and the slate waiting",
+        "soWhat": "A line left out can make jumps that grow look equal, so a pattern read off a few lines is checked by working one line in full.",
+        "concept": "A missing line can hide the pattern"
+      }
+    ],
+    "delight": "The first phase, when three numbers side by side are laid out as rods. The longest rod gives up its last counter, which walks across and joins the end of the shortest. The three rods then stand level, each as long as the middle one, and the three together are seen to make three of the middle number. Lay out any three numbers in a row and it runs again, as often as a finger likes. Nothing is marked, and the voice says nothing while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the side-by-side bay holds two rods of counters, one a counter longer than the other, with the board above it showing their sum as one line. On the second the digit bay has split a times table down the board into tens and ones, with the next line empty. On the third a board of running totals stands with its jump labels written and the next line empty. On the fourth a board stands with one line already hidden, its answers seeming to go up by equal jumps, and the slate waiting clean. The running count at the top left holds the lines read against the lines on this phase's board, and the answer slot and the pad stand empty down the right. One thing moves, once, the longer rod or the first ones digit or the last jump label or the next empty line. It gives one slow pulse while the voice asks what the answers do. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "Any board of sums or products, with the jump labels, the digit bay, the slate and the hide control all open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on sums of consecutive numbers, the digits of the tables of five, nine and ten, totals whose jumps grow, and a pattern checked by working one line in full.",
+    "voiceLines": [
+      "A board of sums, one to a line. Read down the answers before you write.",
+      "Double the bigger one and take one away. Is it the same as the sum?",
+      "Read down the ones. Now read down the tens. What does each one do?",
+      "Look at the jumps. How much bigger is each one than the last?",
+      "Work this line out in full. Does it agree with the guess?",
+      "Another board. Look at the jump between every pair of answers.",
+      "Free play. Any board, with the jumps, the slate and the hide control open.",
+      "Work that line out in full on the slate, then read the jumps again.",
+      "Every board read, and every guess checked against a line worked in full."
+    ],
+    "observations": [
+      {
+        "why": "Two numbers side by side make the greater one twice over, with one counter missing from the smaller.",
+        "soWhat": "Two consecutive numbers add up to one less than twice the greater, and working it is a way to check a sum.",
+        "observe": "The doubled rod, one counter short, lay exactly along the two rods joined end to end."
+      },
+      {
+        "why": "The column counts how many tens the answer holds, and one hundred and eight holds ten of them.",
+        "soWhat": "Ten and eleven are numbers of tens, not digits, so the pattern carries on unbroken.",
+        "observe": "Past ninety the tens column kept counting, nine, ten, eleven, and never went back to zero."
+      },
+      {
+        "why": "Each jump was the same amount bigger than the jump before it.",
+        "soWhat": "When the jumps grow, find how they grow, and the next jump comes from that.",
+        "observe": "The growth margin read the same all the way down while the jumps kept getting bigger."
+      },
+      {
+        "why": "The equal jumps came from the missing line, not from the pattern.",
+        "soWhat": "A pattern read off a few lines is checked by working one line in full.",
+        "observe": "Putting the hidden line back split one of two equal jumps into two smaller jumps that grew."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the side-by-side bay with two rods of counters, one a counter longer than the other",
+        "win": "the doubled rod, one counter short, lies exactly along the two rods joined end to end",
+        "traceback": "when the wrong answer is the near miss its own route is laid out first (the smaller rod doubled less one falls short of the joined rods; three rods of the greatest overhang the three), then the two rods join end to end, the greater rod is laid down twice with one counter lifted off, and the rows finish level on the whole answer with the reason written under them; three rods share a counter until they stand level",
+        "ladder": [
+          "Which of the two rods is the one to double?",
+          "Three of the biggest is too many, so use the middle number.",
+          "Which number is the greater, and what do you do to it?",
+          "Double the longer rod, then take one counter away.",
+          "Two rods side by side hold one less than twice the longer rod."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the digit bay writing a times table down the board, tens in one column and ones in another",
+        "win": "each column lights from top to bottom as its pattern is named",
+        "traceback": "the card of every known line splits into its tens and its ones, the two rows are read along with their steps, the next card lands complete and the reason is written under it",
+        "ladder": [
+          "Check your tens and ones against the line before it.",
+          "Do the tens here climb on every line, or on every second one?",
+          "What do the ones digits of 150, 160 and 170 do?",
+          "The tens of 99, 108 and 117 are 9, 10 and 11.",
+          "The tens go up by 1 and the ones go down by 1 on each line."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a board of running totals with the jump labels written and the next line empty",
+        "win": "the next jump label writes itself in and the next total lands under it",
+        "traceback": "the jumps are written along the top, the growth between them stays the same, the next jump writes itself in and the next total lands with its counters and the reason under it",
+        "ladder": [
+          "When the jumps are found, does each get bigger?",
+          "Is each jump bigger than the last by the same amount?",
+          "Which jump is bigger, the one to 36 or the one to 49?",
+          "Write the jump between each pair of answers, then look at those jumps.",
+          "Add the growth to the last jump, then add that jump to the last answer."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a board with one line hidden, its answers seeming to go up by equal jumps, and the slate waiting",
+        "win": "the hidden line slides back in and the equal jumps split into jumps that grow",
+        "traceback": "the slate works the line in full, the hidden line slides back into its place, the jump labels either side are rewritten where they stand, the whole answer lands and the reason is written under it",
+        "ladder": [
+          "Do the numbers on the cards go up by equal steps?",
+          "Set the two numbers in columns, ones under ones, and add.",
+          "Would the two jumps still look equal with the missing line back?",
+          "Work the line out in full before you trust the jumps.",
+          "Put the skipped line back, then read the jumps once more."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "pic": {
+      "w": 880
+    },
+    "warm": {
+      "3": {
+        "kind": "grow",
+        "shape": "mul",
+        "g": 2,
+        "rows": [
+          [
+            "2",
+            2
+          ],
+          [
+            "2 + 4",
+            6
+          ],
+          [
+            "2 + 4 + 6",
+            12
+          ]
+        ],
+        "askLeft": "next total",
+        "answer": 20,
+        "why": "jumps grow by 2"
+      },
+      "4": {
+        "kind": "hidden",
+        "rows": [
+          [
+            "5 × 5",
+            25
+          ],
+          [
+            "25 × 25",
+            625
+          ],
+          [
+            "35 × 35",
+            1225
+          ]
+        ],
+        "rowsBack": [
+          [
+            "5 × 5",
+            25
+          ],
+          [
+            "15 × 15",
+            225
+          ],
+          [
+            "25 × 25",
+            625
+          ],
+          [
+            "35 × 35",
+            1225
+          ]
+        ],
+        "hideAt": 1,
+        "slate": {
+          "title": "15 × 15",
+          "steps": [
+            "15 × 10 = 150",
+            "15 × 5 = 75",
+            "150 + 75 = 225"
+          ]
+        },
+        "why": "15 × 15 was missing"
+      }
+    },
+    "free": {
+      "a": 7,
+      "t": 9,
+      "s": 2,
+      "aMax": 15,
+      "sMax": 20
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T6.C25:ML1",
+        "kind": "rods",
+        "nums": [
+          12,
+          13
+        ],
+        "askLeft": "12 + 13",
+        "tl": "12 + 13",
+        "answer": 25,
+        "near": 23,
+        "ora": {
+          "r": "rule2",
+          "a": 12,
+          "b": 13
+        },
+        "winMs": 3400,
+        "ladder": [
+          "Join the two rods first, then look at the greater one.",
+          "Twice the greater, less one, lies along the two rods joined."
+        ],
+        "win": "Yes, both ways come to the same number.",
+        "why": "twice 13, less 1"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T6.C25:1",
+        "kind": "rods",
+        "nums": [
+          24,
+          25,
+          26
+        ],
+        "askLeft": "24 + 25 + 26",
+        "tl": "24 + 25 + 26",
+        "answer": 75,
+        "near": 78,
+        "ora": {
+          "r": "rule3",
+          "a": 24,
+          "m": 25,
+          "g": 26
+        },
+        "winMs": 3400,
+        "ladder": [
+          "Let the longest rod give one counter to the shortest rod.",
+          "Then all three rods are as long as the middle one."
+        ],
+        "win": "Yes, three rods of 25 make the same total.",
+        "why": "25 counted 3 times"
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T6.C25:2",
+        "kind": "rods",
+        "nums": [
+          30,
+          31
+        ],
+        "askLeft": "30 + 31",
+        "tl": "30 + 31",
+        "answer": 61,
+        "near": 59,
+        "ora": {
+          "r": "rule2",
+          "a": 30,
+          "b": 31
+        },
+        "winMs": 3400,
+        "ladder": [
+          "Lay the two rods end to end, then lay 31 twice under them.",
+          "Twice 31 less one should match the sum you found."
+        ],
+        "win": "Yes, twice 31 less 1 matches the sum.",
+        "why": "twice 31, less 1"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T6.C26:ML2",
+        "kind": "table",
+        "tbl": 9,
+        "rows": [
+          [
+            "11 × 9",
+            99
+          ],
+          [
+            "12 × 9",
+            108
+          ],
+          [
+            "13 × 9",
+            117
+          ]
+        ],
+        "askLeft": "14 × 9",
+        "tl": "14 × 9",
+        "answer": 126,
+        "near": 26,
+        "ora": {
+          "r": "rep",
+          "a": 14,
+          "b": 9
+        },
+        "winMs": 3400,
+        "win": "Yes, the next line fits both rows.",
+        "why": "tens up, ones down"
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T6.C26:3",
+        "kind": "table",
+        "tbl": 5,
+        "rows": [
+          [
+            "5 × 11",
+            55
+          ],
+          [
+            "5 × 12",
+            60
+          ],
+          [
+            "5 × 13",
+            65
+          ]
+        ],
+        "askLeft": "5 × 14",
+        "tl": "5 × 14",
+        "answer": 70,
+        "near": 75,
+        "ora": {
+          "r": "rep",
+          "a": 5,
+          "b": 14
+        },
+        "winMs": 3400,
+        "ladder": [
+          "Write down the ones digit of each answer, one by one.",
+          "The ones go 5, then 0, then 5, so what comes after that?"
+        ],
+        "win": "Yes, the ones took turns between 5 and 0.",
+        "why": "ones take turns"
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T6.C26:4",
+        "kind": "table",
+        "tbl": 10,
+        "rows": [
+          [
+            "15 × 10",
+            150
+          ],
+          [
+            "16 × 10",
+            160
+          ],
+          [
+            "17 × 10",
+            170
+          ]
+        ],
+        "askLeft": "18 × 10",
+        "tl": "18 × 10",
+        "answer": 180,
+        "near": 18,
+        "ora": {
+          "r": "rep",
+          "a": 18,
+          "b": 10
+        },
+        "winMs": 3400,
+        "ladder": [
+          "Count how many whole tens are in 170.",
+          "Look at the tens and the ones digit down the table of ten."
+        ],
+        "win": "Yes, the ones stayed 0 and the tens counted on.",
+        "why": "ones stay 0"
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T6.C27:ML3",
+        "kind": "grow",
+        "shape": "tri",
+        "g": 1,
+        "rows": [
+          [
+            "1",
+            1
+          ],
+          [
+            "1 + 2",
+            3
+          ],
+          [
+            "1 + 2 + 3",
+            6
+          ],
+          [
+            "1 + 2 + 3 + 4",
+            10
+          ]
+        ],
+        "askLeft": "1 + 2 + 3 + 4 + 5",
+        "blankLeft": "next total",
+        "tl": "next total",
+        "answer": 15,
+        "near": 14,
+        "ora": {
+          "r": "tri",
+          "n": 5
+        },
+        "winMs": 3400,
+        "ladder": [
+          "The jumps are 2, 3 and 4, so each is 1 bigger.",
+          "The next jump is 1 bigger than 4, so add it on."
+        ],
+        "win": "Yes, the jumps grew by 1 each time.",
+        "why": "jumps grow by 1"
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T6.C27:5",
+        "kind": "grow",
+        "shape": "mul",
+        "g": 3,
+        "rows": [
+          [
+            "3",
+            3
+          ],
+          [
+            "3 + 6",
+            9
+          ],
+          [
+            "3 + 6 + 9",
+            18
+          ]
+        ],
+        "askLeft": "3 + 6 + 9 + 12",
+        "blankLeft": "next total",
+        "tl": "next total",
+        "answer": 30,
+        "near": 27,
+        "ora": {
+          "r": "mulsum",
+          "step": 3,
+          "n": 4
+        },
+        "winMs": 3400,
+        "ladder": [
+          "The jumps are 6 and 9, so each is 3 bigger.",
+          "Add 3 to the last jump, then add that to the last total."
+        ],
+        "win": "Yes, the jumps grew by 3 each time.",
+        "why": "jumps grow by 3"
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T6.C27:6",
+        "kind": "grow",
+        "shape": "sq",
+        "lab": true,
+        "rows": [
+          [
+            "5 × 5",
+            25
+          ],
+          [
+            "6 × 6",
+            36
+          ],
+          [
+            "7 × 7",
+            49
+          ]
+        ],
+        "askLeft": "8 × 8",
+        "tl": "8 × 8",
+        "answer": 64,
+        "near": 62,
+        "ora": {
+          "r": "rep",
+          "a": 8,
+          "b": 8
+        },
+        "winMs": 3400,
+        "ladder": [
+          "The jumps are 11 and 13, so each is 2 bigger.",
+          "The next jump is 15, so add it to the last answer."
+        ],
+        "win": "Yes, the jumps 11 and 13 grew by 2.",
+        "why": "jumps grow by 2"
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T6.C28:ML4",
+        "kind": "hidden",
+        "rows": [
+          [
+            "1 × 1",
+            1
+          ],
+          [
+            "5 × 5",
+            25
+          ],
+          [
+            "7 × 7",
+            49
+          ]
+        ],
+        "askLeft": "9 × 9",
+        "rowsBack": [
+          [
+            "1 × 1",
+            1
+          ],
+          [
+            "3 × 3",
+            9
+          ],
+          [
+            "5 × 5",
+            25
+          ],
+          [
+            "7 × 7",
+            49
+          ]
+        ],
+        "askBack": "9 × 9",
+        "hideAt": 1,
+        "tl": "9 × 9",
+        "slate": {
+          "title": "9 × 9",
+          "steps": [
+            "9 × 5 = 45",
+            "9 × 4 = 36",
+            "45 + 36 ="
+          ]
+        },
+        "answer": 81,
+        "near": 73,
+        "ora": {
+          "r": "rep",
+          "a": 9,
+          "b": 9
+        },
+        "winMs": 3800,
+        "win": "Right, 3 × 3 was missing, so the jumps were never equal.",
+        "why": "3 × 3 was missing"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T6.C28:7",
+        "kind": "hidden",
+        "rows": [
+          [
+            "2",
+            2
+          ],
+          [
+            "+ 22",
+            24
+          ],
+          [
+            "+ 222",
+            246
+          ],
+          [
+            "+ 2,222",
+            2468
+          ]
+        ],
+        "askLeft": "+ 22,222",
+        "noJumps": true,
+        "tl": "+ 22,222",
+        "slate": {
+          "title": "add in columns",
+          "col": {
+            "a": 2468,
+            "b": 22222
+          }
+        },
+        "answer": 24690,
+        "near": 246810,
+        "ora": {
+          "r": "col",
+          "a": 2468,
+          "b": 22222
+        },
+        "winMs": 4200,
+        "ladder": [
+          "Start at the ones column and carry whenever a column reaches ten.",
+          "The ones make 8 + 2 = 10, so write 0 and carry 1."
+        ],
+        "win": "Right, the digit pattern stops at the last line.",
+        "why": "digit pattern stops"
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T6.C28:8",
+        "kind": "hidden",
+        "rows": [
+          [
+            "1st",
+            4
+          ],
+          [
+            "2nd",
+            10
+          ],
+          [
+            "3rd",
+            16
+          ]
+        ],
+        "askLeft": "4th",
+        "rowsBack": [
+          [
+            "1st",
+            4
+          ],
+          [
+            "2nd",
+            6
+          ],
+          [
+            "3rd",
+            10
+          ],
+          [
+            "4th",
+            16
+          ]
+        ],
+        "askBack": "5th",
+        "hideAt": 1,
+        "tl": "16 + 8",
+        "slate": {
+          "title": "the jumps",
+          "steps": [
+            "10 − 4 = 6",
+            "16 − 10 = 6"
+          ],
+          "stepsBack": [
+            "6 − 4 = 2",
+            "10 − 6 = 4",
+            "16 − 10 = 6"
+          ]
+        },
+        "answer": 24,
+        "near": 22,
+        "ora": {
+          "r": "addjumps",
+          "start": 4,
+          "jumps": [
+            2,
+            4,
+            6,
+            8
+          ]
+        },
+        "winMs": 3800,
+        "ladder": [
+          "Write the jumps again with the 6 in place.",
+          "The jumps are 2, 4 and 6, so the next jump is 8."
+        ],
+        "win": "Right, the list was never growing by equal jumps.",
+        "why": "the 6 was missing"
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: when the wrong answer is the near miss its own route is laid out first (the smaller rod doubled less one falls short of the joined rods; three rods of the greatest overhang the three), then the two rods join end to end, the greater rod is laid down twice with one counter lifted off, and the rows finish level on the whole answer with the reason written under them; three rods share a counter until they stand level",
+      "Phase 2: the card of every known line splits into its tens and its ones, the two rows are read along with their steps, the next card lands complete and the reason is written under it",
+      "Phase 3: the jumps are written along the top, the growth between them stays the same, the next jump writes itself in and the next total lands with its counters and the reason under it",
+      "Phase 4: the slate works the line in full, the hidden line slides back into its place, the jump labels either side are rewritten where they stand, the whole answer lands and the reason is written under it"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Numbers that sit side by side make a pattern. Look for it before you write.",
+    "onFreePlay": "Free play. Change the numbers, test your guess and fill the missing one.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Every pattern read, and every guess checked against a line worked in full.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act.",
+    "answerGate": "Answer gated by the act (user mode, after the first real touch of the board; the agent check() performs the act at once and is never held). Phase 1: Join, Double and Take one for the two-rod questions (C25:ML1, C25:2); Share one for the three-rod question (C25:1). Phase 2: Split, then Read, for all three table questions (C26:ML2, C26:3, C26:4). Phase 3: Find jumps, then Find growth, for all three (C27:ML3, C27:5, C27:6). Phase 4: Work it out, then Put back for the two lines with a hidden line (C28:ML4, C28:8); Work it out alone for the column sum (C28:7). Ungated: none (every question has an act). Guide steps and Free play are unchanged."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T6.C25:ML1",
+            "worked": false,
+            "kind": "rods",
+            "planQuestion": "Add 12 and 13. Then double 13 and take away 1. What do you notice?",
+            "question": {
+              "en": "Find 12 + 13, then check it against double 13 less 1."
+            },
+            "ask": {
+              "en": "12 + 13"
+            },
+            "answer": 25,
+            "planAnswer": "Both give 25, because two numbers side by side add up to one less than twice the greater",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T6.C25:1",
+            "worked": false,
+            "kind": "rods",
+            "planQuestion": "Add 24, 25 and 26. Then multiply the middle number by 3. Do the two answers match?",
+            "question": {
+              "en": "Find 24 + 25 + 26, then check it against 3 times the middle number."
+            },
+            "ask": {
+              "en": "24 + 25 + 26"
+            },
+            "answer": 75,
+            "planAnswer": "Yes. 24 + 25 + 26 = 75, and 25 x 3 = 75",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T6.C25:2",
+            "worked": false,
+            "kind": "rods",
+            "planQuestion": "Check the sum 30 + 31 = 61 by doubling the greater number and taking one away.",
+            "question": {
+              "en": "Check the sum 30 + 31 by doubling the greater number and taking one away."
+            },
+            "ask": {
+              "en": "30 + 31"
+            },
+            "answer": 61,
+            "planAnswer": "31 x 2 = 62, and one less is 61, so the sum is right",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T6.C26:ML2",
+            "worked": false,
+            "kind": "table",
+            "planQuestion": "Write 11 x 9, 12 x 9, 13 x 9 and 14 x 9. What do the ones digits do, and what does the number of tens do?",
+            "question": {
+              "en": "Look at both rows, then write 14 × 9."
+            },
+            "ask": {
+              "en": "14 × 9"
+            },
+            "answer": 126,
+            "planAnswer": "99, 108, 117 and 126. The ones digits count down 9, 8, 7, 6, and the number of tens counts up 9, 10, 11, 12",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T6.C26:3",
+            "worked": false,
+            "kind": "table",
+            "planQuestion": "Write 5 x 11, 5 x 12, 5 x 13 and 5 x 14. What do the ones digits do?",
+            "question": {
+              "en": "Look at the ones along the table of five, then write 5 × 14."
+            },
+            "ask": {
+              "en": "5 × 14"
+            },
+            "answer": 70,
+            "planAnswer": "55, 60, 65 and 70. The ones digits take turns, 5 then 0",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T6.C26:4",
+            "worked": false,
+            "kind": "table",
+            "planQuestion": "Find the pattern in 16 x 10, 17 x 10 and 18 x 10.",
+            "question": {
+              "en": "Find the pattern in the ten table, then write 18 × 10."
+            },
+            "ask": {
+              "en": "18 × 10"
+            },
+            "answer": 180,
+            "planAnswer": "160, 170 and 180. The ones digit is always 0, and the number of tens is the number multiplied by ten: 16, 17 and 18",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T6.C27:ML3",
+            "worked": false,
+            "kind": "grow",
+            "planQuestion": "The totals 1, 3, 6, 10 come from adding 1, then 2, then 3, then 4. What are the next two totals?",
+            "question": {
+              "en": "Tap Find jumps, then write the next total."
+            },
+            "ask": {
+              "en": "next total"
+            },
+            "answer": 15,
+            "planAnswer": "15 and 21",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T6.C27:5",
+            "worked": false,
+            "kind": "grow",
+            "planQuestion": "3 + 6 = 9 and 3 + 6 + 9 = 18. What are 3 + 6 + 9 + 12 and 3 + 6 + 9 + 12 + 15?",
+            "question": {
+              "en": "Find the jumps first, then write the next total."
+            },
+            "ask": {
+              "en": "next total"
+            },
+            "answer": 30,
+            "planAnswer": "30 and 45. The totals 3, 9, 18, 30 and 45 jump by 6, 9, 12 and 15, growing by three each time",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T6.C27:6",
+            "worked": false,
+            "kind": "grow",
+            "planQuestion": "5 x 5 = 25, 6 x 6 = 36 and 7 x 7 = 49. Do the answers go up by equal jumps? What is 8 x 8?",
+            "question": {
+              "en": "Carry on the jumps of 5 × 5, 6 × 6 and 7 × 7 to find 8 × 8."
+            },
+            "ask": {
+              "en": "8 × 8"
+            },
+            "answer": 64,
+            "planAnswer": "No. The jumps are 11 and 13, growing by two, so the next jump is 15 and 8 x 8 = 64",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T6.C28:ML4",
+            "worked": false,
+            "kind": "hidden",
+            "planQuestion": "A board shows 1 x 1 = 1, 5 x 5 = 25 and 7 x 7 = 49. The answers seem to go up by 24 and 24. Is 9 x 9 equal to 73?",
+            "question": {
+              "en": "The jumps look equal, so work out 9 × 9 in full to check."
+            },
+            "ask": {
+              "en": "9 × 9"
+            },
+            "answer": 81,
+            "planAnswer": "No. 9 x 9 = 81. The line 3 x 3 = 9 is missing, and with it put back the jumps are 8, 16 and 24, so the next jump is 32",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T6.C28:7",
+            "worked": false,
+            "kind": "hidden",
+            "planQuestion": "2 = 2; 2 + 22 = 24; 2 + 22 + 222 = 246; 2 + 22 + 222 + 2222 = 2468. A guess says the next answer is 246810. Work 2468 + 22222 in full. Is the guess right?",
+            "question": {
+              "en": "Add 2,468 and 22,222 in full to test the guess of 2,46,810."
+            },
+            "ask": {
+              "en": "next total"
+            },
+            "answer": 24690,
+            "planAnswer": "No, the guess is wrong. 2468 + 22222 = 24690, so working one line in full shows where the digit pattern stops",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T6.C28:8",
+            "worked": false,
+            "kind": "hidden",
+            "planQuestion": "A list was copied as 4, 10, 16, and the next number was guessed as 22. But 6 had been left out between 4 and 10. Put it back. What really comes after 16?",
+            "question": {
+              "en": "Put the missing 6 back between 4 and 10, then find what comes after 16."
+            },
+            "ask": {
+              "en": "next number"
+            },
+            "answer": 24,
+            "planAnswer": "24. The full list is 4, 6, 10, 16, with jumps 2, 4 and 6, so the next jump is 8. The equal jumps of 6 came from the missing number, and 22 is wrong",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "pattern_lines",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "pattern_lines",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Adding consecutive numbers, one after another",
+        "conceptId": "M2.S3.T6.C25",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S3.T6.C25:ML1",
+          "M2.S3.T6.C25:1",
+          "M2.S3.T6.C25:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Digits marching down a times table",
+        "conceptId": "M2.S3.T6.C26",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S3.T6.C26:ML2",
+          "M2.S3.T6.C26:3",
+          "M2.S3.T6.C26:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "When the jumps grow",
+        "conceptId": "M2.S3.T6.C27",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S3.T6.C27:ML3",
+          "M2.S3.T6.C27:5",
+          "M2.S3.T6.C27:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A missing line can hide the pattern",
+        "conceptId": "M2.S3.T6.C28",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S3.T6.C28:ML4",
+          "M2.S3.T6.C28:7",
+          "M2.S3.T6.C28:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "lines",
+    "jumps",
+    "v",
+    "k",
+    "v",
+    "jumpGrowth",
+    "v",
+    "k",
+    "v",
+    "hiddenLines",
+    "workedLine",
+    "digitColumns"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), lines, jumps, v, k, v, jumpGrowth, v, k, v, hiddenLines, workedLine, digitColumns, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "pattern_lines"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T6.C24.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A board of sums, one to a line. Read down the answers before you write."
+    },
+    {
+      "en": "Double the bigger one and take one away. Is it the same as the sum?"
+    },
+    {
+      "en": "Read down the ones. Now read down the tens. What does each one do?"
+    },
+    {
+      "en": "Look at the jumps. How much bigger is each one than the last?"
+    },
+    {
+      "en": "Work this line out in full. Does it agree with the guess?"
+    },
+    {
+      "en": "Another board. Look at the jump between every pair of answers."
+    },
+    {
+      "en": "Free play. Any board, with the jumps, the slate and the hide control open."
+    },
+    {
+      "en": "Work that line out in full on the slate, then read the jumps again."
+    },
+    {
+      "en": "Every board read, and every guess checked against a line worked in full."
+    }
+  ],
+  "build": {
+    "source": "9698665b:673127",
+    "runtime": "class4/runtime/frozen/r30/runtime.tsx",
+    "runtimeVersion": "r30",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-26T19:30:40.406Z",
+    "checks": {
+      "pass": 96,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-26T19:30:40.255Z"
+    },
+    "tsxBytes": 588077,
+    "tsxMd5": "9f9d4c3a0bea789455cf5f06f879614d"
+  }
+}

@@ -2952,6 +2952,8 @@ function ToolFrame({ props, tool }) {
   const lockNow = (b) => {
     lockedRef.current = b;
     setLocked(b);
+    /* ch11 feedback: a wrong typed answer clears itself once the correction has played, so the child retypes without Backspace */
+    if (!b) setTimeout(() => { if (staleRef.current && !lockedRef.current) setTyped(""); }, 400);
   };
   const classroom = ((_b = P.classroom) != null ? _b : P.additionalProps && P.additionalProps.classroom) === true;
   const holdRef = useRef(false);
@@ -3633,6 +3635,7 @@ function ToolFrame({ props, tool }) {
     setTries(t);
     setWrong({ value, tries: t });
     staleRef.current = true;
+    setTimeout(() => { if (staleRef.current && !lockedRef.current && live.current.tries === t) setTyped(""); }, 1500);
     if (it.parts) {
       staleParts.current = it.parts.map(() => true);
       setPart(0);

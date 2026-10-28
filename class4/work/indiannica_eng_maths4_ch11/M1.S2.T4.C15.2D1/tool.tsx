@@ -292,9 +292,9 @@ const LC_PAIRS: any = {
 const LC_PAIR_KEYS = ["km", "m", "cm"];
 /* the slot's two boxes for a two-unit answer: the larger unit, then the smaller one */
 const LC_SLOT: any = {
-  km: [{ label: "km" }, { label: "m" }],
-  m: [{ label: "m" }, { label: "cm" }],
-  cm: [{ label: "cm" }, { label: "mm" }],
+  km: [{ label: "km" }, { label: "m", rtl: true, digits: 3 }],
+  m: [{ label: "m" }, { label: "cm", rtl: true, digits: 2 }],
+  cm: [{ label: "cm" }, { label: "mm", rtl: true, digits: 1 }],
 };
 
 /* kinds:  place  the child types what the smaller unit's boxes hold (a string with its zeros, "058")
@@ -1034,7 +1034,7 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
           <line x1={12} y1={ansTop - 6} x2={LC.frameW - 12} y2={ansTop - 6} stroke={C.ink} strokeWidth={3} />
           <rect x={92} y={ansTop} width={144} height={LC.boxH} rx={10} fill="#FFFFFF"
             stroke={asking && box && box.open && part === 0 ? C.accent : tint(C.ink, 0.45)} strokeWidth={asking && box && box.open && part === 0 ? 4 : 2.5} />
-          {boxRow(ansTop, "ans", ansCells, greyOf(ansCells), asking && !!box && box.open && part === 1)}
+          {boxRow(ansTop, "ans", ansCells, greyOf(ansCells), asking && !!box && box.open && part === 1, asking && !!box && box.open && part === 1 ? Math.max(0, B - 1 - (slotPartsOf(ty, 2)[1] || "").length) : void 0)}
           {bigText(ansBig, ansTop, "ansbig", LC_INK_BIG)}
           {/* Enter on an empty answer box: that box is ringed for 1.6 s */}
           {nudge && nudge.e === e && (nudge.k === 0

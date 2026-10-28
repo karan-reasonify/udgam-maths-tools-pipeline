@@ -2952,6 +2952,8 @@ function ToolFrame({ props, tool }) {
   const lockNow = (b) => {
     lockedRef.current = b;
     setLocked(b);
+    /* ch11 feedback: a wrong typed answer clears itself once the correction has played, so the child retypes without Backspace */
+    if (!b) setTimeout(() => { if (staleRef.current && !lockedRef.current) setTyped(""); }, 400);
   };
   const classroom = ((_b = P.classroom) != null ? _b : P.additionalProps && P.additionalProps.classroom) === true;
   const holdRef = useRef(false);
@@ -3087,7 +3089,7 @@ function ToolFrame({ props, tool }) {
     if (nv !== "") markActed();
     staleRef.current = false;
     staleParts.current = [];
-    if (nv === "") setPart(0);
+    if (nv === "") setPart(live.current && live.current.item && live.current.item.parts && live.current.item.parts.length === 2 ? 1 : 0);
     setTypedState(nv);
   };
   const [tries, setTries] = useState(0);
@@ -3171,7 +3173,7 @@ function ToolFrame({ props, tool }) {
   const cardAnswerOn = !!tool.cardAnswer && board;
   const cardKindOf = (it) => !cardAnswerOn || !it || it.choices || !it.parts || !it.parts.some((p) => p.at) ? null : it.parts.some((p) => p.at === "dwhole") ? "decimal" : "fraction";
   const cardKind = cardKindOf(item);
-  if (KEYONLY && cardKind) Object.assign(Z.pad, { y: Z.slot.y, h: Z.pad.y + Z.pad.h - Z.slot.y });
+  if (KEYONLY && (cardKind || tool.boxAnswer)) Object.assign(Z.pad, { y: Z.slot.y, h: Z.pad.y + Z.pad.h - Z.slot.y });
   const answerOn = !cardAnswerOn || stage !== "ask" ? null : item.choices ? "choices" : cardKind ? "card" : item.pad === "enter" ? null : "key";
   const [cardReady, setCardReadyState] = useState(true);
   const cardReadyRef = useRef(true);
@@ -3633,9 +3635,10 @@ function ToolFrame({ props, tool }) {
     setTries(t);
     setWrong({ value, tries: t });
     staleRef.current = true;
+    setTimeout(() => { if (staleRef.current && !lockedRef.current && live.current.tries === t) setTyped(""); }, 1500);
     if (it.parts) {
       staleParts.current = it.parts.map(() => true);
-      setPart(0);
+      setPart(it.parts.length === 2 ? 1 : 0);
     }
     const ladder = L.phase.ladder || [];
     const kRung = Math.min(Math.max(t - 1, rungShown.current), 2);
@@ -3695,6 +3698,10 @@ function ToolFrame({ props, tool }) {
     const ps = slotPartsOf(typedRef.current, np), at = Math.min(partRef.current, np - 1);
     const parts = live.current.item.parts;
     const fresh = !staleParts.current.length || staleParts.current.some((s) => !s);
+    if (k === "enter" && parts[at].digit && fresh && ps.every((p) => p !== "")) {
+      commit(ps.join("|"));
+      return;
+    }
     if (k === "enter" && parts.some((p) => p.free)) {
       const shut = board && !wantRef.current && !captureRef.current && !alwaysOpen;
       if (ps[at] !== "" && at < np - 1) {
@@ -3712,6 +3719,66 @@ function ToolFrame({ props, tool }) {
       const half = parts.findIndex((p, j) => (p.at === "top" || p.at === "bottom") && ps[j] === "" && parts.some((q, i2) => i2 !== j && (q.at === "top" || q.at === "bottom") && ps[i2] !== ""));
       if (half >= 0) setPart(half);
       else if (at < np - 1) setPart(at + 1);
+      return;
+    }
+    if (parts.length === 2) {
+      if (k === "enter") {
+        if (ps[at] === "") return;
+        if (at === 1) {
+          if (ps[0] === "") {
+            setPart(0);
+            return;
+          }
+          if (!fresh) return;
+          commit(ps.join("|"));
+          return;
+        }
+        if (at === 0) {
+          if (ps[1] === "") {
+            setPart(1);
+            return;
+          }
+          if (!fresh) return;
+          commit(ps.join("|"));
+          return;
+        }
+      }
+      const stale = staleParts.current.slice();
+      const needDigits = parts[1].label === "mm" ? 1 : parts[1].label === "cm" ? 2 : 3;
+      if (k === "back") {
+        if (at === 0) {
+          if (ps[0] === "") {
+            setPart(1);
+            return;
+          }
+          ps[0] = ps[0].slice(1);
+        } else {
+          if (ps[1] === "") {
+            return;
+          }
+          ps[1] = ps[1].slice(1);
+        }
+      } else {
+        if (stale[at]) {
+          ps[at] = k;
+        } else if (at === 1) {
+          if (ps[1].length < needDigits) {
+            ps[1] = k + ps[1];
+          }
+        } else {
+          if (ps[0].length < 5) {
+            ps[0] = k + ps[0];
+          }
+        }
+      }
+      stale[at] = false;
+      setTyped(ps.join("|"));
+      staleParts.current = stale;
+      if (k !== "back" && at === 1 && ps[0] === "") {
+        if (ps[1].length >= needDigits) {
+          setPart(0);
+        }
+      }
       return;
     }
     if (k === "enter") {
@@ -3736,15 +3803,21 @@ function ToolFrame({ props, tool }) {
         return;
       }
       ps[at] = ps[at].slice(0, -1);
-    } else ps[at] = stale[at] ? k : ps[at].length >= 7 ? ps[at] : ps[at] + k;
+    } else ps[at] = stale[at] || parts[at].digit ? k : ps[at].length >= 7 ? ps[at] : ps[at] + k;
     stale[at] = false;
     setTyped(ps.join("|"));
     staleParts.current = stale;
+    if (k !== "back" && parts[at].digit && at < np - 1) {
+      const nx = ps.findIndex((p, j) => j > at && p === "");
+      setPart(nx >= 0 ? nx : at + 1);
+    }
   };
   const pickPart = (k) => {
     const L = live.current;
     if (L.stage !== "ask" || L.locked || !L.item.parts) return;
-    if (Date.now() - openedAt.current < 300) return;
+    /* boxAnswer (ch11 feedback): a tap on a stage box opens the keypad AND picks the box in one tap */
+    if (tool.boxAnswer) openAnswer();
+    else if (Date.now() - openedAt.current < 300) return;
     if (captureRef.current) capture(null);
     setPart(Math.min(Math.max(k, 0), L.item.parts.length - 1));
   };
@@ -4313,7 +4386,7 @@ function ToolFrame({ props, tool }) {
               {!KEYONLY && askEl}
               <g data-zone="drawer" display={slide < 2e-3 ? "none" : void 0} transform={`translate(${((1 - slide) * (Z.drawer.w + 56)).toFixed(1)},0)`}>
                 <rect x={Z.drawer.x} y={Z.drawer.y} width={Z.drawer.w} height={Z.drawer.h} rx={RAD.card - 4} fill={THEME && THEME.panel ? "url(#gTpanel)" : "url(#gPanel)"} stroke={THEME && THEME.panel ? THEME.slot || C.rule : C.rule} strokeWidth={2} filter="url(#fShadow)" />
-                {cardKind ? KEYONLY ? null : <Key
+                {cardKind || tool.boxAnswer ? KEYONLY ? null : <Key
       id="answer-open"
       label={UI.answerClose}
       x={Z.slot.x}
@@ -4424,7 +4497,7 @@ const MEDIA_ID = "M1.S2.T4.C15.2D1";
 const TOOL_NAME = "Length Columns";
 const CHROME = { "dim": "#9AA4AC", "ink": "#2B2B2B", "rule": "#C9BCA6", "panel": "#F2E4CE", "paper": "#FFFDF7", "accent": "#5B6770" };
 const VOICE = { "rate": 0.92, "pitch": 1.06 };
-const OPENING = ["Two columns and a joining sign. How many boxes does the smaller unit take?"];
+const OPENING = ["Two columns, one for each unit. How many boxes does the smaller unit take?"];
 const FINISH_LINE = "Every smaller unit in its own places, and every carry or break made by the number that joins the pair.";
 const FREE_LINE = "Free play: pick the units and plus or minus, tap New, then work the columns.";
 const START_HOOK = "How many boxes does the smaller unit take?";
@@ -4449,7 +4522,7 @@ function StartArt({ box, C, lang, tx = (v) => v }) {
 const TR = {
   hi: {
     "Length Columns": "लंबाई के स्तंभ",
-    "Two columns and a joining sign. How many boxes does the smaller unit take?": "दो स्तंभ और एक संबंध चिह्न। छोटा मात्रक कितने खाने लेता है?",
+    "Two columns, one for each unit. How many boxes does the smaller unit take?": "दो स्तंभ, हर मात्रक का एक। छोटा मात्रक कितने खाने लेता है?",
     "Every smaller unit in its own places, and every carry or break made by the number that joins the pair.": "हर छोटा मात्रक अपने खानों में। हर हासिल और हर तोड़ मिलाने वाली संख्या से।",
     "Free play: pick the units and plus or minus, tap New, then work the columns.": "मुक्त खेल: मात्रक और जोड़ या घटाव चुनो, नया दबाओ, फिर स्तंभ हल करो।",
     "How many boxes does the smaller unit take?": "छोटा मात्रक कितने खाने लेता है?",
@@ -4485,11 +4558,11 @@ const TR = {
     "The metres make more than a thousand. What is written, and what is carried?": "मीटर एक हज़ार से ज़्यादा हो गए। क्या लिखा जाएगा, और क्या हासिल जाएगा?",
     "Tap Add to add the metres column first.": "पहले मीटर का स्तंभ जोड़ने के लिए जोड़ो बटन दबाओ।",
     "Start with the key at the bottom.": "नीचे वाले बटन से शुरू करो।",
-    "The joining sign says 1,000 m, and 1,100 m is more, so tap Carry.": "संबंध चिह्न 1,000 मी कहता है, और 1,100 मी ज़्यादा है, इसलिए हासिल बटन दबाओ।",
+    "1,100 m is more than a kilometre, so tap Carry.": "1,100 मी एक किलोमीटर से ज़्यादा है, इसलिए हासिल बटन दबाओ।",
     "Carry lifts 1,000 m over the km column.": "हासिल 1,000 मी को किमी स्तंभ के ऊपर ले जाता है।",
     "Tap Add again to add the kilometres and the carried one.": "किमी और हासिल वाला एक जोड़ने के लिए फिर से जोड़ो बटन दबाओ।",
     "The chip over the km column counts too.": "किमी स्तंभ के ऊपर वाली चिप भी गिनी जाती है।",
-    "How many times does the big number on the joining sign fit in the sum?": "संबंध चिह्न की बड़ी संख्या योग में कितनी बार आती है?",
+    "How many whole larger units are inside the sum?": "योग में बड़ा मात्रक कितनी बार पूरा आता है?",
     "Carry one larger unit for each, and write only what is left in the boxes.": "हर एक के लिए एक बड़ा मात्रक हासिल लो, और खानों में केवल बचा हुआ लिखो।",
     "Add the smaller unit first and carry one kilometre for each full 1,000 m.": "पहले छोटा मात्रक जोड़ो और हर पूरे 1,000 मी पर एक किलोमीटर हासिल लो।",
     "You learned: carry one kilometre for each full thousand metres.": "तुमने सीखा: हर पूरे हज़ार मीटर पर एक किलोमीटर हासिल जाता है।",
@@ -4532,7 +4605,7 @@ const TR = {
     "Well done, 1,230 m take away 875 m is 355 m, so 23 km 355 m is left.": "शाबाश, 1,230 मी में से 875 मी घटाकर 355 मी, तो 23 किमी 355 मी बचा।",
     /* phase 4 */
     "The number depends on the units": "संख्या मात्रकों पर निर्भर है",
-    "One centimetre breaks into how many millimetres? Check the joining sign.": "एक सेंटीमीटर टूटकर कितने मिलीमीटर बनता है? संबंध चिह्न देखो।",
+    "One centimetre breaks into how many millimetres?": "एक सेंटीमीटर टूटकर कितने मिलीमीटर बनता है?",
     "These lengths are in cm and mm, so tap cm and mm on the switch.": "ये लंबाइयाँ सेमी और मिमी में हैं, इसलिए स्विच पर सेमी, मिमी दबाओ।",
     "The switch is the row of units at the top.": "स्विच ऊपर मात्रकों वाली पंक्ति है।",
     "1 mm is less than 2 mm, so tap Break to take one centimetre.": "1 मिमी, 2 मिमी से कम है, इसलिए एक सेंटीमीटर लेने के लिए तोड़ो बटन दबाओ।",
@@ -4540,7 +4613,7 @@ const TR = {
     "Tap Split and count the millimetres that one centimetre gives.": "काटो बटन दबाओ और गिनो कि एक सेंटीमीटर से कितने मिलीमीटर मिलते हैं।",
     "Tap Take away to finish both columns.": "दोनों स्तंभ पूरे करने के लिए घटाओ बटन दबाओ।",
     "Take away is the key at the bottom.": "घटाओ बटन नीचे है।",
-    "What does the joining sign say for these two units?": "इन दो मात्रकों के लिए संबंध चिह्न क्या कहता है?",
+    "Which unit are the lengths in, and which is smaller?": "लंबाइयाँ किस मात्रक में हैं, और छोटा मात्रक कौन-सा है?",
     "Work the millimetres first; one centimetre is that many millimetres.": "पहले मिलीमीटर हल करो, एक सेंटीमीटर उतने ही मिलीमीटर का होता है।",
     "Carry or break by the number that joins the two units: 10, 100 or 1,000.": "दोनों मात्रकों को मिलाने वाली संख्या से हासिल लो या तोड़ो: 10, 100 या 1,000।",
     "You learned: carry or break by the number that joins the two units.": "तुमने सीखा: मिलाने वाली संख्या से हासिल लो या तोड़ो।",
@@ -4574,7 +4647,7 @@ const TR = {
   },
   gu: {
     "Length Columns": "લંબાઈના સ્તંભ",
-    "Two columns and a joining sign. How many boxes does the smaller unit take?": "બે સ્તંભ અને એક જોડાણ ચિહ્ન. નાનો એકમ કેટલાં ખાનાં લે છે?",
+    "Two columns, one for each unit. How many boxes does the smaller unit take?": "બે સ્તંભ, દરેક એકમ માટે એક. નાનો એકમ કેટલાં ખાનાં લે છે?",
     "Every smaller unit in its own places, and every carry or break made by the number that joins the pair.": "દરેક નાનો એકમ પોતાનાં ખાનાંમાં. દરેક વદી અને દરેક તોડ જોડતી સંખ્યાથી.",
     "Free play: pick the units and plus or minus, tap New, then work the columns.": "મુક્ત રમત: એકમ અને સરવાળો કે બાદબાકી પસંદ કરો, નવું દબાવો, પછી સ્તંભ ઉકેલો.",
     "How many boxes does the smaller unit take?": "નાનો એકમ કેટલાં ખાનાં લે છે?",
@@ -4610,11 +4683,11 @@ const TR = {
     "The metres make more than a thousand. What is written, and what is carried?": "મીટર એક હજારથી વધુ થયા. શું લખાશે, અને શું વદીમાં જશે?",
     "Tap Add to add the metres column first.": "પહેલાં મીટરનો સ્તંભ ઉમેરવા ઉમેરો બટન દબાવો.",
     "Start with the key at the bottom.": "નીચેના બટનથી શરૂ કરો.",
-    "The joining sign says 1,000 m, and 1,100 m is more, so tap Carry.": "જોડાણ ચિહ્ન 1,000 મી કહે છે, અને 1,100 મી વધુ છે, તેથી વદી બટન દબાવો.",
+    "1,100 m is more than a kilometre, so tap Carry.": "1,100 મી એક કિલોમીટરથી વધુ છે, તેથી વદી બટન દબાવો.",
     "Carry lifts 1,000 m over the km column.": "વદી 1,000 મીને કિમીના સ્તંભ ઉપર લઈ જાય છે.",
     "Tap Add again to add the kilometres and the carried one.": "કિમી અને વદીનો એક ઉમેરવા ફરી ઉમેરો બટન દબાવો.",
     "The chip over the km column counts too.": "કિમીના સ્તંભ ઉપરની ચિપ પણ ગણાય છે.",
-    "How many times does the big number on the joining sign fit in the sum?": "જોડાણ ચિહ્નની મોટી સંખ્યા સરવાળામાં કેટલી વાર આવે છે?",
+    "How many whole larger units are inside the sum?": "સરવાળામાં મોટો એકમ કેટલી વાર પૂરો આવે છે?",
     "Carry one larger unit for each, and write only what is left in the boxes.": "દરેક માટે એક મોટો એકમ વદીમાં લો, અને ખાનાંમાં ફક્ત બાકી રહેલું લખો.",
     "Add the smaller unit first and carry one kilometre for each full 1,000 m.": "પહેલાં નાનો એકમ ઉમેરો અને દરેક પૂરા 1,000 મી માટે એક કિલોમીટર વદી લો.",
     "You learned: carry one kilometre for each full thousand metres.": "તમે શીખ્યા: દરેક પૂરા હજાર મીટર પર એક કિલોમીટર વદી જાય છે.",
@@ -4657,7 +4730,7 @@ const TR = {
     "Well done, 1,230 m take away 875 m is 355 m, so 23 km 355 m is left.": "શાબાશ, 1,230 મીમાંથી 875 મી બાદ કરતાં 355 મી, તેથી 23 કિમી 355 મી બાકી.",
     /* phase 4 */
     "The number depends on the units": "સંખ્યા એકમો પર આધાર રાખે છે",
-    "One centimetre breaks into how many millimetres? Check the joining sign.": "એક સેન્ટિમીટર તૂટીને કેટલા મિલિમીટર બને? જોડાણ ચિહ્ન જુઓ.",
+    "One centimetre breaks into how many millimetres?": "એક સેન્ટિમીટર તૂટીને કેટલા મિલિમીટર બને?",
     "These lengths are in cm and mm, so tap cm and mm on the switch.": "આ લંબાઈઓ સેમી અને મિમીમાં છે, તેથી સ્વિચ પર સેમી, મિમી દબાવો.",
     "The switch is the row of units at the top.": "સ્વિચ ઉપર એકમોની હાર છે.",
     "1 mm is less than 2 mm, so tap Break to take one centimetre.": "1 મિમી, 2 મિમી કરતાં ઓછો છે, તેથી એક સેન્ટિમીટર લેવા તોડો બટન દબાવો.",
@@ -4665,7 +4738,7 @@ const TR = {
     "Tap Split and count the millimetres that one centimetre gives.": "કાપો બટન દબાવો અને ગણો કે એક સેન્ટિમીટરમાંથી કેટલા મિલિમીટર મળે.",
     "Tap Take away to finish both columns.": "બંને સ્તંભ પૂરા કરવા બાદ કરો બટન દબાવો.",
     "Take away is the key at the bottom.": "બાદ કરો બટન નીચે છે.",
-    "What does the joining sign say for these two units?": "આ બે એકમો માટે જોડાણ ચિહ્ન શું કહે છે?",
+    "Which unit are the lengths in, and which is smaller?": "લંબાઈઓ કયા એકમમાં છે, અને નાનો એકમ કયો છે?",
     "Work the millimetres first; one centimetre is that many millimetres.": "પહેલાં મિલિમીટર ઉકેલો, એક સેન્ટિમીટર એટલા જ મિલિમીટરનો હોય છે.",
     "Carry or break by the number that joins the two units: 10, 100 or 1,000.": "બે એકમોને જોડતી સંખ્યાથી વદી લો કે તોડો: 10, 100 કે 1,000.",
     "You learned: carry or break by the number that joins the two units.": "તમે શીખ્યા: બંને એકમોને જોડતી સંખ્યાથી વદી લો કે તોડો.",
@@ -4709,6 +4782,11 @@ const LC_SLOT = {
   m: [{ label: "m" }, { label: "cm" }],
   cm: [{ label: "cm" }, { label: "mm" }]
 };
+/* ch11 feedback: a place question is typed INTO the metres/centimetres boxes drawn on the working area, one digit a box (a box may stay empty: that is a miss, as before) */
+const LC_PLACE = {
+  km: [{ label: "m", free: true, digit: true }, { label: "m", free: true, digit: true }, { label: "m", free: true, digit: true }],
+  m: [{ label: "cm", free: true, digit: true }, { label: "cm", free: true, digit: true }]
+};
 const PHASES = [
   {
     n: 1,
@@ -4750,6 +4828,7 @@ const PHASES = [
       {
         qid: "M1.S2.T4.C15:1",
         kind: "place",
+        parts: LC_PLACE.km,
         pair: "km",
         op: "",
         rows: [[31, 58]],
@@ -4765,6 +4844,7 @@ const PHASES = [
       {
         qid: "M1.S2.T4.C15:2",
         kind: "place",
+        parts: LC_PLACE.m,
         pair: "m",
         op: "",
         rows: [[null, 7]],
@@ -4787,11 +4867,11 @@ const PHASES = [
     /* warm-up LC_WARM[2]: 2 km 600 m + 1 km 500 m */
     steps: [
       { say: "Tap Add to add the metres column first.", on: "add-small", hint: "Start with the key at the bottom." },
-      { say: "The joining sign says 1,000 m, and 1,100 m is more, so tap Carry.", on: "carry", hint: "Carry lifts 1,000 m over the km column." },
+      { say: "1,100 m is more than a kilometre, so tap Carry.", on: "carry", hint: "Carry lifts 1,000 m over the km column." },
       { say: "Tap Add again to add the kilometres and the carried one.", on: "add-big", hint: "The chip over the km column counts too." }
     ],
     stepHold: 900,
-    ladder: ["How many times does the big number on the joining sign fit in the sum?", "Carry one larger unit for each, and write only what is left in the boxes."],
+    ladder: ["How many whole larger units are inside the sum?", "Carry one larger unit for each, and write only what is left in the boxes."],
     closing: "Add the smaller unit first and carry one kilometre for each full 1,000 m.",
     learned: "You learned: carry one kilometre for each full thousand metres.",
     traceback: "The smaller column's sum shows in the carry box, each full joining number rises as an amber chip, what is left goes down, and the larger column is added with the chip.",
@@ -4919,7 +4999,7 @@ const PHASES = [
     concept: "The number depends on the units",
     conceptId: "M1.S2.T4.C18",
     objectiveIds: ["O6"],
-    says: ["One centimetre breaks into how many millimetres? Check the joining sign."],
+    says: ["One centimetre breaks into how many millimetres?"],
     /* warm-up LC_WARM[4]: 9 cm 1 mm less 4 cm 2 mm, the frame still set to m and cm until the child switches it */
     steps: [
       { say: "These lengths are in cm and mm, so tap cm and mm on the switch.", on: "pair-cm", hint: "The switch is the row of units at the top." },
@@ -4928,10 +5008,10 @@ const PHASES = [
       { say: "Tap Take away to finish both columns.", on: "take", hint: "Take away is the key at the bottom." }
     ],
     stepHold: 900,
-    ladder: ["What does the joining sign say for these two units?", "Work the millimetres first; one centimetre is that many millimetres."],
+    ladder: ["Which unit are the lengths in, and which is smaller?", "Work the millimetres first; one centimetre is that many millimetres."],
     closing: "Carry or break by the number that joins the two units: 10, 100 or 1,000.",
     learned: "You learned: carry or break by the number that joins the two units.",
-    traceback: "The joining sign lights, one centimetre splits into exactly ten slivers or ten millimetres gather into one chip, and each column is worked again.",
+    traceback: "One centimetre splits into exactly ten slivers or ten millimetres gather into one chip, and each column is worked again.",
     items: [
       /* learn ML4: answer in the plan = 17 cm 5 mm */
       {
@@ -4994,15 +5074,15 @@ const LC_WARM = {
 const MODEL = {
   pairs: LC_PAIRS,
   warmUps: LC_WARM,
-  frame: { picture: [900, 520], unitSwitch: [0, 0, 554, 72], joiningSign: [566, 4, 334, 64], columns: [0, 80, 568, 368], carryBox: [600, 80, 296, 116], pieces: [608, 222, 280, 124], key: [628, 440, 240, 72], bars: [12, 460, 544, 50] },
+  frame: { picture: [900, 520], unitSwitch: [0, 0, 554, 72], columns: [0, 80, 568, 368], carryBox: [600, 80, 296, 116], pieces: [608, 222, 280, 124], key: [628, 440, 240, 72], bars: [12, 460, 544, 50] },
   rule: "the smaller unit takes as many boxes as J - 1 has digits; carry one larger unit for each full J of the smaller column; break one larger unit into J smaller units"
 };
 const judge = (item, v) => {
+  if (item.kind === "place") return String(v != null ? v : "").replace(/[^0-9]/g, "") === String(item.answer);
   if (item.parts) {
     if (!judgeSlotParts(item, v)) return false;
     return slotPartsOf(v, 2)[1].length <= LC_PAIRS[item.pair].boxes;
   }
-  if (item.kind === "place") return String(v != null ? v : "").replace(/[^0-9]/g, "") === String(item.answer);
   if (typeof item.answer === "number") return leadNumber(v) === item.answer;
   return String(v).trim().toLowerCase() === String(item.answer).trim().toLowerCase();
 };
@@ -5018,7 +5098,7 @@ const oracle = () => PHASES.every((p) => p.items.every((it) => {
   return total >= 0 && Math.floor(total / J) === it.answer[0] && total - Math.floor(total / J) * J === it.answer[1];
 }));
 const nearMiss = (item) => item.near;
-const answerForms = (item) => item.parts ? item.answer.filter((x) => x >= 10).flatMap((x) => [String(x), indian(x), words(x)]) : [String(item.answer)];
+const answerForms = (item) => item.parts && Array.isArray(item.answer) ? item.answer.filter((x) => x >= 10).flatMap((x) => [String(x), indian(x), words(x)]) : [String(item.answer)];
 const agentKey = (item) => item.answer;
 const HOOK = {};
 const solve = (item, T2) => T2.state().stage === "demo" ? HOOK.demo && HOOK.demo() : T2.submit(item.answer);
@@ -5122,6 +5202,27 @@ const lcPenBoxes = (s, B, k0, top, grey) => {
   if (z < s.length) out.push(cell(s.slice(z), k0 + z, LC_INK_SMALL));
   return out;
 };
+/* pencil tokens for answer boxes right-to-left: box B - 1 (ones) first, then tens, then hundreds */
+const lcPenAnsBoxes = (s, B, top, grey) => {
+  const y = top + LC.base;
+  let z = 0;
+  if (grey === "all") z = s.length;
+  else if (grey) while (z < s.length - 1 && s[z] === "0") z++;
+  const out = [];
+  for (let k = B - 1; k >= 0; k--) {
+    const isGrey = (grey === "all") || (grey && k < z);
+    out.push({
+      s: s[k] || "0",
+      x: lcBoxX(B, k) + LC.boxW / 2,
+      y,
+      size: T.xl,
+      align: "middle",
+      step: 0,
+      color: isGrey ? LC_ZERO : LC_INK_SMALL
+    });
+  }
+  return out;
+};
 /* ML1: the number in box `at`, then a grey zero in every other box, left to right (a space skips box `at`), as rowCells shows them */
 const lcPenPut = (v, B, at, top) => {
   const y = top + LC.base, others = lcSeq(B).filter((j) => j !== at);
@@ -5219,7 +5320,7 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     } else {
       const nS = kind === "add" ? Math.max(0, Math.min(B, carryN - 1)) : Math.min(tkN, B);
       const nB = kind === "add" ? addBigN : Math.max(0, tkN - B);
-      ansCells = lcSeq(B).map((k) => k < nS ? sPad[k] : "");
+      ansCells = lcSeq(B).map((k) => (B - 1 - k) < nS ? sPad[k] : "");
       ansPen = [nS, nB];
       ansBig = bigS.slice(0, nB);
       if (ansBig.length < bigS.length && nB > 0) ansBig = bigS.slice(0, nB);
@@ -5231,6 +5332,11 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
       if (c && c !== "0") lead = false;
       return lead && c === "0" && k < cells.length - 1;
     });
+  };
+  /* what the child has put in each box of a place question: "0|5|8" box by box, or plain digits (the agent's submit) left to right */
+  const placeTyped = (v) => {
+    const t = String(v != null ? v : "");
+    return t.includes("|") ? slotPartsOf(t, B).map((x) => x.slice(-1)) : lcSeq(B).map((k) => t.replace(/[^0-9]/g, "")[k] || "");
   };
   const rowCells = (r) => {
     const blank = lcSeq(B).map(() => "");
@@ -5252,8 +5358,8 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
           trailZeros = B - s.length;
           s = s + "0".repeat(trailZeros);
         }
-      } else s = ty.replace(/[^0-9]/g, "").slice(0, B);
-      const cells2 = lcSeq(B).map((k) => s[k] || "");
+      } else s = null;
+      const cells2 = s !== null ? lcSeq(B).map((k) => s[k] || "") : placeTyped(ty);
       const g = greyOf(cells2).map((x, k) => x || k >= B - trailZeros);
       return { cells: cells2, grey: g };
     }
@@ -5369,12 +5475,12 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
         }
       })) return false;
       await lcWait(70);
-      return pen(lcPenBoxes(sPad, B, 0, ansTop, true), (i) => setP(on, 2 + i));
+      return pen(lcPenAnsBoxes(sPad, B, ansTop, true), (i) => setP(on, 2 + i));
     }
     if (on === "add-big") return pen([lcPenR(bigS, LC.bigR, ansTop + LC.base, T.xl, LC_INK_BIG)], (i) => setP(on, i + 1));
     if (on === "break") return doBreak(on);
     if (on === "split") return doSplit(on);
-    if (on === "take") return pen([...lcPenBoxes(sPad, B, 0, ansTop, true), lcPenR(bigS, LC.bigR, ansTop + LC.base, T.xl, LC_INK_BIG)], (i) => setP(on, i + 1));
+    if (on === "take") return pen([...lcPenAnsBoxes(sPad, B, ansTop, true), lcPenR(bigS, LC.bigR, ansTop + LC.base, T.xl, LC_INK_BIG)], (i) => setP(on, i + 1));
     if (on === "brk") {
       setP("break", 0);
       if (!await api.act({
@@ -5474,7 +5580,7 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
   const nudged = useRef("");
   const tryNudge = () => {
     const L = liveRef.current;
-    if (!L.asking || !L.item || !L.item.parts || L.busy || playing.current) return;
+    if (!L.asking || !L.item || !L.item.parts || L.item.kind === "place" || L.busy || playing.current) return;
     const ps = slotPartsOf(L.ty, 2), at = Math.min(L.part || 0, 1);
     if (ps[at] !== "" || ps.every((x) => x === "")) return;
     const t = Date.now();
@@ -5539,7 +5645,8 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     pend.current = 0;
   }, [qk]);
   HOOK.type = (v) => {
-    api.setTyped(String(v).replace(/[^0-9]/g, ""));
+    api.setTyped(String(v).replace(/[^0-9]/g, "").slice(0, B).split("").join("|"));
+    api.pickPart(B - 1);
     return true;
   };
   const locked = useRef(false);
@@ -5577,6 +5684,11 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
       if (a0.length > 3 || b0.length > B + 1) api.setTyped(a0.slice(0, 3) + (tp.length > 1 ? "|" + b0.slice(0, B + 1) : ""));
     }
   }, [ty]);
+  useEffect(() => {
+    if (asking && item && item.parts && item.parts.length === 2) {
+      api.pickPart(1);
+    }
+  }, [qk, asking]);
   const saidWin = useRef("");
   useEffect(() => {
     if (free || !item || stage !== "win" || !item.win) return;
@@ -5594,7 +5706,6 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     complete: stage === "idle"
   });
   const busy = tl.busy && !!dm;
-  const signLit = busy && d === 2 || S.prog && ["carry", "split", "pair-cm"].indexOf(S.prog.on) >= 0;
   const litSmall = busy && (kind === "add" && (d === 1 || d === 3) || kind === "sub" && (d === 2 || d === 3));
   const litBig = busy && (kind === "add" && d === 4 || kind === "sub" && (d === 1 || d === 4));
   const digit = (ch, x, y, fill, size, key) => <text key={key} x={x} y={y} textAnchor="middle" fontSize={size} fontWeight={700} fill={fill}>{ch}</text>;
@@ -5602,7 +5713,7 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
       {cs.map((c, j) => <tspan key={j} x={c.x} fill={c.fill}>{c.ch}</tspan>)}
     </text> : null;
   const bigText = (s, top, key, ink) => spread(lcCharXs(s, LC.bigR, T.xl).map((x, j) => ({ ch: s[j], x, fill: ink })), top + LC.base, T.xl, key);
-  const boxRow = (top, key, cells, grey, ring) => <g key={key}>
+  const boxRow = (top, key, cells, grey, ring, only) => <g key={key}>
       {lcSeq(B).map((k) => <rect
     key={"b" + k}
     x={lcBoxX(B, k)}
@@ -5610,14 +5721,15 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     width={LC.boxW}
     height={LC.boxH}
     rx={10}
-    fill="#FFFFFF"
-    stroke={ring ? C.accent : tint(C.ink, 0.45)}
-    strokeWidth={ring ? 4 : 2.5}
+    fill={ring && (only === void 0 || only === k) ? tint(C.accent, 0.88) : "#FFFFFF"}
+    stroke={ring && (only === void 0 || only === k) ? C.accent : tint(C.ink, 0.45)}
+    strokeWidth={ring && (only === void 0 || only === k) ? 4 : 2.5}
   />)}
       {spread(cells.map((c, k) => ({ ch: c, x: lcBoxX(B, k) + LC.boxW / 2, fill: grey[k] ? LC_ZERO : LC_INK_SMALL })).filter((c) => !!c.ch), top + LC.base, T.xl, "d")}
     </g>;
   const unitSwitch = () => {
     const live = free || warm && !!it.from;
+    if (!live) return null;
     return <g>
         {LC_PAIR_KEYS.map((k, i) => {
       const x = i * LC.swP, on = (free ? fp.pair : pairNow) === k, label = tx(LC_PAIRS[k].label), fs = lcFit(label, T.label, LC.swW - 20);
@@ -5651,18 +5763,6 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     })}
       </g>;
   };
-  const joiningSign = () => {
-    const sl = "1 " + tx(P.big), sr = indian(J) + " " + tx(P.small);
-    const fs = lcFit(sl + " = " + sr, T.label, LC.W - LC.signX - 24);
-    const wl = lcTW(sl, fs), wr = lcTW(sr, fs), gap = fs * 0.6;
-    const x1 = LC.signX + (LC.W - LC.signX - (wl + wr + 2 * gap)) / 2;
-    return <g>
-        <rect x={LC.signX} y={4} width={LC.W - LC.signX} height={64} rx={16} fill={signLit ? tint(LC_AMBER, 0.75) : "#FFFFFF"} stroke={signLit ? shade(LC_AMBER, 0.3) : C.ink} strokeWidth={signLit ? 5 : 2} />
-        <text x={x1 + wl} y={47} textAnchor="end" fontSize={fs} fontWeight={700} fill={C.ink}>{sl}</text>
-        <text x={x1 + wl + gap} y={47} textAnchor="middle" fontSize={fs} fontWeight={700} fill={C.ink}>=</text>
-        <text x={x1 + wl + 2 * gap} y={47} fontSize={fs} fontWeight={700} fill={C.ink}>{sr}</text>
-      </g>;
-  };
   const frame = () => <g>
       <rect x={0} y={LC.top} width={LC.frameW} height={fBot - LC.top} rx={RAD.panel} fill="#FFFFFF" stroke={C.rule} strokeWidth={2} />
       {litSmall && <rect x={LC.div + 8} y={LC.top + 8} width={LC.frameW - LC.div - 16} height={fBot - LC.top - 16} rx={14} fill={tint(C.accent, 0.86)} />}
@@ -5680,8 +5780,9 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     const ring = kind === "place" && asking && !!box && box.open;
     const rp = rowPen(i, rc);
     return <g key={"row" + i}>
-            {boxRow(top, "bx" + i, rp ? rc.cells.map(() => "") : rc.cells, rc.grey, ring)}
+            {boxRow(top, "bx" + i, rp ? rc.cells.map(() => "") : rc.cells, rc.grey, ring, ring ? part : void 0)}
             {rp && rp.map((q, j) => lcPenDraw(q[0], q[1], "rp" + i + "-" + j))}
+            {kind === "place" && asking && lcSeq(B).map((k) => <SlotPartBox key={"pp" + k} id={"part-" + (k + 1)} label={"type in box " + (k + 1)} x={lcBoxX(B, k) - 3} y={top - 6} w={LC.boxW + 6} h={72} on={part === k} enabled onPick={() => api.pickPart(k)} />)}
             {kind === "warm1" && i === 0 && rowsIn ? lcPenDraw([lcPenR(r[0], LC.bigR, top + LC.base, T.xl, LC_INK_BIG)], R("big"), "big" + i) : bigText(rowBig(i), top, "big" + i, LC_INK_BIG)}
           </g>;
   })}
@@ -5706,12 +5807,14 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     width={144}
     height={LC.boxH}
     rx={10}
-    fill="#FFFFFF"
+    fill={asking && box && box.open && part === 0 ? tint(C.accent, 0.88) : "#FFFFFF"}
     stroke={asking && box && box.open && part === 0 ? C.accent : tint(C.ink, 0.45)}
     strokeWidth={asking && box && box.open && part === 0 ? 4 : 2.5}
   />
-          {boxRow(ansTop, "ans", ansPen ? ansCells.map(() => "") : ansCells, greyOf(ansCells), asking && !!box && box.open && part === 1)}
-          {ansPen ? lcPenDraw(lcPenBoxes(sPad, B, 0, ansTop, true), ansPen[0], "anspen") : null}
+          {boxRow(ansTop, "ans", ansPen ? ansCells.map(() => "") : ansCells, greyOf(ansCells), asking && !!box && box.open && part === 1, asking && !!box && box.open && part === 1 ? Math.max(0, B - 1 - (slotPartsOf(ty, 2)[1] || "").length) : void 0)}
+          {asking && <SlotPartBox id="part-1" label="type in the larger-unit box" x={86} y={ansTop - 6} w={156} h={72} on={part === 0} enabled onPick={() => api.pickPart(0)} />}
+          {asking && <SlotPartBox id="part-2" label="type in the smaller-unit boxes" x={lcBoxX(B, 0) - 3} y={ansTop - 6} w={LC.boxR - lcBoxX(B, 0) + 6} h={72} on={part === 1} enabled onPick={() => api.pickPart(1)} />}
+          {ansPen ? lcPenDraw(lcPenAnsBoxes(sPad, B, ansTop, true), ansPen[0], "anspen") : null}
           {ansPen ? lcPenDraw([lcPenR(bigS, LC.bigR, ansTop + LC.base, T.xl, LC_INK_BIG)], ansPen[1], "ansbig") : bigText(ansBig, ansTop, "ansbig", LC_INK_BIG)}
           {
     /* Enter on an empty answer box: that box is ringed for 1.6 s */
@@ -6008,8 +6111,6 @@ function Work({ n, item, index, stage, wrong, typed, part, api, step, stepOn, bo
     return null;
   };
   return <g transform={`translate(${ox},0)`}>
-      {unitSwitch()}
-      {joiningSign()}
       {frame()}
       {card()}
       {carryBox()}
@@ -6089,6 +6190,8 @@ function LengthColumns(props) {
     keyOnly: true,
     /* the wide keypad (LAYOUT.md §1b, PATTERNS.md 9g): the picture is 900 wide, so it fits x 64 to 964 */
     bigPad: true,
+    /* ch11 feedback: the answer is typed INTO the boxes drawn on the working area (a tap picks one); the keypad panel has no answer field of its own */
+    boxAnswer: true,
     /* the Next key (PATTERNS.md 9d): nothing moves on by itself */
     nextKey: true,
     /* NAV DOTS (the new look; LAYOUT.md §1d) */
