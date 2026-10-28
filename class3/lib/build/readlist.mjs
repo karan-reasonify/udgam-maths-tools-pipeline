@@ -25,6 +25,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { CONFIG, CLASS_DIR, fromRoot } from "../core/env.mjs";
 import { capsFor } from "../core/caps.mjs";
+import { readPin } from "../core/pin.mjs";
 
 export const READLIST_END = "A pointer never replaces reading: read any other section when unsure; the checks are the judge.";
 
@@ -118,7 +119,11 @@ export function readlistEntries(dir, opts = {}) {
   part(P, /^1\./, "the plain answer: a number the 12-key pad types (judge, oracle, nearMiss, agentKey)", "## 1.");
   if (caps.steps) part(P, /^9b\./, "guide steps and hints: one click a step, a hint each, api.did at every click, the Hint key", "## 9b.");
   part(P, /^9\./, "the bubble's lines: one sentence a page, win and closing lines, never repeating a line", "## 9.");
-  part(P, /^7\./, "the correction (traceback): redraws the maths and ends on the whole right answer, unmarked", "## 7.");
+  /* 2026-10-28 MISS HIDES THE ANSWER: a chapter whose runtime.json says rules.missHidesAnswer "strict" (check miss-hides-answer) */
+  const mhStrict = (() => { try { const p = readPin(path.dirname(path.resolve(dir))); return !!(p && p.rules && p.rules.missHidesAnswer === "strict"); } catch (e) { return false; } })();
+  part(P, /^7\./, mhStrict
+    ? "the correction (traceback): THIS chapter is held to MISS HIDES THE ANSWER: replay the working, unmarked, and stop ONE step before the answer; tag what shows the answer data-reveals=\"answer\" (drawn only at the win) and an always-printed scale data-scale (check miss-hides-answer, PREFLIGHT 29)"
+    : "the correction (traceback): redraws the maths and ends on the whole right answer, unmarked (this chapter has no rules.missHidesAnswer)", "## 7.");
   part(P, /^10\./, "what gives the answer away (read before drawing any readout or hint)", "## 10.");
   if (caps.board || caps.skin) part(P, /^14\./, `the board layout${caps.skin ? " and object skins (<Skin>)" : ""}: board: true, the answer drawer, the floor${f.objects.length ? `; the brief names an object (${f.objects.join(", ")}): the image pass decides whether it gets a skin` : ""}`, "## 14.");
   if (caps.party) part(P, /^9c\./, "the phase party: the runtime's; nothing to write, what to expect", "## 9c.");

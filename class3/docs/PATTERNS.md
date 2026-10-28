@@ -170,8 +170,35 @@ still lands.
 
 ## 7. The correction (traceback)
 
-After a miss the traceback **redraws the maths and ends on the whole right answer**, unmarked: no red,
-no cross, no "wrong". The pad re-opens with the slot EMPTY.
+After a miss the traceback redraws the maths, unmarked: no red, no cross, no "wrong". The pad re-opens with the slot EMPTY.
+
+**MISS HIDES THE ANSWER (the owner, 2026-10-28; a chapter whose `runtime.json` has `rules.missHidesAnswer: "strict"`: every chapter
+fetched from that day, class 3 ch 9 by hand; `readlist.md` says which).** The correction replays the WORKING and **stops ONE step before
+the answer**, so the child finishes it. Tries are unlimited; each miss brings a stronger hint rung, and no rung prints the answer
+(`answer-not-echoed`). The answer appears only at the win (`stage === "win"`). From the miss on, draw nothing that shows or points at the
+answer: no final number, no ring, glow or colour that singles out the right card or choice, no lit final mark, no bracket with the number,
+no "Answer" tag, no `api.say` that names it.
+- **Tag it.** Every element that shows or points at the answer carries `data-reveals="answer"` and is drawn (or made visible) only at the
+  win; `check` fails one on show at any moment from the open question through each miss and after the unlock. A scale whose digits are
+  always printed (a ruler's 0 to 16, a number line, a chart's headings) carries `data-scale` on its group and its text is never read. The
+  question's own numbers (the addends, a build target) are on show from the open question and are not counted; the child's own wrong value
+  may be drawn.
+- **A ruler** (how long is the pencil? 7 cm): lay the ruler, light its 0 mark at the pencil's end, count the marks along the pencil one
+  by one, and stop at the mark before its tip: the child reads the last one.
+  ```tsx
+  <g data-scale="ruler">{ticks.map((i) => <text key={i} x={x0 + i * u} y={y} fontSize={32}>{i}</text>)}</g>
+  {lit(0)}{Array.from({ length: Math.min(fx.count, ans - 1) }, (_, i) => lit(i + 1))}   {/* the count stops one short */}
+  {stage === "win" && <g data-reveals="answer"><rect ... /><text ...>{`${ans} cm`}</text></g>}
+  ```
+- **A card choice** (which is more?): set the two cards side by side and compare them (the tens lit on BOTH cards, then the ones), and stop.
+  Never ring, lift, colour or move the right card; its ring is the win's (`data-reveals="answer"`, drawn at `stage === "win"` only).
+- **A number** (34 + 12): redo the working column by column (the ones 4 and 2 lit, then the tens 3 and 1) and leave the answer row for the
+  child; the sum is written only at the win, inside `data-reveals="answer"`.
+
+`check`: `miss-hides-answer` plays wrong answers by real input (three misses on the first question it plays) and samples the working area,
+the runs box and the bubble every 60 ms: a `data-reveals="answer"` on show, or a new text (or a row of digit cards) naming the answer, FAILS.
+**A chapter without the key (fetched before 2026-10-28)** keeps the old rule: the traceback **ends on the whole right answer**
+(`miss-shows-answer`), and `miss-hides-answer` is one INFO row.
 
 **A miss empties the slot: nothing to write (MISS CLEARS THE SLOT; the owner, 2026-10-28, a runtime with the marker).** At
 the miss the runtime clears every typed digit, every box of a `parts` / fraction / mixed / decimal answer (the caret back in
@@ -183,7 +210,7 @@ empty boxes. `check`: `miss-clears-slot` (INFO on an older runtime, which keeps 
 
 **A correction must end in a state the child's next act confirms, never one it undoes** (found on three
 ch 6 tools). When the traceback fills the child's own pieces (a toggle, a tap-to-pick list, a pen of
-cards, two posts), draw its answer on a **demo-only layer that clears on the child's next act**, or hold
+cards, two posts), draw its working (its answer only on a chapter without MISS HIDES THE ANSWER) on a **demo-only layer that clears on the child's next act**, or hold
 the pieces still while it stands. Never write into the state the child's taps toggle: the one tap your
 own line asks for would switch a corrected piece back off, and the next Enter sends a second wrong
 answer, costing a try. `check` does not catch this; the play tester does.
@@ -422,7 +449,7 @@ the picture that holds the form it asks for, not through the Answer key, the key
   (`onPick={() => api.pickPart(j)}`, the card's halves) and shows the typed digits (`slotPartsOf(typed, 2)`) IN its own
   boxes, the active box solid with the caret. Call `api.cardReady(false)` while an act on the picture still waits (Cut,
   Lots of, Trade) or the picture is animating: the card then neither blinks nor takes a tap, the bubble says nothing about it
-  and a digit typed on the keyboard is ignored, so the picture comes first. After a miss show the correction's own answer on the card until the child types something new, then clear the correction's cards (keep its strips) so the typed digits show. The miss empties `typed` at once (MISS CLEARS THE SLOT, §7), so "something new" is `typed` turning non-empty again, never `typed` differing from `wrong.value` (that already holds at the miss). Set the typed digits at ONE size in both boxes, the size the finished answer is drawn at, stepping down together only for a long number.
+  and a digit typed on the keyboard is ignored, so the picture comes first. After a miss the card shows its empty boxes and never the answer on a chapter held to MISS HIDES THE ANSWER (§7); on a chapter without it, show the correction's own answer on the card until the child types something new, then clear the correction's cards (keep its strips) so the typed digits show. The miss empties `typed` at once (MISS CLEARS THE SLOT, §7), so "something new" is `typed` turning non-empty again, never `typed` differing from `wrong.value` (that already holds at the miss). Set the typed digits at ONE size in both boxes, the size the finished answer is drawn at, stepping down together only for a long number.
 - **The pieces' props** (2026-10-17; three ch 5 builders had to probe them): `<SlotPartBox id label x y w h on enabled onPick />`
   (a labelled finger box; `on` = the active box, solid with the caret), `<BlinkRing x y w h rx C sw={4} m={2} />` (the blinking
   ring round a box; `m` its margin), `<Invite x y r={56} C />` (a pulsing CIRCLE round a centre, not a box: ring a rect with
@@ -885,7 +912,8 @@ child names (`s.name`) picks the drawing.
   `tr-coverage`, so add each to `TR` by hand.
 - **Is a hint showing?** `Work` gets no hint prop: read `toolApi.getState().hint` with `hintKind` other than `"type"` (the built-in
   where-to-tap line) and latch it for the question. Use it to show a helper key whose act reveals part of the answer (lit digits, a
-  count, a result) only after the first miss or the Hint key; keep the key in the guide steps, free play and the correction.
+  count, a result) only after the first miss or the Hint key; keep the key in the guide steps, free play and the correction. On a chapter
+  held to MISS HIDES THE ANSWER (§7) it lights the working only, never the final result.
 - **A nudge said with `api.say` stays until something replaces it.** "Shade some squares first." or "Fill every step first." said at a
   refused Enter is still on the bubble after the child has done it (C10, C40 play tests): the runtime does not bring the question back.
   On the child's next act that answers the nudge (a square shaded, a card placed, a pick), say the question again (`api.say(item.say)`).

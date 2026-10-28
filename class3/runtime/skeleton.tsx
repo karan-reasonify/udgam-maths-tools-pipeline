@@ -164,6 +164,9 @@ const check = () => (HOOK.check ? HOOK.check() : undefined);
    taps = <Hit id x y w h onPress label />. One <Invite/> marks the one thing to touch.
    Nothing is written here that the bubble already says. `wrong` = { value, tries } after a miss:
    lock, redraw the mathematics in steps (the traceback), unlock; never mark it, never reset it.
+   MISS HIDES THE ANSWER (a chapter whose runtime.json has rules.missHidesAnswer "strict", PATTERNS.md 7): the traceback replays the
+   working and stops ONE step before the answer; whatever shows the answer carries data-reveals="answer" and is drawn only at
+   stage "win"; an always-printed scale (a ruler's 0 to 16) carries data-scale (check miss-hides-answer).
    The slot is the runtime's: a miss empties it (MISS CLEARS THE SLOT), so `typed` is "" from the miss on and
    wrong.value is what the child sent; never write the slot (api.setTyped) during the traceback.
    stage === "free" is Free play (the plan's writeup.freePlay): no target, every control unlocked.

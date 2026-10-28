@@ -1,0 +1,1318 @@
+{
+  "slotId": "M1.S2.T5.C22.2D1",
+  "mediaId": "M1.S2.T5.C22.2D1",
+  "toolId": "weight_converter",
+  "title": "Weight Converter",
+  "component": "M1.S2.T5.C22.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch9_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_9/2dtool/M1.S2.T5.C22.2D1/M1.S2.T5.C22.2D1.tsx",
+  "description": "Pour a kilogram of salt out as a thousand grams, gather grams back into kilograms, and add and subtract weights in columns.",
+  "conceptIds": [
+    "M1.S2.T5.C22",
+    "M1.S2.T5.C23",
+    "M1.S2.T5.C24",
+    "M1.S2.T5.C25"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Change kilograms into grams and grams into kilograms by seeing a kilogram bag break into a thousand grams and gather back, change a weight in kilograms and grams, and add and subtract weights in columns with a carry or a borrow.",
+    "look": "A kitchen scale with a kilogram dial and a gram dial, a real bag of salt that pours out a thousand gram marks inside a vermilion ring, a Given tag, an Answer tag, a column board with a kilograms column and a grams column, and two shopping baskets.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Weight Converter' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many conversions or sums have been worked. It is never a score. The working area is 1086 by 528 at x 64, y 202. A kitchen scale stands at the left, 300 across at x 90, y 220, with a round kilogram dial and a round gram dial side by side on its face, each 110 across, and a real white paper bag of salt labelled 1 kg on its pan. Beside it the kilogram stepper at x 90, y 540 (300 by 60) sets from 1 to 20 kilograms, and the grams stepper under it at x 90, y 610 (300 by 60) adds a number of grams for a weight in kilograms and grams. The Pour and Gather buttons stand at x 90, y 690 and x 250, y 690, each 150 by 56 and labelled in words. When Pour is pressed each kilogram bag opens and pours out its thousand gram marks, drawn as ten small paper bags of 100 g, each cut into ten tens, into a tray at x 420, y 230 (560 by 300) inside a vermilion ring labelled Unit fact, 1 kg = 1000 g. Gather runs it backwards, the gram marks flowing back into kilogram bags, one bag for every thousand, with a leftover of fewer than a thousand staying on the tray as grams. A deep blue Given tag at x 420, y 560 (260 by 60) names the weight the question gives, a green Answer tag at x 700, y 560 (260 by 60) names the weight the working reaches, and an amber Second tag at x 560, y 640 (240 by 56) holds the grams added on, each with its unit beside its number. On the fourth phase the column board replaces the tray: a board 520 by 280 at x 420, y 220 with two columns, kilograms and grams, headed in words, the first weight in the top row, the second weight one row under it, a short level line under them and the answer row below, with a small carried one drawn above the kilograms column and a borrowed kilogram broken into a thousand grams above the grams column. The two shopping baskets stand at x 960 and x 1060, y 220, each a basket of fruit in natural colours about 90 across, and a Basket button under each sets it on the scale. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys and a clear key, for typing the converted weight, the sum or the difference into the answer slot. On the first phase the answer slot asks for grams, and on the second for kilograms. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours, and the chapter's four roles are carried by what holds the object or the number, never by tinting the object. The measure the question gives, or the reading taken from the ruler, the balance or the jug, sits in a deep blue tag or on a deep blue plate, labelled Given. The measure the working reaches, a converted or total amount, sits in a green tag, labelled Answer. The times 100 or times 1000 step and the unit fact it comes from sit inside a vermilion ring, labelled Unit fact. The second amount of a sum or a difference, an amount carried and a part left over sit in an amber tag, labelled Second or Left. Every ruler mark, scale mark and plain edge is near-black, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of the four, and each reading survives with the colour taken away, because a measure is told by its written label before it is told by its colour.",
+    "finish": "The scale shows the last weight in both units, the bag poured out into its grams inside the vermilion ring, and the column board with its carry or borrow.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "each bag pours out its gram marks inside the vermilion ring and the Answer tag names the grams in green",
+        "does": "sets the kilograms, presses Pour, watches the thousands of grams fall out, and types the grams",
+        "goal": "one kilogram is one thousand grams, so kilograms change into grams by multiplying by one thousand",
+        "says": "One kilogram pours out a thousand grams. How many grams does this weight pour out?",
+        "check": "Away from the screen: you pour out three bags of one kilogram each. How many thousands of grams do you have?",
+        "feels": "a bag of salt tipping out ten small bags, each splitting into ten tens, until the gram dial has climbed to a thousand",
+        "hands": "Weigh a kilogram of rice on a kitchen scale and share it into small bags of a hundred grams by hand, counting ten bags, and say how many grams are in the kilogram.",
+        "tries": "First rung: how many grams are in one kilogram? Second rung: how many kilogram bags are there? Third rung: the same task with the stepper at one, before the larger number returns.",
+        "wrong": [
+          {
+            "why": "a hundred is the number met for metres and centimetres, and it feels like the usual number",
+            "move": "multiplies by one hundred",
+            "screen": "the bag pours out only a hundred gram marks and stops far short of the full kilogram bag, and the Unit fact ring lights round one thousand"
+          },
+          {
+            "why": "the number on the stepper is the first number seen",
+            "move": "gives the number of kilograms as the answer",
+            "screen": "the grams dial stays at zero until the Pour is pressed, and then climbs to the full number of grams"
+          }
+        ],
+        "screen": "a kitchen scale with a bag of salt on the pan, the kilogram stepper at two, and a closed bag with a vermilion ring waiting",
+        "soWhat": "one kilogram is one thousand grams, so kilograms change into grams by multiplying by one thousand",
+        "concept": "Kilograms into grams: multiply by 1000"
+      },
+      {
+        "n": 2,
+        "win": "the gram marks gather into whole kilogram bags and the Answer tag names the kilograms in green",
+        "does": "presses Gather, watches every thousand grams flow into a kilogram bag, and types the kilograms",
+        "goal": "every thousand grams gather into one kilogram, so grams change into kilograms by dividing by one thousand",
+        "says": "Every thousand grams make one kilogram. How many kilograms are in this heap?",
+        "check": "Away from the screen: a heap holds twelve thousand grams of rice. How many kilogram bags does it fill?",
+        "feels": "a heap of gram marks flowing into kilogram bags, one bag for every thousand, until the bags are full",
+        "hands": "Pour a heap of dry rice into a jar until it holds a kilogram on the scale, then say how many such jars a bigger heap would fill.",
+        "tries": "First rung: how many grams fill one kilogram bag? Second rung: how many thousands are in the heap? Third rung: the same task with a smaller heap, before the full heap returns.",
+        "wrong": [
+          {
+            "why": "a hundred is the number met for centimetres and metres",
+            "move": "divides by one hundred",
+            "screen": "the gram marks gather into far too many bags, and the Unit fact ring lights round one thousand"
+          },
+          {
+            "why": "one zero is easy to remove and looks like enough",
+            "move": "takes away only one zero",
+            "screen": "the heap gathers into the true number of bags and the Answer tag shows it beside the number typed"
+          }
+        ],
+        "screen": "a heap of gram marks on the scale, the Gather button lit, and empty kilogram bags waiting beside it",
+        "soWhat": "every thousand grams make one kilogram, so grams change into kilograms by dividing by one thousand",
+        "concept": "Grams into kilograms: divide by 1000"
+      },
+      {
+        "n": 3,
+        "win": "the kilograms pour out their thousands, the grams land in the amber tag, and the Answer tag names the total in green",
+        "does": "changes the kilograms in the ring, adds the grams in the amber tag, and types the total in grams",
+        "goal": "a weight in kilograms and grams is changed by changing the kilograms first and then adding the grams",
+        "says": "Change the kilograms first. Then add the grams that are left. What is the weight in grams?",
+        "check": "Away from the screen: a parcel weighs three kilograms and five hundred grams. How many grams are the kilograms alone?",
+        "feels": "the kilograms pouring out their thousands inside the ring and the grams landing on the end in an amber tag",
+        "hands": "Weigh a bag of rice that weighs a kilogram and a bit, and say the weight in kilograms and grams, then in grams.",
+        "tries": "First rung: change only the kilograms. Second rung: say the grams in three places. Third rung: the same task with no grams, before the grams return.",
+        "wrong": [
+          {
+            "why": "the kilograms and the grams are written next to each other, so they seem to make one number",
+            "move": "pushes the two numbers together",
+            "screen": "the kilograms pour out inside the vermilion ring first and the grams are added in the amber tag, and the total is built in two visible steps"
+          },
+          {
+            "why": "a zero looks like nothing and feels easy to leave out",
+            "move": "drops a zero in the grams",
+            "screen": "the grams land in the amber tag in three places and the empty tens place is drawn as a small zero that stays"
+          }
+        ],
+        "screen": "a scale reading some kilograms and some grams, a Given tag, a vermilion ring waiting, and an empty amber Second tag",
+        "soWhat": "a weight in kilograms and grams is changed to grams by changing the kilograms first and then adding the grams",
+        "concept": "Kilograms and grams together"
+      },
+      {
+        "n": 4,
+        "win": "the carry rises above the kilograms column or the borrowed kilogram breaks into a thousand grams, and the Answer tag names the weight in green",
+        "does": "adds or subtracts the grams first, then the kilograms, carrying or borrowing where the column needs it, and types the answer",
+        "goal": "weights are added and subtracted in two columns, the grams first, with a carry or a borrow when the column needs it",
+        "says": "Work the grams first. Do the grams reach a thousand, or are there too few? Then the kilograms.",
+        "check": "Away from the screen: you add two weights and the grams come to more than a thousand. Where does the extra kilogram go?",
+        "feels": "a column of grams filling up to a thousand and spilling one kilogram over to the next column, or a kilogram breaking into a thousand grams to lend",
+        "hands": "Add the weights of two bags of rice written in kilograms and grams on a sheet of squared paper with two columns, working the grams first, then take one weight away from the other.",
+        "tries": "First rung: which column do you work first? Second rung: do the grams reach a thousand, or are there too few? Third rung: the same task with grams that do not carry or borrow, before the harder one returns.",
+        "wrong": [
+          {
+            "why": "the kilograms are on the left and the eye reads left to right",
+            "move": "works the kilograms column first",
+            "screen": "the grams column lights first and the carry or the borrow is drawn above the column it reaches, and only then does the kilograms column light"
+          },
+          {
+            "why": "the first digits are the first numbers met, even when the units are different",
+            "move": "compares two weights by their first digits",
+            "screen": "both baskets are shown on the scale one after the other, and each weight is changed to grams before the scale says which is more"
+          }
+        ],
+        "screen": "a column board with kilograms and grams columns, two weights written one under the other, and two baskets of fruit beside it",
+        "soWhat": "weights are added and subtracted in two columns, the grams first, with a carry or a borrow when the column needs it, and are compared in one unit",
+        "concept": "Adding and subtracting weights"
+      }
+    ],
+    "delight": "On the first phase, the moment Pour is pressed, the bag of salt tips and the grams run out in ten small bags that each split into ten tens, inside the vermilion ring, and the kilogram dial turns to zero while the gram dial climbs. On the fourth phase a borrowed kilogram snaps into a thousand gram marks that slide across into the grams column.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet typed. On the first phase the kitchen scale holds a closed bag of salt and the kilogram stepper is set, with a vermilion ring waiting beside it. On the second a heap of gram marks lies on the scale, the Gather button is lit, and empty kilogram bags wait beside it. On the third the scale reads a weight in kilograms and grams, a Given tag names it, and an empty amber Second tag waits. On the fourth the column board is up with two weights written one under the other and two baskets of fruit beside it. One thing moves, once: the Pour button, or the first column on the fourth phase, gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any whole number of kilograms from one to twenty on the pan, the Pour and Gather buttons, a weight in kilograms and grams, the column board and the two baskets. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on a bag of salt, a bicycle, a parcel, a desk, a school backpack, a sack of flour and two baskets of fruit, changing both ways, kilograms and grams together, a zero in the grams, a borrowed kilogram, and which basket weighs more.",
+    "voiceLines": [
+      "A kitchen scale and a bag of salt. Let us see what is inside a kilogram.",
+      "One kilogram pours out a thousand grams. How many grams does this weight pour out?",
+      "Every thousand grams make one kilogram. How many kilograms are in this heap?",
+      "Change the kilograms first. Then add the grams that are left. What is the weight in grams?",
+      "Work the grams first. Do the grams reach a thousand, or are there too few? Then the kilograms.",
+      "A new weight on the scale. Which unit does it start in?",
+      "Free play. Pour, gather and add any weights you like.",
+      "Look at the grams again. How many thousands are there? Then the grams that are left.",
+      "You changed kilograms and grams both ways, and you worked the columns grams first."
+    ],
+    "observations": [
+      {
+        "why": "every kilogram bag holds one thousand grams, so each bag adds another thousand.",
+        "soWhat": "kilograms change into grams by multiplying by one thousand.",
+        "observe": "One kilogram bag poured out the same number of gram marks every time, and three bags poured out three times as many."
+      },
+      {
+        "why": "a bag takes exactly one thousand grams, and fewer than a thousand cannot fill a bag.",
+        "soWhat": "grams change into kilograms by dividing by one thousand.",
+        "observe": "Gather made one kilogram bag for every thousand gram marks, and what was left stayed as grams."
+      },
+      {
+        "why": "the kilograms and the grams are two parts of one weight, and the kilograms are changed first.",
+        "soWhat": "a weight in kilograms and grams is changed to grams by changing the kilograms and adding the grams.",
+        "observe": "A weight in kilograms and grams came out as the kilograms' thousands with the grams added on the end."
+      },
+      {
+        "why": "the grams can reach a thousand and make a kilogram, so the kilograms column needs to know.",
+        "soWhat": "weights are added and subtracted in columns, the grams first, with a carry or a borrow when the column needs it.",
+        "observe": "The grams column was worked before the kilograms column, and a thousand grams carried over as a kilogram."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a kitchen scale with a bag of salt on the pan, the kilogram stepper at two, and a closed bag with a vermilion ring waiting",
+        "win": "each bag pours out its gram marks inside the vermilion ring and the Answer tag names the grams in green",
+        "traceback": "The opened bags light one by one, counted in kilograms, then the small bag of grams; the total is left for the child.",
+        "ladder": [
+          "How many grams did each opened bag show?",
+          "Change the 4 kg into grams first, then add the small bag.",
+          "The 2 kg is two thousands; the small bag adds just 90 g.",
+          "Each opened bag is 1,000 g.",
+          "Thousands first, then any grams left over."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a heap of gram marks on the scale, the Gather button lit, and empty kilogram bags waiting beside it",
+        "win": "the gram marks gather into whole kilogram bags and the Answer tag names the kilograms in green",
+        "traceback": "The full bags light one by one with a count in grams that stops one bag short; the rice left is ringed with no number.",
+        "ladder": [
+          "Each full bag holds 1,000 g; count the full bags.",
+          "Count the full bags first, then work out the rice left over.",
+          "Only a pinch is left after the full bags; how many grams is it?",
+          "Each full bag is one kilogram.",
+          "The rice outside the bags stays as grams."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a scale reading some kilograms and some grams, a Given tag, a vermilion ring waiting, and an empty amber Second tag",
+        "win": "the kilograms pour out their thousands, the grams land in the amber tag, and the Answer tag names the total in green",
+        "traceback": "The grams column lights first, the carry or the borrow shows again, then the kilograms column lights; the answer row stays empty.",
+        "ladder": [
+          "Add the grams first: what is left after the 1,000 g you carried?",
+          "Take away the grams first, from the new grams on top.",
+          "600 g and 400 g make exactly 1,000 g; what grams are left?",
+          "Work the grams column before the kilograms column.",
+          "1,000 g is the same as 1 kg."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a column board with kilograms and grams columns, two weights written one under the other, and two baskets of fruit beside it",
+        "win": "the carry rises above the kilograms column or the borrowed kilogram breaks into a thousand grams, and the Answer tag names the weight in green",
+        "traceback": "The grams column lights first, a carry or a borrow is drawn, then the kilograms column lights; the answer row stays empty.",
+        "ladder": [
+          "Add the grams column first, then the kilograms column.",
+          "Add the three grams first, then the three kilograms.",
+          "Take away the grams column first.",
+          "Kilograms go under kilograms, grams under grams.",
+          "Work the grams column before the kilograms."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "unitFact": "1 kg = 1,000 g",
+    "warm": {
+      "1": {
+        "kind": "kg",
+        "kg": 3,
+        "g": 0
+      },
+      "2": {
+        "kind": "group",
+        "grams": 2300
+      },
+      "3": {
+        "kind": "col",
+        "rows": [
+          [
+            1,
+            500
+          ],
+          [
+            2,
+            700
+          ]
+        ],
+        "op": "+",
+        "act": "carry"
+      },
+      "4": {
+        "kind": "shop",
+        "op": "+",
+        "items": [
+          {
+            "id": "rice",
+            "sk": "sack",
+            "kg": 1,
+            "g": 200
+          },
+          {
+            "id": "mango",
+            "sk": "mango",
+            "m": 1,
+            "kg": 0,
+            "g": 300
+          }
+        ]
+      }
+    },
+    "free": {
+      "kind": "kg",
+      "kg": 2,
+      "g": 0
+    },
+    "answerGate": "Every question is gated by its act (user mode, after a real touch): P1 Open (the hand opens each 1 kg bag); P2 Gather (the hand fills a 1 kg bag for every 1,000 g); P3 the right one of Carry and Borrow (shown together; the other gets a nudge and costs no try); P4 a tap on each item (its weight goes into the columns). No question is ungated.",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T5.C22:WC1",
+        "kind": "kg",
+        "kg": 2,
+        "g": 0,
+        "answer": 2000,
+        "near": 200,
+        "ladder": [
+          "Count 1,000 g for every bag on the scale.",
+          "Add 1,000 g for the first bag and 1,000 g for the second."
+        ],
+        "win": "Yes, 2 kg is 2,000 g: each kilogram is 1,000 g."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T5.C24:WC3",
+        "kind": "kg",
+        "kg": 4,
+        "g": 700,
+        "answer": 4700,
+        "near": 47000,
+        "ladder": [
+          "Four opened bags make four thousands of grams.",
+          "Put the 700 g of the small bag on top of the thousands."
+        ],
+        "win": "Yes, 4 kg 700 g is 4,700 g."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T5.C24:6",
+        "kind": "kg",
+        "kg": 2,
+        "g": 90,
+        "answer": 2090,
+        "near": 290,
+        "ladder": [
+          "Write the grams in three places: 90 g has no hundreds.",
+          "Keep a 0 in the hundreds place after the thousands."
+        ],
+        "win": "Yes, 2 kg 90 g is 2,090 g, with the 0 kept."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": null,
+        "kind": "group",
+        "grams": 4000,
+        "parts": [
+          {
+            "label": "kilograms",
+            "unit": "kg"
+          },
+          {
+            "label": "grams",
+            "unit": "g"
+          }
+        ],
+        "answer": [
+          4,
+          0
+        ],
+        "near": [
+          40,
+          0
+        ],
+        "ladder": [
+          "How many thousands are there in 4,000?",
+          "Look inside the amber ring: is any rice left over?"
+        ],
+        "win": "Yes, 4,000 g is 4 kg 0 g, nothing left."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": null,
+        "kind": "group",
+        "grams": 3450,
+        "parts": [
+          {
+            "label": "kilograms",
+            "unit": "kg"
+          },
+          {
+            "label": "grams",
+            "unit": "g"
+          }
+        ],
+        "answer": [
+          3,
+          450
+        ],
+        "near": [
+          34,
+          50
+        ],
+        "ladder": [
+          "The thousands digit tells how many bags are full.",
+          "The three digits after the comma are the grams that stay."
+        ],
+        "win": "Yes, 3,450 g is 3 kg 450 g."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": null,
+        "kind": "group",
+        "grams": 5007,
+        "parts": [
+          {
+            "label": "kilograms",
+            "unit": "kg"
+          },
+          {
+            "label": "grams",
+            "unit": "g"
+          }
+        ],
+        "answer": [
+          5,
+          7
+        ],
+        "near": [
+          5,
+          70
+        ],
+        "ladder": [
+          "After the comma come 0, 0 and then one more digit.",
+          "Zeros in front add nothing to a number of grams."
+        ],
+        "win": "Yes, 5,007 g is 5 kg 7 g."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": null,
+        "kind": "col",
+        "rows": [
+          [
+            3,
+            750
+          ],
+          [
+            1,
+            600
+          ]
+        ],
+        "op": "+",
+        "act": "carry",
+        "parts": [
+          {
+            "label": "kilograms",
+            "unit": "kg"
+          },
+          {
+            "label": "grams",
+            "unit": "g"
+          }
+        ],
+        "answer": [
+          5,
+          350
+        ],
+        "near": [
+          4,
+          1350
+        ],
+        "ladder": [
+          "The carried 1 kg joins the kilograms column too.",
+          "750 g and 600 g make 1,000 g and some more grams."
+        ],
+        "win": "Yes, 5 kg 350 g, with 1 kg carried."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T5.C25:7",
+        "kind": "col",
+        "rows": [
+          [
+            5,
+            140
+          ],
+          [
+            2,
+            380
+          ]
+        ],
+        "op": "−",
+        "act": "borrow",
+        "parts": [
+          {
+            "label": "kilograms",
+            "unit": "kg"
+          },
+          {
+            "label": "grams",
+            "unit": "g"
+          }
+        ],
+        "answer": [
+          2,
+          760
+        ],
+        "near": [
+          3,
+          240
+        ],
+        "ladder": [
+          "After borrowing, the top kilograms are one fewer.",
+          "Take 380 g from 1,140 g, then 2 kg from the kilograms on top."
+        ],
+        "win": "Yes, 2 kg 760 g of flour is left."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": null,
+        "kind": "col",
+        "rows": [
+          [
+            2,
+            600
+          ],
+          [
+            1,
+            400
+          ]
+        ],
+        "op": "+",
+        "act": "carry",
+        "parts": [
+          {
+            "label": "kilograms",
+            "unit": "kg"
+          },
+          {
+            "label": "grams",
+            "unit": "g"
+          }
+        ],
+        "answer": [
+          4,
+          0
+        ],
+        "near": [
+          3,
+          1000
+        ],
+        "ladder": [
+          "Add the carried 1 kg to the 2 kg and the 1 kg.",
+          "All the grams became 1 kg, so the grams column holds nothing."
+        ],
+        "win": "Yes, 4 kg 0 g: all the grams became 1 kg."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T5.C25:WC4",
+        "kind": "shop",
+        "op": "+",
+        "parts": [
+          {
+            "label": "kilograms",
+            "unit": "kg"
+          },
+          {
+            "label": "grams",
+            "unit": "g"
+          }
+        ],
+        "answer": [
+          3,
+          790
+        ],
+        "near": [
+          0,
+          793
+        ],
+        "items": [
+          {
+            "id": "melon",
+            "sk": "watermelon",
+            "kg": 2,
+            "g": 650
+          },
+          {
+            "id": "mango",
+            "sk": "mango",
+            "m": 3,
+            "kg": 1,
+            "g": 140
+          }
+        ],
+        "ladder": [
+          "Do 650 g and 140 g reach 1,000 g?",
+          "Add each column on its own: no carry is needed."
+        ],
+        "win": "Yes, the fruit weighs 3 kg 790 g together."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": null,
+        "kind": "shop",
+        "op": "+",
+        "parts": [
+          {
+            "label": "kilograms",
+            "unit": "kg"
+          },
+          {
+            "label": "grams",
+            "unit": "g"
+          }
+        ],
+        "answer": [
+          6,
+          100
+        ],
+        "near": [
+          5,
+          1100
+        ],
+        "items": [
+          {
+            "id": "rice",
+            "sk": "sack",
+            "kg": 3,
+            "g": 0
+          },
+          {
+            "id": "melon",
+            "sk": "watermelon",
+            "kg": 2,
+            "g": 500
+          },
+          {
+            "id": "mango",
+            "sk": "mango",
+            "m": 2,
+            "kg": 0,
+            "g": 600
+          }
+        ],
+        "ladder": [
+          "Is the grams total 1,000 g or more?",
+          "Each 1,000 g in the grams total makes one more kilogram."
+        ],
+        "win": "Yes, the total is 6 kg 100 g."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": null,
+        "kind": "shop",
+        "op": "−",
+        "parts": [
+          {
+            "label": "kilograms",
+            "unit": "kg"
+          },
+          {
+            "label": "grams",
+            "unit": "g"
+          }
+        ],
+        "answer": [
+          2,
+          450
+        ],
+        "near": [
+          3,
+          550
+        ],
+        "items": [
+          {
+            "id": "bag",
+            "sk": "bag",
+            "kg": 5,
+            "g": 50
+          },
+          {
+            "id": "melon",
+            "sk": "watermelon",
+            "kg": 2,
+            "g": 600
+          }
+        ],
+        "ladder": [
+          "Can 600 g come out of 50 g, or must you borrow?",
+          "Borrow 1 kg as 1,000 g for the grams on top."
+        ],
+        "win": "Yes, 2 kg 450 g is left in the bag."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The opened bags light one by one, counted in kilograms, then the small bag of grams; the total is left for the child.",
+      "Phase 2: The full bags light one by one with a count in grams that stops one bag short; the rice left is ringed with no number.",
+      "Phase 3: The grams column lights first, the carry or the borrow shows again, then the kilograms column lights; the answer row stays empty.",
+      "Phase 4: The grams column lights first, a carry or a borrow is drawn, then the kilograms column lights; the answer row stays empty."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A scale and bags of rice: let us see what is inside a kilogram.",
+    "onFreePlay": "Free play: choose how many bags of rice, then tap Open to see the grams.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You changed kilograms and grams both ways, and you worked the columns grams first.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T5.C22:WC1",
+            "worked": false,
+            "kind": "kg",
+            "planQuestion": "A bag of flour weighs 2 kg. How many grams is that?",
+            "question": {
+              "en": "The rice on the scale weighs 2 kg; how many grams is that?"
+            },
+            "ask": {
+              "en": "2 kg in grams?"
+            },
+            "answer": 2000,
+            "planAnswer": "two thousand grams",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T5.C24:WC3",
+            "worked": false,
+            "kind": "kg",
+            "planQuestion": "A parcel weighs 4 kg 700 g. How many grams is that?",
+            "question": {
+              "en": "Now the rice weighs 4 kg 700 g; how many grams is that in all?"
+            },
+            "ask": {
+              "en": "4 kg 700 g in grams?"
+            },
+            "answer": 4700,
+            "planAnswer": "4700 g",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T5.C24:6",
+            "worked": false,
+            "kind": "kg",
+            "planQuestion": "A bag of oranges weighs 2 kg 90 g. How many grams is that?",
+            "question": {
+              "en": "This rice weighs 2 kg 90 g: write it in grams."
+            },
+            "ask": {
+              "en": "2 kg 90 g in grams?"
+            },
+            "answer": 2090,
+            "planAnswer": "2090 g, because 2 kg is two thousand grams and the 90 g goes after it with a zero kept, so the answer is 2090 g and not 290 g",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "group",
+            "planQuestion": null,
+            "question": {
+              "en": "This heap of rice weighs 4,000 g; how many kilograms and grams is that?"
+            },
+            "ask": {
+              "en": "4,000 g in kg and g?"
+            },
+            "answer": [
+              4,
+              0
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "group",
+            "planQuestion": null,
+            "question": {
+              "en": "Now gather 3,450 g of rice: how many kg, and how many g are left over?"
+            },
+            "ask": {
+              "en": "3,450 g in kg and g?"
+            },
+            "answer": [
+              3,
+              450
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "group",
+            "planQuestion": null,
+            "question": {
+              "en": "Gather 5,007 g of rice the same way: what is it in kg and g?"
+            },
+            "ask": {
+              "en": "5,007 g in kg and g?"
+            },
+            "answer": [
+              5,
+              7
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "col",
+            "planQuestion": null,
+            "question": {
+              "en": "What do 3 kg 750 g of rice and 1 kg 600 g of dal weigh together?"
+            },
+            "ask": {
+              "en": "3 kg 750 g + 1 kg 600 g"
+            },
+            "answer": [
+              5,
+              350
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T5.C25:7",
+            "worked": false,
+            "kind": "col",
+            "planQuestion": "A sack of flour weighs 5 kg 140 g. A baker uses 2 kg 380 g. How much flour is left?",
+            "question": {
+              "en": "From 5 kg 140 g of flour, a baker uses 2 kg 380 g; how much flour is left?"
+            },
+            "ask": {
+              "en": "5 kg 140 g − 2 kg 380 g"
+            },
+            "answer": [
+              2,
+              760
+            ],
+            "planAnswer": "2 kg 760 g, because 140 g is fewer than 380 g, so one kilogram is changed into one thousand grams, and 1140 g minus 380 g is 760 g and 4 kg minus 2 kg is 2 kg",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "col",
+            "planQuestion": null,
+            "question": {
+              "en": "Add 2 kg 600 g of sugar and 1 kg 400 g of flour: what is the total weight?"
+            },
+            "ask": {
+              "en": "2 kg 600 g + 1 kg 400 g"
+            },
+            "answer": [
+              4,
+              0
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T5.C25:WC4",
+            "worked": false,
+            "kind": "shop",
+            "planQuestion": "A basket holds 2 kg 650 g of apples and 1 kg 140 g of oranges. How much fruit is in the basket?",
+            "question": {
+              "en": "A 2 kg 650 g watermelon and 1 kg 140 g of mangoes: how much in all?"
+            },
+            "ask": {
+              "en": "2 kg 650 g + 1 kg 140 g"
+            },
+            "answer": [
+              3,
+              790
+            ],
+            "planAnswer": "3 kg 790 g",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "shop",
+            "planQuestion": null,
+            "question": {
+              "en": "Find the total: 3 kg of rice, a 2 kg 500 g watermelon, 600 g of mangoes."
+            },
+            "ask": {
+              "en": "3 kg + 2 kg 500 g + 600 g"
+            },
+            "answer": [
+              6,
+              100
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "shop",
+            "planQuestion": null,
+            "question": {
+              "en": "Take a 2 kg 600 g watermelon out of a 5 kg 50 g bag: how much is left?"
+            },
+            "ask": {
+              "en": "5 kg 50 g − 2 kg 600 g"
+            },
+            "answer": [
+              2,
+              450
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S2.T5.C22:1",
+    "M1.S2.T5.C23:WC2",
+    "M1.S2.T5.C23:2",
+    "M1.S2.T5.C23:5",
+    "M1.S2.T5.C24:3",
+    "M1.S2.T5.C25:4",
+    "M1.S2.T5.C25:8"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "weight_converter",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "weight_converter",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Kilograms into grams: multiply by 1000",
+        "conceptId": "M1.S2.T5.C22",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M1.S2.T5.C22:WC1",
+          "M1.S2.T5.C24:WC3",
+          "M1.S2.T5.C24:6"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Grams into kilograms: divide by 1000",
+        "conceptId": "M1.S2.T5.C23",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M1.S2.T5.C22.2D1:p2_1",
+          "M1.S2.T5.C22.2D1:p2_2",
+          "M1.S2.T5.C22.2D1:p2_3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Kilograms and grams together",
+        "conceptId": "M1.S2.T5.C24",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M1.S2.T5.C22.2D1:p3_1",
+          "M1.S2.T5.C25:7",
+          "M1.S2.T5.C22.2D1:p3_3"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Adding and subtracting weights",
+        "conceptId": "M1.S2.T5.C25",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M1.S2.T5.C25:WC4",
+          "M1.S2.T5.C22.2D1:p4_2",
+          "M1.S2.T5.C22.2D1:p4_3"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "kilograms",
+    "K1",
+    "grams",
+    "grams",
+    "poured",
+    "opened",
+    "gathered",
+    "carry",
+    "borrow",
+    "placed"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), complete, kilograms, K1, grams, grams, poured, opened, gathered, carry, borrow, placed",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "weight_converter"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T5.C22.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A kitchen scale and a bag of salt. Let us see what is inside a kilogram."
+    },
+    {
+      "en": "One kilogram pours out a thousand grams. How many grams does this weight pour out?"
+    },
+    {
+      "en": "Every thousand grams make one kilogram. How many kilograms are in this heap?"
+    },
+    {
+      "en": "Change the kilograms first. Then add the grams that are left. What is the weight in grams?"
+    },
+    {
+      "en": "Work the grams first. Do the grams reach a thousand, or are there too few? Then the kilograms."
+    },
+    {
+      "en": "A new weight on the scale. Which unit does it start in?"
+    },
+    {
+      "en": "Free play. Pour, gather and add any weights you like."
+    },
+    {
+      "en": "Look at the grams again. How many thousands are there? Then the grams that are left."
+    },
+    {
+      "en": "You changed kilograms and grams both ways, and you worked the columns grams first."
+    }
+  ],
+  "build": {
+    "source": "9ea703fe:646502",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-28T13:43:32.692Z",
+    "checks": {
+      "pass": 96,
+      "warn": 0,
+      "fail": 0,
+      "info": 6,
+      "at": "2026-10-28T13:43:28.107Z"
+    },
+    "tsxBytes": 556745,
+    "tsxMd5": "47987afa51c88ee12f3f59d933ec58b5"
+  }
+}

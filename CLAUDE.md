@@ -102,7 +102,7 @@
   or `/gen-tools <N> udgam <n> SLOT_ID sprint`. The maths review, the Gemini pass (the owner's choice), the language pass, the full visual review in
   en/hi/gu, the play tester and the final check all still run; the time comes from the owner's decisions asked ONCE before the builder (pictures,
   start page, wording, scope, input, design pass, complexity), the work overlapping (maths and a hi/gu draft start at the first green quick check) and
-  parallel agents (6 at once instead of 4, and Opus agents 3 for a simple tool, 4 for a complex one: token-policy's default of 2 is lifted; the gate's own one-tool figure was already 3, so the real gain is the 4th). The clock is `node orch.mjs sprint start|status|lap|stop`
+  parallel agents (the standing rule since 2026-10-28 already allows 5 Opus agents at once and no cap on Sonnet agents, so a sprint lifts nothing: the gate takes the higher of the standing figure and the sprint's own). The clock is `node orch.mjs sprint start|status|lap|stop`
   (`orchestration.json` `sprint`; the gate lifts its caps only while a sprint runs). A late stage never drops a review: add agents and report the true finish.
   Headless Chrome's `--window-size` is the OUTER window on this machine's Chrome; `class3/lib/core/chrome.mjs` measures the offset (class 4 and 5 get it
   by `classctl sync` on the owner's word).
@@ -123,7 +123,7 @@
   source, a `check` row, a docs section or a `Grep -n` hit instead. Read a big file (`tool.tsx`, a log, a diff) by range, and
   hand a long read-and-report job to an agent so only its report lands here. One task per session: a chapter build, a viewer
   change and a git push are three sessions, not one. The root `token-policy.json` is mandatory: adaptive mode targets
-  less than 100k-token contexts, treats 150k as a hard escalation threshold, caps builders at 3, reviewers at 2, and
-  Opus agents at 2. Maths review remains per tool; visual/play review is pattern- and risk-based. Batch language,
+  less than 100k-token contexts, treats 150k as a hard escalation threshold, caps Opus agents at 5 running at once and puts no cap on
+  Sonnet agents, as many as a chapter needs (the owner, 2026-10-28, every class and chapter; was builders 4, reviewers 2, Opus 4; it overrides a cap in any chapter's NOTES.md; the gate only notes it when more than 6 builders and play testers drive Chrome at once, which gave false timeouts). Maths and visual review run on every tool (the full review pack, every frame, en/hi/gu) and play review wherever a tool is new or risky (the owner, 2026-10-28: no visual compromise, the best result, every necessary check; tokens are saved by how the work is done, never by a look skipped: packs once, re-looks on changed frames only, batched maths/language/audit, small contexts, Sonnet for every look). Batch language,
   status, checks, image reuse and upload auditing. Checkpoint before a session limit and resume from state.
 - The old ICSE Class 6 pipeline is in `_archive/icse6_corpus.zip`; do not open it.

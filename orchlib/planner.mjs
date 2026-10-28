@@ -7,13 +7,14 @@
  *                maths     every tool in round 1; later only a slot whose tool changed outside its TR table since its maths
  *                          pass (or that did not pass)
  *                language  every tool once its English is final; later only when printed English changed
- *                visual    a NEW pattern's representative: full pack in phase chunks; a repeat: light pass, upgraded to full on
- *                          a visual check-row WARN/FAIL or a new picture kind; a later round: only the changed frames
+ *                visual    every tool: the full pack in phase chunks (review.followerVisual is "full" since 2026-10-28, no visual
+ *                          compromise; "light" would give a repeat of a reviewed pattern a reduced pass, upgraded to full on a
+ *                          visual check-row WARN/FAIL or a new picture kind); a later round: only the changed frames
  *                play      a NEW pattern's representative and risky slots; later only named probes of a changed slot
  *              -> work/<chapter>/orch/review-plan.json, skips recorded in state.skipped with their token estimate */
 import fs from "node:fs";
 import path from "node:path";
-import { slotsOf, readJson, sha, limitOf } from "./config.mjs";
+import { slotsOf, readJson, sha, limitOf, modelOf } from "./config.mjs";
 import { briefFeaturesOf, slotFacts, groupSlots, riskOf, interKey } from "./patterns.mjs";
 import { measure, bestBatch, agentCost } from "./simulate.mjs";
 import { diffLines } from "./textdiff.mjs";
@@ -84,9 +85,9 @@ export function buildPlan({ root, info, chap, pol, facts, st, prevReps = [] }) {
     play: Object.values(slots).filter((s) => s.play).length, audit: 1, planner: 1,
   };
   projected.total = Object.values(projected).reduce((a, b) => a + b, 0);
-  projected.opus = builder.filter((b) => b.tier === "escalated").length + 1;
+  projected.opus = builder.filter((b) => modelOf(pol, "tool-builder", b.tier) === "opus").length + 1;
   projected.review = projected.maths + projected.language + projected.visual + projected.play;
-  const limits = { maxAgentsPerChapter: limitOf(pol.limits.maxAgentsPerChapter, T), maxOpusAgents: limitOf(pol.limits.maxOpusAgents, T), maxReviewAgents: limitOf(pol.limits.maxReviewAgents, T), maxConcurrent: pol.limits.maxConcurrent, maxRetryRounds: pol.limits.maxRetryRounds, escalations: limitOf(pol.escalation.maxPerChapter, T) };
+  const limits = { maxAgentsPerChapter: limitOf(pol.limits.maxAgentsPerChapter, T), maxConcurrentOpus: limitOf(pol.limits.maxConcurrentOpus ?? 5, T), maxReviewAgents: limitOf(pol.limits.maxReviewAgents, T), maxConcurrent: pol.limits.maxConcurrent, maxRetryRounds: pol.limits.maxRetryRounds, escalations: limitOf(pol.escalation.maxPerChapter, T) };
   return { version: 1, at: new Date().toISOString(), chapter: chap.id, class: info.n, tools: T, groups, slots, batches, batchSizes: { followerBuilders: fb.b, maths: mb.b, language: lb.b, image: ib.b, lightVisual: Bt.lightVisualToolsPerAgent }, projected, limits, frames: m.frames, chunksPerPack };
 }
 

@@ -1,6 +1,6 @@
 /* The picture rules: node lib/images/rules.test.mjs (no browser, no Gemini). Cartoon objects are unchanged byte for byte; a new plan is photo; a figure is a front-facing person with its own caps. */
 import assert from "node:assert/strict";
-import { buildPrompt, validatePlan, lintPrompt, slotBudget, skinBudget, rawHash, rawKey, sha1, modelsFor, MODELS, STYLE, NEGATIVES, OBJECT_PHOTO_STYLE, REFERENCE_NOTE, BUDGET, MAX_SKINS_PER_SLOT } from "./rules.mjs";
+import { buildPrompt, validatePlan, lintPrompt, slotBudget, skinBudget, rawHash, rawKey, sha1, modelsFor, MODELS, STYLE, NEGATIVES, OBJECT_PHOTO_STYLE, REFERENCE_NOTE, BUDGET, MAX_SKINS_PER_SLOT, skinHash } from "./rules.mjs";
 
 const obj = (key, object = key) => ({ key, object, kind: "tile", prompt: `One ${object}.`, why: "w" });
 const fig = (key, object) => ({ key, object, kind: "figure", prompt: `A girl about eight years old with a plait and a yellow kurta, ${key}.`, why: "w" });
@@ -99,3 +99,14 @@ const three = validatePlan({ images: objs(3) }).images;
 assert.equal(slotBudget(three), 90 * 1024); assert.equal(slotBudget([...three, ...validatePlan({ images: figs(2) }).images]), 130 * 1024);
 assert.equal(modelsFor(three[0])[0], "gemini-3.1-flash-image"); assert.deepEqual(modelsFor({ kind: "disc", look: "cartoon" }), MODELS); assert.deepEqual(modelsFor({ kind: "figure", look: "photo" }), MODELS);
 console.log("rules.test.mjs ok");
+
+// class 3 only (2026-10-28, Pour It): `cut: "glass"` is the tool cut with a glass recipe, for a photo tile; it is in a skin key only when set (every other key is unchanged)
+const gl = { key: "jug", object: "clear glass jug", kind: "tile", look: "photo", prompt: "A plain clear glass jug.", why: "w" };
+assert.deepEqual(validatePlan(plan([{ ...gl, cut: "glass" }])).errors, []);
+assert.ok(validatePlan(plan([{ ...gl, cut: "foo" }])).errors.some((e) => /cut must be "glass"/.test(e)));
+assert.ok(validatePlan(plan([{ ...gl, kind: "disc", px: [200, 200], cut: "glass" }])).errors.some((e) => /photo tile only/.test(e)));
+assert.ok(validatePlan(plan([{ ...gl, look: "cartoon", cut: "glass" }])).errors.some((e) => /photo tile only/.test(e)));
+const sk = { kind: "tile", px: [200, 260], inset: 0, maxKB: 30 };
+assert.notEqual(skinHash("r", { ...sk, cut: "glass" }), skinHash("r", sk)); assert.notEqual(skinHash("r", { ...sk, cut: "glass" }), skinHash("r", { ...sk, tool: true }));
+assert.equal(skinHash("r", { ...sk, cut: undefined }), skinHash("r", sk));
+console.log("glass cut option: ok");

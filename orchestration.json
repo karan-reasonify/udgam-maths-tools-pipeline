@@ -2,11 +2,13 @@
   "$comment": "The ONE canonical orchestration policy of the Udgam maths pipeline (every class). Read by orch.mjs (gates, plans, tiered checks, checkpoints), usage.mjs (budgets, simulate), classctl.mjs (each agent file's `model:` line and the escalated twins) and the cli.mjs hooks (check cache keys, runtime freeze gates). A class overrides any key in class<N>/pipeline.config.json under \"orchestration\" (deep merge: objects merge, arrays and scalars replace). Change a model here, then regenerate the agents: node classctl.mjs sync --from <M> --to <N> --only agents (dry run, then --apply on the owner's word). See udgam_maths_claude.md \"Orchestration\" and TOKENS.md.",
   "version": 1,
 
+  "principle": "QUALITY FIRST, TOKENS SECOND (the owner, 2026-10-28, every class and chapter): no visual compromise, the best result, and every necessary check. Nothing that proves a tool is right is skipped, thinned or shortened to save tokens or time: the maths review of the final English, the language pass (tr-coverage), the FULL visual review (every frame of the review pack in English, Hindi and Gujarati), the play test where a tool is new or risky (real input), the image pass, and the final full check on 0 FAIL, then the upload audit for the chapter. Tokens are saved only by how the work is done: one chapter per session and contexts under 100k, reviewers working from the review pack, digests and check rows instead of whole sources, packs built once per round and re-looks on changed frames only, quick and cached checks before ONE full check, batched maths, language, image and audit work, reports of at most 40 lines, image reuse, Sonnet (no cap) for every look and Opus (5 at once) where it shortens the critical path.",
+
   "models": {
-    "$comment": "Claude Code agent aliases (opus | sonnet | haiku | inherit) per role and stage. 'main' is advice for the session itself (/model), not a file. Opus only for: planning, difficult maths, pattern representatives, runtime work across tools, reviewer-conflict arbitration (routing below).",
+    "$comment": "Claude Code agent aliases (opus | sonnet | haiku | inherit) per role and stage. 'main' is advice for the session itself (/model), not a file. Opus where the result needs it: planning, every tool-builder (the builder agent files run on Opus, so the gate counts every builder as Opus and the 5-at-once cap really holds, the owner 2026-10-28), difficult maths, runtime work across tools, reviewer-conflict arbitration (routing below); Sonnet for every look (maths, language, visual, play, image), with no cap.",
     "main": "sonnet",
     "planner": "opus",
-    "tool-builder": "sonnet",
+    "tool-builder": "opus",
     "tool-builder-escalated": "opus",
     "maths-reviewer": "sonnet",
     "maths-reviewer-escalated": "opus",
@@ -18,7 +20,7 @@
   },
 
   "routing": {
-    "$comment": "Which tier a launch uses. 'escalated' = the <role>-escalated twin (models above). A follower builder starts on the base tier; it escalates only on a trigger.",
+    "$comment": "Which tier a launch uses. 'escalated' = the <role>-escalated twin (models above). A follower builder starts on the base tier; it escalates only on a trigger. Since 2026-10-28 base and escalated builders both run on Opus (the agent files), so the tier only decides the reasons the gate asks for and the batch size.",
     "representativeBuilder": "escalated",
     "followerBuilder": "base",
     "runtimeChange": "escalated",
@@ -34,11 +36,12 @@
   },
 
   "limits": {
-    "$comment": "Per chapter build. A number is fixed; { base, perTool } is base + perTool x tools, rounded up. orch gate refuses a launch past a limit (exit 3).",
-    "maxConcurrent": 4,
-    "maxAgentsPerChapter": { "base": 10, "perTool": 4 },
-    "maxOpusAgents": { "base": 2, "perTool": 0.35 },
-    "maxReviewAgents": { "base": 6, "perTool": 2.5 },
+    "$comment": "Per chapter build. A number is fixed; { base, perTool } is base + perTool x tools, rounded up; null = no cap. orch gate refuses a launch past a limit (exit 3). THE OWNER'S RULE (2026-10-28, every class and chapter): at most 5 OPUS agents RUNNING at once (maxConcurrentOpus), and NO cap on Sonnet or Haiku agents, as many as the chapter needs (maxConcurrent, maxAgentsPerChapter and maxReviewAgents are null). A class may set a number for any of them under pipeline.config.json orchestration.limits. chromeAdvisoryAt is not a limit: past that many builders and play testers running at once (each drives its own headless Chrome; more than 6 gave false timeouts on this machine, class 3 ch 9) the gate adds a note to its answer.",
+    "maxConcurrentOpus": 5,
+    "maxConcurrent": null,
+    "maxAgentsPerChapter": null,
+    "maxReviewAgents": null,
+    "chromeAdvisoryAt": 6,
     "maxRetryRounds": 2,
     "maxFullChecksPerSlot": 4,
     "staleAgentMinutes": 90
@@ -76,12 +79,12 @@
   },
 
   "review": {
-    "$comment": "Deduplication: maths on every tool (round 1), later rounds only where the maths digest changed; visual and play in full on each NEW pattern's representative; a repeat of an unchanged pattern gets a light visual pass (upgraded to full on a visual check WARN/FAIL or a new picture kind) and no play test unless risky; a re-review looks only at changed frames and named probes.",
+    "$comment": "Deduplication: maths on every tool (round 1), later rounds only where the maths digest changed; visual in FULL on every tool (every frame of the review pack in en, hi and gu: followerVisual is full since 2026-10-28, the owner: no visual compromise; light would bring back the reduced pass for a repeat of an unchanged pattern); play where a tool is new or risky; a re-review looks only at changed frames and named probes.",
     "visualChunkFrames": 40,
     "lightFrames": { "en": ["start", "ask-shut", "ask-open", "wrong", "summary"], "other": ["wrong", "stepwrong", "summary"] },
     "visualWarnRows": ["board-fit", "picture-scale", "text-contrast", "hint-lines-clear", "summary-thumbs", "start-page", "font-kit", "one-line-bubble"],
     "highRiskInteraction": ["drag", "two-box", "fraction-card", "decimal-card", "point-key", "card-answer", "act", "narrow-pad"],
-    "followerVisual": "light",
+    "followerVisual": "full",
     "playRepeats": false
   },
 
@@ -105,9 +108,9 @@
     },
     "ifLate": ["start the next stage on the part that is already final", "add parallel agents for the stage that is behind (gate --over sprint)", "write what is open into NOTES.md and report the TRUE finish time; a review is never dropped to meet the clock"],
     "neverCut": ["the maths review of the final English", "the Gemini visual pass when the owner kept it", "the language pass (tr-coverage passes)", "the visual review of every frame in en, hi and gu", "the play tester", "the final full check with 0 FAIL", "the owner's decisions written down before the builder starts"],
-    "opusAgents": { "simple": 3, "complex": 4, "complexWhen": "the tool has an interaction in review.highRiskInteraction (a drag, two-box, fraction or decimal card, point key, card answer, an act, a narrow pad), a kind of picture no finished tool of the class has, or hard maths; otherwise simple. sprint start --complexity simple|complex sets it (limits.maxOpusAgents is 2 + 0.35 per tool, rounded up: already 3 for one tool, so a complex sprint adds the 4th)" },
-    "limits": { "maxConcurrent": 6, "maxAgentsPerChapter": 24, "maxReviewAgents": 12, "maxRetryRounds": 3, "maxFullChecksPerSlot": 5, "$comment": "Read by orch gate while a sprint runs (state.sprint, not stopped); maxOpusAgents comes from opusAgents above. maxConcurrent stays at 6 because every builder check and play tester drives its own headless Chrome (more than 6 turns the machine's load into false timeouts)." },
-    "opusSlots": "spend the Opus slots where they shorten the critical path, in this order: 1 the tool-builder; 2 the maths reviewer, escalated (the hard maths is what a wrong tool costs most); 3 a second builder, escalated, for the fold and the fix messages while the first builder keeps the tool moving; 4 (complex only) the play tester or the visual reviewer on the riskiest part. A sonnet agent does every other look.",
+    "opusAgents": { "simple": 5, "complex": 5, "complexWhen": "the tool has an interaction in review.highRiskInteraction (a drag, two-box, fraction or decimal card, point key, card answer, an act, a narrow pad), a kind of picture no finished tool of the class has, or hard maths; otherwise simple. sprint start --complexity simple|complex sets it. Since 2026-10-28 (the owner: five Opus agents at a time) the standing cap, limits.maxConcurrentOpus, is already 5 for every build, so both figures are 5; orchlib/gate.mjs takes the HIGHER of the standing cap and the sprint's own, so a sprint can only lift the cap, never lower it (a figure below the standing one changes nothing)" },
+    "limits": { "maxRetryRounds": 3, "maxFullChecksPerSlot": 5, "$comment": "Read by orch gate while a sprint runs (state.sprint, not stopped) and laid over the standing limits. It holds no head-count or concurrency figure on purpose: the standing rule (5 Opus agents at once, no cap on Sonnet agents, the owner 2026-10-28) is already the most a sprint needs, and a figure here would re-cap Sonnet. The Opus figure is opusAgents above." },
+    "opusSlots": "spend the Opus slots where they shorten the critical path, in this order: 1 the tool-builder; 2 the maths reviewer, escalated (the hard maths is what a wrong tool costs most); 3 a second builder, escalated, for the fold and the fix messages while the first builder keeps the tool moving; 4 and 5 the play tester and a visual reviewer on the riskiest parts (five Opus agents at once are standing since 2026-10-28, simple or complex). Sonnet agents do every other look and have no cap.",
     "maxFullChecks": 3,
     "maxFixRounds": 1,
     "skip": ["upload-auditor (nothing is published)", "pilot (one tool)", "second full-pack visual round (the re-look is --changed)"]
@@ -123,13 +126,13 @@
   },
 
   "session": {
-    "$comment": "Session-limit guard. Claude Code does not expose the plan's percentage on disk, so orch gate uses the freshest of (a) the owner's reading (node orch.mjs session --pct 72, from /usage) and (b) a rolling-window estimate from local transcripts against budgetUsd5h (list-price-weighted; calibrate once: node usage.mjs window --calibrate <pct shown by /usage>). Unset budget and no reading = only the agent-count fallback.",
+    "$comment": "Session-limit guard. Claude Code does not expose the plan's percentage on disk, so orch gate uses the freshest of (a) the owner's reading (node orch.mjs session --pct 72, from /usage) and (b) a rolling-window estimate from local transcripts against budgetUsd5h (list-price-weighted; calibrate once: node usage.mjs window --calibrate <pct shown by /usage>). Unset budget and no reading = no session guard (the agent-count fallback, fallbackMaxAgentsPerWindow, is null since 2026-10-28 because the owner wants no cap on Sonnet agents; give it a number to bring it back).",
     "windowHours": 5,
     "budgetUsd5h": null,
     "stopExpensiveAt": 0.7,
     "checkpointAt": 0.85,
     "manualReadingTtlMinutes": 45,
-    "fallbackMaxAgentsPerWindow": 60
+    "fallbackMaxAgentsPerWindow": null
   },
 
   "images": { "dedupe": ["object", "style", "kind", "prompt"], "chapterBatch": true },

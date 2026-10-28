@@ -134,10 +134,15 @@ export function writePin(chapterDir, version, { why = "", sealed = null, rules =
 
 /* The rules a chapter is held to FROM the runtime it is fetched on (2026-10-22). A chapter fetched onto a runtime with the pencil write move is "strict":
    every pencil act is a write or says marks: true (docs/PATTERNS.md 15, check pencil-acts). A chapter fetched earlier, or re-pinned later onto a newer
-   runtime, is not: writePin keeps the rules it had and never adds one. null = no rules. */
+   runtime, is not: writePin keeps the rules it had and never adds one. null = no rules.
+   2026-10-28 (MISS HIDES THE ANSWER, the owner; docs/PATTERNS.md 7, check miss-hides-answer): every chapter fetched from this day on is
+   "strict" for it too: after a wrong answer the correction stops one step before the answer. It is a convention and a check, not a runtime
+   feature, so it needs no marker in the snapshot; a chapter fetched earlier has no key (one INFO row) unless the owner sets it by hand.
+   cli.mjs writes these rules only when the chapter has no pin yet, so a re-fetch never makes an older chapter strict. */
 export function fetchRules(version) {
-  try { return /function penPlan\(/.test(fs.readFileSync(path.join(snapshotDir(version), "runtime.tsx"), "utf8")) ? { pencilActs: "strict" } : null; }
-  catch { return null; }
+  let pen = false;
+  try { pen = /function penPlan\(/.test(fs.readFileSync(path.join(snapshotDir(version), "runtime.tsx"), "utf8")); } catch { pen = false; }
+  return { ...(pen ? { pencilActs: "strict" } : {}), missHidesAnswer: "strict" };
 }
 
 /* the runtime + mascot a slot builds on: its chapter's pin, else the head */

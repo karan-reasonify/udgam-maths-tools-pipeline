@@ -45,6 +45,9 @@ export const CUT_VERSION = 2;
 export const FIGURE_CUT = 3;
 /* the same for the action kit's TOOL cut (process.mjs OPT.tool: grey is object, finger loops are holes); a skin's key never has it */
 export const TOOL_CUT = 3;
+/* class 3 only (2026-10-28, ch 9 Pour It): `cut: "glass"` on a photo tile is the tool cut plus a glass recipe (process.mjs OPT.glass: thin grey walls kept, the empty inside and
+   the handle opening transparent, the quality rejects only warn). Bump GLASS_CUT whenever that recipe changes (a new skin key, so a re-cut is free and never --force). In a key only when set. */
+export const GLASS_CUT = 2;
 
 /* the mascot's look in words only: naming a mascot, robot or character in a prompt invites the model to draw one */
 export const STYLE = "A soft 3D cartoon illustration in the style of a children's animated film: rounded, appealing, clean shapes with smooth soft shading, rich warm colour and a gentle satin sheen (no hard white glare). Exactly one object, seen from directly above (a flat-lay, top-down view), centred, filling most of the frame with a margin of background all round. The background is perfectly plain pure white (#FFFFFF): no floor, no table, no gradient, no texture.";
@@ -128,8 +131,8 @@ export const rawHash = ({ object, kind, style, aspect, look, ref, view, colours 
   ...(view === "side" ? ["view:side"] : []), ...(colours === "natural" ? ["colours:natural"] : [])].join("|"));
 /* the one way every caller keys a validated image (validatePlan fills look and refSha) */
 export const rawKey = (plan, img) => rawHash({ object: img.object, kind: img.kind, style: plan.style, aspect: img.aspect, look: img.look, ref: img.refSha, view: img.view, colours: img.colours });
-export const skinHash = (raw, { kind, px, inset, maxKB, tool }) => sha1(["skin", `cut${CUT_VERSION}`, (KINDS[kind] || {}).cut, raw,
-  `${px[0]}x${px[1]}`, Number(inset).toFixed(3), maxKB || "", ...(tool ? [`tool${TOOL_CUT}`] : []), ...(kind === "figure" ? [`fig${FIGURE_CUT}`] : [])].join("|"));
+export const skinHash = (raw, { kind, px, inset, maxKB, tool, cut }) => sha1(["skin", `cut${CUT_VERSION}`, (KINDS[kind] || {}).cut, raw,
+  `${px[0]}x${px[1]}`, Number(inset).toFixed(3), maxKB || "", ...(tool || cut === "glass" ? [`tool${TOOL_CUT}`] : []), ...(cut === "glass" ? [`glass${GLASS_CUT}`] : []), ...(kind === "figure" ? [`fig${FIGURE_CUT}`] : [])].join("|"));
 
 export function buildPrompt(plan, img) {
   const k = KINDS[img.kind];
@@ -201,6 +204,9 @@ export function validatePlan(plan, slotId) {
     if (!LOOKS.includes(img.look)) errors.push(`${at}: look must be one of ${LOOKS.join(", ")}`);
     if (img.view !== undefined && !["top", "side"].includes(img.view)) errors.push(`${at}: view must be "top" or "side"`);
     if (img.colours !== undefined && !["warm", "natural"].includes(img.colours)) errors.push(`${at}: colours must be "warm" or "natural"`);
+    /* class 3 only (2026-10-28): `cut: "glass"` = a clear glass object photographed on white (a jug): the tool cut with a glass recipe; a photo tile only */
+    if (img.cut !== undefined && img.cut !== "glass") errors.push(`${at}: cut must be "glass" (the only per-image cut option)`);
+    if (img.cut === "glass" && (img.kind !== "tile" || img.look !== "photo")) errors.push(`${at}: cut "glass" is for a photo tile only`);
     if ((img.view === "side" || img.colours === "natural") && img.look !== "photo") warnings.push(`${at}: view "side" and colours "natural" apply to a photo object only; ignored`);
     /* a reference photograph (the image's own `reference`, else the plan's): sent with the prompt and keyed by its bytes, for a photo object only */
     const ref = img.reference !== undefined ? img.reference : plan.reference;

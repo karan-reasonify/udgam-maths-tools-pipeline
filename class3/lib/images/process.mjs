@@ -78,9 +78,10 @@ function run() {
     const r = d[i], gg = d[i + 1], b = d[i + 2];
     const mx = Math.max(r, gg, b), mn = Math.min(r, gg, b), spread = mx - mn;
     const dr = r - bg[0], dg = gg - bg[1], db = b - bg[2];
-    if (dr * dr + dg * dg + db * db <= 36 * 36) return true;     /* like the border */
-    if (mn >= 234 && spread <= 18) return true;                   /* near-white */
-    if (spread <= 12 && mx >= (OPT.tool ? 226 : 110)) return true; /* grey: a shadow on the floor (an action-kit tool's steel is darker) */
+    /* glass (OPT.glass, class 3 Pour It): a clear jug's rim and edge lines are pale grey (225 to 245), so only the near-border colour is background */
+    if (dr * dr + dg * dg + db * db <= (OPT.glass ? 30 : 36) ** 2) return true;     /* like the border */
+    if (mn >= (OPT.glass ? 232 : 234) && spread <= 18) return true;                   /* near-white */
+    if (spread <= 12 && mx >= (OPT.glass ? 232 : OPT.tool ? 226 : 110)) return true; /* grey: a shadow on the floor (an action-kit tool's steel is darker) */
     /* ponytail: a photo object's cast shadow is a WARM grey (spread up to ~30, its dark contact core under 130 up to ~40; measured on two pizzas and a roti), its
        food edge far more saturated (55+); a grey or steel object would be eaten from its rim: give it a cartoon look until a real matte cut exists */
     if (OPT.photo && mx >= 90 && (spread <= 30 || (spread <= 40 && mx <= 130))) return true;
@@ -102,7 +103,9 @@ function run() {
      graphite is object (above: only a faint grey is a shadow), and a near-white region the border flood cannot reach, at least 0.3 % of the picture, is a hole
      (the scissors' finger loops) and so background too */
   if (OPT.tool) {
-    const nw = (i) => Math.min(d[i], d[i + 1], d[i + 2]) >= 234 && Math.max(d[i], d[i + 1], d[i + 2]) - Math.min(d[i], d[i + 1], d[i + 2]) <= 18;
+    /* glass (OPT.glass): the empty inside of a clear jug is light and neutral but not pure white (refraction), so the hole test is a little wider */
+    const nwMin = OPT.glass ? 230 : 234, nwSpread = 18;
+    const nw = (i) => Math.min(d[i], d[i + 1], d[i + 2]) >= nwMin && Math.max(d[i], d[i + 1], d[i + 2]) - Math.min(d[i], d[i + 1], d[i + 2]) <= nwSpread;
     const seen = new Uint8Array(N);
     for (let s0 = 0; s0 < N; s0++) {
       if (isBg[s0] || seen[s0] || !nw(s0 * 4)) continue;
@@ -116,14 +119,14 @@ function run() {
       /* the hole's own soft rim (light, unsaturated) goes with it, up to 5 px, so no white ring is left inside the loop */
       let ring = reg;
       for (const p of reg) isBg[p] = 1;
-      for (let k = 0; k < 5; k++) {
+      for (let k = 0; k < (OPT.glass ? 1 : 5); k++) {   /* glass (class 3 Pour It): one pixel of light haze only, the grey wall is the object */
         const next = [];
         for (const p of ring) {
           const x = p % W;
           for (const n of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, p >= W ? p - W : -1, p < N - W ? p + W : -1]) {
             if (n < 0 || isBg[n]) continue;
             const i = n * 4, mx = Math.max(d[i], d[i + 1], d[i + 2]), mn = Math.min(d[i], d[i + 1], d[i + 2]);
-            if (mn >= 150 && mx - mn <= 40) { isBg[n] = 1; next.push(n); }
+            if (mn >= (OPT.glass ? 225 : 150) && mx - mn <= (OPT.glass ? 20 : 40)) { isBg[n] = 1; next.push(n); }
           }
         }
         ring = next;
@@ -159,7 +162,8 @@ function run() {
   const objFrac = objN / N;
   const reasons = [], warnings = [], extra = {};
   if (!bgWhite) warnings.push("the background is not white (rgb " + bg.join(",") + ")");
-  if (objFrac < OPT.limits.minObject) return { error: "no object found (" + (objFrac * 100).toFixed(1) + "% of the picture differs from the background)", src: { w: W, h: H }, bg };
+  if (OPT.glass && objFrac < OPT.limits.minObject) warnings.push("glass: only " + (objFrac * 100).toFixed(1) + "% of the picture is object (the empty inside is transparent)");
+  else if (objFrac < OPT.limits.minObject) return { error: "no object found (" + (objFrac * 100).toFixed(1) + "% of the picture differs from the background)", src: { w: W, h: H }, bg };
 
   const [TW, TH] = OPT.px;
   let srcCanvas = c, crop, ow, oh;
@@ -195,7 +199,7 @@ function run() {
     const s = OPT.kind === "disc" ? side / TW : Math.max(obox.w / TW, obox.h / TH);
     /* a photographic figure has hair and skin edges blended with the white: erode more and feather over two source pixels (no halo) */
     const fig = OPT.kind === "figure";
-    const e = fig ? Math.max(3, Math.min(6, Math.round(s * 0.8))) : Math.max(2, Math.min(4, Math.round(s * 0.5)));
+    const e = OPT.glass ? 0 : fig ? Math.max(3, Math.min(6, Math.round(s * 0.8))) : Math.max(2, Math.min(4, Math.round(s * 0.5)));   /* glass: none, a rim or wall line is 3 to 8 source px */
     extra.erode = e;
     const D = chamfer(gone, W, H);
     for (let p = 0; p < N; p++) {
@@ -294,11 +298,12 @@ function run() {
   const stats = { nearWhite: +(nw / n).toFixed(4), lumStd: +lumStd.toFixed(2), cool: +(cool / n).toFixed(4), mean,
     opaque: +(n / M).toFixed(3), halo: semi ? +(semiWhite / semi).toFixed(3) : 0, objFrac: +objFrac.toFixed(3) };
   const cutout = OPT.cut === "cutout";
+  const warnOr = (list, msg) => (OPT.glass ? warnings : list).push(OPT.glass ? "glass: " + msg : msg);
   const nwMax = cutout ? OPT.limits.nearWhiteCutout : OPT.limits.nearWhite;
-  if (stats.nearWhite > nwMax) reasons.push("near-white " + (stats.nearWhite * 100).toFixed(1) + "% (over " + (nwMax * 100) + "%): " + (cutout ? "a white object, or background left inside it" : "background, glare or frosting left in the skin"));
+  if (stats.nearWhite > nwMax) warnOr(reasons, "near-white " + (stats.nearWhite * 100).toFixed(1) + "% (over " + (nwMax * 100) + "%): " + (cutout ? "a white object, or background left inside it" : "background, glare or frosting left in the skin"));
   else if (cutout && stats.nearWhite > 0.04) warnings.push("near-white " + (stats.nearWhite * 100).toFixed(1) + "% (a strong highlight?)");
-  if (stats.lumStd < OPT.limits.flatStd) reasons.push("flat: almost no variance (luminance sd " + stats.lumStd + ")");
-  if (cutout && stats.opaque < OPT.limits.minOpaque) reasons.push("the cut-out is mostly empty (" + (stats.opaque * 100).toFixed(0) + "% opaque)");
+  if (stats.lumStd < OPT.limits.flatStd) warnOr(reasons, "flat: almost no variance (luminance sd " + stats.lumStd + ")");
+  if (cutout && stats.opaque < OPT.limits.minOpaque) warnOr(reasons, "the cut-out is mostly empty (" + (stats.opaque * 100).toFixed(0) + "% opaque)");
   if (cutout && stats.halo > OPT.limits.halo) warnings.push("a white fringe on the edge (" + (stats.halo * 100).toFixed(0) + "% of edge pixels near-white)");
   if (stats.cool > OPT.limits.cool && OPT.kind !== "figure") warnings.push("cool colours " + (stats.cool * 100).toFixed(0) + "% (blue or green would fight the tool's tint)");
 
@@ -339,12 +344,12 @@ export function stripIcc(buf) {
 }
 
 /* raw bytes -> { ok, reasons, warnings, webp (Buffer), uri, w, h, q, bytes, uriBytes, crop, stats, ... } */
-export async function makeSkin(raw, mime, { kind, px, inset, maxKB, look, tool = false, label = "skin" }) {
+export async function makeSkin(raw, mime, { kind, px, inset, maxKB, look, tool = false, glass = false, label = "skin" }) {
   const tmp = fromRoot(".build");
   fs.mkdirSync(tmp, { recursive: true });
   const page = path.join(tmp, `skin-${process.pid}-${Math.random().toString(36).slice(2, 8)}.html`);
   const budget = skinBudget(kind, maxKB, look);
-  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS, tool: !!tool, photo: look === "photo" && kind !== "figure" };
+  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS, tool: !!tool || !!glass, glass: !!glass, photo: look === "photo" && kind !== "figure" && !glass };
   fs.writeFileSync(page, `<!doctype html><meta charset="utf-8"><body><pre id="out">pending</pre>`
     + `<script id="raw">window.__RAW = "data:${mime || "image/png"};base64,${raw.toString("base64")}"; window.__OPT = ${JSON.stringify(opt)};</script>`
     + `<script>${PAGE}</script></body>`);

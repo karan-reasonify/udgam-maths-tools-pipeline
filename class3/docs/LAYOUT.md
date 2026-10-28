@@ -272,15 +272,24 @@ Each is 56 across with a 72-unit finger box; 72 apart, so the boxes tile and nev
   A piece follows the finger, lifts while dragged, snaps with `api.sfx.tick()`, and is playable before it
   is answerable. A tap on a piece means "put it where it belongs".
 - **One invite.** `<Invite/>` pulses on the one thing to touch; everything else is still.
-- **Winning is the maths moving; a miss is the traceback.** On a miss the tool locks the pad, redraws the
-  mathematics in steps **ending on the whole right answer**, then unlocks. Nothing is marked (no red, no cross, no "wrong") and the score,
-  the tries, the hint ladder and the answer gate go on as before.
+- **Winning is the maths moving; a miss is the traceback, and the traceback HIDES THE ANSWER (MISS HIDES THE ANSWER; the owner,
+  2026-10-28; a chapter whose `runtime.json` has `rules.missHidesAnswer: "strict"`, which `fetch` writes for every chapter fetched from that
+  day; class 3 ch 9 set by hand).** On a miss the tool locks the pad, replays the WORKING in steps and **stops one step before the answer**, so
+  the child finishes it, then unlocks. From the miss on, the working area and the bubble never show or point at the right answer: no final
+  number, no ring or highlight that singles out the right choice, no lit final mark or bracket, no "Answer" tag, no line that names it. The
+  slot is empty (MISS CLEARS THE SLOT, below), tries are unlimited, and each miss brings a stronger hint rung that never prints the answer.
+  The answer appears only at the RIGHT answer (the win). Whatever shows the answer carries `data-reveals="answer"` and is drawn only at the
+  win; a scale whose digits are always printed (a ruler's 0 to 16) carries `data-scale` (PATTERNS §7). Nothing is marked (no red, no cross,
+  no "wrong") and the score, the tries, the hint ladder and the answer gate go on as before. `check` proves it: `miss-hides-answer`. *A
+  chapter without the key (fetched before 2026-10-28) keeps the old rule: the traceback redraws the mathematics **ending on the whole right
+  answer** (`miss-shows-answer`; its `miss-hides-answer` row is INFO).*
 - **A miss empties the slot (MISS CLEARS THE SLOT; the owner, 2026-10-28; every tool on a runtime with the marker, `caps.missClears`).** At the
   moment the miss is registered (the pad locks for the traceback) the runtime clears what the child answered: every typed digit (and a typed
   point), every box of a two-part, fraction, mixed-number or decimal answer, with the caret back in the first box, and a picked choice or
   word-choice key. The slot is empty all through the traceback and when the pad unlocks, so the child types or picks a fresh answer; Enter on
   the empty slot does nothing and the hint stays. A pad lent to the working area (`api.capture`) is sent its `"clear"` key; a card answer
-  (`cardAnswer`) shows the empty boxes, or the correction's own answer until the child types. A right answer behaves as before. The tool writes
+  (`cardAnswer`) shows the empty boxes (on a chapter without MISS HIDES THE ANSWER it may show the correction's own answer until the child
+  types). A right answer behaves as before. The tool writes
   nothing for it: `wrong.value` keeps what the child sent, for the traceback. `check` proves it: `miss-clears-slot` (an INFO row on an older
   runtime, which keeps the child's answer in the slot).
 - **Colour.** A place or a counter keeps one colour across the book. Coloured numerals and words use a
@@ -306,7 +315,9 @@ Each is 56 across with a 72-unit finger box; 72 apart, so the boxes tile and nev
 ## 4. The answer column
 
 - **Slot:** the item's `ask` above it (prompt size), the typed value inside (it drops a size before it
-  would spill), a blinking caret while it waits.
+  would spill), a blinking caret while it waits. After a miss the slot is empty (MISS CLEARS THE SLOT, §3) and, on a chapter held to MISS
+  HIDES THE ANSWER (§3), nothing in the answer column, the card or the choice keys shows or singles out the right answer: no key lit, no
+  digit filled in; the child answers again, as many times as it takes, and the answer shows only at the win.
 - **Two-part answer** (`parts`, from ch 5: quotient and remainder; later km and m, h and min, ₹ and
   paise): the slot splits into one white box a part, side by side (16 apart, same height), each named at
   its top-left in quiet ink at 28 (at most 10 characters: "quotient", "remainder", "each bowl") and

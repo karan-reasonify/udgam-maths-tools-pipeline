@@ -1,0 +1,977 @@
+/* ═══ M1.S2.T5.C22.2D1 · weight_converter · tool-specific part ═══════════════════════════════
+   runtime/runtime.tsx (+ runtime/mascot.tsx) is prepended at build, so everything outside the working area already
+   exists. THE LESSON IS SILENT (r30) and action-driven (r34); the new look (keyOnly, navDots, LAYOUT §1d-§1e).
+   Built on the Length Converter's settled pattern (described to this builder in words, never read):
+   P1 kilograms into grams: 1 kg bags of rice on a scale; Open (the hand taps each bag) shows its ten 100 g bags and a
+      1,000 g chip; the child types the grams (one number, Indian commas in the slot).
+   P2 grams into kilograms and grams left: a heap of rice; Gather (the hand carries rice into 1 kg bags, each tagged
+      1,000 g, the given unit); the rice left is ringed amber "Left" with no number; two answer boxes (kg, g).
+   P3 the kg | g column board: the question's weights sit in the columns; the Carry and the Borrow key stand together and
+      the child decides (the right one opens the Answer gate, the other a calm nudge that costs no try).
+   P4 shopping: watermelon, mangoes, a bag of rice, a shopping bag; a tap on each item puts its weight in the columns
+      (the act); the child adds or takes away with no carry key (the fewest hints).
+   THE ANSWER IS GATED BY THE ACT (PATTERNS 19): see MODEL.answerGate. MISS HIDES THE ANSWER (strict): the correction
+   replays the working and stops one step short; green Answer tags and cells carry data-reveals="answer" (win only).
+   Edit, never rewrite. Concepts are verbatim (check compares them). */
+
+const TOOL_ID = "weight_converter";
+const MEDIA_ID = "M1.S2.T5.C22.2D1";
+const TOOL_NAME = "Weight Converter";
+const CHROME = {"dim":"#9AA4AC","ink":"#2B2B2B","rule":"#C9BCA6","panel":"#F2E4CE","paper":"#FFFDF7","accent":"#5B6770"};
+/* kept for the tool object's shape (and the sidecar); nothing speaks from r30 */
+const VOICE = {"rate":0.92,"pitch":1.06};
+
+/* printed before phase 1's teach lines only (phase 1 has guide steps, so it is not shown) */
+const OPENING = ["A scale and bags of rice: let us see what is inside a kilogram."];
+/* the whole-tool line (not shown from r44; kept for the sidecar) */
+const FINISH_LINE = "You changed kilograms and grams both ways, and you worked the columns grams first.";
+/* printed when the child opens Free play: it promises only what the free branch offers (the bags, the Open key) */
+const FREE_LINE = "Free play: choose how many bags of rice, then tap Open to see the grams.";
+
+/* THE START PAGE (r28): one question to wonder at, and the scale with its bags of rice */
+const START_HOOK = "How many grams are hiding inside one bag of rice?";
+function StartArt({ box, C, lang = "en", tx = (v: any) => v }: any) {
+  const cx = box.w / 2, sw = 150, sh = 200, gap = 34, n = 3, row = n * sw + (n - 1) * gap, x0 = cx - row / 2, panY = 250;
+  return (
+    <g>
+      <rect x={cx - row / 2 - 60} y={panY} width={row + 120} height={18} rx={9} fill="#9AA6B2" stroke="#4F5B66" strokeWidth={3} />
+      <path d={`M ${cx - 230} ${panY + 18} L ${cx + 230} ${panY + 18} L ${cx + 260} ${panY + 86} L ${cx - 260} ${panY + 86} Z`} fill="#DCE3EA" stroke="#4F5B66" strokeWidth={3} />
+      <rect x={cx - 110} y={panY + 30} width={220} height={44} rx={10} fill="#E6F1FA" stroke="#0072B2" strokeWidth={3} />
+      <text x={cx} y={panY + 63} textAnchor="middle" fontSize={T.label} fontWeight={700} fill="#00507E">{`3 ${tx("kg")}`}</text>
+      {Array.from({ length: n }, (_, i) => {
+        const x = x0 + i * (sw + gap), y = panY - sh;
+        return (
+          <g key={i}>
+            {wcSackShape(x, y, sw, sh)}
+            <Skin name="sack" x={x} y={y} w={sw} h={sh} />
+            {wcTag("t" + i, x + sw / 2 - 48, y + sh * 0.52, 96, 46, "count", `1 ${tx("kg")}`, T.label)}
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
+/* Hindi and Gujarati (docs/PATTERNS.md §11): filled at the language pass, keyed by the English byte for byte. */
+const TR: any = { hi: {}, gu: {} };
+
+/* two answer boxes: kilograms and grams (PATTERNS §2) */
+const WC_KGG = [{ label: "kilograms", unit: "kg" }, { label: "grams", unit: "g" }];
+
+/* One entry per phase = one mount. Every phase opens on a guide-step WARM-UP (MODEL.warm[n]) whose result is none of
+   the phase's answers; each question has its own miss and its own ladder (rungs 2 and 3), and a one-sentence win line. */
+const PHASES = [
+  {
+    n: 1,
+    concept: "Kilograms into grams: multiply by 1000",
+    conceptId: "M1.S2.T5.C22", objectiveIds: ["O7"],
+    says: [],
+    /* warm-up: 3 bags of rice, 3 kg = 3,000 g (no question's answer) */
+    steps: [
+      { say: "Tap Open to see what is inside each 1 kg bag of rice.", on: "open", hint: "Tap the Open key at the bottom." },
+      { say: "Tap one tray to count its small 100 g bags.", on: "count", hint: "Tap a tray of small bags." },
+      { say: "Tap Total to put the thousands together.", on: "total", hint: "The Total key is at the bottom." },
+    ],
+    stepHold: 2600,
+    ladder: ["Each opened bag is 1,000 g.", "Thousands first, then any grams left over."],
+    closing: "One kilogram equals 1,000 grams, so multiply kilograms by 1,000.",
+    learned: "You learned: 1 kg is 1,000 g, so multiply kilograms by 1,000.",
+    traceback: "The opened bags light one by one, counted in kilograms, then the small bag of grams; the total is left for the child.",
+    items: [
+      /* learn WC1: answer in the plan = two thousand grams (plan: a bag of flour; here the rice on the scale) */
+      { qid: "M1.S2.T5.C22:WC1", kind: "kg", kg: 2, g: 0, answer: 2000, near: 200,
+        say: "The rice on the scale weighs 2 kg; how many grams is that?", ask: "2 kg in grams?",
+        miss: "How many grams did each opened bag show?",
+        ladder: ["Count 1,000 g for every bag on the scale.", "Add 1,000 g for the first bag and 1,000 g for the second."],
+        win: "Yes, 2 kg is 2,000 g: each kilogram is 1,000 g." },
+      /* learn WC3 (moved from the plan's phase 3): answer in the plan = 4700 g */
+      { qid: "M1.S2.T5.C24:WC3", kind: "kg", kg: 4, g: 700, answer: 4700, near: 47000,
+        say: "Now the rice weighs 4 kg 700 g; how many grams is that in all?", ask: "4 kg 700 g in grams?",
+        miss: "Change the 4 kg into grams first, then add the small bag.",
+        ladder: ["Four opened bags make four thousands of grams.", "Put the 700 g of the small bag on top of the thousands."],
+        win: "Yes, 4 kg 700 g is 4,700 g." },
+      /* practice 6 (moved from the plan's phase 3): answer in the plan = 2090 g, the zero kept (not 290 g) */
+      { qid: "M1.S2.T5.C24:6", kind: "kg", kg: 2, g: 90, answer: 2090, near: 290,
+        say: "This rice weighs 2 kg 90 g: write it in grams.", ask: "2 kg 90 g in grams?",
+        miss: "The 2 kg is two thousands; the small bag adds just 90 g.",
+        ladder: ["Write the grams in three places: 90 g has no hundreds.", "Keep a 0 in the hundreds place after the thousands."],
+        win: "Yes, 2 kg 90 g is 2,090 g, with the 0 kept." },
+    ],
+  },
+  {
+    n: 2,
+    concept: "Grams into kilograms: divide by 1000",
+    conceptId: "M1.S2.T5.C23", objectiveIds: ["O7"],
+    says: [],
+    /* warm-up: 2,300 g = 2 kg 300 g (no question's answer) */
+    steps: [
+      { say: "Tap Gather to fill bags from the heap, 1,000 g in each.", on: "gather", hint: "Tap the Gather key at the bottom." },
+      { say: "Tap the rice left in the ring to see its grams.", on: "left", hint: "Tap the small heap inside the amber ring." },
+    ],
+    stepHold: 2600,
+    ladder: ["Each full bag is one kilogram.", "The rice outside the bags stays as grams."],
+    closing: "Group 1,000 grams to make one kilogram, and keep the rest as grams.",
+    learned: "You learned: every 1,000 g makes 1 kg, and the rest stays as grams.",
+    traceback: "The full bags light one by one with a count in grams that stops one bag short; the rice left is ringed with no number.",
+    items: [
+      /* authored: the plan's three questions (WC2 17000 g, 2: 19000 g, 5: 29000 g) all leave 0 g and need 17 to 29 bags,
+         each tagged 1,000 g, on one screen; the same kind (exact thousands) is kept with 4,000 g, the textbook's own example */
+      { qid: null, kind: "group", grams: 4000, parts: WC_KGG, answer: [4, 0], near: [40, 0],
+        say: "This heap of rice weighs 4,000 g; how many kilograms and grams is that?", ask: "4,000 g in kg and g?",
+        miss: "Each full bag holds 1,000 g; count the full bags.",
+        ladder: ["How many thousands are there in 4,000?", "Look inside the amber ring: is any rice left over?"],
+        win: "Yes, 4,000 g is 4 kg 0 g, nothing left." },
+      /* authored: grams left over (the owner's phase 2) */
+      { qid: null, kind: "group", grams: 3450, parts: WC_KGG, answer: [3, 450], near: [34, 50],
+        say: "Now gather 3,450 g of rice: how many kg, and how many g are left over?", ask: "3,450 g in kg and g?",
+        miss: "Count the full bags first, then work out the rice left over.",
+        ladder: ["The thousands digit tells how many bags are full.", "The three digits after the comma are the grams that stay."],
+        win: "Yes, 3,450 g is 3 kg 450 g." },
+      /* authored: the zero case (5,007 g) */
+      { qid: null, kind: "group", grams: 5007, parts: WC_KGG, answer: [5, 7], near: [5, 70],
+        say: "Gather 5,007 g of rice the same way: what is it in kg and g?", ask: "5,007 g in kg and g?",
+        miss: "Only a pinch is left after the full bags; how many grams is it?",
+        ladder: ["After the comma come 0, 0 and then one more digit.", "Zeros in front add nothing to a number of grams."],
+        win: "Yes, 5,007 g is 5 kg 7 g." },
+    ],
+  },
+  {
+    n: 3,
+    concept: "Kilograms and grams together",
+    conceptId: "M1.S2.T5.C24", objectiveIds: ["O7"],
+    says: [],
+    /* warm-up: 1 kg 500 g + 2 kg 700 g = 4 kg 200 g (no question's answer) */
+    steps: [
+      { say: "Tap the grams column to add the grams first.", on: "grams", hint: "Tap the g column of the board." },
+      { say: "1,200 g is more than 1,000 g, so tap Carry.", on: "carry", hint: "Carry is the key for grams that pass 1,000." },
+      { say: "Now tap the kg column to add the kilograms.", on: "kg", hint: "The kg column is on the left of the board." },
+    ],
+    stepHold: 2800,
+    ladder: ["Work the grams column before the kilograms column.", "1,000 g is the same as 1 kg."],
+    closing: "Work the grams first: carry 1,000 g as 1 kg, or borrow 1 kg as 1,000 g.",
+    learned: "You learned: carry 1,000 g as 1 kg, or borrow 1 kg as 1,000 g.",
+    traceback: "The grams column lights first, the carry or the borrow shows again, then the kilograms column lights; the answer row stays empty.",
+    items: [
+      /* authored: an addition with a carry (the plan's WC4 has no carry, so it went to phase 4 where the act is Place) */
+      { qid: null, kind: "col", rows: [[3, 750], [1, 600]], op: "+", act: "carry", parts: WC_KGG, answer: [5, 350], near: [4, 1350],
+        say: "What do 3 kg 750 g of rice and 1 kg 600 g of dal weigh together?", ask: "3 kg 750 g + 1 kg 600 g",
+        miss: "Add the grams first: what is left after the 1,000 g you carried?",
+        ladder: ["The carried 1 kg joins the kilograms column too.", "750 g and 600 g make 1,000 g and some more grams."],
+        win: "Yes, 5 kg 350 g, with 1 kg carried." },
+      /* practice 7: answer in the plan = 2 kg 760 g (borrow: 1140 g minus 380 g, 4 kg minus 2 kg) */
+      { qid: "M1.S2.T5.C25:7", kind: "col", rows: [[5, 140], [2, 380]], op: "−", act: "borrow", parts: WC_KGG, answer: [2, 760], near: [3, 240],
+        say: "From 5 kg 140 g of flour, a baker uses 2 kg 380 g; how much flour is left?", ask: "5 kg 140 g − 2 kg 380 g",
+        miss: "Take away the grams first, from the new grams on top.",
+        ladder: ["After borrowing, the top kilograms are one fewer.", "Take 380 g from 1,140 g, then 2 kg from the kilograms on top."],
+        win: "Yes, 2 kg 760 g of flour is left." },
+      /* authored: the zero case, a carry that leaves 0 g */
+      { qid: null, kind: "col", rows: [[2, 600], [1, 400]], op: "+", act: "carry", parts: WC_KGG, answer: [4, 0], near: [3, 1000],
+        say: "Add 2 kg 600 g of sugar and 1 kg 400 g of flour: what is the total weight?", ask: "2 kg 600 g + 1 kg 400 g",
+        miss: "600 g and 400 g make exactly 1,000 g; what grams are left?",
+        ladder: ["Add the carried 1 kg to the 2 kg and the 1 kg.", "After the carry, look again at what stays in the grams column."],
+        win: "Yes, 4 kg 0 g: all the grams became 1 kg." },
+    ],
+  },
+  {
+    n: 4,
+    concept: "Adding and subtracting weights",
+    conceptId: "M1.S2.T5.C25", objectiveIds: ["O8"],
+    says: [],
+    /* warm-up: a bag of rice 1 kg 200 g and a mango 300 g = 1 kg 500 g (no question's answer) */
+    steps: [
+      { say: "Tap the bag of rice to write its weight on the board.", on: "rice", hint: "Tap the bag of rice at the top." },
+      { say: "Now tap the mango to write its weight under the rice.", on: "mango", hint: "Tap the mango below the rice." },
+      { say: "Tap the board to add the grams, then the kilograms.", on: "add", hint: "Tap anywhere on the column board." },
+    ],
+    stepHold: 2400,
+    ladder: ["Kilograms go under kilograms, grams under grams.", "Work the grams column before the kilograms."],
+    closing: "You added and took away shopping weights in kg and g columns.",
+    learned: "You learned: add or take away shopping weights in kg and g.",
+    traceback: "The grams column lights first, a carry or a borrow is drawn, then the kilograms column lights; the answer row stays empty.",
+    items: [
+      /* learn WC4 (moved from the plan's phase 4 order): answer in the plan = 3 kg 790 g; the plan's apples and oranges are
+         the watermelon and the mangoes here (the pictures this slot has), the numbers unchanged */
+      { qid: "M1.S2.T5.C25:WC4", kind: "shop", op: "+", parts: WC_KGG, answer: [3, 790], near: [0, 793],
+        items: [{ id: "melon", sk: "watermelon", kg: 2, g: 650 }, { id: "mango", sk: "mango", m: 3, kg: 1, g: 140 }],
+        say: "A 2 kg 650 g watermelon and 1 kg 140 g of mangoes: how much in all?", ask: "2 kg 650 g + 1 kg 140 g",
+        miss: "Add the grams column first, then the kilograms column.",
+        ladder: ["Do 650 g and 140 g reach 1,000 g?", "Add each column on its own: no carry is needed."],
+        win: "Yes, the fruit weighs 3 kg 790 g together." },
+      /* authored: the total of three items, with a carry */
+      { qid: null, kind: "shop", op: "+", parts: WC_KGG, answer: [6, 100], near: [5, 1100],
+        items: [{ id: "rice", sk: "sack", kg: 3, g: 0 }, { id: "melon", sk: "watermelon", kg: 2, g: 500 }, { id: "mango", sk: "mango", m: 2, kg: 0, g: 600 }],
+        say: "Find the total: 3 kg of rice, a 2 kg 500 g watermelon, 600 g of mangoes.", ask: "3 kg + 2 kg 500 g + 600 g",
+        miss: "Add the three grams first, then the three kilograms.",
+        ladder: ["Is the grams total 1,000 g or more?", "Each 1,000 g in the grams total makes one more kilogram."],
+        win: "Yes, the total is 6 kg 100 g." },
+      /* authored: the weight remaining after an item is taken out (a borrow, and 50 g written in three places) */
+      { qid: null, kind: "shop", op: "−", parts: WC_KGG, answer: [2, 450], near: [3, 550],
+        items: [{ id: "bag", sk: "bag", kg: 5, g: 50 }, { id: "melon", sk: "watermelon", kg: 2, g: 600 }],
+        say: "Take a 2 kg 600 g watermelon out of a 5 kg 50 g bag: how much is left?", ask: "5 kg 50 g − 2 kg 600 g",
+        miss: "Take away the grams column first.",
+        ladder: ["Can 600 g come out of 50 g, or must you borrow?", "Borrow 1 kg as 1,000 g for the grams on top."],
+        win: "Yes, 2 kg 450 g is left in the bag." },
+    ],
+  },
+];
+
+/* The numbers the working area needs (they go into the sidecar too). */
+const MODEL: any = {
+  unitFact: "1 kg = 1,000 g",
+  warm: {
+    1: { kind: "kg", kg: 3, g: 0 },
+    2: { kind: "group", grams: 2300 },
+    3: { kind: "col", rows: [[1, 500], [2, 700]], op: "+", act: "carry" },
+    4: { kind: "shop", op: "+", items: [{ id: "rice", sk: "sack", kg: 1, g: 200 }, { id: "mango", sk: "mango", m: 1, kg: 0, g: 300 }] },
+  },
+  free: { kind: "kg", kg: 2, g: 0 },
+  /* the sidecar's guide.answerGate note (PATTERNS 19): no sidecar writer exists, so it lives here (MODEL travels) */
+  answerGate: "Every question is gated by its act (user mode, after a real touch): P1 Open (the hand opens each 1 kg bag); " +
+    "P2 Gather (the hand fills a 1 kg bag for every 1,000 g); P3 the right one of Carry and Borrow (shown together; the other " +
+    "gets a nudge and costs no try); P4 a tap on each item (its weight goes into the columns). No question is ungated.",
+};
+
+/* ── the maths, checked by `node cli.mjs check` ──────────────────────────────────────────── */
+
+const judge = (item: any, v: any) => {
+  if (item.parts) return judgeSlotParts(item, v);
+  if (typeof item.answer === "number") return leadNumber(v) === item.answer;
+  return String(v).trim().toLowerCase() === String(item.answer).trim().toLowerCase();
+};
+/* oracle: every answer re-derived by a second route (digit strings, never the judge or the picture) */
+const wcPad3 = (g: number) => ("000" + String(g)).slice(-3);
+const wcAsG = (kg: number, g: number) => Number(String(kg) + wcPad3(g));
+const wcSplit = (grams: number) => { const s = String(grams); return s.length > 3 ? [Number(s.slice(0, -3)), Number(s.slice(-3))] : [0, grams]; };
+const wcOracle = (it: any) => {
+  if (it.kind === "kg") return wcAsG(it.kg, it.g) === it.answer;
+  if (it.kind === "group") { const [a, b] = wcSplit(it.grams); return a === it.answer[0] && b === it.answer[1]; }
+  const rows = it.kind === "shop" ? it.items.map((x: any) => [x.kg, x.g]) : it.rows;
+  const tot = it.op === "+" ? rows.reduce((s: number, r: any) => s + wcAsG(r[0], r[1]), 0) : wcAsG(rows[0][0], rows[0][1]) - wcAsG(rows[1][0], rows[1][1]);
+  const [a, b] = wcSplit(tot);
+  return a === it.answer[0] && b === it.answer[1];
+};
+const oracle = () => PHASES.every((p: any) => p.items.length === 3 && p.items.every((it: any) => wcOracle(it)));
+/* the misconception of each question: x100, the numbers pushed together, a zero dropped, no carry, smaller from larger */
+const nearMiss = (item: any) => (item.parts ? item.near.join("|") : item.near);
+/* the forms of an answer no question, hint or ladder line may print */
+const answerForms = (item: any) => (item.parts
+  ? [`${item.answer[0]} kg ${indian(item.answer[1])} g`, ...(item.answer[1] >= 10 ? [`${indian(item.answer[1])} g`] : []), ...(item.answer[0] >= 10 ? [`${item.answer[0]} kg`] : [])]
+  : [String(item.answer), indian(item.answer), words(item.answer)]);
+const agentKey = (item: any) => item.answer;
+/* typed numbers print with Indian commas from 1,000 ("4,700 g"; a grams box "1,350"); the single box adds its unit (a part
+   box draws its own); a leading zero the child typed ("050", "007") stays exactly as typed */
+const format = (v: any, j: any, o: any) => {
+  const s = v === null || v === undefined ? "" : String(v);
+  if (!/^\d+$/.test(s)) return v;
+  const shown = /^[1-9]\d{3,}$/.test(s) ? indian(Number(s)) : s;
+  return j === undefined ? `${shown} ${o && o.tx ? o.tx("g") : "g"}` : shown;
+};
+
+/* the dev driver and the agent reach the working area only through HOOK */
+const HOOK: any = {};
+const solve = (item: any, T: any) => (T.state().stage === "demo" ? HOOK.demo && HOOK.demo() : T.submit(item.answer));
+const answer = (item: any, v: any) => undefined;
+/* the agent's check(): at an open question it performs the act at once (never gated); in a guide step it returns
+   undefined, so the agent's check() reaches api.onEnter and performs the current step */
+const check = () => (HOOK.check ? HOOK.check() : undefined);
+
+/* ── colours, words and drawing helpers (prefixed wc: tools and the runtime share one scope) ── */
+const WC_COL: any = {
+  given: { fill: "#E6F1FA", stroke: "#0072B2", ink: "#00507E" },
+  answer: { fill: "#E1F5EC", stroke: "#009E73", ink: "#006548" },
+  fact: { fill: "#FFFFFF", stroke: "#D55E00", ink: "#9A3A00" },
+  second: { fill: "#FFF2D6", stroke: "#E69F00", ink: "#7A5000" },
+  count: { fill: "#FFFFFF", stroke: "#2B2B2B", ink: "#2B2B2B" },
+};
+const WC_GREY = "#767676";
+const WC_LIT = "#FFE9A8";
+const WC_KEYS: any = { open: "Open", total: "Total", gather: "Gather", carry: "Carry", borrow: "Borrow" };
+/* the gate's nudge names the ACT; two forms, alternating by question */
+const WC_NUDGE: any = {
+  open: ["First tap Open to open the bags of rice.", "Open the bags of rice first with the Open key."],
+  gather: ["First tap Gather to fill the bags with rice.", "Gather the rice into bags first."],
+  choose: ["First choose Carry or Borrow for the grams.", "Pick Carry or Borrow before you answer."],
+  place: ["First tap each item to put its weight on the board.", "Put every weight on the board first: tap the items."],
+  wrongKey: ["Look at the grams column: do the grams fit?", "Check the grams column again before you choose."],
+};
+const wcGr = (n: number, tx: any) => `${indian(n)} ${tx("g")}`;
+/* a weight as written on a tag: the zero part left out (3 kg, 600 g) */
+const wcKgG = (kg: number, g: number, tx: any) => (kg && g ? `${kg} ${tx("kg")} ${g} ${tx("g")}` : kg ? `${kg} ${tx("kg")}` : `${g} ${tx("g")}`);
+/* an answer: both parts always (4 kg 0 g) */
+const wcAns = (kg: number, g: number, tx: any) => `${kg} ${tx("kg")} ${indian(g)} ${tx("g")}`;
+
+function wcTag(k: string, x: number, y: number, w: number, h: number, role: string, text: string, size: number, extra?: any) {
+  const c = WC_COL[role];
+  return (
+    <g key={k} {...(extra || {})}>
+      <rect x={x} y={y} width={w} height={h} rx={Math.min(18, h / 2.6)} fill={c.fill} stroke={c.stroke} strokeWidth={role === "fact" ? 4 : 3} />
+      <text x={x + w / 2} y={y + h / 2 + size * 0.36} textAnchor="middle" fontSize={size} fontWeight={700} fill={c.ink}>{text}</text>
+    </g>
+  );
+}
+/* an equality on one tag ("1 kg = 1,000 g"), set as two short labels round the sign */
+function wcEqTag(k: string, x: number, y: number, w: number, h: number, role: string, left: string, right: string) {
+  const c = WC_COL[role], mid = x + w * 0.4, by = y + h / 2 + T.label * 0.36;
+  return (
+    <g key={k}>
+      <rect x={x} y={y} width={w} height={h} rx={Math.min(18, h / 2.6)} fill={c.fill} stroke={c.stroke} strokeWidth={role === "fact" ? 4 : 3} />
+      <text x={mid - 22} y={by} textAnchor="end" fontSize={T.label} fontWeight={700} fill={c.ink}>{left}</text>
+      <text x={mid} y={by} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={c.ink}>=</text>
+      <text x={mid + 22} y={by} fontSize={T.label} fontWeight={700} fill={c.ink}>{right}</text>
+    </g>
+  );
+}
+/* the green Answer tag: drawn only at the win (data-reveals) */
+function wcAnsTag(k: string, x: number, y: number, w: number, h: number, value: string, tx: any) {
+  const c = WC_COL.answer;
+  return (
+    <g key={k} data-reveals="answer">
+      <rect x={x} y={y} width={w} height={h} rx={16} fill={c.fill} stroke={c.stroke} strokeWidth={4} />
+      <text x={x + 18} y={y + h / 2 + 10} fontSize={T.micro} fontWeight={700} fill={c.ink}>{tx("Answer")}</text>
+      <text x={x + w - 18} y={y + h / 2 + 14} textAnchor="end" fontSize={T.prompt} fontWeight={700} fill={c.ink}>{value}</text>
+    </g>
+  );
+}
+function wcSackShape(x: number, y: number, w: number, h: number) {
+  return (
+    <path d={`M ${x + w * 0.16} ${y + h * 0.18} Q ${x + w * 0.5} ${y + h * 0.05} ${x + w * 0.84} ${y + h * 0.18} L ${x + w * 0.94} ${y + h * 0.9} Q ${x + w * 0.5} ${y + h * 0.99} ${x + w * 0.06} ${y + h * 0.9} Z`}
+      fill="#CDAE78" stroke="#7A5A2E" strokeWidth={3} />
+  );
+}
+/* a small 100 g paper bag (ten in every opened kilogram), drawn in code */
+function wcPacket(k: string, x: number, y: number, w: number, h: number, lit: boolean) {
+  return (
+    <g key={k}>
+      <rect x={x} y={y} width={w} height={h} rx={5} fill={lit ? "#FFD27A" : "#FBF4E4"} stroke={lit ? "#B47800" : "#A88A55"} strokeWidth={lit ? 2.5 : 1.8} />
+      <line x1={x + 4} y1={y + h * 0.3} x2={x + w - 4} y2={y + h * 0.3} stroke="#A88A55" strokeWidth={1.5} />
+    </g>
+  );
+}
+function wcMangoShape(k: string, x: number, y: number, w: number, h: number) {
+  return (
+    <g key={k}>
+      <ellipse cx={x + w / 2} cy={y + h / 2} rx={w * 0.46} ry={h * 0.42} fill="#F2B233" stroke="#A86A12" strokeWidth={2.5} />
+      <Skin name="mango" x={x} y={y} w={w} h={h} />
+    </g>
+  );
+}
+function wcMelonShape(k: string, x: number, y: number, w: number, h: number) {
+  return (
+    <g key={k}>
+      <ellipse cx={x + w / 2} cy={y + h / 2} rx={w * 0.47} ry={h * 0.44} fill="#3E8E41" stroke="#1F5A22" strokeWidth={3} />
+      {[-0.25, 0, 0.25].map((d, i) => <path key={i} d={`M ${x + w * (0.5 + d)} ${y + h * 0.1} Q ${x + w * (0.5 + d * 1.3)} ${y + h / 2} ${x + w * (0.5 + d)} ${y + h * 0.9}`} fill="none" stroke="#1F5A22" strokeWidth={3} />)}
+      <Skin name="watermelon" x={x} y={y} w={w} h={h} />
+    </g>
+  );
+}
+function wcBagShape(k: string, x: number, y: number, w: number, h: number) {
+  return (
+    <g key={k}>
+      <path d={`M ${x + w * 0.3} ${y + h * 0.26} Q ${x + w * 0.3} ${y} ${x + w * 0.5} ${y} Q ${x + w * 0.7} ${y} ${x + w * 0.7} ${y + h * 0.26}`} fill="none" stroke="#7A5A2E" strokeWidth={5} />
+      <rect x={x + w * 0.06} y={y + h * 0.24} width={w * 0.88} height={h * 0.74} rx={12} fill="#E9D3A6" stroke="#7A5A2E" strokeWidth={3} />
+      <line x1={x + w * 0.06} y1={y + h * 0.38} x2={x + w * 0.94} y2={y + h * 0.38} stroke="#B9965C" strokeWidth={3} />
+    </g>
+  );
+}
+/* an item of the shopping phase, in a box of its picture's own aspect */
+function wcItemArt(k: string, sk: string, m: number, x: number, y: number, maxW: number, maxH: number) {
+  if (sk === "sack") { const h = maxH, w = h * 0.75; return <g key={k}>{wcSackShape(x + (maxW - w) / 2, y, w, h)}<Skin name="sack" x={x + (maxW - w) / 2} y={y} w={w} h={h} /></g>; }
+  if (sk === "watermelon") { const w = Math.min(maxW, maxH * 1.39), h = w / 1.39; return wcMelonShape(k, x + (maxW - w) / 2, y + (maxH - h) / 2, w, h); }
+  if (sk === "bag") { const w = Math.min(maxW, maxH * 0.9); return wcBagShape(k, x + (maxW - w) / 2, y, w, maxH); }
+  /* mangoes: one, two side by side, or two with one on top */
+  const n = Math.max(1, m || 1), mw = n === 1 ? Math.min(maxW, maxH * 1.19) : n === 2 ? Math.min(maxW * 0.6, maxH * 1.19) : Math.min(maxW * 0.55, maxH * 0.6 * 1.19), mh = mw / 1.19;
+  const spots = n === 1 ? [[(maxW - mw) / 2, (maxH - mh) / 2]] : n === 2 ? [[0, (maxH - mh) / 2], [maxW - mw, (maxH - mh) / 2]] : [[0, maxH - mh], [maxW - mw, maxH - mh], [(maxW - mw) / 2, 0]];
+  return <g key={k}>{spots.map((p, i) => wcMangoShape(k + i, x + p[0], y + p[1], mw, mh))}</g>;
+}
+
+/* ── layouts, from the room the working area has (box.w), plain arithmetic ── */
+function wcG1(W: number, kg: number, g: number) {
+  const gw = 130, gh = 173, gap = 22, pw = 116, ph = 124;
+  const sceneW = kg * gw + (kg - 1) * gap + (g > 0 ? gap + pw : 0), cx = W / 2, x0 = cx - sceneW / 2;
+  const trays = Array.from({ length: kg }, (_, i) => ({ x: x0 + i * (gw + gap), y: 132, w: gw, h: gh }));
+  const packet = g > 0 ? { x: x0 + kg * (gw + gap), y: 305 - ph, w: pw, h: ph } : null;
+  const panW = sceneW + 80, bodyW = Math.max(420, Math.min(panW - 40, 560));
+  return { cx, trays, packet, pan: { x: cx - panW / 2, y: 305, w: panW, h: 16 }, body: { x: cx - bodyW / 2, y: 321, w: bodyW, h: 88 },
+    plate: { x: cx - 175, y: 333, w: 350, h: 64 }, pill: { x: cx - 360, y: 6, w: 330, h: 60 }, ans: { x: cx - 10, y: 6, w: 370, h: 60 } };
+}
+function wcG2(W: number, grams: number) {
+  const K = Math.floor(grams / 1000), bw = 104, bh = 139, bgap = 14, gridW = K * bw + (K - 1) * bgap;
+  const heapW = 260, rightW = Math.max(gridW, 380), sceneW = heapW + 36 + rightW, x0 = W / 2 - sceneW / 2;
+  const gx = x0 + heapW + 36 + (rightW - gridW) / 2;
+  return { K, x0, heap: { cx: x0 + heapW / 2, base: 300 }, given: { x: x0, y: 6, w: heapW, h: 60 },
+    right: { x: x0 + heapW + 36, y: 6, w: Math.min(rightW, 400), h: 60 },
+    bags: Array.from({ length: K }, (_, i) => ({ x: gx + i * (bw + bgap), y: 152, w: bw, h: bh })) };
+}
+function wcBoard(x0: number, y0: number, R: number) {
+  const rowY = (i: number) => y0 + 100 + i * 80, ruleY = y0 + 100 + R * 80 + 8, ansY = ruleY + 10;
+  return { x: x0, y: y0, w: 468, h: ansY + 92 - y0, R, sign: { x: x0 + 12, w: 64 }, kg: { x: x0 + 76, w: 150 }, g: { x: x0 + 226, w: 230 },
+    carryY: y0 + 48, rowY, ruleY, ansY };
+}
+/* the column sums, the book's way: grams first, then a carry or a borrow */
+function wcCols(rows: any[], op: string) {
+  if (op === "+") {
+    const sg = rows.reduce((s, r) => s + r[1], 0), carry = Math.floor(sg / 1000);
+    return { sg, carry, borrow: false, g: sg % 1000, k: rows.reduce((s, r) => s + r[0], 0) + carry };
+  }
+  const borrow = rows[0][1] < rows[1][1];
+  return { sg: rows[0][1] + (borrow ? 1000 : 0), carry: 0, borrow, g: rows[0][1] + (borrow ? 1000 : 0) - rows[1][1], k: rows[0][0] - (borrow ? 1 : 0) - rows[1][0] };
+}
+function wcFresh(e: number) {
+  return { e, opened: 0, counted: 0, cT: -1, countDone: false, total: false, gathered: 0, leftShown: false,
+    gLit: false, kLit: false, cStage: 0, carried: false, borrow: 0, placed: [] as number[], added: false, fk: 2, fix: null as any };
+}
+/* the act the question still waits for (null: done) */
+function wcNext(it: any, S: any, free: boolean) {
+  if (it.kind === "kg") return S.opened < (free ? S.fk : it.kg) ? "open" : null;
+  if (it.kind === "group") return S.gathered < Math.floor(it.grams / 1000) ? "gather" : null;
+  if (it.kind === "col") return (it.act === "carry" ? S.carried : S.borrow >= 2) ? null : "choose";
+  if (it.kind === "shop") return S.placed.length < it.items.length ? "place" : null;
+  return null;
+}
+
+/* ── the working area ──────────────────────────────────────────────────────────────────────── */
+function Work({ phase, n, item, index, stage, wrong, typed, api, step, stepOn, box, lang = "en", tx = (v: any) => v }: any) {
+  const C = api.C;
+  const tl = useTimeline();
+  const Wd = box ? box.w : 1472;
+  const free = stage === "free";
+  const warm = !free && (stage === "demo" || stage === "teach") && !!(phase && phase.steps);
+  const it: any = free ? MODEL.free : warm ? MODEL.warm[n] : item || {};
+  const on = warm && stage === "demo" ? stepOn : null;
+  const ask = stage === "ask";
+  const won = !free && !warm && (stage === "win" || stage === "idle");
+
+  /* the board belongs to the ENTRY (PATTERNS 18): rebuilt whenever the question key changes */
+  const qk = free ? "free" : `${n}:${warm ? "w" : index}`;
+  const ent = useRef({ qk: "", n: 0 });
+  if (ent.current.qk !== qk) ent.current = { qk, n: ent.current.n + 1 };
+  const eN = ent.current.n;
+  const [raw, setRaw] = useState<any>({ e: -1 });
+  const S: any = raw.e === eN ? raw : wcFresh(eN);
+  const put = (p: any) => {
+    const e = eN;
+    setRaw((o: any) => { if (o.e > e) return o; const b = o.e === e ? o : wcFresh(e); return { ...b, ...(typeof p === "function" ? p(b) : p) }; });
+  };
+
+  const busy = useRef(false), fixing = useRef(false), touched = useRef(false), lastEnter = useRef(0);
+  const lastTap = useRef({ t: 0, id: "" }), queued = useRef<any>(null), ctlRef = useRef<any[]>([]), rootRef = useRef<any>(null);
+  const gateRef = useRef(false), prevGate = useRef(false), nudging = useRef(false), timers = useRef<any>({});
+  const apiRef = useRef(api), sayRef = useRef(""), nudgeRef = useRef("");
+  apiRef.current = api;
+  sayRef.current = it.say || "";
+
+  const nextAct = ask || free ? wcNext(it, S, free) : null;
+  const needAct = ask && !!nextAct;
+  nudgeRef.current = nextAct ? WC_NUDGE[nextAct][(index || 0) % 2] : "";
+
+  /* a line for 3 s, then the question again (a nudge never contradicts an open Answer key) */
+  const tempSay = (line: string) => {
+    const T = timers.current;
+    clearTimeout(T.b);
+    apiRef.current.say(line);
+    nudging.current = true;
+    T.b = setTimeout(() => { if (nudging.current) apiRef.current.say(sayRef.current); nudging.current = false; }, 3000);
+  };
+
+  /* real input: a trusted Enter (a guide step's act arms the gate), a tap on the dimmed Answer key, the Hint key or a digit
+     while the gate is shut (the nudge), and a tap on a control while an act plays (queued, never dropped) */
+  useEffect(() => {
+    const toWork = (e: any) => {
+      const g = rootRef.current, svg = g && g.ownerSVGElement;
+      if (!g || !svg || !g.getScreenCTM) return null;
+      const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+      const m = g.getScreenCTM();
+      return m ? pt.matrixTransform(m.inverse()) : null;
+    };
+    const nudgeSoon = () => {
+      const T = timers.current;
+      clearTimeout(T.a);
+      T.a = setTimeout(() => { if (gateRef.current && nudgeRef.current) tempSay(nudgeRef.current); }, 90);
+    };
+    const up = (e: any) => {
+      if (!e.isTrusted) return;
+      const el = e.target, c = el && el.closest ? el.closest("[data-control]") : null, id = c ? c.getAttribute("data-control") : "";
+      if (gateRef.current && (id === "answer-open" || id === "again" || /^key-/.test(id))) { nudgeSoon(); return; }
+      if (busy.current && !fixing.current && !queued.current) {
+        const p = toWork(e);
+        const hit = p && ctlRef.current.find((r: any) => p.x >= r.x && p.x <= r.x + r.w && p.y >= r.y && p.y <= r.y + r.h);
+        if (hit) queued.current = { id: hit.id, arg: hit.arg };
+      }
+    };
+    const kd = (e: any) => {
+      if (!e.isTrusted) return;
+      if (e.key === "Enter") lastEnter.current = Date.now();
+      if (gateRef.current && /^[0-9]$/.test(e.key)) nudgeSoon();
+    };
+    window.addEventListener("pointerup", up, true);
+    window.addEventListener("keydown", kd, true);
+    return () => {
+      window.removeEventListener("pointerup", up, true);
+      window.removeEventListener("keydown", kd, true);
+      clearTimeout(timers.current.a); clearTimeout(timers.current.b);
+    };
+  }, []);
+
+  /* THE ANSWER GATE (PATTERNS 19): locked only while the question still needs its act, in user mode, after a real touch;
+     re-asserted on every render (a gotoStep entry resets the runtime's lock); unlocked once the act is done */
+  const gateOn = needAct && touched.current && !fixing.current;
+  useEffect(() => {
+    gateRef.current = gateOn;
+    if (gateOn) api.lock(true);
+    else if (prevGate.current) {
+      api.lock(false);
+      if (nudging.current) { nudging.current = false; clearTimeout(timers.current.b); api.say(it.say); }
+    }
+    prevGate.current = gateOn;
+  });
+
+  /* a new entry: stop a correction or an act of the old one */
+  useEffect(() => () => { tl.stop(); fixing.current = false; busy.current = false; queued.current = null; nudging.current = false; clearTimeout(timers.current.b); }, [eN]);
+
+  /* the win line (one sentence; a phase's last one gives way to its closing line) */
+  useEffect(() => { if (stage === "win" && !free && item && item.win) api.say(item.win); }, [stage, eN]);
+
+  /* ── geometry of this screen ── */
+  const kind = it.kind;
+  const K1 = kind === "kg" ? (free ? S.fk : it.kg) : 0;
+  const G1 = kind === "kg" ? wcG1(Wd, K1, free ? 0 : it.g || 0) : null;
+  const G2 = kind === "group" ? wcG2(Wd, it.grams) : null;
+  const rows: any[] = kind === "col" ? it.rows : kind === "shop" ? it.items.map((x: any) => [x.kg, x.g]) : [];
+  const R = rows.length;
+  const B = kind === "col" ? wcBoard(Wd / 2 - 234, 16, R) : kind === "shop" ? wcBoard(Wd / 2 - 429 + 390, 16, R) : null;
+  const ix0 = Wd / 2 - 429, itemH = R === 3 ? 124 : 150;
+  const itemBox = (i: number) => ({ x: ix0, y: 24 + i * (itemH + 16), w: 360, h: itemH });
+  const keyY = 424, keyH = 84;
+  const cols = R ? wcCols(rows, it.op) : null;
+
+  /* ── the acts: each performed on screen by the hand (api.act), reacting 40 ms after it resolves true ── */
+  const focusAnswer = () => setTimeout(() => { const k: any = document.querySelector('[data-control="answer-open"]'); if (k && k.focus) k.focus(); }, 180);
+  const play = (o: any, done: () => void) => {
+    busy.current = true;
+    api.act(o).then((ok: boolean) => {
+      if (!ok) { busy.current = false; queued.current = null; return; }
+      setTimeout(() => {
+        busy.current = false;
+        done();
+        const q = queued.current;
+        queued.current = null;
+        if (q) setTimeout(() => { const r = ctlRef.current.find((c: any) => c.id === q.id && c.arg === q.arg); if (r) r.run(); }, 90);
+      }, 40);
+    });
+  };
+  const chip = (text: string, role: string) => {
+    const c = WC_COL[role], w = Math.max(110, String(text).length * 20 + 28);
+    return <g><rect x={-w / 2} y={-26} width={w} height={52} rx={14} fill={c.fill} stroke={c.stroke} strokeWidth={3} /><text y={10} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={c.ink}>{text}</text></g>;
+  };
+  const doAct = (name: string, arg: any, kb: boolean) => {
+    const after = (fin: () => void) => () => { fin(); if (warm) api.did(name); else if (ask && kb) focusAnswer(); };
+    if (name === "open" && G1) {
+      const from = S.opened, K = K1;
+      const at = G1.trays.slice(from).map((t: any) => ({ x: t.x + t.w / 2, y: t.y + t.h / 2 }));
+      play({ tool: "hand", moves: "tap", at, onPoint: (i: number) => put({ opened: from + i + 1 }) }, after(() => { put({ opened: K }); api.sfx.settle(); }));
+    } else if (name === "count" && G1) {
+      const t = G1.trays[arg || 0];
+      const at = Array.from({ length: 10 }, (_, j) => ({ x: t.x + 10 + (j % 2) * 55 + 27, y: t.y + 10 + Math.floor(j / 2) * 30.6 + 15 }));
+      put({ cT: arg || 0, counted: 0 });
+      play({ tool: "hand", moves: "tap", at, onPoint: (j: number) => put({ counted: j + 1 }) }, after(() => { put({ counted: 10, countDone: true }); api.sfx.settle(); }));
+    } else if (name === "total" && G1) {
+      play({ tool: "hand", moves: "tap", at: [{ x: G1.ans.x + G1.ans.w / 2, y: G1.ans.y + 30 }] }, after(() => { put({ total: true }); api.sfx.trade(); }));
+    } else if (name === "gather" && G2) {
+      const from = { x: G2.heap.cx, y: G2.heap.base - 80 };
+      const at = G2.bags.map((b: any) => ({ x: b.x + b.w / 2, y: b.y + b.h / 2 }));
+      const hold = <ellipse cx={0} cy={0} rx={30} ry={16} fill="#F4EEDD" stroke="#C8B48A" strokeWidth={2} />;
+      play({ tool: "hand", moves: "carry", from, at, hold, onPoint: (i: number) => put({ gathered: i + 1 }) }, after(() => { put({ gathered: G2.K }); api.sfx.settle(); }));
+    } else if (name === "left" && G2) {
+      play({ tool: "hand", moves: "tap", at: [{ x: G2.heap.cx, y: G2.heap.base - 20 }] }, after(() => { put({ leftShown: true }); api.sfx.tick(); }));
+    } else if ((name === "grams" || name === "kg") && B) {
+      const c = name === "grams" ? B.g : B.kg;
+      play({ tool: "hand", moves: "tap", at: [{ x: c.x + c.w / 2, y: B.rowY(0) + 60 }] }, after(() => put(name === "grams" ? { gLit: true } : { kLit: true })));
+    } else if (name === "carry" && B) {
+      const at = [{ x: B.g.x + B.g.w / 2, y: B.rowY(R - 1) + 40 }, { x: B.kg.x + B.kg.w / 2 + 40, y: B.carryY + 26 }];
+      play({ tool: "hand", moves: "carry", at, hold: chip(`1 ${tx("kg")}`, "second"), onPoint: (i: number) => put({ cStage: i + 1 }) }, after(() => put({ carried: true, cStage: 2 })));
+    } else if (name === "borrow" && B) {
+      const at = [{ x: B.kg.x + B.kg.w / 2, y: B.rowY(0) + 40 }, { x: B.g.x + B.g.w / 2, y: B.rowY(0) + 40 }];
+      play({ tool: "hand", moves: "carry", at, hold: chip(wcGr(1000, tx), "second"), onPoint: (i: number) => put({ borrow: i + 1 }) }, after(() => put({ borrow: 2 })));
+    } else if (name === "add" && B) {
+      const at = [{ x: B.g.x + B.g.w / 2, y: B.ansY + 40 }, { x: B.kg.x + B.kg.w / 2, y: B.ansY + 40 }];
+      play({ tool: "hand", moves: "tap", at, onPoint: (i: number) => put(i === 0 ? { gLit: true } : { kLit: true }) }, after(() => put({ added: true, gLit: true, kLit: true })));
+    } else if (kind === "shop" && B) {
+      const i = it.items.findIndex((x: any) => x.id === name);
+      if (i < 0 || S.placed.includes(i)) return;
+      const ib = itemBox(i), x = it.items[i];
+      const at = [{ x: ib.x + 264, y: ib.y + ib.h / 2 }, { x: B.kg.x + 190, y: B.rowY(i) + 40 }];
+      play({ tool: "hand", moves: "carry", at, hold: chip(wcKgG(x.kg, x.g, tx), i === 0 ? "given" : "second"),
+        onPoint: (j: number) => { if (j === 1) put((b: any) => ({ placed: b.placed.includes(i) ? b.placed : [...b.placed, i] })); } },
+        after(() => { put((b: any) => ({ placed: b.placed.includes(i) ? b.placed : [...b.placed, i] })); api.sfx.tick(); }));
+    }
+  };
+  /* every press of a control or piece: a 400 ms double-tap guard, a wrong act in a guide step shows its hint (api.did),
+     a wrong key at a carry/borrow question is a calm nudge that costs no try */
+  const press = (name: string, real: boolean, arg?: any) => {
+    const t = Date.now();
+    if (real) {
+      if (t - lastTap.current.t < 400 && lastTap.current.id === name) return;
+      lastTap.current = { t, id: name };
+    }
+    if (busy.current || fixing.current) return;
+    if (warm) { if (name !== on) { api.did(name); return; } }
+    else if (!free && !ask) return;
+    if (real) touched.current = true;
+    const kb = real && t - lastEnter.current < 250;
+    if (free) {
+      if (name === "more" || name === "fewer") { put((b: any) => ({ fk: Math.max(1, Math.min(4, b.fk + (name === "more" ? 1 : -1))), opened: 0 })); api.sfx.tick(); return; }
+      if (name === "open" && S.opened < S.fk) doAct("open", null, false);
+      return;
+    }
+    if (ask && kind === "col") {
+      if (!nextAct) return;
+      if (name !== it.act) { tempSay(WC_NUDGE.wrongKey[(index || 0) % 2]); return; }
+    } else if (ask && kind !== "shop" && name !== nextAct) return;
+    doAct(name, arg, kb);
+  };
+  const argOf = (name: string) => (name === "count" ? 0 : null);
+  api.onEnter(warm && on ? () => press(on, Date.now() - lastEnter.current < 300, argOf(on)) : null);
+
+  /* the agent: the act at once at an open question (HOOK.check), the current step in a guide step (HOOK.demo) */
+  const finishAll = () => {
+    if (kind === "kg") put({ opened: it.kg });
+    else if (kind === "group") put({ gathered: Math.floor(it.grams / 1000) });
+    else if (kind === "col") put(it.act === "carry" ? { carried: true, cStage: 2 } : { borrow: 2 });
+    else if (kind === "shop") put({ placed: it.items.map((_: any, i: number) => i) });
+  };
+  HOOK.check = ask && !free ? () => { if (nextAct) finishAll(); return undefined; } : null;
+  HOOK.demo = warm && on ? () => press(on, false, argOf(on)) : null;
+
+  /* THE CORRECTION (MISS HIDES THE ANSWER): the act's end state, then the working replayed in steps that stop one step short;
+     drawn inside pointerEvents="none", unmarked; the slot is the runtime's (emptied at the miss) */
+  useEffect(() => {
+    if (!wrong || stage !== "ask" || free) return;
+    fixing.current = true;
+    busy.current = false; queued.current = null;
+    api.lock(true);
+    const e = eN;
+    finishAll();
+    let seq: any[] = [];
+    if (kind === "kg") { seq = it.kg ? Array.from({ length: it.kg }, (_, i) => ({ k: i + 1 })) : []; if (it.g) seq.push({ k: it.kg, pk: true }); }
+    else if (kind === "group") { const K = Math.floor(it.grams / 1000); seq = Array.from({ length: K }, (_, i) => ({ k: i + 1 })); seq.push({ k: K, ring: true }); }
+    else { const c = wcCols(rows, it.op); seq = [{ g: true }, ...(c.carry || c.borrow ? [{ g: true, mark: true }] : []), { g: true, mark: true, k: true }]; }
+    const ms = seq.length > 5 ? 420 : 620;
+    tl.run([[360, () => put({ fix: {} })], ...seq.map((f: any) => [ms, () => put({ fix: f })])], () => {
+      fixing.current = false;
+      if (ent.current.n === e) api.lock(false);
+    });
+  }, [wrong]);
+
+  /* what the host and the agent read back (never the answer before it is given) */
+  api.share({ complete: stage === "idle", kilograms: kind === "kg" ? K1 : null, grams: kind === "group" ? it.grams : null,
+    poured: kind === "kg" ? S.opened : kind === "group" ? S.gathered : 0, carry: !!S.carried, borrow: S.borrow >= 2, placed: S.placed.length });
+
+  /* ── drawing ── */
+  const ctls: any[] = [];
+  const reg = (id: string, x: number, y: number, w: number, h: number, arg?: any) => ctls.push({ id, x, y, w, h, arg, run: () => press(id, true, arg) });
+  const actKey = (slot: string, id: string, x: number, w: number, label: string) => {
+    reg(id, x, keyY, w, keyH);
+    return (
+      <Key key={"key-" + slot} id={id} label={tx(label)} x={x} y={keyY} w={w} h={keyH} C={C} tone="key" onClick={() => press(id, true)}>
+        <text y={14} textAnchor="middle" fontSize={T.prompt} fontWeight={700} fill={toneInk("key", C.ink)}>{tx(label)}</text>
+      </Key>
+    );
+  };
+  const inviteBox = (x: number, y: number, w: number, h: number) => <Invite x={x + w / 2} y={y + h / 2} w={w} h={h} rx={RAD.key} C={C} />;
+  const fix = S.fix || null;
+  let invite: any = null;
+
+  /* P1 (and free play): the scale, the bags, the trays of ten 100 g bags */
+  const draw1 = () => {
+    if (!G1) return null;
+    const g = free ? 0 : it.g || 0;
+    const pill = !warm || S.countDone;
+    const keys: any[] = [];
+    const kx0 = G1.cx - 120;
+    if (free) {
+      keys.push(actKey("a", "fewer", G1.cx - 120 - 20 - 100, 100, "−"));
+      keys.push(actKey("b", "open", kx0, 240, "Open"));
+      keys.push(actKey("c", "more", G1.cx + 120 + 20, 100, "+"));
+      if (S.opened < S.fk) invite = inviteBox(kx0, keyY, 240, keyH);
+    } else if ((warm && (on === "open" || on === "total")) || (ask && nextAct === "open")) {
+      const id = warm ? on : "open";
+      keys.push(actKey("a", id, kx0, 240, WC_KEYS[id]));
+      invite = inviteBox(kx0, keyY, 240, keyH);
+    }
+    return (
+      <g>
+        {/* the scale: pan and body, drawn in code; the Given plate reads the weight the question gives */}
+        <rect x={G1.pan.x} y={G1.pan.y} width={G1.pan.w} height={G1.pan.h} rx={8} fill="#9AA6B2" stroke="#4F5B66" strokeWidth={3} />
+        <path d={`M ${G1.body.x + 20} ${G1.body.y} L ${G1.body.x + G1.body.w - 20} ${G1.body.y} L ${G1.body.x + G1.body.w} ${G1.body.y + G1.body.h} L ${G1.body.x} ${G1.body.y + G1.body.h} Z`} fill="#DCE3EA" stroke="#4F5B66" strokeWidth={3} />
+        {wcTag("plate", G1.plate.x, G1.plate.y, G1.plate.w, G1.plate.h, "given", free ? `${K1} ${tx("kg")}` : wcKgG(K1, g, tx), T.speech)}
+        {pill && wcEqTag("pill", G1.pill.x, G1.pill.y, G1.pill.w, G1.pill.h, "fact", `1 ${tx("kg")}`, wcGr(1000, tx))}
+        {warm && S.total && wcEqTag("wres", G1.ans.x, G1.ans.y, G1.ans.w, G1.ans.h, "answer", `${K1} ${tx("kg")}`, wcGr(K1 * 1000, tx))}
+        {free && S.opened >= S.fk && wcEqTag("fres", G1.ans.x, G1.ans.y, G1.ans.w, G1.ans.h, "answer", `${K1} ${tx("kg")}`, wcGr(K1 * 1000, tx))}
+        {won && wcAnsTag("ans", G1.ans.x, G1.ans.y, G1.ans.w, G1.ans.h, wcGr(it.answer, tx), tx)}
+        {G1.trays.map((t: any, i: number) => {
+          const opened = i < S.opened;
+          const counting = warm && i === S.cT && !S.countDone;
+          const lit = !!fix && fix.k > i;
+          return (
+            <g key={"t" + i}>
+              {!opened ? (
+                <g>
+                  {wcSackShape(t.x, t.y, t.w, t.h)}
+                  <Skin name="sack" x={t.x} y={t.y} w={t.w} h={t.h} />
+                  {wcTag("st" + i, t.x + t.w / 2 - 46, t.y + t.h * 0.5, 92, 46, "count", `1 ${tx("kg")}`, T.label)}
+                </g>
+              ) : (
+                <g>
+                  <rect x={t.x} y={t.y} width={t.w} height={t.h} rx={14} fill="#FFF8EA" stroke="#D55E00" strokeWidth={3} strokeDasharray="10 7" />
+                  {Array.from({ length: 10 }, (_, j) => wcPacket("p" + j, t.x + 10 + (j % 2) * 55 + 4, t.y + 10 + Math.floor(j / 2) * 30.6 + 3, 47, 24, counting ? j < S.counted : warm && i === S.cT && S.countDone))}
+                  {counting && S.counted > 0 && wcTag("cc" + i, t.x + t.w / 2 - 70, 80, 140, 46, "count", wcGr(S.counted * 100, tx), T.label)}
+                  {(!warm || S.countDone) && wcTag("ch" + i, t.x + t.w / 2 - 70, 80, 140, 46, "fact", wcGr(1000, tx), T.label)}
+                </g>
+              )}
+              {warm && on === "count" && opened && (reg("count", t.x, t.y, t.w, t.h, i), <Hit key={"h" + i} id="count" x={t.x} y={t.y} w={t.w} h={t.h} label={tx("Count this tray")} onPress={() => press("count", true, i)} />)}
+              {lit && (
+                <g pointerEvents="none">
+                  <rect x={t.x - 6} y={t.y - 6} width={t.w + 12} height={t.h + 12} rx={18} fill="none" stroke="#E69F00" strokeWidth={6} />
+                  {wcTag("fk" + i, t.x + t.w / 2 - 44, t.y + t.h - 52, 88, 44, "second", `${i + 1} ${tx("kg")}`, T.label)}
+                </g>
+              )}
+            </g>
+          );
+        })}
+        {warm && on === "count" && (invite = inviteBox(G1.trays[0].x, G1.trays[0].y, G1.trays[0].w, G1.trays[0].h), null)}
+        {G1.packet && (
+          <g>
+            {wcBagShape("pk", G1.packet.x, G1.packet.y, G1.packet.w, G1.packet.h)}
+            {wcTag("pkt", G1.packet.x + 4, G1.packet.y + G1.packet.h * 0.46, G1.packet.w - 8, 46, "second", `${g} ${tx("g")}`, T.label)}
+            {fix && fix.pk && <rect pointerEvents="none" x={G1.packet.x - 6} y={G1.packet.y - 6} width={G1.packet.w + 12} height={G1.packet.h + 12} rx={16} fill="none" stroke="#E69F00" strokeWidth={6} />}
+          </g>
+        )}
+        {keys}
+      </g>
+    );
+  };
+
+  /* P2: the heap of rice, the 1 kg bags it fills, the rice left (amber ring, no number) */
+  const draw2 = () => {
+    if (!G2) return null;
+    const grams = it.grams, K = G2.K, got = S.gathered, left = grams - got * 1000;
+    const done = got >= K;
+    const hm = got === 0 ? 170 : left > 0 ? Math.max(24, 170 * Math.sqrt(left / grams)) : 0;
+    const { cx, base } = G2.heap, mw = 70 + 190 * (hm / 170);
+    const keys: any[] = [];
+    if ((warm && on === "gather") || (ask && nextAct === "gather")) {
+      keys.push(actKey("a", "gather", Wd / 2 - 120, 240, "Gather"));
+      invite = inviteBox(Wd / 2 - 120, keyY, 240, keyH);
+    }
+    const countTo = fix && fix.k ? Math.min(fix.k, K - 1) : 0;
+    return (
+      <g>
+        {wcTag("given", G2.given.x, G2.given.y, G2.given.w, G2.given.h, "given", wcGr(grams, tx), T.prompt)}
+        {/* the bowl and the heap */}
+        {hm > 0 && (
+          <g>
+            <path d={`M ${cx - mw / 2} ${base + 4} Q ${cx} ${base - 2 * hm} ${cx + mw / 2} ${base + 4} Z`} fill="#F4EEDD" stroke="#C8B48A" strokeWidth={2.5} />
+            {Array.from({ length: Math.round(4 + 10 * (hm / 170)) }, (_, j) => (
+              <ellipse key={j} cx={cx + ((j * 37) % 100 - 50) * (mw / 260)} cy={base - 8 - ((j * 53) % 100) / 100 * hm * 0.8} rx={5} ry={2.4} fill="#E2D7BC" />
+            ))}
+          </g>
+        )}
+        <path d={`M ${cx - 140} ${base} L ${cx + 140} ${base} Q ${cx + 118} ${base + 48} ${cx} ${base + 48} Q ${cx - 118} ${base + 48} ${cx - 140} ${base} Z`} fill="#B8C2CC" stroke="#5E6B78" strokeWidth={3} />
+        {done && (
+          <g>
+            <ellipse cx={cx} cy={base - 30} rx={132} ry={86} fill="none" stroke="#E69F00" strokeWidth={fix && fix.ring ? 7 : 4} strokeDasharray="12 8" />
+            {warm && S.leftShown ? wcTag("lv", cx - 70, base + 58, 140, 46, "second", `${left} ${tx("g")}`, T.label) : wcTag("lf", cx - 60, base + 58, 120, 46, "second", tx("Left"), T.label)}
+          </g>
+        )}
+        {warm && on === "left" && (reg("left", cx - 132, base - 116, 264, 172), <Hit key="hl" id="left" x={cx - 132} y={base - 116} w={264} h={172} label={tx("The rice that is left")} onPress={() => press("left", true)} />)}
+        {warm && on === "left" && (invite = <Invite x={cx} y={base - 30} r={96} C={C} />, null)}
+        {G2.bags.slice(0, got).map((b: any, i: number) => (
+          <g key={"b" + i}>
+            {wcSackShape(b.x, b.y, b.w, b.h)}
+            <Skin name="sack" x={b.x} y={b.y} w={b.w} h={b.h} />
+            {wcTag("bt" + i, b.x + b.w / 2 - 55, b.y + b.h * 0.52, 110, 44, "fact", wcGr(1000, tx), T.micro)}
+            {fix && fix.k > i && <rect pointerEvents="none" x={b.x - 5} y={b.y - 5} width={b.w + 10} height={b.h + 10} rx={14} fill="none" stroke="#E69F00" strokeWidth={6} />}
+          </g>
+        ))}
+        {warm && S.leftShown && wcTag("wres", G2.right.x, G2.right.y, G2.right.w, G2.right.h, "answer", wcAns(K, grams % 1000, tx), T.prompt)}
+        {fix && countTo > 0 && !won && <g pointerEvents="none">{wcTag("cnt", G2.right.x, G2.right.y, G2.right.w, G2.right.h, "count", wcGr(countTo * 1000, tx), T.prompt)}</g>}
+        {won && wcAnsTag("ans", G2.right.x, G2.right.y, G2.right.w, G2.right.h, wcAns(it.answer[0], it.answer[1], tx), tx)}
+        {keys}
+      </g>
+    );
+  };
+
+  /* the kg | g column board (P3 and P4) */
+  const board = () => {
+    if (!B || !cols) return null;
+    const isP4 = kind === "shop";
+    const placed = (i: number) => !isP4 || S.placed.includes(i);
+    const fxg = !!fix && fix.g, fxk = !!fix && fix.k, fxm = !!fix && fix.mark;
+    /* the carry or the borrow on show: the child's own act (P3, the warm-ups), or the correction's mark (P4) */
+    const carryOn = (kind === "col" && S.cStage >= 2) || (isP4 && fxm && cols.carry > 0);
+    const borrowK = (kind === "col" && S.borrow >= 1) || (isP4 && fxm && cols.borrow);
+    const borrowG = (kind === "col" && S.borrow >= 2) || (isP4 && fxm && cols.borrow);
+    const gLit = S.gLit || fxg, kLit = S.kLit || fxk;
+    const rowInk = (i: number) => (i === 0 ? WC_COL.given.ink : WC_COL.second.ink);
+    const top = B.carryY, colH = B.rowY(R) - top;
+    const gx = B.g.x + B.g.w - 34, kcx = B.kg.x + B.kg.w / 2;
+    const lead = (g: number) => (g >= 100 ? "" : g >= 10 ? "0" : "00");
+    /* the warm-up's own working and result (never a question's) */
+    const wWork = warm && kind === "col" ? (S.kLit ? { k: String(cols.k), g: String(cols.g) } : S.cStage >= 2 ? { g: String(cols.g) } : S.gLit ? { g: indian(cols.sg) } : null)
+      : warm && isP4 ? (S.kLit ? { k: String(cols.k), g: String(cols.g) } : S.gLit ? { g: String(cols.g) } : null) : null;
+    const wDone = warm && (kind === "col" ? S.kLit : S.added);
+    return (
+      <g>
+        <rect x={B.x} y={B.y} width={B.w} height={B.h} rx={18} fill="#FFFFFF" stroke="#2B2B2B" strokeWidth={3} />
+        <g pointerEvents="none">
+          {gLit && <rect x={B.g.x + 4} y={top} width={B.g.w - 8} height={colH} rx={10} fill={WC_LIT} stroke="#E69F00" strokeWidth={3} />}
+          {kLit && <rect x={B.kg.x + 4} y={top} width={B.kg.w - 8} height={colH} rx={10} fill={WC_LIT} stroke="#E69F00" strokeWidth={3} />}
+        </g>
+        <g data-scale="headings">
+          <text x={kcx} y={B.y + 38} textAnchor="middle" fontSize={T.label} fontWeight={700} fill="#2B2B2B">{tx("kg")}</text>
+          <text x={B.g.x + B.g.w / 2} y={B.y + 38} textAnchor="middle" fontSize={T.label} fontWeight={700} fill="#2B2B2B">{tx("g")}</text>
+        </g>
+        <line x1={B.x + 10} y1={B.y + 48} x2={B.x + B.w - 10} y2={B.y + 48} stroke="#2B2B2B" strokeWidth={2} />
+        <line x1={B.kg.x} y1={B.y + 10} x2={B.kg.x} y2={B.ansY + 80} stroke="#C9BCA6" strokeWidth={2} />
+        <line x1={B.g.x} y1={B.y + 10} x2={B.g.x} y2={B.ansY + 80} stroke="#2B2B2B" strokeWidth={3} />
+        {rows.map((r: any, i: number) => {
+          const y = B.rowY(i);
+          if (!placed(i)) return (
+            <g key={"r" + i}>
+              <rect x={B.kg.x + 22} y={y + 10} width={B.kg.w - 44} height={60} rx={10} fill="none" stroke="#C9BCA6" strokeWidth={2} strokeDasharray="8 6" />
+              <rect x={B.g.x + 22} y={y + 10} width={B.g.w - 44} height={60} rx={10} fill="none" stroke="#C9BCA6" strokeWidth={2} strokeDasharray="8 6" />
+            </g>
+          );
+          const struck = i === 0 && borrowK;
+          return (
+            <g key={"r" + i}>
+              {i === R - 1 && <text x={B.sign.x + B.sign.w / 2} y={y + 60} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill="#2B2B2B">{it.op === "−" ? "−" : "+"}</text>}
+              <text x={kcx} y={y + 60} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={r[0] === 0 ? WC_GREY : rowInk(i)}>{r[0]}</text>
+              <text x={gx} y={y + 60} textAnchor="end" fontSize={T.xl} fontWeight={700} fill={rowInk(i)}><tspan fill={WC_GREY}>{lead(r[1])}</tspan>{String(r[1])}</text>
+              {struck && <line x1={kcx - 30} y1={y + 52} x2={kcx + 30} y2={y + 28} stroke="#7A5000" strokeWidth={5} strokeLinecap="round" pointerEvents="none" />}
+              {struck && borrowG && <line x1={gx - 120} y1={y + 52} x2={gx + 6} y2={y + 28} stroke="#7A5000" strokeWidth={5} strokeLinecap="round" pointerEvents="none" />}
+            </g>
+          );
+        })}
+        {/* the carry row: a carried 1 over the kg column, or the borrow's new top numbers; only after the act */}
+        <g pointerEvents="none">
+          {kind === "col" && S.cStage === 1 && wcTag("c1k", B.g.x + B.g.w / 2 - 70, B.carryY + 2, 140, 46, "second", wcGr(1000, tx), T.label)}
+          {carryOn && <text x={kcx + 40} y={B.carryY + 40} textAnchor="middle" fontSize={T.prompt} fontWeight={700} fill="#7A5000">1</text>}
+          {borrowK && <text x={kcx} y={B.carryY + 40} textAnchor="middle" fontSize={T.prompt} fontWeight={700} fill="#7A5000">{rows[0][0] - 1}</text>}
+          {borrowG && <text x={gx} y={B.carryY + 40} textAnchor="end" fontSize={T.prompt} fontWeight={700} fill="#7A5000">{indian(rows[0][1] + 1000)}</text>}
+        </g>
+        <line x1={B.x + 12} y1={B.ruleY} x2={B.x + B.w - 12} y2={B.ruleY} stroke="#2B2B2B" strokeWidth={5} />
+        {/* the answer row: empty cells until the win (the warm-up shows its own working and result) */}
+        <rect x={B.kg.x + 16} y={B.ansY + 6} width={B.kg.w - 32} height={68} rx={10} fill={wDone ? WC_COL.answer.fill : "none"} stroke={wDone ? WC_COL.answer.stroke : "#9AA4AC"} strokeWidth={2.5} strokeDasharray={wDone ? undefined : "8 6"} />
+        <rect x={B.g.x + 16} y={B.ansY + 6} width={B.g.w - 32} height={68} rx={10} fill={wDone ? WC_COL.answer.fill : "none"} stroke={wDone ? WC_COL.answer.stroke : "#9AA4AC"} strokeWidth={2.5} strokeDasharray={wDone ? undefined : "8 6"} />
+        {wWork && wWork.k !== undefined && <text x={kcx} y={B.ansY + 60} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={wDone ? WC_COL.answer.ink : "#7A5000"}>{wWork.k}</text>}
+        {wWork && wWork.g !== undefined && <text x={gx} y={B.ansY + 60} textAnchor="end" fontSize={T.xl} fontWeight={700} fill={wDone ? WC_COL.answer.ink : "#7A5000"}>{wWork.g}</text>}
+        {won && (
+          <g data-reveals="answer">
+            <rect x={B.kg.x + 16} y={B.ansY + 6} width={B.kg.w - 32} height={68} rx={10} fill={WC_COL.answer.fill} stroke={WC_COL.answer.stroke} strokeWidth={4} />
+            <rect x={B.g.x + 16} y={B.ansY + 6} width={B.g.w - 32} height={68} rx={10} fill={WC_COL.answer.fill} stroke={WC_COL.answer.stroke} strokeWidth={4} />
+            <text x={kcx} y={B.ansY + 60} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={WC_COL.answer.ink}>{it.answer[0]}</text>
+            <text x={gx} y={B.ansY + 60} textAnchor="end" fontSize={T.xl} fontWeight={700} fill={WC_COL.answer.ink}><tspan fill={WC_GREY}>{lead(it.answer[1])}</tspan>{String(it.answer[1])}</text>
+          </g>
+        )}
+      </g>
+    );
+  };
+
+  /* P3: the board, and the Carry and the Borrow key together (the child decides) */
+  const draw3 = () => {
+    if (!B) return null;
+    const keys: any[] = [];
+    const showKeys = warm ? !S.carried && on !== "kg" : ask && !!nextAct;
+    if (showKeys) {
+      keys.push(actKey("a", "carry", Wd / 2 - 252, 240, "Carry"));
+      keys.push(actKey("b", "borrow", Wd / 2 + 12, 240, "Borrow"));
+      if (warm && on === "carry") invite = inviteBox(Wd / 2 - 252, keyY, 240, keyH);
+    }
+    const cg = (id: string, c: any) => (reg(id, c.x, B.y, c.w, B.rowY(R) - B.y),
+      <Hit key={"h" + id} id={id} x={c.x} y={B.y} w={c.w} h={B.rowY(R) - B.y} label={tx(id === "grams" ? "The grams column" : "The kilograms column")} onPress={() => press(id, true)} />);
+    return (
+      <g>
+        {board()}
+        {warm && on === "grams" && cg("grams", B.g)}
+        {warm && on === "kg" && cg("kg", B.kg)}
+        {warm && (on === "grams" || on === "kg") && (invite = inviteBox(on === "grams" ? B.g.x : B.kg.x, B.y, on === "grams" ? B.g.w : B.kg.w, B.rowY(R) - B.y), null)}
+        {won && wcAnsTag("ans", Wd / 2 - 200, keyY + 8, 400, 64, wcAns(it.answer[0], it.answer[1], tx), tx)}
+        {keys}
+      </g>
+    );
+  };
+
+  /* P4: the shopping items (a tap puts each weight in its row), then the board */
+  const draw4 = () => {
+    if (!B) return null;
+    let nextIdx = -1;
+    const art = it.items.map((x: any, i: number) => {
+      const ib = itemBox(i), done = S.placed.includes(i);
+      const live = warm ? on === x.id || (on !== "add" && !done) : ask && !done;
+      if (!done && nextIdx < 0 && (warm ? on === x.id : ask)) nextIdx = i;
+      return (
+        <g key={"i" + i}>
+          {wcItemArt("a" + i, x.sk, x.m, ib.x + 4, ib.y + 8, 150, ib.h - 16)}
+          {wcTag("w" + i, ib.x + 166, ib.y + ib.h / 2 - 30, 194, 60, i === 0 ? "given" : "second", wcKgG(x.kg, x.g, tx), T.label)}
+          {live && (reg(x.id, ib.x, ib.y, ib.w, ib.h), <Hit key={"h" + i} id={x.id} x={ib.x} y={ib.y} w={ib.w} h={ib.h} label={tx(x.sk === "sack" ? "The bag of rice" : x.sk === "watermelon" ? "The watermelon" : x.sk === "bag" ? "The shopping bag" : "The mango")} onPress={() => press(x.id, true)} />)}
+        </g>
+      );
+    });
+    if (nextIdx >= 0) { const ib = itemBox(nextIdx); invite = inviteBox(ib.x, ib.y, ib.w, ib.h); }
+    return (
+      <g>
+        {art}
+        {board()}
+        {warm && on === "add" && (reg("add", B.x, B.y, B.w, B.h), <Hit key="hadd" id="add" x={B.x} y={B.y} w={B.w} h={B.h} label={tx("The column board")} onPress={() => press("add", true)} />)}
+        {warm && on === "add" && (invite = inviteBox(B.x, B.y, B.w, B.h), null)}
+        {won && wcAnsTag("ans", ix0, 440, 360, 64, wcAns(it.answer[0], it.answer[1], tx), tx)}
+      </g>
+    );
+  };
+
+  const pic = kind === "kg" ? draw1() : kind === "group" ? draw2() : kind === "col" ? draw3() : kind === "shop" ? draw4() : null;
+  ctlRef.current = ctls;
+  return (
+    <g ref={rootRef}>
+      {pic}
+      {invite}
+    </g>
+  );
+}
+
+/* the summary page's small drawing of the child's last right answer in a phase (a bag of rice and the weight) */
+function Thumb({ result, it, C, w, h, lang = "en", tx = (v: any) => v }: any) {
+  const last = result && result.last;
+  if (!last) return null;
+  const item = it || last.it || {};
+  /* a unit is drawn in hi/gu only once its TR line exists (summary-thumbs fails a Latin letter there) */
+  const u = (s: string) => (lang === "en" || (TR[lang] && TR[lang][s]) ? tx(s) : "");
+  let label = "";
+  if (item.kind === "kg") label = [indian(leadNumber(last.value)), u("g")].filter((x) => x !== "").join(" ");
+  else { const [a, b] = slotPartsOf(last.value, 2); label = [a, u("kg"), b, u("g")].filter((x) => x !== "" && x !== undefined).join(" "); }
+  return (
+    <g>
+      <rect x={0} y={0} width={w} height={h} rx={14} fill="#FFFDF7" stroke={C.rule} strokeWidth={1.5} />
+      <path d={`M ${12} ${h * 0.3} Q ${30} ${h * 0.14} ${48} ${h * 0.3} L ${54} ${h * 0.86} Q ${30} ${h * 0.95} ${6} ${h * 0.86} Z`} fill="#CDAE78" stroke="#7A5A2E" strokeWidth={2} />
+      <rect x={64} y={h / 2 - 24} width={w - 76} height={48} rx={12} fill={WC_COL.answer.fill} stroke={WC_COL.answer.stroke} strokeWidth={2.5} />
+      <text x={64 + (w - 76) / 2} y={h / 2 + 10} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={WC_COL.answer.ink}>{label}</text>
+    </g>
+  );
+}
+
+function WeightConverter(props: any) {
+  return (
+    <ToolFrame props={props} tool={{ TOOL_ID, MEDIA_ID, TOOL_NAME, CHROME, VOICE, OPENING, FINISH_LINE, FREE_LINE, TR, freePlay: true, Thumb, PHASES, MODEL, Work,
+      judge, oracle, nearMiss, answerForms, agentKey, solve, answer, check, format, fitHost: () => null,
+      board: true,
+      keyOnly: true,
+      bigPad: true,
+      nextKey: true,
+      navDots: true,
+      StartArt, START_HOOK,
+      }} />
+  );
+}
+
+export default WeightConverter;

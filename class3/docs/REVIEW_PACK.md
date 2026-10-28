@@ -30,7 +30,7 @@ simply has no such frame; a voiced runtime has the frames that exist for it (no 
 | `stepwrong` | a wrong act on that step: the step's hint under the pinned instruction | steps phase, runtime with the hint (r34+) |
 | `ask-shut` | the phase's first question as it first appears (a board tool: the answer panel shut) | always; `kind` in pack.json says `key`, `card` or `choices` |
 | `ask-open` | the same question with the answer panel open | a board tool |
-| `wrong` | a wrong answer on the first question once the tool has traced the right one: the hint under the instruction, the slot EMPTY (MISS CLEARS THE SLOT; on an older runtime the child's answer still in it) | always |
+| `wrong` | a wrong answer on the first question once the correction has played (the pad unlocked): the hint under the instruction, the slot EMPTY (MISS CLEARS THE SLOT; on an older runtime the child's answer still in it). On a chapter held to MISS HIDES THE ANSWER (`rules.missHidesAnswer`, LAYOUT §3) the frame shows the WORKING stopped one step before the answer and nothing that shows or points at it: no final number, no ring or highlight on the right card or choice, no lit final mark or bracket, no "Answer" tag, no bubble line naming it (any of them is a must-fix); on an older chapter the correction ends on the right answer | always |
 | `win` | the right answer on the first question (with the Next key on show, when the tool has one) | always |
 | `hintkey` | the header's Hint key pressed on the second question of the first phase | runtime with the Hint key (r35+) |
 | `choice`, `choice-line`, `choice-wrong` | the first Yes/No question of the tool, its "Choose your answer." line (neutral band, only a tool whose Answer key brings it) and a wrong choice with its hint | the tool has a choice question that is not already a phase's first question |
@@ -118,7 +118,7 @@ harness does (the harness only: nothing here changes what the runtime renders fo
   was a different picture. Each frame waits until the stage's DOM has not changed for 250 ms, and is shot until two shots in a
   row are the same bytes (a frame that never gives two alike is kept and marked `unstable`, counted as changed). A frame with a
   short window (the win and the phase end of a tool that walks on by itself) is shot once, at once.
-- **A wrong answer is a moving picture.** The tool locks and traces the right answer, then opens again with the hint up; a
+- **A wrong answer is a moving picture.** The tool locks and replays the working (one step short of the answer under MISS HIDES THE ANSWER, to the answer on an older chapter), then opens again with the hint up; a
   frame taken at the first moment of the hint is mid-trace. The `wrong` frames wait for the lock and the unlock first.
 - Reduced motion (the runtime's own CSS then switches every pulse, caret and blink off) and the Next key held (the frame
   is a held state, not a timer's) do the rest.

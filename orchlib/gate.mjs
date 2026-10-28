@@ -52,7 +52,7 @@ export function builderStartTokens({ classDir, chapterDir, slots, rep }) {
 
 /* decide. -> { verdict: "GO"|"STOP"|"CHECKPOINT", lines: [...], agent?: {...} } (pure apart from the session reading) */
 export async function decide({ root, pol, st, info, chapter, tools, role, slots = [], tier = "base", mode = null, reason = null, over = null, plan = null, now = Date.now(), estimate = true }) {
-  /* a running sprint (orch.mjs sprint start) lifts the agent caps for ONE tool built in a fixed time: more agents at once, 3-4 Opus by complexity */
+  /* a running sprint (orch.mjs sprint start) lays its own limits over the standing ones for ONE tool built in a fixed time; since 2026-10-28 the standing ones already allow 5 Opus agents at once and any number of Sonnet agents, so it can only lift the Opus figure, never lower it */
   const sprint = st.sprint && !st.sprint.endedAt ? st.sprint : null;
   const L = sprint ? { ...(pol.limits || {}), ...((pol.sprint && pol.sprint.limits) || {}), ...(sprint.limits || {}) } : pol.limits || {}, lines = [], refuse = [];
   if (!ROLES.includes(role)) return { verdict: "STOP", lines: [`unknown role ${role}; one of ${ROLES.join(", ")}`] };
@@ -68,15 +68,20 @@ export async function decide({ root, pol, st, info, chapter, tools, role, slots 
   if (inWindow >= (S.fallbackMaxAgentsPerWindow || Infinity)) return { verdict: "CHECKPOINT", lines: [`${inWindow} agents launched for this chapter in the last ${S.windowHours || 5} h ≥ fallbackMaxAgentsPerWindow ${S.fallbackMaxAgentsPerWindow}`, "checkpoint: node orch.mjs handoff, and resume after the window resets (or record the real figure: node orch.mjs session --pct N)"] };
   if (lvl.frac != null && lvl.frac >= (S.stopExpensiveAt ?? 0.7) && (model === "opus" || (role === "visual-reviewer" && (mode || "full") === "full"))) refuse.push(`session ${Math.round(lvl.frac * 100)}% ≥ stopExpensiveAt ${Math.round((S.stopExpensiveAt ?? 0.7) * 100)}%: no new ${model === "opus" ? "Opus agent" : "full visual pass"} (finish cheap work, then handoff)`);
 
-  /* 2. limits */
+  /* 2. limits. The owner's rule (2026-10-28, every class and chapter): at most maxConcurrentOpus Opus agents RUNNING at once (5) and no cap on Sonnet or Haiku agents: the other limits are null (= none), and a class may still set a number */
   const run = running(st, L.staleAgentMinutes || 90);
-  if (run.length >= (L.maxConcurrent || 4)) refuse.push(`${run.length} agents running (maxConcurrent ${L.maxConcurrent}): wait for one (${run.map((a) => a.id).join(", ")})`);
+  const maxRun = limitOf(L.maxConcurrent, tools);
+  if (run.length >= maxRun) refuse.push(`${run.length} agents running (maxConcurrent ${maxRun}): wait for one (${run.map((a) => a.id).join(", ")})`);
   const maxTotal = limitOf(L.maxAgentsPerChapter, tools);
   if (build.length >= maxTotal) refuse.push(`${build.length} agents this build ≥ maxAgentsPerChapter ${maxTotal}`);
-  const opus = build.filter((a) => a.model === "opus").length, maxOpus = limitOf(L.maxOpusAgents, tools);
-  if (model === "opus" && opus >= maxOpus) refuse.push(`${opus} Opus agents this build ≥ maxOpusAgents ${maxOpus}`);
+  /* a sprint only LIFTS the Opus cap: when the standing figure (orchestration.json limits.maxConcurrentOpus, 5) is higher than the sprint's own, the standing one wins; an unset figure is 5, never none */
+  const runOpus = run.filter((a) => a.model === "opus"), maxOpus = Math.max(limitOf(L.maxConcurrentOpus ?? 5, tools), sprint ? limitOf((pol.limits || {}).maxConcurrentOpus ?? 5, tools) : 0);
+  if (model === "opus" && runOpus.length >= maxOpus) refuse.push(`${runOpus.length} Opus agents running ≥ maxConcurrentOpus ${maxOpus}: wait for one (${runOpus.map((a) => a.id).join(", ")})`);
   const rev = build.filter((a) => REVIEW_ROLES.includes(a.role)).length, maxRev = limitOf(L.maxReviewAgents, tools);
   if (REVIEW_ROLES.includes(role) && rev >= maxRev) refuse.push(`${rev} review agents this build ≥ maxReviewAgents ${maxRev}`);
+  /* builders and play testers each drive their own headless Chrome; past chromeAdvisoryAt of them at once this machine gave false timeouts (class 3 ch 9). A note, not a limit: the owner wants no cap on Sonnet agents */
+  const chrome = (r) => r === "tool-builder" || r === "play-tester", chromeRun = run.filter((a) => chrome(a.role)).length;
+  if (chrome(role) && chromeRun >= (L.chromeAdvisoryAt ?? Infinity)) lines.push(`note: ${chromeRun} Chrome-driving agents (builders, play testers) already running; past ${L.chromeAdvisoryAt} this machine gave false timeouts: re-run a timed-out check with C4_CHROME_POOL=1 before debugging it`);
 
   /* 3. retries and escalation */
   for (const id of slots) {

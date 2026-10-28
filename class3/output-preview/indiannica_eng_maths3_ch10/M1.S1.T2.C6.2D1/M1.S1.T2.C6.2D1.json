@@ -1,0 +1,950 @@
+{
+  "slotId": "M1.S1.T2.C6.2D1",
+  "mediaId": "M1.S1.T2.C6.2D1",
+  "toolId": "read_the_clock",
+  "title": "Read the Clock",
+  "component": "M1.S1.T2.C6.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch10_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_10/2dtool/M1.S1.T2.C6.2D1/M1.S1.T2.C6.2D1.tsx",
+  "description": "Turn the hands of a wall clock, count the minutes in fives, and say each time as minutes past or minutes to the hour.",
+  "conceptIds": [
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7",
+    "M1.S1.T2.C8"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        985,
+        236
+      ],
+      "bar": [
+        1348,
+        738,
+        216,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Name the two hands of a clock and what each tells, count the minutes in fives round the face, say a time as minutes past or minutes to the hour, and read and draw half past, quarter past and quarter to.",
+    "look": "A wall clock with a vermilion hour hand and a deep blue minute hand, a digital clock beside it, a words card under them, the Minutes, Past and to and Plain dial buttons, and the number pad down the right of the canvas.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Read the Clock' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many times have been read. It is never a score. The working area is 1086 by 528 at x 64, y 202. A plain wall fills the working area. The wall clock hangs at x 110, y 214, 400 across, drawn exactly: a cream face with a dark rim, twelve near-black numbers, sixty minute marks with a longer mark at every fifth, a short vermilion hour hand and a long deep blue minute hand with no arrowheads, the hour hand creeping on as the minute hand turns. With the Minutes button on, the numbers 5, 10 and so on to 60 are written round the outer edge in deep blue. With the Past and to switch on, the right half of the face is tinted sky blue and labelled Past and the left half is tinted amber and labelled To. The digital clock hangs at x 560, y 214, 250 by 110, with its hours vermilion, its minutes deep blue and a near-black colon between them. The words card stands at x 560, y 360, 530 by 90, and says the time in writing, such as ten minutes past four. A green Answer tag at x 560, y 470, 260 by 70, holds the time the child has set or typed. In a task the clock sits in a small scene drawn behind it, a school hall, a bus stop, a railway station, a kitchen or a football ground. The Minutes button stands at x 110, y 650, 150 by 60, the Past and to switch at x 280, y 650, 190 by 60 and the Plain dial button at x 490, y 650, 160 by 60, each labelled in words. In the Plain dial view the same clock is drawn as a bare dial with its hands and no scene. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys and a clear key, for typing the hours and then the minutes of a time into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours. The hour hand of a clock is vermilion and the minute hand is deep blue, because a hand is a mark that stands for a number, and the hours are vermilion and the minutes deep blue everywhere else, in a digital time, a label and a tag. The a.m. half of a day, from midnight to noon, is sky blue and the p.m. half, from noon to midnight, is amber. The time reached, a length of time worked out, a converted amount and the answer are green. A clock face, rim and numbers are near-black on cream, anything dimmed fades to half strength rather than turning grey, and chrome never borrows one of the five. Each reading survives with the colour taken away, because a time is told by its written label before it is told by its colour.",
+    "finish": "The clocks show the last time, with the words card saying it aloud and in writing and the digital clock beside the wall clock.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the digital clock changes as each hand turns, and the hour and minute boxes light in their own colours",
+        "does": "drags each hand round, says which is which and what each tells, and watches the digital clock follow",
+        "goal": "the short hand is the hour hand and tells the hour, and the long hand is the minute hand and tells the minutes",
+        "says": "Two hands, two jobs. Which hand tells the hour?",
+        "check": "Away from the screen: the long hand of a clock is on the 12 and the short hand is on the 9. Which hand tells the hour, and what hour is it?",
+        "feels": "the two hands turning together and the digital clock following each one in its own colour",
+        "hands": "Make a paper plate clock with a short card hand and a long card hand, fix them with a split pin, and ask each child to point to the hour hand and then the minute hand.",
+        "tries": "First rung: point to the short hand and say its name. Second rung: move only the short hand and watch which box of the digital clock changes. Third rung: the same task with the long hand on the twelve, before it moves.",
+        "wrong": [
+          {
+            "why": "the longer hand seems the more important one",
+            "move": "calls the long hand the hour hand because it looks bigger",
+            "screen": "the digital clock changes its hours only when the short hand is moved, and the hours box lights vermilion while the long hand is moved and only the minutes box lights deep blue"
+          },
+          {
+            "why": "the long hand is the easiest hand to see, so its number is read first",
+            "move": "reads the number the long hand points to as the hour",
+            "screen": "the hour box of the digital clock stays lit vermilion beside the short hand, and the words card says which hand each number belongs to"
+          }
+        ],
+        "screen": "a wall clock in a school hall, a digital clock beside it, and the two hands waiting at the twelve",
+        "soWhat": "the short hand is the hour hand and tells the hour, and the long hand is the minute hand and tells the minutes",
+        "concept": "Two hands: the hour hand and the minute hand"
+      },
+      {
+        "n": 2,
+        "win": "the hand closes a round, the hour hand has crept on a little, and a green tag reads one hour",
+        "does": "steps the minute hand from number to number counting in fives, then sends it once round the face",
+        "goal": "the minute hand takes five minutes from one number to the next, and twelve fives make a round of sixty minutes",
+        "says": "Move the minute hand one number at a time. Count in fives.",
+        "check": "Away from the screen: the minute hand moves from the 2 to the 6. How many minutes pass? Count in fives with your finger.",
+        "feels": "the minute hand stepping five minutes at a time until twelve fives close the round",
+        "hands": "Walk a finger round a paper plate clock from number to number, saying five, ten, fifteen, and write the minutes on the edge with a marker as you go.",
+        "tries": "First rung: count the numbers the hand passes. Second rung: count in fives as the hand is walked step by step. Third rung: the same task with one step only, before more steps are added.",
+        "wrong": [
+          {
+            "why": "the numbers are counted one, two, three, so each move feels like one",
+            "move": "says one minute for each number the hand passes",
+            "screen": "the minutes are written round the edge in deep blue, so the 3 carries 15, and the hand is walked again from the 12 with each step lit and counted in fives"
+          },
+          {
+            "why": "the 12 is both the start and the end of the round",
+            "move": "counts to the 11 and stops, so the round seems to end at the 11",
+            "screen": "the hand is walked once more all the way round to the 12, which is written 60 as well as 0, and the round closes with a green tag that reads one hour"
+          }
+        ],
+        "screen": "the wall clock with the minutes switched on round the edge and the minute hand standing on the twelve",
+        "soWhat": "the minute hand takes five minutes from one number to the next, and one round is sixty minutes",
+        "concept": "Five minutes from one number to the next"
+      },
+      {
+        "n": 3,
+        "win": "the side lights up, the words card says the time, and the digital clock agrees",
+        "does": "sets the minute hand on a number, reads which side it is on, and says the time as minutes past or minutes to",
+        "goal": "on the right of the clock we say minutes past the hour, and on the left we count the minutes to the next hour",
+        "says": "Which side is the long hand on? Say minutes past or minutes to.",
+        "check": "Away from the screen: the long hand points to the 9 on a clock that is not at a special time. Is it on the left or the right? Do we say past or to?",
+        "feels": "the side of the clock choosing the word, past on the blue side and to on the amber side",
+        "hands": "On a paper plate clock, colour the right half sky blue and the left half amber, set the long hand on a number, and say whether it is on the blue side or the amber side.",
+        "tries": "First rung: say which side of the clock the long hand is on. Second rung: count in fives from the 12 on that side. Third rung: the same task with the long hand on the right side only, before the left side returns.",
+        "wrong": [
+          {
+            "why": "past is the first word a child learns for telling the time",
+            "move": "says minutes past for a long hand on the left side",
+            "screen": "the left half is tinted amber and labelled To, the minutes to the next hour are counted back from the 12 in deep blue, and the words card changes to minutes to"
+          },
+          {
+            "why": "the number on the face is the first number seen",
+            "move": "reads the minutes to the next hour as the number the long hand points to",
+            "screen": "the minutes are counted in fives from the long hand round to the 12, each step lit amber in turn, and only that count is written on the words card"
+          }
+        ],
+        "screen": "the wall clock at a bus stop with the right half tinted sky blue for past and the left half amber for to",
+        "soWhat": "on the right of the clock we say minutes past the hour, and on the left we count the minutes to the next hour",
+        "concept": "Minutes past and minutes to the hour"
+      },
+      {
+        "n": 4,
+        "win": "the minute hand settles on its number, the words card says the time and the digital clock shows the same time",
+        "does": "reads a time with the long hand on the six, the three or the nine, then drags the minute hand to draw a time",
+        "goal": "the minute hand on the six is half past, on the three it is quarter past and on the nine it is quarter to the next hour",
+        "says": "Look at the long hand. Is it at the three, the six or the nine? Say the time.",
+        "check": "Away from the screen: a clock has its long hand on the 9 and its short hand just before the 5. Do we say quarter past or quarter to, and what hour comes next?",
+        "feels": "the long hand landing on the six, the three or the nine and the right words arriving with it",
+        "hands": "On a paper plate clock, put the long hand on the 6, the 3 and the 9 in turn, say the time each time, and then say a time aloud for a partner to set.",
+        "tries": "First rung: say which of the three marks the long hand is on. Second rung: say how much of the circle it has gone round. Third rung: the same task with the long hand on the 6 only, before the 3 and the 9 return.",
+        "wrong": [
+          {
+            "why": "half past is the first special time a child learns",
+            "move": "says half past for a long hand on the 3",
+            "screen": "the face lights the part of the circle the long hand has gone round, a half for the 6 and a quarter for the 3, and the words card changes to quarter past"
+          },
+          {
+            "why": "the 9 is three quarters round, but the quarter word is the one remembered",
+            "move": "says quarter past for a long hand on the 9",
+            "screen": "the left half of the face is lit amber, only a quarter of the circle is left to go, and the words card says quarter to the next hour"
+          }
+        ],
+        "screen": "a kitchen clock with three marks lit on the face and a time card waiting beside it",
+        "soWhat": "the minute hand on the 6 is half past, on the 3 it is quarter past, and on the 9 it is quarter to the next hour",
+        "concept": "Half past, quarter past and quarter to"
+      }
+    ],
+    "delight": "On the second phase, as the minute hand goes round a full circle, the hour hand creeps on so slowly that it seems to stand still, and when the round closes it has moved exactly one number, while a green tag lights up with one hour. On the fourth phase, the minute hand settles on the six and the whole right half of the face glows for a moment as the words card says half past.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet typed. On the first phase a wall clock hangs in a school hall with both hands at the twelve and a digital clock beside it, and the words card is blank. On the second the minutes are written round the edge and the minute hand stands on the twelve, with a green tag waiting empty. On the third the clock hangs at a bus stop with its right half tinted sky blue and its left half amber, and the minute hand is already on a number. On the fourth a kitchen clock has three marks lit on its face, the three, the six and the nine, and a time card waits beside it. One thing moves, once: the minute hand gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any time on the wall clock, with the minutes round the edge, the past and to tint, the digital clock and the words card, and the plain dial one tap away. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the two hands and the digital clock, counting in fives, minutes past and to, the three special times and the rounds of the hands, each in a small real scene.",
+    "voiceLines": [
+      "A wall clock and a digital clock, both waiting for the hands to move.",
+      "Two hands, two jobs. Which hand tells the hour?",
+      "Move the minute hand one number at a time. Count in fives.",
+      "Which side is the long hand on? Say minutes past or minutes to.",
+      "Look at the long hand. Is it at the three, the six or the nine? Say the time.",
+      "A new clock. Which hand will you read first?",
+      "Free play. Turn the hands and say the time as you like.",
+      "Look at the long hand again. Count the minutes in fives from the twelve.",
+      "You said every time by counting the minutes."
+    ],
+    "observations": [
+      {
+        "why": "the short hand shows the hour and the long hand shows the minutes.",
+        "soWhat": "the short hand is the hour hand and the long hand is the minute hand.",
+        "observe": "The digital clock changed when each hand was dragged, the hours when the short hand moved and the minutes when the long hand moved."
+      },
+      {
+        "why": "one round of the minute hand is sixty minutes, which is one hour.",
+        "soWhat": "five minutes from one number to the next, and twelve fives make a round of an hour.",
+        "observe": "After the minute hand had gone once round, the hour hand stood one number further on."
+      },
+      {
+        "why": "the right side counts minutes after the hour and the left side counts minutes before the next hour.",
+        "soWhat": "the side of the clock the long hand is on decides whether we say past or to.",
+        "observe": "A long hand on the right half gave the words minutes past, and on the left half gave minutes to the next hour."
+      },
+      {
+        "why": "those three marks are halfway, a quarter and three quarters of the way round.",
+        "soWhat": "half past, quarter past and quarter to are the three special times to say.",
+        "observe": "The long hand on the six, the three and the nine gave half past, quarter past and quarter to."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a wall clock in a school hall, a digital clock beside it, and the two hands waiting at the twelve",
+        "win": "the digital clock changes as each hand turns, and the hour and minute boxes light in their own colours",
+        "traceback": "The hand that was mixed up glows and lights its own box of the digital clock in its colour; the child then reads or sets the other hand.",
+        "ladder": [
+          "The long hand tells the minutes, not the hour.",
+          "Only the short hand changes the hour digits.",
+          "That hand moved the minute digits when you turned it.",
+          "Move only the short hand and watch which box of the digital clock changes.",
+          "The short hand points to the hour, so read the number it points to."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the wall clock with the minutes switched on round the edge and the minute hand standing on the twelve",
+        "win": "the hand closes a round, the hour hand has crept on a little, and a green tag reads one hour",
+        "traceback": "The lit gaps are counted in fives from where the long hand started, a running count written by each number, stopping one five before the end.",
+        "ladder": [
+          "Each number the hand passes is 5 minutes, not 1.",
+          "Count in fives, not in ones, as you pass each number.",
+          "The hand passes 12 numbers, and each gap is 5 minutes.",
+          "Count each lit gap as 5 minutes.",
+          "Count on in fives, one five for each lit gap."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the wall clock at a bus stop with the right half tinted sky blue for past and the left half amber for to",
+        "win": "the side lights up, the words card says the time, and the digital clock agrees",
+        "traceback": "The side the long hand is on is coloured, past or to, and the minutes are counted in fives from the 12 on that side, stopping one five before the long hand.",
+        "ladder": [
+          "The long hand on the 2 is not 2 minutes: count in fives from the 12.",
+          "The 8 is on the left side, so count back from the 12 to the long hand.",
+          "Quarter to means a quarter of the way is left to go before the 12.",
+          "Count in fives from the 12 on that side.",
+          "On the right we count on from the 12; on the left we count back to it."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "clock": {
+      "cx": 252,
+      "cy": 262,
+      "R": 206,
+      "hourGrip": 76,
+      "minuteGrip": 180,
+      "numerals": "1 to 12 at 0.74 R",
+      "minuteTicks": 60
+    },
+    "digital": {
+      "x": 548,
+      "y": 18,
+      "w": 340,
+      "h": 168
+    },
+    "words": {
+      "x": 548,
+      "y": 200,
+      "w": 340,
+      "h": 100
+    },
+    "colours": {
+      "hourHand": "#E5531A",
+      "minuteHand": "#1F4E9C",
+      "past": "#5BB8E8",
+      "to": "#F2A531",
+      "reached": "#2E9E5B"
+    },
+    "snap": "the long hand snaps to 5 minutes; the short hand creeps (its angle is (hour + minutes / 60) x 30 degrees)",
+    "views": [
+      "plain",
+      "minutes",
+      "pastto"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:RC1",
+        "kind": "readHour",
+        "t0": 120,
+        "scene": "backpack",
+        "answer": 2,
+        "near": 12,
+        "ladder": [
+          "Look at the short hand to find the hour.",
+          "Read the number that the short hand points to."
+        ],
+        "win": "Yes, the short hand is on the 2, so it is 2 o'clock."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T2.C6:1",
+        "kind": "setHour",
+        "t0": 20,
+        "scene": "backpack",
+        "pad": "enter",
+        "answer": [
+          5,
+          20
+        ],
+        "near": "12|25",
+        "given": "5:20",
+        "ladder": [
+          "Watch the hour digits as you drag the short hand.",
+          "Leave the long hand on the 4 and stop the short hand at the 5."
+        ],
+        "win": "Yes, the 5 is the hour and the 20 is the minutes."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S1.T2.C6:5",
+        "kind": "pick",
+        "t0": 220,
+        "scene": "backpack",
+        "pad": "enter",
+        "answer": "short",
+        "near": "long",
+        "ladder": [
+          "Think of the hand that moved the hour digits.",
+          "The hour hand moves slowly, only one number in an hour."
+        ],
+        "win": "Yes, the short hand tells the hour, so the child was not right."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T2.C7:RC2",
+        "kind": "count",
+        "t0": 625,
+        "need": 3,
+        "answer": 15,
+        "near": 3,
+        "ladder": [
+          "Count the lit gaps in fives.",
+          "Say 5 for the first gap, 10 for the next, then go on."
+        ],
+        "win": "Yes, 3 steps of 5 minutes make 15 minutes."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T2.C7:2",
+        "kind": "count",
+        "t0": 60,
+        "need": 7,
+        "answer": 35,
+        "near": 7,
+        "ladder": [
+          "Point to each lit gap and count on in fives.",
+          "Keep counting in fives until you reach the long hand."
+        ],
+        "win": "Yes, 7 steps of 5 make 35 minutes past the hour."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": null,
+        "kind": "round",
+        "t0": 240,
+        "need": 12,
+        "answer": 60,
+        "near": 12,
+        "ladder": [
+          "Count every lit gap in fives, all the way back to the 12.",
+          "Do not stop at the 11: the last gap ends at the 12."
+        ],
+        "win": "Yes, twelve fives make 60 minutes, which is one hour."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C8:RC3",
+        "kind": "read",
+        "t0": 250,
+        "scene": "bus",
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          4,
+          10
+        ],
+        "near": "4|2",
+        "ladder": [
+          "On the right side we say minutes past the hour.",
+          "Count 5 for the 1, then one more five for the 2."
+        ],
+        "win": "Yes, it is 10 minutes past 4, which we write 4:10."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T2.C8:3",
+        "kind": "readTo",
+        "t0": 580,
+        "scene": "bus",
+        "answer": 20,
+        "near": 40,
+        "ladder": [
+          "Count back in fives from the 12 to the long hand.",
+          "Say 5 at the 11, then the 10, and keep going to the 8."
+        ],
+        "win": "Yes, it is 20 minutes to 10, which we write 9:40."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": null,
+        "kind": "set",
+        "t0": 0,
+        "scene": "pot",
+        "pad": "enter",
+        "answer": [
+          7,
+          45
+        ],
+        "near": "8|15",
+        "words": "quarter to 8",
+        "ladder": [
+          "Put the long hand on the left side, a quarter before the 12.",
+          "The short hand sits just before the 8, not after it."
+        ],
+        "win": "Yes, quarter to 8 is 7:45, with the long hand on the 9."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The hand that was mixed up glows and lights its own box of the digital clock in its colour; the child then reads or sets the other hand.",
+      "Phase 2: The lit gaps are counted in fives from where the long hand started, a running count written by each number, stopping one five before the end.",
+      "Phase 3: The side the long hand is on is coloured, past or to, and the minutes are counted in fives from the 12 on that side, stopping one five before the long hand."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A wall clock and a digital clock, both waiting for the hands to move.",
+    "onFreePlay": "Free play. Turn the hands and say the time as you like.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You said every time by counting the minutes.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C6:RC1",
+            "worked": false,
+            "kind": "readHour",
+            "planQuestion": "The wall clock in the school library has its short hand pointing to the 2 and its long hand pointing to the 12. Which hand is the hour hand, and what hour is it?",
+            "question": {
+              "en": "The library clock has its long hand on the 12: what hour does it show?"
+            },
+            "ask": {
+              "en": "What hour is it?"
+            },
+            "answer": 2,
+            "planAnswer": "The short hand is the hour hand. It is 2 o'clock.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T2.C6:1",
+            "worked": false,
+            "kind": "setHour",
+            "planQuestion": "The digital alarm clock in the bedroom shows 5:20. Which number is the hour, and which is the minutes?",
+            "question": {
+              "en": "The alarm clock shows 5:20: turn this clock's short hand so it shows 5:20 too."
+            },
+            "ask": {
+              "en": "Show 5:20"
+            },
+            "answer": [
+              5,
+              20
+            ],
+            "planAnswer": "The 5 is the hour and the 20 is the minutes",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S1.T2.C6:5",
+            "worked": false,
+            "kind": "pick",
+            "planQuestion": "At the bus stop a child says the long hand of the clock is the hour hand because it is longer. Is the child right? Which hand tells the hour?",
+            "question": {
+              "en": "A child says the long hand tells the hour: tap the hand that really does."
+            },
+            "ask": {
+              "en": "Which hand tells the hour?"
+            },
+            "answer": "short",
+            "planAnswer": "No. The long hand is the minute hand. The short hand is the hour hand and it tells the hour",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T2.C7:RC2",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "The clock above the school bell has its minute hand on the 5. A little later the minute hand is on the 8. How many minutes have passed?",
+            "question": {
+              "en": "Step the bell clock's long hand from the 5 to the 8: how many minutes passed?"
+            },
+            "ask": {
+              "en": "Minutes passed?"
+            },
+            "answer": 15,
+            "planAnswer": "15 minutes",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T2.C7:2",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A kitchen clock has its minute hand on the 7. Count in fives from the 12. How many minutes past the hour is that?",
+            "question": {
+              "en": "Step the kitchen clock's long hand to the 7: how many minutes past the hour?"
+            },
+            "ask": {
+              "en": "Minutes past?"
+            },
+            "answer": 35,
+            "planAnswer": "35 minutes, counting 5, 10, 15, 20, 25, 30, 35",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "round",
+            "planQuestion": null,
+            "question": {
+              "en": "Tap Round to send the long hand once round: how many minutes does it take?"
+            },
+            "ask": {
+              "en": "Minutes in a round?"
+            },
+            "answer": 60,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C8:RC3",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "At football practice the clock on the pavilion wall has its long hand on the 2 and its short hand just past the 4. How many minutes past the hour is it, and what time is that?",
+            "question": {
+              "en": "At the bus stop the long hand is on the 2: what time does the clock show?"
+            },
+            "ask": {
+              "en": "What time is it?"
+            },
+            "answer": [
+              4,
+              10
+            ],
+            "planAnswer": "10 minutes past 4, which is 4:10",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T2.C8:3",
+            "worked": false,
+            "kind": "readTo",
+            "planQuestion": "The clock at the railway station has its long hand on the 8. Is the long hand on the left or the right side, and how many minutes is it to the next hour?",
+            "question": {
+              "en": "The bus leaves with the long hand on the 8: how many minutes to the next hour?"
+            },
+            "ask": {
+              "en": "Minutes to the hour?"
+            },
+            "answer": 20,
+            "planAnswer": "The left side. It is 20 minutes to the next hour, because the 8 is 40 minutes past",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "set",
+            "planQuestion": null,
+            "question": {
+              "en": "Dinner is at quarter to 8: set the kitchen clock's hands to show that time."
+            },
+            "ask": {
+              "en": "Show quarter to 8"
+            },
+            "answer": [
+              7,
+              45
+            ],
+            "planAnswer": null,
+            "madeOn": "working area"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S1.T2.C7:8",
+    "M1.S1.T2.C8:6",
+    "M1.S1.T2.C9:RC4",
+    "M1.S1.T2.C9:4",
+    "M1.S1.T2.C9:7"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 9,
+    "maxScore": 45,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 3 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 3; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 3 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "read_the_clock",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-3",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "read_the_clock",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Two hands: the hour hand and the minute hand",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C6:RC1",
+          "M1.S1.T2.C6:1",
+          "M1.S1.T2.C6:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Five minutes from one number to the next",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C7:RC2",
+          "M1.S1.T2.C7:2",
+          "M1.S1.T2.C6.2D1:p2_3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Minutes past and minutes to the hour",
+        "conceptId": "M1.S1.T2.C8",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C8:RC3",
+          "M1.S1.T2.C8:3",
+          "M1.S1.T2.C6.2D1:p3_3"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "hour",
+    "minute"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), hour, minute",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "read_the_clock"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C6.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A wall clock and a digital clock, both waiting for the hands to move."
+    },
+    {
+      "en": "Two hands, two jobs. Which hand tells the hour?"
+    },
+    {
+      "en": "Move the minute hand one number at a time. Count in fives."
+    },
+    {
+      "en": "Which side is the long hand on? Say minutes past or minutes to."
+    },
+    {
+      "en": "Look at the long hand. Is it at the three, the six or the nine? Say the time."
+    },
+    {
+      "en": "A new clock. Which hand will you read first?"
+    },
+    {
+      "en": "Free play. Turn the hands and say the time as you like."
+    },
+    {
+      "en": "Look at the long hand again. Count the minutes in fives from the twelve."
+    },
+    {
+      "en": "You said every time by counting the minutes."
+    }
+  ],
+  "build": {
+    "source": "aa5f13fc:655281",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-28T13:09:57.656Z",
+    "checks": {
+      "pass": 94,
+      "warn": 0,
+      "fail": 0,
+      "info": 6,
+      "at": "2026-10-28T13:09:57.433Z"
+    },
+    "tsxBytes": 554567,
+    "tsxMd5": "5874c5472011ef2a8de180ca476239dc"
+  }
+}

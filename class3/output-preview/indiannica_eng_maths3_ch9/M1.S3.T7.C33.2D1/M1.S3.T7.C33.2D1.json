@@ -1,0 +1,1178 @@
+{
+  "slotId": "M1.S3.T7.C33.2D1",
+  "mediaId": "M1.S3.T7.C33.2D1",
+  "toolId": "capacity_converter",
+  "title": "Capacity Converter",
+  "component": "M1.S3.T7.C33.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch9_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_9/2dtool/M1.S3.T7.C33.2D1/M1.S3.T7.C33.2D1.tsx",
+  "description": "Empty a litre jug into its millilitre drops, change litres and millilitres into each other, and add and subtract capacities on a column board.",
+  "conceptIds": [
+    "M1.S3.T7.C33",
+    "M1.S3.T7.C34",
+    "M1.S3.T7.C35",
+    "M1.S3.T7.C36"
+  ],
+  "languages": [
+    "en"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Change litres into millilitres by multiplying by one thousand and millilitres into litres by dividing, change litres and millilitres together, judge a total, and add and subtract capacities in columns with a carry and a borrow, and find how many small cups fill a larger container.",
+    "look": "A one litre jug that empties into millilitre drops at the left, a bucket with a litre scale and a millilitre scale beside it, a column board at the right with a litres column and a millilitres column, a row of small cups beside a larger container, and a drop count at the top left of the canvas.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Capacity Converter' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many millilitre drops have been counted so far. It is never a score. The working area is 1086 by 528 at x 64, y 202. The one litre jug stands at x 90, y 260, 160 wide and 320 tall, a recognisable flat glass jug with evenly spaced near-black marks and a label at every long mark. Tapping it tips it over a tray at x 90, y 600, 300 by 120, where a thousand drops land as ten small cups of 100 mL, each cup ten tens. The vermilion Unit fact ring sits between the jug and the bucket at x 300, y 380, 200 by 120, labelled Unit fact and Times 1000, with 1 L on its left and 1000 mL on its right. The bucket stands at x 540, y 240, 220 wide and 340 tall, drawn in its natural colours, with a litre scale down its left edge and a millilitre scale down its right edge, both starting at 0 at the bottom with evenly spaced near-black marks. A deep blue tag at x 540, y 600, 220 by 60 shows the amount given, a green tag beside it at x 780, y 600 the amount reached, and an amber tag at x 1020, y 600 a second amount or a carried or borrowed amount. The column board stands at x 800, y 240, 330 by 300, a board with a litres column and a millilitres column, the first amount on its top line and the second directly under it, and a carried or borrowed amount drawn above the column it joins. A row of small cups waits at x 540, y 640 beside a jar or a can at x 900, y 560 for the cup count. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys and a clear key, for typing an amount in litres, in millilitres or in both into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours, and the chapter's four roles are carried by what holds the object or the number, never by tinting the object. The measure the question gives, or the reading taken from the ruler, the balance or the jug, sits in a deep blue tag or on a deep blue plate, labelled Given. The measure the working reaches, a converted or total amount, sits in a green tag, labelled Answer. The times 100 or times 1000 step and the unit fact it comes from sit inside a vermilion ring, labelled Unit fact. The second amount of a sum or a difference, an amount carried and a part left over sit in an amber tag, labelled Second or Left. Every ruler mark, scale mark and plain edge is near-black, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of the four, and each reading survives with the colour taken away, because a measure is told by its written label before it is told by its colour.",
+    "finish": "The jug, the scales and the column board show the last working, with the given in a deep blue tag, the answer in a green tag and the carried amount in an amber tag.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the drops of every litre pile up and the green tag shows the millilitres",
+        "does": "taps the jug to empty it into drops, counts the thousand, then types the litres times one thousand",
+        "goal": "litres are changed into millilitres by multiplying by one thousand, because every litre is one thousand millilitres",
+        "says": "One litre is a thousand millilitres. What do all these litres make in millilitres?",
+        "check": "Away from the screen: pour a litre bottle into small cups and count them. How many millilitres is one litre, and how many is two litres?",
+        "feels": "a litre jug tipping out a thousand drops, and the count climbing by a hundred for each cup",
+        "hands": "Fill a hundred millilitre cup from a litre jug ten times and count the cups, then say how many millilitres are in two or three litres.",
+        "tries": "First rung: look at the unit fact ring and say how many millilitres one litre is. Second rung: say what two litres would be, and then the amount on the tag. Third rung: the same task with a smaller number of litres, before the full amount returns.",
+        "wrong": [
+          {
+            "why": "the number of zeros in one thousand is easy to lose",
+            "move": "writes the litres with a few zeros, such as one hundred or ten times the litres",
+            "screen": "the drops are counted in tens, then hundreds, then thousands, and the vermilion Unit fact ring pulses once at each thousand"
+          },
+          {
+            "why": "the unit is getting smaller, so the number feels as if it should shrink",
+            "move": "divides the litres by one thousand instead of multiplying",
+            "screen": "the answer slot shows one litre beside one thousand millilitres, so the millilitres are seen to be the bigger number"
+          }
+        ],
+        "screen": "a water tank drawn beside the one litre jug, a deep blue tag with a number of litres, and the Unit fact ring waiting",
+        "soWhat": "litres are changed into millilitres by multiplying by one thousand, because every litre is one thousand millilitres",
+        "concept": "Litres into millilitres: multiply by 1000"
+      },
+      {
+        "n": 2,
+        "win": "the jugs stand full in a row and the green tag shows the litres",
+        "does": "pours the millilitre drops into the litre jugs a thousand at a time and counts the jugs filled, then types the litres",
+        "goal": "millilitres are changed into litres by dividing by one thousand, because one thousand millilitres make one litre",
+        "says": "A thousand millilitres fill one jug. How many jugs does this water fill?",
+        "check": "Away from the screen: pour small cups of water into a litre bottle. How many millilitres fill one bottle, and how many bottles would a big tank of water fill?",
+        "feels": "a bucket of drops pouring into a row of litre jugs, each filling at a thousand",
+        "hands": "Pour a bucket of small cups into a litre jug, a thousand millilitres at a time, and count how many jugs it fills.",
+        "tries": "First rung: pour the first thousand into a jug. Second rung: count the jugs filled so far. Third rung: the same task with the first jug already full, before the empty row returns.",
+        "wrong": [
+          {
+            "why": "the last phase multiplied, so multiplying feels like the usual move",
+            "move": "multiplies the millilitres by one thousand again",
+            "screen": "the drops are poured into the litre jugs a thousand at a time, and the jugs filled are counted, so the number of litres is seen to be smaller than the millilitres"
+          },
+          {
+            "why": "the count of jugs is the last number said",
+            "move": "gives the number of jugs but forgets the unit",
+            "screen": "the answer slot writes the unit beside the number and the green tag reads it back aloud with its unit"
+          }
+        ],
+        "screen": "a bucket marked in millilitres with a deep blue tag showing a number of millilitres and a row of empty litre jugs",
+        "soWhat": "millilitres are changed into litres by dividing by one thousand, because one thousand millilitres make one litre",
+        "concept": "Millilitres into litres: divide by 1000"
+      },
+      {
+        "n": 3,
+        "win": "the two scales read the same water and the green tag shows one amount in millilitres",
+        "does": "changes the litres into millilitres first, adds the millilitres on, and types the total; or judges a total a child has written",
+        "goal": "litres and millilitres together are changed by changing the litres first and then adding the millilitres",
+        "says": "Change the litres first. Then add the millilitres. Is the total right?",
+        "check": "Away from the screen: a jug holds two litres and some millilitres. Say how you change it into millilitres only, step by step, before you write it.",
+        "feels": "the litres turning into a stack of thousands and the millilitres joining them to make one amount",
+        "hands": "Pour a bottle of juice in a one litre jug plus a half cup beside it, and say the amount in litres and millilitres, then all in millilitres.",
+        "tries": "First rung: change the litres into millilitres first. Second rung: add the millilitres on. Third rung: the same task with the millilitres written as a single number of tens, before the full amount returns.",
+        "wrong": [
+          {
+            "why": "the two numbers are written next to each other, so they look like one number",
+            "move": "writes the litres and the millilitres side by side as one number",
+            "screen": "the two scales on the jar read the same water, one in litres and millilitres and one in millilitres only, and the two readings are seen not to match"
+          },
+          {
+            "why": "the litres are the big number and the millilitres seem small",
+            "move": "changes only the litres and forgets to add the millilitres",
+            "screen": "the green tag shows the thousands first and then the millilitres joining them, so the two parts are seen to make one amount"
+          }
+        ],
+        "screen": "a jar with a litre scale and a millilitre scale and a deep blue tag with litres and millilitres",
+        "soWhat": "litres and millilitres together are changed by changing the litres first and then adding the millilitres",
+        "concept": "Litres and millilitres together"
+      },
+      {
+        "n": 4,
+        "win": "the carried or borrowed litre slides across the board and the green tag shows the answer in litres and millilitres",
+        "does": "adds or subtracts the millilitres first, carries or borrows one litre, then does the litres; or changes both amounts to millilitres and divides to count the cups",
+        "goal": "capacities are added and subtracted in columns, carrying or borrowing a thousand millilitres, and the cups that fill a container are found by dividing",
+        "says": "Start with the millilitres. Carry or borrow a litre if you need one.",
+        "check": "Away from the screen: a jug and a bottle of juice are poured together. What do you do with the millilitres if they add up to more than one thousand?",
+        "feels": "a full thousand millilitres lifting out of its column and sliding across to join the litres",
+        "hands": "Add two jugs of juice with the amounts written under each other, millilitres first, and carry a litre when the millilitres pass a thousand; then take one amount from another and borrow a litre when the millilitres run short.",
+        "tries": "First rung: do the millilitres column only. Second rung: say whether it needs a carry or a borrow. Third rung: the same task with the millilitres already done, before the full sum returns.",
+        "wrong": [
+          {
+            "why": "taking the smaller number from the larger always works in an ordinary subtraction",
+            "move": "takes the smaller millilitres from the larger when the top millilitres are fewer",
+            "screen": "the top millilitres turn amber and a litre slides down to join them as a thousand, so the top number becomes bigger than the bottom one"
+          },
+          {
+            "why": "the millilitres column answer looks like a normal number, so it seems finished",
+            "move": "forgets to carry the litre when the millilitres pass a thousand",
+            "screen": "the column shows one thousand millilitres lifting out and sliding over the top of the litres column to join it, with the carried litre drawn in an amber tag"
+          }
+        ],
+        "screen": "the column board with a litres column and a millilitres column, two amounts written under each other, and a row of cups beside a jar",
+        "soWhat": "capacities are added and subtracted in columns, carrying or borrowing a litre when the millilitres need it, and the cups that fill a container are found by dividing",
+        "concept": "Adding, subtracting and filling cups"
+      }
+    ],
+    "delight": "Two small surprises. On the first phase, when the jug is tapped, the thousand drops pour out in ten cups of a hundred, each cup tipping out ten tens, and the vermilion Unit fact ring pulses once for each cup, so the count climbs by a hundred every time. On the fourth phase, when the millilitres reach a full thousand, a whole litre lifts out of the millilitres column and slides over the top of the litres column to join it.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet typed. On the first phase a water tank stands beside the one litre jug with a deep blue tag holding a number of litres, and the vermilion Unit fact ring waits empty. On the second a bucket marked in millilitres stands with a deep blue tag holding a number of millilitres, and a row of empty litre jugs waits beside it. On the third a jar with a litre scale and a millilitre scale stands with a deep blue tag holding litres and millilitres together. On the fourth the column board is up with a litres column and a millilitres column, two amounts written under each other, and a row of small cups waits beside a jar. One thing moves, once: the jug, or the first column on the fourth phase, gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any number of litres or millilitres, the jug emptied and filled, the bucket scales, and the column board with its carry and borrow. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on a drum, a pot, a tank, a bucket, a jug and a bottle, two buckets, a drum and a glass and a jar, each a real container.",
+    "voiceLines": [
+      "A litre jug, a bucket with two scales, and a board with two columns. Let us change some amounts.",
+      "One litre is a thousand millilitres. What do all these litres make in millilitres?",
+      "A thousand millilitres fill one jug. How many jugs does this water fill?",
+      "Change the litres first. Then add the millilitres. Is the total right?",
+      "Start with the millilitres. Carry or borrow a litre if you need one.",
+      "A new amount. Which unit is bigger, and which way must the number go?",
+      "Free play. Empty the jug, read the scales and use the column board as you like.",
+      "Look at the jug. How many millilitres is one litre? Try the step again.",
+      "You changed litres and millilitres, and added and subtracted in columns."
+    ],
+    "observations": [
+      {
+        "why": "every litre is the same one thousand millilitres.",
+        "soWhat": "one litre is one thousand millilitres.",
+        "observe": "The litre jug emptied into the same thousand drops every time, whatever amount the tag showed."
+      },
+      {
+        "why": "a litre is a bigger unit than a millilitre, so there are more millilitres than litres for the same water.",
+        "soWhat": "changing litres into millilitres is multiplying by one thousand, and changing back is dividing by one thousand.",
+        "observe": "When litres were changed into millilitres the number grew, and when millilitres were changed into litres it shrank."
+      },
+      {
+        "why": "the litres are changed to millilitres first and the millilitres are added on.",
+        "soWhat": "a capacity in litres and millilitres is changed by changing the litres first and adding the millilitres.",
+        "observe": "For litres and millilitres together the two scales read the same water in two ways."
+      },
+      {
+        "why": "one thousand millilitres is one litre, so a full thousand moves up and a litre moves down as a thousand.",
+        "soWhat": "capacities are added and subtracted in columns, carrying or borrowing a litre when the millilitres need it.",
+        "observe": "A column that reached one thousand millilitres sent a litre across to the litres column, and a short column borrowed one back."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a water tank drawn beside the one litre jug, a deep blue tag with a number of litres, and the Unit fact ring waiting",
+        "win": "the drops of every litre pile up and the green tag shows the millilitres",
+        "traceback": "The jugs fill again one by one, each chip turning from 1 L to 1,000 mL, and the count stops one jug before the end.",
+        "ladder": [
+          "Each full jug holds 1,000 mL.",
+          "Change the 1 L into millilitres first.",
+          "50 mL has no hundreds.",
+          "Count 1,000 mL for every full jug.",
+          "Multiply the litres by 1,000 to get the millilitres."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a bucket marked in millilitres with a deep blue tag showing a number of millilitres and a row of empty litre jugs",
+        "win": "the jugs stand full in a row and the green tag shows the litres",
+        "traceback": "The jugs fill again 1,000 mL at a time, and the count stops one jug before the end, the part left over not yet poured.",
+        "ladder": [
+          "A jug filled to its 1 L line holds 1,000 mL.",
+          "Every 1,000 mL fills one jug.",
+          "Fill the whole jugs first, then look at what is left.",
+          "Full jugs are whole litres.",
+          "The part jug shows the millilitres left."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a jar with a litre scale and a millilitre scale and a deep blue tag with litres and millilitres",
+        "win": "the two scales read the same water and the green tag shows one amount in millilitres",
+        "traceback": "The board shows the carry or the borrow again, lights the millilitres column, then the litres column, and leaves the answer row for the child.",
+        "ladder": [
+          "You cannot take 460 mL from 120 mL.",
+          "680 mL and 530 mL make more than 1,000 mL.",
+          "600 mL and 400 mL make a full 1,000 mL.",
+          "Do the millilitres column first.",
+          "Then do the litres column."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the column board with a litres column and a millilitres column, two amounts written under each other, and a row of cups beside a jar",
+        "win": "the carried or borrowed litre slides across the board and the green tag shows the answer in litres and millilitres",
+        "traceback": "The jar empties and the cups pour in again one by one with the counter, stopping one cup before it is full.",
+        "ladder": [
+          "Pour one cup at a time and count every pour.",
+          "1 L 500 mL is 1,500 mL.",
+          "Change 1 L 260 mL into millilitres first.",
+          "Pour until the water reaches the top line.",
+          "Count every pour it takes."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "jug": {
+      "photo": "jug 200 x 247",
+      "floorAt": 0.842,
+      "oneLitreAt": 0.16,
+      "scale": "y = 0.842 - 0.682 x mL / 1000 of the picture's height"
+    },
+    "jugsInARow": 4,
+    "jugWidth": 112,
+    "jarPxPerMl": 0.165,
+    "answerGate": "Every question is gated by its act: phase 1 Pour (the litres fill the jugs), phase 2 Group (1,000 mL a jug), phase 3 Carry or Borrow (the right one for the question; the wrong one only nudges, no try), phase 4 Pour until the jar is full. No question is ungated. The gate arms after a real touch of the board or a real Enter on a guide step; the agent's check() performs the act at once.",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": null,
+        "kind": "lit",
+        "L": 3,
+        "ml": 0,
+        "box": "bucket",
+        "near": 300,
+        "answer": 3000,
+        "ladder": [
+          "Look at the chip under every full jug.",
+          "Three jugs of 1,000 mL: add them up."
+        ],
+        "win": "Yes, three jugs of 1,000 mL make 3,000 mL."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": null,
+        "kind": "lit",
+        "L": 1,
+        "ml": 750,
+        "box": "bottle",
+        "liq": "juice",
+        "near": 750,
+        "answer": 1750,
+        "ladder": [
+          "The full jug is 1,000 mL and the other jug has 750 mL.",
+          "Add 1,000 mL and 750 mL together."
+        ],
+        "win": "Yes, 1 L 750 mL is 1,750 mL."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": null,
+        "kind": "lit",
+        "L": 2,
+        "ml": 50,
+        "box": "drum",
+        "near": 250,
+        "answer": 2050,
+        "ladder": [
+          "Write 2 for the thousands, then think about the hundreds place.",
+          "50 mL is 0 hundreds and 5 tens, so the hundreds digit is 0."
+        ],
+        "win": "Yes, 2 L 50 mL is 2,050 mL, with a 0 for the hundreds."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": null,
+        "kind": "grp",
+        "tot": 2600,
+        "box": "drum",
+        "near": [
+          26,
+          0
+        ],
+        "parts": [
+          {
+            "label": "litres",
+            "unit": "L"
+          },
+          {
+            "label": "left over",
+            "unit": "mL"
+          }
+        ],
+        "answer": [
+          2,
+          600
+        ],
+        "ladder": [
+          "Count the full jugs for the litres.",
+          "Take away 1,000 mL for each full jug, then read what is left."
+        ],
+        "win": "Yes, 2,600 mL is 2 L and 600 mL left over."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": null,
+        "kind": "grp",
+        "tot": 4000,
+        "box": "bucket",
+        "near": [
+          40,
+          0
+        ],
+        "parts": [
+          {
+            "label": "litres",
+            "unit": "L"
+          },
+          {
+            "label": "left over",
+            "unit": "mL"
+          }
+        ],
+        "answer": [
+          4,
+          0
+        ],
+        "ladder": [
+          "Look at the last jug: is any water left over?",
+          "If no water is left after the full jugs, there are no extra millilitres."
+        ],
+        "win": "Yes, 4,000 mL is exactly 4 L, with nothing left over."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": null,
+        "kind": "grp",
+        "tot": 1080,
+        "box": "bottle",
+        "near": [
+          1,
+          800
+        ],
+        "parts": [
+          {
+            "label": "litres",
+            "unit": "L"
+          },
+          {
+            "label": "left over",
+            "unit": "mL"
+          }
+        ],
+        "answer": [
+          1,
+          80
+        ],
+        "ladder": [
+          "What is left is less than 100 mL.",
+          "The left over part has no hundreds, only tens."
+        ],
+        "win": "Yes, 1,080 mL is 1 L and 80 mL left over."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": null,
+        "kind": "col",
+        "op": "-",
+        "a": [
+          6,
+          120
+        ],
+        "b": [
+          2,
+          460
+        ],
+        "key": "borrow",
+        "near": [
+          4,
+          340
+        ],
+        "parts": [
+          {
+            "label": "litres",
+            "unit": "L"
+          },
+          {
+            "label": "millilitre",
+            "unit": "mL"
+          }
+        ],
+        "answer": [
+          3,
+          660
+        ],
+        "ladder": [
+          "After the borrow the top row is 5 L and 1,120 mL.",
+          "Take 460 mL from 1,120 mL, then 2 L from 5 L."
+        ],
+        "win": "Yes, 3 L 660 mL of water is left in the bucket."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": null,
+        "kind": "col",
+        "op": "+",
+        "a": [
+          4,
+          680
+        ],
+        "b": [
+          2,
+          530
+        ],
+        "key": "carry",
+        "near": [
+          6,
+          1210
+        ],
+        "parts": [
+          {
+            "label": "litres",
+            "unit": "L"
+          },
+          {
+            "label": "millilitre",
+            "unit": "mL"
+          }
+        ],
+        "answer": [
+          7,
+          210
+        ],
+        "ladder": [
+          "Every 1,000 mL makes 1 L for the litres column.",
+          "Add the carried 1 L to 4 L and 2 L."
+        ],
+        "win": "Yes, there are 7 L 210 mL of juice in all."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": null,
+        "kind": "col",
+        "op": "+",
+        "a": [
+          3,
+          600
+        ],
+        "b": [
+          2,
+          400
+        ],
+        "key": "carry",
+        "near": [
+          5,
+          1000
+        ],
+        "parts": [
+          {
+            "label": "litres",
+            "unit": "L"
+          },
+          {
+            "label": "millilitre",
+            "unit": "mL"
+          }
+        ],
+        "answer": [
+          6,
+          0
+        ],
+        "ladder": [
+          "A full 1,000 mL leaves the millilitres column as 1 L.",
+          "Count the litres: the top, the bottom and the one you carried."
+        ],
+        "win": "Yes, the pot holds 6 L of milk and no extra millilitres."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": null,
+        "kind": "pour",
+        "cup": 250,
+        "cap": 2000,
+        "small": "cup",
+        "big": "jar",
+        "near": 4,
+        "answer": 8,
+        "ladder": [
+          "Four 250 mL cups fill 1 L.",
+          "Pour until the water reaches the 2 L line."
+        ],
+        "win": "Yes, 8 cups of 250 mL fill the 2 L jar."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": null,
+        "kind": "pour",
+        "cup": 250,
+        "cap": 1500,
+        "small": "cup",
+        "big": "jar",
+        "near": 5,
+        "answer": 6,
+        "ladder": [
+          "Keep pouring until the jar is full to the top.",
+          "Count the cups it took to reach 1,500 mL."
+        ],
+        "win": "Yes, 6 cupfuls of 250 mL make 1,500 mL."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S3.T7.C36:8",
+        "kind": "pour",
+        "cup": 140,
+        "cap": 1260,
+        "small": "glass",
+        "big": "jar",
+        "liq": "juice",
+        "near": 8,
+        "answer": 9,
+        "ladder": [
+          "Each glass adds 140 mL to the jar.",
+          "Count the glasses until the jar holds 1,260 mL."
+        ],
+        "win": "Yes, 9 glasses of 140 mL make 1,260 mL."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The jugs fill again one by one, each chip turning from 1 L to 1,000 mL, and the count stops one jug before the end.",
+      "Phase 2: The jugs fill again 1,000 mL at a time, and the count stops one jug before the end, the part left over not yet poured.",
+      "Phase 3: The board shows the carry or the borrow again, lights the millilitres column, then the litres column, and leaves the answer row for the child.",
+      "Phase 4: The jar empties and the cups pour in again one by one with the counter, stopping one cup before it is full."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Litre jugs, a column board and a cup to pour with.",
+    "onFreePlay": "Free play: pour cups into the big jar and count them as it fills.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You changed litres and millilitres, added and subtracted in columns, and filled a jar cup by cup.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "lit",
+            "planQuestion": null,
+            "question": {
+              "en": "This bucket holds 3 L of water: how many millilitres is that?"
+            },
+            "ask": {
+              "en": "3 L in mL?"
+            },
+            "answer": 3000,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "lit",
+            "planQuestion": null,
+            "question": {
+              "en": "A bottle has 1 L 750 mL of juice: how many millilitres is that?"
+            },
+            "ask": {
+              "en": "1 L 750 mL in mL?"
+            },
+            "answer": 1750,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "lit",
+            "planQuestion": null,
+            "question": {
+              "en": "There are 2 L 50 mL of water in this drum: how many millilitres is that?"
+            },
+            "ask": {
+              "en": "2 L 50 mL in mL?"
+            },
+            "answer": 2050,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "grp",
+            "planQuestion": null,
+            "question": {
+              "en": "Group the water in this drum into litres: how many litres and millilitres is it?"
+            },
+            "ask": {
+              "en": "litres and mL left?"
+            },
+            "answer": [
+              2,
+              600
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "grp",
+            "planQuestion": null,
+            "question": {
+              "en": "How many litres and millilitres of water are in this bucket?"
+            },
+            "ask": {
+              "en": "litres and mL left?"
+            },
+            "answer": [
+              4,
+              0
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "grp",
+            "planQuestion": null,
+            "question": {
+              "en": "Change the water in this bottle into litres and the millilitres left over."
+            },
+            "ask": {
+              "en": "litres and mL left?"
+            },
+            "answer": [
+              1,
+              80
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "col",
+            "planQuestion": null,
+            "question": {
+              "en": "From 6 L 120 mL of water, 2 L 460 mL is poured out: how much is left?"
+            },
+            "ask": {
+              "en": "6 L 120 mL take 2 L 460 mL"
+            },
+            "answer": [
+              3,
+              660
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "col",
+            "planQuestion": null,
+            "question": {
+              "en": "A jug has 4 L 680 mL of juice and a bottle 2 L 530 mL: how much in all?"
+            },
+            "ask": {
+              "en": "4 L 680 mL add 2 L 530 mL"
+            },
+            "answer": [
+              7,
+              210
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "col",
+            "planQuestion": null,
+            "question": {
+              "en": "A pot gets 3 L 600 mL of milk, then 2 L 400 mL more: how much milk now?"
+            },
+            "ask": {
+              "en": "3 L 600 mL add 2 L 400 mL"
+            },
+            "answer": [
+              6,
+              0
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "pour",
+            "planQuestion": null,
+            "question": {
+              "en": "How many 250 mL cups of water fill this 2 L jar?"
+            },
+            "ask": {
+              "en": "How many cups?"
+            },
+            "answer": 8,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "pour",
+            "planQuestion": null,
+            "question": {
+              "en": "Ravi fills a 1 L 500 mL jar with a 250 mL cup: how many cupfuls does he pour?"
+            },
+            "ask": {
+              "en": "How many cupfuls?"
+            },
+            "answer": 6,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S3.T7.C36:8",
+            "worked": false,
+            "kind": "pour",
+            "planQuestion": "A glass holds 140 mL of juice. How many glasses fill a jar that holds 1 L 260 mL?",
+            "question": {
+              "en": "A glass holds 140 mL: how many glasses of juice fill a 1 L 260 mL jar?"
+            },
+            "ask": {
+              "en": "How many glasses?"
+            },
+            "answer": 9,
+            "planAnswer": "9 glasses, because 1 L 260 mL is 1260 mL and 140 mL nine times gives 1260 mL",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S3.T7.C33:CC1",
+    "M1.S3.T7.C33:1",
+    "M1.S3.T7.C33:5",
+    "M1.S3.T7.C34:CC2",
+    "M1.S3.T7.C34:2",
+    "M1.S3.T7.C34:6",
+    "M1.S3.T7.C35:CC3",
+    "M1.S3.T7.C35:3",
+    "M1.S3.T7.C35:7",
+    "M1.S3.T7.C36:CC4",
+    "M1.S3.T7.C36:4"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "capacity_converter",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "capacity_converter",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Litres into millilitres: multiply by 1000",
+        "conceptId": "M1.S3.T7.C33",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M1.S3.T7.C33.2D1:p1_1",
+          "M1.S3.T7.C33.2D1:p1_2",
+          "M1.S3.T7.C33.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Millilitres into litres: divide by 1000",
+        "conceptId": "M1.S3.T7.C34",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M1.S3.T7.C33.2D1:p2_1",
+          "M1.S3.T7.C33.2D1:p2_2",
+          "M1.S3.T7.C33.2D1:p2_3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Litres and millilitres together",
+        "conceptId": "M1.S3.T7.C35",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M1.S3.T7.C33.2D1:p3_1",
+          "M1.S3.T7.C33.2D1:p3_2",
+          "M1.S3.T7.C33.2D1:p3_3"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Adding, subtracting and filling cups",
+        "conceptId": "M1.S3.T7.C36",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M1.S3.T7.C33.2D1:p4_1",
+          "M1.S3.T7.C33.2D1:p4_2",
+          "M1.S3.T7.C36:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "act",
+    "carry",
+    "borrow"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, act, carry, borrow, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "capacity_converter"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S3.T7.C33.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A litre jug, a bucket with two scales, and a board with two columns. Let us change some amounts."
+    },
+    {
+      "en": "One litre is a thousand millilitres. What do all these litres make in millilitres?"
+    },
+    {
+      "en": "A thousand millilitres fill one jug. How many jugs does this water fill?"
+    },
+    {
+      "en": "Change the litres first. Then add the millilitres. Is the total right?"
+    },
+    {
+      "en": "Start with the millilitres. Carry or borrow a litre if you need one."
+    },
+    {
+      "en": "A new amount. Which unit is bigger, and which way must the number go?"
+    },
+    {
+      "en": "Free play. Empty the jug, read the scales and use the column board as you like."
+    },
+    {
+      "en": "Look at the jug. How many millilitres is one litre? Try the step again."
+    },
+    {
+      "en": "You changed litres and millilitres, and added and subtracted in columns."
+    }
+  ],
+  "build": {
+    "source": "3b4033cc:651419",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-28T13:57:13.856Z",
+    "checks": {
+      "pass": 95,
+      "warn": 1,
+      "fail": 0,
+      "info": 6,
+      "at": "2026-10-28T13:57:13.052Z"
+    },
+    "tsxBytes": 561676,
+    "tsxMd5": "b229003fa25ecbb14336df1db03c42c7"
+  }
+}

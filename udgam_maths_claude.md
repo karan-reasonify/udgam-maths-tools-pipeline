@@ -76,8 +76,8 @@ Variants, same flow:
    that owns the slot reads them and its report (at most 40 lines) is what lands here. Measure with `node usage.mjs`
    (`session`: provider-reported tokens of a transcript; `static`: what each role loads before it starts). The root
    `token-policy.json` is the enforceable budget: adaptive mode is the default, context targets stay below 100k tokens,
-   150k is the hard escalation threshold, builders are capped at 3 concurrent, reviewers at 2, and Opus agents at 2.
-   Maths review remains per tool; visual/play review is pattern- and risk-based. Batch language, status, deterministic
+   150k is the hard escalation threshold, Opus agents are capped at 5 running at once and Sonnet agents are not capped, as many as the chapter needs (the owner, 2026-10-28, every class and chapter; was builders 4, reviewers 2, Opus 4; it overrides a cap in any chapter's NOTES.md; the gate only notes it when more than 6 builders and play testers drive Chrome at once, which gave false timeouts).
+   Maths and visual review run on every tool (the full review pack, every frame, en/hi/gu) and play review wherever a tool is new or risky (the owner, 2026-10-28: no visual compromise, the best result, every necessary check; tokens are saved by how the work is done, never by a look skipped: packs once, re-looks on changed frames only, batched maths/language/audit, small contexts, Sonnet for every look, `token-policy.json` "principle"). Batch language, status, deterministic
    checks, image reuse and upload auditing. At a budget checkpoint write resumable state and continue from it after reset.
 7. **Never touch, and never read, another chapter's tools.** The read fence refuses it (one session,
    one chapter) and `class<N>/docs/PATTERNS.md` holds every pattern a builder used to copy out of a
@@ -140,10 +140,8 @@ the necessary checks and the visual pass are not compromised: the answer to "fas
    machine at once and tells the builder not to chase it (it costs no full check).
 3. **The clock** (`orchestration.json` `sprint`): `node orch.mjs sprint start --class N --ch n --slot ID [--design] [--complexity simple|complex]
    [--at HH:MM] [--minutes N]`, then `sprint status` at every stage boundary and `sprint lap --stage K` when a stage is done. `--at` is when the owner asked.
-   While a sprint runs `node orch.mjs gate` lifts the caps: 6 agents at once (normally 4), 12 review agents (normally 9 for one tool) and **Opus agents 3 for a
-   simple tool, 4 for a complex one** (token-policy's default of 2 is lifted; the gate's own one-tool figure is already 3, so the real gain is the 4th), with no
-   `--over` needed. The sprint also counts ITS OWN full checks (`sprint.maxFullChecks`, 3) from the sprint's start; the cap is only enforced by `orch checks --tier 2`, a direct `node cli.mjs check` is never refused. Stay at 6 at once: each builder check and play tester drives its own headless Chrome and more
-   than 6 gives false timeouts.
+   While a sprint runs `node orch.mjs gate` lifts no cap: the standing rule (the owner, 2026-10-28) already allows **5 Opus agents at once** and **any number of Sonnet agents** (a sprint used to lift 4 to 6 agents at once, 9 to 12 review agents and Opus 3 to 4), and the gate takes the higher of the standing figure and the sprint's own, so `--complexity` does not change the Opus count; no `--over` is needed. The sprint also counts ITS OWN full checks (`sprint.maxFullChecks`, 3) from the sprint's start; the cap is only enforced by `orch checks --tier 2`, a direct `node cli.mjs check` is never refused. Builder checks and play testers each drive their own headless Chrome and more than 6 of them at once gave false timeouts: the gate
+   notes it past 6 (a note, not a limit: the owner wants no cap on Sonnet agents), so on a timeout re-run with `C4_CHROME_POOL=1` before debugging; maths, visual (on saved packs), language and image agents drive no Chrome and go as wide as the stage needs.
 4. **The order, with what overlaps** (minutes from the start; `--design` adds 8 after "maths" and moves the later ones):
    | stage | by | what runs |
    |---|---|---|
@@ -154,8 +152,8 @@ the necessary checks and the visual pass are not compromised: the answer to "fas
    | review | 30 | `shots --pack` ONCE; **visual reviewers in parallel, one per language** (or per 40-frame chunk: `node orch.mjs chunks`) on every frame; **play testers in parallel, two** (phases 1-2 and 3-4; keyboard, classroom, Hindi and Gujarati probes split between them), each from the rows `check` already played |
    | final | 40 | every must-fix AND should-fix in ONE builder message, quick check, `shots --pack --changed`, the reviewers re-look ONLY at the changed frames (in parallel), the final full check (it ports), `status`, report |
 5. **Where the Opus slots go** (they shorten the critical path): the builder; the maths reviewer, escalated; a second builder, escalated, for the fold and
-   the fix messages (never two writers on one `tool.tsx` at once: hand over); on a complex tool the play tester or a visual reviewer on the riskiest part.
-   Everything else is Sonnet. Full checks: 3 for the sprint, and the runtime freeze happens before the first of them. After the freeze, pin with an explicit
+   the fix messages (never two writers on one `tool.tsx` at once: hand over); and the fourth and fifth slots, the play tester and a visual reviewer on the riskiest parts (5 Opus agents run at once).
+   Everything else is Sonnet, with no cap. Full checks: 3 for the sprint, and the runtime freeze happens before the first of them. After the freeze, pin with an explicit
    version (`runtime pin --ch N --version rM --gate prereview`): a pin with `--gate` and no `--version` counts as a SECOND freeze in `orchlib/hooks.mjs` and the
    gate refuses it (found by the class 3 ch 9 sprint).
 6. **Late.** `sprint status` says so. A review is never dropped to meet the clock. Start the next stage on the part that is already final, add parallel

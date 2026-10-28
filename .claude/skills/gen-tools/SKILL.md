@@ -16,7 +16,7 @@ The same as `.claude/commands/gen-tools.md`; both are shortcuts into the runbook
    visual and play only where a tool brings something new); without it, the full mode. With `sprint` (one SLOT_ID), use the
    runbook's "Sprint mode": ONE tool in about 40 minutes with EVERY review kept (maths, the Gemini pass when the owner keeps it,
    language, the full visual review in en/hi/gu, play, the final check); the time comes from the owner's decisions asked once before
-   the builder, overlap and parallel agents (up to 3 Opus, 4 for a complex tool), run by the clock
+   the builder, overlap and parallel agents (5 Opus agents at once, no cap on Sonnet agents), run by the clock
    `node orch.mjs sprint start|status|lap|stop`. The agents are
    `<pfx>-tool-builder` and the rest, `<pfx>` being the class's `agentPrefix` (`udgam` for class 4,
    `udgam<N>` otherwise).
@@ -26,8 +26,7 @@ The same as `.claude/commands/gen-tools.md`; both are shortcuts into the runbook
    pass (step 5c) runs for EVERY tool and gives real objects instead of plain blocks; the runtime's header buttons, berry keys, Kiko's
    thinking pose and the Answer key's blink are never redone by a tool; a decimal is answered on the Decimal card where the picture has one.
 4. Before launching agents, load the root `token-policy.json`: adaptive mode is mandatory unless full review is explicitly requested (cap
-   concurrency and Opus agents, keep contexts below the policy limits, batch language/status/audit work, run visual/play review only for
-   new or risky patterns). **Resuming a chapter** (`continue`, or after a session limit, reset or compaction): before continuing, read the
+   Opus agents at 5 running at once, Sonnet agents uncapped, keep contexts below the policy limits, batch language/status/audit work, run the full visual review on every tool and the play review wherever a tool is new or risky; no visual or necessary check is ever dropped to save tokens or time). **Resuming a chapter** (`continue`, or after a session limit, reset or compaction): before continuing, read the
    root `token-policy.json` and apply it to the resumed chapter. Do not recreate the previous context and do not restart completed
    agents. Resume from the existing chapter state and checkpoint (`node orch.mjs resume --class <N> --ch <n>`,
    `node cli.mjs status --ch <n>`; the runbook's "Resume rule", step 0), and launch only what is unfinished.

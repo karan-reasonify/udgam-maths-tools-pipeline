@@ -79,8 +79,9 @@ async function cmdPlan() {
   out(`  * = ${info.prefix}-tool-builder${pol.escalation.suffix} (${modelOf(pol, "tool-builder", "escalated")}); others ${info.prefix}-tool-builder (${modelOf(pol, "tool-builder")})`);
   out(`batch sizes: follower builders ${plan.batchSizes.followerBuilders || "-"} · maths ${plan.batchSizes.maths} · language ${plan.batchSizes.language} · images ${plan.batchSizes.image} · light visual ${plan.batchSizes.lightVisual}`);
   const P = plan.projected, Lm = plan.limits;
-  out(`projected agents ${P.total} (limit ${Lm.maxAgentsPerChapter}) · opus ${P.opus} (limit ${Lm.maxOpusAgents}) · review ${P.review} (limit ${Lm.maxReviewAgents}) · concurrent ≤ ${Lm.maxConcurrent}`);
-  if (P.total > Lm.maxAgentsPerChapter || P.opus > Lm.maxOpusAgents || P.review > Lm.maxReviewAgents) out("  ! the projection is above a limit: fewer groups (shared patterns), bigger review batches, or raise the class override");
+  const lim = (v) => (v == null || v === Infinity ? "no cap" : v);
+  out(`projected agents ${P.total} (limit ${lim(Lm.maxAgentsPerChapter)}) · opus ${P.opus} (at most ${Lm.maxConcurrentOpus} running at once) · review ${P.review} (limit ${lim(Lm.maxReviewAgents)}) · concurrent ≤ ${lim(Lm.maxConcurrent)}`);
+  if (P.total > Lm.maxAgentsPerChapter || P.review > Lm.maxReviewAgents) out("  ! the projection is above a limit: fewer groups (shared patterns), bigger review batches, or raise the class override");
   out(`visual: ${Object.values(plan.slots).filter((s) => s.visual === "full").length} full (${plan.chunksPerPack} chunks of ≤${pol.review.visualChunkFrames} frames) · ${Object.values(plan.slots).filter((s) => s.visual !== "full").length} light · play ${P.play}`);
   out(`next: node orch.mjs readlists --class ${info.n} --ch ${chap.ch}; then gate each build launch (orch gate --role tool-builder --slot …${plan.batches.builder[0] && plan.batches.builder[0].tier === "escalated" ? " --tier escalated" : ""})`);
   out(`wrote ${rel(planFile(chap))}`);
@@ -485,10 +486,10 @@ function cmdSprint() {
     const scale = minutes === (sp.budgetMinutes || 40) ? 1 : minutes / base;  /* --minutes N scales the plan; no --minutes keeps the planned minutes */
     const total = a.design && !(Number(a.minutes) > 0) ? base : minutes;
     const stages = plan.map((s) => ({ key: s.key, label: s.label, dueMin: Math.max(1, Math.round(s.dueMin * scale)), doneAt: null }));
-    const cx = a.complexity === "complex" ? "complex" : "simple";  /* sets the Opus cap for the sprint: sprint.opusAgents (3 simple, 4 complex); the gate's normal one-tool figure is 3 */
+    const cx = a.complexity === "complex" ? "complex" : "simple";  /* sets the Opus cap for the sprint: sprint.opusAgents (5 simple, 5 complex since 2026-10-28); the gate takes the higher of it and the standing maxConcurrentOpus (5), so a sprint never lowers the cap */
     if (a.complexity && a.complexity !== true && !["simple", "complex"].includes(a.complexity)) throw new Error("--complexity simple|complex");
     const opusCap = (sp.opusAgents || {})[cx];
-    updateState(chap.dir, (s) => { s.sprint = { startedAt: new Date(startedAt).toISOString(), budgetMin: total, design: !!a.design, complexity: cx, limits: opusCap ? { maxOpusAgents: opusCap } : {}, slot: a.slot && a.slot !== true ? String(a.slot) : null, stages, fullBase: Object.fromEntries(Object.entries(s.slots).map(([k, r]) => [k, r.fullChecks || 0])), endedAt: null }; }, meta(info, chap));
+    updateState(chap.dir, (s) => { s.sprint = { startedAt: new Date(startedAt).toISOString(), budgetMin: total, design: !!a.design, complexity: cx, limits: opusCap ? { maxConcurrentOpus: opusCap } : {}, slot: a.slot && a.slot !== true ? String(a.slot) : null, stages, fullBase: Object.fromEntries(Object.entries(s.slots).map(([k, r]) => [k, r.fullChecks || 0])), endedAt: null }; }, meta(info, chap));
   } else if (sub === "lap") {
     if (!a.stage || a.stage === true) throw new Error(`--stage <${sp.stages.map((s) => s.key).join("|")}>`);
     updateState(chap.dir, (s) => {
@@ -503,7 +504,7 @@ function cmdSprint() {
   if (!z) { out("no sprint running (node orch.mjs sprint start --class N --ch n --slot ID [--at HH:MM])"); return; }
   const t0 = Date.parse(z.startedAt), end = z.endedAt ? Date.parse(z.endedAt) : Date.now();
   const used = Math.round((end - t0) / 60000), left = z.budgetMin - used;
-  out(`sprint ${chap.id}${z.slot ? " " + z.slot : ""} · ${z.budgetMin} min${z.design ? " (with the design pass)" : ""} · ${z.complexity || "simple"}: up to ${(z.limits || {}).maxOpusAgents || "the normal"} Opus agents · started ${hhmm(t0)} · due ${hhmm(t0 + z.budgetMin * 60000)} · used ${used} min · ${z.endedAt ? "STOPPED" : left >= 0 ? left + " min left" : "OVER by " + -left + " min"}`);
+  out(`sprint ${chap.id}${z.slot ? " " + z.slot : ""} · ${z.budgetMin} min${z.design ? " (with the design pass)" : ""} · ${z.complexity || "simple"}: up to ${(z.limits || {}).maxConcurrentOpus || "the normal"} Opus agents at once · started ${hhmm(t0)} · due ${hhmm(t0 + z.budgetMin * 60000)} · used ${used} min · ${z.endedAt ? "STOPPED" : left >= 0 ? left + " min left" : "OVER by " + -left + " min"}`);
   const next = z.stages.find((g) => !g.doneAt);
   for (const g of z.stages) {
     const late = !g.doneAt && used > g.dueMin;

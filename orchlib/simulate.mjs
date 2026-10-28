@@ -117,9 +117,10 @@ export function optimizedFlow({ tools, m, E, pol, window, opc }) {
   add(roles, "tool-builder-escalated", "opus", groups, times(A({ start: repStart, calls: O.builderRep.calls, grow: O.builderRep.grow }), groups));
   const folBase = OH + tok(m.builderAgent + m.preflight + m.layoutFollower + m.bcFollower + m.patterns + 2500);
   const fol = bestBatch({ n: followers, base: folBase, perItem: tok(m.brief + m.tool), callsPerItem: O.builderFollower.calls, grow: O.builderFollower.grow, maxB: Bt.builderToolsPerAgent, target, window, outputPerCall: opc });
-  add(roles, "tool-builder", "sonnet", fol.agents, fol.cost);
+  const builderModel = (pol.models && pol.models["tool-builder"]) || "opus";
+  add(roles, "tool-builder", builderModel, fol.agents, fol.cost);
   const fixers = Math.round(tools * O.fixer.perTool);
-  add(roles, "tool-builder (fixer)", "sonnet", fixers, times(A({ start: tok(m.builderAgent + m.tool + 2000 + 20000), calls: O.fixer.calls, grow: O.fixer.grow }), fixers));
+  add(roles, "tool-builder (fixer)", builderModel, fixers, times(A({ start: tok(m.builderAgent + m.tool + 2000 + 20000), calls: O.fixer.calls, grow: O.fixer.grow }), fixers));
   const mb = bestBatch({ n: tools, base: OH + tok(m.mathsAgent + O.maths.rulesKb * 1024), perItem: tok((O.maths.digestKb + O.maths.briefKb) * 1024), callsPerItem: O.maths.callsPerTool, grow: O.maths.grow, maxB: Bt.mathsToolsPerAgent, target, window, outputPerCall: opc });
   add(roles, "maths-reviewer", "sonnet", mb.agents, mb.cost);
   const m2 = bestBatch({ n: Math.round(tools * O.maths.round2Share), base: OH + tok(m.mathsAgent + O.maths.rulesKb * 1024), perItem: tok((O.maths.digestKb / 2 + 2) * 1024), callsPerItem: Math.ceil(O.maths.callsPerTool / 2), grow: O.maths.grow, maxB: Bt.mathsToolsPerAgent, target, window, outputPerCall: opc });
@@ -130,10 +131,11 @@ export function optimizedFlow({ tools, m, E, pol, window, opc }) {
   add(roles, "image-agent", "sonnet", ib.agents, ib.cost);
   const cap = pol.review.visualChunkFrames, chunks = Math.max(1, Math.ceil(m.frames / cap)), perChunk = Math.ceil(m.frames / chunks);
   const vBase = tok(m.visualAgent + O.visual.layoutKb * 1024 + m.reviewPack + 8000);
-  add(roles, "visual-reviewer (full, chunked)", "sonnet", groups * chunks, times(A({ start: vBase, calls: perChunk + O.visual.extraCalls, grow: O.visual.grow }), groups * chunks));
-  const lv = bestBatch({ n: followers, base: OH + vBase, perItem: 0, callsPerItem: O.visual.lightFrames + O.visual.extraCalls, grow: O.visual.grow, maxB: Bt.lightVisualToolsPerAgent, target, window, outputPerCall: opc });
+  const allFull = pol.review.followerVisual === "full", fullN = allFull ? tools : groups, lightN = allFull ? 0 : followers;
+  add(roles, "visual-reviewer (full, chunked)", "sonnet", fullN * chunks, times(A({ start: vBase, calls: perChunk + O.visual.extraCalls, grow: O.visual.grow }), fullN * chunks));
+  const lv = bestBatch({ n: lightN, base: OH + vBase, perItem: 0, callsPerItem: O.visual.lightFrames + O.visual.extraCalls, grow: O.visual.grow, maxB: Bt.lightVisualToolsPerAgent, target, window, outputPerCall: opc });
   add(roles, "visual-reviewer (light)", "sonnet", lv.agents, lv.cost);
-  const r2frames = Math.round((groups * m.frames + followers * O.visual.lightFrames) * O.visual.round2Share), r2chunks = Math.ceil(r2frames / cap);
+  const r2frames = Math.round((fullN * m.frames + lightN * O.visual.lightFrames) * O.visual.round2Share), r2chunks = Math.ceil(r2frames / cap);
   if (r2chunks) add(roles, "visual-reviewer (changed)", "sonnet", r2chunks, times(A({ start: vBase, calls: Math.ceil(r2frames / r2chunks) + O.visual.extraCalls, grow: O.visual.grow }), r2chunks));
   const plays = groups + Math.round(followers * O.play.riskyFollowerShare);
   add(roles, "play-tester", "sonnet", plays, times(A({ start: tok(m.playAgent + m.playbook + 8000 + m.brief / 2), calls: O.play.calls, grow: O.play.grow }), plays));

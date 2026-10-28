@@ -1,0 +1,1237 @@
+{
+  "slotId": "M1.S1.T3.C11.2D1",
+  "mediaId": "M1.S1.T3.C11.2D1",
+  "toolId": "length_converter",
+  "title": "Length Converter",
+  "component": "M1.S1.T3.C11.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch9_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_9/2dtool/M1.S1.T3.C11.2D1/M1.S1.T3.C11.2D1.tsx",
+  "description": "Break a metre rod into centimetres, slide kilometre posts along a road, and add and subtract lengths in columns.",
+  "conceptIds": [
+    "M1.S1.T3.C11",
+    "M1.S1.T3.C12",
+    "M1.S1.T3.C13",
+    "M1.S1.T3.C14"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Change metres into centimetres and back, change kilometres and metres into each other, and add and subtract lengths in columns, carrying and borrowing where a column needs it, with the unit written next to every number.",
+    "look": "A metre rod in ten tens across the top, a kilometre road with posts under it, a column board for adding lengths, a trek path of five days, blank boxes for missing numbers, and the number pad down the right of the canvas.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Length Converter' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many lengths have been changed or added so far. It is never a score. The working area is 1086 by 528 at x 64, y 202. A metre rod 900 long and 50 tall lies across the top of the working area at x 100, y 214, drawn in ten equal tens of ten centimetre marks, each mark near-black and the tens in alternating pale colours. A kilometre road 980 long winds under it at y 290 with a wooden post at every thousand metres, each post labelled in metres. On the first phase a length in metres and centimetres sits in a deep blue tag 300 by 80 at x 100, y 380, labelled Given. Each press of the Break button breaks one metre of the rod into a hundred centimetre marks that scatter into a tray at x 100, y 480, 560 by 150, inside a vermilion ring labelled Unit fact, where 1 m = 100 cm. The centimetres of the length sit in an amber tag at x 440, y 380, 220 by 80, labelled Second, and the total lands in a green tag at x 700, y 380, 300 by 80, labelled Answer. On the second phase a length in centimetres sits in the blue tag above a row of marks, and each press of the Gather button gathers a hundred marks into one metre rod; the marks left over stay in the amber tag, labelled Left, and the last two digits of the length are ringed in amber. On the third phase the post at x 100 slides along the road a thousand metres at a time under a vermilion ring labelled Unit fact, where 1 km = 1000 m, and the child adds the extra metres in the amber tag or gathers metres back into kilometres and metres. On the fourth phase a column board 700 by 380 at x 100, y 350 has two columns, labelled metres and centimetres or kilometres and metres, with the first length on top in a deep blue row, the second length under it in an amber row, a carry mark 60 by 40 above the metres column and a green answer row at the foot. A carried amount hops into the next column with a small click, and a borrowed metre breaks into a hundred centimetres and falls into the centimetres column. A trek path of five days winds across the board at x 820, y 350, 300 by 340, each day with a morning stone and an afternoon stone labelled in kilometres. Blank boxes 110 by 60 take a missing number. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys and a clear key, for typing a number or filling a blank, with the keys m, cm and km for the unit. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours, and the chapter's four roles are carried by what holds the object or the number, never by tinting the object. The measure the question gives, or the reading taken from the ruler, the balance or the jug, sits in a deep blue tag or on a deep blue plate, labelled Given. The measure the working reaches, a converted or total amount, sits in a green tag, labelled Answer. The times 100 or times 1000 step and the unit fact it comes from sit inside a vermilion ring, labelled Unit fact. The second amount of a sum or a difference, an amount carried and a part left over sit in an amber tag, labelled Second or Left. Every ruler mark, scale mark and plain edge is near-black, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of the four, and each reading survives with the colour taken away, because a measure is told by its written label before it is told by its colour.",
+    "finish": "The board shows the last length changed or added in both units, with the metre rod or the column board that did the work still beside it.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the metre rods break into marks inside the vermilion ring and the total lands in the green tag",
+        "does": "breaks each metre into its centimetre marks, adds the extra centimetres, and types the length in centimetres",
+        "goal": "one metre is a hundred centimetres, so metres are changed into centimetres by multiplying by a hundred and adding the centimetres",
+        "says": "Break the metres into centimetres. Then add the rest.",
+        "check": "Away from the screen: how many centimetres are in two metres? How do you know without a ruler?",
+        "feels": "a metre rod snapping into a hundred marks and the extra marks joining them",
+        "hands": "Give each pair a paper strip one metre long. Ask them to mark every ten centimetres, count the marks, and then say how many centimetres two strips make.",
+        "tries": "First rung: say how many centimetres one metre is. Second rung: break one metre at a time and count the lots of a hundred. Third rung: the same task with whole metres only, before the extra centimetres return.",
+        "wrong": [
+          {
+            "why": "the two numbers sit side by side, so they seem to belong in one sum",
+            "move": "adds the metres and the centimetres as plain numbers",
+            "screen": "the metres break first into their marks inside the vermilion ring, and the centimetres of the length are carried over in amber, labelled Second, so the two parts are seen to be counted in the same unit before they are joined"
+          },
+          {
+            "why": "the times a hundred rule sounds as if it belongs to every number",
+            "move": "multiplies only the centimetres by a hundred",
+            "screen": "the Unit fact ring lights over the metre rod only, and the centimetres of the length stay unchanged in the amber tag"
+          }
+        ],
+        "screen": "a length in metres and centimetres in a deep blue tag, the metre rod above it, and an empty answer tag",
+        "soWhat": "to change metres into centimetres, multiply the metres by a hundred and add the centimetres",
+        "concept": "Metres into centimetres: multiply by 100"
+      },
+      {
+        "n": 2,
+        "win": "the marks gather into whole metre rods and the leftover marks stay beside them in amber",
+        "does": "gathers the marks into metre rods, reads the last two digits as the centimetres, and types the metres and the centimetres",
+        "goal": "centimetres are changed into metres by dividing by a hundred, and the last two digits are the centimetres",
+        "says": "Gather the centimetres into metres. What is left over?",
+        "check": "Away from the screen: a ribbon is three hundred and twenty centimetres long. How many whole metres can you cut from it, and how many centimetres are left?",
+        "feels": "a long row of marks gathering into whole metres with a few left over",
+        "hands": "Count out a long row of centimetre cubes or marks on a strip, and gather them into groups of a hundred. Say how many whole groups and how many are left.",
+        "tries": "First rung: gather the marks into hundreds. Second rung: count the rods and then the marks left over. Third rung: the same task with no marks left over, before the leftover ones return.",
+        "wrong": [
+          {
+            "why": "the last digit is the one that is easiest to see",
+            "move": "takes the last digit only as the centimetres",
+            "screen": "the last two digits are ringed together in amber, and the marks gather into groups of a hundred so that both digits are seen to be left over"
+          },
+          {
+            "why": "the number is big, so it feels as if it must be in a big unit",
+            "move": "writes the whole number as the metres",
+            "screen": "the gathered metre rods are counted in deep blue beside the leftover marks in amber, so the number of rods and the number of leftover marks are seen apart"
+          }
+        ],
+        "screen": "a length in centimetres in a deep blue tag, a row of centimetre marks, and an empty tag for metres and centimetres",
+        "soWhat": "centimetres change into metres by dividing by a hundred, and the last two digits are the centimetres",
+        "concept": "Centimetres into metres: divide by 100"
+      },
+      {
+        "n": 3,
+        "win": "the post stops at each kilometre mark and the total lands in the green tag",
+        "does": "slides the post along the road a thousand metres at a time, adds the extra metres, or gathers metres back into kilometres, and types the answer",
+        "goal": "one kilometre is a thousand metres, so kilometres change into metres by multiplying by a thousand and back by dividing",
+        "says": "Slide the post along the road. How many metres is each step?",
+        "check": "Away from the screen: a path is two thousand metres long. How many kilometres is that? How many metres is half of that?",
+        "feels": "a post sliding along a long road, one kilometre mark at a time",
+        "hands": "Walk a measured line of a thousand steps in the playground, or lay out a string of a thousand marks on a long paper, and say how many equal lots make a bigger line.",
+        "tries": "First rung: say how many metres one kilometre is. Second rung: slide the post one stretch at a time and count the stops. Third rung: the same task with whole kilometres only, before the extra metres return.",
+        "wrong": [
+          {
+            "why": "a hundred is the number the child has just used with centimetres",
+            "move": "uses a hundred instead of a thousand for kilometres",
+            "screen": "the vermilion ring changes to the unit fact 1 km = 1000 m, the post slides ten stretches of a hundred metres each to reach one kilometre, and the child counts them"
+          },
+          {
+            "why": "the leftover metres are the last number, and it seems to belong with the biggest unit",
+            "move": "writes the metres left over in the kilometres place",
+            "screen": "the kilometre posts are counted in deep blue and the leftover metres in amber, labelled Left, so the two numbers are seen to be different units"
+          }
+        ],
+        "screen": "a long road with a kilometre post, a length in kilometres and metres in a deep blue tag, and an empty answer tag",
+        "soWhat": "kilometres change into metres by multiplying by a thousand, and metres change into kilometres by dividing by a thousand",
+        "concept": "Kilometres and metres: use 1000"
+      },
+      {
+        "n": 4,
+        "win": "the carried amount hops into the next column and the answer row fills green",
+        "does": "adds or subtracts the centimetres or metres first, carries or borrows into the next column, and types the answer in both units",
+        "goal": "lengths are added or subtracted in columns, the small unit first, carrying or borrowing where a column needs it",
+        "says": "Write the lengths in two columns. Start with the small unit.",
+        "check": "Away from the screen: you add two lengths and the centimetres come to a hundred and ten. What do you write in the centimetres column and what do you carry?",
+        "feels": "a hundred centimetres hopping across the board as one metre",
+        "hands": "Lay two ribbons end to end on the floor, one of metres and centimetres each, measure the long line they make with a tape, and write the sum in columns.",
+        "tries": "First rung: write the lengths in two columns, small unit on one side. Second rung: work the small unit first. Third rung: the same task with no carry or borrow, before the harder sums return.",
+        "wrong": [
+          {
+            "why": "the centimetres column looks like any other column of numbers",
+            "move": "leaves a hundred or more centimetres in the centimetres column",
+            "screen": "the hundred marks gather into one small rod and hop up into the metres column, and the amber carry mark lights above it"
+          },
+          {
+            "why": "taking the small number from the big one always works, whichever way up they sit",
+            "move": "subtracts the smaller number from the larger in every column",
+            "screen": "a top amount that is too small makes the metres column lend one metre, which breaks into a hundred marks and falls into the centimetres column, and the borrow mark lights in amber"
+          }
+        ],
+        "screen": "a column board with two lengths one under the other, a carry mark above the metres column, and an empty answer row",
+        "soWhat": "lengths are added and subtracted in columns, the small unit first, carrying or borrowing where a column needs it",
+        "concept": "Adding and subtracting lengths"
+      }
+    ],
+    "delight": "On the first phase, when the Break button is pressed, a metre of the rod snaps into a hundred marks with a soft click and the marks rain gently into the tray in ten neat tens. On the fourth phase, when a total reaches a hundred centimetres, the hundred marks gather into a small rod and hop up into the metres column all at once.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet typed. On the first phase a length in metres and centimetres sits in a deep blue tag with the metre rod lying whole across the top and the answer tag empty. On the second a length in centimetres sits in the blue tag above a long row of centimetre marks, and the tag for metres and centimetres is empty. On the third a long road runs across the bench with a kilometre post standing at its start, and a length in kilometres and metres waits in the blue tag. On the fourth a column board holds two lengths one under the other with an empty answer row and an empty carry mark above the metres column. One thing moves, once: the metre rod, the first mark, the kilometre post or the first column gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any length changed with the rod and the road, the column board in either unit pair with a carry or a borrow, and the five day trek path. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on metres into centimetres, centimetres into metres, kilometres and metres, and adding and subtracting lengths in columns, each on a real thing.",
+    "voiceLines": [
+      "A metre rod, a long road and a board for adding.",
+      "Break the metres into centimetres. Then add the rest.",
+      "Gather the centimetres into metres. What is left over?",
+      "Slide the post along the road. How many metres is each step?",
+      "Write the lengths in two columns. Start with the small unit.",
+      "A new length. Say its unit before you change it.",
+      "Free play. Break, gather, slide and add as you like.",
+      "Break the big unit into the small one first, then count again.",
+      "You changed the unit and kept the length the same."
+    ],
+    "observations": [
+      {
+        "why": "one metre is a hundred centimetres, so each metre gives a hundred marks.",
+        "soWhat": "to change metres into centimetres, change the metres first and then add the centimetres.",
+        "observe": "The six metres broke into six lots of a hundred marks, and the centimetres of the length stayed beside them."
+      },
+      {
+        "why": "a hundred marks make a metre, so the marks that do not make a hundred stay as centimetres.",
+        "soWhat": "the last two digits of a length in centimetres are the centimetres and the digits before them are the metres.",
+        "observe": "The last two digits of the length in centimetres were ringed, and they were the marks left over after the metres gathered."
+      },
+      {
+        "why": "one kilometre is a thousand metres, so each stop is a thousand metres on.",
+        "soWhat": "kilometres change into metres by multiplying by a thousand, and metres gather back into kilometres by dividing by a thousand.",
+        "observe": "The post stopped at every thousand metres along the road, and the metres left over were counted in amber."
+      },
+      {
+        "why": "a hundred centimetres is one metre, so the centimetres column cannot hold more than that.",
+        "soWhat": "when lengths are added in columns, a hundred centimetres is carried into the metres column.",
+        "observe": "A total of a hundred or more centimetres hopped into the metres column as one metre, and the rest stayed."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a length in metres and centimetres in a deep blue tag, the metre rod above it, and an empty answer tag",
+        "win": "the metre rods break into marks inside the vermilion ring and the total lands in the green tag",
+        "traceback": "the broken rods are counted again in hundreds of centimetres and the short piece is lit in amber; the count stops before the total, which the child writes",
+        "ladder": [
+          "Change the metres into centimetres before you add the piece.",
+          "The metres make hundreds of centimetres.",
+          "The wall has no short piece; every rod is a whole metre.",
+          "Break one metre at a time and count the lots of 100.",
+          "Write the hundreds from the rods, then the centimetres from the piece."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a length in centimetres in a deep blue tag, a row of centimetre marks, and an empty tag for metres and centimetres",
+        "win": "the marks gather into whole metre rods and the leftover marks stay beside them in amber",
+        "traceback": "the 1 m pieces are counted again one by one, stopping before the last one, and the piece left over is lit in amber",
+        "ladder": [
+          "Only the 1 m pieces count as metres.",
+          "Count the 1 m pieces, then look at the tiny piece left.",
+          "Count the whole 1 m pieces, row by row.",
+          "Each 100 cm makes one metre piece.",
+          "Metres first, then the centimetres that do not make a metre."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a long road with a kilometre post, a length in kilometres and metres in a deep blue tag, and an empty answer tag",
+        "win": "the post stops at each kilometre mark and the total lands in the green tag",
+        "traceback": "the posts are counted again in kilometres along the road and the stretch left over is lit in amber; the count stops before the answer",
+        "ladder": [
+          "One kilometre is 1,000 m.",
+          "Every 1,000 m along the road makes one kilometre.",
+          "Count whole kilometres first, 1,000 m for each.",
+          "Slide one kilometre at a time and count the stops.",
+          "Kilometres to metres is times 1,000, and back is divided by 1,000."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a column board with two lengths one under the other, a carry mark above the metres column, and an empty answer row",
+        "win": "the carried amount hops into the next column and the answer row fills green",
+        "traceback": "the centimetres column is worked again and the carry or the borrow is shown again; the answer row is left for the child",
+        "ladder": [
+          "100 cm or more cannot stay in the cm column.",
+          "Keep metres and centimetres in their own columns.",
+          "Look at the top row after the borrow.",
+          "Start with the small unit in every sum.",
+          "Carry or borrow where the cm column needs it."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "rodLen": 420,
+    "rodH": 36,
+    "ribM": 160,
+    "roadKm": 104,
+    "roadN": 8,
+    "free": {
+      "break": [
+        {
+          "kind": "m2cm",
+          "m": 3,
+          "cm": 25
+        },
+        {
+          "kind": "m2cm",
+          "m": 4,
+          "cm": 60
+        },
+        {
+          "kind": "m2cm",
+          "m": 7,
+          "cm": 8
+        },
+        {
+          "kind": "m2cm",
+          "m": 9,
+          "cm": 0
+        }
+      ],
+      "cut": [
+        {
+          "kind": "cm2m",
+          "total": 456
+        },
+        {
+          "kind": "cm2m",
+          "total": 1203
+        },
+        {
+          "kind": "cm2m",
+          "total": 990
+        }
+      ],
+      "slide": [
+        {
+          "kind": "km2m",
+          "km": 2,
+          "m": 340
+        },
+        {
+          "kind": "m2km",
+          "total": 5000
+        },
+        {
+          "kind": "m2km",
+          "total": 4706
+        }
+      ],
+      "carry": [
+        {
+          "kind": "add",
+          "a": [
+            1,
+            85
+          ],
+          "b": [
+            2,
+            40
+          ]
+        },
+        {
+          "kind": "add",
+          "a": [
+            4,
+            36
+          ],
+          "b": [
+            2,
+            64
+          ]
+        },
+        {
+          "kind": "add",
+          "a": [
+            3,
+            58
+          ],
+          "b": [
+            1,
+            77
+          ]
+        }
+      ]
+    },
+    "units": {
+      "m": 100,
+      "km": 1000
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T3.C11:LC1",
+        "kind": "m2cm",
+        "m": 6,
+        "cm": 37,
+        "answer": 637,
+        "nm": "43",
+        "ladder": [
+          "Count 100 cm for every rod, then add the short piece.",
+          "Six rods make 600 cm, so add the 37 cm piece to that."
+        ],
+        "win": "Yes, 6 m 37 cm is 637 cm."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": null,
+        "kind": "m2cm",
+        "m": 5,
+        "cm": 7,
+        "answer": 507,
+        "nm": "57",
+        "ladder": [
+          "A 7 cm piece has no tens, so the tens place needs a zero.",
+          "Five rods make 500 cm, and the 7 cm piece adds only 7 more."
+        ],
+        "win": "Right, the hose is 507 cm long, with a zero for the tens."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S1.T3.C11:5",
+        "kind": "m2cm",
+        "m": 13,
+        "cm": 0,
+        "answer": 1300,
+        "nm": "130",
+        "ladder": [
+          "Count the rods in centimetres: 100 cm, 200 cm, 300 cm and on.",
+          "Ten rods make 1,000 cm; count on 100 cm for each rod after them."
+        ],
+        "win": "Well done, the wall is 1,300 cm long."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T3.C12:LC2",
+        "kind": "cm2m",
+        "total": 834,
+        "parts": [
+          {
+            "label": "metres",
+            "unit": "m"
+          },
+          {
+            "label": "left over",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          8,
+          34
+        ],
+        "nm": "83|4",
+        "ladder": [
+          "The piece left over is shorter than 1 m, so it stays in centimetres.",
+          "The last two digits of 834 are the centimetres left over."
+        ],
+        "win": "Yes, 834 cm is 8 m 34 cm."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": null,
+        "kind": "cm2m",
+        "total": 605,
+        "parts": [
+          {
+            "label": "metres",
+            "unit": "m"
+          },
+          {
+            "label": "left over",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          6,
+          5
+        ],
+        "nm": "60|5",
+        "ladder": [
+          "The tiny end piece is not a whole metre; leave it out of the metres.",
+          "Take away the 1 m pieces; the centimetres under 100 are the rest."
+        ],
+        "win": "Right, the ribbon is 6 m 5 cm long."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T3.C12:6",
+        "kind": "cm2m",
+        "total": 1867,
+        "parts": [
+          {
+            "label": "metres",
+            "unit": "m"
+          },
+          {
+            "label": "left over",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          18,
+          67
+        ],
+        "nm": "186|7",
+        "ladder": [
+          "Count the rows of 5 m first, then the single pieces after them.",
+          "Cover the last two digits of 1,867; the digits before them are the metres."
+        ],
+        "win": "Well done, 1,867 cm makes 18 m 67 cm."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T3.C13:LC3",
+        "kind": "km2m",
+        "km": 6,
+        "m": 275,
+        "answer": 6275,
+        "nm": "875",
+        "ladder": [
+          "Change each kilometre into 1,000 m before you add the rest.",
+          "6 km is 6,000 m, so add the 275 m to it."
+        ],
+        "win": "Yes, 6 km 275 m is 6,275 m."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T3.C13:3",
+        "kind": "m2km",
+        "total": 3000,
+        "answer": 3,
+        "nm": "30",
+        "ladder": [
+          "Count the posts the slide planted; each stands 1 km further on.",
+          "Divide the metres by 1,000 to find the kilometres."
+        ],
+        "win": "Right, the track is 3 km long."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T3.C13:7",
+        "kind": "m2km",
+        "total": 7461,
+        "parts": [
+          {
+            "label": "kilometres",
+            "unit": "km"
+          },
+          {
+            "label": "left over",
+            "unit": "m"
+          }
+        ],
+        "answer": [
+          7,
+          461
+        ],
+        "nm": "74|61",
+        "ladder": [
+          "The part of the road after the last post is under 1 km, so it stays in metres.",
+          "The last three digits of 7,461 are the metres left over."
+        ],
+        "win": "Well done, 7,461 m makes 7 km 461 m."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T3.C14:LC4",
+        "kind": "add",
+        "a": [
+          2,
+          74
+        ],
+        "b": [
+          1,
+          69
+        ],
+        "parts": [
+          {
+            "label": "m column",
+            "unit": "m"
+          },
+          {
+            "label": "cm column",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          4,
+          43
+        ],
+        "nm": "3|143",
+        "ladder": [
+          "The carried 1 m joins the metres column too.",
+          "Take 100 cm off the centimetres total, then add 1 m to the metres."
+        ],
+        "win": "Yes, the rope was 4 m 43 cm long."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": null,
+        "kind": "add",
+        "a": [
+          3,
+          45
+        ],
+        "b": [
+          2,
+          55
+        ],
+        "parts": [
+          {
+            "label": "m column",
+            "unit": "m"
+          },
+          {
+            "label": "cm column",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          6,
+          0
+        ],
+        "nm": "5|100",
+        "ladder": [
+          "Count the metres again with the carried 1 m added.",
+          "45 cm and 55 cm fill a whole metre exactly."
+        ],
+        "win": "Yes, they make 6 m and 0 cm, which is 6 m."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T3.C14:8",
+        "kind": "sub",
+        "a": [
+          5,
+          28
+        ],
+        "b": [
+          2,
+          47
+        ],
+        "parts": [
+          {
+            "label": "m column",
+            "unit": "m"
+          },
+          {
+            "label": "cm column",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          2,
+          81
+        ],
+        "nm": "3|19",
+        "ladder": [
+          "Subtract each column on its own, centimetres first.",
+          "Take 47 cm from 128 cm, then take 2 m from 4 m."
+        ],
+        "win": "Yes, 2 m 81 cm of cloth is left."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: the broken rods are counted again in hundreds of centimetres and the short piece is lit in amber; the count stops before the total, which the child writes",
+      "Phase 2: the 1 m pieces are counted again one by one, stopping before the last one, and the piece left over is lit in amber",
+      "Phase 3: the posts are counted again in kilometres along the road and the stretch left over is lit in amber; the count stops before the answer",
+      "Phase 4: the centimetres column is worked again and the carry or the borrow is shown again; the answer row is left for the child"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A metre rod, a long road and a board for adding.",
+    "onFreePlay": "Free play: break rods, cut ribbons, slide posts and carry centimetres.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You changed the unit and kept the length the same.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T3.C11:LC1",
+            "worked": false,
+            "kind": "m2cm",
+            "planQuestion": "A kite string is 6 m 37 cm long. How many centimetres is that?",
+            "question": {
+              "en": "How many centimetres long is a kite string of 6 m 37 cm?"
+            },
+            "ask": {
+              "en": "6 m 37 cm in cm?"
+            },
+            "answer": 637,
+            "planAnswer": "637 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "m2cm",
+            "planQuestion": null,
+            "question": {
+              "en": "A garden hose is 5 m 7 cm long; write its length in centimetres."
+            },
+            "ask": {
+              "en": "5 m 7 cm in cm?"
+            },
+            "answer": 507,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S1.T3.C11:5",
+            "worked": false,
+            "kind": "m2cm",
+            "planQuestion": "A school wall is 13 m long. How many centimetres is that?",
+            "question": {
+              "en": "Change 13 m, the length of a school wall, into centimetres."
+            },
+            "ask": {
+              "en": "13 m in cm?"
+            },
+            "answer": 1300,
+            "planAnswer": "1300 cm, because 13 m is thirteen hundreds of centimetres",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T3.C12:LC2",
+            "worked": false,
+            "kind": "cm2m",
+            "planQuestion": "A ribbon on a reel is 834 cm long. How many metres and centimetres is that?",
+            "question": {
+              "en": "How many metres and centimetres is a ribbon of 834 cm on a reel?"
+            },
+            "ask": {
+              "en": "834 cm in m and cm?"
+            },
+            "answer": [
+              8,
+              34
+            ],
+            "planAnswer": "8 m 34 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "cm2m",
+            "planQuestion": null,
+            "question": {
+              "en": "Write a ribbon of 605 cm in metres and centimetres."
+            },
+            "ask": {
+              "en": "605 cm in m and cm?"
+            },
+            "answer": [
+              6,
+              5
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T3.C12:6",
+            "worked": false,
+            "kind": "cm2m",
+            "planQuestion": "A train coach is 1867 cm long. How many metres and centimetres is that?",
+            "question": {
+              "en": "Change a ribbon as long as a train coach, 1,867 cm, into m and cm."
+            },
+            "ask": {
+              "en": "1,867 cm in m and cm?"
+            },
+            "answer": [
+              18,
+              67
+            ],
+            "planAnswer": "18 m 67 cm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T3.C13:LC3",
+            "worked": false,
+            "kind": "km2m",
+            "planQuestion": "A road from the village to the river is 6 km 275 m long. How many metres is that?",
+            "question": {
+              "en": "How many metres long is a road of 6 km 275 m from the village to the river?"
+            },
+            "ask": {
+              "en": "6 km 275 m in m?"
+            },
+            "answer": 6275,
+            "planAnswer": "6275 m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T3.C13:3",
+            "worked": false,
+            "kind": "m2km",
+            "planQuestion": "A train track is 3000 m long. How many kilometres is that?",
+            "question": {
+              "en": "A train track is 3,000 m long; write its length in kilometres."
+            },
+            "ask": {
+              "en": "3,000 m in km?"
+            },
+            "answer": 3,
+            "planAnswer": "3 km",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T3.C13:7",
+            "worked": false,
+            "kind": "m2km",
+            "planQuestion": "A cycle path is 7461 m long. How many kilometres and metres is that?",
+            "question": {
+              "en": "Change a cycle path of 7,461 m into kilometres and metres."
+            },
+            "ask": {
+              "en": "7,461 m in km and m?"
+            },
+            "answer": [
+              7,
+              461
+            ],
+            "planAnswer": "7 km 461 m",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T3.C14:LC4",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "A rope is cut in two pieces. One piece is 2 m 74 cm long and the other is 1 m 69 cm long. How long was the rope before it was cut? Add in columns.",
+            "question": {
+              "en": "How long was a rope cut into pieces of 2 m 74 cm and 1 m 69 cm?"
+            },
+            "ask": {
+              "en": "2 m 74 cm + 1 m 69 cm"
+            },
+            "answer": [
+              4,
+              43
+            ],
+            "planAnswer": "4 m 43 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "add",
+            "planQuestion": null,
+            "question": {
+              "en": "How long are two ribbons of 3 m 45 cm and 2 m 55 cm laid end to end?"
+            },
+            "ask": {
+              "en": "3 m 45 cm + 2 m 55 cm"
+            },
+            "answer": [
+              6,
+              0
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T3.C14:8",
+            "worked": false,
+            "kind": "sub",
+            "planQuestion": "A tailor cuts a piece 2 m 47 cm long from a roll of cloth that is 5 m 28 cm long. How much cloth is left on the roll? Subtract in columns.",
+            "question": {
+              "en": "How much cloth is left when a tailor cuts 2 m 47 cm from 5 m 28 cm?"
+            },
+            "ask": {
+              "en": "5 m 28 cm − 2 m 47 cm"
+            },
+            "answer": [
+              2,
+              81
+            ],
+            "planAnswer": "2 m 81 cm, because 5 m 28 cm is 4 m 128 cm after borrowing a metre, and 128 cm - 47 cm = 81 cm",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S1.T3.C11:1",
+    "M1.S1.T3.C12:2",
+    "M1.S1.T3.C14:4"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "length_converter",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "length_converter",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Metres into centimetres: multiply by 100",
+        "conceptId": "M1.S1.T3.C11",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S1.T3.C11:LC1",
+          "M1.S1.T3.C11.2D1:p1_2",
+          "M1.S1.T3.C11:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Centimetres into metres: divide by 100",
+        "conceptId": "M1.S1.T3.C12",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S1.T3.C12:LC2",
+          "M1.S1.T3.C11.2D1:p2_2",
+          "M1.S1.T3.C12:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Kilometres and metres: use 1000",
+        "conceptId": "M1.S1.T3.C13",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S1.T3.C13:LC3",
+          "M1.S1.T3.C13:3",
+          "M1.S1.T3.C13:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Adding and subtracting lengths",
+        "conceptId": "M1.S1.T3.C14",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S1.T3.C14:LC4",
+          "M1.S1.T3.C11.2D1:p4_2",
+          "M1.S1.T3.C14:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "given",
+    "v",
+    "act",
+    "acted",
+    "answer",
+    "v"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), given, v, act, acted, complete, answer, v",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "length_converter"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T3.C11.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A metre rod, a long road and a board for adding."
+    },
+    {
+      "en": "Break the metres into centimetres. Then add the rest."
+    },
+    {
+      "en": "Gather the centimetres into metres. What is left over?"
+    },
+    {
+      "en": "Slide the post along the road. How many metres is each step?"
+    },
+    {
+      "en": "Write the lengths in two columns. Start with the small unit."
+    },
+    {
+      "en": "A new length. Say its unit before you change it."
+    },
+    {
+      "en": "Free play. Break, gather, slide and add as you like."
+    },
+    {
+      "en": "Break the big unit into the small one first, then count again."
+    },
+    {
+      "en": "You changed the unit and kept the length the same."
+    }
+  ],
+  "build": {
+    "source": "c2dcb3f1:711672",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-28T13:52:04.330Z",
+    "checks": {
+      "pass": 97,
+      "warn": 0,
+      "fail": 0,
+      "info": 5,
+      "at": "2026-10-28T13:52:02.867Z"
+    },
+    "tsxBytes": 634489,
+    "tsxMd5": "16732f1423174c81703929d62aee0031"
+  }
+}

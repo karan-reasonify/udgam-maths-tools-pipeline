@@ -42,6 +42,7 @@ import { pinState } from "../core/pin.mjs";
 import { capsOf } from "../core/caps.mjs";
 import { pencilRows } from "./pencil.mjs";
 import { answerGateRows } from "./answergate.mjs";
+import { missHidesStrict, missHidesInput, missHidesRows } from "./misshides.mjs";
 import { readPin } from "../core/pin.mjs";
 import { judgePictureScale, PICTURE_SCALE_DETAIL } from "./picturescale.mjs";
 import { layoutProblems, phoneProblems, inter, inside, fmt, PHONE, PHONE_TEXT_PX } from "./layoutfit.mjs";
@@ -176,6 +177,9 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   ok("source", "runtime-pin", pin.ok, pin.msg, pin.msg);
   /* 2026-10-22 (pencil-acts, docs/CHECKS.md): a row only for a runtime with the pencil write move or a tool that writes; none for a finished chapter. A bug here never stops a check. */
   try { for (const r of pencilRows(tool, { caps, strict: !!(readPin(path.dirname(dir)) && readPin(path.dirname(dir)).rules && readPin(path.dirname(dir)).rules.pencilActs === "strict") })) add("source", r.id, r.level, r.msg); } catch (e) { /* not a tool problem */ }
+  /* 2026-10-28 (miss-hides-answer, docs/CHECKS.md; the owner): a chapter whose runtime.json says rules.missHidesAnswer "strict" (fetch writes it
+     for a new chapter) is held to MISS HIDES THE ANSWER; it supersedes miss-shows-answer there. Any other chapter: one INFO row, no Chrome. */
+  const mhStrict = missHidesStrict(path.dirname(dir));
   /* 2026-10-24 (answer-gate, docs/CHECKS.md): warn-only; reads whether the tool ever calls api.lock. It never proves the gate. */
   try { for (const r of answerGateRows(tool)) add("source", r.id, r.level, r.msg); } catch (e) { /* not a tool problem */ }
 
@@ -338,8 +342,12 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
     const slot = JSON.parse(fs.readFileSync(path.join(dir, "slot.json"), "utf8"));
     const tc = slot.tool_config || {}, map = tc.phase_map || [], q = tc.tool_questions || {};
     const mism = m.PHASES.filter((p, k) => map[k] && map[k].concept_id && map[k].concept_id !== p.conceptId).map((p) => `phase ${p.n}: ${p.conceptId} vs plan ${map[p.n - 1].concept_id}`);
-    ok("maths", "plan-concepts", !mism.length && map.length === m.PHASES.length, `phase concept ids equal the plan's phase_map (${map.length} phases)`,
-      mism.join("; ") || `plan has ${map.length} phases, tool ${m.PHASES.length}`);
+    /* the owner may set a tool's phase count below the plan's (work/<chapter>/phases.json: { "<slot id>": { "phases": 3, "why": "..." } }, the owner 2026-10-28);
+       the phases the tool has still carry the plan's first concept ids. Without that file the plan's count stands. */
+    let want = map.length;
+    try { const ow = (JSON.parse(fs.readFileSync(path.join(dir, "..", "phases.json"), "utf8"))[path.basename(dir)] || {}).phases; if (ow && ow > 0 && ow <= map.length) want = ow; } catch { /* no override */ }
+    ok("maths", "plan-concepts", !mism.length && want === m.PHASES.length, `phase concept ids equal the plan's phase_map (${m.PHASES.length} phases${want !== map.length ? `, owner-set: the plan has ${map.length}` : ""})`,
+      mism.join("; ") || `plan has ${map.length} phases${want !== map.length ? `, owner-set ${want}` : ""}, tool ${m.PHASES.length}`);
     const cid = (ph) => (map[ph - 1] && map[ph - 1].concept_id) || (m.PHASES[ph - 1] || {}).conceptId;
     const plan = [...((q.learn && q.learn.items) || []).map((x) => ({ phase: +x.phase, qid: `${cid(+x.phase)}:${x.slot}`, ans: x.answer })),
       ...((q.practice && q.practice.items) || []).map((x) => ({ phase: +x.phase, qid: `${cid(+x.phase)}:${x.q_no}`, ans: x.final_answer ?? x.answer }))];
@@ -519,6 +527,9 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   /* 2026-10-28 (miss-clears-slot): a runtime with MISS CLEARS THE SLOT: a wrong answer of each kind by real input, the slot read at the miss,
      during the traceback and after it; an older runtime opens no Chrome for it (an INFO row) */
   const MC = caps.missClears ? await missClearsInput({ base, board }).catch((e) => ({ error: String(e && e.message) })) : null;
+  /* 2026-10-28 (miss-hides-answer): a STRICT chapter only: wrong answers by real input, the working area, the runs box and the bubble sampled
+     from the open question through each miss, its traceback and the unlock; any other chapter opens no Chrome for it (an INFO row) */
+  const MH = mhStrict ? await missHidesInput({ base, board, indian: m.indian, words: m.words }).catch((e) => ({ error: String(e && e.message) })) : null;
   /* r41: a real wrong act at every guide step (an inert click on the working area, a digit key); the bubble's lines by their
      ink, every phase, in English and each language TR has begun; a phase dot pressed while the party is on */
   const cdpPool = Math.min(Number(process.env.C4_CHROME_POOL) || 4, 3);
@@ -780,7 +791,9 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   if (ag1 && !ag1.apiAlias) bad.api.push(`window.${m.TOOL_ID} alias missing`);
   const need = ["toolId", "mediaId", "mode", "phase", "conceptId", "step", "item", "stage", "question", "typed", "score", "maxScore", "complete", "answerShown"];
   if (ag1 && ag1.api) { const miss = need.filter((k) => !(k in ag1.api)); if (miss.length) bad.api.push(`getState() lacks ${miss.join(", ")}`); }
-  ok("render", "miss-shows-answer", !unshown.length, `after a miss the correction ends on the whole right answer${unjudged.length ? ` (phase ${unjudged.join(", ")}: not a number, judged at review)` : ""}`,
+  /* MISS HIDES THE ANSWER (a strict chapter, 2026-10-28): the correction stops one step before the answer, so the old rule is not asked */
+  if (mhStrict) add("render", "miss-shows-answer", "info", "superseded by miss-hides-answer: this chapter's runtime.json holds it to MISS HIDES THE ANSWER (rules.missHidesAnswer \"strict\"), so the correction stops one step before the answer and the answer shows only at the win");
+  else ok("render", "miss-shows-answer", !unshown.length, `after a miss the correction ends on the whole right answer${unjudged.length ? ` (phase ${unjudged.join(", ")}: not a number, judged at review)` : ""}`,
     `after the correction the right answer is not on the working area: ${unshown.join("; ")}`, "warn");
   ok("render", "wrong-is-unmarked", !bad.wrong.length, caps.missClears ? "a miss is never marked (no red, no cross), keeps the question and re-opens (the slot is emptied: miss-clears-slot)" : "a miss is never marked (no red, no cross), keeps the child's answer and the question, and re-opens", cap(bad.wrong));
   /* 2026-10-28 (miss-clears-slot, docs/CHECKS.md; the owner): a runtime with MISS CLEARS THE SLOT empties the slot at every miss (digits, every
@@ -794,6 +807,8 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
     else if (lends && !clearKey) add("render", "miss-clears-slot", "warn", `the slot is emptied at every miss, but the tool lends the pad (api.capture) and its handler never handles "clear": a miss (or Escape) while the pad is lent cannot empty the cell it types into | ${MC_HINT}`);
     else add("render", "miss-clears-slot", "pass", `a miss empties the slot at once, through the traceback and after it (the scripted miss of every phase${plays.length ? `; by real keys and clicks: ${plays.join("; ")}` : "; no question typed or chosen on the pad was reached for the real-input play"})${notes.length ? ` [not played: ${notes.slice(0, 4).join("; ")}]` : ""}; a card answer and a lent pad are judged on the state`);
   } else add("render", "miss-clears-slot", "info", "not asked: the chapter's pinned runtime keeps the child's answer in the slot after a miss (no MISS CLEARS THE SLOT in its source; the head from 2026-10-28 has it, a chapter gets it by runtime freeze + pin on the owner's word)");
+  /* 2026-10-28 (miss-hides-answer, docs/CHECKS.md; lib/check/misshides.mjs): FAIL on a strict chapter when a miss shows or points at the answer */
+  try { for (const r of missHidesRows({ strict: mhStrict, rec: MH })) add("render", r.id, r.level, r.msg); } catch (e) { add("render", "miss-hides-answer", "warn", `the row could not judge the run: ${String(e && e.message).slice(0, 160)}`); }
   if (hintRt) {
     /* the whole sequence on phase 1's first question, without and with a classroom: a second miss, then a right answer */
     const P1h = m.PHASES[0];

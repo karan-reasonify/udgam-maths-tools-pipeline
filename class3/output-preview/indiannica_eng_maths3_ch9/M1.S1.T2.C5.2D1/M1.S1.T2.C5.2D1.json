@@ -274,11 +274,11 @@
         "n": 1,
         "screen": "a desk with a small handspan strip and a bigger handspan strip beside it, and a ruler waiting under the bench",
         "win": "the two counts light up side by side, then both strips fade and the ruler shows one length for everyone",
-        "traceback": "The right card's size (finger width, a big step, a long walk) lights beside the thing, then the card is ringed and its unit pinned in a green chip.",
+        "traceback": "A small copy of the thing appears beside each of the three cards' sizes, none singled out, and the wrong card leaves the tag.",
         "ladder": [
-          "Is this road longer than your classroom?",
-          "Is a pencil longer or shorter than your hand?",
-          "Is a door taller than you are?",
+          "Could you walk from one town to the next in a few big steps?",
+          "Is a pencil longer than your arm, or shorter?",
+          "Would it take 15 minutes to walk past a door?",
           "Compare it with your hand, your classroom and the road to school.",
           "Picture walking along it: does it take a moment or a long time?"
         ]
@@ -287,11 +287,11 @@
         "n": 2,
         "screen": "a row of real things on the bench with three bins below, cm, m and km, and a benchmark chip above each",
         "win": "the thing settles in its bin and a mark on the bin counts how many things fit that unit",
-        "traceback": "The ruler slides so its 0 meets the left end, the marks light one by one to the right end and the length shows in a blue tag.",
+        "traceback": "The ruler slides so its 0 meets the left end and the marks light one by one from 0, stopping one mark short of the end; no number is printed.",
         "ladder": [
-          "Start your count at the 0 mark, not at 1.",
-          "Read the number just under the pencil's sharp tip.",
-          "Find the mark where this ribbon stops.",
+          "Is your first space the one that starts at 0?",
+          "Count again, slowly, from the start.",
+          "Look again at both ends of the ribbon.",
           "Touch each space between two marks and count them.",
           "Look straight down from the far end to the ruler's number."
         ]
@@ -300,7 +300,7 @@
         "n": 3,
         "screen": "a ruler that starts at 0 and a measuring tape lying across the bench, and a paper clip, a pencil, a ribbon and a shelf waiting",
         "win": "the centimetre marks light one by one up to the end of the thing and the length lands in a deep blue tag",
-        "traceback": "The rod is cut into the asked equal parts and a blue bracket from 0 gives their length in cm.",
+        "traceback": "The rod shows the asked equal parts as dashed cut lines, with no number on any cut and no bracket.",
         "ladder": [
           "Half a metre is 1 of 2 equal parts of the rod.",
           "A quarter is half of a half, so it ends before the half.",
@@ -313,13 +313,13 @@
         "n": 4,
         "screen": "the metre rod standing from the floor to a door handle beside a classroom door, two empty bins, and a Fold button",
         "win": "the rod folds in half and in half again, and each folded rod is labelled half a metre and a quarter of a metre",
-        "traceback": "The thing or the ruler slides so 0 meets one end, the marks light to the other end and a blue tag gives the length.",
+        "traceback": "The thing or the ruler slides so 0 meets one end; no end mark is lit and no length is printed.",
         "ladder": [
-          "Read the number under the comb's far end.",
+          "Count the spaces from one end to the other.",
           "Look at where the key starts on the ruler.",
           "Which number is under the crayon's left end?",
-          "Count each centimetre space from one end of it to the other.",
-          "Say each number as you pass it, starting from 0."
+          "Use the ruler's marks, one centimetre at a time.",
+          "The 0 mark goes at one end of the thing."
         ]
       }
     ]
@@ -360,8 +360,8 @@
         "near": "m",
         "winMs": 2400,
         "ladder": [
-          "Could you walk from one town to the next in a few steps?",
-          "Is the road longer than a hundred doors put end to end?"
+          "Is the road longer than a hundred doors put end to end?",
+          "Would walking from one town to the next take many minutes?"
         ],
         "win": "Correct, a road between towns is measured in kilometres."
       },
@@ -377,7 +377,7 @@
         "winMs": 2400,
         "ladder": [
           "Can you hold a whole pencil in one hand?",
-          "Would you need even one big step to pass a pencil?"
+          "Would you need even one big step to walk along a pencil?"
         ],
         "win": "Correct, a pencil can be measured in centimetres."
       },
@@ -393,7 +393,7 @@
         "winMs": 2400,
         "ladder": [
           "Is a door much taller than a pencil?",
-          "Is a door as long as the road between two towns?"
+          "Is a door about as high as two big steps?"
         ],
         "win": "Correct, a door can be measured in metres."
       },
@@ -413,6 +413,10 @@
         "answer": [
           9
         ],
+        "ladder": [
+          "Count the spaces from 0 to where the ribbon ends.",
+          "Find the number right under the ribbon's right end."
+        ],
         "win": "Correct, the ribbon is 9 cm long."
       },
       {
@@ -431,6 +435,10 @@
         "answer": [
           12
         ],
+        "ladder": [
+          "Hop your finger one space at a time along the pencil.",
+          "Read the number just below the pencil's sharp tip."
+        ],
         "win": "Correct, the pencil is 12 cm long."
       },
       {
@@ -448,6 +456,10 @@
         ],
         "answer": [
           14
+        ],
+        "ladder": [
+          "Check that the ribbon's left end sits on the 0 mark.",
+          "Read the big number under the far end of the ribbon."
         ],
         "win": "Correct, this ribbon is 14 cm long."
       },
@@ -524,6 +536,10 @@
         "answer": [
           13
         ],
+        "ladder": [
+          "Check that the comb's left end sits on the 0 mark.",
+          "Start at 0, then read the number under the far end."
+        ],
         "win": "Correct, the comb is 13 cm long."
       },
       {
@@ -572,7 +588,7 @@
         ],
         "ladder": [
           "Measuring starts at 0, so this ruler is in the wrong place.",
-          "This ruler starts at 1 under the crayon, so move the ruler to 0."
+          "The crayon starts at the 1 mark, so move the ruler until its 0 meets the crayon."
         ],
         "win": "Correct, the crayon is 8 cm long."
       }
@@ -581,10 +597,10 @@
   "onWrong": {
     "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
     "tracebacks": [
-      "Phase 1: The right card's size (finger width, a big step, a long walk) lights beside the thing, then the card is ringed and its unit pinned in a green chip.",
-      "Phase 2: The ruler slides so its 0 meets the left end, the marks light one by one to the right end and the length shows in a blue tag.",
-      "Phase 3: The rod is cut into the asked equal parts and a blue bracket from 0 gives their length in cm.",
-      "Phase 4: The thing or the ruler slides so 0 meets one end, the marks light to the other end and a blue tag gives the length."
+      "Phase 1: A small copy of the thing appears beside each of the three cards' sizes, none singled out, and the wrong card leaves the tag.",
+      "Phase 2: The ruler slides so its 0 meets the left end and the marks light one by one from 0, stopping one mark short of the end; no number is printed.",
+      "Phase 3: The rod shows the asked equal parts as dashed cut lines, with no number on any cut and no bracket.",
+      "Phase 4: The thing or the ruler slides so 0 meets one end; no end mark is lit and no length is printed."
     ]
   },
   "voice": {
@@ -746,7 +762,7 @@
             "kind": "rod",
             "planQuestion": null,
             "question": {
-              "en": "Tap Halves, colour one half, then type how many cm half a metre is."
+              "en": "Cut the rod in halves, colour one half, then type how many cm half a metre is."
             },
             "ask": {
               "en": "Half a metre?"
@@ -764,7 +780,7 @@
             "kind": "rod",
             "planQuestion": null,
             "question": {
-              "en": "Now tap Quarters and colour one quarter: how many cm is it?"
+              "en": "Now cut the rod in quarters and colour one quarter: how many cm is it?"
             },
             "ask": {
               "en": "A quarter of a metre?"
@@ -782,7 +798,7 @@
             "kind": "rod",
             "planQuestion": null,
             "question": {
-              "en": "Colour 2 quarters of the rod: how many cm do they make together?"
+              "en": "Cut the rod in quarters, colour 2 of them: how many cm do they make?"
             },
             "ask": {
               "en": "2 quarters?"
@@ -1096,19 +1112,19 @@
     }
   ],
   "build": {
-    "source": "88d02596:789856",
+    "source": "58aba172:819423",
     "runtime": "class3/runtime/frozen/r3/runtime.tsx",
     "runtimeVersion": "r3",
     "library": "@use-gesture/react@10.3.1",
-    "builtAt": "2026-10-28T09:21:16.217Z",
+    "builtAt": "2026-10-28T12:58:02.032Z",
     "checks": {
       "pass": 97,
       "warn": 0,
       "fail": 0,
-      "info": 4,
-      "at": "2026-10-28T09:21:15.964Z"
+      "info": 5,
+      "at": "2026-10-28T12:58:01.604Z"
     },
-    "tsxBytes": 709552,
-    "tsxMd5": "756a317b5d226def49bcd4eebc8e5e3d"
+    "tsxBytes": 732618,
+    "tsxMd5": "bd5cbe700b6002e41a9abe7acb7518d6"
   }
 }
