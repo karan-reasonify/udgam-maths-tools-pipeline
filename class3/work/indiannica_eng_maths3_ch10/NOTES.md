@@ -98,7 +98,13 @@ wants the child to do and see. Where they differ in wording, build both: keep th
 
 (owner wishes that arrive after a builder has started go here)
 
-## STATE AT STOP (2026-10-28 ~18:30 IST; the owner said "save and stop")
+## FINAL STATE (2026-10-29, ready for the owner's preview; this REPLACES "STATE AT STOP" below)
+
+All five tools are FINAL on runtime r3 and ported to `output-preview/`: C6 Read the Clock (3 phases) 95/0/0 · C11 Morning or Night (3) 97/0/0 · C17 Time Converter (3) 96/0/0 · C22 Write the Date (3) 94/0/0 · C28 Calendar Explorer (4) 98/0/0. Each went through the maths review (and a changes-only re-look where a finding needed a real change), the Gemini design pass, the Hindi/Gujarati language pass, the full visual review in en/hi/gu, the play test with real mouse, finger and keys (re-played after the fixes) and a last confirm-only look. The upload audit dry run is 5/5 ok. NOTHING is published or uploaded.
+
+Still open for the owner (see "To raise with the owner" below): the negative `<rect>` width in the runtime (reproduced by several play testers; a fix is ONE batched freeze + re-pin + re-check of all five tools, NOT done), the LP must be changed to 3 phases for four mounts before any upload, the native speaker's read of the Hindi/Gujarati terms (each builder's report lists them), the sidecar `guide.answerGate` note (no writer in `port`), and the runtime-owned items logged under "Runtime gaps".
+
+## (superseded) STATE AT STOP (2026-10-28 ~18:30 IST; the owner said "save and stop")
 
 ALL agents were stopped (TaskStop); nothing is published or uploaded; all five tools have a ported pair (check passes). Resume: `node orch.mjs resume --class 3 --ch 10`, then this section, then `node cli.mjs status --ch 10`. Agents resume by SendMessage to their id (the work is in their saved transcripts) or start a fresh one; Opus 5 running at once, Sonnet unlimited; mark finished agents `node orch.mjs done`. Reports of every agent: `orch/reports/<agent id>.md`.
 

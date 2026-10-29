@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S3.T7.C33.2D1 · capacity_converter · Capacity Converter — standalone build 2026-10-29, source 4b67dac1:710766.
+/* M1.S3.T7.C33.2D1 · capacity_converter · Capacity Converter — standalone build 2026-10-29, source 31d587a9:712506.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -4744,8 +4744,8 @@ const ccHas = (name) => {
     return false;
   }
 };
-const ccPillH = (lang) => lang === "hi" || lang === "gu" ? 60 : 40;
-const ccPillDy = (ph) => ph > 40 ? 15 : 11;
+const ccPillH = (lang) => lang === "hi" || lang === "gu" ? 54 : 40;
+const ccPillDy = (ph) => ph > 40 ? 18 : 11;
 function ccJug(k, x, y, w, ml, o = {}) {
   const h = w * CC_JUG.h / CC_JUG.w;
   const tx = o.tx || ((v) => v);
@@ -4787,7 +4787,7 @@ function ccJug(k, x, y, w, ml, o = {}) {
           <line x1={x} y1={lv} x2={x + w} y2={lv} stroke={shade(liq, 0.4)} strokeWidth={3} />
         </g>}
       <Skin name="jug" x={x} y={y} w={w} h={h} />
-      {o.ring && <rect x={x - 4} y={y - 4} width={w + 8} height={h + 8} rx={14} fill="none" stroke={CC_AMBER} strokeWidth={5} />}
+      {o.ring && <rect x={x - 4} y={y - 4} width={w + 8} height={h - 4} rx={14} fill="none" stroke={CC_AMBER} strokeWidth={5} />}
       <g data-scale="jug">
         {[250, 500, 750, 1e3].map((m) => {
     const fy = ccJugY(m), wx = x + ccWall(fy) * w - 1.5, yy = y + fy * h, L = m === 1e3 ? 18 : 12;
@@ -5663,12 +5663,13 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL: MO
     const gx = ox + Math.max(4, 140 - gw / 2);
     const chipW = (t) => Math.max(200, ccTW(t, 32) + 28);
     const twoRows = JP < chipW("1,000 " + tx("mL")) + 16;
-    const chipY = (j) => twoRows && j % 2 === 1 ? 381 : 317;
+    const chipY = (j) => twoRows && j % 2 === 1 ? 379 : 311;
     const chipX = (j, cw) => Math.max(ox + 4, Math.min(bw - 4 - cw, jcx(j) - cw / 2));
     const fL = isLit ? "1 " + tx("L") + " =" : "1,000 " + tx("mL") + " =";
     const fR = isLit ? "1,000 " + tx("mL") : "1 " + tx("L");
     const wL = ccTW(fL, 40), wR = ccTW(fR, 40);
     const fw = wL + wR + 14 + 64;
+    const tallRing = lang === "hi" || lang === "gu";
     const fc = Math.min(rowC, kx - fw / 2 - 6);
     const fSplit = fc + (wL - wR) / 2;
     const keyId = isLit ? "pour" : "group";
@@ -5681,9 +5682,9 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL: MO
         {ccPic("box", it.box, ox + 140, JB, 200, 170)}
         {lang === "hi" || lang === "gu" ? ccTag("given", gx, 62, gw, 60, given, CC_BLUE, 32) : ccTag("given", gx, 66, gw, 52, given, CC_BLUE, 32)}
         <g data-scale="fact">
-          <rect x={fc - fw / 2} y={4} width={fw} height={64} rx={32} fill={tint(CC_VERM, 0.9)} stroke={CC_VERM} strokeWidth={5} />
-          <text x={fSplit - 7} y={50} textAnchor="end" fontSize={T.prompt} fontWeight={700} fill={shade(CC_VERM, 0.45)}>{fL}</text>
-          <text x={fSplit + 7} y={50} textAnchor="start" fontSize={T.prompt} fontWeight={700} fill={shade(CC_VERM, 0.45)}>{fR}</text>
+          <rect x={fc - fw / 2} y={4} width={fw} height={tallRing ? 62 : 52} rx={tallRing ? 31 : 26} fill={tint(CC_VERM, 0.9)} stroke={CC_VERM} strokeWidth={5} />
+          <text x={fSplit - 7} y={tallRing ? 56 : 44} textAnchor="end" fontSize={T.prompt} fontWeight={700} fill={shade(CC_VERM, 0.45)}>{fL}</text>
+          <text x={fSplit + 7} y={tallRing ? 56 : 44} textAnchor="start" fontSize={T.prompt} fontWeight={700} fill={shade(CC_VERM, 0.45)}>{fR}</text>
         </g>
         {[0, 1, 2, 3].map((j) => {
       const ml = j < fill ? j < full ? 1e3 : left : 0;
@@ -5760,7 +5761,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL: MO
     const jb = it.big === "jug" ? null : ccJarBox(it.cap);
     const capX = it.big === "jug" ? J4.wx + J4.ww * 0.4 : J4.jx;
     const capL = jb ? Math.max(ox + 4, J4.jx - jb.w / 2 + 40 - capW) : capX - capW / 2;
-    const capY = jb ? Math.max(0, J4.jb - jb.h - 90) : 4;
+    const capY = jb ? Math.max(0, J4.jb - jb.h - 98) : 4;
     const unitW = it.small === "glass" ? pours === 1 ? "glass" : "glasses" : pours === 1 ? "cup" : "cups";
     const res = (warm || free ? pours : N) + " " + tx(unitW);
     const ans = tx("Answer") + ": " + N + " " + tx(it.small === "glass" ? "glasses" : "cups");
@@ -5774,7 +5775,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL: MO
         {!S.carrying && (it.small === "glass" ? ccGlass("small", J4.cupX, J4.cupB, 86, liq, true) : ccPic("small", "cup", J4.cupX, J4.cupB, 120, 145))}
         {ccTag("cupT", J4.cupX - cw / 2, 346, cw, 60, cupT, CC_BLUE, 36)}
         {big}
-        {ccTag("capT", capL, capY, capW, 58, capT, CC_BLUE, 36)}
+        {lang === "hi" || lang === "gu" ? ccTag("capT", capL, capY, capW, 66, capT, CC_BLUE, 36) : ccTag("capT", capL, capY, capW, 58, capT, CC_BLUE, 36)}
         {showCount && <text x={tallyX + 110} y={120} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={CC_INK}>{tx("Pours")}</text>}
         {showCount && <rect x={tallyX + 50} y={134} width={120} height={96} rx={16} fill="#FFFFFF" stroke={C.rule} strokeWidth={3} />}
         {(warm || free) && <text x={tallyX + 110} y={206} textAnchor="middle" fontSize={T.display} fontWeight={700} fill={CC_INK}>{pours}</text>}
@@ -5799,6 +5800,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL: MO
       {kind === "lit" || kind === "grp" ? drawJugs() : kind === "col" ? drawBoard() : drawPour()}
     </g>;
 }
+const ccMeasure = { c: null };
 function Thumb({ result, it, C, w, h, lang = "en", tx = (v) => v }) {
   const last = result && result.last;
   if (!last || last.value === null || last.value === void 0) return null;
@@ -5816,33 +5818,56 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v) => v }) {
     lines = [String(v), U(item.small === "glass" ? v === 1 ? "glass" : "glasses" : v === 1 ? "cup" : "cups").trim()];
   }
   lines = lines.filter((s2) => s2);
-  const s = Math.min(h - 16, 60), iy = (h - s) / 2, tx0 = 68, room = w - tx0 - 12;
+  const s = Math.min(h - 16, 60), iy = (h - s) / 2, tx0 = 52, room = w - tx0 - 10;
   const one = lines.join(" ");
-  const fit1 = ccTW(one, T.label) <= room;
+  const est = (t, size) => {
+    let n = 0;
+    for (const ch of t) {
+      const c = ch.codePointAt(0) || 0;
+      if (c >= 2304 && c <= 2306 || c === 2364 || c >= 2369 && c <= 2376 || c === 2381 || c >= 2689 && c <= 2690 || c === 2748 || c >= 2753 && c <= 2760 || c === 2765) continue;
+      n += ch === " " || ch === "," ? 0.28 : c >= 2304 ? 0.56 : 0.53;
+    }
+    return n * size;
+  };
+  const tw = (t, size) => {
+    try {
+      const svg = document.querySelector("svg");
+      const fam = svg ? getComputedStyle(svg).fontFamily : "";
+      const cv = ccMeasure.c || (ccMeasure.c = document.createElement("canvas"));
+      const g = cv.getContext("2d");
+      if (!g || !fam) return est(t, size);
+      g.font = "700 " + size + "px " + fam;
+      return g.measureText(t).width * 1.02;
+    } catch (e) {
+      return est(t, size);
+    }
+  };
+  const fit1 = tw(one, T.label) <= room;
+  const fit28 = !fit1 && tw(one, T.micro) <= room;
   const jugMini = (x, lvl, ring) => <g>
-      <path d={`M ${x + 5} ${iy} L ${x + 33} ${iy} L ${x + 38} ${iy + s} L ${x} ${iy + s} Z`} fill="#FFFFFF" fillOpacity={0.5} />
-      <path d={`M ${x + 5 * lvl} ${iy + s * (1 - lvl)} L ${x + 38 - 5 * lvl} ${iy + s * (1 - lvl)} L ${x + 38} ${iy + s} L ${x} ${iy + s} Z`} fill={CC_WATER} fillOpacity={0.6} />
-      <path d={`M ${x + 5} ${iy} L ${x + 33} ${iy} L ${x + 38} ${iy + s} L ${x} ${iy + s} Z`} fill="none" stroke={shade(CC_GLASS, 0.3)} strokeWidth={3} strokeLinejoin="round" />
-      <path d={`M ${x + 34} ${iy + s * 0.2} C ${x + 47} ${iy + s * 0.2} ${x + 47} ${iy + s * 0.6} ${x + 36} ${iy + s * 0.62}`} fill="none" stroke={shade(CC_GLASS, 0.3)} strokeWidth={3} />
-      {ring && <rect x={x - 3} y={iy - 3} width={52} height={s + 6} rx={9} fill="none" stroke={CC_AMBER} strokeWidth={3} />}
+      <path d={`M ${x + 3} ${iy} L ${x + 25} ${iy} L ${x + 28} ${iy + s} L ${x} ${iy + s} Z`} fill="#FFFFFF" fillOpacity={0.5} />
+      <path d={`M ${x + 3 * lvl} ${iy + s * (1 - lvl)} L ${x + 28 - 3 * lvl} ${iy + s * (1 - lvl)} L ${x + 28} ${iy + s} L ${x} ${iy + s} Z`} fill={CC_WATER} fillOpacity={0.6} />
+      <path d={`M ${x + 3} ${iy} L ${x + 25} ${iy} L ${x + 28} ${iy + s} L ${x} ${iy + s} Z`} fill="none" stroke={shade(CC_GLASS, 0.3)} strokeWidth={3} strokeLinejoin="round" />
+      <path d={`M ${x + 25} ${iy + s * 0.2} C ${x + 35} ${iy + s * 0.2} ${x + 35} ${iy + s * 0.6} ${x + 26} ${iy + s * 0.62}`} fill="none" stroke={shade(CC_GLASS, 0.3)} strokeWidth={3} />
+      {ring && <rect x={x - 3} y={iy - 3} width={40} height={s + 6} rx={9} fill="none" stroke={CC_AMBER} strokeWidth={3} />}
     </g>;
   let pic = null;
   if (kind === "lit") pic = jugMini(9, 1, false);
   else if (kind === "grp") pic = jugMini(9, 0.35, true);
   else if (kind === "col") pic = <g>
-      <rect x={8} y={iy} width={48} height={s} rx={7} fill="#FFFFFF" stroke={shade(C.rule, 0.3)} strokeWidth={2.5} />
-      <line x1={26} y1={iy + 4} x2={26} y2={iy + s - 4} stroke={C.ink} strokeWidth={2.5} />
-      <line x1={11} y1={iy + s * 0.68} x2={53} y2={iy + s * 0.68} stroke={C.ink} strokeWidth={2.5} />
-      <rect x={11} y={iy + s * 0.74} width={12} height={s * 0.2} rx={3} fill={tint(CC_GREEN, 0.5)} />
-      <rect x={29} y={iy + s * 0.74} width={24} height={s * 0.2} rx={3} fill={tint(CC_GREEN, 0.5)} />
+      <rect x={8} y={iy} width={36} height={s} rx={7} fill="#FFFFFF" stroke={shade(C.rule, 0.3)} strokeWidth={2.5} />
+      <line x1={20} y1={iy + 4} x2={20} y2={iy + s - 4} stroke={C.ink} strokeWidth={2.5} />
+      <line x1={11} y1={iy + s * 0.68} x2={41} y2={iy + s * 0.68} stroke={C.ink} strokeWidth={2.5} />
+      <rect x={11} y={iy + s * 0.74} width={7} height={s * 0.2} rx={3} fill={tint(CC_GREEN, 0.5)} />
+      <rect x={23} y={iy + s * 0.74} width={18} height={s * 0.2} rx={3} fill={tint(CC_GREEN, 0.5)} />
     </g>;
   else pic = <g>
-      {[0, 1, 2].map((i) => item.small === "glass" ? <path key={i} d={`M ${8 + i * 16} ${iy + s * 0.3} L ${22 + i * 16} ${iy + s * 0.3} L ${20 + i * 16} ${iy + s} L ${10 + i * 16} ${iy + s} Z`} fill={CC_JUICE} fillOpacity={0.7} stroke={shade(CC_JUICE, 0.55)} strokeWidth={2} /> : <path key={i} d={`M ${8 + i * 16} ${iy + s * 0.3} L ${22 + i * 16} ${iy + s * 0.3} L ${20 + i * 16} ${iy + s} L ${10 + i * 16} ${iy + s} Z`} fill="#F4C542" stroke="#9A7410" strokeWidth={2} />)}
+      {[0, 1, 2].map((i) => item.small === "glass" ? <path key={i} d={`M ${8 + i * 12} ${iy + s * 0.3} L ${18 + i * 12} ${iy + s * 0.3} L ${16 + i * 12} ${iy + s} L ${10 + i * 12} ${iy + s} Z`} fill={CC_JUICE} fillOpacity={0.7} stroke={shade(CC_JUICE, 0.55)} strokeWidth={2} /> : <path key={i} d={`M ${8 + i * 12} ${iy + s * 0.3} L ${18 + i * 12} ${iy + s * 0.3} L ${16 + i * 12} ${iy + s} L ${10 + i * 12} ${iy + s} Z`} fill="#F4C542" stroke="#9A7410" strokeWidth={2} />)}
     </g>;
   return <g>
       <rect x={0} y={0} width={w} height={h} rx={14} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={1.5} />
       {pic}
-      {fit1 ? <text x={tx0} y={h / 2 + 11} fontSize={T.label} fontWeight={700} fill={C.ink}>{one}</text> : lines.map((s2, i) => <text key={i} x={tx0} y={h / 2 + 10 + (i - (lines.length - 1) / 2) * 36} fontSize={T.micro} fontWeight={700} fill={C.ink}>{s2}</text>)}
+      {fit1 || fit28 ? <text x={tx0} y={h / 2 + (fit1 ? 11 : 10)} fontSize={fit1 ? T.label : T.micro} fontWeight={700} fill={C.ink}>{one}</text> : lines.map((s2, i) => <text key={i} x={tx0} y={h / 2 + 10 + (i - (lines.length - 1) / 2) * 36} fontSize={T.micro} fontWeight={700} fill={C.ink}>{s2}</text>)}
     </g>;
 }
 function CapacityConverter(props) {

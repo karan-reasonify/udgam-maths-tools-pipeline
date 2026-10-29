@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S2.T6.C28.2D1 · calendar_explorer · Calendar Explorer — standalone build 2026-10-29, source 49146ec9:688175.
+/* M1.S2.T6.C28.2D1 · calendar_explorer · Calendar Explorer — standalone build 2026-10-29, source 98f34752:690014.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -5556,7 +5556,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       if (t.closest('[data-control="answer-open"]') || t.closest('[data-control="again"]') || t.closest('[data-zone="pad"]') || t.closest('[data-zone="work"]') && !t.closest("[data-control]")) sayNudge();
     };
     const key = (e) => {
-      if (e.isTrusted !== false && (/^[0-9]$/.test(e.key) || e.key === "Enter")) sayNudge();
+      if (e.isTrusted === false || !(/^[0-9]$/.test(e.key) || e.key === "Enter")) return;
+      const t = e.target && e.target.closest ? e.target : null;
+      if (t && t.closest("[data-control]") && !t.closest('[data-control="answer-open"]') && !t.closest('[data-control="again"]') && !t.closest('[data-zone="pad"]')) return;
+      sayNudge();
     };
     window.addEventListener("pointerdown", down, true);
     window.addEventListener("keydown", key, true);
@@ -5598,6 +5601,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       did("week");
       return;
     }
+    if (r === "free") r = firstFreeRow();
     const full = ceFullRows(pg.y, pg.m);
     if (r === null || full.indexOf(r) < 0) {
       if (stage === "demo") did("partrow");
@@ -5890,6 +5894,22 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     }
   };
   const gridPress = usePress(gridTap, !!gridMode && live);
+  const gridKeys = (e) => {
+    if (gridMode === "week" && e.isTrusted !== false && (e.key === "Enter" || e.key === " " || e.key === "Spacebar")) {
+      if (!busy.current && pend.current.length === 0 && firstFreeRow() === null) {
+        if (e.currentTarget && e.currentTarget.blur) e.currentTarget.blur();
+        return;
+      }
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.repeat) return;
+      pt.current = null;
+      touch();
+      countRow("free");
+      return;
+    }
+    gridPress.keys(e);
+  };
   const doStep = (on) => {
     if (!on) return;
     const now = Date.now(), realKey = now - CE_KEY.t < 300;
@@ -6020,7 +6040,12 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     ...won ? { weeks: S.hops.length || S.weeks, answer: typed } : {}
   });
   const tr = S.trace;
-  const label = (x, y, s, o = {}) => <text x={x} y={y} textAnchor={o.a || "start"} fontSize={o.fs || T.micro} fontWeight={o.fw || 600} fill={o.c || CE.ink}>{s}</text>;
+  const label = (x, y, s, o = {}) => {
+    const fs = o.fs || T.micro;
+    const est = o.fit ? Array.from(String(s)).filter((ch) => !CE_ZERO_W.test(ch)).length * 0.62 * fs : 0;
+    const sq = o.fit && est > o.fit ? { textLength: o.fit, lengthAdjust: "spacingAndGlyphs" } : {};
+    return <text x={x} y={y} textAnchor={o.a || "start"} fontSize={fs} fontWeight={o.fw || 600} fill={o.c || CE.ink} {...sq}>{s}</text>;
+  };
   const chipW = (s, min) => Math.max(min, Math.round(Array.from(s).length * 0.64 * T.label) + 36);
   const winChip = (ax, y, min, s, align = "end") => {
     const w = chipW(s, min), x = align === "end" ? ax - w : ax - w / 2;
@@ -6085,14 +6110,19 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       const xs = leaf.k === 2 ? [mid - 14, mid + 14] : leaf.k === 1 === leaf.dir > 0 ? [mid, R] : [L, mid];
       return <polygon points={`${xs[0]},${Y0} ${xs[1]},${Y0 + 16} ${xs[1]},${Y1 - 16} ${xs[0]},${Y1}`} fill={CE.paper} stroke={C.rule} strokeWidth={3} pointerEvents="none" />;
     })()}
-        <Key id="prev" label={tx("Last month")} x={CEB.x + 6} y={CEB.y + 6} w={72} h={72} C={C} disabled={!arrowsOn} onClick={() => {
-      touch();
-      flip(-1);
-    }}>{arrowGlyph(-1, arrowsOn)}</Key>
-        <Key id="next" label={tx("Next month")} x={CEB.x + CEB.w - 78} y={CEB.y + 6} w={72} h={72} C={C} disabled={!arrowsOn} onClick={() => {
-      touch();
-      flip(1);
-    }}>{arrowGlyph(1, arrowsOn)}</Key>
+        {(() => {
+      const prevOn = arrowsOn && !(pg.y <= 2e3 && pg.m === 0), nextOn = arrowsOn && !(pg.y >= 2099 && pg.m === 11);
+      return <g>
+            <Key id="prev" label={tx("Last month")} x={CEB.x + 6} y={CEB.y + 6} w={72} h={72} C={C} disabled={!prevOn} onClick={() => {
+        touch();
+        flip(-1);
+      }}>{arrowGlyph(-1, prevOn)}</Key>
+            <Key id="next" label={tx("Next month")} x={CEB.x + CEB.w - 78} y={CEB.y + 6} w={72} h={72} C={C} disabled={!nextOn} onClick={() => {
+        touch();
+        flip(1);
+      }}>{arrowGlyph(1, nextOn)}</Key>
+          </g>;
+    })()}
         {gridMode && live && <g
       data-control={gridMode}
       role="button"
@@ -6100,7 +6130,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       style={{ touchAction: "none" }}
       aria-label={tx(gridMode === "week" ? "Calendar rows" : "Calendar dates")}
       {...gridPress.bind()}
-      onKeyDown={gridPress.keys}
+      onKeyDown={gridKeys}
       onPointerDownCapture={capPt}
     >
             <rect x={gx} y={gy} width={7 * CEB.cw} height={CEB.rows * CEB.ch} fill="transparent" />
@@ -6142,7 +6172,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
         <rect x={490} y={180} width={580} height={246} rx={18} fill={mix(C.panel, "#FFFFFF", 0.55)} stroke={C.rule} strokeWidth={2.4} filter="url(#ce-sh)" />
         {label(510, 214, tx(big52 ? "52 weeks" : "Week counter"), { fw: 700 })}
         {!big52 && Array.from({ length: blocks }, (_, k) => {
-      const bx = 512 + (k < 3 ? 0 : 280), by = 232 + k % 3 * 58, n7 = k < S.weeks ? 7 : S.hot ? S.hot.k : 0;
+      const bx = 512, by = 232 + k * (blocks > 4 ? 32 : 48), n7 = k < S.weeks ? 7 : S.hot ? S.hot.k : 0;
       return <g key={"blk" + k}>
               {Array.from({ length: 7 }, (_2, s) => <rect key={s} x={bx + s * 32} y={by} width={28} height={28} rx={6} fill={s < n7 ? mix(CE.hop, "#FFFFFF", 0.35) : "#FFFFFF"} stroke={CE.ink} strokeWidth={2.4} />)}
               {showSums && k < 3 && label(bx + 234, by + 26, String(7 * (k + 1)), { fs: T.label, fw: 700 })}
@@ -6151,12 +6181,12 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     })}
         {big52 && <g>
           {[0, 1, 2, 3].map((col) => Array.from({ length: 13 }, (_, r) => <g key={"w" + col + "." + r}>
-              {Array.from({ length: 7 }, (_2, s) => <rect key={s} x={518 + col * 118 + s * 13} y={232 + r * 11} width={11} height={9} fill={col < S.wk52 ? mix(CE.hop, "#FFFFFF", 0.3) : "#FFFFFF"} stroke={CE.ink} strokeWidth={1.5} />)}
+              {Array.from({ length: 7 }, (_2, s) => <rect key={s} x={518 + col * 118 + s * 13} y={246 + r * 11} width={11} height={9} fill={col < S.wk52 ? mix(CE.hop, "#FFFFFF", 0.3) : "#FFFFFF"} stroke={CE.ink} strokeWidth={1.5} />)}
             </g>))}
           {S.yearDone && <g>
-            <rect x={968} y={330} width={30} height={30} rx={6} fill={CE.amber} stroke={CE.ink} strokeWidth={2.4} />
-            {label(518, 410, "364 " + tx("days"), { fw: 700 })}
-            {label(900, 410, tx("1 day left"), { fw: 700 })}
+            <rect x={968} y={344} width={30} height={30} rx={6} fill={CE.amber} stroke={CE.ink} strokeWidth={2.4} />
+            {label(518, 416, "364 " + tx("days"), { fw: 700 })}
+            {label(900, 416, tx("1 day left"), { fw: 700 })}
           </g>}
         </g>}
         {won && winChip(1060, 190, 176, it.kind === "pages" ? "12 " + tx("pages") : it.kind === "year" ? "365 " + tx("days") : "28 " + tx("days"))}
@@ -6197,7 +6227,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       return <g key={(ghost ? "g" : "p") + m} filter={ghost ? void 0 : "url(#ce-sh)"}>
           <rect x={x} y={y} width={w} height={72} rx={12} fill={ghost ? CE.paper : "#FFFFFF"} stroke={CE.ink} strokeWidth={2.4} strokeDasharray={ghost ? "8 6" : void 0} />
           {!ghost && !hide && <rect x={x + 4} y={y + 3} width={w - 8} height={6} rx={3} fill={s.k ? CE.hop : CE.amber} />}
-          {ghost || hide ? label(s.x, y + 46, tx(CE_MON3[m]), { a: "middle", fw: 700 }) : <g>{label(s.x, y + 39, tx(CE_MON3[m]), { a: "middle", fw: 700 })}<g {...reveal ? { "data-reveals": "answer" } : {}}>{label(s.x, y + 66, tx(days), { a: "middle", fw: 700, c: shade(s.k ? CE.hop : CE.amber, 0.45) })}</g></g>}
+          {ghost || hide ? label(s.x, y + 46, tx(CE_MON3[m]), { a: "middle", fw: 700, fit: w - 16 }) : <g>{label(s.x, y + 39, tx(CE_MON3[m]), { a: "middle", fw: 700, fit: w - 16 })}<g {...reveal ? { "data-reveals": "answer" } : {}}>{label(s.x, y + 66, tx(days), { a: "middle", fw: 700, fit: w - 14, c: shade(s.k ? CE.hop : CE.amber, 0.45) })}</g></g>}
           {live2 && <g {...control("m" + (m + 1), tx(CE_MONTHS[m]))} {...drag.bind(m)} {...drag.keys(m)}><rect x={x} y={y} width={w} height={72} rx={12} fill="transparent" /></g>}
         </g>;
     };
@@ -6205,11 +6235,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     return <g>
         {ceFistG(CE_FX[0], CE_FIST.y, CE_FIST.s, true, CE_FIST.show)}{ceFistG(CE_FX[1], CE_FIST.y, CE_FIST.s, false, CE_FIST.show)}
         {Array.from({ length: 12 }, (_, j) => {
-      const s = ceSpot(j), full = filled(j), open = dragging && !full;
+      const s = ceSpot(j), full = filled(j), open = (dragging || ask && S.pick !== null && S.pick !== void 0) && !full;
       return <g key={"spot" + j}>
             <path d={`M ${s.x} 80 L ${s.px} ${s.py - 9}`} stroke={CE.ink} strokeWidth={2.4} strokeDasharray={full ? void 0 : "5 5"} />
-            {!full && <rect x={s.x - s.w / 2} y={6} width={s.w} height={72} rx={12} fill={CE.paper} stroke={mix(CE.ink, "#FFFFFF", 0.35)} strokeWidth={2} strokeDasharray="6 6" />}
-            {open && <rect x={s.x - s.w / 2 - 5} y={1} width={s.w + 10} height={82} rx={15} fill="none" stroke={CE.hop} strokeWidth={3} strokeDasharray="6 5" />}
+            {!full && <rect x={s.x - s.w / 2} y={6} width={s.w} height={72} rx={12} fill={open ? mix(CE.hop, "#FFFFFF", 0.85) : CE.paper} stroke={open ? CE.hop : mix(CE.ink, "#FFFFFF", 0.35)} strokeWidth={open ? 4 : 2} strokeDasharray={open ? "9 5" : "6 6"} />}
             <circle cx={s.px} cy={s.py} r={11} fill={s.k ? CE.hop : CE.amber} stroke="#FFFFFF" strokeWidth={2.5} />
             {!full && ask && S.pick !== null && S.pick !== void 0 && <Hit id={"slot-" + (j + 1)} x={s.x - s.w / 2} y={6} w={s.w} h={72} label={tx(s.k ? "Knuckle" : "Dip")} onPress={() => putPicked(j)} />}
           </g>;
@@ -6221,7 +6250,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
         {Object.keys(placed).map((k) => chip(+k, placed[k], false))}
         {won && asked.length > 0 && <g data-reveals="answer">{asked.map((m) => {
       const s = ceSpot(m);
-      return <rect key={"wr" + m} x={s.x - s.w / 2 - 2} y={3} width={s.w + 4} height={78} rx={14} fill="none" stroke={CE.ans} strokeWidth={4} />;
+      return <rect key={"wr" + m} x={s.x - s.w / 2 + 2} y={8} width={s.w - 4} height={68} rx={11} fill="none" stroke={CE.ans} strokeWidth={4} />;
     })}</g>}
         {CE_MON3.map((s, m) => {
       const b = ceCard2(m), gone = placed[m] !== void 0 || S.carrying === m || dragging && dragging.payload === m;
@@ -6298,8 +6327,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
         <rect x={490} y={0} width={580} height={330} rx={18} fill={mix(C.panel, "#FFFFFF", 0.55)} stroke={C.rule} strokeWidth={2.4} filter="url(#ce-sh)" />
         {label(510, 36, tx("Week counter"), { fw: 700 })}
         {S.hops.slice(0, 5).map((d, k) => <g key={"wb" + k}>
-            {Array.from({ length: 7 }, (_, s) => <rect key={s} x={514 + s * 38} y={56 + k * 54} width={34} height={34} rx={6} fill={mix(CE.hop, "#FFFFFF", 0.35)} stroke={CE.ink} strokeWidth={2.4} />)}
-            {label(800, 56 + k * 54 + 28, String(7 * (k + 1)) + " " + tx("days"), { fs: T.label, fw: 700 })}
+            {Array.from({ length: 7 }, (_, s) => <rect key={s} x={514 + s * 38} y={68 + k * 54} width={34} height={34} rx={6} fill={mix(CE.hop, "#FFFFFF", 0.35)} stroke={CE.ink} strokeWidth={2.4} />)}
+            {label(800, 68 + k * 54 + 28, String(7 * (k + 1)) + " " + tx("days"), { fs: T.label, fw: 700 })}
           </g>)}
         {won && !free && winChip(1060, 6, 176, it.kind === "weeks" ? "4 " + tx("weeks") : tx(CE_DAYS[CE_DAYID.indexOf(String(it.answer))]))}
         {live && !won && targets.map((d) => {
@@ -6401,7 +6430,7 @@ function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v) => v }) {
         {ph === 4 && <path d={`M ${12 + ih * 0.3} ${iy + ih * 0.42} q -8 ${ih * 0.2} 0 ${ih * 0.42}`} fill="none" stroke={CE.pencil} strokeWidth={2.5} />}
         {ph === 1 && [0, 1, 2].map((c) => <rect key={c} x={18 + c * ((ih - 12) / 3)} y={iy + ih * 0.42} width={(ih - 12) / 3 - 3} height={ih * 0.22} fill={mix(CE.hop, "#FFFFFF", 0.4)} stroke={CE.ink} strokeWidth={1} />)}
       </g>;
-  const est = (size) => Array.from(txt).filter((ch) => !CE_ZERO_W.test(ch)).length * 0.56 * size;
+  const est = (size) => Array.from(txt).filter((ch) => !CE_ZERO_W.test(ch)).length * 0.66 * size;
   const room = w - tx0 - 10, fs = est(T.label) <= room ? T.label : T.micro, squeeze = est(T.micro) > room;
   return <g>
       <rect x={0} y={0} width={w} height={H} rx={14} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={1.5} />

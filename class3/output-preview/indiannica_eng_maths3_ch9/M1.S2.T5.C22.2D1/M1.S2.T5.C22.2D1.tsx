@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S2.T5.C22.2D1 · weight_converter · Weight Converter — standalone build 2026-10-29, source 17163b90:699798.
+/* M1.S2.T5.C22.2D1 · weight_converter · Weight Converter — standalone build 2026-10-29, source 2ed00e3a:702174.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -4467,7 +4467,7 @@ const TR = {
     "Yes, 2 kg 90 g is 2,090 g, with the 0 kept.": "हाँ, 2 किग्रा 90 ग्राम यानी 2,090 ग्राम, 0 को रखकर।",
     "Grams into kilograms: divide by 1000": "ग्राम से किलोग्राम: 1,000 से भाग दो",
     "Tap Gather to fill bags from the heap, 1,000 g in each.": "ढेर से बोरियाँ भरने के लिए इकट्ठा करो बटन छुओ, हर एक में 1,000 ग्राम।",
-    "Tap the Gather key below.": "इकट्ठा करो बटन को छुओ, वह नीचे है।",
+    "Tap the Gather key below.": "नीचे इकट्ठा करो बटन छुओ।",
     "Tap the rice left in the ring to see its grams.": "गोले में बचे हुए चावल को छुओ और उसके ग्राम देखो।",
     "Tap the small heap inside the amber ring.": "पीले गोले के अंदर का छोटा ढेर छुओ।",
     "Every full bag is 1 kg.": "हर भरी हुई बोरी एक किलोग्राम की है।",
@@ -4534,7 +4534,7 @@ const TR = {
     "You learned: add or take away shopping weights in kg and g.": "तुमने सीखा: किग्रा और ग्राम में खरीदारी के वज़न जोड़ो या घटाओ।",
     "A 2 kg 650 g watermelon and 1 kg 140 g of mangoes: how much in all?": "तरबूज़ 2 किग्रा 650 ग्राम, आम 1 किग्रा 140 ग्राम: कुल वज़न कितना?",
     "2 kg 650 g + 1 kg 140 g": "2 किग्रा 650 ग्राम + 1 किग्रा 140 ग्राम",
-    "Put kg under kg and g under g, then add each column.": "किग्रा के नीचे किग्रा, ग्राम के नीचे ग्राम रखो, फिर हर खाना जोड़ो।",
+    "Put kg under kg, g under g, then add up each column.": "किग्रा के नीचे किग्रा, ग्राम के नीचे ग्राम रखो, फिर हर खाना जोड़ो।",
     "Do 650 g and 140 g reach 1,000 g?": "क्या 650 ग्राम और 140 ग्राम मिलकर 1,000 ग्राम तक पहुँचते हैं?",
     "Add each column on its own: no carry is needed.": "हर खाना अलग-अलग जोड़ो: हासिल की ज़रूरत नहीं है।",
     "Yes, together they weigh 3 kg 790 g.": "हाँ, फलों का वज़न मिलाकर 3 किग्रा 790 ग्राम है।",
@@ -4595,7 +4595,7 @@ const TR = {
     "Free play: choose how many bags of rice, then tap Open to see the grams.": "મુક્ત રમત: ચોખાની ગૂણ પસંદ કરો અને ગ્રામ જોવા ખોલો બટનને સ્પર્શ કરો.",
     "Kilograms into grams: multiply by 1000": "કિલોગ્રામમાંથી ગ્રામ: 1,000 વડે ગુણો",
     "Tap Open to see what is inside each 1 kg bag of rice.": "દરેક 1 કિગ્રાની ગૂણમાં શું છે તે જોવા ખોલો બટનને સ્પર્શ કરો.",
-    "Tap the Open key below.": "ખોલો બટનને સ્પર્શ કરો, તે નીચે છે.",
+    "Tap the Open key below.": "નીચેનું ખોલો બટન સ્પર્શ કરો.",
     "Tap one tray to count its small 100 g bags.": "એક ટ્રેને સ્પર્શ કરો અને તેની નાની 100 ગ્રામની થેલીઓ ગણો.",
     "Tap a tray of small bags.": "નાની થેલીઓની એક ટ્રેને સ્પર્શ કરો.",
     "Tap Total to put the thousands together.": "હજારને જોડવા કુલ બટનને સ્પર્શ કરો.",
@@ -4624,7 +4624,7 @@ const TR = {
     "Yes, 2 kg 90 g is 2,090 g, with the 0 kept.": "હા, 2 કિગ્રા 90 ગ્રામ એટલે 2,090 ગ્રામ, 0 રાખીને.",
     "Grams into kilograms: divide by 1000": "ગ્રામમાંથી કિલોગ્રામ: 1,000 વડે ભાગો",
     "Tap Gather to fill bags from the heap, 1,000 g in each.": "ઢગલામાંથી ગૂણ ભરવા ભેગા કરો બટનને સ્પર્શ કરો, દરેકમાં 1,000 ગ્રામ.",
-    "Tap the Gather key below.": "ભેગા કરો બટનને સ્પર્શ કરો, તે નીચે છે.",
+    "Tap the Gather key below.": "ભેગા કરો બટનને સ્પર્શ કરો.",
     "Tap the rice left in the ring to see its grams.": "વર્તુળમાં બાકી રહેલા ચોખાને સ્પર્શ કરો અને તેના ગ્રામ જુઓ.",
     "Tap the small heap inside the amber ring.": "પીળા વર્તુળની અંદરના નાના ઢગલાને સ્પર્શ કરો.",
     "Every full bag is 1 kg.": "દરેક ભરેલી ગૂણ એક કિલોગ્રામની છે.",
@@ -4691,7 +4691,7 @@ const TR = {
     "You learned: add or take away shopping weights in kg and g.": "તમે શીખ્યા: કિગ્રા અને ગ્રામમાં ખરીદીના વજન ઉમેરો અથવા બાદ કરો.",
     "A 2 kg 650 g watermelon and 1 kg 140 g of mangoes: how much in all?": "તડબૂચ 2 કિગ્રા 650 ગ્રામ, કેરી 1 કિગ્રા 140 ગ્રામ: કુલ કેટલું?",
     "2 kg 650 g + 1 kg 140 g": "2 કિગ્રા 650 ગ્રામ + 1 કિગ્રા 140 ગ્રામ",
-    "Put kg under kg and g under g, then add each column.": "કિગ્રા નીચે કિગ્રા અને ગ્રામ નીચે ગ્રામ ગોઠવો, પછી દરેક કૉલમ ઉમેરો.",
+    "Put kg under kg, g under g, then add up each column.": "કિગ્રા નીચે કિગ્રા અને ગ્રામ નીચે ગ્રામ ગોઠવો, પછી દરેક કૉલમ ઉમેરો.",
     "Do 650 g and 140 g reach 1,000 g?": "શું 650 ગ્રામ અને 140 ગ્રામ મળીને 1,000 ગ્રામ સુધી પહોંચે છે?",
     "Add each column on its own: no carry is needed.": "દરેક કૉલમ અલગ-અલગ ઉમેરો: વદીની જરૂર નથી.",
     "Yes, together they weigh 3 kg 790 g.": "હા, ફળોનું વજન ભેગું 3 કિગ્રા 790 ગ્રામ છે.",
@@ -4981,7 +4981,7 @@ const PHASES = [
         items: [{ id: "melon", sk: "watermelon", kg: 2, g: 650 }, { id: "mango", sk: "mango", m: 3, kg: 1, g: 140 }],
         say: "A 2 kg 650 g watermelon and 1 kg 140 g of mangoes: how much in all?",
         ask: "2 kg 650 g + 1 kg 140 g",
-        miss: "Put kg under kg and g under g, then add each column.",
+        miss: "Put kg under kg, g under g, then add up each column.",
         ladder: ["Do 650 g and 140 g reach 1,000 g?", "Add each column on its own: no carry is needed."],
         win: "Yes, together they weigh 3 kg 790 g.",
         winMs: 4200
@@ -5246,41 +5246,53 @@ function wcItemArt(k, sk, m, x, y, maxW, maxH) {
   const spots = n === 1 ? [[(maxW - mw) / 2, (maxH - mh) / 2]] : n === 2 ? [[0, (maxH - mh) / 2], [maxW - mw, (maxH - mh) / 2]] : [[0, maxH - mh], [maxW - mw, maxH - mh], [(maxW - mw) / 2, 0]];
   return <g key={k}>{spots.map((p, i) => wcMangoShape(k + i, x + p[0], y + p[1], mw, mh))}</g>;
 }
-function wcG1(W2, kg, g, cw, pcw, plateW) {
-  const gw = 112, gh = 149, ph = 124, pw = Math.round(ph * 86 / 140);
+function wcG1(W2, kg, g, cw, pcw, plateW, plateH = 64, tagB = 50, chipH = 48) {
+  const bodyH = Math.max(88, plateH + 16), room = 408 - (tagB + 16 + chipH) - 22;
+  const gh = Math.min(149, room - bodyH), gw = Math.round(gh * 0.752), ph = 124, pw = Math.round(ph * 86 / 140);
+  const slack = room - bodyH - gh, chipB = tagB + 16 + chipH + Math.floor(slack / 2), ty = chipB + 6, panY = ty + gh;
   const pitch = Math.max(gw + 34, cw + 20), gap = pitch - gw;
   const over = Math.max(0, (cw - gw) / 2);
   const row = kg * gw + (kg - 1) * gap, tcR = row / 2;
-  const bodyW = Math.min(W2 - 16, Math.max(300, plateW + 48));
+  const bodyW = Math.min(W2 - 16, Math.max(300, plateW + 72));
   const toteCxR = g > 0 ? Math.max(row + 24 + pw / 2, tcR + bodyW / 2 + 16 + pcw - pw / 2) : 0;
   const chipLR = g > 0 ? Math.max(tcR + bodyW / 2 + 16, toteCxR + pw / 2 - pcw) : 0;
   const rightR = Math.max(row + over, g > 0 ? Math.max(toteCxR + pw / 2, chipLR + pcw) : 0);
   const span = over + rightR, cx = W2 / 2, x0 = cx - span / 2 + over, tc = x0 + tcR;
-  const trays = Array.from({ length: kg }, (_, i) => ({ x: x0 + i * pitch, y: 166, w: gw, h: gh }));
-  const packet = g > 0 ? { x: x0 + toteCxR - pw / 2, y: 315 - ph, w: pw, h: ph } : null;
+  const trays = Array.from({ length: kg }, (_, i) => ({ x: x0 + i * pitch, y: ty, w: gw, h: gh }));
+  const packet = g > 0 ? { x: x0 + toteCxR - pw / 2, y: panY - ph, w: pw, h: ph } : null;
   const objR = packet ? packet.x + pw : x0 + row;
   const pL = Math.max(8, x0 - 30), pR = Math.min(W2 - 8, objR + 30);
+  const fits = gh >= 128 && span <= W2 - 32 && bodyW < W2 - 16;
   return {
     cx,
     sc: tc,
     pitch,
     trays,
     packet,
-    chipB: 160,
+    chipB,
     keyY: 436,
     keyH: 80,
-    toteChipY: 337,
+    toteChipY: panY + 22,
     toteChipX: x0 + chipLR,
-    pan: { x: pL, y: 315, w: pR - pL, h: 16 },
-    body: { x: tc - bodyW / 2, y: 331, w: bodyW, h: 88 }
+    fits,
+    pan: { x: pL, y: panY, w: pR - pL, h: 16 },
+    body: { x: tc - bodyW / 2, y: panY + 16, w: bodyW, h: bodyH }
   };
 }
 const wcPk = (t, j) => ({ x: t.x + 8 + j % 2 * ((t.w - 16) / 2) + 4, y: t.y + 8 + Math.floor(j / 2) * ((t.h - 16) / 5) + 3, w: (t.w - 16) / 2 - 8, h: (t.h - 16) / 5 - 6 });
 function wcG2(W2, grams, tw) {
-  const K = Math.floor(grams / 1e3), bw = 96, bh = 128, bgap = Math.max(14, Math.ceil((16 + 1.5 * tw - 2.5 * bw) / 2), Math.ceil((tw + 16 - 2 * bw) / 2)), gridW = K * bw + (K - 1) * bgap;
-  const rightW = Math.max(gridW, 400), heapW = Math.max(240, Math.min(400, W2 - 32 - 30 - rightW));
+  const K = Math.floor(grams / 1e3), RW = Math.min(W2, 900);
+  let bw = 96, bgap = 18, rowW = 0;
+  for (const b of [96, 90, 84, 78]) {
+    bw = b;
+    bgap = Math.max(18, Math.ceil((tw + 20 - 2 * bw) / 2));
+    rowW = (K - 1) * (bw + bgap) + Math.max(bw, tw);
+    if (RW - 62 - Math.max(rowW, 400) >= 240) break;
+  }
+  const bh = Math.round(bw * 4 / 3), ov = Math.max(0, (tw - bw) / 2);
+  const rightW = Math.max(rowW, 400), heapW = Math.max(240, Math.min(400, W2 - 32 - 30 - rightW));
   const sceneW = heapW + 30 + rightW, x0 = W2 / 2 - sceneW / 2;
-  const gx = x0 + heapW + 30 + (rightW - gridW) / 2;
+  const gx = x0 + heapW + 30 + (rightW - rowW) / 2 + ov;
   return {
     K,
     x0,
@@ -5291,22 +5303,41 @@ function wcG2(W2, grams, tw) {
     bags: Array.from({ length: K }, (_, i) => ({ x: gx + i * (bw + bgap), y: 178, w: bw, h: bh }))
   };
 }
-function wcBoard(x0, y0, R, narrow = false) {
-  const sw = narrow ? 56 : 64, kw = narrow ? 130 : 150, gw2 = narrow ? 200 : 230;
-  const rowY = (i) => y0 + 108 + i * 80, ruleY = y0 + 108 + R * 80 + 8, ansY = ruleY + 10;
+function wcBoard(x0, y0, R, narrow = false, big = false) {
+  const sw = big ? 84 : narrow ? 56 : 64, kw = big ? 196 : narrow ? 130 : 150, gw2 = big ? 300 : narrow ? 200 : 230;
+  const cr = big ? 48 : 52, rh = big ? 88 : 80, ah = big ? 96 : 92;
+  const carryY = y0 + 56, row0 = carryY + cr;
+  const rowY = (i) => row0 + i * rh, ruleY = row0 + R * rh + 8, ansY = ruleY + 10;
   return {
     x: x0,
     y: y0,
     w: 22 + sw + kw + gw2,
-    h: ansY + 92 - y0,
+    h: ansY + ah - y0,
     R,
     sign: { x: x0 + 12, w: sw },
     kg: { x: x0 + 12 + sw, w: kw },
     g: { x: x0 + 12 + sw + kw, w: gw2 },
-    carryY: y0 + 56,
+    carryY,
     rowY,
     ruleY,
-    ansY
+    ansY,
+    /* fonts: digits, headings; offsets: a digit's baseline in its row, an empty cell's height, the answer cells' height and
+       baseline, the column lines' end, a mark's baseline under the rule, the carried 1's shift, the grams' right padding,
+       the strike's half width, ends and the grams strike's reach */
+    fd: big ? T.display : T.xl,
+    fh: big ? T.prompt : T.label,
+    dy: big ? 70 : 60,
+    eh: big ? 68 : 60,
+    ch: big ? 80 : 68,
+    cd: big ? 70 : 60,
+    ll: big ? 92 : 80,
+    md: big ? 42 : 48,
+    k1: big ? 52 : 40,
+    gp: big ? 40 : 34,
+    sk: big ? 36 : 30,
+    s1: big ? 62 : 52,
+    s2: big ? 30 : 28,
+    sg: big ? 156 : 120
   };
 }
 function wcCols(rows, op) {
@@ -5349,7 +5380,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
   const C = api.C;
   const tl = useTimeline();
   const Wd = box ? box.w : 1472;
-  const keyL = box && box.key ? box.key.x - 12 : Wd;
+  const keyL = box && box.key ? box.key.x - 20 : Wd;
   const free = stage === "free";
   const warm = !free && (stage === "demo" || stage === "teach") && !!(phase && phase.steps);
   const it = free ? MODEL.free : warm ? MODEL.warm[n] : item || {};
@@ -5522,14 +5553,26 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
   const kind = it.kind;
   const K1 = kind === "kg" ? free ? S.fk : it.kg : 0;
   const pkText = it.g ? `${it.g} ${tx("g")}` : "";
-  const plateTxt = kind === "kg" ? free ? `${K1} ${tx("kg")}` : wcKgG(K1, it.g || 0, tx) : "", plateSz = wcIndic(plateTxt) ? T.speech : T.xl;
-  const G1 = kind === "kg" ? wcG1(Wd, K1, free ? 0 : it.g || 0, wcChipW(wcGr(1e3, tx), T.label), pkText ? wcChipW(pkText, T.label) : 0, wcChipW(plateTxt, plateSz)) : null;
+  const plateTxt = kind === "kg" ? free ? `${K1} ${tx("kg")}` : wcKgG(K1, it.g || 0, tx) : "";
+  const g1 = (W2, s) => wcG1(
+    W2,
+    K1,
+    free ? 0 : it.g || 0,
+    wcChipW(wcGr(1e3, tx), T.label),
+    pkText ? wcChipW(pkText, T.label) : 0,
+    wcChipW(plateTxt, s),
+    Math.round(16 + wcLineH(plateTxt) * s),
+    2 + Math.round(16 + wcLineH(tx("kg")) * T.label),
+    Math.round(16 + wcLineH(wcGr(1e3, tx)) * T.label)
+  );
+  const plateSz = kind === "kg" ? [T.display, T.xl, T.speech].find((s) => g1(Math.min(Wd, 900), s).fits) || T.speech : T.speech;
+  const G1 = kind === "kg" ? g1(Wd, plateSz) : null;
   const G2 = kind === "group" ? wcG2(Wd, it.grams, wcChipW(wcGr(1e3, tx), T.label)) : null;
   const rows = kind === "col" ? it.rows : kind === "shop" ? it.items.map((x) => [x.kg, x.g]) : [];
   const R = rows.length;
   const BW = Math.min(Wd, 900), BC = BW / 2;
   const ix0 = BC - 426, itemH = R === 3 ? 124 : 150;
-  const B = kind === "col" ? wcBoard(BC - 234, 12, R) : kind === "shop" ? wcBoard(ix0 + 444, 8, R, true) : null;
+  const B = kind === "col" ? wcBoard(BC - 301, 12, R, false, true) : kind === "shop" ? wcBoard(ix0 + 444, 8, R, true) : null;
   const itemBox = (i) => ({ x: ix0, y: 24 + i * (itemH + 16), w: 420, h: itemH });
   const keyY = 424, keyH = 84;
   const cols = R ? wcCols(rows, it.op) : null;
@@ -5632,7 +5675,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
       const c = name === "grams" ? B.g : B.kg;
       play({ tool: "hand", moves: "tap", at: [{ x: c.x + c.w / 2, y: B.rowY(0) + 60 }] }, after(() => put(name === "grams" ? { gLit: true } : { kLit: true })));
     } else if (name === "carry" && B) {
-      const at = [{ x: B.g.x + B.g.w / 2, y: B.rowY(R - 1) + 40 }, { x: B.kg.x + B.kg.w / 2 + 40, y: B.carryY + 26 }];
+      const at = [{ x: B.g.x + B.g.w / 2, y: B.rowY(R - 1) + 40 }, { x: B.kg.x + B.kg.w / 2 + B.k1, y: (B.carryY + B.rowY(0)) / 2 }];
       play({ tool: "hand", moves: "carry", at, hold: chip(`1 ${tx("kg")}`, "second"), onPoint: (i) => put({ cStage: i + 1 }) }, after(() => put({ carried: true, cStage: 2 })));
     } else if (name === "borrow" && B) {
       const at = [{ x: B.kg.x + B.kg.w / 2, y: B.rowY(0) + 40 }, { x: B.g.x + B.g.w / 2, y: B.rowY(0) + 40 }];
@@ -5764,7 +5807,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
     if (!G1) return null;
     const g = free ? 0 : it.g || 0;
     const pill = !warm || S.countDone;
-    const rightTag = warm && S.total || free && S.opened >= S.fk || won;
+    const rightTag = warm && S.total || free && S.opened >= S.fk;
     const keys = [];
     const sc = G1.sc, kx0 = sc - 120, ky = G1.keyY, kh = G1.keyH;
     if (free) {
@@ -5787,7 +5830,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
         {pill && (rightTag ? wcEqTag("pill", G1.cx - 10, 2, "r", "fact", `1 ${tx("kg")}`, wcGr(1e3, tx)) : wcEqTag("pill", sc, 2, "c", "fact", `1 ${tx("kg")}`, wcGr(1e3, tx)))}
         {warm && S.total && wcEqTag("wres", G1.cx + 10, 2, "l", "answer", `${K1} ${tx("kg")}`, wcGr(K1 * 1e3, tx))}
         {free && S.opened >= S.fk && wcEqTag("fres", G1.cx + 10, 2, "l", "answer", `${K1} ${tx("kg")}`, wcGr(K1 * 1e3, tx))}
-        {won && wcAnsTag("ans", G1.cx + 10, 2, "l", Math.min(440, keyL - G1.cx - 10), wcGr(it.answer, tx), tx)}
+        {won && wcAnsTag("ans", sc, G1.keyY + 6, "c", 560, wcGr(it.answer, tx), tx)}
         {G1.trays.map((t, i) => {
       const opened = i < S.opened;
       const counting = warm && i === S.cT && !S.countDone;
@@ -5850,10 +5893,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
         {G2.bags.slice(0, got).map((b, i) => <g key={"b" + i} filter="url(#wc-shadow)">
             {wcSackShape(b.x, b.y, b.w, b.h)}
             <Skin name="sack" x={b.x} y={b.y} w={b.w} h={b.h} />
-            {(() => {
-      const ax = i === 0 && K > 1 ? "l" : i === K - 1 && K > 1 ? "r" : "c", tx0 = ax === "l" ? b.x : ax === "r" ? b.x + b.w : b.x + b.w / 2;
-      return i % 2 === 0 ? wcChip("bt" + i, tx0, b.y - 10, ax, "b", "fact", wcGr(1e3, tx), T.label, 300) : wcChip("bt" + i, tx0, b.y + b.h + 10, ax, "t", "fact", wcGr(1e3, tx), T.label, 300);
-    })()}
+            {i % 2 === 0 ? wcChip("bt" + i, b.x + b.w / 2, b.y - 14, "c", "b", "fact", wcGr(1e3, tx), T.label, 300) : wcChip("bt" + i, b.x + b.w / 2, b.y + b.h + 14, "c", "t", "fact", wcGr(1e3, tx), T.label, 300)}
             {fix && fix.k > i && <rect pointerEvents="none" x={b.x - 2} y={b.y - 2} width={b.w + 4} height={b.h + 4} rx={12} fill="none" stroke="#E69F00" strokeWidth={4} />}
           </g>)}
         {warm && S.leftShown && wcChip("wres", Math.min(G2.right.r, keyL), G2.right.y, "r", "t", "answer", wcAns(K, grams % 1e3, tx), T.prompt, 900)}
@@ -5872,7 +5912,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
     const gLit = S.gLit || fxg, kLit = S.kLit || fxk;
     const rowInk = (i) => i === 0 ? WC_COL.given.ink : WC_COL.second.ink;
     const top = B.carryY, colH = B.rowY(R) - top;
-    const gx = B.g.x + B.g.w - 34, kcx = B.kg.x + B.kg.w / 2;
+    const gx = B.g.x + B.g.w - B.gp, kcx = B.kg.x + B.kg.w / 2;
     const lead = (g) => g >= 100 ? "" : g >= 10 ? "0" : "00";
     const wWork = warm && kind === "col" ? S.kLit ? { k: String(cols.k), g: String(cols.g) } : S.cStage >= 2 ? { g: String(cols.g) } : S.gLit ? { g: indian(cols.sg) } : null : warm && isP4 ? S.kLit ? { k: String(cols.k), g: String(cols.g) } : S.gLit ? { g: String(cols.g) } : null : null;
     const wDone = warm && (kind === "col" ? S.kLit : S.added);
@@ -5883,49 +5923,49 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
           {kLit && <rect x={B.kg.x + 4} y={top} width={B.kg.w - 8} height={colH} rx={10} fill={WC_LIT} stroke="#E69F00" strokeWidth={3} />}
         </g>
         <g data-scale="headings">
-          <text x={kcx} y={B.y + 44} textAnchor="middle" fontSize={T.label} fontWeight={700} fill="#2B2B2B">{tx("kg")}</text>
-          <text x={B.g.x + B.g.w / 2} y={B.y + 44} textAnchor="middle" fontSize={T.label} fontWeight={700} fill="#2B2B2B">{tx("g")}</text>
+          <text x={kcx} y={B.y + 44} textAnchor="middle" fontSize={B.fh} fontWeight={700} fill="#2B2B2B">{tx("kg")}</text>
+          <text x={B.g.x + B.g.w / 2} y={B.y + 44} textAnchor="middle" fontSize={B.fh} fontWeight={700} fill="#2B2B2B">{tx("g")}</text>
         </g>
         <line x1={B.x + 10} y1={B.y + 56} x2={B.x + B.w - 10} y2={B.y + 56} stroke="#2B2B2B" strokeWidth={2} />
-        <line x1={B.kg.x} y1={B.y + 10} x2={B.kg.x} y2={B.ansY + 80} stroke="#C9BCA6" strokeWidth={2} />
-        <line x1={B.g.x} y1={B.y + 10} x2={B.g.x} y2={B.ansY + 80} stroke="#2B2B2B" strokeWidth={3} />
+        <line x1={B.kg.x} y1={B.y + 10} x2={B.kg.x} y2={B.ansY + B.ll} stroke="#C9BCA6" strokeWidth={2} />
+        <line x1={B.g.x} y1={B.y + 10} x2={B.g.x} y2={B.ansY + B.ll} stroke="#2B2B2B" strokeWidth={3} />
         {rows.map((r, i) => {
       const y = B.rowY(i);
       if (!placed(i)) return <g key={"r" + i}>
-              <rect x={B.kg.x + 22} y={y + 10} width={B.kg.w - 44} height={60} rx={10} fill="none" stroke="#4A5560" strokeWidth={2} strokeDasharray="10 6" />
-              <rect x={B.g.x + 22} y={y + 10} width={B.g.w - 44} height={60} rx={10} fill="none" stroke="#4A5560" strokeWidth={2} strokeDasharray="10 6" />
+              <rect x={B.kg.x + 22} y={y + 10} width={B.kg.w - 44} height={B.eh} rx={10} fill="none" stroke="#4A5560" strokeWidth={2} strokeDasharray="10 6" />
+              <rect x={B.g.x + 22} y={y + 10} width={B.g.w - 44} height={B.eh} rx={10} fill="none" stroke="#4A5560" strokeWidth={2} strokeDasharray="10 6" />
             </g>;
       const struck = i === 0 && borrowK;
       return <g key={"r" + i}>
-              {i === R - 1 && <text x={B.sign.x + B.sign.w / 2} y={y + 60} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill="#2B2B2B">{it.op === "−" ? "−" : "+"}</text>}
-              <text x={kcx} y={y + 60} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={r[0] === 0 ? WC_GREY : rowInk(i)}>{r[0]}</text>
-              <text x={gx} y={y + 60} textAnchor="end" fontSize={T.xl} fontWeight={700} fill={rowInk(i)}><tspan fill={WC_GREY}>{lead(r[1])}</tspan>{String(r[1])}</text>
-              {struck && <line x1={kcx - 30} y1={y + 52} x2={kcx + 30} y2={y + 28} stroke="#7A5000" strokeWidth={5} strokeLinecap="round" pointerEvents="none" />}
-              {struck && borrowG && <line x1={gx - 120} y1={y + 52} x2={gx + 6} y2={y + 28} stroke="#7A5000" strokeWidth={5} strokeLinecap="round" pointerEvents="none" />}
+              {i === R - 1 && <text x={B.sign.x + B.sign.w / 2} y={y + B.dy} textAnchor="middle" fontSize={B.fd} fontWeight={700} fill="#2B2B2B">{it.op === "−" ? "−" : "+"}</text>}
+              <text x={kcx} y={y + B.dy} textAnchor="middle" fontSize={B.fd} fontWeight={700} fill={r[0] === 0 ? WC_GREY : rowInk(i)}>{r[0]}</text>
+              <text x={gx} y={y + B.dy} textAnchor="end" fontSize={B.fd} fontWeight={700} fill={rowInk(i)}><tspan fill={WC_GREY}>{lead(r[1])}</tspan>{String(r[1])}</text>
+              {struck && <line x1={kcx - B.sk} y1={y + B.s1} x2={kcx + B.sk} y2={y + B.s2} stroke="#7A5000" strokeWidth={5} strokeLinecap="round" pointerEvents="none" />}
+              {struck && borrowG && <line x1={gx - B.sg} y1={y + B.s1} x2={gx + 6} y2={y + B.s2} stroke="#7A5000" strokeWidth={5} strokeLinecap="round" pointerEvents="none" />}
             </g>;
     })}
         {
       /* the carry row: a carried 1 over the kg column, or the borrow's new top numbers; only after the act */
     }
         <g pointerEvents="none">
-          {kind === "col" && S.cStage === 1 && wcChip("c1k", B.g.x + B.g.w / 2, B.carryY + 26, "c", "m", "second", wcGr(1e3, tx), T.label, B.g.w - 8)}
-          {carryOn && <text x={kcx + 40} y={B.carryY + 48} textAnchor="middle" fontSize={T.prompt} fontWeight={700} fill="#7A5000">1</text>}
-          {borrowK && <text x={kcx} y={B.carryY + 48} textAnchor="middle" fontSize={T.prompt} fontWeight={700} fill="#7A5000">{rows[0][0] - 1}</text>}
-          {borrowG && <text x={gx} y={B.carryY + 48} textAnchor="end" fontSize={T.prompt} fontWeight={700} fill="#7A5000">{indian(rows[0][1] + 1e3)}</text>}
+          {kind === "col" && S.cStage === 1 && wcChip("c1k", B.g.x + B.g.w / 2, (B.carryY + B.rowY(0)) / 2, "c", "m", "second", wcGr(1e3, tx), T.label, B.g.w - 8)}
+          {carryOn && <text x={kcx + B.k1} y={B.carryY + B.md} textAnchor="middle" fontSize={T.prompt} fontWeight={700} fill="#7A5000">1</text>}
+          {borrowK && <text x={kcx} y={B.carryY + B.md} textAnchor="middle" fontSize={T.prompt} fontWeight={700} fill="#7A5000">{rows[0][0] - 1}</text>}
+          {borrowG && <text x={gx} y={B.carryY + B.md} textAnchor="end" fontSize={T.prompt} fontWeight={700} fill="#7A5000">{indian(rows[0][1] + 1e3)}</text>}
         </g>
         <line x1={B.x + 12} y1={B.ruleY} x2={B.x + B.w - 12} y2={B.ruleY} stroke="#2B2B2B" strokeWidth={5} />
         {
       /* the answer row: empty cells until the win (the warm-up shows its own working and result) */
     }
-        <rect x={B.kg.x + 16} y={B.ansY + 6} width={B.kg.w - 32} height={68} rx={10} fill={wDone ? WC_COL.answer.fill : "none"} stroke={wDone ? WC_COL.answer.stroke : "#4A5560"} strokeWidth={3} strokeDasharray={wDone ? void 0 : "10 6"} />
-        <rect x={B.g.x + 16} y={B.ansY + 6} width={B.g.w - 32} height={68} rx={10} fill={wDone ? WC_COL.answer.fill : "none"} stroke={wDone ? WC_COL.answer.stroke : "#4A5560"} strokeWidth={3} strokeDasharray={wDone ? void 0 : "10 6"} />
-        {wWork && wWork.k !== void 0 && <text x={kcx} y={B.ansY + 60} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={wDone ? WC_COL.answer.ink : "#7A5000"}>{wWork.k}</text>}
-        {wWork && wWork.g !== void 0 && <text x={gx} y={B.ansY + 60} textAnchor="end" fontSize={T.xl} fontWeight={700} fill={wDone ? WC_COL.answer.ink : "#7A5000"}>{wWork.g}</text>}
+        <rect x={B.kg.x + 16} y={B.ansY + 6} width={B.kg.w - 32} height={B.ch} rx={10} fill={wDone ? WC_COL.answer.fill : "none"} stroke={wDone ? WC_COL.answer.stroke : "#4A5560"} strokeWidth={3} strokeDasharray={wDone ? void 0 : "10 6"} />
+        <rect x={B.g.x + 16} y={B.ansY + 6} width={B.g.w - 32} height={B.ch} rx={10} fill={wDone ? WC_COL.answer.fill : "none"} stroke={wDone ? WC_COL.answer.stroke : "#4A5560"} strokeWidth={3} strokeDasharray={wDone ? void 0 : "10 6"} />
+        {wWork && wWork.k !== void 0 && <text x={kcx} y={B.ansY + B.cd} textAnchor="middle" fontSize={B.fd} fontWeight={700} fill={wDone ? WC_COL.answer.ink : "#7A5000"}>{wWork.k}</text>}
+        {wWork && wWork.g !== void 0 && <text x={gx} y={B.ansY + B.cd} textAnchor="end" fontSize={B.fd} fontWeight={700} fill={wDone ? WC_COL.answer.ink : "#7A5000"}>{wWork.g}</text>}
         {won && <g data-reveals="answer">
-            <rect x={B.kg.x + 16} y={B.ansY + 6} width={B.kg.w - 32} height={68} rx={10} fill={WC_COL.answer.fill} stroke={WC_COL.answer.stroke} strokeWidth={4} />
-            <rect x={B.g.x + 16} y={B.ansY + 6} width={B.g.w - 32} height={68} rx={10} fill={WC_COL.answer.fill} stroke={WC_COL.answer.stroke} strokeWidth={4} />
-            <text x={kcx} y={B.ansY + 60} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={WC_COL.answer.ink}>{it.answer[0]}</text>
-            <text x={gx} y={B.ansY + 60} textAnchor="end" fontSize={T.xl} fontWeight={700} fill={WC_COL.answer.ink}><tspan fill={WC_GREY}>{lead(it.answer[1])}</tspan>{String(it.answer[1])}</text>
+            <rect x={B.kg.x + 16} y={B.ansY + 6} width={B.kg.w - 32} height={B.ch} rx={10} fill={WC_COL.answer.fill} stroke={WC_COL.answer.stroke} strokeWidth={4} />
+            <rect x={B.g.x + 16} y={B.ansY + 6} width={B.g.w - 32} height={B.ch} rx={10} fill={WC_COL.answer.fill} stroke={WC_COL.answer.stroke} strokeWidth={4} />
+            <text x={kcx} y={B.ansY + B.cd} textAnchor="middle" fontSize={B.fd} fontWeight={700} fill={WC_COL.answer.ink}>{it.answer[0]}</text>
+            <text x={gx} y={B.ansY + B.cd} textAnchor="end" fontSize={B.fd} fontWeight={700} fill={WC_COL.answer.ink}><tspan fill={WC_GREY}>{lead(it.answer[1])}</tspan>{String(it.answer[1])}</text>
           </g>}
       </g>;
   };

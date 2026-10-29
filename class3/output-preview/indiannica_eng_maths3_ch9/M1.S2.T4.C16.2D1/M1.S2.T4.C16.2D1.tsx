@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S2.T4.C16.2D1 · weigh_it · Weigh It — standalone build 2026-10-29, source 169505fa:744327.
+/* M1.S2.T4.C16.2D1 · weigh_it · Weigh It — standalone build 2026-10-29, source 98dacffd:744316.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -4495,7 +4495,7 @@ const TR = {
     "The pan is full: take a weight off first.": "पलड़ा भर गया: पहले उससे एक बाट उतारो।",
     "Iron weights go on the right-hand pan.": "बाट दाएँ पलड़े पर रखो।",
     "Things to weigh go on the left-hand pan.": "तौलने की चीज़ें बाएँ पलड़े पर रखो।",
-    "Tap the iron weight marked 1 kg.": "1 किलोग्राम वाला बाट छुओ।",
+    "Tap the 1 kg iron weight.": "1 किलोग्राम वाला बाट छुओ।",
     "Now tap the tray of gram weights to put 1,000 g on the other pan.": "अब ग्राम वाले बाटों की ट्रे छुओ: वह 1,000 ग्राम है।",
     "Tap the tray with four small weights.": "चार बाटों वाली ट्रे छुओ।",
     "Weigh the thing against the iron weight.": "चीज़ को लोहे के बाट से तौलो।",
@@ -4692,7 +4692,7 @@ const TR = {
     "The pan is full: take a weight off first.": "પલ્લું ભરાઈ ગયું: પહેલાં એક કાટલું ઉતારો.",
     "Iron weights go on the right-hand pan.": "જમણા પલ્લા પર લોખંડનાં કાટલાં મૂકો.",
     "Things to weigh go on the left-hand pan.": "વસ્તુ ડાબા પલ્લા પર મૂકો.",
-    "Tap the iron weight marked 1 kg.": "1 કિલોગ્રામ લખેલા લોખંડના કાટલાને સ્પર્શ કરો.",
+    "Tap the 1 kg iron weight.": "1 કિલોગ્રામ લખેલા લોખંડના કાટલાને સ્પર્શ કરો.",
     "Now tap the tray of gram weights to put 1,000 g on the other pan.": "હવે બીજા પલ્લા પર 1,000 ગ્રામ મૂકવા ગ્રામના કાટલાંની ટ્રેને સ્પર્શ કરો.",
     "Tap the tray with four small weights.": "ચાર નાનાં કાટલાંવાળી ટ્રેને સ્પર્શ કરો.",
     "Weigh the thing against the iron weight.": "વસ્તુને કાટલા સામે તોલો.",
@@ -4956,7 +4956,7 @@ const PHASES = [
     warm: { col: ["w1000", "gramset"], rack: [], L: [], R: [] },
     stepHold: 2200,
     steps: [
-      { say: "Tap the 1 kg weight to put it on the right-hand pan.", on: "w1000", hint: "Tap the iron weight marked 1 kg." },
+      { say: "Tap the 1 kg weight to put it on the right-hand pan.", on: "w1000", hint: "Tap the 1 kg iron weight." },
       { say: "Now tap the tray of gram weights to put 1,000 g on the other pan.", on: "gramset", hint: "Tap the tray with four small weights." }
     ],
     ladder: ["Weigh the thing against the iron weight.", "See which pan goes down."],
@@ -6276,13 +6276,13 @@ function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v) => v }) {
   if (showArt) {
     const bw = (A - 6 * (arts.length - 1)) / arts.length;
     arts.forEach((b, j) => {
-      const o = WI_OBJ[b], k = Math.min(bw / o.w, (h - 16) / o.h) * (arts.length > 1 ? 1 : 0.85), ow = o.w * k, oh = o.h * k;
+      const o = WI_OBJ[b], k = Math.min(bw / o.w, (h - (arts.length > 1 ? 16 : 8)) / o.h), ow = o.w * k, oh = o.h * k;
       artEls.push(<g key={j}>{wiObjArt(b, 10 + j * (bw + 6) + (bw - ow) / 2, h / 2 - oh / 2, ow, oh, "th" + b + j)}</g>);
     });
   }
   const iron = item.kind === "missing" && item.parts ? Number(slotPartsOf(last.value, 1)[0]) : 0;
   if (iron && WI_WD[iron]) {
-    const ih = Math.min(Math.round(WI_WD[iron][1] * 0.85), h - 12), iw = Math.max(Math.ceil(wiIronLab(iron, tx, 24).pw + 8), ih * 1.4);
+    const ih = Math.min(Math.round(WI_WD[iron][1] * 0.57), h - 22), iw = Math.max(Math.ceil(wiIronLab(iron, tx, 24).pw + 8), ih * 1.4);
     return <g>
         <rect x={0} y={0} width={w} height={h} rx={16} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={2} />
         {wiIron(w / 2 - iw / 2, h / 2 - ih / 2, iw, ih, iron, true, 24, tx)}

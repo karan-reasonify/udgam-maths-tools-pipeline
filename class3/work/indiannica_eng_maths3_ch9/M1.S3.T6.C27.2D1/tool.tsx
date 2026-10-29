@@ -41,7 +41,8 @@ function StartArt({ box, C, lang, tx = (v: any) => v }: any) {
       <rect x={60} y={316} width={box.w - 120} height={4} rx={2} fill={PI_C.tableDark} opacity={0.35} />
       {piJug(J, 600, { tx, labels: {} })}
       <g transform="translate(640 306)">{piObj("cup", 150, false)}</g>
-      <g transform="translate(800 306)">{piObj("bottle", 270, false)}</g>
+      {/* the 1 L bottle as tall as the 1 L jug (the owner: equal capacity, equal size) */}
+      <g transform="translate(800 306)">{piObj("bottle", 290, false)}</g>
       <g transform="translate(1000 306)">{piObj("bucket", 210, false)}</g>
     </g>
   );
@@ -770,6 +771,8 @@ const PI_HALF = { ...PI_ONE, long: [250, 500, 750], skip: [300, 700] };
    marks, the counted marks of a correction and the 560 mL tag stand to the RIGHT of the jug (x 557 to 720), never beside a pill */
 const PI_J1 = piJugAt(188, 428, PI_ONE);
 const PI_J2 = piJugAt(188, 428, PI_HALF);
+/* the 1 L bottle beside the 1 L jug: the jug photo's height */
+const PI_BOT = 428;
 const PI_J3 = PI_J1;
 const PI_J4 = PI_J1;
 /* the small 200 mL jug: the same photo at 0.7 of the litre jug's size (one capacity, one size), standing on the table */
@@ -796,6 +799,16 @@ const piMl = (ml: number, tx: any) => (ml >= 1000 && ml % 1000 === 0 ? ml / 1000
 const piLabel = (id: string, show: string, tx: any) => { const c = (MODEL.cap as any)[id]; return show === "L" ? c / 1000 + " " + tx("L") : indian(c) + " " + tx("mL"); };
 
 /* a tag: a rounded chip centred at (cx, cy) */
+/* one line of text that never leaves its box: drawn at `start`, measured once drawn and stepped down to the 28 floor until it is
+   at most maxW wide */
+const piFit = (maxW: number, start: number) => (el: any) => {
+  if (!el || !el.getComputedTextLength) return;
+  try {
+    let fs = start;
+    el.setAttribute("font-size", String(fs));
+    while (el.getComputedTextLength() > maxW && fs > T.micro) { fs -= 1; el.setAttribute("font-size", String(fs)); }
+  } catch (e) { /* the starting size stands */ }
+};
 /* the unit fact "1 L = 1,000 mL" on a vermilion pill centred at (cx, cy): two labels (each under 4 words), measured once drawn so the
    pair sits in the middle of its pill in every language */
 function piFact(cx: number, cy: number, tx: any) {
@@ -1038,8 +1051,10 @@ function piScene(n: number, kind: string, item: any) {
   /* the first cup's ring starts 27 right of the jug's handle (x 555) */
   const row2 = (i: number) => ({ cx: 630 + 110 * (i % 3), yb: i < 3 ? 206 : 406 });
   const T0 = 436;   /* the table top */
-  if (kind === "free") return { full: true, jug: PI_J1, srcs: [S("v50", "v50", 610, T0, 120, { cap: 50, tag: true }), S("v100", "v100", 715, T0, 150, { cap: 100, tag: true, up: true }), S("v200", "v200", 840, T0, 180, { cap: 200, tag: true }), S("v500", "v500", 990, T0, 215, { cap: 500, tag: true, up: true, hw: 120 }), S("bottle", "bottle", 1150, T0, 300, { cap: 1000, tag: true })] };
-  if (kind === "warm1") return { full: true, jug: PI_J1, srcs: [S("bottle", "bottle", 690, T0, 300, { cap: 1000 })] };
+  /* THE 1 L BOTTLE IS AS TALL AS THE 1 L JUG (the owner: equal capacity, equal size; PI_BOT = the jug photo's height), its own aspect.
+     Free play: the tall bottle first, beside the jug (it would reach the key's corner at the far right), the vessels after it, 16+ apart */
+  if (kind === "free") return { full: true, wide: true, jug: PI_J1, srcs: [S("bottle", "bottle", 660, T0, PI_BOT, { cap: 1000, tag: true }), S("v50", "v50", 795, T0, 120, { cap: 50, tag: true }), S("v100", "v100", 905, T0, 150, { cap: 100, tag: true, up: true }), S("v200", "v200", 1024, T0, 180, { cap: 200, tag: true }), S("v500", "v500", 1165, T0, 215, { cap: 500, tag: true, up: true, hw: 120 })] };
+  if (kind === "warm1") return { full: true, jug: PI_J1, srcs: [S("bottle", "bottle", 690, T0, PI_BOT, { cap: 1000 })] };
   if (kind === "unit") return { full: true, jug: PI_J1, srcs: [S("cup", "cup", 720, T0, 230, { cap: 200 })] };
   if (kind === "tag") return { full: true, jug: PI_J1, srcs: [S("bucket", "bucket", 740, T0, 280, { cap: 10000 })], tags: [{ id: "mL", x: 930, y: 150, w: 210, h: 110 }, { id: "L", x: 930, y: 300, w: 210, h: 110 }] };
   if (kind === "pair") return { full: true, jug: PI_J1, srcs: [S("packet", "packet", 620, T0, 200, { cap: 200 }), S("drum", "drum", 790, T0, 265, { cap: 50000 })] };
@@ -1050,7 +1065,9 @@ function piScene(n: number, kind: string, item: any) {
   if (kind === "share") return { jug: PI_J3, share: true, shelfX: 580, each: { key: "each cup", cap: 200, x: 726, y: 484 }, shelves: [206, 406], srcs: [0, 1, 2, 3, 4, 5].map((i) => S("cup-" + (i + 1), "cup", row2(i).cx, row2(i).yb, 110, { cap: 200, hw: 96 })) };
   if (kind === "read") return { jug: PI_JS, srcs: [S("teacup", "teacup", 800, T0, 150, { cap: 140 })] };
   if (kind === "about") return { jug: PI_J2, srcs: [S("carton", "carton", 840, T0, 230, { cap: 500 })] };
-  if (kind === "warm3" || kind === "half") return { jug: PI_J2, marks: true, srcs: [S("bottle", "bottle", 840, T0, 300, { cap: 1000, still: true })] };
+  /* phase 3: the jug's quarter and half words need x 585 to 780, so the tall bottle stands right of them (x 851 to 989) and steps
+     aside while the keypad is open (its pour is done by then) */
+  if (kind === "warm3" || kind === "half") return { jug: PI_J2, marks: true, srcs: [S("bottle", "bottle", 920, T0, PI_BOT, { cap: 1000, still: true, hideOpen: true })] };
   /* two rows of three right of the jug (x 662 to 898): a shelf at 176 and the table, so the middle band (y 190 to 330) stays free for
      the quarter and half words and the 560 mL tag */
   const row3 = (i: number) => ({ cx: 700 + 80 * (i % 3), yb: i < 3 ? 176 : 436 });
@@ -1062,7 +1079,10 @@ function piScene(n: number, kind: string, item: any) {
   const H: any = { drum: 280, cup: 170, bucket: 190, jug: 210, bottle: 260, packet: 180, pot: 190 };
   const cell = 610 / objs.length;
   const fitH = (id: string) => Math.min(H[id] || 180, objs.length > 2 ? 230 : 300, (cell - 18) / (PI_ASPECT[id] || 0.7));
-  return { full: true, shelf: true, srcs: objs.map((o: any, i: number) => S(o.id, o.id, 30 + cell * (i + 0.5), 392, fitH(o.id), { show: o.show })) };
+  /* the 1 L bottle and the 1 L jug on one shelf stand equally tall (equal capacity, equal size) */
+  const pair = objs.some((o: any) => o.id === "bottle") && objs.some((o: any) => o.id === "jug") ? Math.min(fitH("bottle"), fitH("jug")) : 0;
+  const hOf = (id: string) => (pair && (id === "bottle" || id === "jug") ? pair : fitH(id));
+  return { full: true, shelf: true, srcs: objs.map((o: any, i: number) => S(o.id, o.id, 30 + cell * (i + 0.5), 392, hOf(o.id), { show: o.show })) };
 }
 
 /* the act's target for a question, as the board would show it once the child has acted (HOOK.check and the win) */
@@ -1757,7 +1777,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
               {/* a dotted leader only where the tag stands well aside of its container (a short one read as a stray mark) */}
               {!p && !dr && Math.abs(tagRow[s.id] - s.cx) > 24 && <line x1={s.cx} y1={s.yb + 18} x2={tagRow[s.id]} y2={s.yb + 46} stroke={PI_C.blue} strokeWidth={3} strokeDasharray="2 6" strokeLinecap="round" />}
               {!p && !dr && piTag(tagRow[s.id], s.yb + 70, piLabel(s.obj, s.show, tx), PI_C.blue, "#FFFFFF", tagSize)}
-              {p && <text x={bx.x + 92} y={bx.y + 41} dominantBaseline="central" fontSize={T.label} fontWeight={700} fill={PI_C.blue}>{piLabel(s.obj, s.show, tx)}</text>}
+              {/* the capacity in its bin row: 30, stepped down to fit 12+ inside the bin's outline in every language */}
+              {p && <text ref={piFit(bx.w - 104, T.label - 2)} x={bx.x + 92} y={bx.y + 41} dominantBaseline="central" fontSize={T.label - 2} fontWeight={700} fill={PI_C.blue}>{piLabel(s.obj, s.show, tx)}</text>}
               {sel && !p && <rect x={bx.x} y={bx.y - 14} width={bx.w} height={bx.h} rx={18} fill="none" stroke={PI_C.blue} strokeWidth={5} pointerEvents="none" />}
             </g>
           );
@@ -1791,8 +1812,9 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
 
   return (
     <g>
-      <rect x={10} y={436} width={sc.full ? Math.min(box ? box.w : 1472, kx) - 20 : 880} height={12} rx={6} fill={PI_C.table} />
-      <rect x={10} y={448} width={sc.full ? Math.min(box ? box.w : 1472, kx) - 20 : 880} height={4} rx={2} fill={PI_C.tableDark} opacity={0.35} />
+      {/* free play's table runs under the vessels at the far right (it is far below the key's corner) */}
+      <rect x={10} y={436} width={sc.wide ? (box ? box.w : 1472) - 20 : sc.full ? Math.min(box ? box.w : 1472, kx) - 20 : 880} height={12} rx={6} fill={PI_C.table} />
+      <rect x={10} y={448} width={sc.wide ? (box ? box.w : 1472) - 20 : sc.full ? Math.min(box ? box.w : 1472, kx) - 20 : 880} height={4} rx={2} fill={PI_C.tableDark} opacity={0.35} />
       {(sc.shelves || []).map((y: number) => (
         <g key={"sh" + y}>
           <rect x={sc.shelfX || 500} y={y} width={900 - (sc.shelfX || 500)} height={10} rx={5} fill={PI_C.table} />
@@ -1826,7 +1848,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
           <g key={"m" + v}>
             <Hit id={id} x={piEdgeL(Jd, y) - 70} y={y - 36} w={130} h={72} label={tx(PI_LONG[v])} onPress={tap(id, () => onMark(v))} />
             {/* a small ring round the long tick only, clear of the number pills */}
-            {inviteOn === id && <Invite x={piEdgeL(Jd, y) + (v === 500 ? -26 : 6)} y={y} r={22} C={C} />}
+            {inviteOn === id && <Invite x={piEdgeL(Jd, y) + (v === 500 ? -18 : 6)} y={y} r={22} C={C} />}
           </g>
         );
       })}
@@ -1836,7 +1858,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
       {sc.srcs.map((s: any) => inviteFor(s))}
       {inviteOn === "empty" && Jd && <Invite x={Jd.pic.x + Jd.pic.w / 2} y={Jd.pic.y + Jd.pic.h / 2} w={Jd.pic.w} h={Jd.pic.h} rx={18} C={C} />}
       {/* the unit fact: in phase 1 once the jug has been filled to 1 L, and at the wins */}
-      {n === 1 && ((kind === "warm1" && (V.poured.bottle)) || win) && <g pointerEvents="none">{piFact(770, 43, tx)}</g>}
+      {n === 1 && ((kind === "warm1" && (V.poured.bottle)) || win) && <g pointerEvents="none">{piFact(kind === "warm1" ? 1010 : 770, 43, tx)}</g>}
       {/* THE CORRECTION's own marks (never the answer): a counter of the pours replayed, the marks counted so far */}
       {corr && <g pointerEvents="none">
         {corr.count ? piTag(Jd.pic.x + Jd.pic.w + 90, kind === "glasses" ? 30 : 40,corr.count + " " + tx(kind === "count" ? (corr.count === 1 ? "vessel" : "vessels") : kind === "share" ? (corr.count === 1 ? "cup" : "cups") : kind === "glasses" ? (corr.count === 1 ? "glass" : "glasses") : (corr.count === 1 ? "teacup" : "teacups")), "#FFFFFF", PI_C.ink, T.label, PI_C.ink) : null}
@@ -1874,17 +1896,16 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v: any) => v }: any) {
      language is left out, so a Hindi or Gujarati thumbnail never shows a Latin word */
   const word = (s: string) => (lang === "en" || (TR[lang] && TR[lang][s]) ? tx(s) : "");
   let text = "";
-  let two: string[] | null = null;
-  if (item.choices) { const c = item.choices.find((x: any) => x.id === String(v)); text = c ? word(c.label) + (item.kind === "pair" && word("mL") ? ": " + word("mL") : "") : ""; if (c && item.kind === "pair" && word("mL")) two = [word(c.label), word("mL")]; }
+  if (item.choices) { const c = item.choices.find((x: any) => x.id === String(v)); text = c ? word(c.label) + (item.kind === "pair" && word("mL") ? ": " + word("mL") : "") : ""; }
   /* the short name on the thumbnail ("4 cups": a teacup is a cup), so it reads at full size */
-  else if (item.parts) text = (slotPartsOf(v, 1)[0] + " " + word(item.parts[0].unit === "teacups" ? "cups" : item.parts[0].unit)).trim();
+  else if (item.parts) text = (slotPartsOf(v, 1)[0] + " " + word(item.parts[0].unit === "teacups" ? "cups" : item.parts[0].unit)).trim();
   else if (item.kind === "tag") text = word(String(v));
   else if (item.kind === "sort") text = word("sorted");
   else text = String(v);
   /* the object the answer is about (its own photo); the jug only where the answer IS a level on the litre jug */
   const lvl: any = { half: 0.5, about: 0.5 };
   const OBJ: any = { unit: "cup", tag: "bucket", pair: "packet", count: "v500", share: "cup", read: "teacup", about: "carton", glasses: "glass", pan: "teacup" };
-  const bx = 10, bw = 56, by = 10, bh = h - 20, cid = "piTh" + String(item.qid || item.kind).replace(/[^A-Za-z0-9]/g, "_");
+  const bx = 4, bw = 56, by = 10, bh = h - 20, cid = "piTh" + String(item.qid || item.kind).replace(/[^A-Za-z0-9]/g, "_");
   const ob = OBJ[item.kind], oh = ob ? Math.min(bh, bw / (PI_ASPECT[ob] || 0.7)) : 0;
   const drawing = ob
     ? <g transform={`translate(${bx + bw / 2} ${by + bh - (bh - oh) / 2})`}>{piObj(ob, oh, true)}</g>
@@ -1900,20 +1921,14 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v: any) => v }: any) {
         <polygon points={piProfile(bx, by, bw, bh)} fill="none" stroke={PI_C.glassE} strokeWidth={2.5} strokeLinejoin="round" />
         <path d={`M ${bx + 0.62 * bw} ${by + 0.2 * bh} C ${bx + 0.98 * bw} ${by + 0.18 * bh} ${bx + 0.98 * bw} ${by + 0.62 * bh} ${bx + 0.69 * bw} ${by + 0.66 * bh}`} fill="none" stroke={PI_C.glassE} strokeWidth={4} strokeLinecap="round" />
       </g>;
-  /* the answer at full label size (12+ from the border): on one line where it fits, else on two (the packet's name over its unit) */
-  const tx0 = bx + bw + 12, cx = (tx0 + w - 10) / 2, room = w - tx0 - 34;
-  const fits = (s: string) => String(s).length * T.label * 0.62 <= room;
-  if (!two && !fits(text) && String(text).indexOf(" ") > 0) { const k = String(text).lastIndexOf(" "); two = [String(text).slice(0, k), String(text).slice(k + 1)]; }
-  if (two && fits(text)) two = null;
-  const fsOf = (s: string) => (fits(s) ? T.label : T.micro);
+  /* the answer on ONE line, 12+ clear of the card's edges: 30 to start (32 lifted the Gujarati and Hindi matras out of the card), measured
+     once drawn and stepped down to the 28 floor until it fits */
+  const tx0 = bx + bw + 6, room = w - tx0 - 12, cx = tx0 + room / 2;
   return (
     <g>
       <rect x={0} y={0} width={w} height={h} rx={14} fill="#FFFFFF" stroke={C.rule} strokeWidth={1.5} />
       {drawing}
-      {two ? <g>
-        <text x={cx} y={h / 2 - 18} textAnchor="middle" dominantBaseline="central" fontSize={fsOf(two[0])} fontWeight={700} fill={C.ink}>{two[0]}</text>
-        <text x={cx} y={h / 2 + 18} textAnchor="middle" dominantBaseline="central" fontSize={fsOf(two[1])} fontWeight={700} fill={C.ink}>{two[1]}</text>
-      </g> : <text x={cx} y={h / 2} textAnchor="middle" dominantBaseline="central" fontSize={fsOf(text)} fontWeight={700} fill={C.ink}>{text}</text>}
+      <text ref={piFit(room, T.label - 2)} x={cx} y={h / 2} textAnchor="middle" dominantBaseline="central" fontSize={T.label - 2} fontWeight={700} fill={C.ink}>{text}</text>
     </g>
   );
 }

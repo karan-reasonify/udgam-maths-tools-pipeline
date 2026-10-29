@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S2.T5.C22.2D1 · write_the_date · Write the Date — standalone build 2026-10-29, source 033d3f0b:680245.
+/* M1.S2.T5.C22.2D1 · write_the_date · Write the Date — standalone build 2026-10-29, source dbff9d36:680662.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -5033,7 +5033,7 @@ const WD_G1 = {
   boxes: [{ x: 306, y: 304, w: 200, h: 100 }, { x: 546, y: 304, w: 340, h: 100 }, { x: 926, y: 304, w: 240, h: 100 }],
   labelY: 448,
   labelSize: 40,
-  note: { x: 306, y: 466, w: 860, h: 46 },
+  note: { x: 306, y: 466, w: 860, h: 50 },
   digits: 60,
   row: 0.68,
   tile: 42
@@ -5043,7 +5043,7 @@ const WD_G2 = {
   boxes: [{ x: 0, y: 224, w: 120, h: 88 }, { x: 164, y: 224, w: 210, h: 88 }, { x: 418, y: 224, w: 150, h: 88 }],
   labelY: 364,
   labelSize: 40,
-  note: { x: 0, y: 384, w: 568, h: 42 },
+  note: { x: 0, y: 382, w: 568, h: 50 },
   digits: 60,
   toggle: { x: 130, y: 442, w: 438, h: 72 },
   ladder: { x: 588, y: 23, w: 245, h: 72, gx: 8, gy: 8 }
@@ -5342,7 +5342,9 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, captured, api,
     } else if (key === "enter" && !wrong && tp[0] === "" && tp[2] === "" && (k === "words" || tp[1] === "")) nudge("Type the date first.");
   } : null;
   const nudgeSig = k === "place" ? placedOf(S.at) : card ? String(typed) : "";
+  const overFull = card && tp.some((p, j) => p.length > [2, 2, 4][j]);
   useEffect(() => {
+    if (overFull) return;
     if (typeof S.nudged === "string" && nudgeSig !== S.nudged) {
       api.say(it.say);
       put({ nudged: false });
@@ -5645,7 +5647,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, captured, api,
     const cx = Math.max(G.note.x + pw / 2, Math.min(G.note.x + G.note.w - pw / 2, want));
     return <g>
             <rect x={cx - pw / 2} y={G.note.y} width={pw} height={G.note.h} rx={G.note.h / 2} fill="#FFF1D6" stroke={WD_LIT} strokeWidth={2} filter="url(#wdShadowSoft)" />
-            <text x={cx} y={G.note.y + G.note.h / 2 + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={WD_INK}>{nt}</text>
+            <text x={cx} y={G.note.y + G.note.h / 2 + (lang === "en" ? 11 : 13)} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={WD_INK}>{nt}</text>
           </g>;
   })() : null}
       {k === "warmt" && S.form === "numbers" ? bs.map((b, j) => <text key={"dmy" + j} x={b.x + b.w / 2} y={G.note.y + G.note.h / 2 + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={WD_LIT}>{["DD", "MM", "YYYY"][j]}</text>) : null}
@@ -5653,11 +5655,11 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, captured, api,
     const t1 = `${it.d} ${tx(WD_MONTHS[it.m - 1])} ${it.y}`, t2 = `${wdPad(it.d)}-${wdPad(it.m)}-${it.y}`, room = G.note.w - 24;
     const fz = Math.max(28, Math.min(T.label, Math.floor((room - 40) / ((t1.length + t2.length) * 0.56 + 0.6))));
     const w1 = t1.length * 0.56 * fz, w2 = t2.length * 0.56 * fz, we = 0.6 * fz, tot = w1 + w2 + we + 40;
-    const x0 = G.note.x + Math.max(12, (G.note.w - tot) / 2), yb = G.note.y + G.note.h / 2 + 11;
+    const x0 = G.note.x + Math.max(12, (G.note.w - tot) / 2), yb = G.note.y + G.note.h / 2 + 11, eq = x0 + w1 + 20 + we / 2;
     return <g data-reveals="answer">
-            <text x={x0} y={yb} textAnchor="start" fontSize={fz} fontWeight={700} fill={WD_GREEN_INK}>{t1}</text>
-            <text x={x0 + w1 + 20 + we / 2} y={yb} textAnchor="middle" fontSize={fz} fontWeight={700} fill={WD_GREEN_INK}>=</text>
-            <text x={x0 + w1 + we + 40} y={yb} textAnchor="start" fontSize={fz} fontWeight={700} fill={WD_GREEN_INK}>{t2}</text>
+            <text x={eq - we / 2 - 18} y={yb} textAnchor="end" fontSize={fz} fontWeight={700} fill={WD_GREEN_INK}>{t1}</text>
+            <text x={eq} y={yb} textAnchor="middle" fontSize={fz} fontWeight={700} fill={WD_GREEN_INK}>=</text>
+            <text x={eq + we / 2 + 18} y={yb} textAnchor="start" fontSize={fz} fontWeight={700} fill={WD_GREEN_INK}>{t2}</text>
           </g>;
   })() : null}
 
@@ -5766,11 +5768,11 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v) => v }) {
     const l1 = `${item.d} ${tx(WD_MONTHS[item.m - 1])}`, l2 = String(item.y);
     return <g>
         <rect x={0} y={0} width={w} height={h} rx={14} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={1.5} />
-        <text x={w / 2} y={h / 2 - 4} textAnchor="middle" fontSize={wdFit(l1, w - 24, 34)} fontWeight={700} fill={WD_GREEN_INK}>{l1}</text>
+        <text x={w / 2} y={h / 2 - 4} textAnchor="middle" fontSize={wdFit(l1, w - 44, 34)} fontWeight={700} fill={WD_GREEN_INK}>{l1}</text>
         <text x={w / 2} y={h / 2 + 30} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={WD_GREEN_INK}>{l2}</text>
       </g>;
   }
-  const vals = [wdPad(item.d), wdPad(item.m), String(item.y)], ws = [58, 58, 96], gap = 18, bh = Math.min(56, h - 16);
+  const vals = [wdPad(item.d), wdPad(item.m), String(item.y)], gap = 16, ws = [50, 50, 82], bh = Math.min(52, h - 20);
   let x = (w - (ws[0] + ws[1] + ws[2] + 2 * gap)) / 2;
   const cells = ws.map((cw) => {
     const c = { x, w: cw };
@@ -5781,8 +5783,8 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v) => v }) {
       <rect x={0} y={0} width={w} height={h} rx={14} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={1.5} />
       {cells.map((c, j) => <g key={j}>
           <rect x={c.x} y={(h - bh) / 2} width={c.w} height={bh} rx={8} fill="#FFFFFF" stroke={WD_GREEN} strokeWidth={3} />
-          <text x={c.x + c.w / 2} y={h / 2 + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={WD_GREEN_INK}>{vals[j]}</text>
-          {j < 2 ? <rect x={c.x + c.w + gap / 2 - 6} y={h / 2 - 3} width={12} height={6} rx={3} fill={WD_INK} /> : null}
+          <text x={c.x + c.w / 2} y={h / 2 + 10} textAnchor="middle" fontSize={wdFit(vals[j], c.w - 10, T.label)} fontWeight={700} fill={WD_GREEN_INK}>{vals[j]}</text>
+          {j < 2 ? <rect x={c.x + c.w + gap / 2 - 4} y={h / 2 - 3} width={8} height={6} rx={3} fill={WD_INK} /> : null}
         </g>)}
     </g>;
 }

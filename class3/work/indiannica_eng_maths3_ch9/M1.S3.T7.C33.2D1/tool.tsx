@@ -403,9 +403,9 @@ const ccHas = (name: string) => {
   try { return !!SKINS && typeof TOOL_IMAGES !== "undefined" && !!(TOOL_IMAGES as any)[name]; } catch (e) { return false; }
 };
 /* a scale pill's height: Hindi and Gujarati marks rise above the letters, so their pills are 8 taller */
-const ccPillH = (lang: any) => (lang === "hi" || lang === "gu" ? 60 : 40);
+const ccPillH = (lang: any) => (lang === "hi" || lang === "gu" ? 54 : 40);
 /* the text sits 4 lower in a tall hi/gu pill, so the tall marks (ि ी) clear its top outline */
-const ccPillDy = (ph: number) => (ph > 40 ? 15 : 11);
+const ccPillDy = (ph: number) => (ph > 40 ? 18 : 11);
 function ccJug(k: string, x: number, y: number, w: number, ml: number, o: any = {}) {
   const h = (w * CC_JUG.h) / CC_JUG.w;
   const tx = o.tx || ((v: any) => v);
@@ -450,7 +450,7 @@ function ccJug(k: string, x: number, y: number, w: number, ml: number, o: any = 
         </g>
       )}
       <Skin name="jug" x={x} y={y} w={w} h={h} />
-      {o.ring && <rect x={x - 4} y={y - 4} width={w + 8} height={h + 8} rx={14} fill="none" stroke={CC_AMBER} strokeWidth={5} />}
+      {o.ring && <rect x={x - 4} y={y - 4} width={w + 8} height={h - 4} rx={14} fill="none" stroke={CC_AMBER} strokeWidth={5} />}
       <g data-scale="jug">
         {[250, 500, 750, 1000].map((m) => {
           const fy = ccJugY(m), wx = x + ccWall(fy) * w - 1.5, yy = y + fy * h, L = m === 1000 ? 18 : 12;
@@ -962,7 +962,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL, st
   const didOnce = (on: string, e: number) => { if (sentDid.current === e) return; sentDid.current = e; api.did(on); };
 
   /* the geometry, in Work units */
-  const JH = (JW * CC_JUG.h) / CC_JUG.w, JB = 302, JT = JB - JH;
+  const JH = (JW * CC_JUG.h) / CC_JUG.w, JB = 306, JT = JB - JH;
   const jx = (j: number) => ox + J0 + j * JP;
   const jcx = (j: number) => jx(j) + JW * 0.4;
   const rowC = ox + J0 + (3 * JP + JW) / 2;
@@ -1174,13 +1174,15 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL, st
     const chipW = (t: string) => Math.max(200, ccTW(t, 32) + 28);
     const twoRows = JP < chipW("1,000 " + tx("mL")) + 16;
     /* rows 20 apart (16 seen between the 4-wide outlines), the key 19 below */
-    const chipY = (j: number) => (twoRows && j % 2 === 1 ? 378 : 310);
+    const chipY = (j: number) => (twoRows && j % 2 === 1 ? 379 : 311);
     const chipX = (j: number, cw: number) => Math.max(ox + 4, Math.min(bw - 4 - cw, jcx(j) - cw / 2));
     /* the unit fact, two texts split at the "=" (each a short label): "1 L =" | "1,000 mL" */
     const fL = isLit ? "1 " + tx("L") + " =" : "1,000 " + tx("mL") + " =";
     const fR = isLit ? "1,000 " + tx("mL") : "1 " + tx("L");
     const wL = ccTW(fL, 40), wR = ccTW(fR, 40);
     const fw = wL + wR + 14 + 64;
+    /* Hindi and Gujarati marks rise above their letters: a taller ring with the text lower, the jug row below it */
+    const tallRing = lang === "hi" || lang === "gu";
     const fc = Math.min(rowC, kx - fw / 2 - 6);
     const fSplit = fc + (wL - wR) / 2;
     const keyId = isLit ? "pour" : "group";
@@ -1195,9 +1197,9 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL, st
         {ccPic("box", it.box, ox + 140, JB, 200, 170)}
         {lang === "hi" || lang === "gu" ? ccTag("given", gx, 62, gw, 60, given, CC_BLUE, 32) : ccTag("given", gx, 66, gw, 52, given, CC_BLUE, 32)}
         <g data-scale="fact">
-          <rect x={fc - fw / 2} y={4} width={fw} height={52} rx={26} fill={tint(CC_VERM, 0.9)} stroke={CC_VERM} strokeWidth={5} />
-          <text x={fSplit - 7} y={44} textAnchor="end" fontSize={T.prompt} fontWeight={700} fill={shade(CC_VERM, 0.45)}>{fL}</text>
-          <text x={fSplit + 7} y={44} textAnchor="start" fontSize={T.prompt} fontWeight={700} fill={shade(CC_VERM, 0.45)}>{fR}</text>
+          <rect x={fc - fw / 2} y={4} width={fw} height={tallRing ? 62 : 52} rx={tallRing ? 31 : 26} fill={tint(CC_VERM, 0.9)} stroke={CC_VERM} strokeWidth={5} />
+          <text x={fSplit - 7} y={tallRing ? 56 : 44} textAnchor="end" fontSize={T.prompt} fontWeight={700} fill={shade(CC_VERM, 0.45)}>{fL}</text>
+          <text x={fSplit + 7} y={tallRing ? 56 : 44} textAnchor="start" fontSize={T.prompt} fontWeight={700} fill={shade(CC_VERM, 0.45)}>{fR}</text>
         </g>
         {[0, 1, 2, 3].map((j) => {
           const ml = j < fill ? (j < full ? 1000 : left) : 0;
@@ -1277,7 +1279,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL, st
     /* the key sits under the container; the jar's capacity tag stands above its top-left corner, the jug's above its middle */
     const capX = it.big === "jug" ? J4.wx + J4.ww * 0.4 : J4.jx;
     const capL = jb ? Math.max(ox + 4, J4.jx - jb.w / 2 + 40 - capW) : capX - capW / 2;
-    const capY = jb ? Math.max(0, J4.jb - jb.h - 90) : 4;
+    const capY = jb ? Math.max(0, J4.jb - jb.h - 98) : 4;
     const unitW = it.small === "glass" ? (pours === 1 ? "glass" : "glasses") : pours === 1 ? "cup" : "cups";
     const res = (warm || free ? pours : N) + " " + tx(unitW);
     const ans = tx("Answer") + ": " + N + " " + tx(it.small === "glass" ? "glasses" : "cups");
@@ -1325,6 +1327,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL, st
   );
 }
 
+/* one canvas, reused, to measure a thumbnail's text in the stage's own font */
+const ccMeasure: any = { c: null };
 /* the summary page's small drawing of the child's last right answer in a phase (r24: `it` is the item) */
 function Thumb({ result, it, C, w, h, lang = "en", tx = (v: any) => v }: any) {
   const last = result && result.last;
@@ -1341,29 +1345,41 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v: any) => v }: any) {
   else { const v = num(last.value); lines = [String(v), U(item.small === "glass" ? (v === 1 ? "glass" : "glasses") : v === 1 ? "cup" : "cups").trim()]; }
   lines = lines.filter((s) => s);
   /* the picture takes 48 (x 8 to 56), so the amount gets the rest of the row: ONE line at 32 when it fits, else one line at 28
-     (two lines of Hindi or Gujarati cannot clear a 76-tall row), the text never nearer the right edge than 12. The width estimate
-     here is closer than ccTW: Latin 0.53 em, Devanagari / Gujarati 0.5 em (FIT_KEY.devEm), a space or comma 0.28 */
-  const s = Math.min(h - 16, 60), iy = (h - s) / 2, tx0 = 68, room = w - tx0 - 12;
+     (two lines of Hindi or Gujarati cannot clear a 76-tall row), the text never nearer the right edge than 14. The width is MEASURED
+     in the stage's own font (a canvas, 4 % to spare); where that is not possible, estimated: Latin 0.53 em, Devanagari / Gujarati
+     0.56 em, a space or comma 0.28 */
+  const s = Math.min(h - 16, 60), iy = (h - s) / 2, tx0 = 52, room = w - tx0 - 10;
   const one = lines.join(" ");
-  const tw = (t: string, size: number) => {
+  const est = (t: string, size: number) => {
     let n = 0;
     for (const ch of t) {
       const c = ch.codePointAt(0) || 0;
       if ((c >= 0x900 && c <= 0x902) || c === 0x93c || (c >= 0x941 && c <= 0x948) || c === 0x94d || (c >= 0xa81 && c <= 0xa82) || c === 0xabc || (c >= 0xac1 && c <= 0xac8) || c === 0xacd) continue;
-      n += ch === " " || ch === "," ? 0.28 : c >= 0x900 ? 0.5 : 0.53;
+      n += ch === " " || ch === "," ? 0.28 : c >= 0x900 ? 0.56 : 0.53;
     }
     return n * size;
+  };
+  const tw = (t: string, size: number) => {
+    try {
+      const svg = document.querySelector("svg");
+      const fam = svg ? getComputedStyle(svg).fontFamily : "";
+      const cv: any = ccMeasure.c || (ccMeasure.c = document.createElement("canvas"));
+      const g = cv.getContext("2d");
+      if (!g || !fam) return est(t, size);
+      g.font = "700 " + size + "px " + fam;
+      return g.measureText(t).width * 1.02;
+    } catch (e) { return est(t, size); }
   };
   const fit1 = tw(one, T.label) <= room;
   const fit28 = !fit1 && tw(one, T.micro) <= room;
   /* each phase its own small picture: a full litre jug (phase 1), a jug with a part ringed (phase 2), an L | mL board (phase 3), cups (phase 4) */
   const jugMini = (x: number, lvl: number, ring: boolean) => (
     <g>
-      <path d={`M ${x + 5} ${iy} L ${x + 33} ${iy} L ${x + 38} ${iy + s} L ${x} ${iy + s} Z`} fill="#FFFFFF" fillOpacity={0.5} />
-      <path d={`M ${x + 5 * lvl} ${iy + s * (1 - lvl)} L ${x + 38 - 5 * lvl} ${iy + s * (1 - lvl)} L ${x + 38} ${iy + s} L ${x} ${iy + s} Z`} fill={CC_WATER} fillOpacity={0.6} />
-      <path d={`M ${x + 5} ${iy} L ${x + 33} ${iy} L ${x + 38} ${iy + s} L ${x} ${iy + s} Z`} fill="none" stroke={shade(CC_GLASS, 0.3)} strokeWidth={3} strokeLinejoin="round" />
-      <path d={`M ${x + 34} ${iy + s * 0.2} C ${x + 47} ${iy + s * 0.2} ${x + 47} ${iy + s * 0.6} ${x + 36} ${iy + s * 0.62}`} fill="none" stroke={shade(CC_GLASS, 0.3)} strokeWidth={3} />
-      {ring && <rect x={x - 3} y={iy - 3} width={52} height={s + 6} rx={9} fill="none" stroke={CC_AMBER} strokeWidth={3} />}
+      <path d={`M ${x + 3} ${iy} L ${x + 25} ${iy} L ${x + 28} ${iy + s} L ${x} ${iy + s} Z`} fill="#FFFFFF" fillOpacity={0.5} />
+      <path d={`M ${x + 3 * lvl} ${iy + s * (1 - lvl)} L ${x + 28 - 3 * lvl} ${iy + s * (1 - lvl)} L ${x + 28} ${iy + s} L ${x} ${iy + s} Z`} fill={CC_WATER} fillOpacity={0.6} />
+      <path d={`M ${x + 3} ${iy} L ${x + 25} ${iy} L ${x + 28} ${iy + s} L ${x} ${iy + s} Z`} fill="none" stroke={shade(CC_GLASS, 0.3)} strokeWidth={3} strokeLinejoin="round" />
+      <path d={`M ${x + 25} ${iy + s * 0.2} C ${x + 35} ${iy + s * 0.2} ${x + 35} ${iy + s * 0.6} ${x + 26} ${iy + s * 0.62}`} fill="none" stroke={shade(CC_GLASS, 0.3)} strokeWidth={3} />
+      {ring && <rect x={x - 3} y={iy - 3} width={40} height={s + 6} rx={9} fill="none" stroke={CC_AMBER} strokeWidth={3} />}
     </g>
   );
   let pic: any = null;
@@ -1371,18 +1387,18 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v: any) => v }: any) {
   else if (kind === "grp") pic = jugMini(9, 0.35, true);
   else if (kind === "col") pic = (
     <g>
-      <rect x={8} y={iy} width={48} height={s} rx={7} fill="#FFFFFF" stroke={shade(C.rule, 0.3)} strokeWidth={2.5} />
-      <line x1={26} y1={iy + 4} x2={26} y2={iy + s - 4} stroke={C.ink} strokeWidth={2.5} />
-      <line x1={11} y1={iy + s * 0.68} x2={53} y2={iy + s * 0.68} stroke={C.ink} strokeWidth={2.5} />
-      <rect x={11} y={iy + s * 0.74} width={12} height={s * 0.2} rx={3} fill={tint(CC_GREEN, 0.5)} />
-      <rect x={29} y={iy + s * 0.74} width={24} height={s * 0.2} rx={3} fill={tint(CC_GREEN, 0.5)} />
+      <rect x={8} y={iy} width={36} height={s} rx={7} fill="#FFFFFF" stroke={shade(C.rule, 0.3)} strokeWidth={2.5} />
+      <line x1={20} y1={iy + 4} x2={20} y2={iy + s - 4} stroke={C.ink} strokeWidth={2.5} />
+      <line x1={11} y1={iy + s * 0.68} x2={41} y2={iy + s * 0.68} stroke={C.ink} strokeWidth={2.5} />
+      <rect x={11} y={iy + s * 0.74} width={7} height={s * 0.2} rx={3} fill={tint(CC_GREEN, 0.5)} />
+      <rect x={23} y={iy + s * 0.74} width={18} height={s * 0.2} rx={3} fill={tint(CC_GREEN, 0.5)} />
     </g>
   );
   else pic = (
     <g>
       {[0, 1, 2].map((i) => item.small === "glass"
-        ? <path key={i} d={`M ${8 + i * 16} ${iy + s * 0.3} L ${22 + i * 16} ${iy + s * 0.3} L ${20 + i * 16} ${iy + s} L ${10 + i * 16} ${iy + s} Z`} fill={CC_JUICE} fillOpacity={0.7} stroke={shade(CC_JUICE, 0.55)} strokeWidth={2} />
-        : <path key={i} d={`M ${8 + i * 16} ${iy + s * 0.3} L ${22 + i * 16} ${iy + s * 0.3} L ${20 + i * 16} ${iy + s} L ${10 + i * 16} ${iy + s} Z`} fill="#F4C542" stroke="#9A7410" strokeWidth={2} />)}
+        ? <path key={i} d={`M ${8 + i * 12} ${iy + s * 0.3} L ${18 + i * 12} ${iy + s * 0.3} L ${16 + i * 12} ${iy + s} L ${10 + i * 12} ${iy + s} Z`} fill={CC_JUICE} fillOpacity={0.7} stroke={shade(CC_JUICE, 0.55)} strokeWidth={2} />
+        : <path key={i} d={`M ${8 + i * 12} ${iy + s * 0.3} L ${18 + i * 12} ${iy + s * 0.3} L ${16 + i * 12} ${iy + s} L ${10 + i * 12} ${iy + s} Z`} fill="#F4C542" stroke="#9A7410" strokeWidth={2} />)}
     </g>
   );
   return (

@@ -1,36 +1,9 @@
-STATUS: ok (review round of 5 reports applied in one pass; full check 98 pass 0 warn 0 fail 4 info, ported)
-SLOTS: M1.S2.T6.C28.2D1 Calendar Explorer (class 3 ch 10)
-FILES: class3/work/indiannica_eng_maths3_ch10/M1.S2.T6.C28.2D1/tool.tsx; pair class3/output-preview/indiannica_eng_maths3_ch10/M1.S2.T6.C28.2D1/
-CHECKS: full 98/0/0 on run 2 of this message. Run 1 failed hint-key: my new window listeners took the in-page check's scripted keys and presses as real ones, so they now count trusted events only. Quick 32/0/0; tr-coverage passes; pack not rebuilt.
-CHECKS (real input, playkit), all pass:
-- Keyboard only in P1-P4: Enter x3 through the steps, then the answer typed, stays locked and shows the nudge.
-- Q1.2: arrows Jan to Dec open the gate; 11 cards tapped 1.1 s apart all count; a tap on the dim Answer key shows the nudge.
-- Steps: Grid view and Last month give no hint; step 3 moves on only onto Feb 2026. Two Enters 50 ms apart = one step.
-- Wins after a miss are complete: Q4.1 4 rows + "28 days"; Q3.2 lit to 2048, no dashed years.
-- Q4.3 keeps the 1st's ring and hops and adds the 24th's. P4 warm-up has no stray ring.
-- All 12 ask frames clean; only Jan/Mar 31 from the steps and April 30 (your S1) show.
-FAILURES: none open.
-DECISIONS:
-- 1 done: a real Enter or Space that performs a guide step arms that phase's first question. toolApi sends no keydown, so AI mode is never gated.
-- 2 done:
-  - Ghost years sit below the ruler and are cleared at the win; the date invite is the cell plus 3.
-  - Win chips are sized to their words ("Wednesday", "4 અઠવાડિયાં").
-  - Thumbnail text starts after a per-phase icon and is fitted.
-  - Heading rows are 44 (mini page 40), with the hi/gu baseline raised.
-  - "ઑક્ટો" drops to 28 only where it touches; P2 win rings no longer touch.
-- 3 done: January counts at Q1.2's start; 12 nudge lines in hi/gu; Grid view and arrows are never a wrong act; taps during an act are queued (FIFO, no double act); a doubled real Enter does one step.
-- 4 done: the win view finishes every route and clears the trace. 5 done: second ring (id date-end). 6 done: stray ring removed. 7 done: Q4.3 winMs 5200.
-- 8 done:
-  - Hop arcs run in the cell margin. Rivets clear the titles. Strip cards are taller and the tag is clear of the card.
-  - Per-phase thumbnails and "Year 2045". A free-play invite on the 1st. Bigger P2 marks.
-  - A one-colour correction page. Dim inert Q1.1 cards. Counting numbers at 32. One label per marker year.
-  - Rounded wrist clip plus a tapered fallback.
-  - Hindi lines shortened; मुक्त खेल; the doubled पर fixed in hi and gu.
-- 8 not done:
-  - The correction page still covers the unused fist while the keypad is open (the maths must-fix keeps it visible; it goes on the next act).
-  - The mini page keeps Su..Sa (52-wide cells).
-  - The strip beside the counter with the keypad shut and the Grid view look are unchanged.
-  - The photo's own jagged thumb edge is unchanged.
-- 9 done (hi/gu): closing "A week has 7 days, and a year has 365 days, a little more than 52 weeks."; learned "You learned: 7 days make a week, and a year has 365 days."
-RISKS: none new; runtime items untouched, as you decided.
-ESCALATE: none.
+STATUS: ok (final list 1-6 applied; full check 98 pass 0 warn 0 fail, ported; 1 full run of 6)
+1 keyboard Q1.1: rows did count, but each press lost focus and the trusted-Enter nudge fired over it. Now a real Enter/Space on the focused `week` control counts the next free row (queued as "free", so quick presses during the act are not lost) and keeps focus; when every full row is counted, Enter leaves the grid and goes on to Answer; the nudge never fires on a key aimed at a board control. Probed by real keys: Q1.1 4 presses (Enter/Space, also 4 quick presses) -> Answer live -> 28 win; Q1.2 by Next-month x11 or Flip year -> 12 win; Q1.3 Count weeks -> 365 win. The runtime Key still blurs after each press (Next-month arrow: re-Tab per page; Flip year is one press), left as the runtime's.
+2 p1-win: the 4 week rows stand in one column (y 232 + k*48); chip "28 days" clear of every label (en/hi/gu shots). 52-week grid lowered to y 246, so "365 days" clears its 4th block (p1-end shot).
+3 p4-win: counter rows lowered 12 (y 68 + k*54); "4 અઠવાડિયાં" chip now clears "7 દિવસ" (gu, hi, en shots).
+4 p2: chip month/days labels squeezed into their room (textLength when the estimate is over), "ઑક્ટો" fits; win rings sit on each chip's own outline (inset 2), gap 6 between Sep and Oct.
+5 Thumb text estimate 0.56 -> 0.66 (a word over its room is squeezed by textLength), so "Wednesday" fits; p1-end as in 2.
+6 After a card pick every free slot is marked (its own outline turns blue and tinted; probed by finger: 9 slots marked, gaps kept); free-play prev dims at January 2000 and next at December 2099.
+Mouse and finger: Q1.1 rows by real mouse and real finger (partial row refused, 4 full rows -> Answer live -> 28 win). No new wording, no TR change. Pack not rebuilt.
+Question: keep the runtime's blur after a Key press (one Tab per arrow page) or add a refocus in the tool for the month arrows?

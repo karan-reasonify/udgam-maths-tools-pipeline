@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S3.T6.C27.2D1 · pour_it · Pour It — standalone build 2026-10-29, source d2afbc80:759575.
+/* M1.S3.T6.C27.2D1 · pour_it · Pour It — standalone build 2026-10-29, source 87b0dcaf:759560.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -5282,6 +5282,18 @@ const piLabel = (id, show, tx) => {
   const c = MODEL.cap[id];
   return show === "L" ? c / 1e3 + " " + tx("L") : indian(c) + " " + tx("mL");
 };
+const piFit = (maxW, start) => (el) => {
+  if (!el || !el.getComputedTextLength) return;
+  try {
+    let fs = start;
+    el.setAttribute("font-size", String(fs));
+    while (el.getComputedTextLength() > maxW && fs > T.micro) {
+      fs -= 1;
+      el.setAttribute("font-size", String(fs));
+    }
+  } catch (e) {
+  }
+};
 function piFact(cx, cy, tx) {
   const a = tx("1 L ="), b = tx("1,000 mL"), wa = a.length * T.label * 0.56, wb = b.length * T.label * 0.56, wt = wa + 12 + wb;
   const fit = (g) => {
@@ -6368,7 +6380,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       }
               {!p && !dr && Math.abs(tagRow[s.id] - s.cx) > 24 && <line x1={s.cx} y1={s.yb + 18} x2={tagRow[s.id]} y2={s.yb + 46} stroke={PI_C.blue} strokeWidth={3} strokeDasharray="2 6" strokeLinecap="round" />}
               {!p && !dr && piTag(tagRow[s.id], s.yb + 70, piLabel(s.obj, s.show, tx), PI_C.blue, "#FFFFFF", tagSize)}
-              {p && <text x={bx.x + 92} y={bx.y + 41} dominantBaseline="central" fontSize={T.label} fontWeight={700} fill={PI_C.blue}>{piLabel(s.obj, s.show, tx)}</text>}
+              {
+        /* the capacity in its bin row: 30, stepped down to fit 12+ inside the bin's outline in every language */
+      }
+              {p && <text ref={piFit(bx.w - 104, T.label - 2)} x={bx.x + 92} y={bx.y + 41} dominantBaseline="central" fontSize={T.label - 2} fontWeight={700} fill={PI_C.blue}>{piLabel(s.obj, s.show, tx)}</text>}
               {sel && !p && <rect x={bx.x} y={bx.y - 14} width={bx.w} height={bx.h} rx={18} fill="none" stroke={PI_C.blue} strokeWidth={5} pointerEvents="none" />}
             </g>;
     })}
@@ -6453,7 +6468,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
             {
       /* a small ring round the long tick only, clear of the number pills */
     }
-            {inviteOn === id && <Invite x={piEdgeL(Jd, y) + (v === 500 ? -26 : 6)} y={y} r={22} C={C} />}
+            {inviteOn === id && <Invite x={piEdgeL(Jd, y) + (v === 500 ? -18 : 6)} y={y} r={22} C={C} />}
           </g>;
   })}
       {
@@ -6507,18 +6522,16 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v) => v }) {
   const v = lastR.value;
   const word = (s) => lang === "en" || TR[lang] && TR[lang][s] ? tx(s) : "";
   let text = "";
-  let two = null;
   if (item.choices) {
     const c = item.choices.find((x) => x.id === String(v));
     text = c ? word(c.label) + (item.kind === "pair" && word("mL") ? ": " + word("mL") : "") : "";
-    if (c && item.kind === "pair" && word("mL")) two = [word(c.label), word("mL")];
-  } else if (item.parts) text = (slotPartsOf(v, 1)[0] + " " + word(item.parts[0].unit === "teacups" ? "cups" : item.parts[0].unit)).trim();
+  } else if (item.parts) text = (slotPartsOf(v, 1)[0] + " " + word(item.parts[0].unit === "teacups" ? "cups" : item.parts[0].unit)).trim();
   else if (item.kind === "tag") text = word(String(v));
   else if (item.kind === "sort") text = word("sorted");
   else text = String(v);
   const lvl = { half: 0.5, about: 0.5 };
   const OBJ = { unit: "cup", tag: "bucket", pair: "packet", count: "v500", share: "cup", read: "teacup", about: "carton", glasses: "glass", pan: "teacup" };
-  const bx = 10, bw = 56, by = 10, bh = h - 20, cid = "piTh" + String(item.qid || item.kind).replace(/[^A-Za-z0-9]/g, "_");
+  const bx = 4, bw = 56, by = 10, bh = h - 20, cid = "piTh" + String(item.qid || item.kind).replace(/[^A-Za-z0-9]/g, "_");
   const ob = OBJ[item.kind], oh = ob ? Math.min(bh, bw / (PI_ASPECT[ob] || 0.7)) : 0;
   const drawing = ob ? <g transform={`translate(${bx + bw / 2} ${by + bh - (bh - oh) / 2})`}>{piObj(ob, oh, true)}</g> : item.kind === "sort" ? <g>{[0, 1, 2].map((k) => <g key={k}>
         <rect x={bx + k * 24} y={by + bh * 0.35} width={20} height={bh * 0.65} rx={4} fill="#F5EAD9" stroke={C.ink} strokeWidth={2} />
@@ -6530,21 +6543,11 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v) => v }) {
         <polygon points={piProfile(bx, by, bw, bh)} fill="none" stroke={PI_C.glassE} strokeWidth={2.5} strokeLinejoin="round" />
         <path d={`M ${bx + 0.62 * bw} ${by + 0.2 * bh} C ${bx + 0.98 * bw} ${by + 0.18 * bh} ${bx + 0.98 * bw} ${by + 0.62 * bh} ${bx + 0.69 * bw} ${by + 0.66 * bh}`} fill="none" stroke={PI_C.glassE} strokeWidth={4} strokeLinecap="round" />
       </g>;
-  const tx0 = bx + bw + 12, cx = (tx0 + w - 10) / 2, room = w - tx0 - 34;
-  const fits = (s) => String(s).length * T.label * 0.62 <= room;
-  if (!two && !fits(text) && String(text).indexOf(" ") > 0) {
-    const k = String(text).lastIndexOf(" ");
-    two = [String(text).slice(0, k), String(text).slice(k + 1)];
-  }
-  if (two && fits(text)) two = null;
-  const fsOf = (s) => fits(s) ? T.label : T.micro;
+  const tx0 = bx + bw + 6, room = w - tx0 - 12, cx = tx0 + room / 2;
   return <g>
       <rect x={0} y={0} width={w} height={h} rx={14} fill="#FFFFFF" stroke={C.rule} strokeWidth={1.5} />
       {drawing}
-      {two ? <g>
-        <text x={cx} y={h / 2 - 18} textAnchor="middle" dominantBaseline="central" fontSize={fsOf(two[0])} fontWeight={700} fill={C.ink}>{two[0]}</text>
-        <text x={cx} y={h / 2 + 18} textAnchor="middle" dominantBaseline="central" fontSize={fsOf(two[1])} fontWeight={700} fill={C.ink}>{two[1]}</text>
-      </g> : <text x={cx} y={h / 2} textAnchor="middle" dominantBaseline="central" fontSize={fsOf(text)} fontWeight={700} fill={C.ink}>{text}</text>}
+      <text ref={piFit(room, T.label - 2)} x={cx} y={h / 2} textAnchor="middle" dominantBaseline="central" fontSize={T.label - 2} fontWeight={700} fill={C.ink}>{text}</text>
     </g>;
 }
 function PourIt(props) {
