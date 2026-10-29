@@ -1669,6 +1669,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   /* a source container, standing at home or tipped over the jug while it pours */
   const drawSource = (s: any) => {
     const moving = V.moving === s.id;
+    if (s.hideOpen && box && box.open && !moving) return null;
     const aspect = PI_ASPECT[s.obj] || 0.7;
     const tgtJ = J ? { x: J.x + J.bw / 2 + 50, y: brimOf(J) - 4 } : { x: s.cx, y: s.yb - s.h };
     const ps = Math.min(1, 140 / s.h);

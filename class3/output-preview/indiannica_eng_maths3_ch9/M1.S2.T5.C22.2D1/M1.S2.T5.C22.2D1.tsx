@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S2.T5.C22.2D1 · weight_converter · Weight Converter — standalone build 2026-10-29, source 2ed00e3a:702174.
+/* M1.S2.T5.C22.2D1 · weight_converter · Weight Converter — standalone build 2026-10-29, source ab6990d2:702656.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -5246,15 +5246,15 @@ function wcItemArt(k, sk, m, x, y, maxW, maxH) {
   const spots = n === 1 ? [[(maxW - mw) / 2, (maxH - mh) / 2]] : n === 2 ? [[0, (maxH - mh) / 2], [maxW - mw, (maxH - mh) / 2]] : [[0, maxH - mh], [maxW - mw, maxH - mh], [(maxW - mw) / 2, 0]];
   return <g key={k}>{spots.map((p, i) => wcMangoShape(k + i, x + p[0], y + p[1], mw, mh))}</g>;
 }
-function wcG1(W2, kg, g, cw, pcw, plateW, plateH = 64, tagB = 50, chipH = 48) {
-  const bodyH = Math.max(88, plateH + 16), room = 408 - (tagB + 16 + chipH) - 22;
+function wcG1(W2, kg, g, cw, pcw, plateW, plateH = 64, tagB = 50, chipH = 48, sw = 0) {
+  const bodyH = Math.max(88, plateH + 16), room = 408 - (tagB + 22 + chipH) - 22;
   const gh = Math.min(149, room - bodyH), gw = Math.round(gh * 0.752), ph = 124, pw = Math.round(ph * 86 / 140);
-  const slack = room - bodyH - gh, chipB = tagB + 16 + chipH + Math.floor(slack / 2), ty = chipB + 6, panY = ty + gh;
+  const slack = room - bodyH - gh, chipB = tagB + 22 + chipH + Math.floor(slack / 2), ty = chipB + 6, panY = ty + gh;
   const pitch = Math.max(gw + 34, cw + 20), gap = pitch - gw;
   const over = Math.max(0, (cw - gw) / 2);
   const row = kg * gw + (kg - 1) * gap, tcR = row / 2;
   const bodyW = Math.min(W2 - 16, Math.max(300, plateW + 72));
-  const toteCxR = g > 0 ? Math.max(row + 24 + pw / 2, tcR + bodyW / 2 + 16 + pcw - pw / 2) : 0;
+  const toteCxR = g > 0 ? Math.max(row + 24 + pw / 2, row - gw / 2 + sw / 2 + 20 + pw / 2, tcR + bodyW / 2 + 16 + pcw - pw / 2) : 0;
   const chipLR = g > 0 ? Math.max(tcR + bodyW / 2 + 16, toteCxR + pw / 2 - pcw) : 0;
   const rightR = Math.max(row + over, g > 0 ? Math.max(toteCxR + pw / 2, chipLR + pcw) : 0);
   const span = over + rightR, cx = W2 / 2, x0 = cx - span / 2 + over, tc = x0 + tcR;
@@ -5262,7 +5262,7 @@ function wcG1(W2, kg, g, cw, pcw, plateW, plateH = 64, tagB = 50, chipH = 48) {
   const packet = g > 0 ? { x: x0 + toteCxR - pw / 2, y: panY - ph, w: pw, h: ph } : null;
   const objR = packet ? packet.x + pw : x0 + row;
   const pL = Math.max(8, x0 - 30), pR = Math.min(W2 - 8, objR + 30);
-  const fits = gh >= 128 && span <= W2 - 32 && bodyW < W2 - 16;
+  const fits = gh >= 120 && span <= W2 - 32 && bodyW < W2 - 16;
   return {
     cx,
     sc: tc,
@@ -5305,8 +5305,8 @@ function wcG2(W2, grams, tw) {
 }
 function wcBoard(x0, y0, R, narrow = false, big = false) {
   const sw = big ? 84 : narrow ? 56 : 64, kw = big ? 196 : narrow ? 130 : 150, gw2 = big ? 300 : narrow ? 200 : 230;
-  const cr = big ? 48 : 52, rh = big ? 88 : 80, ah = big ? 96 : 92;
-  const carryY = y0 + 56, row0 = carryY + cr;
+  const hb = big ? 54 : 44, hr = big ? 70 : 56, cr = big ? 48 : 52, rh = big ? 84 : 80, ah = big ? 90 : 92;
+  const carryY = y0 + hr, row0 = carryY + cr;
   const rowY = (i) => row0 + i * rh, ruleY = row0 + R * rh + 8, ansY = ruleY + 10;
   return {
     x: x0,
@@ -5321,6 +5321,8 @@ function wcBoard(x0, y0, R, narrow = false, big = false) {
     rowY,
     ruleY,
     ansY,
+    hb,
+    hr,
     /* fonts: digits, headings; offsets: a digit's baseline in its row, an empty cell's height, the answer cells' height and
        baseline, the column lines' end, a mark's baseline under the rule, the carried 1's shift, the grams' right padding,
        the strike's half width, ends and the grams strike's reach */
@@ -5328,9 +5330,9 @@ function wcBoard(x0, y0, R, narrow = false, big = false) {
     fh: big ? T.prompt : T.label,
     dy: big ? 70 : 60,
     eh: big ? 68 : 60,
-    ch: big ? 80 : 68,
-    cd: big ? 70 : 60,
-    ll: big ? 92 : 80,
+    ch: big ? 76 : 68,
+    cd: big ? 68 : 60,
+    ll: big ? 86 : 80,
     md: big ? 42 : 48,
     k1: big ? 52 : 40,
     gp: big ? 40 : 34,
@@ -5563,7 +5565,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
     wcChipW(plateTxt, s),
     Math.round(16 + wcLineH(plateTxt) * s),
     2 + Math.round(16 + wcLineH(tx("kg")) * T.label),
-    Math.round(16 + wcLineH(wcGr(1e3, tx)) * T.label)
+    Math.round(16 + wcLineH(wcGr(1e3, tx)) * T.label),
+    wcChipW(`1 ${tx("kg")}`, T.label)
   );
   const plateSz = kind === "kg" ? [T.display, T.xl, T.speech].find((s) => g1(Math.min(Wd, 900), s).fits) || T.speech : T.speech;
   const G1 = kind === "kg" ? g1(Wd, plateSz) : null;
@@ -5572,7 +5575,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
   const R = rows.length;
   const BW = Math.min(Wd, 900), BC = BW / 2;
   const ix0 = BC - 426, itemH = R === 3 ? 124 : 150;
-  const B = kind === "col" ? wcBoard(BC - 301, 12, R, false, true) : kind === "shop" ? wcBoard(ix0 + 444, 8, R, true) : null;
+  const B = kind === "col" ? wcBoard(BC - 301, 6, R, false, true) : kind === "shop" ? wcBoard(ix0 + 444, 8, R, true) : null;
   const itemBox = (i) => ({ x: ix0, y: 24 + i * (itemH + 16), w: 420, h: itemH });
   const keyY = 424, keyH = 84;
   const cols = R ? wcCols(rows, it.op) : null;
@@ -5850,14 +5853,14 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
                   {(!warm || S.countDone) && wcChip("ch" + i, t.x + t.w / 2, G1.chipB, "c", "b", "fact", wcGr(1e3, tx), T.label, 9999)}
                 </g>}
               {warm && on === "count" && opened && (reg("count", t.x, t.y, t.w, t.h, i), <Hit key={"h" + i} id="count" x={t.x} y={t.y} w={t.w} h={t.h} label={tx("Count this tray")} onPress={() => press("count", true, i)} />)}
-              {lit && <rect pointerEvents="none" x={t.x - 6} y={t.y - 6} width={t.w + 12} height={t.h + 12} rx={18} fill="none" stroke="#E69F00" strokeWidth={6} />}
+              {lit && <rect pointerEvents="none" x={t.x + 3} y={t.y + 3} width={t.w - 6} height={t.h - 6} rx={12} fill="none" stroke="#E69F00" strokeWidth={6} />}
             </g>;
     })}
         {warm && on === "count" && (invite = inviteBox(G1.trays[0].x, G1.trays[0].y, G1.trays[0].w, G1.trays[0].h), null)}
         {G1.packet && <g>
             {wcToteArt("pk", G1.packet.x, G1.packet.y, G1.packet.w, G1.packet.h)}
             {wcChip("pkt", G1.toteChipX, G1.toteChipY, "l", "t", "second", pkText, T.label, 9999)}
-            {fix && fix.pk && <rect pointerEvents="none" x={G1.packet.x - 6} y={G1.packet.y - 6} width={G1.packet.w + 12} height={G1.packet.h + 12} rx={16} fill="none" stroke="#E69F00" strokeWidth={6} />}
+            {fix && fix.pk && <rect pointerEvents="none" x={G1.packet.x - 6} y={G1.packet.y - 6} width={G1.packet.w + 12} height={G1.packet.h + 3} rx={16} fill="none" stroke="#E69F00" strokeWidth={6} />}
           </g>}
         {keys}
       </g>;
@@ -5923,10 +5926,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, step, ste
           {kLit && <rect x={B.kg.x + 4} y={top} width={B.kg.w - 8} height={colH} rx={10} fill={WC_LIT} stroke="#E69F00" strokeWidth={3} />}
         </g>
         <g data-scale="headings">
-          <text x={kcx} y={B.y + 44} textAnchor="middle" fontSize={B.fh} fontWeight={700} fill="#2B2B2B">{tx("kg")}</text>
-          <text x={B.g.x + B.g.w / 2} y={B.y + 44} textAnchor="middle" fontSize={B.fh} fontWeight={700} fill="#2B2B2B">{tx("g")}</text>
+          <text x={kcx} y={B.y + B.hb} textAnchor="middle" fontSize={B.fh} fontWeight={700} fill="#2B2B2B">{tx("kg")}</text>
+          <text x={B.g.x + B.g.w / 2} y={B.y + B.hb} textAnchor="middle" fontSize={B.fh} fontWeight={700} fill="#2B2B2B">{tx("g")}</text>
         </g>
-        <line x1={B.x + 10} y1={B.y + 56} x2={B.x + B.w - 10} y2={B.y + 56} stroke="#2B2B2B" strokeWidth={2} />
+        <line x1={B.x + 10} y1={B.y + B.hr} x2={B.x + B.w - 10} y2={B.y + B.hr} stroke="#2B2B2B" strokeWidth={2} />
         <line x1={B.kg.x} y1={B.y + 10} x2={B.kg.x} y2={B.ansY + B.ll} stroke="#C9BCA6" strokeWidth={2} />
         <line x1={B.g.x} y1={B.y + 10} x2={B.g.x} y2={B.ansY + B.ll} stroke="#2B2B2B" strokeWidth={3} />
         {rows.map((r, i) => {

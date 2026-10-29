@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S3.T6.C27.2D1 · pour_it · Pour It — standalone build 2026-10-29, source 87b0dcaf:759560.
+/* M1.S3.T6.C27.2D1 · pour_it · Pour It — standalone build 2026-10-29, source 9d81bd2a:760854.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -4404,7 +4404,10 @@ function StartArt({ box, C, lang, tx = (v) => v }) {
       <rect x={60} y={316} width={box.w - 120} height={4} rx={2} fill={PI_C.tableDark} opacity={0.35} />
       {piJug(J, 600, { tx, labels: {} })}
       <g transform="translate(640 306)">{piObj("cup", 150, false)}</g>
-      <g transform="translate(800 306)">{piObj("bottle", 270, false)}</g>
+      {
+    /* the 1 L bottle as tall as the 1 L jug (the owner: equal capacity, equal size) */
+  }
+      <g transform="translate(800 306)">{piObj("bottle", 290, false)}</g>
       <g transform="translate(1000 306)">{piObj("bucket", 210, false)}</g>
     </g>;
 }
@@ -5239,6 +5242,7 @@ const PI_ONE = { cap: 1e3, step: 100, nums: [200, 400, 600, 800, 1e3], long: [] 
 const PI_HALF = { ...PI_ONE, long: [250, 500, 750], skip: [300, 700] };
 const PI_J1 = piJugAt(188, 428, PI_ONE);
 const PI_J2 = piJugAt(188, 428, PI_HALF);
+const PI_BOT = 428;
 const PI_J3 = PI_J1;
 const PI_J4 = PI_J1;
 const PI_JS = piJugAt(188, 300, { cap: 200, step: 20, nums: [100, 200], long: [] });
@@ -5497,8 +5501,8 @@ function piScene(n, kind, item) {
   const S = (id, obj, cx, yb, h, more = {}) => ({ id, obj, cx, yb, h, ty: 48, ...more });
   const row2 = (i) => ({ cx: 630 + 110 * (i % 3), yb: i < 3 ? 206 : 406 });
   const T0 = 436;
-  if (kind === "free") return { full: true, jug: PI_J1, srcs: [S("v50", "v50", 610, T0, 120, { cap: 50, tag: true }), S("v100", "v100", 715, T0, 150, { cap: 100, tag: true, up: true }), S("v200", "v200", 840, T0, 180, { cap: 200, tag: true }), S("v500", "v500", 990, T0, 215, { cap: 500, tag: true, up: true, hw: 120 }), S("bottle", "bottle", 1150, T0, 300, { cap: 1e3, tag: true })] };
-  if (kind === "warm1") return { full: true, jug: PI_J1, srcs: [S("bottle", "bottle", 690, T0, 300, { cap: 1e3 })] };
+  if (kind === "free") return { full: true, wide: true, jug: PI_J1, srcs: [S("bottle", "bottle", 660, T0, PI_BOT, { cap: 1e3, tag: true }), S("v50", "v50", 795, T0, 120, { cap: 50, tag: true }), S("v100", "v100", 905, T0, 150, { cap: 100, tag: true, up: true }), S("v200", "v200", 1024, T0, 180, { cap: 200, tag: true }), S("v500", "v500", 1165, T0, 215, { cap: 500, tag: true, up: true, hw: 120 })] };
+  if (kind === "warm1") return { full: true, jug: PI_J1, srcs: [S("bottle", "bottle", 690, T0, PI_BOT, { cap: 1e3 })] };
   if (kind === "unit") return { full: true, jug: PI_J1, srcs: [S("cup", "cup", 720, T0, 230, { cap: 200 })] };
   if (kind === "tag") return { full: true, jug: PI_J1, srcs: [S("bucket", "bucket", 740, T0, 280, { cap: 1e4 })], tags: [{ id: "mL", x: 930, y: 150, w: 210, h: 110 }, { id: "L", x: 930, y: 300, w: 210, h: 110 }] };
   if (kind === "pair") return { full: true, jug: PI_J1, srcs: [S("packet", "packet", 620, T0, 200, { cap: 200 }), S("drum", "drum", 790, T0, 265, { cap: 5e4 })] };
@@ -5508,7 +5512,7 @@ function piScene(n, kind, item) {
   if (kind === "share") return { jug: PI_J3, share: true, shelfX: 580, each: { key: "each cup", cap: 200, x: 726, y: 484 }, shelves: [206, 406], srcs: [0, 1, 2, 3, 4, 5].map((i) => S("cup-" + (i + 1), "cup", row2(i).cx, row2(i).yb, 110, { cap: 200, hw: 96 })) };
   if (kind === "read") return { jug: PI_JS, srcs: [S("teacup", "teacup", 800, T0, 150, { cap: 140 })] };
   if (kind === "about") return { jug: PI_J2, srcs: [S("carton", "carton", 840, T0, 230, { cap: 500 })] };
-  if (kind === "warm3" || kind === "half") return { jug: PI_J2, marks: true, srcs: [S("bottle", "bottle", 840, T0, 300, { cap: 1e3, still: true })] };
+  if (kind === "warm3" || kind === "half") return { jug: PI_J2, marks: true, srcs: [S("bottle", "bottle", 920, T0, PI_BOT, { cap: 1e3, still: true, hideOpen: true })] };
   const row3 = (i) => ({ cx: 700 + 80 * (i % 3), yb: i < 3 ? 176 : 436 });
   if (kind === "glasses") return { jug: PI_J2, shelves: [176], shelfX: 652, each: { key: "each glass", cap: 250, x: 806, y: 484 }, srcs: [0, 1, 2, 3, 4, 5].map((i) => S("glass-" + (i + 1), "glass", row3(i).cx, row3(i).yb, 108, { cap: 250, hw: 74 })) };
   if (kind === "pan") return { jug: PI_J4, fill: MODEL.fill.line, shelves: [156], shelfX: 652, each: { key: "each teacup", cap: 140, x: 815, y: 484 }, srcs: [0, 1, 2, 3, 4, 5].map((i) => S("teacup-" + (i + 1), "teacup", row3(i).cx, i < 3 ? 156 : 436, 80, { cap: 140, hw: 74 })) };
@@ -5516,7 +5520,9 @@ function piScene(n, kind, item) {
   const H = { drum: 280, cup: 170, bucket: 190, jug: 210, bottle: 260, packet: 180, pot: 190 };
   const cell = 610 / objs.length;
   const fitH = (id) => Math.min(H[id] || 180, objs.length > 2 ? 230 : 300, (cell - 18) / (PI_ASPECT[id] || 0.7));
-  return { full: true, shelf: true, srcs: objs.map((o, i) => S(o.id, o.id, 30 + cell * (i + 0.5), 392, fitH(o.id), { show: o.show })) };
+  const pair = objs.some((o) => o.id === "bottle") && objs.some((o) => o.id === "jug") ? Math.min(fitH("bottle"), fitH("jug")) : 0;
+  const hOf = (id) => pair && (id === "bottle" || id === "jug") ? pair : fitH(id);
+  return { full: true, shelf: true, srcs: objs.map((o, i) => S(o.id, o.id, 30 + cell * (i + 0.5), 392, hOf(o.id), { show: o.show })) };
 }
 function piTarget(kind, item) {
   if (kind === "unit") return { ml: 200, poured: { cup: true }, last: "cup" };
@@ -6265,6 +6271,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
   const ctlOf = (s) => kind === "share" ? "fill-" + s.id : stage === "demo" && n === 2 ? "pour-" + s.id : "pour-" + s.id;
   const drawSource = (s) => {
     const moving = V.moving === s.id;
+    if (s.hideOpen && box && box.open && !moving) return null;
     const aspect = PI_ASPECT[s.obj] || 0.7;
     const tgtJ = J ? { x: J.x + J.bw / 2 + 50, y: brimOf(J) - 4 } : { x: s.cx, y: s.yb - s.h };
     const ps = Math.min(1, 140 / s.h);
@@ -6425,8 +6432,11 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
   };
   const unitOf = (k) => tx(k);
   return <g>
-      <rect x={10} y={436} width={sc.full ? Math.min(box ? box.w : 1472, kx) - 20 : 880} height={12} rx={6} fill={PI_C.table} />
-      <rect x={10} y={448} width={sc.full ? Math.min(box ? box.w : 1472, kx) - 20 : 880} height={4} rx={2} fill={PI_C.tableDark} opacity={0.35} />
+      {
+    /* free play's table runs under the vessels at the far right (it is far below the key's corner) */
+  }
+      <rect x={10} y={436} width={sc.wide ? (box ? box.w : 1472) - 20 : sc.full ? Math.min(box ? box.w : 1472, kx) - 20 : 880} height={12} rx={6} fill={PI_C.table} />
+      <rect x={10} y={448} width={sc.wide ? (box ? box.w : 1472) - 20 : sc.full ? Math.min(box ? box.w : 1472, kx) - 20 : 880} height={4} rx={2} fill={PI_C.tableDark} opacity={0.35} />
       {(sc.shelves || []).map((y) => <g key={"sh" + y}>
           <rect x={sc.shelfX || 500} y={y} width={900 - (sc.shelfX || 500)} height={10} rx={5} fill={PI_C.table} />
           <rect x={sc.shelfX || 500} y={y + 10} width={900 - (sc.shelfX || 500)} height={3} rx={1.5} fill={PI_C.tableDark} opacity={0.35} />
@@ -6484,7 +6494,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       {
     /* the unit fact: in phase 1 once the jug has been filled to 1 L, and at the wins */
   }
-      {n === 1 && (kind === "warm1" && V.poured.bottle || win) && <g pointerEvents="none">{piFact(770, 43, tx)}</g>}
+      {n === 1 && (kind === "warm1" && V.poured.bottle || win) && <g pointerEvents="none">{piFact(kind === "warm1" ? 1010 : 770, 43, tx)}</g>}
       {
     /* THE CORRECTION's own marks (never the answer): a counter of the pours replayed, the marks counted so far */
   }
