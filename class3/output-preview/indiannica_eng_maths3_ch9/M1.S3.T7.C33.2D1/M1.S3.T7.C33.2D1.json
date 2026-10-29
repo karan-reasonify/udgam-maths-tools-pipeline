@@ -19,7 +19,9 @@
     "M1.S3.T7.C36"
   ],
   "languages": [
-    "en"
+    "en",
+    "hi",
+    "gu"
   ],
   "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
   "stage": {
@@ -274,11 +276,11 @@
         "win": "the drops of every litre pile up and the green tag shows the millilitres",
         "traceback": "The jugs fill again one by one, each chip turning from 1 L to 1,000 mL, and the count stops one jug before the end.",
         "ladder": [
-          "Each full jug holds 1,000 mL.",
-          "Change the 1 L into millilitres first.",
-          "50 mL has no hundreds.",
-          "Count 1,000 mL for every full jug.",
-          "Multiply the litres by 1,000 to get the millilitres."
+          "Look at the chip under each full jug.",
+          "Look at the part jug as well as the full one.",
+          "2 L is 2,000 mL, so start from 2,000.",
+          "Look once more at the litre jugs.",
+          "Think of a thousand for every litre."
         ]
       },
       {
@@ -287,10 +289,10 @@
         "win": "the jugs stand full in a row and the green tag shows the litres",
         "traceback": "The jugs fill again 1,000 mL at a time, and the count stops one jug before the end, the part left over not yet poured.",
         "ladder": [
-          "A jug filled to its 1 L line holds 1,000 mL.",
-          "Every 1,000 mL fills one jug.",
-          "Fill the whole jugs first, then look at what is left.",
-          "Full jugs are whole litres.",
+          "Only a full jug makes one whole litre.",
+          "Look how many jugs are full after grouping.",
+          "Fill the whole jugs first, then look at the part jug.",
+          "Each full jug is a whole litre of water.",
           "The part jug shows the millilitres left."
         ]
       },
@@ -302,8 +304,8 @@
         "ladder": [
           "You cannot take 460 mL from 120 mL.",
           "680 mL and 530 mL make more than 1,000 mL.",
-          "600 mL and 400 mL make a full 1,000 mL.",
-          "Do the millilitres column first.",
+          "Start by adding 600 mL and 400 mL.",
+          "Work out the millilitres column first.",
           "Then do the litres column."
         ]
       },
@@ -311,13 +313,13 @@
         "n": 4,
         "screen": "the column board with a litres column and a millilitres column, two amounts written under each other, and a row of cups beside a jar",
         "win": "the carried or borrowed litre slides across the board and the green tag shows the answer in litres and millilitres",
-        "traceback": "The jar empties and the cups pour in again one by one with the counter, stopping one cup before it is full.",
+        "traceback": "The jar empties and the cups pour in again one by one, the row of cups growing with them, stopping one cup before it is full.",
         "ladder": [
-          "Pour one cup at a time and count every pour.",
-          "1 L 500 mL is 1,500 mL.",
-          "Change 1 L 260 mL into millilitres first.",
-          "Pour until the water reaches the top line.",
-          "Count every pour it takes."
+          "The jar holds 2 L: count the cups for both litres.",
+          "Count every cup picture, the last one too.",
+          "Check that the juice reaches the very top of the jar.",
+          "Watch the level rise with each cup.",
+          "The row of cups counts every pour."
         ]
       }
     ]
@@ -345,10 +347,11 @@
         "near": 300,
         "answer": 3000,
         "ladder": [
-          "Look at the chip under every full jug.",
-          "Three jugs of 1,000 mL: add them up."
+          "Each full jug holds 1,000 mL.",
+          "To get millilitres, multiply the litres by 1,000."
         ],
-        "win": "Yes, three jugs of 1,000 mL make 3,000 mL."
+        "win": "Yes, 3 L is the same as 3,000 mL.",
+        "winMs": 2584
       },
       {
         "phase": 1,
@@ -359,13 +362,14 @@
         "ml": 750,
         "box": "bottle",
         "liq": "juice",
-        "near": 750,
+        "near": 1000,
         "answer": 1750,
         "ladder": [
-          "The full jug is 1,000 mL and the other jug has 750 mL.",
-          "Add 1,000 mL and 750 mL together."
+          "The part jug has another 750 mL.",
+          "Add the 1,000 mL and the 750 mL."
         ],
-        "win": "Yes, 1 L 750 mL is 1,750 mL."
+        "win": "Yes, 1 L 750 mL is 1,750 mL.",
+        "winMs": 3060
       },
       {
         "phase": 1,
@@ -378,10 +382,11 @@
         "near": 250,
         "answer": 2050,
         "ladder": [
-          "Write 2 for the thousands, then think about the hundreds place.",
-          "50 mL is 0 hundreds and 5 tens, so the hundreds digit is 0."
+          "Now put the 50 mL on top of 2,000 mL.",
+          "50 mL has no hundreds, so the hundreds place gets a 0."
         ],
-        "win": "Yes, 2 L 50 mL is 2,050 mL, with a 0 for the hundreds."
+        "win": "Yes, that is right.",
+        "winMs": 2400
       },
       {
         "phase": 2,
@@ -410,9 +415,10 @@
         ],
         "ladder": [
           "Count the full jugs for the litres.",
-          "Take away 1,000 mL for each full jug, then read what is left."
+          "Divide by 1,000 for the litres, then work out the millilitres left."
         ],
-        "win": "Yes, 2,600 mL is 2 L and 600 mL left over."
+        "win": "Yes, 2,600 mL is 2 L and 600 mL left over.",
+        "winMs": 3604
       },
       {
         "phase": 2,
@@ -441,9 +447,10 @@
         ],
         "ladder": [
           "Look at the last jug: is any water left over?",
-          "If no water is left after the full jugs, there are no extra millilitres."
+          "If no water is left after the full jugs, no millilitres are left over."
         ],
-        "win": "Yes, 4,000 mL is exactly 4 L, with nothing left over."
+        "win": "Yes, 4,000 mL is exactly 4 L, with nothing left over.",
+        "winMs": 3604
       },
       {
         "phase": 2,
@@ -471,10 +478,11 @@
           80
         ],
         "ladder": [
-          "What is left is less than 100 mL.",
-          "The left over part has no hundreds, only tens."
+          "Take 1,000 mL away from the amount to find what is left.",
+          "What is left has no hundreds, so write it as tens and ones."
         ],
-        "win": "Yes, 1,080 mL is 1 L and 80 mL left over."
+        "win": "Yes, that is right.",
+        "winMs": 2400
       },
       {
         "phase": 3,
@@ -501,7 +509,7 @@
             "unit": "L"
           },
           {
-            "label": "millilitre",
+            "label": "millilitres",
             "unit": "mL"
           }
         ],
@@ -513,7 +521,8 @@
           "After the borrow the top row is 5 L and 1,120 mL.",
           "Take 460 mL from 1,120 mL, then 2 L from 5 L."
         ],
-        "win": "Yes, 3 L 660 mL of water is left in the bucket."
+        "win": "Yes, 3 L 660 mL of water is left in the bucket.",
+        "winMs": 3264
       },
       {
         "phase": 3,
@@ -540,7 +549,7 @@
             "unit": "L"
           },
           {
-            "label": "millilitre",
+            "label": "millilitres",
             "unit": "mL"
           }
         ],
@@ -549,10 +558,11 @@
           210
         ],
         "ladder": [
-          "Every 1,000 mL makes 1 L for the litres column.",
+          "Carry 1 L and keep what is over 1,000 mL.",
           "Add the carried 1 L to 4 L and 2 L."
         ],
-        "win": "Yes, there are 7 L 210 mL of juice in all."
+        "win": "Yes, there are 7 L 210 mL of juice in all.",
+        "winMs": 2856
       },
       {
         "phase": 3,
@@ -579,7 +589,7 @@
             "unit": "L"
           },
           {
-            "label": "millilitre",
+            "label": "millilitres",
             "unit": "mL"
           }
         ],
@@ -588,10 +598,11 @@
           0
         ],
         "ladder": [
-          "A full 1,000 mL leaves the millilitres column as 1 L.",
-          "Count the litres: the top, the bottom and the one you carried."
+          "600 mL and 400 mL make exactly 1,000 mL, which is 1 L.",
+          "The litres column gets 3 L, 2 L and one more litre from the carry."
         ],
-        "win": "Yes, the pot holds 6 L of milk and no extra millilitres."
+        "win": "Yes, that is right.",
+        "winMs": 2400
       },
       {
         "phase": 4,
@@ -605,10 +616,11 @@
         "near": 4,
         "answer": 8,
         "ladder": [
-          "Four 250 mL cups fill 1 L.",
-          "Pour until the water reaches the 2 L line."
+          "Four 250 mL cups fill exactly one litre.",
+          "Change 2 L into millilitres, then see how many 250 mL cups go in."
         ],
-        "win": "Yes, 8 cups of 250 mL fill the 2 L jar."
+        "win": "Yes, 8 cups of 250 mL fill the 2 L jar.",
+        "winMs": 3740
       },
       {
         "phase": 4,
@@ -622,10 +634,11 @@
         "near": 5,
         "answer": 6,
         "ladder": [
-          "Keep pouring until the jar is full to the top.",
-          "Count the cups it took to reach 1,500 mL."
+          "Each cup adds 250 mL and the jar holds 1,500 mL.",
+          "Count how many 250 mL make 1,500 mL."
         ],
-        "win": "Yes, 6 cupfuls of 250 mL make 1,500 mL."
+        "win": "Yes, 6 cupfuls of 250 mL make 1,500 mL.",
+        "winMs": 3536
       },
       {
         "phase": 4,
@@ -643,7 +656,8 @@
           "Each glass adds 140 mL to the jar.",
           "Count the glasses until the jar holds 1,260 mL."
         ],
-        "win": "Yes, 9 glasses of 140 mL make 1,260 mL."
+        "win": "Yes, that is right.",
+        "winMs": 2400
       }
     ]
   },
@@ -653,7 +667,7 @@
       "Phase 1: The jugs fill again one by one, each chip turning from 1 L to 1,000 mL, and the count stops one jug before the end.",
       "Phase 2: The jugs fill again 1,000 mL at a time, and the count stops one jug before the end, the part left over not yet poured.",
       "Phase 3: The board shows the carry or the borrow again, lights the millilitres column, then the litres column, and leaves the answer row for the child.",
-      "Phase 4: The jar empties and the cups pour in again one by one with the counter, stopping one cup before it is full."
+      "Phase 4: The jar empties and the cups pour in again one by one, the row of cups growing with them, stopping one cup before it is full."
     ]
   },
   "voice": {
@@ -661,7 +675,7 @@
     "rate": 0.92,
     "pitch": 1.06,
     "opening": "Litre jugs, a column board and a cup to pour with.",
-    "onFreePlay": "Free play: pour cups into the big jar and count them as it fills.",
+    "onFreePlay": "Free play: pour cups into the big jar and count.",
     "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
     "onFinish": "You changed litres and millilitres, added and subtracted in columns, and filled a jar cup by cup.",
     "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
@@ -818,10 +832,10 @@
             "kind": "col",
             "planQuestion": null,
             "question": {
-              "en": "From 6 L 120 mL of water, 2 L 460 mL is poured out: how much is left?"
+              "en": "A bucket holds 6 L 120 mL; 2 L 460 mL is poured out: how much is left?"
             },
             "ask": {
-              "en": "6 L 120 mL take 2 L 460 mL"
+              "en": "6 L 120 mL take away 2 L 460 mL"
             },
             "answer": [
               3,
@@ -837,7 +851,7 @@
             "kind": "col",
             "planQuestion": null,
             "question": {
-              "en": "A jug has 4 L 680 mL of juice and a bottle 2 L 530 mL: how much in all?"
+              "en": "A can has 4 L 680 mL of juice and a bottle 2 L 530 mL: how much in all?"
             },
             "ask": {
               "en": "4 L 680 mL add 2 L 530 mL"
@@ -996,7 +1010,7 @@
     "phases": [
       {
         "n": 1,
-        "concept": "Litres into millilitres: multiply by 1000",
+        "concept": "Litres into millilitres: multiply by 1,000",
         "conceptId": "M1.S3.T7.C33",
         "objectiveIds": [
           "O11"
@@ -1009,7 +1023,7 @@
       },
       {
         "n": 2,
-        "concept": "Millilitres into litres: divide by 1000",
+        "concept": "Millilitres into litres: divide by 1,000",
         "conceptId": "M1.S3.T7.C34",
         "objectiveIds": [
           "O11"
@@ -1160,19 +1174,19 @@
     }
   ],
   "build": {
-    "source": "3b4033cc:651419",
+    "source": "7cdd8732:709205",
     "runtime": "class3/runtime/frozen/r3/runtime.tsx",
     "runtimeVersion": "r3",
     "library": "@use-gesture/react@10.3.1",
-    "builtAt": "2026-10-28T13:57:13.856Z",
+    "builtAt": "2026-10-29T08:56:23.654Z",
     "checks": {
-      "pass": 95,
-      "warn": 1,
+      "pass": 97,
+      "warn": 0,
       "fail": 0,
-      "info": 6,
-      "at": "2026-10-28T13:57:13.052Z"
+      "info": 5,
+      "at": "2026-10-29T08:56:20.127Z"
     },
-    "tsxBytes": 561676,
-    "tsxMd5": "b229003fa25ecbb14336df1db03c42c7"
+    "tsxBytes": 631407,
+    "tsxMd5": "75f6192c7506f4e82884febabbb0a0fe"
   }
 }

@@ -31,7 +31,7 @@ const OPENING = ["A wall clock and a digital clock, both waiting for the hands t
 /* the whole-tool line: printed on the summary page */
 const FINISH_LINE = "You said every time by counting the minutes.";
 /* printed when the child opens Free play (the plan's free-play line); its LAST piece stays on the bubble */
-const FREE_LINE = "Free play. Turn the hands and say the time as you like.";
+const FREE_LINE = "Move the hands to set any time you like.";
 
 /* THE START PAGE (runtime r28; docs/LAYOUT.md §1c, docs/PATTERNS.md §14): the first thing a child sees in user mode.
    START_HOOK is ONE printed question to wonder at (it needs a TR entry, and never gives an answer away); StartArt is
@@ -39,12 +39,14 @@ const FREE_LINE = "Free play. Turn the hands and say the time as you like.";
    colours, a <Skin> over them when the image agent made one). This stub is a dashed outline: draw the real object. */
 const START_HOOK = "Two hands go round a clock: which one tells the hour?";
 function StartArt({ box, C, lang, tx = (v: any) => v }: any) {
-  /* the wall clock and its digital clock, at 11:55 (a time no question uses) */
-  const cx = 470, cy = 170, R = 150, t = 715;
+  /* the wall clock and its digital clock, at 6:25 (a time no question uses; the long hand is on the 5, the short hand just past the 6,
+     so the picture never backs the "long hand tells the hour" mix-up the hook asks about) */
+  const cx = 470, cy = 170, R = 150, t = 385;
   return (
     <g>
       {rcDial(cx, cy, R, {})}
       {rcHands(cx, cy, R, t, {})}
+      {rcNumerals(cx, cy, R)}
       {rcDigital(660, 70, 360, 200, t, { lang, tx })}
     </g>
   );
@@ -55,7 +57,240 @@ function StartArt({ box, C, lang, tx = (v: any) => v }: any) {
    up in it (Work draws its own words through tx("...")). Fill it AFTER the English is final and reviewed:
    `check` (tr-coverage) lists every printed line still missing. Nothing is baked: the lesson is silent.
    Empty = the tool runs in English only. */
-const TR: any = { hi: {}, gu: {} };
+/* Terms (one per idea, for the native speaker to read first): hour hand घंटे की सुई / કલાક કાંટો · minute hand मिनट की सुई / મિનિટ કાંટો ·
+   short hand छोटी सुई / નાનો કાંટો · long hand बड़ी सुई / મોટો કાંટો · o'clock बजे / વાગ્યા · minutes past "बजकर ... मिनट" / "વાગીને ... મિનિટ"
+   · minutes to "बजने में ... मिनट" / "વાગવામાં ... મિનિટ" · quarter past सवा / સવા · half past साढ़े / સાડા · quarter to पौने / પોણા ·
+   Step कदम / પગલું · Round पूरा चक्कर / પૂરો ચક્કર. The child is तुम / તમે. */
+const TR: any = {
+  hi: {
+    "Read the Clock": "घड़ी पढ़ो",
+    "A wall clock and a digital clock, both waiting for the hands to move.": "एक दीवार घड़ी और एक डिजिटल घड़ी, दोनों सुइयों के चलने का इंतज़ार कर रही हैं।",
+    "You said every time by counting the minutes.": "तुमने हर समय मिनट गिनकर बताया।",
+    "Move the hands to set any time you like.": "सुइयाँ घुमाकर अपनी मर्ज़ी का कोई भी समय बनाओ।",
+    "Move a hand first.": "पहले कोई सुई घुमाओ।",
+    "Tap one of the hands first.": "पहले किसी एक सुई को दबाओ।",
+    "For this question, count the fives yourself.": "इस सवाल में पाँच-पाँच खुद गिनो।",
+    "Two hands go round a clock: which one tells the hour?": "घड़ी में दो सुइयाँ घूमती हैं: कौन-सी घंटा बताती है?",
+    "Two hands: the hour hand and the minute hand": "दो सुइयाँ: घंटे की सुई और मिनट की सुई",
+    "Watch the digital clock as each hand turns.": "हर सुई घूमते समय डिजिटल घड़ी देखो।",
+    "Drag the short hand round the clock and watch the digital clock.": "छोटी सुई को घड़ी पर घुमाओ और डिजिटल घड़ी देखो।",
+    "Hold the short hand and move it.": "छोटी सुई पकड़कर घुमाओ।",
+    "Now drag the long hand and watch the digital clock again.": "अब बड़ी सुई घुमाओ और फिर से डिजिटल घड़ी देखो।",
+    "Hold the long hand this time.": "इस बार बड़ी सुई पकड़ो।",
+    "Each hand changes its own box of the digital clock.": "हर सुई डिजिटल घड़ी का अपना खाना बदलती है।",
+    "The hour is the number the hour hand points to or has just passed.": "घंटे की सुई जिस संख्या पर है या जिसे अभी पार किया, वही घंटा है।",
+    "The short hand tells the hour and the long hand tells the minutes.": "छोटी सुई घंटा बताती है और बड़ी सुई मिनट बताती है।",
+    "You learned: the hour hand is short, the minute hand is long.": "तुमने सीखा: घंटे की सुई छोटी, मिनट की सुई बड़ी होती है।",
+    "The library clock has its long hand on the 12: what hour does it show?": "पुस्तकालय की घड़ी में बड़ी सुई 12 पर है: घड़ी कितने बजे दिखाती है?",
+    "What hour is it?": "कितने बजे हैं?",
+    "The long hand tells the minutes, not the hour.": "बड़ी सुई मिनट बताती है, घंटा नहीं।",
+    "Look at the short hand to find the hour.": "घंटा जानने के लिए छोटी सुई देखो।",
+    "Read the number that the short hand points to.": "छोटी सुई जिस संख्या की ओर है, वह पढ़ो।",
+    "Yes, it is 2 o'clock.": "हाँ, 2 बजे हैं।",
+    "The alarm clock shows 5:20: set this clock to show 5:20 too.": "अलार्म घड़ी 5:20 दिखा रही है: इस घड़ी में भी 5:20 बनाओ।",
+    "Show 5:20": "5:20 दिखाओ",
+    "Turn one hand at a time and watch which digits change.": "एक बार में एक सुई घुमाओ और देखो कौन-से अंक बदलते हैं।",
+    "Make the hour digits match the alarm clock and keep the minutes.": "घंटे के अंक अलार्म घड़ी जैसे बनाओ, मिनट वैसे ही रखो।",
+    "Keep the long hand on the 4 and move only the short hand.": "बड़ी सुई 4 पर रहने दो और केवल छोटी सुई घुमाओ।",
+    "Yes, the 5 is the hour and the 20 is the minutes.": "हाँ, 5 घंटा है और 20 मिनट हैं।",
+    "Two friends argue about which hand tells the hour: tap the one that does.": "दो दोस्त बहस कर रहे हैं कि घंटा कौन-सी सुई बताती है: वही सुई दबाओ।",
+    "Which hand tells the hour?": "घंटा कौन-सी सुई बताती है?",
+    "That hand moved the minute digits when you turned it.": "उस सुई को घुमाने पर मिनट के अंक बदले थे।",
+    "Think of the hand that moved the hour digits.": "सोचो, किस सुई से घंटे के अंक बदले थे।",
+    "The hour hand moves slowly, only one number in an hour.": "घंटे की सुई धीरे चलती है, एक घंटे में केवल एक संख्या।",
+    "Yes, well spotted: now you can settle the friends' argument.": "हाँ, बहुत बढ़िया: अब तुम दोस्तों की बहस सुलझा सकते हो।",
+    "Five minutes from one number to the next": "एक संख्या से अगली तक पाँच मिनट",
+    "Count the minutes in fives as the minute hand moves.": "मिनट की सुई चलते समय मिनट पाँच-पाँच करके गिनो।",
+    "Tap Step to move the minute hand from the 12 to the 1.": "मिनट की सुई को 12 से 1 तक ले जाने के लिए कदम दबाओ।",
+    "Tap the Step key beside the clock.": "घड़ी के पास वाला कदम बटन दबाओ।",
+    "Tap Step again: from the 1 to the 2 is 5 more minutes.": "फिर से कदम दबाओ: 1 से 2 तक 5 मिनट और।",
+    "One tap moves the minute hand one number.": "एक बार दबाने से मिनट की सुई एक संख्या आगे जाती है।",
+    "Tap Step once more to move the minute hand on to the 3.": "मिनट की सुई को 3 तक ले जाने के लिए एक बार और कदम दबाओ।",
+    "Tap Step to move on one more number.": "एक संख्या और आगे जाने के लिए कदम दबाओ।",
+    "Tap Step again and watch the minutes on the digital clock.": "फिर से कदम दबाओ और डिजिटल घड़ी पर मिनट देखो।",
+    "Keep going with the Step key.": "कदम बटन से आगे बढ़ते रहो।",
+    "Five minutes for every number: count in fives.": "हर संख्या के पाँच मिनट: पाँच-पाँच करके गिनो।",
+    "Count on in fives from where the minute hand started.": "मिनट की सुई जहाँ से चली, वहाँ से पाँच-पाँच करके गिनो।",
+    "The minute hand takes 5 minutes from one number to the next.": "मिनट की सुई एक संख्या से अगली तक 5 मिनट लेती है।",
+    "You learned: each number is 5 minutes, and one round is 60 minutes.": "तुमने सीखा: हर संख्या 5 मिनट, और पूरा चक्कर 60 मिनट।",
+    "Step the minute hand from the 5 to the 8: how many minutes have passed?": "मिनट की सुई को 5 से 8 तक कदम से ले जाओ: कितने मिनट बीते?",
+    "Minutes passed?": "कितने मिनट बीते?",
+    "Each number the minute hand passes is 5 minutes, not 1.": "मिनट की सुई हर संख्या पर 5 मिनट चलती है, 1 नहीं।",
+    "Count the blue steps: 5 for each one.": "नीले कदम गिनो: हर कदम 5 मिनट।",
+    "Say 5 for the first blue step, 10 for the next, then go on.": "पहले नीले कदम पर 5, अगले पर 10 बोलो, फिर आगे गिनो।",
+    "Yes, 3 steps of 5 minutes make 15 minutes.": "हाँ, 5 मिनट के 3 कदम से 15 मिनट बनते हैं।",
+    "Step the kitchen clock's minute hand to the 7: how many minutes past?": "रसोई की घड़ी की मिनट की सुई 7 तक ले जाओ: पिछले घंटे के बाद कितने मिनट हुए?",
+    "Minutes past?": "कितने मिनट हुए?",
+    "The 7 is where the hand stops: count 5 for every number from the 12.": "सुई 7 पर रुकती है: 12 से हर संख्या पर 5 गिनो।",
+    "Touch each blue step from the 12 and say the fives out loud.": "12 से हर नीले कदम को छुओ और पाँच-पाँच ज़ोर से बोलो।",
+    "Keep counting in fives until you reach the minute hand.": "मिनट की सुई तक पहुँचने तक पाँच-पाँच गिनते रहो।",
+    "Yes, 7 steps of 5 make 35 minutes past the hour.": "हाँ, 5 के 7 कदम से घंटे के बाद 35 मिनट हुए।",
+    "Tap Round to send the minute hand once round: how many minutes does it take?": "पूरा चक्कर दबाओ: मिनट की सुई एक चक्कर में कितने मिनट लेती है?",
+    "Minutes in a round?": "एक चक्कर में कितने मिनट?",
+    "The hand passes 12 numbers, and each step is 5 minutes.": "सुई 12 संख्याएँ पार करती है, और हर कदम 5 मिनट है।",
+    "Count every blue step in fives, all the way back to the 12.": "हर नीले कदम को पाँच-पाँच करके 12 तक वापस गिनो।",
+    "Do not stop at the 11: the last step ends at the 12.": "11 पर मत रुको: आखिरी कदम 12 पर खत्म होता है।",
+    "Yes, 12 steps of 5 make 60 minutes, and that is one hour.": "हाँ, 5 के 12 कदम से 60 मिनट बनते हैं, यानी एक घंटा।",
+    "Now tap Step and watch the minute hand move.": "अब कदम दबाओ और मिनट की सुई को चलते देखो।",
+    "Now tap Round and watch the minute hand go round.": "अब पूरा चक्कर दबाओ और मिनट की सुई को घूमते देखो।",
+    "Minutes past and minutes to the hour": "बजकर मिनट और बजने में मिनट",
+    "Which side is the minute hand on? Say minutes past or minutes to.": "मिनट की सुई किस तरफ है? बजकर या बजने में बोलो।",
+    "Tap Past and to to colour the two halves of the clock.": "घड़ी के दोनों आधे भाग रँगने के लिए बजकर / बजने में दबाओ।",
+    "Tap the key that says Past and to.": "बजकर / बजने में वाला बटन दबाओ।",
+    "Move the minute hand to the 3: a quarter of the way round is quarter past.": "मिनट की सुई 3 पर ले जाओ: चौथाई चक्कर पर सवा होता है।",
+    "Drag or tap the minute hand to the 3.": "मिनट की सुई 3 तक खींचो या दबाओ।",
+    "Now move it on to the 6: halfway round is half past.": "अब उसे 6 तक ले जाओ: आधे चक्कर पर साढ़े होता है।",
+    "Keep the minute hand going to the 6.": "मिनट की सुई को 6 तक ले चलो।",
+    "Move it on to the 9: with a quarter left to go we say quarter to.": "उसे 9 तक ले जाओ: चौथाई बाकी हो तो पौने कहते हैं।",
+    "Stop the minute hand on the 9.": "मिनट की सुई 9 पर रोको।",
+    "Count in fives from the 12 on that side.": "उस तरफ 12 से पाँच-पाँच करके गिनो।",
+    "On the right we count on from the 12; on the left we count back to it.": "दाईं ओर 12 से आगे गिनते हैं; बाईं ओर 12 तक बचे मिनट गिनते हैं।",
+    "Yes, 7:45 is quarter to 8, so 15 minutes are left until 8.": "हाँ, 7:45 पौने 8 है: 8 बजने में 15 मिनट बाकी हैं।",
+    "You learned: minutes past, minutes to, half past and the quarters.": "तुमने सीखा: बजकर, बजने में, साढ़े, सवा और पौने।",
+    "At the bus stop the minute hand is on the 2: what time does the clock show?": "बस स्टॉप पर मिनट की सुई 2 पर है: घड़ी में कितने बजे हैं?",
+    "What time is it?": "क्या समय है?",
+    "The minute hand on the 2 is not 2 minutes: count in fives from the 12.": "2 पर मिनट की सुई का मतलब 2 मिनट नहीं: 12 से पाँच-पाँच गिनो।",
+    "The minute hand is on the blue past side of the clock.": "मिनट की सुई घड़ी की नीली बजकर वाली तरफ है।",
+    "Count 5 for the 1, then one more five for the 2.": "1 के लिए 5 गिनो, फिर 2 के लिए एक और पाँच।",
+    "Yes, it is 10 minutes past 4, which we write 4:10.": "हाँ, 4 बजकर 10 मिनट हुए हैं, जिसे 4:10 लिखते हैं।",
+    "hours": "घंटे",
+    "minutes": "मिनट",
+    "The bus leaves with the minute hand on the 8: how many minutes to the hour?": "मिनट की सुई 8 पर आते ही बस चलती है: अगला घंटा पूरा होने में कितने मिनट बाकी हैं?",
+    "Minutes to the hour?": "अगले घंटे में कितने मिनट बाकी?",
+    "Minutes to the hour are the minutes left before it, not the minutes gone past.": "बजने में मिनट यानी घंटे से पहले बचे मिनट, बीते मिनट नहीं।",
+    "Count back in fives from the 12 to the minute hand.": "12 से मिनट की सुई तक पाँच-पाँच करके उल्टा गिनो।",
+    "Say 5 at the 11, 10 at the 10, and keep going to the 8.": "11 पर 5, 10 पर 10 बोलो, और 8 तक गिनते रहो।",
+    "Yes, it is 20 minutes to 10, which we write 9:40.": "हाँ, 10 बजने में 20 मिनट हैं, जिसे 9:40 लिखते हैं।",
+    "Dinner is at quarter to 8: set the kitchen clock's hands to show that time.": "रात का खाना पौने 8 बजे है: रसोई की घड़ी में यही समय बनाओ।",
+    "Show quarter to 8": "पौने 8 दिखाओ",
+    "Look at the hour hand: at quarter to 8, has it reached the 8 yet?": "घंटे की सुई देखो: पौने 8 पर क्या वह 8 तक पहुँची है?",
+    "Quarter to 8 means 15 minutes are still left before 8 o'clock.": "पौने 8 का मतलब है 8 बजने में अभी 15 मिनट बाकी हैं।",
+    "The hour hand sits just before the 8, not after it.": "घंटे की सुई 8 से ठीक पहले होती है, बाद में नहीं।",
+    "Yes, quarter to 8 is 7:45, with the minute hand on the 9.": "हाँ, पौने 8 यानी 7:45, मिनट की सुई 9 पर।",
+    "Past": "बजकर",
+    "To": "बजने में",
+    "Step": "कदम",
+    "Round": "पूरा चक्कर",
+    "Plain": "सादा",
+    "Minutes": "मिनट",
+    "Past and to": "बजकर / बजने में",
+    "1 hour": "1 घंटा",
+  },
+  gu: {
+    "Read the Clock": "ઘડિયાળ વાંચો",
+    "A wall clock and a digital clock, both waiting for the hands to move.": "એક દીવાલ ઘડિયાળ અને એક ડિજિટલ ઘડિયાળ, બંને કાંટા ફરવાની રાહ જુએ છે.",
+    "You said every time by counting the minutes.": "તમે દરેક સમય મિનિટ ગણીને કહ્યો.",
+    "Move the hands to set any time you like.": "કાંટા ફેરવો અને ગમે તે સમય ગોઠવો.",
+    "Move a hand first.": "પહેલાં કોઈ કાંટો ફેરવો.",
+    "Tap one of the hands first.": "પહેલાં કોઈ એક કાંટો દબાવો.",
+    "For this question, count the fives yourself.": "આ સવાલમાં પાંચ-પાંચ જાતે ગણો.",
+    "Two hands go round a clock: which one tells the hour?": "ઘડિયાળમાં બે કાંટા ફરે છે: કયો કલાક બતાવે છે?",
+    "Two hands: the hour hand and the minute hand": "બે કાંટા: કલાક કાંટો અને મિનિટ કાંટો",
+    "Watch the digital clock as each hand turns.": "દરેક કાંટો ફરે ત્યારે ડિજિટલ ઘડિયાળ જુઓ.",
+    "Drag the short hand round the clock and watch the digital clock.": "નાના કાંટાને ઘડિયાળ પર ફેરવો અને ડિજિટલ ઘડિયાળ જુઓ.",
+    "Hold the short hand and move it.": "નાનો કાંટો પકડીને ફેરવો.",
+    "Now drag the long hand and watch the digital clock again.": "હવે મોટો કાંટો ફેરવો અને ફરી ડિજિટલ ઘડિયાળ જુઓ.",
+    "Hold the long hand this time.": "આ વખતે મોટો કાંટો પકડો.",
+    "Each hand changes its own box of the digital clock.": "દરેક કાંટો ડિજિટલ ઘડિયાળનું પોતાનું ખાનું બદલે છે.",
+    "The hour is the number the hour hand points to or has just passed.": "કલાક કાંટો જે સંખ્યા પર છે કે જે હમણાં વટાવી, તે જ કલાક છે.",
+    "The short hand tells the hour and the long hand tells the minutes.": "નાનો કાંટો કલાક બતાવે છે અને મોટો કાંટો મિનિટ બતાવે છે.",
+    "You learned: the hour hand is short, the minute hand is long.": "તમે શીખ્યા: કલાક કાંટો નાનો, મિનિટ કાંટો મોટો હોય છે.",
+    "The library clock has its long hand on the 12: what hour does it show?": "પુસ્તકાલયની ઘડિયાળમાં મોટો કાંટો 12 પર છે: ઘડિયાળ કેટલા વાગ્યા બતાવે છે?",
+    "What hour is it?": "કેટલા વાગ્યા છે?",
+    "The long hand tells the minutes, not the hour.": "મોટો કાંટો મિનિટ બતાવે છે, તે કલાક બતાવતો નથી.",
+    "Look at the short hand to find the hour.": "કલાક જાણવા નાનો કાંટો જુઓ.",
+    "Read the number that the short hand points to.": "નાનો કાંટો જે સંખ્યા તરફ છે, તે વાંચો.",
+    "Yes, it is 2 o'clock.": "હા, 2 વાગ્યા છે.",
+    "The alarm clock shows 5:20: set this clock to show 5:20 too.": "અલાર્મ ઘડિયાળ 5:20 બતાવે છે: આ ઘડિયાળમાં પણ 5:20 ગોઠવો.",
+    "Show 5:20": "5:20 બતાવો",
+    "Turn one hand at a time and watch which digits change.": "એક વારમાં એક કાંટો ફેરવો અને જુઓ કયા અંક બદલાય છે.",
+    "Make the hour digits match the alarm clock and keep the minutes.": "કલાકના અંક અલાર્મ ઘડિયાળ જેવા કરો, મિનિટ એમ જ રાખો.",
+    "Keep the long hand on the 4 and move only the short hand.": "મોટો કાંટો 4 પર રહેવા દો અને ફક્ત નાનો કાંટો ફેરવો.",
+    "Yes, the 5 is the hour and the 20 is the minutes.": "હા, 5 કલાક છે અને 20 મિનિટ છે.",
+    "Two friends argue about which hand tells the hour: tap the one that does.": "બે મિત્રો દલીલ કરે છે કે કલાક કયો કાંટો બતાવે છે: એ જ કાંટો દબાવો.",
+    "Which hand tells the hour?": "કલાક કયો કાંટો બતાવે છે?",
+    "That hand moved the minute digits when you turned it.": "તે કાંટો ફેરવતાં મિનિટના અંક બદલાયા હતા.",
+    "Think of the hand that moved the hour digits.": "વિચારો, કયા કાંટાથી કલાકના અંક બદલાયા હતા.",
+    "The hour hand moves slowly, only one number in an hour.": "કલાક કાંટો ધીમે ચાલે છે, એક કલાકમાં ફક્ત એક સંખ્યા.",
+    "Yes, well spotted: now you can settle the friends' argument.": "હા, સરસ: હવે તમે મિત્રોની દલીલ ઉકેલી શકો છો.",
+    "Five minutes from one number to the next": "એક સંખ્યાથી બીજી સુધી પાંચ મિનિટ",
+    "Count the minutes in fives as the minute hand moves.": "મિનિટ કાંટો ચાલે ત્યારે મિનિટ પાંચ-પાંચ કરીને ગણો.",
+    "Tap Step to move the minute hand from the 12 to the 1.": "મિનિટ કાંટાને 12 થી 1 સુધી લઈ જવા પગલું દબાવો.",
+    "Tap the Step key beside the clock.": "ઘડિયાળ પાસેનું પગલું બટન દબાવો.",
+    "Tap Step again: from the 1 to the 2 is 5 more minutes.": "ફરી પગલું દબાવો: 1 થી 2 સુધી બીજી 5 મિનિટ.",
+    "One tap moves the minute hand one number.": "એક વાર દબાવતાં મિનિટ કાંટો એક સંખ્યા આગળ જાય છે.",
+    "Tap Step once more to move the minute hand on to the 3.": "મિનિટ કાંટાને 3 સુધી લઈ જવા વધુ એક વાર પગલું દબાવો.",
+    "Tap Step to move on one more number.": "બીજી સંખ્યા સુધી જવા પગલું દબાવો.",
+    "Tap Step again and watch the minutes on the digital clock.": "ફરી પગલું દબાવો અને ડિજિટલ ઘડિયાળ પર મિનિટ જુઓ.",
+    "Keep going with the Step key.": "પગલું બટનથી આગળ વધતા રહો.",
+    "Five minutes for every number: count in fives.": "દરેક સંખ્યાની પાંચ મિનિટ: પાંચ-પાંચ કરીને ગણો.",
+    "Count on in fives from where the minute hand started.": "મિનિટ કાંટો જ્યાંથી ચાલ્યો ત્યાંથી પાંચ-પાંચ કરીને ગણો.",
+    "The minute hand takes 5 minutes from one number to the next.": "મિનિટ કાંટો એક સંખ્યાથી બીજી સુધી 5 મિનિટ લે છે.",
+    "You learned: each number is 5 minutes, and one round is 60 minutes.": "તમે શીખ્યા: દરેક સંખ્યા 5 મિનિટ, અને પૂરો ચક્કર 60 મિનિટ.",
+    "Step the minute hand from the 5 to the 8: how many minutes have passed?": "મિનિટ કાંટાને 5 થી 8 સુધી પગલાંથી લઈ જાઓ: કેટલી મિનિટ વીતી?",
+    "Minutes passed?": "કેટલી મિનિટ વીતી?",
+    "Each number the minute hand passes is 5 minutes, not 1.": "મિનિટ કાંટો દરેક સંખ્યાએ 5 મિનિટ ચાલે છે, 1 નહીં.",
+    "Count the blue steps: 5 for each one.": "વાદળી પગલાં ગણો: દરેકના 5.",
+    "Say 5 for the first blue step, 10 for the next, then go on.": "પહેલા વાદળી પગલે 5, પછીના પર 10 બોલો, પછી આગળ ગણો.",
+    "Yes, 3 steps of 5 minutes make 15 minutes.": "હા, 5 મિનિટનાં 3 પગલાં મળીને 15 મિનિટ થાય છે.",
+    "Step the kitchen clock's minute hand to the 7: how many minutes past?": "રસોડાની ઘડિયાળનો મિનિટ કાંટો 7 સુધી લઈ જાઓ: કલાક પછી કેટલી મિનિટ?",
+    "Minutes past?": "કેટલી મિનિટ થઈ?",
+    "The 7 is where the hand stops: count 5 for every number from the 12.": "કાંટો 7 પર અટકે છે: 12 થી દરેક સંખ્યાના 5 ગણો.",
+    "Touch each blue step from the 12 and say the fives out loud.": "12 થી દરેક વાદળી પગલાને અડો અને પાંચ-પાંચ મોટેથી બોલો.",
+    "Keep counting in fives until you reach the minute hand.": "મિનિટ કાંટા સુધી પહોંચો ત્યાં સુધી પાંચ-પાંચ ગણતા રહો.",
+    "Yes, 7 steps of 5 make 35 minutes past the hour.": "હા, 5 નાં 7 પગલાંથી કલાક પછી 35 મિનિટ થઈ.",
+    "Tap Round to send the minute hand once round: how many minutes does it take?": "પૂરો ચક્કર દબાવો: મિનિટ કાંટો એક ચક્કરમાં કેટલી મિનિટ લે છે?",
+    "Minutes in a round?": "એક ચક્કરમાં કેટલી મિનિટ?",
+    "The hand passes 12 numbers, and each step is 5 minutes.": "કાંટો 12 સંખ્યા વટાવે છે, અને દરેક પગલું 5 મિનિટ છે.",
+    "Count every blue step in fives, all the way back to the 12.": "દરેક વાદળી પગલું પાંચ-પાંચ કરીને પાછા 12 સુધી ગણો.",
+    "Do not stop at the 11: the last step ends at the 12.": "11 પર ન અટકો: છેલ્લું પગલું 12 પર પૂરું થાય છે.",
+    "Yes, 12 steps of 5 make 60 minutes, and that is one hour.": "હા, 5 નાં 12 પગલાં 60 મિનિટ થાય, એટલે એક કલાક.",
+    "Now tap Step and watch the minute hand move.": "હવે પગલું દબાવો અને મિનિટ કાંટો ચાલતો જુઓ.",
+    "Now tap Round and watch the minute hand go round.": "હવે પૂરો ચક્કર દબાવો અને મિનિટ કાંટો ફરતો જુઓ.",
+    "Minutes past and minutes to the hour": "વાગીને મિનિટ અને વાગવામાં મિનિટ",
+    "Which side is the minute hand on? Say minutes past or minutes to.": "મિનિટ કાંટો કઈ બાજુ છે? વાગીને કે વાગવામાં બોલો.",
+    "Tap Past and to to colour the two halves of the clock.": "ઘડિયાળના બંને અડધા ભાગ રંગવા વાગીને / વાગવામાં દબાવો.",
+    "Tap the key that says Past and to.": "વાગીને / વાગવામાં બટન દબાવો.",
+    "Move the minute hand to the 3: a quarter of the way round is quarter past.": "પા ચક્કરે સવા થાય: મિનિટ કાંટો 3 પર લઈ જાઓ.",
+    "Drag or tap the minute hand to the 3.": "મિનિટ કાંટો 3 પર ખેંચો અથવા દબાવો.",
+    "Now move it on to the 6: halfway round is half past.": "અડધા ચક્કરે સાડા થાય: હવે કાંટો 6 સુધી લઈ જાઓ.",
+    "Keep the minute hand going to the 6.": "મિનિટ કાંટો 6 સુધી લઈ જતા રહો.",
+    "Move it on to the 9: with a quarter left to go we say quarter to.": "પા બાકી રહે ત્યારે પોણા કહીએ: કાંટો 9 સુધી લઈ જાઓ.",
+    "Stop the minute hand on the 9.": "મિનિટ કાંટો 9 પર રોકો.",
+    "Count in fives from the 12 on that side.": "તે બાજુ 12 થી પાંચ-પાંચ કરીને ગણો.",
+    "On the right we count on from the 12; on the left we count back to it.": "જમણી બાજુ 12 થી આગળ ગણીએ; ડાબી બાજુ 12 સુધી બાકી મિનિટ ગણીએ.",
+    "Yes, 7:45 is quarter to 8, so 15 minutes are left until 8.": "હા, 7:45 એટલે પોણા 8: 8 વાગવામાં 15 મિનિટ બાકી છે.",
+    "You learned: minutes past, minutes to, half past and the quarters.": "તમે શીખ્યા: વાગીને, વાગવામાં, સાડા, સવા અને પોણા.",
+    "At the bus stop the minute hand is on the 2: what time does the clock show?": "બસ સ્ટોપ પર મિનિટ કાંટો 2 પર છે: ઘડિયાળમાં કેટલા વાગ્યા છે?",
+    "What time is it?": "કેટલો સમય થયો છે?",
+    "The minute hand on the 2 is not 2 minutes: count in fives from the 12.": "2 પર મિનિટ કાંટો એટલે 2 મિનિટ નહીં: 12 થી પાંચ-પાંચ ગણો.",
+    "The minute hand is on the blue past side of the clock.": "મિનિટ કાંટો ઘડિયાળની વાદળી વાગીને વાળી બાજુ છે.",
+    "Count 5 for the 1, then one more five for the 2.": "1 માટે 5 ગણો, પછી 2 માટે બીજા પાંચ.",
+    "Yes, it is 10 minutes past 4, which we write 4:10.": "હા, 4 વાગીને 10 મિનિટ થઈ છે, જેને 4:10 લખીએ.",
+    "hours": "કલાક",
+    "minutes": "મિનિટ",
+    "The bus leaves with the minute hand on the 8: how many minutes to the hour?": "મિનિટ કાંટો 8 પર આવતાં બસ ઉપડે છે: કલાક વાગવામાં કેટલી મિનિટ?",
+    "Minutes to the hour?": "વાગવામાં કેટલી મિનિટ?",
+    "Minutes to the hour are the minutes left before it, not the minutes gone past.": "વાગવામાં મિનિટ એટલે કલાક પહેલાં બાકી મિનિટ, વીતેલી મિનિટ નહીં.",
+    "Count back in fives from the 12 to the minute hand.": "12 થી મિનિટ કાંટા સુધી પાંચ-પાંચ કરીને ઊંધું ગણો.",
+    "Say 5 at the 11, 10 at the 10, and keep going to the 8.": "11 પર 5, 10 પર 10 બોલો, અને 8 સુધી ગણતા રહો.",
+    "Yes, it is 20 minutes to 10, which we write 9:40.": "હા, 10 વાગવામાં 20 મિનિટ છે, જેને 9:40 લખીએ.",
+    "Dinner is at quarter to 8: set the kitchen clock's hands to show that time.": "રાતનું જમવાનું પોણા 8 વાગ્યે છે: રસોડાની ઘડિયાળમાં એ જ સમય ગોઠવો.",
+    "Show quarter to 8": "પોણા 8 બતાવો",
+    "Look at the hour hand: at quarter to 8, has it reached the 8 yet?": "કલાક કાંટો જુઓ: પોણા 8 વાગ્યે શું તે 8 સુધી પહોંચ્યો છે?",
+    "Quarter to 8 means 15 minutes are still left before 8 o'clock.": "પોણા 8 એટલે 8 વાગવામાં હજી 15 મિનિટ બાકી છે.",
+    "The hour hand sits just before the 8, not after it.": "કલાક કાંટો 8 ની બરાબર પહેલાં હોય છે, પછી નહીં.",
+    "Yes, quarter to 8 is 7:45, with the minute hand on the 9.": "હા, પોણા 8 એટલે 7:45, મિનિટ કાંટો 9 પર.",
+    "Past": "વાગીને",
+    "To": "વાગવામાં",
+    "Step": "પગલું",
+    "Round": "પૂરો ચક્કર",
+    "Plain": "સાદું",
+    "Minutes": "મિનિટ",
+    "Past and to": "વાગીને / વાગવામાં",
+    "1 hour": "1 કલાક",
+  },
+};
 
 /* One entry per phase = one mount.
    says    the teach run, printed on the bubble a piece at a time before anything is asked (numbers are printed as words)
@@ -133,21 +368,21 @@ const PHASES = [
         say: "The library clock has its long hand on the 12: what hour does it show?", ask: "What hour is it?",
         miss: "The long hand tells the minutes, not the hour.",
         ladder: ["Look at the short hand to find the hour.", "Read the number that the short hand points to."],
-        win: "Yes, it is 2 o'clock." },
+        win: "Yes, it is 2 o'clock.", winMs: 3000 },
       /* practice 1: answer in the plan = The 5 is the hour and the 20 is the minutes (set here: only the short hand moves the hour) */
       /* plan question: The digital alarm clock in the bedroom shows 5:20. Which number is the hour, and which is the minutes? */
       { qid: "M1.S1.T2.C6:1", kind: "setHour", t0: 20, scene: "backpack", pad: "enter", answer: [5, 20], near: "12|25", given: "5:20",
         say: "The alarm clock shows 5:20: set this clock to show 5:20 too.", ask: "Show 5:20",
         miss: "Turn one hand at a time and watch which digits change.",
         ladder: ["Make the hour digits match the alarm clock and keep the minutes.", "Keep the long hand on the 4 and move only the short hand."],
-        win: "Yes, the 5 is the hour and the 20 is the minutes." },
+        win: "Yes, the 5 is the hour and the 20 is the minutes.", winMs: 5800 },
       /* practice 5: answer in the plan = No. The long hand is the minute hand. The short hand is the hour hand and it tells the hour */
       /* plan question: At the bus stop a child says the long hand of the clock is the hour hand because it is longer. Is the child right? Which hand tells the hour? (answered by tapping the hand) */
       { qid: "M1.S1.T2.C6:5", kind: "pick", t0: 220, scene: "backpack", pad: "enter", answer: "short", near: "long",
         say: "Two friends argue about which hand tells the hour: tap the one that does.", ask: "Which hand tells the hour?",
         miss: "That hand moved the minute digits when you turned it.",
         ladder: ["Think of the hand that moved the hour digits.", "The hour hand moves slowly, only one number in an hour."],
-        win: "Yes, well spotted: now you can settle the friends' argument." },
+        win: "Yes, well spotted: now you can settle the friends' argument.", winMs: 5000 },
     ],
   },
   {
@@ -160,8 +395,8 @@ const PHASES = [
     steps: [
       { say: "Tap Step to move the minute hand from the 12 to the 1.", on: "step", hint: "Tap the Step key beside the clock." },
       { say: "Tap Step again: from the 1 to the 2 is 5 more minutes.", on: "step", hint: "One tap moves the minute hand one number." },
-      { say: "Tap Step once more and watch the minutes on the digital clock.", on: "step", hint: "Tap Step to move on one more number." },
-      { say: "Tap Step again: every number is another 5 minutes.", on: "step", hint: "Keep going with the Step key." },
+      { say: "Tap Step once more to move the minute hand on to the 3.", on: "step", hint: "Tap Step to move on one more number." },
+      { say: "Tap Step again and watch the minutes on the digital clock.", on: "step", hint: "Keep going with the Step key." },
     ],
     /* tries, as the plan writes it: First rung: count the numbers the hand passes. Second rung: count in fives as the hand is walked step by step. Third rung: the same task with one step only, before more steps are added. */
     ladder: ["Five minutes for every number: count in fives.", "Count on in fives from where the minute hand started."],
@@ -175,20 +410,20 @@ const PHASES = [
         say: "Step the minute hand from the 5 to the 8: how many minutes have passed?", ask: "Minutes passed?",
         miss: "Each number the minute hand passes is 5 minutes, not 1.",
         ladder: ["Count the blue steps: 5 for each one.", "Say 5 for the first blue step, 10 for the next, then go on."],
-        win: "Yes, 3 steps of 5 minutes make 15 minutes." },
+        win: "Yes, 3 steps of 5 minutes make 15 minutes.", winMs: 4600 },
       /* practice 2: answer in the plan = 35 minutes, counting 5, 10, 15, 20, 25, 30, 35 */
       /* plan question: A kitchen clock has its minute hand on the 7. Count in fives from the 12. How many minutes past the hour is that? */
       { qid: "M1.S1.T2.C7:2", kind: "count", t0: 60, need: 7, answer: 35, near: 7,
         say: "Step the kitchen clock's minute hand to the 7: how many minutes past?", ask: "Minutes past?",
         miss: "The 7 is where the hand stops: count 5 for every number from the 12.",
         ladder: ["Touch each blue step from the 12 and say the fives out loud.", "Keep counting in fives until you reach the minute hand."],
-        win: "Yes, 7 steps of 5 make 35 minutes past the hour." },
+        win: "Yes, 7 steps of 5 make 35 minutes past the hour.", winMs: 5400 },
       /* authored (the plan's practice 8, rounds from midnight to noon, is not used: the third question checks the round of 60 minutes) */
       { qid: null, kind: "round", t0: 240, need: 12, answer: 60, near: 12,
         say: "Tap Round to send the minute hand once round: how many minutes does it take?", ask: "Minutes in a round?",
         miss: "The hand passes 12 numbers, and each step is 5 minutes.",
         ladder: ["Count every blue step in fives, all the way back to the 12.", "Do not stop at the 11: the last step ends at the 12."],
-        win: "Yes, 12 steps of 5 make 60 minutes, and that is one hour." },
+        win: "Yes, 12 steps of 5 make 60 minutes, and that is one hour.", winMs: 6200 },
     ],
   },
   {
@@ -207,7 +442,7 @@ const PHASES = [
     stepHold: 2200,
     /* tries, as the plan writes it: First rung: say which side of the clock the long hand is on. Second rung: count in fives from the 12 on that side. Third rung: the same task with the long hand on the right side only, before the left side returns. */
     ladder: ["Count in fives from the 12 on that side.", "On the right we count on from the 12; on the left we count back to it."],
-    closing: "On the right we say minutes past, and on the left minutes to the next hour.",
+    closing: "Yes, 7:45 is quarter to 8, so 15 minutes are left until 8.",
     learned: "You learned: minutes past, minutes to, half past and the quarters.",
     traceback: "The hand that was read wrong glows; the side the minute hand is on is coloured, past or to, and the minutes are counted in fives from the 12 on that side, stopping one five before the minute hand.",
     items: [
@@ -217,27 +452,27 @@ const PHASES = [
         say: "At the bus stop the minute hand is on the 2: what time does the clock show?", ask: "What time is it?",
         miss: "The minute hand on the 2 is not 2 minutes: count in fives from the 12.",
         ladder: ["The minute hand is on the blue past side of the clock.", "Count 5 for the 1, then one more five for the 2."],
-        win: "Yes, it is 10 minutes past 4, which we write 4:10." },
+        win: "Yes, it is 10 minutes past 4, which we write 4:10.", winMs: 5400 },
       /* practice 3: answer in the plan = The left side. It is 20 minutes to the next hour, because the 8 is 40 minutes past */
       /* plan question: The clock at the railway station has its long hand on the 8. Is the long hand on the left or the right side, and how many minutes is it to the next hour? */
       { qid: "M1.S1.T2.C8:3", kind: "readTo", t0: 580, scene: "bus", answer: 20, near: 40,
         say: "The bus leaves with the minute hand on the 8: how many minutes to the hour?", ask: "Minutes to the hour?",
-        miss: "The minute hand is on the left, so count minutes to the next hour, not past.",
+        miss: "Minutes to the hour are the minutes left before it, not the minutes gone past.",
         ladder: ["Count back in fives from the 12 to the minute hand.", "Say 5 at the 11, 10 at the 10, and keep going to the 8."],
-        win: "Yes, it is 20 minutes to 10, which we write 9:40." },
+        win: "Yes, it is 20 minutes to 10, which we write 9:40.", winMs: 5400 },
       /* authored (the plan's phase-4 practice 7 idea, quarter to, with a new time: its own id belongs to the dropped phase) */
-      { qid: null, kind: "set", t0: 0, scene: "pot", pad: "enter", answer: [7, 45], near: "8|45", words: "quarter to 8",
+      { qid: null, kind: "set", t0: 180, scene: "pot", pad: "enter", answer: [7, 45], near: "8|45", words: "quarter to 8",
         say: "Dinner is at quarter to 8: set the kitchen clock's hands to show that time.", ask: "Show quarter to 8",
-        miss: "Quarter to means a quarter of the way is left to go before the 12.",
-        ladder: ["Quarter to sits on the left, the to side of the clock.", "The hour hand sits just before the 8, not after it."],
-        win: "Yes, quarter to 8 is 7:45, with the minute hand on the 9." },
+        miss: "Look at the hour hand: at quarter to 8, has it reached the 8 yet?",
+        ladder: ["Quarter to 8 means 15 minutes are still left before 8 o'clock.", "The hour hand sits just before the 8, not after it."],
+        win: "Yes, quarter to 8 is 7:45, with the minute hand on the 9.", winMs: 6200 },
     ],
   },
 ];
 
 /* The numbers, rows, sizes and targets the working area needs (they go into the sidecar too). */
 const MODEL = {
-  clock: { cx: 252, cy: 262, R: 206, hourGrip: 76, minuteGrip: 180, numerals: "1 to 12 at 0.74 R", minuteTicks: 60 },
+  clock: { cx: 252, cy: 252, R: 200, hourGrip: 72, minuteGrip: 177, numerals: "1 to 12 at 0.72 R", minuteTicks: 60 },
   digital: { x: 548, y: 18, w: 340, h: 168 }, words: { x: 548, y: 200, w: 340, h: 100 },
   colours: { hourHand: "#E5531A", minuteHand: "#1F4E9C", past: "#5BB8E8", to: "#F2A531", reached: "#2E9E5B" },
   snap: "the long hand snaps to 5 minutes; the short hand creeps (its angle is (hour + minutes / 60) x 30 degrees)",
@@ -258,9 +493,30 @@ const rcHM = (v: any) => {
   const p = String(v == null ? "" : v).split(/[|:]/);
   return [parseInt(p[0], 10), parseInt(p[1], 10)];
 };
-/* the time in words, as the book says it (the words card; digits stay digits) */
-const rcWords = (t: number) => {
+/* the time in words, as the book says it (the words card; digits stay digits). Built at run time, so Hindi and Gujarati have their own
+   templates here (TR cannot list them): बजे / वाग्या (o'clock), सवा / સવા (quarter past), साढ़े / સાડા (half past; डेढ़ / દોઢ at 1:30,
+   ढाई / અઢી at 2:30), पौने / પોણા (quarter to), "4 बजकर 10 मिनट" / "4 વાગીને 10 મિનિટ" (minutes past), "10 बजने में 20 मिनट" /
+   "10 વાગવામાં 20 મિનિટ" (minutes to) */
+const rcWords = (t: number, lang: string = "en") => {
   const h = rcH(t), m = rcM(t), nh = h === 12 ? 1 : h + 1;
+  if (lang === "hi") {
+    if (m === 0) return `${h} बजे`;
+    if (m === 15) return `सवा ${h} बजे`;
+    if (m === 30) return h === 1 ? "डेढ़ बजे" : h === 2 ? "ढाई बजे" : `साढ़े ${h} बजे`;
+    if (m === 45) return `पौने ${nh} बजे`;
+    if (m < 30) return `${h} बजकर|${m} मिनट`;
+    return `${nh} बजने में|${60 - m} मिनट`;
+  }
+  if (lang === "gu") {
+    /* one o'clock takes the singular verb (1 વાગ્યો); the rest the plural (વાગ્યા) */
+    const v = (k: number) => (k === 1 ? "વાગ્યો" : "વાગ્યા");
+    if (m === 0) return `${h} ${v(h)}`;
+    if (m === 15) return `સવા ${h} ${v(h)}`;
+    if (m === 30) return h === 1 ? "દોઢ વાગ્યો" : h === 2 ? "અઢી વાગ્યા" : `સાડા ${h} વાગ્યા`;
+    if (m === 45) return `પોણા ${nh} ${v(nh)}`;
+    if (m < 30) return `${h} વાગીને|${m} મિનિટ`;
+    return `${nh} વાગવામાં|${60 - m} મિનિટ`;
+  }
   if (m === 0) return `${h} o'clock`;
   if (m === 15) return `quarter past ${h}`;
   if (m === 30) return `half past ${h}`;
@@ -350,8 +606,8 @@ const check = () => (HOOK.check ? HOOK.check() : undefined);
 /* ── the clock family (the owner, 2026-10-28: Read the Clock is the reference for Morning or Night and Time Converter) ── */
 /* the vermilion leans a little to orange (hue 17): a pure vermilion (#E34234, hue 5) reads as a red mark after a miss (wrong-is-unmarked) */
 const RC = { hour: "#E5531A", minute: "#1F4E9C", past: "#5BB8E8", to: "#F2A531", ok: "#2E9E5B", face: "#FFFDF4", rim: "#2B2B2B", num: "#1E1E1E" };
-const RC_GEO = { cx: 252, cy: 262, R: 206 };
-const RC_HOUR_GRIP = 0.37, RC_MIN_GRIP = 0.874;   /* the grips' radii (x R): 104 apart, so their 76-unit finger boxes never overlap */
+const RC_GEO = { cx: 252, cy: 252, R: 200 };
+const RC_HOUR_GRIP = 0.36, RC_MIN_GRIP = 0.885;   /* the grips' radii (x R): 105 apart, so their 76-unit finger boxes never overlap */
 const rcPol = (cx: number, cy: number, r: number, deg: number) => ({ x: cx + r * Math.sin((deg * Math.PI) / 180), y: cy - r * Math.cos((deg * Math.PI) / 180) });
 const rcAng = (cx: number, cy: number, x: number, y: number) => ((Math.atan2(x - cx, -(y - cy)) * 180) / Math.PI + 360) % 360;
 /* a band of the face between two radii and two angles (clockwise from the 12) */
@@ -362,10 +618,10 @@ const rcBand = (cx: number, cy: number, r1: number, r2: number, a1: number, a2: 
 /* the right half (past) or the left half (to) of the face */
 const rcHalf = (cx: number, cy: number, r: number, side: string) => (side === "past"
   ? `M ${cx} ${cy - r} A ${r} ${r} 0 0 1 ${cx} ${cy + r} Z` : `M ${cx} ${cy + r} A ${r} ${r} 0 0 1 ${cx} ${cy - r} Z`);
-/* "Past" just outside the rim under the right half, "To" under the left half: no hand ever covers them */
+/* "Past" in one row under the right half, "To" under the left half, clear of the rim in every language: no hand ever covers them */
 const rcSideLabel = (cx: number, cy: number, R: number, side: string, tx: any) => {
-  const p = rcPol(cx, cy, R + 36, side === "past" ? 160 : 200);
-  return <text x={p.x} y={p.y + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={shade(side === "past" ? RC.past : RC.to, 0.6)}>{tx(side === "past" ? "Past" : "To")}</text>;
+  const p = { x: cx + (side === "past" ? 0.45 : -0.45) * R, y: cy + R + 37 };
+  return <text x={p.x} y={p.y + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={shade(side === "past" ? RC.past : RC.to, 0.6)} style={{ fontFamily: "inherit" }}>{tx(side === "past" ? "Past" : "To")}</text>;
 };
 /* which side the long hand is on: past (right), to (left), or neither (on the 12 or the 6) */
 const rcSide = (t: number) => { const m = rcM(t); return m > 0 && m < 30 ? "past" : m > 30 ? "to" : ""; };
@@ -376,33 +632,56 @@ function rcDial(cx: number, cy: number, R: number, o: any = {}) {
   const tx = o.tx || ((v: any) => v), fs = Math.round(R * 0.22);
   return (
     <g pointerEvents="none">
-      <circle cx={cx} cy={cy + 6} r={R + 4} fill="#000000" fillOpacity={0.08} />
+      {/* Wall clock soft depth shadow */}
+      <circle cx={cx} cy={cy + 8} r={R + 6} fill="#000000" fillOpacity={0.08} />
+      <circle cx={cx} cy={cy + 4} r={R + 4} fill="#000000" fillOpacity={0.06} />
+
+      {/* Main clock frame & face */}
       <circle cx={cx} cy={cy} r={R} fill={RC.face} stroke={RC.rim} strokeWidth={R * 0.055} />
-      <circle cx={cx} cy={cy} r={R * 0.955} fill="none" stroke="#E6D8BC" strokeWidth={2} />
+      <circle cx={cx} cy={cy} r={R * 0.96} fill="none" stroke="#E0D2B8" strokeWidth={2.5} />
+      <circle cx={cx} cy={cy} r={R * 0.945} fill="none" stroke="#FFFFFF" strokeWidth={1.5} strokeOpacity={0.8} />
+
       {o.tint && (
         <g>
-          <path d={rcHalf(cx, cy, R * 0.95, "past")} fill={RC.past} fillOpacity={o.side === "past" ? 0.42 : 0.2} />
-          <path d={rcHalf(cx, cy, R * 0.95, "to")} fill={RC.to} fillOpacity={o.side === "to" ? 0.45 : 0.22} />
-          <line x1={cx} y1={cy - R * 0.95} x2={cx} y2={cy + R * 0.95} stroke={RC.rim} strokeOpacity={0.35} strokeWidth={2} strokeDasharray="8 8" />
+          <path d={rcHalf(cx, cy, R * 0.94, "past")} fill={RC.past} fillOpacity={o.side === "past" ? 0.42 : 0.2} />
+          <path d={rcHalf(cx, cy, R * 0.94, "to")} fill={RC.to} fillOpacity={o.side === "to" ? 0.5 : 0.3} />
+          <line x1={cx} y1={cy - R * 0.94} x2={cx} y2={cy + R * 0.94} stroke={RC.rim} strokeOpacity={0.35} strokeWidth={2.5} strokeDasharray="8 8" />
           {rcSideLabel(cx, cy, R, "past", tx)}
           {rcSideLabel(cx, cy, R, "to", tx)}
         </g>
       )}
-      {(o.marks || []).map((k: number) => { const p = rcPol(cx, cy, R * 0.74, k * 30); return <circle key={"mk" + k} cx={p.x} cy={p.y} r={fs * 0.78} fill={tint(RC.ok, 0.72)} stroke={RC.ok} strokeWidth={3} />; })}
-      {Array.from({ length: 60 }, (_, i) => {
-        const five = i % 5 === 0, a = rcPol(cx, cy, R * (five ? 0.84 : 0.895), i * 6), b = rcPol(cx, cy, R * 0.94, i * 6);
-        return <line key={"tk" + i} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke={RC.rim} strokeWidth={five ? 4 : 2} strokeLinecap="round" />;
+      {(o.marks || []).map((k: number) => {
+        const p = rcPol(cx, cy, R * 0.74, k * 30);
+        return (
+          <g key={"mk" + k}>
+            <circle cx={p.x} cy={p.y} r={fs * 0.82} fill={tint(RC.ok, 0.75)} stroke={RC.ok} strokeWidth={3} />
+            <circle cx={p.x} cy={p.y} r={fs * 0.82 - 3} fill="none" stroke="#FFFFFF" strokeWidth={1.5} strokeOpacity={0.6} />
+          </g>
+        );
       })}
-      <g data-scale="dial">
-        {Array.from({ length: 12 }, (_, i) => { const k = i + 1, p = rcPol(cx, cy, R * 0.72, k * 30);
-          return <text key={"nm" + k} x={p.x} y={p.y + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill={RC.num}>{k}</text>; })}
-      </g>
+      {Array.from({ length: 60 }, (_, i) => {
+        const five = i % 5 === 0, a = rcPol(cx, cy, R * (five ? 0.83 : 0.89), i * 6), b = rcPol(cx, cy, R * 0.94, i * 6);
+        return <line key={"tk" + i} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke={five ? RC.rim : "#5A5A5A"} strokeWidth={five ? 4 : 2} strokeLinecap="round" />;
+      })}
+      {/* the twelve numbers are drawn ABOVE the hands (rcNumerals, called after rcHands), so no hand or grip ever hides one */}
       {o.ring && (
         <g data-scale="minutes">
-          {Array.from({ length: 12 }, (_, i) => { const k = i + 1, p = rcPol(cx, cy, R + 27, k * 30);
-            return <text key={"mn" + k} x={p.x} y={p.y + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={RC.minute}>{5 * k}</text>; })}
+          {Array.from({ length: 12 }, (_, i) => { const k = i + 1, p = rcPol(cx, cy, R + 31, k * 30);
+            return <text key={"mn" + k} x={p.x} y={p.y + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={RC.minute} style={{ fontFamily: "inherit" }}>{5 * k}</text>; })}
         </g>
       )}
+    </g>
+  );
+}
+
+/* the twelve numbers, over the hands, each on a halo of the face colour so a hand passing under it never hides it */
+function rcNumerals(cx: number, cy: number, R: number) {
+  const fs = Math.round(R * 0.22);
+  return (
+    <g data-scale="dial" pointerEvents="none">
+      {Array.from({ length: 12 }, (_, i) => { const k = i + 1, p = rcPol(cx, cy, R * 0.72, k * 30);
+        return <text key={"nm" + k} x={p.x} y={p.y + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill={RC.num}
+          stroke={RC.face} strokeWidth={Math.max(4, fs * 0.16)} strokeLinejoin="round" paintOrder="stroke" style={{ fontFamily: "inherit" }}>{k}</text>; })}
     </g>
   );
 }
@@ -411,23 +690,41 @@ function rcDial(cx: number, cy: number, R: number, o: any = {}) {
    (its angle is the whole time, half a degree a minute). o.glow lights one hand ("h" | "m"); o.picked rings the chosen grip. */
 function rcHands(cx: number, cy: number, R: number, t: number, o: any = {}) {
   const hd = rcN(t) / 2, md = rcM(t) * 6;
-  const hand = (deg: number, len: number, w0: number, col: string, glow: boolean, role: string) => (
+  /* tw: the half-width near the tip as a share of the base (the hour hand stays broad, so a vermilion band reads on both sides of
+     the minute hand even when the two lie on one another, as at 12:00) */
+  const hand = (deg: number, len: number, w0: number, col: string, glow: boolean, role: string, tw: number = 0.32) => {
+    /* straight sides narrowing a little, and a ROUND end: no arrowhead (the brief), so neither hand reads as a pencil or a spear */
+    const rt = w0 * tw, d = `M ${cx - w0 / 2} ${cy + R * 0.1} L ${cx - rt} ${cy - len + rt} A ${rt} ${rt} 0 0 1 ${cx + rt} ${cy - len + rt} L ${cx + w0 / 2} ${cy + R * 0.1} Z`;
+    return (
     <g transform={`rotate(${deg} ${cx} ${cy})`} data-role={role}>
-      {glow && <line x1={cx} y1={cy} x2={cx} y2={cy - len} stroke={col} strokeOpacity={0.32} strokeWidth={w0 + 26} strokeLinecap="round" />}
-      <path d={`M ${cx - w0 / 2} ${cy + R * 0.1} L ${cx - w0 * 0.32} ${cy - len + w0} L ${cx} ${cy - len} L ${cx + w0 * 0.32} ${cy - len + w0} L ${cx + w0 / 2} ${cy + R * 0.1} Z`}
-        fill={col} stroke={shade(col, 0.32)} strokeWidth={2} strokeLinejoin="round" />
+      {glow && <line x1={cx} y1={cy} x2={cx} y2={cy - len} stroke={col} strokeOpacity={0.35} strokeWidth={w0 + 28} strokeLinecap="round" />}
+      {/* Hand drop shadow */}
+      <g transform="translate(2, 4)" opacity={0.2}>
+        <path d={d} fill="#000000" />
+      </g>
+      <path d={d} fill={col} stroke={shade(col, 0.35)} strokeWidth={2.5} strokeLinejoin="round" />
+      <line x1={cx} y1={cy - R * 0.05} x2={cx} y2={cy - len + w0 * 1.2} stroke="#FFFFFF" strokeOpacity={0.35} strokeWidth={2} strokeLinecap="round" />
     </g>
-  );
-  const gh = rcPol(cx, cy, R * RC_HOUR_GRIP, hd), gm = rcPol(cx, cy, R * RC_MIN_GRIP, md), gr = Math.max(8, R * 0.062);
+    );
+  };
+  const gh = rcPol(cx, cy, R * RC_HOUR_GRIP, hd), gm = rcPol(cx, cy, R * RC_MIN_GRIP, md), gr = Math.max(9, R * 0.065);
   return (
     <g pointerEvents="none">
-      {hand(hd, R * 0.57, R * 0.09, RC.hour, o.glow === "h", "hour-hand")}
+      {hand(hd, R * 0.57, R * 0.125, RC.hour, o.glow === "h", "hour-hand", 0.42)}
       {hand(md, R * 0.92, R * 0.046, RC.minute, o.glow === "m", "minute-hand")}
+      <circle cx={gh.x} cy={gh.y + 2} r={gr} fill="#000000" fillOpacity={0.15} />
       <circle cx={gh.x} cy={gh.y} r={gr} fill="#FFFFFF" stroke={RC.hour} strokeWidth={5} />
+      <circle cx={gh.x} cy={gh.y} r={gr * 0.4} fill={RC.hour} />
+
+      <circle cx={gm.x} cy={gm.y + 2} r={gr} fill="#000000" fillOpacity={0.15} />
       <circle cx={gm.x} cy={gm.y} r={gr} fill="#FFFFFF" stroke={RC.minute} strokeWidth={5} />
-      {o.picked && <circle cx={o.picked === "short" ? gh.x : gm.x} cy={o.picked === "short" ? gh.y : gm.y} r={gr * 2.2} fill="none" stroke={RC.rim} strokeWidth={5} />}
-      <circle cx={cx} cy={cy} r={R * 0.06} fill={RC.rim} />
-      <circle cx={cx} cy={cy} r={R * 0.022} fill="#C9BCA6" />
+      <circle cx={gm.x} cy={gm.y} r={gr * 0.4} fill={RC.minute} />
+
+      {o.picked && <circle cx={o.picked === "short" ? gh.x : gm.x} cy={o.picked === "short" ? gh.y : gm.y} r={gr * 2.2} fill="none" stroke={RC.rim} strokeWidth={5} strokeDasharray="6 4" />}
+      <circle cx={cx} cy={cy + 2} r={R * 0.062} fill="#000000" fillOpacity={0.18} />
+      <circle cx={cx} cy={cy} r={R * 0.062} fill={RC.rim} />
+      <circle cx={cx} cy={cy} r={R * 0.035} fill="#DED2BA" />
+      <circle cx={cx} cy={cy} r={R * 0.018} fill={RC.rim} />
     </g>
   );
 }
@@ -436,54 +733,63 @@ function rcHands(cx: number, cy: number, R: number, t: number, o: any = {}) {
    digits behind a "?" while a question asks for them, and o.reveal draws them (data-reveals) once the right answer is in */
 function rcDigital(x: number, y: number, w: number, h: number, t: number, o: any = {}) {
   const tx = o.tx || ((v: any) => v);
-  const pad = w * 0.065, colW = w * 0.1, bw = (w - 2 * pad - colW) / 2, bh = h * 0.57, by = y + h * 0.12;
-  const hx = x + pad, mx = hx + bw + colW, fs = Math.round(Math.min(bh * 0.82, bw * 0.6)), ls = Math.max(28, Math.round(h * 0.17));
+  /* the hours / minutes captions are last-bench labels (34; "minutes" at 36 touched the card's edge), so the boxes take a little less height */
+  const pad = w * 0.065, colW = w * 0.1, bw = (w - 2 * pad - colW) / 2, bh = h * 0.5, by = y + h * 0.1;
+  const hx = x + pad, mx = hx + bw + colW, fs = Math.round(Math.min(bh * 0.82, bw * 0.6)), ls = Math.max(T.label, Math.round(h * 0.17));
   const hourInk = shade(RC.hour, 0.28);
   const digits = (
     <g>
-      <text x={hx + bw / 2} y={by + bh / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill={hourInk}>{rcH(t)}</text>
-      <text x={mx + bw / 2} y={by + bh / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill={RC.minute}>{rc2(rcM(t))}</text>
+      <text x={hx + bw / 2} y={by + bh / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill={hourInk} style={{ fontFamily: "inherit" }}>{rcH(t)}</text>
+      <text x={mx + bw / 2} y={by + bh / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill={RC.minute} style={{ fontFamily: "inherit" }}>{rc2(rcM(t))}</text>
     </g>
   );
   const box = (bx: number, on: boolean, col: string) => (
-    <rect x={bx} y={by} width={bw} height={bh} rx={12} fill={on ? tint(col, 0.8) : "#FFFFFF"} stroke={on ? col : "#C9CFC4"} strokeWidth={on ? 5 : 2} />
+    <g>
+      <rect x={bx} y={by + 2} width={bw} height={bh} rx={12} fill="#000000" fillOpacity={0.06} />
+      <rect x={bx} y={by} width={bw} height={bh} rx={12} fill={on ? tint(col, 0.8) : "#FFFFFF"} stroke={on ? col : "#C9CFC4"} strokeWidth={on ? 5 : 2} />
+    </g>
   );
   return (
     <g data-role="digital" pointerEvents="none">
-      <rect x={x} y={y} width={w} height={h} rx={h * 0.13} fill="#3A4046" />
-      <rect x={x + 8} y={y + 8} width={w - 16} height={h - 16} rx={h * 0.09} fill="#F6FAF2" />
+      <rect x={x} y={y + 5} width={w} height={h} rx={h * 0.13} fill="#000000" fillOpacity={0.12} />
+      <rect x={x} y={y} width={w} height={h} rx={h * 0.13} fill="#3A4046" stroke="#262B30" strokeWidth={2} />
+      <rect x={x + 8} y={y + 8} width={w - 16} height={h - 16} rx={h * 0.09} fill="#F6FAF2" stroke="#E1E8DC" strokeWidth={1.5} />
       {box(hx, o.lit === "h", RC.hour)}
       {box(mx, o.lit === "m", RC.minute)}
       <circle cx={hx + bw + colW / 2} cy={by + bh * 0.34} r={colW * 0.15} fill={RC.rim} />
       <circle cx={hx + bw + colW / 2} cy={by + bh * 0.68} r={colW * 0.15} fill={RC.rim} />
       {!o.cover ? digits : o.reveal ? <g data-reveals="answer">{digits}</g> : (
         <g>
-          <text x={hx + bw / 2} y={by + bh / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill="#767676">?</text>
-          <text x={mx + bw / 2} y={by + bh / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill="#767676">?</text>
+          <text x={hx + bw / 2} y={by + bh / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill="#767676" style={{ fontFamily: "inherit" }}>?</text>
+          <text x={mx + bw / 2} y={by + bh / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill="#767676" style={{ fontFamily: "inherit" }}>?</text>
         </g>
       )}
-      <text x={hx + bw / 2} y={by + bh + ls + 2} textAnchor="middle" fontSize={ls} fontWeight={600} fill={hourInk}>{tx("hours")}</text>
-      <text x={mx + bw / 2} y={by + bh + ls + 2} textAnchor="middle" fontSize={ls} fontWeight={600} fill={RC.minute}>{tx("minutes")}</text>
+      <text x={hx + bw / 2} y={by + bh + ls + 2} textAnchor="middle" fontSize={ls} fontWeight={600} fill={hourInk} style={{ fontFamily: "inherit" }}>{tx("hours")}</text>
+      <text x={mx + bw / 2} y={by + bh + ls + 2} textAnchor="middle" fontSize={ls} fontWeight={600} fill={RC.minute} style={{ fontFamily: "inherit" }}>{tx("minutes")}</text>
     </g>
   );
 }
 
 /* the words card: the time as the book says it ("10 minutes past 4", "quarter to 8"); "?" while a question asks for it */
 function rcWordsCard(x: number, y: number, w: number, h: number, text: string, o: any = {}) {
-  const fs = T.label + 2, words = String(text).split(" ");
-  let lines = [String(text)];
-  if (String(text).length > 17 && words.length > 1) {
+  /* a "|" in the text marks where a long phrase breaks ("10 बजने में|20 मिनट"), so a phrase is never split inside itself */
+  const raw = String(text), mark = raw.indexOf("|"), flat = raw.replace("|", " ");
+  const fs = T.label + 2, words = flat.split(" ");
+  let lines = [flat];
+  if (flat.length > 17 && mark > 0) lines = [raw.slice(0, mark), raw.slice(mark + 1)];
+  else if (flat.length > 17 && words.length > 1) {
     let best = 1, bd = 1e9;
     for (let k = 1; k < words.length; k++) { const d = Math.abs(words.slice(0, k).join(" ").length - words.slice(k).join(" ").length); if (d < bd) { bd = d; best = k; } }
     lines = [words.slice(0, best).join(" "), words.slice(best).join(" ")];
   }
   const y0 = y + h / 2 - ((lines.length - 1) * (fs + 6)) / 2 + fs * 0.36;
-  const said = <g>{lines.map((l, i) => <text key={"wl" + i} x={x + w / 2} y={y0 + i * (fs + 6)} textAnchor="middle" fontSize={fs} fontWeight={700} fill={RC.num}>{l}</text>)}</g>;
+  const said = <g>{lines.map((l, i) => <text key={"wl" + i} x={x + w / 2} y={y0 + i * (fs + 6)} textAnchor="middle" fontSize={fs} fontWeight={700} fill={RC.num} style={{ fontFamily: "inherit" }}>{l}</text>)}</g>;
   return (
     <g data-role="words" pointerEvents="none">
+      <rect x={x} y={y + 3} width={w} height={h} rx={16} fill="#000000" fillOpacity={0.08} />
       <rect x={x} y={y} width={w} height={h} rx={16} fill="#FFFFFF" stroke={o.reached ? RC.ok : "#C9BCA6"} strokeWidth={o.reached ? 5 : 3} />
       {!o.cover ? said : o.reveal ? <g data-reveals="answer">{said}</g>
-        : <text x={x + w / 2} y={y + h / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill="#767676">?</text>}
+        : <text x={x + w / 2} y={y + h / 2 + 20} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill="#767676" style={{ fontFamily: "inherit" }}>?</text>}
     </g>
   );
 }
@@ -512,14 +818,15 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   const bkRef = useRef(""), entryRef = useRef(0);
   if (bkRef.current !== bk) { bkRef.current = bk; entryRef.current += 1; }
   const entry = entryRef.current;
-  const t0Of = () => (free ? 180 : warm ? (n === 1 ? 0 : n === 2 ? 480 : 540) : it ? it.t0 : 0);
-  const fresh = () => { const t0 = t0Of(); return { e: entryRef.current, t: t0, s0: rcM(t0), steps: 0, picked: null, moved: false, lit: null }; };
+  /* the warm-ups: phase 1 at 4:00 (the two hands apart, so neither hides the other), phase 2 at 8:00, phase 3 at 9:00 */
+  const t0Of = () => (free ? 180 : warm ? (n === 1 ? 240 : n === 2 ? 480 : 540) : it ? it.t0 : 0);
+  const fresh = () => { const t0 = t0Of(); return { e: entryRef.current, t: t0, s0: rcM(t0), steps: 0, picked: null, moved: false, everMoved: false, lit: null }; };
   const [raw, setRaw] = useState<any>(null);
   const S = raw && raw.e === entry ? raw : fresh();
   const liveS = useRef<any>(null);
   if (!liveS.current || liveS.current.e !== entry) liveS.current = S;
   const cur = () => (liveS.current && liveS.current.e === entryRef.current ? liveS.current : fresh());
-  const put = (f: any) => { const b = cur(); const nx = { ...b, ...f(b), e: entryRef.current }; liveS.current = nx; setRaw(nx); };
+  const put = (f: any) => { const b = cur(); const nx = { ...b, ...f(b), e: entryRef.current }; if (nx.moved) nx.everMoved = true; liveS.current = nx; setRaw(nx); };
   const busyRef = useRef(false);
 
   /* the view keys (phase 3 and free play): plain dial, the minutes round the edge, the two halves past and to */
@@ -540,30 +847,69 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   const touched = touch.n === n && touch.c > 0;
   const touchOn = () => { setTouch((p: any) => (p.n === n ? { n, c: p.c + 1 } : { n, c: 1 })); if (trRaw) setTr(null); };
   const reached = isCount ? S.steps >= it.need : true;
-  const gateOn = asking && isCount && !reached && touched;
+  /* a set or pick question (answered on the clock, judged on Enter) is gated the same way until a hand has first moved (not again
+     after a miss: then Enter waits for a new move and says so) */
+  const padQ = !!it && it.pad === "enter";
+  const gateOn = asking && touched && ((isCount && !reached) || (padQ && !S.everMoved));
   const gateRef = useRef(false);
   useEffect(() => {
     if (gateOn && !gateRef.current) { gateRef.current = true; api.lock(true); }
     else if (!gateOn && gateRef.current) { gateRef.current = false; api.lock(false); }
   }, [gateOn]);
   useEffect(() => () => { if (gateRef.current) { gateRef.current = false; api.lock(false); } }, []);
-  /* while the gate holds, a tap on the locked Answer key, a typed digit or Enter brings a nudge that names the act (never a number);
-     the question comes back once the act is done (PATTERNS 18-19) */
-  const nudgedRef = useRef(false);
+  /* a REAL Enter on a guide step is the child's touch too (a keyboard-only child, a teacher on Enter), so the gate arms for them; the
+     agent's check() and toolApi send no key, so AI mode is never gated. The same listener times the physical Enter, so a doubled Enter
+     (50 to 300 ms apart) performs ONE guide step, never two. */
+  const keyEnterAt = useRef(0), keyStepAt = useRef(0);
   useEffect(() => {
-    if (!gateOn || !it) return;
-    const nudge = () => {
-      nudgedRef.current = true;
-      if (it.kind === "round") api.say("Now tap Round and watch the minute hand go round.");
-      else api.say("Now tap Step and watch the minute hand move.");
+    const onKey = (e: any) => {
+      if (!e.isTrusted || e.key !== "Enter") return;
+      keyEnterAt.current = Date.now();
+      if (stage === "demo") touchOn();
     };
-    const onKey = (e: any) => { if (/^[0-9]$/.test(String(e.key)) || e.key === "Enter") nudge(); };
-    const onDown = (e: any) => { const el = e.target && e.target.closest ? e.target.closest('[data-control="answer-open"]') : null; if (el) nudge(); };
-    window.addEventListener("keydown", onKey);
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
+  }, [stage, n]);
+  /* NUDGES (PATTERNS 18-19): while the gate holds, a tap on the locked key, a typed digit or Enter says which act is waiting (never a
+     number); Enter on a set or pick question whose hands have not moved since the miss says so too; a tap on the Minutes key that is off
+     for a read question says why. The question comes back on the child's next press. */
+  const nudgeAt = useRef(0);
+  /* a miss's hint stays on the bubble until the child's next act, and a line said over it is not drawn: when a hint is up, the
+     runtime's own openAnswer clears it (the keyOnly rule: a tap on the Answer key brings the question back), so the nudge is seen.
+     On a question answered on the clock (pad "enter") it draws no panel; on a typed question the keypad opens, ready for the count. */
+  const clearHint = () => {
+    try {
+      const g = (window as any).toolApi && (window as any).toolApi.getState();
+      if (g && g.hint && g.hintKind !== "type" && api.openAnswer) api.openAnswer();
+    } catch (e) { /* no hint to clear */ }
+  };
+  const nudge = () => {
+    if (!it) return;
+    clearHint();
+    nudgeAt.current = Date.now();
+    if (it.kind === "round") api.say("Now tap Round and watch the minute hand go round.");
+    else if (it.kind === "count") api.say("Now tap Step and watch the minute hand move.");
+    else if (it.kind === "pick") api.say("Tap one of the hands first.");
+    else api.say("Move a hand first.");
+  };
+  useEffect(() => {
+    if (!asking || !it) return;
+    const back = () => { if (nudgeAt.current && Date.now() - nudgeAt.current > 300) { nudgeAt.current = 0; api.say(it.say); } };
+    const onKey = (e: any) => {
+      if (!e.isTrusted) return;
+      if (gateOn && (/^[0-9]$/.test(String(e.key)) || e.key === "Enter")) { nudge(); return; }
+      back();
+    };
+    const onDown = (e: any) => {
+      if (!e.isTrusted) return;
+      const onAnswerKey = e.target && e.target.closest ? e.target.closest('[data-control="answer-open"]') : null;
+      if (gateOn && onAnswerKey) { nudge(); return; }
+      back();
+    };
+    window.addEventListener("keydown", onKey, true);
     document.addEventListener("pointerdown", onDown, true);
-    return () => { window.removeEventListener("keydown", onKey); document.removeEventListener("pointerdown", onDown, true); };
-  }, [gateOn, entry]);
-  useEffect(() => { if (asking && it && reached && nudgedRef.current) { nudgedRef.current = false; api.say(it.say); } }, [reached, asking, entry]);
+    return () => { window.removeEventListener("keydown", onKey, true); document.removeEventListener("pointerdown", onDown, true); };
+  }, [gateOn, asking, entry]);
   /* a question entered again starts clean: stop what was turning or correcting */
   useEffect(() => () => { tl.stop(); th.stop(); busyRef.current = false; }, [entry]);
 
@@ -593,11 +939,11 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   };
 
   /* a hand turning by itself, one minute a beat (the hour hand creeps with it) */
-  const turnBy = (k: number, ms: number, each: any, done: any) => {
+  const turnBy = (k: number, ms: number, each: any, done: any, dir: number = 1) => {
     const e0 = entryRef.current;
     busyRef.current = true;
     const seq: any[] = [];
-    for (let j = 1; j <= k; j++) seq.push([ms, () => { if (entryRef.current === e0) put((b: any) => ({ t: b.t + 1, ...(each ? each(j, b) : {}) })); }]);
+    for (let j = 1; j <= k; j++) seq.push([ms, () => { if (entryRef.current === e0) put((b: any) => ({ t: b.t + dir, ...(each ? each(j, b) : {}) })); }]);
     th.run(seq, () => { busyRef.current = false; if (entryRef.current !== e0) return; put((b: any) => ({ t: rcN(b.t) })); if (done) done(); });
   };
   const doStep = () => {
@@ -623,6 +969,13 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
     }
     if (name === "hour") { put((b: any) => ({ t: rcN(b.t + 60), moved: true, lit: "h" })); api.sfx.tick(); if (warm) api.did("hour"); return; }
     turnBy(5, 50, null, () => { put(() => ({ moved: true, lit: "m" })); api.sfx.tick(); if (warm) api.did("minute"); });
+  };
+  /* the keyboard's way back (Shift+Space, the left or down arrow): the hour hand an hour back, the long hand five minutes back; only
+     where a hand turns freely (the warm-ups of phases 1 and 3, a set question, free play) */
+  const turnBack = (name: string) => {
+    if (busyRef.current || !dragTurns) return;
+    if (name === "hour") { put((b: any) => ({ t: rcN(b.t - 60), moved: true, lit: "h" })); api.sfx.tick(); if (warm) api.did(kind === "warm3" ? "hour" : "hour"); return; }
+    turnBy(5, 50, null, () => { put(() => ({ moved: true, lit: "m" })); api.sfx.tick(); if (warm) api.did(kind === "warm3" ? "minute-off" : "minute"); }, -1);
   };
   const drag = useDrag((name: any, p: any, moved: boolean) => {
     touchOn();
@@ -652,6 +1005,12 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   /* GUIDE STEPS: Enter, the agent's check() and the dev solve() perform the current step, the same act as the child's tap */
   const act = (on: any) => {
     if (busyRef.current) return;
+    /* a physical Enter (timed by the listener above) performs one step per 400 ms; check() and solve() send no key and are not slowed */
+    const now = Date.now();
+    if (now - keyEnterAt.current < 60) {
+      if (now - keyStepAt.current < 400) return;
+      keyStepAt.current = now;
+    }
     if (on === "hour" || on === "minute") tapHand(on);
     else if (on === "step") doStep();
     else if (on === "pastto") pickView("pastto");
@@ -659,7 +1018,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   /* a time set or a hand picked on the clock is judged on the berry Enter key, never on release (the owner, 2026-10-28) */
   const enterAnswer = () => {
     const s = cur();
-    if (busyRef.current || !s.moved || !it) return;
+    if (busyRef.current || !it) return;
+    if (!s.moved) { nudge(); return; }   /* Enter before a hand has moved (or since the miss): say what to do, never a silent key */
     api.submit(it.kind === "pick" ? s.picked : `${rcH(s.t)}|${rcM(s.t)}`);
   };
   api.onEnter(stage === "demo" && stepOn ? () => act(stepOn) : asking && it && it.pad === "enter" ? enterAnswer : null);
@@ -692,7 +1052,11 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
        hand when the hour is; then the working, one step short */
     switch (it.kind) {
       case "readHour": seq.push([900, () => T({ glow: "m" })], [900, () => T({ glow: "h" })]); break;
-      case "setHour": if (rcM(s.t) !== it.answer[1]) seq.push([900, () => T({ glow: "m" })]); seq.push([900, () => T({ glow: "h" })]); break;
+      case "setHour":
+        if (rcM(s.t) !== it.answer[1]) seq.push([900, () => T({ glow: "m" })]);
+        if (rcH(s.t) !== it.answer[0]) seq.push([900, () => T({ glow: "h" })]);
+        if (!seq.length) seq.push([900, () => T({ glow: "h" })]);
+        break;
       case "pick": seq.push([1000, () => T({ glow: "m" })]); break;
       case "count": case "round":
         seq.push([800, () => T({ glow: "m" })]);
@@ -733,7 +1097,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   const sceneName = n === 1 && !free ? "backpack" : n === 3 && !free && view !== "plain" ? (it && it.scene) || "bus" : "";
   const wide = ox >= 270;
   const showGaps = kind === "warm2" || isCount;
-  const gapR = R + 27;
+  const gapR = R + 31;
   const glowNow = tr && tr.glow ? tr.glow : null;
   const litNow = glowNow || lit;
   /* the grips: finger boxes 76 across, centred on each hand's grip */
@@ -746,6 +1110,16 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
          answers; on the pick question Enter picks a hand that is not picked yet and passes once that hand is the one picked */
       if (e.key === "Enter" && asking && setQ) return;
       if (e.key === "Enter" && asking && it && it.kind === "pick" && cur().picked === (name === "hour" ? "short" : "long")) return;
+      /* turning both ways from the keyboard: Space or the right / up arrow turns on, Shift+Space or the left / down arrow turns back
+         (Tab is never caught, so there is no keyboard trap) */
+      const fwd = e.key === "ArrowRight" || e.key === "ArrowUp", bwd = e.key === "ArrowLeft" || e.key === "ArrowDown" || (e.key === " " && e.shiftKey);
+      if (keys && (fwd || bwd)) {
+        e.preventDefault(); e.stopPropagation();
+        if (e.repeat && busyRef.current) return;
+        touchOn();
+        if (bwd) turnBack(name); else tapHand(name);
+        return;
+      }
       if (keys) keys.onKeyDown(e);
     };
     return live ? (
@@ -771,18 +1145,18 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
 
   return (
     <g transform={`translate(${ox},0)`}>
-      {/* the scene's one prop, set beside the clock and never over it (left out in the Plain dial view; the bus and the pot only
-          while the keypad is shut, in the room left of the clock) */}
-      {sceneName === "backpack" && (
+      {/* the scene's one prop, set beside the clock and never over it, always in the same place: left of the dial, while the keypad is
+          shut (left out in the Plain dial view) */}
+      {sceneName === "backpack" && wide && (
         <g pointerEvents="none">
-          <rect x={772} y={330} width={101} height={132} rx={22} fill={tint("#C98A3D", 0.55)} stroke={shade("#C98A3D", 0.2)} strokeWidth={3} />
-          <Skin name="backpack" x={772} y={330} w={101} h={132} />
+          <rect x={-ox + 90} y={362} width={101} height={132} rx={22} fill={tint("#C98A3D", 0.55)} stroke={shade("#C98A3D", 0.2)} strokeWidth={3} />
+          <Skin name="backpack" x={-ox + 90} y={362} w={101} h={132} />
         </g>
       )}
       {sceneName === "bus" && wide && (
         <g pointerEvents="none">
-          <rect x={-ox + 8} y={404} width={262} height={95} rx={14} fill={tint("#E8B923", 0.55)} stroke={shade("#E8B923", 0.25)} strokeWidth={3} />
-          <Skin name="bus" x={-ox + 8} y={404} w={262} h={95} />
+          <rect x={-ox + 56} y={432} width={170} height={62} rx={12} fill={tint("#E8B923", 0.55)} stroke={shade("#E8B923", 0.25)} strokeWidth={3} />
+          <Skin name="bus" x={-ox + 56} y={432} w={170} h={62} />
         </g>
       )}
       {sceneName === "pot" && wide && (
@@ -802,7 +1176,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
             return (
               <g key={"gap" + i}>
                 <path d={rcBand(cx, cy, R * 0.8, R * 0.955, a1, a2)} fill={RC.past} fillOpacity={0.45} stroke={RC.minute} strokeWidth={2} />
-                <text x={mid.x} y={mid.y + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={RC.minute}>5</text>
+                <text x={mid.x} y={mid.y + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={RC.minute} style={{ fontFamily: "inherit" }}>5</text>
               </g>
             );
           })}
@@ -818,22 +1192,23 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
           {tr.side && !tintOn && rcSideLabel(cx, cy, R, tr.side, tx)}
           {Array.from({ length: tr.count || 0 }, (_, i) => {
             const k = i + 1, mm = tr.dir < 0 ? 60 - 5 * k : (isCount ? S.s0 : 0) + 5 * k, p = rcPol(cx, cy, gapR, (mm % 60) * 6);
-            return <text key={"tc" + k} x={p.x} y={p.y + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={tr.dir < 0 ? shade(RC.to, 0.55) : RC.minute}>{5 * k}</text>;
+            return <text key={"tc" + k} x={p.x} y={p.y + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={tr.dir < 0 ? shade(RC.to, 0.55) : RC.minute} style={{ fontFamily: "inherit" }}>{5 * k}</text>;
           })}
         </g>
       )}
 
       {rcHands(cx, cy, R, tShow, { glow: glowNow, picked: kind === "pick" ? S.picked : null })}
+      {rcNumerals(cx, cy, R)}
 
       {/* the win: the count and the round, in green */}
-      {shown && isCount && (() => { const mm = (S.s0 + it.need * 5) % 60, p = rcPol(cx, cy, gapR, mm * 6);
+      {shown && isCount && (() => { const mm = (S.s0 + it.need * 5) % 60, q = rcPol(cx, cy, gapR, mm * 6), p = { x: q.x, y: Math.max(q.y, 34) };   /* the "60" at the 12 kept clear of the card's top */
         return (
           <g data-reveals="answer" pointerEvents="none">
             <circle cx={p.x} cy={p.y} r={26} fill="#FFFFFF" stroke={RC.ok} strokeWidth={4} />
-            <text x={p.x} y={p.y + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={shade(RC.ok, 0.3)}>{it.answer}</text>
+            <text x={p.x} y={p.y + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={shade(RC.ok, 0.3)} style={{ fontFamily: "inherit" }}>{it.answer}</text>
             {it.kind === "round" && <g>
               <rect x={618} y={436} width={200} height={64} rx={32} fill={tint(RC.ok, 0.8)} stroke={RC.ok} strokeWidth={4} />
-              <text x={718} y={479} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={shade(RC.ok, 0.35)}>{tx("1 hour")}</text>
+              <text x={718} y={479} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={shade(RC.ok, 0.35)} style={{ fontFamily: "inherit" }}>{tx("1 hour")}</text>
             </g>}
           </g>
         );
@@ -847,13 +1222,15 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
 
       {rcDigital(KX, 18, KW, 168, tShow, { lit: litNow, cover: covDigits, reveal: shown, tx })}
       {/* the words card belongs to phase 3 (past, to, half and quarters) and free play: phases 1 and 2 never say a time in words */}
-      {(n === 3 || free) && rcWordsCard(KX, 200, KW, 100, rcWords(tShow), { cover: !!it, reveal: shown, reached: shown })}
+      {/* in the phase-3 warm-up only the quarter forms it teaches print (o'clock, quarter past, half past, quarter to): any other time
+          would print a question's answer (3.1, 3.2) before it is asked */}
+      {(n === 3 || free) && rcWordsCard(KX, 200, KW, 100, rcWords(tShow, lang), { cover: !!it || (kind === "warm3" && rcM(tShow) % 15 !== 0), reveal: shown, reached: shown })}
 
       {actKey && (
         <g>
           <Key id={actKey} label={actKey === "round" ? "Round" : "Step"} x={618} y={330} w={200} h={84} C={C} tone="key" disabled={!actLive}
             onClick={() => { touchOn(); if (actKey === "round") doRound(); else doStep(); }}>
-            <text y={11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={toneInk("key", C.ink)}>{tx(actKey === "round" ? "Round" : "Step")}</text>
+            <text y={11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={actLive ? toneInk("key", C.ink) : "#6B6B6B"} style={{ fontFamily: "inherit" }}>{tx(actKey === "round" ? "Round" : "Step")}</text>
           </Key>
           {inviteOn === actKey && <Invite x={718} y={372} w={200} h={84} C={C} />}
         </g>
@@ -862,9 +1239,13 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
         <g key={"vk-" + b.id}>
           <Key id={b.id} label={b.label} x={b.x} y={b.y} w={b.w} h={76} C={C} tone="key" disabled={viewDis(b.id)}
             onClick={() => { touchOn(); pickView(b.v); }}>
-            <text y={11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={toneInk("key", C.ink)}>{tx(b.label)}</text>
+            {/* a key that is off this question (Minutes on a read question) keeps a readable grey label on its quiet face */}
+            <text y={11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={viewDis(b.id) ? "#6B6B6B" : toneInk("key", C.ink)} style={{ fontFamily: "inherit" }}>{tx(b.label)}</text>
           </Key>
           {view === b.v && <rect x={b.x - 6} y={b.y - 6} width={b.w + 12} height={76 + 12 + EDGE} rx={RAD.key + 6} fill="none" stroke={RC.rim} strokeWidth={4} pointerEvents="none" />}
+          {/* the Minutes key is off on a read question (its ring would print the minutes); a tap on it says why, and changes nothing */}
+          {viewDis(b.id) && asking && <Hit id="minutes-off" x={b.x} y={b.y} w={b.w} h={76} label="Minutes (off for this question)"
+            onPress={() => { clearHint(); nudgeAt.current = Date.now(); api.say("For this question, count the fives yourself."); }} />}
           {inviteOn === b.id && <Invite x={b.x + b.w / 2} y={b.y + 38} w={b.w} h={76} C={C} />}
         </g>
       ))}
@@ -880,7 +1261,7 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v: any) => v }: any) {
   if (!last || !item) return null;
   const v = last.value;
   let t = item.t0, label = "";
-  if (item.kind === "pick") label = "";
+  if (item.kind === "pick") label = rcH(t) + ":" + rc2(rcM(t));   /* the clock the child read the hands on */
   else if (item.pad === "enter") { const [hh, mm] = rcHM(v); t = rcT(hh, mm); label = hh + ":" + rc2(mm); }
   else if (item.parts) { const [hh, mm] = slotPartsOf(v, 2).map(Number); t = rcT(hh, mm); label = hh + ":" + rc2(mm); }
   else if (item.kind === "count" || item.kind === "round") { t = item.t0 + item.need * 5; label = String(v); }
@@ -895,7 +1276,7 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v: any) => v }: any) {
       <line x1={ccx} y1={ccy} x2={rcPol(ccx, ccy, r * 0.5, rcN(t) / 2).x} y2={rcPol(ccx, ccy, r * 0.5, rcN(t) / 2).y} stroke={RC.hour} strokeWidth={item.kind === "pick" ? 8 : 5} strokeLinecap="round" />
       <line x1={ccx} y1={ccy} x2={rcPol(ccx, ccy, r * 0.82, rcM(t) * 6).x} y2={rcPol(ccx, ccy, r * 0.82, rcM(t) * 6).y} stroke={RC.minute} strokeWidth={3.5} strokeLinecap="round" />
       {item.kind === "pick" && <circle cx={rcPol(ccx, ccy, r * 0.5, rcN(t) / 2).x} cy={rcPol(ccx, ccy, r * 0.5, rcN(t) / 2).y} r={9} fill="none" stroke={RC.rim} strokeWidth={3} />}
-      {label && <text x={w - 16} y={h / 2 + 12} textAnchor="end" fontSize={T.label} fontWeight={700} fill={C.ink}>{label}</text>}
+      {label && <text x={w - 16} y={h / 2 + 12} textAnchor="end" fontSize={T.label} fontWeight={700} fill={C.ink} style={{ fontFamily: "inherit" }}>{label}</text>}
     </g>
   );
 }

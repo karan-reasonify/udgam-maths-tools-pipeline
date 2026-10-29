@@ -1,0 +1,1122 @@
+{
+  "slotId": "M1.S2.T5.C22.2D1",
+  "mediaId": "M1.S2.T5.C22.2D1",
+  "toolId": "write_the_date",
+  "title": "Write the Date",
+  "component": "M1.S2.T5.C22.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch10_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_10/2dtool/M1.S2.T5.C22.2D1/M1.S2.T5.C22.2D1.tsx",
+  "description": "Fill the day, month and year boxes on a real card, spell the month in words or write it in numbers, and turn a date from one way into the other.",
+  "conceptIds": [
+    "M1.S2.T5.C22",
+    "M1.S2.T5.C23",
+    "M1.S2.T5.C24"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        1086,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        985,
+        236
+      ],
+      "bar": [
+        1348,
+        738,
+        216,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Say the day, the month and the year of a date, write a date with the month in words or in numbers as DD-MM-YYYY, and turn a date from one way into the other.",
+    "look": "A real card with three rounded boxes for the day, the month and the year, a month ladder of twelve tiles with their numbers, a toggle between the month in words and in numbers, and a pad.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Write the Date' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many of the three boxes are filled. It is never a score. The working area is 1086 by 528 at x 64, y 202. The real card is a rounded card 560 by 300 at x 90, y 230, drawn as a birthday card, an invitation or a school notice in its natural colours with a line of words on it that names the event. The three rounded boxes stand in a row under the words at y 440: the day box 120 wide at x 130, the month box 220 wide at x 270 and the year box 160 wide at x 510, each 70 tall, with its label beneath in words, Day, Month and Year, so a part is told by its label before anything else. When the toggle is set to numbers, short dashes are drawn between the boxes. The month ladder is twelve tiles in two columns of six at x 740, y 232, each 150 by 54 with a 10 gap, each tile holding a month name and its number, January 01 down to December 12, and a tapped tile lights once. The month toggle is a button 300 by 64 at x 740, y 560 labelled Month in words and Month in numbers. A Check button stands under the card at x 90, y 580 (200 by 64), and a line in words under it says when a date is not a real one and why. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys and a clear key, for typing the day, the month number and the year into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours. The hour hand of a clock is vermilion and the minute hand is deep blue, because a hand is a mark that stands for a number, and the hours are vermilion and the minutes deep blue everywhere else, in a digital time, a label and a tag. The a.m. half of a day, from midnight to noon, is sky blue and the p.m. half, from noon to midnight, is amber. The time reached, a length of time worked out, a converted amount and the answer are green. A clock face, rim and numbers are near-black on cream, anything dimmed fades to half strength rather than turning grey, and chrome never borrows one of the five. Each reading survives with the colour taken away, because a time is told by its written label before it is told by its colour.",
+    "finish": "The card shows the last date in its boxes, written both ways, with the day, the month and the year each under its label and the month lit once on the ladder.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "all three boxes fill, each with its label, and the card reads the date whole",
+        "does": "reads the date on the card and drops its day, its month and its year into the three boxes",
+        "goal": "a date has three parts, a day, a month and a year, and all three are needed",
+        "says": "A date has three parts. Which is the day? Which is the month? Which is the year?",
+        "check": "Away from the screen: say your birthday and name its day, its month and its year.",
+        "feels": "a date on a card splitting into three parts that drop into three labelled boxes",
+        "hands": "Write your own birthday on a card, then circle the day, underline the month and put a box round the year.",
+        "tries": "First rung: read the label under each box. Second rung: find the word on the card that is a month. Third rung: the same task with a card that has the month in words only, before the numbers come back.",
+        "wrong": [
+          {
+            "why": "the year is the biggest number on the card and it seems to come first",
+            "move": "puts the year in the day box",
+            "screen": "the year box shows its label Year and four boxes of digits, and the day box shows its label Day with room for two digits only"
+          },
+          {
+            "why": "the month is a word, and the boxes look like they are for numbers",
+            "move": "leaves the month out",
+            "screen": "the month box lights and the ladder shows the month beside the card, so the missing part is seen"
+          }
+        ],
+        "screen": "a real card with a date written on it and three empty rounded boxes labelled Day, Month and Year beneath it",
+        "soWhat": "a date has a day, a month and a year, and all three are needed",
+        "concept": "A date has a day, a month and a year"
+      },
+      {
+        "n": 2,
+        "win": "the month name settles in its box and the date reads in words, day then month then year",
+        "does": "taps the month on the ladder, watches its name drop into the month box, and reads the date aloud",
+        "goal": "the Day-Month-Year way writes the day, then the month in words, then the year",
+        "says": "Write the day first. Then spell the month out. Then the year. Read it aloud.",
+        "check": "Away from the screen: say the date of a school holiday, day first, then the month in words, then the year.",
+        "feels": "a month name lifting off the ladder and sliding into its box, and the date reading aloud in order",
+        "hands": "Say your birthday aloud in the order day, month, year, with the month as a word, and write it on a card.",
+        "tries": "First rung: which box comes first. Second rung: tap the month on the ladder and read its name. Third rung: the same task with the day and the year already filled, before the full date returns.",
+        "wrong": [
+          {
+            "why": "the other way is also correct, so the number feels right",
+            "move": "writes the month as a number in a date that asks for words",
+            "screen": "the toggle is shown set to the month in words and the ladder lights the month's name, so the word to write is in view"
+          },
+          {
+            "why": "the year is the biggest number and it seems to start the date",
+            "move": "writes the year before the day",
+            "screen": "the three boxes show their labels in order, Day, Month and Year, and the date is read aloud in that order"
+          }
+        ],
+        "screen": "a real invitation with its three boxes filled in numbers and the month toggle set to the month in words",
+        "soWhat": "Day-Month-Year writes the day, then the month in words, then the year",
+        "concept": "Day-Month-Year: the month in words"
+      },
+      {
+        "n": 3,
+        "win": "the three boxes fill with dashes between them and the date reads in numbers",
+        "does": "finds the month on the ladder, reads its number, and types the day, the month and the year with dashes between them",
+        "goal": "the numerical way writes two digits for the day, two for the month and four for the year, with the month's place in the year",
+        "says": "Find the month on the ladder. Its number goes in the middle. Two digits, two digits, four digits.",
+        "check": "Away from the screen: which number is the month of your birthday on the list? Write the day, that number and the year with dashes between.",
+        "feels": "a month's number lifting off the ladder and sliding into the month box between two dashes",
+        "hands": "Make a list of the twelve months with their numbers, January one to December twelve, and write your birthday in numbers with two digits for the day and the month.",
+        "tries": "First rung: find the month on the ladder and read its number. Second rung: write it with two digits. Third rung: the same task with the day and the year already in their boxes, before the full date returns.",
+        "wrong": [
+          {
+            "why": "the month number is small, so one digit seems enough",
+            "move": "writes the month as one digit",
+            "screen": "the month box shows two empty digit places and a note in words that the day and the month take two digits each, with a nought in the first place"
+          },
+          {
+            "why": "the month seems the biggest part of the date, so it goes first",
+            "move": "puts the month before the day",
+            "screen": "the three boxes show their labels in order and the date is read aloud, day then month then year, as the dashes are filled"
+          }
+        ],
+        "screen": "a real school notice with its three boxes empty, the month ladder showing each month beside its number, and the toggle set to the month in numbers",
+        "soWhat": "DD-MM-YYYY writes two digits for the day, two for the month and four for the year, and the month's number is its place in the year",
+        "concept": "DD-MM-YYYY: the month in numbers"
+      },
+      {
+        "n": 4,
+        "win": "the toggle turns the date and the two ways match, with the month lit once on the ladder",
+        "does": "writes the date the other way, taps the toggle to check that the two ways say the same date, and fixes anything that does not match",
+        "goal": "a date written in words and the same date written in numbers say one date, and either can be turned into the other",
+        "says": "Say the date the other way. Turn the toggle. Do both ways name one day?",
+        "check": "Away from the screen: write the date of a birthday in words, then in numbers, and check that a friend reads out the same day.",
+        "feels": "the toggle flipping a date over like a page while the day and the year stay where they are",
+        "hands": "Write a date on one card in words and swap with a partner, who writes it in numbers on a second card, and compare the two cards.",
+        "tries": "First rung: say which part is the day and which is the month. Second rung: find the month on the ladder and read its name or its number. Third rung: the same task with the month already filled, before the full date returns.",
+        "wrong": [
+          {
+            "why": "in some other places the month comes first, so it feels familiar",
+            "move": "reads the first number of a numbered date as the month",
+            "screen": "the toggle turns the date and the boxes keep their labels, so the first box is seen to be Day and the second to be Month"
+          },
+          {
+            "why": "the two lines look so different that they seem to say different things",
+            "move": "says the two ways name different dates",
+            "screen": "the month lights once on the ladder for both ways, and the day and the year stay unchanged when the toggle turns"
+          }
+        ],
+        "screen": "a real diary page with a date in words on one side and an empty row of boxes on the other, and the toggle ready to turn it",
+        "soWhat": "a date in words and the same date in numbers name one date, and either can be turned into the other",
+        "concept": "From words to numbers and back"
+      }
+    ],
+    "delight": "Two small surprises. On the second and third phases, the month name or number lifts off its tile on the ladder and slides across into the month box. On the fourth phase, the toggle flips the whole date over like a page, and the three boxes keep the same day, month and year on the other side.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet typed. On the first phase a real birthday card stands with its date written on it and three empty boxes under it, labelled Day, Month and Year. On the second a real invitation shows its three boxes filled in numbers, with the toggle set to the month in words. On the third a real school notice shows three empty boxes, the month ladder lit with its numbers, and the toggle set to the month in numbers. On the fourth a real diary page shows a date written in words at the left and an empty row of boxes at the right. One thing moves, once: the first box, or the toggle on the second and fourth phases, gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any date the calendar allows in the three boxes, turned between the month in words and the month in numbers with the toggle, with the month ladder lighting each month. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the parts of a date, the month in words, the month in numbers with two digits, a date that cannot be real, and dates turned from numbers into words and back, each on a real card or ticket.",
+    "voiceLines": [
+      "A card with a date on it, and three empty boxes. Let us write it down.",
+      "A date has three parts. Which is the day? Which is the month? Which is the year?",
+      "Write the day first. Then spell the month out. Then the year. Read it aloud.",
+      "Find the month on the ladder. Its number goes in the middle. Two digits, two digits, four digits.",
+      "Say the date the other way. Turn the toggle. Do both ways name one day?",
+      "A new card. What is its day, its month and its year?",
+      "Free play. Write any date, and turn it between words and numbers.",
+      "Look at the labels under the boxes. Which part goes where?",
+      "You wrote the date in words and in numbers, and both said the same day."
+    ],
+    "observations": [
+      {
+        "why": "a date is made of three parts, and every part has its own place.",
+        "soWhat": "a date has a day, a month and a year, and all three are needed.",
+        "observe": "The day, the month and the year each had a box with a label under it."
+      },
+      {
+        "why": "the ladder lists the twelve months, and the Day-Month-Year way writes the month in words.",
+        "soWhat": "Day-Month-Year writes the day, then the month in words, then the year.",
+        "observe": "The month name dropped into the middle box when it was tapped on the ladder."
+      },
+      {
+        "why": "the number is the month's place in the year, and DD-MM-YYYY writes it with two digits.",
+        "soWhat": "DD-MM-YYYY writes two digits for the day, two for the month and four for the year.",
+        "observe": "The ladder showed a number beside every month, and the month box took two digits."
+      },
+      {
+        "why": "the two ways write the same three parts, only the month is written differently.",
+        "soWhat": "a date in words and the same date in numbers name one date, so both are correct.",
+        "observe": "The toggle turned the date from words to numbers and the same day stayed on the card."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a real card with a date written on it and three empty rounded boxes labelled Day, Month and Year beneath it",
+        "win": "all three boxes fill, each with its label, and the card reads the date whole",
+        "traceback": "the tiles in a wrong box go back to the card, a right box stays green with a tick, and each box lights in turn with what fits in it (1 to 31, a month, 4 digits)",
+        "ladder": [
+          "Read the label under each box, then try again.",
+          "A date needs all three parts, so no box stays empty.",
+          "Look at each part: which one is a month, and which is a year?",
+          "Find the word on the card that names a month.",
+          "The day is the small number, and the long number is the year."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a real invitation with its three boxes filled in numbers and the month toggle set to the month in words",
+        "win": "the month name settles in its box and the date reads in words, day then month then year",
+        "traceback": "the typed boxes empty, a right box stays green with a tick, and the labels Day, Month, Year light in order with what fits in each",
+        "ladder": [
+          "Look at the labels: which box comes first?",
+          "The day goes first and the four-digit year goes last.",
+          "Month 11 on the ladder has a name: use that name.",
+          "Read the card again: which month does it say?",
+          "Read your date aloud: the day, then the month, then the year."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a real school notice with its three boxes empty, the month ladder showing each month beside its number, and the toggle set to the month in numbers",
+        "win": "the three boxes fill with dashes between them and the date reads in numbers",
+        "traceback": "the typed boxes empty, a right box stays green with a tick, the labels light in order and each wrong box shows DD, MM or YYYY (or 1 to 31, a month, 4 digits); a note says when a date is not real (no month 13, April has 30 days) or a 0 goes in front",
+        "ladder": [
+          "The first number is the day and the second is the month.",
+          "Check the day, the month and the year against the card.",
+          "Count the digits you wrote in each of the three boxes.",
+          "Read the card again, then check the month's number on the ladder.",
+          "A day or a month with one digit starts with a 0, like 07."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "months": [
+      {
+        "name": "January",
+        "number": "01"
+      },
+      {
+        "name": "February",
+        "number": "02"
+      },
+      {
+        "name": "March",
+        "number": "03"
+      },
+      {
+        "name": "April",
+        "number": "04"
+      },
+      {
+        "name": "May",
+        "number": "05"
+      },
+      {
+        "name": "June",
+        "number": "06"
+      },
+      {
+        "name": "July",
+        "number": "07"
+      },
+      {
+        "name": "August",
+        "number": "08"
+      },
+      {
+        "name": "September",
+        "number": "09"
+      },
+      {
+        "name": "October",
+        "number": "10"
+      },
+      {
+        "name": "November",
+        "number": "11"
+      },
+      {
+        "name": "December",
+        "number": "12"
+      }
+    ],
+    "monthDays": "30 days: April, June, September, November; 31: the rest; February 28, or 29 in a leap year (every fourth year)",
+    "forms": {
+      "words": "Day-Month-Year: 7 November 2019",
+      "numbers": "DD-MM-YYYY: 07-11-2019 (2, 2 and 4 digits, the zero in front kept)"
+    },
+    "boxes": [
+      "Day",
+      "Month",
+      "Year"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T5.C22:WD1",
+        "kind": "place",
+        "pad": "enter",
+        "d": 23,
+        "m": 3,
+        "y": 2017,
+        "obj": "card",
+        "title": "Happy Birthday!",
+        "order": [
+          0,
+          1,
+          2
+        ],
+        "answer": "23|March|2017",
+        "near": "2017|March|23",
+        "win": "Yes: 23 is the day, March is the month and 2017 is the year.",
+        "winMs": 6200
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T5.C22:1",
+        "kind": "place",
+        "pad": "enter",
+        "d": 30,
+        "m": 4,
+        "y": 2015,
+        "obj": "invitation",
+        "title": "Wedding Invitation",
+        "order": [
+          2,
+          0,
+          1
+        ],
+        "answer": "30|April|2015",
+        "near": "30||2015",
+        "win": "Right, 30 April 2015 has its day, its month and its year in place.",
+        "winMs": 6600
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": null,
+        "kind": "place",
+        "pad": "enter",
+        "d": 8,
+        "m": 12,
+        "y": 2022,
+        "obj": "notice",
+        "title": "Sports Day",
+        "order": [
+          1,
+          2,
+          0
+        ],
+        "answer": "8|December|2022",
+        "near": "8|2022|December",
+        "win": "Well done: 8 December 2022 splits into its three parts.",
+        "winMs": 4600
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T5.C23:WD2",
+        "kind": "words",
+        "parts": [
+          {
+            "label": "Day",
+            "at": "dd"
+          },
+          {
+            "label": "Month",
+            "at": "mm"
+          },
+          {
+            "label": "Year",
+            "at": "yyyy"
+          }
+        ],
+        "cardName": "Date",
+        "d": 9,
+        "m": 8,
+        "y": 2013,
+        "obj": "invitation",
+        "title": "Party Invitation",
+        "lines": [
+          "Year: 2013",
+          "Month: August",
+          "Day: 9"
+        ],
+        "answer": [
+          "9",
+          "08",
+          "2013"
+        ],
+        "near": "20|08|9",
+        "win": "Yes, 9 August 2013 is written the Day-Month-Year way.",
+        "winMs": 4600
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T5.C23:2",
+        "kind": "words",
+        "parts": [
+          {
+            "label": "Day",
+            "at": "dd"
+          },
+          {
+            "label": "Month",
+            "at": "mm"
+          },
+          {
+            "label": "Year",
+            "at": "yyyy"
+          }
+        ],
+        "cardName": "Date",
+        "d": 17,
+        "m": 6,
+        "y": 2012,
+        "obj": "notice",
+        "title": "Library Notice",
+        "lines": [
+          "New books came on",
+          "the 17th of June, 2012"
+        ],
+        "answer": [
+          "17",
+          "06",
+          "2012"
+        ],
+        "near": "17|06|12",
+        "win": "Right, 17 June 2012, with June written as a word.",
+        "winMs": 4600
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": null,
+        "kind": "words",
+        "parts": [
+          {
+            "label": "Day",
+            "at": "dd"
+          },
+          {
+            "label": "Month",
+            "at": "mm"
+          },
+          {
+            "label": "Year",
+            "at": "yyyy"
+          }
+        ],
+        "cardName": "Date",
+        "d": 25,
+        "m": 11,
+        "y": 2018,
+        "obj": "invitation",
+        "title": "Birthday Party",
+        "lines": [
+          "Month: 11",
+          "Day: 25",
+          "Year: 2018"
+        ],
+        "answer": [
+          "25",
+          "11",
+          "2018"
+        ],
+        "near": "25|10|2018",
+        "win": "Yes, month 11 is November, so the date is 25 November 2018.",
+        "winMs": 5400
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": null,
+        "kind": "words",
+        "parts": [
+          {
+            "label": "Day",
+            "at": "dd"
+          },
+          {
+            "label": "Month",
+            "at": "mm"
+          },
+          {
+            "label": "Year",
+            "at": "yyyy"
+          }
+        ],
+        "cardName": "Date",
+        "d": 6,
+        "m": 11,
+        "y": 2023,
+        "obj": "notice",
+        "title": "Science Fair",
+        "lines": [
+          "06-11-2023"
+        ],
+        "answer": [
+          "6",
+          "11",
+          "2023"
+        ],
+        "near": "11|06|2023",
+        "ladder": [
+          "The middle number is the month: which name has that number?",
+          "Tap that name on the ladder, then type the day and the year from the card."
+        ],
+        "win": "Yes, 06-11-2023 is 6 November 2023.",
+        "winMs": 3400
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T5.C24:WD3",
+        "kind": "nums",
+        "parts": [
+          {
+            "label": "Day",
+            "at": "dd"
+          },
+          {
+            "label": "Month",
+            "at": "mm"
+          },
+          {
+            "label": "Year",
+            "at": "yyyy"
+          }
+        ],
+        "cardName": "Date",
+        "d": 14,
+        "m": 10,
+        "y": 2019,
+        "obj": "notice",
+        "title": "Annual Day",
+        "lines": [
+          "14 October 2019"
+        ],
+        "answer": [
+          "14",
+          "10",
+          "2019"
+        ],
+        "near": "10|14|2019",
+        "ladder": [
+          "Write the day first; the month's number goes in the middle.",
+          "Your boxes must read day, month, year, like the card."
+        ],
+        "win": "Yes, 14 October 2019 is 14-10-2019.",
+        "winMs": 3400
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T5.C24:6",
+        "kind": "nums",
+        "parts": [
+          {
+            "label": "Day",
+            "at": "dd"
+          },
+          {
+            "label": "Month",
+            "at": "mm"
+          },
+          {
+            "label": "Year",
+            "at": "yyyy"
+          }
+        ],
+        "cardName": "Date",
+        "d": 5,
+        "m": 3,
+        "y": 2016,
+        "obj": "notice",
+        "title": "Result Day",
+        "lines": [
+          "5 March 2016"
+        ],
+        "answer": [
+          "05",
+          "03",
+          "2016"
+        ],
+        "near": "5|3|2016",
+        "win": "Right, 05-03-2016: a 0 goes in front of the 5 and the 3.",
+        "winMs": 6200
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: the tiles in a wrong box go back to the card, a right box stays green with a tick, and each box lights in turn with what fits in it (1 to 31, a month, 4 digits)",
+      "Phase 2: the typed boxes empty, a right box stays green with a tick, and the labels Day, Month, Year light in order with what fits in each",
+      "Phase 3: the typed boxes empty, a right box stays green with a tick, the labels light in order and each wrong box shows DD, MM or YYYY (or 1 to 31, a month, 4 digits); a note says when a date is not real (no month 13, April has 30 days) or a 0 goes in front"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Dates are written on cards, tickets and notices.",
+    "onFreePlay": "Free play: pick a month, tap Day or Year to type, see the date both ways.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You wrote the date in words and in numbers, and both said the same day.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T5.C22:WD1",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "A birthday card says 23 March 2017. Which number is the day, which word is the month and which number is the year?",
+            "question": {
+              "en": "Drag the day, the month and the year from this birthday card into their boxes."
+            },
+            "ask": {
+              "en": "Day, month, year?"
+            },
+            "answer": "23|March|2017",
+            "planAnswer": "The day is 23, the month is March and the year is 2017",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T5.C22:1",
+            "worked": false,
+            "kind": "place",
+            "planQuestion": "A train ticket shows the day 30, the month April and the year 2015. Which of the three is the year?",
+            "question": {
+              "en": "Now fill the three boxes from the date on this invitation."
+            },
+            "ask": {
+              "en": "Fill the boxes"
+            },
+            "answer": "30|April|2015",
+            "planAnswer": "2015 is the year",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "place",
+            "planQuestion": null,
+            "question": {
+              "en": "Put each part of the date on this school notice in its own box."
+            },
+            "ask": {
+              "en": "Each part, its box"
+            },
+            "answer": "8|December|2022",
+            "planAnswer": null,
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T5.C23:WD2",
+            "worked": false,
+            "kind": "words",
+            "planQuestion": "An invitation card has the day 9, the month August and the year 2013. Write the date with the month in words.",
+            "question": {
+              "en": "Write this date the Day-Month-Year way: tap the month, then type the rest."
+            },
+            "ask": {
+              "en": "Day-Month-Year"
+            },
+            "answer": "9|August|2013",
+            "planAnswer": "9 August 2013",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T5.C23:2",
+            "worked": false,
+            "kind": "words",
+            "planQuestion": "A library card says it was made on the 17th of June 2012. Write the date as Day-Month-Year.",
+            "question": {
+              "en": "Write the date on this library notice with the month in words."
+            },
+            "ask": {
+              "en": "Month in words"
+            },
+            "answer": "17|June|2012",
+            "planAnswer": "17 June 2012",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "words",
+            "planQuestion": null,
+            "question": {
+              "en": "The month here is a number: write this date with that month's name."
+            },
+            "ask": {
+              "en": "Number to name"
+            },
+            "answer": "25|November|2018",
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "words",
+            "planQuestion": null,
+            "question": {
+              "en": "This notice is in numbers: write its date with the month in words."
+            },
+            "ask": {
+              "en": "Back to words"
+            },
+            "answer": "6|November|2023",
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T5.C24:WD3",
+            "worked": false,
+            "kind": "nums",
+            "planQuestion": "A school notice board shows 14 October 2019. Write the date in numbers as DD-MM-YYYY.",
+            "question": {
+              "en": "Write the date on this school notice in numbers, as DD-MM-YYYY."
+            },
+            "ask": {
+              "en": "DD-MM-YYYY"
+            },
+            "answer": [
+              "14",
+              "10",
+              "2019"
+            ],
+            "planAnswer": "14-10-2019",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T5.C24:6",
+            "worked": false,
+            "kind": "nums",
+            "planQuestion": "A report card shows 5 March 2016. A child writes 5-3-2016 in the DD-MM-YYYY boxes. What must change?",
+            "question": {
+              "en": "Now write this Result Day date in numbers too."
+            },
+            "ask": {
+              "en": "In numbers again"
+            },
+            "answer": [
+              "05",
+              "03",
+              "2016"
+            ],
+            "planAnswer": "05-03-2016, because the day and the month each need two digits",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S2.T5.C22:5",
+    "M1.S2.T5.C24:3",
+    "M1.S2.T5.C25:WD4",
+    "M1.S2.T5.C25:4",
+    "M1.S2.T5.C25:7",
+    "M1.S2.T5.C25:8"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 9,
+    "maxScore": 45,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 3 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 3; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 3 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "write_the_date",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-3",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "write_the_date",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "A date has a day, a month and a year",
+        "conceptId": "M1.S2.T5.C22",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M1.S2.T5.C22:WD1",
+          "M1.S2.T5.C22:1",
+          "M1.S2.T5.C22.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Day-Month-Year: the month in words",
+        "conceptId": "M1.S2.T5.C23",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M1.S2.T5.C23:WD2",
+          "M1.S2.T5.C23:2",
+          "M1.S2.T5.C22.2D1:p2_3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "DD-MM-YYYY: the month in numbers",
+        "conceptId": "M1.S2.T5.C24",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M1.S2.T5.C22.2D1:p3_1",
+          "M1.S2.T5.C24:WD3",
+          "M1.S2.T5.C24:6"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "day",
+    "month",
+    "year",
+    "form"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, day, month, year, form",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "write_the_date"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T5.C22.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A card with a date on it, and three empty boxes. Let us write it down."
+    },
+    {
+      "en": "A date has three parts. Which is the day? Which is the month? Which is the year?"
+    },
+    {
+      "en": "Write the day first. Then spell the month out. Then the year. Read it aloud."
+    },
+    {
+      "en": "Find the month on the ladder. Its number goes in the middle. Two digits, two digits, four digits."
+    },
+    {
+      "en": "Say the date the other way. Turn the toggle. Do both ways name one day?"
+    },
+    {
+      "en": "A new card. What is its day, its month and its year?"
+    },
+    {
+      "en": "Free play. Write any date, and turn it between words and numbers."
+    },
+    {
+      "en": "Look at the labels under the boxes. Which part goes where?"
+    },
+    {
+      "en": "You wrote the date in words and in numbers, and both said the same day."
+    }
+  ],
+  "build": {
+    "source": "41af1b9c:680254",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-29T09:23:37.290Z",
+    "checks": {
+      "pass": 94,
+      "warn": 0,
+      "fail": 0,
+      "info": 5,
+      "at": "2026-10-29T09:23:35.951Z"
+    },
+    "tsxBytes": 587605,
+    "tsxMd5": "ad658d7dc13b76fff5f7ceaee55d8999"
+  }
+}

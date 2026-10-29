@@ -18,7 +18,9 @@
     "M1.S2.T4.C19"
   ],
   "languages": [
-    "en"
+    "en",
+    "hi",
+    "gu"
   ],
   "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
   "stage": {
@@ -275,7 +277,7 @@
         "ladder": [
           "The hours must be changed into minutes, one round of the minute hand each.",
           "Two hours are two rounds of sixty before the 30 minutes.",
-          "Do not put the 1 and the 25 together: change the hour into minutes.",
+          "Change the 1 hour into minutes before you add the 25.",
           "The minute hand turns round once for every hour.",
           "Change each hour into minutes first, then add what is left over."
         ]
@@ -287,7 +289,7 @@
         "traceback": "The day rows light one after another, each worth twenty-four; the working stops before the total.",
         "ladder": [
           "Each day is one full turn of the wheel.",
-          "A day is not sixty hours, so count the tiles in one row.",
+          "Count the tiles in one row: that is the hours of one day.",
           "Look at the wheel and count the hours in one whole day.",
           "One turn of the wheel fills one day of hour tiles.",
           "Count the turns, then add the hours of each day."
@@ -299,7 +301,7 @@
         "win": "the bar splits at noon, its two pieces are added above it, and the total turns green",
         "traceback": "The bar's pieces light one after another and are counted (the minutes carry shows as steps); the working stops before the total or the end time.",
         "ladder": [
-          "Count from the start to noon, then from noon to the end.",
+          "Count the part before noon, then the part after noon.",
           "Slide the bar on by the hours first, then by the minutes.",
           "Both times are after noon, so count straight along the bar.",
           "The bar splits at noon, so count each piece and add them.",
@@ -344,7 +346,7 @@
         "M": 30,
         "answer": 150,
         "ladder": [
-          "Each round of the minute hand is sixty minutes, so count both rounds.",
+          "Turn the hand twice: each full turn is worth sixty minutes.",
           "Put the minutes of the two rounds first, then add the 30 minutes after them."
         ],
         "win": "Yes, that is 150 minutes in all.",
@@ -375,7 +377,7 @@
         "answer": 72,
         "ladder": [
           "One turn fills a row of sky blue and amber hour tiles.",
-          "Count the tiles in one row, then take that many three times over."
+          "Take the hours of one turn and use them for each of the 3 days."
         ],
         "win": "Yes, 3 days make 72 hours.",
         "winMs": 3000
@@ -432,11 +434,11 @@
           15
         ],
         "ladder": [
-          "The bar splits at noon, so there are two pieces to add.",
-          "Add the hours, then the minutes; 60 minutes make one more hour."
+          "Add the hours of both pieces, then the minutes of both pieces.",
+          "Add both pieces, and turn 60 of the minutes into one more hour."
         ],
-        "win": "Yes, 4 hours 15 minutes in all.",
-        "winMs": 3100
+        "win": "Yes, it is 4 hours 15 minutes.",
+        "winMs": 8500
       },
       {
         "phase": 3,
@@ -452,8 +454,8 @@
           "Move the end on two hours from 10:30 before you think of the minutes.",
           "After the two hours, add the minutes and see which side of noon you are on."
         ],
-        "win": "Yes, the bus arrives at 1:15 p.m.",
-        "winMs": 2800
+        "win": "Yes, it is 1:15 p.m.",
+        "winMs": 6000
       },
       {
         "phase": 3,
@@ -480,7 +482,7 @@
           "Then count the minutes that are left, in quarters of an hour."
         ],
         "win": "Yes, the class lasts 2 hours 30 minutes.",
-        "winMs": 3300
+        "winMs": 7000
       }
     ]
   },
@@ -922,19 +924,19 @@
     }
   ],
   "build": {
-    "source": "3e9b1158:647323",
+    "source": "26e7432a:675923",
     "runtime": "class3/runtime/frozen/r3/runtime.tsx",
     "runtimeVersion": "r3",
     "library": "@use-gesture/react@10.3.1",
-    "builtAt": "2026-10-28T14:00:00.233Z",
+    "builtAt": "2026-10-29T07:37:42.078Z",
     "checks": {
-      "pass": 94,
-      "warn": 1,
+      "pass": 96,
+      "warn": 0,
       "fail": 0,
-      "info": 6,
-      "at": "2026-10-28T13:59:57.172Z"
+      "info": 5,
+      "at": "2026-10-29T07:37:38.657Z"
     },
-    "tsxBytes": 554861,
-    "tsxMd5": "a2cae58e98f100407a662a0d0220803e"
+    "tsxBytes": 592376,
+    "tsxMd5": "dc9335a46b939ab737b24f41179e60ab"
   }
 }

@@ -19,7 +19,9 @@
     "M1.S3.T6.C30"
   ],
   "languages": [
-    "en"
+    "en",
+    "hi",
+    "gu"
   ],
   "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
   "stage": {
@@ -275,8 +277,8 @@
         "traceback": "The container is poured into the 1 L jug again, and the child picks the unit once more.",
         "ladder": [
           "See how high the water from the cup came in the jug.",
-          "Look at the jug: the water from the bucket spilled over the top.",
-          "Compare how high the water from each one came in the jug."
+          "Tap the bucket and watch the water.",
+          "Pour each one again and watch the water in the jug."
         ]
       },
       {
@@ -296,8 +298,8 @@
         "win": "the water settles at the mark and the thing stands beside it with the word about",
         "traceback": "The jug is filled again to one step below the mark, and the child finishes the pour.",
         "ladder": [
-          "Fill the jug to the middle mark again and look at the scale.",
-          "See which long mark the water reached in the jug.",
+          "Look at the scale beside the middle long mark.",
+          "Pour the rest of the milk carton and look at the long marks.",
           "Pour the glasses again and count each one."
         ]
       },
@@ -321,12 +323,14 @@
       "bucket": 10000,
       "drum": 50000,
       "packet": 200,
+      "carton": 500,
       "glass": 250,
       "teacup": 140,
       "pot": 3000,
       "jug": 1000,
       "v50": 50,
       "v100": 100,
+      "v200": 200,
       "v500": 500
     },
     "jug": {
@@ -346,14 +350,29 @@
         200
       ]
     },
-    "pan": {
-      "cap": 560
+    "fill": {
+      "line": 560
     },
     "bins": [
       "less",
       "equal",
       "more"
     ],
+    "answerGate": {
+      "1.1": "pour the cup into the jug",
+      "1.2": "pour the bucket into the jug (then tap a unit tag, Enter)",
+      "1.3": "pour the juice packet and the drum",
+      "2.1": "fill the jug to 1 L with 500 mL vessels",
+      "2.2": "empty the full jug into 200 mL cups",
+      "2.3": "pour the teacup into the small jug",
+      "3.1": "tap the middle long mark (the jug fills to it)",
+      "3.2": "pour the milk carton into the jug",
+      "3.3": "fill the jug with quarter litre glasses",
+      "4.1": "put both containers in bins (Enter)",
+      "4.2": "put all four containers in bins (Enter)",
+      "4.3": "pour teacups up to the 560 mL line",
+      "note": "after a miss clears the bins the key stays awake; Enter then nudges until every container is placed"
+    },
     "items": [
       {
         "phase": 1,
@@ -371,8 +390,8 @@
           "The cup filled only a little of the 1 litre jug.",
           "A little amount is measured in the smaller unit."
         ],
-        "win": "Yes, a cup holds a small amount, so it is measured in millilitres.",
-        "winMs": 4488
+        "win": "Yes, a cup holds little, so we use millilitres.",
+        "winMs": 4012
       },
       {
         "phase": 1,
@@ -435,10 +454,10 @@
         "near": "500",
         "ladder": [
           "Each vessel lifts the water by 500 mL; count up to the 1 L mark.",
-          "Count in 500s: 500 mL, then 1,000 mL; count the pours you made."
+          "Pour until the water touches the 1 L mark, then count the vessels you used."
         ],
         "win": "Yes, 2 vessels of 500 mL fill the 1 litre jug.",
-        "winMs": 3128
+        "winMs": 3604
       },
       {
         "phase": 2,
@@ -461,7 +480,7 @@
           "Count in 200s up to 1,000 mL and count the cups as you go."
         ],
         "win": "Yes, 1 litre fills 5 cups of 200 mL.",
-        "winMs": 2448
+        "winMs": 3060
       },
       {
         "phase": 2,
@@ -484,7 +503,7 @@
           "Start at 100 mL and count on by 20s up to the water."
         ],
         "win": "Yes, the water is at the 140 mL mark.",
-        "winMs": 2516
+        "winMs": 2584
       },
       {
         "phase": 3,
@@ -514,15 +533,15 @@
         "item": 2,
         "qid": "M1.S3.T6.C29:3",
         "kind": "about",
-        "amount": 500,
+        "src": "carton",
         "answer": "half",
         "near": "quarter",
         "ladder": [
           "The quarter mark is low and the 1 litre mark is at the top.",
           "Is the water near the bottom, the middle or the top of the jug?"
         ],
-        "win": "Yes, the bottle held about half a litre.",
-        "winMs": 2720
+        "win": "Yes, the milk carton held about half a litre.",
+        "winMs": 3060
       },
       {
         "phase": 3,
@@ -545,7 +564,7 @@
           "Count the quarters: 1 quarter, 2 quarters, and on up to 1 litre."
         ],
         "win": "Yes, 4 quarter litre glasses fill 1 litre.",
-        "winMs": 2856
+        "winMs": 3060
       },
       {
         "phase": 4,
@@ -566,7 +585,7 @@
         "answer": "more,less",
         "near": "less,more",
         "ladder": [
-          "1 L is the same as 1,000 mL.",
+          "A litre is a big amount; a few hundred millilitres is much less.",
           "A label bigger than 1 L goes in More, a smaller one in Less."
         ],
         "win": "Yes, the drum holds more than 1 L and the cup holds less.",
@@ -603,7 +622,7 @@
           "A label in mL is compared with 1,000 mL."
         ],
         "win": "Yes, the jug and the 1,000 mL bottle both hold exactly 1 L.",
-        "winMs": 4012
+        "winMs": 4284
       },
       {
         "phase": 4,
@@ -622,11 +641,11 @@
         ],
         "near": "140",
         "ladder": [
-          "Each teacup lifts the water in the pan by 140 mL.",
+          "Each teacup lifts the water by 140 mL.",
           "Count in 140s until you reach 560 mL."
         ],
-        "win": "Yes, 4 teacups of 140 mL fill the 560 mL pan.",
-        "winMs": 3060
+        "win": "Yes, 4 teacups of 140 mL fill the jug to the 560 mL line.",
+        "winMs": 4284
       }
     ]
   },
@@ -644,7 +663,7 @@
     "rate": 0.92,
     "pitch": 1.06,
     "opening": "A glass jug, some small vessels and a shelf of real containers. Let us pour.",
-    "onFreePlay": "Free play: tap any container to pour it into the jug, and tap the jug to empty it.",
+    "onFreePlay": "Free play: pour any container into the jug and tap the jug to empty it.",
     "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
     "onFinish": "You poured, read the level at a mark, and sorted the containers against a litre.",
     "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
@@ -783,7 +802,7 @@
             "kind": "read",
             "planQuestion": "A small measuring jug is marked every 20 mL. The water reaches the seventh mark above 0. How many millilitres of water are in the jug?",
             "question": {
-              "en": "Pour the water into the small jug marked every 20 mL: how much water is in it?"
+              "en": "Pour the teacup into the small jug marked every 20 mL: how much is in it?"
             },
             "ask": {
               "en": "Water in the jug?"
@@ -824,7 +843,7 @@
             "kind": "about",
             "planQuestion": "A one litre water bottle is filled to the half way mark. Is the water about a quarter of a litre, half a litre or one litre?",
             "question": {
-              "en": "Pour the bottle into the jug: is it about a quarter, a half or 1 litre?"
+              "en": "Pour the milk carton into the jug: is it about a quarter, a half or 1 litre?"
             },
             "ask": {
               "en": "About how much?"
@@ -900,10 +919,10 @@
             "kind": "pan",
             "planQuestion": "A cup holds 140 mL of water. How many cups fill a pan that holds 560 mL?",
             "question": {
-              "en": "Each teacup holds 140 mL: pour them into the 560 mL pan; how many fill it?"
+              "en": "Each teacup holds 140 mL: how many teacups fill the jug up to the 560 mL line?"
             },
             "ask": {
-              "en": "Teacups to fill the pan?"
+              "en": "Teacups to the line?"
             },
             "answer": [
               4
@@ -1136,19 +1155,19 @@
     }
   ],
   "build": {
-    "source": "c6271a48:676770",
+    "source": "8d1c2116:758710",
     "runtime": "class3/runtime/frozen/r3/runtime.tsx",
     "runtimeVersion": "r3",
     "library": "@use-gesture/react@10.3.1",
-    "builtAt": "2026-10-28T13:52:41.825Z",
+    "builtAt": "2026-10-29T08:34:00.775Z",
     "checks": {
-      "pass": 96,
+      "pass": 97,
       "warn": 0,
       "fail": 0,
-      "info": 5,
-      "at": "2026-10-28T13:52:40.401Z"
+      "info": 4,
+      "at": "2026-10-29T08:33:59.996Z"
     },
-    "tsxBytes": 583629,
-    "tsxMd5": "feb71ff9cf46319fddeccc2a92a04532"
+    "tsxBytes": 679524,
+    "tsxMd5": "6158a1c45490ae019c54c673c34329ab"
   }
 }

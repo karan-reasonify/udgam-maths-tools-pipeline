@@ -18,7 +18,9 @@
     "M1.S1.T3.C13"
   ],
   "languages": [
-    "en"
+    "en",
+    "hi",
+    "gu"
   ],
   "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
   "stage": {
@@ -274,10 +276,10 @@
         "traceback": "The sun and the red hand are sent round the day again, one hour at a time, and stop one hour before the far midnight, so the child finishes the count.",
         "ladder": [
           "One round of the hour hand is 12 hours.",
-          "Watch the red hand while the sun slides along.",
+          "Watch the red hand while the marker slides along.",
           "The first box is the rounds and the second is the hours.",
           "Count the rounds, then add up their hours.",
-          "Both rounds have the same hours, so add them."
+          "Each round has the same hours, so add them."
         ]
       },
       {
@@ -297,13 +299,13 @@
         "n": 3,
         "screen": "the day strip with its left half sky blue and its right half amber, and picture cards of an alarm clock, a school bag, a lunch box, a football and a dinner plate",
         "win": "the card settles in its half and the label a.m. or p.m. lights beside it",
-        "traceback": "The sun is carried along the strip from midnight to the noon mark, and the time's own place is marked on the strip.",
+        "traceback": "The sun is carried along the strip from midnight to the noon mark and stops there; the time's own place is drawn only at the win.",
         "ladder": [
-          "Think about the sky when the lamp comes on.",
+          "Is the evening before noon, or after noon?",
           "Look at the middle mark: noon is there.",
           "Check both the time and the label on the card.",
-          "Is the time before or after the noon mark?",
-          "Sky blue is the morning half, and amber is the evening half."
+          "Say what the sky looks like at that time of day.",
+          "Blue is the half before noon, and orange is the half after noon."
         ]
       }
     ]
@@ -349,9 +351,9 @@
         "card": "bag"
       },
       {
-        "tq": 1230,
+        "tq": 810,
         "kind": "write",
-        "card": "bed"
+        "card": "lunchbox"
       }
     ],
     "warm": {
@@ -432,7 +434,8 @@
         "qid": "M1.S1.T3.C12:2",
         "kind": "place",
         "pad": "enter",
-        "answer": "night12"
+        "answer": "night12",
+        "winMs": 4400
       },
       {
         "phase": 2,
@@ -470,7 +473,7 @@
           }
         ],
         "answer": [
-          8,
+          1,
           30
         ],
         "label": "eve"
@@ -482,15 +485,15 @@
     "tracebacks": [
       "Phase 1: The sun and the red hand are sent round the day again, one hour at a time, and stop one hour before the far midnight, so the child finishes the count.",
       "Phase 2: The sun is sent along the strip again and stops one hour before the twelve, so the child finishes the slide.",
-      "Phase 3: The sun is carried along the strip from midnight to the noon mark, and the time's own place is marked on the strip."
+      "Phase 3: The sun is carried along the strip from midnight to the noon mark and stops there; the time's own place is drawn only at the win."
     ]
   },
   "voice": {
     "silent": true,
     "rate": 0.92,
     "pitch": 1.06,
-    "opening": "A whole day on one strip, with a sun and a moon.",
-    "onFreePlay": "Free play. Slide the sun, or tap a picture to see its time.",
+    "opening": "A whole day on one strip, sun and moon.",
+    "onFreePlay": "Free play. Slide the marker, or tap a picture to see its time.",
     "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
     "onFinish": "You put every time on the right half of the day.",
     "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
@@ -548,7 +551,7 @@
             "kind": "sweep",
             "planQuestion": "The hour hand of the kitchen wall clock goes once round in 12 hours. How many times does it go round in a whole day?",
             "question": {
-              "en": "Slide the sun across the whole day: how many times does the hour hand go round?"
+              "en": "Slide the marker across the whole day: how many rounds does the hour hand make?"
             },
             "ask": {
               "en": "Rounds in a day?"
@@ -564,7 +567,7 @@
             "kind": "sweep",
             "planQuestion": "A train leaves the station at one midnight and arrives at the next midnight. How many times does the hour hand of the station clock go round, and how many hours is that?",
             "question": {
-              "en": "A train runs from midnight to midnight: how many rounds, and how many hours?"
+              "en": "Slide the marker from midnight to midnight: how many rounds, and how many hours?"
             },
             "ask": {
               "en": "Rounds and hours?"
@@ -624,10 +627,10 @@
             "kind": "read",
             "planQuestion": "At noon the school lunch bell rings. A child writes noon as 12 and then adds p.m. What should be written instead?",
             "question": {
-              "en": "The lunch bell rings at the highest sun: what should the card say instead?"
+              "en": "The lunch bell rings at the highest sun: what is this 12 called?"
             },
             "ask": {
-              "en": "What to write?"
+              "en": "What is it called?"
             },
             "answer": "day12",
             "planAnswer": "12 noon. Noon takes no a.m. or p.m.",
@@ -669,7 +672,7 @@
             "kind": "drop",
             "planQuestion": null,
             "question": {
-              "en": "Ria packs her bag at 7:15 in the morning: drop the card on its half, then Enter."
+              "en": "Ria packs her bag at 7:15 in the morning: drop the card on its half."
             },
             "ask": {
               "en": "Drop on its half"
@@ -685,12 +688,12 @@
             "kind": "write",
             "planQuestion": null,
             "question": {
-              "en": "The clock shows bedtime at night: type the time, tap the label, then Enter."
+              "en": "Lunch is in the afternoon: type the clock's time, tap the label, then Enter."
             },
             "ask": {
               "en": "Write the time"
             },
-            "answer": "8|30|eve",
+            "answer": "1|30|eve",
             "planAnswer": null,
             "madeOn": "keypad"
           }
@@ -917,19 +920,19 @@
     }
   ],
   "build": {
-    "source": "f8df8480:674571",
+    "source": "6b83e996:699558",
     "runtime": "class3/runtime/frozen/r3/runtime.tsx",
     "runtimeVersion": "r3",
     "library": "@use-gesture/react@10.3.1",
-    "builtAt": "2026-10-28T12:57:29.072Z",
+    "builtAt": "2026-10-29T07:38:56.229Z",
     "checks": {
-      "pass": 96,
+      "pass": 97,
       "warn": 0,
       "fail": 0,
-      "info": 5,
-      "at": "2026-10-28T12:57:28.751Z"
+      "info": 4,
+      "at": "2026-10-29T07:38:55.055Z"
     },
-    "tsxBytes": 586696,
-    "tsxMd5": "a5a8e949d1f4e3c52e8e36e1d11b4a08"
+    "tsxBytes": 619296,
+    "tsxMd5": "22af7e207515950c289930e6a2746c71"
   }
 }

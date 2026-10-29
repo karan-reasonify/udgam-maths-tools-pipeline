@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S2.T4.C16.2D1 · weigh_it · Weigh It — standalone build 2026-10-28, source a0bab71f:685944.
+/* M1.S2.T4.C16.2D1 · weigh_it · Weigh It — standalone build 2026-10-29, source 330f43f0:743211.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -4396,53 +4396,535 @@ const FINISH_LINE = "You made the beam level, and you told heavy things from lig
 const FREE_LINE = "Free play. Put anything on the pan and add any weights you like.";
 const START_HOOK = "Is a bigger thing always a heavier thing?";
 function StartArt({ box, C, lang, tx }) {
+  useWiDecoded();
   const cx = box.w / 2, cy = 70, half = 150, cord = 170;
   return <g>
       <defs>
-        <linearGradient id="wiBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#F2D27A" /><stop offset="1" stopColor="#B8862E" /></linearGradient>
+        <linearGradient id="wiBrass" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#F8E090" />
+          <stop offset="35%" stopColor="#D4A238" />
+          <stop offset="75%" stopColor="#B37E22" />
+          <stop offset="100%" stopColor="#6E480A" />
+        </linearGradient>
+        <linearGradient id="wiWood" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#E2B176" />
+          <stop offset="25%" stopColor="#C99A62" />
+          <stop offset="80%" stopColor="#A2723C" />
+          <stop offset="100%" stopColor="#754E22" />
+        </linearGradient>
+        <linearGradient id="wiIron" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#5C636B" />
+          <stop offset="30%" stopColor="#3E444B" />
+          <stop offset="85%" stopColor="#24282D" />
+          <stop offset="100%" stopColor="#14171A" />
+        </linearGradient>
+        <filter id="wiShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#1E2124" floodOpacity="0.18" />
+        </filter>
       </defs>
-      <rect x={2} y={box.h - 34} width={box.w - 4} height={30} rx={12} fill="#C99A62" stroke="#8A6236" strokeWidth={3} />
-      <rect x={cx - 12} y={cy} width={24} height={box.h - 34 - cy - 22} rx={8} fill="url(#wiBrass)" stroke="#7A5A1E" strokeWidth={2} />
-      <path d={`M ${cx - 70} ${box.h - 34} L ${cx - 44} ${box.h - 60} L ${cx + 44} ${box.h - 60} L ${cx + 70} ${box.h - 34} Z`} fill="#7A5A1E" />
-      <rect x={cx - half - 10} y={cy - 9} width={2 * half + 20} height={18} rx={9} fill="url(#wiBrass)" stroke="#7A5A1E" strokeWidth={2} />
-      {[-1, 1].map((sd) => <g key={sd}>
-          <line x1={cx + sd * half} y1={cy} x2={cx + sd * half - 86} y2={cy + cord} stroke="#5A4630" strokeWidth={3} />
-          <line x1={cx + sd * half} y1={cy} x2={cx + sd * half + 86} y2={cy + cord} stroke="#5A4630" strokeWidth={3} />
-          <path d={`M ${cx + sd * half - 95} ${cy + cord} L ${cx + sd * half + 95} ${cy + cord} Q ${cx + sd * half + 75} ${cy + cord + 24} ${cx + sd * half} ${cy + cord + 24} Q ${cx + sd * half - 75} ${cy + cord + 24} ${cx + sd * half - 95} ${cy + cord} Z`} fill="url(#wiBrass)" stroke="#7A5A1E" strokeWidth={2} />
-        </g>)}
-      <circle cx={cx} cy={cy} r={14} fill="#7A5A1E" />
       {
-    /* the things wait on the table at both sides, clear of the pans (the balance is level and empty: nothing is compared yet) */
+    /* Table top */
   }
-      {wiObjArt("watermelon", cx - 595, box.h - 34 - 137, 190, 137, "sa1")}
-      {wiObjArt("pillow", cx - 400, box.h - 34 - 160, 146, 160, "sa2")}
-      {wiObjArt("brick", cx + 262, box.h - 34 - 67, 128, 67, "sa3")}
-      {wiObjArt("mango", cx + 400, box.h - 34 - 84, 100, 84, "sa4")}
-      {wiObjArt("sack", cx + 510, box.h - 34 - 100, 75, 100, "sa5")}
+      <rect x={2} y={box.h - 38} width={box.w - 4} height={34} rx={12} fill="url(#wiWood)" stroke="#6B451B" strokeWidth={3} filter="url(#wiShadow)" />
+      <rect x={12} y={box.h - 38} width={box.w - 24} height={6} rx={3} fill="#FFF" fillOpacity={0.2} pointerEvents="none" />
+      
+      {
+    /* Post & Base */
+  }
+      <rect x={cx - 12} y={cy} width={24} height={box.h - 38 - cy - 22} rx={8} fill="url(#wiBrass)" stroke="#5E4008" strokeWidth={2} />
+      <path d={`M ${cx - 70} ${box.h - 38} L ${cx - 44} ${box.h - 64} L ${cx + 44} ${box.h - 64} L ${cx + 70} ${box.h - 38} Z`} fill="url(#wiBrass)" stroke="#5E4008" strokeWidth={2} />
+      
+      {
+    /* Beam */
+  }
+      <rect x={cx - half - 10} y={cy - 9} width={2 * half + 20} height={18} rx={9} fill="url(#wiBrass)" stroke="#5E4008" strokeWidth={2.5} />
+      <rect x={cx - half - 6} y={cy - 6} width={2 * half + 12} height={4} rx={2} fill="#FFF" fillOpacity={0.35} pointerEvents="none" />
+      
+      {
+    /* Cords & Pans */
+  }
+      {[-1, 1].map((sd) => <g key={sd}>
+          <line x1={cx + sd * half} y1={cy} x2={cx + sd * half - 86} y2={cy + cord} stroke="#4A3824" strokeWidth={3.5} strokeLinecap="round" />
+          <line x1={cx + sd * half} y1={cy} x2={cx + sd * half + 86} y2={cy + cord} stroke="#4A3824" strokeWidth={3.5} strokeLinecap="round" />
+          <path d={`M ${cx + sd * half - 95} ${cy + cord} L ${cx + sd * half + 95} ${cy + cord} Q ${cx + sd * half + 75} ${cy + cord + 26} ${cx + sd * half} ${cy + cord + 26} Q ${cx + sd * half - 75} ${cy + cord + 26} ${cx + sd * half - 95} ${cy + cord} Z`} fill="url(#wiBrass)" stroke="#5E4008" strokeWidth={2.5} />
+          <ellipse cx={cx + sd * half} cy={cy + cord} rx={95} ry={7} fill="#F8E090" fillOpacity={0.4} stroke="#5E4008" strokeWidth={1.5} />
+        </g>)}
+      <circle cx={cx} cy={cy} r={14} fill="url(#wiBrass)" stroke="#5E4008" strokeWidth={2} />
+      <circle cx={cx} cy={cy} r={5} fill="#3A2805" />
+
+      {
+    /* Standard real objects waiting on table */
+  }
+      {wiObjArt("watermelon", cx - 595, box.h - 38 - 137, 190, 137, "sa1")}
+      {wiObjArt("pillow", cx - 400, box.h - 38 - 160, 146, 160, "sa2")}
+      {wiObjArt("brick", cx + 262, box.h - 38 - 67, 128, 67, "sa3")}
+      {
+    /* a 5 kg bag of rice is drawn well bigger than a mango (the visual review: sizes as in life) */
+  }
+      {wiObjArt("mango", cx + 404, box.h - 38 - 60, 72, 60, "sa4")}
+      {wiObjArt("sack", cx + 494, box.h - 38 - 160, 120, 160, "sa5")}
     </g>;
 }
-const TR = { hi: {}, gu: {} };
+const TR = {
+  hi: {
+    "Weigh It": "इसे तौलो",
+    "A balance, some iron weights and a table of real things. What shall we weigh first?": "एक तराज़ू, कुछ लोहे के बाट और मेज़ पर असली चीज़ें। पहले क्या तौलें?",
+    "You made the beam level, and you told heavy things from light things.": "तुमने डंडी को बराबर किया और भारी-हल्की चीज़ों को पहचाना।",
+    "Free play. Put anything on the pan and add any weights you like.": "मुक्त खेल। पलड़े पर कुछ भी रखो और जितने चाहो बाट जोड़ो।",
+    "Is a bigger thing always a heavier thing?": "क्या बड़ी चीज़ हमेशा ज़्यादा भारी होती है?",
+    "Heavy and light: kilograms and grams": "भारी और हल्का: किलोग्राम और ग्राम",
+    "Weigh each thing against 1 kg and pick the unit that fits.": "हर चीज़ को 1 किलोग्राम के बाट से तौलो और उसके लिए सही इकाई चुनो।",
+    "Tap the 1 kg weight to put it on the right-hand pan.": "दाएँ पलड़े पर रखने के लिए 1 किलोग्राम का बाट छुओ।",
+    /* lines the board says itself (api.say): the act a locked question waits for, the after-act cues (the runtime's own words), refusals */
+    "First put the watermelon on the pan.": "पहले तरबूज़ को पलड़े पर रखो।",
+    "First put the pencil on the pan.": "पहले पेंसिल को पलड़े पर रखो।",
+    "First weigh both the mango and the bag of rice.": "पहले आम और चावल की बोरी, दोनों को तौलो।",
+    "First make the beam level with weights.": "पहले डंडी बराबर करो।",
+    "First balance the mango with gram weights.": "पहले ग्राम वाले बाटों से आम को बराबर करो।",
+    "First add the weight that levels the pans.": "पहले वह बाट जोड़ो जिससे पलड़े बराबर हों।",
+    "First balance the 500 g weight with two packets.": "पहले दो पैकेट से 500 ग्राम का बाट बराबर करो।",
+    "First put one packet on the pan and level the beam.": "पहले एक पैकेट रखो और डंडी बराबर करो।",
+    "Put one loaf on first.": "पहले एक ब्रेड पलड़े पर रखो।",
+    "First weigh both things, one after the other.": "पहले दोनों चीज़ें तौलो।",
+    "Drop it on a pan.": "इसे किसी पलड़े पर छोड़ो।",
+    "First put the pillow and the brick on the two pans.": "पहले तकिया और ईंट दोनों पलड़ों पर रखो।",
+    "Weigh all three first.": "पहले तीनों चीज़ें तौलो।",
+    "Now tap the Answer key.": "अब उत्तर कुंजी छुओ।",
+    "Choose your answer.": "अपना उत्तर चुनो।",
+    "Now type your answer and then press Enter.": "अब उत्तर लिखकर एंटर दबाओ।",
+    "The pan is full: take a weight off first.": "पलड़ा भर गया: पहले उससे एक बाट उतारो।",
+    "Iron weights go on the right-hand pan.": "बाट दाएँ पलड़े पर रखो।",
+    "Things to weigh go on the left-hand pan.": "तौलने की चीज़ें बाएँ पलड़े पर रखो।",
+    "Tap the iron weight marked 1 kg.": "1 किलोग्राम वाला बाट छुओ।",
+    "Now tap the tray of gram weights to put 1,000 g on the other pan.": "अब ग्राम वाले बाटों की ट्रे छुओ: वह 1,000 ग्राम है।",
+    "Tap the tray with four small weights.": "चार बाटों वाली ट्रे छुओ।",
+    "Weigh the thing against the iron weight.": "चीज़ को लोहे के बाट से तौलो।",
+    "See which pan goes down.": "देखो कौन-सा पलड़ा नीचे है।",
+    "Heavy things go in kilograms, light things in grams.": "भारी चीज़ें किलोग्राम में और हल्की चीज़ें ग्राम में तौली जाती हैं।",
+    "You learned: heavy things in kilograms, light in grams; 1 kg = 1,000 g": "तुमने सीखा: भारी चीज़ें किलोग्राम में, हल्की ग्राम में; 1 किग्रा = 1,000 ग्रा",
+    "Put the watermelon on the pan, then choose grams or kilograms for its weight.": "तरबूज़ पलड़े पर रखो, फिर उसके वज़न की इकाई चुनो: ग्राम या किलोग्राम।",
+    "Grams or kilograms?": "ग्राम या किलोग्राम?",
+    "grams": "ग्राम",
+    "kilograms": "किलोग्राम",
+    "Look at the beam: which side did the watermelon pull down?": "डंडी को देखो: तरबूज़ ने किस तरफ़ का पलड़ा नीचे खींचा?",
+    "The watermelon is heavier than the 1 kg weight on the other pan.": "तरबूज़ दूसरे पलड़े के 1 किलोग्राम के बाट से भारी है।",
+    "A thing heavier than 1 kg is weighed in the bigger unit.": "1 किलोग्राम से भारी चीज़ बड़ी इकाई में तौली जाती है।",
+    "Yes, kilograms: the watermelon pulled its pan below the 1 kg weight.": "हाँ, किलोग्राम: तरबूज़ का पलड़ा 1 किलोग्राम के बाट से नीचे चला गया।",
+    "Now put the pencil on the pan: which unit fits its weight, grams or kilograms?": "अब पेंसिल पलड़े पर रखो: उसके वज़न के लिए ग्राम या किलोग्राम?",
+    "Unit for a pencil?": "पेंसिल के लिए इकाई?",
+    "Did the pencil lift the 1 kg weight, or did the 1 kg side go down?": "क्या पेंसिल ने 1 किलोग्राम का बाट उठाया या बाट नीचे रहा?",
+    "The 1 kg side went down, so the pencil is much lighter than 1 kg.": "1 किलोग्राम वाला पलड़ा नीचे गया, इसलिए पेंसिल 1 किलोग्राम से बहुत हल्की है।",
+    "1 kg is 1,000 g, so a pencil weighs only a few of the small units.": "1 किलोग्राम = 1,000 ग्राम: पेंसिल बस कुछ छोटी इकाइयों की है।",
+    "Yes, grams: the pencil is far lighter than 1 kg.": "हाँ, ग्राम: पेंसिल 1 किलोग्राम से बहुत ज़्यादा हल्की है।",
+    "Weigh the mango and the bag of rice: which one do we weigh in kilograms?": "आम और चावल की बोरी को तौलो: किसे हम किलोग्राम में तौलेंगे?",
+    "Which in kilograms?": "किसे किलोग्राम में?",
+    "mango": "आम",
+    "bag of rice": "चावल की बोरी",
+    "Put each one on the pan and see if it is heavier than the 1 kg weight.": "हर चीज़ पलड़े पर रखो: क्या वह 1 किलोग्राम से भारी है?",
+    "The heavy thing is the one that pulls its pan down.": "भारी चीज़ वही है जो अपना पलड़ा नीचे खींचती है।",
+    "Weigh the mango, then the rice: which one lifts the 1 kg weight?": "पहले आम को, फिर चावल को तौलो: कौन-सी चीज़ 1 किलोग्राम के बाट को ऊपर उठाती है?",
+    "Yes, rice goes in kilograms and the mango in grams.": "हाँ, चावल की बोरी को किलोग्राम में और आम को ग्राम में तौलते हैं।",
+    "A balance and standard weights": "तराज़ू और मानक बाट",
+    "Add weights to the other pan until the beam is level.": "दूसरे पलड़े में बाट जोड़ो, जब तक डंडी बराबर न हो जाए।",
+    "Tap the 1 kg weight to put it on the empty pan.": "खाली पलड़े पर रखने के लिए 1 किलोग्राम का बाट छुओ।",
+    "Tap the iron weight with 1 kg on it.": "जिस लोहे के बाट पर 1 किलोग्राम लिखा है, उसे छुओ।",
+    "The bag is still heavier, so tap that 1 kg weight to take it off.": "बैग अब भी भारी है, इसलिए उतारने के लिए उस 1 किलोग्राम के बाट को छुओ।",
+    "Tap the weight sitting on the pan.": "पलड़े पर रखा बाट छुओ।",
+    "Now put the 2 kg weight on the pan and watch the beam.": "अब 2 किलोग्राम का बाट पलड़े पर रखो और डंडी को देखो।",
+    "Tap the biggest weight.": "सबसे बड़ा लोहे का बाट छुओ।",
+    "Look at the needle at the top of the post.": "खंभे के ऊपर काँटा देखो।",
+    "A straight needle means the beam is level.": "सीधा काँटा: डंडी बराबर है।",
+    "When the beam is level, both pans hold the same weight.": "डंडी बराबर हो तो दोनों पलड़ों में एक जितना वज़न होता है।",
+    "You learned: when the beam is level, the weights tell the thing's weight": "तुमने सीखा: डंडी बराबर हो, तो बाटों से चीज़ का वज़न पता चलता है",
+    "Add weights until the beam is level, then type what the watermelon weighs.": "डंडी बराबर होने तक बाट जोड़ो, फिर लिखो कि तरबूज़ का वज़न कितना है।",
+    "Watermelon weighs?": "तरबूज़ का वज़न?",
+    "Add every weight on the pan, not only the biggest one.": "पलड़े के सारे बाट जोड़ो, सिर्फ़ सबसे बड़ा नहीं।",
+    "Two weights balance the watermelon: read both labels.": "दो बाट मिलकर तरबूज़ को बराबर करते हैं: दोनों पर लिखा पढ़ो।",
+    "Start at 2 kg and count on the other weight.": "2 किलोग्राम से शुरू करो और दूसरे बाट को आगे गिनो।",
+    "The balance is level, and 2 kg and 1 kg make 3 kg.": "तराज़ू बराबर है: 2 किलोग्राम और 1 किलोग्राम मिलकर 3 किलोग्राम हुए।",
+    "weight": "वज़न",
+    "kg": "किग्रा",
+    "Balance the mango with gram weights and type its weight.": "आम को ग्राम वाले बाटों से बराबर करो, फिर उसका वज़न लिखो।",
+    "Mango weighs?": "आम का वज़न?",
+    "The mango needs a small weight besides the 200 g one.": "आम के लिए 200 ग्राम के बाट के साथ छोटा बाट भी चाहिए।",
+    "The beam is level, so the mango weighs as much as both weights together.": "डंडी बराबर है: आम का वज़न दोनों बाटों जितना है।",
+    "Add 200 g and 100 g.": "200 और 100 ग्राम जोड़ो।",
+    "Level again: 200 g and 100 g make 300 g.": "फिर से बराबर: 200 ग्राम और 100 ग्राम मिलकर 300 ग्राम होते हैं।",
+    "g": "ग्रा",
+    "The parcel is 1 kg: add one weight to level the pans, then type that weight.": "एक बाट जोड़कर 1 किलोग्राम का पार्सल तौलो और वह बाट लिखो।",
+    "Weight added?": "जोड़ा गया वज़न?",
+    "Type only the weight you added, not the ones already on the pan.": "सिर्फ़ अपना जोड़ा हुआ बाट लिखो, पहले वाले नहीं।",
+    "1 kg is 1,000 g, and before, the pan had 500 g, 200 g and 200 g.": "1 किलोग्राम में 1,000 ग्राम हैं: पलड़े पर पहले 500, 200 और 200 ग्राम रखे थे।",
+    "How many grams take 900 g up to 1,000 g?": "900 ग्राम को 1,000 ग्राम बनाने के लिए कितने ग्राम चाहिए?",
+    "Yes, 900 g and 100 g make 1,000 g, the same as 1 kg.": "हाँ, 900 ग्राम और 100 ग्राम मिलकर 1,000 ग्राम होते हैं, यानी 1 किलोग्राम।",
+    "added": "जोड़ा",
+    "Half a kilogram and a quarter of a kilogram": "आधा किलोग्राम और चौथाई किलोग्राम",
+    "Four equal packets of sugar make 1 kg.": "चीनी के चार बराबर पैकेट मिलकर 1 किलोग्राम होते हैं।",
+    "Tap a packet of sugar to put it on the pan.": "पलड़े पर रखने के लिए चीनी का एक पैकेट छुओ।",
+    "Tap one sugar packet.": "चीनी के चार पैकेटों में से एक छुओ।",
+    "Tap the tray to put the other three packets on the pan too.": "बाकी तीन पैकेट भी पलड़े पर रखने के लिए ट्रे छुओ।",
+    "Tap the blue 1 kg strip of the tray.": "ट्रे की नीली 1 किलोग्राम वाली पट्टी छुओ।",
+    "Look at the tray of four equal packets.": "चार पैकेट की ट्रे देखो।",
+    "The four packets together balance the 1 kg weight.": "चारों पैकेट मिलकर 1 किलोग्राम के बाट के बराबर हैं।",
+    "Each of four equal packets is a quarter of a kilogram.": "चार बराबर पैकेटों में से हर एक चौथाई किलोग्राम का है।",
+    "You learned: 4 equal packets make 1 kg, so 2 make half and 1 a quarter": "तुमने सीखा: 4 बराबर पैकेट से 1 किग्रा बनता है; 2 से आधा और 1 से चौथाई",
+    "Balance the 500 g weight with two packets: how much do two packets weigh?": "दो पैकेट से 500 ग्राम का बाट बराबर करो: दो पैकेट कितने भारी हैं?",
+    "Two packets weigh?": "दो पैकेट का वज़न?",
+    "a quarter of a kilogram": "चौथाई किलोग्राम",
+    "half a kilogram": "आधा किलोग्राम",
+    "1 kilogram": "1 किलोग्राम",
+    "Four packets make 1 kg: what part of them is on the pan?": "चार पैकेट मिलकर 1 किलोग्राम होते हैं: उनका कितना भाग पलड़े पर है?",
+    "Count the empty places in the tray: how many of the four are gone?": "ट्रे की खाली जगहें गिनो: चार में से कितने पैकेट गए?",
+    "The 500 g weight balances them, and 1 kg is 1,000 g.": "500 ग्राम उनके बराबर है; 1 किलोग्राम में 1,000 ग्राम हैं।",
+    "Yes, two packets make half a kilogram, and half a kilogram is 500 g.": "हाँ, दो पैकेट आधा किलोग्राम हैं, यानी 500 ग्राम।",
+    "Put one packet on the pan, balance it with weights and type its weight.": "एक पैकेट पलड़े पर रखो, उसे बाटों से बराबर करो और उसका वज़न लिखो।",
+    "One packet weighs?": "एक पैकेट का वज़न?",
+    "Add the grams of the weights that made the beam level.": "जिन बाटों से डंडी बराबर हुई, उनके ग्राम जोड़ो।",
+    "Read the bigger weight first, then add on the smaller one.": "पहले बड़े बाट को पढ़ो, फिर उसमें छोटे बाट को जोड़ो।",
+    "Count on from 200 g by the grams of the small weight.": "200 ग्राम से आगे छोटे बाट के ग्राम जितना गिनो।",
+    "Yes, 200 g and 50 g make 250 g for one packet.": "हाँ, एक पैकेट के लिए 200 ग्राम और 50 ग्राम मिलकर 250 ग्राम होते हैं।",
+    "Put loaves on the pan one by one: about how many loaves weigh 1 kg?": "एक-एक ब्रेड रखो: लगभग कितनी ब्रेड 1 किलोग्राम की होंगी?",
+    "Loaves for 1 kg?": "1 किलोग्राम के लिए ब्रेड?",
+    "Watch the beam as each loaf goes on: when is it nearly level now?": "हर ब्रेड रखते समय डंडी को देखो: वह कब लगभग बराबर होती है?",
+    "One loaf leaves the 1 kg side down, so try another loaf.": "एक ब्रेड से 1 किलोग्राम वाला पलड़ा नीचे ही रहता है, इसलिए दूसरी ब्रेड रखकर देखो।",
+    "Each loaf weighs about half a kilogram: how many halves make 1 kg?": "हर ब्रेड लगभग आधा किलोग्राम है: 1 किलोग्राम में कितने आधे?",
+    "Yes, about 2 loaves weigh 1 kg.": "हाँ, लगभग 2 ब्रेड का वज़न 1 किलोग्राम होता है।",
+    "how many": "कितनी",
+    "loaves": "ब्रेड",
+    "More than or less than one kilogram": "एक किलोग्राम से ज़्यादा या कम",
+    "Now weigh the things on your own and let the beam decide.": "अब चीज़ों को खुद तौलो और डंडी को फ़ैसला करने दो।",
+    "Put the thing on a pan and watch the needle.": "चीज़ को पलड़े पर रखो और काँटे को देखो।",
+    "The heavier pan goes down.": "भारी पलड़ा नीचे जाता है।",
+    "A thing is more than 1 kg when it pulls the beam down against the 1 kg weight.": "1 किलोग्राम से भारी चीज़ 1 किलोग्राम के बाट के सामने अपना पलड़ा नीचे करती है।",
+    "You learned: a thing over 1 kg pulls the beam down against 1 kg": "तुमने सीखा: 1 किग्रा से भारी चीज़ 1 किग्रा के सामने डंडी को नीचे खींचती है",
+    "Weigh the school bag and the pencil: which one weighs more than 1 kg?": "स्कूल बैग और पेंसिल को तौलो: किसका वज़न 1 किलोग्राम से ज़्यादा है?",
+    "More than 1 kg?": "1 किलोग्राम से ज़्यादा?",
+    "school bag": "स्कूल बैग",
+    "pencil": "पेंसिल",
+    "Weigh both things against the 1 kg weight.": "दोनों चीज़ों को बारी-बारी से 1 किलोग्राम के बाट के सामने तौलो।",
+    "Which thing sinks lower than the 1 kg weight?": "कौन-सी चीज़ 1 किलोग्राम के बाट से नीचे जाती है?",
+    "When the 1 kg weight rises, the other pan holds the heavier thing.": "जब 1 किलोग्राम का बाट ऊपर उठे, तो दूसरे पलड़े की चीज़ ज़्यादा भारी होती है।",
+    "Yes, the school bag is heavier than 1 kg.": "हाँ, स्कूल बैग 1 किलोग्राम से भारी है।",
+    "Put the pillow on one pan and the brick on the other: which one is heavier?": "तकिये को एक पलड़े पर और ईंट को दूसरे पलड़े पर रखो: कौन ज़्यादा भारी है?",
+    "Which is heavier?": "कौन ज़्यादा भारी है?",
+    "pillow": "तकिया",
+    "brick": "ईंट",
+    "Put the pillow and the brick on the two pans, then watch the beam.": "तकिये और ईंट को दोनों पलड़ों पर रखकर डंडी को देखो।",
+    "Which side does the beam lean to?": "डंडी किस ओर झुकती है?",
+    "See which pan is lower.": "देखो कौन-सा पलड़ा नीचे है।",
+    "Yes, the small brick is heavier than the big pillow.": "हाँ, छोटी ईंट बड़े तकिये से भारी है।",
+    "Weigh the school bag, the pillow and the watermelon: how many are over 1 kg?": "बैग, तकिया और तरबूज़ तौलो: कितनी चीज़ें 1 किलोग्राम से भारी हैं?",
+    "How many over 1 kg?": "1 किलोग्राम से ज़्यादा कितनी?",
+    "Watch each thing being weighed again against the 1 kg weight.": "हर चीज़ फिर से तौली जा रही है: 1 किलोग्राम के सामने देखो।",
+    "Count only the things that pull their own pan down.": "सिर्फ़ उन चीज़ों को गिनो जो अपना पलड़ा नीचे खींचती हैं।",
+    "Put the pillow back on: does the 1 kg side go up or down?": "तकिये को फिर से रखो: क्या 1 किलोग्राम वाला पलड़ा ऊपर जाता है या नीचे?",
+    "Yes, the school bag and the watermelon are more than 1 kg.": "हाँ, स्कूल बैग और तरबूज़ 1 किलोग्राम से ज़्यादा हैं।",
+    "things": "चीज़ें",
+    "Answer": "उत्तर",
+    "Given": "दिया है",
+    "1 kg": "1 किग्रा",
+    "1,000 g": "1,000 ग्रा",
+    "1 kg in all": "कुल 1 किग्रा",
+    "3 kg": "3 किग्रा",
+    "300 g": "300 ग्रा",
+    "100 g": "100 ग्रा",
+    "250 g": "250 ग्रा",
+    "half a kg": "आधा किग्रा",
+    "2 loaves": "2 ब्रेड",
+    "2 things": "2 चीज़ें",
+    "2 over 1 kg": "1 किग्रा से ज़्यादा: 2",
+    "over 1 kg": "1 किग्रा से ज़्यादा",
+    "under 1 kg": "1 किग्रा से कम",
+    "went up": "ऊपर गया",
+    "Add": "जोड़ो",
+    "every weight": "सारे बाट",
+    "Pan had": "पलड़े पर पहले",
+    "900 g": "900 ग्रा",
+    "On the pan": "पलड़े पर",
+    "2 of 4 parts": "4 में से 2 भाग",
+    "1 loaf, about": "1 ब्रेड, लगभग",
+    "watermelon": "तरबूज़",
+    "parcel": "पार्सल",
+    "packet": "पैकेट",
+    "loaf": "ब्रेड",
+    "2 kg": "2 किग्रा",
+    "500 g": "500 ग्रा",
+    "200 g": "200 ग्रा",
+    "50 g": "50 ग्रा",
+    "10 g": "10 ग्रा",
+    "2 kg weight": "2 किग्रा का बाट",
+    "1 kg weight": "1 किग्रा का बाट",
+    "500 g weight": "500 ग्राम का बाट",
+    "200 g weight": "200 ग्राम का बाट",
+    "100 g weight": "100 ग्राम का बाट",
+    "50 g weight": "50 ग्राम का बाट",
+    "10 g weight": "10 ग्राम का बाट",
+    "tray of gram weights": "ग्राम वाले बाटों की ट्रे",
+    "tray of packets": "पैकेटों की ट्रे",
+    "packet of sugar": "चीनी का पैकेट"
+  },
+  gu: {
+    "Weigh It": "તેને તોલો",
+    "A balance, some iron weights and a table of real things. What shall we weigh first?": "એક ત્રાજવું, થોડાં લોખંડનાં કાટલાં અને ટેબલ પર અસલી વસ્તુઓ. પહેલાં શું તોલીએ?",
+    "You made the beam level, and you told heavy things from light things.": "તમે દાંડી સમતોલ કરી અને ભારે-હળવી વસ્તુઓ ઓળખી.",
+    "Free play. Put anything on the pan and add any weights you like.": "મુક્ત રમત. પલ્લા પર કંઈ પણ મૂકો અને ગમે તેટલાં કાટલાં ઉમેરો.",
+    "Is a bigger thing always a heavier thing?": "શું મોટી વસ્તુ હંમેશાં વધુ ભારે હોય છે?",
+    "Heavy and light: kilograms and grams": "ભારે અને હળવું: કિલોગ્રામ અને ગ્રામ",
+    "Weigh each thing against 1 kg and pick the unit that fits.": "દરેક વસ્તુને 1 કિલોગ્રામ સામે તોલો અને યોગ્ય એકમ પસંદ કરો.",
+    "Tap the 1 kg weight to put it on the right-hand pan.": "જમણા પલ્લા પર મૂકવા 1 કિલોગ્રામના કાટલાને સ્પર્શ કરો.",
+    "First put the watermelon on the pan.": "પહેલાં તડબૂચ પલ્લા પર મૂકો.",
+    "First put the pencil on the pan.": "પહેલાં પેન્સિલ મૂકો.",
+    "First weigh both the mango and the bag of rice.": "પહેલાં કેરી અને ચોખાની ગૂણ, બંનેને તોલો.",
+    "First make the beam level with weights.": "પહેલાં કાટલાં મૂકી દાંડી સમતોલ કરો.",
+    "First balance the mango with gram weights.": "પહેલાં ગ્રામનાં કાટલાંથી કેરી સમતોલ કરો.",
+    "First add the weight that levels the pans.": "પહેલાં પલ્લાં સમતોલ કરે તે કાટલું ઉમેરો.",
+    "First balance the 500 g weight with two packets.": "પહેલાં બે પૅકેટથી 500 ગ્રામનું કાટલું સમતોલ કરો.",
+    "First put one packet on the pan and level the beam.": "પહેલાં એક પૅકેટ મૂકી દાંડી સમતોલ કરો.",
+    "Put one loaf on first.": "પહેલાં એક બ્રેડ મૂકો.",
+    "First weigh both things, one after the other.": "પહેલાં બંને વસ્તુઓ તોલો.",
+    "Drop it on a pan.": "તેને કોઈ પલ્લા પર મૂકો.",
+    "First put the pillow and the brick on the two pans.": "પહેલાં ઓશીકું અને ઈંટ બંને પલ્લાં પર મૂકો.",
+    "Weigh all three first.": "પહેલાં ત્રણેય વસ્તુઓ તોલો.",
+    "Now tap the Answer key.": "હવે જવાબ કી સ્પર્શ કરો.",
+    "Choose your answer.": "તમારો જવાબ પસંદ કરો.",
+    "Now type your answer and then press Enter.": "હવે જવાબ લખો અને પછી દાખલ કરો દબાવો.",
+    "The pan is full: take a weight off first.": "પલ્લું ભરાઈ ગયું: પહેલાં એક કાટલું ઉતારો.",
+    "Iron weights go on the right-hand pan.": "જમણા પલ્લા પર લોખંડનાં કાટલાં મૂકો.",
+    "Things to weigh go on the left-hand pan.": "વસ્તુ ડાબા પલ્લા પર મૂકો.",
+    "Tap the iron weight marked 1 kg.": "1 કિલોગ્રામ લખેલા લોખંડના કાટલાને સ્પર્શ કરો.",
+    "Now tap the tray of gram weights to put 1,000 g on the other pan.": "હવે બીજા પલ્લા પર 1,000 ગ્રામ મૂકવા ગ્રામના કાટલાંની ટ્રેને સ્પર્શ કરો.",
+    "Tap the tray with four small weights.": "ચાર નાનાં કાટલાંવાળી ટ્રેને સ્પર્શ કરો.",
+    "Weigh the thing against the iron weight.": "વસ્તુને કાટલા સામે તોલો.",
+    "See which pan goes down.": "જુઓ કયું પલ્લું નીચે જાય છે.",
+    "Heavy things go in kilograms, light things in grams.": "ભારે વસ્તુઓ કિલોગ્રામમાં અને હળવી વસ્તુઓ ગ્રામમાં તોલાય છે.",
+    "You learned: heavy things in kilograms, light in grams; 1 kg = 1,000 g": "તમે શીખ્યા: ભારે વસ્તુઓ કિલોગ્રામમાં, હળવી ગ્રામમાં; 1 કિગ્રા = 1,000 ગ્રા",
+    "Put the watermelon on the pan, then choose grams or kilograms for its weight.": "તડબૂચને પલ્લા પર મૂકો, પછી તેના વજન માટે ગ્રામ કે કિલોગ્રામ પસંદ કરો.",
+    "Grams or kilograms?": "ગ્રામ કે કિલોગ્રામ?",
+    "grams": "ગ્રામ",
+    "kilograms": "કિલોગ્રામ",
+    "Look at the beam: which side did the watermelon pull down?": "દાંડી જુઓ: તડબૂચે કઈ બાજુનું પલ્લું નીચે ખેંચ્યું?",
+    "The watermelon is heavier than the 1 kg weight on the other pan.": "તડબૂચ બીજા પલ્લા પરના 1 કિલોગ્રામના કાટલા કરતાં ભારે છે.",
+    "A thing heavier than 1 kg is weighed in the bigger unit.": "1 કિલોગ્રામ કરતાં ભારે વસ્તુ મોટા એકમમાં તોલાય છે.",
+    "Yes, kilograms: the watermelon pulled its pan below the 1 kg weight.": "હા, કિલોગ્રામ: તડબૂચનું પલ્લું 1 કિલોગ્રામના કાટલાથી નીચે ગયું.",
+    "Now put the pencil on the pan: which unit fits its weight, grams or kilograms?": "હવે પેન્સિલ મૂકો: તેનું વજન ગ્રામમાં કે કિલોગ્રામમાં?",
+    "Unit for a pencil?": "પેન્સિલ માટે એકમ?",
+    "Did the pencil lift the 1 kg weight, or did the 1 kg side go down?": "શું પેન્સિલે 1 કિલોગ્રામનું કાટલું ઊંચક્યું, કે તે નીચે જ રહ્યું?",
+    "The 1 kg side went down, so the pencil is much lighter than 1 kg.": "1 કિલોગ્રામવાળું પલ્લું નીચે ગયું, એટલે પેન્સિલ 1 કિલોગ્રામ કરતાં ઘણી હળવી છે.",
+    "1 kg is 1,000 g, so a pencil weighs only a few of the small units.": "1 કિલોગ્રામમાં 1,000 ગ્રામ: પેન્સિલ તો નાના એકમમાં થોડી જ છે.",
+    "Yes, grams: the pencil is far lighter than 1 kg.": "હા, ગ્રામ: પેન્સિલ 1 કિલોગ્રામ કરતાં ઘણી જ હળવી છે.",
+    "Weigh the mango and the bag of rice: which one do we weigh in kilograms?": "કેરી અને ચોખાની ગૂણને તોલો: કોને આપણે કિલોગ્રામમાં તોલીએ?",
+    "Which in kilograms?": "કોને કિલોગ્રામમાં?",
+    "mango": "કેરી",
+    "bag of rice": "ચોખાની ગૂણ",
+    "Put each one on the pan and see if it is heavier than the 1 kg weight.": "દરેક વસ્તુ પલ્લા પર મૂકો: શું તે 1 કિલોગ્રામથી ભારે છે?",
+    "The heavy thing is the one that pulls its pan down.": "ભારે વસ્તુ એ છે જે પોતાનું પલ્લું નીચે ખેંચે છે.",
+    "Weigh the mango, then the rice: which one lifts the 1 kg weight?": "કેરી, પછી ચોખા તોલો: કોણ 1 કિલોગ્રામના કાટલાને ઉઠાવે છે?",
+    "Yes, rice goes in kilograms and the mango in grams.": "હા, ચોખાની ગૂણ કિલોગ્રામમાં અને કેરી ગ્રામમાં તોલાય છે.",
+    "A balance and standard weights": "ત્રાજવું અને પ્રમાણિત કાટલાં",
+    "Add weights to the other pan until the beam is level.": "બીજા પલ્લામાં કાટલાં ઉમેરો, જ્યાં સુધી દાંડી સમતોલ ન થાય.",
+    "Tap the 1 kg weight to put it on the empty pan.": "ખાલી પલ્લા પર મૂકવા 1 કિલોગ્રામના કાટલાને સ્પર્શ કરો.",
+    "Tap the iron weight with 1 kg on it.": "જેના પર 1 કિલોગ્રામ લખ્યું છે તે લોખંડના કાટલાને સ્પર્શ કરો.",
+    "The bag is still heavier, so tap that 1 kg weight to take it off.": "બૅગ હજી ભારે છે, એટલે ઉતારવા તે 1 કિલોગ્રામના કાટલાને સ્પર્શ કરો.",
+    "Tap the weight sitting on the pan.": "પલ્લા પર મૂકેલા કાટલાને સ્પર્શ કરો.",
+    "Now put the 2 kg weight on the pan and watch the beam.": "હવે 2 કિલોગ્રામનું કાટલું પલ્લા પર મૂકો અને દાંડી જુઓ.",
+    "Tap the biggest weight.": "સૌથી મોટા લોખંડના કાટલાને સ્પર્શ કરો.",
+    "Look at the needle at the top of the post.": "થાંભલા ઉપરના કાંટાને જુઓ.",
+    "A straight needle means the beam is level.": "કાંટો સીધો હોય તો દાંડી સમતોલ છે.",
+    "When the beam is level, both pans hold the same weight.": "દાંડી સમતોલ હોય ત્યારે બંને પલ્લાંમાં સરખું વજન હોય છે.",
+    "You learned: when the beam is level, the weights tell the thing's weight": "તમે શીખ્યા: દાંડી સમતોલ હોય ત્યારે કાટલાં વસ્તુનું વજન બતાવે છે",
+    "Add weights until the beam is level, then type what the watermelon weighs.": "દાંડી સમતોલ થાય ત્યાં સુધી કાટલાં ઉમેરો, પછી તડબૂચનું વજન લખો.",
+    "Watermelon weighs?": "તડબૂચનું વજન?",
+    "Add every weight on the pan, not only the biggest one.": "પલ્લા પરનાં બધાં કાટલાં ઉમેરો, ફક્ત સૌથી મોટું નહીં.",
+    "Two weights balance the watermelon: read both labels.": "બે કાટલાં મળીને તડબૂચને સમતોલ કરે છે: બંને પર લખેલું વાંચો.",
+    "Start at 2 kg and count on the other weight.": "2 કિલોગ્રામથી શરૂ કરો અને બીજા કાટલા જેટલું આગળ ગણો.",
+    "The balance is level, and 2 kg and 1 kg make 3 kg.": "ત્રાજવું સમતોલ છે: 2 કિલોગ્રામ અને 1 કિલોગ્રામ મળીને 3 કિલોગ્રામ થયા.",
+    "weight": "વજન",
+    "kg": "કિગ્રા",
+    "Balance the mango with gram weights and type its weight.": "કેરીને ગ્રામના કાટલાંથી સમતોલ કરો, પછી તેનું વજન લખો.",
+    "Mango weighs?": "કેરીનું વજન?",
+    "The mango needs a small weight besides the 200 g one.": "કેરી માટે 200 ગ્રામના કાટલા સાથે નાનું કાટલું પણ જોઈએ.",
+    "The beam is level, so the mango weighs as much as both weights together.": "દાંડી સમતોલ છે, એટલે કેરીનું વજન બંને કાટલાંના કુલ વજન જેટલું છે.",
+    "Add 200 g and 100 g.": "200 અને 100 ગ્રામ ઉમેરો.",
+    "Level again: 200 g and 100 g make 300 g.": "ફરી સમતોલ: 200 ગ્રામ અને 100 ગ્રામ મળીને 300 ગ્રામ થાય છે.",
+    "g": "ગ્રા",
+    "The parcel is 1 kg: add one weight to level the pans, then type that weight.": "પાર્સલ 1 કિલોગ્રામનું છે: એક કાટલું ઉમેરી પલ્લાં સમતોલ કરો અને તે કાટલું લખો.",
+    "Weight added?": "ઉમેરેલું વજન?",
+    "Type only the weight you added, not the ones already on the pan.": "ફક્ત તમે ઉમેરેલું વજન લખો, પલ્લા પર પહેલેથી રહેલાં કાટલાંનું નહીં.",
+    "1 kg is 1,000 g, and before, the pan had 500 g, 200 g and 200 g.": "1,000 ગ્રામમાંથી 500, 200 અને 200 ગ્રામ પલ્લા પર પહેલેથી હતાં.",
+    "How many grams take 900 g up to 1,000 g?": "900 ગ્રામથી 1,000 ગ્રામ થવા કેટલા ગ્રામ જોઈએ?",
+    "Yes, 900 g and 100 g make 1,000 g, the same as 1 kg.": "હા, 900 ગ્રામ અને 100 ગ્રામ મળીને 1,000 ગ્રામ થાય છે, એટલે કે 1 કિલોગ્રામ.",
+    "added": "ઉમેરેલ",
+    "Half a kilogram and a quarter of a kilogram": "અડધો કિલોગ્રામ અને પા કિલોગ્રામ",
+    "Four equal packets of sugar make 1 kg.": "ખાંડનાં ચાર સરખાં પૅકેટ મળીને 1 કિલોગ્રામ થાય છે.",
+    "Tap a packet of sugar to put it on the pan.": "પલ્લા પર મૂકવા ખાંડના એક પૅકેટને સ્પર્શ કરો.",
+    "Tap one sugar packet.": "ખાંડનાં ચાર પૅકેટમાંથી એકને સ્પર્શ કરો.",
+    "Tap the tray to put the other three packets on the pan too.": "બાકીનાં ત્રણ પૅકેટ પણ પલ્લા પર મૂકવા ટ્રેને સ્પર્શ કરો.",
+    "Tap the blue 1 kg strip of the tray.": "ટ્રેની વાદળી 1 કિલોગ્રામવાળી પટ્ટીને સ્પર્શ કરો.",
+    "Look at the tray of four equal packets.": "ચાર સરખાં પૅકેટની ટ્રે જુઓ.",
+    "The four packets together balance the 1 kg weight.": "ચારેય પૅકેટ મળીને 1 કિલોગ્રામના કાટલા જેટલાં થાય છે.",
+    "Each of four equal packets is a quarter of a kilogram.": "પા કિલોગ્રામ: ચાર સરખાં પૅકેટમાંથી દરેકનું વજન.",
+    "You learned: 4 equal packets make 1 kg, so 2 make half and 1 a quarter": "તમે શીખ્યા: 4 સરખાં પૅકેટથી 1 કિગ્રા બને છે; 2 થી અડધો અને 1 થી પા",
+    "Balance the 500 g weight with two packets: how much do two packets weigh?": "બે પૅકેટથી 500 ગ્રામનું કાટલું સમતોલ કરો: બે પૅકેટનું વજન કેટલું?",
+    "Two packets weigh?": "બે પૅકેટનું વજન?",
+    "a quarter of a kilogram": "પા કિલોગ્રામ",
+    "half a kilogram": "અડધો કિલોગ્રામ",
+    "1 kilogram": "1 કિલોગ્રામ",
+    "Four packets make 1 kg: what part of them is on the pan?": "ચાર પૅકેટ મળીને 1 કિલોગ્રામ થાય છે: ચારનો કેટલો ભાગ પલ્લા પર છે?",
+    "Count the empty places in the tray: how many of the four are gone?": "ટ્રેની ખાલી જગ્યાઓ ગણો: ચારમાંથી કેટલાં પૅકેટ ગયાં?",
+    "The 500 g weight balances them, and 1 kg is 1,000 g.": "500 ગ્રામનું કાટલું તેમને સમતોલ કરે છે, અને 1 કિલોગ્રામ એટલે 1,000 ગ્રામ.",
+    "Yes, two packets make half a kilogram, and half a kilogram is 500 g.": "હા, બે પૅકેટ એટલે અડધો કિલોગ્રામ, એટલે કે 500 ગ્રામ.",
+    "Put one packet on the pan, balance it with weights and type its weight.": "એક પૅકેટ મૂકી કાટલાંથી સમતોલ કરો, પછી તેનું વજન લખો.",
+    "One packet weighs?": "એક પૅકેટનું વજન?",
+    "Add the grams of the weights that made the beam level.": "જે કાટલાંથી દાંડી સમતોલ થઈ, તેમના ગ્રામ ઉમેરો.",
+    "Read the bigger weight first, then add on the smaller one.": "પહેલાં મોટું કાટલું વાંચો, પછી તેમાં નાનું કાટલું ઉમેરો.",
+    "Count on from 200 g by the grams of the small weight.": "200 ગ્રામથી આગળ નાના કાટલાના ગ્રામ જેટલું ગણો.",
+    "Yes, 200 g and 50 g make 250 g for one packet.": "હા, એક પૅકેટ માટે 200 ગ્રામ અને 50 ગ્રામ મળીને 250 ગ્રામ થાય છે.",
+    "Put loaves on the pan one by one: about how many loaves weigh 1 kg?": "એક એક બ્રેડ મૂકો: 1 કિલોગ્રામમાં લગભગ કેટલી બ્રેડ?",
+    "Loaves for 1 kg?": "1 કિલોગ્રામ માટે બ્રેડ?",
+    "Watch the beam as each loaf goes on: when is it nearly level now?": "દરેક બ્રેડ મૂકતી વખતે દાંડી જુઓ: તે ક્યારે લગભગ સમતોલ થાય છે?",
+    "One loaf leaves the 1 kg side down, so try another loaf.": "એક બ્રેડથી 1 કિલોગ્રામનું પલ્લું નીચે રહે છે: બીજી બ્રેડ મૂકો.",
+    "Each loaf weighs about half a kilogram: how many halves make 1 kg?": "દરેક બ્રેડનું વજન લગભગ અડધો કિલોગ્રામ છે: કેટલા અડધા મળીને 1 કિલોગ્રામ થાય?",
+    "Yes, about 2 loaves weigh 1 kg.": "હા, લગભગ 2 બ્રેડનું વજન 1 કિલોગ્રામ થાય છે.",
+    "how many": "કેટલી",
+    "loaves": "બ્રેડ",
+    "More than or less than one kilogram": "એક કિલોગ્રામથી વધુ કે ઓછું",
+    "Now weigh the things on your own and let the beam decide.": "હવે વસ્તુઓને જાતે તોલો અને દાંડીને નક્કી કરવા દો.",
+    "Put the thing on a pan and watch the needle.": "વસ્તુને પલ્લા પર મૂકો અને કાંટાને જુઓ.",
+    "The heavier pan goes down.": "ભારે બાજુ નીચે જાય છે.",
+    "A thing is more than 1 kg when it pulls the beam down against the 1 kg weight.": "1 કિલોગ્રામથી ભારે વસ્તુ 1 કિલોગ્રામના કાટલા સામે પોતાનું પલ્લું નીચે લઈ જાય છે.",
+    "You learned: a thing over 1 kg pulls the beam down against 1 kg": "તમે શીખ્યા: 1 કિગ્રા કરતાં ભારે વસ્તુ 1 કિગ્રા સામે દાંડીને નીચે ખેંચે છે",
+    "Weigh the school bag and the pencil: which one weighs more than 1 kg?": "સ્કૂલ બૅગ અને પેન્સિલને તોલો: કોનું વજન 1 કિલોગ્રામ કરતાં વધુ છે?",
+    "More than 1 kg?": "1 કિલોગ્રામ કરતાં વધુ?",
+    "school bag": "સ્કૂલ બૅગ",
+    "pencil": "પેન્સિલ",
+    "Weigh both things against the 1 kg weight.": "બંને વસ્તુઓને એક પછી એક 1 કિલોગ્રામના કાટલા સામે તોલો.",
+    "Which thing sinks lower than the 1 kg weight?": "કઈ વસ્તુ 1 કિલોગ્રામના કાટલા કરતાં નીચે જાય છે?",
+    "When the 1 kg weight rises, the other pan holds the heavier thing.": "જ્યારે 1 કિલોગ્રામનું કાટલું ઉપર જાય, ત્યારે બીજા પલ્લાની વસ્તુ વધુ ભારે હોય છે.",
+    "Yes, the school bag is heavier than 1 kg.": "હા, સ્કૂલ બૅગ 1 કિલોગ્રામ કરતાં ભારે છે.",
+    "Put the pillow on one pan and the brick on the other: which one is heavier?": "ઓશીકું એક પલ્લા પર અને ઈંટ બીજા પલ્લા પર મૂકો: કોણ વધુ ભારે છે?",
+    "Which is heavier?": "કોણ વધુ ભારે છે?",
+    "pillow": "ઓશીકું",
+    "brick": "ઈંટ",
+    "Put the pillow and the brick on the two pans, then watch the beam.": "ઓશીકું અને ઈંટને બંને પલ્લાં પર મૂકીને દાંડી જુઓ.",
+    "Which side does the beam lean to?": "દાંડી કઈ તરફ નમે છે?",
+    "See which pan is lower.": "જુઓ કયું પલ્લું નીચે છે.",
+    "Yes, the small brick is heavier than the big pillow.": "હા, નાની ઈંટ મોટા ઓશીકા કરતાં ભારે છે.",
+    "Weigh the school bag, the pillow and the watermelon: how many are over 1 kg?": "સ્કૂલ બૅગ, ઓશીકું અને તડબૂચ તોલો: કેટલી વસ્તુઓ 1 કિલોગ્રામથી ભારે છે?",
+    "How many over 1 kg?": "1 કિલોગ્રામ કરતાં વધુ કેટલી?",
+    "Watch each thing being weighed again against the 1 kg weight.": "દરેક વસ્તુ ફરી તોલાય છે: 1 કિલોગ્રામ સામે જુઓ.",
+    "Count only the things that pull their own pan down.": "ફક્ત એવી વસ્તુઓ ગણો જે પોતાનું પલ્લું નીચે ખેંચે છે.",
+    "Put the pillow back on: does the 1 kg side go up or down?": "ઓશીકું ફરી મૂકો: શું 1 કિલોગ્રામવાળું પલ્લું ઉપર જાય છે કે નીચે?",
+    "Yes, the school bag and the watermelon are more than 1 kg.": "હા, સ્કૂલ બૅગ અને તડબૂચ 1 કિલોગ્રામ કરતાં વધુ છે.",
+    "things": "વસ્તુઓ",
+    "Answer": "જવાબ",
+    "Given": "આપેલું",
+    "1 kg": "1 કિગ્રા",
+    "1,000 g": "1,000 ગ્રા",
+    "1 kg in all": "કુલ 1 કિગ્રા",
+    "3 kg": "3 કિગ્રા",
+    "300 g": "300 ગ્રા",
+    "100 g": "100 ગ્રા",
+    "250 g": "250 ગ્રા",
+    "half a kg": "અડધો કિગ્રા",
+    "2 loaves": "2 બ્રેડ",
+    "2 things": "2 વસ્તુઓ",
+    "2 over 1 kg": "1 કિગ્રાથી વધુ: 2",
+    "over 1 kg": "1 કિગ્રાથી વધુ",
+    "under 1 kg": "1 કિગ્રાથી ઓછું",
+    "went up": "ઉપર ગયું",
+    "Add": "ઉમેરો",
+    "every weight": "બધાં કાટલાં",
+    "Pan had": "પલ્લા પર પહેલાં",
+    "900 g": "900 ગ્રા",
+    "On the pan": "પલ્લા પર",
+    "2 of 4 parts": "4 માંથી 2 ભાગ",
+    "1 loaf, about": "1 બ્રેડ, લગભગ",
+    "watermelon": "તડબૂચ",
+    "parcel": "પાર્સલ",
+    "packet": "પૅકેટ",
+    "loaf": "બ્રેડ",
+    "2 kg": "2 કિગ્રા",
+    "500 g": "500 ગ્રા",
+    "200 g": "200 ગ્રા",
+    "50 g": "50 ગ્રા",
+    "10 g": "10 ગ્રા",
+    "2 kg weight": "2 કિગ્રાનું કાટલું",
+    "1 kg weight": "1 કિગ્રાનું કાટલું",
+    "500 g weight": "500 ગ્રામનું કાટલું",
+    "200 g weight": "200 ગ્રામનું કાટલું",
+    "100 g weight": "100 ગ્રામનું કાટલું",
+    "50 g weight": "50 ગ્રામનું કાટલું",
+    "10 g weight": "10 ગ્રામનું કાટલું",
+    "tray of gram weights": "ગ્રામના કાટલાંની ટ્રે",
+    "tray of packets": "પૅકેટની ટ્રે",
+    "packet of sugar": "ખાંડનું પૅકેટ"
+  }
+};
 const WI_OBJ = {
   watermelon: { g: 3e3, w: 190, h: 137, skin: "watermelon", name: "watermelon" },
-  mango: { g: 300, w: 130, h: 109, skin: "mango", name: "mango" },
+  mango: { g: 300, w: 84, h: 70, skin: "mango", name: "mango" },
+  /* small beside the 5 kg bag of rice, even at the shelf's 1.5 */
   pencil: { g: 10, w: 212, h: 28, skin: "pencil", name: "pencil" },
-  sack: { g: 5e3, w: 132, h: 176, skin: "sack", name: "bag of rice" },
+  sack: { g: 5e3, w: 140, h: 187, skin: "sack", name: "bag of rice" },
+  /* on a pan its top stays 10 under the hook */
   backpack: { g: 2e3, w: 120, h: 177, skin: "backpack", name: "school bag" },
   pillow: { g: 600, w: 164, h: 180, skin: "pillow", name: "pillow" },
   brick: { g: 3e3, w: 128, h: 67, skin: "brick", name: "brick" },
   parcel: { g: 1e3, w: 150, h: 112, skin: "", name: "parcel" },
   packet: { g: 250, w: 80, h: 96, skin: "", name: "packet" },
-  loaf: { g: 480, w: 160, h: 70, skin: "", name: "loaf" }
+  loaf: { g: 480, w: 128, h: 56, skin: "", name: "loaf" }
+  /* two side by side on a pan, so three loaves stay clear of the hook */
 };
+const WI_DEC = {};
+let wiDecP = null;
+function wiDecodeAll() {
+  if (wiDecP) return wiDecP;
+  const imgs = typeof TOOL_IMAGES !== "undefined" ? TOOL_IMAGES : {};
+  const W2 = typeof window !== "undefined" ? window : null;
+  wiDecP = Promise.all(Object.keys(WI_OBJ).map((k) => new Promise((res) => {
+    const sk = WI_OBJ[k].skin, src = sk && imgs[sk];
+    if (!src || !W2 || !W2.Image) {
+      res(0);
+      return;
+    }
+    const im = new W2.Image();
+    im.onload = () => {
+      WI_DEC[sk] = true;
+      res(1);
+    };
+    im.onerror = () => res(0);
+    im.src = src;
+  })));
+  return wiDecP;
+}
+function useWiDecoded() {
+  const [, setDec] = useState(0);
+  useEffect(() => {
+    let on = true;
+    wiDecodeAll().then(() => {
+      if (on) setDec(1);
+    });
+    return () => {
+      on = false;
+    };
+  }, []);
+}
 const WI_WD = { 2e3: [116, 96], 1e3: [108, 88], 500: [108, 82], 200: [104, 76], 100: [104, 74], 50: [92, 72], 10: [92, 72] };
 const wiLab = (g) => g >= 1e3 ? g / 1e3 + " kg" : g + " g";
-const WB = { cx: 322, cy: 104, half: 196, cord: 220, table: 478, colX: 656, dish: 120 };
+const WB = { cx: 322, cy: 104, half: 180, cord: 208, table: 488, colX: 662, dish: 140 };
 const WI_C = { given: "#0072B2", answer: "#009E73", unit: "#D55E00", step: "#E69F00" };
+const WI_TOUCH = { on: false };
+const WI_NUDGE = [
+  ["First put the watermelon on the pan.", "First put the pencil on the pan.", "First weigh both the mango and the bag of rice."],
+  ["First make the beam level with weights.", "First balance the mango with gram weights.", "First add the weight that levels the pans."],
+  ["First balance the 500 g weight with two packets.", "First put one packet on the pan and level the beam.", "Put one loaf on first."],
+  ["First weigh both things, one after the other.", "First put the pillow and the brick on the two pans.", "Weigh all three first."]
+];
 const WI_FREE = { col: ["watermelon", "mango", "pencil", "pillow", "brick"], rack: [2e3, 1e3, 500, 200, 100, 50, 10], L: [], R: [], two: true, wBoth: true };
 const MODEL = {
   grams: Object.fromEntries(Object.keys(WI_OBJ).map((k) => [k, WI_OBJ[k].g])),
   weights: [10, 50, 100, 200, 500, 1e3, 2e3],
-  tilt: "the beam turns by the difference of the grams on its pans (left minus right): 0 only when they are equal, growing like a log of the difference to a stop at 12 degrees",
+  tilt: "the beam turns by the difference of the grams on its pans (left minus right): 0 only when they are equal, else 17 degrees times the square root of (difference / 5,000 g), so 750 g, 1 kg, 2 kg, 2.5 kg and 3 kg of difference each read at least 1 degree apart; the stop (17 degrees) is reached only past 5 kg",
   balance: { pivot: [WB.cx, WB.cy], halfBeam: WB.half, cord: WB.cord },
   /* the answer gate (PATTERNS 19): what the child must do on the board before the Answer key and the keys are live */
   answerGate: {
@@ -4452,10 +4934,10 @@ const MODEL = {
     "2.1": "make the beam level with weights",
     "2.2": "make the beam level with weights",
     "2.3": "add the weight that makes the beam level",
-    "3.1": "put two packets on the pan",
+    "3.1": "balance the 500 g weight with two packets",
     "3.2": "put one packet on the pan and make the beam level",
     "3.3": "put a loaf on the pan",
-    "4.1": "weigh one of the two things",
+    "4.1": "weigh both things, one after the other",
     "4.2": "put the pillow and the brick on the two pans",
     "4.3": "weigh all three things",
     rule: "locked only in user mode, after the child's first real touch, until the act is done; toolApi.check() performs the act, so AI mode is never gated"
@@ -4467,18 +4949,18 @@ const PHASES = [
     concept: "Heavy and light: kilograms and grams",
     conceptId: "M1.S2.T4.C16",
     objectiveIds: ["O5"],
-    says: ["Weigh each thing against 1 kg and pick the unit that fits it."],
-    /* the warm-up: 1 kg of iron against 1000 g of small weights, so the beam shows that 1 kg is 1000 g */
+    says: ["Weigh each thing against 1 kg and pick the unit that fits."],
+    /* the warm-up: 1 kg of iron against 1,000 g of small weights, so the beam shows that 1 kg is 1,000 g */
     warm: { col: ["w1000", "gramset"], rack: [], L: [], R: [] },
     stepHold: 2200,
     steps: [
-      { say: "Tap the 1 kg weight to put it on a pan.", on: "w1000", hint: "Tap the iron weight marked 1 kg." },
-      { say: "Now tap the tray of gram weights to put 1000 g on the other pan.", on: "gramset", hint: "Tap the tray with four small weights." }
+      { say: "Tap the 1 kg weight to put it on the right-hand pan.", on: "w1000", hint: "Tap the iron weight marked 1 kg." },
+      { say: "Now tap the tray of gram weights to put 1,000 g on the other pan.", on: "gramset", hint: "Tap the tray with four small weights." }
     ],
-    ladder: ["Compare the thing with the 1 kg weight on the other pan.", "Light things let the 1 kg side go down."],
-    closing: "We weigh heavy things in kilograms and light things in grams.",
-    learned: "You learned: kilograms for heavy things, grams for light; 1 kg = 1000 g",
-    traceback: "the thing on the pan and the 1 kg weight are ringed and the tag under the thing says over 1 kg or under 1 kg; the unit is left for the child",
+    ladder: ["Weigh the thing against the iron weight.", "See which pan goes down."],
+    closing: "Heavy things go in kilograms, light things in grams.",
+    learned: "You learned: heavy things in kilograms, light in grams; 1 kg = 1,000 g",
+    traceback: "the thing on the pan and the 1 kg weight are ringed and a one-line tag under the thing names it (no verdict); the beam shows the rest and the unit is left for the child",
     items: [
       /* learn WI1: answer in the plan = Kilograms */
       {
@@ -4494,9 +4976,9 @@ const PHASES = [
         near: "g",
         forms: ["in kilograms"],
         miss: "Look at the beam: which side did the watermelon pull down?",
-        ladder: ["The watermelon is heavier than the 1 kg weight on the other pan.", "A thing heavier than 1 kg needs the bigger unit."],
-        win: "Yes, a watermelon is heavy, so we weigh it in kilograms.",
-        winMs: 3900,
+        ladder: ["The watermelon is heavier than the 1 kg weight on the other pan.", "A thing heavier than 1 kg is weighed in the bigger unit."],
+        win: "Yes, kilograms: the watermelon pulled its pan below the 1 kg weight.",
+        winMs: 4800,
         tag: "kilograms",
         tagSide: "L"
       },
@@ -4514,9 +4996,9 @@ const PHASES = [
         near: "kg",
         forms: ["in grams"],
         miss: "Did the pencil lift the 1 kg weight, or did the 1 kg side go down?",
-        ladder: ["The 1 kg side went down, so the pencil is much lighter than 1 kg.", "A thing much lighter than 1 kg needs the smaller unit."],
-        win: "Yes, a pencil is light, so its weight is in grams.",
-        winMs: 3500,
+        ladder: ["The 1 kg side went down, so the pencil is much lighter than 1 kg.", "1 kg is 1,000 g, so a pencil weighs only a few of the small units."],
+        win: "Yes, grams: the pencil is far lighter than 1 kg.",
+        winMs: 3400,
         tag: "grams",
         tagSide: "L"
       },
@@ -4534,9 +5016,9 @@ const PHASES = [
         near: "mango",
         pick: { mango: "mango", rice: "sack" },
         forms: ["rice is weighed in kilograms"],
-        miss: "Put each one on the pan and see if it beats the 1 kg weight.",
-        ladder: ["The thing that lifts the 1 kg weight up is the heavy one.", "The mango lets the 1 kg side go down, so the mango is weighed in grams."],
-        win: "Yes, the bag of rice is heavy, so it is weighed in kilograms, and the mango in grams.",
+        miss: "Put each one on the pan and see if it is heavier than the 1 kg weight.",
+        ladder: ["The heavy thing is the one that pulls its pan down.", "Weigh the mango, then the rice: which one lifts the 1 kg weight?"],
+        win: "Yes, rice goes in kilograms and the mango in grams.",
         tag: "bag of rice",
         tagSide: "L"
       }
@@ -4554,9 +5036,9 @@ const PHASES = [
     steps: [
       { say: "Tap the 1 kg weight to put it on the empty pan.", on: "w1000", hint: "Tap the iron weight with 1 kg on it." },
       { say: "The bag is still heavier, so tap that 1 kg weight to take it off.", on: "pan-w1000", hint: "Tap the weight sitting on the pan." },
-      { say: "Now put the 2 kg weight on the pan and watch the beam.", on: "w2000", hint: "Tap the biggest iron weight." }
+      { say: "Now put the 2 kg weight on the pan and watch the beam.", on: "w2000", hint: "Tap the biggest weight." }
     ],
-    ladder: ["Look at the needle at the top of the post.", "Both pans hold the same weight when the needle stands straight."],
+    ladder: ["Look at the needle at the top of the post.", "A straight needle means the beam is level."],
     closing: "When the beam is level, both pans hold the same weight.",
     learned: "You learned: when the beam is level, the weights tell the thing's weight",
     traceback: "each weight on the pan is ringed in turn and an Add tag lists them; the total is left for the child",
@@ -4570,11 +5052,11 @@ const PHASES = [
         sol: { R: [2e3, 1e3] },
         say: "Add weights until the beam is level, then type what the watermelon weighs.",
         ask: "Watermelon weighs?",
-        parts: [{ label: "weight", unit: "kg" }],
+        parts: [{ label: "", unit: "kg" }],
         answer: [3],
         near: "2",
         miss: "Add every weight on the pan, not only the biggest one.",
-        ladder: ["Read the label on each weight on the pan, then add them.", "Start at 2 kg and count on the other weight."],
+        ladder: ["Two weights balance the watermelon: read both labels.", "Start at 2 kg and count on the other weight."],
         win: "The balance is level, and 2 kg and 1 kg make 3 kg.",
         winMs: 3600,
         tag: "3 kg",
@@ -4587,19 +5069,19 @@ const PHASES = [
         board: { col: [], rack: [500, 200, 100, 50], L: ["mango"], R: [] },
         gate: "level",
         sol: { R: [200, 100] },
-        say: "Balance the mango with gram weights, then type its weight.",
+        say: "Balance the mango with gram weights and type its weight.",
         ask: "Mango weighs?",
-        parts: [{ label: "weight", unit: "g" }],
+        parts: [{ label: "", unit: "g" }],
         answer: [300],
         near: "200",
-        miss: "Count the grams of each weight on the pan, then add.",
-        ladder: ["The beam is level, so the mango weighs the same as those weights together.", "Add 200 g and 100 g."],
+        miss: "The mango needs a small weight besides the 200 g one.",
+        ladder: ["The beam is level, so the mango weighs as much as both weights together.", "Add 200 g and 100 g."],
         win: "Level again: 200 g and 100 g make 300 g.",
         winMs: 2900,
         tag: "300 g",
         tagSide: "L"
       },
-      /* practice 8: answer in the plan = a 100 g weight (the right pan holds 900 g and 1 kg is 1000 g) */
+      /* practice 8: answer in the plan = a 100 g weight (the right pan holds 900 g and 1 kg is 1,000 g) */
       {
         qid: "M1.S2.T4.C17:8",
         kind: "missing",
@@ -4613,8 +5095,8 @@ const PHASES = [
         near: "900",
         given: "1 kg",
         miss: "Type only the weight you added, not the ones already on the pan.",
-        ladder: ["1 kg is 1000 g, and the pan had 500 g, 200 g and 200 g before.", "How many grams take 900 g up to 1000 g?"],
-        win: "Yes, 900 g and 100 g make 1000 g, the same as 1 kg.",
+        ladder: ["1 kg is 1,000 g, and before, the pan had 500 g, 200 g and 200 g.", "How many grams take 900 g up to 1,000 g?"],
+        win: "Yes, 900 g and 100 g make 1,000 g, the same as 1 kg.",
         tag: "100 g",
         tagSide: "R"
       }
@@ -4630,31 +5112,32 @@ const PHASES = [
     warm: { col: ["tray"], rack: [], L: [], R: ["w1000"] },
     stepHold: 2200,
     steps: [
-      { say: "Tap a packet of sugar to put it on the pan.", on: "packet", hint: "Tap one of the four sugar packets." },
+      { say: "Tap a packet of sugar to put it on the pan.", on: "packet", hint: "Tap one sugar packet." },
       { say: "Tap the tray to put the other three packets on the pan too.", on: "tray", hint: "Tap the blue 1 kg strip of the tray." }
     ],
     ladder: ["Look at the tray of four equal packets.", "The four packets together balance the 1 kg weight."],
-    closing: "Two of four equal packets make half a kilogram and one makes a quarter.",
+    closing: "Each of four equal packets is a quarter of a kilogram.",
     learned: "You learned: 4 equal packets make 1 kg, so 2 make half and 1 a quarter",
     traceback: "the four places of the tray and the packets on the pan are ringed, or the weights on the pan in turn, or one loaf is weighed alone; the answer is left for the child",
     items: [
-      /* learn WI3: answer in the plan = Half a kilogram (four equal packets of sugar here: the owner's four 250 g packets) */
+      /* learn WI3: answer in the plan = Half a kilogram (four equal packets of sugar here: the owner's four 250 g packets). The coordinator's
+         decision: two packets are balanced against the 500 g standard weight, and the child names the part of a kilogram */
       {
         qid: "M1.S2.T4.C18:WI3",
         kind: "packets",
-        board: { col: ["tray"], rack: [], L: [], R: ["w1000"] },
+        board: { col: ["tray"], rack: [], L: [], R: ["w500"] },
         gate: "two",
         sol: { L: ["packet1", "packet2"] },
-        say: "Put two of the four packets on the pan: how much do the two packets weigh?",
+        say: "Balance the 500 g weight with two packets: how much do two packets weigh?",
         ask: "Two packets weigh?",
-        choices: [{ id: "quarter", label: "a quarter kilogram" }, { id: "half", label: "half a kilogram" }, { id: "one", label: "1 kilogram" }],
+        choices: [{ id: "quarter", label: "a quarter of a kilogram" }, { id: "half", label: "half a kilogram" }, { id: "one", label: "1 kilogram" }],
         answer: "half",
         near: "quarter",
         forms: ["half a kilogram"],
-        miss: "Four packets make 1 kg: what part of the four is on the pan?",
-        ladder: ["Count the empty places in the tray: how many of the four are gone?", "Two packets are two of the four equal parts of 1 kg."],
-        win: "Two equal quarter-kilogram portions make half a kilogram.",
-        winMs: 4e3,
+        miss: "Four packets make 1 kg: what part of them is on the pan?",
+        ladder: ["Count the empty places in the tray: how many of the four are gone?", "The 500 g weight balances them, and 1 kg is 1,000 g."],
+        win: "Yes, two packets make half a kilogram, and half a kilogram is 500 g.",
+        winMs: 4800,
         tag: "half a kg",
         tagSide: "L"
       },
@@ -4662,18 +5145,18 @@ const PHASES = [
       {
         qid: null,
         kind: "weigh1",
-        board: { col: ["tray"], rack: [200, 100, 50, 10], L: [], R: [] },
+        board: { col: ["tray"], rack: [200, 100, 50], L: [], R: [] },
         gate: "one",
         sol: { L: ["packet1"], R: [200, 50] },
         say: "Put one packet on the pan, balance it with weights and type its weight.",
         ask: "One packet weighs?",
-        parts: [{ label: "weight", unit: "g" }],
+        parts: [{ label: "", unit: "g" }],
         answer: [250],
         near: "200",
         miss: "Add the grams of the weights that made the beam level.",
-        ladder: ["Read the bigger weight first, then add the smaller one to it.", "Count on from 200 g by the grams of the small weight."],
-        win: "Yes, one packet weighs 250 g, a quarter of a kilogram.",
-        winMs: 3800,
+        ladder: ["Read the bigger weight first, then add on the smaller one.", "Count on from 200 g by the grams of the small weight."],
+        win: "Yes, 200 g and 50 g make 250 g for one packet.",
+        winMs: 3300,
         tag: "250 g",
         tagSide: "L"
       },
@@ -4686,12 +5169,12 @@ const PHASES = [
         sol: { L: ["loaf1", "loaf2"] },
         say: "Put loaves on the pan one by one: about how many loaves weigh 1 kg?",
         ask: "Loaves for 1 kg?",
-        parts: [{ label: "how many", unit: "loaves" }],
+        parts: [{ label: "", unit: "loaves" }],
         answer: [2],
         near: "1",
-        miss: "Watch the beam as each loaf goes on: when is it nearly level?",
-        ladder: ["With one loaf the 1 kg side stays down, so try another loaf.", "Each loaf weighs about half a kilogram: how many halves make 1 kg?"],
-        win: "Yes, about 2 loaves weigh 1 kg, as each is about half a kilogram.",
+        miss: "Watch the beam as each loaf goes on: when is it nearly level now?",
+        ladder: ["One loaf leaves the 1 kg side down, so try another loaf.", "Each loaf weighs about half a kilogram: how many halves make 1 kg?"],
+        win: "Yes, about 2 loaves weigh 1 kg.",
         tag: "2 loaves",
         tagSide: "L"
       }
@@ -4702,19 +5185,19 @@ const PHASES = [
     concept: "More than or less than one kilogram",
     conceptId: "M1.S2.T4.C19",
     objectiveIds: ["O6"],
-    says: ["Here are new things to weigh on the balance."],
-    ladder: ["Let the beam decide, not the size of the thing.", "The heavier side always goes down."],
+    says: ["Now weigh the things on your own and let the beam decide."],
+    ladder: ["Put the thing on a pan and watch the needle.", "The heavier pan goes down."],
     closing: "A thing is more than 1 kg when it pulls the beam down against the 1 kg weight.",
     learned: "You learned: a thing over 1 kg pulls the beam down against 1 kg",
-    traceback: "the child's own pick is weighed against 1 kg (or the two pans are compared with a level line), and each thing's side is tagged over or under 1 kg; the choice or the count is left for the child",
+    traceback: "the child's own pick is weighed against 1 kg (or the two pans are compared with a level line), and each thing weighed is named on a one-line tag (no verdict); the choice or the count is left for the child",
     items: [
       /* learn WI4: answer in the plan = The backpack (a pencil here for the pen: the owner's object) */
       {
         qid: "M1.S2.T4.C19:WI4",
         kind: "which",
         board: { col: ["backpack", "pencil"], rack: [], L: [], R: ["w1000"] },
-        gate: "any",
-        sol: { L: ["backpack"], seen: ["backpack"] },
+        gate: "all",
+        sol: { L: ["backpack"], seen: ["backpack", "pencil"] },
         say: "Weigh the school bag and the pencil: which one weighs more than 1 kg?",
         ask: "More than 1 kg?",
         choices: [{ id: "backpack", label: "school bag" }, { id: "pencil", label: "pencil" }],
@@ -4722,10 +5205,10 @@ const PHASES = [
         near: "pencil",
         pick: { backpack: "backpack", pencil: "pencil" },
         forms: ["school bag weighs more"],
-        miss: "Weigh both things, one after the other, against the 1 kg weight.",
-        ladder: ["Which thing made its pan go down below the 1 kg side?", "The 1 kg weight goes up when the thing against it is heavier than 1 kg."],
-        win: "Yes, the school bag pulls the beam down, so it is more than 1 kg.",
-        winMs: 4500,
+        miss: "Weigh both things against the 1 kg weight.",
+        ladder: ["Which thing sinks lower than the 1 kg weight?", "When the 1 kg weight rises, the other pan holds the heavier thing."],
+        win: "Yes, the school bag is heavier than 1 kg.",
+        winMs: 2900,
         tag: "school bag",
         tagSide: "L"
       },
@@ -4743,8 +5226,8 @@ const PHASES = [
         near: "pillow",
         pick: { pillow: "pillow", brick: "brick" },
         forms: ["brick is heavier"],
-        miss: "Look at the two pans: which one is lower?",
-        ladder: ["The lower pan holds the heavier thing, whatever its size.", "A small thing can be heavier than a big thing, so trust the beam."],
+        miss: "Put the pillow and the brick on the two pans, then watch the beam.",
+        ladder: ["Which side does the beam lean to?", "See which pan is lower."],
         win: "Yes, the small brick is heavier than the big pillow.",
         winMs: 3600,
         tag: "brick",
@@ -4760,13 +5243,13 @@ const PHASES = [
         sol: { L: ["watermelon"], seen: ["backpack", "pillow", "watermelon"] },
         say: "Weigh the school bag, the pillow and the watermelon: how many are over 1 kg?",
         ask: "How many over 1 kg?",
-        parts: [{ label: "how many", unit: "things" }],
+        parts: [{ label: "", unit: "things" }],
         answer: [2],
         near: "3",
-        miss: "Weigh all three, then count the ones that pull their pan down.",
-        ladder: ["Count only the things that lift the 1 kg weight up.", "Weigh the pillow again: does it lift the 1 kg weight?"],
-        win: "Yes, the school bag and the watermelon are more than 1 kg, but the big pillow is not.",
-        tag: "2 things",
+        miss: "Watch each thing being weighed again against the 1 kg weight.",
+        ladder: ["Count only the things that pull their own pan down.", "Put the pillow back on: does the 1 kg side go up or down?"],
+        win: "Yes, the school bag and the watermelon are more than 1 kg.",
+        tag: "2 over 1 kg",
         tagSide: "L"
       }
     ]
@@ -4799,7 +5282,7 @@ const check = () => HOOK.check ? HOOK.check() : void 0;
 const wiBase = (id) => String(id).replace(/\d+$/, "");
 const wiThing = (e) => e.b !== "w" && e.b !== "set";
 const wiMass = (list) => list.reduce((a, e) => a + e.g, 0);
-const wiTilt = (d) => d === 0 ? 0 : -Math.sign(d) * Math.min(12, 2 + 10 * Math.log10(1 + Math.abs(d) / 10) / Math.log10(201));
+const wiTilt = (d) => d === 0 ? 0 : -Math.sign(d) * 17 * Math.min(1, Math.sqrt(Math.abs(d) / 5e3));
 function wiFresh(spec, qk) {
   const fx = (s, side, k) => /^w\d/.test(s) ? { id: side + "f" + k, b: "w", g: Number(s.slice(1)), fixed: true } : { id: s, b: wiBase(s), g: WI_OBJ[wiBase(s)].g, fixed: true };
   return {
@@ -4817,11 +5300,13 @@ function wiFresh(spec, qk) {
 const wiOn = (S, id) => S.L.some((e) => e.id === id) || S.R.some((e) => e.id === id);
 function wiPut(S, pl, spec, side) {
   if (pl.startsWith("r:")) {
-    const g = Number(pl.slice(2)), to2 = side || "R";
+    const g = Number(pl.slice(2)), id2 = "w" + g;
+    if (wiOn(S, id2)) return null;
+    const to2 = side || (spec.wBoth && wiMass(S.L) < wiMass(S.R) ? "L" : "R");
     if (to2 !== "R" && !spec.wBoth) return null;
     const pan2 = S[to2];
     if (pan2.filter((e) => !wiThing(e)).length >= 5) return null;
-    return { ...S, [to2]: [...pan2, { id: "w" + S.n, b: "w", g }], n: S.n + 1 };
+    return { ...S, [to2]: [...pan2, { id: id2, b: "w", g }] };
   }
   if (pl === "tray") {
     const left = [1, 2, 3, 4].map((k) => "packet" + k).filter((id2) => !wiOn(S, id2));
@@ -4890,94 +5375,137 @@ function wiSolved(S, it, spec) {
 }
 function wiW(s, fs) {
   let u = 0;
-  for (const ch of String(s)) u += /[0-9]/.test(ch) ? 0.62 : ch === " " ? 0.28 : /[il.,:'|]/.test(ch) ? 0.3 : /[mwMW]/.test(ch) ? 0.86 : /[A-Z]/.test(ch) ? 0.7 : /[+=−]/.test(ch) ? 0.62 : ch.charCodeAt(0) > 2303 ? 0.62 : 0.56;
+  const zero = /[ऀ-ं़ु-ै्॑-ॗॢॣઁં઼ુ-ૈ્ૢૣ]/;
+  const sign = /[ा-ीॉ-ौા-ીૉ-ૌ]/;
+  let prev = "";
+  for (const ch of String(s)) {
+    const guj = ch >= "઀" && ch <= "૿";
+    u += /[0-9]/.test(ch) ? 0.62 : ch === " " ? 0.28 : /[il.,:'|]/.test(ch) ? 0.3 : /[mwMW]/.test(ch) ? 0.86 : /[A-Z]/.test(ch) ? 0.7 : /[+=−]/.test(ch) ? 0.62 : zero.test(ch) ? 0 : sign.test(ch) ? guj ? 0.3 : 0.27 : prev === "्" || prev === "્" ? 0.2 : ch.charCodeAt(0) > 2303 ? guj ? 0.62 : 0.62 : 0.56;
+    prev = ch;
+  }
   return u * fs;
 }
-function wiShelf(spec, W2, H) {
-  const items = [];
+const WI_MEAS = {};
+let WI_CTX = null;
+function wiM(s, fs, wt = 700) {
+  const k = wt + "|" + fs + "|" + s;
+  if (WI_MEAS[k] !== void 0) return WI_MEAS[k];
+  let w = wiW(s, fs);
+  try {
+    if (!WI_CTX) WI_CTX = document.createElement("canvas").getContext("2d");
+    WI_CTX.font = `${wt} ${fs}px "C4 Poppins", Poppins, "Segoe UI", system-ui, -apple-system, "Noto Sans Devanagari", "Noto Sans Gujarati", sans-serif`;
+    const m = WI_CTX.measureText(String(s)).width;
+    if (m > 0) {
+      w = m;
+      if (!document.fonts || document.fonts.status === "loaded") WI_MEAS[k] = w;
+    }
+  } catch (e) {
+  }
+  return w;
+}
+function wiIronLab(g, tx, fs = 32) {
+  const base = WI_WD[g][0];
+  let txt = tx(wiLab(g));
+  if (wiM(txt, fs) + 24 > base * 1.25) txt = txt.replace("ग्राम", "ग्रा").replace("ગ્રામ", "ગ્રા");
+  const pw = wiM(txt, fs) + 16;
+  return { txt, pw, w: Math.max(base, Math.ceil(pw + 8)) };
+}
+const wiIronW = (g, tx) => wiIronLab(g, tx).w;
+function wiSetGeo(tx) {
+  const a = wiIronW(500, tx), b = wiIronW(200, tx), c = wiIronW(100, tx);
+  const w = 12 + Math.max(a + 14 + b, b + 14 + c) + 12;
+  return { w, h: 12 + WI_WD[500][1] + 12 + WI_WD[200][1] + 12, cells: [[12, 12, 500, a], [12 + a + 14, 18, 200, b], [12, 12 + WI_WD[500][1] + 12, 200, b], [12 + b + 14, 14 + WI_WD[500][1] + 12, 100, c]] };
+}
+function wiShelf(spec, W2, H, tx = (v) => v) {
+  const items = [], G = 16;
   for (const c of spec.col || []) {
-    if (c === "tray") items.push({ key: "tray", kind: "tray", w: 200, h: 306 });
-    else if (c === "gramset") items.push({ key: "c:gramset", kind: "set", w: 228, h: 182 });
-    else if (/^w\d/.test(c)) items.push({ key: "r:" + c.slice(1), kind: "w", g: Number(c.slice(1)), w: WI_WD[c.slice(1)][0], h: WI_WD[c.slice(1)][1] });
-    else {
+    if (c === "tray") items.push({ key: "tray", kind: "tray", w: 200, h: 306, wOf: (s) => Math.max(200 * s, 184), hOf: (s) => 226 * s + 80 });
+    else if (c === "gramset") {
+      const sg = wiSetGeo(tx);
+      items.push({ key: "c:gramset", kind: "set", w: sg.w, h: sg.h, fixed: true });
+    } else if (/^w\d/.test(c)) {
+      const g = Number(c.slice(1));
+      items.push({ key: "r:" + g, kind: "w", g, w: wiIronW(g, tx), h: WI_WD[g][1] });
+    } else {
       const o = WI_OBJ[wiBase(c)];
       items.push({ key: "c:" + c, kind: "obj", b: wiBase(c), id: c, w: o.w, h: Math.max(o.h, 72) });
     }
   }
-  for (const g of spec.rack || []) items.push({ key: "r:" + g, kind: "w", g, w: WI_WD[g][0], h: WI_WD[g][1], rack: true });
+  for (const g of spec.rack || []) items.push({ key: "r:" + g, kind: "w", g, w: wiIronW(g, tx), h: WI_WD[g][1], rack: true });
   let best = null;
-  for (let s = 1; s >= 0.5; s -= 0.04) {
-    const sc = (it) => it.kind === "w" ? Math.max(s, 0.92) : s;
+  for (let s = 1.5; s >= 0.4; s -= 0.04) {
+    const sc = (it) => it.kind === "w" || it.fixed ? 1 : s;
+    const WOF = (it) => it.wOf ? it.wOf(sc(it)) : it.w * sc(it), HOF = (it) => it.hOf ? it.hOf(sc(it)) : it.h * sc(it);
     const rows = [];
     let row = [], rw = 0, ok = true;
     for (const it of items) {
-      const w = it.w * sc(it);
+      const w = WOF(it);
       if (w > W2) {
         ok = false;
         break;
       }
-      const brk = row.length && (rw + 12 + w > W2 || it.rack && !row[row.length - 1].rack);
+      const brk = row.length && (rw + G + w > W2 || it.rack && !row[row.length - 1].rack);
       if (brk) {
         rows.push(row);
         row = [];
         rw = 0;
       }
       row.push(it);
-      rw += (row.length > 1 ? 12 : 0) + w;
+      rw += (row.length > 1 ? G : 0) + w;
     }
     if (row.length) rows.push(row);
-    const hs = rows.map((r) => Math.max(...r.map((it) => it.h * sc(it))));
-    const tot = hs.reduce((a, b) => a + b, 0) + 14 * Math.max(0, rows.length - 1);
-    best = { s, rows, hs, tot, sc };
+    const hs = rows.map((r) => Math.max(...r.map((it) => HOF(it))));
+    const tot = hs.reduce((a, b) => a + b, 0) + G * Math.max(0, rows.length - 1);
+    best = { s, rows, hs, tot, sc, WOF, HOF };
     if (ok && tot <= H) break;
   }
   const out = {};
   let y = Math.max(0, (H - best.tot) / 2);
   best.rows.forEach((r, i) => {
-    const ws = r.map((it) => it.w * best.sc(it)), rw = ws.reduce((a, b) => a + b, 0) + 12 * (r.length - 1);
+    const ws = r.map((it) => best.WOF(it)), rw = ws.reduce((a, b) => a + b, 0) + G * (r.length - 1);
     let x = (W2 - rw) / 2;
     r.forEach((it, j) => {
-      const h = it.h * best.sc(it);
+      const h = best.HOF(it);
       out[it.key] = { ...it, x, y: y + (best.hs[i] - h), w: ws[j], h, s: best.sc(it) };
-      x += ws[j] + 12;
+      x += ws[j] + G;
     });
-    y += best.hs[i] + 14;
+    y += best.hs[i] + G;
   });
   return out;
 }
-function wiPan(list) {
-  const items = [];
+function wiPan(list, tx = (v) => v) {
+  const items = [], G = 16, GV = 8;
   for (const e of list) {
-    if (e.b === "set") [500, 200, 200, 100].forEach((g, k) => items.push({ e, g, w: WI_WD[g][0], h: WI_WD[g][1], kind: "w", sub: k }));
-    else if (e.b === "w") items.push({ e, g: e.g, w: WI_WD[e.g][0], h: WI_WD[e.g][1], kind: "w" });
+    if (e.b === "set") [500, 200, 200, 100].forEach((g, k) => items.push({ e, g, w: wiIronW(g, tx), h: WI_WD[g][1], kind: "w", sub: k }));
+    else if (e.b === "w") items.push({ e, g: e.g, w: wiIronW(e.g, tx), h: WI_WD[e.g][1], kind: "w" });
     else items.push({ e, w: WI_OBJ[e.b].w, h: WI_OBJ[e.b].h, kind: e.b });
   }
   items.sort((a, b) => (a.kind === "w" ? 1 : 0) - (b.kind === "w" ? 1 : 0) || (b.g || 0) - (a.g || 0));
   const rows = [];
   let row = [], rw = 0;
   for (const it of items) {
-    if (row.length && rw + 6 + it.w > 2 * WB.dish - 8) {
+    if (row.length && rw + G + it.w > 2 * WB.dish) {
       rows.push(row);
       row = [];
       rw = 0;
     }
     row.push(it);
-    rw += (row.length > 1 ? 6 : 0) + it.w;
+    rw += (row.length > 1 ? G : 0) + it.w;
   }
   if (row.length) rows.push(row);
   const hs = rows.map((r) => Math.max(...r.map((it) => it.h)));
-  const tot = hs.reduce((a, b) => a + b, 0) + 4 * Math.max(0, rows.length - 1);
+  const tot = hs.reduce((a, b) => a + b, 0) + GV * Math.max(0, rows.length - 1);
   const s = Math.min(1, (WB.cord - 8) / Math.max(1, tot));
   const out = [];
   let y = WB.cord + 2;
   rows.forEach((r, i) => {
-    const rwid = (r.reduce((a, it) => a + it.w, 0) + 6 * (r.length - 1)) * s;
+    const rwid = (r.reduce((a, it) => a + it.w, 0) + G * (r.length - 1)) * s;
     let x = -rwid / 2;
     r.forEach((it) => {
       out.push({ ...it, x, y: y - it.h * s, w: it.w * s, h: it.h * s, s });
-      x += (it.w + 6) * s;
+      x += (it.w + G) * s;
     });
-    y -= (hs[i] + 4) * s;
+    y -= (hs[i] + GV) * s;
   });
   return out;
 }
@@ -4986,54 +5514,98 @@ function wiObjArt(b, x, y, w, h, key) {
   const cx = x + w / 2, cy = y + h / 2;
   let plain = null;
   if (b === "watermelon") plain = <g>
-      <ellipse cx={cx} cy={cy} rx={w * 0.4} ry={h * 0.38} fill="#2F7D32" stroke="#1E5221" strokeWidth={3} />
-      {[-0.18, 0, 0.18].map((f, k) => <path key={k} d={`M ${cx + f * w} ${cy - h * 0.3} Q ${cx + f * w * 1.2} ${cy} ${cx + f * w} ${cy + h * 0.3}`} fill="none" stroke="#9CCC65" strokeWidth={5} />)}
+      <ellipse cx={cx} cy={cy} rx={w * 0.42} ry={h * 0.4} fill="#236B26" stroke="#123E14" strokeWidth={3} />
+      {[-0.22, -0.07, 0.07, 0.22].map((f, k) => <path key={k} d={`M ${cx + f * w} ${cy - h * 0.36} Q ${cx + f * w * 1.3} ${cy} ${cx + f * w} ${cy + h * 0.36}`} fill="none" stroke="#7CB342" strokeWidth={5} strokeLinecap="round" />)}
+      <ellipse cx={cx - w * 0.12} cy={cy - h * 0.15} rx={w * 0.18} ry={h * 0.12} fill="#FFF" fillOpacity={0.25} />
     </g>;
-  else if (b === "mango") plain = <ellipse cx={cx} cy={cy + 2} rx={w * 0.38} ry={h * 0.36} fill="#F2B233" stroke="#B9791A" strokeWidth={3} />;
+  else if (b === "mango") plain = <g>
+      <path d={`M ${cx - w * 0.35} ${cy - h * 0.1} Q ${cx - w * 0.2} ${cy - h * 0.42} ${cx + w * 0.1} ${cy - h * 0.38} Q ${cx + w * 0.42} ${cy - h * 0.2} ${cx + w * 0.35} ${cy + h * 0.2} Q ${cx + w * 0.2} ${cy + h * 0.45} ${cx - w * 0.15} ${cy + h * 0.35} Q ${cx - w * 0.42} ${cy + h * 0.15} ${cx - w * 0.35} ${cy - h * 0.1} Z`} fill="#FFB300" stroke="#B76E00" strokeWidth={3} />
+      <path d={`M ${cx + w * 0.05} ${cy - h * 0.32} Q ${cx + w * 0.32} ${cy - h * 0.1} ${cx + w * 0.28} ${cy + h * 0.22}`} fill="none" stroke="#F0A030" strokeWidth={8} strokeOpacity={0.4} strokeLinecap="round" />
+      <path d={`M ${cx - w * 0.05} ${cy - h * 0.36} Q ${cx} ${cy - h * 0.46} ${cx + w * 0.08} ${cy - h * 0.42}`} fill="none" stroke="#33691E" strokeWidth={3} strokeLinecap="round" />
+    </g>;
   else if (b === "pencil") plain = <g>
-      <rect x={x + w * 0.06} y={y + h * 0.22} width={w * 0.74} height={h * 0.56} rx={3} fill="#F4C430" stroke="#9C7A12" strokeWidth={2} />
-      <path d={`M ${x + w * 0.8} ${y + h * 0.22} L ${x + w * 0.92} ${cy} L ${x + w * 0.8} ${y + h * 0.78} Z`} fill="#E8C9A0" stroke="#9C7A12" strokeWidth={2} />
+      <rect x={x + w * 0.06} y={y + h * 0.2} width={w * 0.72} height={h * 0.6} rx={3} fill="#F57F17" stroke="#9A4D00" strokeWidth={2.5} />
+      <line x1={x + w * 0.06} y1={y + h * 0.4} x2={x + w * 0.78} y2={y + h * 0.4} stroke="#FFB300" strokeWidth={2} />
+      <path d={`M ${x + w * 0.78} ${y + h * 0.2} L ${x + w * 0.92} ${cy} L ${x + w * 0.78} ${y + h * 0.8} Z`} fill="#D7CCC8" stroke="#9A4D00" strokeWidth={2} />
+      <path d={`M ${x + w * 0.88} ${cy - h * 0.1} L ${x + w * 0.92} ${cy} L ${x + w * 0.88} ${cy + h * 0.1} Z`} fill="#212121" />
     </g>;
-  else if (b === "sack") plain = <path d={`M ${x + w * 0.34} ${y + h * 0.16} L ${x + w * 0.66} ${y + h * 0.16} Q ${x + w * 0.88} ${y + h * 0.5} ${x + w * 0.82} ${y + h * 0.9} L ${x + w * 0.18} ${y + h * 0.9} Q ${x + w * 0.12} ${y + h * 0.5} ${x + w * 0.34} ${y + h * 0.16} Z`} fill="#D8BF8E" stroke="#8C7148" strokeWidth={3} />;
+  else if (b === "sack") plain = <g>
+      <path d={`M ${x + w * 0.32} ${y + h * 0.18} L ${x + w * 0.68} ${y + h * 0.18} Q ${x + w * 0.9} ${y + h * 0.5} ${x + w * 0.84} ${y + h * 0.92} L ${x + w * 0.16} ${y + h * 0.92} Q ${x + w * 0.1} ${y + h * 0.5} ${x + w * 0.32} ${y + h * 0.18} Z`} fill="#D7CCC8" stroke="#6D4C41" strokeWidth={3} />
+      <rect x={x + w * 0.3} y={y + h * 0.12} width={w * 0.4} height={h * 0.08} rx={3} fill="#8D6E63" stroke="#4E342E" strokeWidth={2} />
+      <line x1={x + w * 0.28} y1={y + h * 0.2} x2={x + w * 0.72} y2={y + h * 0.2} stroke="#3E2723" strokeWidth={3.5} />
+    </g>;
   else if (b === "backpack") plain = <g>
-      <rect x={x + w * 0.12} y={y + h * 0.12} width={w * 0.76} height={h * 0.8} rx={20} fill="#D9822B" stroke="#8A4E14" strokeWidth={3} />
-      <rect x={x + w * 0.24} y={y + h * 0.5} width={w * 0.52} height={h * 0.3} rx={12} fill="#C06F20" stroke="#8A4E14" strokeWidth={2} />
+      {
+    /* browns, never a red: a miss must leave nothing red on screen (wrong-is-unmarked) */
+  }
+      <rect x={x + w * 0.12} y={y + h * 0.12} width={w * 0.76} height={h * 0.82} rx={22} fill="#D9822B" stroke="#8A4E14" strokeWidth={3} />
+      <rect x={x + w * 0.22} y={y + h * 0.48} width={w * 0.56} height={h * 0.34} rx={12} fill="#C06F20" stroke="#8A4E14" strokeWidth={2.5} />
+      <path d={`M ${x + w * 0.35} ${y + h * 0.12} Q ${cx} ${y + h * 0.02} ${x + w * 0.65} ${y + h * 0.12}`} fill="none" stroke="#8A4E14" strokeWidth={4} />
     </g>;
-  else if (b === "pillow") plain = <rect x={x + w * 0.18} y={y + h * 0.18} width={w * 0.64} height={h * 0.6} rx={26} fill="#E9C46A" stroke="#B08A2E" strokeWidth={3} />;
-  else if (b === "brick") plain = <rect x={x + w * 0.08} y={y + h * 0.14} width={w * 0.84} height={h * 0.72} rx={5} fill="#B5523B" stroke="#7A3324" strokeWidth={3} />;
+  else if (b === "pillow") plain = <g>
+      <rect x={x + w * 0.12} y={y + h * 0.12} width={w * 0.76} height={h * 0.76} rx={28} fill="#FBC02D" stroke="#F57F17" strokeWidth={3} />
+      <rect x={x + w * 0.2} y={y + h * 0.2} width={w * 0.6} height={h * 0.6} rx={20} fill="#FFF9C4" fillOpacity={0.5} />
+    </g>;
+  else if (b === "brick") plain = <g>
+      <rect x={x + w * 0.06} y={y + h * 0.12} width={w * 0.88} height={h * 0.76} rx={6} fill="#B5603F" stroke="#4E342E" strokeWidth={3} />
+      {[0.25, 0.5, 0.75].map((f, k) => <ellipse key={k} cx={x + w * f} cy={cy} rx={w * 0.08} ry={h * 0.18} fill="#9A5A40" stroke="#4E342E" strokeWidth={2} />)}
+    </g>;
   else if (b === "parcel") plain = <g>
-      <rect x={x + 3} y={y + 3} width={w - 6} height={h - 6} rx={8} fill="#C9A06A" stroke="#7E5B2E" strokeWidth={3} />
-      <line x1={cx} y1={y + 3} x2={cx} y2={y + h - 3} stroke="#6B4A22" strokeWidth={5} />
-      <line x1={x + 3} y1={cy} x2={x + w - 3} y2={cy} stroke="#6B4A22" strokeWidth={5} />
+      <rect x={x + 4} y={y + 4} width={w - 8} height={h - 8} rx={10} fill="#BCAAA4" stroke="#4E342E" strokeWidth={3} />
+      <line x1={cx} y1={y + 4} x2={cx} y2={y + h - 4} stroke="#6D4C41" strokeWidth={6} />
+      <line x1={x + 4} y1={cy} x2={x + w - 4} y2={cy} stroke="#6D4C41" strokeWidth={6} />
     </g>;
   else if (b === "packet") plain = <g>
-      <path d={`M ${x + 6} ${y + 16} L ${x + 14} ${y + 4} L ${x + w - 14} ${y + 4} L ${x + w - 6} ${y + 16} L ${x + w - 6} ${y + h - 4} L ${x + 6} ${y + h - 4} Z`} fill="#FBFAF6" stroke="#6E7F93" strokeWidth={3} />
-      <rect x={x + 6} y={y + h * 0.42} width={w - 12} height={h * 0.24} fill="#5E8FC4" />
-    </g>;
+      <path d={`M ${x + 6} ${y + 16} L ${x + 14} ${y + 4} L ${x + w - 14} ${y + 4} L ${x + w - 6} ${y + 16} L ${x + w - 6} ${y + h - 4} L ${x + 6} ${y + h - 4} Z`} fill="#FAFAFA" stroke="#455A64" strokeWidth={3} />
+      <rect x={x + 6} y={y + h * 0.38} width={w - 12} height={h * 0.28} fill="#0288D1" />    </g>;
   else if (b === "loaf") plain = <g>
-      <path d={`M ${x + 4} ${y + h - 6} L ${x + 4} ${y + h * 0.45} Q ${x + 6} ${y + 4} ${cx} ${y + 4} Q ${x + w - 6} ${y + 4} ${x + w - 4} ${y + h * 0.45} L ${x + w - 4} ${y + h - 6} Z`} fill="#C98B47" stroke="#7E5225" strokeWidth={3} />
-      {[0.3, 0.5, 0.7].map((f, k) => <path key={k} d={`M ${x + w * f - 10} ${y + 14} Q ${x + w * f} ${y + 22} ${x + w * f + 10} ${y + 14}`} fill="none" stroke="#8A5A2A" strokeWidth={3} />)}
+      <path d={`M ${x + 4} ${y + h - 6} L ${x + 4} ${y + h * 0.45} Q ${x + 6} ${y + 4} ${cx} ${y + 4} Q ${x + w - 6} ${y + 4} ${x + w - 4} ${y + h * 0.45} L ${x + w - 4} ${y + h - 6} Z`} fill="#D78931" stroke="#5D3A1A" strokeWidth={3} />
+      {[0.3, 0.5, 0.7].map((f, k) => <path key={k} d={`M ${x + w * f - 10} ${y + 14} Q ${x + w * f} ${y + 24} ${x + w * f + 10} ${y + 14}`} fill="none" stroke="#5D3A1A" strokeWidth={3} strokeLinecap="round" />)}
     </g>;
-  const clip = b === "backpack" ? "wi-bp-" + key : null;
+  const cut = b === "backpack" ? [0.1, 1] : b === "pillow" ? [0, 1] : null;
+  const clip = cut ? "wi-" + b + "-" + key : null;
+  const sy0 = b === "pillow" ? y + h * 0.1 : y;
+  const clear = !!(o.skin && WI_DEC[o.skin] && (typeof SKINS === "undefined" || SKINS));
   return <g>
-      {plain}
-      {clip && <clipPath id={clip}><rect x={x} y={y + h * 0.05} width={w} height={h * 0.95} /></clipPath>}
-      {o.skin ? <Skin name={o.skin} x={x} y={y} w={w} h={h} clip={clip ? "url(#" + clip + ")" : void 0} /> : null}
+      <g opacity={clear ? 0 : 1}>{plain}</g>
+      {clip && cut && <clipPath id={clip}><rect x={x} y={y + h * cut[0]} width={w} height={h * (cut[1] - cut[0])} /></clipPath>}
+      {o.skin ? <Skin name={o.skin} x={x} y={sy0} w={w} h={h} clip={clip ? "url(#" + clip + ")" : void 0} /> : null}
     </g>;
 }
-function wiIron(x, y, w, h, g, label = true, fs = 32) {
-  const kh = h * 0.2, by = y + kh, bh = h - kh, txt = wiLab(g), pw = Math.min(w - 8, wiW(txt, fs) + 12);
+function wiIron(x, y, w, h, g, label = true, fs = 32, tx = (v) => v) {
+  const lab = wiIronLab(g, tx, fs), txt = lab.txt;
+  const kh = h * 0.2, by = y + kh, bh = h - kh, pw = Math.min(w - 4, lab.pw);
   return <g>
-      <rect x={x + w * 0.36} y={y + 2} width={w * 0.28} height={kh + 4} rx={6} fill="#3A3F45" stroke="#1E2124" strokeWidth={2} />
-      <path d={`M ${x + w * 0.12} ${by} L ${x + w * 0.88} ${by} L ${x + w} ${by + bh * 0.3} L ${x + w} ${y + h} L ${x} ${y + h} L ${x} ${by + bh * 0.3} Z`} fill="url(#wiIron)" stroke="#1E2124" strokeWidth={2.5} />
+      {
+    /* Top Knob */
+  }
+      <rect x={x + w * 0.36} y={y + 1} width={w * 0.28} height={kh + 4} rx={6} fill="#4A4F55" stroke="#1A1D20" strokeWidth={2} />
+      <rect x={x + w * 0.38} y={y + 3} width={w * 0.24} height={3} rx={1.5} fill="#FFF" fillOpacity={0.25} />
+      {
+    /* Metallic Body */
+  }
+      <path d={`M ${x + w * 0.12} ${by} L ${x + w * 0.88} ${by} L ${x + w} ${by + bh * 0.3} L ${x + w} ${y + h} L ${x} ${y + h} L ${x} ${by + bh * 0.3} Z`} fill="url(#wiIron)" stroke="#1A1D20" strokeWidth={2.5} />
+      {
+    /* Top Bevel Highlight */
+  }
+      <path d={`M ${x + w * 0.14} ${by + 3} L ${x + w * 0.86} ${by + 3}`} stroke="#FFF" strokeOpacity={0.3} strokeWidth={2} strokeLinecap="round" />
+      {
+    /* Label Stamp Plate */
+  }
       {label && <g data-scale="weight">
-          <rect x={x + w / 2 - pw / 2} y={by + bh / 2 - 21} width={pw} height={42} rx={10} fill="#F6EEDF" stroke="#1E2124" strokeWidth={1.5} />
-          <text x={x + w / 2} y={by + bh / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill="#1E2124">{txt}</text>
+          <rect x={x + w / 2 - pw / 2} y={by + bh / 2 - 21} width={pw} height={42} rx={10} fill="#FFF9EE" stroke="#1A1D20" strokeWidth={2} />
+          <text x={x + w / 2} y={by + bh / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill="#1A1D20">{txt}</text>
         </g>}
     </g>;
 }
 function wiRow(parts, cx, y, fs, fill, tx) {
-  const ws = parts.map((p) => wiW(tx(p), fs)), gap = fs * 0.3, tot = ws.reduce((a, b) => a + b, 0) + gap * (parts.length - 1);
+  const ws = parts.map((p) => wiM(tx(p), fs)), gap = fs * 0.3, tot = ws.reduce((a, b) => a + b, 0) + gap * (parts.length - 1);
+  const T2 = (k, x2, a) => <text key={k} x={x2} y={y} textAnchor={a} fontSize={fs} fontWeight={700} fill={fill}>{tx(parts[k])}</text>;
+  if (parts.length === 1) return [T2(0, cx, "middle")];
+  if (parts.length === 3) {
+    const xs = cx + (ws[0] - ws[2]) / 2, half = ws[1] / 2 + gap;
+    return [T2(0, xs - half, "end"), T2(1, xs, "middle"), T2(2, xs + half, "start")];
+  }
   let x = cx - tot / 2;
   return parts.map((p, k) => {
     const t = <text key={k} x={x} y={y} fontSize={fs} fontWeight={700} fill={fill}>{tx(p)}</text>;
@@ -5042,18 +5614,25 @@ function wiRow(parts, cx, y, fs, fill, tx) {
   });
 }
 function wiTag(cx, y, head, value, col, tx, key, extra = {}, lo = 2, hi = 650) {
-  const vw = value.reduce((a, p) => a + wiW(tx(p), 32), 0) + 32 * 0.3 * (value.length - 1);
-  const w = Math.min(262, Math.max(wiW(tx(head), 28), vw) + 30);
+  const vw = value.reduce((a, p) => a + wiM(tx(p), 32), 0) + 32 * 0.3 * (value.length - 1);
+  const w = Math.min(hi - lo, Math.max(wiM(tx(head), 32), vw) + 36);
   const x = Math.max(lo, Math.min(cx - w / 2, hi - w));
+  if (!value.length) return <g key={key} {...extra}>
+      <rect x={x} y={y + 6} width={w} height={72} rx={16} fill={tint(col, 0.92)} stroke={col} strokeWidth={3} />
+      <rect x={x + 3} y={y + 9} width={w - 6} height={26} rx={12} fill="#FFF" fillOpacity={0.5} pointerEvents="none" />
+      <text x={x + w / 2} y={y + 53} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={shade(col, 0.45)}>{tx(head)}</text>
+    </g>;
   return <g key={key} {...extra}>
-      <rect x={x} y={y} width={w} height={78} rx={14} fill={tint(col, 0.88)} stroke={col} strokeWidth={3} />
-      <text x={x + w / 2} y={y + 30} textAnchor="middle" fontSize={T.micro} fontWeight={600} fill={shade(col, 0.45)}>{tx(head)}</text>
-      {wiRow(value, x + w / 2, y + 66, 32, C_INK, tx)}
+      <rect x={x} y={y - 8} width={w} height={92} rx={16} fill={tint(col, 0.92)} stroke={col} strokeWidth={3} />
+      <rect x={x + 3} y={y - 5} width={w - 6} height={32} rx={13} fill="#FFF" fillOpacity={0.5} pointerEvents="none" />
+      <text x={x + w / 2} y={y + 32} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={shade(col, 0.45)}>{tx(head)}</text>
+      {wiRow(value, x + w / 2, y + 72, 32, C_INK, tx)}
     </g>;
 }
 const C_INK = "#2B2B2B";
 function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, step, stepOn, box, lang = "en", tx = (v) => v }) {
   const C = api.C;
+  useWiDecoded();
   const tl = useTimeline();
   const free = stage === "free";
   const warm = !free && !!phase.warm && (stage === "demo" || stage === "teach");
@@ -5074,27 +5653,52 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     if (!r) return b;
     return gateItem && !r.gate && wiGateOk(r, gateItem) ? { ...r, gate: true } : r;
   });
-  const acting = useRef(false), queued = useRef(null), corrBusy = useRef(false), touched = useRef(false), lockedMine = useRef(false);
+  const acting = useRef(false), queued = useRef(null), corrBusy = useRef(false), lockedMine = useRef(false);
+  const touched = { get current() {
+    return WI_TOUCH.on;
+  }, set current(v) {
+    WI_TOUCH.on = v;
+  } };
   const ctlBoxes = useRef([]);
   ctlBoxes.current = [];
   const modeRef = useRef(null), stageRef = useRef(stage);
   stageRef.current = stage;
   const live = (stage === "ask" || stage === "demo" || free) && !(stage === "ask" && S.won);
+  const nudgeT = useRef(null), corrLock = useRef(false), focusNext = useRef(false), focusName = useRef(""), cue = useRef("");
+  const lastAct = useRef({ name: "", t: 0 }), focusGate = useRef(false);
+  const instrRef = useRef("");
+  instrRef.current = free ? FREE_LINE : stage === "demo" && phase.steps && phase.steps[step] ? phase.steps[step].say : item ? item.say : "";
+  const sayFor = (line, back = 3e3) => {
+    const k0 = qkRef.current, st0 = stageRef.current;
+    api.say(line);
+    clearTimeout(nudgeT.current);
+    if (back) nudgeT.current = setTimeout(() => {
+      if (qkRef.current === k0 && stageRef.current === st0) api.say(cue.current || instrRef.current);
+    }, back);
+  };
+  useEffect(() => () => clearTimeout(nudgeT.current), []);
   const bw = box ? box.w : 1472;
   const kx = box && box.key ? box.key.x - 12 : bw;
   const ox = Math.round(40 * Math.max(0, Math.min(1, (bw - 900) / 572)));
   const Rr = Math.min(bw, kx) - ox;
   const colW = Math.max(220, Rr - WB.colX - 4);
-  const shelf = wiShelf(spec, colW, 452);
-  const sx = (it) => WB.colX + it.x, sy = (it) => 12 + it.y;
+  const showUnit = !free && (n === 1 && (stage !== "demo" && stage !== "teach" ? true : step >= 1 && wiOn(S, "gramset")) || !!(stage === "ask" && S.corr && S.corr.unit));
+  const ufA = tx("1 kg"), ufB = tx("1,000 g"), ufOne = wiM(ufA, 32) + wiM("=", 32) + wiM(ufB, 32) + 2 * 9.6 + 36;
+  const ufTwo = ufOne > colW + (WB.colX - 540), ufW = ufTwo ? Math.min(colW, Math.max(wiM(ufA, 32) + wiM("=", 32) + 9.6, wiM(ufB, 32)) + 36) : ufOne, ufH = ufTwo ? 94 : 56;
+  const ufX = ufTwo || ufOne <= colW ? WB.colX + (colW - ufW) / 2 : WB.colX + colW - ufW;
+  const shelfTop = 12 + (showUnit ? ufH + 16 : 0);
+  const shelf = wiShelf(spec, colW - 20, 498 - shelfTop, tx);
+  const sx = (it) => WB.colX + 8 + it.x, sy = (it) => shelfTop + it.y;
   const corr = stage === "ask" && S.corr ? S.corr : null;
-  const D = corr && corr.pans ? corr.pans : S;
+  const winNow = !free && item && (stage === "win" || stage === "idle" && S.won);
+  const SV = winNow && !S.gate && item.sol ? wiSolved(S, item, spec) : S;
+  const D = corr && corr.pans ? corr.pans : SV;
   const mL = wiMass(D.L), mR = wiMass(D.R);
   const deg = wiTilt(mL - mR), rad = deg * Math.PI / 180;
   const hL = { x: WB.cx - WB.half * Math.cos(rad), y: WB.cy - WB.half * Math.sin(rad) };
   const hR = { x: WB.cx + WB.half * Math.cos(rad), y: WB.cy + WB.half * Math.sin(rad) };
   const anim = reducedMotion() ? "none" : "transform 950ms cubic-bezier(.34,1.32,.55,1)";
-  const panL = wiPan(D.L), panR = wiPan(D.R);
+  const panL = wiPan(D.L, tx), panR = wiPan(D.R, tx);
   const nameOf = (pl) => {
     if (pl.startsWith("r:")) return "w" + pl.slice(2);
     if (pl === "tray") return "tray";
@@ -5134,7 +5738,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
   const panTarget = (side) => ({ x: ox + (side === "L" ? hL.x : hR.x), y: (side === "L" ? hL.y : hR.y) + WB.cord - 56 });
   const holdOf = (pl) => {
     if (pl.startsWith("r:")) {
-      const g = Number(pl.slice(2)), [w, h] = WI_WD[g];
+      const g = Number(pl.slice(2)), w = wiIronW(g, tx), h = WI_WD[g][1];
       return wiIron(-w / 2, -h / 2, w, h, g, false);
     }
     if (pl === "tray") return <g>{[0, 1, 2].map((k) => <g key={k}>{wiObjArt("packet", -130 + k * 88, -48, 80, 96, "hold" + k)}</g>)}</g>;
@@ -5144,7 +5748,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       const e = [...S.L, ...S.R].find((x) => "p:" + x.id === pl);
       b = e ? e.b === "w" ? "" : e.b : "";
       if (e && e.b === "w") {
-        const [w, h] = WI_WD[e.g];
+        const w = wiIronW(e.g, tx), h = WI_WD[e.g][1];
         return wiIron(-w / 2, -h / 2, w, h, e.g, false);
       }
     }
@@ -5153,7 +5757,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     return o ? wiObjArt(b, -o.w / 2, -o.h / 2, o.w, o.h, "hold") : null;
   };
   const onTapRef = useRef(null);
-  const onTap = (pl, real) => {
+  const fullFor = (pl) => pl.startsWith("r:") && !wiOn(S, "w" + pl.slice(2)) && [S.L, S.R].some((pan) => pan.filter((e) => !wiThing(e)).length >= 5);
+  const onTap = (pl, real, viaKey = false) => {
     if (!live) return;
     if (real) touched.current = true;
     if (corrBusy.current) return;
@@ -5162,12 +5767,22 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       return;
     }
     const name = nameOf(pl);
+    if (real && lastAct.current.name === name && Date.now() - lastAct.current.t < 400) return;
     if (stage === "demo" && name !== stepOn) {
       api.did(name);
       return;
     }
     const next = pl.startsWith("p:") ? wiTake(S, pl.slice(2)) : wiPut(S, pl, spec);
+    if (!next && real && fullFor(pl)) {
+      sayFor("The pan is full: take a weight off first.");
+      return;
+    }
     if (!next || pl.startsWith("p:") && next.L.length === S.L.length && next.R.length === S.R.length) return;
+    if (viaKey) {
+      focusNext.current = true;
+      focusName.current = name;
+      focusGate.current = !!S.gate;
+    }
     const k = qk, wasDemo = stage === "demo";
     const from = posOf(pl);
     const to = pl.startsWith("p:") ? backTo(pl) : (() => {
@@ -5188,6 +5803,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       }, k)
     }).then((ok) => {
       acting.current = false;
+      lastAct.current = { name, t: Date.now() };
       upd((p) => ({ ...p, moving: null }), k);
       if (ok && wasDemo && k === qkRef.current) api.did(name);
       const qd = queued.current;
@@ -5213,6 +5829,16 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     let next = null;
     if (pl.startsWith("p:")) next = side ? wiMove(S, pl.slice(2), side, spec) : wiTake(S, pl.slice(2));
     else if (side) next = wiPut(S, pl, spec, side);
+    if (!side && !pl.startsWith("p:")) {
+      sayFor("Drop it on a pan.");
+      return;
+    }
+    if (!next && side && !pl.startsWith("p:")) {
+      if (fullFor(pl)) sayFor("The pan is full: take a weight off first.");
+      else if (pl.startsWith("r:") && side === "L" && !spec.wBoth) sayFor("Iron weights go on the right-hand pan.");
+      else if (!pl.startsWith("r:") && side === "R" && !spec.two) sayFor("Things to weigh go on the left-hand pan.");
+      return;
+    }
     if (!next) return;
     if (stage === "demo" && pl.startsWith("p:") === !!side) return;
     const k = qk;
@@ -5223,7 +5849,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     api.sfx.settle();
     if (stage === "demo") api.did(name);
   };
-  const drag = useDrag((pl, p, moved) => moved ? onDrop(pl, p) : onTap(pl, true));
+  const drag = useDrag((pl, p, moved) => moved ? onDrop(pl, p) : onTap(pl, true, !!p && isNaN(p.x)));
   const performStep = (on) => {
     let pl = "";
     if (/^w\d/.test(on)) pl = "r:" + on.slice(1);
@@ -5303,7 +5929,59 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     tl.stop();
     corrBusy.current = false;
     queued.current = null;
+    cue.current = "";
+    clearTimeout(nudgeT.current);
+    if (corrLock.current) {
+      corrLock.current = false;
+      api.lock(false);
+    }
   }, [qk]);
+  const nudgeRef = useRef("");
+  nudgeRef.current = !free && item && WI_NUDGE[n - 1] ? WI_NUDGE[n - 1][index] || "" : "";
+  useEffect(() => {
+    const fire = () => {
+      if (lockedMine.current && stageRef.current === "ask" && nudgeRef.current) setTimeout(() => sayFor(nudgeRef.current), 80);
+    };
+    const up = (e) => {
+      if (!e.isTrusted) return;
+      const c = e.target && e.target.closest ? e.target.closest("[data-control]") : null, id = c ? c.getAttribute("data-control") : "";
+      if (id === "answer-open" || id === "again" || /^key-/.test(id)) fire();
+    };
+    const key = (e) => {
+      if (e.isTrusted && /^[0-9]$/.test(e.key)) fire();
+    };
+    window.addEventListener("pointerup", up, true);
+    window.addEventListener("keydown", key, true);
+    return () => {
+      window.removeEventListener("pointerup", up, true);
+      window.removeEventListener("keydown", key, true);
+    };
+  }, []);
+  const opened = !!(box && box.open);
+  useEffect(() => {
+    if (stage !== "ask" || free || !item || S.won || !S.gate || !touched.current || modeRef.current !== "user") return;
+    const line = opened ? item.choices ? "Choose your answer." : "Now type your answer and then press Enter." : "Now tap the Answer key.";
+    if (cue.current === line) return;
+    if (!cue.current && opened) return;
+    cue.current = line;
+    clearTimeout(nudgeT.current);
+    api.say(line);
+  }, [S.gate, opened, stage, qk]);
+  useEffect(() => {
+    if (!focusNext.current || acting.current) return;
+    focusNext.current = false;
+    const opened2 = stage === "ask" && S.gate && !focusGate.current;
+    const sels = stage === "demo" && stepOn ? [`[data-control="${stepOn}"]`] : opened2 ? ['[data-zone="ask"] [data-control="answer-open"]'] : [`[data-zone="work"] [data-control="${focusName.current}"]`, '[data-zone="work"] [data-control]:not([aria-disabled="true"])'];
+    setTimeout(() => {
+      for (const sel of sels) {
+        const el = document.querySelector(sel);
+        if (el && el.focus) {
+          el.focus();
+          return;
+        }
+      }
+    }, 60);
+  });
   const winSaid = useRef("");
   useEffect(() => {
     if (stage === "win" && !free && item && winSaid.current !== qk) {
@@ -5319,54 +5997,61 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     const cur = S.gate ? S : fixit(wiSolved(S, item, spec));
     const steps = [];
     const lvlRs = cur.R.filter((e) => e.b === "w" && !wiFresh(item.board, k).R.some((f) => f.id === e.id)).sort((a, b) => b.g - a.g);
-    const cmp = (b) => WI_OBJ[b].g > 1e3 ? "over 1 kg" : "under 1 kg";
     const fixedR = wiFresh(item.board, k).R;
-    const one = (id) => ({ id: "x" + id, b: wiBase(id), g: WI_OBJ[wiBase(id)].g, fixed: true });
+    const one = (id) => ({ id, b: wiBase(id), g: WI_OBJ[wiBase(id)].g, fixed: true });
     if (item.kind === "unit") {
       const b = item.board.col[0];
       const pans = { L: [one(b)], R: fixedR };
       steps.push({ pans, rings: ["L0", "R0"] });
-      steps.push({ pans, rings: ["L0", "R0"], chips: [{ side: "L", head: WI_OBJ[b].name, value: [cmp(b)] }] });
+      steps.push({ pans, rings: ["L0", "R0"], chips: [{ side: "L", head: WI_OBJ[b].name, value: [] }] });
     } else if (item.kind === "which") {
       const b = item.pick[String(wrong.value)] || item.board.col[0];
       const pans = { L: [one(b)], R: fixedR };
       steps.push({ pans });
-      steps.push({ pans, chips: [{ side: "L", head: WI_OBJ[b].name, value: [cmp(b)] }] });
+      steps.push({ pans, chips: [{ side: "L", head: WI_OBJ[b].name, value: [] }] });
     } else if (item.kind === "pair") {
       const b = item.pick[String(wrong.value)] || "pillow";
       const side = cur.R.some((e) => e.b === b) ? "R" : "L", pans = { L: cur.L, R: cur.R };
+      void side;
+      steps.push({ pans });
       steps.push({ pans, level: true });
-      steps.push({ pans, level: true, chips: [{ side, head: WI_OBJ[b].name, value: ["went up"] }] });
     } else if (item.kind === "count") {
-      const marks = {};
-      item.board.col.forEach((c) => {
-        steps.push({ pans: { L: [one(c)], R: fixedR }, marks: { ...marks } });
-        marks[c] = cmp(c);
-        steps.push({ pans: { L: [one(c)], R: fixedR }, marks: { ...marks } });
+      const col = item.board.col;
+      col.forEach((c, i) => {
+        const pans = { L: [one(c)], R: fixedR };
+        steps.push({ pans });
+        if (i < col.length - 1) steps.push({ pans, chips: [{ side: "L", head: WI_OBJ[c].name, value: [] }] });
       });
     } else if (item.kind === "weigh" || item.kind === "weigh1") {
       const pans = { L: cur.L, R: cur.R };
       lvlRs.forEach((_, i) => steps.push({ pans, ringR: lvlRs.slice(0, i + 1).map((e) => e.id) }));
       const terms = lvlRs.flatMap((e, i) => i ? ["+", wiLab(e.g)] : [wiLab(e.g)]);
-      const fits = lvlRs.length && lvlRs.length <= 3 && wiW(terms.join(" "), 32) <= 232;
+      const fits = lvlRs.length && lvlRs.length <= 3 && terms.reduce((a, t) => a + wiM(tx(t), 32), 0) + 9.6 * (terms.length - 1) + 36 <= WB.half + WB.dish - 44;
       steps.push({ pans, ringR: lvlRs.map((e) => e.id), chips: [{ side: "R", head: "Add", value: fits ? terms : ["every weight"] }] });
     } else if (item.kind === "missing") {
       const fixed = fixedR, pans = { L: cur.L, R: fixed };
       fixed.forEach((_, i) => steps.push({ pans, ringR: fixed.slice(0, i + 1).map((e) => e.id), unit: true }));
       steps.push({ pans, ringR: fixed.map((e) => e.id), unit: true, chips: [{ side: "R", head: "Pan had", value: [wiLab(wiMass(fixed))] }] });
     } else if (item.kind === "packets") {
-      const pans = { L: [one("packet1"), one("packet2")], R: fixedR };
+      const mine = cur.L.filter((e) => e.b === "packet").map((e) => e.id);
+      const pans = { L: (mine.length === 2 ? mine : ["packet1", "packet2"]).map((id) => one(id)), R: fixedR };
       [1, 2, 3, 4].forEach((j) => steps.push({ pans, slots: j }));
-      steps.push({ pans, slots: 4, rings: ["L0", "L1"], chips: [{ side: "L", head: "On the pan", value: ["2 of 4 parts"] }] });
+      steps.push({ pans, slots: 4, rings: ["L0", "L1"] });
     } else if (item.kind === "loaves") {
       const pans = { L: [one("loaf1")], R: fixedR };
+      steps.push({ pans, rings: ["L0"] });
       steps.push({ pans });
-      steps.push({ pans, chips: [{ side: "L", head: "1 loaf, about", value: ["half a kg"] }] });
     }
     if (!steps.length) return;
     corrBusy.current = true;
+    corrLock.current = true;
+    api.lock(true);
     tl.run(steps.map((st) => [750, () => upd((p) => ({ ...p, corr: st }), k)]), () => {
       corrBusy.current = false;
+      if (corrLock.current) {
+        corrLock.current = false;
+        api.lock(false);
+      }
     });
   }, [wrong]);
   api.share({
@@ -5390,23 +6075,23 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
   const inv = stage === "demo" && stepOn ? stepOn : null;
   let invBox = null;
   const drawPan = (side, h, items) => <g key={side} style={{ transform: `translate(${h.x}px, ${h.y}px)`, transition: anim }}>
-      <line x1={0} y1={0} x2={-WB.dish + 8} y2={WB.cord} stroke="#5A4630" strokeWidth={3} />
-      <line x1={0} y1={0} x2={WB.dish - 8} y2={WB.cord} stroke="#5A4630" strokeWidth={3} />
-      <circle cx={0} cy={4} r={8} fill="none" stroke="#7A5A1E" strokeWidth={4} />
-      <path d={`M ${-WB.dish} ${WB.cord} L ${WB.dish} ${WB.cord} Q ${WB.dish - 24} ${WB.cord + 28} 0 ${WB.cord + 28} Q ${-WB.dish + 24} ${WB.cord + 28} ${-WB.dish} ${WB.cord} Z`} fill="url(#wiBrass)" stroke="#7A5A1E" strokeWidth={2.5} />
-      <ellipse cx={0} cy={WB.cord} rx={WB.dish} ry={7} fill="#E9C76B" stroke="#7A5A1E" strokeWidth={2} />
+      <line x1={0} y1={0} x2={-WB.dish + 8} y2={WB.cord} stroke="#4A3824" strokeWidth={3.5} strokeLinecap="round" />
+      <line x1={0} y1={0} x2={WB.dish - 8} y2={WB.cord} stroke="#4A3824" strokeWidth={3.5} strokeLinecap="round" />
+      <circle cx={0} cy={4} r={8} fill="none" stroke="#5E4008" strokeWidth={4} />
+      <path d={`M ${-WB.dish} ${WB.cord} L ${WB.dish} ${WB.cord} Q ${WB.dish - 24} ${WB.cord + 28} 0 ${WB.cord + 28} Q ${-WB.dish + 24} ${WB.cord + 28} ${-WB.dish} ${WB.cord} Z`} fill="url(#wiBrass)" stroke="#5E4008" strokeWidth={2.5} />
+      <ellipse cx={0} cy={WB.cord} rx={WB.dish} ry={7} fill="#F8E090" fillOpacity={0.4} stroke="#5E4008" strokeWidth={2} />
       {items.map((it, i) => {
     var _a;
     const pl = "p:" + it.e.id, gone = hidden(pl);
     if (gone) return null;
-    const art = it.kind === "w" ? wiIron(it.x, it.y, it.w, it.h, it.g, true, Math.max(28, Math.round(32 * it.s))) : wiObjArt(it.e.b, it.x, it.y, it.w, it.h, side + i);
+    const art = it.kind === "w" ? wiIron(it.x, it.y, it.w, it.h, it.g, true, Math.max(28, Math.round(32 * it.s)), tx) : wiObjArt(it.e.b, it.x, it.y, it.w, it.h, side + i);
     const can = !it.e.fixed && it.e.b !== "set";
     const lbl = it.kind === "w" ? wiLab(it.g) + " weight" : labelOf(it.e.b);
     if (inv && can && nameOf(pl) === inv && !invBox) invBox = { x: ox + h.x + it.x + it.w / 2, y: h.y + it.y + it.h / 2, w: it.w, h: it.h };
     const ring = corr && ((corr.rings || []).includes(side + i) || (corr.ringR || []).includes(it.e.id));
     return <g key={it.e.id + ":" + ((_a = it.sub) != null ? _a : "")}>
             {art}
-            {ring && <rect x={it.x - 7} y={it.y - 7} width={it.w + 14} height={it.h + 14} rx={14} fill="none" stroke={WI_C.step} strokeWidth={5} pointerEvents="none" />}
+            {ring && <rect x={it.x - 2} y={it.y - 2} width={it.w + 4} height={it.h + 4} rx={12} fill="none" stroke={WI_C.step} strokeWidth={3.5} pointerEvents="none" />}
             {can && it.sub === void 0 && ctl(pl, lbl, it.x, it.y, it.w, it.h, ox + h.x, h.y)}
           </g>;
   })}
@@ -5416,11 +6101,11 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     const it = shelf[key], x = sx(it), y = sy(it);
     if (it.kind === "tray") {
       const tg = wiTrayGeo(x, y, it.s);
-      const els = [<rect key="tb" x={tg.x} y={tg.y} width={tg.w} height={tg.h} rx={16} fill="#D9B98A" stroke="#8A6236" strokeWidth={3} />];
+      const els = [<rect key="tb" x={tg.x} y={tg.y} width={tg.w} height={tg.h} rx={18} fill="#E2C293" stroke="#7A562B" strokeWidth={3} />];
       tg.slots.forEach((sl, j) => {
-        const id = "packet" + (j + 1), pl = "c:" + id, on = wiOn(S, id);
+        const id = "packet" + (j + 1), pl = "c:" + id, on = wiOn(D, id);
         const lit = corr && corr.slots && j < corr.slots;
-        els.push(<rect key={"s" + j} x={sl.x - 3} y={sl.y - 3} width={sl.w + 6} height={sl.h + 6} rx={10} fill="#F3E6CF" stroke="#8A6236" strokeWidth={2} strokeDasharray={on ? "8 6" : void 0} />);
+        els.push(<rect key={"s" + j} x={sl.x - 3} y={sl.y - 3} width={sl.w + 6} height={sl.h + 6} rx={12} fill="#F6EBDB" stroke="#7A562B" strokeWidth={2} strokeDasharray={on ? "8 6" : void 0} />);
         if (!on && !hidden(pl)) {
           els.push(<g key={"p" + j}>{wiObjArt("packet", sl.x, sl.y, sl.w, sl.h, "tp" + j)}</g>);
           els.push(<g key={"c" + j}>{ctl(pl, "packet of sugar", sl.x, sl.y, sl.w, sl.h)}</g>);
@@ -5429,7 +6114,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
         if (lit) els.push(<rect key={"r" + j} x={sl.x - 8} y={sl.y - 8} width={sl.w + 16} height={sl.h + 16} rx={14} fill="none" stroke={WI_C.step} strokeWidth={5} pointerEvents="none" />);
       });
       els.push(<g key="tag" data-scale="tray">
-        <rect x={tg.strip.x} y={tg.strip.y} width={tg.strip.w} height={tg.strip.h} rx={14} fill={tint(WI_C.given, 0.85)} stroke={WI_C.given} strokeWidth={3} />
+        <rect x={tg.strip.x} y={tg.strip.y} width={tg.strip.w} height={tg.strip.h} rx={14} fill={tint(WI_C.given, 0.88)} stroke={WI_C.given} strokeWidth={3} />
         {wiRow(["1 kg in all"], tg.strip.x + tg.strip.w / 2, tg.strip.y + 47, 32, C_INK, tx)}
       </g>);
       if (live) {
@@ -5440,57 +6125,89 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
       shelfEls.push(<g key={key}>{els}</g>);
       continue;
     }
-    const onPan = it.kind === "obj" ? wiOn(S, it.id) : it.kind === "set" ? wiOn(S, "gramset") : false;
-    if (onPan || hidden(key)) {
-      if (it.kind !== "w") shelfEls.push(<rect key={key} x={x + 4} y={y + 4} width={it.w - 8} height={it.h - 8} rx={14} fill="none" stroke={C.rule} strokeWidth={3} strokeDasharray="10 8" />);
-      else shelfEls.push(<g key={key}>{wiIron(x, y, it.w, it.h, it.g, true)}</g>);
-      if (!(it.kind === "w")) continue;
-    }
     const mark = corr && corr.marks && it.kind === "obj" ? corr.marks[it.id] : null;
+    const markEl = mark ? <g key={key + "m"} pointerEvents="none">{wiTag(x + it.w / 2, y + it.h / 2 - 39, labelOf(it.b), [mark], WI_C.step, tx, key + "mt", {}, WB.colX, WB.colX + colW)}</g> : null;
+    const onPan = it.kind === "obj" ? wiOn(D, it.id) : it.kind === "set" ? wiOn(D, "gramset") : it.kind === "w" ? wiOn(D, "w" + it.g) : false;
+    if (onPan || hidden(key)) {
+      shelfEls.push(<rect key={key} x={x + 4} y={y + 4} width={it.w - 8} height={it.h - 8} rx={14} fill="none" stroke={C.rule} strokeWidth={3} strokeDasharray="10 8" />);
+      if (markEl) shelfEls.push(markEl);
+      continue;
+    }
     if (it.kind === "w") {
-      if (!hidden(key)) shelfEls.push(<g key={key}>{wiIron(x, y, it.w, it.h, it.g, true)}{ctl(key, wiLab(it.g) + " weight", x, y, it.w, it.h)}</g>);
+      shelfEls.push(<g key={key}>{wiIron(x, y, it.w, it.h, it.g, true, 32, tx)}{ctl(key, wiLab(it.g) + " weight", x, y, it.w, it.h)}</g>);
     } else if (it.kind === "set") {
       shelfEls.push(<g key={key}>
-        <rect x={x} y={y} width={it.w} height={it.h} rx={16} fill="#D9B98A" stroke="#8A6236" strokeWidth={3} />
-        {wiIron(x + 8, y + 8, 108, 82, 500, true)}{wiIron(x + 120, y + 14, 104, 76, 200, true)}
-        {wiIron(x + 8, y + 98, 104, 76, 200, true)}{wiIron(x + 120, y + 100, 104, 74, 100, true)}
+        <rect x={x} y={y} width={it.w} height={it.h} rx={16} fill="#E2C293" stroke="#7A562B" strokeWidth={3} />
+        {wiSetGeo(tx).cells.map(([cx0, cy0, g, cw], k) => <g key={k}>{wiIron(x + cx0, y + cy0, cw, WI_WD[g][1], g, true, 32, tx)}</g>)}
         {ctl(key, "tray of gram weights", x, y, it.w, it.h)}
       </g>);
     } else {
       const o = WI_OBJ[it.b], oh = o.h * it.s, ow = o.w * it.s, oy = y + (it.h - oh) / 2;
       shelfEls.push(<g key={key}>{wiObjArt(it.b, x, oy, ow, oh, "sh" + it.id)}{ctl(key, labelOf(it.b), x, y, it.w, it.h)}</g>);
     }
-    if (mark) shelfEls.push(<g key={key + "m"} pointerEvents="none">{wiTag(x + it.w / 2, y + it.h / 2 - 39, labelOf(it.b), [mark], WI_C.step, tx, key + "mt", {}, WB.colX, WB.colX + colW)}</g>);
+    if (markEl) shelfEls.push(markEl);
     if (inv && !invBox && nameOf(key) === inv) invBox = { x: ox + x + it.w / 2, y: y + it.h / 2, w: it.w, h: it.h };
   }
-  const winNow = !free && item && (stage === "win" || stage === "idle" && S.won);
   const sideX = (sd) => sd === "L" ? hL.x : sd === "R" ? hR.x : S.R.find((e) => item && e.b === item.answer) ? hR.x : hL.x;
-  const showUnit = !free && (n === 1 && (stage !== "demo" && stage !== "teach" ? true : step >= 1 && wiOn(S, "gramset")) || !!(corr && corr.unit));
+  const TY = 398, LB = [2, WB.cx - 44], RB = [WB.cx + 44, WB.cx + WB.half + WB.dish];
+  const tagAt = (sd, head, val, col, key, extra = {}) => {
+    const R = sd === "R" || sd === "B" && S.R.some((e) => item && e.b === item.answer);
+    return wiTag(R ? WB.cx + WB.half : WB.cx - WB.half, TY, head, val, col, tx, key, extra, ...R ? RB : LB);
+  };
   const tags = [];
-  if (!free && !warm && item && item.given) tags.push(wiTag(WB.cx - WB.half, 400, "Given", [item.given], WI_C.given, tx, "given"));
-  if (corr && corr.chips && !winNow) corr.chips.forEach((c, i) => tags.push(wiTag(c.side === "L" ? WB.cx - WB.half : WB.cx + WB.half, 400, c.head, c.value, WI_C.step, tx, "chip" + i, { pointerEvents: "none" })));
-  if (winNow && item.tag) tags.push(wiTag(item.tagSide === "B" ? sideX("B") : item.tagSide === "R" ? WB.cx + WB.half : WB.cx - WB.half, 400, "Answer", [item.tag], WI_C.answer, tx, "ans", { "data-reveals": "answer" }));
+  if (!free && !warm && item && item.given) tags.push(tagAt("L", "Given", [item.given], WI_C.given, "given"));
+  if (corr && corr.chips && !winNow) corr.chips.forEach((c, i) => tags.push(tagAt(c.side, c.head, c.value, WI_C.step, "chip" + i, { pointerEvents: "none" })));
+  if (winNow && item.tag) tags.push(tagAt(item.tagSide, "Answer", [item.tag], WI_C.answer, "ans", { "data-reveals": "answer" }));
   return <g>
       <defs>
-        <linearGradient id="wiBrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#F2D27A" /><stop offset="1" stopColor="#B8862E" /></linearGradient>
-        <linearGradient id="wiIron" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#5C636B" /><stop offset="1" stopColor="#2C3035" /></linearGradient>
+        <linearGradient id="wiBrass" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#F8E090" />
+          <stop offset="35%" stopColor="#D4A238" />
+          <stop offset="75%" stopColor="#B37E22" />
+          <stop offset="100%" stopColor="#6E480A" />
+        </linearGradient>
+        <linearGradient id="wiIron" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#5C636B" />
+          <stop offset="30%" stopColor="#3E444B" />
+          <stop offset="85%" stopColor="#24282D" />
+          <stop offset="100%" stopColor="#14171A" />
+        </linearGradient>
+        <linearGradient id="wiWood" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#E2B176" />
+          <stop offset="25%" stopColor="#C99A62" />
+          <stop offset="80%" stopColor="#A2723C" />
+          <stop offset="100%" stopColor="#754E22" />
+        </linearGradient>
+        <filter id="wiCardShadow" x="-10%" y="-10%" width="120%" height="120%">
+          <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor="#000" floodOpacity="0.08" />
+        </filter>
       </defs>
       <g transform={`translate(${ox},0)`}>
         {
     /* the table the balance stands on, and the shelf beside it */
   }
-        <rect x={0} y={WB.table} width={WB.colX - 14} height={36} rx={12} fill="#C99A62" stroke="#8A6236" strokeWidth={3} />
-        <rect x={WB.colX - 8} y={2} width={colW + 12} height={WB.table + 30} rx={22} fill="#F6EBD9" stroke={C.rule} strokeWidth={2} />
+        <rect x={0} y={WB.table} width={WB.colX - 14} height={28} rx={12} fill="url(#wiWood)" stroke="#6B451B" strokeWidth={3} filter="url(#wiCardShadow)" />
+        <rect x={6} y={WB.table} width={WB.colX - 26} height={6} rx={3} fill="#FFF" fillOpacity={0.2} pointerEvents="none" />
+
+        {
+    /* Shelf panel card */
+  }
+        <rect x={WB.colX - 8} y={2} width={colW + 12} height={512} rx={22} fill="#F8EEDF" stroke={C.rule} strokeWidth={2} filter="url(#wiCardShadow)" />
+        <rect x={WB.colX - 4} y={6} width={colW + 4} height={12} rx={6} fill="#FFF" fillOpacity={0.4} pointerEvents="none" />
+
         {
     /* the post, its foot and the needle's scale (marks only: where level is) */
   }
-        <rect x={WB.cx - 11} y={WB.cy} width={22} height={WB.table - WB.cy - 26} rx={8} fill="url(#wiBrass)" stroke="#7A5A1E" strokeWidth={2} />
-        <path d={`M ${WB.cx - 52} ${WB.table} L ${WB.cx - 32} ${WB.table - 30} L ${WB.cx + 32} ${WB.table - 30} L ${WB.cx + 52} ${WB.table} Z`} fill="#7A5A1E" stroke="#4E3912" strokeWidth={2} />
+        <rect x={WB.cx - 11} y={WB.cy} width={22} height={WB.table - WB.cy - 26} rx={8} fill="url(#wiBrass)" stroke="#5E4008" strokeWidth={2} />
+        <path d={`M ${WB.cx - 40} ${WB.table} L ${WB.cx - 24} ${WB.table - 30} L ${WB.cx + 24} ${WB.table - 30} L ${WB.cx + 40} ${WB.table} Z`} fill="url(#wiBrass)" stroke="#4E3912" strokeWidth={2} />
         <g data-scale="needle">
-          <path d={`M ${WB.cx - 34} ${WB.cy - 86} Q ${WB.cx} ${WB.cy - 98} ${WB.cx + 34} ${WB.cy - 86}`} fill="none" stroke={C_INK} strokeWidth={3} />
-          {[-12, -6, 0, 6, 12].map((a) => {
-    const r = a * Math.PI / 180, r1 = a === 0 ? 102 : 94;
-    return <line key={a} x1={WB.cx + 86 * Math.sin(r)} y1={WB.cy - 86 * Math.cos(r)} x2={WB.cx + r1 * Math.sin(r)} y2={WB.cy - r1 * Math.cos(r)} stroke={C_INK} strokeWidth={a === 0 ? 5 : 3} strokeLinecap="round" />;
+          {
+    /* a wider scale (about 100 across), every mark in ink; orange is the needle's alone */
+  }
+          <path d={`M ${WB.cx - 78 * Math.sin(0.56)} ${WB.cy - 78 * Math.cos(0.56)} A 78 78 0 0 1 ${WB.cx + 78 * Math.sin(0.56)} ${WB.cy - 78 * Math.cos(0.56)}`} fill="none" stroke={C_INK} strokeWidth={3.5} />
+          {[-30, -20, -10, 0, 10, 20, 30].map((a) => {
+    const r = a * Math.PI / 180, r1 = a === 0 ? 100 : 94;
+    return <line key={a} x1={WB.cx + 78 * Math.sin(r)} y1={WB.cy - 78 * Math.cos(r)} x2={WB.cx + r1 * Math.sin(r)} y2={WB.cy - r1 * Math.cos(r)} stroke={C_INK} strokeWidth={a === 0 ? 5 : 3} strokeLinecap="round" />;
   })}
         </g>
         {
@@ -5501,16 +6218,18 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
             <rect x={-1} y={86} width={2} height={2} fill="none" pointerEvents="none" />
             <line x1={0} y1={-6} x2={0} y2={-80} stroke={WI_C.unit} strokeWidth={6} strokeLinecap="round" />
             <path d="M -8 -70 L 0 -88 L 8 -70 Z" fill={WI_C.unit} />
-            <rect x={-WB.half - 10} y={-9} width={2 * WB.half + 20} height={18} rx={9} fill="url(#wiBrass)" stroke="#7A5A1E" strokeWidth={2.5} />
+            <rect x={-WB.half - 10} y={-9} width={2 * WB.half + 20} height={18} rx={9} fill="url(#wiBrass)" stroke="#5E4008" strokeWidth={2.5} />
+            <rect x={-WB.half - 6} y={-6} width={2 * WB.half + 12} height={4} rx={2} fill="#FFF" fillOpacity={0.35} pointerEvents="none" />
           </g>
-          <circle cx={0} cy={0} r={14} fill="#7A5A1E" stroke="#4E3912" strokeWidth={2} />
+          <circle cx={0} cy={0} r={14} fill="url(#wiBrass)" stroke="#4E3912" strokeWidth={2} />
+          <circle cx={0} cy={0} r={5} fill="#3A2805" />
         </g>
         {corr && corr.level && <line x1={WB.cx - WB.half - 30} y1={WB.cy} x2={WB.cx + WB.half + 30} y2={WB.cy} stroke={C_INK} strokeWidth={2.5} strokeDasharray="10 8" pointerEvents="none" />}
         {drawPan("L", hL, panL)}
         {drawPan("R", hR, panR)}
         {showUnit && <g data-scale="unit-fact" pointerEvents="none">
-            <rect x={4} y={2} width={236} height={54} rx={27} fill="#FFFDF7" stroke={WI_C.unit} strokeWidth={corr && corr.unit ? 6 : 4} />
-            {wiRow(["1 kg", "=", "1000 g"], 122, 41, 32, C_INK, tx)}
+            <rect x={ufX} y={12} width={ufW} height={ufH} rx={26} fill="#FFFDF7" stroke={WI_C.unit} strokeWidth={corr && corr.unit ? 6 : 4} filter="url(#wiCardShadow)" />
+            {ufTwo ? [<g key="a">{wiRow([ufA + " ="], ufX + ufW / 2, 12 + 39, 32, C_INK, (v) => v)}</g>, <g key="b">{wiRow([ufB], ufX + ufW / 2, 12 + 80, 32, C_INK, (v) => v)}</g>] : wiRow([ufA, "=", ufB], ufX + ufW / 2, 12 + 39, 32, C_INK, (v) => v)}
           </g>}
         {tags}
         {shelfEls}
@@ -5523,14 +6242,15 @@ function wiTrayGeo(x, y, s) {
   const pw = 80 * s, ph = 96 * s, g = 12 * s;
   const slots = [0, 1, 2, 3].map((k) => ({ x: x + g + k % 2 * (pw + g), y: y + g + Math.floor(k / 2) * (ph + g), w: pw, h: ph }));
   const w = 2 * pw + 3 * g, h = 2 * ph + 3 * g;
-  const tw = Math.max(w, 200 * s);
-  return { x, y, w: tw, h, slots, strip: { x, y: y + h + 8, w: tw, h: 72 } };
+  const bw = Math.max(200 * s, 184), tw = Math.max(w, 200 * s), tx0 = x + (bw - tw) / 2;
+  return { x: tx0, y, w: tw, h, slots: slots.map((sl) => ({ ...sl, x: sl.x + (bw - tw) / 2 })), strip: { x, y: y + h + 8, w: bw, h: 72 } };
 }
 function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v) => v }) {
+  useWiDecoded();
   const last = result && result.last;
   if (!last) return null;
   const item = it || last.it || (PHASES[(n || 1) - 1] || { items: [] }).items[last.item] || {};
-  const word = (s) => lang === "en" || tx(s) !== s ? s : "";
+  const word = (s) => lang === "en" || !!(TR[lang] && TR[lang][s]) ? s : "";
   let said = [], thing = "";
   if (item.parts) {
     const v = slotPartsOf(last.value, 1)[0];
@@ -5540,13 +6260,35 @@ function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v) => v }) {
     thing = item.pick && item.pick[String(last.value)] ? item.pick[String(last.value)] : "";
     said = [word(c ? c.label : String(last.value))].filter(Boolean);
   }
-  const fs = 32, tw = said.reduce((a, p) => a + wiW(tx(p), fs), 0) + fs * 0.3 * (said.length - 1);
-  const size = tw > w - 100 ? 28 : fs;
-  const o = thing ? WI_OBJ[thing] : null, k = o ? Math.min(60 / o.w, (h - 16) / o.h) : 1;
+  if (!thing && item.kind === "unit") thing = item.board.col[0];
+  const arts = thing ? [thing] : item.kind === "weigh" ? [item.board.L[0]] : item.kind === "weigh1" ? ["packet"] : item.kind === "packets" ? ["packet", "packet"] : item.kind === "loaves" ? ["loaf", "loaf"] : item.kind === "count" ? ["backpack", "watermelon"] : [];
+  const numOnly = (item.kind === "loaves" || item.kind === "count") && arts.length > 0;
+  const text = (numOnly ? said.slice(0, 1) : said).map((p) => tx(p)).join(" ");
+  const A = arts.length ? Math.min(arts.length > 1 ? 110 : 72, w * 0.42) : 0, roomT = w - A - 24;
+  let fs = 32;
+  while (arts.length && fs > 22 && wiM(text, fs) > roomT) fs -= 1;
+  const showArt = arts.length > 0 && wiM(text, fs) <= roomT;
+  if (!showArt) fs = 32;
+  const artEls = [];
+  if (showArt) {
+    const bw = (A - 6 * (arts.length - 1)) / arts.length;
+    arts.forEach((b, j) => {
+      const o = WI_OBJ[b], k = Math.min(bw / o.w, (h - 16) / o.h), ow = o.w * k, oh = o.h * k;
+      artEls.push(<g key={j}>{wiObjArt(b, 10 + j * (bw + 6) + (bw - ow) / 2, h / 2 - oh / 2, ow, oh, "th" + b + j)}</g>);
+    });
+  }
+  const iron = item.kind === "missing" && item.parts ? Number(slotPartsOf(last.value, 1)[0]) : 0;
+  if (iron && WI_WD[iron]) {
+    const ih = Math.min(WI_WD[iron][1], h - 8), iw = Math.max(wiIronLab(iron, tx, 28).w, ih * 1.4);
+    return <g>
+        <rect x={0} y={0} width={w} height={h} rx={16} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={2} />
+        {wiIron(w / 2 - iw / 2, h / 2 - ih / 2, iw, ih, iron, true, 28, tx)}
+      </g>;
+  }
   return <g>
-      <rect x={0} y={0} width={w} height={h} rx={14} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={1.5} />
-      {o ? wiObjArt(thing, 10, h / 2 - o.h * k / 2, o.w * k, o.h * k, "th" + thing) : wiIron(10, h / 2 - 26, 52, 52, 1e3, false)}
-      {wiRow(said, 72 + (w - 72) / 2, h / 2 + size * 0.36, size, C.ink, tx)}
+      <rect x={0} y={0} width={w} height={h} rx={16} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={2} />
+      {artEls}
+      {wiRow([text], showArt ? A + 14 + (w - A - 14) / 2 : w / 2, h / 2 + fs * 0.36, fs, C.ink, (v) => v)}
     </g>;
 }
 function WeighIt(props) {

@@ -22,6 +22,24 @@
   played", then passed on the re-run: useActionKit's end() clears cur.current (acting) one task before setPlay(null) commits, so a frame
   can see the act layer with acting false. Fix in the runtime (derive acting from play, or clear both in one commit); not a tool fix.
   Seen again on M1.S3.T6.C27.2D1 Pour It (2026-10-28, full check #5, no act code changed since two passing runs): the same flake.
+- (runtime, M1.S3.T6.C27.2D1 Pour It builder, 2026-10-29, from play tests A and B) focus drops to BODY after Enter or Space on any
+  control (`pointerBlur()` in the runtime's usePress, deliberate): the next Tab starts from the top, not at the awaited control (NOTES
+  rule 4 wants it kept); `drag.keys` controls keep focus. WORKED ROUND IN THE TOOL (as Weigh It): after Enter or Space on a board
+  control Pour It puts focus back on it while the act plays, then on what the lesson waits for next (the next step's control, the next
+  full container, the Answer key / Enter key / first unit tag once the act is done, the keypad's Enter key or first choice once it is
+  open); a pointerdown ends it. Still the runtime's: at the win focus rests on BODY (Enter there is Next). Escape does not end the phase
+  party and the Hint key ends it only sometimes (it ends itself in about 2 s; a phase dot and restart end it at once; nothing moves on
+  by itself). Not tool fixes.
+- (runtime, same) under keyOnly the runtime keeps its cue lines ("Tap the blinking Answer key.", "Type your answer, then press Enter.",
+  "Choose your answer.") in state.hint but never draws them when the question fills the bubble; Pour It says them itself once the act
+  is done (with the runtime's own hi/gu wording in TR). A dimmed key, the Hint key, a digit or Enter while the gate is locked change
+  nothing in the runtime: Pour It listens for them on the window and names the act (three forms each).
+- (native speaker, Pour It hi/gu terms to check) hi: मिलीलीटर / मिली, लीटर / ली, चौथाई लीटर, आधा लीटर, पौन लीटर (never drawn),
+  उँडेलो (pour), छुओ (tap), बर्तन (vessel), चाय का कप, दूध का कार्टन, जूस का पैकेट, ड्रम, बाल्टी, टैग, डिब्बा (bin), पैमाना / अंक (scale).
+  gu: મિલીલીટર / મિલી, લીટર / લી, પા લીટર, અડધો લીટર, પોણો લીટર (never drawn), રેડો (pour), સ્પર્શ કરો (tap, the one verb now),
+  વાસણ (vessel), ચાનો કપ, દૂધનું કાર્ટન, જ્યૂસનું પૅકેટ, ડ્રમ, ડોલ, ટેગ, ડબ્બો (bin, "ખાનું"?), આંક (scale numbers), ક્ષમતા,
+  પ્રમાણભૂત વાસણ (formal: "માપના વાસણ"?), છટણી (sorted: "જુદા પાડ્યા"?), લીટર vs લિટર spelling. A U+00A0 joins the last two words
+  of every hi/gu sentence and each number to its unit (no one-word last line, no amount split over two lines).
 - (runtime/skeleton, same) a traceback that locks the pad in a passive effect after the miss can lose the race to the next digit
   (`one-line-bubble` phase 4 saw the digit swallowed). Measure It no longer locks during its correction (the board ignores taps while it
   plays); the skeleton's own `[wrong]` lock has the same exposure.
@@ -32,6 +50,10 @@
   output-preview, so the note lives in tool.tsx's header comment only. Needs a tool-object field the sidecar copies, or the main session writes it.
 - (check/runtime, same) `summary-thumbs` fails a Thumb in hi/gu on a Latin unit ("cm") while TR is still empty (before the language pass);
   Length Converter's Thumb drops an untranslated unit in hi/gu as a stopgap, so the row passes before TR exists.
+- (native-speaker list, Length Converter M1.S1.T3.C11.2D1, round-2 re-look, 2026-10-29) to confirm: carry / borrow हासिल / उधार and
+  વદી / ઉછીના (key labels too); छड़ (rod), पंक्ति (row), "रील पर लिपटा", खाना (column) and Gujarati કૉલમ (or સ્તંભ?); the title लंबाई बदलो /
+  લંબાઈ બદલો; Gujarati શતક vs સેંકડો, પડાવ, હરોળ, સમૂહ, દાખલો. Applied already: the clearly more natural Hindi rewrites of relook-hi.md and
+  the Gujarati closings ("…ના … કરવા"), "ન રહે", "1 મીટર એટલે 100 સેન્ટીમીટર".
 - (runtime, M1.S1.T2.C5.2D1 builder, 2026-10-28, play test B2) while `api.act` plays, a full-stage act layer (a plain `rect`, no
   data-control) takes every pointer on the working area, so a tap on the board during an act never reaches the tool and is lost
   silently. Measure It works round it (a window pointerup listener maps a release over the rod to a cut and queues it, up to 3). Fix in the
@@ -43,9 +65,33 @@
   queued; (b) no sidecar writer for `guide.answerGate`: the note sits in `MODEL.answerGate` (the sidecar carries MODEL); (c) `summary-thumbs`
   before TR: the Thumb prints a word in hi/gu only once its TR line exists. Weigh It re-asserts `api.lock` on every render, so a gotoStep entry
   re-arms the gate.
+- (Weigh It builder, 2026-10-29, play-B item 1) P4 Q1's Answer key was live before any touch: the gate may arm only after a real touch,
+  because `toolApi.answer` is refused while locked and toolApi-only drivers (agent, approve, host emulator) must never be gated, and a
+  phase entered with no tap of its own had no touch yet. A page-wide touch (Start, a phase dot) was tried and FAILED check's `board-panel`
+  and `answer-blink` (they tap Answer first at a question and want it to open), so the tool now keeps the board touch in a module flag
+  (`WI_TOUCH`) that outlives a phase change: P4 Q1 is dim from entry for a child who played on the board, live on a cold entry until the
+  first tap on the board (probe: cold live; one thing weighed dim; both weighed live). A runtime rule for a cold entry is a gap (step 6).
 - (M1.S2.T5.C22.2D1 Weight Converter builder, 2026-10-28) the same known gaps, worked round the same way, nothing new: `guide.answerGate`
   in `MODEL.answerGate`; taps during `api.act` queued by a window pointerup hit test against the tool's own control boxes; react to an
   act's `true` 40 ms late (`action-anim` race); the Thumb leaves its units out in hi/gu until TR exists; `api.lock` re-asserted on every render.
+- (runtime, Weight Converter visual review, 2026-10-29; for the next freeze, not worked in the tool) (1) the summary page's `UI.summaryLine`
+  in Hindi ends on one word ("यह रहा सारांश: तुमने क्या / सीखा।"); (2) a two-box slot's caption (the part label, "किलोग्राम") sits about 5 px
+  under the box's top edge in hi; (3) LOW: in the phase party an orange sparkle at about (315, 773) touches the bubble's tail, and the right
+  popper cone stands about 7-13 px from the 4th phase dot. (4) The bubble turns a no-break space into a plain space, so an amount ("1 किग्रा
+  600 ग्राम") can only be kept on one line by rewording (the tool did so, probed on the real bubble).
+- (runtime, Weight Converter play tests A and B, 2026-10-29; not worked in the tool) (1) Kiko returns to the thinking pose about 1.7-2.2 s after
+  a miss, when the correction's lock releases: LAYOUT 5 says "a miss brings the thinking pose back (after the nod, and the traceback when the pad
+  was locked)", so it is the runtime's documented behaviour; the testers would keep it off until the next question: owner to decide. (2) Escape and
+  the Hint key do not end the party at once (a phase dot and restart do). (3) The Answer key is live for about 80 ms at a question's entry before
+  the tool's gate re-asserts `api.lock(true)` in its effect: the host gives no useLayoutEffect, so only the runtime can arm the gate at the open.
+  (4) A tap on the header title, on Kiko or on the bubble text during a guide step shows no hint (outside the work zone).
+- (runtime, M1.S3.T7.C33.2D1 Capacity Converter builder, 2026-10-29, from play tests A and B; logged, not worked in the tool)
+  (1) the hint ladder (`rungOf`): after the Hint key has shown rungs 1 and 2, the first miss shows rung 1 again (no escalation); the tool
+  cannot pick the rung without saying over the hint. (2) The Hint key before any miss shows the item's `miss` as rung 1, so a `miss` must
+  be true in every pre-miss state (C33 reworded its phase 4 Q1 miss). (3) Escape and the Hint key do not end the last-question party
+  (a phase dot and restart do). (4) Kiko returns to the think pose about 1.2 s after a miss. (5) During `stepHold` after a phase's last
+  guide step, focus is on the page (the tool moves it to the act key when the question opens). The pad keys take programmatic focus
+  (C33 focuses the pad's Enter key when Enter opens the pad).
 
 ## Runtime gap (owner, 2026-10-28): the answer empties after a wrong answer
 - Today (docs/LAYOUT.md section 3 "a miss is the traceback", section 4 "two-part answer"): after a miss "nothing resets and the child's answer stays in the slot".
@@ -90,3 +136,37 @@ Owner descriptions (2026-10-28) win over the plan brief's phase titles; keep eac
 - `glass` (cut "glass"): 92x150 (0.61); interior transparent, tapered: profile (y: x range) 0.09: 0.10-0.89; 0.42: 0.15-0.84; 0.62: 0.20-0.80; 0.82: 0.26-0.73; largest clear rect x 0.24-0.76, y 0.02-0.80; floor inside y 0.83 (opaque base below). Clip the code water to the profile.
 - `pot`: normal cut, opaque orange enamel pot with lid and two handles, 200x140 (1.43).
 - Capacity Converter (C33) copies `jug` (and cup, bottle, bucket, drum) FREE; `glass` and `pot` too if its design needs them (copy the definition EXACTLY from C27's images.json, including the cut option).
+
+## Capacity Converter (C33) `jar` picture (2026-10-28 ~20:50)
+- `jar` (cut "glass", in C33's images.json): 118x220 (0.536 width:height), interior transparent (alpha 0). Short neck above a shoulder, then straight sides: rim top y 0.01; neck rows narrower (inner x 0.14 to 0.84, y about 0.01 to 0.12); shoulder y 0.10 to 0.12; body top (FULL level) y 0.13; sides straight from 0.13 to about 0.82; inner x 0.06 to 0.93 in the body; floor inside y 0.88 to 0.89 (the floor ellipse 0.84 to 0.91). WATER fill box: top y 0.13 (full) to floor y 0.885; level LINEAR in volume between those two lines; water drawn BEHIND the jar, the opaque glass covers the thick lower walls; marks and numbers in code on top, outside on the left.
+- C33 slot images: cup, bottle, bucket, drum, jug (clear glass, 200x247), jar.
+
+## CHECKPOINT 2026-10-28 21:50 IST (the account's 5-hour limit hit at ~21:30, reset 21:50; agents were stopped)
+- Measure It: FINISHED (97/0/0, ported, reviewed, 3 languages).
+- Length Converter (C11): ported 97 (round 1 incl. language). Visual reviews en/hi/gu DONE, play tests A/B DONE; the builder was MID-WAY through the visual-fix + play-fix bundle (two messages: visual fixes 1-12 incl. phase 3 chips, summary thumbs, rings, bubble lines, piece labels, role labels 32+, sizes; play fixes: pad dead during a replay, Next-key nudge, Space arms the gate, queued tap, empty-box line, 3 nudge forms, hi/gu term consistency). Then 1 full check (up to 2 more), then a --changed re-look.
+- Weigh It (C16): language merged, ported 95/0/0. NEXT: full review pack + 3 visual reviewers + 2 play testers.
+- Pour It (C27): maths fixes + Gemini + photos (jug, glass, pot) in; was MID-MERGE of tr.draft.md (158 rows); then 1 full check, then pack + reviews.
+- Weight Converter (C22): maths fixes + Gemini in; was MID-MERGE of tr.draft.md (149 rows) + the start-page English fix; then 1 full check, then pack + reviews.
+- Capacity Converter (C33): maths fixes in, jar photo drawn, Gemini pass in progress; its tr.draft.md writer was stopped (check the file is complete); then merge, 1 full check, pack + reviews.
+- After all reviews: fixes, --changed re-looks, final full checks, upload audit (chapter), `clean --ch 9`, report to the owner, then carry the two pipeline rules (miss clears slot: done in 3/4/5; miss hides answer: class 3 only so far) to classes 4 and 5 on the owner's word. Root files still say 'corrections end on the whole right answer' (list in the report of the rule's agent).
+
+## CHECKPOINT: "save and stop" (owner, 2026-10-28 ~23:55 IST). Resume with `continue chapter 9 of class 3`
+All agents were STOPPED by the main session (mid-edit possible): run `node cli.mjs status --ch 9` and a quick check (`check <slot> --ch 9 --no-render`) on every slot marked "source changed since" before trusting it, then resume the builder by SendMessage or start a fresh one. Agent ids (resume by SendMessage): Weigh It builder a5f91ce50cde5be9a; Weight Converter builder a5103533a494f6ca4; Length Converter builder a0bf64c0e7cc9624c; Pour It builder a96840da77b73d96e; Capacity Converter builder a6f9f1293248518d9; Pour It picture agent a87600cffc93c3ca1.
+Slot ids: Measure It M1.S1.T2.C5 (DONE, 97 pass); Length Converter M1.S1.T3.C11; Weigh It M1.S2.T4.C16; Weight Converter M1.S2.T5.C22; Pour It M1.S3.T6.C27; Capacity Converter M1.S3.T7.C33 (each `.2D1`).
+- Length Converter (C11): last status "1 FAIL (96 pass)"; its builder was in the FINAL full check when stopped. Rerun the check, then `shots --pack --changed` for a small re-look.
+- Weigh It (C16): play tester A report saved in `M1.S2.T4.C16.2D1/play-A.md` (9 should-fix, no blocker). Play tester B (phases 3-4) was STOPPED before reporting: re-run it (a fresh udgam3-play-tester). Then ONE builder message with A+B, up to 2 full checks, `--changed` re-look. Source changed since last check.
+- Weight Converter (C22): visual reviews EN + GU saved in `M1.S2.T5.C22.2D1/review-en-gu.md`; HI review was STOPPED (re-run it on the same pack, `pack/pack.json`). Then ONE fix message to a5103533a494f6ca4 with EN+GU+HI findings, also revert the "press" verbs to छुओ / સ્પર્શ કરો; full check; play testers (2) + `--changed` re-look.
+- Pour It (C27): picture agent finished: new glass profiles (jug, glass, jar) and the `milk` carton (`cut:"joined"`, 73x190, draw 73:190) are in images.tsx. The builder was sent both messages (profiles, milk) but STOPPED before its ONE full check: resume it, full check, then 2 play testers + `--changed` re-look.
+- Capacity Converter (C33): builder was merging the TR draft; was sent the new jug/jar profiles (jar now 129:220). Last status "2 FAIL". Resume, merge, ONE full check, pack, 3 visual reviewers, play testers.
+- Then: upload auditor, `node cli.mjs clean --ch 9`, report (table, departures, questions, native-speaker word list incl. Gujarati carry key "વદી"), "Say upload when you are happy". Upload only on the owner's word.
+- To tell the owner (not yet done): root/agent-template lines still say "corrections end on the whole right answer"; the generated image-agent file still says "at most three object skins" (class 3 cap is 12); MISS HIDES THE ANSWER goes to classes 4/5 only on the owner's word.
+- Class-3 lib change this session (new, not in any other class): per-image `"cut": "joined"` (tile only) in `lib/images/rules.mjs` / `process.mjs` / `make.mjs` + test + BUILD_CARD §7 row.
+
+## CHECKPOINT 2: usage limit hit ~02:20 IST 2026-10-29; "continue" at 11:58 IST. All agents died; resume them by SendMessage (ids below).
+State at 11:58: C5 Measure It DONE (97). C11 Length Converter full check 97/0/0 fresh; visual re-look of the 56 changed frames: relook-en.md (6 should-fix) and relook-gu.md (3 must-fix: split amounts p3-ask/p4-win, one-word last line p4-end; should-fix: p4 board gap 9-10 px, p3-wrong chip rows 6 px, p3-end labels, free-play keys 12 px, summary "mini column" wording) saved; HI re-look (agent a61a5c40c1ffd81a9) unfinished. Then ONE fix message to a0bf64c0e7cc9624c, quick check, full check, `--changed` re-look.
+C16 Weigh It: builder a5f91ce50cde5be9a did fix message 1 (play-A.md, 12 items) with quick checks only; tester B (phases 3-4, agent ac72e51e6a22c4a60, report -> play-B.md) unfinished; then message 2, ONE full check (up to 2), `--changed` re-look.
+C22 Weight Converter: builder a5103533a494f6ca4 has fix messages 1+2 (review-en-gu.md, review-hi.md) and the tote photo (86:140); last check "1 FAIL, source changed since": resume it, quick check, ONE full check, `--changed` pack, re-look, 2 play testers.
+C27 Pour It: full check 97/0/0 fresh, pack built (102 frames). Hindi review done (review-hi.md: one-word last lines, split amounts, chips touching, water 6-12 px short of the wall at low levels, summary thumbnails); EN reviewer a0568d83f3588a30d, GU reviewer aa19df304dfe1883b, play A a326350af8a92fde6, play B a89771397540cdc10 unfinished (reports -> review-en.md, review-gu.md, play-A.md, play-B.md). Then ONE fix message to a96840da77b73d96e.
+C33 Capacity Converter: EN/HI/GU reviews saved (review-en.md, review-hi.md, review-gu.md); builder a6f9f1293248518d9 got fix message 1 (all three) and died mid-edit ("source changed since"); play testers A aebf96e179a2926d0 and B ac2bd3b80452b64ee unfinished (play-A.md, play-B.md). Resume the builder to quick-green FIRST, then the play testers, then message 2 with their findings, ONE full check.
+Decisions made this session (binding for the fix messages): MISS HIDES THE ANSWER: a miss correction stops one step short (WC P2: one bag short; CC P2: ONE jug with its 1,000 mL chip); fallback shapes cleared once the photo decodes; hi/gu units short beside numbers/labels, long in bubble sentences; chips one line 32+, 16+ px apart; amounts whole on one bubble line (amount first, no-break space only if probed in the real bubble); tote photo for WC (86:140); keep jar 250 mL ticks and free-play dimmed Answer key; carry word "વદી" on the native-speaker list.
+- Native-speaker word list, C33 Capacity Converter (builder, after fix message 1): carry हासिल / વદી, borrow उधार / ઉછીના (kept); Group इकट्ठा करो / ભેગા કરો (alternatives: हज़ार-हज़ार बाँधो, જૂથ બનાવો); Pours heading उँडेले / રેડ્યા (now a count, was the verb); part jug थोड़ा भरा जग / થોડો ભરેલો જગ; chip टैग / ટેગ (alternatives पर्ची, लेबल); can कैन / કૅન; Fill both boxes दोनों खाने भरो / બંને ખાનાં ભરો; Hindi questions now "…है, यह कितने मिलीलीटर हुआ?" (a comma, not the colon and not "।": a full stop would split the question into two bubble pages); hi closing "हासिल में 1,000 मिलीलीटर से 1 लीटर बनता है; उधार में 1 लीटर से 1,000 मिलीलीटर।"; gu "1,000 કરતાં વધુ", phase 3 title "લીટર અને મિલીલીટર એકસાથે". Answer-box part labels stay long (लीटर / मिलीलीटर, લીટર / મિલીલીટર), units short.

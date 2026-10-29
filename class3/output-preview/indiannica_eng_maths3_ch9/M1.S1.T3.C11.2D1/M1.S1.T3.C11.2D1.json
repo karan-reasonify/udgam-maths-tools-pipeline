@@ -416,6 +416,41 @@
             77
           ]
         }
+      ],
+      "borrow": [
+        {
+          "kind": "sub",
+          "a": [
+            6,
+            15
+          ],
+          "b": [
+            3,
+            50
+          ]
+        },
+        {
+          "kind": "sub",
+          "a": [
+            8,
+            20
+          ],
+          "b": [
+            2,
+            75
+          ]
+        },
+        {
+          "kind": "sub",
+          "a": [
+            4,
+            5
+          ],
+          "b": [
+            1,
+            40
+          ]
+        }
       ]
     },
     "units": {
@@ -451,7 +486,7 @@
           "A 7 cm piece has no tens, so the tens place needs a zero.",
           "Five rods make 500 cm, and the 7 cm piece adds only 7 more."
         ],
-        "win": "Right, the hose is 507 cm long, with a zero for the tens."
+        "win": "Right, 507 cm, with a zero in the tens place."
       },
       {
         "phase": 1,
@@ -464,7 +499,7 @@
         "nm": "130",
         "ladder": [
           "Count the rods in centimetres: 100 cm, 200 cm, 300 cm and on.",
-          "Ten rods make 1,000 cm; count on 100 cm for each rod after them."
+          "Ten rods make 1,000 cm; add 100 cm for each extra rod."
         ],
         "win": "Well done, the wall is 1,300 cm long."
       },
@@ -491,7 +526,7 @@
         "nm": "83|4",
         "ladder": [
           "The piece left over is shorter than 1 m, so it stays in centimetres.",
-          "The last two digits of 834 are the centimetres left over."
+          "The last two digits of 834 are the cm left over."
         ],
         "win": "Yes, 834 cm is 8 m 34 cm."
       },
@@ -518,9 +553,9 @@
         "nm": "60|5",
         "ladder": [
           "The tiny end piece is not a whole metre; leave it out of the metres.",
-          "Take away the 1 m pieces; the centimetres under 100 are the rest."
+          "Take away the 1 m pieces; the rest is under 100 cm."
         ],
-        "win": "Right, the ribbon is 6 m 5 cm long."
+        "win": "Right, 6 m 5 cm is the ribbon's length."
       },
       {
         "phase": 2,
@@ -544,7 +579,7 @@
         ],
         "nm": "186|7",
         "ladder": [
-          "Count the rows of 5 m first, then the single pieces after them.",
+          "Count the rows of 5 m first, then the single pieces.",
           "Cover the last two digits of 1,867; the digits before them are the metres."
         ],
         "win": "Well done, 1,867 cm makes 18 m 67 cm."
@@ -559,7 +594,7 @@
         "answer": 6275,
         "nm": "875",
         "ladder": [
-          "Change each kilometre into 1,000 m before you add the rest.",
+          "Change each kilometre into 1,000 m, then add the rest.",
           "6 km is 6,000 m, so add the 275 m to it."
         ],
         "win": "Yes, 6 km 275 m is 6,275 m."
@@ -576,7 +611,7 @@
           "Count the posts the slide planted; each stands 1 km further on.",
           "Divide the metres by 1,000 to find the kilometres."
         ],
-        "win": "Right, the track is 3 km long."
+        "win": "Right, 3 km of track."
       },
       {
         "phase": 3,
@@ -601,7 +636,7 @@
         "nm": "74|61",
         "ladder": [
           "The part of the road after the last post is under 1 km, so it stays in metres.",
-          "The last three digits of 7,461 are the metres left over."
+          "The last three digits are the metres left over."
         ],
         "win": "Well done, 7,461 m makes 7 km 461 m."
       },
@@ -637,7 +672,7 @@
           "The carried 1 m joins the metres column too.",
           "Take 100 cm off the centimetres total, then add 1 m to the metres."
         ],
-        "win": "Yes, the rope was 4 m 43 cm long."
+        "win": "Yes, 4 m 43 cm is the whole rope."
       },
       {
         "phase": 4,
@@ -671,7 +706,7 @@
           "Count the metres again with the carried 1 m added.",
           "45 cm and 55 cm fill a whole metre exactly."
         ],
-        "win": "Yes, they make 6 m and 0 cm, which is 6 m."
+        "win": "Yes, 6 m 0 cm, which is just 6 m."
       },
       {
         "phase": 4,
@@ -723,7 +758,7 @@
     "rate": 0.92,
     "pitch": 1.06,
     "opening": "A metre rod, a long road and a board for adding.",
-    "onFreePlay": "Free play: break rods, cut ribbons, slide posts and carry centimetres.",
+    "onFreePlay": "Free play: break rods, cut ribbons, slide posts, carry and borrow centimetres.",
     "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
     "onFinish": "You changed the unit and kept the length the same.",
     "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
@@ -781,7 +816,7 @@
             "kind": "m2cm",
             "planQuestion": null,
             "question": {
-              "en": "A garden hose is 5 m 7 cm long; write its length in centimetres."
+              "en": "In centimetres, how long is a garden hose of 5 m 7 cm?"
             },
             "ask": {
               "en": "5 m 7 cm in cm?"
@@ -797,7 +832,7 @@
             "kind": "m2cm",
             "planQuestion": "A school wall is 13 m long. How many centimetres is that?",
             "question": {
-              "en": "Change 13 m, the length of a school wall, into centimetres."
+              "en": "A school wall is 13 m long; what is that in centimetres?"
             },
             "ask": {
               "en": "13 m in cm?"
@@ -896,7 +931,7 @@
             "kind": "m2km",
             "planQuestion": "A train track is 3000 m long. How many kilometres is that?",
             "question": {
-              "en": "A train track is 3,000 m long; write its length in kilometres."
+              "en": "In kilometres, how long is a train track of 3,000 m?"
             },
             "ask": {
               "en": "3,000 m in km?"
@@ -912,7 +947,7 @@
             "kind": "m2km",
             "planQuestion": "A cycle path is 7461 m long. How many kilometres and metres is that?",
             "question": {
-              "en": "Change a cycle path of 7,461 m into kilometres and metres."
+              "en": "Change 7,461 m of cycle path into kilometres and metres."
             },
             "ask": {
               "en": "7,461 m in km and m?"
@@ -936,7 +971,7 @@
             "kind": "add",
             "planQuestion": "A rope is cut in two pieces. One piece is 2 m 74 cm long and the other is 1 m 69 cm long. How long was the rope before it was cut? Add in columns.",
             "question": {
-              "en": "How long was a rope cut into pieces of 2 m 74 cm and 1 m 69 cm?"
+              "en": "2 m 74 cm and 1 m 69 cm were cut from one rope; how long was the rope?"
             },
             "ask": {
               "en": "2 m 74 cm + 1 m 69 cm"
@@ -1079,7 +1114,7 @@
       },
       {
         "n": 3,
-        "concept": "Kilometres and metres: use 1000",
+        "concept": "Kilometres and metres: use 1,000",
         "conceptId": "M1.S1.T3.C13",
         "objectiveIds": [
           "O3"
@@ -1219,19 +1254,19 @@
     }
   ],
   "build": {
-    "source": "c2dcb3f1:711672",
+    "source": "848481a5:721395",
     "runtime": "class3/runtime/frozen/r3/runtime.tsx",
     "runtimeVersion": "r3",
     "library": "@use-gesture/react@10.3.1",
-    "builtAt": "2026-10-28T13:52:04.330Z",
+    "builtAt": "2026-10-29T08:56:14.262Z",
     "checks": {
       "pass": 97,
       "warn": 0,
       "fail": 0,
       "info": 5,
-      "at": "2026-10-28T13:52:02.867Z"
+      "at": "2026-10-29T08:56:13.694Z"
     },
-    "tsxBytes": 634489,
-    "tsxMd5": "16732f1423174c81703929d62aee0031"
+    "tsxBytes": 642671,
+    "tsxMd5": "aafb4e33f42a4cb325439ab4d2e45a61"
   }
 }

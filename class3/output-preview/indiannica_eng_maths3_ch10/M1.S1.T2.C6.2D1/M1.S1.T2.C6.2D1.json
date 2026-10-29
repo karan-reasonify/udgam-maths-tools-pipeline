@@ -18,7 +18,9 @@
     "M1.S1.T2.C8"
   ],
   "languages": [
-    "en"
+    "en",
+    "hi",
+    "gu"
   ],
   "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
   "stage": {
@@ -274,34 +276,34 @@
         "traceback": "The hand that was mixed up glows and lights its own box of the digital clock in its colour; the child then reads or sets the other hand.",
         "ladder": [
           "The long hand tells the minutes, not the hour.",
-          "Only the short hand changes the hour digits.",
+          "Turn one hand at a time and watch which digits change.",
           "That hand moved the minute digits when you turned it.",
-          "Move only the short hand and watch which box of the digital clock changes.",
-          "The short hand points to the hour, so read the number it points to."
+          "Each hand changes its own box of the digital clock.",
+          "The hour is the number the hour hand points to or has just passed."
         ]
       },
       {
         "n": 2,
         "screen": "the wall clock with the minutes switched on round the edge and the minute hand standing on the twelve",
         "win": "the hand closes a round, the hour hand has crept on a little, and a green tag reads one hour",
-        "traceback": "The lit gaps are counted in fives from where the long hand started, a running count written by each number, stopping one five before the end.",
+        "traceback": "The minute hand glows; the blue steps are counted in fives from where it started, a running count written by each number, stopping one five before the end.",
         "ladder": [
-          "Each number the hand passes is 5 minutes, not 1.",
-          "Count in fives, not in ones, as you pass each number.",
-          "The hand passes 12 numbers, and each gap is 5 minutes.",
-          "Count each lit gap as 5 minutes.",
-          "Count on in fives, one five for each lit gap."
+          "Each number the minute hand passes is 5 minutes, not 1.",
+          "The 7 is where the hand stops: count 5 for every number from the 12.",
+          "The hand passes 12 numbers, and each step is 5 minutes.",
+          "Five minutes for every number: count in fives.",
+          "Count on in fives from where the minute hand started."
         ]
       },
       {
         "n": 3,
         "screen": "the wall clock at a bus stop with the right half tinted sky blue for past and the left half amber for to",
         "win": "the side lights up, the words card says the time, and the digital clock agrees",
-        "traceback": "The side the long hand is on is coloured, past or to, and the minutes are counted in fives from the 12 on that side, stopping one five before the long hand.",
+        "traceback": "The hand that was read wrong glows; the side the minute hand is on is coloured, past or to, and the minutes are counted in fives from the 12 on that side, stopping one five before the minute hand.",
         "ladder": [
-          "The long hand on the 2 is not 2 minutes: count in fives from the 12.",
-          "The 8 is on the left side, so count back from the 12 to the long hand.",
-          "Quarter to means a quarter of the way is left to go before the 12.",
+          "The minute hand on the 2 is not 2 minutes: count in fives from the 12.",
+          "Minutes to the hour are the minutes left before it, not the minutes gone past.",
+          "Look at the hour hand: at quarter to 8, has it reached the 8 yet?",
           "Count in fives from the 12 on that side.",
           "On the right we count on from the 12; on the left we count back to it."
         ]
@@ -311,11 +313,11 @@
   "model": {
     "clock": {
       "cx": 252,
-      "cy": 262,
-      "R": 206,
-      "hourGrip": 76,
-      "minuteGrip": 180,
-      "numerals": "1 to 12 at 0.74 R",
+      "cy": 252,
+      "R": 200,
+      "hourGrip": 72,
+      "minuteGrip": 177,
+      "numerals": "1 to 12 at 0.72 R",
       "minuteTicks": 60
     },
     "digital": {
@@ -357,7 +359,8 @@
           "Look at the short hand to find the hour.",
           "Read the number that the short hand points to."
         ],
-        "win": "Yes, the short hand is on the 2, so it is 2 o'clock."
+        "win": "Yes, it is 2 o'clock.",
+        "winMs": 3000
       },
       {
         "phase": 1,
@@ -374,10 +377,11 @@
         "near": "12|25",
         "given": "5:20",
         "ladder": [
-          "Watch the hour digits as you drag the short hand.",
-          "Leave the long hand on the 4 and stop the short hand at the 5."
+          "Make the hour digits match the alarm clock and keep the minutes.",
+          "Keep the long hand on the 4 and move only the short hand."
         ],
-        "win": "Yes, the 5 is the hour and the 20 is the minutes."
+        "win": "Yes, the 5 is the hour and the 20 is the minutes.",
+        "winMs": 5800
       },
       {
         "phase": 1,
@@ -393,7 +397,8 @@
           "Think of the hand that moved the hour digits.",
           "The hour hand moves slowly, only one number in an hour."
         ],
-        "win": "Yes, the short hand tells the hour, so the child was not right."
+        "win": "Yes, well spotted: now you can settle the friends' argument.",
+        "winMs": 5000
       },
       {
         "phase": 2,
@@ -405,10 +410,11 @@
         "answer": 15,
         "near": 3,
         "ladder": [
-          "Count the lit gaps in fives.",
-          "Say 5 for the first gap, 10 for the next, then go on."
+          "Count the blue steps: 5 for each one.",
+          "Say 5 for the first blue step, 10 for the next, then go on."
         ],
-        "win": "Yes, 3 steps of 5 minutes make 15 minutes."
+        "win": "Yes, 3 steps of 5 minutes make 15 minutes.",
+        "winMs": 4600
       },
       {
         "phase": 2,
@@ -420,10 +426,11 @@
         "answer": 35,
         "near": 7,
         "ladder": [
-          "Point to each lit gap and count on in fives.",
-          "Keep counting in fives until you reach the long hand."
+          "Touch each blue step from the 12 and say the fives out loud.",
+          "Keep counting in fives until you reach the minute hand."
         ],
-        "win": "Yes, 7 steps of 5 make 35 minutes past the hour."
+        "win": "Yes, 7 steps of 5 make 35 minutes past the hour.",
+        "winMs": 5400
       },
       {
         "phase": 2,
@@ -435,10 +442,11 @@
         "answer": 60,
         "near": 12,
         "ladder": [
-          "Count every lit gap in fives, all the way back to the 12.",
-          "Do not stop at the 11: the last gap ends at the 12."
+          "Count every blue step in fives, all the way back to the 12.",
+          "Do not stop at the 11: the last step ends at the 12."
         ],
-        "win": "Yes, twelve fives make 60 minutes, which is one hour."
+        "win": "Yes, 12 steps of 5 make 60 minutes, and that is one hour.",
+        "winMs": 6200
       },
       {
         "phase": 3,
@@ -461,10 +469,11 @@
         ],
         "near": "4|2",
         "ladder": [
-          "On the right side we say minutes past the hour.",
+          "The minute hand is on the blue past side of the clock.",
           "Count 5 for the 1, then one more five for the 2."
         ],
-        "win": "Yes, it is 10 minutes past 4, which we write 4:10."
+        "win": "Yes, it is 10 minutes past 4, which we write 4:10.",
+        "winMs": 5400
       },
       {
         "phase": 3,
@@ -476,30 +485,32 @@
         "answer": 20,
         "near": 40,
         "ladder": [
-          "Count back in fives from the 12 to the long hand.",
-          "Say 5 at the 11, then the 10, and keep going to the 8."
+          "Count back in fives from the 12 to the minute hand.",
+          "Say 5 at the 11, 10 at the 10, and keep going to the 8."
         ],
-        "win": "Yes, it is 20 minutes to 10, which we write 9:40."
+        "win": "Yes, it is 20 minutes to 10, which we write 9:40.",
+        "winMs": 5400
       },
       {
         "phase": 3,
         "item": 3,
         "qid": null,
         "kind": "set",
-        "t0": 0,
+        "t0": 180,
         "scene": "pot",
         "pad": "enter",
         "answer": [
           7,
           45
         ],
-        "near": "8|15",
+        "near": "8|45",
         "words": "quarter to 8",
         "ladder": [
-          "Put the long hand on the left side, a quarter before the 12.",
-          "The short hand sits just before the 8, not after it."
+          "Quarter to 8 means 15 minutes are still left before 8 o'clock.",
+          "The hour hand sits just before the 8, not after it."
         ],
-        "win": "Yes, quarter to 8 is 7:45, with the long hand on the 9."
+        "win": "Yes, quarter to 8 is 7:45, with the minute hand on the 9.",
+        "winMs": 6200
       }
     ]
   },
@@ -507,8 +518,8 @@
     "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
     "tracebacks": [
       "Phase 1: The hand that was mixed up glows and lights its own box of the digital clock in its colour; the child then reads or sets the other hand.",
-      "Phase 2: The lit gaps are counted in fives from where the long hand started, a running count written by each number, stopping one five before the end.",
-      "Phase 3: The side the long hand is on is coloured, past or to, and the minutes are counted in fives from the 12 on that side, stopping one five before the long hand."
+      "Phase 2: The minute hand glows; the blue steps are counted in fives from where it started, a running count written by each number, stopping one five before the end.",
+      "Phase 3: The hand that was read wrong glows; the side the minute hand is on is coloured, past or to, and the minutes are counted in fives from the 12 on that side, stopping one five before the minute hand."
     ]
   },
   "voice": {
@@ -516,7 +527,7 @@
     "rate": 0.92,
     "pitch": 1.06,
     "opening": "A wall clock and a digital clock, both waiting for the hands to move.",
-    "onFreePlay": "Free play. Turn the hands and say the time as you like.",
+    "onFreePlay": "Move the hands to set any time you like.",
     "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
     "onFinish": "You said every time by counting the minutes.",
     "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
@@ -574,7 +585,7 @@
             "kind": "setHour",
             "planQuestion": "The digital alarm clock in the bedroom shows 5:20. Which number is the hour, and which is the minutes?",
             "question": {
-              "en": "The alarm clock shows 5:20: turn this clock's short hand so it shows 5:20 too."
+              "en": "The alarm clock shows 5:20: set this clock to show 5:20 too."
             },
             "ask": {
               "en": "Show 5:20"
@@ -593,7 +604,7 @@
             "kind": "pick",
             "planQuestion": "At the bus stop a child says the long hand of the clock is the hour hand because it is longer. Is the child right? Which hand tells the hour?",
             "question": {
-              "en": "A child says the long hand tells the hour: tap the hand that really does."
+              "en": "Two friends argue about which hand tells the hour: tap the one that does."
             },
             "ask": {
               "en": "Which hand tells the hour?"
@@ -614,7 +625,7 @@
             "kind": "count",
             "planQuestion": "The clock above the school bell has its minute hand on the 5. A little later the minute hand is on the 8. How many minutes have passed?",
             "question": {
-              "en": "Step the bell clock's long hand from the 5 to the 8: how many minutes passed?"
+              "en": "Step the minute hand from the 5 to the 8: how many minutes have passed?"
             },
             "ask": {
               "en": "Minutes passed?"
@@ -630,7 +641,7 @@
             "kind": "count",
             "planQuestion": "A kitchen clock has its minute hand on the 7. Count in fives from the 12. How many minutes past the hour is that?",
             "question": {
-              "en": "Step the kitchen clock's long hand to the 7: how many minutes past the hour?"
+              "en": "Step the kitchen clock's minute hand to the 7: how many minutes past?"
             },
             "ask": {
               "en": "Minutes past?"
@@ -646,7 +657,7 @@
             "kind": "round",
             "planQuestion": null,
             "question": {
-              "en": "Tap Round to send the long hand once round: how many minutes does it take?"
+              "en": "Tap Round to send the minute hand once round: how many minutes does it take?"
             },
             "ask": {
               "en": "Minutes in a round?"
@@ -667,7 +678,7 @@
             "kind": "read",
             "planQuestion": "At football practice the clock on the pavilion wall has its long hand on the 2 and its short hand just past the 4. How many minutes past the hour is it, and what time is that?",
             "question": {
-              "en": "At the bus stop the long hand is on the 2: what time does the clock show?"
+              "en": "At the bus stop the minute hand is on the 2: what time does the clock show?"
             },
             "ask": {
               "en": "What time is it?"
@@ -686,7 +697,7 @@
             "kind": "readTo",
             "planQuestion": "The clock at the railway station has its long hand on the 8. Is the long hand on the left or the right side, and how many minutes is it to the next hour?",
             "question": {
-              "en": "The bus leaves with the long hand on the 8: how many minutes to the next hour?"
+              "en": "The bus leaves with the minute hand on the 8: how many minutes to the hour?"
             },
             "ask": {
               "en": "Minutes to the hour?"
@@ -932,19 +943,19 @@
     }
   ],
   "build": {
-    "source": "aa5f13fc:655281",
+    "source": "0c5bf5ad:689644",
     "runtime": "class3/runtime/frozen/r3/runtime.tsx",
     "runtimeVersion": "r3",
     "library": "@use-gesture/react@10.3.1",
-    "builtAt": "2026-10-28T13:09:57.656Z",
+    "builtAt": "2026-10-29T06:57:00.249Z",
     "checks": {
-      "pass": 94,
+      "pass": 95,
       "warn": 0,
       "fail": 0,
-      "info": 6,
-      "at": "2026-10-28T13:09:57.433Z"
+      "info": 5,
+      "at": "2026-10-29T06:56:59.834Z"
     },
-    "tsxBytes": 554567,
-    "tsxMd5": "5874c5472011ef2a8de180ca476239dc"
+    "tsxBytes": 598199,
+    "tsxMd5": "af47ead3ba30098ec81c5de79ec9a2b0"
   }
 }

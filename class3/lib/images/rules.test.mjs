@@ -110,3 +110,10 @@ const sk = { kind: "tile", px: [200, 260], inset: 0, maxKB: 30 };
 assert.notEqual(skinHash("r", { ...sk, cut: "glass" }), skinHash("r", sk)); assert.notEqual(skinHash("r", { ...sk, cut: "glass" }), skinHash("r", { ...sk, tool: true }));
 assert.equal(skinHash("r", { ...sk, cut: undefined }), skinHash("r", sk));
 console.log("glass cut option: ok");
+
+// class 3 only (2026-10-28, Pour It): `cut: "joined"` (a gable-top carton) is a tile option, in a skin key only when set
+const jn = { key: "milk", object: "gable-top carton", kind: "tile", look: "photo", prompt: "A plain gable-top carton.", why: "w" };
+assert.deepEqual(validatePlan(plan([{ ...jn, cut: "joined" }])).errors, []);
+assert.ok(validatePlan(plan([{ ...jn, kind: "disc", px: [200, 200], cut: "joined" }])).errors.some((e) => /tile only/.test(e)));
+assert.notEqual(skinHash("r", { ...sk, cut: "joined" }), skinHash("r", sk)); assert.notEqual(skinHash("r", { ...sk, cut: "joined" }), skinHash("r", { ...sk, cut: "glass" }));
+console.log("joined cut option: ok");

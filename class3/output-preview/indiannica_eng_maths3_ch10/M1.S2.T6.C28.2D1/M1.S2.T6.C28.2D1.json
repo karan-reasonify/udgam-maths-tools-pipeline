@@ -19,7 +19,9 @@
     "M1.S2.T6.C31"
   ],
   "languages": [
-    "en"
+    "en",
+    "hi",
+    "gu"
   ],
   "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
   "stage": {
@@ -288,8 +290,8 @@
         "traceback": "The months are said along the fists from January and stop just before the asked month; its calendar page lights its days a week at a time and stops before the last day.",
         "ladder": [
           "Say the months along the fist from January to find where July goes.",
-          "Count along from March: April, May, then June.",
-          "Put September and October on the second fist and read their days.",
+          "Count along from April: May, then June.",
+          "Say August, September, October along the second fist to find their own spots.",
           "Start at January on the first knuckle and say each month in turn.",
           "Go from the last knuckle of the first fist to the first knuckle of the second."
         ]
@@ -300,9 +302,9 @@
         "win": "the twenty-ninth square drops into the leap February and the year ruler lights every fourth year",
         "traceback": "The marker steps in fours from a leap year, lighting only the leap years while the years between stay dark, and stops one hop short.",
         "ladder": [
-          "Step the marker on in fours from 2028 to see if 2044 is a leap year.",
-          "Step on in fours from 2044 and see where the marker lands.",
-          "Step the marker back four years from 2048 to find the last leap year.",
+          "Keep tapping On 4 from 2028 and watch the years it lands on.",
+          "Use On 4 once more from 2044.",
+          "Go back from 2048 to the leap year just before it.",
           "Count on in fours from a leap year.",
           "Only the years the marker lands on are leap years."
         ]
@@ -317,7 +319,7 @@
           "Circle the 6th and hop 7 days twice.",
           "Hop from Monday the 1st in sevens, then count on to the 24th.",
           "Hop 7 days and read the day at the top of the column.",
-          "Count the hops; each hop is one week."
+          "Hop once for every week the question names."
         ]
       }
     ]
@@ -348,6 +350,7 @@
         "qid": "M1.S2.T6.C28:CE1",
         "kind": "weeks",
         "page": 9,
+        "nudge": "First tap 4 full rows of the calendar.",
         "answer": 28,
         "near": 11,
         "unit": "days",
@@ -363,6 +366,7 @@
         "qid": "M1.S2.T6.C28:1",
         "kind": "pages",
         "page": 0,
+        "nudge": "First turn every page, or tap Flip year.",
         "answer": 12,
         "near": 11,
         "unit": "pages",
@@ -378,14 +382,15 @@
         "qid": "M1.S2.T6.C28:5",
         "kind": "year",
         "page": 0,
+        "nudge": "First tap Count weeks.",
         "answer": 365,
         "near": 364,
         "unit": "days",
         "ladder": [
           "52 weeks make 364 days, as the week counter shows.",
-          "Add the 1 day left over to 364."
+          "Look for the day left over after the 52 weeks."
         ],
-        "win": "Yes, 364 days and 1 more make 365 days."
+        "win": "Yes, 364 days and 1 more make 365 days, a whole year."
       },
       {
         "phase": 2,
@@ -395,12 +400,13 @@
         "months": [
           6
         ],
+        "nudge": "First put the July card on a knuckle or a dip.",
         "answer": 31,
         "near": 30,
         "unit": "days",
         "ladder": [
           "July comes just after June, which sits in a dip.",
-          "July sits on a knuckle, just like January."
+          "Count one more spot after June's dip to find July's."
         ],
         "win": "Yes, July is a knuckle month with 31 days."
       },
@@ -412,12 +418,13 @@
         "months": [
           5
         ],
+        "nudge": "First put the June card on a knuckle or a dip.",
         "answer": 30,
         "near": 31,
         "unit": "days",
         "ladder": [
           "June sits between the May and July knuckles.",
-          "June is in a dip, so it has a day fewer than July."
+          "Check whether June's spot is a knuckle or a dip."
         ],
         "win": "Yes, June is a dip month with 30 days."
       },
@@ -430,6 +437,7 @@
           8,
           9
         ],
+        "nudge": "First put the September and October cards on the fists.",
         "answer": 1,
         "near": 31,
         "unit": "more day",
@@ -450,11 +458,12 @@
           2028
         ],
         "dir": 1,
+        "nudge": "First step the marker on with On 4.",
         "answer": 29,
         "near": 28,
         "unit": "days",
         "ladder": [
-          "2044 is a leap year, just like 2028 on the strip.",
+          "Does the marker ever land on 2044?",
           "A leap February has one more day than the February of 2026."
         ],
         "win": "Yes, leap year 2044 has a 29 February."
@@ -474,12 +483,13 @@
           2044
         ],
         "dir": 1,
+        "nudge": "First tap On 4 to move the marker.",
         "answer": "2048",
         "near": "2046",
         "unit": "",
         "ladder": [
           "An even year is not always a leap year.",
-          "Add 4 to 2044 to find the next leap year."
+          "Which key is on the marker's path?"
         ],
         "win": "Yes, 2048 is the next leap year."
       },
@@ -494,12 +504,14 @@
           2048
         ],
         "dir": -1,
+        "pre": "Year",
+        "nudge": "First tap Back 4 to move the marker.",
         "answer": 2045,
         "near": 2044,
         "unit": "",
         "ladder": [
-          "The last leap year was 2044.",
-          "This year comes just after 2044."
+          "Tap Back 4 and see where the marker stops.",
+          "This year is the year after the leap year the marker shows."
         ],
         "win": "Yes, it is 2045 now."
       },
@@ -514,12 +526,13 @@
         ],
         "from": 3,
         "to": 31,
+        "nudge": "First circle the 3rd, then hop down to the 31st.",
         "answer": 4,
         "near": 5,
         "unit": "weeks",
         "ladder": [
           "Each hop is one week; count the hops, not the dates.",
-          "From the 3rd you land on 10, 17 and 24, then hop once more."
+          "Count each hop until the pencil reaches the ringed 31st."
         ],
         "win": "Yes, 4 hops of 7 days make 4 weeks."
       },
@@ -532,14 +545,16 @@
           2026,
           10
         ],
+        "head": 0,
         "from": 6,
         "to": 20,
+        "nudge": "First circle the 6th, then hop twice.",
         "answer": "fri",
-        "near": "sat",
+        "near": "thu",
         "unit": "",
         "ladder": [
-          "Hopping 7 days always lands on the same day of the week.",
-          "The due date is in the same column as the 6th."
+          "Each hop of 7 days stays in one column of the page.",
+          "Count from Sunday the 1st along the top row to the 6th."
         ],
         "win": "Yes, 2 weeks on, it is Friday again."
       },
@@ -552,8 +567,12 @@
           2026,
           5
         ],
+        "head": 1,
         "from": 1,
+        "to": 22,
         "date": 24,
+        "winMs": 5200,
+        "nudge": "First circle the 1st, then hop to the 22nd.",
         "answer": "wed",
         "near": "tue",
         "unit": "",
@@ -653,7 +672,7 @@
             "kind": "year",
             "planQuestion": "A bus pass lasts one whole year. A year is 52 weeks and 1 more day. How many days does the pass last?",
             "question": {
-              "en": "A bus pass lasts a year of 52 weeks and 1 more day; how many days is that?"
+              "en": "A bus pass is good for 52 weeks and 1 more day; how many days does it last?"
             },
             "ask": {
               "en": "52 weeks + 1 day?"
@@ -800,7 +819,7 @@
             "kind": "due",
             "planQuestion": "A story book from the school library is borrowed on a Friday and is due in 2 weeks. On which day of the week is it due?",
             "question": {
-              "en": "A book borrowed on 6 November 2026 is due 2 weeks later; which day is that?"
+              "en": "1 November 2026 is a Sunday; which day is a book due 2 weeks after the 6th?"
             },
             "ask": {
               "en": "Due on which day?"
@@ -1073,19 +1092,19 @@
     }
   ],
   "build": {
-    "source": "98cf058e:639757",
+    "source": "49146ec9:688175",
     "runtime": "class3/runtime/frozen/r3/runtime.tsx",
     "runtimeVersion": "r3",
     "library": "@use-gesture/react@10.3.1",
-    "builtAt": "2026-10-28T13:34:05.796Z",
+    "builtAt": "2026-10-29T09:26:08.298Z",
     "checks": {
-      "pass": 94,
+      "pass": 98,
       "warn": 0,
       "fail": 0,
-      "info": 5,
-      "at": "2026-10-28T13:34:03.816Z"
+      "info": 4,
+      "at": "2026-10-29T09:26:07.668Z"
     },
-    "tsxBytes": 551241,
-    "tsxMd5": "b39ac18e7da1cd735478ebf3a694041e"
+    "tsxBytes": 614684,
+    "tsxMd5": "6ae4930d9e9e72448a9ad54878828d55"
   }
 }

@@ -99,6 +99,16 @@ function run() {
     if (x > 0) seed(p - 1); if (x < W - 1) seed(p + 1);
     if (y > 0) seed(p - W); if (y < H - 1) seed(p + W);
   }
+  /* JOINED (OPT.joined, class 3 Pour It's gable-top carton): the flood ran along a thin light fold-line between the gable and the body and cut the gable off. Open the
+     background mask (erode by 3 px, grow back inside the mask): a strip of background narrower than 7 px, a line inside the object, is the object again. */
+  if (OPT.joined) {
+    const Rj = 3, ep = new Uint8Array(N), er = new Uint8Array(N);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { let ok = 1; for (let k = Math.max(0, x - Rj); k <= Math.min(W - 1, x + Rj); k++) if (!isBg[y * W + k]) { ok = 0; break; } ep[y * W + x] = ok; }
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { let ok = 1; for (let k = Math.max(0, y - Rj); k <= Math.min(H - 1, y + Rj); k++) if (!ep[k * W + x]) { ok = 0; break; } er[y * W + x] = ok; }
+    const dp = new Uint8Array(N);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { let on = 0; for (let k = Math.max(0, x - Rj); k <= Math.min(W - 1, x + Rj); k++) if (er[y * W + k]) { on = 1; break; } dp[y * W + x] = on; }
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { let on = 0; for (let k = Math.max(0, y - Rj); k <= Math.min(H - 1, y + Rj); k++) if (dp[k * W + x]) { on = 1; break; } isBg[y * W + x] = isBg[y * W + x] && on ? 1 : 0; }
+  }
   /* an action-kit TOOL (OPT.tool, docs/IMAGES.md §11; off for every skin, so a skin cuts exactly as it did): its grey steel or
      graphite is object (above: only a faint grey is a shadow), and a near-white region the border flood cannot reach, at least 0.3 % of the picture, is a hole
      (the scissors' finger loops) and so background too */
@@ -127,6 +137,46 @@ function run() {
             if (n < 0 || isBg[n]) continue;
             const i = n * 4, mx = Math.max(d[i], d[i + 1], d[i + 2]), mn = Math.min(d[i], d[i + 1], d[i + 2]);
             if (mn >= (OPT.glass ? 225 : 150) && mx - mn <= (OPT.glass ? 20 : 40)) { isBg[n] = 1; next.push(n); }
+          }
+        }
+        ring = next;
+      }
+    }
+  }
+  /* GLASS, second pass (OPT.glass, class 3 Pour It, 2026-10-28): the empty inside of a clear glass is light and neutral but patchy (refraction clouds that
+     the 0.3 % hole rule above leaves opaque white, which then cover the water drawn behind the skin). So EVERY light neutral blob inside the outline, of any
+     size, that is at least 7 source px thick (a 7 x 7 window all light) is background too; thin light streaks stay (the highlights ON the walls and the
+     handle), and so do the darker wall bands, the rim and the base ring. Specks left alone inside a punched blob are dropped by the largest-blob step. */
+  if (OPT.glass) {
+    const lite = (p) => { const i = p * 4, mx = Math.max(d[i], d[i + 1], d[i + 2]), mn = Math.min(d[i], d[i + 1], d[i + 2]); return mn >= 200 && mx - mn <= 24; };
+    const seenG = new Uint8Array(N), R = 3;
+    for (let s0 = 0; s0 < N; s0++) {
+      if (isBg[s0] || seenG[s0] || !lite(s0)) continue;
+      const reg = [s0]; seenG[s0] = 1;
+      for (let h = 0; h < reg.length; h++) {
+        const p = reg[h], x = p % W;
+        for (const k of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, p >= W ? p - W : -1, p < N - W ? p + W : -1])
+          if (k >= 0 && !isBg[k] && !seenG[k] && lite(k)) { seenG[k] = 1; reg.push(k); }
+      }
+      let thick = false;
+      for (let h = 0; h < reg.length && !thick; h++) {
+        const p = reg[h], x = p % W, y = (p - x) / W;
+        if (x < R || y < R || x >= W - R || y >= H - R) continue;
+        let all = true;
+        for (let yy = y - R; yy <= y + R && all; yy++) for (let xx = x - R; xx <= x + R; xx++) { const k = yy * W + xx; if (isBg[k] || !lite(k)) { all = false; break; } }
+        if (all) thick = true;
+      }
+      if (!thick) continue;
+      for (const p of reg) isBg[p] = 1;
+      let ring = reg;
+      for (let k = 0; k < 1; k++) {   /* one pixel of light haze round it */
+        const next = [];
+        for (const p of ring) {
+          const x = p % W;
+          for (const n of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, p >= W ? p - W : -1, p < N - W ? p + W : -1]) {
+            if (n < 0 || isBg[n]) continue;
+            const i = n * 4, mx = Math.max(d[i], d[i + 1], d[i + 2]), mn = Math.min(d[i], d[i + 1], d[i + 2]);
+            if (mn >= 225 && mx - mn <= 20) { isBg[n] = 1; next.push(n); }
           }
         }
         ring = next;
@@ -170,7 +220,7 @@ function run() {
 
   if (OPT.cut === "cutout") {
     /* keep the largest blob only */
-    const lab = new Int32Array(N); let best = 0, bestN = 0, nextLab = 0, blobs = 0;
+    const lab = new Int32Array(N), sizes = [0]; let best = 0, bestN = 0, nextLab = 0, blobs = 0;
     for (let s = 0; s < N; s++) {
       if (isBg[s] || lab[s]) continue;
       nextLab++; blobs++; let n = 0; qh = 0; qt = 0; q[qt++] = s; lab[s] = nextLab;
@@ -179,12 +229,15 @@ function run() {
         const nb = [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, p >= W ? p - W : -1, p < N - W ? p + W : -1];
         for (const k of nb) if (k >= 0 && !isBg[k] && !lab[k]) { lab[k] = nextLab; q[qt++] = k; }
       }
+      sizes[nextLab] = n;
       if (n > bestN) { bestN = n; best = nextLab; }
     }
+    /* joined: every blob of at least 2 % of the largest stays (a gable top, a fin), not only the largest */
+    const keepLab = (l) => l === best || (OPT.joined && l > 0 && sizes[l] >= Math.max(50, bestN * 0.02));
     const gone = new Uint8Array(N);
     let x0 = W, y0 = H, x1 = -1, y1 = -1, edge = false;
     for (let p = 0; p < N; p++) {
-      if (lab[p] !== best) { gone[p] = 1; continue; }
+      if (!keepLab(lab[p])) { gone[p] = 1; continue; }
       const x = p % W, y = (p - x) / W;
       if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
       if (x === 0 || y === 0 || x === W - 1 || y === H - 1) edge = true;
@@ -298,7 +351,7 @@ function run() {
   const stats = { nearWhite: +(nw / n).toFixed(4), lumStd: +lumStd.toFixed(2), cool: +(cool / n).toFixed(4), mean,
     opaque: +(n / M).toFixed(3), halo: semi ? +(semiWhite / semi).toFixed(3) : 0, objFrac: +objFrac.toFixed(3) };
   const cutout = OPT.cut === "cutout";
-  const warnOr = (list, msg) => (OPT.glass ? warnings : list).push(OPT.glass ? "glass: " + msg : msg);
+  const warnOr = (list, msg) => (OPT.glass || OPT.joined ? warnings : list).push(OPT.glass ? "glass: " + msg : OPT.joined ? "joined: " + msg : msg);
   const nwMax = cutout ? OPT.limits.nearWhiteCutout : OPT.limits.nearWhite;
   if (stats.nearWhite > nwMax) warnOr(reasons, "near-white " + (stats.nearWhite * 100).toFixed(1) + "% (over " + (nwMax * 100) + "%): " + (cutout ? "a white object, or background left inside it" : "background, glare or frosting left in the skin"));
   else if (cutout && stats.nearWhite > 0.04) warnings.push("near-white " + (stats.nearWhite * 100).toFixed(1) + "% (a strong highlight?)");
@@ -344,12 +397,12 @@ export function stripIcc(buf) {
 }
 
 /* raw bytes -> { ok, reasons, warnings, webp (Buffer), uri, w, h, q, bytes, uriBytes, crop, stats, ... } */
-export async function makeSkin(raw, mime, { kind, px, inset, maxKB, look, tool = false, glass = false, label = "skin" }) {
+export async function makeSkin(raw, mime, { kind, px, inset, maxKB, look, tool = false, glass = false, joined = false, label = "skin" }) {
   const tmp = fromRoot(".build");
   fs.mkdirSync(tmp, { recursive: true });
   const page = path.join(tmp, `skin-${process.pid}-${Math.random().toString(36).slice(2, 8)}.html`);
   const budget = skinBudget(kind, maxKB, look);
-  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS, tool: !!tool || !!glass, glass: !!glass, photo: look === "photo" && kind !== "figure" && !glass };
+  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS, tool: !!tool || !!glass, glass: !!glass, joined: !!joined, photo: look === "photo" && kind !== "figure" && !glass };
   fs.writeFileSync(page, `<!doctype html><meta charset="utf-8"><body><pre id="out">pending</pre>`
     + `<script id="raw">window.__RAW = "data:${mime || "image/png"};base64,${raw.toString("base64")}"; window.__OPT = ${JSON.stringify(opt)};</script>`
     + `<script>${PAGE}</script></body>`);

@@ -19,7 +19,9 @@
     "M1.S2.T5.C25"
   ],
   "languages": [
-    "en"
+    "en",
+    "hi",
+    "gu"
   ],
   "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
   "stage": {
@@ -275,7 +277,7 @@
         "traceback": "The opened bags light one by one, counted in kilograms, then the small bag of grams; the total is left for the child.",
         "ladder": [
           "How many grams did each opened bag show?",
-          "Change the 4 kg into grams first, then add the small bag.",
+          "Change 4 kg into grams first, then add the small bag.",
           "The 2 kg is two thousands; the small bag adds just 90 g.",
           "Each opened bag is 1,000 g.",
           "Thousands first, then any grams left over."
@@ -285,12 +287,12 @@
         "n": 2,
         "screen": "a heap of gram marks on the scale, the Gather button lit, and empty kilogram bags waiting beside it",
         "win": "the gram marks gather into whole kilogram bags and the Answer tag names the kilograms in green",
-        "traceback": "The full bags light one by one with a count in grams that stops one bag short; the rice left is ringed with no number.",
+        "traceback": "The heap comes back whole and the 1 kg bags refill one by one, stopping one bag short: no count, no total, no Left ring.",
         "ladder": [
-          "Each full bag holds 1,000 g; count the full bags.",
-          "Count the full bags first, then work out the rice left over.",
-          "Only a pinch is left after the full bags; how many grams is it?",
-          "Each full bag is one kilogram.",
+          "Each bag holds 1,000 g: how many bags would the whole heap fill?",
+          "How many 1,000 g bags can 3,450 g fill, and what is left over?",
+          "Count the thousands in 5,007 g for the bags, then what is left over.",
+          "Every full bag is 1 kg.",
           "The rice outside the bags stays as grams."
         ]
       },
@@ -300,9 +302,9 @@
         "win": "the kilograms pour out their thousands, the grams land in the amber tag, and the Answer tag names the total in green",
         "traceback": "The grams column lights first, the carry or the borrow shows again, then the kilograms column lights; the answer row stays empty.",
         "ladder": [
-          "Add the grams first: what is left after the 1,000 g you carried?",
+          "Start with the grams column: 750 g and 600 g.",
           "Take away the grams first, from the new grams on top.",
-          "600 g and 400 g make exactly 1,000 g; what grams are left?",
+          "Add the grams first: what do 600 g and 400 g make?",
           "Work the grams column before the kilograms column.",
           "1,000 g is the same as 1 kg."
         ]
@@ -313,9 +315,9 @@
         "win": "the carry rises above the kilograms column or the borrowed kilogram breaks into a thousand grams, and the Answer tag names the weight in green",
         "traceback": "The grams column lights first, a carry or a borrow is drawn, then the kilograms column lights; the answer row stays empty.",
         "ladder": [
-          "Add the grams column first, then the kilograms column.",
-          "Add the three grams first, then the three kilograms.",
-          "Take away the grams column first.",
+          "Put kg under kg and g under g, then add each column.",
+          "Which column could spill over into the next one?",
+          "Start with the grams column: 50 g on top, 600 g below.",
           "Kilograms go under kilograms, grams under grams.",
           "Work the grams column before the kilograms."
         ]
@@ -389,7 +391,8 @@
           "Count 1,000 g for every bag on the scale.",
           "Add 1,000 g for the first bag and 1,000 g for the second."
         ],
-        "win": "Yes, 2 kg is 2,000 g: each kilogram is 1,000 g."
+        "win": "Yes, 2 kg is 2,000 g: each kilogram is 1,000 g.",
+        "winMs": 4200
       },
       {
         "phase": 1,
@@ -404,7 +407,8 @@
           "Four opened bags make four thousands of grams.",
           "Put the 700 g of the small bag on top of the thousands."
         ],
-        "win": "Yes, 4 kg 700 g is 4,700 g."
+        "win": "Yes, 4 kg 700 g is 4,700 g.",
+        "winMs": 4200
       },
       {
         "phase": 1,
@@ -419,7 +423,8 @@
           "Write the grams in three places: 90 g has no hundreds.",
           "Keep a 0 in the hundreds place after the thousands."
         ],
-        "win": "Yes, 2 kg 90 g is 2,090 g, with the 0 kept."
+        "win": "Yes, 2 kg 90 g is 2,090 g, with the 0 kept.",
+        "winMs": 4200
       },
       {
         "phase": 2,
@@ -429,12 +434,10 @@
         "grams": 4000,
         "parts": [
           {
-            "label": "kilograms",
-            "unit": "kg"
+            "label": "kilograms"
           },
           {
-            "label": "grams",
-            "unit": "g"
+            "label": "grams"
           }
         ],
         "answer": [
@@ -446,10 +449,11 @@
           0
         ],
         "ladder": [
-          "How many thousands are there in 4,000?",
-          "Look inside the amber ring: is any rice left over?"
+          "How many thousands are there in 4,000 g?",
+          "After the last full bag, is any rice left over?"
         ],
-        "win": "Yes, 4,000 g is 4 kg 0 g, nothing left."
+        "win": "Yes, 4,000 g is 4 kg 0 g, nothing left.",
+        "winMs": 4200
       },
       {
         "phase": 2,
@@ -459,12 +463,10 @@
         "grams": 3450,
         "parts": [
           {
-            "label": "kilograms",
-            "unit": "kg"
+            "label": "kilograms"
           },
           {
-            "label": "grams",
-            "unit": "g"
+            "label": "grams"
           }
         ],
         "answer": [
@@ -477,9 +479,10 @@
         ],
         "ladder": [
           "The thousands digit tells how many bags are full.",
-          "The three digits after the comma are the grams that stay."
+          "The three digits after the comma are the grams left."
         ],
-        "win": "Yes, 3,450 g is 3 kg 450 g."
+        "win": "Yes, it is 3 kg 450 g.",
+        "winMs": 4200
       },
       {
         "phase": 2,
@@ -489,12 +492,10 @@
         "grams": 5007,
         "parts": [
           {
-            "label": "kilograms",
-            "unit": "kg"
+            "label": "kilograms"
           },
           {
-            "label": "grams",
-            "unit": "g"
+            "label": "grams"
           }
         ],
         "answer": [
@@ -509,7 +510,8 @@
           "After the comma come 0, 0 and then one more digit.",
           "Zeros in front add nothing to a number of grams."
         ],
-        "win": "Yes, 5,007 g is 5 kg 7 g."
+        "win": "Yes, 5,007 g is 5 kg 7 g.",
+        "winMs": 4200
       },
       {
         "phase": 3,
@@ -530,12 +532,10 @@
         "act": "carry",
         "parts": [
           {
-            "label": "kilograms",
-            "unit": "kg"
+            "label": "kilograms"
           },
           {
-            "label": "grams",
-            "unit": "g"
+            "label": "grams"
           }
         ],
         "answer": [
@@ -547,10 +547,11 @@
           1350
         ],
         "ladder": [
-          "The carried 1 kg joins the kilograms column too.",
-          "750 g and 600 g make 1,000 g and some more grams."
+          "750 g and 600 g make 1,000 g and some more grams.",
+          "After the 1 kg is carried, how many grams are left over?"
         ],
-        "win": "Yes, 5 kg 350 g, with 1 kg carried."
+        "win": "Yes, 5 kg 350 g: a kilogram was carried.",
+        "winMs": 4200
       },
       {
         "phase": 3,
@@ -571,12 +572,10 @@
         "act": "borrow",
         "parts": [
           {
-            "label": "kilograms",
-            "unit": "kg"
+            "label": "kilograms"
           },
           {
-            "label": "grams",
-            "unit": "g"
+            "label": "grams"
           }
         ],
         "answer": [
@@ -589,9 +588,10 @@
         ],
         "ladder": [
           "After borrowing, the top kilograms are one fewer.",
-          "Take 380 g from 1,140 g, then 2 kg from the kilograms on top."
+          "Take 380 g from 1,140 g, then 2 kg from the top kilograms."
         ],
-        "win": "Yes, 2 kg 760 g of flour is left."
+        "win": "Yes, 2 kg 760 g of flour is left.",
+        "winMs": 4200
       },
       {
         "phase": 3,
@@ -612,12 +612,10 @@
         "act": "carry",
         "parts": [
           {
-            "label": "kilograms",
-            "unit": "kg"
+            "label": "kilograms"
           },
           {
-            "label": "grams",
-            "unit": "g"
+            "label": "grams"
           }
         ],
         "answer": [
@@ -629,10 +627,11 @@
           1000
         ],
         "ladder": [
-          "Add the carried 1 kg to the 2 kg and the 1 kg.",
-          "All the grams became 1 kg, so the grams column holds nothing."
+          "Count the kilograms too: 2 kg, 1 kg and the carried 1 kg.",
+          "The carry took exactly 1,000 g: what stays in the grams column?"
         ],
-        "win": "Yes, 4 kg 0 g: all the grams became 1 kg."
+        "win": "Yes, 4 kg 0 g: all the grams became 1 kg.",
+        "winMs": 4200
       },
       {
         "phase": 4,
@@ -642,12 +641,10 @@
         "op": "+",
         "parts": [
           {
-            "label": "kilograms",
-            "unit": "kg"
+            "label": "kilograms"
           },
           {
-            "label": "grams",
-            "unit": "g"
+            "label": "grams"
           }
         ],
         "answer": [
@@ -677,7 +674,8 @@
           "Do 650 g and 140 g reach 1,000 g?",
           "Add each column on its own: no carry is needed."
         ],
-        "win": "Yes, the fruit weighs 3 kg 790 g together."
+        "win": "Yes, together they weigh 3 kg 790 g.",
+        "winMs": 4200
       },
       {
         "phase": 4,
@@ -687,12 +685,10 @@
         "op": "+",
         "parts": [
           {
-            "label": "kilograms",
-            "unit": "kg"
+            "label": "kilograms"
           },
           {
-            "label": "grams",
-            "unit": "g"
+            "label": "grams"
           }
         ],
         "answer": [
@@ -725,10 +721,11 @@
           }
         ],
         "ladder": [
-          "Is the grams total 1,000 g or more?",
-          "Each 1,000 g in the grams total makes one more kilogram."
+          "Add the grams of all three items: 1,000 g or more?",
+          "Every 1,000 g of the grams total is one more kilogram."
         ],
-        "win": "Yes, the total is 6 kg 100 g."
+        "win": "Yes, it is 6 kg 100 g.",
+        "winMs": 4200
       },
       {
         "phase": 4,
@@ -738,12 +735,10 @@
         "op": "−",
         "parts": [
           {
-            "label": "kilograms",
-            "unit": "kg"
+            "label": "kilograms"
           },
           {
-            "label": "grams",
-            "unit": "g"
+            "label": "grams"
           }
         ],
         "answer": [
@@ -772,7 +767,8 @@
           "Can 600 g come out of 50 g, or must you borrow?",
           "Borrow 1 kg as 1,000 g for the grams on top."
         ],
-        "win": "Yes, 2 kg 450 g is left in the bag."
+        "win": "Yes, 2 kg 450 g is left in the bag.",
+        "winMs": 4200
       }
     ]
   },
@@ -780,7 +776,7 @@
     "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
     "tracebacks": [
       "Phase 1: The opened bags light one by one, counted in kilograms, then the small bag of grams; the total is left for the child.",
-      "Phase 2: The full bags light one by one with a count in grams that stops one bag short; the rice left is ringed with no number.",
+      "Phase 2: The heap comes back whole and the 1 kg bags refill one by one, stopping one bag short: no count, no total, no Left ring.",
       "Phase 3: The grams column lights first, the carry or the borrow shows again, then the kilograms column lights; the answer row stays empty.",
       "Phase 4: The grams column lights first, a carry or a borrow is drawn, then the kilograms column lights; the answer row stays empty."
     ]
@@ -848,7 +844,7 @@
             "kind": "kg",
             "planQuestion": "A parcel weighs 4 kg 700 g. How many grams is that?",
             "question": {
-              "en": "Now the rice weighs 4 kg 700 g; how many grams is that in all?"
+              "en": "How many grams in all is 4 kg 700 g of rice?"
             },
             "ask": {
               "en": "4 kg 700 g in grams?"
@@ -864,7 +860,7 @@
             "kind": "kg",
             "planQuestion": "A bag of oranges weighs 2 kg 90 g. How many grams is that?",
             "question": {
-              "en": "This rice weighs 2 kg 90 g: write it in grams."
+              "en": "This rice is 2 kg 90 g: write it in grams."
             },
             "ask": {
               "en": "2 kg 90 g in grams?"
@@ -947,7 +943,7 @@
             "kind": "col",
             "planQuestion": null,
             "question": {
-              "en": "What do 3 kg 750 g of rice and 1 kg 600 g of dal weigh together?"
+              "en": "How much do 3 kg 750 g of rice and 1 kg 600 g of dal weigh in all?"
             },
             "ask": {
               "en": "3 kg 750 g + 1 kg 600 g"
@@ -1300,19 +1296,19 @@
     }
   ],
   "build": {
-    "source": "9ea703fe:646502",
+    "source": "17163b90:699798",
     "runtime": "class3/runtime/frozen/r3/runtime.tsx",
     "runtimeVersion": "r3",
     "library": "@use-gesture/react@10.3.1",
-    "builtAt": "2026-10-28T13:43:32.692Z",
+    "builtAt": "2026-10-29T09:02:20.844Z",
     "checks": {
-      "pass": 96,
+      "pass": 97,
       "warn": 0,
       "fail": 0,
-      "info": 6,
-      "at": "2026-10-28T13:43:28.107Z"
+      "info": 5,
+      "at": "2026-10-29T09:02:20.481Z"
     },
-    "tsxBytes": 556745,
-    "tsxMd5": "47987afa51c88ee12f3f59d933ec58b5"
+    "tsxBytes": 623285,
+    "tsxMd5": "a4b514e4cacff90da349056bc95abb1c"
   }
 }

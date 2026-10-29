@@ -19,7 +19,9 @@
     "M1.S2.T4.C19"
   ],
   "languages": [
-    "en"
+    "en",
+    "hi",
+    "gu"
   ],
   "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
   "stage": {
@@ -272,13 +274,13 @@
         "n": 1,
         "screen": "a watermelon and a pen on a table, the balance level and empty, and the unit chooser showing grams and kilograms",
         "win": "the beam tilts, the chosen unit lights deep blue on the Given tag, and the Unit fact ring shows a kilogram as a thousand grams",
-        "traceback": "the thing on the pan and the 1 kg weight are ringed and the tag under the thing says over 1 kg or under 1 kg; the unit is left for the child",
+        "traceback": "the thing on the pan and the 1 kg weight are ringed and a one-line tag under the thing names it (no verdict); the beam shows the rest and the unit is left for the child",
         "ladder": [
           "Look at the beam: which side did the watermelon pull down?",
           "Did the pencil lift the 1 kg weight, or did the 1 kg side go down?",
-          "Put each one on the pan and see if it beats the 1 kg weight.",
-          "Compare the thing with the 1 kg weight on the other pan.",
-          "Light things let the 1 kg side go down."
+          "Put each one on the pan and see if it is heavier than the 1 kg weight.",
+          "Weigh the thing against the iron weight.",
+          "See which pan goes down."
         ]
       },
       {
@@ -288,10 +290,10 @@
         "traceback": "each weight on the pan is ringed in turn and an Add tag lists them; the total is left for the child",
         "ladder": [
           "Add every weight on the pan, not only the biggest one.",
-          "Count the grams of each weight on the pan, then add.",
+          "The mango needs a small weight besides the 200 g one.",
           "Type only the weight you added, not the ones already on the pan.",
           "Look at the needle at the top of the post.",
-          "Both pans hold the same weight when the needle stands straight."
+          "A straight needle means the beam is level."
         ]
       },
       {
@@ -300,9 +302,9 @@
         "win": "two packets level against the half kilogram weight, the Quarter bar shows two of four quarters in deep blue, and the word about appears beside a loaf",
         "traceback": "the four places of the tray and the packets on the pan are ringed, or the weights on the pan in turn, or one loaf is weighed alone; the answer is left for the child",
         "ladder": [
-          "Four packets make 1 kg: what part of the four is on the pan?",
+          "Four packets make 1 kg: what part of them is on the pan?",
           "Add the grams of the weights that made the beam level.",
-          "Watch the beam as each loaf goes on: when is it nearly level?",
+          "Watch the beam as each loaf goes on: when is it nearly level now?",
           "Look at the tray of four equal packets.",
           "The four packets together balance the 1 kg weight."
         ]
@@ -311,13 +313,13 @@
         "n": 4,
         "screen": "a table of twelve real things, the one kilogram bag of salt on the right pan as a guide, and two bins",
         "win": "the thing lands in its bin, the beam rests tilted the right way, and the counter reads how many things have been sorted",
-        "traceback": "the child's own pick is weighed against 1 kg (or the two pans are compared with a level line), and each thing's side is tagged over or under 1 kg; the choice or the count is left for the child",
+        "traceback": "the child's own pick is weighed against 1 kg (or the two pans are compared with a level line), and each thing weighed is named on a one-line tag (no verdict); the choice or the count is left for the child",
         "ladder": [
-          "Weigh both things, one after the other, against the 1 kg weight.",
-          "Look at the two pans: which one is lower?",
-          "Weigh all three, then count the ones that pull their pan down.",
-          "Let the beam decide, not the size of the thing.",
-          "The heavier side always goes down."
+          "Weigh both things against the 1 kg weight.",
+          "Put the pillow and the brick on the two pans, then watch the beam.",
+          "Watch each thing being weighed again against the 1 kg weight.",
+          "Put the thing on a pan and watch the needle.",
+          "The heavier pan goes down."
         ]
       }
     ]
@@ -344,14 +346,14 @@
       1000,
       2000
     ],
-    "tilt": "the beam turns by the difference of the grams on its pans (left minus right): 0 only when they are equal, growing like a log of the difference to a stop at 12 degrees",
+    "tilt": "the beam turns by the difference of the grams on its pans (left minus right): 0 only when they are equal, else 17 degrees times the square root of (difference / 5,000 g), so 750 g, 1 kg, 2 kg, 2.5 kg and 3 kg of difference each read at least 1 degree apart; the stop (17 degrees) is reached only past 5 kg",
     "balance": {
       "pivot": [
         322,
         104
       ],
-      "halfBeam": 196,
-      "cord": 220
+      "halfBeam": 180,
+      "cord": 208
     },
     "answerGate": {
       "1.1": "put the watermelon on the pan",
@@ -360,10 +362,10 @@
       "2.1": "make the beam level with weights",
       "2.2": "make the beam level with weights",
       "2.3": "add the weight that makes the beam level",
-      "3.1": "put two packets on the pan",
+      "3.1": "balance the 500 g weight with two packets",
       "3.2": "put one packet on the pan and make the beam level",
       "3.3": "put a loaf on the pan",
-      "4.1": "weigh one of the two things",
+      "4.1": "weigh both things, one after the other",
       "4.2": "put the pillow and the brick on the two pans",
       "4.3": "weigh all three things",
       "rule": "locked only in user mode, after the child's first real touch, until the act is done; toolApi.check() performs the act, so AI mode is never gated"
@@ -397,10 +399,10 @@
         ],
         "ladder": [
           "The watermelon is heavier than the 1 kg weight on the other pan.",
-          "A thing heavier than 1 kg needs the bigger unit."
+          "A thing heavier than 1 kg is weighed in the bigger unit."
         ],
-        "win": "Yes, a watermelon is heavy, so we weigh it in kilograms.",
-        "winMs": 3900,
+        "win": "Yes, kilograms: the watermelon pulled its pan below the 1 kg weight.",
+        "winMs": 4800,
         "tag": "kilograms",
         "tagSide": "L"
       },
@@ -432,10 +434,10 @@
         ],
         "ladder": [
           "The 1 kg side went down, so the pencil is much lighter than 1 kg.",
-          "A thing much lighter than 1 kg needs the smaller unit."
+          "1 kg is 1,000 g, so a pencil weighs only a few of the small units."
         ],
-        "win": "Yes, a pencil is light, so its weight is in grams.",
-        "winMs": 3500,
+        "win": "Yes, grams: the pencil is far lighter than 1 kg.",
+        "winMs": 3400,
         "tag": "grams",
         "tagSide": "L"
       },
@@ -475,10 +477,10 @@
           "rice is weighed in kilograms"
         ],
         "ladder": [
-          "The thing that lifts the 1 kg weight up is the heavy one.",
-          "The mango lets the 1 kg side go down, so the mango is weighed in grams."
+          "The heavy thing is the one that pulls its pan down.",
+          "Weigh the mango, then the rice: which one lifts the 1 kg weight?"
         ],
-        "win": "Yes, the bag of rice is heavy, so it is weighed in kilograms, and the mango in grams.",
+        "win": "Yes, rice goes in kilograms and the mango in grams.",
         "tag": "bag of rice",
         "tagSide": "L"
       },
@@ -508,7 +510,7 @@
         },
         "parts": [
           {
-            "label": "weight",
+            "label": "",
             "unit": "kg"
           }
         ],
@@ -517,7 +519,7 @@
         ],
         "near": "2",
         "ladder": [
-          "Read the label on each weight on the pan, then add them.",
+          "Two weights balance the watermelon: read both labels.",
           "Start at 2 kg and count on the other weight."
         ],
         "win": "The balance is level, and 2 kg and 1 kg make 3 kg.",
@@ -552,7 +554,7 @@
         },
         "parts": [
           {
-            "label": "weight",
+            "label": "",
             "unit": "g"
           }
         ],
@@ -561,7 +563,7 @@
         ],
         "near": "200",
         "ladder": [
-          "The beam is level, so the mango weighs the same as those weights together.",
+          "The beam is level, so the mango weighs as much as both weights together.",
           "Add 200 g and 100 g."
         ],
         "win": "Level again: 200 g and 100 g make 300 g.",
@@ -609,10 +611,10 @@
         "near": "900",
         "given": "1 kg",
         "ladder": [
-          "1 kg is 1000 g, and the pan had 500 g, 200 g and 200 g before.",
-          "How many grams take 900 g up to 1000 g?"
+          "1 kg is 1,000 g, and before, the pan had 500 g, 200 g and 200 g.",
+          "How many grams take 900 g up to 1,000 g?"
         ],
-        "win": "Yes, 900 g and 100 g make 1000 g, the same as 1 kg.",
+        "win": "Yes, 900 g and 100 g make 1,000 g, the same as 1 kg.",
         "tag": "100 g",
         "tagSide": "R"
       },
@@ -628,7 +630,7 @@
           "rack": [],
           "L": [],
           "R": [
-            "w1000"
+            "w500"
           ]
         },
         "gate": "two",
@@ -645,10 +647,10 @@
         ],
         "ladder": [
           "Count the empty places in the tray: how many of the four are gone?",
-          "Two packets are two of the four equal parts of 1 kg."
+          "The 500 g weight balances them, and 1 kg is 1,000 g."
         ],
-        "win": "Two equal quarter-kilogram portions make half a kilogram.",
-        "winMs": 4000,
+        "win": "Yes, two packets make half a kilogram, and half a kilogram is 500 g.",
+        "winMs": 4800,
         "tag": "half a kg",
         "tagSide": "L"
       },
@@ -664,8 +666,7 @@
           "rack": [
             200,
             100,
-            50,
-            10
+            50
           ],
           "L": [],
           "R": []
@@ -682,7 +683,7 @@
         },
         "parts": [
           {
-            "label": "weight",
+            "label": "",
             "unit": "g"
           }
         ],
@@ -691,11 +692,11 @@
         ],
         "near": "200",
         "ladder": [
-          "Read the bigger weight first, then add the smaller one to it.",
+          "Read the bigger weight first, then add on the smaller one.",
           "Count on from 200 g by the grams of the small weight."
         ],
-        "win": "Yes, one packet weighs 250 g, a quarter of a kilogram.",
-        "winMs": 3800,
+        "win": "Yes, 200 g and 50 g make 250 g for one packet.",
+        "winMs": 3300,
         "tag": "250 g",
         "tagSide": "L"
       },
@@ -725,7 +726,7 @@
         },
         "parts": [
           {
-            "label": "how many",
+            "label": "",
             "unit": "loaves"
           }
         ],
@@ -734,10 +735,10 @@
         ],
         "near": "1",
         "ladder": [
-          "With one loaf the 1 kg side stays down, so try another loaf.",
+          "One loaf leaves the 1 kg side down, so try another loaf.",
           "Each loaf weighs about half a kilogram: how many halves make 1 kg?"
         ],
-        "win": "Yes, about 2 loaves weigh 1 kg, as each is about half a kilogram.",
+        "win": "Yes, about 2 loaves weigh 1 kg.",
         "tag": "2 loaves",
         "tagSide": "L"
       },
@@ -757,13 +758,14 @@
             "w1000"
           ]
         },
-        "gate": "any",
+        "gate": "all",
         "sol": {
           "L": [
             "backpack"
           ],
           "seen": [
-            "backpack"
+            "backpack",
+            "pencil"
           ]
         },
         "answer": "backpack",
@@ -776,11 +778,11 @@
           "school bag weighs more"
         ],
         "ladder": [
-          "Which thing made its pan go down below the 1 kg side?",
-          "The 1 kg weight goes up when the thing against it is heavier than 1 kg."
+          "Which thing sinks lower than the 1 kg weight?",
+          "When the 1 kg weight rises, the other pan holds the heavier thing."
         ],
-        "win": "Yes, the school bag pulls the beam down, so it is more than 1 kg.",
-        "winMs": 4500,
+        "win": "Yes, the school bag is heavier than 1 kg.",
+        "winMs": 2900,
         "tag": "school bag",
         "tagSide": "L"
       },
@@ -818,8 +820,8 @@
           "brick is heavier"
         ],
         "ladder": [
-          "The lower pan holds the heavier thing, whatever its size.",
-          "A small thing can be heavier than a big thing, so trust the beam."
+          "Which side does the beam lean to?",
+          "See which pan is lower."
         ],
         "win": "Yes, the small brick is heavier than the big pillow.",
         "winMs": 3600,
@@ -856,7 +858,7 @@
         },
         "parts": [
           {
-            "label": "how many",
+            "label": "",
             "unit": "things"
           }
         ],
@@ -865,11 +867,11 @@
         ],
         "near": "3",
         "ladder": [
-          "Count only the things that lift the 1 kg weight up.",
-          "Weigh the pillow again: does it lift the 1 kg weight?"
+          "Count only the things that pull their own pan down.",
+          "Put the pillow back on: does the 1 kg side go up or down?"
         ],
-        "win": "Yes, the school bag and the watermelon are more than 1 kg, but the big pillow is not.",
-        "tag": "2 things",
+        "win": "Yes, the school bag and the watermelon are more than 1 kg.",
+        "tag": "2 over 1 kg",
         "tagSide": "L"
       }
     ]
@@ -877,10 +879,10 @@
   "onWrong": {
     "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
     "tracebacks": [
-      "Phase 1: the thing on the pan and the 1 kg weight are ringed and the tag under the thing says over 1 kg or under 1 kg; the unit is left for the child",
+      "Phase 1: the thing on the pan and the 1 kg weight are ringed and a one-line tag under the thing names it (no verdict); the beam shows the rest and the unit is left for the child",
       "Phase 2: each weight on the pan is ringed in turn and an Add tag lists them; the total is left for the child",
       "Phase 3: the four places of the tray and the packets on the pan are ringed, or the weights on the pan in turn, or one loaf is weighed alone; the answer is left for the child",
-      "Phase 4: the child's own pick is weighed against 1 kg (or the two pans are compared with a level line), and each thing's side is tagged over or under 1 kg; the choice or the count is left for the child"
+      "Phase 4: the child's own pick is weighed against 1 kg (or the two pans are compared with a level line), and each thing weighed is named on a one-line tag (no verdict); the choice or the count is left for the child"
     ]
   },
   "voice": {
@@ -1013,7 +1015,7 @@
             "kind": "weigh",
             "planQuestion": null,
             "question": {
-              "en": "Balance the mango with gram weights, then type its weight."
+              "en": "Balance the mango with gram weights and type its weight."
             },
             "ask": {
               "en": "Mango weighs?"
@@ -1054,7 +1056,7 @@
             "kind": "packets",
             "planQuestion": "Four equal apples weigh one kilogram in all. How much do two of the apples weigh?",
             "question": {
-              "en": "Put two of the four packets on the pan: how much do the two packets weigh?"
+              "en": "Balance the 500 g weight with two packets: how much do two packets weigh?"
             },
             "ask": {
               "en": "Two packets weigh?"
@@ -1395,19 +1397,19 @@
     }
   ],
   "build": {
-    "source": "a0bab71f:685944",
+    "source": "330f43f0:743211",
     "runtime": "class3/runtime/frozen/r3/runtime.tsx",
     "runtimeVersion": "r3",
     "library": "@use-gesture/react@10.3.1",
-    "builtAt": "2026-10-28T12:51:02.122Z",
+    "builtAt": "2026-10-29T09:17:21.495Z",
     "checks": {
-      "pass": 94,
+      "pass": 95,
       "warn": 0,
       "fail": 0,
-      "info": 5,
-      "at": "2026-10-28T12:51:01.848Z"
+      "info": 4,
+      "at": "2026-10-29T09:17:20.431Z"
     },
-    "tsxBytes": 593509,
-    "tsxMd5": "40133c0c9cccff43ce4cc6b0d2fe8197"
+    "tsxBytes": 663591,
+    "tsxMd5": "a6de0352b146b70a91f91015eb1a19d2"
   }
 }

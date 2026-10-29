@@ -4,7 +4,7 @@
  "phase": "build",
  "round": 1,
  "createdAt": "2026-10-28T11:35:52.683Z",
- "updatedAt": "2026-10-28T14:00:24.307Z",
+ "updatedAt": "2026-10-29T09:26:17.302Z",
  "agents": [
   {
    "id": "tool-builder-1.1",
@@ -22,7 +22,7 @@
    "round": 1,
    "escalation": null,
    "over": null,
-   "endedAt": "2026-10-28T13:12:15.670Z",
+   "endedAt": "2026-10-29T06:58:14.700Z",
    "escalate": null
   },
   {
@@ -41,7 +41,7 @@
    "round": 1,
    "escalation": null,
    "over": null,
-   "endedAt": "2026-10-28T13:00:22.929Z",
+   "endedAt": "2026-10-29T07:43:04.500Z",
    "escalate": null
   },
   {
@@ -60,7 +60,7 @@
    "round": 1,
    "escalation": null,
    "over": null,
-   "endedAt": "2026-10-28T13:01:12.613Z",
+   "endedAt": "2026-10-29T07:43:04.693Z",
    "escalate": null
   },
   {
@@ -131,11 +131,16 @@
    ],
    "mode": null,
    "startedAt": "2026-10-28T12:19:57.758Z",
-   "status": "running",
+   "status": "done",
    "build": 1,
    "round": 1,
    "escalation": "high-risk: computed wall calendar (date grid, weekday positions, leap years), fists, four-year strip, seven-day hop and week counting; hard maths",
-   "over": null
+   "over": null,
+   "endedAt": "2026-10-29T06:50:25.957Z",
+   "escalate": {
+    "trigger": "none.",
+    "why": "none."
+   }
   },
   {
    "id": "image-agent-1.4",
@@ -167,11 +172,13 @@
    ],
    "mode": null,
    "startedAt": "2026-10-28T12:57:20.860Z",
-   "status": "running",
+   "status": "done",
    "build": 1,
    "round": 1,
    "escalation": "high-risk: three typed boxes DD-MM-YYYY with leading zeros, a month ladder tapped into the month box, a word/number toggle",
-   "over": null
+   "over": null,
+   "endedAt": "2026-10-29T07:33:06.995Z",
+   "escalate": null
   },
   {
    "id": "image-agent-1.5",
@@ -248,6 +255,604 @@
    "over": null,
    "endedAt": "2026-10-28T13:31:59.984Z",
    "escalate": null
+  },
+  {
+   "id": "maths-reviewer-1.4",
+   "role": "maths-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-maths-reviewer",
+   "slots": [
+    "M1.S1.T3.C11.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-10-28T14:09:37.108Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-28T15:06:43.461Z",
+   "escalate": null
+  },
+  {
+   "id": "maths-reviewer-1.5",
+   "role": "maths-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-maths-reviewer",
+   "slots": [
+    "M1.S1.T2.C6.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-10-28T15:20:33.275Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-28T16:21:43.836Z",
+   "escalate": null
+  },
+  {
+   "id": "maths-reviewer-1.6",
+   "role": "maths-reviewer",
+   "tier": "escalated",
+   "model": "opus",
+   "file": "udgam3-maths-reviewer-escalated",
+   "slots": [
+    "M1.S2.T4.C17.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-10-28T15:21:17.551Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": "high-risk: re-look at changed arithmetic (a new carry item, new step-by-step working, a train story); the owner demands exact maths",
+   "over": "owner 2026-10-28: 2-3 more Opus agents allowed this session",
+   "endedAt": "2026-10-28T16:22:47.164Z",
+   "escalate": null
+  },
+  {
+   "id": "maths-reviewer-1.7",
+   "role": "maths-reviewer",
+   "tier": "escalated",
+   "model": "opus",
+   "file": "udgam3-maths-reviewer-escalated",
+   "slots": [
+    "M1.S2.T6.C28.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-10-28T15:24:27.639Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": "high-risk: computed calendars (weekdays, month lengths, leap years, days between dates); the owner demands exact maths",
+   "over": "owner 2026-10-28: 2-3 more Opus agents allowed this session",
+   "endedAt": "2026-10-28T16:34:01.707Z",
+   "escalate": {
+    "trigger": "question",
+    "why": "for the owner, weekday answers as 7 keys (now) or a tap on the weekday heading of the page (pad \"enter\")? Recommend keeping the keys: same maths, no giveaway, simpler."
+   }
+  },
+  {
+   "id": "visual-reviewer-1.1",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S1.T3.C11.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-28T16:55:42.441Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T08:10:33.105Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-1.2",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S1.T3.C11.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-28T16:55:42.871Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T08:08:00.395Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-1.3",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S1.T3.C11.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-28T16:55:43.252Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T08:08:16.559Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-1.1",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-play-tester",
+   "slots": [
+    "M1.S1.T3.C11.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-10-28T16:55:44.007Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T06:55:45.415Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-1.2",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-play-tester",
+   "slots": [
+    "M1.S1.T3.C11.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-10-28T16:55:44.348Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T06:45:10.039Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-1.4",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S1.T2.C6.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-28T17:12:31.230Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T07:10:11.106Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-1.5",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S1.T2.C6.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-28T17:12:35.298Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T07:11:42.783Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-1.6",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S1.T2.C6.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-28T17:12:38.063Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T07:11:43.558Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-1.3",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-play-tester",
+   "slots": [
+    "M1.S1.T2.C6.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-10-28T17:12:39.067Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T06:36:42.829Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-1.4",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-play-tester",
+   "slots": [
+    "M1.S1.T2.C6.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-10-28T17:12:40.433Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-28T20:48:57.194Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-1.7",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S2.T4.C17.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-28T17:27:54.999Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T08:09:18.348Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-1.8",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S2.T4.C17.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-28T17:27:56.129Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T08:11:59.843Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-1.9",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S2.T4.C17.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-28T17:27:57.356Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T08:04:48.811Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-1.5",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-play-tester",
+   "slots": [
+    "M1.S2.T4.C17.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-10-28T17:27:57.794Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T06:50:05.104Z",
+   "escalate": {
+    "trigger": "none.",
+    "why": "two fingers, held auto-repeat Enter (playkit single point), hi/gu, classroom, phase 3."
+   }
+  },
+  {
+   "id": "play-tester-1.6",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-play-tester",
+   "slots": [
+    "M1.S2.T4.C17.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-10-28T17:27:58.222Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T06:56:20.955Z",
+   "escalate": null
+  },
+  {
+   "id": "maths-reviewer-1.8",
+   "role": "maths-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-maths-reviewer",
+   "slots": [
+    "M1.S2.T5.C22.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-10-28T18:25:32.350Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T07:12:04.901Z",
+   "escalate": null
+  },
+  {
+   "id": "maths-reviewer-1.9",
+   "role": "maths-reviewer",
+   "tier": "escalated",
+   "model": "opus",
+   "file": "udgam3-maths-reviewer-escalated",
+   "slots": [
+    "M1.S2.T6.C28.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-10-28T20:12:07.528Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T06:53:14.956Z",
+   "escalate": {
+    "trigger": "none.",
+    "why": "none."
+   }
+  },
+  {
+   "id": "visual-reviewer-1.10",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S2.T6.C28.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-29T06:54:24.376Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T07:24:38.376Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-1.11",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S2.T6.C28.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-29T06:54:24.508Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T07:21:15.121Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-1.12",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S2.T6.C28.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-29T06:54:24.630Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T07:21:36.386Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-1.7",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-play-tester",
+   "slots": [
+    "M1.S2.T6.C28.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-10-29T06:54:24.771Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T08:12:23.756Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-1.8",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-play-tester",
+   "slots": [
+    "M1.S2.T6.C28.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-10-29T06:54:24.890Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T08:17:41.936Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-1.13",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S2.T5.C22.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-29T07:39:46.275Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T08:18:28.252Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-1.14",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S2.T5.C22.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-29T07:39:46.608Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T08:14:41.475Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-1.15",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-visual-reviewer",
+   "slots": [
+    "M1.S2.T5.C22.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-10-29T07:39:46.863Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T08:28:11.390Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-1.9",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-play-tester",
+   "slots": [
+    "M1.S2.T5.C22.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-10-29T07:39:47.827Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T08:45:11.985Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-1.10",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam3-play-tester",
+   "slots": [
+    "M1.S2.T5.C22.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-10-29T07:39:48.651Z",
+   "status": "fix",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-29T08:46:18.404Z",
+   "escalate": null
   }
  ],
  "slots": {
@@ -258,30 +863,45 @@
    "fixes": [],
    "risks": [],
    "reviews": {},
-   "retries": {},
+   "retries": {
+    "maths-reviewer": 1,
+    "visual-reviewer": 2,
+    "play-tester": 1
+   },
    "escalations": 0,
    "history": [
-    "image-agent-1.3 ok",
+    "play-tester-1.4 fix",
+    "play-tester-1.3 fix",
     "tool-builder-1.1 ok",
-    "maths-reviewer-1.3 fixes-needed"
+    "visual-reviewer-1.4 fix",
+    "visual-reviewer-1.5 fix",
+    "visual-reviewer-1.6 fix",
+    "play-tester-1.4 fix",
+    "play-tester-1.3 ok",
+    "tool-builder-1.1 ok",
+    "visual-reviewer-1.4 ok",
+    "visual-reviewer-1.5 ok",
+    "visual-reviewer-1.6 ok"
    ],
    "launches": {
     "tool-builder": 1,
     "image-agent": 1,
-    "maths-reviewer": 1
+    "maths-reviewer": 2,
+    "visual-reviewer": 3,
+    "play-tester": 2
    },
-   "quickChecks": 9,
+   "quickChecks": 19,
    "lastCheck": {
-    "render": false,
+    "render": true,
     "pass": true,
     "summary": {
-     "pass": 30,
+     "pass": 95,
      "warn": 0,
      "fail": 0
     },
-    "at": "2026-10-28T13:52:16.748Z"
+    "at": "2026-10-29T06:57:07.688Z"
    },
-   "fullChecks": 5
+   "fullChecks": 11
   },
   "M1.S1.T3.C11.2D1": {
    "stage": "new",
@@ -290,30 +910,45 @@
    "fixes": [],
    "risks": [],
    "reviews": {},
-   "retries": {},
+   "retries": {
+    "maths-reviewer": 1,
+    "visual-reviewer": 2,
+    "play-tester": 1
+   },
    "escalations": 0,
    "history": [
-    "image-agent-1.2 fixes-needed",
+    "visual-reviewer-1.1 fix",
+    "play-tester-1.1 fix",
+    "play-tester-1.2 fix",
     "tool-builder-1.2 ok",
-    "maths-reviewer-1.1 fixes-needed"
+    "visual-reviewer-1.1 ok",
+    "visual-reviewer-1.2 fix",
+    "play-tester-1.2 ok",
+    "play-tester-1.1 ok",
+    "tool-builder-1.2 ok",
+    "visual-reviewer-1.2 ok",
+    "visual-reviewer-1.3 ok",
+    "visual-reviewer-1.1 ok"
    ],
    "launches": {
     "tool-builder": 1,
     "image-agent": 1,
-    "maths-reviewer": 1
+    "maths-reviewer": 2,
+    "visual-reviewer": 3,
+    "play-tester": 2
    },
-   "quickChecks": 11,
+   "quickChecks": 23,
    "lastCheck": {
     "render": true,
-    "pass": false,
+    "pass": true,
     "summary": {
-     "pass": 95,
+     "pass": 97,
      "warn": 0,
-     "fail": 1
+     "fail": 0
     },
-    "at": "2026-10-28T13:44:54.326Z"
+    "at": "2026-10-29T07:39:08.751Z"
    },
-   "fullChecks": 4
+   "fullChecks": 9
   },
   "M1.S2.T4.C17.2D1": {
    "stage": "new",
@@ -322,30 +957,45 @@
    "fixes": [],
    "risks": [],
    "reviews": {},
-   "retries": {},
-   "escalations": 1,
+   "retries": {
+    "maths-reviewer": 1,
+    "visual-reviewer": 2,
+    "play-tester": 1
+   },
+   "escalations": 2,
    "history": [
-    "image-agent-1.1 ok",
+    "play-tester-1.5 fix",
+    "play-tester-1.6 fix",
     "tool-builder-1.3 ok",
-    "maths-reviewer-1.2 fixes-needed"
+    "visual-reviewer-1.7 fix",
+    "visual-reviewer-1.8 fix",
+    "visual-reviewer-1.9 fix",
+    "play-tester-1.5 fix",
+    "play-tester-1.6 fix",
+    "tool-builder-1.3 ok",
+    "visual-reviewer-1.9 ok",
+    "visual-reviewer-1.7 ok",
+    "visual-reviewer-1.8 ok"
    ],
    "launches": {
     "tool-builder": 1,
     "image-agent": 1,
-    "maths-reviewer": 1
+    "maths-reviewer": 2,
+    "visual-reviewer": 3,
+    "play-tester": 2
    },
-   "quickChecks": 10,
+   "quickChecks": 23,
    "lastCheck": {
     "render": true,
-    "pass": false,
+    "pass": true,
     "summary": {
-     "pass": 94,
-     "warn": 1,
+     "pass": 96,
+     "warn": 0,
      "fail": 0
     },
-    "at": "2026-10-28T14:00:24.247Z"
+    "at": "2026-10-29T07:37:58.744Z"
    },
-   "fullChecks": 5
+   "fullChecks": 11
   },
   "M1.S2.T6.C28.2D1": {
    "stage": "new",
@@ -354,28 +1004,45 @@
    "fixes": [],
    "risks": [],
    "reviews": {},
-   "retries": {},
-   "escalations": 1,
+   "retries": {
+    "maths-reviewer": 1,
+    "visual-reviewer": 2,
+    "play-tester": 1
+   },
+   "escalations": 2,
    "history": [
     "image-agent-1.4 ok",
-    "image-agent-1.4 ok"
+    "tool-builder-1.4 ok",
+    "maths-reviewer-1.7 fix",
+    "tool-builder-1.4 ok",
+    "maths-reviewer-1.9 fix",
+    "tool-builder-1.4 ok",
+    "maths-reviewer-1.9 fix",
+    "visual-reviewer-1.11 fix",
+    "visual-reviewer-1.12 fix",
+    "visual-reviewer-1.10 fix",
+    "play-tester-1.7 fix",
+    "play-tester-1.8 fix"
    ],
    "launches": {
     "tool-builder": 1,
-    "image-agent": 1
+    "image-agent": 1,
+    "maths-reviewer": 2,
+    "visual-reviewer": 3,
+    "play-tester": 2
    },
-   "quickChecks": 8,
+   "quickChecks": 32,
    "lastCheck": {
-    "render": false,
+    "render": true,
     "pass": true,
     "summary": {
-     "pass": 31,
+     "pass": 98,
      "warn": 0,
      "fail": 0
     },
-    "at": "2026-10-28T13:43:59.710Z"
+    "at": "2026-10-29T09:26:17.296Z"
    },
-   "fullChecks": 2
+   "fullChecks": 10
   },
   "M1.S2.T5.C22.2D1": {
    "stage": "new",
@@ -384,27 +1051,43 @@
    "fixes": [],
    "risks": [],
    "reviews": {},
-   "retries": {},
+   "retries": {
+    "visual-reviewer": 2,
+    "play-tester": 1
+   },
    "escalations": 1,
    "history": [
-    "image-agent-1.5 ok"
+    "image-agent-1.5 ok",
+    "tool-builder-1.5 ok",
+    "maths-reviewer-1.8 fix",
+    "tool-builder-1.5 ok",
+    "maths-reviewer-1.8 fix",
+    "tool-builder-1.5 ok",
+    "visual-reviewer-1.14 fix",
+    "visual-reviewer-1.13 fix",
+    "visual-reviewer-1.15 fix",
+    "play-tester-1.9 fix",
+    "play-tester-1.10 fix"
    ],
    "launches": {
     "tool-builder": 1,
-    "image-agent": 1
+    "image-agent": 1,
+    "maths-reviewer": 1,
+    "visual-reviewer": 3,
+    "play-tester": 2
    },
-   "quickChecks": 3,
+   "quickChecks": 26,
    "lastCheck": {
-    "render": true,
-    "pass": false,
+    "render": false,
+    "pass": true,
     "summary": {
-     "pass": 85,
+     "pass": 30,
      "warn": 0,
-     "fail": 8
+     "fail": 0
     },
-    "at": "2026-10-28T13:53:45.103Z"
+    "at": "2026-10-29T09:24:33.915Z"
    },
-   "fullChecks": 1
+   "fullChecks": 12
   }
  },
  "freezes": [],
@@ -413,14 +1096,16 @@
  "questions": [],
  "gaps": [],
  "counters": {
-  "fullChecks": 17,
-  "quickChecks": 41,
+  "fullChecks": 53,
+  "quickChecks": 123,
   "cachedChecks": 0,
   "packs": 0,
   "escalations": 0
  },
- "session": {},
+ "session": {
+  "handoffAt": "2026-10-29T06:28:24.918Z"
+ },
  "class": 3,
  "chapter": "indiannica_eng_maths3_ch10",
- "planAt": "2026-10-28T11:35:52.679Z"
+ "planAt": "2026-10-28T16:51:40.869Z"
 }

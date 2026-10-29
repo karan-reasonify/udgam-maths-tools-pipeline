@@ -37,28 +37,49 @@ const tcMin = (x: number) => TC_WS + (x - TC_X0) / TC_PX;
 const tcSnap = (m: number) => Math.round(m / 15) * 15;
 const tcClamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
 /* the strip's rows (working-area units, laid out for the 900-wide open room) */
-const TC_B = { mini: 2, miniH: 36, endLab: 88, startLab: 126, lenY: 166, barY: 176, barH: 56, tY: 238, tH: 76, labY: 360, outY: 414, keyY: 440 };
+const TC_B = { mini: 2, miniH: 36, lab: 86, lenY: 132, barY: 142, barH: 52, tY: 202, tH: 70, labY: 310, linesY: 350, linesPitch: 39, outY: 400, keyY: 440 };
 /* the tile rows: hours (12 five-minute tiles a row) and days (24 hour tiles a row) */
 const TC_G1 = { x0: 332, pitch: 42, w: 38, h: 56, y0: 56, py: 74, bx: 306 };
-const TC_G2 = { x0: 74, pitch: 31, w: 28, h: 36, y0: 266, py: 44, bx: 40 };
+const TC_G2 = { x0: 74, pitch: 31, w: 28, h: 28, y0: 330, py: 36, bx: 40 };
 const TC_CLK = { cx: 150, cy: 178, r: 130 };
-const TC_WHL = { cx: 150, cy: 128, r: 86 };
+const TC_WHL = { cx: 150, cy: 164, r: 110 };
 const TC_MODE = { hours: "Hours", days: "Days", bar: "Bar" };
 
 /* THE START PAGE (runtime r28; docs/LAYOUT.md §1c): the object the lesson is about, in a 1200 x 340 box */
 const START_HOOK = "How long is an hour? How long is a day?";
 function StartArt({ box, C, lang, tx }: any) {
   const row: any[] = [];
-  for (let j = 0; j < 12; j++) row.push(<rect key={"a" + j} x={400 + j * 63} y={30} width={58} height={64} rx={8} fill={j < 6 ? TC_MIN : tint(C.panel, 0.55)} stroke={C.ink} strokeWidth={3} />);
+  for (let j = 0; j < 12; j++) row.push(<rect key={"a" + j} x={400 + j * 63} y={30} width={58} height={64} rx={8} fill={j < 6 ? "url(#tc-grad-min)" : tint(C.panel, 0.55)} stroke={C.ink} strokeWidth={3} filter="url(#tc-shadow)" />);
   const strip: any[] = [];
-  for (let j = 0; j < 24; j++) strip.push(<rect key={"b" + j} x={400 + j * 31.5} y={140} width={30} height={56} rx={3} fill={j < 12 ? TC_AM : TC_PM} stroke={C.ink} strokeWidth={2} />);
+  for (let j = 0; j < 24; j++) strip.push(<rect key={"b" + j} x={400 + j * 31.5} y={140} width={30} height={56} rx={4} fill={j < 12 ? "url(#tc-grad-am)" : "url(#tc-grad-pm)"} stroke={C.ink} strokeWidth={2} />);
   return (
     <g>
+      <defs>
+        <filter id="tc-shadow-start" x="-10%" y="-10%" width="120%" height="120%">
+          <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#000000" floodOpacity="0.18" />
+        </filter>
+        <linearGradient id="tc-grad-min" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#3169C6" />
+          <stop offset="100%" stopColor="#183D7C" />
+        </linearGradient>
+        <linearGradient id="tc-grad-am" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#7CD0F7" />
+          <stop offset="100%" stopColor="#419ECE" />
+        </linearGradient>
+        <linearGradient id="tc-grad-pm" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#F8BC58" />
+          <stop offset="100%" stopColor="#D98A1B" />
+        </linearGradient>
+        <linearGradient id="tc-grad-go" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#3BD87C" />
+          <stop offset="100%" stopColor="#22884B" />
+        </linearGradient>
+      </defs>
       {tcClockFace({ cx: 170, cy: 170, r: 150, A: 180, C })}
       {row}
       {strip}
-      <rect x={400 + 9 * 31.5} y={112} width={5 * 31.5} height={22} rx={6} fill={TC_GO} stroke={C.ink} strokeWidth={3} />
-      <circle cx={1082} cy={270} r={42} fill="#E8C86A" stroke={C.ink} strokeWidth={4} />
+      <rect x={400 + 9 * 31.5} y={112} width={5 * 31.5} height={22} rx={6} fill="url(#tc-grad-go)" stroke={C.ink} strokeWidth={3} filter="url(#tc-shadow-start)" />
+      <circle cx={1082} cy={270} r={42} fill="#E8C86A" stroke={C.ink} strokeWidth={4} filter="url(#tc-shadow-start)" />
       <circle cx={1082} cy={270} r={32} fill="#FFF9EC" stroke={C.ink} strokeWidth={3} />
       <Skin name="stopwatch" x={1040} y={220} w={84} h={100} />
       <rect x={1070} y={206} width={24} height={12} rx={3} fill={TC_HOUR} stroke={C.ink} strokeWidth={2} />
@@ -68,7 +89,208 @@ function StartArt({ box, C, lang, tx }: any) {
 
 /* Hindi and Gujarati (docs/PATTERNS.md §11): every line stays English, exactly as the checks read it; this table is keyed by that
    English, byte for byte, and is filled AFTER the English is final and reviewed (the language pass). Empty = English only. */
-const TR: any = { hi: {}, gu: {} };
+const TR: any = {
+  hi: {
+    "Time Converter": "समय बदलो",
+    "Free play: type hours or days, turn the dial and slide the bar.": "मुक्त खेल: घंटे या दिन लिखो, सुई घुमाओ और पट्टी खिसकाओ।",
+    "How long is an hour? How long is a day?": "एक घंटा कितना लंबा होता है? एक दिन कितना लंबा?",
+    "Sixty minutes make an hour": "साठ मिनट का एक घंटा होता है",
+    "Turn the blue minute hand once all the way round the clock.": "नीली मिनट वाली सुई को घड़ी में एक पूरा चक्कर घुमाओ।",
+    "Turn it round once more, and watch the hour hand creep.": "इसे एक चक्कर और घुमाओ और घंटे की सुई को खिसकते देखो।",
+    "The minute hand turns round once for every hour.": "हर घंटे में मिनट की सुई एक चक्कर घूमती है।",
+    "Change each hour into minutes first, then add what is left over.": "पहले हर घंटे को मिनट में बदलो, फिर बचे हुए मिनट जोड़ो।",
+    "One hour is sixty minutes, so hours change into minutes by multiplying by sixty.": "एक घंटा 60 मिनट का होता है, इसलिए घंटों को 60 से गुणा करते हैं।",
+    "You learned: 1 hour is 60 minutes, so hours times 60 make minutes.": "तुमने सीखा: 1 घंटा = 60 मिनट, इसलिए घंटे × 60 = मिनट।",
+    "A train journey takes 4 hours, so how many minutes is that?": "ट्रेन का सफ़र 4 घंटे का है, तो यह कितने मिनट हुआ?",
+    "Minutes in all?": "कुल कितने मिनट?",
+    "The hours must be changed into minutes, one round of the minute hand each.": "घंटों को मिनट में बदलना है, हर घंटा मिनट की सुई का एक चक्कर है।",
+    "One round fills twelve tiles, and that row ends at sixty minutes.": "एक चक्कर में बारह टाइलें भरती हैं और पंक्ति साठ मिनट पर पूरी होती है।",
+    "Four rounds make four rows of sixty, so add the rows.": "चार चक्कर यानी साठ की चार पंक्तियाँ, इसलिए पंक्तियाँ जोड़ो।",
+    "A school sports day lasts 2 hours 30 minutes: how many minutes in all?": "स्कूल का खेल दिवस 2 घंटे 30 मिनट चलता है: कुल कितने मिनट?",
+    "Two hours are two rounds of sixty before the 30 minutes.": "दो घंटे यानी साठ के दो चक्कर, फिर 30 मिनट।",
+    "Turn the hand twice: each full turn is worth sixty minutes.": "सुई को दो बार घुमाओ: हर पूरा चक्कर साठ मिनट का है।",
+    "Put the minutes of the two rounds first, then add the 30 minutes after them.": "पहले दोनों चक्करों के मिनट रखो, फिर उनके बाद 30 मिनट जोड़ो।",
+    "How many minutes does a holiday bus ride of 1 hour 25 minutes take?": "छुट्टी में बस की 1 घंटे 25 मिनट की सवारी कितने मिनट की है?",
+    "Change the 1 hour into minutes before you add the 25.": "25 जोड़ने से पहले 1 घंटे को मिनट में बदलो।",
+    "A full round of the minute hand is sixty minutes, and the 25 comes after it.": "मिनट की सुई का पूरा चक्कर साठ मिनट है, उसके बाद 25 आता है।",
+    "Count on from sixty, five minutes for each tile of the last row.": "साठ से आगे गिनो, आखिरी पंक्ति की हर टाइल पाँच मिनट की है।",
+    "Twenty-four hours make a day": "चौबीस घंटे का एक दिन होता है",
+    "Turn the day wheel once all the way round.": "दिन के पहिये को एक पूरा चक्कर घुमाओ।",
+    "Turn it round once more for a second day.": "दूसरे दिन के लिए इसे एक चक्कर और घुमाओ।",
+    "One turn of the wheel fills one day of hour tiles.": "पहिये का एक चक्कर घंटे की टाइलों का एक दिन भरता है।",
+    "Count the turns, then add the hours of each day.": "चक्कर गिनो, फिर हर दिन के घंटे जोड़ो।",
+    "One day is 24 hours, so days times 24 make hours.": "एक दिन 24 घंटे का होता है, इसलिए दिन × 24 = घंटे।",
+    "You learned: 1 day is 24 hours, so days times 24 make hours.": "तुमने सीखा: 1 दिन = 24 घंटे, इसलिए दिन × 24 = घंटे।",
+    "A holiday lasts 3 days, so how many hours is that?": "छुट्टी 3 दिन की है, तो यह कितने घंटे हुए?",
+    "Hours in all?": "कुल कितने घंटे?",
+    "Each day is one full turn of the wheel.": "हर दिन पहिये का एक पूरा चक्कर है।",
+    "One turn fills a row of sky blue and amber hour tiles.": "एक चक्कर आसमानी और पीली घंटे की टाइलों की एक पंक्ति भरता है।",
+    "Take the hours of one turn and use them for each of the 3 days.": "एक चक्कर के घंटे लो और उन्हें 3 दिनों में से हर एक के लिए इस्तेमाल करो।",
+    "A school camp lasts 4 days: how many hours in all?": "स्कूल का शिविर 4 दिन का है: कुल कितने घंटे?",
+    "One row of tiles is twelve sky blue ones and twelve amber ones.": "टाइलों की एक पंक्ति में बारह आसमानी और बारह पीली हैं।",
+    "Four days mean four equal rows, so put the rows together.": "चार दिन यानी चार बराबर पंक्तियाँ, उन्हें साथ मिलाओ।",
+    "How many hours does a train tour of 5 days take?": "5 दिन की ट्रेन यात्रा में कितने घंटे लगते हैं?",
+    "Look at the wheel and count the hours in one whole day.": "पहिये को देखो और एक पूरे दिन के घंटे गिनो।",
+    "The sky blue half and the amber half together make one day.": "आसमानी आधा और पीला आधा मिलकर एक दिन बनता है।",
+    "A tour of 5 days is five of those days, one after another.": "5 दिन की यात्रा ऐसे पाँच दिन हैं, एक के बाद एक।",
+    "How long did it take?": "कितना समय लगा?",
+    "Drag the bar's round handle along the strip to the flag.": "पट्टी के गोल बटन को खींचकर झंडे तक ले जाओ।",
+    "Now tap Add to join the two pieces of the bar.": "अब 'जोड़ो' पर टैप करके पट्टी के दो टुकड़े जोड़ो।",
+    "Tap the Add key.": "जोड़ो कुंजी पर टैप करो।",
+    "The bar splits at noon, so count each piece and add them.": "पट्टी दोपहर पर बँट जाती है, हर टुकड़ा गिनो और जोड़ो।",
+    "For an end time, slide on by the hours first, then by the minutes.": "अंत का समय पाने के लिए पहले घंटे, फिर मिनट आगे बढ़ाओ।",
+    "Count to noon and from noon, then add; for an end time add hours first.": "दोपहर तक और उसके बाद गिनो, फिर जोड़ो। अंत का समय: पहले घंटे जोड़ो।",
+    "You learned: count to noon, then on from noon, and add.": "तुमने सीखा: दोपहर तक गिनो, फिर दोपहर से आगे गिनो और जोड़ो।",
+    "A train leaves at 9:30 a.m., reaches at 1:45 p.m.: how long?": "ट्रेन 9:30 पूर्वाह्न चली, 1:45 अपराह्न पहुँची: कितनी देर?",
+    "How long?": "कितनी देर?",
+    "Add both pieces, and turn 60 of the minutes into one more hour.": "दोनों टुकड़े जोड़ो और 60 मिनट को एक और घंटा बना लो।",
+    "Add the hours of both pieces, then the minutes of both pieces.": "दोनों टुकड़ों के घंटे जोड़ो, फिर दोनों के मिनट जोड़ो।",
+    "hours": "घंटे",
+    "minutes": "मिनट",
+    "A bus runs 2 hours 45 minutes from 10:30 a.m.: when does it end?": "बस 10:30 पूर्वाह्न से 2 घंटे 45 मिनट चलती है: कब पहुँचेगी?",
+    "When does it end?": "यह कब पहुँचेगी?",
+    "Slide the bar on by the hours first, then by the minutes.": "पट्टी को पहले घंटों से, फिर मिनटों से आगे खिसकाओ।",
+    "Move the end on two hours from 10:30 before you think of the minutes.": "मिनट सोचने से पहले छोर को 10:30 से दो घंटे आगे ले जाओ।",
+    "After the two hours, add the minutes and see which side of noon you are on.": "दो घंटे के बाद मिनट जोड़ो और देखो दोपहर के किस ओर हो।",
+    "Art class starts at 2:15 p.m., ends at 4:45 p.m.: how long?": "कला कक्षा 2:15 अपराह्न शुरू, 4:45 अपराह्न खत्म: कितनी देर?",
+    "Both times are after noon, so count straight along the bar.": "दोनों समय दोपहर के बाद के हैं, इसलिए पट्टी पर सीधे गिनो।",
+    "Count on one hour at a time from 2:15, and see what is left.": "2:15 से एक-एक घंटा आगे गिनो और देखो क्या बचा।",
+    "Then count the minutes that are left, in quarters of an hour.": "फिर बचे हुए मिनट गिनो, घंटे के चौथाई हिस्सों में।",
+    "Yes, 4 hours make 240 minutes.": "हाँ, 4 घंटे के 240 मिनट होते हैं।",
+    "Yes, that is 150 minutes in all.": "हाँ, कुल 150 मिनट हुए।",
+    "Yes, 60 and 25 make 85 minutes.": "हाँ, 60 और 25 मिलकर 85 मिनट होते हैं।",
+    "Yes, 3 days make 72 hours.": "हाँ, 3 दिन के 72 घंटे होते हैं।",
+    "Yes, 96 hours fit in 4 days.": "हाँ, 4 दिन में 96 घंटे होते हैं।",
+    "Yes, a 5 day tour lasts 120 hours.": "हाँ, 5 दिन की यात्रा 120 घंटे की है।",
+    "Yes, it is 1:15 p.m.": "हाँ, यह 1:15 अपराह्न है।",
+    "Yes, the class lasts 2 hours 30 minutes.": "हाँ, कक्षा 2 घंटे 30 मिनट की है।",
+    "A clock, a stopwatch and a day strip. Let us count the time.": "एक घड़ी, एक स्टॉपवॉच और दिन की पट्टी। चलो समय गिनें।",
+    "You counted the time with the hour filling and the day turning.": "तुमने घंटा भरकर और दिन घुमाकर समय गिना।",
+    "h": "घं.",
+    "min": "मि.",
+    "noon": "दोपहर",
+    "midnight": "आधी रात",
+    "a.m.": "पूर्वाह्न",
+    "p.m.": "अपराह्न",
+    "Hours": "घंटे",
+    "Days": "दिन",
+    "Bar": "पट्टी",
+    "Add": "जोड़ो",
+    "days": "दिन",
+    "Slide the handle to the flag.": "बटन को झंडे तक खिसकाओ।",
+    "Count the tiles in one row: that is the hours of one day.": "एक पंक्ति की टाइलें गिनो: वही एक दिन के घंटे हैं।",
+    "Count the part before noon, then the part after noon.": "दोपहर से पहले का हिस्सा गिनो, फिर दोपहर के बाद का।",
+    "Yes, it is 4 hours 15 minutes.": "हाँ, यह 4 घंटे 15 मिनट है।",
+    "Turn the hand some more.": "सुई को थोड़ा और घुमाओ।",
+    "Turn the wheel some more.": "पहिये को थोड़ा और घुमाओ।",
+    "Not at the flag yet: slide the handle to it.": "अभी झंडे पर नहीं पहुँचे: बटन को वहाँ तक खिसकाओ।",
+    "Keep turning the way a clock goes.": "घड़ी की सुइयों की दिशा में घुमाते रहो।",
+    "Go on turning the way a clock goes.": "आगे भी घड़ी की दिशा में घुमाओ।",
+    "Slide the end of the bar first.": "पहले पट्टी का छोर खिसकाओ।",
+    "Up to 6 hours.": "6 घंटे तक।",
+    "Up to 5 days.": "5 दिन तक।",
+  },
+  gu: {
+    "Time Converter": "સમય બદલો",
+    "Free play: type hours or days, turn the dial and slide the bar.": "મુક્ત રમત: કલાક કે દિવસ લખો, કાંટો ફેરવો અને પટ્ટી સરકાવો.",
+    "How long is an hour? How long is a day?": "એક કલાક કેટલો લાંબો? એક દિવસ કેટલો લાંબો?",
+    "Sixty minutes make an hour": "સાઠ મિનિટનો એક કલાક થાય",
+    "Turn the blue minute hand once all the way round the clock.": "ભૂરા મિનિટ કાંટાને ઘડિયાળમાં એક આખું ચક્કર ફેરવો.",
+    "Turn it round once more, and watch the hour hand creep.": "તેને ફરી એક ચક્કર ફેરવો અને કલાકના કાંટાને સરકતો જુઓ.",
+    "The minute hand turns round once for every hour.": "દર કલાકે મિનિટનો કાંટો એક ચક્કર ફરે છે.",
+    "Change each hour into minutes first, then add what is left over.": "પહેલાં દરેક કલાકને મિનિટમાં બદલો, પછી બાકીની મિનિટ ઉમેરો.",
+    "One hour is sixty minutes, so hours change into minutes by multiplying by sixty.": "એક કલાક સાઠ મિનિટનો છે, તેથી કલાકને સાઠથી ગુણતાં મિનિટ મળે છે.",
+    "You learned: 1 hour is 60 minutes, so hours times 60 make minutes.": "તમે શીખ્યા: 1 કલાક = 60 મિનિટ, તેથી કલાક × 60 = મિનિટ.",
+    "A train journey takes 4 hours, so how many minutes is that?": "ટ્રેનની મુસાફરી 4 કલાકની છે, તો તે કેટલી મિનિટ થઈ?",
+    "Minutes in all?": "કુલ કેટલી મિનિટ?",
+    "The hours must be changed into minutes, one round of the minute hand each.": "કલાકને મિનિટમાં બદલવા છે, દરેક કલાક એટલે મિનિટના કાંટાનું એક ચક્કર.",
+    "One round fills twelve tiles, and that row ends at sixty minutes.": "એક ચક્કરમાં બાર ટાઇલ ભરાય છે અને લીટી સાઠ મિનિટે પૂરી થાય છે.",
+    "Four rounds make four rows of sixty, so add the rows.": "ચાર ચક્કર એટલે સાઠની ચાર લીટીઓ, તેથી લીટીઓ ઉમેરો.",
+    "A school sports day lasts 2 hours 30 minutes: how many minutes in all?": "શાળાનો રમત દિવસ 2 કલાક 30 મિનિટ ચાલે છે: કુલ કેટલી મિનિટ?",
+    "Two hours are two rounds of sixty before the 30 minutes.": "બે કલાક એટલે સાઠના બે ચક્કર, પછી 30 મિનિટ.",
+    "Turn the hand twice: each full turn is worth sixty minutes.": "કાંટાને બે વાર ફેરવો: દરેક આખું ચક્કર સાઠ મિનિટનું છે.",
+    "Put the minutes of the two rounds first, then add the 30 minutes after them.": "પહેલાં બંને ચક્કરની મિનિટ મૂકો, પછી તેમાં 30 મિનિટ ઉમેરો.",
+    "How many minutes does a holiday bus ride of 1 hour 25 minutes take?": "રજામાં બસની 1 કલાક 25 મિનિટની સવારી કેટલી મિનિટની છે?",
+    "Change the 1 hour into minutes before you add the 25.": "25 ઉમેરતાં પહેલાં 1 કલાકને મિનિટમાં બદલો.",
+    "A full round of the minute hand is sixty minutes, and the 25 comes after it.": "મિનિટના કાંટાનું આખું ચક્કર સાઠ મિનિટ છે, તેના પછી 25 આવે છે.",
+    "Count on from sixty, five minutes for each tile of the last row.": "સાઠથી આગળ ગણો, છેલ્લી લીટીની દરેક ટાઇલ પાંચ મિનિટની છે.",
+    "Twenty-four hours make a day": "ચોવીસ કલાકનો એક દિવસ થાય",
+    "Turn the day wheel once all the way round.": "દિવસના પૈડાને એક આખું ચક્કર ફેરવો.",
+    "Turn it round once more for a second day.": "બીજા દિવસ માટે તેને ફરી એક ચક્કર ફેરવો.",
+    "One turn of the wheel fills one day of hour tiles.": "પૈડાનું એક ચક્કર કલાકની ટાઇલનો એક દિવસ ભરે છે.",
+    "Count the turns, then add the hours of each day.": "ચક્કર ગણો, પછી દરેક દિવસના કલાક ઉમેરો.",
+    "One day is 24 hours, so days times 24 make hours.": "એક દિવસ 24 કલાકનો છે, તેથી દિવસ × 24 = કલાક.",
+    "You learned: 1 day is 24 hours, so days times 24 make hours.": "તમે શીખ્યા: 1 દિવસ = 24 કલાક, તેથી દિવસ × 24 = કલાક.",
+    "A holiday lasts 3 days, so how many hours is that?": "રજા 3 દિવસની છે, તો તે કેટલા કલાક થયા?",
+    "Hours in all?": "કુલ કેટલા કલાક?",
+    "Each day is one full turn of the wheel.": "દરેક દિવસ એટલે પૈડાનું એક આખું ચક્કર.",
+    "One turn fills a row of sky blue and amber hour tiles.": "એક ચક્કર આસમાની અને પીળી કલાકની ટાઇલની એક લીટી ભરે છે.",
+    "Take the hours of one turn and use them for each of the 3 days.": "એક ચક્કરના કલાક લો અને 3 દિવસમાંથી દરેક માટે વાપરો.",
+    "A school camp lasts 4 days: how many hours in all?": "શાળાનો શિબિર 4 દિવસનો છે: કુલ કેટલા કલાક?",
+    "One row of tiles is twelve sky blue ones and twelve amber ones.": "ટાઇલની એક લીટીમાં બાર આસમાની અને બાર પીળી છે.",
+    "Four days mean four equal rows, so put the rows together.": "ચાર દિવસ એટલે ચાર સરખી લીટીઓ, તેમને ભેગી કરો.",
+    "How many hours does a train tour of 5 days take?": "5 દિવસના ટ્રેન પ્રવાસમાં કેટલા કલાક થાય?",
+    "Look at the wheel and count the hours in one whole day.": "પૈડાને જુઓ અને એક આખા દિવસના કલાક ગણો.",
+    "The sky blue half and the amber half together make one day.": "આસમાની અડધું અને પીળું અડધું મળીને એક દિવસ બને.",
+    "A tour of 5 days is five of those days, one after another.": "5 દિવસનો પ્રવાસ એવા પાંચ દિવસ છે, એક પછી એક.",
+    "How long did it take?": "કેટલો સમય લાગ્યો?",
+    "Drag the bar's round handle along the strip to the flag.": "પટ્ટીના ગોળ બટનને ખેંચીને ધ્વજ સુધી લઈ જાઓ.",
+    "Now tap Add to join the two pieces of the bar.": "હવે 'ઉમેરો' પર ટેપ કરીને પટ્ટીના બે ટુકડા જોડો.",
+    "Tap the Add key.": "ઉમેરો કી પર ટેપ કરો.",
+    "The bar splits at noon, so count each piece and add them.": "પટ્ટી બપોરે વહેંચાય છે, દરેક ટુકડો ગણો અને ઉમેરો.",
+    "For an end time, slide on by the hours first, then by the minutes.": "અંતનો સમય મેળવવા પહેલાં કલાક, પછી મિનિટ આગળ વધારો.",
+    "Count to noon and from noon, then add; for an end time add hours first.": "બપોર સુધી અને તેના પછી ગણો, પછી ઉમેરો; અંતનો સમય મેળવવા પહેલાં કલાક ઉમેરો.",
+    "You learned: count to noon, then on from noon, and add.": "તમે શીખ્યા: બપોર સુધી ગણો, પછી બપોરથી આગળ ગણો અને ઉમેરો.",
+    "A train leaves at 9:30 a.m., reaches at 1:45 p.m.: how long?": "ટ્રેન 9:30 પૂર્વાહ્ન નીકળી, 1:45 અપરાહ્ન પહોંચી: કેટલી વાર?",
+    "How long?": "કેટલી વાર?",
+    "Add both pieces, and turn 60 of the minutes into one more hour.": "બંને ટુકડા ઉમેરો અને 60 મિનિટને એક વધુ કલાક બનાવો.",
+    "Add the hours of both pieces, then the minutes of both pieces.": "બંને ટુકડાના કલાક ઉમેરો, પછી બંનેની મિનિટ ઉમેરો.",
+    "hours": "કલાક",
+    "minutes": "મિનિટ",
+    "A bus runs 2 hours 45 minutes from 10:30 a.m.: when does it end?": "બસ 10:30 પૂર્વાહ્નથી 2 કલાક 45 મિનિટ ચાલે છે: ક્યારે પહોંચશે?",
+    "When does it end?": "તે ક્યારે પહોંચશે?",
+    "Slide the bar on by the hours first, then by the minutes.": "પટ્ટીને પહેલાં કલાકથી, પછી મિનિટથી આગળ સરકાવો.",
+    "Move the end on two hours from 10:30 before you think of the minutes.": "મિનિટ વિચારતાં પહેલાં છેડાને 10:30થી બે કલાક આગળ લઈ જાઓ.",
+    "After the two hours, add the minutes and see which side of noon you are on.": "બે કલાક પછી મિનિટ ઉમેરો અને જુઓ બપોરની કઈ બાજુ છો.",
+    "Art class starts at 2:15 p.m., ends at 4:45 p.m.: how long?": "કલા વર્ગ 2:15 અપરાહ્ન શરૂ, 4:45 અપરાહ્ન પૂરો: કેટલી વાર?",
+    "Both times are after noon, so count straight along the bar.": "બંને સમય બપોર પછીના છે, તેથી પટ્ટી પર સીધું ગણો.",
+    "Count on one hour at a time from 2:15, and see what is left.": "2:15થી એક-એક કલાક આગળ ગણો અને જુઓ શું બાકી રહ્યું.",
+    "Then count the minutes that are left, in quarters of an hour.": "પછી બાકીની મિનિટ ગણો, કલાકના ચોથા ભાગમાં.",
+    "Yes, 4 hours make 240 minutes.": "હા, 4 કલાકની 240 મિનિટ થાય છે.",
+    "Yes, that is 150 minutes in all.": "હા, કુલ 150 મિનિટ થઈ.",
+    "Yes, 60 and 25 make 85 minutes.": "હા, 60 અને 25 મળીને 85 મિનિટ થાય છે.",
+    "Yes, 3 days make 72 hours.": "હા, 3 દિવસના 72 કલાક થાય છે.",
+    "Yes, 96 hours fit in 4 days.": "હા, 4 દિવસમાં 96 કલાક થાય છે.",
+    "Yes, a 5 day tour lasts 120 hours.": "હા, 5 દિવસનો પ્રવાસ 120 કલાકનો છે.",
+    "Yes, it is 1:15 p.m.": "હા, તે 1:15 અપરાહ્ન છે.",
+    "Yes, the class lasts 2 hours 30 minutes.": "હા, વર્ગ 2 કલાક 30 મિનિટનો છે.",
+    "A clock, a stopwatch and a day strip. Let us count the time.": "એક ઘડિયાળ, એક સ્ટોપવૉચ અને દિવસની પટ્ટી. ચાલો સમય ગણીએ.",
+    "You counted the time with the hour filling and the day turning.": "તમે કલાક ભરીને અને દિવસ ફેરવીને સમય ગણ્યો.",
+    "h": "ક.",
+    "min": "મિ.",
+    "noon": "બપોર",
+    "midnight": "અડધી રાત",
+    "a.m.": "પૂર્વાહ્ન",
+    "p.m.": "અપરાહ્ન",
+    "Hours": "કલાક",
+    "Days": "દિવસ",
+    "Bar": "પટ્ટી",
+    "Add": "ઉમેરો",
+    "days": "દિવસ",
+    "Slide the handle to the flag.": "બટનને ધ્વજ સુધી સરકાવો.",
+    "Count the tiles in one row: that is the hours of one day.": "એક લીટીની ટાઇલ ગણો: તે જ એક દિવસના કલાક છે.",
+    "Count the part before noon, then the part after noon.": "બપોર પહેલાનો ભાગ ગણો, પછી બપોર પછીનો.",
+    "Yes, it is 4 hours 15 minutes.": "હા, તે 4 કલાક 15 મિનિટ છે.",
+    "Turn the hand some more.": "કાંટાને થોડો વધુ ફેરવો.",
+    "Turn the wheel some more.": "પૈડાને થોડું વધુ ફેરવો.",
+    "Not at the flag yet: slide the handle to it.": "હજી ધ્વજ પર નથી: બટનને ત્યાં સુધી સરકાવો.",
+    "Keep turning the way a clock goes.": "ઘડિયાળના કાંટાની દિશામાં ફેરવતા રહો.",
+    "Go on turning the way a clock goes.": "આગળ પણ ઘડિયાળની દિશામાં ફેરવો.",
+    "Slide the end of the bar first.": "પહેલાં પટ્ટીનો છેડો સરકાવો.",
+    "Up to 6 hours.": "6 કલાક સુધી.",
+    "Up to 5 days.": "5 દિવસ સુધી.",
+  },
+};
 
 /* One entry per phase = one mount.
    items carry the numbers the picture draws: kind "hm" (H hours, M minutes), "days" (D days, d0 the first date), "dur" (s start, e end, in
@@ -82,8 +304,8 @@ const PHASES = [
     says: ["One round of the minute hand fills an hour. How many minutes are in it?"],
     /* a warm-up on a different journey (2 hours): the two steps turn the minute hand round once and once more */
     steps: [
-      { say: "Turn the blue minute hand once all the way round the clock.", on: "hand", hint: "Drag the round handle, or tap it." },
-      { say: "Turn it round once more, and watch the hour hand creep.", on: "hand", hint: "Turn the blue hand round again." },
+      { say: "Turn the blue minute hand once all the way round the clock.", on: "hand", hint: "Keep turning the way a clock goes." },
+      { say: "Turn it round once more, and watch the hour hand creep.", on: "hand", hint: "Go on turning the way a clock goes." },
     ],
     stepHold: 2400,
     ladder: ["The minute hand turns round once for every hour.", "Change each hour into minutes first, then add what is left over."],
@@ -97,10 +319,10 @@ const PHASES = [
         win: "Yes, 4 hours make 240 minutes.", winMs: 3800 },
       { qid: null, kind: "hm", H: 2, M: 30, say: "A school sports day lasts 2 hours 30 minutes: how many minutes in all?", ask: "Minutes in all?", answer: 150,
         miss: "Two hours are two rounds of sixty before the 30 minutes.",
-        ladder: ["Each round of the minute hand is sixty minutes, so count both rounds.", "Put the minutes of the two rounds first, then add the 30 minutes after them."],
+        ladder: ["Turn the hand twice: each full turn is worth sixty minutes.", "Put the minutes of the two rounds first, then add the 30 minutes after them."],
         win: "Yes, that is 150 minutes in all.", winMs: 3700 },
       { qid: null, kind: "hm", H: 1, M: 25, say: "How many minutes does a holiday bus ride of 1 hour 25 minutes take?", ask: "Minutes in all?", answer: 85,
-        miss: "Do not put the 1 and the 25 together: change the hour into minutes.",
+        miss: "Change the 1 hour into minutes before you add the 25.",
         ladder: ["A full round of the minute hand is sixty minutes, and the 25 comes after it.", "Count on from sixty, five minutes for each tile of the last row."],
         win: "Yes, 60 and 25 make 85 minutes.", winMs: 3800 },
     ],
@@ -111,8 +333,8 @@ const PHASES = [
     conceptId: "M1.S2.T4.C18", objectiveIds: ["O5"],
     says: ["The wheel turns once for one day. How many hours is that? Now for each day."],
     steps: [
-      { say: "Turn the day wheel once all the way round.", on: "wheel", hint: "Drag the round handle, or tap it." },
-      { say: "Turn it round once more for a second day.", on: "wheel", hint: "Turn the wheel round again." },
+      { say: "Turn the day wheel once all the way round.", on: "wheel", hint: "Keep turning the way a clock goes." },
+      { say: "Turn it round once more for a second day.", on: "wheel", hint: "Go on turning the way a clock goes." },
     ],
     stepHold: 2400,
     ladder: ["One turn of the wheel fills one day of hour tiles.", "Count the turns, then add the hours of each day."],
@@ -122,10 +344,10 @@ const PHASES = [
     items: [
       { qid: null, kind: "days", D: 3, d0: 6, say: "A holiday lasts 3 days, so how many hours is that?", ask: "Hours in all?", answer: 72,
         miss: "Each day is one full turn of the wheel.",
-        ladder: ["One turn fills a row of sky blue and amber hour tiles.", "Count the tiles in one row, then take that many three times over."],
+        ladder: ["One turn fills a row of sky blue and amber hour tiles.", "Take the hours of one turn and use them for each of the 3 days."],
         win: "Yes, 3 days make 72 hours.", winMs: 3000 },
       { qid: null, kind: "days", D: 4, d0: 15, say: "A school camp lasts 4 days: how many hours in all?", ask: "Hours in all?", answer: 96,
-        miss: "A day is not sixty hours, so count the tiles in one row.",
+        miss: "Count the tiles in one row: that is the hours of one day.",
         ladder: ["One row of tiles is twelve sky blue ones and twelve amber ones.", "Four days mean four equal rows, so put the rows together."],
         win: "Yes, 96 hours fit in 4 days.", winMs: 3000 },
       { qid: null, kind: "days", D: 5, d0: 3, say: "How many hours does a train tour of 5 days take?", ask: "Hours in all?", answer: 120,
@@ -140,7 +362,7 @@ const PHASES = [
     conceptId: "M1.S2.T4.C19", objectiveIds: ["O6"],
     says: ["Lay the bar from the start to the end. Count to noon, then on from noon."],
     steps: [
-      { say: "Drag the bar's round handle along the strip to the flag.", on: "bar", hint: "Pull the handle to the right." },
+      { say: "Drag the bar's round handle along the strip to the flag.", on: "bar", hint: "Slide the handle to the flag." },
       { say: "Now tap Add to join the two pieces of the bar.", on: "add", hint: "Tap the Add key." },
     ],
     stepHold: 2400,
@@ -153,21 +375,21 @@ const PHASES = [
          the start is 9:30, not 9:15, so no number in the question lines equals the answer's 15 */
       { qid: null, kind: "dur", s: 570, e: 825, train: true, near: "3|75", parts: [{ label: "hours" }, { label: "minutes" }], answer: [4, 15],
         say: "A train leaves at 9:30 a.m., reaches at 1:45 p.m.: how long?", ask: "How long?",
-        miss: "Count from the start to noon, then from noon to the end.",
-        ladder: ["The bar splits at noon, so there are two pieces to add.", "Add the hours, then the minutes; 60 minutes make one more hour."],
-        win: "Yes, 4 hours 15 minutes in all.", winMs: 3100 },
-      /* near 675 = 10:45 a.m. (the minutes added, the hours lost) */
+        miss: "Count the part before noon, then the part after noon.",
+        ladder: ["Add the hours of both pieces, then the minutes of both pieces.", "Add both pieces, and turn 60 of the minutes into one more hour."],
+        win: "Yes, it is 4 hours 15 minutes.", winMs: 8500 },
+      /* near 675 = 11:15 a.m. (630 + 45: the minutes added, the hours lost) */
       { qid: null, kind: "end", s: 630, len: 165, near: 675, pad: "enter", answer: 795,
         say: "A bus runs 2 hours 45 minutes from 10:30 a.m.: when does it end?", ask: "When does it end?",
         miss: "Slide the bar on by the hours first, then by the minutes.",
         ladder: ["Move the end on two hours from 10:30 before you think of the minutes.", "After the two hours, add the minutes and see which side of noon you are on."],
-        win: "Yes, the bus arrives at 1:15 p.m.", winMs: 2800 },
+        win: "Yes, it is 1:15 p.m.", winMs: 6000 },
       /* near 3|0 = the three tiles the bar touches */
       { qid: null, kind: "dur", s: 855, e: 1005, near: "3|0", parts: [{ label: "hours" }, { label: "minutes" }], answer: [2, 30],
         say: "Art class starts at 2:15 p.m., ends at 4:45 p.m.: how long?", ask: "How long?",
         miss: "Both times are after noon, so count straight along the bar.",
         ladder: ["Count on one hour at a time from 2:15, and see what is left.", "Then count the minutes that are left, in quarters of an hour."],
-        win: "Yes, the class lasts 2 hours 30 minutes.", winMs: 3300 },
+        win: "Yes, the class lasts 2 hours 30 minutes.", winMs: 7000 },
     ],
   },
 ];
@@ -241,15 +463,18 @@ function tcWedge(cx: number, cy: number, r: number, a: number, w: number) {
 /* the wall clock: A is the minute hand's turned angle in degrees (it may run past 360); the hour hand creeps A / 12 */
 function tcClockFace({ cx, cy, r, A, C }: any) {
   const mA = A % 360, hA = (A / 12) % 360, out: any[] = [];
+  /* no filter on the hands: a filter on a vertical or horizontal line has an empty box and draws nothing (BUILD_CARD §6) */
+  out.push(<circle key="f-bg" cx={cx} cy={cy} r={r + 8} fill={C.rule || "#C9BCA6"} filter="url(#tc-shadow)" />);
   out.push(<circle key="f" cx={cx} cy={cy} r={r} fill="#FFF9EC" stroke={C.ink} strokeWidth={5} />);
   for (let i = 0; i < 60; i++) {
     const big = i % 5 === 0, p1 = tcPt(cx, cy, r - 5, i * 6), p2 = tcPt(cx, cy, r - (big ? 20 : 11), i * 6);
-    out.push(<line key={"t" + i} x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y} stroke={C.ink} strokeWidth={big ? 4 : 2} />);
+    out.push(<line key={"t" + i} x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y} stroke={C.ink} strokeWidth={big ? 4 : 2} strokeLinecap="round" />);
   }
-  const hp = tcPt(cx, cy, r * 0.46, hA), ht = tcPt(cx, cy, -14, hA), mp = tcPt(cx, cy, r * 0.84, mA), mt = tcPt(cx, cy, -16, mA);
-  out.push(<line key="hh" x1={ht.x} y1={ht.y} x2={hp.x} y2={hp.y} stroke={TC_HOUR} strokeWidth={11} strokeLinecap="round" />);
-  out.push(<line key="mh" x1={mt.x} y1={mt.y} x2={mp.x} y2={mp.y} stroke={TC_MIN} strokeWidth={8} strokeLinecap="round" />);
-  out.push(<circle key="cap" cx={cx} cy={cy} r={9} fill={C.ink} />);
+  const hp = tcPt(cx, cy, r * 0.42, hA), ht = tcPt(cx, cy, -14, hA), mp = tcPt(cx, cy, r * 0.84, mA), mt = tcPt(cx, cy, -16, mA);
+  out.push(<line key="hh" x1={ht.x} y1={ht.y} x2={hp.x} y2={hp.y} stroke={TC_HOUR} strokeWidth={17} strokeLinecap="round" />);
+  out.push(<line key="mh" x1={mt.x} y1={mt.y} x2={mp.x} y2={mp.y} stroke={TC_MIN} strokeWidth={6} strokeLinecap="round" />);
+  out.push(<circle key="cap-bg" cx={cx} cy={cy} r={11} fill={C.ink} />);
+  out.push(<circle key="cap" cx={cx} cy={cy} r={6} fill="#E8C86A" />);
   /* the numbers are drawn over the hands, with a cream halo, so a hand never hides one */
   for (let k = 1; k <= 12; k++) {
     const p = tcPt(cx, cy, r * 0.64, k * 30);
@@ -266,33 +491,45 @@ function tcRowsPic({ g, N, per, tiles, kind, hiN, ghost, C, tx }: any) {
     const cells: any[] = [];
     for (let j = 0; j < cnt; j++) {
       const on = k * per + j < tN, x = g.x0 + j * g.pitch;
-      const base = kind === 1 ? TC_MIN : j < 12 ? TC_AM : TC_PM;
-      cells.push(<rect key={"c" + j} x={x} y={y} width={g.w} height={g.h} rx={6} fill={on ? base : kind === 1 ? tint(C.panel, 0.55) : tint(base, 0.72)} stroke={C.ink} strokeWidth={on ? 3 : 2.4} />);
-      if (kind === 1 && on) cells.push(<text key={"d" + j} x={x + g.w / 2} y={y + g.h / 2 + 10} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill="#FFFFFF">{(j + 1) * 5}</text>);
+      const base = kind === 1 ? "url(#tc-grad-min)" : j < 12 ? "url(#tc-grad-am)" : "url(#tc-grad-pm)";
+      const flatBase = kind === 1 ? TC_MIN : j < 12 ? TC_AM : TC_PM;
+      cells.push(
+        <rect key={"c" + j} x={x} y={y} width={g.w} height={g.h} rx={6}
+          fill={on ? base : kind === 1 ? tint(C.panel, 0.55) : tint(flatBase, 0.72)}
+          stroke={C.ink} strokeWidth={on ? 3 : 2.4}
+          filter={on ? "url(#tc-shadow)" : undefined} />
+      );
+      if (kind === 1 && on && g.h >= 36) {
+        cells.push(
+          <text key={"d" + j} x={x + g.w / 2} y={y + g.h / 2 + 10} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill="#FFFFFF" stroke={C.ink} strokeWidth={1.5} paintOrder="stroke">
+            {(j + 1) * 5}
+          </text>
+        );
+      }
     }
-    const bc = partial ? TC_PM : kind === 1 ? TC_HOUR : C.ink, by = y + g.h / 2;
+    const bc = partial ? TC_MIN : kind === 1 ? TC_HOUR : C.ink, by = y + g.h / 2, br = kind === 2 ? 15 : 22, bf = kind === 2 ? T.micro : T.label;
     out.push(
       <g key={"row" + k}>
-        {k < hiN && <rect x={g.x0 - 7} y={y - 7} width={cnt * g.pitch + 9} height={g.h + 14} rx={10} fill="none" stroke={partial ? TC_PM : TC_HOUR} strokeWidth={6} />}
+        {k < hiN && <rect x={g.x0 - 7} y={y - 7} width={cnt * g.pitch + 9} height={g.h + 14} rx={10} fill="none" stroke={partial ? TC_MIN : TC_HOUR} strokeWidth={6} />}
         {cells}
         {done
-          ? <g><circle cx={g.bx} cy={by} r={22} fill={bc} stroke={C.ink} strokeWidth={3} /><text x={g.bx} y={by + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={partial ? C.ink : "#FFFFFF"}>{partial ? "+" : k + 1}</text></g>
-          : <circle cx={g.bx} cy={by} r={22} fill="none" stroke={C.ink} strokeWidth={2.4} strokeDasharray="5 6" />}
-        {kind === 2 && done && <text x={g.x0 + per * g.pitch + 8} y={by + 14} fontSize={T.prompt} fontWeight={700} fill={C.ink}>24</text>}
+          ? <g filter="url(#tc-shadow)"><circle cx={g.bx} cy={by} r={br} fill={bc} stroke={C.ink} strokeWidth={3} /><text x={g.bx} y={by + (kind === 2 ? 9 : 11)} textAnchor="middle" fontSize={bf} fontWeight={700} fill={partial ? C.ink : "#FFFFFF"}>{partial ? "+" : k + 1}</text></g>
+          : <circle cx={g.bx} cy={by} r={br} fill="none" stroke={C.ink} strokeWidth={2.4} strokeDasharray="5 6" />}
+        {kind === 2 && done && g.py >= 34 && <text x={g.x0 + per * g.pitch + 8} y={by + 11} fontSize={T.label} fontWeight={700} fill={C.ink}>24</text>}
       </g>
     );
   }
   return out;
 }
 /* a time, written the clock family's way: hour vermilion, minutes deep blue, a.m. sky blue, p.m. amber */
-function tcTime({ x, y, size, m, anchor = "middle", tx, C, ink }: any) {
+function tcTime({ x, y, size, m, anchor = "middle", tx, C, ink, noWord }: any) {
   const c = tcClock(m), noon = c.w === "noon" || c.w === "midnight";
   const wc = c.w === "a.m." ? shade(TC_AM, 0.5) : c.w === "p.m." ? shade(TC_PM, 0.5) : C.ink;
   return (
     <text x={x} y={y} textAnchor={anchor} fontSize={size} fontWeight={700} fill={ink || C.ink} stroke={C.paper} strokeWidth={6} paintOrder="stroke">
       {noon
         ? [<tspan key="a" fill={shade(TC_HOUR, 0.25)}>12</tspan>, <tspan key="b" fill={wc}>{" " + tx(c.w)}</tspan>]
-        : [<tspan key="a" fill={shade(TC_HOUR, 0.25)}>{c.h}</tspan>, <tspan key="b" fill={C.ink}>:</tspan>, <tspan key="c" fill={shade(TC_MIN, 0.1)}>{tcPad(c.m)}</tspan>, <tspan key="d" fill={wc}>{" " + tx(c.w)}</tspan>]}
+        : [<tspan key="a" fill={shade(TC_HOUR, 0.25)}>{c.h}</tspan>, <tspan key="b" fill={C.ink}>:</tspan>, <tspan key="c" fill={shade(TC_MIN, 0.1)}>{tcPad(c.m)}</tspan>, noWord ? null : <tspan key="d" fill={wc}>{" " + tx(c.w)}</tspan>]}
     </text>
   );
 }
@@ -318,27 +555,35 @@ const tcDurStr = (mins: number, tx: any) => { const h = Math.floor(mins / 60), m
    (win false) it stops one step before the answer: across noon the hours are added and, when the minutes carry, the minutes are added (the carry
    is left for the child); on a straight bar or for an end time the whole hours are counted on. At the win the lines go on to the answer. */
 function tcLines(it: any, tx: any, win: boolean) {
+  /* written close up ("2+1=3 h"): each line is at most four words (labels-short) and still reads as a sum */
   const U = tx("h"), Mn = tx("min"), t = (m: number) => { const c = tcClock(m); return c.h + ":" + tcPad(c.m); };
   if (!it) return [];
   if (it.kind === "end") {
-    const H = Math.floor(it.len / 60), M = it.len % 60, mid = it.s + H * 60, e = it.s + it.len, L = [t(it.s) + " + " + H + " " + U + " = " + t(mid)];
-    if (win) L.push(t(mid) + " + " + M + " " + Mn + " = " + t(e));
+    const H = Math.floor(it.len / 60), M = it.len % 60, mid = it.s + H * 60, e = it.s + it.len, L = [t(it.s) + "+" + H + " " + U + "=" + t(mid)];
+    if (win) L.push(t(mid) + "+" + M + " " + Mn + "=" + t(e));
     return L;
   }
   if (it.kind !== "dur") return [];
   const d = it.e - it.s;
   if (it.s < 720 && it.e > 720) {
     const p1 = 720 - it.s, p2 = it.e - 720, h1 = Math.floor(p1 / 60), h2 = Math.floor(p2 / 60), m1 = p1 % 60, m2 = p2 % 60, hs = h1 + h2, ms = m1 + m2;
-    const L = [h1 + " + " + h2 + " = " + hs + " " + U];
-    if (ms >= 60 || win) L.push(m1 + " + " + m2 + " = " + ms + " " + Mn);
-    if (win) { if (ms >= 60) L.push(ms + " = 1 " + U + " " + (ms - 60)); L.push("= " + tcDurStr(d, tx)); }
+    const L = [h1 + "+" + h2 + "=" + hs + " " + U];
+    if (ms >= 60 || win) L.push(m1 + "+" + m2 + "=" + ms + " " + Mn);
+    if (win) {
+      if (ms >= 60) { L.push(ms + " " + Mn + "=1 " + U + "+" + (ms - 60) + " " + Mn); L.push(hs + " " + U + "+1 " + U + "+" + (ms - 60) + " " + Mn); }
+      else L.push(hs + " " + U + "+" + ms + " " + Mn);
+      L.push("=" + tcDurStr(d, tx));
+    }
     return L;
   }
-  const H = Math.floor(d / 60), M = d % 60, mid = it.s + H * 60, L = [t(it.s) + " + " + H + " " + U + " = " + t(mid)];
-  if (win) { if (M > 0) L.push(t(mid) + " + " + M + " " + Mn + " = " + t(it.e)); L.push("= " + tcDurStr(d, tx)); }
+  const H = Math.floor(d / 60), M = d % 60, mid = it.s + H * 60, L = [t(it.s) + "+" + H + " " + U + "=" + t(mid)];
+  if (win) {
+    if (M > 0) { L.push(t(mid) + "+" + M + " " + Mn + "=" + t(it.e)); L.push(H + " " + U + "+" + M + " " + Mn); }
+    L.push("=" + tcDurStr(d, tx));
+  }
   return L;
 }
-const tcFresh = (qk: string, it: any) => ({ qk, tiles: 0, touched: false, trace: -1, end: it && it.s != null ? it.s : 0, added: false, mode: "hours", H: 2, D: 2, a: 600, b: 780, capt: false, countTapped: false });
+const tcFresh = (qk: string, it: any) => ({ qk, tiles: 0, touched: false, trace: -1, end: it && it.s != null ? it.s : 0, added: false, mode: "hours", H: 2, D: 2, a: 600, b: 780, capt: false, countTapped: false, countTyped: false, capNote: false });
 
 /* ── the working area ────────────────────────────────────────────────────────────────────────
    keyOnly (LAYOUT.md §1d): 64,108, 1472 x 520 shut and 900 x 520 open (bigPad); nothing under box.key. The picture is laid out in a fixed 900-wide room
@@ -366,10 +611,9 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
     setRaw((prev: any) => { const b = prev.qk === qk ? prev : tcFresh(qk, it); return { ...b, ...(typeof patch === "function" ? patch(b) : patch) }; });
   };
 
-  /* the room */
-  const bw = box ? box.w : 900;
-  const kx = box && box.key ? box.key.x - 12 : bw;
-  const ox = Math.max(0, Math.min((bw - 900) / 2, kx - 906));
+  /* the room: the picture keeps ONE place, the one it has with the keypad open (x 0 to 900), so it never jumps when the keypad opens or shuts
+     (and a drag that locks the pad does not slide under the finger) */
+  const ox = 0;
   const V = free ? S.mode : n === 1 ? "hours" : n === 2 ? "days" : "bar";
   const per = V === "hours" ? 12 : 24, sd = 360 / per;
   const dial = V === "hours" ? TC_CLK : TC_WHL, kr = V === "hours" ? dial.r * 0.84 : dial.r * 0.78;
@@ -389,6 +633,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
         const fin = Math.max(Sref.current.tiles, Math.min(capN, Math.floor((A + 4) / sd)));
         dgr.current = { on: false };
         if (fin > Sref.current.tiles) { put({ tiles: fin, touched: true }); api.sfx.settle(); reportTurn(fin); }
+        if (warm && fin < (st + 1) * per) api.did("drag");   /* short or backward: the step's own hint */
+        if (!warm && fin < N) nudgeSay();
         return;
       }
       dgr.current = { on: false };
@@ -421,6 +667,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
   /* at the win the picture holds the right answer whatever the agent did on the way */
   if (win && V === "bar") { if (it.kind === "dur") barB = it.e; else if (it.kind === "end") barB = it.s + it.len; }
   const shownTiles = win ? N : liveTiles;
+  if (win && V !== "bar") liveA = N * sd;   /* the hands agree with the answer: 85 minutes leaves the minute hand on the 5 and the hour hand just past the 1 */
 
   /* ── the acts ── */
   const reportTurn = (t: number) => { if (warm && stepOn === actName && t >= (st + 1) * per) api.did(actName); };
@@ -437,6 +684,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
     busy.current = false;
     if (!ok || qkRef.current !== qk) return;
     put({ tiles: target }); api.sfx.settle(); reportTurn(target);
+    if (!warm && target < N) nudgeSay();
   };
   /* the bar: set an end to a minute (a drag's drop, an arrow key); the minute may come from the agent and is then not snapped */
   const setBarTo = (id: string, mv: number) => {
@@ -444,15 +692,14 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
     api.sfx.tick();
     if (free) { if (id === "bar-start") put({ a: tcClamp(mv, TC_WS, s0.b), touched: true }); else put({ b: tcClamp(mv, s0.a, TC_WE), touched: true }); return; }
     const v = tcClamp(mv, it.s, TC_WE);
+    lastTry.current = null;
     put({ end: v, touched: true });
-    if (it.kind === "dur" && v === it.e) { api.sfx.settle(); if (warm && stepOn === "bar") api.did("bar"); }
+    if (it.kind === "dur" && v === it.e) { api.sfx.settle(); if (warm) api.did(stepOn === "bar" ? "bar" : "drag"); }
+    else if (it.kind === "dur") { if (warm) api.did("drag"); else nudgeSay(); }
   };
-  const barTap = (id: string) => {
-    if (free) { const s0 = Sref.current; setBarTo(id, id === "bar-start" ? Math.min(s0.b, s0.a + 60) : Math.min(TC_WE, s0.b + 60)); return; }
-    if (it.kind === "dur") layAuto();
-    else setBarTo("bar", Math.min(TC_WE, Sref.current.end + 60));
-  };
-  const nudge = (id: string, d: number) => {
+  /* a tap on a handle lays a duration bar for the child; on an end time or in free play a tap does nothing (a drag or the arrow keys move it) */
+  const barTap = (id: string) => { if (!free && it.kind === "dur") layAuto(); };
+  const stepBar = (id: string, d: number) => {
     const s0 = Sref.current;
     setBarTo(id, (free ? (id === "bar-start" ? s0.a : s0.b) : s0.end) + d);
   };
@@ -461,7 +708,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
     if (busy.current) return;
     const cur = Sref.current.end, tgt = it.e;
     if (cur === tgt) { if (warm && stepOn === "bar") api.did("bar"); return; }
-    busy.current = true; put({ touched: true });
+    busy.current = true; lastTry.current = null; put({ touched: true });
     const dir = tgt > cur ? 1 : -1, pts: any[] = [], ms: number[] = [];
     for (let m = cur + 15 * dir; dir > 0 ? m <= tgt : m >= tgt; m += 15 * dir) { pts.push({ x: ox + tcSx(m), y: BAR_Y }); ms.push(m); }
     const ok = await api.act({ tool: "hand", moves: "push", from: { x: ox + tcSx(cur), y: BAR_Y }, at: pts, ms: 900, onPoint: (i: number) => put({ end: ms[i] }) });
@@ -479,35 +726,56 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
     put({ added: true }); api.sfx.trade(); api.did("add");
   };
   const act = (on: any) => { if (on === "hand" || on === "wheel") turnAuto(); else if (on === "bar") layAuto(); else if (on === "add") addAct(); };
-  const pressKey = useRef(0);
-  const guarded = (fn: () => void) => () => { const t = Date.now(); if (t - pressKey.current < 400) return; pressKey.current = t; fn(); };
+  /* a 400 ms guard for each key on its own (two different keys tapped 80 ms apart are both taken) */
+  const keyGuard = useRef<any>({});
+  const guarded = (id: string, fn: () => void) => () => { const t = Date.now(); if (t - (keyGuard.current[id] || 0) < 400) return; keyGuard.current[id] = t; fn(); };
 
-  /* Enter: a guide step's act; at an end-time question it sends the bar's end (it is ready once the end has moved off the start) */
+  /* Enter: a guide step's act; at an end-time question it sends the bar's end once the end has moved off the start, never twice for the same
+     place (a miss needs a new act first) and never while the correction plays */
+  const lastTry = useRef<any>(null), traceBusy = useRef(false), nudgeOn = useRef(false);
   api.onEnter(warm && stepOn ? () => act(stepOn)
-    : !free && !warm && stage === "ask" && it.kind === "end" ? () => { if (endRef.current !== it.s) api.submit(endRef.current); } : null);
+    : !free && !warm && stage === "ask" && it.kind === "end" ? () => {
+      if (traceBusy.current) return;
+      const v = endRef.current;
+      if (v === it.s) { nudgeOn.current = true; api.say("Slide the end of the bar first."); return; }
+      if (v === lastTry.current) return;
+      lastTry.current = v; api.submit(v);
+    } : null);
   useEffect(() => { if (!free && !warm && stage === "ask" && it.kind === "end") api.answerReady(S.end !== it.s); }, [S.end, stage, qk]);
 
   /* the agent: finish the act at once; set the bar's end as given */
   const needAct = !free && !warm && stage === "ask" && (it.kind === "hm" || it.kind === "days" ? S.tiles < N : it.kind === "dur" ? S.end !== it.e : false);
   HOOK.check = needAct ? () => { if (it.kind === "dur") put({ end: it.e, touched: true }); else put({ tiles: N, touched: true }); return undefined; } : null;
   HOOK.set = !free && !warm && stage === "ask" && it.kind === "end"
-    ? (v: any) => { const m = Number(v); if (!isFinite(m)) return false; endRef.current = m; put({ end: m, touched: true }); return true; } : null;
+    ? (v: any) => { const m = Number(v); if (!isFinite(m)) return false; endRef.current = m; lastTry.current = null; put({ end: m, touched: true }); return true; } : null;
   /* the answer is gated by the act (PATTERNS 19): locked only in user mode once the child has really touched the board and the act is not done */
   useEffect(() => {
     const want = !!(needAct && S.touched);
-    if (want !== gl.current) { gl.current = want; api.lock(want); }
+    if (want === gl.current) return;
+    gl.current = want;
+    if (!traceBusy.current) api.lock(want);   /* during the correction the lock is the correction's; it takes gl.current when it ends */
   }, [needAct, S.touched, stage, qk]);
-  useEffect(() => () => { tl.stop(); if (gl.current) { gl.current = false; api.lock(false); } }, [qk]);
+  useEffect(() => () => { tl.stop(); traceBusy.current = false; nudgeOn.current = false; lastTry.current = null; if (gl.current) { gl.current = false; api.lock(false); } }, [qk]);
+  /* a nudge when the gate holds: said when a touch or a drag ended short of the act, and the question comes back once the act is done */
+  const nudgeSay = () => {
+    if (warm || free || stage !== "ask" || traceBusy.current) return;
+    nudgeOn.current = true;
+    if (V === "hours") api.say("Turn the hand some more.");
+    else if (V === "days") api.say("Turn the wheel some more.");
+    else api.say("Not at the flag yet: slide the handle to it.");
+  };
+  useEffect(() => { if (nudgeOn.current && stage === "ask" && !needAct && item && item.say) { nudgeOn.current = false; api.say(item.say); } }, [needAct, stage]);
+  useEffect(() => { if (nudgeOn.current && !free && !warm && stage === "ask" && it.kind === "end" && S.end !== it.s && item && item.say) { nudgeOn.current = false; api.say(item.say); } }, [S.end]);
 
   /* the traceback: replay the working in steps, lit on the tiles or the strip, and stop one step before the answer */
   const trLen = tcTraceLen(free ? null : it);
   useEffect(() => {
     if (!wrong || stage !== "ask") return;
-    api.lock(true);
+    api.lock(true); traceBusy.current = true; nudgeOn.current = false;
     put({ trace: 0 });
     const seq: any[] = [];
     for (let j = 1; j <= trLen; j++) seq.push([j === trLen ? 900 : 750, () => put({ trace: j })]);
-    tl.run(seq, () => api.lock(false));
+    tl.run(seq, () => { traceBusy.current = false; api.lock(gl.current); });
   }, [wrong]);
   /* the correction stays until the child's next act or digit */
   useEffect(() => { if (typed && S.trace >= 0) put({ trace: -1 }); }, [typed]);
@@ -515,94 +783,63 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
   const trN = trOn ? S.trace : 0;
 
   /* the win line, one sentence, said once a right answer lands */
-  useEffect(() => { if (stage === "win" && !free && item && item.win) api.say(item.win); }, [stage]);
-  /* free play: a tap on the count lends the pad to it, and a digit typed there (1 to 4) sets the hours or the days */
+  useEffect(() => { if (stage === "win" && !free && item && item.win) { nudgeOn.current = false; api.say(item.win); } }, [stage]);
+  /* free play: a tap on the count lends the pad to it; digits build the hours (1 to 6) or the days (1 to 5), a bigger number is held at the
+     most the picture holds, 0 does nothing, rub out takes the last digit, and the tiles already turned stay (up to the new count) */
   const openCount = () => {
     api.capture((k: any) => {
       if (k === "enter" || k === "clear") { api.capture(null); put({ capt: false }); return; }
+      const setCount = (p: any, v: number) => (p.mode === "days" ? { D: v, tiles: Math.min(p.tiles, v * 24), countTyped: true } : { H: v, tiles: Math.min(p.tiles, v * 12), countTyped: true });
+      if (k === "back") { put((p: any) => ({ ...setCount(p, Math.max(1, Math.floor((p.mode === "days" ? p.D : p.H) / 10))), capNote: false })); return; }
       const d = parseInt(String(k), 10);
-      if (d >= 1 && d <= 4) put((p: any) => (p.mode === "days" ? { D: d, tiles: 0 } : { H: d, tiles: 0 }));
+      if (!(d >= 0 && d <= 9)) return;
+      put((p: any) => {
+        const max = p.mode === "days" ? 5 : 6, cur = p.mode === "days" ? p.D : p.H, req = p.countTyped ? cur * 10 + d : d, v = Math.min(max, req);
+        return v < 1 ? {} : { ...setCount(p, v), capNote: req > max };
+      });
     });
-    put({ capt: true, countTapped: true });
+    put({ capt: true, countTapped: true, countTyped: false });
   };
   useEffect(() => { if (liveTiles > S.tiles) api.sfx.tick(); }, [liveTiles]);
 
-  /* what the host and the agent read back (toolApi.getState) */
+  /* what the host and the agent read back (toolApi.getState): the tiles drawn, the correction's ghost rows included */
+  const drawnTiles = Math.max(shownTiles, !free && !warm && stage === "ask" && S.trace > 0 ? Math.min(N, S.trace * per) : 0);
   api.share({
     complete: stage === "idle",
-    hours: V === "hours" ? Math.floor(liveTiles / 12) : null, minutes: V === "hours" ? (liveTiles % 12) * 5 : null, days: V === "days" ? Math.floor(liveTiles / 24) : null,
+    hours: V === "hours" ? Math.floor(drawnTiles / 12) : null, minutes: V === "hours" ? (drawnTiles % 12) * 5 : null, days: V === "days" ? Math.floor(drawnTiles / 24) : null,
     start: V === "bar" ? barA : null, end: V === "bar" ? barB : null,
   });
 
-  /* the one invite: on the control a step waits for, else on the main piece of an untouched question */
-  const inviteOn = warm ? stepOn : !free && stage === "ask" && !S.touched && !trOn && needAct ? "main" : null;
+  /* the one invite: on the control a step waits for, and on the main piece while the gate holds (before the first touch the blinking Answer key
+     is the invite, and two at once compete) */
+  const inviteOn = warm ? stepOn : !free && stage === "ask" && S.touched && !trOn && needAct ? "main" : null;
   const touch = { onPointerDownCapture: () => { if (!S.touched || S.trace >= 0) put({ touched: true, trace: -1 }); } };
 
   /* ── hours: the wall clock, a stopwatch and rows of five-minute tiles ── */
   const drawHours = () => {
-    const g = TC_G1, kp = tcPt(dial.cx, dial.cy, kr, liveA), rowsDone = Math.floor(shownTiles / 12);
+    const rowsN = Math.ceil(N / 12);
+    const g = free && rowsN > 4 ? { ...TC_G1, py: Math.floor(300 / rowsN), h: Math.floor(300 / rowsN) - 10 } : TC_G1;
+    const kp = tcPt(dial.cx, dial.cy, kr, liveA), rowsDone = Math.floor(shownTiles / 12);
     const popped = shownTiles > 0 && shownTiles % 12 === 0;
     const expr = it.kind === "hm" ? it.H + " × 60" + (it.M ? " + " + it.M : "") : "";
-    const rowsN = Math.ceil(N / 12);
     return (
       <g>
         {tcClockFace({ cx: dial.cx, cy: dial.cy, r: dial.r, A: liveA, C })}
-        <circle cx={150} cy={404} r={38} fill="#E8C86A" stroke={C.ink} strokeWidth={4} />
-        <circle cx={150} cy={404} r={29} fill="#FFF9EC" stroke={C.ink} strokeWidth={3} />
-        <Skin name="stopwatch" x={108} y={350} w={84} h={100} />
-        <rect x={138} y={popped ? 330 : 342} width={24} height={12} rx={3} fill={TC_HOUR} stroke={C.ink} strokeWidth={2} />
-        {tcRowsPic({ g, N, per: 12, tiles: shownTiles, kind: 1, hiN: trN, ghost: trOn ? Math.min(N, trN * 12) : 0, C, tx })}
-        {warm && rowsDone > 0 && <text x={590} y={428} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>{rowsDone + " × 60 = " + rowsDone * 60}</text>}
-        {free && shownTiles > 0 && <text x={590} y={428} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>{shownTiles * 5 + " " + tx("minutes")}</text>}
-        {trOn && trN >= rowsN && <text x={590} y={428} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>{expr}</text>}
-        {win && <g data-reveals="answer"><text x={590} y={428} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={shade(TC_GO, 0.3)}>{expr + " = " + item.answer}</text></g>}
-        <g {...control("hand", "Minute hand")} {...dd.bind({ id: "hand" })} {...dd.keys({ id: "hand" })} {...touch} style={{ cursor: "grab" }}>
-          <circle cx={kp.x} cy={kp.y} r={14} fill={TC_MIN} stroke="#FFFFFF" strokeWidth={4} />
-          <rect x={kp.x - 36} y={kp.y - 36} width={72} height={72} rx={18} fill="transparent" />
+        {/* Stopwatch background plate and skin */}
+        <g filter="url(#tc-shadow)">
+          <circle cx={150} cy={404} r={38} fill="#E8C86A" stroke={C.ink} strokeWidth={4} />
+          <circle cx={150} cy={404} r={29} fill="#FFF9EC" stroke={C.ink} strokeWidth={3} />
+          <Skin name="stopwatch" x={108} y={350} w={84} h={100} />
+          <rect x={138} y={popped ? 330 : 342} width={24} height={12} rx={3} fill={TC_HOUR} stroke={C.ink} strokeWidth={2} />
         </g>
-        {inviteOn && <Invite x={kp.x} y={kp.y} r={52} C={C} />}
-      </g>
-    );
-  };
-
-  /* ── days: the day wheel (a.m. half sky blue, p.m. half amber), a calendar page and rows of hour tiles ── */
-  const drawDays = () => {
-    const g = TC_G2, { cx, cy, r } = dial, kp = tcPt(cx, cy, kr, liveA), cur = shownTiles > 0 && shownTiles % 24 === 0 ? 24 : shownTiles % 24;
-    const wedges: any[] = [];
-    for (let i = 0; i < 24; i++) {
-      const base = i < 12 ? TC_AM : TC_PM, on = i < cur;
-      wedges.push(<path key={"w" + i} d={tcWedge(cx, cy, r, i * 15, 15)} fill={on ? base : tint(base, 0.72)} stroke={C.ink} strokeWidth={2} />);
-    }
-    const D = free ? S.D : it.D, d0 = free ? 10 : it.d0 || 10, cw = 56, tot = D * (cw + 6) - 6, cx0 = 300 + (340 - tot) / 2;
-    const cells: any[] = [];
-    for (let i = 0; i < D; i++) {
-      cells.push(<rect key={"k" + i} x={cx0 + i * (cw + 6)} y={104} width={cw} height={cw} rx={8} fill="#FFFFFF" stroke={C.ink} strokeWidth={2.4} />);
-      cells.push(<text key={"t" + i} x={cx0 + i * (cw + 6) + cw / 2} y={104 + cw / 2 + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink}>{d0 + i}</text>);
-    }
-    const expr = !free ? it.D + " × 24" : "";
-    const top = tcPt(cx, cy, r, 0), bot = tcPt(cx, cy, r, 180);
-    return (
-      <g>
-        {wedges}
-        <polygon points={`${top.x - 9},${top.y - 12} ${top.x + 9},${top.y - 12} ${top.x},${top.y + 6}`} fill={C.ink} />
-        <polygon points={`${bot.x - 9},${bot.y + 12} ${bot.x + 9},${bot.y + 12} ${bot.x},${bot.y - 6}`} fill={C.ink} />
-        <text x={cx} y={cy - r - 18} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink}>{tx("midnight")}</text>
-        <text x={cx} y={cy + r + 38} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink}>{tx("noon")}</text>
-        <line x1={cx} y1={cy} x2={kp.x} y2={kp.y} stroke={C.ink} strokeWidth={7} strokeLinecap="round" />
-        <circle cx={cx} cy={cy} r={9} fill={C.ink} />
-        <rect x={300} y={34} width={340} height={150} rx={16} fill="#FFFDF7" stroke={C.ink} strokeWidth={3} />
-        <rect x={300} y={34} width={340} height={46} rx={16} fill={tint(C.rule, 0.2)} stroke={C.ink} strokeWidth={3} />
-        <text x={470} y={69} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink}>{tx("Days")}</text>
-        {cells}
-        <rect x={680} y={70} width={170} height={110} rx={14} fill="#B98A52" stroke={C.ink} strokeWidth={3} />
-        <Skin name="suitcase" x={672} y={56} w={186} h={122} />
-        {tcRowsPic({ g, N, per: 24, tiles: shownTiles, kind: 2, hiN: trN, ghost: trOn ? Math.min(N, trN * 24) : 0, C, tx })}
-        {free && shownTiles > 0 && <text x={640} y={238} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={C.ink}>{shownTiles + " " + tx("hours")}</text>}
-        {warm && shownTiles >= 24 && <text x={640} y={238} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={C.ink}>{Math.floor(shownTiles / 24) + " × 24 = " + Math.floor(shownTiles / 24) * 24}</text>}
-        {trOn && trN >= it.D && <text x={640} y={238} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={C.ink}>{expr}</text>}
-        {win && <g data-reveals="answer"><text x={640} y={238} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={shade(TC_GO, 0.3)}>{expr + " = " + item.answer}</text></g>}
-        <g {...control("wheel", "Day wheel handle")} {...dd.bind({ id: "wheel" })} {...dd.keys({ id: "wheel" })} {...touch} style={{ cursor: "grab" }}>
-          <circle cx={kp.x} cy={kp.y} r={17} fill={TC_GO} stroke={C.ink} strokeWidth={4} />
+        {tcRowsPic({ g, N, per: 12, tiles: shownTiles, kind: 1, hiN: trN, ghost: trOn ? Math.min(N, trN * 12) : 0, C, tx })}
+        {warm && rowsDone > 0 && <text x={590} y={428} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink} stroke={C.paper} strokeWidth={4} paintOrder="stroke">{rowsDone + " × 60 = " + rowsDone * 60}</text>}
+        {free && shownTiles > 0 && <text x={590} y={392} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink} stroke={C.paper} strokeWidth={4} paintOrder="stroke">{shownTiles * 5 + " " + tx("minutes")}</text>}
+        {trOn && trN >= rowsN && <text x={590} y={428} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink} stroke={C.paper} strokeWidth={4} paintOrder="stroke">{expr}</text>}
+        {win && <g data-reveals="answer"><text x={590} y={428} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={shade(TC_GO, 0.3)} stroke={C.paper} strokeWidth={4} paintOrder="stroke">{expr + " = " + item.answer}</text></g>}
+        <g {...control("hand", "Minute hand")} {...dd.bind({ id: "hand" })} {...dd.keys({ id: "hand" })} {...touch} style={{ cursor: "grab" }}>
+          <circle cx={kp.x} cy={kp.y} r={16} fill={TC_MIN} stroke="#FFFFFF" strokeWidth={4} filter="url(#tc-shadow)" />
+          <circle cx={kp.x} cy={kp.y} r={6} fill="#FFFFFF" />
           <rect x={kp.x - 36} y={kp.y - 36} width={72} height={72} rx={18} fill="transparent" />
         </g>
         {inviteOn && <Invite x={kp.x} y={kp.y} r={44} C={C} />}
@@ -610,89 +847,187 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
     );
   };
 
+  /* ── days: the day wheel (a.m. half sky blue, p.m. half amber), a calendar page and rows of hour tiles ── */
+  const drawDays = () => {
+    const { cx, cy, r } = dial, kp = tcPt(cx, cy, kr, liveA), cur = shownTiles > 0 && shownTiles % 24 === 0 ? 24 : shownTiles % 24;
+    const fpy = free ? (S.D <= 3 ? 36 : Math.floor(112 / S.D)) : 36;
+    const g = free ? { ...TC_G2, py: fpy, h: Math.max(14, fpy - 8) } : TC_G2;
+    const wedges: any[] = [];
+    for (let i = 0; i < 24; i++) {
+      const baseGrad = i < 12 ? "url(#tc-grad-am)" : "url(#tc-grad-pm)";
+      const flatBase = i < 12 ? TC_AM : TC_PM;
+      const on = i < cur;
+      wedges.push(<path key={"w" + i} d={tcWedge(cx, cy, r, i * 15, 15)} fill={on ? baseGrad : tint(flatBase, 0.72)} stroke={C.ink} strokeWidth={2} />);
+    }
+    const D = free ? S.D : it.D, cw = 56, tot = D * (cw + 6) - 6, cx0 = 300 + (340 - tot) / 2;
+    const cells: any[] = [];
+    for (let i = 0; i < D; i++) {
+      /* one empty box a day: a number in it would read as one big number beside the heading */
+      cells.push(<rect key={"k" + i} x={cx0 + i * (cw + 6)} y={104} width={cw} height={cw} rx={8} fill="#FFFFFF" stroke={C.ink} strokeWidth={2.4} filter="url(#tc-shadow)" />);
+    }
+    const expr = !free ? it.D + " × 24" : "";
+    const top = tcPt(cx, cy, r, 0), bot = tcPt(cx, cy, r, 180);
+    return (
+      <g>
+        <g filter="url(#tc-shadow)">
+          <circle cx={cx} cy={cy} r={r + 6} fill={C.rule || "#C9BCA6"} />
+          {wedges}
+          <circle cx={cx} cy={cy} r={r} fill="none" stroke={C.ink} strokeWidth={4} />
+        </g>
+        <polygon points={`${top.x - 9},${top.y - 12} ${top.x + 9},${top.y - 12} ${top.x},${top.y + 6}`} fill={C.ink} />
+        <polygon points={`${bot.x - 9},${bot.y + 8} ${bot.x + 9},${bot.y + 8} ${bot.x},${bot.y - 6}`} fill={C.ink} />
+        <text x={cx} y={cy - r - 24} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink} stroke={C.paper} strokeWidth={4} paintOrder="stroke">{tx("midnight")}</text>
+        <text x={cx} y={cy + r + 44} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink} stroke={C.paper} strokeWidth={4} paintOrder="stroke">{tx("noon")}</text>
+        <line x1={cx} y1={cy} x2={kp.x} y2={kp.y} stroke={C.ink} strokeWidth={7} strokeLinecap="round" />
+        <circle cx={cx} cy={cy} r={9} fill={C.ink} />
+        <circle cx={cx} cy={cy} r={4} fill="#FFFFFF" />
+        {/* Calendar Card */}
+        <g filter="url(#tc-shadow)">
+          <rect x={300} y={34} width={340} height={150} rx={16} fill="#FFFDF7" stroke={C.ink} strokeWidth={3} />
+          <rect x={300} y={34} width={340} height={46} rx={16} fill={tint(C.rule, 0.2)} stroke={C.ink} strokeWidth={3} />
+          <text x={470} y={69} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink}>{tx("Days")}</text>
+          {cells}
+        </g>
+        {/* Suitcase Skin Card */}
+        <g filter="url(#tc-shadow)">
+          <rect x={680} y={70} width={170} height={110} rx={14} fill="#B98A52" stroke={C.ink} strokeWidth={3} />
+          <Skin name="suitcase" x={672} y={56} w={186} h={122} />
+        </g>
+        {tcRowsPic({ g, N, per: 24, tiles: shownTiles, kind: 2, hiN: trN, ghost: trOn ? Math.min(N, trN * 24) : 0, C, tx })}
+        {free && shownTiles > 0 && <text x={640} y={238} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={C.ink} stroke={C.paper} strokeWidth={4} paintOrder="stroke">{shownTiles + " " + tx("hours")}</text>}
+        {warm && shownTiles >= 24 && <text x={640} y={238} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={C.ink} stroke={C.paper} strokeWidth={4} paintOrder="stroke">{Math.floor(shownTiles / 24) + " × 24 = " + Math.floor(shownTiles / 24) * 24}</text>}
+        {trOn && trN >= it.D && <text x={640} y={238} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={C.ink} stroke={C.paper} strokeWidth={4} paintOrder="stroke">{expr}</text>}
+        {win && <g data-reveals="answer"><text x={640} y={238} textAnchor="middle" fontSize={T.speech} fontWeight={700} fill={shade(TC_GO, 0.3)} stroke={C.paper} strokeWidth={4} paintOrder="stroke">{expr + " = " + item.answer}</text></g>}
+        <g {...control("wheel", "Day wheel handle")} {...dd.bind({ id: "wheel" })} {...dd.keys({ id: "wheel" })} {...touch} style={{ cursor: "grab" }}>
+          <circle cx={kp.x} cy={kp.y} r={17} fill="url(#tc-grad-go)" stroke={C.ink} strokeWidth={4} filter="url(#tc-shadow)" />
+          <circle cx={kp.x} cy={kp.y} r={6} fill="#FFFFFF" />
+          <rect x={kp.x - 36} y={kp.y - 36} width={72} height={72} rx={18} fill="transparent" />
+        </g>
+        {inviteOn && <Invite x={kp.x} y={kp.y} r={38} C={C} />}
+      </g>
+    );
+  };
+
   /* ── the bar on the day strip (6 a.m. to 6 p.m., noon in the middle), with the whole day above it ── */
   const drawBar = () => {
     const B = TC_B, hasFlagE = !free && it.kind === "dur", isEnd = !free && it.kind === "end";
-    /* the two piece lengths are written only in the warm-up and in free play: in a question counting to noon and from noon is the child's work
-       (the correction writes them after a miss) */
-    const crossing = barA < 720 && barB > 720, showLen = crossing && (free || warm);
+    /* a split at noon (two pieces, each with its length) belongs to a duration; an end time adds the hours first and then the minutes, so its
+       bar stays one piece and only the hour blocks and the working lines tell the story. In a duration question the lengths are the child's work:
+       they are written in the warm-up, in free play and at the win, and the correction writes them after a miss */
+    const split = (free || warm || it.kind === "dur") && barA < 720 && barB > 720;
+    const showLen = split && (free || warm || win);
     const xa = tcSx(barA), xb = tcSx(barB), xn = tcSx(720), done = hasFlagE && barB === it.e;
-    const total = barB - barA, cl = (x: number) => tcClamp(x, 100, 800);
+    const total = barB - barA;
     const showTotal = (warm && S.added) || (free && total > 0);
     const straight = !free && !warm && (isEnd || (it.kind === "dur" && !(it.s < 720 && it.e > 720)));
+    const side = (a: number, b: number) => ((a + b) / 2 < 720 ? shade(TC_AM, 0.35) : TC_PM);
+    /* widths for the little cream plates behind a word that crosses a line (an estimate by letters: Devanagari and Gujarati are narrower) */
+    const wOf = (s: string, size: number) => String(s).length * size * 0.54;
+    const timeW = (m: number, size: number, nw?: boolean) => { const c = tcClock(m), w = tx(c.w), word = c.w === "noon" || c.w === "midnight"; return (word ? 3 : String(c.h).length + 3) * size * 0.56 + (nw && !word ? 0 : 6 + wOf(w, size)); };
+    const plate = (key: any, x: number, y: number, w: number, h: number) => <rect key={key} x={x} y={y} width={w} height={h} rx={h / 2} fill="#FFF9EC" />;
     const out: any[] = [];
     /* the whole day, small, with the window and the bar on it */
     for (let i = 0; i < 24; i++) out.push(<rect key={"m" + i} x={TC_X0 + i * 36} y={B.mini} width={36} height={B.miniH} fill={tint(i < 12 ? TC_AM : TC_PM, 0.35)} stroke={C.ink} strokeWidth={1.5} />);
-    out.push(<text key="ma" x={126} y={B.mini + 28} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={shade(TC_AM, 0.5)}>{tx("a.m.")}</text>);
-    out.push(<text key="mp" x={774} y={B.mini + 28} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={shade(TC_PM, 0.5)}>{tx("p.m.")}</text>);
-    out.push(<path key="mw" d={`M${TC_X0 + 216},${B.mini + B.miniH + 4} v8 h432 v-8`} fill="none" stroke={C.ink} strokeWidth={3} />);
-    if (barB > barA) out.push(<rect key="mb" x={TC_X0 + barA * 0.6} y={B.mini + 4} width={(barB - barA) * 0.6} height={B.miniH - 8} fill={TC_GO} stroke={C.ink} strokeWidth={1.5} />);
+    [["ma", 126, "a.m.", TC_AM], ["mp", 774, "p.m.", TC_PM]].forEach((q: any) => {
+      const w = Math.max(70, wOf(tx(q[2]), T.micro) + 22);
+      out.push(plate(q[0] + "p", q[1] - w / 2, B.mini + 2, w, B.miniH - 4));
+      out.push(<text key={q[0]} x={q[1]} y={B.mini + 27} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={shade(q[3], 0.5)}>{tx(q[2])}</text>);
+    });
+    out.push(<path key="mw" d={`M${TC_X0 + 216},${B.mini + B.miniH + 3} v7 h432 v-7`} fill="none" stroke={C.ink} strokeWidth={3} />);
+    if (barB > barA) out.push(<rect key="mb" x={TC_X0 + barA * 0.6} y={B.mini + 3} width={(barB - barA) * 0.6} height={B.miniH - 6} rx={2} fill="url(#tc-grad-go)" stroke={C.ink} strokeWidth={1.5} />);
     /* the day strip */
     for (let i = 0; i < 12; i++) {
-      const x = tcSx((6 + i) * 60), base = i < 6 ? TC_AM : TC_PM;
-      out.push(<rect key={"s" + i} x={x} y={B.tY} width={72} height={B.tH} fill={tint(base, 0.4)} stroke={C.ink} strokeWidth={2.4} />);
-      for (let q = 1; q < 4; q++) out.push(<line key={"q" + i + "_" + q} x1={x + q * 18} y1={B.tY + B.tH - (q === 2 ? 20 : 12)} x2={x + q * 18} y2={B.tY + B.tH} stroke={C.ink} strokeWidth={2} />);
+      const x = tcSx((6 + i) * 60), flatBase = i < 6 ? TC_AM : TC_PM;
+      out.push(<rect key={"s" + i} x={x} y={B.tY} width={72} height={B.tH} fill={tint(flatBase, 0.4)} stroke={C.ink} strokeWidth={2.4} />);
+      for (let q = 1; q < 4; q++) out.push(<line key={"q" + i + "_" + q} x1={x + q * 18} y1={B.tY + B.tH - (q === 2 ? 20 : 12)} x2={x + q * 18} y2={B.tY + B.tH} stroke={C.ink} strokeWidth={2} strokeLinecap="round" />);
     }
-    out.push(<text key="sa" x={tcSx(540)} y={B.tY + B.tH / 2 + 10} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={shade(TC_AM, 0.5)}>{tx("a.m.")}</text>);
-    out.push(<text key="sp" x={tcSx(900)} y={B.tY + B.tH / 2 + 10} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={shade(TC_PM, 0.5)}>{tx("p.m.")}</text>);
+    [["sa", 540, "a.m.", TC_AM], ["sp", 900, "p.m.", TC_PM]].forEach((q: any) => {
+      const w = Math.max(96, wOf(tx(q[2]), T.label) + 28), cx = tcSx(q[1]);
+      out.push(plate(q[0] + "p", cx - w / 2, B.tY + B.tH / 2 - 20, w, 40));
+      out.push(<text key={q[0]} x={cx} y={B.tY + B.tH / 2 + 10} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={shade(q[3], 0.5)}>{tx(q[2])}</text>);
+    });
     out.push(<line key="nl" x1={xn} y1={B.tY - 4} x2={xn} y2={B.tY + B.tH + 4} stroke={C.ink} strokeWidth={5} />);
-    out.push(<polygon key="nn" points={`${xn - 11},${B.tY + B.tH + 18} ${xn + 11},${B.tY + B.tH + 18} ${xn},${B.tY + B.tH + 4}`} fill={C.ink} />);
-    for (let h = 6; h <= 18; h++) out.push(<text key={"l" + h} x={tcSx(h * 60)} y={B.labY} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink}>{h === 12 ? tx("noon") : h > 12 ? h - 12 : h}</text>);
-    /* the train of the train story (one small picture along the top of the timeline; the plain shape is its fallback) */
+    out.push(<polygon key="nn" points={`${xn - 11},${B.tY + B.tH + 14} ${xn + 11},${B.tY + B.tH + 14} ${xn},${B.tY + B.tH + 2}`} fill={C.ink} />);
+    for (let h = 6; h <= 18; h++) out.push(<text key={"l" + h} x={tcSx(h * 60)} y={B.labY} textAnchor="middle" fontSize={h === 12 ? T.micro : T.label} fontWeight={700} fill={C.ink}>{h === 12 ? tx("noon") : h > 12 ? h - 12 : h}</text>);
+    /* the train of the train story (one small picture under the strip's left end; the plain shape is its fallback) */
     if (!free && !warm && it.train) {
-      out.push(<g key="train">
-        <rect x={0} y={56} width={300} height={31} rx={7} fill="#6B7A86" stroke={C.ink} strokeWidth={2} />
-        {[0, 1, 2, 3, 4, 5].map((k: number) => <rect key={k} x={14 + k * 47} y={62} width={30} height={14} rx={3} fill="#E9F1F6" stroke={C.ink} strokeWidth={1.5} />)}
-        <Skin name="train" x={0} y={56} w={300} h={31.25} />
+      out.push(<g key="train" filter="url(#tc-shadow)">
+        <rect x={0} y={334} width={300} height={31} rx={7} fill="#6B7A86" stroke={C.ink} strokeWidth={2} />
+        {[0, 1, 2, 3, 4, 5].map((k: number) => <rect key={k} x={14 + k * 47} y={340} width={30} height={14} rx={3} fill="#E9F1F6" stroke={C.ink} strokeWidth={1.5} />)}
+        <Skin name="train" x={0} y={334} w={300} h={31.25} />
       </g>);
     }
-    /* the flags: the start, and the given end of a duration question */
-    out.push(<line key="fs" x1={xa} y1={B.startLab + 10} x2={xa} y2={B.tY} stroke={C.ink} strokeWidth={3} />);
-    out.push(<g key="fst">{tcTime({ x: cl(xa), y: B.startLab, size: 36, m: barA, tx, C })}</g>);
-    if (hasFlagE) {
-      const xe = tcSx(it.e);
-      out.push(<line key="fe" x1={xe} y1={B.endLab + 10} x2={xe} y2={B.tY} stroke={C.ink} strokeWidth={3} />);
-      out.push(<g key="fet">{tcTime({ x: cl(xe), y: B.endLab, size: 36, m: it.e, tx, C })}</g>);
-    } else if (barB > barA) {
-      out.push(<line key="fe" x1={xb} y1={B.endLab + 10} x2={xb} y2={B.tY} stroke={shade(TC_GO, 0.3)} strokeWidth={3} />);
-      out.push(<g key="fet">{tcTime({ x: cl(xb), y: B.endLab, size: 40, m: barB, tx, C, ink: shade(TC_GO, 0.3) })}</g>);
+    /* the flags, on ONE row of labels: the start label ends at its pole and the end label begins at its pole, so they never meet; the poles run
+       down to the strip behind the bar and the cream plates */
+    const LAB = B.lab, size = 36, polesTop = LAB + 8;
+    const endM = hasFlagE ? it.e : barB > barA ? barB : null;
+    const xe = endM !== null ? tcSx(endM) : 0, gapE = hasFlagE ? 34 : 8, szE = hasFlagE ? size : 40, inkE = hasFlagE ? undefined : shade(TC_GO, 0.3);
+    /* where the two labels go: the start label ends at its pole, the end label begins at its pole (or ends there when it would pass the ruler's end) */
+    const place = (nw: boolean) => {
+      const wS = timeW(barA, size, nw);
+      const S0 = xa - 8 - wS >= 2 ? { x: xa - 8, anchor: "end", l: xa - 8 - wS, r: xa - 8 } : { x: Math.max(2, xa + 8), anchor: "start", l: Math.max(2, xa + 8), r: Math.max(2, xa + 8) + wS };
+      let E0: any = null;
+      if (endM !== null) {
+        const wE = timeW(endM, szE, nw);
+        E0 = xe + gapE + wE <= 886 ? { x: xe + gapE, anchor: "start", l: xe + gapE, r: xe + gapE + wE } : { x: xe - 8, anchor: "end", l: xe - 8 - wE, r: xe - 8 };
+      }
+      return { S0, E0, hit: !!E0 && E0.l < S0.r + 16 && E0.r > S0.l - 16 };
+    };
+    let pl = place(false), nw = false;
+    if (pl.hit) { pl = place(true); nw = true; }
+    out.push(<line key="fs" x1={xa} y1={polesTop} x2={xa} y2={B.tY} stroke={C.ink} strokeWidth={3.5} strokeLinecap="round" />);
+    out.push(<g key="fst">{tcTime({ x: pl.S0.x, y: LAB, size, m: barA, anchor: pl.S0.anchor, tx, C, noWord: nw })}</g>);
+    if (endM !== null) {
+      out.push(<line key="fe" x1={xe} y1={polesTop} x2={xe} y2={B.tY} stroke={hasFlagE ? C.ink : inkE} strokeWidth={3.5} strokeLinecap="round" />);
+      if (hasFlagE) out.push(<polygon key="pen" points={`${xe},${LAB - 28} ${xe + 26},${LAB - 15} ${xe},${LAB - 2}`} fill="url(#tc-grad-go)" stroke={C.ink} strokeWidth={2.5} strokeLinejoin="round" />);
+      out.push(<g key="fet">{tcTime({ x: pl.E0.x, y: LAB, size: szE, m: endM, anchor: pl.E0.anchor, tx, C, ink: inkE, noWord: nw })}</g>);
     }
-    /* the bar, in one piece or two at noon, with each piece's length written above when it crosses */
-    const pieces = crossing ? [[barA, 720], [720, barB]] : [[barA, barB]];
+    /* the bar, in one piece or two at noon, with each piece's length written over it when it crosses */
+    const pieces = split ? [[barA, 720], [720, barB]] : [[barA, barB]];
+    const lenLab = (key: any, j: number, mins: number) => {
+      const s = tcDurStr(mins, tx), w = wOf(s, 34) + 18, x = j === 0 ? xn - 26 - w : xn + 26;
+      return [plate(key + "p", x, B.lenY - 28, w, 38), <g key={key}>{tcDurText({ x: j === 0 ? xn - 26 - 9 : xn + 26 + 9, y: B.lenY, size: 34, mins, anchor: j === 0 ? "end" : "start", tx, C })}</g>];
+    };
     pieces.forEach((p: any, j: number) => {
       if (p[1] <= p[0]) return;
-      const x1 = tcSx(p[0]) + (crossing && j === 1 ? 3 : 0), x2 = tcSx(p[1]) - (crossing && j === 0 ? 3 : 0);
-      out.push(<rect key={"b" + j} x={x1} y={B.barY} width={Math.max(2, x2 - x1)} height={B.barH} rx={8} fill={TC_GO} stroke={C.ink} strokeWidth={3} />);
-      if (showLen) out.push(<g key={"bl" + j}>{tcDurText({ x: j === 0 ? xn - 26 : xn + 26, y: B.lenY, size: 34, mins: p[1] - p[0], anchor: j === 0 ? "end" : "start", tx, C })}</g>);
+      const x1 = tcSx(p[0]) + (split && j === 1 ? 3 : 0), x2 = tcSx(p[1]) - (split && j === 0 ? 3 : 0);
+      out.push(
+        <g key={"b" + j} filter="url(#tc-shadow)">
+          <rect x={x1} y={B.barY} width={Math.max(2, x2 - x1)} height={B.barH} rx={8} fill="url(#tc-grad-go)" stroke={C.ink} strokeWidth={3} />
+          <rect x={x1 + 2} y={B.barY + 3} width={Math.max(0, x2 - x1 - 4)} height={B.barH / 3} rx={4} fill="#FFFFFF" fillOpacity={0.25} />
+        </g>
+      );
+      if (showLen) out.push(...lenLab("bl" + j, j, p[1] - p[0]));
     });
-    if (showLen) out.push(<text key="plus" x={xn} y={B.lenY} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink} stroke={C.paper} strokeWidth={6} paintOrder="stroke">+</text>);
+    if (showLen) out.push(<g key="plus">{plate("pluspl", xn - 17, B.lenY - 28, 34, 38)}<text x={xn} y={B.lenY} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink}>+</text></g>);
     /* the correction lays its own ghost of the working (the child's bar is never moved), lights it one step after another and stops one step
-       before the answer: across noon the two pieces are lit and measured; on a straight bar, or for an end time, the whole hours are counted */
+       before the answer: across noon the two pieces of a duration are lit and measured; on a straight bar, or for an end time, the whole hours
+       are counted. An outline says the side of noon (sky blue before it, amber after it) */
     const ghostCross = trOn && it.kind === "dur" && it.s < 720 && it.e > 720;
     if (ghostCross) {
       [[it.s, 720], [720, it.e]].forEach((p: any, j: number) => {
         if (j >= trN) return;
         const x1 = tcSx(p[0]) + (j === 1 ? 3 : 0), x2 = tcSx(p[1]) - (j === 0 ? 3 : 0);
         out.push(<rect key={"gh" + j} x={x1} y={B.barY} width={x2 - x1} height={B.barH} rx={8} fill={TC_GO} fillOpacity={0.55} stroke={C.ink} strokeWidth={3} />);
-        out.push(<rect key={"bh" + j} x={x1 - 5} y={B.barY - 5} width={x2 - x1 + 10} height={B.barH + 10} rx={12} fill="none" stroke={TC_PM} strokeWidth={6} />);
-        out.push(<g key={"gl" + j}>{tcDurText({ x: j === 0 ? xn - 26 : xn + 26, y: B.lenY, size: 34, mins: p[1] - p[0], anchor: j === 0 ? "end" : "start", tx, C })}</g>);
+        out.push(<rect key={"bh" + j} x={x1 - 5} y={B.barY - 5} width={x2 - x1 + 10} height={B.barH + 10} rx={12} fill="none" stroke={j === 0 ? shade(TC_AM, 0.35) : TC_PM} strokeWidth={6} />);
+        out.push(...lenLab("gl" + j, j, p[1] - p[0]));
       });
     } else if ((trOn || win) && straight) {
       /* the hours counted on from the start, block by block (and at the win the minutes block after them) */
       const e2 = isEnd ? it.s + it.len : it.e, nb = win ? tcTraceLen(it) : Math.min(trN, tcTraceLen(it)), rest = (e2 - it.s) % 60;
       for (let j = 0; j < nb; j++) {
         const x1 = tcSx(it.s + j * 60), x2 = tcSx(it.s + (j + 1) * 60);
-        out.push(<rect key={"th" + j} x={x1} y={B.barY - 5} width={x2 - x1} height={B.barH + 10} rx={10} fill={TC_GO} fillOpacity={0.4} stroke={TC_PM} strokeWidth={6} />);
+        out.push(<rect key={"th" + j} x={x1} y={B.barY - 5} width={x2 - x1} height={B.barH + 10} rx={10} fill={TC_GO} fillOpacity={0.4} stroke={side(it.s + j * 60, it.s + (j + 1) * 60)} strokeWidth={6} />);
         out.push(<text key={"tn" + j} x={(x1 + x2) / 2} y={B.lenY} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={C.ink} stroke={C.paper} strokeWidth={6} paintOrder="stroke">{j + 1}</text>);
       }
       if (win && rest > 0) {
-        const x1 = tcSx(it.s + tcTraceLen(it) * 60), x2 = tcSx(e2);
-        out.push(<rect key="tm" data-reveals="answer" x={x1} y={B.barY - 5} width={x2 - x1} height={B.barH + 10} rx={10} fill={TC_GO} fillOpacity={0.4} stroke={TC_MIN} strokeWidth={6} />);
+        const m1 = it.s + tcTraceLen(it) * 60, x1 = tcSx(m1), x2 = tcSx(e2);
+        out.push(<rect key="tm" data-reveals="answer" x={x1} y={B.barY - 5} width={x2 - x1} height={B.barH + 10} rx={10} fill={TC_GO} fillOpacity={0.4} stroke={side(m1, e2)} strokeWidth={6} />);
       }
     }
     /* the working as written lines under the strip: in the correction it stops one step before the answer, at the win it goes on to it */
     const wl = (trOn && trN >= trLen) || win ? tcLines(it, tx, win) : [];
-    if (wl.length) out.push(<g key="wl" data-reveals={win ? "answer" : undefined}>{wl.map((ln: string, i: number) => <text key={i} x={450} y={404 + i * 35} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={win ? shade(TC_GO, 0.3) : C.ink}>{ln}</text>)}</g>);
+    if (wl.length) out.push(<g key="wl" data-reveals={win ? "answer" : undefined}>{wl.map((ln: string, i: number) => <text key={i} x={450} y={B.linesY + i * B.linesPitch} textAnchor="middle" fontSize={T.micro} fontWeight={700} letterSpacing={1.5} fill={win ? shade(TC_GO, 0.3) : C.ink} stroke={C.paper} strokeWidth={5} paintOrder="stroke">{ln}</text>)}</g>);
     /* the totals (the warm-up after Add, and free play) */
     if (showTotal && total > 0) out.push(<g key="tot">{tcDurText({ x: 450, y: B.outY + 8, size: T.xl, mins: total, tx, C })}</g>);
     return <g>{out}</g>;
@@ -704,25 +1039,25 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
     const hy = BAR_Y, xb = tcSx(barB), xa = tcSx(barA), isEnd = !free && it.kind === "end";
     const done = !free && it.kind === "dur" && barB === it.e;
     const kd = (id: string) => (e: any) => {
-      if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); e.stopPropagation(); nudge(id, e.key === "ArrowRight" ? 15 : -15); return; }
-      if (e.key === "Enter" && isEnd && stage === "ask" && S.end !== it.s) return;
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); e.stopPropagation(); stepBar(id, e.key === "ArrowRight" ? 15 : -15); return; }
+      if (isEnd || free) { if (e.key === " ") e.preventDefault(); return; }   /* Enter goes on to the window (it sends a placed end); Space does nothing */
       dd.keys({ id }).onKeyDown(e);
     };
     return (
       <g>
         <g {...control("bar", "Bar end")} {...dd.bind({ id: "bar" })} onKeyDown={kd("bar")} {...touch} style={{ cursor: "grab" }}>
-          <circle cx={xb} cy={hy} r={27} fill={done ? shade(TC_GO, 0.25) : "#FFFFFF"} stroke={C.ink} strokeWidth={4} />
+          <circle cx={xb} cy={hy} r={23} fill={done ? shade(TC_GO, 0.25) : "#FFFFFF"} stroke={C.ink} strokeWidth={4} filter="url(#tc-shadow)" />
           <path d={`M${xb - 8},${hy - 11} l14,11 l-14,11`} fill="none" stroke={done ? "#FFFFFF" : C.ink} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
           <rect x={free ? xb : xb - 36} y={hy - 36} width={72} height={72} rx={18} fill="transparent" />
         </g>
         {free && (
           <g {...control("bar-start", "Bar start")} {...dd.bind({ id: "bar-start" })} onKeyDown={kd("bar-start")} {...touch} style={{ cursor: "grab" }}>
-            <circle cx={xa} cy={hy} r={27} fill="#FFFFFF" stroke={C.ink} strokeWidth={4} />
+            <circle cx={xa} cy={hy} r={23} fill="#FFFFFF" stroke={C.ink} strokeWidth={4} filter="url(#tc-shadow)" />
             <path d={`M${xa + 8},${hy - 11} l-14,11 l14,11`} fill="none" stroke={C.ink} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
             <rect x={xa - 72} y={hy - 36} width={72} height={72} rx={18} fill="transparent" />
           </g>
         )}
-        {inviteOn && <Invite x={xb} y={hy} r={50} C={C} />}
+        {inviteOn && <Invite x={xb} y={hy} r={46} C={C} />}
       </g>
     );
   };
@@ -736,18 +1071,19 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
             const sel = S.mode === id;
             return (
               <Key key={id} id={"free-" + id} label={tx((TC_MODE as any)[id])} x={450 + (j - 1) * 144 - 65} y={cy0} w={130} h={72} C={C} tone={sel ? "enter" : "key"}
-                onClick={guarded(() => { if (captured) api.capture(null); put({ mode: id, tiles: 0, trace: -1, capt: false }); api.sfx.tick(); })}>
+                onClick={guarded("m-" + id, () => { if (captured) api.capture(null); put({ mode: id, tiles: 0, trace: -1, capt: false, capNote: false }); api.sfx.tick(); })}>
                 <text y={11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={toneInk(sel ? "enter" : "key", C.ink)}>{tx((TC_MODE as any)[id])}</text>
               </Key>
             );
           })}
           {V !== "bar" && (
-            <g>
+            <g filter="url(#tc-shadow)">
               <rect x={cx0} y={cy0} width={190} height={72} rx={14} fill="#FFFFFF" stroke={on ? shade(C.accent, 0.3) : C.ink} strokeWidth={on ? 6 : 3} />
               <text x={cx0 + 34} y={cy0 + 54} textAnchor="middle" fontSize={T.xl} fontWeight={700} fill={C.ink}>{cnt}</text>
               <text x={cx0 + 66} y={cy0 + 48} fontSize={T.micro} fontWeight={600} fill={C.ink}>{tx(V === "days" ? "days" : "hours")}</text>
               <Hit id="free-count" x={cx0} y={cy0} w={190} h={72} label="Number of hours or days" enabled={!captured} onPress={openCount} />
               {!S.countTapped && <Invite x={cx0 + 95} y={cy0 + 36} w={190} h={72} C={C} />}
+              {S.capNote && <text x={cx0 + 95} y={cy0 - 10} textAnchor="middle" fontSize={T.micro} fontWeight={700} fill={C.ink} stroke={C.paper} strokeWidth={4} paintOrder="stroke">{tx(V === "days" ? "Up to 5 days." : "Up to 6 hours.")}</text>}
             </g>
           )}
         </g>
@@ -756,7 +1092,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
     if (warm && n === 3 && st >= 1 && !S.added) {
       return (
         <g>
-          <Key id="add" label={tx("Add")} x={350} y={TC_B.keyY} w={200} h={72} C={C} tone="key" onClick={guarded(() => addAct())}>
+          <Key id="add" label={tx("Add")} x={350} y={TC_B.keyY} w={200} h={72} C={C} tone="key" onClick={guarded("add", () => addAct())}>
             <text y={11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={toneInk("key", C.ink)}>{tx("Add")}</text>
           </Key>
           {inviteOn === "add" && <Invite x={450} y={TC_B.keyY + 36} w={200} h={72} C={C} />}
@@ -768,6 +1104,27 @@ function Work({ phase, n, item, index, stage, wrong, typed, captured, api, MODEL
 
   return (
     <g>
+      <defs>
+        <filter id="tc-shadow" x="-15%" y="-15%" width="130%" height="130%">
+          <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor="#000000" floodOpacity="0.16" />
+        </filter>
+        <linearGradient id="tc-grad-go" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#3BD87C" />
+          <stop offset="100%" stopColor="#22884B" />
+        </linearGradient>
+        <linearGradient id="tc-grad-am" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#7CD0F7" />
+          <stop offset="100%" stopColor="#419ECE" />
+        </linearGradient>
+        <linearGradient id="tc-grad-pm" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#F8BC58" />
+          <stop offset="100%" stopColor="#D98A1B" />
+        </linearGradient>
+        <linearGradient id="tc-grad-min" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#3169C6" />
+          <stop offset="100%" stopColor="#183D7C" />
+        </linearGradient>
+      </defs>
       <g transform={`translate(${ox},0)`}>
         {V === "hours" && drawHours()}
         {V === "days" && drawDays()}
@@ -797,20 +1154,14 @@ function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v: any) => v }: any)
       </g>
     );
   }
-  /* no letters (nothing to translate) and no colon (a length is not a clock time): the bar on the strip, and the hours in a vermilion badge
-     and the minutes in a deep blue one; an end time has a sky blue (a.m.) or amber (p.m.) rule under its badges */
-  const mins = item.kind === "end" ? Number(v) - item.s : item.e - item.s, a = item.s, c = tcClock(item.kind === "end" ? Number(v) : mins);
-  const hh = item.kind === "end" ? c.h : Math.floor(mins / 60), mm = item.kind === "end" ? c.m : mins % 60;
-  const bw = 52, bh = 46, by = h / 2 - bh / 2, mx = w - 12 - bw, hx = mx - 8 - bw;
+  /* the bar on the strip, and under it the length ("3 h 45 min") or the end time with its a.m. / p.m., written through tx */
+  const mins = item.kind === "end" ? Number(v) - item.s : item.e - item.s, a = item.s, sw = w - 24;
   return (
     <g>{frame}
-      <rect x={12} y={h / 2 - 12} width={84} height={10} fill={tint(TC_AM, 0.4)} stroke={C.ink} strokeWidth={0.8} />
-      <rect x={12 + ((a - TC_WS) / 720) * 84} y={h / 2 - 16} width={Math.max(4, (mins / 720) * 84)} height={18} rx={3} fill={TC_GO} stroke={C.ink} strokeWidth={1} />
-      <rect x={hx} y={by} width={bw} height={bh} rx={10} fill={tint(TC_HOUR, 0.78)} stroke={TC_HOUR} strokeWidth={3} />
-      <text x={hx + bw / 2} y={by + bh / 2 + 14} textAnchor="middle" fontSize={T.prompt} fontWeight={700} fill={shade(TC_HOUR, 0.45)}>{hh}</text>
-      <rect x={mx} y={by} width={bw} height={bh} rx={10} fill={tint(TC_MIN, 0.82)} stroke={TC_MIN} strokeWidth={3} />
-      <text x={mx + bw / 2} y={by + bh / 2 + 14} textAnchor="middle" fontSize={T.prompt} fontWeight={700} fill={shade(TC_MIN, 0.3)}>{tcPad(mm)}</text>
-      {item.kind === "end" && <rect x={hx} y={by + bh + 4} width={bw * 2 + 8} height={6} rx={3} fill={c.h24 < 12 ? TC_AM : TC_PM} stroke={C.ink} strokeWidth={1} />}
+      <rect x={12} y={14} width={sw / 2} height={12} fill={tint(TC_AM, 0.4)} stroke={C.ink} strokeWidth={0.8} />
+      <rect x={12 + sw / 2} y={14} width={sw / 2} height={12} fill={tint(TC_PM, 0.4)} stroke={C.ink} strokeWidth={0.8} />
+      <rect x={12 + ((a - TC_WS) / 720) * sw} y={10} width={Math.max(4, (mins / 720) * sw)} height={20} rx={3} fill={TC_GO} stroke={C.ink} strokeWidth={1} />
+      {item.kind === "end" ? tcTime({ x: w / 2, y: h - 14, size: T.label, m: Number(v), anchor: "middle", tx, C }) : tcDurText({ x: w / 2, y: h - 14, size: T.label, mins, anchor: "middle", tx, C })}
     </g>
   );
 }
