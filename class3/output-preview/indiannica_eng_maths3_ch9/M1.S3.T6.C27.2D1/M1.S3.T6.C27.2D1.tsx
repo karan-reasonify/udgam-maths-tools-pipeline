@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S3.T6.C27.2D1 · pour_it · Pour It — standalone build 2026-10-29, source 8d1c2116:758710.
+/* M1.S3.T6.C27.2D1 · pour_it · Pour It — standalone build 2026-10-29, source d2afbc80:759575.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -4393,7 +4393,7 @@ const MEDIA_ID = "M1.S3.T6.C27.2D1";
 const TOOL_NAME = "Pour It";
 const CHROME = { "dim": "#9AA4AC", "ink": "#2B2B2B", "rule": "#C9BCA6", "panel": "#F2E4CE", "paper": "#FFFDF7", "accent": "#5B6770" };
 const VOICE = { "rate": 0.92, "pitch": 1.06 };
-const OPENING = ["A glass jug, some small vessels and a shelf of real containers. Let us pour."];
+const OPENING = ["A glass jug, small vessels and a shelf of containers. Let us pour."];
 const FINISH_LINE = "You poured, read the level at a mark, and sorted the containers against a litre.";
 const FREE_LINE = "Free play: pour any container into the jug and tap the jug to empty it.";
 const START_HOOK = "Cup, bottle or bucket: which holds most?";
@@ -4411,18 +4411,18 @@ function StartArt({ box, C, lang, tx = (v) => v }) {
 const TR = {
   hi: {
     "Pour It": "इसे उँडेलो",
-    "A glass jug, some small vessels and a shelf of real containers. Let us pour.": "काँच का एक जग, कुछ छोटे बर्तन और असली बर्तनों की एक शेल्फ। चलो उँडेलें।",
+    "A glass jug, small vessels and a shelf of containers. Let us pour.": "काँच का एक जग, कुछ छोटे बर्तन और असली बर्तनों की एक शेल्फ। चलो उँडेलें।",
     "You poured, read the level at a mark, and sorted the containers against a litre.": "तुमने पानी उँडेला, निशान पर स्तर पढ़ा और बर्तनों को एक लीटर से तुलना करके छाँटा।",
     "Free play: pour any container into the jug and tap the jug to empty it.": "मुक्त खेल: कोई भी बर्तन जग में उँडेलो और जग छूकर उसे खाली करो।",
     "Cup, bottle or bucket: which holds most?": "कप, बोतल या बाल्टी: किसमें सबसे ज़्यादा आता है?",
     "Capacity: litres and millilitres": "धारिता: लीटर और मिलीलीटर",
     "Pour some water in. Is this a small amount or a large amount?": "थोड़ा पानी उँडेलो। यह कम मात्रा है या ज़्यादा मात्रा?",
     "This jug holds 1 litre: tap the bottle to pour it in.": "इस जग में 1 लीटर आता है: बोतल को छुओ और उसे उँडेलो।",
-    "Tap the tall orange bottle.": "ऊँची नारंगी बोतल को छुओ।",
+    "Tap the orange bottle.": "नारंगी बोतल को छुओ।",
     "1 litre is 1,000 millilitres: tap the jug to empty it.": "1 लीटर में 1,000 मिलीलीटर होते हैं: जग को छुओ और उसे खाली करो।",
     "Now tap the jug of water.": "अब पानी वाले जग को छुओ।",
     "Small amounts are measured in millilitres and large amounts in litres.": "कम मात्रा मिलीलीटर में नापते हैं और ज़्यादा मात्रा लीटर में।",
-    "You learned: small amounts in millilitres, large amounts in litres.": "तुमने सीखा: कम मात्रा मिलीलीटर में, ज़्यादा मात्रा लीटर में।",
+    "You learned: millilitres for small amounts, litres for large ones.": "तुमने सीखा: कम मात्रा मिलीलीटर में, ज़्यादा मात्रा लीटर में।",
     "Tap the cup to pour it into the jug: is a cup measured in mL or L?": "कप को छुओ और जग में उँडेलो: कप को मिलीलीटर में नापते हैं या लीटर में?",
     "A cup: mL or L?": "कप: मिलीलीटर या लीटर?",
     "See how high the water from the cup came in the jug.": "देखो, कप का पानी जग में कितना ऊपर तक आया।",
@@ -4432,11 +4432,11 @@ const TR = {
     "mL": "मिली",
     "L": "ली",
     "Pour the bucket into the jug, then tap the unit tag that fits a bucket.": "बाल्टी को जग में उँडेलो, फिर बाल्टी के लिए सही इकाई वाला टैग छुओ।",
-    "A bucket: tap mL or L": "बाल्टी: मिली टैग या ली टैग छुओ",
+    "A bucket: tap mL or L": "बाल्टी: मिली टैग या ली टैग छुओ",
     "Tap the bucket and watch the water.": "बाल्टी को छुओ और पानी को देखो।",
     "One bucket holds more than a whole 1 litre jug.": "एक बाल्टी में 1 लीटर के पूरे जग से भी ज़्यादा आता है।",
     "A big amount is measured in the bigger unit.": "ज़्यादा मात्रा को बड़ी इकाई में नापते हैं।",
-    "Yes, a bucket holds a lot of water, so it is measured in litres.": "हाँ, बाल्टी में बहुत पानी आता है, इसलिए उसे लीटर में नापते हैं।",
+    "Yes, a bucket holds a lot, so we use litres.": "हाँ, बाल्टी में बहुत पानी आता है, इसलिए उसे लीटर में नापते हैं।",
     "Pour the juice packet and the drum: which one is measured in mL?": "जूस का पैकेट और ड्रम उँडेलो: किसे मिलीलीटर में नापते हैं?",
     "Which one in mL?": "कौन-सा मिलीलीटर में?",
     "Pour each one again and watch the water in the jug.": "हर एक को फिर से उँडेलो और जग का पानी देखो।",
@@ -4446,7 +4446,7 @@ const TR = {
     "Drum": "ड्रम",
     "Yes, a juice packet is measured in millilitres and a drum in litres.": "हाँ, जूस के पैकेट को मिलीलीटर में और ड्रम को लीटर में नापते हैं।",
     "Standard vessels: from 50 mL up to 1 L": "मानक बर्तन: 50 मिलीलीटर से 1 लीटर तक",
-    "Pour the small vessels into the big jug. How many does it take to reach the top?": "छोटे बर्तनों को बड़े जग में उँडेलो। ऊपर तक भरने में कितने लगते हैं?",
+    "Pour the small vessels into the big jug. How many does it take to reach the top?": "छोटे बर्तनों को बड़े जग में उँडेलो। ऊपर तक भरने में कितने लगते हैं?",
     "Tap the 100 mL vessel to pour it into the jug.": "100 मिलीलीटर वाले बर्तन को छुओ और उसे जग में उँडेलो।",
     "Tap the vessel marked 100 mL.": "100 मिलीलीटर वाला बर्तन छुओ।",
     "Now pour the 200 mL vessel and watch the water rise.": "अब 200 मिलीलीटर वाले बर्तन को उँडेलो और पानी को ऊपर चढ़ते देखो।",
@@ -4485,16 +4485,16 @@ const TR = {
     "You learned: half a litre is 500 mL and a quarter of a litre is 250 mL.": "तुमने सीखा: आधा लीटर 500 मिलीलीटर और चौथाई लीटर 250 मिलीलीटर होता है।",
     "Tap the middle long mark to fill the jug to half a litre: how many mL is that?": "बीच के लंबे निशान को छुओ और जग में आधा लीटर भरो: कितने मिलीलीटर हुए?",
     "Half a litre in mL?": "आधा लीटर कितने मिलीलीटर?",
-    "Look at the scale beside the middle long mark.": "बीच वाले लंबे निशान के पास के अंक देखो।",
+    "Look at the scale beside the middle long mark.": "बीच वाले लंबे निशान के पास की संख्याएँ देखो।",
     "The middle mark is half way from 0 to 1,000 mL.": "बीच का निशान 0 से 1,000 मिलीलीटर के ठीक आधे रास्ते पर है।",
-    "The middle mark is half way between the 400 mL and 600 mL marks.": "बीच का निशान 400 मिलीलीटर और 600 मिलीलीटर के निशानों के ठीक बीच में है।",
+    "The middle mark is half way from 400 mL to 600 mL.": "बीच का निशान 400 मिलीलीटर और 600 मिलीलीटर के निशानों के ठीक बीच में है।",
     "Yes, half a litre is 500 millilitres.": "हाँ, आधा लीटर 500 मिलीलीटर होता है।",
     "half litre": "आधा लीटर",
     "Pour the milk carton into the jug: is it about a quarter, a half or 1 litre?": "दूध का कार्टन जग में उँडेलो: क्या यह लगभग चौथाई लीटर, आधा लीटर या 1 लीटर है?",
     "About how much?": "लगभग कितना?",
-    "Pour the rest of the milk carton and look at the long marks.": "दूध के कार्टन का बाकी दूध उँडेलो और लंबे निशान देखो।",
-    "The quarter mark is low and the 1 litre mark is at the top.": "चौथाई लीटर का निशान नीचे है और 1 लीटर का निशान ऊपर है।",
-    "Is the water near the bottom, the middle or the top of the jug?": "जग में पानी नीचे के पास है, बीच में है या ऊपर है?",
+    "Pour the rest of the milk and look at the long marks.": "दूध के कार्टन का बाकी दूध उँडेलो और लंबे निशान देखो।",
+    "The quarter mark is low; the 1 litre mark is at the top.": "चौथाई लीटर का निशान नीचे है और 1 लीटर का निशान ऊपर है।",
+    "Is the water near the bottom, the middle or the top?": "जग में पानी नीचे के पास है, बीच में है या ऊपर है?",
     "Yes, the milk carton held about half a litre.": "हाँ, दूध के कार्टन में लगभग आधा लीटर आया।",
     "quarter litre": "चौथाई लीटर",
     "1 litre": "1 लीटर",
@@ -4508,7 +4508,7 @@ const TR = {
     "More than or less than one litre": "एक लीटर से ज़्यादा या कम",
     "Does this hold more than the jug, or less? Drag it to its side.": "इसमें जग से ज़्यादा आता है या कम? इसे इसकी तरफ़ खींचो।",
     "Tap the orange pot to pick it up: it holds 3 L.": "नारंगी पतीले को छुओ और उठाओ: उसमें 3 लीटर आता है।",
-    "Tap the orange pot on the shelf.": "शेल्फ पर रखे नारंगी पतीले को छुओ।",
+    "Tap the orange pot.": "नारंगी पतीले को छुओ।",
     "3 L is more than 1 L, so tap the bin More than 1 L.": "3 लीटर, 1 लीटर से ज़्यादा है, इसलिए 1 ली से ज़्यादा लिखे डिब्बे को छुओ।",
     "Tap the bin on the right.": "दाईं ओर वाले डिब्बे को छुओ।",
     "A container whose label is more than 1 L (1,000 mL) holds more than 1 litre.": "1 लीटर से ज़्यादा लिखे बर्तन में 1 लीटर से ज़्यादा पानी आता है।",
@@ -4517,7 +4517,7 @@ const TR = {
     "Sort: drum, cup": "छाँटो: ड्रम, कप",
     "Read each label and compare it with 1 L.": "हर लेबल पढ़ो और उसकी तुलना 1 लीटर से करो।",
     "A litre is a big amount; a few hundred millilitres is much less.": "लीटर बड़ी मात्रा है; कुछ सौ मिलीलीटर उससे बहुत कम है।",
-    "A label bigger than 1 L goes in More, a smaller one in Less.": "1 लीटर से बड़ा लेबल ज़्यादा वाले डिब्बे में जाता है, छोटा कम वाले में।",
+    "Over 1 L goes in More, under 1 L goes in Less.": "1 लीटर से बड़ा लेबल ज़्यादा वाले डिब्बे में जाता है, छोटा कम वाले में।",
     "Yes, the drum holds more than 1 L and the cup holds less.": "हाँ, ड्रम में 1 लीटर से ज़्यादा आता है और कप में कम।",
     "Sort the bucket, the jug, the bottle and the juice packet into the three bins.": "बाल्टी, जग, बोतल और जूस के पैकेट को तीन डिब्बों में छाँटो।",
     "Sort all four": "चारों को छाँटो",
@@ -4533,16 +4533,17 @@ const TR = {
     "Yes, 4 teacups of 140 mL fill the jug to the 560 mL line.": "हाँ, 140 मिलीलीटर के 4 चाय के कप से जग 560 मिलीलीटर तक भरता है।",
     "teacups": "चाय के कप",
     "That one is empty now: pour a full one.": "वह अब खाली है: कोई भरा हुआ उँडेलो।",
-    "The water is at the line now.": "पानी अब रेखा तक आ गया है।",
+    "The water is at the line.": "पानी अब रेखा तक आ गया है।",
     "The jug is full now.": "जग अब भर गया है।",
     "That cup is full: tap an empty cup.": "वह कप भरा है: कोई खाली कप छुओ।",
     "The jug is empty now.": "जग अब खाली है।",
     "The water is in: now read the level.": "पानी जग में आ गया: अब स्तर पढ़ो।",
-    "The milk carton is empty now.": "दूध का कार्टन अब खाली है।",
-    "Now tap the middle long mark.": "अब बीच वाले लंबे निशान को छुओ।",
+    "The milk carton is empty.": "दूध का कार्टन अब खाली है।",
+    "Now tap the middle mark.": "अब बीच वाले लंबे निशान को छुओ।",
     "Pour the bucket into the jug first.": "पहले बाल्टी को जग में उँडेलो।",
     "Tap a container first, then its bin.": "पहले बर्तन को छुओ, फिर उसके डिब्बे को।",
-    "Tap the mL tag or the L tag.": "मिली टैग या ली टैग को छुओ।",
+    "Now tap mL or L.": "अब मिली या ली को छुओ।",
+    "Tap mL or L, then Enter.": "मिली या ली छुओ, फिर दर्ज करें दबाओ।",
     "Put every container in a bin first.": "पहले हर बर्तन को डिब्बे में रखो।",
     "1 L =": "1 ली =",
     "1,000 mL": "1,000 मिली",
@@ -4551,6 +4552,7 @@ const TR = {
     "More than 1 L": "1 ली से ज़्यादा",
     "Answer": "उत्तर",
     "juice packet": "जूस का पैकेट",
+    "packet": "पैकेट",
     "about half a litre": "लगभग आधा लीटर",
     "three quarters": "पौन लीटर",
     "sorted": "छाँटे गए",
@@ -4558,8 +4560,8 @@ const TR = {
     "each cup": "हर कप",
     "each glass": "हर गिलास",
     "each teacup": "हर चाय का कप",
-    "Pour the cup into the jug first.": "पहले कप को जग में उँडेलो।",
-    "First tap the cup to pour it.": "पहले कप को छुओ ताकि वह उँडले।",
+    "First, pour the cup in.": "पहले कप को जग में उँडेलो।",
+    "Tap the cup to pour it.": "पहले कप को छुओ ताकि वह उँडेला जाए।",
     "The cup must be poured before you answer.": "उत्तर देने से पहले कप उँडेलना है।",
     "Pour the juice packet and the drum first.": "पहले जूस का पैकेट और ड्रम उँडेलो।",
     "First pour both containers into the jug.": "पहले दोनों बर्तन जग में उँडेलो।",
@@ -4571,13 +4573,13 @@ const TR = {
     "First empty the jug into the cups.": "पहले जग को कपों में खाली करो।",
     "The jug must be empty before you answer.": "उत्तर देने से पहले जग खाली होना चाहिए।",
     "Pour the teacup into the small jug first.": "पहले चाय का कप छोटे जग में उँडेलो।",
-    "First tap the teacup to pour it.": "पहले चाय के कप को छुओ ताकि वह उँडले।",
+    "First tap the teacup to pour it.": "पहले चाय के कप को छुओ ताकि वह उँडेला जाए।",
     "The teacup must be poured before you answer.": "उत्तर देने से पहले चाय का कप उँडेलना है।",
-    "Tap the middle long mark first.": "पहले बीच वाले लंबे निशान को छुओ।",
+    "Tap the middle mark first.": "पहले बीच वाले लंबे निशान को छुओ।",
     "First fill the jug to the middle long mark.": "पहले जग को बीच वाले लंबे निशान तक भरो।",
-    "The water must reach the middle mark before you answer.": "उत्तर देने से पहले पानी बीच वाले निशान तक आना चाहिए।",
+    "Fill up to the middle mark, then answer.": "उत्तर देने से पहले पानी बीच वाले निशान तक आना चाहिए।",
     "Pour the milk carton into the jug first.": "पहले दूध का कार्टन जग में उँडेलो।",
-    "First tap the milk carton to pour it.": "पहले दूध के कार्टन को छुओ ताकि वह उँडले।",
+    "First tap the milk carton to pour it.": "पहले दूध के कार्टन को छुओ ताकि वह उँडेला जाए।",
     "The milk carton must be poured before you answer.": "उत्तर देने से पहले दूध का कार्टन उँडेलना है।",
     "Pour glasses until the jug is full first.": "पहले जग भरने तक गिलास उँडेलो।",
     "First fill the jug with the glasses.": "पहले गिलासों से जग भरो।",
@@ -4585,17 +4587,17 @@ const TR = {
     "Pour teacups up to the 560 mL line first.": "पहले 560 मिलीलीटर की रेखा तक चाय के कप उँडेलो।",
     "First fill the jug up to the line.": "पहले जग को रेखा तक भरो।",
     "The water must reach the line before you answer.": "उत्तर देने से पहले पानी रेखा तक आना चाहिए।",
-    "Tap the blinking Answer key.": "चमकती उत्तर कुंजी को छुओ।",
+    "Now tap the Answer key.": "अब उत्तर कुंजी को छुओ।",
     "Type your answer, then press Enter.": "अपना उत्तर लिखो, फिर दर्ज करें दबाओ।",
     "Choose your answer.": "अपना उत्तर चुनो।",
     "This one is poured already: pick a full one.": "यह तो उँडेला जा चुका है: कोई भरा हुआ चुनो।",
     "Choose one that still has water in it.": "ऐसा चुनो जिसमें अभी पानी हो।",
-    "No more fits: the jug is full.": "अब और नहीं आएगा: जग भर गया है।",
+    "Stop: the jug is full.": "अब और नहीं आएगा: जग भर गया है।",
     "The jug cannot hold any more water.": "जग में अब और पानी नहीं आ सकता।",
     "The water has reached the 560 mL line.": "पानी 560 मिलीलीटर की रेखा तक पहुँच गया है।",
     "No more is needed: the water is at the line.": "अब और नहीं चाहिए: पानी रेखा पर है।",
     "This cup has water already: choose an empty one.": "इस कप में पानी आ चुका है: कोई खाली कप चुनो।",
-    "Pick a cup that is still empty.": "ऐसा कप चुनो जो अभी खाली हो।",
+    "Pick an empty cup.": "ऐसा कप चुनो जो अभी खाली हो।",
     "There is no water left in the jug.": "जग में अब पानी नहीं बचा।",
     "The jug has nothing more to pour.": "जग में उँडेलने को अब कुछ नहीं है।",
     "All the water is poured: read the mark.": "सारा पानी उँडेल दिया: अब निशान पढ़ो।",
@@ -4608,7 +4610,7 @@ const TR = {
     "The bucket must be poured before a tag.": "टैग से पहले बाल्टी उँडेलनी है।",
     "Pick up a container before you tap a bin.": "डिब्बे को छूने से पहले कोई बर्तन उठाओ।",
     "Choose a container, then the bin it goes in.": "कोई बर्तन चुनो, फिर उसका डिब्बा।",
-    "Choose one of the two unit tags.": "दोनों इकाई टैग में से एक चुनो।",
+    "Choose one unit tag first.": "दोनों इकाई टैग में से एक चुनो।",
     "A unit tag must be chosen before Enter.": "दर्ज करने से पहले एक इकाई टैग चुनना है।",
     "Some containers are still on the shelf.": "कुछ बर्तन अभी शेल्फ पर हैं।",
     "Every container needs a bin before Enter.": "दर्ज करने से पहले हर बर्तन को डिब्बा चाहिए।",
@@ -4629,18 +4631,18 @@ const TR = {
   },
   gu: {
     "Pour It": "તેને રેડો",
-    "A glass jug, some small vessels and a shelf of real containers. Let us pour.": "કાચનો એક જગ, થોડા નાના વાસણ અને અસલી વાસણોની એક છાજલી. ચાલો રેડીએ.",
+    "A glass jug, small vessels and a shelf of containers. Let us pour.": "કાચનો એક જગ, થોડા નાના વાસણ અને અસલી વાસણોની એક છાજલી. ચાલો રેડીએ.",
     "You poured, read the level at a mark, and sorted the containers against a litre.": "તમે પાણી રેડ્યું, નિશાન પર સપાટી વાંચી અને વાસણોને એક લીટર સાથે સરખાવીને જુદા પાડ્યા.",
     "Free play: pour any container into the jug and tap the jug to empty it.": "મુક્ત રમત: કોઈ પણ વાસણ જગમાં રેડો અને જગને સ્પર્શ કરી ખાલી કરો.",
     "Cup, bottle or bucket: which holds most?": "કપ, બોટલ કે ડોલ: કોનામાં સૌથી વધુ સમાય?",
     "Capacity: litres and millilitres": "ક્ષમતા: લીટર અને મિલીલીટર",
     "Pour some water in. Is this a small amount or a large amount?": "થોડું પાણી રેડો. આ ઓછી માત્રા છે કે વધુ માત્રા?",
     "This jug holds 1 litre: tap the bottle to pour it in.": "આ જગમાં 1 લીટર સમાય છે: બોટલને સ્પર્શ કરો અને તેને રેડો.",
-    "Tap the tall orange bottle.": "ઊંચી નારંગી બોટલને સ્પર્શ કરો.",
+    "Tap the orange bottle.": "નારંગી બોટલને સ્પર્શ કરો.",
     "1 litre is 1,000 millilitres: tap the jug to empty it.": "1 લીટરમાં 1,000 મિલીલીટર હોય છે: જગને સ્પર્શ કરો અને તેને ખાલી કરો.",
     "Now tap the jug of water.": "હવે પાણીવાળા જગને સ્પર્શ કરો.",
     "Small amounts are measured in millilitres and large amounts in litres.": "ઓછી માત્રાને મિલીલીટરમાં અને વધુ માત્રાને લીટરમાં માપીએ છીએ.",
-    "You learned: small amounts in millilitres, large amounts in litres.": "તમે શીખ્યા: ઓછી માત્રા મિલીલીટરમાં, વધુ માત્રા લીટરમાં.",
+    "You learned: millilitres for small amounts, litres for large ones.": "તમે શીખ્યા: ઓછી માત્રા મિલીલીટરમાં, વધુ માત્રા લીટરમાં.",
     "Tap the cup to pour it into the jug: is a cup measured in mL or L?": "કપને સ્પર્શ કરી જગમાં રેડો: કપ મિલીલીટરમાં મપાય કે લીટરમાં?",
     "A cup: mL or L?": "કપ: મિલીલીટર કે લીટર?",
     "See how high the water from the cup came in the jug.": "જુઓ, કપનું પાણી જગમાં કેટલું ઉપર સુધી આવ્યું.",
@@ -4654,7 +4656,7 @@ const TR = {
     "Tap the bucket and watch the water.": "ડોલને સ્પર્શ કરો અને પાણીને જુઓ.",
     "One bucket holds more than a whole 1 litre jug.": "એક ડોલમાં 1 લીટરના આખા જગ કરતાં પણ વધુ સમાય છે.",
     "A big amount is measured in the bigger unit.": "વધુ માત્રાને મોટા એકમમાં માપીએ છીએ.",
-    "Yes, a bucket holds a lot of water, so it is measured in litres.": "હા, ડોલમાં ઘણું પાણી સમાય છે, તેથી તેને લીટરમાં માપીએ છીએ.",
+    "Yes, a bucket holds a lot, so we use litres.": "હા, ડોલમાં ઘણું પાણી સમાય છે, તેથી તેને લીટરમાં માપીએ છીએ.",
     "Pour the juice packet and the drum: which one is measured in mL?": "જ્યૂસનું પૅકેટ અને ડ્રમ રેડો: કોને મિલીલીટરમાં માપીએ?",
     "Which one in mL?": "કયું મિલીલીટરમાં?",
     "Pour each one again and watch the water in the jug.": "દરેકને ફરીથી રેડો અને જગનું પાણી જુઓ.",
@@ -4705,14 +4707,14 @@ const TR = {
     "Half a litre in mL?": "અડધો લીટર કેટલા મિલીલીટર?",
     "Look at the scale beside the middle long mark.": "વચ્ચેના લાંબા નિશાન પાસેના આંક જુઓ.",
     "The middle mark is half way from 0 to 1,000 mL.": "વચ્ચેનું નિશાન 0 થી 1,000 મિલીલીટરના બરાબર અડધે રસ્તે છે.",
-    "The middle mark is half way between the 400 mL and 600 mL marks.": "વચ્ચેનું નિશાન 400 મિલીલીટર અને 600 મિલીલીટરના નિશાનની બરાબર વચ્ચે છે.",
-    "Yes, half a litre is 500 millilitres.": "હા, અડધો લીટર 500 મિલીલીટર થાય છે.",
+    "The middle mark is half way from 400 mL to 600 mL.": "વચ્ચેનું નિશાન 400 મિલીલીટર અને 600 મિલીલીટરના નિશાનની બરાબર વચ્ચે છે.",
+    "Yes, half a litre is 500 millilitres.": "હા, અડધો લીટર 500 મિલીલીટર થાય છે.",
     "half litre": "અડધો લીટર",
     "Pour the milk carton into the jug: is it about a quarter, a half or 1 litre?": "દૂધનું કાર્ટન જગમાં રેડો: શું તે લગભગ પા લીટર, અડધો લીટર કે 1 લીટર છે?",
     "About how much?": "લગભગ કેટલું?",
-    "Pour the rest of the milk carton and look at the long marks.": "દૂધના કાર્ટનનું બાકીનું દૂધ રેડો અને લાંબા નિશાન જુઓ.",
-    "The quarter mark is low and the 1 litre mark is at the top.": "પા લીટરનું નિશાન નીચે છે અને 1 લીટરનું નિશાન ઉપર છે.",
-    "Is the water near the bottom, the middle or the top of the jug?": "જગમાં પાણી નીચેની પાસે છે, વચ્ચે છે કે ઉપર છે?",
+    "Pour the rest of the milk and look at the long marks.": "દૂધના કાર્ટનનું બાકીનું દૂધ રેડો અને લાંબા નિશાન જુઓ.",
+    "The quarter mark is low; the 1 litre mark is at the top.": "પા લીટરનું નિશાન નીચે છે અને 1 લીટરનું નિશાન ઉપર છે.",
+    "Is the water near the bottom, the middle or the top?": "જગમાં પાણી નીચેની પાસે છે, વચ્ચે છે કે ઉપર છે?",
     "Yes, the milk carton held about half a litre.": "હા, દૂધના કાર્ટનમાં લગભગ અડધો લીટર હતું.",
     "quarter litre": "પા લીટર",
     "1 litre": "1 લીટર",
@@ -4724,9 +4726,9 @@ const TR = {
     "Yes, 4 quarter litre glasses fill 1 litre.": "હા, પા લીટરના 4 ગ્લાસથી 1 લીટર ભરાય છે.",
     "glasses": "ગ્લાસ",
     "More than or less than one litre": "એક લીટરથી વધુ કે ઓછું",
-    "Does this hold more than the jug, or less? Drag it to its side.": "આમાં જગ કરતાં વધુ સમાય છે કે ઓછું? તેને તેની બાજુ ખેંચો.",
+    "Does this hold more than the jug, or less? Drag it to its side.": "આમાં જગ કરતાં વધુ સમાય છે કે ઓછું? તેને તેની બાજુ ખેંચો.",
     "Tap the orange pot to pick it up: it holds 3 L.": "નારંગી તપેલાને સ્પર્શ કરી ઉપાડો: તેમાં 3 લીટર સમાય છે.",
-    "Tap the orange pot on the shelf.": "છાજલી પરના નારંગી તપેલાને સ્પર્શ કરો.",
+    "Tap the orange pot.": "નારંગી તપેલાને સ્પર્શ કરો.",
     "3 L is more than 1 L, so tap the bin More than 1 L.": "3 લીટર, 1 લીટરથી વધુ છે, તેથી 1 લીથી વધુ લખેલા ડબ્બાને સ્પર્શ કરો.",
     "Tap the bin on the right.": "જમણી બાજુના ડબ્બાને સ્પર્શ કરો.",
     "A container whose label is more than 1 L (1,000 mL) holds more than 1 litre.": "1 લીટરથી વધુ લખેલા વાસણમાં 1 લીટરથી વધુ પાણી સમાય છે.",
@@ -4735,7 +4737,7 @@ const TR = {
     "Sort: drum, cup": "જુદા પાડો: ડ્રમ, કપ",
     "Read each label and compare it with 1 L.": "દરેક લેબલ વાંચો અને તેને 1 લીટર સાથે સરખાવો.",
     "A litre is a big amount; a few hundred millilitres is much less.": "લીટર મોટી માત્રા છે; થોડા સો મિલીલીટર તેનાથી ઘણા ઓછા છે.",
-    "A label bigger than 1 L goes in More, a smaller one in Less.": "1 લીટરથી મોટું લેબલ વધુવાળા ડબ્બામાં જાય, નાનું ઓછાવાળા ડબ્બામાં.",
+    "Over 1 L goes in More, under 1 L goes in Less.": "1 લીટરથી મોટું લેબલ વધુવાળા ડબ્બામાં જાય, નાનું ઓછાવાળા ડબ્બામાં.",
     "Yes, the drum holds more than 1 L and the cup holds less.": "હા, ડ્રમમાં 1 લીટરથી વધુ સમાય છે અને કપમાં ઓછું.",
     "Sort the bucket, the jug, the bottle and the juice packet into the three bins.": "ડોલ, જગ, બોટલ અને જ્યૂસના પૅકેટને ત્રણ ડબ્બામાં જુદા પાડો.",
     "Sort all four": "ચારેયને જુદા પાડો",
@@ -4751,16 +4753,17 @@ const TR = {
     "Yes, 4 teacups of 140 mL fill the jug to the 560 mL line.": "હા, 140 મિલીલીટરના 4 ચાના કપથી જગ 560 મિલીલીટર સુધી ભરાય છે.",
     "teacups": "ચાના કપ",
     "That one is empty now: pour a full one.": "તે હવે ખાલી છે: કોઈ ભરેલું રેડો.",
-    "The water is at the line now.": "પાણી હવે રેખા સુધી આવી ગયું છે.",
+    "The water is at the line.": "પાણી હવે રેખા સુધી આવી ગયું છે.",
     "The jug is full now.": "જગ હવે ભરાઈ ગયો છે.",
     "That cup is full: tap an empty cup.": "તે કપ ભરેલો છે: કોઈ ખાલી કપને સ્પર્શ કરો.",
     "The jug is empty now.": "જગ હવે ખાલી છે.",
     "The water is in: now read the level.": "પાણી જગમાં આવી ગયું: હવે સપાટી વાંચો.",
-    "The milk carton is empty now.": "દૂધનું કાર્ટન હવે ખાલી છે.",
-    "Now tap the middle long mark.": "હવે વચ્ચેના લાંબા નિશાનને સ્પર્શ કરો.",
+    "The milk carton is empty.": "દૂધનું કાર્ટન હવે ખાલી છે.",
+    "Now tap the middle mark.": "હવે વચ્ચેના લાંબા નિશાનને સ્પર્શ કરો.",
     "Pour the bucket into the jug first.": "પહેલાં ડોલને જગમાં રેડો.",
     "Tap a container first, then its bin.": "પહેલાં વાસણને સ્પર્શ કરો, પછી તેના ડબ્બાને.",
-    "Tap the mL tag or the L tag.": "મિલી ટેગ અથવા લી ટેગને સ્પર્શ કરો.",
+    "Now tap mL or L.": "હવે મિલી કે લી ટેગને સ્પર્શ કરો.",
+    "Tap mL or L, then Enter.": "મિલી કે લી પસંદ કરો, પછી દાખલ કરો દબાવો.",
     "Put every container in a bin first.": "પહેલાં દરેક વાસણને ડબ્બામાં મૂકો.",
     "1 L =": "1 લી =",
     "1,000 mL": "1,000 મિલી",
@@ -4769,6 +4772,7 @@ const TR = {
     "More than 1 L": "1 લીથી વધુ",
     "Answer": "જવાબ",
     "juice packet": "જ્યૂસનું પૅકેટ",
+    "packet": "પૅકેટ",
     "about half a litre": "લગભગ અડધો લીટર",
     "three quarters": "પોણો લીટર",
     "sorted": "છટણી થઈ",
@@ -4776,8 +4780,8 @@ const TR = {
     "each cup": "દરેક કપ",
     "each glass": "દરેક ગ્લાસ",
     "each teacup": "દરેક ચાનો કપ",
-    "Pour the cup into the jug first.": "પહેલાં કપને જગમાં રેડો.",
-    "First tap the cup to pour it.": "પહેલાં કપને સ્પર્શ કરો જેથી તે રેડાય.",
+    "First, pour the cup in.": "પહેલાં કપને જગમાં રેડો.",
+    "Tap the cup to pour it.": "પહેલાં કપને સ્પર્શ કરો જેથી તે રેડાય.",
     "The cup must be poured before you answer.": "જવાબ આપતાં પહેલાં કપ રેડવાનો છે.",
     "Pour the juice packet and the drum first.": "પહેલાં જ્યૂસનું પૅકેટ અને ડ્રમ રેડો.",
     "First pour both containers into the jug.": "પહેલાં બંને વાસણ જગમાં રેડો.",
@@ -4791,9 +4795,9 @@ const TR = {
     "Pour the teacup into the small jug first.": "પહેલાં ચાનો કપ નાના જગમાં રેડો.",
     "First tap the teacup to pour it.": "પહેલાં ચાના કપને સ્પર્શ કરો જેથી તે રેડાય.",
     "The teacup must be poured before you answer.": "જવાબ આપતાં પહેલાં ચાનો કપ રેડવાનો છે.",
-    "Tap the middle long mark first.": "પહેલાં વચ્ચેના લાંબા નિશાનને સ્પર્શ કરો.",
+    "Tap the middle mark first.": "પહેલાં વચ્ચેના લાંબા નિશાનને સ્પર્શ કરો.",
     "First fill the jug to the middle long mark.": "પહેલાં જગને વચ્ચેના લાંબા નિશાન સુધી ભરો.",
-    "The water must reach the middle mark before you answer.": "જવાબ આપતાં પહેલાં પાણી વચ્ચેના નિશાન સુધી આવવું જોઈએ.",
+    "Fill up to the middle mark, then answer.": "જવાબ આપતાં પહેલાં પાણી વચ્ચેના નિશાન સુધી આવવું જોઈએ.",
     "Pour the milk carton into the jug first.": "પહેલાં દૂધનું કાર્ટન જગમાં રેડો.",
     "First tap the milk carton to pour it.": "પહેલાં દૂધના કાર્ટનને સ્પર્શ કરો જેથી તે રેડાય.",
     "The milk carton must be poured before you answer.": "જવાબ આપતાં પહેલાં દૂધનું કાર્ટન રેડવાનું છે.",
@@ -4803,17 +4807,17 @@ const TR = {
     "Pour teacups up to the 560 mL line first.": "પહેલાં 560 મિલીલીટરની રેખા સુધી ચાના કપ રેડો.",
     "First fill the jug up to the line.": "પહેલાં જગને રેખા સુધી ભરો.",
     "The water must reach the line before you answer.": "જવાબ આપતાં પહેલાં પાણી રેખા સુધી આવવું જોઈએ.",
-    "Tap the blinking Answer key.": "ઝબકતી જવાબ કીને સ્પર્શ કરો.",
+    "Now tap the Answer key.": "હવે જવાબ કીને સ્પર્શ કરો.",
     "Type your answer, then press Enter.": "તમારો જવાબ લખો, પછી દાખલ કરો દબાવો.",
     "Choose your answer.": "તમારો જવાબ પસંદ કરો.",
     "This one is poured already: pick a full one.": "આ તો રેડાઈ ગયું છે: કોઈ ભરેલું પસંદ કરો.",
     "Choose one that still has water in it.": "એવું પસંદ કરો જેમાં હજી પાણી હોય.",
-    "No more fits: the jug is full.": "હવે વધુ નહીં સમાય: જગ ભરાઈ ગયો છે.",
+    "Stop: the jug is full.": "હવે વધુ નહીં સમાય: જગ ભરાઈ ગયો છે.",
     "The jug cannot hold any more water.": "જગમાં હવે વધુ પાણી સમાઈ શકે નહીં.",
     "The water has reached the 560 mL line.": "પાણી 560 મિલીલીટરની રેખા સુધી પહોંચી ગયું છે.",
     "No more is needed: the water is at the line.": "હવે વધુ જોઈતું નથી: પાણી રેખા પર છે.",
     "This cup has water already: choose an empty one.": "આ કપમાં પાણી આવી ગયું છે: કોઈ ખાલી કપ પસંદ કરો.",
-    "Pick a cup that is still empty.": "એવો કપ પસંદ કરો જે હજી ખાલી હોય.",
+    "Pick an empty cup.": "એવો કપ પસંદ કરો જે હજી ખાલી હોય.",
     "There is no water left in the jug.": "જગમાં હવે પાણી બચ્યું નથી.",
     "The jug has nothing more to pour.": "જગમાં રેડવા માટે હવે કંઈ નથી.",
     "All the water is poured: read the mark.": "બધું પાણી રેડાઈ ગયું: હવે નિશાન વાંચો.",
@@ -4826,7 +4830,7 @@ const TR = {
     "The bucket must be poured before a tag.": "ટેગ પહેલાં ડોલ રેડવાની છે.",
     "Pick up a container before you tap a bin.": "ડબ્બાને સ્પર્શ કરતાં પહેલાં કોઈ વાસણ ઉપાડો.",
     "Choose a container, then the bin it goes in.": "કોઈ વાસણ પસંદ કરો, પછી તેનો ડબ્બો.",
-    "Choose one of the two unit tags.": "બે એકમ ટેગમાંથી એક પસંદ કરો.",
+    "Choose one unit tag first.": "બે એકમ ટેગમાંથી એક પસંદ કરો.",
     "A unit tag must be chosen before Enter.": "દાખલ કરતાં પહેલાં એક એકમ ટેગ પસંદ કરવાનો છે.",
     "Some containers are still on the shelf.": "કેટલાંક વાસણ હજી છાજલી પર છે.",
     "Every container needs a bin before Enter.": "દાખલ કરતાં પહેલાં દરેક વાસણને ડબ્બો જોઈએ.",
@@ -4855,12 +4859,12 @@ const PHASES = [
     says: ["Pour some water in. Is this a small amount or a large amount?"],
     /* warm-up: the 1 L bottle fills the jug to its 1 L mark, then the jug is emptied (no question's answer) */
     steps: [
-      { say: "This jug holds 1 litre: tap the bottle to pour it in.", on: "pour-bottle", hint: "Tap the tall orange bottle." },
+      { say: "This jug holds 1 litre: tap the bottle to pour it in.", on: "pour-bottle", hint: "Tap the orange bottle." },
       { say: "1 litre is 1,000 millilitres: tap the jug to empty it.", on: "empty", hint: "Now tap the jug of water." }
     ],
     ladder: [],
     closing: "Small amounts are measured in millilitres and large amounts in litres.",
-    learned: "You learned: small amounts in millilitres, large amounts in litres.",
+    learned: "You learned: millilitres for small amounts, litres for large ones.",
     traceback: "The container is poured into the 1 L jug again, and the child picks the unit once more.",
     items: [
       /* learn PI1: answer in the plan = Millilitres. A cup of tea is measured. Which unit fits the capacity of the cup, millilitres or litres? */
@@ -4890,7 +4894,7 @@ const PHASES = [
         ask: "A bucket: tap mL or L",
         miss: "Tap the bucket and watch the water.",
         ladder: ["One bucket holds more than a whole 1 litre jug.", "A big amount is measured in the bigger unit."],
-        win: "Yes, a bucket holds a lot of water, so it is measured in litres."
+        win: "Yes, a bucket holds a lot, so we use litres."
       },
       /* practice 5: answer in the plan = The syringe in millilitres and the bucket in litres. A syringe and a bucket are both
          filled with water. (drawn as the juice packet and the drum, the slot's photos of a small and a large container) */
@@ -4998,7 +5002,7 @@ const PHASES = [
         say: "Tap the middle long mark to fill the jug to half a litre: how many mL is that?",
         ask: "Half a litre in mL?",
         miss: "Look at the scale beside the middle long mark.",
-        ladder: ["The middle mark is half way from 0 to 1,000 mL.", "The middle mark is half way between the 400 mL and 600 mL marks."],
+        ladder: ["The middle mark is half way from 0 to 1,000 mL.", "The middle mark is half way from 400 mL to 600 mL."],
         win: "Yes, half a litre is 500 millilitres."
       },
       /* practice 3: answer in the plan = Half a litre, because the bottle is half full. A one litre water bottle is filled to the
@@ -5012,8 +5016,8 @@ const PHASES = [
         near: "quarter",
         say: "Pour the milk carton into the jug: is it about a quarter, a half or 1 litre?",
         ask: "About how much?",
-        miss: "Pour the rest of the milk carton and look at the long marks.",
-        ladder: ["The quarter mark is low and the 1 litre mark is at the top.", "Is the water near the bottom, the middle or the top of the jug?"],
+        miss: "Pour the rest of the milk and look at the long marks.",
+        ladder: ["The quarter mark is low; the 1 litre mark is at the top.", "Is the water near the bottom, the middle or the top?"],
         win: "Yes, the milk carton held about half a litre."
       },
       /* practice 7: answer in the plan = About four glasses, because four quarters make one litre */
@@ -5040,7 +5044,7 @@ const PHASES = [
     says: ["Does this hold more than the jug, or less? Drag it to its side."],
     /* warm-up: a 3 L steel pot (in no question) goes to More than 1 L */
     steps: [
-      { say: "Tap the orange pot to pick it up: it holds 3 L.", on: "pick-pot", hint: "Tap the orange pot on the shelf." },
+      { say: "Tap the orange pot to pick it up: it holds 3 L.", on: "pick-pot", hint: "Tap the orange pot." },
       { say: "3 L is more than 1 L, so tap the bin More than 1 L.", on: "bin-more", hint: "Tap the bin on the right." }
     ],
     ladder: [],
@@ -5059,7 +5063,7 @@ const PHASES = [
         say: "Put the drum and the cup in their bins: which one holds more than 1 L?",
         ask: "Sort: drum, cup",
         miss: "Read each label and compare it with 1 L.",
-        ladder: ["A litre is a big amount; a few hundred millilitres is much less.", "A label bigger than 1 L goes in More, a smaller one in Less."],
+        ladder: ["A litre is a big amount; a few hundred millilitres is much less.", "Over 1 L goes in More, under 1 L goes in Less."],
         win: "Yes, the drum holds more than 1 L and the cup holds less."
       },
       /* practice 4: answer in the plan = The spoon, because a spoon holds only a very small amount. A car fuel tank and a spoon
@@ -5241,7 +5245,7 @@ const PI_JS = piJugAt(188, 300, { cap: 200, step: 20, nums: [100, 200], long: []
 const piRightX = (J) => J.pic.x + 0.98 * J.pic.w + 10;
 const PI_LONG = { 250: "quarter litre", 500: "half litre", 750: "three quarters" };
 const PI_BINS = [{ id: "less", label: "Less than 1 L" }, { id: "equal", label: "Equal to 1 L" }, { id: "more", label: "More than 1 L" }];
-const PI_BIN = (k) => ({ x: 660 + k * 270, y: 96, w: 254, h: 416 });
+const PI_BIN = (k) => ({ x: 660 + k * 270, y: 96, w: 249, h: 416 });
 const PI_ROW = (B, r) => ({ x: B.x + 6, y: B.y + 82 + r * 82, w: B.w - 12, h: 78 });
 const PI_ASPECT = {
   cup: 124 / 150,
@@ -5384,7 +5388,10 @@ function piJug(J, ml, o) {
     const y = yb - v / cap * H, e = piEdgeL(J, y);
     const lab = o.labels && o.labels[v] && v !== 750;
     return <g key={"L" + v}>
-            <line x1={e - 50} y1={y} x2={e - 3} y2={y} stroke={PI_C.ink} strokeWidth={6} strokeLinecap="round" />
+            {
+      /* the quarter marks start at the number pills' edge (the 200 mL and 800 mL pills stand 15 px away) */
+    }
+            <line x1={v === 500 ? e - 50 : Math.max(e - 50, J.col + 4)} y1={y} x2={e - 3} y2={y} stroke={PI_C.ink} strokeWidth={6} strokeLinecap="round" />
             {lab && <g data-reveals={o.reveal && o.reveal[v] ? "answer" : void 0}>
               <line x1={piEdgeR(J, y) + 3} y1={y} x2={piRightX(J) - 6} y2={y} stroke={PI_C.ink} strokeWidth={3} strokeDasharray="8 6" />
               <text x={piRightX(J)} y={y} textAnchor="start" dominantBaseline="central" fontSize={T.label} fontWeight={700} fill={PI_C.ink}>{tx(PI_LONG[v])}</text>
@@ -5491,7 +5498,7 @@ function piScene(n, kind, item) {
   if (kind === "about") return { jug: PI_J2, srcs: [S("carton", "carton", 840, T0, 230, { cap: 500 })] };
   if (kind === "warm3" || kind === "half") return { jug: PI_J2, marks: true, srcs: [S("bottle", "bottle", 840, T0, 300, { cap: 1e3, still: true })] };
   const row3 = (i) => ({ cx: 700 + 80 * (i % 3), yb: i < 3 ? 176 : 436 });
-  if (kind === "glasses") return { jug: PI_J2, shelves: [176], shelfX: 652, each: { key: "each glass", cap: 250, x: 806, y: 484 }, srcs: [0, 1, 2, 3, 4, 5].map((i) => S("glass-" + (i + 1), "glass", row3(i).cx, row3(i).yb, 90, { cap: 250, hw: 74 })) };
+  if (kind === "glasses") return { jug: PI_J2, shelves: [176], shelfX: 652, each: { key: "each glass", cap: 250, x: 806, y: 484 }, srcs: [0, 1, 2, 3, 4, 5].map((i) => S("glass-" + (i + 1), "glass", row3(i).cx, row3(i).yb, 108, { cap: 250, hw: 74 })) };
   if (kind === "pan") return { jug: PI_J4, fill: MODEL.fill.line, shelves: [156], shelfX: 652, each: { key: "each teacup", cap: 140, x: 815, y: 484 }, srcs: [0, 1, 2, 3, 4, 5].map((i) => S("teacup-" + (i + 1), "teacup", row3(i).cx, i < 3 ? 156 : 436, 80, { cap: 140, hw: 74 })) };
   const objs = kind === "warm4" ? [{ id: "pot", show: "L" }] : item.objs;
   const H = { drum: 280, cup: 170, bucket: 190, jug: 210, bottle: 260, packet: 180, pot: 190 };
@@ -5520,26 +5527,26 @@ function piTarget(kind, item) {
   return {};
 }
 const PI_NUDGE = {
-  actCup: ["Pour the cup into the jug first.", "First tap the cup to pour it.", "The cup must be poured before you answer."],
+  actCup: ["First, pour the cup in.", "Tap the cup to pour it.", "The cup must be poured before you answer."],
   actPair: ["Pour the juice packet and the drum first.", "First pour both containers into the jug.", "Both must be poured before you answer."],
   actCount: ["Pour vessels until the jug is full first.", "First fill the jug with the vessels.", "The jug must be full before you answer."],
   actShare: ["Pour the jug into the cups until it is empty first.", "First empty the jug into the cups.", "The jug must be empty before you answer."],
   actRead: ["Pour the teacup into the small jug first.", "First tap the teacup to pour it.", "The teacup must be poured before you answer."],
-  actHalf: ["Tap the middle long mark first.", "First fill the jug to the middle long mark.", "The water must reach the middle mark before you answer."],
+  actHalf: ["Tap the middle mark first.", "First fill the jug to the middle long mark.", "Fill up to the middle mark, then answer."],
   actAbout: ["Pour the milk carton into the jug first.", "First tap the milk carton to pour it.", "The milk carton must be poured before you answer."],
   actGlasses: ["Pour glasses until the jug is full first.", "First fill the jug with the glasses.", "The jug must be full of water before you answer."],
   actPan: ["Pour teacups up to the 560 mL line first.", "First fill the jug up to the line.", "The water must reach the line before you answer."],
   emptyOne: ["That one is empty now: pour a full one.", "This one is poured already: pick a full one.", "Choose one that still has water in it."],
-  jugFull: ["The jug is full now.", "No more fits: the jug is full.", "The jug cannot hold any more water."],
-  lineFull: ["The water is at the line now.", "The water has reached the 560 mL line.", "No more is needed: the water is at the line."],
-  cupFull: ["That cup is full: tap an empty cup.", "This cup has water already: choose an empty one.", "Pick a cup that is still empty."],
+  jugFull: ["The jug is full now.", "Stop: the jug is full.", "The jug cannot hold any more water."],
+  lineFull: ["The water is at the line.", "The water has reached the 560 mL line.", "No more is needed: the water is at the line."],
+  cupFull: ["That cup is full: tap an empty cup.", "This cup has water already: choose an empty one.", "Pick an empty cup."],
   jugEmpty: ["The jug is empty now.", "There is no water left in the jug.", "The jug has nothing more to pour."],
   readNow: ["The water is in: now read the level.", "All the water is poured: read the mark.", "Now look at the marks and read the water."],
-  cartonEmpty: ["The milk carton is empty now.", "All the milk is already in the jug.", "Nothing is left in the milk carton."],
-  middleMark: ["Now tap the middle long mark.", "The question asks for the middle long mark.", "Find the long mark half way up and tap it."],
+  cartonEmpty: ["The milk carton is empty.", "All the milk is already in the jug.", "Nothing is left in the milk carton."],
+  middleMark: ["Now tap the middle mark.", "The question asks for the middle long mark.", "Find the long mark half way up and tap it."],
   bucketFirst: ["Pour the bucket into the jug first.", "First pour the bucket, then choose a tag.", "The bucket must be poured before a tag."],
   pickFirst: ["Tap a container first, then its bin.", "Pick up a container before you tap a bin.", "Choose a container, then the bin it goes in."],
-  tagFirst: ["Tap the mL tag or the L tag.", "Choose one of the two unit tags.", "A unit tag must be chosen before Enter."],
+  tagFirst: ["Tap mL or L, then Enter.", "Choose one unit tag first.", "A unit tag must be chosen before Enter."],
   allPlaced: ["Put every container in a bin first.", "Some containers are still on the shelf.", "Every container needs a bin before Enter."]
 };
 function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, step, stepOn, box, lang = "en", tx = (v) => v }) {
@@ -5690,10 +5697,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     cueSaid.current = eN;
     clearTimeout(nudgeT.current);
     if (item.pad === "enter") {
-      if (kind === "tag") api.say("Tap the mL tag or the L tag.");
+      if (kind === "tag") api.say("Now tap mL or L.");
       return;
     }
-    api.say("Tap the blinking Answer key.");
+    api.say("Now tap the Answer key.");
     cueArmed.current = true;
   }, [done, asking, eN]);
   useEffect(() => {
@@ -6356,7 +6363,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
               <g style={{ transform: tf, transition: motion && !dr ? "transform 0.35s ease" : "none" }}>
                 {piObj(s.obj, s.h, s.obj !== "pot")}
               </g>
-              {!p && !dr && Math.abs(tagRow[s.id] - s.cx) > 6 && <line x1={s.cx} y1={s.yb + 18} x2={tagRow[s.id]} y2={s.yb + 46} stroke={PI_C.blue} strokeWidth={3} strokeLinecap="round" />}
+              {
+        /* a dotted leader only where the tag stands well aside of its container (a short one read as a stray mark) */
+      }
+              {!p && !dr && Math.abs(tagRow[s.id] - s.cx) > 24 && <line x1={s.cx} y1={s.yb + 18} x2={tagRow[s.id]} y2={s.yb + 46} stroke={PI_C.blue} strokeWidth={3} strokeDasharray="2 6" strokeLinecap="round" />}
               {!p && !dr && piTag(tagRow[s.id], s.yb + 70, piLabel(s.obj, s.show, tx), PI_C.blue, "#FFFFFF", tagSize)}
               {p && <text x={bx.x + 92} y={bx.y + 41} dominantBaseline="central" fontSize={T.label} fontWeight={700} fill={PI_C.blue}>{piLabel(s.obj, s.show, tx)}</text>}
               {sel && !p && <rect x={bx.x} y={bx.y - 14} width={bx.w} height={bx.h} rx={18} fill="none" stroke={PI_C.blue} strokeWidth={5} pointerEvents="none" />}
@@ -6443,7 +6453,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
             {
       /* a small ring round the long tick only, clear of the number pills */
     }
-            {inviteOn === id && <Invite x={piEdgeL(Jd, y) - 26} y={y} r={22} C={C} />}
+            {inviteOn === id && <Invite x={piEdgeL(Jd, y) + (v === 500 ? -26 : 6)} y={y} r={22} C={C} />}
           </g>;
   })}
       {
@@ -6464,7 +6474,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     /* THE CORRECTION's own marks (never the answer): a counter of the pours replayed, the marks counted so far */
   }
       {corr && <g pointerEvents="none">
-        {corr.count ? piTag(Jd.pic.x + Jd.pic.w + 90, 40, corr.count + " " + tx(kind === "count" ? corr.count === 1 ? "vessel" : "vessels" : kind === "share" ? corr.count === 1 ? "cup" : "cups" : kind === "glasses" ? corr.count === 1 ? "glass" : "glasses" : corr.count === 1 ? "teacup" : "teacups"), "#FFFFFF", PI_C.ink, T.label, PI_C.ink) : null}
+        {corr.count ? piTag(Jd.pic.x + Jd.pic.w + 90, kind === "glasses" ? 30 : 40, corr.count + " " + tx(kind === "count" ? corr.count === 1 ? "vessel" : "vessels" : kind === "share" ? corr.count === 1 ? "cup" : "cups" : kind === "glasses" ? corr.count === 1 ? "glass" : "glasses" : corr.count === 1 ? "teacup" : "teacups"), "#FFFFFF", PI_C.ink, T.label, PI_C.ink) : null}
         {corr.lit && Jd && Array.from({ length: corr.lit / 20 }, (_, i) => {
     const v = 20 * (i + 1), y = Jd.yb - v / Jd.cap * Jd.H;
     return <g key={"lit" + v}>
@@ -6479,14 +6489,14 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
   }
       {win && kind === "unit" && answerTag(unitOf("mL"), 700, 484)}
       {win && kind === "tag" && answerTag(unitOf("L"), 640, 484)}
-      {win && kind === "pair" && answerTag(tx("juice packet") + ", " + unitOf("mL"), 640, 484)}
+      {win && kind === "pair" && answerTag(tx("packet") + ", " + unitOf("mL"), 640, 484)}
       {win && kind === "count" && answerTag("2 " + tx("vessels"), 690, 44)}
       {win && kind === "share" && answerTag("5 " + tx("cups"), 690, 44)}
       {win && kind === "read" && answerTag("140 " + tx("mL"), 820, 40)}
       {win && kind === "half" && answerTag("500 " + tx("mL"), 820, 40)}
       {win && kind === "about" && answerTag(tx("about half a litre"), 885, 40)}
-      {win && kind === "glasses" && answerTag("4 " + tx("glasses"), 770, 44)}
-      {win && kind === "pan" && answerTag("4 " + tx("teacups"), 800, 44)}
+      {win && kind === "glasses" && answerTag("4 " + tx("glasses"), 770, 28)}
+      {win && kind === "pan" && answerTag("4 " + tx("teacups"), 800, 28)}
     </g>;
 }
 function Thumb({ result, it, C, w, h, lang = "en", tx = (v) => v }) {
@@ -6497,10 +6507,12 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v) => v }) {
   const v = lastR.value;
   const word = (s) => lang === "en" || TR[lang] && TR[lang][s] ? tx(s) : "";
   let text = "";
+  let two = null;
   if (item.choices) {
     const c = item.choices.find((x) => x.id === String(v));
     text = c ? word(c.label) + (item.kind === "pair" && word("mL") ? ": " + word("mL") : "") : "";
-  } else if (item.parts) text = (slotPartsOf(v, 1)[0] + " " + word(item.parts[0].unit)).trim();
+    if (c && item.kind === "pair" && word("mL")) two = [word(c.label), word("mL")];
+  } else if (item.parts) text = (slotPartsOf(v, 1)[0] + " " + word(item.parts[0].unit === "teacups" ? "cups" : item.parts[0].unit)).trim();
   else if (item.kind === "tag") text = word(String(v));
   else if (item.kind === "sort") text = word("sorted");
   else text = String(v);
@@ -6518,12 +6530,21 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v) => v }) {
         <polygon points={piProfile(bx, by, bw, bh)} fill="none" stroke={PI_C.glassE} strokeWidth={2.5} strokeLinejoin="round" />
         <path d={`M ${bx + 0.62 * bw} ${by + 0.2 * bh} C ${bx + 0.98 * bw} ${by + 0.18 * bh} ${bx + 0.98 * bw} ${by + 0.62 * bh} ${bx + 0.69 * bw} ${by + 0.66 * bh}`} fill="none" stroke={PI_C.glassE} strokeWidth={4} strokeLinecap="round" />
       </g>;
-  const tx0 = bx + bw + 12, cx = (tx0 + w - 10) / 2;
-  const fs = Math.max(T.micro, Math.min(T.label, Math.floor((w - tx0 - 18) / Math.max(1, String(text).length * 0.58))));
+  const tx0 = bx + bw + 12, cx = (tx0 + w - 10) / 2, room = w - tx0 - 34;
+  const fits = (s) => String(s).length * T.label * 0.62 <= room;
+  if (!two && !fits(text) && String(text).indexOf(" ") > 0) {
+    const k = String(text).lastIndexOf(" ");
+    two = [String(text).slice(0, k), String(text).slice(k + 1)];
+  }
+  if (two && fits(text)) two = null;
+  const fsOf = (s) => fits(s) ? T.label : T.micro;
   return <g>
       <rect x={0} y={0} width={w} height={h} rx={14} fill="#FFFFFF" stroke={C.rule} strokeWidth={1.5} />
       {drawing}
-      <text x={cx} y={h / 2} textAnchor="middle" dominantBaseline="central" fontSize={fs} fontWeight={700} fill={C.ink}>{text}</text>
+      {two ? <g>
+        <text x={cx} y={h / 2 - 18} textAnchor="middle" dominantBaseline="central" fontSize={fsOf(two[0])} fontWeight={700} fill={C.ink}>{two[0]}</text>
+        <text x={cx} y={h / 2 + 18} textAnchor="middle" dominantBaseline="central" fontSize={fsOf(two[1])} fontWeight={700} fill={C.ink}>{two[1]}</text>
+      </g> : <text x={cx} y={h / 2} textAnchor="middle" dominantBaseline="central" fontSize={fsOf(text)} fontWeight={700} fill={C.ink}>{text}</text>}
     </g>;
 }
 function PourIt(props) {

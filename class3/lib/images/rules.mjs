@@ -50,6 +50,8 @@ export const TOOL_CUT = 3;
 export const GLASS_CUT = 3;
 /* class 3 only (2026-10-28, ch 9 Pour It's gable-top milk carton): `cut: "joined"` is the normal cutout with the background flood opened (it may not run along thin light lines inside the object, e.g. a fold-line) and every sizeable blob kept, so a part joined to the body by a thin edge (a gable top and fin) stays. In a key only when set. */
 export const JOINED_CUT = 1;
+/* class 3 only (2026-10-29, ch 9 Weigh It's backpack): `cut: "holes"` is the normal cutout plus the enclosed-hole step of the tool cut (process.mjs OPT.holes: a light, colourless region the background flood cannot reach, at least 0.3 % of the picture, e.g. the inside of a carrying loop, becomes transparent). Nothing else of the cut changes. In a key only when set. */
+export const HOLES_CUT = 1;
 
 /* the mascot's look in words only: naming a mascot, robot or character in a prompt invites the model to draw one */
 export const STYLE = "A soft 3D cartoon illustration in the style of a children's animated film: rounded, appealing, clean shapes with smooth soft shading, rich warm colour and a gentle satin sheen (no hard white glare). Exactly one object, seen from directly above (a flat-lay, top-down view), centred, filling most of the frame with a margin of background all round. The background is perfectly plain pure white (#FFFFFF): no floor, no table, no gradient, no texture.";
@@ -134,7 +136,7 @@ export const rawHash = ({ object, kind, style, aspect, look, ref, view, colours 
 /* the one way every caller keys a validated image (validatePlan fills look and refSha) */
 export const rawKey = (plan, img) => rawHash({ object: img.object, kind: img.kind, style: plan.style, aspect: img.aspect, look: img.look, ref: img.refSha, view: img.view, colours: img.colours });
 export const skinHash = (raw, { kind, px, inset, maxKB, tool, cut }) => sha1(["skin", `cut${CUT_VERSION}`, (KINDS[kind] || {}).cut, raw,
-  `${px[0]}x${px[1]}`, Number(inset).toFixed(3), maxKB || "", ...(tool || cut === "glass" ? [`tool${TOOL_CUT}`] : []), ...(cut === "glass" ? [`glass${GLASS_CUT}`] : []), ...(cut === "joined" ? [`joined${JOINED_CUT}`] : []), ...(kind === "figure" ? [`fig${FIGURE_CUT}`] : [])].join("|"));
+  `${px[0]}x${px[1]}`, Number(inset).toFixed(3), maxKB || "", ...(tool || cut === "glass" ? [`tool${TOOL_CUT}`] : []), ...(cut === "glass" ? [`glass${GLASS_CUT}`] : []), ...(cut === "joined" ? [`joined${JOINED_CUT}`] : []), ...(cut === "holes" ? [`holes${HOLES_CUT}`] : []), ...(kind === "figure" ? [`fig${FIGURE_CUT}`] : [])].join("|"));
 
 export function buildPrompt(plan, img) {
   const k = KINDS[img.kind];
@@ -207,9 +209,10 @@ export function validatePlan(plan, slotId) {
     if (img.view !== undefined && !["top", "side"].includes(img.view)) errors.push(`${at}: view must be "top" or "side"`);
     if (img.colours !== undefined && !["warm", "natural"].includes(img.colours)) errors.push(`${at}: colours must be "warm" or "natural"`);
     /* class 3 only (2026-10-28): `cut: "glass"` = a clear glass object photographed on white (a jug): the tool cut with a glass recipe; a photo tile only */
-    if (img.cut !== undefined && !["glass", "joined"].includes(img.cut)) errors.push(`${at}: cut must be "glass" or "joined" (the per-image cut options)`);
+    if (img.cut !== undefined && !["glass", "joined", "holes"].includes(img.cut)) errors.push(`${at}: cut must be "glass", "joined" or "holes" (the per-image cut options)`);
     if (img.cut === "glass" && (img.kind !== "tile" || img.look !== "photo")) errors.push(`${at}: cut "glass" is for a photo tile only`);
     if (img.cut === "joined" && img.kind !== "tile") errors.push(`${at}: cut "joined" is for a tile only`);
+    if (img.cut === "holes" && img.kind !== "tile") errors.push(`${at}: cut "holes" is for a tile only`);
     if ((img.view === "side" || img.colours === "natural") && img.look !== "photo") warnings.push(`${at}: view "side" and colours "natural" apply to a photo object only; ignored`);
     /* a reference photograph (the image's own `reference`, else the plan's): sent with the prompt and keyed by its bytes, for a photo object only */
     const ref = img.reference !== undefined ? img.reference : plan.reference;

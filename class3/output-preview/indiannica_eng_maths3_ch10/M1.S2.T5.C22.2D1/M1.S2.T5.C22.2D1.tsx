@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S2.T5.C22.2D1 · write_the_date · Write the Date — standalone build 2026-10-29, source 41af1b9c:680254.
+/* M1.S2.T5.C22.2D1 · write_the_date · Write the Date — standalone build 2026-10-29, source 033d3f0b:680245.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -4622,7 +4622,7 @@ const TR = {
     "You learned: Day-Month-Year puts the day, the month in words, the year": "તમે શીખ્યા: દિવસ-મહિનો-વર્ષમાં દિવસ, શબ્દોમાં મહિનો, પછી વર્ષ",
     "Write this date the Day-Month-Year way: tap the month, then type the rest.": "આ તારીખ દિવસ-મહિનો-વર્ષ રીતે લખો: મહિનો સ્પર્શો, બાકી લખો.",
     "Day-Month-Year": "દિવસ-મહિનો-વર્ષ",
-    "Look at the labels: which box comes first?": "ખાનાની નીચેનું નામ જુઓ: કયું પહેલું?",
+    "Look at the labels: which box comes first?": "નામ જુઓ: પહેલું ખાનું કયું?",
     "Write the date on this library notice with the month in words.": "આ પુસ્તકાલય નોટિસની તારીખમાં મહિનો શબ્દોમાં લખો.",
     "Month in words": "મહિનો શબ્દોમાં",
     "The day goes first and the four-digit year goes last.": "દિવસ પહેલાં આવે અને ચાર અંકનું વર્ષ છેલ્લે.",

@@ -112,7 +112,8 @@ function run() {
   /* an action-kit TOOL (OPT.tool, docs/IMAGES.md §11; off for every skin, so a skin cuts exactly as it did): its grey steel or
      graphite is object (above: only a faint grey is a shadow), and a near-white region the border flood cannot reach, at least 0.3 % of the picture, is a hole
      (the scissors' finger loops) and so background too */
-  if (OPT.tool) {
+  const holeSizes = [];   /* HOLES: the pixel count of each enclosed region punched out, reported as extra.holes */
+  if (OPT.tool || OPT.holes) {   /* HOLES (OPT.holes, class 3, a backpack's carrying loop): only this enclosed-hole block runs; the skin's own flood, shadow rule and erosion are unchanged */
     /* glass (OPT.glass): the empty inside of a clear jug is light and neutral but not pure white (refraction), so the hole test is a little wider */
     const nwMin = OPT.glass ? 230 : 234, nwSpread = 18;
     const nw = (i) => Math.min(d[i], d[i + 1], d[i + 2]) >= nwMin && Math.max(d[i], d[i + 1], d[i + 2]) - Math.min(d[i], d[i + 1], d[i + 2]) <= nwSpread;
@@ -126,6 +127,7 @@ function run() {
           if (k >= 0 && !isBg[k] && !seen[k] && nw(k * 4)) { seen[k] = 1; reg.push(k); }
       }
       if (reg.length < N * 0.003) continue;
+      holeSizes.push(reg.length);
       /* the hole's own soft rim (light, unsaturated) goes with it, up to 5 px, so no white ring is left inside the loop */
       let ring = reg;
       for (const p of reg) isBg[p] = 1;
@@ -210,7 +212,7 @@ function run() {
   }
   let objN = 0; for (let p = 0; p < N; p++) if (!isBg[p]) objN++;
   const objFrac = objN / N;
-  const reasons = [], warnings = [], extra = {};
+  const reasons = [], warnings = [], extra = OPT.holes ? { holes: holeSizes } : {};
   if (!bgWhite) warnings.push("the background is not white (rgb " + bg.join(",") + ")");
   if (OPT.glass && objFrac < OPT.limits.minObject) warnings.push("glass: only " + (objFrac * 100).toFixed(1) + "% of the picture is object (the empty inside is transparent)");
   else if (objFrac < OPT.limits.minObject) return { error: "no object found (" + (objFrac * 100).toFixed(1) + "% of the picture differs from the background)", src: { w: W, h: H }, bg };
@@ -397,12 +399,12 @@ export function stripIcc(buf) {
 }
 
 /* raw bytes -> { ok, reasons, warnings, webp (Buffer), uri, w, h, q, bytes, uriBytes, crop, stats, ... } */
-export async function makeSkin(raw, mime, { kind, px, inset, maxKB, look, tool = false, glass = false, joined = false, label = "skin" }) {
+export async function makeSkin(raw, mime, { kind, px, inset, maxKB, look, tool = false, glass = false, joined = false, holes = false, label = "skin" }) {
   const tmp = fromRoot(".build");
   fs.mkdirSync(tmp, { recursive: true });
   const page = path.join(tmp, `skin-${process.pid}-${Math.random().toString(36).slice(2, 8)}.html`);
   const budget = skinBudget(kind, maxKB, look);
-  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS, tool: !!tool || !!glass, glass: !!glass, joined: !!joined, photo: look === "photo" && kind !== "figure" && !glass };
+  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS, tool: !!tool || !!glass, glass: !!glass, joined: !!joined, holes: !!holes, photo: look === "photo" && kind !== "figure" && !glass };
   fs.writeFileSync(page, `<!doctype html><meta charset="utf-8"><body><pre id="out">pending</pre>`
     + `<script id="raw">window.__RAW = "data:${mime || "image/png"};base64,${raw.toString("base64")}"; window.__OPT = ${JSON.stringify(opt)};</script>`
     + `<script>${PAGE}</script></body>`);

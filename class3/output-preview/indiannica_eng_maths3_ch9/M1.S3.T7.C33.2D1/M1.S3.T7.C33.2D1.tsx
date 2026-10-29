@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S3.T7.C33.2D1 · capacity_converter · Capacity Converter — standalone build 2026-10-29, source 7cdd8732:709205.
+/* M1.S3.T7.C33.2D1 · capacity_converter · Capacity Converter — standalone build 2026-10-29, source 4b67dac1:710766.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -4399,7 +4399,7 @@ function StartArt({ box, C, lang, tx = (v) => v }) {
   const by = box.h - 20;
   return <g>
       {ccPic("sa-b", "bucket", 250, by, 230, 230)}
-      {ccJug("sa-j", 560, by - 300, 243, 1e3, { tx, mid: true })}
+      {ccJug("sa-j", 560, by - 300, 243, 1e3, { tx, lang, mid: true })}
       {ccPic("sa-c", "cup", 960, by, 150, 160)}
     </g>;
 }
@@ -4444,7 +4444,7 @@ const TR = {
     "The part jug shows the millilitres left.": "थोड़ा भरा जग बचे हुए मिलीलीटर दिखाता है।",
     "Every 1,000 millilitres make one litre.": "हर 1,000 मिलीलीटर से एक लीटर बनता है।",
     "You learned: 1,000 mL make 1 L, so group millilitres in thousands.": "तुमने सीखा: 1,000 मिलीलीटर का 1 लीटर, इसलिए हज़ार-हज़ार में इकट्ठा करो।",
-    "Group the water in this drum into litres: how many litres and millilitres is it?": "इस ड्रम का पानी लीटर में इकट्ठा करो: कितने लीटर और कितने मिलीलीटर?",
+    "Group the water in this drum into litres: how many litres and millilitres is it?": "इस ड्रम का पानी लीटर में इकट्ठा करो, कितने लीटर और मिलीलीटर हुए?",
     "litres and mL left?": "कितने लीटर और कितने मिलीलीटर बचे?",
     "Only a full jug makes one whole litre.": "सिर्फ़ भरा हुआ जग ही एक पूरा लीटर बनाता है।",
     "Count the full jugs for the litres.": "लीटर के लिए भरे जग गिनो।",
@@ -4471,22 +4471,22 @@ const TR = {
     "Borrow turns 1 L into 1,000 mL.": "उधार से 1 लीटर, 1,000 मिलीलीटर बनता है।",
     "Work out the millilitres column first.": "पहले मिलीलीटर के खाने का हिसाब लगाओ।",
     "Then do the litres column.": "फिर लीटर का खाना हल करो।",
-    "Carry 1,000 mL as 1 L, or borrow 1 L as 1,000 mL.": "हासिल में 1,000 मिलीलीटर से 1 लीटर बनता है; उधार में 1 लीटर से 1,000 मिलीलीटर।",
+    "Carry 1,000 mL as 1 L, or borrow 1 L as 1,000 mL.": "हासिल: 1,000 मिलीलीटर से 1 लीटर; उधार: 1 लीटर से 1,000 मिलीलीटर।",
     "You learned: do the millilitres first, then carry or borrow 1 L.": "तुमने सीखा: पहले मिलीलीटर, फिर 1 लीटर हासिल लो या उधार लो।",
-    "A bucket holds 6 L 120 mL; 2 L 460 mL is poured out: how much is left?": "बाल्टी में 6 लीटर 120 मिलीलीटर पानी था; 2 लीटर 460 मिलीलीटर निकाला: कितना बचा?",
+    "A bucket holds 6 L 120 mL; 2 L 460 mL is poured out: how much is left?": "बाल्टी में 6 लीटर 120 मिलीलीटर पानी था, 2 लीटर 460 मिलीलीटर निकाला, कितना बचा?",
     "6 L 120 mL take away 2 L 460 mL": "6 लीटर 120 मिलीलीटर में से 2 लीटर 460 मिलीलीटर घटाओ",
     "You cannot take 460 mL from 120 mL.": "120 मिलीलीटर में से 460 मिलीलीटर नहीं घटा सकते।",
     "After the borrow the top row is 5 L and 1,120 mL.": "उधार के बाद ऊपर 5 लीटर और 1,120 मिलीलीटर हैं।",
     "Take 460 mL from 1,120 mL, then 2 L from 5 L.": "1,120 मिलीलीटर से 460 घटाओ, फिर 5 लीटर से 2।",
     "Yes, 3 L 660 mL of water is left in the bucket.": "हाँ, 3 लीटर 660 मिलीलीटर पानी बाल्टी में बचा है।",
     "millilitres": "मिलीलीटर",
-    "A can has 4 L 680 mL of juice and a bottle 2 L 530 mL: how much in all?": "कैन में 4 लीटर 680 मिलीलीटर जूस, बोतल में 2 लीटर 530 मिलीलीटर: कुल कितना हुआ?",
+    "A can has 4 L 680 mL of juice and a bottle 2 L 530 mL: how much in all?": "कैन में 4 लीटर 680 मिलीलीटर जूस, बोतल में 2 लीटर 530 मिलीलीटर, कुल कितना हुआ?",
     "4 L 680 mL add 2 L 530 mL": "4 लीटर 680 मिलीलीटर में 2 लीटर 530 मिलीलीटर जोड़ो",
     "680 mL and 530 mL make more than 1,000 mL.": "680 और 530 मिलीलीटर मिलकर 1,000 से ज़्यादा हैं।",
     "Carry 1 L and keep what is over 1,000 mL.": "1 लीटर हासिल लो और 1,000 से ऊपर के मिलीलीटर रखो।",
     "Add the carried 1 L to 4 L and 2 L.": "हासिल का 1 लीटर 4 लीटर और 2 लीटर में जोड़ो।",
     "Yes, there are 7 L 210 mL of juice in all.": "हाँ, कुल 7 लीटर 210 मिलीलीटर जूस है।",
-    "A pot gets 3 L 600 mL of milk, then 2 L 400 mL more: how much milk now?": "पतीले में 3 लीटर 600 मिलीलीटर दूध था, 2 लीटर 400 मिलीलीटर और डाला: अब कितना है?",
+    "A pot gets 3 L 600 mL of milk, then 2 L 400 mL more: how much milk now?": "पतीले में 3 लीटर 600 मिलीलीटर दूध था, 2 लीटर 400 मिलीलीटर और डाला, अब कितना है?",
     "3 L 600 mL add 2 L 400 mL": "3 लीटर 600 मिलीलीटर में 2 लीटर 400 मिलीलीटर जोड़ो",
     "Start by adding 600 mL and 400 mL.": "पहले 600 मिलीलीटर और 400 मिलीलीटर जोड़ो।",
     "600 mL and 400 mL make exactly 1,000 mL, which is 1 L.": "600 और 400 मिलीलीटर मिलकर ठीक 1 लीटर बनते हैं।",
@@ -4503,17 +4503,17 @@ const TR = {
     "You learned: count the cups that fill a container, or divide.": "तुमने सीखा: बर्तन भरने वाले कप गिनो, या भाग दो।",
     "How many 250 mL cups of water fill this 2 L jar?": "250 मिलीलीटर के कितने कप पानी से यह 2 लीटर का मर्तबान भरेगा?",
     "How many cups?": "कितने कप?",
-    "The jar holds 2 L: count the cups for both litres.": "मर्तबान 2 लीटर का है: दोनों लीटर के कप गिनो।",
+    "The jar holds 2 L: count the cups for both litres.": "मर्तबान 2 लीटर का है, इसलिए 2 लीटर तक कप गिनो।",
     "Four 250 mL cups fill exactly one litre.": "250 मिलीलीटर के चार कप ठीक एक लीटर भरते हैं।",
     "Change 2 L into millilitres, then see how many 250 mL cups go in.": "2 लीटर को मिलीलीटर बनाओ, फिर देखो कितने 250 आते हैं।",
     "Yes, 8 cups of 250 mL fill the 2 L jar.": "हाँ, 250 मिलीलीटर के 8 कप से 2 लीटर का मर्तबान भरता है।",
-    "Ravi fills a 1 L 500 mL jar with a 250 mL cup: how many cupfuls does he pour?": "1 लीटर 500 मिलीलीटर का मर्तबान रवि 250 मिलीलीटर के कप से भरता है: कितने कप?",
+    "Ravi fills a 1 L 500 mL jar with a 250 mL cup: how many cupfuls does he pour?": "1 लीटर 500 मिलीलीटर का मर्तबान रवि 250 मिलीलीटर के कप से भरता है, कितने कप?",
     "How many cupfuls?": "कितने कप उँडेले?",
     "Count every cup picture, the last one too.": "हर कप की तस्वीर गिनो, आख़िरी वाली भी।",
     "Each cup adds 250 mL and the jar holds 1,500 mL.": "हर कप 250 मिलीलीटर, मर्तबान 1,500 मिलीलीटर का।",
     "Count how many 250 mL make 1,500 mL.": "गिनो कि कितने 250 मिलकर 1,500 बनते हैं।",
     "Yes, 6 cupfuls of 250 mL make 1,500 mL.": "हाँ, 250 मिलीलीटर के 6 कप से 1,500 मिलीलीटर बनता है।",
-    "A glass holds 140 mL: how many glasses of juice fill a 1 L 260 mL jar?": "गिलास 140 मिलीलीटर का है: कितने गिलास से 1 लीटर 260 मिलीलीटर का मर्तबान भरेगा?",
+    "A glass holds 140 mL: how many glasses of juice fill a 1 L 260 mL jar?": "गिलास 140 मिलीलीटर का है, कितने गिलास से 1 लीटर 260 मिलीलीटर का मर्तबान भरेगा?",
     "How many glasses?": "कितने गिलास?",
     "Check that the juice reaches the very top of the jar.": "देखो कि जूस मर्तबान के बिल्कुल ऊपर तक पहुँचा है।",
     "Each glass adds 140 mL to the jar.": "हर गिलास मर्तबान में 140 मिलीलीटर जोड़ता है।",
@@ -4616,7 +4616,7 @@ const TR = {
     "Borrow turns 1 L into 1,000 mL.": "ઉછીનાથી 1 લીટર, 1,000 મિલીલીટર બને છે.",
     "Work out the millilitres column first.": "પહેલાં મિલીલીટરની કૉલમનો હિસાબ કરો.",
     "Then do the litres column.": "પછી લીટરની કૉલમનો હિસાબ કરો.",
-    "Carry 1,000 mL as 1 L, or borrow 1 L as 1,000 mL.": "1,000 મિલીલીટરનો 1 લીટર વદી લો, અથવા 1 લીટર ઉછીના લઈને 1,000 મિલીલીટર કરો.",
+    "Carry 1,000 mL as 1 L, or borrow 1 L as 1,000 mL.": "વદી: 1,000 મિલીલીટરથી 1 લીટર; ઉછીના: 1 લીટરથી 1,000 મિલીલીટર.",
     "You learned: do the millilitres first, then carry or borrow 1 L.": "તમે શીખ્યા: પહેલાં મિલીલીટર, પછી 1 લીટર વદી લો કે ઉછીના લો.",
     "A bucket holds 6 L 120 mL; 2 L 460 mL is poured out: how much is left?": "ડોલમાં 6 લીટર 120 મિલીલીટર છે; 2 લીટર 460 મિલીલીટર રેડી દીધું: કેટલું બાકી?",
     "6 L 120 mL take away 2 L 460 mL": "6 લીટર 120 મિલીલીટરમાંથી 2 લીટર 460 મિલીલીટર બાદ કરો",
@@ -4706,8 +4706,8 @@ const CC_GLASS = "#93A1AD";
 const CC_SW = 900;
 const CC_KINDS = ["lit", "grp", "col", "pour"];
 const CC_JUG = { w: 200, h: 247, floor: 0.862, per: 0.702 };
-const CC_JUG_L = [[0.2, 0.016], [0.155, 0.15], [0.08, 0.5], [0.045, 0.64], [0.075, 0.77], [0.15, 0.862]];
-const CC_JUG_R = [[0.66, 0.862], [0.71, 0.77], [0.725, 0.64], [0.705, 0.5], [0.62, 0.15], [0.62, 0.016]];
+const CC_JUG_L = [[0.2, 0.016], [0.155, 0.15], [0.079, 0.48], [0.069, 0.51], [0.059, 0.54], [0.049, 0.57], [0.049, 0.6], [0.039, 0.63], [0.039, 0.66], [0.034, 0.69], [0.049, 0.72], [0.054, 0.75], [0.069, 0.78], [0.089, 0.81], [0.129, 0.84], [0.19, 0.862]];
+const CC_JUG_R = [[0.63, 0.862], [0.676, 0.84], [0.696, 0.81], [0.716, 0.78], [0.731, 0.75], [0.741, 0.72], [0.741, 0.69], [0.736, 0.66], [0.731, 0.63], [0.731, 0.6], [0.726, 0.57], [0.726, 0.54], [0.716, 0.51], [0.711, 0.48], [0.62, 0.15], [0.62, 0.016]];
 const ccJugY = (ml) => CC_JUG.floor - CC_JUG.per * ml / 1e3;
 const ccWall = (fy) => {
   for (let i = 0; i < CC_JUG_L.length - 1; i++) {
@@ -4744,7 +4744,8 @@ const ccHas = (name) => {
     return false;
   }
 };
-const ccPillH = (lang) => lang === "hi" || lang === "gu" ? 48 : 40;
+const ccPillH = (lang) => lang === "hi" || lang === "gu" ? 60 : 40;
+const ccPillDy = (ph) => ph > 40 ? 15 : 11;
 function ccJug(k, x, y, w, ml, o = {}) {
   const h = w * CC_JUG.h / CC_JUG.w;
   const tx = o.tx || ((v) => v);
@@ -4794,9 +4795,9 @@ function ccJug(k, x, y, w, ml, o = {}) {
   })}
         {top && <line x1={x + 2} y1={y - 10} x2={x + 2} y2={oneY} stroke={CC_INK} strokeWidth={2.5} strokeLinecap="round" />}
         <rect x={pX} y={pY} width={pw} height={ph} rx={ph / 2} fill="#FFF8EA" stroke={CHROME.rule} strokeWidth={2} />
-        <text x={pX + pw / 2} y={pY + ph / 2 + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={CC_INK}>{oneT}</text>
+        <text x={pX + pw / 2} y={pY + ph / 2 + ccPillDy(ph)} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={CC_INK}>{oneT}</text>
         {o.mid && <rect x={midR - mw} y={midY - ph / 2} width={mw} height={ph} rx={ph / 2} fill="#FFF8EA" stroke={CHROME.rule} strokeWidth={2} />}
-        {o.mid && <text x={midR - mw / 2} y={midY + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={CC_INK}>{midT}</text>}
+        {o.mid && <text x={midR - mw / 2} y={midY + ccPillDy(ph)} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={CC_INK}>{midT}</text>}
       </g>
     </g>;
 }
@@ -4839,7 +4840,7 @@ function ccGlass(k, cx, bottom, w, liq, full) {
     </g>;
 }
 const CC_JAR = { w: 129, h: 220, full: 0.1, floor: 0.836, k: 0.13 };
-const CC_JAR_IN = [[0.047, 0.1], [0.047, 0.5], [0.085, 0.79], [0.11, 0.836], [0.882, 0.836], [0.907, 0.79], [0.946, 0.5], [0.946, 0.1]];
+const CC_JAR_IN = [[0.041, 0.1], [0.041, 0.54], [0.048, 0.57], [0.048, 0.6], [0.056, 0.63], [0.056, 0.66], [0.064, 0.69], [0.064, 0.72], [0.072, 0.75], [0.079, 0.78], [0.079, 0.81], [0.105, 0.836], [0.885, 0.836], [0.911, 0.81], [0.913, 0.78], [0.921, 0.75], [0.928, 0.72], [0.928, 0.69], [0.936, 0.66], [0.936, 0.63], [0.944, 0.6], [0.944, 0.57], [0.952, 0.54], [0.952, 0.1]];
 const ccJarBox = (cap) => {
   const h = cap * CC_JAR.k / (CC_JAR.floor - CC_JAR.full);
   return { w: h * CC_JAR.w / CC_JAR.h, h };
@@ -4855,8 +4856,16 @@ function ccJar(k, cx, bottom, cap, ml, liq, tx, lang) {
   const din = "M " + CC_JAR_IN.map(([fx, fy]) => (x + fx * w).toFixed(1) + " " + (y + fy * h).toFixed(1)).join(" L ") + " Z";
   const wallAt = (yy) => {
     const fy = (yy - y) / h;
-    const fx = fy <= 0.5 ? 0.047 : fy <= 0.79 ? 0.047 + (0.085 - 0.047) * (fy - 0.5) / 0.29 : 0.085 + (0.11 - 0.085) * (fy - 0.79) / 0.046;
-    return x + fx * w - 2;
+    const Lp = CC_JAR_IN.slice(0, 12);
+    let fx = Lp[Lp.length - 1][0];
+    for (let i = 0; i < Lp.length - 1; i++) {
+      const [x0, y0] = Lp[i], [x1, y1] = Lp[i + 1];
+      if (fy >= y0 && fy <= y1) {
+        fx = x0 + (x1 - x0) * (fy - y0) / (y1 - y0);
+        break;
+      }
+    }
+    return x + (fx + 6e-3) * w - 2;
   };
   const ticks = [];
   for (let m = 250; m <= cap; m += 250) ticks.push(m);
@@ -4893,7 +4902,7 @@ function ccJar(k, cx, bottom, cap, ml, liq, tx, lang) {
     const t = m / 1e3 + " " + tx("L"), pw = Math.max(56, ccTW(t, 32) + 14), yy = yOf(m), r = wallAt(yy) - 20 - 6;
     return <g key={"p" + m}>
               <rect x={r - pw} y={yy - ph / 2} width={pw} height={ph} rx={ph / 2} fill="#FFF8EA" stroke={CHROME.rule} strokeWidth={2} />
-              <text x={r - pw / 2} y={yy + 11} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={CC_INK}>{t}</text>
+              <text x={r - pw / 2} y={yy + ccPillDy(ph)} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={CC_INK}>{t}</text>
             </g>;
   })}
       </g>
@@ -5654,7 +5663,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL: MO
     const gx = ox + Math.max(4, 140 - gw / 2);
     const chipW = (t) => Math.max(200, ccTW(t, 32) + 28);
     const twoRows = JP < chipW("1,000 " + tx("mL")) + 16;
-    const chipY = (j) => twoRows && j % 2 === 1 ? 376 : 318;
+    const chipY = (j) => twoRows && j % 2 === 1 ? 381 : 317;
     const chipX = (j, cw) => Math.max(ox + 4, Math.min(bw - 4 - cw, jcx(j) - cw / 2));
     const fL = isLit ? "1 " + tx("L") + " =" : "1,000 " + tx("mL") + " =";
     const fR = isLit ? "1,000 " + tx("mL") : "1 " + tx("L");
@@ -5663,14 +5672,14 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL: MO
     const fc = Math.min(rowC, kx - fw / 2 - 6);
     const fSplit = fc + (wL - wR) / 2;
     const keyId = isLit ? "pour" : "group";
-    const kw = 220, kX = rowC - kw / 2, kY = 444;
+    const kw = 220, kX = rowC - kw / 2, kY = 445;
     const showChips = doneAct || corr || warm && S.done;
     const res = isLit ? ccML(it.L * 1e3 + it.ml, tx) : left > 0 ? ccLM(full, left, tx) : full + " " + tx("L");
     const ans = tx("Answer") + ": " + res;
     const rw = Math.max(260, ccTW(res, 40) + 40), aw = Math.max(300, ccTW(ans, 40) + 40);
     return <g>
         {ccPic("box", it.box, ox + 140, JB, 200, 170)}
-        {ccTag("given", gx, 66, gw, 52, given, CC_BLUE, 32)}
+        {lang === "hi" || lang === "gu" ? ccTag("given", gx, 62, gw, 60, given, CC_BLUE, 32) : ccTag("given", gx, 66, gw, 52, given, CC_BLUE, 32)}
         <g data-scale="fact">
           <rect x={fc - fw / 2} y={4} width={fw} height={64} rx={32} fill={tint(CC_VERM, 0.9)} stroke={CC_VERM} strokeWidth={5} />
           <text x={fSplit - 7} y={50} textAnchor="end" fontSize={T.prompt} fontWeight={700} fill={shade(CC_VERM, 0.45)}>{fL}</text>
@@ -5686,10 +5695,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL: MO
       const isPart = j >= full;
       if (!isLit && isPart) {
         const cw2 = chipW(tx("Left"));
-        return <g key={"c" + j}>{ccTag("c" + j, chipX(j, cw2), chipY(j), cw2, 52, tx("Left"), CC_AMBER, 32)}</g>;
+        return <g key={"c" + j}>{ccTag("c" + j, chipX(j, cw2), chipY(j), cw2, 48, tx("Left"), CC_AMBER, 32)}</g>;
       }
       const t = (isPart ? String(left) : "1,000") + " " + tx("mL"), cw = chipW(t);
-      return <g key={"c" + j}>{ccTag("c" + j, chipX(j, cw), chipY(j), cw, 52, t, isPart ? CC_AMBER : CC_BLUE, 32)}</g>;
+      return <g key={"c" + j}>{ccTag("c" + j, chipX(j, cw), chipY(j), cw, 48, t, isPart ? CC_AMBER : CC_BLUE, 32)}</g>;
     })}
         {!isWin && actKey(keyId, isLit ? "Pour" : "Group", kX, kY, kw, corr || fill >= used || warm && S.done)}
         {!isWin && wantInvite(keyId) && fill < used && invite(kX, kY, kw, 72)}
@@ -5734,7 +5743,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL: MO
         {isWin ? <g data-reveals="answer">{cell("rl", ox + 230, 140, String(res[0]), true)}{cell("rm", ox + 470, 260, String(res[1]), true)}
             {(() => {
       const t = tx("Answer") + ": " + ccLM(res[0], res[1], tx) + (res[1] === 0 ? " 0 " + tx("mL") : ""), aw = Math.max(300, ccTW(t, 40) + 40);
-      return ccTag("ans", ox + 450 - aw / 2, 436, aw, 72, t, CC_GREEN, 40);
+      return ccTag("ans", ox + 450 - aw / 2, 444, aw, 72, t, CC_GREEN, 40);
     })()}</g> : <g>{cell("rl", ox + 230, 140, String(res[0]), showRes)}{cell("rm", ox + 470, 260, String(res[1]), showRes)}</g>}
         {!isWin && actKey("carry", "Carry", ckX, kY, 220, off)}
         {!isWin && actKey("borrow", "Borrow", bkX, kY, 220, off)}
@@ -5751,7 +5760,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL: MO
     const jb = it.big === "jug" ? null : ccJarBox(it.cap);
     const capX = it.big === "jug" ? J4.wx + J4.ww * 0.4 : J4.jx;
     const capL = jb ? Math.max(ox + 4, J4.jx - jb.w / 2 + 40 - capW) : capX - capW / 2;
-    const capY = jb ? Math.max(0, J4.jb - jb.h - 74) : 4;
+    const capY = jb ? Math.max(0, J4.jb - jb.h - 90) : 4;
     const unitW = it.small === "glass" ? pours === 1 ? "glass" : "glasses" : pours === 1 ? "cup" : "cups";
     const res = (warm || free ? pours : N) + " " + tx(unitW);
     const ans = tx("Answer") + ": " + N + " " + tx(it.small === "glass" ? "glasses" : "cups");
@@ -5782,7 +5791,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL: MO
       const tx0 = tallyX + i % 5 * 46, ty0 = 300 + Math.floor(i / 5) * 58;
       return it.small === "glass" ? ccGlass("w" + i, tx0 + 20, ty0, 32, liq, true) : ccPic("w" + i, "cup", tx0 + 20, ty0, 38, 46);
     })}
-          {ccTag("ans", Math.max(ox + 4, capX - aw / 2), 436, aw, 72, ans, CC_GREEN, 40)}
+          {ccTag("ans", Math.max(ox + 4, capX - aw / 2), 444, aw, 72, ans, CC_GREEN, 40)}
         </g>}
       </g>;
   };
@@ -5807,33 +5816,33 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v) => v }) {
     lines = [String(v), U(item.small === "glass" ? v === 1 ? "glass" : "glasses" : v === 1 ? "cup" : "cups").trim()];
   }
   lines = lines.filter((s2) => s2);
-  const s = Math.min(h - 16, 64), iy = (h - s) / 2, tx0 = 86, room = w - tx0 - 10;
+  const s = Math.min(h - 16, 60), iy = (h - s) / 2, tx0 = 68, room = w - tx0 - 12;
   const one = lines.join(" ");
   const fit1 = ccTW(one, T.label) <= room;
   const jugMini = (x, lvl, ring) => <g>
-      <path d={`M ${x + 6} ${iy} L ${x + 44} ${iy} L ${x + 50} ${iy + s} L ${x} ${iy + s} Z`} fill="#FFFFFF" fillOpacity={0.5} />
-      <path d={`M ${x + 6 * lvl} ${iy + s * (1 - lvl)} L ${x + 50 - 6 * lvl} ${iy + s * (1 - lvl)} L ${x + 50} ${iy + s} L ${x} ${iy + s} Z`} fill={CC_WATER} fillOpacity={0.6} />
-      <path d={`M ${x + 6} ${iy} L ${x + 44} ${iy} L ${x + 50} ${iy + s} L ${x} ${iy + s} Z`} fill="none" stroke={shade(CC_GLASS, 0.3)} strokeWidth={3} strokeLinejoin="round" />
-      <path d={`M ${x + 46} ${iy + s * 0.2} C ${x + 64} ${iy + s * 0.2} ${x + 64} ${iy + s * 0.6} ${x + 48} ${iy + s * 0.62}`} fill="none" stroke={shade(CC_GLASS, 0.3)} strokeWidth={3} />
-      {ring && <rect x={x - 4} y={iy - 4} width={66} height={s + 8} rx={10} fill="none" stroke={CC_AMBER} strokeWidth={3} />}
+      <path d={`M ${x + 5} ${iy} L ${x + 33} ${iy} L ${x + 38} ${iy + s} L ${x} ${iy + s} Z`} fill="#FFFFFF" fillOpacity={0.5} />
+      <path d={`M ${x + 5 * lvl} ${iy + s * (1 - lvl)} L ${x + 38 - 5 * lvl} ${iy + s * (1 - lvl)} L ${x + 38} ${iy + s} L ${x} ${iy + s} Z`} fill={CC_WATER} fillOpacity={0.6} />
+      <path d={`M ${x + 5} ${iy} L ${x + 33} ${iy} L ${x + 38} ${iy + s} L ${x} ${iy + s} Z`} fill="none" stroke={shade(CC_GLASS, 0.3)} strokeWidth={3} strokeLinejoin="round" />
+      <path d={`M ${x + 34} ${iy + s * 0.2} C ${x + 47} ${iy + s * 0.2} ${x + 47} ${iy + s * 0.6} ${x + 36} ${iy + s * 0.62}`} fill="none" stroke={shade(CC_GLASS, 0.3)} strokeWidth={3} />
+      {ring && <rect x={x - 3} y={iy - 3} width={52} height={s + 6} rx={9} fill="none" stroke={CC_AMBER} strokeWidth={3} />}
     </g>;
   let pic = null;
-  if (kind === "lit") pic = jugMini(12, 1, false);
-  else if (kind === "grp") pic = jugMini(12, 0.35, true);
+  if (kind === "lit") pic = jugMini(9, 1, false);
+  else if (kind === "grp") pic = jugMini(9, 0.35, true);
   else if (kind === "col") pic = <g>
-      <rect x={10} y={iy} width={66} height={s} rx={8} fill="#FFFFFF" stroke={shade(C.rule, 0.3)} strokeWidth={2.5} />
-      <line x1={36} y1={iy + 4} x2={36} y2={iy + s - 4} stroke={C.ink} strokeWidth={2.5} />
-      <line x1={14} y1={iy + s * 0.68} x2={72} y2={iy + s * 0.68} stroke={C.ink} strokeWidth={2.5} />
-      <rect x={14} y={iy + s * 0.74} width={18} height={s * 0.2} rx={3} fill={tint(CC_GREEN, 0.5)} />
-      <rect x={40} y={iy + s * 0.74} width={32} height={s * 0.2} rx={3} fill={tint(CC_GREEN, 0.5)} />
+      <rect x={8} y={iy} width={48} height={s} rx={7} fill="#FFFFFF" stroke={shade(C.rule, 0.3)} strokeWidth={2.5} />
+      <line x1={26} y1={iy + 4} x2={26} y2={iy + s - 4} stroke={C.ink} strokeWidth={2.5} />
+      <line x1={11} y1={iy + s * 0.68} x2={53} y2={iy + s * 0.68} stroke={C.ink} strokeWidth={2.5} />
+      <rect x={11} y={iy + s * 0.74} width={12} height={s * 0.2} rx={3} fill={tint(CC_GREEN, 0.5)} />
+      <rect x={29} y={iy + s * 0.74} width={24} height={s * 0.2} rx={3} fill={tint(CC_GREEN, 0.5)} />
     </g>;
   else pic = <g>
-      {[0, 1, 2].map((i) => item.small === "glass" ? <path key={i} d={`M ${10 + i * 22} ${iy + s * 0.3} L ${30 + i * 22} ${iy + s * 0.3} L ${27 + i * 22} ${iy + s} L ${13 + i * 22} ${iy + s} Z`} fill={CC_JUICE} fillOpacity={0.7} stroke={shade(CC_JUICE, 0.55)} strokeWidth={2} /> : <path key={i} d={`M ${10 + i * 22} ${iy + s * 0.3} L ${30 + i * 22} ${iy + s * 0.3} L ${27 + i * 22} ${iy + s} L ${13 + i * 22} ${iy + s} Z`} fill="#F4C542" stroke="#9A7410" strokeWidth={2} />)}
+      {[0, 1, 2].map((i) => item.small === "glass" ? <path key={i} d={`M ${8 + i * 16} ${iy + s * 0.3} L ${22 + i * 16} ${iy + s * 0.3} L ${20 + i * 16} ${iy + s} L ${10 + i * 16} ${iy + s} Z`} fill={CC_JUICE} fillOpacity={0.7} stroke={shade(CC_JUICE, 0.55)} strokeWidth={2} /> : <path key={i} d={`M ${8 + i * 16} ${iy + s * 0.3} L ${22 + i * 16} ${iy + s * 0.3} L ${20 + i * 16} ${iy + s} L ${10 + i * 16} ${iy + s} Z`} fill="#F4C542" stroke="#9A7410" strokeWidth={2} />)}
     </g>;
   return <g>
       <rect x={0} y={0} width={w} height={h} rx={14} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={1.5} />
       {pic}
-      {fit1 ? <text x={tx0} y={h / 2 + 11} fontSize={T.label} fontWeight={700} fill={C.ink}>{one}</text> : lines.map((s2, i) => <text key={i} x={tx0} y={h / 2 + 10 + (i - (lines.length - 1) / 2) * 30} fontSize={T.micro} fontWeight={700} fill={C.ink}>{s2}</text>)}
+      {fit1 ? <text x={tx0} y={h / 2 + 11} fontSize={T.label} fontWeight={700} fill={C.ink}>{one}</text> : lines.map((s2, i) => <text key={i} x={tx0} y={h / 2 + 10 + (i - (lines.length - 1) / 2) * 36} fontSize={T.micro} fontWeight={700} fill={C.ink}>{s2}</text>)}
     </g>;
 }
 function CapacityConverter(props) {

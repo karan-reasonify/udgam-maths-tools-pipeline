@@ -149,6 +149,7 @@ const TR: any = {
     "Which in kilograms?": "किसे किलोग्राम में?",
     "mango": "आम",
     "bag of rice": "चावल की बोरी",
+    "rice": "चावल",
     "Put each one on the pan and see if it is heavier than the 1 kg weight.": "हर चीज़ पलड़े पर रखो: क्या वह 1 किलोग्राम से भारी है?",
     "The heavy thing is the one that pulls its pan down.": "भारी चीज़ वही है जो अपना पलड़ा नीचे खींचती है।",
     "Weigh the mango, then the rice: which one lifts the 1 kg weight?": "पहले आम को, फिर चावल को तौलो: कौन-सी चीज़ 1 किलोग्राम के बाट को ऊपर उठाती है?",
@@ -243,7 +244,7 @@ const TR: any = {
     "See which pan is lower.": "देखो कौन-सा पलड़ा नीचे है।",
     "Yes, the small brick is heavier than the big pillow.": "हाँ, छोटी ईंट बड़े तकिये से भारी है।",
     "Weigh the school bag, the pillow and the watermelon: how many are over 1 kg?": "बैग, तकिया और तरबूज़ तौलो: कितनी चीज़ें 1 किलोग्राम से भारी हैं?",
-    "How many over 1 kg?": "1 किलोग्राम से ज़्यादा कितनी?",
+    "How many over 1 kg?": "1 किग्रा से भारी कितनी?",
     "Watch each thing being weighed again against the 1 kg weight.": "हर चीज़ फिर से तौली जा रही है: 1 किलोग्राम के सामने देखो।",
     "Count only the things that pull their own pan down.": "सिर्फ़ उन चीज़ों को गिनो जो अपना पलड़ा नीचे खींचती हैं।",
     "Put the pillow back on: does the 1 kg side go up or down?": "तकिये को फिर से रखो: क्या 1 किलोग्राम वाला पलड़ा ऊपर जाता है या नीचे?",
@@ -345,6 +346,7 @@ const TR: any = {
     "Which in kilograms?": "કોને કિલોગ્રામમાં?",
     "mango": "કેરી",
     "bag of rice": "ચોખાની ગૂણ",
+    "rice": "ચોખા",
     "Put each one on the pan and see if it is heavier than the 1 kg weight.": "દરેક વસ્તુ પલ્લા પર મૂકો: શું તે 1 કિલોગ્રામથી ભારે છે?",
     "The heavy thing is the one that pulls its pan down.": "ભારે વસ્તુ એ છે જે પોતાનું પલ્લું નીચે ખેંચે છે.",
     "Weigh the mango, then the rice: which one lifts the 1 kg weight?": "કેરી, પછી ચોખા તોલો: કોણ 1 કિલોગ્રામના કાટલાને ઉઠાવે છે?",
@@ -496,7 +498,7 @@ const WI_OBJ: any = {
   watermelon: { g: 3000, w: 190, h: 137, skin: "watermelon", name: "watermelon" },
   mango: { g: 300, w: 84, h: 70, skin: "mango", name: "mango" },   /* small beside the 5 kg bag of rice, even at the shelf's 1.5 */
   pencil: { g: 10, w: 212, h: 28, skin: "pencil", name: "pencil" },
-  sack: { g: 5000, w: 140, h: 187, skin: "sack", name: "bag of rice" },   /* on a pan its top stays 10 under the hook */
+  sack: { g: 5000, w: 130, h: 174, skin: "sack", name: "bag of rice" },   /* on a pan its top stays 12 under the hook */
   backpack: { g: 2000, w: 120, h: 177, skin: "backpack", name: "school bag" },
   pillow: { g: 600, w: 164, h: 180, skin: "pillow", name: "pillow" },
   brick: { g: 3000, w: 128, h: 67, skin: "brick", name: "brick" },
@@ -531,7 +533,8 @@ function useWiDecoded() {
 const WI_WD: any = { 2000: [116, 96], 1000: [108, 88], 500: [108, 82], 200: [104, 76], 100: [104, 74], 50: [92, 72], 10: [92, 72] };
 const wiLab = (g: number) => (g >= 1000 ? g / 1000 + " kg" : g + " g");
 /* the balance, in the frame's own units (the frame is 900 wide: it fits beside the open keypad) */
-const WB = { cx: 322, cy: 104, half: 180, cord: 208, table: 488, colX: 662, dish: 140 };
+/* cord 196 and the table at 496 (20 thick): a two-line tag under a pan keeps 12+ clear of the dipped dish (the bag of rice) and the table */
+const WB = { cx: 322, cy: 104, half: 180, cord: 196, table: 496, colX: 662, dish: 140 };
 /* the role colours of the chapter: the given reading, the answer (only at the win), the unit fact, a step of the working */
 const WI_C = { given: "#0072B2", answer: "#009E73", unit: "#D55E00", step: "#E69F00" };
 /* THE FIRST REAL TOUCH (the answer gate's "the child has touched the board", PATTERNS 19): a real tap or drop on a piece of the board, or
@@ -548,7 +551,8 @@ const WI_NUDGE = [
 ];
 /* every board: what stands on the shelf (col: things, tray, gram set), the rack of weights (a fresh copy on every take),
    what is already on each pan and cannot be moved (L, R), whether a thing may go on either pan (two) */
-const WI_FREE = { col: ["watermelon", "mango", "pencil", "pillow", "brick"], rack: [2000, 1000, 500, 200, 100, 50, 10], L: [], R: [], two: true, wBoth: true };
+/* the two tall things share the first row, the three low ones the next, so the shelf has room to draw them big */
+const WI_FREE = { col: ["watermelon", "pillow", "mango", "pencil", "brick"], rack: [2000, 1000, 500, 200, 100, 50, 10], L: [], R: [], two: true, wBoth: true, wS: 0.875 };
 
 const MODEL = {
   grams: Object.fromEntries(Object.keys(WI_OBJ).map((k) => [k, WI_OBJ[k].g])),
@@ -602,7 +606,7 @@ const PHASES: any[] = [
       /* practice 5: answer in the plan = The apple in grams and the sack of rice in kilograms (a mango here: the owner's object) */
       { qid: "M1.S2.T4.C16:5", kind: "which", board: { col: ["mango", "sack"], rack: [], L: [], R: ["w1000"] }, gate: "all", sol: { L: ["sack"], seen: ["mango", "sack"] },
         say: "Weigh the mango and the bag of rice: which one do we weigh in kilograms?", ask: "Which in kilograms?",
-        choices: [{ id: "mango", label: "mango" }, { id: "rice", label: "bag of rice" }], answer: "rice", near: "mango", pick: { mango: "mango", rice: "sack" }, forms: ["rice is weighed in kilograms"],
+        choices: [{ id: "mango", label: "mango" }, { id: "rice", label: "bag of rice", thumb: "rice" }], answer: "rice", near: "mango", pick: { mango: "mango", rice: "sack" }, forms: ["rice is weighed in kilograms"],
         miss: "Put each one on the pan and see if it is heavier than the 1 kg weight.",
         ladder: ["The heavy thing is the one that pulls its pan down.", "Weigh the mango, then the rice: which one lifts the 1 kg weight?"],
         win: "Yes, rice goes in kilograms and the mango in grams.", tag: "bag of rice", tagSide: "L" },
@@ -901,19 +905,21 @@ function wiSetGeo(tx: any) {
   return { w, h: 12 + WI_WD[500][1] + 12 + WI_WD[200][1] + 12, cells: [[12, 12, 500, a], [12 + a + 14, 18, 200, b], [12, 12 + WI_WD[500][1] + 12, 200, b], [12 + b + 14, 14 + WI_WD[500][1] + 12, 100, c]] };
 }
 /* the shelf: things, the tray, the gram set and the rack, packed in rows into the room beside the balance; things are drawn up to
-   1.5 times their pan size where the room allows, weights always at their own size (their plates never shrink), 20 apart */
+   1.5 times their pan size where the room allows (never under 80 wide), weights at their own size (free play: 0.875, plates at 28), 19 apart
+   (16 clear between the strokes) */
 function wiShelf(spec: any, W: number, H: number, tx: any = (v: any) => v) {
-  const items: any[] = [], G = 16;
+  const items: any[] = [], G = 19, ws = spec.wS || 1, fsW = Math.round(32 * ws);
+  const wDim = (g: number) => ({ w: Math.max(Math.round(WI_WD[g][0] * ws), Math.ceil(wiIronLab(g, tx, fsW).pw + 8)), h: Math.round(WI_WD[g][1] * ws), fs: fsW });
   for (const c of spec.col || []) {
     if (c === "tray") items.push({ key: "tray", kind: "tray", w: 200, h: 306, wOf: (s: number) => Math.max(200 * s, 184), hOf: (s: number) => 226 * s + 80 });
     else if (c === "gramset") { const sg = wiSetGeo(tx); items.push({ key: "c:gramset", kind: "set", w: sg.w, h: sg.h, fixed: true }); }
-    else if (/^w\d/.test(c)) { const g = Number(c.slice(1)); items.push({ key: "r:" + g, kind: "w", g, w: wiIronW(g, tx), h: WI_WD[g][1] }); }
+    else if (/^w\d/.test(c)) { const g = Number(c.slice(1)); items.push({ key: "r:" + g, kind: "w", g, ...wDim(g) }); }
     else { const o = WI_OBJ[wiBase(c)]; items.push({ key: "c:" + c, kind: "obj", b: wiBase(c), id: c, w: o.w, h: Math.max(o.h, 72) }); }
   }
-  for (const g of spec.rack || []) items.push({ key: "r:" + g, kind: "w", g, w: wiIronW(g, tx), h: WI_WD[g][1], rack: true });
+  for (const g of spec.rack || []) items.push({ key: "r:" + g, kind: "w", g, ...wDim(g), rack: true });
   let best: any = null;
   for (let s = 1.5; s >= 0.4; s -= 0.04) {
-    const sc = (it: any) => (it.kind === "w" || it.fixed ? 1 : s);
+    const sc = (it: any) => (it.kind === "w" || it.fixed ? 1 : it.kind === "obj" ? Math.max(s, 80 / it.w) : s);
     /* the tray's places scale, its "1 kg in all" strip (72 tall, its words at 32) does not */
     const WOF = (it: any) => (it.wOf ? it.wOf(sc(it)) : it.w * sc(it)), HOF = (it: any) => (it.hOf ? it.hOf(sc(it)) : it.h * sc(it));
     const rows: any[][] = [];
@@ -1053,9 +1059,9 @@ function wiObjArt(b: string, x: number, y: number, w: number, h: number, key: st
       {[0.3, 0.5, 0.7].map((f, k) => <path key={k} d={`M ${x + w * f - 10} ${y + 14} Q ${x + w * f} ${y + 24} ${x + w * f + 10} ${y + 14}`} fill="none" stroke="#5D3A1A" strokeWidth={3} strokeLinecap="round" />)}
     </g>
   );
-  /* the backpack's carrying loop shows a white patch at the top of its picture, and the pillow's picture has a baked grey shadow under it:
-     those rows are cut off (the coordinator, the visual review), never re-made */
-  const cut = b === "backpack" ? [0.1, 1] : b === "pillow" ? [0, 1] : null;
+  /* the pillow's picture has a baked grey shadow under it: those rows are cut off (the coordinator, the visual review). The backpack's
+     picture was re-cut with a clear carry loop, so it is drawn whole */
+  const cut = b === "pillow" ? [0, 1] : null;
   const clip = cut ? "wi-" + b + "-" + key : null;
   const sy0 = b === "pillow" ? y + h * 0.1 : y;   /* the pillow's picture sits 10% lower, so its shadow falls below the box and is cut */
   /* the plain drawing goes clear once the picture has decoded (skins on); with no picture, or skins off, it is the whole drawing */
@@ -1072,7 +1078,7 @@ function wiObjArt(b: string, x: number, y: number, w: number, h: number, key: st
 function wiIron(x: number, y: number, w: number, h: number, g: number, label = true, fs = 32, tx: any = (v: any) => v) {
   /* the stamped weight goes through tx (Hindi and Gujarati units); the plate is the measured text and 16 (wiIronLab), the block sized for it */
   const lab = wiIronLab(g, tx, fs), txt = lab.txt;
-  const kh = h * 0.2, by = y + kh, bh = h - kh, pw = Math.min(w - 4, lab.pw);
+  const kh = h * 0.2, by = y + kh, bh = h - kh, pw = Math.min(w - 4, lab.pw), ph = Math.round(fs * 1.31);   /* the plate: 42 tall at 32 */
   return (
     <g>
       {/* Top Knob */}
@@ -1085,7 +1091,7 @@ function wiIron(x: number, y: number, w: number, h: number, g: number, label = t
       {/* Label Stamp Plate */}
       {label && (
         <g data-scale="weight">
-          <rect x={x + w / 2 - pw / 2} y={by + bh / 2 - 21} width={pw} height={42} rx={10} fill="#FFF9EE" stroke="#1A1D20" strokeWidth={2} />
+          <rect x={x + w / 2 - pw / 2} y={by + bh / 2 - ph / 2} width={pw} height={ph} rx={10} fill="#FFF9EE" stroke="#1A1D20" strokeWidth={2} />
           <text x={x + w / 2} y={by + bh / 2 + fs * 0.36} textAnchor="middle" fontSize={fs} fontWeight={700} fill="#1A1D20">{txt}</text>
         </g>
       )}
@@ -1189,11 +1195,10 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
   const colW = Math.max(220, Rr - WB.colX - 4);
   /* the unit fact (1 kg = 1,000 g) heads the shelf card: one line where the card is wide enough, else two; the shelf packs below it */
   const showUnit = !free && ((n === 1 && (stage !== "demo" && stage !== "teach" ? true : step >= 1 && wiOn(S, "gramset"))) || !!(stage === "ask" && S.corr && S.corr.unit));
-  const ufA = tx("1 kg"), ufB = tx("1,000 g"), ufOne = wiM(ufA, 32) + wiM("=", 32) + wiM(ufB, 32) + 2 * 9.6 + 36;
-  /* one line always where it can be: a card too narrow (the keypad open) lets the chip reach left over the empty corner above the right pan
-     (x 540 on: the raised beam end and its hook stay under x 510) */
-  const ufTwo = ufOne > colW + (WB.colX - 540), ufW = ufTwo ? Math.min(colW, Math.max(wiM(ufA, 32) + wiM("=", 32) + 9.6, wiM(ufB, 32)) + 36) : ufOne, ufH = ufTwo ? 94 : 56;
-  const ufX = ufTwo || ufOne <= colW ? WB.colX + (colW - ufW) / 2 : WB.colX + colW - ufW;
+  const ufA = tx("1 kg"), ufB = tx("1,000 g"), ufOne = wiM(ufA, 32) + wiM("=", 32) + wiM(ufB, 32) + 2 * 9.6 + 28;
+  /* inside the shelf card, 8 clear of its sides: one line where it fits, else "1 kg" over "= 1,000 g" (each line an amount) */
+  const ufTwo = ufOne > colW - 4, ufW = ufTwo ? Math.max(wiM(ufA, 32), wiM("= " + ufB, 32)) + 36 : ufOne, ufH = ufTwo ? 94 : 56;
+  const ufX = WB.colX - 8 + (colW + 12 - ufW) / 2;
   const shelfTop = 12 + (showUnit ? ufH + 16 : 0);
   /* 16 clear of the card on every side (the card runs x colX - 8 to colX + colW + 4, y 2 to 514) */
   const shelf = wiShelf(spec, colW - 20, 498 - shelfTop, tx);
@@ -1600,7 +1605,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
       continue;
     }
     if (it.kind === "w") {
-      shelfEls.push(<g key={key}>{wiIron(x, y, it.w, it.h, it.g, true, 32, tx)}{ctl(key, wiLab(it.g) + " weight", x, y, it.w, it.h)}</g>);
+      shelfEls.push(<g key={key}>{wiIron(x, y, it.w, it.h, it.g, true, it.fs || 32, tx)}{ctl(key, wiLab(it.g) + " weight", x, y, it.w, it.h)}</g>);
     } else if (it.kind === "set") {
       shelfEls.push(<g key={key}>
         <rect x={x} y={y} width={it.w} height={it.h} rx={16} fill="#E2C293" stroke="#7A562B" strokeWidth={3} />
@@ -1617,8 +1622,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
 
   /* the tags under the pans: the given (blue), the unit fact (vermilion), the working (amber, after a miss), the answer (green, at the win) */
   const sideX = (sd: string) => (sd === "L" ? hL.x : sd === "R" ? hR.x : (S.R.find((e: any) => item && e.b === item.answer) ? hR.x : hL.x));
-  /* each side's tag keeps to its own side of the post's foot (cx 56 either way), 398 to 482, clear of the dipped dish and the table */
-  const TY = 398, LB: [number, number] = [2, WB.cx - 44], RB: [number, number] = [WB.cx + 44, WB.cx + WB.half + WB.dish];
+  /* each side's tag keeps to its own side of the post's foot (cx 56 either way), 388 to 480, 12+ clear of the dish at the bag of rice tilt (bottom 375) and the table (494) */
+  const TY = 396, LB: [number, number] = [2, WB.cx - 44], RB: [number, number] = [WB.cx + 44, WB.cx + WB.half + WB.dish];
   const tagAt = (sd: string, head: string, val: string[], col: string, key: string, extra: any = {}) => {
     const R = sd === "R" || (sd === "B" && S.R.some((e: any) => item && e.b === item.answer));
     return wiTag(R ? WB.cx + WB.half : WB.cx - WB.half, TY, head, val, col, tx, key, extra, ...(R ? RB : LB));
@@ -1655,7 +1660,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
       </defs>
       <g transform={`translate(${ox},0)`}>
         {/* the table the balance stands on, and the shelf beside it */}
-        <rect x={0} y={WB.table} width={WB.colX - 14} height={28} rx={12} fill="url(#wiWood)" stroke="#6B451B" strokeWidth={3} filter="url(#wiCardShadow)" />
+        <rect x={0} y={WB.table} width={WB.colX - 14} height={20} rx={10} fill="url(#wiWood)" stroke="#6B451B" strokeWidth={3} filter="url(#wiCardShadow)" />
         <rect x={6} y={WB.table} width={WB.colX - 26} height={6} rx={3} fill="#FFF" fillOpacity={0.2} pointerEvents="none" />
 
         {/* Shelf panel card */}
@@ -1692,7 +1697,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL, step, st
           <g data-scale="unit-fact" pointerEvents="none">
             <rect x={ufX} y={12} width={ufW} height={ufH} rx={26} fill="#FFFDF7" stroke={WI_C.unit} strokeWidth={corr && corr.unit ? 6 : 4} filter="url(#wiCardShadow)" />
             {ufTwo
-              ? [<g key="a">{wiRow([ufA + " ="], ufX + ufW / 2, 12 + 39, 32, C_INK, (v: any) => v)}</g>, <g key="b">{wiRow([ufB], ufX + ufW / 2, 12 + 80, 32, C_INK, (v: any) => v)}</g>]
+              ? [<g key="a">{wiRow([ufA], ufX + ufW / 2, 12 + 39, 32, C_INK, (v: any) => v)}</g>, <g key="b">{wiRow(["= " + ufB], ufX + ufW / 2, 12 + 80, 32, C_INK, (v: any) => v)}</g>]
               : wiRow([ufA, "=", ufB], ufX + ufW / 2, 12 + 39, 32, C_INK, (v: any) => v)}
           </g>
         )}
@@ -1728,7 +1733,8 @@ function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v: any) => v }: any)
   else if (item.choices) {
     const c = item.choices.find((x: any) => x.id === String(last.value));
     thing = item.pick && item.pick[String(last.value)] ? item.pick[String(last.value)] : "";
-    said = [word(c ? c.label : String(last.value))].filter(Boolean);
+    /* a choice may carry a shorter word for the summary (the sack drawn beside "rice"), so the label keeps its 32 */
+    said = [word(c ? c.thumb || c.label : String(last.value))].filter(Boolean);
   }
   /* the picture of THIS answer: the thing chosen or weighed, two packets, two loaves, the things counted, or the iron weight found */
   if (!thing && item.kind === "unit") thing = item.board.col[0];
@@ -1738,7 +1744,8 @@ function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v: any) => v }: any)
      the least) beside its picture, so every row shows the thing itself */
   const numOnly = (item.kind === "loaves" || item.kind === "count") && arts.length > 0;
   const text = (numOnly ? said.slice(0, 1) : said).map((p) => tx(p)).join(" ");
-  const A = arts.length ? Math.min(arts.length > 1 ? 110 : 72, w * 0.42) : 0, roomT = w - A - 24;
+  /* the words end 12+ from the pill's right edge: centred in the room right of the picture, so at most w - A - 38 wide */
+  const A = arts.length ? Math.min(arts.length > 1 ? 110 : 64, w * 0.42) : 0, roomT = w - A - 38;
   let fs = 32;
   while (arts.length && fs > 22 && wiM(text, fs) > roomT) fs -= 1;
   const showArt = arts.length > 0 && wiM(text, fs) <= roomT;   /* a name too long even at 22 keeps the whole pill at 32 */
@@ -1747,18 +1754,19 @@ function Thumb({ n, result, it, C, w, h, lang = "en", tx = (v: any) => v }: any)
   if (showArt) {
     const bw = (A - 6 * (arts.length - 1)) / arts.length;
     arts.forEach((b, j) => {
-      const o = WI_OBJ[b], k = Math.min(bw / o.w, (h - 16) / o.h), ow = o.w * k, oh = o.h * k;
+      const o = WI_OBJ[b], k = Math.min(bw / o.w, (h - 16) / o.h) * (arts.length > 1 ? 1 : 0.85), ow = o.w * k, oh = o.h * k;
       artEls.push(<g key={j}>{wiObjArt(b, 10 + j * (bw + 6) + (bw - ow) / 2, h / 2 - oh / 2, ow, oh, "th" + b + j)}</g>);
     });
   }
   /* the weight found (100 g): the iron weight with its own plate, which says it */
   const iron = item.kind === "missing" && item.parts ? Number(slotPartsOf(last.value, 1)[0]) : 0;
   if (iron && WI_WD[iron]) {
-    const ih = Math.min(WI_WD[iron][1], h - 8), iw = Math.max(wiIronLab(iron, tx, 28).w, ih * 1.4);
+    /* 0.85 of a pan's weight, its plate at 24, so the plate stays 8+ clear of the pill */
+    const ih = Math.min(Math.round(WI_WD[iron][1] * 0.85), h - 12), iw = Math.max(Math.ceil(wiIronLab(iron, tx, 24).pw + 8), ih * 1.4);
     return (
       <g>
         <rect x={0} y={0} width={w} height={h} rx={16} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={2} />
-        {wiIron(w / 2 - iw / 2, h / 2 - ih / 2, iw, ih, iron, true, 28, tx)}
+        {wiIron(w / 2 - iw / 2, h / 2 - ih / 2, iw, ih, iron, true, 24, tx)}
       </g>
     );
   }

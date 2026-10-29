@@ -113,7 +113,7 @@ async function generateGroup(group, { models, log, lane = "inline" }) {
   return last || { ok: false, error: `no attempts left this run (${MAX_ATTEMPTS} per picture)` };
 }
 
-const cutOpts = (it) => ({ kind: it.img.kind, px: it.img.px, inset: it.img.inset, maxKB: it.img.maxKB, look: it.img.look, tool: !!it.img.tool || it.img.cut === "glass", glass: it.img.cut === "glass", joined: it.img.cut === "joined", label: `skin ${it.img.key}` });
+const cutOpts = (it) => ({ kind: it.img.kind, px: it.img.px, inset: it.img.inset, maxKB: it.img.maxKB, look: it.img.look, tool: !!it.img.tool || it.img.cut === "glass", glass: it.img.cut === "glass", joined: it.img.cut === "joined", holes: it.img.cut === "holes", label: `skin ${it.img.key}` });
 
 async function cutAll(group, buf, mime) {
   const cuts = new Map();

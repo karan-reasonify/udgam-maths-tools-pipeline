@@ -117,3 +117,11 @@ assert.deepEqual(validatePlan(plan([{ ...jn, cut: "joined" }])).errors, []);
 assert.ok(validatePlan(plan([{ ...jn, kind: "disc", px: [200, 200], cut: "joined" }])).errors.some((e) => /tile only/.test(e)));
 assert.notEqual(skinHash("r", { ...sk, cut: "joined" }), skinHash("r", sk)); assert.notEqual(skinHash("r", { ...sk, cut: "joined" }), skinHash("r", { ...sk, cut: "glass" }));
 console.log("joined cut option: ok");
+
+// class 3 only (2026-10-29, Weigh It): `cut: "holes"` (a backpack's carrying loop) is a tile option, in a skin key only when set
+const hl = { key: "backpack", object: "school backpack", kind: "tile", look: "photo", prompt: "A plain school backpack.", why: "w" };
+assert.deepEqual(validatePlan(plan([{ ...hl, cut: "holes" }])).errors, []);
+assert.ok(validatePlan(plan([{ ...hl, kind: "disc", px: [200, 200], cut: "holes" }])).errors.some((e) => /tile only/.test(e)));
+assert.ok(validatePlan(plan([{ ...hl, cut: "other" }])).errors.some((e) => /cut must be/.test(e)));
+assert.notEqual(skinHash("r", { ...sk, cut: "holes" }), skinHash("r", sk)); assert.notEqual(skinHash("r", { ...sk, cut: "holes" }), skinHash("r", { ...sk, cut: "joined" })); assert.notEqual(skinHash("r", { ...sk, cut: "holes" }), skinHash("r", { ...sk, cut: "glass" }));
+console.log("holes cut option: ok");

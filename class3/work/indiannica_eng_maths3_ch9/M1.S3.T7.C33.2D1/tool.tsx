@@ -85,7 +85,7 @@ const TR: any = {
     "The part jug shows the millilitres left.": "थोड़ा भरा जग बचे हुए मिलीलीटर दिखाता है।",
     "Every 1,000 millilitres make one litre.": "हर 1,000 मिलीलीटर से एक लीटर बनता है।",
     "You learned: 1,000 mL make 1 L, so group millilitres in thousands.": "तुमने सीखा: 1,000 मिलीलीटर का 1 लीटर, इसलिए हज़ार-हज़ार में इकट्ठा करो।",
-    "Group the water in this drum into litres: how many litres and millilitres is it?": "इस ड्रम का पानी लीटर में इकट्ठा करो: कितने लीटर और कितने मिलीलीटर?",
+    "Group the water in this drum into litres: how many litres and millilitres is it?": "इस ड्रम का पानी लीटर में इकट्ठा करो, कितने लीटर और मिलीलीटर हुए?",
     "litres and mL left?": "कितने लीटर और कितने मिलीलीटर बचे?",
     "Only a full jug makes one whole litre.": "सिर्फ़ भरा हुआ जग ही एक पूरा लीटर बनाता है।",
     "Count the full jugs for the litres.": "लीटर के लिए भरे जग गिनो।",
@@ -112,22 +112,22 @@ const TR: any = {
     "Borrow turns 1 L into 1,000 mL.": "उधार से 1 लीटर, 1,000 मिलीलीटर बनता है।",
     "Work out the millilitres column first.": "पहले मिलीलीटर के खाने का हिसाब लगाओ।",
     "Then do the litres column.": "फिर लीटर का खाना हल करो।",
-    "Carry 1,000 mL as 1 L, or borrow 1 L as 1,000 mL.": "हासिल में 1,000 मिलीलीटर से 1 लीटर बनता है; उधार में 1 लीटर से 1,000 मिलीलीटर।",
+    "Carry 1,000 mL as 1 L, or borrow 1 L as 1,000 mL.": "हासिल: 1,000 मिलीलीटर से 1 लीटर; उधार: 1 लीटर से 1,000 मिलीलीटर।",
     "You learned: do the millilitres first, then carry or borrow 1 L.": "तुमने सीखा: पहले मिलीलीटर, फिर 1 लीटर हासिल लो या उधार लो।",
-    "A bucket holds 6 L 120 mL; 2 L 460 mL is poured out: how much is left?": "बाल्टी में 6 लीटर 120 मिलीलीटर पानी था; 2 लीटर 460 मिलीलीटर निकाला: कितना बचा?",
+    "A bucket holds 6 L 120 mL; 2 L 460 mL is poured out: how much is left?": "बाल्टी में 6 लीटर 120 मिलीलीटर पानी था, 2 लीटर 460 मिलीलीटर निकाला, कितना बचा?",
     "6 L 120 mL take away 2 L 460 mL": "6 लीटर 120 मिलीलीटर में से 2 लीटर 460 मिलीलीटर घटाओ",
     "You cannot take 460 mL from 120 mL.": "120 मिलीलीटर में से 460 मिलीलीटर नहीं घटा सकते।",
     "After the borrow the top row is 5 L and 1,120 mL.": "उधार के बाद ऊपर 5 लीटर और 1,120 मिलीलीटर हैं।",
     "Take 460 mL from 1,120 mL, then 2 L from 5 L.": "1,120 मिलीलीटर से 460 घटाओ, फिर 5 लीटर से 2।",
     "Yes, 3 L 660 mL of water is left in the bucket.": "हाँ, 3 लीटर 660 मिलीलीटर पानी बाल्टी में बचा है।",
     "millilitres": "मिलीलीटर",
-    "A can has 4 L 680 mL of juice and a bottle 2 L 530 mL: how much in all?": "कैन में 4 लीटर 680 मिलीलीटर जूस, बोतल में 2 लीटर 530 मिलीलीटर: कुल कितना हुआ?",
+    "A can has 4 L 680 mL of juice and a bottle 2 L 530 mL: how much in all?": "कैन में 4 लीटर 680 मिलीलीटर जूस, बोतल में 2 लीटर 530 मिलीलीटर, कुल कितना हुआ?",
     "4 L 680 mL add 2 L 530 mL": "4 लीटर 680 मिलीलीटर में 2 लीटर 530 मिलीलीटर जोड़ो",
     "680 mL and 530 mL make more than 1,000 mL.": "680 और 530 मिलीलीटर मिलकर 1,000 से ज़्यादा हैं।",
     "Carry 1 L and keep what is over 1,000 mL.": "1 लीटर हासिल लो और 1,000 से ऊपर के मिलीलीटर रखो।",
     "Add the carried 1 L to 4 L and 2 L.": "हासिल का 1 लीटर 4 लीटर और 2 लीटर में जोड़ो।",
     "Yes, there are 7 L 210 mL of juice in all.": "हाँ, कुल 7 लीटर 210 मिलीलीटर जूस है।",
-    "A pot gets 3 L 600 mL of milk, then 2 L 400 mL more: how much milk now?": "पतीले में 3 लीटर 600 मिलीलीटर दूध था, 2 लीटर 400 मिलीलीटर और डाला: अब कितना है?",
+    "A pot gets 3 L 600 mL of milk, then 2 L 400 mL more: how much milk now?": "पतीले में 3 लीटर 600 मिलीलीटर दूध था, 2 लीटर 400 मिलीलीटर और डाला, अब कितना है?",
     "3 L 600 mL add 2 L 400 mL": "3 लीटर 600 मिलीलीटर में 2 लीटर 400 मिलीलीटर जोड़ो",
     "Start by adding 600 mL and 400 mL.": "पहले 600 मिलीलीटर और 400 मिलीलीटर जोड़ो।",
     "600 mL and 400 mL make exactly 1,000 mL, which is 1 L.": "600 और 400 मिलीलीटर मिलकर ठीक 1 लीटर बनते हैं।",
@@ -144,17 +144,17 @@ const TR: any = {
     "You learned: count the cups that fill a container, or divide.": "तुमने सीखा: बर्तन भरने वाले कप गिनो, या भाग दो।",
     "How many 250 mL cups of water fill this 2 L jar?": "250 मिलीलीटर के कितने कप पानी से यह 2 लीटर का मर्तबान भरेगा?",
     "How many cups?": "कितने कप?",
-    "The jar holds 2 L: count the cups for both litres.": "मर्तबान 2 लीटर का है: दोनों लीटर के कप गिनो।",
+    "The jar holds 2 L: count the cups for both litres.": "मर्तबान 2 लीटर का है, इसलिए 2 लीटर तक कप गिनो।",
     "Four 250 mL cups fill exactly one litre.": "250 मिलीलीटर के चार कप ठीक एक लीटर भरते हैं।",
     "Change 2 L into millilitres, then see how many 250 mL cups go in.": "2 लीटर को मिलीलीटर बनाओ, फिर देखो कितने 250 आते हैं।",
     "Yes, 8 cups of 250 mL fill the 2 L jar.": "हाँ, 250 मिलीलीटर के 8 कप से 2 लीटर का मर्तबान भरता है।",
-    "Ravi fills a 1 L 500 mL jar with a 250 mL cup: how many cupfuls does he pour?": "1 लीटर 500 मिलीलीटर का मर्तबान रवि 250 मिलीलीटर के कप से भरता है: कितने कप?",
+    "Ravi fills a 1 L 500 mL jar with a 250 mL cup: how many cupfuls does he pour?": "1 लीटर 500 मिलीलीटर का मर्तबान रवि 250 मिलीलीटर के कप से भरता है, कितने कप?",
     "How many cupfuls?": "कितने कप उँडेले?",
     "Count every cup picture, the last one too.": "हर कप की तस्वीर गिनो, आख़िरी वाली भी।",
     "Each cup adds 250 mL and the jar holds 1,500 mL.": "हर कप 250 मिलीलीटर, मर्तबान 1,500 मिलीलीटर का।",
     "Count how many 250 mL make 1,500 mL.": "गिनो कि कितने 250 मिलकर 1,500 बनते हैं।",
     "Yes, 6 cupfuls of 250 mL make 1,500 mL.": "हाँ, 250 मिलीलीटर के 6 कप से 1,500 मिलीलीटर बनता है।",
-    "A glass holds 140 mL: how many glasses of juice fill a 1 L 260 mL jar?": "गिलास 140 मिलीलीटर का है: कितने गिलास से 1 लीटर 260 मिलीलीटर का मर्तबान भरेगा?",
+    "A glass holds 140 mL: how many glasses of juice fill a 1 L 260 mL jar?": "गिलास 140 मिलीलीटर का है, कितने गिलास से 1 लीटर 260 मिलीलीटर का मर्तबान भरेगा?",
     "How many glasses?": "कितने गिलास?",
     "Check that the juice reaches the very top of the jar.": "देखो कि जूस मर्तबान के बिल्कुल ऊपर तक पहुँचा है।",
     "Each glass adds 140 mL to the jar.": "हर गिलास मर्तबान में 140 मिलीलीटर जोड़ता है।",
@@ -257,7 +257,7 @@ const TR: any = {
     "Borrow turns 1 L into 1,000 mL.": "ઉછીનાથી 1 લીટર, 1,000 મિલીલીટર બને છે.",
     "Work out the millilitres column first.": "પહેલાં મિલીલીટરની કૉલમનો હિસાબ કરો.",
     "Then do the litres column.": "પછી લીટરની કૉલમનો હિસાબ કરો.",
-    "Carry 1,000 mL as 1 L, or borrow 1 L as 1,000 mL.": "1,000 મિલીલીટરનો 1 લીટર વદી લો, અથવા 1 લીટર ઉછીના લઈને 1,000 મિલીલીટર કરો.",
+    "Carry 1,000 mL as 1 L, or borrow 1 L as 1,000 mL.": "વદી: 1,000 મિલીલીટરથી 1 લીટર; ઉછીના: 1 લીટરથી 1,000 મિલીલીટર.",
     "You learned: do the millilitres first, then carry or borrow 1 L.": "તમે શીખ્યા: પહેલાં મિલીલીટર, પછી 1 લીટર વદી લો કે ઉછીના લો.",
     "A bucket holds 6 L 120 mL; 2 L 460 mL is poured out: how much is left?": "ડોલમાં 6 લીટર 120 મિલીલીટર છે; 2 લીટર 460 મિલીલીટર રેડી દીધું: કેટલું બાકી?",
     "6 L 120 mL take away 2 L 460 mL": "6 લીટર 120 મિલીલીટરમાંથી 2 લીટર 460 મિલીલીટર બાદ કરો",
@@ -962,7 +962,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL, st
   const didOnce = (on: string, e: number) => { if (sentDid.current === e) return; sentDid.current = e; api.did(on); };
 
   /* the geometry, in Work units */
-  const JH = (JW * CC_JUG.h) / CC_JUG.w, JB = 306, JT = JB - JH;
+  const JH = (JW * CC_JUG.h) / CC_JUG.w, JB = 302, JT = JB - JH;
   const jx = (j: number) => ox + J0 + j * JP;
   const jcx = (j: number) => jx(j) + JW * 0.4;
   const rowC = ox + J0 + (3 * JP + JW) / 2;
@@ -1173,7 +1173,8 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL, st
     /* the chips under the jugs: one line, at least 200 wide; on two staggered rows when the pitch is too small for one */
     const chipW = (t: string) => Math.max(200, ccTW(t, 32) + 28);
     const twoRows = JP < chipW("1,000 " + tx("mL")) + 16;
-    const chipY = (j: number) => (twoRows && j % 2 === 1 ? 381 : 317);
+    /* rows 20 apart (16 seen between the 4-wide outlines), the key 19 below */
+    const chipY = (j: number) => (twoRows && j % 2 === 1 ? 378 : 310);
     const chipX = (j: number, cw: number) => Math.max(ox + 4, Math.min(bw - 4 - cw, jcx(j) - cw / 2));
     /* the unit fact, two texts split at the "=" (each a short label): "1 L =" | "1,000 mL" */
     const fL = isLit ? "1 " + tx("L") + " =" : "1,000 " + tx("mL") + " =";
@@ -1194,9 +1195,9 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL, st
         {ccPic("box", it.box, ox + 140, JB, 200, 170)}
         {lang === "hi" || lang === "gu" ? ccTag("given", gx, 62, gw, 60, given, CC_BLUE, 32) : ccTag("given", gx, 66, gw, 52, given, CC_BLUE, 32)}
         <g data-scale="fact">
-          <rect x={fc - fw / 2} y={4} width={fw} height={64} rx={32} fill={tint(CC_VERM, 0.9)} stroke={CC_VERM} strokeWidth={5} />
-          <text x={fSplit - 7} y={50} textAnchor="end" fontSize={T.prompt} fontWeight={700} fill={shade(CC_VERM, 0.45)}>{fL}</text>
-          <text x={fSplit + 7} y={50} textAnchor="start" fontSize={T.prompt} fontWeight={700} fill={shade(CC_VERM, 0.45)}>{fR}</text>
+          <rect x={fc - fw / 2} y={4} width={fw} height={52} rx={26} fill={tint(CC_VERM, 0.9)} stroke={CC_VERM} strokeWidth={5} />
+          <text x={fSplit - 7} y={44} textAnchor="end" fontSize={T.prompt} fontWeight={700} fill={shade(CC_VERM, 0.45)}>{fL}</text>
+          <text x={fSplit + 7} y={44} textAnchor="start" fontSize={T.prompt} fontWeight={700} fill={shade(CC_VERM, 0.45)}>{fR}</text>
         </g>
         {[0, 1, 2, 3].map((j) => {
           const ml = j < fill ? (j < full ? 1000 : left) : 0;
@@ -1294,7 +1295,7 @@ function Work({ phase, n, item, index, stage, wrong, typed, part, api, MODEL, st
         {!S.carrying && (it.small === "glass" ? ccGlass("small", J4.cupX, J4.cupB, 86, liq, true) : ccPic("small", "cup", J4.cupX, J4.cupB, 120, 145))}
         {ccTag("cupT", J4.cupX - cw / 2, 346, cw, 60, cupT, CC_BLUE, 36)}
         {big}
-        {ccTag("capT", capL, capY, capW, 58, capT, CC_BLUE, 36)}
+        {lang === "hi" || lang === "gu" ? ccTag("capT", capL, capY, capW, 66, capT, CC_BLUE, 36) : ccTag("capT", capL, capY, capW, 58, capT, CC_BLUE, 36)}
         {showCount && <text x={tallyX + 110} y={120} textAnchor="middle" fontSize={T.label} fontWeight={700} fill={CC_INK}>{tx("Pours")}</text>}
         {showCount && <rect x={tallyX + 50} y={134} width={120} height={96} rx={16} fill="#FFFFFF" stroke={C.rule} strokeWidth={3} />}
         {(warm || free) && <text x={tallyX + 110} y={206} textAnchor="middle" fontSize={T.display} fontWeight={700} fill={CC_INK}>{pours}</text>}
@@ -1339,11 +1340,22 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v: any) => v }: any) {
   else if (kind === "lit") lines = [indian(num(last.value)), U("mL").trim()];
   else { const v = num(last.value); lines = [String(v), U(item.small === "glass" ? (v === 1 ? "glass" : "glasses") : v === 1 ? "cup" : "cups").trim()]; }
   lines = lines.filter((s) => s);
-  /* the picture takes 48 (x 8 to 56), so the amount gets the rest of the row: one line at 32 when it fits, else number over unit,
-     36 apart, the text never nearer the right edge than 12 */
+  /* the picture takes 48 (x 8 to 56), so the amount gets the rest of the row: ONE line at 32 when it fits, else one line at 28
+     (two lines of Hindi or Gujarati cannot clear a 76-tall row), the text never nearer the right edge than 12. The width estimate
+     here is closer than ccTW: Latin 0.53 em, Devanagari / Gujarati 0.5 em (FIT_KEY.devEm), a space or comma 0.28 */
   const s = Math.min(h - 16, 60), iy = (h - s) / 2, tx0 = 68, room = w - tx0 - 12;
   const one = lines.join(" ");
-  const fit1 = ccTW(one, T.label) <= room;
+  const tw = (t: string, size: number) => {
+    let n = 0;
+    for (const ch of t) {
+      const c = ch.codePointAt(0) || 0;
+      if ((c >= 0x900 && c <= 0x902) || c === 0x93c || (c >= 0x941 && c <= 0x948) || c === 0x94d || (c >= 0xa81 && c <= 0xa82) || c === 0xabc || (c >= 0xac1 && c <= 0xac8) || c === 0xacd) continue;
+      n += ch === " " || ch === "," ? 0.28 : c >= 0x900 ? 0.5 : 0.53;
+    }
+    return n * size;
+  };
+  const fit1 = tw(one, T.label) <= room;
+  const fit28 = !fit1 && tw(one, T.micro) <= room;
   /* each phase its own small picture: a full litre jug (phase 1), a jug with a part ringed (phase 2), an L | mL board (phase 3), cups (phase 4) */
   const jugMini = (x: number, lvl: number, ring: boolean) => (
     <g>
@@ -1377,7 +1389,7 @@ function Thumb({ result, it, C, w, h, lang = "en", tx = (v: any) => v }: any) {
     <g>
       <rect x={0} y={0} width={w} height={h} rx={14} fill={tint(C.panel, 0.55)} stroke={C.rule} strokeWidth={1.5} />
       {pic}
-      {fit1 ? <text x={tx0} y={h / 2 + 11} fontSize={T.label} fontWeight={700} fill={C.ink}>{one}</text>
+      {fit1 || fit28 ? <text x={tx0} y={h / 2 + (fit1 ? 11 : 10)} fontSize={fit1 ? T.label : T.micro} fontWeight={700} fill={C.ink}>{one}</text>
         : lines.map((s2, i) => <text key={i} x={tx0} y={h / 2 + 10 + (i - (lines.length - 1) / 2) * 36} fontSize={T.micro} fontWeight={700} fill={C.ink}>{s2}</text>)}
     </g>
   );
