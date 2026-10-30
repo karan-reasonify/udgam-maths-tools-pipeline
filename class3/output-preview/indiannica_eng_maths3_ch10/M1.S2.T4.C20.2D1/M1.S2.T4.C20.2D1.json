@@ -1,0 +1,926 @@
+{
+  "slotId": "M1.S2.T4.C20.2D1",
+  "mediaId": "M1.S2.T4.C20.2D1",
+  "toolId": "time_converter",
+  "title": "Time Converter",
+  "component": "M1.S2.T4.C20.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch10_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_10/2dtool/M1.S2.T4.C20.2D1/M1.S2.T4.C20.2D1.tsx",
+  "description": "Fill an hour with sixty minutes, turn a day through twenty-four hours, lay a length of time along a day strip, and slide it to see when it ends.",
+  "conceptIds": [
+    "M1.S2.T4.C17",
+    "M1.S2.T4.C18",
+    "M1.S2.T4.C19"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        985,
+        236
+      ],
+      "bar": [
+        1348,
+        738,
+        216,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Change hours into minutes and days into hours with an hour filling and a day turning, find how long something takes by laying a bar along a day strip through noon, and find when something ends by sliding the bar.",
+    "look": "A wall clock and a stopwatch at the left with a row of twelve five-minute tiles under them, a day strip of twenty-four hour tiles along the foot with a green bar laid on it, a column board, and on the third phase a row of six small clocks.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Time Converter' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the minutes, hours or days now on the stage. It is never a score. The working area is 1086 by 528 at x 64, y 202. The real wall clock is 280 across at x 90, y 230, with its twelve numbers, sixty minute marks and its vermilion hour hand and deep blue minute hand, drawn exactly. The real stopwatch is a round brass face 130 across at x 400, y 240 with a start button on top. The row of twelve five-minute tiles runs at x 400, y 400, each tile 44 by 60 with a 6 gap, empty until the minute hand is dragged round, and labelled 5, 10 and on to 60 as it fills, with the words one hour at its end. The train ticket card or the calendar page card stands at x 690, y 232, 320 by 150, drawn as a real ticket or a real calendar page with its words and numbers. The day strip runs along the foot at x 90, y 610, twenty-four tiles each 40 by 50 with no gap, the first twelve sky blue and labelled a.m. and the next twelve amber and labelled p.m., with a notch and the words 12 noon between them and the words 12 midnight at both ends. The green bar is 40 tall at y 548, laid by dragging its two ends, and it is drawn in two pieces with their two lengths written above when it crosses noon. The column board stands at x 780, y 400, 240 by 150, an hours column and a minutes column with a carry slot above each. On the third phase six small clocks, each 100 across, stand in a row at x 90, y 240 in place of the wall clock, each with a tag that reads minutes after the start. On the fourth phase the flight card or the school bell card stands in the place of the ticket. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys, a colon key and two keys labelled a.m. and p.m., for typing a count of minutes, hours or days or a time with a.m. or p.m. into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours. The hour hand of a clock is vermilion and the minute hand is deep blue, because a hand is a mark that stands for a number, and the hours are vermilion and the minutes deep blue everywhere else, in a digital time, a label and a tag. The a.m. half of a day, from midnight to noon, is sky blue and the p.m. half, from noon to midnight, is amber. The time reached, a length of time worked out, a converted amount and the answer are green. A clock face, rim and numbers are near-black on cream, anything dimmed fades to half strength rather than turning grey, and chrome never borrows one of the five. Each reading survives with the colour taken away, because a time is told by its written label before it is told by its colour.",
+    "finish": "The wall clock, the day strip and the bar show the last length of time or end time, with the hour in vermilion, the minutes in deep blue, the a.m. half sky blue, the p.m. half amber and the answer green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the twelfth tile fills, the row reads one hour, and the answer tag turns green",
+        "does": "drags the minute hand once round, watches the tiles fill to sixty, then types the minutes in the journey",
+        "goal": "one hour is sixty minutes, so hours change into minutes by multiplying by sixty",
+        "says": "One round of the minute hand fills an hour. How many minutes are in it?",
+        "check": "Away from the screen: turn a paper plate clock once round. How many minutes did the minute hand cover? Then turn it three times.",
+        "feels": "the minute hand sweeping round and the twelve tiles ticking full one after another",
+        "hands": "Time one minute with a stopwatch while the class claps, then turn a paper plate clock once round and say how many minutes that is.",
+        "tries": "First rung: how many minutes in one hour. Second rung: how many hours are in the journey, and how many minutes is each. Third rung: the same task with a journey of only whole hours, before the minutes come back.",
+        "wrong": [
+          {
+            "why": "the ticket writes two numbers side by side, so they seem to belong together",
+            "move": "joins the hours and the minutes as one number",
+            "screen": "the hours are changed on the clock first and the tiles fill that many hours, then the minutes are added in an amber tag after them"
+          },
+          {
+            "why": "the minutes are already in the unit asked for, so they seem to be the whole answer",
+            "move": "forgets to change the hours at all and gives the minutes alone",
+            "screen": "the row of sixty tiles fills again once for each hour, and the count under it grows by sixty each time"
+          }
+        ],
+        "screen": "the wall clock with its hands at twelve, an empty row of twelve five-minute tiles, and a train ticket card that shows a journey of hours and minutes",
+        "soWhat": "an hour is sixty minutes, so hours change into minutes by multiplying by sixty",
+        "concept": "Sixty minutes make an hour"
+      },
+      {
+        "n": 2,
+        "win": "the last day's wheel settles, the count of tiles reads the hours, and the answer tag turns green",
+        "does": "turns the day wheel once to count the tiles, then turns it again for each day of the holiday and types the hours",
+        "goal": "one day is twenty-four hours, so days change into hours by multiplying by twenty-four",
+        "says": "The wheel turns once for one day. How many hours is that? Now for each day.",
+        "check": "Away from the screen: how many hours are in one day? Then how many hours are in two days?",
+        "feels": "the day wheel turning once, each turn dropping twenty-four hour tiles into the count",
+        "hands": "Make a paper strip marked in twenty-four hours with noon in the middle, and count the tiles once for one day and again for each day of a holiday.",
+        "tries": "First rung: how many hours are on the wheel for one day. Second rung: how many turns of the wheel are in the holiday. Third rung: the same task with only two days, before the full holiday returns.",
+        "wrong": [
+          {
+            "why": "sixty was the number in the last phase, so it feels like the number for time",
+            "move": "multiplies the days by sixty",
+            "screen": "the wheel turns for one day and the tiles are counted aloud, one number for each, stopping at twenty-four"
+          },
+          {
+            "why": "the wheel shows twelve sky blue tiles first, so twelve is the first number seen",
+            "move": "multiplies the days by twelve",
+            "screen": "the sky blue half and the amber half are both counted, and the two twelves are added on the wheel"
+          }
+        ],
+        "screen": "the day wheel with its a.m. half sky blue and its p.m. half amber, noon notched, and a calendar page card that shows a holiday of some days",
+        "soWhat": "a day is twenty-four hours, so days change into hours by multiplying by twenty-four",
+        "concept": "Twenty-four hours make a day"
+      },
+      {
+        "n": 3,
+        "win": "the bar splits at noon, its two pieces are added above it, and the total turns green; the bar's end lands on a tile, the end time reads on the strip, and the answer tag turns green",
+        "does": "drags the ends of the bar to the start and the end, watches it split at noon, adds the two pieces, and taps the longest and the shortest of the six clocks; slides the bar along the strip from the start, adds the hours and then the minutes on the board, and types the end time with a.m. or p.m.",
+        "goal": "the length of time between two times is found by counting to noon and from noon, and adding the two parts; the end time is the start time plus the time taken, hours first and then minutes, written with a.m. or p.m.",
+        "says": "Lay the bar from the start to the end. Count to noon, then on from noon. Slide the bar from the start. Add the hours first. Then the minutes. Which side of noon is it?",
+        "check": "Away from the screen: a class starts at ten in the morning and ends at one in the afternoon. How long is it up to noon, how long after, and how long in all? Away from the screen: a class starts at ten in the morning and lasts two hours. When does it end? What if it started at eleven and lasted two hours?",
+        "feels": "a green bar laid along the day and splitting at the noon notch into two pieces that join into one total; a green bar sliding along the day, over the noon notch, and stopping where the thing ends",
+        "hands": "Lay a strip of card along a day strip from a start to an end that crosses noon, cut it at noon, and add the two pieces. Slide a strip of card along a day strip from a start time by the time taken, and read off where its end lands.",
+        "tries": "First rung: where does the bar start and where does it end. Second rung: how long is the piece before noon. Third rung: the same task with an end before noon, so the bar does not split. First rung: where does the bar start. Second rung: slide it by the hours only and say where it stops. Third rung: the same task with the time taken in whole hours, before the minutes come back.",
+        "wrong": [
+          {
+            "why": "a smaller number minus a bigger one looks like the only sum on the page",
+            "move": "takes the start time from the end time without passing noon",
+            "screen": "the bar is laid along the strip from the start and is cut at the noon notch into two pieces, and the two pieces are counted aloud"
+          },
+          {
+            "why": "the first piece is the one the finger lands on first",
+            "move": "counts only the part before noon",
+            "screen": "the second piece lights amber and its length is written above it, and the two lengths are added in a green tag"
+          },
+          {
+            "why": "the minutes are the smaller number and seem easiest to start with",
+            "move": "adds the minutes first and loses the hours",
+            "screen": "the bar slides along by the hours first and settles, then slides on by the minutes, so the two steps can be seen in turn"
+          },
+          {
+            "why": "the start was a.m., so a.m. feels like part of the time",
+            "move": "keeps a.m. after the end has passed noon",
+            "screen": "the bar's end lands on an amber tile and the word p.m. is written there, with the noon notch lit as the bar crosses it"
+          }
+        ],
+        "screen": "the day strip with a start and an end marked, a green bar waiting to be laid along it, a card that names a start and an end across noon, and the six small clocks of a race; the day strip with a green bar of the time taken waiting at the start, a flight or a bell card that names a start and a length of time, and the column board",
+        "soWhat": "to find how long something takes across noon, count to noon and from noon, and add the two parts; to find when something ends, add the time taken to the start time, hours first and then minutes, and say a.m. or p.m. by the side of noon",
+        "concept": "How long did it take?"
+      }
+    ],
+    "delight": "Two small surprises. On the first phase, as the minute hand sweeps round, each five-minute tile fills with a small tick of the stopwatch and the last tile closes the row with the stopwatch button popping up. On the third and fourth phases, the green bar crosses noon and splits into two pieces that slide together into one total, and slid backwards they split again.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet typed. On the first phase the wall clock stands with both hands at twelve, the row of twelve five-minute tiles is empty, and a train ticket card names a journey of some hours and minutes. On the second the day wheel stands with its sky blue half and its amber half and a calendar page card names a holiday of some days. On the third the day strip carries a start and an end across noon, a green bar waits beside it, and a row of six small clocks stands ready. On the fourth the green bar of the time taken waits at the start of the strip and a flight or a school bell card names the start. One thing moves, once: the minute hand, the wheel or the bar gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any count of hours, minutes or days on the clock and the wheel, the green bar slid along the day strip, and the column board. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the three phases, easy first, on choosing minutes or hours, days into hours, a class that ends at noon, a lunch break, bottles filled in a minute, a night's sleep in a day, a school race on a stopwatch and when a school bell rings, each on a real thing.",
+    "voiceLines": [
+      "A clock, a stopwatch and a day strip. Let us count the time.",
+      "One round of the minute hand fills an hour. How many minutes are in it?",
+      "The wheel turns once for one day. How many hours is that? Now for each day.",
+      "Lay the bar from the start to the end. Count to noon, then on from noon.",
+      "Slide the bar from the start. Add the hours first. Then the minutes. Which side of noon is it?",
+      "A new time to work out. What is it about?",
+      "Free play. Fill an hour, turn a day and slide the bar as you like.",
+      "Count again, one step at a time. Which side of noon are you on?",
+      "You counted the time with the hour filling and the day turning."
+    ],
+    "observations": [
+      {
+        "why": "the minute hand moves five minutes from one number to the next, and twelve fives make sixty.",
+        "soWhat": "an hour is sixty minutes, so hours change into minutes by multiplying by sixty.",
+        "observe": "One round of the minute hand filled twelve five-minute tiles and the row read sixty."
+      },
+      {
+        "why": "the hour hand goes round twice in a day, once for the a.m. half and once for the p.m. half.",
+        "soWhat": "a day is twenty-four hours, so days change into hours by multiplying by twenty-four.",
+        "observe": "The day wheel turned once and counted twenty-four hour tiles, twelve sky blue and twelve amber."
+      },
+      {
+        "why": "the day strip has a notch at noon, and the part before it and the part after it are counted apart.",
+        "soWhat": "to find how long something takes across noon, count to noon and from noon, and add.",
+        "observe": "A bar that crossed noon split into two pieces and the two lengths added up to the whole."
+      },
+      {
+        "why": "the bar is as long as the time taken, so its end is the start plus that time.",
+        "soWhat": "to find when something ends, add the time taken to the start time, hours first and then minutes.",
+        "observe": "Sliding the bar from the start put its end on the time the thing finishes."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the wall clock with its hands at twelve, an empty row of twelve five-minute tiles, and a train ticket card that shows a journey of hours and minutes",
+        "win": "the twelfth tile fills, the row reads one hour, and the answer tag turns green",
+        "traceback": "The hour rows light one after another, each worth sixty, then the extra minutes; the working stops before the total.",
+        "ladder": [
+          "The hours must be changed into minutes, one round of the minute hand each.",
+          "Two hours are two rounds of sixty before the 30 minutes.",
+          "Change the 1 hour into minutes before you add the 25.",
+          "The minute hand turns round once for every hour.",
+          "Change each hour into minutes first, then add what is left over."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the day wheel with its a.m. half sky blue and its p.m. half amber, noon notched, and a calendar page card that shows a holiday of some days",
+        "win": "the last day's wheel settles, the count of tiles reads the hours, and the answer tag turns green",
+        "traceback": "The day rows light one after another, each worth twenty-four; the working stops before the total.",
+        "ladder": [
+          "Each day is one full turn of the wheel.",
+          "Count the tiles in one row: that is the hours of one day.",
+          "Look at the wheel and count the hours in one whole day.",
+          "One turn of the wheel fills one day of hour tiles.",
+          "Count the turns, then add the hours of each day."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the day strip with a start and an end marked, a green bar waiting to be laid along it, a card that names a start and an end across noon, and the six small clocks of a race; the day strip with a green bar of the time taken waiting at the start, a flight or a bell card that names a start and a length of time, and the column board",
+        "win": "the bar splits at noon, its two pieces are added above it, and the total turns green; the bar's end lands on a tile, the end time reads on the strip, and the answer tag turns green",
+        "traceback": "The bar's pieces light one after another and are counted (the minutes carry shows as steps); the working stops before the total or the end time.",
+        "ladder": [
+          "Count the part before noon, then the part after noon.",
+          "Slide the bar on by the hours first, then by the minutes.",
+          "Both times are after noon, so count straight along the bar.",
+          "The bar splits at noon, so count each piece and add them.",
+          "For an end time, slide on by the hours first, then by the minutes."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "window": [
+      360,
+      1080
+    ],
+    "snapMinutes": 15,
+    "minutesInHour": 60,
+    "hoursInDay": 24,
+    "tilesInHour": 12,
+    "tilesInDay": 24,
+    "maxFreeRows": 4,
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": null,
+        "kind": "hm",
+        "H": 4,
+        "M": 0,
+        "answer": 240,
+        "ladder": [
+          "One round fills twelve tiles, and that row ends at sixty minutes.",
+          "Four rounds make four rows of sixty, so add the rows."
+        ],
+        "win": "Yes, 4 hours make 240 minutes.",
+        "winMs": 3800
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": null,
+        "kind": "hm",
+        "H": 2,
+        "M": 30,
+        "answer": 150,
+        "ladder": [
+          "Turn the hand twice: each full turn is worth sixty minutes.",
+          "Put the minutes of the two rounds first, then add the 30 minutes after them."
+        ],
+        "win": "Yes, that is 150 minutes in all.",
+        "winMs": 3700
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": null,
+        "kind": "hm",
+        "H": 1,
+        "M": 25,
+        "answer": 85,
+        "ladder": [
+          "A full round of the minute hand is sixty minutes, and the 25 comes after it.",
+          "Count on from sixty, five minutes for each tile of the last row."
+        ],
+        "win": "Yes, 60 and 25 make 85 minutes.",
+        "winMs": 3800
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": null,
+        "kind": "days",
+        "D": 3,
+        "d0": 6,
+        "answer": 72,
+        "ladder": [
+          "One turn fills a row of sky blue and amber hour tiles.",
+          "Take the hours of one turn and use them for each of the 3 days."
+        ],
+        "win": "Yes, 3 days make 72 hours.",
+        "winMs": 3000
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": null,
+        "kind": "days",
+        "D": 4,
+        "d0": 15,
+        "answer": 96,
+        "ladder": [
+          "One row of tiles is twelve sky blue ones and twelve amber ones.",
+          "Four days mean four equal rows, so put the rows together."
+        ],
+        "win": "Yes, 96 hours fit in 4 days.",
+        "winMs": 3000
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": null,
+        "kind": "days",
+        "D": 5,
+        "d0": 3,
+        "answer": 120,
+        "ladder": [
+          "The sky blue half and the amber half together make one day.",
+          "A tour of 5 days is five of those days, one after another."
+        ],
+        "win": "Yes, a 5 day tour lasts 120 hours.",
+        "winMs": 3600
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": null,
+        "kind": "dur",
+        "s": 570,
+        "e": 825,
+        "train": true,
+        "near": "3|75",
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          4,
+          15
+        ],
+        "ladder": [
+          "Add the hours of both pieces, then the minutes of both pieces.",
+          "Add both pieces, and turn 60 of the minutes into one more hour."
+        ],
+        "win": "Yes, it is 4 hours 15 minutes.",
+        "winMs": 8500
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": null,
+        "kind": "end",
+        "s": 630,
+        "len": 165,
+        "near": 675,
+        "pad": "enter",
+        "answer": 795,
+        "ladder": [
+          "Move the end on two hours from 10:30 before you think of the minutes.",
+          "After the two hours, add the minutes and see which side of noon you are on."
+        ],
+        "win": "Yes, it is 1:15 p.m.",
+        "winMs": 6000
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": null,
+        "kind": "dur",
+        "s": 855,
+        "e": 1005,
+        "near": "3|0",
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          2,
+          30
+        ],
+        "ladder": [
+          "Count on one hour at a time from 2:15, and see what is left.",
+          "Then count the minutes that are left, in quarters of an hour."
+        ],
+        "win": "Yes, the class lasts 2 hours 30 minutes.",
+        "winMs": 7000
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The hour rows light one after another, each worth sixty, then the extra minutes; the working stops before the total.",
+      "Phase 2: The day rows light one after another, each worth twenty-four; the working stops before the total.",
+      "Phase 3: The bar's pieces light one after another and are counted (the minutes carry shows as steps); the working stops before the total or the end time."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A clock, a stopwatch and a day strip. Let us count the time.",
+    "onFreePlay": "Free play: type hours or days, turn the dial and slide the bar.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You counted the time with the hour filling and the day turning.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "hm",
+            "planQuestion": null,
+            "question": {
+              "en": "A train journey takes 4 hours, so how many minutes is that?"
+            },
+            "ask": {
+              "en": "Minutes in all?"
+            },
+            "answer": 240,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "hm",
+            "planQuestion": null,
+            "question": {
+              "en": "A school sports day lasts 2 hours 30 minutes: how many minutes in all?"
+            },
+            "ask": {
+              "en": "Minutes in all?"
+            },
+            "answer": 150,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "hm",
+            "planQuestion": null,
+            "question": {
+              "en": "How many minutes does a holiday bus ride of 1 hour 25 minutes take?"
+            },
+            "ask": {
+              "en": "Minutes in all?"
+            },
+            "answer": 85,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "days",
+            "planQuestion": null,
+            "question": {
+              "en": "A holiday lasts 3 days, so how many hours is that?"
+            },
+            "ask": {
+              "en": "Hours in all?"
+            },
+            "answer": 72,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "days",
+            "planQuestion": null,
+            "question": {
+              "en": "A school camp lasts 4 days: how many hours in all?"
+            },
+            "ask": {
+              "en": "Hours in all?"
+            },
+            "answer": 96,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "days",
+            "planQuestion": null,
+            "question": {
+              "en": "How many hours does a train tour of 5 days take?"
+            },
+            "ask": {
+              "en": "Hours in all?"
+            },
+            "answer": 120,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "dur",
+            "planQuestion": null,
+            "question": {
+              "en": "A train leaves at 9:30 a.m., reaches at 1:45 p.m.: how long?"
+            },
+            "ask": {
+              "en": "How long?"
+            },
+            "answer": [
+              4,
+              15
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "end",
+            "planQuestion": null,
+            "question": {
+              "en": "A bus runs 2 hours 45 minutes from 10:30 a.m.: when does it end?"
+            },
+            "ask": {
+              "en": "When does it end?"
+            },
+            "answer": 795,
+            "planAnswer": null,
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "dur",
+            "planQuestion": null,
+            "question": {
+              "en": "Art class starts at 2:15 p.m., ends at 4:45 p.m.: how long?"
+            },
+            "ask": {
+              "en": "How long?"
+            },
+            "answer": [
+              2,
+              30
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S2.T4.C17:TC1",
+    "M1.S2.T4.C17:1",
+    "M1.S2.T4.C17:5",
+    "M1.S2.T4.C18:TC2",
+    "M1.S2.T4.C18:2",
+    "M1.S2.T4.C18:6",
+    "M1.S2.T4.C19:TC3",
+    "M1.S2.T4.C19:TC4",
+    "M1.S2.T4.C19:3",
+    "M1.S2.T4.C19:4",
+    "M1.S2.T4.C19:7",
+    "M1.S2.T4.C19:8"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 9,
+    "maxScore": 45,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 3 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 3; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 3 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "time_converter",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-3",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "time_converter",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Sixty minutes make an hour",
+        "conceptId": "M1.S2.T4.C17",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C20.2D1:p1_1",
+          "M1.S2.T4.C20.2D1:p1_2",
+          "M1.S2.T4.C20.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Twenty-four hours make a day",
+        "conceptId": "M1.S2.T4.C18",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C20.2D1:p2_1",
+          "M1.S2.T4.C20.2D1:p2_2",
+          "M1.S2.T4.C20.2D1:p2_3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "How long did it take?",
+        "conceptId": "M1.S2.T4.C19",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C20.2D1:p3_1",
+          "M1.S2.T4.C20.2D1:p3_2",
+          "M1.S2.T4.C20.2D1:p3_3"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "hours",
+    "minutes",
+    "days",
+    "start",
+    "barA",
+    "end",
+    "barB"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), complete, hours, minutes, days, start, barA, end, barB",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "time_converter"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T4.C20.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A clock, a stopwatch and a day strip. Let us count the time."
+    },
+    {
+      "en": "One round of the minute hand fills an hour. How many minutes are in it?"
+    },
+    {
+      "en": "The wheel turns once for one day. How many hours is that? Now for each day."
+    },
+    {
+      "en": "Lay the bar from the start to the end. Count to noon, then on from noon."
+    },
+    {
+      "en": "Slide the bar from the start. Add the hours first. Then the minutes. Which side of noon is it?"
+    },
+    {
+      "en": "A new time to work out. What is it about?"
+    },
+    {
+      "en": "Free play. Fill an hour, turn a day and slide the bar as you like."
+    },
+    {
+      "en": "Count again, one step at a time. Which side of noon are you on?"
+    },
+    {
+      "en": "You counted the time with the hour filling and the day turning."
+    }
+  ],
+  "build": {
+    "source": "f577be35:675185",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-30T13:41:11.023Z",
+    "checks": {
+      "pass": 97,
+      "warn": 0,
+      "fail": 0,
+      "info": 5,
+      "at": "2026-10-30T13:41:10.658Z"
+    },
+    "tsxBytes": 591446,
+    "tsxMd5": "cbf7c7d361f4a39b782ed464411f43a2"
+  }
+}

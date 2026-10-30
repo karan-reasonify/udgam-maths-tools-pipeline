@@ -1,0 +1,1110 @@
+{
+  "slotId": "M1.S2.T6.C31.2D1",
+  "mediaId": "M1.S2.T6.C31.2D1",
+  "toolId": "calendar_explorer",
+  "title": "Calendar Explorer",
+  "component": "M1.S2.T6.C31.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch10_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_10/2dtool/M1.S2.T6.C31.2D1/M1.S2.T6.C31.2D1.tsx",
+  "description": "Flip a real wall calendar, say the months along two fists, find the leap year, and hop seven days at a time to find a day or a date.",
+  "conceptIds": [
+    "M1.S2.T6.C28",
+    "M1.S2.T6.C29",
+    "M1.S2.T6.C30",
+    "M1.S2.T6.C31"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        1086,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Count the days of a week and the months of a year on a real wall calendar, say the days of each month by the knuckle method, find the leap year as every fourth year, and hop seven days at a time to find a day, a date and the weeks between two dates.",
+    "look": "A classroom wall with a real calendar page of 2026 at the left, the month cards, the two fists, the four-year strip and the week counter at the right as each phase needs them, a pencil, flip arrows, a Grid view button, and the number pad down the right of the canvas.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Calendar Explorer' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many days, weeks or months have been counted so far. It is never a score. The working area is 1086 by 528 at x 64, y 202. A real wall calendar page hangs at the left of the working area at x 90, y 216, 470 by 440, with a near-black top bar showing the month and the year written large, a header row of the seven days of the week with Sunday first, and a grid of dates in seven columns, the first of the month standing in its true column and a week sharing a row. Two round arrow buttons stand under it at x 90 and x 220, y 668, each 120 by 52, and flip the page like a leaf, and a pencil rests at its right edge. The Grid view button stands at x 360, y 668, 200 by 52, and redraws the page as a plain table. Beside the page, at x 600, y 216, a work area 520 by 440 changes with the phase. On the first phase a row of twelve small month cards, two rows of six each 80 by 70, stands at x 600, y 216, and the week counter, 240 by 100, stands at x 600, y 330. On the second phase two flat drawn fists stand side by side at x 600, y 230, each 240 by 220: the first with four knuckles and three dips labelled January, March, May, July and February, April, June, the second with three knuckles and two dips labelled August, October, December and September, November, and the twelve month cards wait in a row at x 600, y 480, 520 by 90; a card dropped on a knuckle reads thirty-one and on a dip reads thirty, and February is left with its two numbers. On the third phase a four-year strip of four small wall calendars stands at x 600, y 230, 520 by 190, showing their Februaries side by side, the leap year's with a twenty-ninth square ringed in green and labelled Leap year, and the year ruler from 1900 to 2099 in blocks of four runs under it at x 600, y 470, 520 by 90, with a marker the child steps in fours. On the fourth phase the circled date is ringed near-black and the date reached is ringed green, labelled Answer, the seven-day hop lights every seventh date down the same column in one colour, and the week counter stands at x 600, y 470, 260 by 120, counting the weeks between two circled dates in sevens. Real things keep their natural colours throughout, and a date found is never coloured as an hour or a minute. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys and a clear key, for typing a number of days, weeks or months or a year into the answer slot, with a words box that takes the name of a day. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours. The hour hand of a clock is vermilion and the minute hand is deep blue, because a hand is a mark that stands for a number, and the hours are vermilion and the minutes deep blue everywhere else, in a digital time, a label and a tag. The a.m. half of a day, from midnight to noon, is sky blue and the p.m. half, from noon to midnight, is amber. The time reached, a length of time worked out, a converted amount and the answer are green. A clock face, rim and numbers are near-black on cream, anything dimmed fades to half strength rather than turning grey, and chrome never borrows one of the five. Each reading survives with the colour taken away, because a time is told by its written label before it is told by its colour.",
+    "finish": "The calendar page shows the last date circled with the hops lit down its column, and the week counter beside it, with the fists or the strip still in the frame.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the twelve pages stack into a year and one extra day sits after the last full week",
+        "does": "taps a row to count its days, flips through the twelve pages, then counts the weeks in a year and the one day left over",
+        "goal": "a week has seven days, a year has twelve months and is about fifty-two weeks and one more day",
+        "says": "Flip the pages of the calendar. How many months make a year?",
+        "check": "Away from the screen: a school trip lasts some weeks. How would you find how many days that is, and why is a year not exactly fifty-two weeks?",
+        "feels": "the pages of the year flipping past, and one day left over after the last full week",
+        "hands": "Hang a real wall calendar, count the days in one row with a finger, flip the pages and count the months, and ask how many weeks fit in the year.",
+        "tries": "First rung: count the days in one row of the calendar. Second rung: count the rows of seven that make a year. Third rung: the same task with just one month, before the whole year returns.",
+        "wrong": [
+          {
+            "why": "fifty-two sevens seems to fill the year with no day over",
+            "move": "says a year is exactly fifty-two weeks",
+            "screen": "the week counter fills with fifty-two full rows of seven, and one lone day is left lit amber on the last page, labelled Left, with the count of days written beside it"
+          },
+          {
+            "why": "twelve months of the same length is easy to multiply",
+            "move": "counts the days of the year by adding the twelve months and forgetting that they are not equal",
+            "screen": "each month card shows its own number of days when it is tapped, and the counts are added in turn as the pages are flipped"
+          }
+        ],
+        "screen": "the 2026 wall calendar open at its first month with a row of twelve month cards beside it and the week counter blank",
+        "soWhat": "a week has seven days, a year has twelve months and is fifty-two weeks and one more day",
+        "concept": "Days, weeks, months and a year"
+      },
+      {
+        "n": 2,
+        "win": "the card lands and its number of days appears, and February is left alone with its two numbers",
+        "does": "says each month along the fists, drops the card on a knuckle or a dip, and reads the number of days",
+        "goal": "months take turns on the knuckles and in the dips: a knuckle month has thirty-one days and a dip month thirty",
+        "says": "Say the months along the knuckles and the dips. Which months have thirty-one days?",
+        "check": "Away from the screen: make a fist and say the months. Is the month your birthday is in on a knuckle or in a dip, and how many days does it have?",
+        "feels": "the months falling onto knuckles and dips in turn, with February left alone",
+        "hands": "Make a fist and say the months along the knuckles and the dips, then fold a paper strip into twelve boxes, mark the knuckle months and write the days in each.",
+        "tries": "First rung: say the months along the fist from January. Second rung: say whether the month you stopped on is a knuckle or a dip. Third rung: the same task with the first four months only, before the rest return.",
+        "wrong": [
+          {
+            "why": "the first months said, January and March, have thirty-one, so it feels like all of them",
+            "move": "says a dip month has thirty-one days",
+            "screen": "the month card is dropped on the dip and its number reads thirty, and the knuckle months light in turn along the fist with thirty-one beside each"
+          },
+          {
+            "why": "two fists look like two sets of months",
+            "move": "counts the knuckles and dips as if the months sat in two separate rows",
+            "screen": "the months are said along the first fist and then, without a gap, along the second, so July and August both sit on a knuckle and the count carries on"
+          }
+        ],
+        "screen": "two drawn fists with four knuckles and three dips on the first and three knuckles and two dips on the second, and twelve month cards waiting",
+        "soWhat": "a knuckle month has thirty-one days, a dip month has thirty, and February has twenty-eight or twenty-nine",
+        "concept": "How many days in a month: the knuckle method"
+      },
+      {
+        "n": 3,
+        "win": "the twenty-ninth square drops into the leap February and the year ruler lights every fourth year",
+        "does": "counts in fours on the year ruler from a leap year, taps the February that grows a twenty-ninth square, and finds a year from the last and the next leap years",
+        "goal": "every fourth year is a leap year, and its February has an extra day and the year has one day more",
+        "says": "Look at the four Februaries. Which one has an extra day?",
+        "check": "Away from the screen: this year is a leap year. In how many years is the next one, and how many days does February have in it?",
+        "feels": "the extra day dropping into one February in four",
+        "hands": "Fold a paper strip into four boxes, one for each year, draw February in each, give one an extra day, and count in fours from a leap year on a number line of years.",
+        "tries": "First rung: step the marker four years from a leap year. Second rung: check that the year you land on is a leap year. Third rung: the same task with the last leap year only, before the next one returns.",
+        "wrong": [
+          {
+            "why": "the leap years seen so far all happened to have even numbers",
+            "move": "says every year that ends in an even number is a leap year",
+            "screen": "the year ruler lights every fourth year only, and the years between it stay dark even when their numbers are even"
+          },
+          {
+            "why": "three or five seems close enough to a few years",
+            "move": "counts in threes or fives instead of fours from a leap year",
+            "screen": "the marker steps four years at a time along the ruler, and the February on the strip grows its extra square only at every fourth step"
+          }
+        ],
+        "screen": "a four-year strip of small wall calendars with their Februaries side by side, and a year ruler from nineteen hundred to two thousand ninety-nine",
+        "soWhat": "every fourth year is a leap year, with twenty-nine days in February and three hundred and sixty-six days in the year",
+        "concept": "Leap year: every fourth year has 366 days"
+      },
+      {
+        "n": 4,
+        "win": "the hops light the same weekday down the column and the week counter shows the weeks between the two dates",
+        "does": "circles a date, hops seven days at a time down the column, then counts on to the date asked for or counts the weeks between two circled dates",
+        "goal": "the same day of the week comes back every seven days, so a day or a date is found by hopping in sevens",
+        "says": "Circle the date. Hop seven days and see which day lights up each time.",
+        "check": "Away from the screen: a plant was put in a pot on a Monday. What day of the week is it three weeks later, and how do you know?",
+        "feels": "the same weekday lighting down the column, one week at a time",
+        "hands": "Circle a date on a real wall calendar with a pencil, count seven days along with a finger and see which day you land on, then count the days to a second date and change them into weeks.",
+        "tries": "First rung: hop seven days once. Second rung: hop again and say the day each time. Third rung: the same task with one hop only, before more hops return.",
+        "wrong": [
+          {
+            "why": "counting both ends feels natural when pointing at dates",
+            "move": "counts the days between two dates including the first date",
+            "screen": "the first date is ringed near-black and left out of the count, the days are counted from the next date on, and the week counter shows the total"
+          },
+          {
+            "why": "a week is easy to mix up with the days that make it",
+            "move": "hops six days or eight days instead of seven",
+            "screen": "each hop lands on a date lit in one colour, and a hop of six or eight leaves a different weekday lit, so the seventh is seen to be the one that stays"
+          }
+        ],
+        "screen": "a calendar page with a pencil, a seven-day hop and a week counter, and one date already circled",
+        "soWhat": "the same day of the week comes back every seven days, so a day or a date is found by hopping in sevens",
+        "concept": "Finding a day and a date on a calendar"
+      }
+    ],
+    "delight": "On the fourth phase, when the pencil circles a date, the seven-day hop jumps down the calendar one week at a time, lighting the same weekday in the same colour with a small tick each time it lands. On the third phase, the leap February squeezes in its twenty-ninth square with a soft click, and the other three Februaries stay as they were.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet typed. On the first phase the 2026 wall calendar is open at its first month, a row of twelve month cards lies beside it and the week counter is blank. On the second the two drawn fists stand beside the calendar with their knuckles and dips labelled and the twelve month cards waiting. On the third a four-year strip of small wall calendars shows its Februaries side by side, and the year ruler is lit at one leap year. On the fourth a calendar page has one date circled with the pencil, the seven-day hop is lit but has not yet moved, and the week counter is empty. One thing moves, once: the first page, or the circled date on the fourth phase, gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any month of the 2026 calendar, the two fists with every month card, the four-year strip and the year ruler, any circled date with the seven-day hop, and the Grid view. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the months of a year, the knuckle method, the leap year and finding a day or a date, each in a real situation.",
+    "voiceLines": [
+      "A calendar on the wall, waiting to be flipped.",
+      "Flip the pages of the calendar. How many months make a year?",
+      "Say the months along the knuckles and the dips. Which months have thirty-one days?",
+      "Look at the four Februaries. Which one has an extra day?",
+      "Circle the date. Hop seven days and see which day lights up each time.",
+      "A new page. Find the day first.",
+      "Free play. Flip, hop and count as you like.",
+      "Count again, one week or one month at a time.",
+      "You found each day by counting weeks and months."
+    ],
+    "observations": [
+      {
+        "why": "a week has seven days, so seven days after a date is the same day of the week.",
+        "soWhat": "hopping seven days at a time finds the same weekday again and again.",
+        "observe": "Every seventh date down one column lit in the same colour on the calendar page."
+      },
+      {
+        "why": "the months take turns on the knuckles and in the dips, with February left alone.",
+        "soWhat": "the knuckle method gives the days of every month except February.",
+        "observe": "A card dropped on a knuckle read thirty-one and on a dip read thirty."
+      },
+      {
+        "why": "an extra day is added to February every fourth year.",
+        "soWhat": "every fourth year is a leap year, with twenty-nine days in February and one more day in the year.",
+        "observe": "One February on the four-year strip grew a twenty-ninth square, once in four years."
+      },
+      {
+        "why": "fifty-two weeks is three hundred and sixty-four days and a year has one day more.",
+        "soWhat": "a year is fifty-two weeks and one more day, not fifty-two weeks alone.",
+        "observe": "The week counter counted fifty-two weeks in a year and one day was left over."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the 2026 wall calendar open at its first month with a row of twelve month cards beside it and the week counter blank",
+        "win": "the twelve pages stack into a year and one extra day sits after the last full week",
+        "traceback": "Full rows light one week at a time and stop one week short; the month cards light up to November; the 52 weeks fill and the one day left over is lit amber.",
+        "ladder": [
+          "Each full row is one week of 7 days; count the days in 4 rows.",
+          "Count every month card from January to December.",
+          "Find the days in 52 weeks first, then add the extra day.",
+          "Count the days one row of seven at a time.",
+          "Try it on one month of the calendar first."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "two drawn fists with four knuckles and three dips on the first and three knuckles and two dips on the second, and twelve month cards waiting",
+        "win": "the card lands and its number of days appears, and February is left alone with its two numbers",
+        "traceback": "The months are said along the fists from January and stop just before the asked month; its calendar page lights its days a week at a time and stops before the last day.",
+        "ladder": [
+          "Say the months along the fist from January to find where July goes.",
+          "Count along from April: May, then June.",
+          "Say August, September, October along the second fist to find their own spots.",
+          "Start at January on the first knuckle and say each month in turn.",
+          "Go from the last knuckle of the first fist to the first knuckle of the second."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a four-year strip of small wall calendars with their Februaries side by side, and a year ruler from nineteen hundred to two thousand ninety-nine",
+        "win": "the twenty-ninth square drops into the leap February and the year ruler lights every fourth year",
+        "traceback": "The marker steps in fours from a leap year, lighting only the leap years while the years between stay dark, and stops one hop short.",
+        "ladder": [
+          "Keep tapping On 4 from 2028 and watch the years it lands on.",
+          "Use On 4 once more from 2044.",
+          "Go back from 2048 to the leap year just before it.",
+          "Count on in fours from a leap year.",
+          "Only the years the marker lands on are leap years."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a calendar page with a pencil, a seven-day hop and a week counter, and one date already circled",
+        "win": "the hops light the same weekday down the column and the week counter shows the weeks between the two dates",
+        "traceback": "The first date is circled and left out of the count, the pencil hops a week at a time down the same column, and it stops one hop or one day short.",
+        "ladder": [
+          "Circle the 3rd and hop in sevens to the 31st, not counting the 3rd.",
+          "Circle the 6th and hop 7 days twice.",
+          "Hop from Monday the 1st in sevens, then count on to the 24th.",
+          "Hop 7 days and read the day at the top of the column.",
+          "Hop once for every week the question names."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "weekStarts": "Sunday",
+    "practiceYear": 2026,
+    "strip": [
+      2026,
+      2027,
+      2028,
+      2029
+    ],
+    "ruler": [
+      2024,
+      2052
+    ],
+    "years": [
+      2000,
+      2099
+    ],
+    "pages": "computed: the weekday of the 1st by a day count from 1 January 1900 (a Monday); month lengths 28/29/30/31 with the leap rule",
+    "between": "the days between two dates count on from the first date, never counting it",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T6.C28:CE1",
+        "kind": "weeks",
+        "page": 9,
+        "nudge": "First tap 4 full rows of the calendar.",
+        "answer": 28,
+        "near": 11,
+        "unit": "days",
+        "ladder": [
+          "Count the lit boxes row by row, in sevens.",
+          "Add 7 four times: 7, 14, then two more sevens."
+        ],
+        "win": "Yes, 4 weeks of 7 days make 28 days."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T6.C28:1",
+        "kind": "pages",
+        "page": 0,
+        "nudge": "First turn every page, or tap Flip year.",
+        "answer": 12,
+        "near": 11,
+        "unit": "pages",
+        "ladder": [
+          "Each month card stands for one page of the calendar.",
+          "The lit cards stop at November; add December too."
+        ],
+        "win": "Yes, 12 months make 12 pages."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T6.C28:5",
+        "kind": "year",
+        "page": 0,
+        "nudge": "First tap Count weeks.",
+        "answer": 365,
+        "near": 364,
+        "unit": "days",
+        "ladder": [
+          "52 weeks make 364 days, as the week counter shows.",
+          "Look for the day left over after the 52 weeks."
+        ],
+        "win": "Yes, 364 days and 1 more make 365 days, a whole year."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T6.C29:CE2",
+        "kind": "knuckle",
+        "months": [
+          6
+        ],
+        "nudge": "First put the July card on a knuckle or a dip.",
+        "answer": 31,
+        "near": 30,
+        "unit": "days",
+        "ladder": [
+          "July comes just after June, which sits in a dip.",
+          "Count one more spot after June's dip to find July's."
+        ],
+        "win": "Yes, July is a knuckle month with 31 days."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T6.C29:2",
+        "kind": "knuckle",
+        "months": [
+          5
+        ],
+        "nudge": "First put the June card on a knuckle or a dip.",
+        "answer": 30,
+        "near": 31,
+        "unit": "days",
+        "ladder": [
+          "June sits between the May and July knuckles.",
+          "Check whether June's spot is a knuckle or a dip."
+        ],
+        "win": "Yes, June is a dip month with 30 days."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T6.C29:6",
+        "kind": "knuckle",
+        "months": [
+          8,
+          9
+        ],
+        "nudge": "First put the September and October cards on the fists.",
+        "answer": 1,
+        "near": 31,
+        "unit": "more day",
+        "ladder": [
+          "September sits in a dip and October on a knuckle.",
+          "Take September's days away from October's days."
+        ],
+        "win": "Yes, October has 1 more day."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T6.C30:CE3",
+        "kind": "leap",
+        "target": 2044,
+        "mk0": 2028,
+        "lit0": [
+          2028
+        ],
+        "dir": 1,
+        "nudge": "First step the marker on with On 4.",
+        "answer": 29,
+        "near": 28,
+        "unit": "days",
+        "ladder": [
+          "Does the marker ever land on 2044?",
+          "A leap February has one more day than the February of 2026."
+        ],
+        "win": "Yes, leap year 2044 has a 29 February."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T6.C30:3",
+        "kind": "leap",
+        "target": 2048,
+        "mk0": 2044,
+        "lit0": [
+          2028,
+          2032,
+          2036,
+          2040,
+          2044
+        ],
+        "dir": 1,
+        "nudge": "First tap On 4 to move the marker.",
+        "answer": "2048",
+        "near": "2046",
+        "unit": "",
+        "ladder": [
+          "An even year is not always a leap year.",
+          "Which key is on the marker's path?"
+        ],
+        "win": "Yes, 2048 is the next leap year."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T6.C30:7",
+        "kind": "leap",
+        "target": 2044,
+        "mk0": 2048,
+        "lit0": [
+          2048
+        ],
+        "dir": -1,
+        "pre": "Year",
+        "nudge": "First tap Back 4 to move the marker.",
+        "answer": 2045,
+        "near": 2044,
+        "unit": "",
+        "ladder": [
+          "Tap Back 4 and see where the marker stops.",
+          "This year is the year after the leap year the marker shows."
+        ],
+        "win": "Yes, it is 2045 now."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T6.C31:CE4",
+        "kind": "weeks",
+        "page": [
+          2026,
+          9
+        ],
+        "from": 3,
+        "to": 31,
+        "nudge": "First circle the 3rd, then hop down to the 31st.",
+        "answer": 4,
+        "near": 5,
+        "unit": "weeks",
+        "ladder": [
+          "Each hop is one week; count the hops, not the dates.",
+          "Count each hop until the pencil reaches the ringed 31st."
+        ],
+        "win": "Yes, 4 hops of 7 days make 4 weeks."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T6.C31:4",
+        "kind": "due",
+        "page": [
+          2026,
+          10
+        ],
+        "head": 0,
+        "from": 6,
+        "to": 20,
+        "nudge": "First circle the 6th, then hop twice.",
+        "answer": "fri",
+        "near": "thu",
+        "unit": "",
+        "ladder": [
+          "Each hop of 7 days stays in one column of the page.",
+          "Count from Sunday the 1st along the top row to the 6th."
+        ],
+        "win": "Yes, 2 weeks on, it is Friday again."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T6.C31:8",
+        "kind": "weekday",
+        "page": [
+          2026,
+          5
+        ],
+        "head": 1,
+        "from": 1,
+        "to": 22,
+        "date": 24,
+        "winMs": 5200,
+        "nudge": "First circle the 1st, then hop to the 22nd.",
+        "answer": "wed",
+        "near": "tue",
+        "unit": "",
+        "ladder": [
+          "The 22nd is a Monday too; count on from there.",
+          "Two days after a Monday is the day you want."
+        ],
+        "win": "Yes, 24 June 2026 is a Wednesday."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: Full rows light one week at a time and stop one week short; the month cards light up to November; the 52 weeks fill and the one day left over is lit amber.",
+      "Phase 2: The months are said along the fists from January and stop just before the asked month; its calendar page lights its days a week at a time and stops before the last day.",
+      "Phase 3: The marker steps in fours from a leap year, lighting only the leap years while the years between stay dark, and stops one hop short.",
+      "Phase 4: The first date is circled and left out of the count, the pencil hops a week at a time down the same column, and it stops one hop or one day short."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A calendar on the wall, waiting to be flipped.",
+    "onFreePlay": "Free play: flip the months, circle a date and hop in sevens.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You found each day by counting weeks and months.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T6.C28:CE1",
+            "worked": false,
+            "kind": "weeks",
+            "planQuestion": "A school trip lasts 4 weeks. How many days is that?",
+            "question": {
+              "en": "A school trip lasts 4 weeks, so how many days is that?"
+            },
+            "ask": {
+              "en": "4 weeks = ? days"
+            },
+            "answer": 28,
+            "planAnswer": "28 days",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T6.C28:1",
+            "worked": false,
+            "kind": "pages",
+            "planQuestion": "A wall calendar has one page for each month of the year. How many pages does it have?",
+            "question": {
+              "en": "A wall calendar has one page for each month, so how many pages does it have?"
+            },
+            "ask": {
+              "en": "Pages in a year?"
+            },
+            "answer": 12,
+            "planAnswer": "12 pages, one for each of the 12 months",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T6.C28:5",
+            "worked": false,
+            "kind": "year",
+            "planQuestion": "A bus pass lasts one whole year. A year is 52 weeks and 1 more day. How many days does the pass last?",
+            "question": {
+              "en": "A bus pass is good for 52 weeks and 1 more day; how many days does it last?"
+            },
+            "ask": {
+              "en": "52 weeks + 1 day?"
+            },
+            "answer": 365,
+            "planAnswer": "365 days, because 52 weeks is 364 days and 1 more day makes 365",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T6.C29:CE2",
+            "worked": false,
+            "kind": "knuckle",
+            "planQuestion": "A summer holiday lasts all through July. On the knuckles, is July a knuckle month or a dip month, and how many days does it have?",
+            "question": {
+              "en": "Is July a knuckle or a dip month, and how many days does July have?"
+            },
+            "ask": {
+              "en": "Days in July?"
+            },
+            "answer": 31,
+            "planAnswer": "A knuckle month. July has 31 days.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T6.C29:2",
+            "worked": false,
+            "kind": "knuckle",
+            "planQuestion": "A school term ends in June. On the knuckles, is June a knuckle month or a dip month, and how many days does it have?",
+            "question": {
+              "en": "A school term ends in June; use the fists to find how many days June has."
+            },
+            "ask": {
+              "en": "Days in June?"
+            },
+            "answer": 30,
+            "planAnswer": "A dip month. June has 30 days.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T6.C29:6",
+            "worked": false,
+            "kind": "knuckle",
+            "planQuestion": "A train runs every day through September and October. Which month has more days, and how many more?",
+            "question": {
+              "en": "Which has more days, September or October, and how many more?"
+            },
+            "ask": {
+              "en": "How many more days?"
+            },
+            "answer": 1,
+            "planAnswer": "October has 1 more day. October is a knuckle month with 31 days and September is a dip month with 30 days.",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T6.C30:CE3",
+            "worked": false,
+            "kind": "leap",
+            "planQuestion": "A school wall calendar is printed for the year 2044. Does February have 28 or 29 days in that year?",
+            "question": {
+              "en": "A school calendar is printed for 2044; how many days does its February have?"
+            },
+            "ask": {
+              "en": "February 2044?"
+            },
+            "answer": 29,
+            "planAnswer": "29 days, because 2044 is a leap year",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T6.C30:3",
+            "worked": false,
+            "kind": "leap",
+            "planQuestion": "A birthday card says 29 February. Which year has a 29 February, 2046 or 2048?",
+            "question": {
+              "en": "A birthday card says 29 February; which year on the keys can have that date?"
+            },
+            "ask": {
+              "en": "Which year?"
+            },
+            "answer": "2048",
+            "planAnswer": "2048, because 2048 is a leap year and 2046 is not a leap year",
+            "choices": [
+              "2046",
+              "2048"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T6.C30:7",
+            "worked": false,
+            "kind": "leap",
+            "planQuestion": "A school notice says that last year was a leap year and that the next leap year will be 2048. What year is it now?",
+            "question": {
+              "en": "Last year was a leap year and the next one is 2048; what year is it now?"
+            },
+            "ask": {
+              "en": "This year?"
+            },
+            "answer": 2045,
+            "planAnswer": "2045, because the leap year before 2048 is 2044, last year was 2044 and this year is 1 year later",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T6.C31:CE4",
+            "worked": false,
+            "kind": "weeks",
+            "planQuestion": "A plant is put in a pot on 3 October 2026 and its first flower opens on 31 October 2026. How many weeks did the plant take?",
+            "question": {
+              "en": "A plant took from 3 to 31 October 2026 to flower; how many weeks is that?"
+            },
+            "ask": {
+              "en": "Weeks, 3rd to 31st?"
+            },
+            "answer": 4,
+            "planAnswer": "4 weeks",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T6.C31:4",
+            "worked": false,
+            "kind": "due",
+            "planQuestion": "A story book from the school library is borrowed on a Friday and is due in 2 weeks. On which day of the week is it due?",
+            "question": {
+              "en": "1 November 2026 is a Sunday; which day is a book due 2 weeks after the 6th?"
+            },
+            "ask": {
+              "en": "Due on which day?"
+            },
+            "answer": "fri",
+            "planAnswer": "Friday, because 2 weeks is 14 days and 14 days later is the same day of the week",
+            "choices": [
+              "sun",
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T6.C31:8",
+            "worked": false,
+            "kind": "weekday",
+            "planQuestion": "Use the 2026 calendar. A school exam is on 24 June 2026, and 1 June 2026 is a Monday. On which day of the week is the exam?",
+            "question": {
+              "en": "The exam is on 24 June 2026 and 1 June is a Monday; which day is the exam?"
+            },
+            "ask": {
+              "en": "Exam day?"
+            },
+            "answer": "wed",
+            "planAnswer": "Wednesday, because 22 June is a Monday and 24 June is 2 days later",
+            "choices": [
+              "sun",
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "calendar_explorer",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "calendar_explorer",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Days, weeks, months and a year",
+        "conceptId": "M1.S2.T6.C28",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M1.S2.T6.C28:CE1",
+          "M1.S2.T6.C28:1",
+          "M1.S2.T6.C28:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "How many days in a month: the knuckle method",
+        "conceptId": "M1.S2.T6.C29",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M1.S2.T6.C29:CE2",
+          "M1.S2.T6.C29:2",
+          "M1.S2.T6.C29:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Leap year: every fourth year has 366 days",
+        "conceptId": "M1.S2.T6.C30",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M1.S2.T6.C30:CE3",
+          "M1.S2.T6.C30:3",
+          "M1.S2.T6.C30:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Finding a day and a date on a calendar",
+        "conceptId": "M1.S2.T6.C31",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M1.S2.T6.C31:CE4",
+          "M1.S2.T6.C31:4",
+          "M1.S2.T6.C31:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "month",
+    "year",
+    "knuckles",
+    "circled",
+    "hop",
+    "weeks",
+    "answer"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), month, year, knuckles, circled, hop, weeks, answer",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "calendar_explorer"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T6.C31.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A calendar on the wall, waiting to be flipped."
+    },
+    {
+      "en": "Flip the pages of the calendar. How many months make a year?"
+    },
+    {
+      "en": "Say the months along the knuckles and the dips. Which months have thirty-one days?"
+    },
+    {
+      "en": "Look at the four Februaries. Which one has an extra day?"
+    },
+    {
+      "en": "Circle the date. Hop seven days and see which day lights up each time."
+    },
+    {
+      "en": "A new page. Find the day first."
+    },
+    {
+      "en": "Free play. Flip, hop and count as you like."
+    },
+    {
+      "en": "Count again, one week or one month at a time."
+    },
+    {
+      "en": "You found each day by counting weeks and months."
+    }
+  ],
+  "build": {
+    "source": "98f34752:690014",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-29T10:50:16.880Z",
+    "checks": {
+      "pass": 98,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-29T10:50:16.595Z"
+    },
+    "tsxBytes": 615941,
+    "tsxMd5": "af9a6d9a366a78de94a949c23ef0b390"
+  }
+}

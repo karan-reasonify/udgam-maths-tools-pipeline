@@ -6,7 +6,7 @@
  "phase": "build",
  "round": 1,
  "createdAt": "2026-10-28T11:35:52.683Z",
- "updatedAt": "2026-10-29T11:09:03.850Z",
+ "updatedAt": "2026-10-30T15:04:35.421Z",
  "agents": [
   {
    "id": "tool-builder-1.1",
@@ -852,6 +852,47 @@
    "over": null,
    "endedAt": "2026-10-29T10:15:19.847Z",
    "escalate": null
+  },
+  {
+   "id": "tool-builder-1.6",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam3-tool-builder",
+   "slots": [
+    "M1.S1.T3.C14.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-10-30T13:15:47.860Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-30T15:04:35.253Z",
+   "escalate": {
+    "trigger": "check-gap",
+    "why": "under PREFLIGHT 30, one-line-bubble's after-wrong frame should want the question once the keypad is open (or sample while the correction keeps the keys shut). Ch 10's runtime.json has no rules.questionStays, so a check change could key on that rule. Then re-run `check --force`, or approve the pair by hand."
+   }
+  },
+  {
+   "id": "tool-builder-1.7",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam3-tool-builder",
+   "slots": [
+    "M1.S2.T4.C20.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-10-30T13:16:18.507Z",
+   "status": "done",
+   "build": 1,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-10-30T15:04:35.421Z",
+   "escalate": null
   }
  ],
  "slots": {
@@ -1088,6 +1129,62 @@
     "at": "2026-10-29T10:30:40.382Z"
    },
    "fullChecks": 15
+  },
+  "M1.S1.T3.C14.2D1": {
+   "stage": "new",
+   "decisions": [],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {},
+   "retries": {},
+   "escalations": 0,
+   "history": [
+    "tool-builder-1.6 ok"
+   ],
+   "launches": {
+    "tool-builder": 1
+   },
+   "quickChecks": 2,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 98,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-10-30T15:00:44.793Z"
+   },
+   "fullChecks": 2
+  },
+  "M1.S2.T4.C20.2D1": {
+   "stage": "new",
+   "decisions": [],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {},
+   "retries": {},
+   "escalations": 0,
+   "history": [
+    "tool-builder-1.7 ok"
+   ],
+   "launches": {
+    "tool-builder": 1
+   },
+   "quickChecks": 2,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 97,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-10-30T13:41:16.887Z"
+   },
+   "fullChecks": 1
   }
  },
  "freezes": [],
@@ -1096,8 +1193,8 @@
  "questions": [],
  "gaps": [],
  "counters": {
-  "fullChecks": 57,
-  "quickChecks": 126,
+  "fullChecks": 60,
+  "quickChecks": 130,
   "cachedChecks": 0,
   "packs": 0,
   "escalations": 0

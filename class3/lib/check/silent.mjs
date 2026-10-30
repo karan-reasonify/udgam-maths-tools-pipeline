@@ -923,7 +923,8 @@ export function judgeSummarySimple(runs = [], UI = {}, m = {}) {
 /* ── one-line-bubble: ONE SENTENCE A SCREEN (keyOnly on a runtime with caps.oneSentence; LAYOUT §1d) ───────────────────────
    One DevTools session per phase (English) and, on phase 1, one per language the tool has begun (hi, gu), with real input:
    the first question of the phase opens with the bubble holding the question ONLY; a wrong answer replaces it with the hint ONLY
-   (not both); the child's next digit key brings the question back; the header's Hint key shows a hint ONLY; at the phase's LAST right
+   (not both), and once the pad is open again it holds the hint OR the question, still ONE sentence (2026-10-30, the owner: the question
+   stays while the pad is open, PREFLIGHT 30); the child's next digit key brings the question back; the header's Hint key shows a hint ONLY; at the phase's LAST right
    answer the bubble holds only the phase's `closing` (never the tool's own win line); and no thought puff or Hint-key bulb
    (data-role think-puff, hint-bulb) is ever on the page. Everything is read as WRITTEN (a silent bubble prints Latin digits).
    rows = oneLineInput(): [{ phase, lang, open|afterWrong|afterKey|hintKey: { st, bubble, roles: { instruction, hint }, fx },
@@ -956,8 +957,8 @@ export function judgeOneLine(rows = [], m = {}) {
     alone(o, "at the first question", "question");
     const w = r.afterWrong;
     if (!w) bad.push(`${tag}: no frame after a wrong answer`);
-    else if (!rungs.some((h) => norm(w.bubble) === h)) bad.push(`${tag}: after a wrong answer the bubble holds ${cut(w.bubble, 60)}, want the hint alone ${cut(rungs[0] || "", 40)}`);
-    else alone(w, "after a wrong answer", "hint");
+    else if (!rungs.some((h) => norm(w.bubble) === h) && !isQ(w.bubble)) bad.push(`${tag}: after a wrong answer the bubble holds ${cut(w.bubble, 60)}, want the hint alone ${cut(rungs[0] || "", 40)} or, once the pad is open, the question alone ${cut(q[0] || "", 40)}`);
+    else alone(w, "after a wrong answer", isQ(w.bubble) ? "question" : "hint");   /* 2026-10-30 (the owner; PREFLIGHT 30): with the pad open again the question may be back, still ONE sentence */
     const k = r.afterKey;
     if (!k) bad.push(`${tag}: no frame after a digit key`);
     else if (!isQ(k.bubble) && !((it.pad === "enter" || it.choices) && w && norm(k.bubble) === norm(w.bubble))) bad.push(`${tag}: after a digit key the bubble holds ${cut(k.bubble, 60)}, want the question back ${cut(q[0] || "", 40)}`);
