@@ -1,0 +1,1169 @@
+{
+  "slotId": "M4.S6.T12.C58.2D1",
+  "mediaId": "M4.S6.T12.C58.2D1",
+  "toolId": "measure_chain",
+  "title": "Measure Chain",
+  "component": "M4.S6.T12.C58.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch5",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch5_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_5/2dtool/M4.S6.T12.C58.2D1/M4.S6.T12.C58.2D1.tsx",
+  "description": "Add and take away measures in one unit, carry a written answer into the next step, total a list of parts two ways, and pour water in litres.",
+  "conceptIds": [
+    "M4.S6.T12.C55",
+    "M4.S6.T12.C56",
+    "M4.S6.T12.C57",
+    "M4.S6.T12.C58"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Add and subtract measures in one unit, carrying each answer into the next step, and list the parts of a plan with their measures and find and check the total.",
+    "look": "One measuring scene at a time, a tape, a scale or a jug, with a column strip at the right writing each step, an Answer card on the second phase and a List panel on the third.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Measure Chain' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x sixty-four, y 108 and 330 by 76, sits the running count: how many steps have been written in the column strip. It is never a score. The working area is 1086 by 528 at x sixty-four, y 202. The scene fills the left of the working area from x 110 to x 760. The tape runs along y 520, 640 long, marked in metres and tenths, with rope pieces above it at y 440, each tagged with its measure and unit in deep blue. The scale stands at x 300, y 300 with its dial reading kilograms. The jug is 200 wide and 360 tall at x 330, y 250, marked in tenths of a litre with a long line at each whole litre; water poured out fades rose, labelled Taken away, and the water left is green, labelled Left. The column strip runs down the right of the working area at x 820, 300 wide, one step per row with the points in one line and each result green. On the second phase the Answer card sits at x 820, y 560 and is dragged up into the next row. On the third the List panel replaces the scene, one line per part, with the Total and Check totals side by side under it. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is twelve number keys three across with a point key and a row of unit keys, m, km, kg and L, for setting a measure or typing an answer with its unit into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the tools of this chapter share them. A decimal or fraction the question gives is deep blue, with the shaded parts that show it. The result the working reaches, a decimal, a fraction, a sum, a difference or what is left, is green, with its shaded parts. Ten of one place traded for one of the next, a carry in adding or a trade in taking away, is vermilion. A zero written after the point to line decimals up is violet, and so is the point written after a whole number before those zeros. The part taken away, used or poured out is rose. The digit, place or step being worked on now, and the first place where two decimals differ, are amber. A zero holding a place open inside a number is grey, and nothing else on the stage is ever grey. An unshaded part stays warm white inside its near-black outline, the decimal point is near-black ink, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of them, and each of those readings survives with the colour taken away, because a part is told by its written label, Given, Answer, Carry, Trade, Added zero, Taken away, Left or Place holder, before it is told by its colour.",
+    "finish": "The card shows the last scene with every step written in the strip, each answer carried to the next.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the tape reads 4.55 m and the strip shows 2.40 + 1.35 + 0.80 = 4.55 in green",
+        "does": "drags the pieces end to end and reads the tape, then writes the sum in the strip",
+        "goal": "measures in one unit are added like any decimals, with the unit said with every number",
+        "says": "All in metres. Join them and read the total.",
+        "check": "Away from the screen: why must every measure in one sum be in the same unit?",
+        "feels": "the pieces snapping end to end and the tape reading their total",
+        "hands": "Measure three things in the room in metres, to two places after the point. Write the lengths one below the other with the points in one line, add them, and say the unit with every number.",
+        "tries": "First rung: check every unit tag. Second rung: join two pieces. Third rung: the same task with two pieces, before three return.",
+        "wrong": [
+          {
+            "why": "all the pieces look like rope, so they seem to add together",
+            "move": "drags a piece tagged in another unit into the sum",
+            "screen": "the Add button stays dim, and the mismatched tag lights amber beside the others"
+          },
+          {
+            "why": "the lengths are written as they were read",
+            "move": "lines up the last digits instead of the points",
+            "screen": "the column strip slides the row until its point sits in line with the others, the child's own row kept above"
+          }
+        ],
+        "screen": "rope pieces of 2.4 m, 1.35 m and 0.8 m over the tape, each with its unit tag",
+        "soWhat": "measures in one unit are added like any decimals, with the unit said with every number",
+        "concept": "Adding measures in one unit"
+      },
+      {
+        "n": 2,
+        "win": "the Answer card reads 2.35 kg, and the second step shows 6 - 2.35 = 3.65 kg left",
+        "does": "adds the two scoops, drags the Answer card into the second step, and takes it away",
+        "goal": "in a chain of steps, each answer is written down and the next step uses the written number",
+        "says": "Write the first answer down. The next step needs it.",
+        "check": "Away from the screen: why write the first answer down before the next step?",
+        "feels": "the Answer card carrying one step's result into the next",
+        "hands": "Use flour or sand and a kitchen scale. Weigh out two scoops, write their total down, then take that written total from the full bag's weight.",
+        "tries": "First rung: add the two scoops. Second rung: write the total on the Answer card. Third rung: the same task with one scoop, before two return.",
+        "wrong": [
+          {
+            "why": "the question names the bag and the first scoop first",
+            "move": "takes only the first scoop from the bag",
+            "screen": "the second scoop lights amber on the scale, and the Answer card waits for the two scoops' total"
+          },
+          {
+            "why": "the first answer still feels fresh",
+            "move": "does the second step from memory without the written answer",
+            "screen": "the second step stays closed until the Answer card is dragged into it, and the card's number lights"
+          }
+        ],
+        "screen": "a 6 kg bag on the scale, and two scoops of 1.65 kg and 0.7 kg waiting",
+        "soWhat": "in a chain of steps, each answer is written down and the next step uses the written number",
+        "concept": "One answer feeds the next"
+      },
+      {
+        "n": 3,
+        "win": "both totals read 7.65 m, side by side",
+        "does": "taps Total, then taps Check, and compares the two totals",
+        "goal": "the parts of a plan are listed with their measures, totalled, and checked in another order",
+        "says": "Add the list. Now add it the other way. Do they match?",
+        "check": "Away from the screen: how can you check a total without a calculator?",
+        "feels": "two totals, added two ways, landing on the same number",
+        "hands": "Plan three parts of a walk, a garden edge or a shelf, and list each with its measure. Add the list, then add it again from the bottom up.",
+        "tries": "First rung: add the first two parts. Second rung: add the third. Third rung: the same task with two parts, before three return.",
+        "wrong": [
+          {
+            "why": "a long list is easy to lose a line of",
+            "move": "leaves one part out of the total",
+            "screen": "the Total button lights each line as it is added, and the missing line stays amber"
+          },
+          {
+            "why": "the total looks finished",
+            "move": "adds the list only once and stops",
+            "screen": "the Check button pulses once, and its total fills in beside the first for the two to be compared"
+          }
+        ],
+        "screen": "the List panel with three garden beds of 2.6 m, 3.25 m and 1.8 m",
+        "soWhat": "the parts of a plan are listed with their measures, totalled, and checked in another order",
+        "concept": "A list of parts and its total"
+      },
+      {
+        "n": 4,
+        "win": "the jug reads 1.05 L, then 1.85 L, and both steps are written in litres",
+        "does": "pours out the cup, reads the jug, then pours in the bottle and reads again",
+        "goal": "water is poured and measured in litres, taken away and added as decimals",
+        "says": "Pour out, read the jug. Pour in, read it again.",
+        "check": "Away from the screen: a jug has a little more than one litre in it. How do the small marks help you read it?",
+        "feels": "the water level sliding down the marks and back up again",
+        "hands": "Pour water into a jug marked in tenths of a litre and read it. Pour some into a bottle and read again, then pour some back. Write every step as an addition or a subtraction in litres.",
+        "tries": "First rung: read the jug. Second rung: pour out once and read again. Third rung: the same task with one pour, before two return.",
+        "wrong": [
+          {
+            "why": "every step so far was an addition",
+            "move": "adds the water poured out instead of taking it away",
+            "screen": "the jug's level drops as the pour runs, and the strip's row turns to a take away with the poured part rose"
+          },
+          {
+            "why": "the long lines are easier to read than the small ones",
+            "move": "reads the level at the nearest whole litre",
+            "screen": "the tenths marks between the long lines light one by one up to the water level"
+          }
+        ],
+        "screen": "the jug holding 1.4 L of juice, and a cup of 0.35 L and a bottle of 0.8 L beside it",
+        "soWhat": "water is poured and measured in litres, taken away and added as decimals",
+        "concept": "Pouring and measuring in litres"
+      }
+    ],
+    "delight": "On the fourth phase, as water pours out of the jug, the level slides down past the tenths marks one by one with a soft glug for each, and the reading in the strip ticks down with it.",
+    "opening": "Every mount comes up already furnished for its phase with its measuring scene set out and nothing joined, weighed or poured. On the first phase rope pieces lie above the tape. On the second a bag sits on the scale with scoops beside it and the Answer card empty. On the third the List panel holds its parts with both totals blank. On the fourth the jug stands with water in it and a cup and a bottle beside it. One thing moves, once: the first rope piece, scoop, list line or cup gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any rope pieces, bags or water, joined, weighed or poured, with the Answer card and the List panel. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on measures in one unit, two-step chains, lists with totals, and water in litres.",
+    "voiceLines": [
+      "Measures waiting to be joined, weighed or poured.",
+      "All in metres. Join them and read the total.",
+      "Write the first answer down. The next step needs it.",
+      "Add the list. Now add it the other way. Do they match?",
+      "Pour out, read the jug. Pour in, read it again.",
+      "A new measure. Check the units first.",
+      "Free play. Join rope, weigh bags or pour water.",
+      "Say the unit with every number. Did you write the first answer down?",
+      "One unit, one step at a time, every answer written down."
+    ],
+    "observations": [
+      {
+        "why": "measures in different units are not parts of one thing.",
+        "soWhat": "measures in one unit are added like any decimals, with the unit said with every number.",
+        "observe": "The Add button only worked when every unit tag matched."
+      },
+      {
+        "why": "the second step is built on the first step's answer.",
+        "soWhat": "in a chain of steps, each answer is written down and the next step uses the written number.",
+        "observe": "The second step would not start until the Answer card was dragged into it."
+      },
+      {
+        "why": "the order of the addends does not change the sum.",
+        "soWhat": "a list of parts is totalled, and the total is checked by adding again in another order.",
+        "observe": "The list totalled top to bottom and bottom to top gave the same number."
+      },
+      {
+        "why": "each pour was taken away or added in litres, like any decimal.",
+        "soWhat": "water is poured and measured in litres, taken away and added as decimals.",
+        "observe": "The jug's level matched the working written in the strip."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "rope pieces of 2.4 m, 1.35 m and 0.8 m over the tape, each with its unit tag",
+        "win": "the tape reads 4.55 m and the strip shows 2.40 + 1.35 + 0.80 = 4.55 in green",
+        "traceback": "every piece is joined and every measure written with two places, then the column is added from the right, carries and all, to the green total with its unit",
+        "ladder": [
+          "Line up the points, not the last digits, since 3.2 has no hundredths.",
+          "The 3 in 2.3 kg is tenths, so it goes under the 4 in 1.45 kg.",
+          "The 6 in 4.6 m is tenths, so it shares a column with the 7 in 2.72 m.",
+          "Write a 0 in each empty hundredths place, so every row has two places.",
+          "Add each column from the right, and carry a ten to the next column."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a 6 kg bag on the scale, and two scoops of 1.65 kg and 0.7 kg waiting",
+        "win": "the Answer card reads 2.35 kg, and the second step shows 6 - 2.35 = 3.65 kg left",
+        "traceback": "the two parts are added on the Answer card, the card is carried into step 2, and the take away runs from the right to the green amount left",
+        "ladder": [
+          "Both amounts come out of the rice, not just the first one.",
+          "The cakes use flour too, not only the bread.",
+          "Two pieces were cut off the rope, not one.",
+          "Write the two parts' total on the Answer card, then use the card in step 2.",
+          "Give the whole two zeros after the point, then take away from the right."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the List panel with three garden beds of 2.6 m, 3.25 m and 1.8 m",
+        "win": "both totals read 7.65 m, side by side",
+        "traceback": "the list is written in both orders and each column is added from the right to the green total, the two the same",
+        "ladder": [
+          "Every part of the trail counts, so add all three.",
+          "The last part, 2 km, counts too, even with no point.",
+          "The third box weighs something too, so add it in.",
+          "Line up the points of all three parts, writing zeros in empty places.",
+          "Add the list again from the bottom, and the two totals must match."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the jug holding 1.4 L of juice, and a cup of 0.35 L and a bottle of 0.8 L beside it",
+        "win": "the jug reads 1.05 L, then 1.85 L, and both steps are written in litres",
+        "traceback": "every pour is made, each step written in litres, and the last column is worked from the right to the green reading",
+        "ladder": [
+          "Take away the 0.45 L first, then add the 0.3 L.",
+          "Water poured in makes more, so add it.",
+          "Poured out means less, so take 0.55 L away.",
+          "Write the starting water, then do each pour in order.",
+          "Write each step in litres with two places, then work it from the right."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "warm": [
+      {
+        "kind": "join",
+        "scene": "tape",
+        "unit": "m",
+        "pcs": [
+          "2.4",
+          "1.35",
+          "0.8"
+        ],
+        "show": true
+      },
+      {
+        "kind": "chain",
+        "scene": "sack",
+        "unit": "kg",
+        "whole": "6",
+        "pcs": [
+          "1.65",
+          "0.7"
+        ],
+        "show": true
+      },
+      {
+        "kind": "list",
+        "unit": "m",
+        "lines": [
+          [
+            "bed 1",
+            "2.6"
+          ],
+          [
+            "bed 2",
+            "3.25"
+          ],
+          [
+            "bed 3",
+            "1.8"
+          ]
+        ],
+        "show": true
+      },
+      {
+        "kind": "jug",
+        "unit": "L",
+        "start": "1.4",
+        "pours": [
+          [
+            "−",
+            "0.35"
+          ],
+          [
+            "+",
+            "0.8"
+          ]
+        ],
+        "show": true
+      }
+    ],
+    "free": {
+      "rope": {
+        "kind": "join",
+        "scene": "tape",
+        "unit": "m",
+        "pcs": [
+          "1.5",
+          "2.25",
+          "0.8"
+        ],
+        "show": true
+      },
+      "bags": {
+        "kind": "join",
+        "scene": "scale",
+        "unit": "kg",
+        "pcs": [
+          "1.2",
+          "2.5"
+        ],
+        "show": true
+      },
+      "jug": {
+        "kind": "jug",
+        "unit": "L",
+        "start": "1",
+        "pours": [
+          [
+            "−",
+            "0.25"
+          ],
+          [
+            "+",
+            "0.5"
+          ]
+        ],
+        "show": true
+      }
+    },
+    "tape": {
+      "metres": 8,
+      "marks": "tenths of a metre, a long line at each metre"
+    },
+    "dial": {
+      "kilograms": 5,
+      "marks": "tenths of a kilogram, a long line at each kilogram"
+    },
+    "jug": {
+      "litres": 2,
+      "marks": "tenths of a litre, a long line at each litre"
+    },
+    "strip": "a column: every point in one line, a zero written to fill an empty place (violet), carries and trades (vermilion), the result (green)",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M4.S6.T12.C55:MC1",
+        "kind": "join",
+        "scene": "tape",
+        "unit": "m",
+        "pcs": [
+          "3.2",
+          "2.45",
+          "1.7"
+        ],
+        "near": "2.94",
+        "answer": "7.35",
+        "win": "Yes, the fence is 7.35 m long."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M4.S6.T12.C55:1",
+        "kind": "join",
+        "scene": "scale",
+        "unit": "kg",
+        "pcs": [
+          "2.3",
+          "1.45"
+        ],
+        "near": "1.68",
+        "answer": "3.75",
+        "win": "Yes, the two bags weigh 3.75 kg."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M4.S6.T12.C55:3",
+        "kind": "join",
+        "scene": "tape",
+        "unit": "m",
+        "pcs": [
+          "4.6",
+          "2.72"
+        ],
+        "near": "3.18",
+        "answer": "7.32",
+        "win": "Yes, 4.6 m and 2.72 m make 7.32 m."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M4.S6.T12.C56:MC2",
+        "kind": "chain",
+        "scene": "sack",
+        "unit": "kg",
+        "whole": "5",
+        "pcs": [
+          "1.25",
+          "0.9"
+        ],
+        "near": "3.75",
+        "answer": "2.85",
+        "win": "Yes, 2.85 kg of rice is left."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M4.S6.T12.C56:4",
+        "kind": "chain",
+        "scene": "sack",
+        "unit": "kg",
+        "whole": "3",
+        "pcs": [
+          "0.75",
+          "1.1"
+        ],
+        "near": "2.25",
+        "answer": "1.15",
+        "win": "Yes, 1.15 kg of flour is left."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M4.S6.T12.C56:7",
+        "kind": "chain",
+        "scene": "rope",
+        "unit": "m",
+        "whole": "10",
+        "pcs": [
+          "2.6",
+          "3.15"
+        ],
+        "near": "7.4",
+        "answer": "4.25",
+        "win": "Yes, 4.25 m of rope is left."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M4.S6.T12.C57:MC3",
+        "kind": "list",
+        "unit": "km",
+        "lines": [
+          [
+            "to the pond",
+            "1.6"
+          ],
+          [
+            "to the hill",
+            "2.35"
+          ],
+          [
+            "back to the gate",
+            "0.9"
+          ]
+        ],
+        "near": "3.95",
+        "answer": "4.85",
+        "win": "Yes, the trail is 4.85 km long."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M4.S6.T12.C57:5",
+        "kind": "list",
+        "unit": "km",
+        "lines": [
+          [
+            "part 1",
+            "0.8"
+          ],
+          [
+            "part 2",
+            "1.25"
+          ],
+          [
+            "part 3",
+            "2"
+          ]
+        ],
+        "near": "2.05",
+        "answer": "4.05",
+        "win": "Yes, the walk is 4.05 km in all."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M4.S6.T12.C57:8",
+        "kind": "list",
+        "unit": "kg",
+        "lines": [
+          [
+            "box 1",
+            "1.35"
+          ],
+          [
+            "box 2",
+            "2.4"
+          ],
+          [
+            "box 3",
+            "0.72"
+          ]
+        ],
+        "near": "3.75",
+        "answer": "4.47",
+        "win": "Yes, the three boxes weigh 4.47 kg."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M4.S6.T12.C58:MC4",
+        "kind": "jug",
+        "unit": "L",
+        "start": "1.6",
+        "pours": [
+          [
+            "−",
+            "0.45"
+          ],
+          [
+            "+",
+            "0.3"
+          ]
+        ],
+        "near": "2.35",
+        "answer": "1.45",
+        "win": "Yes, the jug holds 1.45 L now."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M4.S6.T12.C58:2",
+        "kind": "jug",
+        "unit": "L",
+        "start": "0.9",
+        "pours": [
+          [
+            "+",
+            "0.6"
+          ]
+        ],
+        "near": "0.3",
+        "alt": [
+          "1.50"
+        ],
+        "answer": "1.5",
+        "win": "Yes, 0.9 L and 0.6 L fill it to 1.5 L."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M4.S6.T12.C58:6",
+        "kind": "jug",
+        "unit": "L",
+        "start": "1.9",
+        "pours": [
+          [
+            "−",
+            "0.55"
+          ]
+        ],
+        "near": "2.45",
+        "answer": "1.35",
+        "win": "Yes, 1.35 L is left in the jug."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: every piece is joined and every measure written with two places, then the column is added from the right, carries and all, to the green total with its unit",
+      "Phase 2: the two parts are added on the Answer card, the card is carried into step 2, and the take away runs from the right to the green amount left",
+      "Phase 3: the list is written in both orders and each column is added from the right to the green total, the two the same",
+      "Phase 4: every pour is made, each step written in litres, and the last column is worked from the right to the green reading"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Measures waiting to be joined, weighed or poured.",
+    "onFreePlay": "Free play. Join rope, weigh bags or pour water.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "One unit, one step at a time, every answer written down.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M4.S6.T12.C55:MC1",
+            "worked": false,
+            "kind": "join",
+            "planQuestion": "A fence has three sections, 3.2 m, 2.45 m and 1.7 m long. What is its total length?",
+            "question": {
+              "en": "What is the total length of a fence with sections of 3.2 m, 2.45 m and 1.7 m?"
+            },
+            "ask": {
+              "en": "Length of fence, in m?"
+            },
+            "answer": "7.35",
+            "planAnswer": "7.35 m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M4.S6.T12.C55:1",
+            "worked": false,
+            "kind": "join",
+            "planQuestion": "Add 2.3 kg and 1.45 kg.",
+            "question": {
+              "en": "Add 2.3 kg and 1.45 kg on the scale."
+            },
+            "ask": {
+              "en": "Total weight, in kg?"
+            },
+            "answer": "3.75",
+            "planAnswer": "3.75 kg",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M4.S6.T12.C55:3",
+            "worked": false,
+            "kind": "join",
+            "planQuestion": "Add 4.6 m and 2.72 m.",
+            "question": {
+              "en": "Add 4.6 m and 2.72 m."
+            },
+            "ask": {
+              "en": "Total length, in m?"
+            },
+            "answer": "7.32",
+            "planAnswer": "7.32 m",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M4.S6.T12.C56:MC2",
+            "worked": false,
+            "kind": "chain",
+            "planQuestion": "A cook has 5 kg of rice, and uses 1.25 kg on one day and 0.9 kg the next. How much rice is left?",
+            "question": {
+              "en": "From 5 kg of rice, a cook uses 1.25 kg and then 0.9 kg, so how much is left?"
+            },
+            "ask": {
+              "en": "Rice that is left, in kg?"
+            },
+            "answer": "2.85",
+            "planAnswer": "2.85 kg",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M4.S6.T12.C56:4",
+            "worked": false,
+            "kind": "chain",
+            "planQuestion": "A tin holds 3 kg of flour. 0.75 kg is used for bread and 1.1 kg for cakes. How much flour is left?",
+            "question": {
+              "en": "Of 3 kg of flour, bread uses 0.75 kg and cakes 1.1 kg, so how much is left?"
+            },
+            "ask": {
+              "en": "Flour that is left, in kg?"
+            },
+            "answer": "1.15",
+            "planAnswer": "1.15 kg. First 0.75 + 1.10 = 1.85 kg is used, then 3.00 - 1.85 = 1.15",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M4.S6.T12.C56:7",
+            "worked": false,
+            "kind": "chain",
+            "planQuestion": "A rope is 10 m long. 2.6 m is cut off, then 3.15 m more. How much rope is left?",
+            "question": {
+              "en": "A 10 m rope has 2.6 m cut off and then 3.15 m more, so how much rope is left?"
+            },
+            "ask": {
+              "en": "Rope that is left, in m?"
+            },
+            "answer": "4.25",
+            "planAnswer": "4.25 m. First 2.60 + 3.15 = 5.75 m is cut off, then 10.00 - 5.75 = 4.25",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M4.S6.T12.C57:MC3",
+            "worked": false,
+            "kind": "list",
+            "planQuestion": "A trail has three parts: 1.6 km to a pond, 2.35 km to a hill and 0.9 km back to the gate. List the parts and find the total. Check it.",
+            "question": {
+              "en": "Add the trail: 1.6 km to a pond, 2.35 km to a hill, 0.9 km back to the gate."
+            },
+            "ask": {
+              "en": "Trail in all, in km?"
+            },
+            "answer": "4.85",
+            "planAnswer": "4.85 km",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M4.S6.T12.C57:5",
+            "worked": false,
+            "kind": "list",
+            "planQuestion": "A walk has three parts, 0.8 km, 1.25 km and 2 km. Find the total and check it in another order.",
+            "question": {
+              "en": "Find the total of a walk in three parts of 0.8 km, 1.25 km and 2 km."
+            },
+            "ask": {
+              "en": "Length of walk, in km?"
+            },
+            "answer": "4.05",
+            "planAnswer": "4.05 km. 0.80 + 1.25 + 2.00 = 4.05, and 2.00 + 1.25 + 0.80 = 4.05",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M4.S6.T12.C57:8",
+            "worked": false,
+            "kind": "list",
+            "planQuestion": "A shelf holds three boxes of 1.35 kg, 2.4 kg and 0.72 kg. List them, find the total weight, and check it.",
+            "question": {
+              "en": "What do three boxes of 1.35 kg, 2.4 kg and 0.72 kg weigh in all?"
+            },
+            "ask": {
+              "en": "Total weight, in kg?"
+            },
+            "answer": "4.47",
+            "planAnswer": "4.47 kg. 1.35 + 2.40 + 0.72 = 4.47, and 0.72 + 2.40 + 1.35 = 4.47",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M4.S6.T12.C58:MC4",
+            "worked": false,
+            "kind": "jug",
+            "planQuestion": "A jug has 1.6 L of water. 0.45 L is poured out, then 0.3 L is poured in. How much water is in the jug now?",
+            "question": {
+              "en": "A jug with 1.6 L of water has 0.45 L poured out, then 0.3 L in; how much now?"
+            },
+            "ask": {
+              "en": "Water in the jug, in L?"
+            },
+            "answer": "1.45",
+            "planAnswer": "1.45 L",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M4.S6.T12.C58:2",
+            "worked": false,
+            "kind": "jug",
+            "planQuestion": "A jug has 0.9 L of water, and 0.6 L more is poured in. How much water is in it now?",
+            "question": {
+              "en": "A jug has 0.9 L and 0.6 L more is poured in, so how much is in it?"
+            },
+            "ask": {
+              "en": "Water in it now, in L?"
+            },
+            "answer": "1.5",
+            "planAnswer": "1.5 L, because 0.9 + 0.6 = 1.5",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M4.S6.T12.C58:6",
+            "worked": false,
+            "kind": "jug",
+            "planQuestion": "A jug has 1.9 L of water, and 0.55 L is poured out. How much is left?",
+            "question": {
+              "en": "A jug has 1.9 L of water and 0.55 L is poured out, so how much is left?"
+            },
+            "ask": {
+              "en": "Water that is left, in L?"
+            },
+            "answer": "1.35",
+            "planAnswer": "1.35 L, because 1.90 - 0.55 = 1.35",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "measure_chain",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "measure_chain",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Adding measures in one unit",
+        "conceptId": "M4.S6.T12.C55",
+        "objectiveIds": [
+          "O21"
+        ],
+        "items": [
+          "M4.S6.T12.C55:MC1",
+          "M4.S6.T12.C55:1",
+          "M4.S6.T12.C55:3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "One answer feeds the next",
+        "conceptId": "M4.S6.T12.C56",
+        "objectiveIds": [
+          "O21"
+        ],
+        "items": [
+          "M4.S6.T12.C56:MC2",
+          "M4.S6.T12.C56:4",
+          "M4.S6.T12.C56:7"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "A list of parts and its total",
+        "conceptId": "M4.S6.T12.C57",
+        "objectiveIds": [
+          "O22"
+        ],
+        "items": [
+          "M4.S6.T12.C57:MC3",
+          "M4.S6.T12.C57:5",
+          "M4.S6.T12.C57:8"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Pouring and measuring in litres",
+        "conceptId": "M4.S6.T12.C58",
+        "objectiveIds": [
+          "O21"
+        ],
+        "items": [
+          "M4.S6.T12.C58:MC4",
+          "M4.S6.T12.C58:2",
+          "M4.S6.T12.C58:6"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "scene",
+    "scene",
+    "unit",
+    "stepsDone",
+    "stepsOf",
+    "answerCard",
+    "card",
+    "res"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), scene, scene, unit, stepsDone, stepsOf, answerCard, card, res, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "measure_chain"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M4.S6.T12.C58.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Measures waiting to be joined, weighed or poured."
+    },
+    {
+      "en": "All in metres. Join them and read the total."
+    },
+    {
+      "en": "Write the first answer down. The next step needs it."
+    },
+    {
+      "en": "Add the list. Now add it the other way. Do they match?"
+    },
+    {
+      "en": "Pour out, read the jug. Pour in, read it again."
+    },
+    {
+      "en": "A new measure. Check the units first."
+    },
+    {
+      "en": "Free play. Join rope, weigh bags or pour water."
+    },
+    {
+      "en": "Say the unit with every number. Did you write the first answer down?"
+    },
+    {
+      "en": "One unit, one step at a time, every answer written down."
+    }
+  ],
+  "build": {
+    "source": "94fb3c60:644964",
+    "runtime": "class5/runtime/frozen/r64/runtime.tsx",
+    "runtimeVersion": "r64",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T13:22:21.163Z",
+    "checks": {
+      "pass": 94,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-18T13:22:21.044Z"
+    },
+    "tsxBytes": 571763,
+    "tsxMd5": "05ea42bbaf6514b47a9a4aeb7133f894",
+    "handEdited": true
+  }
+}

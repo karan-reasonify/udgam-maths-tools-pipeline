@@ -1,0 +1,1173 @@
+{
+  "slotId": "M1.S3.T6.C30.2D1",
+  "mediaId": "M1.S3.T6.C30.2D1",
+  "toolId": "pour_it",
+  "title": "Pour It",
+  "component": "M1.S3.T6.C30.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch9_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_9/2dtool/M1.S3.T6.C30.2D1/M1.S3.T6.C30.2D1.tsx",
+  "description": "Pour water into real jugs, cups and bottles, read the level at a mark, and sort real containers by whether they hold more or less than a litre.",
+  "conceptIds": [
+    "M1.S3.T6.C27",
+    "M1.S3.T6.C28",
+    "M1.S3.T6.C29",
+    "M1.S3.T6.C30"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Choose millilitres or litres for a real container, pour small vessels into a one litre jug and read the level at a mark, find half a litre and a quarter of a litre, and sort real containers by whether they hold more or less than a litre.",
+    "look": "A glass measuring jug with its marks at the left, a row of labelled standard vessels beside it, a shelf of real containers at the right, mL and L tags, a litre line across the table, and a pour counter at the top left of the canvas.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Pour It' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many vessels have been poured into the measuring jug. It is never a score. The working area is 1086 by 528 at x 64, y 202. The glass measuring jug stands at x 120, y 230, 200 wide and 400 tall, with a near-black mark at every hundred millilitres from 0 at the bottom to one litre at the top, evenly spaced, the half way and quarter way marks a little longer and labelled in words, and each long mark carrying its unit. Water in the jug is clear blue-grey and rises to the new mark with a short ripple. The row of standard vessels stands on a table line at y 560 from x 360, each about 120 wide and drawn as a recognisable flat illustration with its capacity written on its side in digits and its unit: 50 mL, 100 mL, 200 mL, 500 mL and 1 L. The shelf of real containers runs along the right of the working area at x 620 to x 1100, y 230 and y 380 in two rows: a teacup, a mug, a bottle, a kettle, a pot, a bucket, a drum, a car fuel tank, a juice packet, a bowl of curd, a syringe and a spoon, each in its own natural colours. Two label tags, mL and L, hang at x 640, y 210 and x 780, y 210, each 120 by 50. The litre line is a long near-black line across the table at x 360 to x 1100, y 520, with a More side above it and a Less side below it, each labelled in words. A pan with a cup beside it stands at x 940, y 560 for the cups count. A deep blue tag beside the jug shows the reading taken, a green tag the amount reached, and a vermilion ring sits round the unit fact one litre and one thousand millilitres when the child drops a container on a tag. The pour counter sits in the count corner, the vessels poured so far. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys and a clear key, for typing a count of vessels, the millilitres at a mark or the number of cups into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours, and the chapter's four roles are carried by what holds the object or the number, never by tinting the object. The measure the question gives, or the reading taken from the ruler, the balance or the jug, sits in a deep blue tag or on a deep blue plate, labelled Given. The measure the working reaches, a converted or total amount, sits in a green tag, labelled Answer. The times 100 or times 1000 step and the unit fact it comes from sit inside a vermilion ring, labelled Unit fact. The second amount of a sum or a difference, an amount carried and a part left over sit in an amber tag, labelled Second or Left. Every ruler mark, scale mark and plain edge is near-black, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of the four, and each reading survives with the colour taken away, because a measure is told by its written label before it is told by its colour.",
+    "finish": "The measuring jug and the shelf show the last pouring, with the reading in a deep blue tag, the amount reached in a green tag, and the containers in their own colours.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the container settles on its tag and the unit fact one litre beside one thousand millilitres lights in a vermilion ring",
+        "does": "pours water into each container and drops it on the mL tag or the L tag",
+        "goal": "small amounts are measured in millilitres and large amounts in litres",
+        "says": "Pour some water in. Is this a small amount or a large amount?",
+        "check": "Away from the screen: pour a teacup of water into a bowl and then a bucket of water into a tub. Which one is a small amount, and which unit fits it?",
+        "feels": "a teacup barely wetting the bottom of the jug while a bucket fills it many times over",
+        "hands": "Pour water from a litre bottle into a teacup, a mug and a bucket, and say for each one whether it holds a small amount or a large amount.",
+        "tries": "First rung: pour the container into the litre jug and look at how high the water goes. Second rung: pour it again and count how many times the jug fills. Third rung: the same task with a spoon and a drum, before the full shelf returns.",
+        "wrong": [
+          {
+            "why": "the word litre is on the bottle, so it feels like the word for every drink",
+            "move": "drops the teacup on the litre tag because a drink is measured in litres at the shop",
+            "screen": "the teacup is poured into the litre jug and the water barely covers the first mark, and the unit fact one litre and one thousand millilitres lights in a vermilion ring"
+          },
+          {
+            "why": "millilitres sounds like the unit for every drink and the bucket is full of water",
+            "move": "drops the bucket on the millilitre tag",
+            "screen": "the bucket is poured into the litre jug again and again and the jug fills many times, the number of pours counted aloud"
+          }
+        ],
+        "screen": "a teacup, a bucket and a bottle on the shelf, the glass jug empty, and the mL and L tags hanging over them",
+        "soWhat": "small amounts are measured in millilitres and large amounts are measured in litres",
+        "concept": "Capacity: litres and millilitres"
+      },
+      {
+        "n": 2,
+        "win": "the water meets the litre mark exactly and the pour counter lights in a green tag",
+        "does": "taps a vessel to pour it in, counts the pours until the water reaches the litre mark, and reads the level at a mark",
+        "goal": "small vessels poured into a one litre jug reach the litre mark exactly when their amounts add up to one litre",
+        "says": "Pour the small vessels into the big jug. How many does it take to reach the top?",
+        "check": "Away from the screen: fill a litre bottle with a small cup. How many cups did it take, and how do you know the bottle is full?",
+        "feels": "the water rising one equal step at a time until it meets the litre mark and stops",
+        "hands": "Pour small cups of water into a litre bottle, one at a time, and count the cups before the bottle is full.",
+        "tries": "First rung: pour one vessel and read the level at the mark. Second rung: pour a second vessel and read the level again. Third rung: the same task with the litre jug already half full, before the empty jug returns.",
+        "wrong": [
+          {
+            "why": "the water looks close to a mark and the eye rounds it",
+            "move": "reads the level between two marks",
+            "screen": "the water settles at a mark and a small near-black pointer comes to rest on that mark while the reading is spoken aloud"
+          },
+          {
+            "why": "the big number on the side of the vessel is the first number met",
+            "move": "says the number written on the vessel as the number of vessels",
+            "screen": "the vessels are poured one at a time and a small counter above the jug ticks once for each, with the water rising by the same step each time"
+          }
+        ],
+        "screen": "the empty one litre jug and a row of vessels marked fifty, a hundred, two hundred and five hundred millilitres",
+        "soWhat": "small vessels poured into a one litre jug reach the litre mark exactly when their amounts add up to one litre",
+        "concept": "Standard vessels: from 50 mL up to 1 L"
+      },
+      {
+        "n": 3,
+        "win": "the water settles at the mark and the thing stands beside it with the word about",
+        "does": "pours to the half way mark and to the quarter way mark, then sets each real thing beside the mark it is about the same as",
+        "goal": "half a litre is the middle mark of the jug and a quarter of a litre is a quarter of the way up, and real things hold about those amounts",
+        "says": "Pour to the middle mark. Which thing holds about as much?",
+        "check": "Away from the screen: pour a bottle of water until it is half full. Is the water about half a litre, a quarter of a litre or a whole litre?",
+        "feels": "the water stopping at the middle of the jug and a bowl of curd standing beside it, about the same",
+        "hands": "Mark a litre bottle at the middle with a strip of tape, then pour water up to the tape and into a mug, and say that this is about half a litre.",
+        "tries": "First rung: point to the middle mark of the jug. Second rung: pour to it and read the level aloud. Third rung: the same task with only the quarter way mark showing, before the half way mark returns.",
+        "wrong": [
+          {
+            "why": "the bowl looks the same height as the mark, so it seems exact",
+            "move": "sets a bowl of curd exactly on the half way mark and calls it exactly half a litre",
+            "screen": "the bowl and the mark sit side by side with the word about written between them, and the spoken line says about half a litre"
+          },
+          {
+            "why": "a quarter of the way up looks like a lot of water",
+            "move": "pours to the quarter way mark and says it is half a litre",
+            "screen": "the half way mark lights beside the quarter way mark and the water is poured on up to it, so the two heights are seen together"
+          }
+        ],
+        "screen": "the one litre jug with its half way and quarter way marks, and a bowl of curd, a jug of water, a glass of buttermilk and a juice packet waiting beside it",
+        "soWhat": "half a litre is the middle mark of the jug and a quarter of a litre is a quarter of the way up, and real things hold about those amounts",
+        "concept": "Half a litre and a quarter of a litre"
+      },
+      {
+        "n": 4,
+        "win": "the sorted shelf stands on two sides of the litre line and the count of cups lights in a green tag",
+        "does": "drags each container to the More side or the Less side, then fills the pan cup by cup and keeps the count",
+        "goal": "a container holds more than a litre if it fills the litre jug more than once, and less if it does not fill it",
+        "says": "Does this hold more than the jug, or less? Drag it to its side.",
+        "check": "Away from the screen: which holds more than one litre of water, a bucket or a spoon? How could you check with a litre bottle?",
+        "feels": "a shelf of containers standing on two sides of one litre line, and a pan filling cup by cup",
+        "hands": "Put a litre bottle of water beside a teacup, a bucket and a pot, and ask which ones hold more than the bottle and which hold less.",
+        "tries": "First rung: pour the container into the litre jug once. Second rung: pour it again if there is more and count the pours. Third rung: the same task with a spoon and a bucket, before the full shelf returns.",
+        "wrong": [
+          {
+            "why": "the picture of the tank is small, so it seems to hold a small amount",
+            "move": "puts the car fuel tank on the Less side because it is drawn small on the shelf",
+            "screen": "the tank is poured into the litre jug and the jug fills again and again, the number of pours counted aloud, and the tank moves to More"
+          },
+          {
+            "why": "the number on the cup is the first number met",
+            "move": "fills the pan with cups and stops at the number written on the cup",
+            "screen": "the cups are poured into the pan one at a time and a small counter ticks once for each, with the level rising by the same step"
+          }
+        ],
+        "screen": "a shelf of real containers, a litre line across the table with a More side and a Less side, and a pan with a cup beside it",
+        "soWhat": "a container holds more than a litre if it fills the litre jug more than once, and less if it does not fill it",
+        "concept": "More than or less than one litre"
+      }
+    ],
+    "delight": "Two small surprises. On the second phase, as the last vessel is poured, the water climbs to the litre mark and stops with a tiny ripple, and the vessels lined up beside the jug light together like cups on a shelf. On the fourth phase, when the pan is filled cup by cup, each cup tips in with a splash and the level in the pan rises by one equal step every time.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet poured. On the first phase the glass jug stands empty at the left, a teacup, a bucket and a bottle wait on the shelf, and the mL and L tags hang over them. On the second the jug is empty with its marks showing and a row of vessels marked fifty, a hundred, two hundred and five hundred millilitres stands beside it. On the third the jug stands with its half way and quarter way marks labelled and a bowl of curd, a jug of water, a glass of buttermilk and a juice packet wait beside it. On the fourth a shelf of containers waits under a litre line with a More side and a Less side, and a pan and a cup stand to one side. One thing moves, once: the tap, or the first vessel on the second phase, gives one slow drip while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any container poured at the tap, any vessel poured into the jug in any order, the half way and quarter way marks, and the More and Less sides. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on a kettle, a syringe, a bucket, a pot, a bottle, a measuring jug, a glass of milk, a fuel tank, a spoon and a pan, each a real container.",
+    "voiceLines": [
+      "A glass jug, some small vessels and a shelf of real containers. Let us pour.",
+      "Pour some water in. Is this a small amount or a large amount?",
+      "Pour the small vessels into the big jug. How many does it take to reach the top?",
+      "Pour to the middle mark. Which thing holds about as much?",
+      "Does this hold more than the jug, or less? Drag it to its side.",
+      "A new container. Is it a small amount or a large amount?",
+      "Free play. Pour any container, fill the jug your way, and sort what you like.",
+      "Look at the water again. Read the level at the nearest mark.",
+      "You poured, read the level at a mark, and sorted the containers against a litre."
+    ],
+    "observations": [
+      {
+        "why": "the amounts of the vessels add up to one litre, so the water has nowhere else to go.",
+        "soWhat": "small vessels poured into a one litre jug reach the litre mark exactly when their amounts add up to one litre.",
+        "observe": "Small vessels poured one after another brought the water to the litre mark exactly, and the pour counter stopped there."
+      },
+      {
+        "why": "a small amount is measured in millilitres and a large amount in litres.",
+        "soWhat": "millilitres fit small amounts and litres fit large amounts.",
+        "observe": "A teacup, a mug and a bucket all dropped on a tag, and the bucket went to the litre side."
+      },
+      {
+        "why": "the marks are evenly spaced from zero to one litre.",
+        "soWhat": "half a litre is the middle of the jug and a quarter of a litre is a quarter of the way up.",
+        "observe": "The half way mark sat in the middle of the jug and the quarter way mark a quarter of the way up."
+      },
+      {
+        "why": "the bucket fills the litre jug more than once and the spoon cannot fill it once.",
+        "soWhat": "a container holds more than a litre if it fills the litre jug more than once, and less if it does not.",
+        "observe": "A bucket dragged past the litre line went to More, and a spoon went to Less."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a teacup, a bucket and a bottle on the shelf, the glass jug empty, and the mL and L tags hanging over them",
+        "win": "the container settles on its tag and the unit fact one litre beside one thousand millilitres lights in a vermilion ring",
+        "traceback": "The container is poured into the 1 L jug again, and the child picks the unit once more.",
+        "ladder": [
+          "See how high the water from the cup came in the jug.",
+          "Tap the bucket and watch the water.",
+          "Pour each one again and watch the water in the jug."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the empty one litre jug and a row of vessels marked fifty, a hundred, two hundred and five hundred millilitres",
+        "win": "the water meets the litre mark exactly and the pour counter lights in a green tag",
+        "traceback": "The pours are replayed one at a time with a counter, stopping one pour before the answer.",
+        "ladder": [
+          "Pour again and count each vessel as it goes in.",
+          "Pour again and watch the water in the jug go down.",
+          "Find the last number below the water, then count the marks up."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the one litre jug with its half way and quarter way marks, and a bowl of curd, a jug of water, a glass of buttermilk and a juice packet waiting beside it",
+        "win": "the water settles at the mark and the thing stands beside it with the word about",
+        "traceback": "The jug is filled again to one step below the mark, and the child finishes the pour.",
+        "ladder": [
+          "Look at the scale beside the middle long mark.",
+          "Pour the rest of the milk and look at the long marks.",
+          "Pour the glasses again and count each one."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a shelf of real containers, a litre line across the table with a More side and a Less side, and a pan with a cup beside it",
+        "win": "the sorted shelf stands on two sides of the litre line and the count of cups lights in a green tag",
+        "traceback": "The containers go back to the shelf, 1 L = 1,000 mL lights, and the child sorts again.",
+        "ladder": [
+          "Read each label and compare it with 1 L.",
+          "Check each label again before you place it.",
+          "Pour the teacups in one by one and count them."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "cap": {
+      "cup": 200,
+      "bottle": 1000,
+      "bucket": 10000,
+      "drum": 50000,
+      "packet": 200,
+      "carton": 500,
+      "glass": 250,
+      "teacup": 140,
+      "pot": 3000,
+      "jug": 1000,
+      "v50": 50,
+      "v100": 100,
+      "v200": 200,
+      "v500": 500
+    },
+    "jug": {
+      "cap": 1000,
+      "step": 100,
+      "long": [
+        250,
+        500,
+        750
+      ]
+    },
+    "small": {
+      "cap": 200,
+      "step": 20,
+      "numbered": [
+        100,
+        200
+      ]
+    },
+    "fill": {
+      "line": 560
+    },
+    "bins": [
+      "less",
+      "equal",
+      "more"
+    ],
+    "answerGate": {
+      "1.1": "pour the cup into the jug",
+      "1.2": "pour the bucket into the jug (then tap a unit tag, Enter)",
+      "1.3": "pour the juice packet and the drum",
+      "2.1": "fill the jug to 1 L with 500 mL vessels",
+      "2.2": "empty the full jug into 200 mL cups",
+      "2.3": "pour the teacup into the small jug",
+      "3.1": "tap the middle long mark (the jug fills to it)",
+      "3.2": "pour the milk carton into the jug",
+      "3.3": "fill the jug with quarter litre glasses",
+      "4.1": "put both containers in bins (Enter)",
+      "4.2": "put all four containers in bins (Enter)",
+      "4.3": "pour teacups up to the 560 mL line",
+      "note": "after a miss clears the bins the key stays awake; Enter then nudges until every container is placed"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S3.T6.C27:PI1",
+        "kind": "unit",
+        "objs": [
+          {
+            "id": "cup"
+          }
+        ],
+        "answer": "mL",
+        "near": "L",
+        "ladder": [
+          "The cup filled only a little of the 1 litre jug.",
+          "A little amount is measured in the smaller unit."
+        ],
+        "win": "Yes, a cup holds little, so we use millilitres.",
+        "winMs": 4012
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S3.T6.C27:1",
+        "kind": "tag",
+        "objs": [
+          {
+            "id": "bucket"
+          }
+        ],
+        "pad": "enter",
+        "answer": "L",
+        "near": "mL",
+        "ladder": [
+          "One bucket holds more than a whole 1 litre jug.",
+          "A big amount is measured in the bigger unit."
+        ],
+        "win": "Yes, a bucket holds a lot, so we use litres.",
+        "winMs": 4284
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S3.T6.C27:5",
+        "kind": "pair",
+        "objs": [
+          {
+            "id": "packet"
+          },
+          {
+            "id": "drum"
+          }
+        ],
+        "answer": "packet",
+        "near": "drum",
+        "ladder": [
+          "One of them spilled over the jug and one did not fill it.",
+          "The one that holds only a little uses the small unit."
+        ],
+        "win": "Yes, a juice packet is measured in millilitres and a drum in litres.",
+        "winMs": 4624
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S3.T6.C28:PI2",
+        "kind": "count",
+        "vessel": "v500",
+        "nv": 3,
+        "parts": [
+          {
+            "label": "how many",
+            "unit": "vessels"
+          }
+        ],
+        "answer": [
+          2
+        ],
+        "near": "500",
+        "ladder": [
+          "Each vessel lifts the water by 500 mL; count up to the 1 L mark.",
+          "Pour until the water touches the 1 L mark, then count the vessels you used."
+        ],
+        "win": "Yes, 2 vessels of 500 mL fill the 1 litre jug.",
+        "winMs": 3604
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S3.T6.C28:2",
+        "kind": "share",
+        "nc": 6,
+        "parts": [
+          {
+            "label": "how many",
+            "unit": "cups"
+          }
+        ],
+        "answer": [
+          5
+        ],
+        "near": "200",
+        "ladder": [
+          "Each cup takes 200 mL out of the jug; keep going until it is empty.",
+          "Count in 200s up to 1,000 mL and count the cups as you go."
+        ],
+        "win": "Yes, 1 litre fills 5 cups of 200 mL.",
+        "winMs": 3060
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S3.T6.C28:6",
+        "kind": "read",
+        "marks": 7,
+        "parts": [
+          {
+            "label": "water",
+            "unit": "mL"
+          }
+        ],
+        "answer": [
+          140
+        ],
+        "near": "7",
+        "ladder": [
+          "Each small mark is 20 mL more than the mark below it.",
+          "Start at 100 mL and count on by 20s up to the water."
+        ],
+        "win": "Yes, the water is at the 140 mL mark.",
+        "winMs": 2584
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S3.T6.C29:PI3",
+        "kind": "half",
+        "target": 500,
+        "parts": [
+          {
+            "label": "half litre",
+            "unit": "mL"
+          }
+        ],
+        "answer": [
+          500
+        ],
+        "near": "250",
+        "ladder": [
+          "The middle mark is half way from 0 to 1,000 mL.",
+          "The middle mark is half way from 400 mL to 600 mL."
+        ],
+        "win": "Yes, half a litre is 500 millilitres.",
+        "winMs": 2516
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S3.T6.C29:3",
+        "kind": "about",
+        "src": "carton",
+        "answer": "half",
+        "near": "quarter",
+        "ladder": [
+          "The quarter mark is low; the 1 litre mark is at the top.",
+          "Is the water near the bottom, the middle or the top?"
+        ],
+        "win": "Yes, the milk carton held about half a litre.",
+        "winMs": 3060
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S3.T6.C29:7",
+        "kind": "glasses",
+        "ng": 6,
+        "parts": [
+          {
+            "label": "how many",
+            "unit": "glasses"
+          }
+        ],
+        "answer": [
+          4
+        ],
+        "near": "250",
+        "ladder": [
+          "Each glass lifts the water up to the next long mark.",
+          "Count the quarters: 1 quarter, 2 quarters, and on up to 1 litre."
+        ],
+        "win": "Yes, 4 quarter litre glasses fill 1 litre.",
+        "winMs": 3060
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S3.T6.C30:PI4",
+        "kind": "sort",
+        "objs": [
+          {
+            "id": "drum",
+            "show": "L"
+          },
+          {
+            "id": "cup",
+            "show": "mL"
+          }
+        ],
+        "pad": "enter",
+        "answer": "more,less",
+        "near": "less,more",
+        "ladder": [
+          "A litre is a big amount; a few hundred millilitres is much less.",
+          "Over 1 L goes in More, under 1 L goes in Less."
+        ],
+        "win": "Yes, the drum holds more than 1 L and the cup holds less.",
+        "winMs": 3876
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S3.T6.C30:4",
+        "kind": "sort",
+        "objs": [
+          {
+            "id": "bucket",
+            "show": "L"
+          },
+          {
+            "id": "jug",
+            "show": "L"
+          },
+          {
+            "id": "bottle",
+            "show": "mL"
+          },
+          {
+            "id": "packet",
+            "show": "mL"
+          }
+        ],
+        "pad": "enter",
+        "answer": "more,equal,equal,less",
+        "near": "more,equal,more,less",
+        "ladder": [
+          "Change 1 L into millilitres, then compare each label.",
+          "A label in mL is compared with 1,000 mL."
+        ],
+        "win": "Yes, the jug and the 1,000 mL bottle both hold exactly 1 L.",
+        "winMs": 4284
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S3.T6.C30:8",
+        "kind": "pan",
+        "nt": 6,
+        "parts": [
+          {
+            "label": "how many",
+            "unit": "teacups"
+          }
+        ],
+        "answer": [
+          4
+        ],
+        "near": "140",
+        "ladder": [
+          "Each teacup lifts the water by 140 mL.",
+          "Count in 140s until you reach 560 mL."
+        ],
+        "win": "Yes, 4 teacups of 140 mL fill the jug to the 560 mL line.",
+        "winMs": 4284
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The container is poured into the 1 L jug again, and the child picks the unit once more.",
+      "Phase 2: The pours are replayed one at a time with a counter, stopping one pour before the answer.",
+      "Phase 3: The jug is filled again to one step below the mark, and the child finishes the pour.",
+      "Phase 4: The containers go back to the shelf, 1 L = 1,000 mL lights, and the child sorts again."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A glass jug, small vessels and a shelf of containers. Let us pour.",
+    "onFreePlay": "Free play: pour any container into the jug and tap the jug to empty it.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You poured, read the level at a mark, and sorted the containers against a litre.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S3.T6.C27:PI1",
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": "A cup of tea is measured. Which unit fits the capacity of the cup, millilitres or litres?",
+            "question": {
+              "en": "Tap the cup to pour it into the jug: is a cup measured in mL or L?"
+            },
+            "ask": {
+              "en": "A cup: mL or L?"
+            },
+            "answer": "mL",
+            "planAnswer": "Millilitres",
+            "choices": [
+              "mL",
+              "L"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S3.T6.C27:1",
+            "worked": false,
+            "kind": "tag",
+            "planQuestion": "A kettle is filled at a tap. Which unit fits its capacity, millilitres or litres?",
+            "question": {
+              "en": "Pour the bucket into the jug, then tap the unit tag that fits a bucket."
+            },
+            "ask": {
+              "en": "A bucket: tap mL or L"
+            },
+            "answer": "L",
+            "planAnswer": "Litres, because a kettle holds a large amount of water",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S3.T6.C27:5",
+            "worked": false,
+            "kind": "pair",
+            "planQuestion": "A syringe and a bucket are both filled with water. Which one is measured in millilitres and which in litres?",
+            "question": {
+              "en": "Pour the juice packet and the drum: which one is measured in mL?"
+            },
+            "ask": {
+              "en": "Which one in mL?"
+            },
+            "answer": "packet",
+            "planAnswer": "The syringe in millilitres and the bucket in litres",
+            "choices": [
+              "packet",
+              "drum"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S3.T6.C28:PI2",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A glass jug holds one litre. A small vessel holds five hundred millilitres. How many of the small vessels fill the jug?",
+            "question": {
+              "en": "Pour 500 mL vessels into the jug until it is full: how many fill it?"
+            },
+            "ask": {
+              "en": "500 mL vessels in 1 L?"
+            },
+            "answer": [
+              2
+            ],
+            "planAnswer": "Two vessels",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S3.T6.C28:2",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A pot holds one litre of water. It is poured into small cups that each hold two hundred millilitres. How many cups does it fill?",
+            "question": {
+              "en": "Pour the full 1 L jug into 200 mL cups: how many cups does it fill?"
+            },
+            "ask": {
+              "en": "200 mL cups from 1 L?"
+            },
+            "answer": [
+              5
+            ],
+            "planAnswer": "Five cups, because five cups of two hundred millilitres make one litre",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S3.T6.C28:6",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "A small measuring jug is marked every 20 mL. The water reaches the seventh mark above 0. How many millilitres of water are in the jug?",
+            "question": {
+              "en": "Pour the teacup into the small jug marked every 20 mL: how much is in it?"
+            },
+            "ask": {
+              "en": "Water in the jug?"
+            },
+            "answer": [
+              140
+            ],
+            "planAnswer": "140 mL, because seven marks of 20 mL each give 140 mL",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S3.T6.C29:PI3",
+            "worked": false,
+            "kind": "half",
+            "planQuestion": "A bottle is marked up to one litre. Water is poured to the half way mark. How many millilitres of water are in the bottle?",
+            "question": {
+              "en": "Tap the middle long mark to fill the jug to half a litre: how many mL is that?"
+            },
+            "ask": {
+              "en": "Half a litre in mL?"
+            },
+            "answer": [
+              500
+            ],
+            "planAnswer": "Five hundred millilitres",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S3.T6.C29:3",
+            "worked": false,
+            "kind": "about",
+            "planQuestion": "A one litre water bottle is filled to the half way mark. Is the water about a quarter of a litre, half a litre or one litre?",
+            "question": {
+              "en": "Pour the milk carton into the jug: is it about a quarter, a half or 1 litre?"
+            },
+            "ask": {
+              "en": "About how much?"
+            },
+            "answer": "half",
+            "planAnswer": "Half a litre, because the bottle is half full",
+            "choices": [
+              "quarter",
+              "half",
+              "one"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S3.T6.C29:7",
+            "worked": false,
+            "kind": "glasses",
+            "planQuestion": "A glass of milk holds about a quarter of a litre. About how many such glasses fill a one litre jug?",
+            "question": {
+              "en": "Pour the quarter litre glasses into the jug: how many fill 1 litre?"
+            },
+            "ask": {
+              "en": "Glasses in 1 L?"
+            },
+            "answer": [
+              4
+            ],
+            "planAnswer": "About four glasses, because four quarters make one litre",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S3.T6.C30:PI4",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "A drum and a cup are both filled with water. Which one holds more than one litre?",
+            "question": {
+              "en": "Put the drum and the cup in their bins: which one holds more than 1 L?"
+            },
+            "ask": {
+              "en": "Sort: drum, cup"
+            },
+            "answer": "more,less",
+            "planAnswer": "The drum",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S3.T6.C30:4",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "A car fuel tank and a spoon are filled with water. Which one holds less than one litre?",
+            "question": {
+              "en": "Sort the bucket, the jug, the bottle and the juice packet into the three bins."
+            },
+            "ask": {
+              "en": "Sort all four"
+            },
+            "answer": "more,equal,equal,less",
+            "planAnswer": "The spoon, because a spoon holds only a very small amount",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S3.T6.C30:8",
+            "worked": false,
+            "kind": "pan",
+            "planQuestion": "A cup holds 140 mL of water. How many cups fill a pan that holds 560 mL?",
+            "question": {
+              "en": "Each teacup holds 140 mL: how many teacups fill the jug up to the 560 mL line?"
+            },
+            "ask": {
+              "en": "Teacups to the line?"
+            },
+            "answer": [
+              4
+            ],
+            "planAnswer": "4 cups, because counting 140, 280, 420, 560 takes four steps",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "pour_it",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "pour_it",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Capacity: litres and millilitres",
+        "conceptId": "M1.S3.T6.C27",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M1.S3.T6.C27:PI1",
+          "M1.S3.T6.C27:1",
+          "M1.S3.T6.C27:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Standard vessels: from 50 mL up to 1 L",
+        "conceptId": "M1.S3.T6.C28",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M1.S3.T6.C28:PI2",
+          "M1.S3.T6.C28:2",
+          "M1.S3.T6.C28:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Half a litre and a quarter of a litre",
+        "conceptId": "M1.S3.T6.C29",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M1.S3.T6.C29:PI3",
+          "M1.S3.T6.C29:3",
+          "M1.S3.T6.C29:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "More than or less than one litre",
+        "conceptId": "M1.S3.T6.C30",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M1.S3.T6.C30:PI4",
+          "M1.S3.T6.C30:4",
+          "M1.S3.T6.C30:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "acted"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, acted, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "pour_it"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S3.T6.C30.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A glass jug, some small vessels and a shelf of real containers. Let us pour."
+    },
+    {
+      "en": "Pour some water in. Is this a small amount or a large amount?"
+    },
+    {
+      "en": "Pour the small vessels into the big jug. How many does it take to reach the top?"
+    },
+    {
+      "en": "Pour to the middle mark. Which thing holds about as much?"
+    },
+    {
+      "en": "Does this hold more than the jug, or less? Drag it to its side."
+    },
+    {
+      "en": "A new container. Is it a small amount or a large amount?"
+    },
+    {
+      "en": "Free play. Pour any container, fill the jug your way, and sort what you like."
+    },
+    {
+      "en": "Look at the water again. Read the level at the nearest mark."
+    },
+    {
+      "en": "You poured, read the level at a mark, and sorted the containers against a litre."
+    }
+  ],
+  "build": {
+    "source": "9d81bd2a:760854",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-29T11:37:36.215Z",
+    "checks": {
+      "pass": 97,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-29T11:37:35.937Z"
+    },
+    "tsxBytes": 680721,
+    "tsxMd5": "02ddf349d0e700487f15e4568a3b8699"
+  }
+}

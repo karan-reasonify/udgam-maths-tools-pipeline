@@ -1,0 +1,1152 @@
+{
+  "slotId": "M1.S1.T2.C8.2D1",
+  "mediaId": "M1.S1.T2.C8.2D1",
+  "toolId": "tenths_builder",
+  "title": "Tenths Builder",
+  "component": "M1.S1.T2.C8.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch5",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch5_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_5/2dtool/M1.S1.T2.C8.2D1/M1.S1.T2.C8.2D1.tsx",
+  "description": "Cut a strip into ten equal parts, shade tenths, read them as a fraction and a decimal, and watch ten tenths close into one whole.",
+  "conceptIds": [
+    "M1.S1.T2.C5",
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7",
+    "M1.S1.T2.C8"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        1086,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Write tenths of a whole, and wholes with tenths, as fractions and as decimals, and trade ten tenths for one whole to count lots of tenths into ones and tenths.",
+    "look": "Strips of one length stacked across the working area, a fraction card and a decimal card to their right, and Cut, Shape, Trade and Lots of buttons under them.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Tenths Builder' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x sixty-four, y 108 and 330 by 76, sits the running count: how many tenths are shaded in all, counting ten for each whole strip. It is never a score. The working area is 1086 by 528 at x sixty-four, y 202. The strips lie across the working area, each 900 long and 60 tall, their left ends at x 110, stacked from y 250 downward with 20 between them, each labelled Whole in ink at its left. The part strip is always the lowest. Its ten parts are exactly one width, cut by near-black lines; shaded parts are deep blue and unshaded parts warm white. On the Shape switch the part strip becomes a circle 260 across at x 380, y 460, cut into ten equal sectors. The fraction card and the decimal card stand at x 1030, y 300, one above the other, the decimal card with a large near-black point and the words Whole number part and Decimal part under its two sides. The Cut, Shape, Trade and Lots of buttons sit in a row along the bottom of the working area at y 670, each labelled in words. When ten tenths are traded they slide together, their cut lines fading to half strength, and the strip closes with a vermilion flash labelled Trade. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is twelve number keys three across with a point key and a fraction bar key, for setting a number of tenths up to ninety-nine, or for typing a fraction or a decimal into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the tools of this chapter share them. A decimal or fraction the question gives is deep blue, with the shaded parts that show it. The result the working reaches, a decimal, a fraction, a sum, a difference or what is left, is green, with its shaded parts. Ten of one place traded for one of the next, a carry in adding or a trade in taking away, is vermilion. A zero written after the point to line decimals up is violet, and so is the point written after a whole number before those zeros. The part taken away, used or poured out is rose. The digit, place or step being worked on now, and the first place where two decimals differ, are amber. A zero holding a place open inside a number is grey, and nothing else on the stage is ever grey. An unshaded part stays warm white inside its near-black outline, the decimal point is near-black ink, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of them, and each of those readings survives with the colour taken away, because a part is told by its written label, Given, Answer, Carry, Trade, Added zero, Taken away, Left or Place holder, before it is told by its colour.",
+    "finish": "The card shows the last count of tenths as whole strips and a part strip, with its decimal written under them.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the fraction card shows 1/10, the decimal card shows 0.1 in green, and the voice reads zero point one",
+        "does": "taps Cut, checks that the ten parts are one width, and shades one part",
+        "goal": "a whole cut into ten equal parts gives tenths, and one part is 1/10, written 0.1",
+        "says": "Cut the strip into ten equal parts. Shade one. What is it called?",
+        "check": "Away from the screen: if a cake is cut into ten pieces of different sizes, is one piece a tenth? Why not?",
+        "feels": "one strip splitting into ten parts of exactly one width",
+        "hands": "Fold a paper strip in half, then fold and mark it until it has ten equal parts, and check them with a ruler. Colour one part and write what it is three ways: in words, as a fraction and as a decimal.",
+        "tries": "First rung: tap Cut and count the parts. Second rung: shade one part and read the fraction card. Third rung: the same task with the decimal card covered, reading the fraction first.",
+        "wrong": [
+          {
+            "why": "the strip looks ready to shade, and the cutting seems like an extra step",
+            "move": "shades one part before tapping Cut, so the whole strip fills",
+            "screen": "the whole strip fills deep blue and the decimal card reads one whole; the Cut button pulses once, and cutting splits the shading into ten shaded parts, all still counted"
+          },
+          {
+            "why": "one part was shaded, so the number one feels like the answer",
+            "move": "reads one tenth as one",
+            "screen": "the decimal card writes the digit after the point in amber and a 0 before it, and one whole strip is drawn beside the part strip so the two sizes are seen together"
+          }
+        ],
+        "screen": "one whole strip, not yet cut, with the fraction card and the decimal card blank",
+        "soWhat": "one of ten equal parts is one tenth, 1/10 or 0.1",
+        "concept": "One tenth"
+      },
+      {
+        "n": 2,
+        "win": "nine parts shaded, 9/10 on one card and 0.9 on the other, with a 0 before the point for no whole ones",
+        "does": "shades parts one tap at a time and reads both cards after each tap",
+        "goal": "a number of tenths is written as a decimal with that digit after the point",
+        "says": "Each part you shade is one more tenth. Watch the digit after the point.",
+        "check": "Away from the screen: nine tenths of a strip is shaded. How many parts are not shaded, and what decimal names them?",
+        "feels": "the digit after the point ticking up with every part shaded",
+        "hands": "Colour some parts of a strip cut into ten, and write the fraction over ten. Then write the same amount as a decimal, with a 0 before the point and the count of coloured parts after it.",
+        "tries": "First rung: shade one part and read both cards. Second rung: shade one more and read them again. Third rung: the same task with the fraction card lit, before the decimal card is asked for.",
+        "wrong": [
+          {
+            "why": "the count is the number seen, and the point seems to go at the end",
+            "move": "types the count of shaded parts before the point, as a whole number with a zero after it",
+            "screen": "a whole strip for every unit the child typed is drawn beside the part strip, and the shaded run of the part strip is lit amber, so the two amounts stand side by side"
+          },
+          {
+            "why": "both kinds of part are right there on the strip",
+            "move": "counts the unshaded parts instead of the shaded ones",
+            "screen": "each shaded part gets its own number in turn, from the left, and the unshaded parts stay warm white and unnumbered"
+          }
+        ],
+        "screen": "one strip already cut into ten equal parts, with none shaded",
+        "soWhat": "a number of tenths is written as a decimal with that digit after the point",
+        "concept": "Tenths as decimals"
+      },
+      {
+        "n": 3,
+        "win": "the card reads 2.9 with Whole number part under the 2 and Decimal part under the 9",
+        "does": "shades tenths of the third strip and reads the decimal card, whole number part and decimal part",
+        "goal": "whole strips give the whole number part and the tenths give the decimal part, either side of the point",
+        "says": "The whole strips go before the point. The tenths go after it.",
+        "check": "Away from the screen: what does the digit before the point count, and what does the digit after it count?",
+        "feels": "the wholes and the tenths falling into place on either side of the point",
+        "hands": "Lay some whole paper strips end to end and one strip cut into tenths after them. Colour some tenths. Write the number of whole strips, a point, then the number of coloured tenths.",
+        "tries": "First rung: count the whole strips only. Second rung: count the shaded tenths only. Third rung: the same task with one whole strip, before more whole strips return.",
+        "wrong": [
+          {
+            "why": "both counts are part of the answer, and both feel like small numbers",
+            "move": "writes the wholes and the tenths as one number after the point",
+            "screen": "the whole strips light deep blue one by one and their count moves in front of the point on the decimal card, under the words Whole number part"
+          },
+          {
+            "why": "the part strip is a strip too, so it seems to count as one",
+            "move": "counts the part strip as one more whole",
+            "screen": "the part strip's unshaded parts are lit amber, and the words Decimal part are drawn under its shaded run"
+          }
+        ],
+        "screen": "two whole strips shaded, and a third strip cut into ten parts with none shaded",
+        "soWhat": "whole strips give the whole number part and tenths give the decimal part",
+        "concept": "Wholes and tenths together"
+      },
+      {
+        "n": 4,
+        "win": "twenty-seven tenths close into two whole strips and seven tenths, and the card reads 2.7",
+        "does": "taps Lots of three times, trades each ten tenths for a whole strip, and reads what is left",
+        "goal": "ten tenths make one whole, so a count of tenths is read as ones and tenths",
+        "says": "Ten tenths fill a whole. Trade them, then count what is left.",
+        "check": "Away from the screen: how many whole strips can you make from forty-two tenths, and how many tenths are left?",
+        "feels": "ten loose tenths clicking together into one whole strip",
+        "hands": "Cut several strips into tenths and lay out a pile of loose tenths. Group them in tens and lay each ten along a whole strip. Count the whole strips and the tenths left over.",
+        "tries": "First rung: tap Lots of once and read the tally. Second rung: tap it again and trade any ten tenths. Third rung: the same task with fewer lots, before the full count returns.",
+        "wrong": [
+          {
+            "why": "the tally shows one number, and it looks like the answer",
+            "move": "writes the count of tenths as a whole number",
+            "screen": "the tally's tenths slide together ten at a time into whole strips, and the decimal card fills its two sides as they close"
+          },
+          {
+            "why": "one trade feels like the whole job",
+            "move": "stops trading after the first whole strip",
+            "screen": "the loose tenths left over are counted aloud in tens, and each ten lights amber until it is traded"
+          }
+        ],
+        "screen": "an empty strip cut into ten parts, the Lots of button set to nine tenths, and the Tenths tally at nothing",
+        "soWhat": "ten tenths make one whole, so a count of tenths is read as ones and tenths",
+        "concept": "Ten tenths make one whole"
+      }
+    ],
+    "delight": "On the fourth phase, the moment the tenth part of a strip is shaded, the ten parts slide together with a soft click, their cut lines melt away, and the strip rises into the row of whole strips while the decimal card's whole number part ticks up by one.",
+    "opening": "Every mount comes up already furnished for its phase with nothing shaded yet. On the first phase one whole strip lies across the working area, not yet cut, with the fraction card and the decimal card blank beside it. On the second the strip is already cut into ten equal parts. On the third whole strips lie shaded above a part strip cut into tenths. On the fourth an empty part strip waits with the Lots of button set and the Tenths tally at nothing. One thing moves, once: the Cut button, or the first part of the strip, gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any number of strips, cut, shaded and traded, as strips or as circles, and the Lots of button set to any number of tenths. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on one tenth, tenths as decimals, wholes and tenths together, and counting tenths into ones.",
+    "voiceLines": [
+      "A strip, waiting to be cut into ten equal parts.",
+      "Cut the strip into ten equal parts. Shade one. What is it called?",
+      "Each part you shade is one more tenth. Watch the digit after the point.",
+      "The whole strips go before the point. The tenths go after it.",
+      "Ten tenths fill a whole. Trade them, then count what is left.",
+      "A new strip. Check the parts are all one width.",
+      "Free play. Cut, shade and trade as many strips as you like.",
+      "Count the shaded parts again, one by one, and look at the point.",
+      "Ten tenths made a whole, and you counted every tenth."
+    ],
+    "observations": [
+      {
+        "why": "tenths come from cutting one whole into ten equal parts, and unequal pieces are not tenths.",
+        "soWhat": "one of ten equal parts is one tenth, 1/10 or 0.1.",
+        "observe": "The ten parts of a cut strip were all exactly one width."
+      },
+      {
+        "why": "that digit counts tenths, and each part is one more tenth.",
+        "soWhat": "a number of tenths is written with that digit after the point.",
+        "observe": "Each tap on a part changed only the digit after the point."
+      },
+      {
+        "why": "the point sits between the whole number part and the decimal part.",
+        "soWhat": "wholes go before the point and tenths go after it.",
+        "observe": "Whole strips changed the digit before the point, and part strips the digit after it."
+      },
+      {
+        "why": "ten tenths fill exactly one whole.",
+        "soWhat": "a count of tenths is read as ones and tenths by trading each ten tenths for one whole.",
+        "observe": "Every time ten tenths were shaded, they closed into one whole strip."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "one whole strip, not yet cut, with the fraction card and the decimal card blank",
+        "win": "the fraction card shows 1/10, the decimal card shows 0.1 in green, and the voice reads zero point one",
+        "traceback": "The strip is cut and its parts counted one by one; one part lights up and the card fills with the whole right answer.",
+        "ladder": [
+          "Which number goes on top: the part you take, or all the parts?",
+          "One part is less than a whole, so what goes before the point?",
+          "Would ten parts the size of the shaded one fill this strip exactly?",
+          "Count all the parts first, one by one.",
+          "A tenth comes only from ten parts of one size."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "one strip already cut into ten equal parts, with none shaded",
+        "win": "nine parts shaded, 9/10 on one card and 0.9 on the other, with a 0 before the point for no whole ones",
+        "traceback": "The shaded tenths are numbered one by one beside any wholes the answer claimed, and the decimal card fills with a 0 before the point.",
+        "ladder": [
+          "Count only the shaded parts, each one a tenth.",
+          "Shade that many tenths and count them.",
+          "Shade the tenths in 0.8, then look at the whole strip.",
+          "Shade the parts one at a time, and count as you go.",
+          "Say the amount in tenths first, then write it."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "two whole strips shaded, and a third strip cut into ten parts with none shaded",
+        "win": "the card reads 2.9 with Whole number part under the 2 and Decimal part under the 9",
+        "traceback": "The whole strips light one by one and their count moves before the point; then the tenths are numbered and their count goes after it.",
+        "ladder": [
+          "Count the whole strips, and that count goes before the point.",
+          "The tenth on the last strip goes after the point.",
+          "Digits before the point count whole strips.",
+          "Look at the full strips, then at the shaded parts.",
+          "Say the wholes, then the point, then the tenths."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "an empty strip cut into ten parts, the Lots of button set to nine tenths, and the Tenths tally at nothing",
+        "win": "twenty-seven tenths close into two whole strips and seven tenths, and the card reads 2.7",
+        "traceback": "The tenths slide together ten at a time into whole strips, and the decimal card fills its two sides as they close.",
+        "ladder": [
+          "How many full strips of ten can you make from these tenths?",
+          "Keep tapping Trade while you can, then read wholes and tenths.",
+          "Find the tenths in 4 lots, then the wholes hiding in them.",
+          "Fewer than ten tenths cannot make a whole, so they stay tenths.",
+          "Wholes go before the point, loose tenths after it."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "tenthsPerStrip": 10,
+    "stripLength": 750,
+    "cellWidth": 75,
+    "cutGap": 8,
+    "cutModel": "each piece inset gap/2 in its slot",
+    "unequalWidths": [
+      150,
+      40,
+      90,
+      50,
+      70,
+      60,
+      110,
+      45,
+      55,
+      50
+    ],
+    "unequalScale": "stripLength / 720",
+    "cards": [
+      "fraction",
+      "decimal"
+    ],
+    "controls": [
+      "Cut",
+      "Trade",
+      "Lots of",
+      "part tap"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C5:1",
+        "kind": "name",
+        "tenths": 1,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          1,
+          10
+        ],
+        "near": "1|1"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T2.C5:TB1",
+        "kind": "dec1",
+        "tenths": 1,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "1"
+        ],
+        "near": "1|0"
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": null,
+        "kind": "unequal",
+        "answer": "no",
+        "near": "yes"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:TB2",
+        "kind": "shade",
+        "tenths": 8,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "8"
+        ],
+        "near": "8|0"
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T2.C6:2",
+        "kind": "fracdec",
+        "tenths": 9,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "0",
+          "9"
+        ],
+        "near": "9|0"
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T2.C6:3",
+        "kind": "decfrac",
+        "tenths": 8,
+        "parts": [
+          {
+            "label": "numerator",
+            "at": "top"
+          },
+          {
+            "label": "denominator",
+            "at": "bottom"
+          }
+        ],
+        "answer": [
+          8,
+          10
+        ],
+        "near": "2|10"
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C7:TB3",
+        "kind": "mixed",
+        "wholes": 2,
+        "tenths": 9,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "2",
+          "9"
+        ],
+        "near": "0|29"
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T2.C7:4",
+        "kind": "mixed",
+        "wholes": 5,
+        "tenths": 1,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "5",
+          "1"
+        ],
+        "near": "0|51"
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T2.C7:5",
+        "kind": "split",
+        "wholes": 7,
+        "tenths": 9,
+        "parts": [
+          {
+            "label": "whole part"
+          },
+          {
+            "label": "tenths"
+          }
+        ],
+        "answer": [
+          7,
+          9
+        ],
+        "near": "0|79"
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T2.C8:TB4",
+        "kind": "lots",
+        "lot": 9,
+        "lots": 3,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "2",
+          "7"
+        ],
+        "near": "27|0"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T2.C8:6",
+        "kind": "loose",
+        "total": 53,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "5",
+          "3"
+        ],
+        "near": "53|0"
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T2.C8:7",
+        "kind": "lots",
+        "lot": 6,
+        "lots": 4,
+        "parts": [
+          {
+            "label": "whole",
+            "at": "dwhole"
+          },
+          {
+            "label": "decimal",
+            "at": "dpart"
+          }
+        ],
+        "answer": [
+          "2",
+          "4"
+        ],
+        "near": "24|0"
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The strip is cut and its parts counted one by one; one part lights up and the card fills with the whole right answer.",
+      "Phase 2: The shaded tenths are numbered one by one beside any wholes the answer claimed, and the decimal card fills with a 0 before the point.",
+      "Phase 3: The whole strips light one by one and their count moves before the point; then the tenths are numbered and their count goes after it.",
+      "Phase 4: The tenths slide together ten at a time into whole strips, and the decimal card fills its two sides as they close."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": null,
+    "onFreePlay": "Free play: cut, shade and trade as many strips as you like.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You cut, shaded and traded tenths, and counted every one.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C5:1",
+            "worked": false,
+            "kind": "name",
+            "planQuestion": "A strip is cut into 10 equal parts. How many of the parts make the whole strip, and what is one part called?",
+            "question": {
+              "en": "What fraction of the strip is one part?"
+            },
+            "ask": {
+              "en": "One part, as a fraction?"
+            },
+            "answer": [
+              1,
+              10
+            ],
+            "planAnswer": "All 10 parts make the whole strip, and one part is one tenth, 1/10",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T2.C5:TB1",
+            "worked": false,
+            "kind": "dec1",
+            "planQuestion": "A strip is cut into 10 equal parts and 1 part is shaded. Write the shaded part as a fraction and as a decimal.",
+            "question": {
+              "en": "Shade a part and write it as a decimal."
+            },
+            "ask": {
+              "en": "Shaded part, as a decimal?"
+            },
+            "answer": [
+              "0",
+              "1"
+            ],
+            "planAnswer": "1/10, which is written 0.1 and read as zero point one",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "unequal",
+            "planQuestion": null,
+            "question": {
+              "en": "Is this shaded part a tenth?"
+            },
+            "ask": {
+              "en": "Is it a tenth?"
+            },
+            "answer": "no",
+            "planAnswer": null,
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T2.C6:TB2",
+            "worked": false,
+            "kind": "shade",
+            "planQuestion": "A strip is cut into 10 equal parts and 8 of them are shaded. Write the shaded part as a fraction and as a decimal.",
+            "question": {
+              "en": "Shade 8 parts and write the decimal."
+            },
+            "ask": {
+              "en": "8 parts shaded: decimal?"
+            },
+            "answer": [
+              "0",
+              "8"
+            ],
+            "planAnswer": "8/10, which is written 0.8",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T2.C6:2",
+            "worked": false,
+            "kind": "fracdec",
+            "planQuestion": "Write 9/10 as a decimal.",
+            "question": {
+              "en": "Write 9/10 as a decimal."
+            },
+            "ask": {
+              "en": "This fraction as a decimal?"
+            },
+            "answer": [
+              "0",
+              "9"
+            ],
+            "planAnswer": "0.9",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T2.C6:3",
+            "worked": false,
+            "kind": "decfrac",
+            "planQuestion": "How is 0.8 read, and what fraction is it?",
+            "question": {
+              "en": "Write 0.8 as a fraction."
+            },
+            "ask": {
+              "en": "What fraction is it?"
+            },
+            "answer": [
+              8,
+              10
+            ],
+            "planAnswer": "Zero point eight. It is 8 tenths, 8/10",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C7:TB3",
+            "worked": false,
+            "kind": "mixed",
+            "planQuestion": "Two whole strips are shaded, and 9 tenths of a third strip. Write the shaded part as a decimal.",
+            "question": {
+              "en": "Shade 9 tenths of the cut strip, then write all the strips as one decimal."
+            },
+            "ask": {
+              "en": "2 wholes, 9 tenths: decimal?"
+            },
+            "answer": [
+              "2",
+              "9"
+            ],
+            "planAnswer": "2.9",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T2.C7:4",
+            "worked": false,
+            "kind": "mixed",
+            "planQuestion": "Five whole strips are shaded, and 1 tenth of a sixth strip. Write the shaded part as a decimal.",
+            "question": {
+              "en": "Shade 1 tenth of the cut strip, then write all the strips as one decimal."
+            },
+            "ask": {
+              "en": "5 wholes, 1 tenth: decimal?"
+            },
+            "answer": [
+              "5",
+              "1"
+            ],
+            "planAnswer": "5.1, because 5 + 1/10 = 5.1",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T2.C7:5",
+            "worked": false,
+            "kind": "split",
+            "planQuestion": "In 7.9, what is the whole number part and what is the decimal part?",
+            "question": {
+              "en": "Name the whole number part and the decimal part of 7.9."
+            },
+            "ask": {
+              "en": "Split 7.9 at the point."
+            },
+            "answer": [
+              7,
+              9
+            ],
+            "planAnswer": "The whole number part is 7 and the decimal part is 9 tenths",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T2.C8:TB4",
+            "worked": false,
+            "kind": "lots",
+            "planQuestion": "Count 3 lots of 9 tenths. How many ones and tenths is that? Write it as a decimal.",
+            "question": {
+              "en": "Add 3 lots of 9 tenths, trade, then write the decimal."
+            },
+            "ask": {
+              "en": "3 lots of 9 tenths: decimal?"
+            },
+            "answer": [
+              "2",
+              "7"
+            ],
+            "planAnswer": "27 tenths, which is 2 ones and 7 tenths, written 2.7",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T2.C8:6",
+            "worked": false,
+            "kind": "loose",
+            "planQuestion": "How many ones and tenths are 53 tenths? Write it as a decimal.",
+            "question": {
+              "en": "What decimal is 53 tenths?"
+            },
+            "ask": {
+              "en": "53 tenths: decimal?"
+            },
+            "answer": [
+              "5",
+              "3"
+            ],
+            "planAnswer": "5 ones and 3 tenths, so 53/10 = 5.3",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T2.C8:7",
+            "worked": false,
+            "kind": "lots",
+            "planQuestion": "Count 4 lots of 6 tenths. Write the answer as a decimal.",
+            "question": {
+              "en": "Write 4 lots of 6 tenths as a decimal."
+            },
+            "ask": {
+              "en": "4 lots of 6 tenths: decimal?"
+            },
+            "answer": [
+              "2",
+              "4"
+            ],
+            "planAnswer": "24 tenths, which is 2 ones and 4 tenths, written 2.4",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S1.T2.C8:8"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "tenths_builder",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "tenths_builder",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "One tenth",
+        "conceptId": "M1.S1.T2.C5",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C5:1",
+          "M1.S1.T2.C5:TB1",
+          "M1.S1.T2.C8.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Tenths as decimals",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C6:TB2",
+          "M1.S1.T2.C6:2",
+          "M1.S1.T2.C6:3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Wholes and tenths together",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C7:TB3",
+          "M1.S1.T2.C7:4",
+          "M1.S1.T2.C7:5"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Ten tenths make one whole",
+        "conceptId": "M1.S1.T2.C8",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C8:TB4",
+          "M1.S1.T2.C8:6",
+          "M1.S1.T2.C8:7"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "cut",
+    "shape",
+    "wholes",
+    "shaded",
+    "strips",
+    "lots",
+    "tenths"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), cut, shape, wholes, shaded, strips, lots, tenths",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "tenths_builder"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C8.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A strip, waiting to be cut into ten equal parts."
+    },
+    {
+      "en": "Cut the strip into ten equal parts. Shade one. What is it called?"
+    },
+    {
+      "en": "Each part you shade is one more tenth. Watch the digit after the point."
+    },
+    {
+      "en": "The whole strips go before the point. The tenths go after it."
+    },
+    {
+      "en": "Ten tenths fill a whole. Trade them, then count what is left."
+    },
+    {
+      "en": "A new strip. Check the parts are all one width."
+    },
+    {
+      "en": "Free play. Cut, shade and trade as many strips as you like."
+    },
+    {
+      "en": "Count the shaded parts again, one by one, and look at the point."
+    },
+    {
+      "en": "Ten tenths made a whole, and you counted every tenth."
+    }
+  ],
+  "build": {
+    "source": "41cbc218:656443",
+    "runtime": "class5/runtime/frozen/r64/runtime.tsx",
+    "runtimeVersion": "r64",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T09:14:30.472Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-18T09:14:30.343Z"
+    },
+    "tsxBytes": 567953,
+    "tsxMd5": "0a175808961f67e61376406e1cff55f6"
+  }
+}

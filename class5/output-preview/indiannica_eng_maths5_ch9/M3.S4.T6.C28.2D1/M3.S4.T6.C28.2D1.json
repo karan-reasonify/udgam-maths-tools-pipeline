@@ -1,0 +1,1384 @@
+{
+  "slotId": "M3.S4.T6.C28.2D1",
+  "mediaId": "M3.S4.T6.C28.2D1",
+  "toolId": "measure_columns",
+  "title": "Unit Column Adder",
+  "component": "M3.S4.T6.C28.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch9_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_9/2dtool/M3.S4.T6.C28.2D1/M3.S4.T6.C28.2D1.tsx",
+  "description": "Add measures in unit columns with a carry, add them again as decimals, take away with a borrow, and walk a boundary once every side is in one unit.",
+  "conceptIds": [
+    "M3.S4.T6.C25",
+    "M3.S4.T6.C26",
+    "M3.S4.T6.C27",
+    "M3.S4.T6.C28"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Add measures in unit columns with a carry, add them as decimals in the larger unit, take one measure from another with a borrow, and find a boundary once every side is in one unit.",
+    "look": "A frame of two unit columns with measures stacked in it, carry and borrow tiles that are dragged across, and on the last phase a shape with its sides in mixed units.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Unit Column Adder' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of columns worked. It is never a score. The working area is 1086 by 528 at x 64, y 202. The frame fills the left of the area from x 120 to x 760: two columns, the larger unit on the left and the smaller on the right, each 300 wide and headed by its unit name in violet, labelled Unit. The measures the question gives are stacked in rows at y 280 and y 360 in deep blue, labelled Given, with a ruled line at y 410 and the answer row at y 460. The smaller unit's column is worked first and is lit amber. The Bundle button stands at x 820, y 280 and the Break button at x 820, y 380; a carry or a borrow is a tile carrying a violet Unit fact, dragged between the columns. On the second phase the frame turns into decimal rows in the larger unit with the points locked in one line at x 440, and a grey zero, labelled Place holder, holds any empty place. A part taken away is rose, labelled Taken away. On the fourth phase the flower bed is drawn at x 160, y 240 inside a box 560 by 400, with each side card on its side and the walker a small drawn figure at a corner. Every answer is green, labelled Answer, with its unit. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a point key, a delete key, and a key for each unit in use. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. The measure the question gives, in the unit it is given in, is deep blue, labelled Given or Measure. The measure the working reaches, and a reading on a scale, is green, labelled Answer, Reading or Same measure. The places moved across the unit chart, and the worth of one small mark on a scale, are vermilion, labelled Move or One mark. A unit fact, the unit names on the chart and the other temperature scale are violet, labelled Unit fact, Unit or Other scale. The part taken away, and a part left over after sharing, are rose, labelled Taken away or Left over. The unit, column, mark or step being worked on now is amber. Grey is kept for a zero holding a place open inside a number, labelled Place holder, and for nothing else. Rulers, tapes, jugs, scales, thermometer tubes, chart lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last working stays in the frame, with its carry or borrow tile where the child dropped it and the answer in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the bundle lands in the metres column and the sum turns green",
+        "does": "adds the centimetres, bundles a metre out of them, drags it across, then adds the metres",
+        "goal": "add the smaller unit first, and carry one of the larger unit across when the smaller column fills up",
+        "says": "Smaller unit first. Is there a whole metre in there?",
+        "check": "Away from the screen: how many centimetres make one metre, and so when do you carry?",
+        "feels": "a full column wrapping itself into one bundle and hopping across",
+        "hands": "Write two lengths in metres and centimetres on squared paper in two columns. Add the centimetres first, and if there is a whole metre in them, carry it into the metres column.",
+        "tries": "First rung: add only the centimetres column. Second rung: bundle a metre out of it. Third rung: the same task on two lengths whose centimetres do not reach a metre, before the question's own lengths return.",
+        "wrong": [
+          {
+            "why": "the column total is just what the adding gave, as it is in a column of ones",
+            "move": "writes the centimetres total, a hundred or more, as it stands in the centimetres column",
+            "screen": "the over-full total stays in its column lit amber, and the Bundle button beside it is lit until a bundle is made from it"
+          },
+          {
+            "why": "in reading, the left comes first, so the larger unit feels like the place to start",
+            "move": "adds the metres column first and forgets the carry",
+            "screen": "the metres total stays, the centimetres column is lit amber, and once its bundle is made the carry tile waits beside the metres column"
+          }
+        ],
+        "screen": "two lengths in metres and centimetres stacked in the frame",
+        "soWhat": "add the smaller unit first, and carry one of the larger unit across when the smaller column fills up",
+        "concept": "Adding in unit columns"
+      },
+      {
+        "n": 2,
+        "win": "the decimal answer turns green, with the word litres beside it",
+        "does": "writes each capacity as a decimal in litres, lines up the points, adds, and names the unit",
+        "goal": "write each measure as a decimal in the larger unit, line up the points and add; the answer is in the larger unit",
+        "says": "Points in a line. Which unit is the answer in?",
+        "check": "Away from the screen: why must the points be in one line before you add?",
+        "feels": "the points lining up like buttons and the answer landing in litres",
+        "hands": "Write two capacities as decimals in litres, one under the other, with the points in one line. Add as with any decimals, and write litres beside the answer.",
+        "tries": "First rung: write only the first capacity as a decimal in litres. Second rung: write the second under it. Third rung: the same task with no empty place after the point, before the question's own capacities return.",
+        "wrong": [
+          {
+            "why": "the millilitres look like they go straight after the point",
+            "move": "writes a capacity's millilitres straight after the point with no zero in an empty place",
+            "screen": "that row is read back in litres and millilitres beside it, showing more millilitres than the question gave, and the empty place is lit amber with a grey zero waiting"
+          },
+          {
+            "why": "the question was written with millilitres in it, so that unit feels right",
+            "move": "names the decimal answer in millilitres",
+            "screen": "the answer waits uncoloured, and the unit the rows are in, litres, is lit amber above the frame"
+          }
+        ],
+        "screen": "two capacities in litres and millilitres, and the decimal rows waiting",
+        "soWhat": "write each measure as a decimal in the larger unit, line up the points and add; the answer is in the larger unit",
+        "concept": "Adding as decimals"
+      },
+      {
+        "n": 3,
+        "win": "the rose part is taken away, and what is left turns green",
+        "does": "breaks one kilogram into grams, drags them across, then takes away column by column",
+        "goal": "when there is too little of the smaller unit, change one of the larger unit into the smaller unit first",
+        "says": "Not enough grams. Break a kilogram.",
+        "check": "Away from the screen: when you break one metre for a borrow, how many centimetres do you get?",
+        "feels": "one kilogram breaking into a heap of grams that makes the taking away possible",
+        "hands": "Write a weight in kilograms and grams, and a smaller one under it that needs more grams than the top has. Cross out one kilogram, write the grams it becomes, then take away.",
+        "tries": "First rung: take away the grams where there are enough. Second rung: break one kilogram and count the grams. Third rung: the same task on lengths in metres and centimetres, before the question's own weights return.",
+        "wrong": [
+          {
+            "why": "in each column the bigger number seems as if it should go on top",
+            "move": "takes the smaller grams number from the larger, whichever row it is in",
+            "screen": "the grams column is shown too short beside the part to be taken away, both lit amber, and the child's column total stays"
+          },
+          {
+            "why": "every take away starts to feel like it needs a borrow",
+            "move": "presses Break when there are already enough grams",
+            "screen": "the broken kilogram's tile waits beside the grams column, the two grams parts are laid side by side so the child sees there were enough, and the tile can be dragged back"
+          }
+        ],
+        "screen": "a weight in kilograms and grams, and a smaller weight to take away that needs more grams than are there",
+        "soWhat": "when there is too little of the smaller unit, change one of the larger unit into the smaller unit first",
+        "concept": "Taking away with a borrow"
+      },
+      {
+        "n": 4,
+        "win": "the walker comes home, and the boundary turns green in metres",
+        "does": "taps each side card to rewrite it in metres, then sets the walker going round",
+        "goal": "write every side in the unit asked for, then add all the sides",
+        "says": "Every side in metres first. Then walk round.",
+        "check": "Away from the screen: before you add the sides of a shape, what must be true of every side?",
+        "feels": "the walker coming home and the whole boundary turning green",
+        "hands": "Draw a four-sided shape and label its sides in two or three units. Rewrite every side in metres on a strip of paper, then add the strips.",
+        "tries": "First rung: rewrite one side card in metres. Second rung: rewrite the rest. Third rung: the same task on a triangle with two units, before the question's own shape returns.",
+        "wrong": [
+          {
+            "why": "the numbers are all there, ready to add",
+            "move": "sets the walker going while some side cards are still in their own units",
+            "screen": "the side left in its own unit stays on its card, lit amber, while the walker waits at that corner"
+          },
+          {
+            "why": "centimetres to metres is two places, and that step sticks in the mind",
+            "move": "rewrites a side in millimetres by moving the point only two places",
+            "screen": "the side card reads back in the unit its point now sits after, and that side is drawn to scale beside the real side so the two lengths are seen apart"
+          }
+        ],
+        "screen": "a four-sided flower bed with its sides labelled in metres, centimetres and millimetres",
+        "soWhat": "write every side in the unit asked for, then add all the sides",
+        "concept": "A boundary in mixed units"
+      }
+    ],
+    "delight": "On the first phase, when the Bundle button wraps the full column, the bundle is tied with a small violet ribbon carrying the unit fact and hops over into the larger column.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet worked. On the first phase two lengths in metres and centimetres stand stacked in the frame. On the second two capacities in litres and millilitres stand beside empty decimal rows. On the third a weight in kilograms and grams stands above a smaller weight to take away. On the fourth a four-sided flower bed lies with each side labelled in its own unit and a walker at one corner. One thing moves, once: the smaller unit's column, the first decimal row, the Break button or the first side card gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any measures stacked in the frame and added or taken away, in columns or as decimals, and any shape walked round. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on carries, decimal sums, borrows and boundaries.",
+    "voiceLines": [
+      "Two measures, stacked in their unit columns.",
+      "Smaller unit first. Is there a whole metre in there?",
+      "Points in a line. Which unit is the answer in?",
+      "Not enough grams. Break a kilogram.",
+      "Every side in metres first. Then walk round.",
+      "New measures. Smaller unit first.",
+      "Free play. Stack any measures and add or take away.",
+      "Look at the smaller unit's column. Is there a whole larger unit in it?",
+      "You added and took away, one unit column at a time."
+    ],
+    "observations": [
+      {
+        "why": "enough of the smaller unit makes one of the larger unit.",
+        "soWhat": "carry it across, as in whole-number sums, with the unit fact as the size of the bundle.",
+        "observe": "The smaller unit's column filled past one of the larger unit, and the Bundle button lit."
+      },
+      {
+        "why": "each row was written as a decimal in the larger unit before adding.",
+        "soWhat": "line up the points, and name the unit the rows are in.",
+        "observe": "With the points in one line, the decimal sum ended in the larger unit."
+      },
+      {
+        "why": "the unit fact, not ten, says how many of the smaller unit make one larger unit.",
+        "soWhat": "a borrow across units uses the unit fact of those two units.",
+        "observe": "A broken larger unit filled the smaller column with far more than ten."
+      },
+      {
+        "why": "sides in different units cannot be added as they stand.",
+        "soWhat": "rewrite every side in one unit, then add them all.",
+        "observe": "The walker would not move past a side still in its own unit."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "two lengths in metres and centimetres stacked in the frame",
+        "win": "the bundle lands in the metres column and the sum turns green",
+        "traceback": "Works the smaller column, bundles one larger unit and carries it across, then adds the larger column, ending on the whole sum.",
+        "ladder": [
+          "Is there a whole metre in the centimetres?",
+          "Do the grams reach 1000 g this time?",
+          "Do the metres fill a whole kilometre?",
+          "Bundle one larger unit out of the smaller column.",
+          "Write what is left, then add the larger column with the carry."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "two capacities in litres and millilitres, and the decimal rows waiting",
+        "win": "the decimal answer turns green, with the word litres beside it",
+        "traceback": "Writes each measure as a decimal in the larger unit with the points in one line, then adds, ending on the decimal in that unit.",
+        "ladder": [
+          "Write 5 L 340 mL as a decimal in litres first.",
+          "The whole metres go before the point.",
+          "Start with the thousandths, as in whole numbers.",
+          "Write each measure as a decimal in the larger unit.",
+          "Line up the points, then add as with whole numbers."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a weight in kilograms and grams, and a smaller weight to take away that needs more grams than are there",
+        "win": "the rose part is taken away, and what is left turns green",
+        "traceback": "Breaks one larger unit into the smaller unit and carries it across, takes away the smaller column, then the larger, ending on what is left.",
+        "ladder": [
+          "240 g is too few, so break 1 kg first.",
+          "Is 30 cm enough to take 75 cm away?",
+          "Break 1 m before you take away the centimetres.",
+          "Change one larger unit into the smaller unit.",
+          "Take away the smaller unit first, then the larger."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a four-sided flower bed with its sides labelled in metres, centimetres and millimetres",
+        "win": "the walker comes home, and the boundary turns green in metres",
+        "traceback": "Rewrites every side card in metres, walks round lighting each side, and ends on the whole boundary in metres.",
+        "ladder": [
+          "Write the 450 cm side in metres first.",
+          "250 cm is not 250 m, so write it in metres.",
+          "Write 60 cm and 1000 mm in metres before adding.",
+          "Rewrite each side card in metres.",
+          "Add every side once all of them are in metres."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "warm": [
+      {
+        "op": "+",
+        "big": "kg",
+        "small": "g",
+        "a": [
+          3,
+          650
+        ],
+        "b": [
+          2,
+          480
+        ],
+        "obj": "bag"
+      },
+      {
+        "rows": [
+          {
+            "w": 3,
+            "s": 650,
+            "big": "kg",
+            "small": "g"
+          },
+          {
+            "w": 2,
+            "s": 480,
+            "big": "kg",
+            "small": "g"
+          }
+        ],
+        "sum": true,
+        "unit": "kg",
+        "obj": "bag"
+      },
+      {
+        "op": "-",
+        "big": "kg",
+        "small": "g",
+        "a": [
+          7,
+          120
+        ],
+        "b": [
+          2,
+          450
+        ],
+        "obj": "bag"
+      },
+      {
+        "sides": [
+          {
+            "v": 4,
+            "u": "m"
+          },
+          {
+            "v": 350,
+            "u": "cm"
+          },
+          {
+            "v": 4,
+            "u": "m"
+          },
+          {
+            "v": 3500,
+            "u": "mm"
+          }
+        ],
+        "obj": "bed",
+        "unit": "m"
+      }
+    ],
+    "free": [
+      {
+        "op": "+",
+        "big": "kg",
+        "small": "g",
+        "a": [
+          3,
+          650
+        ],
+        "b": [
+          2,
+          480
+        ],
+        "obj": "bag"
+      },
+      {
+        "op": "-",
+        "big": "m",
+        "small": "cm",
+        "a": [
+          5,
+          40
+        ],
+        "b": [
+          2,
+          75
+        ],
+        "obj": "length"
+      },
+      {
+        "op": "+",
+        "big": "L",
+        "small": "mL",
+        "a": [
+          2,
+          750
+        ],
+        "b": [
+          1,
+          600
+        ],
+        "obj": "jug"
+      },
+      {
+        "op": "-",
+        "big": "km",
+        "small": "m",
+        "a": [
+          9,
+          200
+        ],
+        "b": [
+          4,
+          650
+        ],
+        "obj": "length"
+      },
+      {
+        "op": "+",
+        "big": "m",
+        "small": "cm",
+        "a": [
+          6,
+          35
+        ],
+        "b": [
+          1,
+          40
+        ],
+        "obj": "length"
+      }
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M3.S4.T6.C25:UC1",
+        "kind": "add",
+        "op": "+",
+        "big": "m",
+        "small": "cm",
+        "a": [
+          4,
+          65
+        ],
+        "b": [
+          2,
+          58
+        ],
+        "obj": "wire",
+        "parts": [
+          {
+            "label": "m"
+          },
+          {
+            "label": "cm"
+          }
+        ],
+        "answer": [
+          7,
+          23
+        ],
+        "near": "6|123",
+        "ladder": [
+          "65 cm and 58 cm make more than 100 cm, so bundle 1 m.",
+          "Write the cm left over, then add 4 m, 2 m and the carried 1 m."
+        ],
+        "win": "Yes, the two wires make 7 m 23 cm."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M3.S4.T6.C25:1",
+        "kind": "add",
+        "op": "+",
+        "big": "kg",
+        "small": "g",
+        "a": [
+          2,
+          300
+        ],
+        "b": [
+          1,
+          500
+        ],
+        "obj": "bag",
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          3,
+          800
+        ],
+        "near": "4|800",
+        "ladder": [
+          "300 g and 500 g stay under 1000 g, so nothing is carried.",
+          "Write the grams as they are, then add 2 kg and 1 kg."
+        ],
+        "win": "Yes, 3 kg 800 g, with nothing to carry."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M3.S4.T6.C25:4",
+        "kind": "add",
+        "op": "+",
+        "big": "km",
+        "small": "m",
+        "a": [
+          3,
+          640
+        ],
+        "b": [
+          2,
+          755
+        ],
+        "obj": "length",
+        "parts": [
+          {
+            "label": "km"
+          },
+          {
+            "label": "m"
+          }
+        ],
+        "answer": [
+          6,
+          395
+        ],
+        "near": "5|1395",
+        "ladder": [
+          "640 m and 755 m make more than 1000 m, so carry 1 km.",
+          "Write the metres left over, then add 3 km, 2 km and the carried 1 km."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M3.S4.T6.C26:UC2",
+        "kind": "dec",
+        "rows": [
+          {
+            "w": 5,
+            "s": 340,
+            "big": "L",
+            "small": "mL"
+          },
+          {
+            "w": 1,
+            "s": 785,
+            "big": "L",
+            "small": "mL",
+            "obj": "bottle"
+          }
+        ],
+        "sum": true,
+        "unit": "L",
+        "obj": "jug",
+        "answer": "7.125",
+        "near": "7125",
+        "ladder": [
+          "Write 1 L 785 mL under it, point under point.",
+          "Add the rows and keep the point in line; the answer is in litres."
+        ],
+        "win": "Yes, 7.125 L, in litres."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M3.S4.T6.C26:2",
+        "kind": "dec",
+        "rows": [
+          {
+            "w": 3,
+            "s": 45,
+            "big": "m",
+            "small": "cm"
+          }
+        ],
+        "sum": false,
+        "unit": "m",
+        "obj": "length",
+        "answer": "3.45",
+        "near": "345",
+        "ladder": [
+          "100 cm make 1 m, so the centimetres take two places.",
+          "Write the metres, the point, then the centimetres."
+        ],
+        "win": "Yes, 3 m 45 cm is 3.45 m."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M3.S4.T6.C26:5",
+        "kind": "dec",
+        "rows": [
+          {
+            "dec": "2.450",
+            "big": "kg",
+            "small": "g"
+          },
+          {
+            "dec": "1.625",
+            "big": "kg",
+            "small": "g"
+          }
+        ],
+        "sum": true,
+        "unit": "kg",
+        "obj": "bag",
+        "answer": "4.075",
+        "near": "4.75",
+        "ladder": [
+          "The tenths make 10 tenths, so carry 1 to the ones.",
+          "Keep a zero in the tenths place once its 10 tenths are carried."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M3.S4.T6.C27:UC3",
+        "kind": "sub",
+        "op": "-",
+        "big": "kg",
+        "small": "g",
+        "a": [
+          6,
+          240
+        ],
+        "b": [
+          3,
+          580
+        ],
+        "obj": "drum",
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          2,
+          660
+        ],
+        "near": "3|340",
+        "ladder": [
+          "1 kg is 1000 g, so the grams column now has 1240 g.",
+          "Take 580 g from 1240 g, then 3 kg from the 5 kg left."
+        ],
+        "win": "Yes, 2 kg 660 g of paint is left."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M3.S4.T6.C27:6",
+        "kind": "sub",
+        "op": "-",
+        "big": "m",
+        "small": "cm",
+        "a": [
+          4,
+          30
+        ],
+        "b": [
+          1,
+          75
+        ],
+        "obj": "length",
+        "parts": [
+          {
+            "label": "m"
+          },
+          {
+            "label": "cm"
+          }
+        ],
+        "answer": [
+          2,
+          55
+        ],
+        "near": "3|45",
+        "ladder": [
+          "Break 1 m into 100 cm, so there are 130 cm.",
+          "Take 75 cm from 130 cm, then 1 m from the 3 m left."
+        ],
+        "win": "Yes, 2 m 55 cm is left."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M3.S4.T6.C27:8",
+        "kind": "sub",
+        "op": "-",
+        "big": "m",
+        "small": "cm",
+        "a": [
+          15,
+          20
+        ],
+        "b": [
+          6,
+          85
+        ],
+        "obj": "tape",
+        "parts": [
+          {
+            "label": "m"
+          },
+          {
+            "label": "cm"
+          }
+        ],
+        "answer": [
+          8,
+          35
+        ],
+        "near": "9|65",
+        "ladder": [
+          "With 1 m broken, the cm column has 120 cm.",
+          "Take 85 cm from 120 cm, then 6 m from the 14 m left."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M3.S4.T6.C28:UC4",
+        "kind": "bound",
+        "sides": [
+          {
+            "v": 7,
+            "u": "m"
+          },
+          {
+            "v": 450,
+            "u": "cm"
+          },
+          {
+            "v": 7,
+            "u": "m"
+          },
+          {
+            "v": 4500,
+            "u": "mm"
+          }
+        ],
+        "obj": "bed",
+        "unit": "m",
+        "answer": 23,
+        "near": "4964",
+        "winMs": 1300,
+        "ladder": [
+          "1000 mm make 1 m, so 4500 mm is 4.5 m.",
+          "Add 7 m, 4.5 m, 7 m and 4.5 m."
+        ],
+        "win": "Yes, the walker came home after 23 m."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": null,
+        "kind": "bound",
+        "sides": [
+          {
+            "v": 3,
+            "u": "m"
+          },
+          {
+            "v": 250,
+            "u": "cm"
+          },
+          {
+            "v": 3500,
+            "u": "mm"
+          }
+        ],
+        "obj": "rope",
+        "unit": "m",
+        "answer": 9,
+        "near": "3753",
+        "winMs": 1300,
+        "ladder": [
+          "250 cm is 2.5 m, and 3500 mm is 3.5 m.",
+          "Add 3 m, 2.5 m and 3.5 m."
+        ],
+        "win": "Yes, the rope goes 9 m round."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M3.S4.T6.C28:7",
+        "kind": "bound",
+        "sides": [
+          {
+            "v": 60,
+            "u": "cm"
+          },
+          {
+            "v": 0.8,
+            "u": "m"
+          },
+          {
+            "v": 1000,
+            "u": "mm"
+          }
+        ],
+        "obj": "card",
+        "unit": "m",
+        "answer": "2.4",
+        "near": "1060.8",
+        "winMs": 1300,
+        "ladder": [
+          "60 cm is 0.6 m, and 1000 mm is 1 m.",
+          "Add 0.6 m, 0.8 m and 1 m."
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: Works the smaller column, bundles one larger unit and carries it across, then adds the larger column, ending on the whole sum.",
+      "Phase 2: Writes each measure as a decimal in the larger unit with the points in one line, then adds, ending on the decimal in that unit.",
+      "Phase 3: Breaks one larger unit into the smaller unit and carries it across, takes away the smaller column, then the larger, ending on what is left.",
+      "Phase 4: Rewrites every side card in metres, walks round lighting each side, and ends on the whole boundary in metres."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Two measures, stacked in their unit columns.",
+    "onFreePlay": "Free play. Work each column with the key, then tap New for another sum.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You added and took away, one unit column at a time.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M3.S4.T6.C25:UC1",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "Two pieces of wire are 4 m 65 cm and 2 m 58 cm long. How long are they together?",
+            "question": {
+              "en": "How long are two wires of 4 m 65 cm and 2 m 58 cm together?"
+            },
+            "ask": {
+              "en": "Both wires?"
+            },
+            "answer": [
+              7,
+              23
+            ],
+            "planAnswer": "7 m 23 cm.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M3.S4.T6.C25:1",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "Add 2 kg 300 g and 1 kg 500 g.",
+            "question": {
+              "en": "Add 2 kg 300 g and 1 kg 500 g."
+            },
+            "ask": {
+              "en": "Total weight?"
+            },
+            "answer": [
+              3,
+              800
+            ],
+            "planAnswer": "3 kg 800 g",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M3.S4.T6.C25:4",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "Add 3 km 640 m and 2 km 755 m.",
+            "question": {
+              "en": "Add 3 km 640 m and 2 km 755 m."
+            },
+            "ask": {
+              "en": "Total distance?"
+            },
+            "answer": [
+              6,
+              395
+            ],
+            "planAnswer": "6 km 395 m",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M3.S4.T6.C26:UC2",
+            "worked": false,
+            "kind": "dec",
+            "planQuestion": "A jug holds 5 L 340 mL and a bottle holds 1 L 785 mL. Add them as decimals in litres.",
+            "question": {
+              "en": "A jug holds 5 L 340 mL and a bottle 1 L 785 mL; add them as decimals in litres."
+            },
+            "ask": {
+              "en": "Both in litres?"
+            },
+            "answer": "7.125",
+            "planAnswer": "7.125 L.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M3.S4.T6.C26:2",
+            "worked": false,
+            "kind": "dec",
+            "planQuestion": "Write 3 m 45 cm as a decimal in metres, ready to add.",
+            "question": {
+              "en": "Write 3 m 45 cm as a decimal in metres, ready to add."
+            },
+            "ask": {
+              "en": "In metres?"
+            },
+            "answer": "3.45",
+            "planAnswer": "3.45 m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M3.S4.T6.C26:5",
+            "worked": false,
+            "kind": "dec",
+            "planQuestion": "Add 2.450 kg and 1.625 kg.",
+            "question": {
+              "en": "Add 2.450 kg and 1.625 kg with the points in one line."
+            },
+            "ask": {
+              "en": "Total in kg?"
+            },
+            "answer": "4.075",
+            "planAnswer": "4.075 kg",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M3.S4.T6.C27:UC3",
+            "worked": false,
+            "kind": "sub",
+            "planQuestion": "A drum held 6 kg 240 g of paint, and 3 kg 580 g was used. How much is left?",
+            "question": {
+              "en": "A drum held 6 kg 240 g of paint and 3 kg 580 g was used; how much is left?"
+            },
+            "ask": {
+              "en": "Paint left?"
+            },
+            "answer": [
+              2,
+              660
+            ],
+            "planAnswer": "2 kg 660 g.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M3.S4.T6.C27:6",
+            "worked": false,
+            "kind": "sub",
+            "planQuestion": "Take 1 m 75 cm from 4 m 30 cm.",
+            "question": {
+              "en": "Take 1 m 75 cm from 4 m 30 cm."
+            },
+            "ask": {
+              "en": "What is left?"
+            },
+            "answer": [
+              2,
+              55
+            ],
+            "planAnswer": "2 m 55 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M3.S4.T6.C27:8",
+            "worked": false,
+            "kind": "sub",
+            "planQuestion": "A roll had 15 m 20 cm of tape, and 6 m 85 cm was used. How much is left?",
+            "question": {
+              "en": "A roll had 15 m 20 cm of tape and 6 m 85 cm was used; how much is left?"
+            },
+            "ask": {
+              "en": "Tape left?"
+            },
+            "answer": [
+              8,
+              35
+            ],
+            "planAnswer": "8 m 35 cm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M3.S4.T6.C28:UC4",
+            "worked": false,
+            "kind": "bound",
+            "planQuestion": "A flower bed has sides of 7 m, 450 cm, 7 m and 4500 mm. What is its boundary in metres?",
+            "question": {
+              "en": "Find the boundary in metres of a bed with sides 7 m, 450 cm, 7 m and 4500 mm."
+            },
+            "ask": {
+              "en": "Boundary in m?"
+            },
+            "answer": 23,
+            "planAnswer": "23 m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "bound",
+            "planQuestion": null,
+            "question": {
+              "en": "A rope triangle has sides 3 m, 250 cm and 3500 mm; how far round in metres?"
+            },
+            "ask": {
+              "en": "Rope in m?"
+            },
+            "answer": 9,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M3.S4.T6.C28:7",
+            "worked": false,
+            "kind": "bound",
+            "planQuestion": "A triangle of card has sides of 60 cm, 0.8 m and 1000 mm. What is its boundary in metres?",
+            "question": {
+              "en": "What is the boundary in metres of a card triangle of 60 cm, 0.8 m and 1000 mm?"
+            },
+            "ask": {
+              "en": "Card in m?"
+            },
+            "answer": "2.4",
+            "planAnswer": "2.4 m, because 0.6 + 0.8 + 1 = 2.4",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M3.S4.T6.C27:3"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "measure_columns",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "measure_columns",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Adding in unit columns",
+        "conceptId": "M3.S4.T6.C25",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M3.S4.T6.C25:UC1",
+          "M3.S4.T6.C25:1",
+          "M3.S4.T6.C25:4"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Adding as decimals",
+        "conceptId": "M3.S4.T6.C26",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M3.S4.T6.C26:UC2",
+          "M3.S4.T6.C26:2",
+          "M3.S4.T6.C26:5"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Taking away with a borrow",
+        "conceptId": "M3.S4.T6.C27",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M3.S4.T6.C27:UC3",
+          "M3.S4.T6.C27:6",
+          "M3.S4.T6.C27:8"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A boundary in mixed units",
+        "conceptId": "M3.S4.T6.C28",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M3.S4.T6.C28:UC4",
+          "M3.S4.T6.C28.2D1:p4_2",
+          "M3.S4.T6.C28:7"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "worked",
+    "carry",
+    "borrow",
+    "sides",
+    "sd",
+    "i"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), complete, worked, carry, borrow, sides, sd, i",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "measure_columns"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M3.S4.T6.C28.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Two measures, stacked in their unit columns."
+    },
+    {
+      "en": "Smaller unit first. Is there a whole metre in there?"
+    },
+    {
+      "en": "Points in a line. Which unit is the answer in?"
+    },
+    {
+      "en": "Not enough grams. Break a kilogram."
+    },
+    {
+      "en": "Every side in metres first. Then walk round."
+    },
+    {
+      "en": "New measures. Smaller unit first."
+    },
+    {
+      "en": "Free play. Stack any measures and add or take away."
+    },
+    {
+      "en": "Look at the smaller unit's column. Is there a whole larger unit in it?"
+    },
+    {
+      "en": "You added and took away, one unit column at a time."
+    }
+  ],
+  "build": {
+    "source": "5760f86c:633063",
+    "runtime": "class5/runtime/frozen/r65/runtime.tsx",
+    "runtimeVersion": "r65",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T14:01:27.475Z",
+    "checks": {
+      "pass": 94,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-18T14:01:27.368Z"
+    },
+    "tsxBytes": 557703,
+    "tsxMd5": "d326e0d550fc23daf8618d5990598ca0",
+    "handEdited": true
+  }
+}

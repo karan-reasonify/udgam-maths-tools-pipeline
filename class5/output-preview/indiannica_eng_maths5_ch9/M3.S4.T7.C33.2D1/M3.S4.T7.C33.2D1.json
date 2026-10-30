@@ -1,0 +1,1103 @@
+{
+  "slotId": "M3.S4.T7.C33.2D1",
+  "mediaId": "M3.S4.T7.C33.2D1",
+  "toolId": "measure_multiplier",
+  "title": "Smallest Unit Multiplier",
+  "component": "M3.S4.T7.C33.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch9_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_9/2dtool/M3.S4.T7.C33.2D1/M3.S4.T7.C33.2D1.tsx",
+  "description": "Write the measure in its smallest unit, multiply or divide in whole numbers, write the answer back in the larger unit, and say what is left over when a sharing is not even.",
+  "conceptIds": [
+    "M3.S4.T7.C30",
+    "M3.S4.T7.C31",
+    "M3.S4.T7.C32",
+    "M3.S4.T7.C33"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Multiply a measure by a number in its smallest unit, in whole numbers, and write the product back in the larger unit; divide a measure in its smallest unit, and say what is left over when a sharing is not even.",
+    "look": "A measure card above a strip drawn to scale, copied end to end or cut into equal pieces, with any part left over kept in view.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Smallest Unit Multiplier' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of copies laid, or the number of pieces cut. It is never a score. The working area is 1086 by 528 at x 64, y 202. The measure card stands at x 120, y 220, 300 by 90, in deep blue, labelled Given, as a mixed measure. The Smallest unit slot sits beside it at x 460, y 220, with a violet Unit fact under it that names the link between the two units. Once the slot is filled, the measure becomes a strip drawn to scale along y 360 from x 120. The Copy button stands at x 900, y 220 and lays the strip end to end once more with each tap; the row of copies wraps onto a second line at y 440 if it runs past x 1100. The Regroup button stands at x 900, y 300 and stacks bundles of the larger unit along y 540. To divide, cut marks are dragged from a tray at x 120, y 620 onto the strip, the pieces slide apart, and the piece being measured is amber. On the fourth phase the capacity is a column of water at x 160, y 240, 120 wide, with cups along y 620. A part left over stays at the end of the strip or the bottom of the column in rose, labelled Left over. Every answer is green, labelled Answer, with its unit. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys, a delete key, a key for each unit in use, and a Left over key that opens a second slot for what is left. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. The measure the question gives, in the unit it is given in, is deep blue, labelled Given or Measure. The measure the working reaches, and a reading on a scale, is green, labelled Answer, Reading or Same measure. The places moved across the unit chart, and the worth of one small mark on a scale, are vermilion, labelled Move or One mark. A unit fact, the unit names on the chart and the other temperature scale are violet, labelled Unit fact, Unit or Other scale. The part taken away, and a part left over after sharing, are rose, labelled Taken away or Left over. The unit, column, mark or step being worked on now is amber. Grey is kept for a zero holding a place open inside a number, labelled Place holder, and for nothing else. Rulers, tapes, jugs, scales, thermometer tubes, chart lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last strip stays on the stage, copied or cut, with its answer in green and anything left over in rose.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the copies meet end to end and the total in centimetres turns green",
+        "does": "types the length in centimetres, then taps Copy until the strip is laid the number of times asked",
+        "goal": "write the measure in its smallest unit, then multiply the whole number",
+        "says": "Smallest unit first. Now lay it again, and again.",
+        "check": "Away from the screen: before multiplying a length in metres and centimetres, what do you write first?",
+        "feels": "copies of one strip clicking end to end into a long row",
+        "hands": "Cut a strip of paper to a length in metres and centimetres, write that length in centimetres, then lay copies of it end to end and add their centimetres.",
+        "tries": "First rung: write the measure in centimetres only. Second rung: lay two copies and add them. Third rung: the same task with fewer copies, before the question's own number of copies returns.",
+        "wrong": [
+          {
+            "why": "the centimetres are already in centimetres, so they feel ready",
+            "move": "types only the centimetres part into the Smallest unit slot",
+            "screen": "the strip drawn from the child's number is far shorter than the card's strip, which is drawn beside it, and the metres part on the card is lit amber"
+          },
+          {
+            "why": "the strip already on the stage is not counted as the first",
+            "move": "taps Copy one time too few",
+            "screen": "the running count shows the copies laid, and the place of the missing copy is outlined amber at the end of the row"
+          }
+        ],
+        "screen": "a length in metres and centimetres on its card, the Smallest unit slot empty",
+        "soWhat": "write the measure in its smallest unit, then multiply the whole number",
+        "concept": "Multiply in the smallest unit"
+      },
+      {
+        "n": 2,
+        "win": "the bundles of a thousand grams stack up as kilograms, and the answer turns green",
+        "does": "regroups the grams into kilograms and grams, then reads it as a decimal in kilograms",
+        "goal": "write the product back in the larger unit, with its smaller part less than one of the larger unit",
+        "says": "How many whole kilograms are in there?",
+        "check": "Away from the screen: how many grams make one kilogram, so how big is each bundle?",
+        "feels": "grams stacking up into whole kilograms with a small part beside them",
+        "hands": "Draw a total in grams as bundles of a thousand grams, each bundle one kilogram, and write how many whole kilograms there are and how many grams are left.",
+        "tries": "First rung: make one bundle from the total. Second rung: make every bundle it holds. Third rung: the same task on a total just over one kilogram, before the question's own total returns.",
+        "wrong": [
+          {
+            "why": "metres and centimetres split after two digits, and that habit carries over",
+            "move": "splits the total in grams after its last two digits, taking those as the grams",
+            "screen": "the child's answer stays, and beside it the bundles of a thousand grams are counted out again one at a time"
+          },
+          {
+            "why": "one bundle felt like the end of the job",
+            "move": "stops regrouping with a thousand grams or more still in the grams part",
+            "screen": "the grams part stays lit amber, and the next bundle it holds is outlined inside it, waiting to be stacked"
+          }
+        ],
+        "screen": "a total in grams from the copies, and the Regroup button",
+        "soWhat": "write the product back in the larger unit, with its smaller part less than one of the larger unit",
+        "concept": "Back to the larger unit"
+      },
+      {
+        "n": 3,
+        "win": "the pieces slide apart, all the same, and one piece turns green",
+        "does": "writes the length in centimetres, drags the cut marks on, and reads one piece",
+        "goal": "write the measure in its smallest unit, then divide the whole number; each piece is the quotient",
+        "says": "Smallest unit first. Now cut it into equal pieces.",
+        "check": "Away from the screen: how could you check that the pieces of a cut strip are equal?",
+        "feels": "the pieces sliding apart, all the same length",
+        "hands": "Cut a paper strip to a length, measure it in centimetres, and fold it into equal pieces. Measure one piece and check it against a division of the centimetres.",
+        "tries": "First rung: write the length in centimetres only. Second rung: cut it into two equal pieces. Third rung: the same task into fewer pieces, before the question's own number of pieces returns.",
+        "wrong": [
+          {
+            "why": "a guess from the metres part alone feels close enough",
+            "move": "types a piece that is too long",
+            "screen": "the pieces from the child's answer are laid on the strip, and the last one runs past its end, in amber"
+          },
+          {
+            "why": "a round, safe number feels better than one worked out",
+            "move": "types a piece that is too short",
+            "screen": "the pieces from the child's answer are laid on the strip, and more than a piece's worth is left over, in amber"
+          }
+        ],
+        "screen": "a length in metres and centimetres drawn as one strip, with cut marks in a tray",
+        "soWhat": "write the measure in its smallest unit, then divide the whole number; each piece is the quotient",
+        "concept": "Sharing equally"
+      },
+      {
+        "n": 4,
+        "win": "the cups fill level, the small part left over stays rose, and both numbers turn green",
+        "does": "writes the capacity in millilitres, shares it among the cups, and types what each gets and what is left",
+        "goal": "when a sharing does not come out even, say how much each part gets and how much is left over, in words",
+        "says": "Each cup gets the same. Is anything left over?",
+        "check": "Away from the screen: share some sweets among three friends. What do you say if a few are left?",
+        "feels": "the cups filling level and a small rose part staying behind",
+        "hands": "Pour water from a measuring jug equally into a few cups, write how much each gets in millilitres, and say what is left in the jug.",
+        "tries": "First rung: write the capacity in millilitres only. Second rung: share it among two cups. Third rung: the same task among fewer cups, before the question's own cups return.",
+        "wrong": [
+          {
+            "why": "a small leftover feels like a bit after the point",
+            "move": "types the part left over after a point, as if it were a decimal",
+            "screen": "the answer stays, the rose part left over is drawn at the bottom of the column, and a line in ink beside the slot names each cup's share and then the part left over"
+          },
+          {
+            "why": "the level cups look like the whole answer",
+            "move": "types what each cup gets and leaves the Left over slot empty",
+            "screen": "the rose part at the bottom of the column is lit amber until its number is typed"
+          }
+        ],
+        "screen": "a capacity in litres and millilitres drawn as a column of water, with cups waiting",
+        "soWhat": "when a sharing does not come out even, say how much each part gets and how much is left over, in words",
+        "concept": "Some left over"
+      }
+    ],
+    "delight": "On the fourth phase, when the cups fill level, the small rose part left over gives a tiny wobble at the bottom of the column, as if it is waiting to be named.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet copied or cut. On the first phase a length in metres and centimetres sits on its card with the Smallest unit slot empty. On the second a total in grams sits under its copies with the Regroup button beside it. On the third a length is drawn as one strip with the cut marks in a tray. On the fourth a capacity is drawn as a column of water with empty cups waiting beside it. One thing moves, once: the Smallest unit slot, the Regroup button, or the tray of cut marks gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any measure written in its smallest unit, copied end to end or cut into equal pieces, with what is left over kept in view. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the smallest unit, products written back in the larger unit, equal sharing and sharing with some left over.",
+    "voiceLines": [
+      "A measure on a card, and an empty slot for its smallest unit.",
+      "Smallest unit first. Now lay it again, and again.",
+      "How many whole kilograms are in there?",
+      "Smallest unit first. Now cut it into equal pieces.",
+      "Each cup gets the same. Is anything left over?",
+      "A new measure. Smallest unit first.",
+      "Free play. Copy or cut any strip you like.",
+      "Is the measure in its smallest unit? Start there.",
+      "You multiplied and shared in the smallest unit, with whole numbers."
+    ],
+    "observations": [
+      {
+        "why": "the smallest unit in use needs no part of itself, so there is nothing after a point.",
+        "soWhat": "multiply and divide in the smallest unit, with whole numbers.",
+        "observe": "Once the measure was in its smallest unit, it was one whole number."
+      },
+      {
+        "why": "multiplying by a number is laying the same measure that many times.",
+        "soWhat": "a product can be checked by laying the strips.",
+        "observe": "The copies laid end to end made the same length as the product."
+      },
+      {
+        "why": "each bundle is one larger unit, told by the unit fact.",
+        "soWhat": "a total in the smallest unit is written back in the larger unit by bundling.",
+        "observe": "The Regroup bundles stacked up as whole larger units, with a small part beside them."
+      },
+      {
+        "why": "not every whole number divides equally.",
+        "soWhat": "say how much each gets and how much is left over, in words.",
+        "observe": "Some sharings came out even, and some left a small rose part at the end."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a length in metres and centimetres on its card, the Smallest unit slot empty",
+        "win": "the copies meet end to end and the total in centimetres turns green",
+        "traceback": "The metres become centimetres, each copy is counted along the row, and the row's length in centimetres is written in green.",
+        "ladder": [
+          "Count the metre too: one shelf is 100 cm and 45 cm more.",
+          "Each metre is 100 cm, so count the three metres first.",
+          "Write one tile in centimetres before you multiply it by 3.",
+          "Now add one copy at a time along the row.",
+          "Multiply the length of one copy by the number of copies."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a total in grams from the copies, and the Regroup button",
+        "win": "the bundles of a thousand grams stack up as kilograms, and the answer turns green",
+        "traceback": "The total is bundled into the larger unit one bundle at a time, and the part that is left beside them is written in green.",
+        "ladder": [
+          "Count how many thousands the total holds; each one is a whole unit.",
+          "Write the total in millilitres, then count its whole litres.",
+          "Write the total in centimetres; 100 cm make 1 m, not 1,000.",
+          "Make one bundle of the larger unit from the total, then the next.",
+          "The part left after the last bundle is smaller than one bundle."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a length in metres and centimetres drawn as one strip, with cut marks in a tray",
+        "win": "the pieces slide apart, all the same, and one piece turns green",
+        "traceback": "The measure is cut into its equal pieces, each piece is labelled in the smallest unit, and one piece is written in green.",
+        "ladder": [
+          "Share the whole pipe in centimetres, not only the 50 cm.",
+          "The string is already in centimetres, so divide 96 by 4.",
+          "Write the clay in grams before you share it among the pots.",
+          "Now divide that whole number by the number of equal pieces.",
+          "Ask what number times the number of pieces makes the whole."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a capacity in litres and millilitres drawn as a column of water, with cups waiting",
+        "win": "the cups fill level, the small part left over stays rose, and both numbers turn green",
+        "traceback": "The cups fill level one by one, the part left over stays at the bottom in rose, and each share and the part left over are written in green.",
+        "ladder": [
+          "Divide the juice, in millilitres, by 4, and type what is left in the second box.",
+          "Write the rice in grams, then share it among the 4 bowls.",
+          "Write the water in millilitres; 5 L is 5,000 mL.",
+          "Divide in the smallest unit; what cannot be shared is left over.",
+          "Multiply the share back and add what is left: it must make the whole."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "units": {
+      "cm": "1 m = 100 cm",
+      "g": "1 kg = 1,000 g",
+      "mL": "1 L = 1,000 mL"
+    },
+    "method": "write the measure in its smallest unit, multiply or divide the whole number, write a product back in the larger unit, say what is left over",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M3.S4.T7.C30:SM1",
+        "kind": "times",
+        "u": "cm",
+        "big": 1,
+        "small": 45,
+        "times": 4,
+        "obj": "shelf",
+        "near": 180,
+        "answer": 580
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M3.S4.T7.C30:1",
+        "kind": "convert",
+        "u": "cm",
+        "big": 3,
+        "small": 5,
+        "obj": "ribbon",
+        "near": 35,
+        "answer": 305,
+        "ladder": [
+          "Write each of the three metres as 100 cm.",
+          "Put the three hundreds together, then add the small part."
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M3.S4.T7.C30:3",
+        "kind": "times",
+        "u": "cm",
+        "big": 1,
+        "small": 15,
+        "times": 3,
+        "obj": "tile",
+        "near": 45,
+        "answer": 345
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M3.S4.T7.C31:SM2",
+        "kind": "regroup",
+        "u": "g",
+        "big": 2,
+        "small": 350,
+        "times": 6,
+        "obj": "packet",
+        "near": "141|0",
+        "parts": [
+          {
+            "label": "kg"
+          },
+          {
+            "label": "g"
+          }
+        ],
+        "answer": [
+          14,
+          100
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M3.S4.T7.C31:4",
+        "kind": "regroup",
+        "u": "mL",
+        "big": 1,
+        "small": 350,
+        "times": 5,
+        "obj": "bottle",
+        "near": "67|50",
+        "parts": [
+          {
+            "label": "L"
+          },
+          {
+            "label": "mL"
+          }
+        ],
+        "answer": [
+          6,
+          750
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M3.S4.T7.C31:7",
+        "kind": "regroup",
+        "u": "cm",
+        "big": 2,
+        "small": 65,
+        "times": 4,
+        "obj": "plank",
+        "near": "1|60",
+        "parts": [
+          {
+            "label": "m"
+          },
+          {
+            "label": "cm"
+          }
+        ],
+        "answer": [
+          10,
+          60
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M3.S4.T7.C32:SM3",
+        "kind": "share",
+        "u": "cm",
+        "big": 4,
+        "small": 50,
+        "share": 6,
+        "obj": "pipe",
+        "near": 8,
+        "answer": 75
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M3.S4.T7.C32:2",
+        "kind": "share",
+        "u": "cm",
+        "big": 0,
+        "small": 96,
+        "share": 4,
+        "obj": "string",
+        "near": 25,
+        "answer": 24,
+        "ladder": [
+          "Think of 96 as 80 and 16, and share each among the 4 pieces.",
+          "80 shared by 4 is 20; now share the 16 the same way."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M3.S4.T7.C32:6",
+        "kind": "share",
+        "u": "g",
+        "big": 2,
+        "small": 400,
+        "share": 8,
+        "obj": "clay",
+        "near": 50,
+        "answer": 300
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M3.S4.T7.C33:SM4",
+        "kind": "left",
+        "u": "mL",
+        "big": 1,
+        "small": 850,
+        "share": 4,
+        "obj": "juice",
+        "to": "cup",
+        "near": "462|0",
+        "parts": [
+          {
+            "label": "each",
+            "unit": "mL"
+          },
+          {
+            "label": "left over",
+            "unit": "mL"
+          }
+        ],
+        "answer": [
+          462,
+          2
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M3.S4.T7.C33:5",
+        "kind": "left",
+        "u": "g",
+        "big": 1,
+        "small": 30,
+        "share": 4,
+        "obj": "rice",
+        "to": "bowl",
+        "near": "257|0",
+        "parts": [
+          {
+            "label": "each",
+            "unit": "g"
+          },
+          {
+            "label": "left over",
+            "unit": "g"
+          }
+        ],
+        "answer": [
+          257,
+          2
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M3.S4.T7.C33:8",
+        "kind": "left",
+        "u": "mL",
+        "big": 5,
+        "small": 30,
+        "share": 7,
+        "obj": "water",
+        "to": "bottle",
+        "near": "718|0",
+        "parts": [
+          {
+            "label": "each",
+            "unit": "mL"
+          },
+          {
+            "label": "left over",
+            "unit": "mL"
+          }
+        ],
+        "answer": [
+          718,
+          4
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The metres become centimetres, each copy is counted along the row, and the row's length in centimetres is written in green.",
+      "Phase 2: The total is bundled into the larger unit one bundle at a time, and the part that is left beside them is written in green.",
+      "Phase 3: The measure is cut into its equal pieces, each piece is labelled in the smallest unit, and one piece is written in green.",
+      "Phase 4: The cups fill level one by one, the part left over stays at the bottom in rose, and each share and the part left over are written in green."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A measure on a card, and an empty slot for its smallest unit.",
+    "onFreePlay": "Free play. Copy or cut any strip you like.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You multiplied and shared in the smallest unit, with whole numbers.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M3.S4.T7.C30:SM1",
+            "worked": false,
+            "kind": "times",
+            "planQuestion": "A shelf is 1 m 45 cm long. How long are 4 shelves in a row, in centimetres?",
+            "question": {
+              "en": "A shelf is 1 m 45 cm long; how long are 4 shelves in a row, in centimetres?"
+            },
+            "ask": {
+              "en": "4 shelves in cm?"
+            },
+            "answer": 580,
+            "planAnswer": "580 cm.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M3.S4.T7.C30:1",
+            "worked": false,
+            "kind": "convert",
+            "planQuestion": "Before multiplying 3 m 5 cm by a number, write it in its smallest unit. What is it?",
+            "question": {
+              "en": "Write 3 m 5 cm in its smallest unit, in centimetres, before you multiply it."
+            },
+            "ask": {
+              "en": "3 m 5 cm in cm?"
+            },
+            "answer": 305,
+            "planAnswer": "305 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M3.S4.T7.C30:3",
+            "worked": false,
+            "kind": "times",
+            "planQuestion": "A tile is 1 m 15 cm long. How long are 3 tiles laid end to end, in centimetres?",
+            "question": {
+              "en": "A tile is 1 m 15 cm long; how long are 3 tiles laid end to end, in centimetres?"
+            },
+            "ask": {
+              "en": "3 tiles in cm?"
+            },
+            "answer": 345,
+            "planAnswer": "345 cm, because 115 x 3 = 345",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M3.S4.T7.C31:SM2",
+            "worked": false,
+            "kind": "regroup",
+            "planQuestion": "A packet holds 2 kg 350 g of sugar. How much do 6 packets hold, in kilograms and grams?",
+            "question": {
+              "en": "How much do 6 packets of 2 kg 350 g hold, in kilograms and grams?"
+            },
+            "ask": {
+              "en": "6 packets in kg and g?"
+            },
+            "answer": [
+              14,
+              100
+            ],
+            "planAnswer": "14 kg 100 g, which is 14.1 kg.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M3.S4.T7.C31:4",
+            "worked": false,
+            "kind": "regroup",
+            "planQuestion": "A bottle holds 1 L 350 mL. How much do 5 bottles hold, in litres and millilitres?",
+            "question": {
+              "en": "5 bottles hold 1 L 350 mL each; how much is that in litres and millilitres?"
+            },
+            "ask": {
+              "en": "5 bottles in L and mL?"
+            },
+            "answer": [
+              6,
+              750
+            ],
+            "planAnswer": "6 L 750 mL, because 1350 x 5 = 6750",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M3.S4.T7.C31:7",
+            "worked": false,
+            "kind": "regroup",
+            "planQuestion": "A plank is 2 m 65 cm long. How long are 4 planks laid end to end, in metres and centimetres?",
+            "question": {
+              "en": "How long are 4 planks of 2 m 65 cm end to end, in metres and centimetres?"
+            },
+            "ask": {
+              "en": "4 planks in m and cm?"
+            },
+            "answer": [
+              10,
+              60
+            ],
+            "planAnswer": "10 m 60 cm, because 265 x 4 = 1060",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M3.S4.T7.C32:SM3",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A pipe 4 m 50 cm long is cut into 6 equal pieces. How long is each piece?",
+            "question": {
+              "en": "A pipe of 4 m 50 cm is cut into 6 equal pieces; how many centimetres is each?"
+            },
+            "ask": {
+              "en": "Each piece in cm?"
+            },
+            "answer": 75,
+            "planAnswer": "75 cm.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M3.S4.T7.C32:2",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A string 96 cm long is cut into 4 equal pieces. How long is each piece?",
+            "question": {
+              "en": "96 cm of string is shared into 4 equal pieces; how long is each piece?"
+            },
+            "ask": {
+              "en": "Each piece in cm?"
+            },
+            "answer": 24,
+            "planAnswer": "24 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M3.S4.T7.C32:6",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A block of clay of 2 kg 400 g is shared equally among 8 pots. How much clay goes in each pot?",
+            "question": {
+              "en": "2 kg 400 g of clay is shared equally among 8 pots; how many grams go in each?"
+            },
+            "ask": {
+              "en": "Each pot in g?"
+            },
+            "answer": 300,
+            "planAnswer": "300 g, because 2400 divided by 8 is 300",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M3.S4.T7.C33:SM4",
+            "worked": false,
+            "kind": "left",
+            "planQuestion": "A can holds 1 L 850 mL of juice. It is shared equally among 4 cups. How much goes in each cup, and how much is left over?",
+            "question": {
+              "en": "How much juice does each of 4 cups get from 1 L 850 mL, and how much is left?"
+            },
+            "ask": {
+              "en": "Each cup and left over?"
+            },
+            "answer": [
+              462,
+              2
+            ],
+            "planAnswer": "462 mL in each cup, with 2 mL left over in the can.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M3.S4.T7.C33:5",
+            "worked": false,
+            "kind": "left",
+            "planQuestion": "A bag of 1 kg 30 g of rice is shared equally among 4 bowls. How much goes in each bowl, and how much is left over?",
+            "question": {
+              "en": "4 bowls share 1 kg 30 g of rice equally; find each share and what is left."
+            },
+            "ask": {
+              "en": "Each bowl and left over?"
+            },
+            "answer": [
+              257,
+              2
+            ],
+            "planAnswer": "257 g in each bowl, with 2 g left over, because 1030 divided by 4 is 257, with 2 left over",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M3.S4.T7.C33:8",
+            "worked": false,
+            "kind": "left",
+            "planQuestion": "A tank of 5 L 30 mL is shared equally into 7 bottles. How much goes in each bottle, and how much is left over?",
+            "question": {
+              "en": "5 L 30 mL of water fills 7 bottles equally; what is in each, and what stays?"
+            },
+            "ask": {
+              "en": "Each bottle and left over?"
+            },
+            "answer": [
+              718,
+              4
+            ],
+            "planAnswer": "718 mL in each bottle, with 4 mL left over, because 5030 divided by 7 is 718, with 4 left over",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "measure_multiplier",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "measure_multiplier",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Multiply in the smallest unit",
+        "conceptId": "M3.S4.T7.C30",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M3.S4.T7.C30:SM1",
+          "M3.S4.T7.C30:1",
+          "M3.S4.T7.C30:3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Back to the larger unit",
+        "conceptId": "M3.S4.T7.C31",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M3.S4.T7.C31:SM2",
+          "M3.S4.T7.C31:4",
+          "M3.S4.T7.C31:7"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Sharing equally",
+        "conceptId": "M3.S4.T7.C32",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M3.S4.T7.C32:SM3",
+          "M3.S4.T7.C32:2",
+          "M3.S4.T7.C32:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Some left over",
+        "conceptId": "M3.S4.T7.C33",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M3.S4.T7.C33:SM4",
+          "M3.S4.T7.C33:5",
+          "M3.S4.T7.C33:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "measure",
+    "null",
+    "v",
+    "smallest",
+    "base",
+    "base",
+    "copies",
+    "copies",
+    "cuts",
+    "cutN",
+    "left_over",
+    "r",
+    "answer",
+    "answer"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, measure, null, v, smallest, base, base, copies, copies, cuts, cutN, left_over, r, answer, answer, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "measure_multiplier"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M3.S4.T7.C33.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A measure on a card, and an empty slot for its smallest unit."
+    },
+    {
+      "en": "Smallest unit first. Now lay it again, and again."
+    },
+    {
+      "en": "How many whole kilograms are in there?"
+    },
+    {
+      "en": "Smallest unit first. Now cut it into equal pieces."
+    },
+    {
+      "en": "Each cup gets the same. Is anything left over?"
+    },
+    {
+      "en": "A new measure. Smallest unit first."
+    },
+    {
+      "en": "Free play. Copy or cut any strip you like."
+    },
+    {
+      "en": "Is the measure in its smallest unit? Start there."
+    },
+    {
+      "en": "You multiplied and shared in the smallest unit, with whole numbers."
+    }
+  ],
+  "build": {
+    "source": "58a5b037:633954",
+    "runtime": "class5/runtime/frozen/r65/runtime.tsx",
+    "runtimeVersion": "r65",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T14:05:27.695Z",
+    "checks": {
+      "pass": 94,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-18T14:05:27.574Z"
+    },
+    "tsxBytes": 554712,
+    "tsxMd5": "866cb1bafe3e7101a7ad7e494f34aba3",
+    "handEdited": true
+  }
+}
