@@ -1,0 +1,1064 @@
+{
+  "slotId": "M3.S5.T8.C38.2D1",
+  "mediaId": "M3.S5.T8.C38.2D1",
+  "toolId": "thermometer_reader",
+  "title": "Thermometer Reader",
+  "component": "M3.S5.T8.C38.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch9_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_9/2dtool/M3.S5.T8.C38.2D1/M3.S5.T8.C38.2D1.tsx",
+  "description": "Dip a thermometer and watch the column move, see the four printed readings on two scales, find what one small mark is worth, and read the column by counting marks.",
+  "conceptIds": [
+    "M3.S5.T8.C35",
+    "M3.S5.T8.C36",
+    "M3.S5.T8.C37",
+    "M3.S5.T8.C38"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Say what temperature is and what measures it, know the chapter's landmark readings on both scales, find what one small mark is worth, and read a thermometer by counting marks.",
+    "look": "A tall thermometer with a green liquid column, labels up its scale and small marks between them, and on one phase a second scale beside it marked only at four readings.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Thermometer Reader' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of gaps or marks counted. It is never a score. The working area is 1086 by 528 at x 64, y 202. The thermometer stands upright at x 480, y 220, a tube 60 wide and 470 tall with its bulb at the bottom, its tube, marks and labels in near-black ink and its liquid column green, labelled Reading. On the first phase a shelf runs along y 640 from x 700 to x 1100 with a bowl of ice, cups of water and a cup of tea on it, and the thermometer is dragged into each; the cups can then be dragged into a row along y 560, coldest at the left. On the second phase the Celsius scale runs up the left of the tube, and the other scale, violet, labelled Other scale, stands on the right with only four marks; the four landmark buttons, freezing water, room temperature, body temperature and boiling water, stand in a column at x 760, y 260. On the third phase a tapped label is deep blue, labelled Given, each gap between two neighbouring labels lights amber as it is counted, and the worth of one small mark is pinned beside the scale at x 600 in vermilion, labelled One mark. On the fourth the marks above the label below the column light one at a time as they are counted. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a point key, a delete key, and a deg C key and a deg F key. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. The measure the question gives, in the unit it is given in, is deep blue, labelled Given or Measure. The measure the working reaches, and a reading on a scale, is green, labelled Answer, Reading or Same measure. The places moved across the unit chart, and the worth of one small mark on a scale, are vermilion, labelled Move or One mark. A unit fact, the unit names on the chart and the other temperature scale are violet, labelled Unit fact, Unit or Other scale. The part taken away, and a part left over after sharing, are rose, labelled Taken away or Left over. The unit, column, mark or step being worked on now is amber. Grey is kept for a zero holding a place open inside a number, labelled Place holder, and for nothing else. Rulers, tapes, jugs, scales, thermometer tubes, chart lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last thermometer stays up, with the worth of one small mark pinned beside it and the reading in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the cups line up from coldest to hottest, each with its column height beside it",
+        "does": "dips the thermometer into each and puts them in order from coldest to hottest",
+        "goal": "temperature is how hot or cold something is, and a thermometer measures it",
+        "says": "Dip it in. Does the column go up or down?",
+        "check": "Away from the screen: which is hotter, a cup of milk just heated or a glass of milk from the fridge?",
+        "feels": "the column climbing in the tea and dropping in the ice",
+        "hands": "Touch a glass of cold water, a glass from the tap and a cup of warm water, and put them in a row from coldest to hottest. Then check with a thermometer if one is at hand.",
+        "tries": "First rung: dip the thermometer into two cups only and say which is hotter. Second rung: add a third cup. Third rung: the same task with the ice and the tea only, before the question's own shelf returns.",
+        "wrong": [
+          {
+            "why": "a fuller cup looks like more of everything",
+            "move": "orders the cups by how much water is in them",
+            "screen": "each cup's column height is drawn beside it in green, the tallest column is lit amber, and the child's row stays as it was set"
+          },
+          {
+            "why": "the cup of tea is the one that catches the eye, so it goes first",
+            "move": "builds the row from hottest to coldest",
+            "screen": "the row stays, and the word Coldest is written in ink at the left end of the row with an arrow pointing to the right towards Hottest"
+          }
+        ],
+        "screen": "a thermometer beside a shelf of a bowl of ice, cups of water and a cup of tea",
+        "soWhat": "temperature is how hot or cold something is, and a thermometer measures it",
+        "concept": "Hot and cold"
+      },
+      {
+        "n": 2,
+        "win": "each landmark shows its two readings side by side, joined by a straight line at its true mark",
+        "does": "taps each landmark button and reads the column on both scales",
+        "goal": "water freezes at 0 deg C and boils at 100 deg C; the chapter pairs each landmark with a reading on the other scale, and gives no rule for others",
+        "says": "Tap a landmark. Read it on both sides.",
+        "check": "Away from the screen: why must a temperature always be said with its scale?",
+        "feels": "each landmark lighting up on both sides of the tube at once",
+        "hands": "Draw a tall tube with two scales, one on each side. Mark freezing water and boiling water on both, and join each pair of marks with a straight line.",
+        "tries": "First rung: tap the freezing water landmark and read the Celsius side. Second rung: read the other side of the same landmark. Third rung: the same task on the boiling water landmark, before the question's own landmark returns.",
+        "wrong": [
+          {
+            "why": "the Celsius numbers are the ones met first, so they come to mind",
+            "move": "types the Celsius reading when the other scale's reading is asked",
+            "screen": "the column stays at the landmark, the violet scale's mark at the column's top is lit amber with its reading beside it, and the child's typed answer stays in the slot"
+          },
+          {
+            "why": "both feel like ordinary warm",
+            "move": "taps the room temperature landmark when body temperature is asked",
+            "screen": "the column rises to the landmark tapped with its name written beside it in ink, and the body temperature button is lit amber"
+          }
+        ],
+        "screen": "the thermometer with the Celsius scale on the left, the other scale on the right marked at four readings, and four landmark buttons",
+        "soWhat": "water freezes and boils at two landmark readings, and each pairs with one reading on the other scale; there is no rule here for others",
+        "concept": "Two scales"
+      },
+      {
+        "n": 3,
+        "win": "the worth of one small mark is pinned beside the scale in vermilion",
+        "does": "taps two neighbouring labels, counts the steps between them, and types what one small mark is worth",
+        "goal": "find what one small mark is worth: the gap between two labels, divided by the number of steps between them",
+        "says": "Count the steps between two labels, not the marks.",
+        "check": "Away from the screen: between two labels there are some small marks. How many steps is that?",
+        "feels": "the steps lighting one by one and one mark's worth snapping into place",
+        "hands": "Draw two labels on a paper scale with a few small marks between them. Colour each gap between marks, count the gaps, and share the difference between the labels among them.",
+        "tries": "First rung: count the steps between two labels only. Second rung: find the gap between the labels. Third rung: the same task with one small mark between the labels, before the question's own scale returns.",
+        "wrong": [
+          {
+            "why": "the marks are what can be seen and pointed at",
+            "move": "shares the difference between the labels among the small marks instead of the steps",
+            "screen": "the steps between the two labels light again one at a time in amber, and the worth of one small mark is shown beside them, while the child's answer stays in the slot"
+          },
+          {
+            "why": "on a ruler each small mark is one of something, so a thermometer feels the same",
+            "move": "types one for what one small mark is worth without looking at the labels",
+            "screen": "the two labels are lit deep blue, the steps between them are counted again one at a time, and the worth the labels give is pinned beside the child's"
+          }
+        ],
+        "screen": "a scale with its labels and small marks, and no column yet",
+        "soWhat": "find what one small mark is worth: the gap between two labels, divided by the number of steps between them",
+        "concept": "What one small mark is worth"
+      },
+      {
+        "n": 4,
+        "win": "the counted marks glow, and the reading turns green",
+        "does": "finds what one small mark is worth, counts the marks above the label below the column, and types the reading",
+        "goal": "find what one small mark is worth, count the marks from the label below the column, and add",
+        "says": "What is one mark worth here? Count up from the label.",
+        "check": "Away from the screen: before you read a thermometer, what must you find first?",
+        "feels": "the counted marks glowing up to the top of the column",
+        "hands": "On a drawn thermometer, colour a column that stops between two labels. Find what one small mark is worth, count the marks above the label below the column, and add.",
+        "tries": "First rung: find what one small mark is worth. Second rung: count the marks above the label below the column. Third rung: the same task with the column one mark above a label, before the question's own thermometer returns.",
+        "wrong": [
+          {
+            "why": "the marks feel like ones, the way a ruler's marks do",
+            "move": "counts the marks above the label as one degree each on a scale where a mark is worth more",
+            "screen": "the column is drawn at the child's reading beside the real one, so the two tops are seen apart, and the worth of one small mark is pinned beside the scale"
+          },
+          {
+            "why": "the top of the column is close to a label, and close feels good enough",
+            "move": "types the nearest label as the reading",
+            "screen": "the column is drawn at the child's reading beside the real one, and the marks between the label and the real top light one at a time"
+          }
+        ],
+        "screen": "a thermometer whose column stops between two labels",
+        "soWhat": "find what one small mark is worth, count the marks from the label below the column, and add",
+        "concept": "Reading a thermometer"
+      }
+    ],
+    "delight": "On the second phase, when the boiling water landmark is tapped, a few small bubbles rise inside the drawn cup beside the tube as the column climbs to the top label.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet read. On the first phase the thermometer stands beside a shelf with a bowl of ice, cups of water and a cup of tea. On the second it stands with the Celsius scale on the left, the other scale on the right marked at four readings, and four landmark buttons below. On the third a scale stands with its labels and small marks and no column yet. On the fourth the column stops between two labels. One thing moves, once: the thermometer, the first landmark button, or the lowest label gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any labels set on the scale, any number of small marks between them, and any column read. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on temperature, the two scales, what one small mark is worth, and readings.",
+    "voiceLines": [
+      "A thermometer, standing ready.",
+      "Dip it in. Does the column go up or down?",
+      "Tap a landmark. Read it on both sides.",
+      "Count the steps between two labels, not the marks.",
+      "What is one mark worth here? Count up from the label.",
+      "A new thermometer. Look at its labels first.",
+      "Free play. Dip the thermometer anywhere and read it.",
+      "What is one small mark worth here? Count the steps between two labels.",
+      "You found what one small mark was worth, and read the column."
+    ],
+    "observations": [
+      {
+        "why": "the liquid in the tube takes up more room when it is warmer.",
+        "soWhat": "the height of the column shows how hot or cold something is, which is its temperature.",
+        "observe": "The column rose in the tea and sank in the ice water."
+      },
+      {
+        "why": "the two scales measure the same temperature with different numbers.",
+        "soWhat": "always say which scale a reading is on, deg C or deg F.",
+        "observe": "The same landmark sat at two different numbers on the two sides of the tube."
+      },
+      {
+        "why": "what one small mark is worth depends on the labels and on how many steps lie between them.",
+        "soWhat": "find what one small mark is worth before reading any thermometer.",
+        "observe": "On one thermometer a small mark was worth one degree, and on another it was worth more."
+      },
+      {
+        "why": "the marks sit between the steps, like fence posts between gaps.",
+        "soWhat": "count the steps, not the marks, when finding what one small mark is worth.",
+        "observe": "There was always one more step than there were small marks between two labels."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a thermometer beside a shelf of a bowl of ice, cups of water and a cup of tea",
+        "win": "the cups line up from coldest to hottest, each with its column height beside it",
+        "traceback": "each cup's column height is drawn beside it, the tallest lit amber, then the answer is named over it",
+        "ladder": [
+          "Look at how high the column stood in each one.",
+          "Dip the thermometer in the tea, then in the ice water, and compare.",
+          "Count up the scale from 45 to 70.",
+          "A higher column means a hotter thing.",
+          "In one of them the column sank to 0, in the other it climbed past 50."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the thermometer with the Celsius scale on the left, the other scale on the right marked at four readings, and four landmark buttons",
+        "win": "each landmark shows its two readings side by side, joined by a straight line at its true mark",
+        "traceback": "the column goes to the reading asked, its key is ringed amber, the side asked is lit amber, then both readings show",
+        "ladder": [
+          "Tap Boiling water and read both sides of the tube.",
+          "Tap Freezing water, then read the Fahrenheit side.",
+          "Start with the Body temperature key.",
+          "Tap the key the question names, then read across.",
+          "Follow the top of the column to the side the question asks for."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a scale with its labels and small marks, and no column yet",
+        "win": "the worth of one small mark is pinned beside the scale in vermilion",
+        "traceback": "the two labels light deep blue, the steps between them light amber one at a time, then the worth of one mark is pinned",
+        "ladder": [
+          "Count the steps from 60 to 70, not the marks.",
+          "How many steps are there from 20 to 25?",
+          "Find the gap from 40 to 60 first.",
+          "Every gap between neighbouring labels holds the same number of steps.",
+          "A mark is worth a whole gap shared out by its steps."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a thermometer whose column stops between two labels",
+        "win": "the counted marks glow, and the reading turns green",
+        "traceback": "the child's reading is drawn as a pale column beside the real one, the marks above the label light one at a time, then the sum",
+        "ladder": [
+          "Count the marks from the label below up to the green top.",
+          "The column passes the 25 label before it stops.",
+          "How many degrees lie between the 30 and 50 labels?",
+          "How many marks sit between that label and the green top?",
+          "Add the worth of those marks to the label below."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "cupTemps": {
+      "stand": 25,
+      "ice": 0,
+      "water": 20,
+      "tea": 70
+    },
+    "landmarks": {
+      "freeze": [
+        0,
+        32
+      ],
+      "room": [
+        21,
+        69.8
+      ],
+      "body": [
+        37,
+        98.6
+      ],
+      "boil": [
+        100,
+        212
+      ]
+    },
+    "marksBetweenLabels": 4,
+    "stepsBetweenLabels": 5,
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M3.S5.T8.C35:TR1",
+        "kind": "pick",
+        "answer": "tea",
+        "near": "ice",
+        "tag": "Hotter"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M3.S5.T8.C35:1",
+        "kind": "pick",
+        "answer": "hot",
+        "near": "much",
+        "tag": "How hot or cold",
+        "ladder": [
+          "The big bowl holds the most water, yet its column stood the lowest.",
+          "The column changed when the heat changed, not when the water changed."
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M3.S5.T8.C35:8",
+        "kind": "diff",
+        "lo": 45,
+        "hi": 70,
+        "answer": 25,
+        "near": 115,
+        "ladder": [
+          "Each small mark on these scales is worth 5 degrees.",
+          "From 45 up to 50 is 5, so how far is it from 50 up to 70?"
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M3.S5.T8.C36:TR2",
+        "kind": "land",
+        "lm": "boil",
+        "side": "both",
+        "parts": [
+          {
+            "label": "°C"
+          },
+          {
+            "label": "°F"
+          }
+        ],
+        "answer": [
+          100,
+          212
+        ],
+        "near": "212|100",
+        "ladder": [
+          "Celsius is the left side of the tube, Fahrenheit the right side.",
+          "Celsius goes in the first box and Fahrenheit in the second."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M3.S5.T8.C36:2",
+        "kind": "land",
+        "lm": "freeze",
+        "side": "F",
+        "answer": 32,
+        "near": 0,
+        "ladder": [
+          "Fahrenheit is the side with only four marks.",
+          "Read the Fahrenheit number level with the top of the column."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M3.S5.T8.C36:5",
+        "kind": "land",
+        "lm": "body",
+        "side": "C",
+        "answer": 37,
+        "near": 21,
+        "ladder": [
+          "The Celsius reading shows in the box ending in °C, beside the column's top.",
+          "Type the number shown in that box."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M3.S5.T8.C37:TR3",
+        "kind": "worth",
+        "lab": [
+          60,
+          70,
+          80
+        ],
+        "answer": 2,
+        "near": "2.5",
+        "ladder": [
+          "The gap from 60 to 70 is 10 degrees.",
+          "Share those 10 degrees equally among the 5 steps."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M3.S5.T8.C37:3",
+        "kind": "worth",
+        "lab": [
+          20,
+          25,
+          30
+        ],
+        "answer": 1,
+        "near": "1.25",
+        "ladder": [
+          "From 20 to 25 the 4 small marks make 5 steps.",
+          "Share the 5 degrees out over those steps."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M3.S5.T8.C37:6",
+        "kind": "worth",
+        "lab": [
+          40,
+          60,
+          80
+        ],
+        "answer": 4,
+        "near": 5,
+        "ladder": [
+          "60 take away 40 is 20 degrees.",
+          "Now divide 20 by the steps between 40 and 60."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M3.S5.T8.C38:TR4",
+        "kind": "read",
+        "lab": [
+          60,
+          70,
+          80
+        ],
+        "base": 0,
+        "k": 3,
+        "answer": 66,
+        "near": 63,
+        "ladder": [
+          "There are 3 marks between the 60 label and the green top.",
+          "3 marks of 2 degrees are 6 degrees above the 60 label."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M3.S5.T8.C38:4",
+        "kind": "read",
+        "lab": [
+          20,
+          25,
+          30
+        ],
+        "base": 1,
+        "k": 3,
+        "answer": 28,
+        "near": 25,
+        "ladder": [
+          "How many marks are there from 25 up to the top of the column?",
+          "3 marks sit above the 25 label."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M3.S5.T8.C38:7",
+        "kind": "read",
+        "lab": [
+          30,
+          50,
+          70
+        ],
+        "base": 0,
+        "k": 2,
+        "answer": 38,
+        "near": 32,
+        "ladder": [
+          "Count the steps from 30 to 50, then share the gap among them.",
+          "Then count the marks above 30 and add their worth to 30."
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: each cup's column height is drawn beside it, the tallest lit amber, then the answer is named over it",
+      "Phase 2: the column goes to the reading asked, its key is ringed amber, the side asked is lit amber, then both readings show",
+      "Phase 3: the two labels light deep blue, the steps between them light amber one at a time, then the worth of one mark is pinned",
+      "Phase 4: the child's reading is drawn as a pale column beside the real one, the marks above the label light one at a time, then the sum"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A thermometer, standing ready.",
+    "onFreePlay": "Free play. Dip the thermometer in any cup and read it.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You found what one small mark was worth, and read the column.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M3.S5.T8.C35:TR1",
+            "worked": false,
+            "kind": "pick",
+            "planQuestion": "A cup of tea and a glass of ice water sit on a table. Which is hotter, and what measures how hot each one is?",
+            "question": {
+              "en": "Which is hotter, the cup of tea or the bowl of ice water?"
+            },
+            "ask": {
+              "en": "Which is hotter?"
+            },
+            "answer": "tea",
+            "planAnswer": "The tea is hotter. A thermometer measures how hot or cold each one is, which is its temperature.",
+            "choices": [
+              "tea",
+              "ice"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M3.S5.T8.C35:1",
+            "worked": false,
+            "kind": "pick",
+            "planQuestion": "What does a thermometer measure?",
+            "question": {
+              "en": "What does a thermometer measure?"
+            },
+            "ask": {
+              "en": "It measures?"
+            },
+            "answer": "hot",
+            "planAnswer": "Temperature: how hot or cold something is",
+            "choices": [
+              "hot",
+              "much"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M3.S5.T8.C35:8",
+            "worked": false,
+            "kind": "diff",
+            "planQuestion": "Two cups of water are at 45 deg C and 70 deg C. Which is hotter, and by how many degrees?",
+            "question": {
+              "en": "Two cups are at 45 °C and 70 °C, so by how many degrees is one hotter?"
+            },
+            "ask": {
+              "en": "How many degrees?"
+            },
+            "answer": 25,
+            "planAnswer": "The cup at 70 deg C, by 25 degrees",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M3.S5.T8.C36:TR2",
+            "worked": false,
+            "kind": "land",
+            "planQuestion": "At what temperature does water boil on the Celsius scale, and what is that on the Fahrenheit scale?",
+            "question": {
+              "en": "At what temperature does water boil on the Celsius and Fahrenheit sides?"
+            },
+            "ask": {
+              "en": "Water boils at?"
+            },
+            "answer": [
+              100,
+              212
+            ],
+            "planAnswer": "Water boils at 100 deg C, which is 212 deg F.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M3.S5.T8.C36:2",
+            "worked": false,
+            "kind": "land",
+            "planQuestion": "At what temperature does water freeze on the Fahrenheit scale?",
+            "question": {
+              "en": "At what temperature does water freeze on the Fahrenheit scale?"
+            },
+            "ask": {
+              "en": "Freezes, in °F?"
+            },
+            "answer": 32,
+            "planAnswer": "32 deg F",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M3.S5.T8.C36:5",
+            "worked": false,
+            "kind": "land",
+            "planQuestion": "What is normal body temperature on the Celsius scale?",
+            "question": {
+              "en": "What is normal body temperature on the Celsius scale?"
+            },
+            "ask": {
+              "en": "Body, in °C?"
+            },
+            "answer": 37,
+            "planAnswer": "About 37 deg C",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M3.S5.T8.C37:TR3",
+            "worked": false,
+            "kind": "worth",
+            "planQuestion": "A thermometer is labelled 60, 70 and 80 deg C, with 4 small marks between neighbouring labels. What is one small mark worth?",
+            "question": {
+              "en": "This scale has 4 small marks between labels, so what is each worth?"
+            },
+            "ask": {
+              "en": "Each mark is worth?"
+            },
+            "answer": 2,
+            "planAnswer": "2 degrees.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M3.S5.T8.C37:3",
+            "worked": false,
+            "kind": "worth",
+            "planQuestion": "Labels 20 and 25 deg C have 4 small marks between them. What is one small mark worth?",
+            "question": {
+              "en": "Here the labels go up by 5, so what is each small mark worth?"
+            },
+            "ask": {
+              "en": "Each mark here?"
+            },
+            "answer": 1,
+            "planAnswer": "1 degree, because 5 divided by 5 is 1",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M3.S5.T8.C37:6",
+            "worked": false,
+            "kind": "worth",
+            "planQuestion": "Labels 40 and 60 deg C have 4 small marks between them. What is one small mark worth?",
+            "question": {
+              "en": "What is each small mark worth on this last scale?"
+            },
+            "ask": {
+              "en": "Each mark, last scale?"
+            },
+            "answer": 4,
+            "planAnswer": "4 degrees, because 20 divided by 5 is 4",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M3.S5.T8.C38:TR4",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "On a thermometer labelled 60, 70 and 80 deg C, one small mark is worth 2 degrees. The column stops 3 small marks above the 60 label. What does it read?",
+            "question": {
+              "en": "One small mark is worth 2 degrees here, so what does the thermometer read?"
+            },
+            "ask": {
+              "en": "It reads?"
+            },
+            "answer": 66,
+            "planAnswer": "66 deg C.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M3.S5.T8.C38:4",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "On a thermometer where one small mark is worth 1 degree, the column stops 3 marks above the 25 label. What is the reading?",
+            "question": {
+              "en": "On this one a mark is worth 1 degree, so what is the reading?"
+            },
+            "ask": {
+              "en": "The reading?"
+            },
+            "answer": 28,
+            "planAnswer": "28 deg C",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M3.S5.T8.C38:7",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "Labels 30 and 50 deg C have 4 small marks between them. The column stops 2 marks above the 30 label. What is the reading?",
+            "question": {
+              "en": "Find what a mark is worth first, then read this thermometer."
+            },
+            "ask": {
+              "en": "Read it?"
+            },
+            "answer": 38,
+            "planAnswer": "38 deg C, because each mark is worth 4 degrees",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "thermometer_reader",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "thermometer_reader",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Hot and cold",
+        "conceptId": "M3.S5.T8.C35",
+        "objectiveIds": [
+          "O13"
+        ],
+        "items": [
+          "M3.S5.T8.C35:TR1",
+          "M3.S5.T8.C35:1",
+          "M3.S5.T8.C35:8"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Two scales",
+        "conceptId": "M3.S5.T8.C36",
+        "objectiveIds": [
+          "O13"
+        ],
+        "items": [
+          "M3.S5.T8.C36:TR2",
+          "M3.S5.T8.C36:2",
+          "M3.S5.T8.C36:5"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "What one small mark is worth",
+        "conceptId": "M3.S5.T8.C37",
+        "objectiveIds": [
+          "O14"
+        ],
+        "items": [
+          "M3.S5.T8.C37:TR3",
+          "M3.S5.T8.C37:3",
+          "M3.S5.T8.C37:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Reading a thermometer",
+        "conceptId": "M3.S5.T8.C38",
+        "objectiveIds": [
+          "O14"
+        ],
+        "items": [
+          "M3.S5.T8.C38:TR4",
+          "M3.S5.T8.C38:4",
+          "M3.S5.T8.C38:7"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "labels",
+    "marks_between",
+    "counted",
+    "lit"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, labels, marks_between, counted, lit, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "thermometer_reader"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M3.S5.T8.C38.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A thermometer, standing ready."
+    },
+    {
+      "en": "Dip it in. Does the column go up or down?"
+    },
+    {
+      "en": "Tap a landmark. Read it on both sides."
+    },
+    {
+      "en": "Count the steps between two labels, not the marks."
+    },
+    {
+      "en": "What is one mark worth here? Count up from the label."
+    },
+    {
+      "en": "A new thermometer. Look at its labels first."
+    },
+    {
+      "en": "Free play. Dip the thermometer anywhere and read it."
+    },
+    {
+      "en": "What is one small mark worth here? Count the steps between two labels."
+    },
+    {
+      "en": "You found what one small mark was worth, and read the column."
+    }
+  ],
+  "build": {
+    "source": "1302eaf7:613483",
+    "runtime": "class5/runtime/frozen/r65/runtime.tsx",
+    "runtimeVersion": "r65",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T14:09:26.287Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-18T14:09:26.173Z"
+    },
+    "tsxBytes": 546363,
+    "tsxMd5": "58ce08459d1e108079883061bee8153f"
+  }
+}

@@ -1,0 +1,1072 @@
+{
+  "slotId": "M3.S5.T10.C48.2D1",
+  "mediaId": "M3.S5.T10.C48.2D1",
+  "toolId": "column_adder",
+  "title": "Column Adder",
+  "component": "M3.S5.T10.C48.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch5",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch5_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_5/2dtool/M3.S5.T10.C48.2D1/M3.S5.T10.C48.2D1.tsx",
+  "description": "Line up the points, add place by place with carries across the point, give whole numbers their point, and see that order and adding zero change nothing.",
+  "conceptIds": [
+    "M3.S5.T10.C45",
+    "M3.S5.T10.C46",
+    "M3.S5.T10.C47",
+    "M3.S5.T10.C48"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Add decimals, whole numbers among them, with the points in one line and carrying across the point, and use the order and zero properties to check a sum.",
+    "look": "A column frame with one fixed point line down its middle, decimal cards lined up on it, and an answer row under a ruled line.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Column Adder' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x sixty-four, y 108 and 330 by 76, sits the running count: how many columns have been added, from the right. It is never a score. The working area is 1086 by 528 at x sixty-four, y 202. The frame spans x 110 to x 900 from y 230 to y 560, five columns 140 across headed Tens, Ones, Tenths, Hundredths and Thousandths, with the near-black point line at x 400 between Ones and Tenths. Cards sit one per row at y 270, y 350 and y 430, deep blue and labelled Given, sliding until their points sit on the line. A ruled line at y 500 has the answer row under it, where the sum is written green, labelled Sum. A column being added lights amber; a carry is a vermilion 1 labelled Carry that rolls up to the top of the next column to the left, crossing the point line when it comes from the tenths. The tray runs along y 640. The Like, Add, Point first and Swap buttons and the Add zero card stand down the right of the working area at x 960. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is twelve number keys three across with a point key, for setting a decimal with up to three places or typing a sum into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the tools of this chapter share them. A decimal or fraction the question gives is deep blue, with the shaded parts that show it. The result the working reaches, a decimal, a fraction, a sum, a difference or what is left, is green, with its shaded parts. Ten of one place traded for one of the next, a carry in adding or a trade in taking away, is vermilion. A zero written after the point to line decimals up is violet, and so is the point written after a whole number before those zeros. The part taken away, used or poured out is rose. The digit, place or step being worked on now, and the first place where two decimals differ, are amber. A zero holding a place open inside a number is grey, and nothing else on the stage is ever grey. An unshaded part stays warm white inside its near-black outline, the decimal point is near-black ink, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of them, and each of those readings survives with the colour taken away, because a part is told by its written label, Given, Answer, Carry, Trade, Added zero, Taken away, Left or Place holder, before it is told by its colour.",
+    "finish": "The card shows the last sum in the frame, every point on the one line and every carry still in vermilion above its column.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the columns add to 5.76 in green, its point straight below the others",
+        "does": "drags both cards into the frame, watches them slide to the point line, and taps Add",
+        "goal": "decimals are added with their points in one line, as whole numbers, the point placed straight below",
+        "says": "Points in one line. Then add as whole numbers.",
+        "check": "Away from the screen: why do the points have to be one below the other when you add decimals?",
+        "feels": "the cards clicking into line by their points",
+        "hands": "Measure two strings in metres, to two places after the point, and write the lengths one below the other with the points in one line. Add each column and put the point straight below.",
+        "tries": "First rung: line up one card. Second rung: line up the other. Third rung: the same task with two cards of the same length, before different lengths return.",
+        "wrong": [
+          {
+            "why": "whole number sums line up on the right",
+            "move": "lines up the last digits instead of the points",
+            "screen": "the card slides back until its point sits on the point line, and the column it had covered lights amber"
+          },
+          {
+            "why": "adding as whole numbers seems to finish the job",
+            "move": "leaves the point out of the sum",
+            "screen": "the point line runs down through the answer row and a point drops onto it, the child's digits kept"
+          }
+        ],
+        "screen": "the cards 3.46 and 2.3 in the tray, and the empty frame",
+        "soWhat": "decimals are added with their points in one line, as whole numbers, the point placed straight below",
+        "concept": "Line up the points"
+      },
+      {
+        "n": 2,
+        "win": "a vermilion one rolls into the tenths, another rolls across the point into the ones, and the sum reads 6.25",
+        "does": "adds the hundredths, then the tenths, and watches each carry roll left",
+        "goal": "ten of one place is carried as one of the next place, across the point too",
+        "says": "Fifteen hundredths. Keep the five and carry one tenth.",
+        "check": "Away from the screen: the tenths add to more than ten. Where does the carry go?",
+        "feels": "a carry hopping across the point",
+        "hands": "Add two decimals on paper where the hundredths and the tenths both make ten or more. Write each carry small at the top of the next column, and watch one cross the point.",
+        "tries": "First rung: add the hundredths only. Second rung: add the tenths with the carry. Third rung: the same task where only one column carries.",
+        "wrong": [
+          {
+            "why": "the column's total is the answer for that column",
+            "move": "writes the whole column total under the column",
+            "screen": "the total's tens digit lifts off, turns vermilion and rolls to the next column, and only the ones digit stays"
+          },
+          {
+            "why": "the carry is small and easy to miss",
+            "move": "forgets the carry in the next column",
+            "screen": "the vermilion 1 at the top of the column pulses and joins the column's sum as it is added again"
+          }
+        ],
+        "screen": "4.68 above 1.57 on the point line, and the Add button lit",
+        "soWhat": "ten of one place is carried as one of the next place, across the point too",
+        "concept": "Carrying across the point"
+      },
+      {
+        "n": 3,
+        "win": "the 6 takes a violet point after its ones digit, all three line up, and the sum reads 8.75",
+        "does": "tries the 6 card, taps Point first, lines up all three and adds",
+        "goal": "a whole number has its point after the ones digit before it is lined up",
+        "says": "Where is the point in a whole number?",
+        "check": "Away from the screen: where is the point in the number seven?",
+        "feels": "a whole number getting its point and sliding into line",
+        "hands": "Write a whole number and two decimals one below the other. Put a dot after the whole number's ones digit first, then line up all the dots and add.",
+        "tries": "First rung: find the ones digit of the whole number. Second rung: tap Point first. Third rung: the same task with one decimal, before two return.",
+        "wrong": [
+          {
+            "why": "a number with no point seems to line up on the right",
+            "move": "lines the whole number up under the last digit of a decimal",
+            "screen": "the whole number card will not settle, and the Point first button pulses once"
+          },
+          {
+            "why": "zeros made the decimals line up, so they seem to fit anywhere",
+            "move": "adds a zero straight onto the whole number before its point",
+            "screen": "the card shows the number ten times as big in words beside it, and the zero slides back off"
+          }
+        ],
+        "screen": "the cards 6, 0.35 and 2.4 in the tray, the 6 card with no point",
+        "soWhat": "a whole number has its point after the ones digit before it is lined up",
+        "concept": "Adding whole numbers and decimals"
+      },
+      {
+        "n": 4,
+        "win": "the swapped sum is 5.55 again, and 7.08 + 0 = 7.08",
+        "does": "taps Swap and adds again, then drops the Add zero card on 7.08",
+        "goal": "changing the order of the addends does not change the sum, and adding 0 changes nothing",
+        "says": "Swap them round. Did the sum change?",
+        "check": "Away from the screen: how can adding in the other order help you check a sum?",
+        "feels": "the sum staying put while the cards swap places",
+        "hands": "Add two decimals in one order and then in the other, on paper, and compare the sums. Then add zero to a decimal and see what changes.",
+        "tries": "First rung: add in the first order. Second rung: tap Swap and add again. Third rung: the same task with no carrying, before carries return.",
+        "wrong": [
+          {
+            "why": "subtracting needs it, and the two look alike",
+            "move": "thinks the greater number has to go on top in adding",
+            "screen": "Swap reverses the cards and the sum lands again in the same place, green"
+          },
+          {
+            "why": "zeros at the end came up on the like decimals page",
+            "move": "thinks adding zero adds a zero digit to the end",
+            "screen": "the Add zero card lines up as its own row with 0 in the ones place, and the sum is written unchanged"
+          }
+        ],
+        "screen": "1.35 above 4.2 with their sum 5.55 in the answer row",
+        "soWhat": "changing the order of the addends does not change the sum, and adding 0 changes nothing",
+        "concept": "Order and zero in adding"
+      }
+    ],
+    "delight": "On the second phase, when the tenths make ten or more, the vermilion carry hops over the point line like a frog over a stream and lands on top of the ones column with a soft plop.",
+    "opening": "Every mount comes up already furnished for its phase with the column frame drawn and its point line down the middle. On the first three phases the cards wait in the tray under the frame, and on the third one of them is a whole number with no point. On the fourth two cards are already lined up with their sum in the answer row. One thing moves, once: the first card in the tray, or the Swap button, gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any decimals and whole numbers in the frame, lined up, made like or not, added and swapped. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on lining up the points, carrying, whole numbers with decimals, and order and zero.",
+    "voiceLines": [
+      "A column frame, with one line for every point.",
+      "Points in one line. Then add as whole numbers.",
+      "Fifteen hundredths. Keep the five and carry one tenth.",
+      "Where is the point in a whole number?",
+      "Swap them round. Did the sum change?",
+      "New numbers. Line up the points first.",
+      "Free play. Add any decimals and whole numbers.",
+      "Look down the point line. Is every point on it?",
+      "Every point in one line, and every carry across."
+    ],
+    "observations": [
+      {
+        "why": "lining up the points puts every place in its own column.",
+        "soWhat": "decimals are added with their points in one line, as whole numbers.",
+        "observe": "Every card slid until its point sat on the one line."
+      },
+      {
+        "why": "ten tenths make one whole.",
+        "soWhat": "ten of one place is carried as one of the next place, across the point too.",
+        "observe": "A carry from the tenths crossed the point line into the ones."
+      },
+      {
+        "why": "a whole number's point is after its ones digit, even when it is not written.",
+        "soWhat": "a whole number has its point after the ones digit before it is lined up.",
+        "observe": "A whole number card would not line up until its point was written."
+      },
+      {
+        "why": "the same amounts are put together whatever the order, and zero adds nothing.",
+        "soWhat": "changing the order of the addends does not change the sum, and adding 0 changes nothing.",
+        "observe": "Swapping the cards and adding zero left the sum as it was."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the cards 3.46 and 2.3 in the tray, and the empty frame",
+        "win": "the columns add to 5.76 in green, its point straight below the others",
+        "traceback": "The cards line up by their points, zeros make like decimals, each column is added from the right and the point drops straight below, ending on the whole sum.",
+        "ladder": [
+          "The 6 in 1.6 is six tenths, so it belongs under the 2 of 5.23.",
+          "Put the point of 3.5 on the line, and its 5 goes under the tenths.",
+          "Where does the point of the sum go?",
+          "Every point sits on the one line, so each place keeps its own column.",
+          "Add the hundredths, then the tenths, then the ones, from the right."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "4.68 above 1.57 on the point line, and the Add button lit",
+        "win": "a vermilion one rolls into the tenths, another rolls across the point into the ones, and the sum reads 6.25",
+        "traceback": "Each column lights from the right and shows its total; the ten rolls on as a carry, across the point too, and the whole sum is written below.",
+        "ladder": [
+          "Add the hundredths first: is their total ten or more?",
+          "Which column do you add first?",
+          "Which columns make ten or more, and where do their tens go?",
+          "After the hundredths, add the tenths column the same way.",
+          "Ten tenths make one whole, which moves over the point into the ones."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the cards 6, 0.35 and 2.4 in the tray, the 6 card with no point",
+        "win": "the 6 takes a violet point after its ones digit, all three line up, and the sum reads 8.75",
+        "traceback": "The whole number takes its point after the ones digit, every card lines up by its point, zeros make like decimals, and the columns add to the whole sum.",
+        "ladder": [
+          "The 9 is nine ones, so its point comes straight after the 9.",
+          "6 belongs under the ones, not under the hundredths of 2.35.",
+          "4 m is 4 whole metres, so which column holds that 4?",
+          "Tap Point first, then line every card up by its point.",
+          "Add the whole number and one decimal first, then add the last one."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "1.35 above 4.2 with their sum 5.55 in the answer row",
+        "win": "the swapped sum is 5.55 again, and 7.08 + 0 = 7.08",
+        "traceback": "A prediction: the hand swaps the cards and the pencil adds them again, writing the same sum. Adding 0: the 0 card lines up by its point and the columns add to the whole sum.",
+        "ladder": [
+          "Look at the digits in each column of the two cards.",
+          "Line up the 0 card by its point, then add each column.",
+          "Look down each column before you choose.",
+          "Check every column of the frame once more.",
+          "Add the columns from the right, one by one."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "columns": [
+      "Tens",
+      "Ones",
+      "Tenths",
+      "Hundredths"
+    ],
+    "rows": 3,
+    "demo": {
+      "1": {
+        "tray": [
+          "3.46",
+          "2.3"
+        ],
+        "frame": [],
+        "perColumn": false
+      },
+      "2": {
+        "tray": [],
+        "frame": [
+          "4.68",
+          "1.57"
+        ],
+        "perColumn": true
+      },
+      "3": {
+        "tray": [
+          "6"
+        ],
+        "frame": [
+          "0.35",
+          "2.4"
+        ],
+        "perColumn": false
+      },
+      "4": {
+        "tray": [],
+        "frame": [
+          "1.35",
+          "4.2"
+        ],
+        "sum": "5.55",
+        "zero": true,
+        "perColumn": false
+      }
+    },
+    "free": [
+      "3.46",
+      "6",
+      "12.5"
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M3.S5.T10.C45:CA1",
+        "kind": "add",
+        "cards": [
+          "5.23",
+          "1.6"
+        ],
+        "start": "tray",
+        "near": "5.39",
+        "answer": "6.83"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M3.S5.T10.C45:1",
+        "kind": "add",
+        "cards": [
+          "4.12",
+          "3.5"
+        ],
+        "start": "tray",
+        "near": "4.47",
+        "answer": "7.62"
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M3.S5.T10.C45:2",
+        "kind": "add",
+        "cards": [
+          "0.63",
+          "0.21"
+        ],
+        "start": "tray",
+        "near": "84",
+        "answer": "0.84"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M3.S5.T10.C46:CA2",
+        "kind": "carry",
+        "cards": [
+          "2.87",
+          "3.46"
+        ],
+        "start": "frame",
+        "near": "6.23",
+        "answer": "6.33"
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M3.S5.T10.C46:3",
+        "kind": "carry",
+        "cards": [
+          "1.58",
+          "2.34"
+        ],
+        "start": "frame",
+        "near": "3.82",
+        "answer": "3.92",
+        "ladder": [
+          "Add the hundredths, and send any ten up to the tenths.",
+          "Now add the tenths, counting anything sent up from the hundredths."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M3.S5.T10.C46:5",
+        "kind": "carry",
+        "cards": [
+          "7.69",
+          "4.57"
+        ],
+        "start": "frame",
+        "near": "12.16",
+        "answer": "12.26"
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M3.S5.T10.C47:CA3",
+        "kind": "whole",
+        "cards": [
+          "9",
+          "1.75",
+          "0.4"
+        ],
+        "start": "tray",
+        "near": "2.24",
+        "answer": "11.15"
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M3.S5.T10.C47:4",
+        "kind": "whole",
+        "cards": [
+          "6",
+          "2.35"
+        ],
+        "start": "tray",
+        "near": "2.41",
+        "answer": "8.35",
+        "ladder": [
+          "Tap Point so the 6 shows its point after the ones digit.",
+          "With both points on the line, add hundredths, tenths, then ones."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M3.S5.T10.C47:7",
+        "kind": "whole",
+        "cards": [
+          "4",
+          "1.85",
+          "0.6"
+        ],
+        "start": "tray",
+        "near": "2.49",
+        "answer": "6.45"
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M3.S5.T10.C48:CA4",
+        "kind": "predict",
+        "cards": [
+          "2.06",
+          "5.3"
+        ],
+        "start": "frame",
+        "sum": "7.36",
+        "near": "No",
+        "answer": "Yes",
+        "ladder": [
+          "Add the tenths in each order: what do you get?",
+          "Now try the hundredths both ways."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M3.S5.T10.C48:6",
+        "kind": "zero",
+        "cards": [
+          "8.41"
+        ],
+        "start": "frame",
+        "zero": true,
+        "selfShown": true,
+        "near": "8.401",
+        "answer": "8.41",
+        "ladder": [
+          "The 0 card has 0 in the ones and nothing after its point.",
+          "Add each column from the right, the 0 card included."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M3.S5.T10.C48:8",
+        "kind": "predict",
+        "cards": [
+          "4.7",
+          "2.18"
+        ],
+        "start": "frame",
+        "sum": "6.88",
+        "near": "No",
+        "answer": "Yes",
+        "ladder": [
+          "Work out the ones both ways: what do you get?",
+          "Then check the tenths in the new order too."
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, nothing resets, no colour means good or bad. The child's answer stays; the pad re-opens after the traceback.",
+    "tracebacks": [
+      "Phase 1: The cards line up by their points, zeros make like decimals, each column is added from the right and the point drops straight below, ending on the whole sum.",
+      "Phase 2: Each column lights from the right and shows its total; the ten rolls on as a carry, across the point too, and the whole sum is written below.",
+      "Phase 3: The whole number takes its point after the ones digit, every card lines up by its point, zeros make like decimals, and the columns add to the whole sum.",
+      "Phase 4: A prediction: the hand swaps the cards and the pencil adds them again, writing the same sum. Adding 0: the 0 card lines up by its point and the columns add to the whole sum."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A column frame, with one line for every point.",
+    "onFreePlay": "Free play. Line up any of the cards and add them.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Every point in one line, and every carry across.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M3.S5.T10.C45:CA1",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "Add 5.23 and 1.6.",
+            "question": {
+              "en": "Line up the points, then add 5.23 and 1.6."
+            },
+            "ask": {
+              "en": "5.23 + 1.6 = ?"
+            },
+            "answer": "6.83",
+            "planAnswer": "6.83",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M3.S5.T10.C45:1",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "Add 4.12 and 3.5.",
+            "question": {
+              "en": "Now add 4.12 and 3.5 the same way."
+            },
+            "ask": {
+              "en": "4.12 + 3.5 = ?"
+            },
+            "answer": "7.62",
+            "planAnswer": "7.62",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M3.S5.T10.C45:2",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "Add 0.63 and 0.21.",
+            "question": {
+              "en": "What is 0.63 + 0.21?"
+            },
+            "ask": {
+              "en": "0.63 + 0.21 = ?"
+            },
+            "answer": "0.84",
+            "planAnswer": "0.84",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M3.S5.T10.C46:CA2",
+            "worked": false,
+            "kind": "carry",
+            "planQuestion": "Add 2.87 and 3.46.",
+            "question": {
+              "en": "Add 2.87 and 3.46, carrying where a column makes ten or more."
+            },
+            "ask": {
+              "en": "2.87 + 3.46 = ?"
+            },
+            "answer": "6.33",
+            "planAnswer": "6.33",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M3.S5.T10.C46:3",
+            "worked": false,
+            "kind": "carry",
+            "planQuestion": "Add 1.58 and 2.34.",
+            "question": {
+              "en": "Now find 1.58 + 2.34."
+            },
+            "ask": {
+              "en": "1.58 + 2.34 = ?"
+            },
+            "answer": "3.92",
+            "planAnswer": "3.92. Hundredths: 8 + 4 = 12, so write 2 and carry 1 tenth",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M3.S5.T10.C46:5",
+            "worked": false,
+            "kind": "carry",
+            "planQuestion": "Add 7.69 and 4.57.",
+            "question": {
+              "en": "What is 7.69 + 4.57?"
+            },
+            "ask": {
+              "en": "7.69 + 4.57 = ?"
+            },
+            "answer": "12.26",
+            "planAnswer": "12.26",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M3.S5.T10.C47:CA3",
+            "worked": false,
+            "kind": "whole",
+            "planQuestion": "Add 9, 1.75 and 0.4.",
+            "question": {
+              "en": "Add 9, 1.75 and 0.4."
+            },
+            "ask": {
+              "en": "9 + 1.75 + 0.4 = ?"
+            },
+            "answer": "11.15",
+            "planAnswer": "11.15",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M3.S5.T10.C47:4",
+            "worked": false,
+            "kind": "whole",
+            "planQuestion": "Add 6 and 2.35.",
+            "question": {
+              "en": "Now add the whole number 6 and 2.35."
+            },
+            "ask": {
+              "en": "6 + 2.35 = ?"
+            },
+            "answer": "8.35",
+            "planAnswer": "8.35. Write 6 as 6.00 first, with its point after the 6",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M3.S5.T10.C47:7",
+            "worked": false,
+            "kind": "whole",
+            "planQuestion": "Three ribbons are 4 m, 1.85 m and 0.6 m long. What is their total length?",
+            "question": {
+              "en": "What total length in metres do ribbons of 4 m, 1.85 m and 0.6 m make?"
+            },
+            "ask": {
+              "en": "Total length in m?"
+            },
+            "answer": "6.45",
+            "planAnswer": "6.45 m, because 4.00 + 1.85 + 0.60 = 6.45",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M3.S5.T10.C48:CA4",
+            "worked": false,
+            "kind": "predict",
+            "planQuestion": "Does 2.06 + 5.3 give the same sum as 5.3 + 2.06?",
+            "question": {
+              "en": "Will 5.3 + 2.06 give the same sum as 2.06 + 5.3?"
+            },
+            "ask": {
+              "en": "Same sum?"
+            },
+            "answer": "Yes",
+            "planAnswer": "Yes. Both are 7.36",
+            "choices": [
+              "Yes",
+              "No"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M3.S5.T10.C48:6",
+            "worked": false,
+            "kind": "zero",
+            "planQuestion": "What is 0 + 8.41?",
+            "question": {
+              "en": "What is 0 + 8.41?"
+            },
+            "ask": {
+              "en": "0 + 8.41 = ?"
+            },
+            "answer": "8.41",
+            "planAnswer": "8.41. Adding 0 changes nothing",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M3.S5.T10.C48:8",
+            "worked": false,
+            "kind": "predict",
+            "planQuestion": "Is 4.7 + 2.18 the same as 2.18 + 4.7? What is the sum?",
+            "question": {
+              "en": "If the cards swap to 2.18 + 4.7, is the sum still the same?"
+            },
+            "ask": {
+              "en": "Same sum?"
+            },
+            "answer": "Yes",
+            "planAnswer": "Yes. Changing the order does not change the sum, which is 6.88",
+            "choices": [
+              "Yes",
+              "No"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "column_adder",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "column_adder",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Line up the points",
+        "conceptId": "M3.S5.T10.C45",
+        "objectiveIds": [
+          "O17"
+        ],
+        "items": [
+          "M3.S5.T10.C45:CA1",
+          "M3.S5.T10.C45:1",
+          "M3.S5.T10.C45:2"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Carrying across the point",
+        "conceptId": "M3.S5.T10.C46",
+        "objectiveIds": [
+          "O17"
+        ],
+        "items": [
+          "M3.S5.T10.C46:CA2",
+          "M3.S5.T10.C46:3",
+          "M3.S5.T10.C46:5"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Adding whole numbers and decimals",
+        "conceptId": "M3.S5.T10.C47",
+        "objectiveIds": [
+          "O17"
+        ],
+        "items": [
+          "M3.S5.T10.C47:CA3",
+          "M3.S5.T10.C47:4",
+          "M3.S5.T10.C47:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Order and zero in adding",
+        "conceptId": "M3.S5.T10.C48",
+        "objectiveIds": [
+          "O18"
+        ],
+        "items": [
+          "M3.S5.T10.C48:CA4",
+          "M3.S5.T10.C48:6",
+          "M3.S5.T10.C48:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "cards",
+    "r",
+    "aligned",
+    "r",
+    "columns",
+    "carries",
+    "sum",
+    "swapped"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), cards, r, aligned, r, columns, carries, sum, swapped, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "column_adder"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M3.S5.T10.C48.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A column frame, with one line for every point."
+    },
+    {
+      "en": "Points in one line. Then add as whole numbers."
+    },
+    {
+      "en": "Fifteen hundredths. Keep the five and carry one tenth."
+    },
+    {
+      "en": "Where is the point in a whole number?"
+    },
+    {
+      "en": "Swap them round. Did the sum change?"
+    },
+    {
+      "en": "New numbers. Line up the points first."
+    },
+    {
+      "en": "Free play. Add any decimals and whole numbers."
+    },
+    {
+      "en": "Look down the point line. Is every point on it?"
+    },
+    {
+      "en": "Every point in one line, and every carry across."
+    }
+  ],
+  "build": {
+    "source": "44b90baf:623256",
+    "runtime": "class5/runtime/frozen/r64/runtime.tsx",
+    "runtimeVersion": "r64",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-18T11:02:55.209Z",
+    "checks": {
+      "pass": 92,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-10-18T11:02:55.095Z"
+    },
+    "tsxBytes": 549374,
+    "tsxMd5": "d61c03ea3f5681c39a9e8e8044462f4d"
+  }
+}
