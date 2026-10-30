@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-/* M1.S3.T6.C27.2D1 · pour_it · Pour It — standalone build 2026-10-29, source 9d81bd2a:760854.
+/* M1.S3.T6.C30.2D1 · pour_it · Pour It — standalone build 2026-10-29, source 9d81bd2a:760854.
    One file: the react import below is the only one (the host strips it and injects React and five hooks);
    @use-gesture/react 10.3.1 (MIT) is inlined as __gesture; the mascot is an inline WebP; the lesson
    is silent (printed bubble lines and Web Audio sound effects, no speech); nothing is stored or fetched. */
@@ -4389,7 +4389,7 @@ const TOOL_IMAGES = {
 };
 const TOOL_THEME = { "key": ["#F59A35", "#E07A14", "#9A4E08", "#2A1404"], "enter": ["#DD4099", "#C3227D", "#861354", "#FFFFFF"], "soft": ["#FFF3B0", "#FBE07A", "#C9A93A", "#4A3A08"], "panel": ["#FFF4E6", "#FDE3C2"], "slot": "#C2600E" };
 const TOOL_ID = "pour_it";
-const MEDIA_ID = "M1.S3.T6.C27.2D1";
+const MEDIA_ID = "M1.S3.T6.C30.2D1";
 const TOOL_NAME = "Pour It";
 const CHROME = { "dim": "#9AA4AC", "ink": "#2B2B2B", "rule": "#C9BCA6", "panel": "#F2E4CE", "paper": "#FFFDF7", "accent": "#5B6770" };
 const VOICE = { "rate": 0.92, "pitch": 1.06 };
@@ -5715,16 +5715,16 @@ function Work({ phase, n, item, index, stage, wrong, typed, api, MODEL: MODEL2, 
     cueSaid.current = eN;
     clearTimeout(nudgeT.current);
     if (item.pad === "enter") {
-      if (kind === "tag") api.say("Now tap mL or L.");
+      if (kind === "tag") api.say(item.say || item.ask);
       return;
     }
-    api.say("Now tap the Answer key.");
+    api.say(item.say || item.ask);
     cueArmed.current = true;
   }, [done, asking, eN]);
   useEffect(() => {
     if (!asking || !box || !box.open || !cueArmed.current || wrong) return;
     cueArmed.current = false;
-    api.say(item.choices ? "Choose your answer." : "Type your answer, then press Enter.");
+    api.say(item.say || item.ask);
   }, [box && box.open]);
   const busy = useRef(false);
   const queue = useRef([]);

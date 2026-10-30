@@ -3310,6 +3310,17 @@ function ToolFrame({ props, tool }) {
     L.tries = t;
     setTries(t);
     setWrong({ value, tries: t });
+    /* MISS CLEARS THE SLOT (2026-10-28, carried from the head runtime): empty the slot at the miss; wrong.value keeps what the child sent */
+    const lent = captureRef.current;
+    if (lent) later(() => {
+      if (captureRef.current === lent) {
+        try {
+          lent("clear");
+        } catch (e) {
+        }
+      }
+    }, 0);
+    setTyped("");
     staleRef.current = true;
     if (it.parts) {
       staleParts.current = it.parts.map(() => true);

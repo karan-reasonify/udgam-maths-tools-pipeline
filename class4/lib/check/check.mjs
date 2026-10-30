@@ -42,6 +42,7 @@ import { pinState } from "../core/pin.mjs";
 import { capsOf } from "../core/caps.mjs";
 import { pencilRows } from "./pencil.mjs";
 import { answerGateRows } from "./answergate.mjs";
+import { questionStaysRows } from "./questionstays.mjs";
 import { readPin } from "../core/pin.mjs";
 import { judgePictureScale, PICTURE_SCALE_DETAIL } from "./picturescale.mjs";
 import { layoutProblems, phoneProblems, inter, inside, fmt, PHONE, PHONE_TEXT_PX } from "./layoutfit.mjs";
@@ -176,6 +177,8 @@ export async function runChecks(dir, { render = true, log = console.log } = {}) 
   ok("source", "runtime-pin", pin.ok, pin.msg, pin.msg);
   /* 2026-10-22 (pencil-acts, docs/CHECKS.md): a row only for a runtime with the pencil write move or a tool that writes; none for a finished chapter. A bug here never stops a check. */
   try { for (const r of pencilRows(tool, { caps, strict: !!(readPin(path.dirname(dir)) && readPin(path.dirname(dir)).rules && readPin(path.dirname(dir)).rules.pencilActs === "strict") })) add("source", r.id, r.level, r.msg); } catch (e) { /* not a tool problem */ }
+  /* 2026-10-30 (question-stays, docs/CHECKS.md; the owner): a source row; FAIL in a chapter whose runtime.json says rules.questionStays "strict" (fetch writes it for a new chapter), WARN elsewhere. */
+  try { const qp = readPin(path.dirname(dir)); for (const r of questionStaysRows(tool, { strict: !!(qp && qp.rules && qp.rules.questionStays === "strict") })) add("source", r.id, r.level, r.msg); } catch (e) { /* not a tool problem */ }
   /* 2026-10-24 (answer-gate, docs/CHECKS.md): warn-only; reads whether the tool ever calls api.lock. It never proves the gate. */
   try { for (const r of answerGateRows(tool)) add("source", r.id, r.level, r.msg); } catch (e) { /* not a tool problem */ }
 

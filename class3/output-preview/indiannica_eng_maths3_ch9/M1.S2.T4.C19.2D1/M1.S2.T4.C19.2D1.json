@@ -1,0 +1,1416 @@
+{
+  "slotId": "M1.S2.T4.C19.2D1",
+  "mediaId": "M1.S2.T4.C19.2D1",
+  "toolId": "weigh_it",
+  "title": "Weigh It",
+  "component": "M1.S2.T4.C19.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch9",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch9_v2",
+  "planVersion": 2,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_9/2dtool/M1.S2.T4.C19.2D1/M1.S2.T4.C19.2D1.tsx",
+  "description": "Put a real thing on a balance, choose grams or kilograms, make the pans level with iron weights, and sort things against one kilogram.",
+  "conceptIds": [
+    "M1.S2.T4.C16",
+    "M1.S2.T4.C17",
+    "M1.S2.T4.C18",
+    "M1.S2.T4.C19"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Weigh real things on a balance with standard weights, choose grams or kilograms for a thing, see that four equal packets make one kilogram, so two make half and one makes a quarter, and tell whether a thing weighs more or less than one kilogram.",
+    "look": "A balance on a shelf with a rack of iron weights and a kitchen scale, a table of twelve real things, a Given tag that adds the weights on the right pan, an Answer tag, a unit chooser, two bins, and on the third phase four packets of sugar and a one kilogram bar.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Weigh It' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many things have been weighed or sorted. It is never a score. The working area is 1086 by 528 at x 64, y 202. A wooden shelf runs across the top of the working area at y 214, 760 wide from x 90. On it stands a two pan balance 560 across, centred at x 380: a beam on a post, two cords and two pans, each pan 150 across, and a pointer needle at the post that swings left when the left pan is heavier, right when the right pan is heavier and stands upright when they are level. The beam tilts by the true difference in weight and never snaps. To the right of the balance, at x 700, a rack holds seven dark iron standard weights drawn as hexagonal blocks, each labelled with its weight (5 kg, 2 kg, 1 kg, 500 g, 200 g, 100 g and 50 g) and each as big as it is heavy, from 120 across down to 36, and a small digital kitchen scale 150 across whose screen shows the weight of whatever is on it. Under the left pan a deep blue Given tag 220 by 60 at x 130, y 520 adds up the weights on the right pan in kilograms and grams, and under it a green Answer tag 220 by 60 names the weight once the beam is level. The unit chooser is two round buttons, grams and kilograms, each 70 across, at x 400, y 520. The Unit fact button at x 400, y 600 (180 by 56) lays a vermilion ring round one kilogram and one thousand grams, and the Guide salt button at x 600, y 520 (160 by 56) sets the one kilogram bag of salt on one pan. The Quarter bar button at x 600, y 600 (160 by 56) shows a one kilogram bar cut into four equal quarters at x 780, y 540. A table along the foot of the area, at y 650 from x 90, holds twelve real things in their natural colours, each about 64 across with a clear gap: a watermelon, a mango, a loaf of bread, a thick book, a one kilogram bag of salt, four equal packets of sugar, a school backpack, a pencil box, a pen, a duster, a cup of yogurt and a bicycle. Two bins stand at the right of the table at x 860 and x 1010, each 130 by 130, labelled Lighter than one kilogram and Heavier than one kilogram. A note in words appears beside the Answer tag when a benchmark thing is on the pan and says about. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys for typing a weight into the answer slot. On the first phase the answer slot asks for grams or kilograms, picked from the unit chooser. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours, and the chapter's four roles are carried by what holds the object or the number, never by tinting the object. The measure the question gives, or the reading taken from the ruler, the balance or the jug, sits in a deep blue tag or on a deep blue plate, labelled Given. The measure the working reaches, a converted or total amount, sits in a green tag, labelled Answer. The times 100 or times 1000 step and the unit fact it comes from sit inside a vermilion ring, labelled Unit fact. The second amount of a sum or a difference, an amount carried and a part left over sit in an amber tag, labelled Second or Left. Every ruler mark, scale mark and plain edge is near-black, and anything dimmed fades to half strength rather than turning grey. Chrome never borrows one of the four, and each reading survives with the colour taken away, because a measure is told by its written label before it is told by its colour.",
+    "finish": "The balance shows the last thing on its pan with the iron weights that made it level, the Given tag adding them up, and the Answer tag naming the weight in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the beam tilts, the chosen unit lights deep blue on the Given tag, and the Unit fact ring shows a kilogram as a thousand grams",
+        "does": "puts a thing on the left pan, watches the beam tilt, and picks grams or kilograms for it",
+        "goal": "heavy things are weighed in kilograms and light things in grams, and one kilogram is one thousand grams",
+        "says": "Put a thing on the pan. Is it heavy or light? Pick the unit that fits.",
+        "check": "Away from the screen: you hold a pen in one hand and a school bag in the other. Which one would you weigh in grams?",
+        "feels": "a heavy melon dipping the pan low and a pen barely moving the other one, one slow tilt at a time",
+        "hands": "Hold a bag of salt in one hand and a pencil box in the other, say which is heavier, and then say which unit you would use for each.",
+        "tries": "First rung: say whether the thing feels heavy or light. Second rung: look at the one kilogram bag of salt beside it and say which is heavier. Third rung: the same task with a thing that is much lighter or much heavier, before the full table returns.",
+        "wrong": [
+          {
+            "why": "a number of grams is a bigger number, so it sounds more careful",
+            "move": "picks grams for the watermelon",
+            "screen": "the unit chooser shows the watermelon on the pan with a thousand grams drawn as ten small bags beside it, and the Unit fact ring lights round the words one kilogram"
+          },
+          {
+            "why": "kilogram is the first unit met on the scale and it sounds like the right one",
+            "move": "picks kilograms for the pen",
+            "screen": "a pen is set on the pan and the beam hardly moves, and a whole kilogram weight is set beside it to show how much heavier a kilogram is"
+          }
+        ],
+        "screen": "a watermelon and a pen on a table, the balance level and empty, and the unit chooser showing grams and kilograms",
+        "soWhat": "heavy things are weighed in kilograms and light things in grams, and one kilogram is one thousand grams",
+        "concept": "Heavy and light: kilograms and grams"
+      },
+      {
+        "n": 2,
+        "win": "the beam settles level and the needle stands upright, and the Answer tag names the weight in green",
+        "does": "drags iron weights onto the right pan until the beam settles level, and reads the weights off the Given tag",
+        "goal": "a balance is level when both pans hold the same weight, so the iron weights tell the weight of the thing",
+        "says": "Add weights to the other pan until the beam is level. What do the weights add up to?",
+        "check": "Away from the screen: a thing on one pan is level with a two kilogram weight and a one kilogram weight on the other. What does the thing weigh?",
+        "feels": "the beam leaning, then slowly coming to rest as each iron weight goes on until the needle stands up straight",
+        "hands": "Put a bag of rice on one side of a hanger balance and add small bags of known weight to the other side until the hanger hangs level, and say what the small bags add up to.",
+        "tries": "First rung: is the beam level? Second rung: say which weights are on the right pan and add them one at a time. Third rung: the same task with only two iron weights, before the rack returns.",
+        "wrong": [
+          {
+            "why": "the biggest weight is the one that stands out, and it looks like the whole weight",
+            "move": "reads only the biggest weight on the pan",
+            "screen": "the Given tag adds the weights one at a time as the child's finger touches each one, and the total is read aloud"
+          },
+          {
+            "why": "the weights on the pan look like enough, and the tilt is small",
+            "move": "stops while the beam is still tilted",
+            "screen": "the pointer needle swings a little toward the heavier pan and a thin near-black line marks where level would be"
+          }
+        ],
+        "screen": "a parcel on the left pan, the beam tilted down on the left, the rack of seven iron weights and an empty Given tag",
+        "soWhat": "a balance is level when both pans hold the same weight, so the iron weights tell the weight of the thing",
+        "concept": "A balance and standard weights"
+      },
+      {
+        "n": 3,
+        "win": "two packets level against the half kilogram weight, the Quarter bar shows two of four quarters in deep blue, and the word about appears beside a loaf",
+        "does": "puts two packets on the left pan and a half kilogram weight on the right, then one packet against a quarter, and taps Quarter bar",
+        "goal": "four equal packets make one kilogram, so two make half a kilogram and one makes a quarter, and some things weigh about half or about a quarter",
+        "says": "Four equal packets make one kilogram. How much do some of them weigh?",
+        "check": "Away from the screen: four equal bags of flour weigh one kilogram. How much do two of them weigh?",
+        "feels": "four packets filling a kilogram, two of them balancing a half kilogram weight and one balancing a quarter",
+        "hands": "Share a kilogram of rice into four equal small bags with a kitchen scale, then say how much two bags weigh and how much one bag weighs.",
+        "tries": "First rung: how many equal packets make one kilogram? Second rung: put two on the left pan and see which weight on the right makes the beam level. Third rung: the same task with the Quarter bar showing the quarters, before the packets return.",
+        "wrong": [
+          {
+            "why": "half was met first and it feels like the first fraction of a kilogram",
+            "move": "says one packet weighs half a kilogram",
+            "screen": "one packet goes on the left pan and a half kilogram weight on the right, and the beam dips far down on the right so the packet is seen to be lighter"
+          },
+          {
+            "why": "the page names the loaf beside half a kilogram, so it sounds exact",
+            "move": "says a loaf weighs exactly half a kilogram",
+            "screen": "the loaf goes on the left pan, the beam wobbles near level and settles a little off, and the word about is written beside the Answer tag"
+          }
+        ],
+        "screen": "four equal packets of sugar, a one kilogram weight on the right pan, and a Quarter bar button",
+        "soWhat": "four equal packets make one kilogram, so two make half a kilogram and one makes a quarter, and many things weigh only about half or about a quarter",
+        "concept": "Half a kilogram and a quarter of a kilogram"
+      },
+      {
+        "n": 4,
+        "win": "the thing lands in its bin, the beam rests tilted the right way, and the counter reads how many things have been sorted",
+        "does": "puts a thing on the left pan against the guide, watches the beam, and drops the thing into the right bin",
+        "goal": "a thing weighs more than one kilogram when it pulls the beam down against the one kilogram weight, and less when it does not",
+        "says": "Is it heavier or lighter than the one kilogram bag of salt? Drop it in the right place.",
+        "check": "Away from the screen: say one thing in your room that weighs more than a kilogram and one that weighs less, and how you know.",
+        "feels": "the beam dipping down on a backpack and rising on a pen, each thing found by the way it leans",
+        "hands": "Hold a one kilogram bag of salt in one hand and a school bag in the other, and sort a few things from the classroom as heavier or lighter than the salt.",
+        "tries": "First rung: put the thing on the pan against the guide salt. Second rung: which way does the beam lean? Third rung: the same task with only a pen and a bicycle, before the full table returns.",
+        "wrong": [
+          {
+            "why": "a long thing looks as if it must be a heavy thing",
+            "move": "puts the pen in the heavier bin because it is the longer thing",
+            "screen": "the pen goes on the left pan against the guide salt and the beam rises on the pen's side, so the pen is seen to be lighter"
+          },
+          {
+            "why": "soft things look light, and the bag looks like a lot of cloth",
+            "move": "puts the backpack in the lighter bin because it is full of soft things",
+            "screen": "the backpack goes on the left pan against the guide salt and the beam dips far down on its side"
+          }
+        ],
+        "screen": "a table of twelve real things, the one kilogram bag of salt on the right pan as a guide, and two bins",
+        "soWhat": "a thing weighs more than one kilogram when it pulls the beam down against the kilogram, and less when it does not",
+        "concept": "More than or less than one kilogram"
+      }
+    ],
+    "delight": "On the second phase, the moment the last iron weight makes the pans equal, the beam settles with one slow bounce like a seesaw coming to rest and the needle stands straight up. On the third phase the four packets of sugar slide together into the one kilogram bar and the quarters light one by one.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet weighed. On the first phase a watermelon and a pen lie on the table, the balance is level and empty, and the unit chooser shows grams and kilograms. On the second a parcel already sits on the left pan, the beam is tilted down on that side, and the rack of seven iron weights waits beside an empty Given tag. On the third four equal packets of sugar and a one kilogram weight stand ready and the Quarter bar button is lit. On the fourth the one kilogram bag of salt already sits on the right pan as the guide, the table of twelve things waits, and the two bins are empty. One thing moves, once: the first thing to be tapped, or the heaviest iron weight on the second phase, gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any of the twelve things on the pan, any iron weights on the other pan, the guide bag of salt, the Quarter bar and the two bins. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the unit for a pen, an apple and a sack of rice, a parcel against iron weights, loaves and bags of flour in halves and quarters of a kilogram, and a pen, a watermelon and a bicycle against one kilogram.",
+    "voiceLines": [
+      "A balance, some iron weights and a table of real things. What shall we weigh first?",
+      "Put a thing on the pan. Is it heavy or light? Pick the unit that fits.",
+      "Add weights to the other pan until the beam is level. What do the weights add up to?",
+      "Four equal packets make one kilogram. How much do some of them weigh?",
+      "Is it heavier or lighter than the one kilogram bag of salt? Drop it in the right place.",
+      "A new thing for the pan. How heavy does it feel?",
+      "Free play. Put anything on the pan and add any weights you like.",
+      "Look at the beam. Is it level yet? Count the weights on the pan again.",
+      "You made the beam level, and you told heavy things from light things."
+    ],
+    "observations": [
+      {
+        "why": "a balance leans toward the heavier pan, and each iron weight takes away part of the difference.",
+        "soWhat": "a balance is level when both pans hold the same weight.",
+        "observe": "The beam tilted down on the side with the heavier thing, and swung back as weights were added to the other pan."
+      },
+      {
+        "why": "the weight of the thing is exactly the weight of the iron weights that balance it.",
+        "soWhat": "the iron weights tell the weight of the thing.",
+        "observe": "The Given tag grew by each iron weight that went on, and the Answer tag named the same total when the beam was level."
+      },
+      {
+        "why": "four equal packets fill the kilogram, so each packet is a quarter and two are a half.",
+        "soWhat": "half a kilogram and a quarter of a kilogram come from sharing one kilogram into equal packets.",
+        "observe": "Two of the four equal packets balanced a half kilogram weight, and one packet balanced a quarter."
+      },
+      {
+        "why": "a thing is compared with the kilogram by its weight and not by its size.",
+        "soWhat": "a thing weighs more than one kilogram when it pulls the beam down against the kilogram.",
+        "observe": "The backpack pulled the beam down against the one kilogram bag and the pen did not."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a watermelon and a pen on a table, the balance level and empty, and the unit chooser showing grams and kilograms",
+        "win": "the beam tilts, the chosen unit lights deep blue on the Given tag, and the Unit fact ring shows a kilogram as a thousand grams",
+        "traceback": "the thing on the pan and the 1 kg weight are ringed and a one-line tag under the thing names it (no verdict); the beam shows the rest and the unit is left for the child",
+        "ladder": [
+          "Look at the beam: which side did the watermelon pull down?",
+          "Did the pencil lift the 1 kg weight, or did the 1 kg side go down?",
+          "Put each one on the pan and see if it is heavier than the 1 kg weight.",
+          "Weigh the thing against the iron weight.",
+          "See which pan goes down."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a parcel on the left pan, the beam tilted down on the left, the rack of seven iron weights and an empty Given tag",
+        "win": "the beam settles level and the needle stands upright, and the Answer tag names the weight in green",
+        "traceback": "each weight on the pan is ringed in turn and an Add tag lists them; the total is left for the child",
+        "ladder": [
+          "Add every weight on the pan, not only the biggest one.",
+          "The mango needs a small weight besides the 200 g one.",
+          "Type only the weight you added, not the ones already on the pan.",
+          "Look at the needle at the top of the post.",
+          "A straight needle means the beam is level."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "four equal packets of sugar, a one kilogram weight on the right pan, and a Quarter bar button",
+        "win": "two packets level against the half kilogram weight, the Quarter bar shows two of four quarters in deep blue, and the word about appears beside a loaf",
+        "traceback": "the four places of the tray and the packets on the pan are ringed, or the weights on the pan in turn, or one loaf is weighed alone; the answer is left for the child",
+        "ladder": [
+          "Four packets make 1 kg: what part of them is on the pan?",
+          "Add the grams of the weights that made the beam level.",
+          "Watch the beam as each loaf goes on: when is it nearly level now?",
+          "Look at the tray of four equal packets.",
+          "The four packets together balance the 1 kg weight."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a table of twelve real things, the one kilogram bag of salt on the right pan as a guide, and two bins",
+        "win": "the thing lands in its bin, the beam rests tilted the right way, and the counter reads how many things have been sorted",
+        "traceback": "the child's own pick is weighed against 1 kg (or the two pans are compared with a level line), and each thing weighed is named on a one-line tag (no verdict); the choice or the count is left for the child",
+        "ladder": [
+          "Weigh both things against the 1 kg weight.",
+          "Put the pillow and the brick on the two pans, then watch the beam.",
+          "Watch each thing being weighed again against the 1 kg weight.",
+          "Put the thing on a pan and watch the needle.",
+          "The heavier pan goes down."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "grams": {
+      "watermelon": 3000,
+      "mango": 300,
+      "pencil": 10,
+      "sack": 5000,
+      "backpack": 2000,
+      "pillow": 600,
+      "brick": 3000,
+      "parcel": 1000,
+      "packet": 250,
+      "loaf": 480
+    },
+    "weights": [
+      10,
+      50,
+      100,
+      200,
+      500,
+      1000,
+      2000
+    ],
+    "tilt": "the beam turns by the difference of the grams on its pans (left minus right): 0 only when they are equal, else 17 degrees times the square root of (difference / 5,000 g), so 750 g, 1 kg, 2 kg, 2.5 kg and 3 kg of difference each read at least 1 degree apart; the stop (17 degrees) is reached only past 5 kg",
+    "balance": {
+      "pivot": [
+        322,
+        104
+      ],
+      "halfBeam": 180,
+      "cord": 196
+    },
+    "answerGate": {
+      "1.1": "put the watermelon on the pan",
+      "1.2": "put the pencil on the pan",
+      "1.3": "weigh both the mango and the bag of rice",
+      "2.1": "make the beam level with weights",
+      "2.2": "make the beam level with weights",
+      "2.3": "add the weight that makes the beam level",
+      "3.1": "balance the 500 g weight with two packets",
+      "3.2": "put one packet on the pan and make the beam level",
+      "3.3": "put a loaf on the pan",
+      "4.1": "weigh both things, one after the other",
+      "4.2": "put the pillow and the brick on the two pans",
+      "4.3": "weigh all three things",
+      "rule": "locked only in user mode, after the child's first real touch, until the act is done; toolApi.check() performs the act, so AI mode is never gated"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T4.C16:WI1",
+        "kind": "unit",
+        "board": {
+          "col": [
+            "watermelon"
+          ],
+          "rack": [],
+          "L": [],
+          "R": [
+            "w1000"
+          ]
+        },
+        "gate": "on",
+        "sol": {
+          "L": [
+            "watermelon"
+          ]
+        },
+        "answer": "kg",
+        "near": "g",
+        "forms": [
+          "in kilograms"
+        ],
+        "ladder": [
+          "The watermelon is heavier than the 1 kg weight on the other pan.",
+          "A thing heavier than 1 kg is weighed in the bigger unit."
+        ],
+        "win": "Yes, kilograms: the watermelon pulled its pan below the 1 kg weight.",
+        "winMs": 4800,
+        "tag": "kilograms",
+        "tagSide": "L"
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T4.C16:1",
+        "kind": "unit",
+        "board": {
+          "col": [
+            "pencil"
+          ],
+          "rack": [],
+          "L": [],
+          "R": [
+            "w1000"
+          ]
+        },
+        "gate": "on",
+        "sol": {
+          "L": [
+            "pencil"
+          ]
+        },
+        "answer": "g",
+        "near": "kg",
+        "forms": [
+          "in grams"
+        ],
+        "ladder": [
+          "The 1 kg side went down, so the pencil is much lighter than 1 kg.",
+          "1 kg is 1,000 g, so a pencil weighs only a few of the small units."
+        ],
+        "win": "Yes, grams: the pencil is far lighter than 1 kg.",
+        "winMs": 3400,
+        "tag": "grams",
+        "tagSide": "L"
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T4.C16:5",
+        "kind": "which",
+        "board": {
+          "col": [
+            "mango",
+            "sack"
+          ],
+          "rack": [],
+          "L": [],
+          "R": [
+            "w1000"
+          ]
+        },
+        "gate": "all",
+        "sol": {
+          "L": [
+            "sack"
+          ],
+          "seen": [
+            "mango",
+            "sack"
+          ]
+        },
+        "answer": "rice",
+        "near": "mango",
+        "pick": {
+          "mango": "mango",
+          "rice": "sack"
+        },
+        "forms": [
+          "rice is weighed in kilograms"
+        ],
+        "ladder": [
+          "The heavy thing is the one that pulls its pan down.",
+          "Weigh the mango, then the rice: which one lifts the 1 kg weight?"
+        ],
+        "win": "Yes, rice goes in kilograms and the mango in grams.",
+        "tag": "bag of rice",
+        "tagSide": "L"
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T4.C17:WI2",
+        "kind": "weigh",
+        "board": {
+          "col": [],
+          "rack": [
+            2000,
+            1000,
+            500
+          ],
+          "L": [
+            "watermelon"
+          ],
+          "R": []
+        },
+        "gate": "level",
+        "sol": {
+          "R": [
+            2000,
+            1000
+          ]
+        },
+        "parts": [
+          {
+            "label": "",
+            "unit": "kg"
+          }
+        ],
+        "answer": [
+          3
+        ],
+        "near": "2",
+        "ladder": [
+          "Two weights balance the watermelon: read both labels.",
+          "Start at 2 kg and count on the other weight."
+        ],
+        "win": "The balance is level, and 2 kg and 1 kg make 3 kg.",
+        "winMs": 3600,
+        "tag": "3 kg",
+        "tagSide": "L"
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": null,
+        "kind": "weigh",
+        "board": {
+          "col": [],
+          "rack": [
+            500,
+            200,
+            100,
+            50
+          ],
+          "L": [
+            "mango"
+          ],
+          "R": []
+        },
+        "gate": "level",
+        "sol": {
+          "R": [
+            200,
+            100
+          ]
+        },
+        "parts": [
+          {
+            "label": "",
+            "unit": "g"
+          }
+        ],
+        "answer": [
+          300
+        ],
+        "near": "200",
+        "ladder": [
+          "The beam is level, so the mango weighs as much as both weights together.",
+          "Add 200 g and 100 g."
+        ],
+        "win": "Level again: 200 g and 100 g make 300 g.",
+        "winMs": 2900,
+        "tag": "300 g",
+        "tagSide": "L"
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T4.C17:8",
+        "kind": "missing",
+        "board": {
+          "col": [],
+          "rack": [
+            200,
+            100,
+            50,
+            10
+          ],
+          "L": [
+            "parcel"
+          ],
+          "R": [
+            "w500",
+            "w200",
+            "w200"
+          ]
+        },
+        "gate": "level",
+        "sol": {
+          "R": [
+            100
+          ]
+        },
+        "parts": [
+          {
+            "label": "added",
+            "unit": "g"
+          }
+        ],
+        "answer": [
+          100
+        ],
+        "near": "900",
+        "given": "1 kg",
+        "ladder": [
+          "1 kg is 1,000 g, and before, the pan had 500 g, 200 g and 200 g.",
+          "How many grams take 900 g up to 1,000 g?"
+        ],
+        "win": "Yes, 900 g and 100 g make 1,000 g, the same as 1 kg.",
+        "tag": "100 g",
+        "tagSide": "R"
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T4.C18:WI3",
+        "kind": "packets",
+        "board": {
+          "col": [
+            "tray"
+          ],
+          "rack": [],
+          "L": [],
+          "R": [
+            "w500"
+          ]
+        },
+        "gate": "two",
+        "sol": {
+          "L": [
+            "packet1",
+            "packet2"
+          ]
+        },
+        "answer": "half",
+        "near": "quarter",
+        "forms": [
+          "half a kilogram"
+        ],
+        "ladder": [
+          "Count the empty places in the tray: how many of the four are gone?",
+          "The 500 g weight balances them, and 1 kg is 1,000 g."
+        ],
+        "win": "Yes, two packets make half a kilogram, and half a kilogram is 500 g.",
+        "winMs": 4800,
+        "tag": "half a kg",
+        "tagSide": "L"
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": null,
+        "kind": "weigh1",
+        "board": {
+          "col": [
+            "tray"
+          ],
+          "rack": [
+            200,
+            100,
+            50
+          ],
+          "L": [],
+          "R": []
+        },
+        "gate": "one",
+        "sol": {
+          "L": [
+            "packet1"
+          ],
+          "R": [
+            200,
+            50
+          ]
+        },
+        "parts": [
+          {
+            "label": "",
+            "unit": "g"
+          }
+        ],
+        "answer": [
+          250
+        ],
+        "near": "200",
+        "ladder": [
+          "Read the bigger weight first, then add on the smaller one.",
+          "Count on from 200 g by the grams of the small weight."
+        ],
+        "win": "Yes, 200 g and 50 g make 250 g for one packet.",
+        "winMs": 3300,
+        "tag": "250 g",
+        "tagSide": "L"
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T4.C18:3",
+        "kind": "loaves",
+        "board": {
+          "col": [
+            "loaf1",
+            "loaf2",
+            "loaf3"
+          ],
+          "rack": [],
+          "L": [],
+          "R": [
+            "w1000"
+          ]
+        },
+        "gate": "loaf",
+        "sol": {
+          "L": [
+            "loaf1",
+            "loaf2"
+          ]
+        },
+        "parts": [
+          {
+            "label": "",
+            "unit": "loaves"
+          }
+        ],
+        "answer": [
+          2
+        ],
+        "near": "1",
+        "ladder": [
+          "One loaf leaves the 1 kg side down, so try another loaf.",
+          "Each loaf weighs about half a kilogram: how many halves make 1 kg?"
+        ],
+        "win": "Yes, about 2 loaves weigh 1 kg.",
+        "tag": "2 loaves",
+        "tagSide": "L"
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T4.C19:WI4",
+        "kind": "which",
+        "board": {
+          "col": [
+            "backpack",
+            "pencil"
+          ],
+          "rack": [],
+          "L": [],
+          "R": [
+            "w1000"
+          ]
+        },
+        "gate": "all",
+        "sol": {
+          "L": [
+            "backpack"
+          ],
+          "seen": [
+            "backpack",
+            "pencil"
+          ]
+        },
+        "answer": "backpack",
+        "near": "pencil",
+        "pick": {
+          "backpack": "backpack",
+          "pencil": "pencil"
+        },
+        "forms": [
+          "school bag weighs more"
+        ],
+        "ladder": [
+          "Which thing sinks lower than the 1 kg weight?",
+          "When the 1 kg weight rises, the other pan holds the heavier thing."
+        ],
+        "win": "Yes, the school bag is heavier than 1 kg.",
+        "winMs": 2900,
+        "tag": "school bag",
+        "tagSide": "L"
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": null,
+        "kind": "pair",
+        "board": {
+          "col": [
+            "pillow",
+            "brick"
+          ],
+          "rack": [],
+          "L": [],
+          "R": [],
+          "two": true
+        },
+        "gate": "both",
+        "sol": {
+          "L": [
+            "pillow"
+          ],
+          "Rob": [
+            "brick"
+          ]
+        },
+        "answer": "brick",
+        "near": "pillow",
+        "pick": {
+          "pillow": "pillow",
+          "brick": "brick"
+        },
+        "forms": [
+          "brick is heavier"
+        ],
+        "ladder": [
+          "Which side does the beam lean to?",
+          "See which pan is lower."
+        ],
+        "win": "Yes, the small brick is heavier than the big pillow.",
+        "winMs": 3600,
+        "tag": "brick",
+        "tagSide": "B"
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T4.C19:6",
+        "kind": "count",
+        "board": {
+          "col": [
+            "backpack",
+            "pillow",
+            "watermelon"
+          ],
+          "rack": [],
+          "L": [],
+          "R": [
+            "w1000"
+          ]
+        },
+        "gate": "all",
+        "sol": {
+          "L": [
+            "watermelon"
+          ],
+          "seen": [
+            "backpack",
+            "pillow",
+            "watermelon"
+          ]
+        },
+        "parts": [
+          {
+            "label": "",
+            "unit": "things"
+          }
+        ],
+        "answer": [
+          2
+        ],
+        "near": "3",
+        "ladder": [
+          "Count only the things that pull their own pan down.",
+          "Put the pillow back on: does the 1 kg side go up or down?"
+        ],
+        "win": "Yes, the school bag and the watermelon are more than 1 kg.",
+        "tag": "2 over 1 kg",
+        "tagSide": "L"
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: the thing on the pan and the 1 kg weight are ringed and a one-line tag under the thing names it (no verdict); the beam shows the rest and the unit is left for the child",
+      "Phase 2: each weight on the pan is ringed in turn and an Add tag lists them; the total is left for the child",
+      "Phase 3: the four places of the tray and the packets on the pan are ringed, or the weights on the pan in turn, or one loaf is weighed alone; the answer is left for the child",
+      "Phase 4: the child's own pick is weighed against 1 kg (or the two pans are compared with a level line), and each thing weighed is named on a one-line tag (no verdict); the choice or the count is left for the child"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A balance, some iron weights and a table of real things. What shall we weigh first?",
+    "onFreePlay": "Free play. Put anything on the pan and add any weights you like.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You made the beam level, and you told heavy things from light things.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T4.C16:WI1",
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": "A watermelon sits on the pan of a balance. Should its weight be written in grams or in kilograms?",
+            "question": {
+              "en": "Put the watermelon on the pan, then choose grams or kilograms for its weight."
+            },
+            "ask": {
+              "en": "Grams or kilograms?"
+            },
+            "answer": "kg",
+            "planAnswer": "Kilograms",
+            "choices": [
+              "g",
+              "kg"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T4.C16:1",
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": "Which unit fits the weight of a pen, grams or kilograms?",
+            "question": {
+              "en": "Now put the pencil on the pan: which unit fits its weight, grams or kilograms?"
+            },
+            "ask": {
+              "en": "Unit for a pencil?"
+            },
+            "answer": "g",
+            "planAnswer": "Grams, because a pen is very light",
+            "choices": [
+              "g",
+              "kg"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T4.C16:5",
+            "worked": false,
+            "kind": "which",
+            "planQuestion": "An apple and a sack of rice are weighed. Write grams or kilograms for each.",
+            "question": {
+              "en": "Weigh the mango and the bag of rice: which one do we weigh in kilograms?"
+            },
+            "ask": {
+              "en": "Which in kilograms?"
+            },
+            "answer": "rice",
+            "planAnswer": "The apple in grams and the sack of rice in kilograms",
+            "choices": [
+              "mango",
+              "rice"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T4.C17:WI2",
+            "worked": false,
+            "kind": "weigh",
+            "planQuestion": "A sack of rice is on the left pan. A 2 kg weight and a 1 kg weight make the right pan level. What does the sack of rice weigh?",
+            "question": {
+              "en": "Add weights until the beam is level, then type what the watermelon weighs."
+            },
+            "ask": {
+              "en": "Watermelon weighs?"
+            },
+            "answer": [
+              3
+            ],
+            "planAnswer": "3 kg",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "weigh",
+            "planQuestion": null,
+            "question": {
+              "en": "Balance the mango with gram weights and type its weight."
+            },
+            "ask": {
+              "en": "Mango weighs?"
+            },
+            "answer": [
+              300
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T4.C17:8",
+            "worked": false,
+            "kind": "missing",
+            "planQuestion": "A parcel weighs 1 kg. On the other pan are a half kilogram weight and two two hundred gram weights. What weight must be added to make the pans level?",
+            "question": {
+              "en": "The parcel is 1 kg: add one weight to level the pans, then type that weight."
+            },
+            "ask": {
+              "en": "Weight added?"
+            },
+            "answer": [
+              100
+            ],
+            "planAnswer": "A one hundred gram weight, because the right pan holds nine hundred grams and a kilogram is one thousand grams",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T4.C18:WI3",
+            "worked": false,
+            "kind": "packets",
+            "planQuestion": "Four equal apples weigh one kilogram in all. How much do two of the apples weigh?",
+            "question": {
+              "en": "Balance the 500 g weight with two packets: how much do two packets weigh?"
+            },
+            "ask": {
+              "en": "Two packets weigh?"
+            },
+            "answer": "half",
+            "planAnswer": "Half a kilogram",
+            "choices": [
+              "quarter",
+              "half",
+              "one"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "weigh1",
+            "planQuestion": null,
+            "question": {
+              "en": "Put one packet on the pan, balance it with weights and type its weight."
+            },
+            "ask": {
+              "en": "One packet weighs?"
+            },
+            "answer": [
+              250
+            ],
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T4.C18:3",
+            "worked": false,
+            "kind": "loaves",
+            "planQuestion": "A loaf of bread weighs about half a kilogram. About how many loaves weigh one kilogram?",
+            "question": {
+              "en": "Put loaves on the pan one by one: about how many loaves weigh 1 kg?"
+            },
+            "ask": {
+              "en": "Loaves for 1 kg?"
+            },
+            "answer": [
+              2
+            ],
+            "planAnswer": "About 2 loaves, because two halves make one kilogram",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T4.C19:WI4",
+            "worked": false,
+            "kind": "which",
+            "planQuestion": "A full school backpack and a pen sit on a table. Which one weighs more than one kilogram?",
+            "question": {
+              "en": "Weigh the school bag and the pencil: which one weighs more than 1 kg?"
+            },
+            "ask": {
+              "en": "More than 1 kg?"
+            },
+            "answer": "backpack",
+            "planAnswer": "The backpack. The pen weighs much less than one kilogram.",
+            "choices": [
+              "backpack",
+              "pencil"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "pair",
+            "planQuestion": null,
+            "question": {
+              "en": "Put the pillow on one pan and the brick on the other: which one is heavier?"
+            },
+            "ask": {
+              "en": "Which is heavier?"
+            },
+            "answer": "brick",
+            "planAnswer": null,
+            "choices": [
+              "pillow",
+              "brick"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T4.C19:6",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "Put a pen, a watermelon and a bicycle in order from the lightest to the heaviest. Which of them weigh more than one kilogram?",
+            "question": {
+              "en": "Weigh the school bag, the pillow and the watermelon: how many are over 1 kg?"
+            },
+            "ask": {
+              "en": "How many over 1 kg?"
+            },
+            "answer": [
+              2
+            ],
+            "planAnswer": "Pen, watermelon, bicycle. The watermelon and the bicycle weigh more than one kilogram",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S2.T4.C17:2",
+    "M1.S2.T4.C18:7",
+    "M1.S2.T4.C19:4"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "weigh_it",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "weigh_it",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Heavy and light: kilograms and grams",
+        "conceptId": "M1.S2.T4.C16",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C16:WI1",
+          "M1.S2.T4.C16:1",
+          "M1.S2.T4.C16:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "A balance and standard weights",
+        "conceptId": "M1.S2.T4.C17",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C17:WI2",
+          "M1.S2.T4.C19.2D1:p2_2",
+          "M1.S2.T4.C17:8"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Half a kilogram and a quarter of a kilogram",
+        "conceptId": "M1.S2.T4.C18",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C18:WI3",
+          "M1.S2.T4.C19.2D1:p3_2",
+          "M1.S2.T4.C18:3"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "More than or less than one kilogram",
+        "conceptId": "M1.S2.T4.C19",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C19:WI4",
+          "M1.S2.T4.C19.2D1:p4_2",
+          "M1.S2.T4.C19:6"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "thing"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), thing",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "weigh_it"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T4.C19.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A balance, some iron weights and a table of real things. What shall we weigh first?"
+    },
+    {
+      "en": "Put a thing on the pan. Is it heavy or light? Pick the unit that fits."
+    },
+    {
+      "en": "Add weights to the other pan until the beam is level. What do the weights add up to?"
+    },
+    {
+      "en": "Four equal packets make one kilogram. How much do some of them weigh?"
+    },
+    {
+      "en": "Is it heavier or lighter than the one kilogram bag of salt? Drop it in the right place."
+    },
+    {
+      "en": "A new thing for the pan. How heavy does it feel?"
+    },
+    {
+      "en": "Free play. Put anything on the pan and add any weights you like."
+    },
+    {
+      "en": "Look at the beam. Is it level yet? Count the weights on the pan again."
+    },
+    {
+      "en": "You made the beam level, and you told heavy things from light things."
+    }
+  ],
+  "build": {
+    "source": "98dacffd:744316",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-10-29T10:42:33.367Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-10-29T10:42:32.740Z"
+    },
+    "tsxBytes": 664084,
+    "tsxMd5": "91971b9e47cc3edc66342ae3a8d35552",
+    "handEdited": true
+  }
+}

@@ -1,0 +1,16 @@
+FINAL RE-LOOK (HINDI), Weigh It, M1.S2.T4.C19.2D1. Verdict: ISSUES (low): no must-fix, no regression, nothing blocks.
+Looked at: all 32 changed *-hi frames of pack.json (built 09:23) at 1600x900 + p1-party-hi and p4-party-hi; 3-8x crops of tags, ring, slot, sack, pillow, backpack. Also (no pack rebuild): wi-lines.mjs hi on the current build (116 sentences rendered in the real bubble) and a Unicode scan of the Hindi TR block. p1-again = sameAs p1-step1.
+YOUR ITEMS
+1 fallback shapes: FIXED. Pillow top clean (p4-end-hi x 1020-1165, y 150-162; p4-free-hi), sack neck clean (p1-end-hi x 225-280, y 313-330).
+2 unit forms: FIXED. TR scan: 0 of 116 sentences keep a short form beside a number; plates, ring, tags, slot, summary row 1 ("1 किग्रा = 1,000 ग्रा") short. Open (question): the choice keys are long ("1 किलोग्राम", "आधा किलोग्राम") while the tag says "आधा किग्रा".
+3 ring: FIXED, one line in every frame. Nit: with the pad open it is 301 px wide and hangs 59 px out of the tray's left edge (p1-ask-open-hi x 659-960 against tray 718-964), clear of everything.
+4 slot caption: FIXED by removal: the P2 slot shows only "| किग्रा" (11 px clear, no matra near an outline; p2-ask-open-hi, p2-wrong-hi). English dropped its caption too ("| kg"), so it is consistent; confirm intended.
+5 "भारी": FIXED (p4-end-hi, p4-win-hi, p4-summary-hi). 6 new cues: both strings are in TR and render in the bubble with no one-word last line (wi-lines); no pack frame shows them. 
+7 free play: PARTLY (brick 78 x 40, watermelon 110 now; mango 52, pencil 130 x 10, weights still 3 rows (3, 3, 1): p4-free-hi). 8 watermelon rim: NOT FIXED, low, all languages (jagged, pale notch at p1-ask-shut-hi x 920-945, y 478-492).
+9 packets/loaves/parcel in code: accepted. 10 "उत्तर / चावल की बोरी" (p1-end-hi): still a name, accepted as name-only. 11 short vs long: closed by the builder's rule (2).
+REGRESSION HUNT
+- [should-fix, low, all languages] Backpack photo: its carry loop's hole is white, now visible as a detached strip with brown ends above the bag (p4-ask-shut-hi x 978-1025, y 193-197; p4-end-hi x 855-885, y 153-157). Round 1 hid it behind the fallback's brown loop arch (play-vhi-p4q3-ask.png), so the photo had it already. Fix: cut the hole out of the skin or trim its top 6 px.
+- [should-fix, low] Summary row 1 label "चावल की बोरी" is about 22 px tall (p4-summary-hi x 1383-1520, y 185-212), under the 32 floor: show the picture alone or a shorter word.
+- [question] The ask "How many over 1 kg?" (hi "1 किग्रा से ज़्यादा कितनी?") wraps with last line "कितनी?" if it is ever drawn in the bubble (wi-lines); no frame shows it. The other 2 wi-lines hits are the start page and Free play lines (paged, not a defect).
+CHECKED OK: bubbles 2 lines (3 only in p4-end/p4-party, about 18 px clear), no matra on the line above or an outline, no split amount, no one-word last line (summary "सीखा।" known); two-line tags clear (nukta 5 px at the P4 tag; the tag is 5 px from the post base); P3 Q1 keys wrap to two lines 8 px apart (runtime); nothing under the Answer key corner; slots empty after a miss, no answer shown; summary rows draw their thing; both parties (Kiko cheers; the known sparkle at the tail); no English on screen.
+WORD LIST (native reader): तराज़ू, डंडी, पलड़ा, बाट, काँटा, इकाई, चौथाई, मुक्त खेल, "दिया है", "जोड़ो", "अगला चरण", "आगे", "सारांश", "बंद करें".

@@ -136,7 +136,7 @@ export function writePin(chapterDir, version, { why = "", sealed = null, rules =
    every pencil act is a write or says marks: true (docs/PATTERNS.md 15, check pencil-acts). A chapter fetched earlier, or re-pinned later onto a newer
    runtime, is not: writePin keeps the rules it had and never adds one. null = no rules. */
 export function fetchRules(version) {
-  try { return /function penPlan\(/.test(fs.readFileSync(path.join(snapshotDir(version), "runtime.tsx"), "utf8")) ? { pencilActs: "strict" } : null; }
+  try { return { ...(/function penPlan\(/.test(fs.readFileSync(path.join(snapshotDir(version), "runtime.tsx"), "utf8")) ? { pencilActs: "strict" } : {}), questionStays: "strict" }; }  /* 2026-10-30 questionStays: PREFLIGHT, check question-stays */
   catch { return null; }
 }
 

@@ -138,11 +138,13 @@ export function writePin(chapterDir, version, { why = "", sealed = null, rules =
    2026-10-28 (MISS HIDES THE ANSWER, the owner; docs/PATTERNS.md 7, check miss-hides-answer): every chapter fetched from this day on is
    "strict" for it too: after a wrong answer the correction stops one step before the answer. It is a convention and a check, not a runtime
    feature, so it needs no marker in the snapshot; a chapter fetched earlier has no key (one INFO row) unless the owner sets it by hand.
+   2026-10-30 (THE QUESTION STAYS, the owner; docs/PREFLIGHT.md 30, check question-stays): every chapter fetched from this day on is "strict" for it
+   too: no bubble line that is only a where-to-tap cue replaces the question once the acts are done. A convention and a check, no runtime marker.
    cli.mjs writes these rules only when the chapter has no pin yet, so a re-fetch never makes an older chapter strict. */
 export function fetchRules(version) {
   let pen = false;
   try { pen = /function penPlan\(/.test(fs.readFileSync(path.join(snapshotDir(version), "runtime.tsx"), "utf8")); } catch { pen = false; }
-  return { ...(pen ? { pencilActs: "strict" } : {}), missHidesAnswer: "strict" };
+  return { ...(pen ? { pencilActs: "strict" } : {}), missHidesAnswer: "strict", questionStays: "strict" };
 }
 
 /* the runtime + mascot a slot builds on: its chapter's pin, else the head */
