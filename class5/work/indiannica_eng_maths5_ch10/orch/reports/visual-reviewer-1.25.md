@@ -1,0 +1,16 @@
+STATUS: ISSUES (no must-fix; 2 should-fix; 2 questions; 1 cross-share heads-up for hi)
+SLOTS: M1.S2.T4.C15.2D1 (Small to Big Converter), English share, r66 silent, round 2
+FILES: none edited; no image files made (pixel checks in memory; two DOM-only probes, scripts removed)
+CHECKS: all 35 en frames of the new pack (toolHash 8d8263b3, every frame changed) at full size; p1-again-en skipped (sameAs p1-step1-en)
+FAILURES: F1, F2 (should-fix); Q1, Q2
+DECISIONS: Q1 (summary bars) and Q2 (gated-look frame) only
+RISKS: none blocking in English
+ESCALATE: no
+CHECKLIST (en): 1 pills OK (rungs 66, pill 36 visible, 4 px air above/below at x284, "y" 5 px clear). 2/3/8 are hi items, not mine (en given text ~20 px clear of the pale rule). 4 OK in en: 5 small pile bars + "= a unit" / "b unit" on two lines, 31 px right, 16 px from bars, 12 px bars to border. 5 OK (DOM + frame): Add 10 / Add 1 off the ladder under the reading panel (994,528 / 1254,528, 240x89), panel "50 h" after 5 taps, "288 h" full, no rung or pill covered; the 590 / green-answer state is not in the pack. 6 rows 35 long, pitch ~15, centred, no short last row equal to the remainder (77 h: 7 vs 5; 725 s: 25 vs 5; 75 min: 5 vs 15), but see F1/F2. 7 leftover blocks 54-56 px, counting numbers ~40; Carry chip is not in the pack: DOM probe after Bundle in P4 found "Carry" at x836-931 y245-290 (tray top-right, inside the frame band) and the Carry key under the ladder; violet NOT seen. 9 OK (DOM probe): "The shelf is full." at 288 h with both Add keys off.
+[should-fix] F1 p3-ask-shut-en, p3-ask-open-en (725 s) - the heap fills the tray edge to edge: ink y302-608 in a 300-606 inner area (100% of its height; ceiling ~70%), 8 px under the "725 s" chip, 4 px above the wood frame - lower the pitch or cap rows so it keeps ~12 px clear.
+[should-fix] F2 p2-step1-en, p2-stepwrong-en (90 min), p3-step1-en, p3-stepwrong-en (150 s), p4-step1-en, p4-stepwrong-en, p4-ask-shut-en, p4-ask-open-en (75/70 min) - the heap is a 28-75 px strip (blocks ~12 px) in a 305 px tray, 2/3 empty (9-25% of the height; p1 77 h and p2 395 min fill 59-77%) - size the pitch by the count (fewer per row, bigger blocks) so each heap lands near 50-70%, not one 15 px pitch for 70 and 725.
+[question] Q1 p4-summary-en - all four rows draw the same 5 bars (cap hit by 12, 7, 33, 5), so they carry no information; the two-line text sits 7 px from the top/bottom outline. Ship as is, or scale / mark "5+"?
+[question] Q2 every ask frame - the Answer key is live berry before any touch (the gate arms only after the first real touch, STB_T.touched, by design), so the gated look (dim key, nudge line) is in no pack frame and rule 13 is not judged. Want an extra frame?
+CROSS-SHARE (hi reviewer): p4-summary-hi - first-line green ink reaches each thumb box's top outline in all 4 rows (ink y168/245/320/397 on outline rows 167-169/243-245/319-321/395-397); gu is 3 px clear. Check 4 is NOT met in hi.
+UNCHANGED/not rated (known): summary "You learned", answer-box unit labels, orphan last words, two invites before first touch, p4-party cone vs 4th pill; no Kiko puff = keyOnly by design; start-en unchanged since round 1.
+NEW defects beyond F1/F2: none (no overlap, clip, wrong colour, added words, grey Start key, red/cross after a miss, giveaway, or item past the stage).

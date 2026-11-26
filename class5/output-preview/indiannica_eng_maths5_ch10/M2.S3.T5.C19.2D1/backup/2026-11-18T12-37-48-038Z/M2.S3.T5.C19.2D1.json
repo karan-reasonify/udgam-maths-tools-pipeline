@@ -1,0 +1,1047 @@
+{
+  "slotId": "M2.S3.T5.C19.2D1",
+  "mediaId": "M2.S3.T5.C19.2D1",
+  "toolId": "day_bar_clocks",
+  "title": "Day Bar Clocks",
+  "component": "M2.S3.T5.C23.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch10_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_10/2dtool/M2.S3.T5.C23.2D1/M2.S3.T5.C23.2D1.tsx",
+  "description": "Slide a time along one day bar and read it on the 12-hour clock and the 24-hour clock, add 12 to a p.m. hour except in the 12 o'clock hour, and see why that hour is a case of its own.",
+  "conceptIds": [
+    "M2.S3.T5.C20",
+    "M2.S3.T5.C21",
+    "M2.S3.T5.C22",
+    "M2.S3.T5.C23"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Read a 24-hour time as the hours and minutes after midnight, change 12-hour times into 24-hour times by adding 12 from one o'clock on in the afternoon, treat the 12 o'clock hour on its own, and change 24-hour times back into 12-hour times.",
+    "look": "One day bar from 12 midnight to 12 midnight with the 24-hour times above and the 12-hour times below, a sliding marker and a violet tile of 12 h.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Day Bar Clocks' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of times converted. It is never a score. The working area is 1086 by 528 at x 64, y 202. The day bar runs across the area along y 420 from x 90 to x 1130, 90 tall, with 12 midnight at the left end and 12 midnight at the right end and 12 noon marked where the halves meet. The 24-hour times stand above it along y 350 and the 12-hour times below it along y 540, all in near-black ink. The half from midnight until just before noon stays warm white inside its outline, labelled a.m., and the half from noon until just before midnight is rose, labelled p.m. The marker slides along the bar, amber while it is being placed. The time the question gives is set in deep blue, labelled Given, on whichever clock it is given on, and the same time is read on the other clock in green, labelled Answer, at x 120, y 650. A 24-hour time is four digits and the word hours, and a zero that holds the front place open is grey, labelled Place holder. The violet tile of 12 h, labelled Jump, waits at x 900, y 230 and is dragged onto the hour of a p.m. time from one o'clock on. On the third phase the two 12 o'clock hours are lit amber on the bar and the tile will not settle in either. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a delete key, and keys for a.m., p.m. and hours. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. What the question gives, as a clock time, a length of time, a start date or a number of days, is deep blue, labelled Given or Start. What the working reaches, as an end time, a length of time, a converted time or a date, is green, labelled Answer, End or How long. The thin second hand and the seconds it counts are vermilion, labelled Second hand. One jump along a time line, and one regrouped unit carried or borrowed, are violet, labelled Jump, Carry or Regroup. On a day bar the half from noon until just before midnight is rose, labelled p.m., and the half from midnight until just before noon stays warm white inside its outline, labelled a.m. The hand, digit, column, jump or date being worked on now is amber. Grey is kept for a zero holding a place open, labelled Place holder, and for nothing else. The hour hand and the minute hand, dials, tick marks, time lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last time stays on the bar with its marker, both clocks read beside it and the tile where it was used.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the four digits and the word hours turn green, and the 12-hour time shows beneath",
+        "does": "slides the marker along the bar, reads the hours and minutes after midnight, and writes them as four digits with a grey zero holding the front place",
+        "goal": "a 24-hour time is four digits and the word hours: the first two digits are the hours after midnight and the last two are the minutes",
+        "says": "How many hours after midnight? Then how many minutes?",
+        "check": "Away from the screen: why does a time just after midnight begin with a zero?",
+        "feels": "the marker's distance from midnight turning into four digits and the word hours",
+        "hands": "Stand a paper day bar on a desk and slide a paper marker along it. Read the hours and the minutes after midnight at the marker, and write them as four digits with the word hours.",
+        "tries": "First rung: read the hours only, with the minutes at nothing. Second rung: add the minutes and write all four digits. Third rung: the same task with a time early in the morning, before the question's own time returns.",
+        "wrong": [
+          {
+            "why": "the four digits look like one number, so the order of its two parts is easy to swap",
+            "move": "reads the first two digits as the minutes and the last two as the hours",
+            "screen": "the digits stay where the child put them, the first two are lit amber over the hours after midnight on the bar, and the last two over the minutes"
+          },
+          {
+            "why": "a zero in front of a digit looks as if it can be dropped",
+            "move": "leaves off the zero in front of an early hour",
+            "screen": "the time stays as the child wrote it, a grey Place holder is set in the front place, and the four digits are written again beside it"
+          }
+        ],
+        "screen": "the day bar with 24-hour times above and 12-hour times below, and a marker set on a time in deep blue",
+        "soWhat": "a 24-hour time is four digits and the word hours: the first two are the hours after midnight, and the last two are the minutes",
+        "concept": "Four digits after midnight"
+      },
+      {
+        "n": 2,
+        "win": "the hour and the minutes are written together, four digits and the word hours, in green",
+        "does": "drags the tile onto the hour, adds 12, and writes the minutes beside it",
+        "goal": "for a p.m. time from one o'clock on, add 12 to the hour, except in the 12 o'clock hour",
+        "says": "Is it after one o'clock in the afternoon? Then what do you add to the hour?",
+        "check": "Away from the screen: does a morning time ever get 12 added, and why not?",
+        "feels": "the tile fitting onto the hour and the four digits joining",
+        "hands": "Cut a paper tile marked 12 h. Set a paper marker on an afternoon time on the day bar and lay the tile on its hour, add 12 to it except in the 12 o'clock hour, and write the hour and the minutes together.",
+        "tries": "First rung: add the tile to an afternoon hour with no minutes. Second rung: add the tile to an afternoon hour with minutes. Third rung: the same task with a time late in the evening, before the question's own time returns.",
+        "wrong": [
+          {
+            "why": "the minutes are the number said last, so they are the first to be changed",
+            "move": "adds 12 to the minutes instead of the hours",
+            "screen": "the tile stays on the minutes, lit amber, and is lifted to the hour, where it fits"
+          },
+          {
+            "why": "the hour and the minutes look right on their own",
+            "move": "leaves the tile off an afternoon time and writes it as a morning time",
+            "screen": "the time stays, the marker is drawn in the rose half, and the missing tile is lit amber beside the hour"
+          },
+          {
+            "why": "the rule of adding 12 is remembered without the word p.m.",
+            "move": "adds 12 to a morning hour as well",
+            "screen": "the tile stays on the morning hour, the marker is drawn in the warm white half, and the tile waits beside the rose half"
+          }
+        ],
+        "screen": "the day bar with the marker set on a p.m. time, and a violet tile of 12 h waiting",
+        "soWhat": "for a p.m. time from one o'clock on, add 12 to the hour and keep the minutes, except in the 12 o'clock hour",
+        "concept": "Adding 12 after one o'clock"
+      },
+      {
+        "n": 3,
+        "win": "the tile stays off, and each 12 o'clock time is written right and turns green",
+        "does": "tries the tile on a time in each 12 o'clock hour and sees that it will not fit, then slides the marker to write each time",
+        "goal": "the hour that begins at 12 is a case of its own, so do not add 12 there: 12:40 a.m. is 0040 hours, 12 noon is 1200 hours, 12:40 p.m. is 1240 hours and 12 midnight is 0000 hours",
+        "says": "The hour that begins at twelve is special. What would adding twelve do here?",
+        "check": "Away from the screen: how many hours after midnight is 12 noon?",
+        "feels": "the tile sliding off the two 12 o'clock hours and the times settling right without it",
+        "hands": "Fold a paper day bar at the middle. Mark the hour that begins at 12 on each side of the fold, try to fit the paper tile onto each one, and write each time on both clocks.",
+        "tries": "First rung: try the tile on a time in the 12 o'clock hour after noon. Second rung: try it on a time in the 12 o'clock hour after midnight. Third rung: the same task with 12 noon and 12 midnight themselves, before the question's own times return.",
+        "wrong": [
+          {
+            "why": "the rule of adding 12 was learnt just before and feels as if it has no exceptions",
+            "move": "adds 12 to the hour of a time just after noon and types a time past 2359 hours",
+            "screen": "the typed time stays, the 12 o'clock hour after noon lights amber on the bar, and the tile is lifted off and set beside it"
+          },
+          {
+            "why": "the 12-hour clock says twelve, and the number is copied across",
+            "move": "gives a time just after midnight the hour 12 in its four digits",
+            "screen": "the digits stay, the marker sits at the left end of the bar, and the hours after midnight, none yet, are lit amber beside the child's twelve"
+          },
+          {
+            "why": "both are called twelve, so their digits look alike",
+            "move": "gives 12 midnight the same four digits as 12 noon",
+            "screen": "the two marks are lit amber one after the other, and the hours after midnight are counted for each, none for 12 midnight and twelve for 12 noon"
+          }
+        ],
+        "screen": "the two 12 o'clock hours lit amber on the day bar, one just after midnight and one just after noon, and the violet tile beside them",
+        "soWhat": "the hour that begins at 12 is a case of its own, so do not add 12 there: 12 noon is 1200 hours, and 12 midnight is 0000 hours",
+        "concept": "The 12 o'clock hour"
+      },
+      {
+        "n": 4,
+        "win": "the 12-hour time turns green with a.m. or p.m. after it",
+        "does": "reads the four digits, takes away 12 from the hours from 1300 hours on, and writes a.m. or p.m. after the time",
+        "goal": "from 1300 hours on, take away 12 from the hours, except in the 12 o'clock hour, and write a.m. before 1200 hours",
+        "says": "Is it before noon or after? What do you do to the hours?",
+        "check": "Away from the screen: is a time such as 0850 hours in the morning or the evening, and how can you tell?",
+        "feels": "the tile lifting off the hours and the a.m. or p.m. tag clipping on",
+        "hands": "Write a 24-hour time on a card and find where its marker sits on the paper day bar. From 1300 hours on, cross out 12 from the hour, and write a.m. or p.m. after the time.",
+        "tries": "First rung: take the tile off a time late in the evening. Second rung: do the same for a time just after 1300 hours. Third rung: the same task with a time in the 12 o'clock hour, before the question's own time returns.",
+        "wrong": [
+          {
+            "why": "the hours look finished once 12 is gone",
+            "move": "takes away 12 but leaves off a.m. or p.m.",
+            "screen": "the time stays, the half of the bar the marker sits in is lit amber, warm white or rose, and the words a.m. and p.m. wait beside it"
+          },
+          {
+            "why": "the rule of taking away 12 is remembered without its limit",
+            "move": "takes away 12 from a time before 1200 hours",
+            "screen": "the tile stays where it was dropped, the marker is drawn in the warm white half, and the tile is lit amber with the words from 1300 hours on written in ink beside it"
+          },
+          {
+            "why": "the four digits show 00, and the 12-hour clock has no hour of that name",
+            "move": "gives a time just after midnight the hour 0 on the 12-hour clock",
+            "screen": "the digits are read against the day bar, the mark for 12 midnight is lit amber, and the hour just after it is drawn as 12 on the 12-hour row"
+          }
+        ],
+        "screen": "the day bar with the marker set on a 24-hour time in deep blue, and the 12-hour row waiting",
+        "soWhat": "from 1300 hours on, take away 12 from the hours, except in the 12 o'clock hour, and write a.m. before 1200 hours and p.m. after it",
+        "concept": "Back to the 12-hour clock"
+      }
+    ],
+    "delight": "On the third phase, when the tile is tried on a time in a 12 o'clock hour, it shivers and slides off, the two 12 o'clock hours on the bar glow amber once, and the time is written right without it.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet converted. On the first phase the day bar runs from 12 midnight to 12 midnight with the 24-hour times above it and the 12-hour times below, and the marker waits at the left end. On the second the marker sits on a p.m. time and the violet tile of 12 h waits beside the bar. On the third the two 12 o'clock hours stand out on the bar, one just after midnight and one just after noon, with the tile beside them. On the fourth the marker sits on a 24-hour time in deep blue and the 12-hour row waits empty. One thing moves, once: the marker or the tile gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any time set on the day bar and read on either clock, with the tile tried in any hour. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on four digits after midnight, adding 12, the 12 o'clock hour and writing a 24-hour time back on the 12-hour clock.",
+    "voiceLines": [
+      "A day bar, from one midnight to the next.",
+      "How many hours after midnight? Then how many minutes?",
+      "Is it after one o'clock in the afternoon? Then what do you add to the hour?",
+      "The hour that begins at twelve is special. What would adding twelve do here?",
+      "Is it before noon or after? What do you do to the hours?",
+      "A new time on the bar. Read it on the other clock.",
+      "Free play. Slide the marker anywhere and read it on both clocks.",
+      "Look at the bar again. Which half of the day is the marker in?",
+      "You read one time on both clocks and kept the twelve o'clock hour apart."
+    ],
+    "observations": [
+      {
+        "why": "a time on either clock is the hours and minutes after midnight.",
+        "soWhat": "read a 24-hour time as the hours and minutes after midnight, in four digits and the word hours.",
+        "observe": "The marker was the same distance from the left end of the bar whichever clock the time was read on."
+      },
+      {
+        "why": "an afternoon hour from one o'clock on has 12 h more before it than the same hour in the morning.",
+        "soWhat": "add 12 to a p.m. hour from one o'clock on, except in the 12 o'clock hour, and keep the minutes.",
+        "observe": "The tile of 12 h fitted onto the hour of an afternoon time and made it the hour of a 24-hour time."
+      },
+      {
+        "why": "12:40 a.m. is 40 min after midnight, and 12:40 p.m. is 12 h 40 min after midnight.",
+        "soWhat": "the hour that begins at 12 is a case of its own on both clocks, so the tile is kept off it.",
+        "observe": "The tile would not settle in either 12 o'clock hour."
+      },
+      {
+        "why": "from 1300 hours on the hours are 13 or more, so 12 has been added, and before 1200 hours it is still the morning.",
+        "soWhat": "take away 12 from the hours from 1300 hours on, except in the 12 o'clock hour, and write a.m. or p.m. after the time.",
+        "observe": "Going back, the tile came off only from 1300 hours on, and a time before 1200 hours was called a.m."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the day bar with 24-hour times above and 12-hour times below, and a marker set on a time in deep blue",
+        "win": "the four digits and the word hours turn green, and the 12-hour time shows beneath",
+        "traceback": "The hour digits light up over the hours from midnight on the bar, then the time after midnight is written in full (a grey zero holds the front place of an early hour).",
+        "ladder": [
+          "The first two digits count the whole hours.",
+          "The last two digits are the minutes.",
+          "An early hour needs a zero in front, to make four digits.",
+          "Count the whole hours from the left end of the bar to the marker.",
+          "Match each part of the blue time to its own box on the Answer card."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the day bar with the marker set on a p.m. time, and a violet tile of 12 h waiting",
+        "win": "the hour and the minutes are written together, four digits and the word hours, in green",
+        "traceback": "The hour of the given time lights amber, the 12 h tile sits on it, and the 24-hour time is written: the new hour, then the same minutes.",
+        "ladder": [
+          "Fit the 12 h tile onto the hour, not the minutes.",
+          "An afternoon hour needs the 12 h tile.",
+          "The tile goes on the 11, and the 25 minutes stay as they are.",
+          "Count the hours from the left end of the bar to the marker.",
+          "Write those hours as two digits, then the two minute digits from the blue time."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the two 12 o'clock hours lit amber on the day bar, one just after midnight and one just after noon, and the violet tile beside them",
+        "win": "the tile stays off, and each 12 o'clock time is written right and turns green",
+        "traceback": "The 12 o'clock hour of the given time lights amber on the bar, the tile stays off beside it, and the four digits are written with the hours after midnight.",
+        "ladder": [
+          "Find the 12 o'clock hour that comes just after midnight.",
+          "Where is the marker, and how many hours has it gone since midnight?",
+          "The tile slid off this hour, so leave the 12 as it is.",
+          "Find the noon mark on the bar and see where the marker sits beside it.",
+          "Just after noon, how many whole hours have gone since midnight?"
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the day bar with the marker set on a 24-hour time in deep blue, and the 12-hour row waiting",
+        "win": "the 12-hour time turns green with a.m. or p.m. after it",
+        "traceback": "The half of the bar the marker sits in lights amber with its tag, the tile comes off the hours from 1300 hours on, and the 12-hour time is written with a.m. or p.m.",
+        "ladder": [
+          "2245 hours is after 1300 hours, so the tile comes off the hours.",
+          "Take 12 away from the hours, then keep the minutes.",
+          "0005 hours is in the hour just after midnight.",
+          "Look at which half of the bar the marker sits in.",
+          "Read the 12-hour row under the marker, then keep the minutes."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "dayMinutes": 1440,
+    "tileHours": 12,
+    "bar": "12 midnight to 12 midnight, a.m. half warm white, p.m. half rose",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T5.C20:DB1",
+        "kind": "after",
+        "t": 565,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          9,
+          25
+        ],
+        "win": "Yes, 0925 hours is 9 h 25 min after midnight."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T5.C20:1",
+        "kind": "after",
+        "t": 290,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          4,
+          50
+        ],
+        "win": "Yes, 0450 hours is 4 h 50 min after midnight."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T5.C20:5",
+        "kind": "write24",
+        "t": 400,
+        "answer": "0640",
+        "win": "Yes, 6 h 40 min after midnight is 0640 hours."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T5.C21:DB2",
+        "kind": "to24",
+        "t": 1100,
+        "answer": "1820",
+        "win": "Yes, 6 + 12 = 18, so 1820 hours is 6:20 p.m."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T5.C21:2",
+        "kind": "to24",
+        "t": 1150,
+        "answer": "1910",
+        "win": "Yes, 7 + 12 = 19, so 1910 hours is 7:10 p.m."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T5.C21:6",
+        "kind": "to24",
+        "t": 1405,
+        "answer": "2325",
+        "win": "Yes, 11 + 12 = 23, so 2325 hours is 11:25 p.m."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T5.C22:DB3",
+        "kind": "noon",
+        "t": 35,
+        "answer": "0035",
+        "ladder": [
+          "At 12:35 a.m., how many whole hours have gone since midnight?",
+          "Hours since midnight make the first two digits, minutes the last two."
+        ],
+        "win": "Yes, 0035 hours is just after midnight, at 12:35 a.m."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T5.C22:3",
+        "kind": "noon",
+        "t": 0,
+        "answer": "0000",
+        "ladder": [
+          "Each of the four places needs a digit.",
+          "At 12 midnight, how many hours and minutes have gone by?"
+        ],
+        "win": "Yes, 12 midnight is 0000 hours, and 12 noon is 1200 hours."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T5.C22:7",
+        "kind": "noon",
+        "t": 770,
+        "answer": "1250",
+        "win": "Yes, just after noon, 1250 hours is 12:50 p.m."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T5.C23:DB4",
+        "kind": "to12",
+        "t": 1365,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          10,
+          45
+        ],
+        "half": "pm",
+        "win": "Yes, 22 minus 12 is 10, so 2245 hours is 10:45 p.m."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T5.C23:4",
+        "kind": "to12",
+        "t": 1055,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          5,
+          35
+        ],
+        "half": "pm",
+        "win": "Yes, 17 minus 12 is 5, so 1735 hours is 5:35 p.m."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T5.C23:8",
+        "kind": "to12",
+        "t": 5,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          12,
+          5
+        ],
+        "half": "am",
+        "ladder": [
+          "The left half of the bar is a.m., and this is the hour after midnight.",
+          "On a clock face, which number is at the top, where a new day starts?"
+        ],
+        "win": "Yes, just after midnight, 0005 hours is 12:05 a.m."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The hour digits light up over the hours from midnight on the bar, then the time after midnight is written in full (a grey zero holds the front place of an early hour).",
+      "Phase 2: The hour of the given time lights amber, the 12 h tile sits on it, and the 24-hour time is written: the new hour, then the same minutes.",
+      "Phase 3: The 12 o'clock hour of the given time lights amber on the bar, the tile stays off beside it, and the four digits are written with the hours after midnight.",
+      "Phase 4: The half of the bar the marker sits in lights amber with its tag, the tile comes off the hours from 1300 hours on, and the 12-hour time is written with a.m. or p.m."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A day bar, from one midnight to the next.",
+    "onFreePlay": "Free play. Slide the marker anywhere and read it on both clocks.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You read one time on both clocks and kept the twelve o'clock hour apart.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T5.C20:DB1",
+            "worked": false,
+            "kind": "after",
+            "planQuestion": "A ferry timetable shows 0925 hours. How long after midnight is that, and is it morning or evening?",
+            "question": {
+              "en": "A ferry leaves at 0925 hours, so how long after midnight is that?"
+            },
+            "ask": {
+              "en": "How long after midnight?"
+            },
+            "answer": [
+              9,
+              25
+            ],
+            "planAnswer": "9 h 25 min after midnight, so it is 9:25 a.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T5.C20:1",
+            "worked": false,
+            "kind": "after",
+            "planQuestion": "How many hours and minutes after midnight is 0450 hours?",
+            "question": {
+              "en": "How many hours and minutes after midnight is 0450 hours?"
+            },
+            "ask": {
+              "en": "Hours and minutes?"
+            },
+            "answer": [
+              4,
+              50
+            ],
+            "planAnswer": "4 h 50 min after midnight, so it is 4:50 a.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T5.C20:5",
+            "worked": false,
+            "kind": "write24",
+            "planQuestion": "Write 6 h 40 min after midnight as a 24-hour time.",
+            "question": {
+              "en": "Write 6 h 40 min after midnight as a 24-hour time."
+            },
+            "ask": {
+              "en": "As a 24-hour time?"
+            },
+            "answer": "0640",
+            "planAnswer": "0640 hours",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T5.C21:DB2",
+            "worked": false,
+            "kind": "to24",
+            "planQuestion": "What is 6:20 p.m. on the 24-hour clock?",
+            "question": {
+              "en": "On the 24-hour clock, what is 6:20 p.m.?"
+            },
+            "ask": {
+              "en": "6:20 p.m. in 24-hour time?"
+            },
+            "answer": "1820",
+            "planAnswer": "1820 hours.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T5.C21:2",
+            "worked": false,
+            "kind": "to24",
+            "planQuestion": "What is 7:10 p.m. on the 24-hour clock?",
+            "question": {
+              "en": "Write 7:10 p.m., in four digits."
+            },
+            "ask": {
+              "en": "7:10 p.m. in 24-hour time?"
+            },
+            "answer": "1910",
+            "planAnswer": "1910 hours, because 7 + 12 = 19",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T5.C21:6",
+            "worked": false,
+            "kind": "to24",
+            "planQuestion": "What is 11:25 p.m. on the 24-hour clock?",
+            "question": {
+              "en": "A train leaves at 11:25 p.m., so what is that in 24-hour time?"
+            },
+            "ask": {
+              "en": "11:25 p.m. in 24-hour time?"
+            },
+            "answer": "2325",
+            "planAnswer": "2325 hours, because 11 + 12 = 23",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T5.C22:DB3",
+            "worked": false,
+            "kind": "noon",
+            "planQuestion": "What is 12:35 a.m. on the 24-hour clock, and what is 12:35 p.m.?",
+            "question": {
+              "en": "On the 24-hour clock, what is 12:35 a.m.?"
+            },
+            "ask": {
+              "en": "12:35 a.m. in 24-hour time?"
+            },
+            "answer": "0035",
+            "planAnswer": "0035 hours for 12:35 a.m., and 1235 hours for 12:35 p.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T5.C22:3",
+            "worked": false,
+            "kind": "noon",
+            "planQuestion": "How are 12 noon and 12 midnight written on the 24-hour clock?",
+            "question": {
+              "en": "How is 12 midnight written on the 24-hour clock?"
+            },
+            "ask": {
+              "en": "12 midnight in 24-hour time?"
+            },
+            "answer": "0000",
+            "planAnswer": "12 noon is 1200 hours, and 12 midnight is 0000 hours",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T5.C22:7",
+            "worked": false,
+            "kind": "noon",
+            "planQuestion": "What is 12:50 a.m. on the 24-hour clock, and what is 12:50 p.m.?",
+            "question": {
+              "en": "In four digits, what is 12:50 p.m.?"
+            },
+            "ask": {
+              "en": "12:50 p.m. in 24-hour time?"
+            },
+            "answer": "1250",
+            "planAnswer": "12:50 a.m. is 0050 hours, and 12:50 p.m. is 1250 hours",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T5.C23:DB4",
+            "worked": false,
+            "kind": "to12",
+            "planQuestion": "What is 2245 hours on the 12-hour clock?",
+            "question": {
+              "en": "What is 2245 hours on the 12-hour clock?"
+            },
+            "ask": {
+              "en": "2245 hours, 12-hour time?"
+            },
+            "answer": [
+              10,
+              45,
+              "p.m."
+            ],
+            "planAnswer": "10:45 p.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T5.C23:4",
+            "worked": false,
+            "kind": "to12",
+            "planQuestion": "What is 1735 hours on the 12-hour clock?",
+            "question": {
+              "en": "Now write 1735 hours as a 12-hour time."
+            },
+            "ask": {
+              "en": "1735 hours, 12-hour time?"
+            },
+            "answer": [
+              5,
+              35,
+              "p.m."
+            ],
+            "planAnswer": "5:35 p.m., because 17 - 12 = 5",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T5.C23:8",
+            "worked": false,
+            "kind": "to12",
+            "planQuestion": "What is 0005 hours on the 12-hour clock?",
+            "question": {
+              "en": "And 0005 hours, on the 12-hour clock?"
+            },
+            "ask": {
+              "en": "0005 hours, 12-hour time?"
+            },
+            "answer": [
+              12,
+              5,
+              "a.m."
+            ],
+            "planAnswer": "12:05 a.m., because 0005 hours is in the hour just after midnight",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "day_bar_clocks",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "day_bar_clocks",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Four digits after midnight",
+        "conceptId": "M2.S3.T5.C20",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C20:DB1",
+          "M2.S3.T5.C20:1",
+          "M2.S3.T5.C20:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Adding 12 after one o'clock",
+        "conceptId": "M2.S3.T5.C21",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S3.T5.C21:DB2",
+          "M2.S3.T5.C21:2",
+          "M2.S3.T5.C21:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "The 12 o'clock hour",
+        "conceptId": "M2.S3.T5.C22",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C22:DB3",
+          "M2.S3.T5.C22:3",
+          "M2.S3.T5.C22:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Back to the 12-hour clock",
+        "conceptId": "M2.S3.T5.C23",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S3.T5.C23:DB4",
+          "M2.S3.T5.C23:4",
+          "M2.S3.T5.C23:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "marker",
+    "given_clock",
+    "tile",
+    "half",
+    "digits",
+    "null",
+    "answer_ready"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, marker, given_clock, tile, half, digits, null, answer_ready, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "day_bar_clocks"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T5.C19.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A day bar, from one midnight to the next."
+    },
+    {
+      "en": "How many hours after midnight? Then how many minutes?"
+    },
+    {
+      "en": "Is it after one o'clock in the afternoon? Then what do you add to the hour?"
+    },
+    {
+      "en": "The hour that begins at twelve is special. What would adding twelve do here?"
+    },
+    {
+      "en": "Is it before noon or after? What do you do to the hours?"
+    },
+    {
+      "en": "A new time on the bar. Read it on the other clock."
+    },
+    {
+      "en": "Free play. Slide the marker anywhere and read it on both clocks."
+    },
+    {
+      "en": "Look at the bar again. Which half of the day is the marker in?"
+    },
+    {
+      "en": "You read one time on both clocks and kept the twelve o'clock hour apart."
+    }
+  ],
+  "build": {
+    "source": "5487c4af:646049",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-16T20:05:39.178Z",
+    "checks": {
+      "pass": 94,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-11-16T20:05:39.029Z"
+    },
+    "tsxBytes": 568172,
+    "tsxMd5": "893dd6b333eeb8e721ce8f44d7dc0233"
+  }
+}

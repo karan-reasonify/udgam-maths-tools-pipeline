@@ -34,6 +34,7 @@ import { hostsim } from "./hostsim.mjs";
 import { publishedRecord } from "./published.mjs";
 import { shipVoice, checkShip, voiceMap, CLIP_DIR, CLIP_TYPE, CLIP_CACHE } from "./voiceship.mjs";
 import { idOf, chapterOf, readStatus, writeStatus } from "../core/work.mjs";
+import { cleanSlot } from "../finish/clean.mjs";
 
 const PUBLIC_BASE = "https://media.singularity-learn.com";
 const UPLOAD_API = "https://beta.singularity-learn.com/agentapi/api/topics/upload";
@@ -371,5 +372,14 @@ export async function publish(dir, { upload = false, apply = false, offline = fa
     /* the viewer's "Published <time>" line: only a verified upload sets it, and a later dry run or failed upload leaves it alone (published.mjs) */
     ...(problems.length ? {} : { published: publishedRecord({ at, plan: chosen.plan_id, urls, tsx: data[".tsx"], json: data[".json"] }) }),
   });
+  /* the review images and scratch (sheets, pack frames, approve frames, .build/, logs) stay until here and go once the upload is VERIFIED
+   * (the owner, 2026-11-20): a failed upload keeps them, they may be all that shows what is wrong. clean.mjs says what is kept. */
+  if (!problems.length) {
+    /* the upload is already verified and recorded: a cleanup that throws (permissions, a check still writing the folder) must not turn it into a reported failure */
+    try {
+      const c = cleanSlot(dir);
+      say("cleaned", `${c.removed.length} review file(s) removed, ${(c.bytes / 1048576).toFixed(1)} MB freed`);
+    } catch (e) { say("note", `uploaded and verified; the review-file cleanup failed (${e.message}): run node cli.mjs clean ${id} --ch N`); }
+  }
   return { ok: !problems.length, problems, urls, results };
 }

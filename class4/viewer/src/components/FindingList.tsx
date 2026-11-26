@@ -1,6 +1,6 @@
 import type { Finding } from "../types";
 
-const DOT: Record<Finding["level"], string> = { pass: "#1a7f37", warn: "#9a6700", fail: "#cf222e", info: "#57606a" };
+const DOT: Record<Finding["level"], string> = { pass: "var(--pass)", warn: "var(--warn)", fail: "var(--fail)", info: "var(--info)" };
 const LABEL: Record<Finding["level"], string> = { pass: "PASS", warn: "WARN", fail: "FAIL", info: "INFO" };
 
 export function FindingRow({ f }: { f: Finding }) {

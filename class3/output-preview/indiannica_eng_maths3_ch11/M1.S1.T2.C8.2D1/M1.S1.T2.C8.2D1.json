@@ -1,0 +1,1059 @@
+{
+  "slotId": "M1.S1.T2.C8.2D1",
+  "mediaId": "M1.S1.T2.C8.2D1",
+  "toolId": "count_the_money",
+  "title": "Count the Money",
+  "component": "M1.S1.T2.C8.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch11",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch11_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_11/2dtool/M1.S1.T2.C8.2D1/M1.S1.T2.C8.2D1.tsx",
+  "description": "Tap notes and coins into a tray, count each kind in jumps of its value, count a mixed handful biggest first, and pay one price in more than one way.",
+  "conceptIds": [
+    "M1.S1.T2.C5",
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7",
+    "M1.S1.T2.C8"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Read the value on each note and coin, count notes or coins of one kind in jumps of their value, count a mixed handful from the biggest, and pay one price in more than one way.",
+    "look": "A shop counter with a purse, the six notes and five coins as plain flat shapes, a flat tray that sorts them into tagged rows, a price tag, the Pay again and Plain list buttons, and the number pad down the right of the canvas.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Count the Money' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many groups of money have been counted. It is never a score. The working area is 1086 by 528 at x 64, y 202. A plain shop counter fills the working area. The open leather purse stands at x 100, y 214, 260 by 230. The six notes lie in a row at x 100, y 470, each a rectangle 150 by 70 in its own colour with its value in large near-black type, and the five coins lie in a row beneath them at y 560, each a disc 66 across with its value in large near-black type. Nothing else is written on a note or a coin: no portrait, no emblem, no serial number. The flat tray stands at x 400, y 214, 620 by 300. Money that lands in it is sorted into rows, one for each kind, and each row carries an amber value tag at its left, a sky blue count tag beside it and a green running total at its right. A green Total tag under the tray at x 400, y 530, 300 by 70, holds the sum of every row. The price tag hangs at x 740, y 530, 280 by 90, and holds an amount in amber. When the money in the tray is worth exactly the price, the Total turns green and a green ring runs round the tray. The Pay again button stands at x 400, y 650, 190 by 60, and the Plain list button at x 610, y 650, 190 by 60, each labelled in words. In the Plain list view the same money is a written list of rows. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys and a clear key, for typing the total of the money in the tray into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours. The whole rupees of an amount are deep blue and the paise are vermilion everywhere, in a column heading, a tag and a label. The value written on one note or coin, and the price of one thing, is amber. How many notes, coins or things there are is sky blue. A total, a change, a converted amount and the answer are green. A note is a plain flat rectangle in its own colour and a coin a plain round disc, each with its value in large near-black type, so a value is read from the number and never from the colour. Anything dimmed fades to half strength rather than turning grey, and chrome never borrows one of the five. Each reading survives with the colour taken away, because an amount is told by its written label before it is told by its colour.",
+    "finish": "The tray shows the last way to pay, with its rows tagged and its green total beside the price on the tag.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "a tapped note or coin lights its value in amber, and the sorted row reads from the least to the greatest",
+        "does": "taps a note or a coin to read its value, then sets the notes and coins in order from least to greatest",
+        "goal": "the number on a note or a coin is its value, and a note and a coin with the same number are worth the same",
+        "says": "Look at the number on each one. Which is worth the most?",
+        "check": "Away from the screen: two pieces of money lie on a desk, a coin with 5 on it and a note with 5 on it. Is one worth more than the other?",
+        "feels": "each piece lighting its value in amber as a finger touches it",
+        "hands": "Lay dummy notes and coins on a desk, ask each child to point to the number on each one, say its value, and put them in a row from the least value to the greatest.",
+        "tries": "First rung: point to the large number on the piece and say it. Second rung: put the piece next to one with a different number and say which number is bigger. Third rung: the same task with only two pieces on the counter, before the rest return.",
+        "wrong": [
+          {
+            "why": "a note is bigger and a coin is small, so size seems to count",
+            "move": "says the paper note is worth more than the coin with the same number",
+            "screen": "both pieces light the same amber value in the sorted row, and the words card says that the number on it is its value"
+          },
+          {
+            "why": "every note is a different colour, and colour is the first thing a child sees",
+            "move": "reads the colour of a note as its value",
+            "screen": "the colours fade to half strength and only the large numbers stay, and the sorted row is made again from the numbers"
+          }
+        ],
+        "screen": "a shop counter with the six notes and five coins in two rows beside an empty tray",
+        "soWhat": "the number on a note or a coin is its value, and a note and a coin with the same number are worth the same",
+        "concept": "Every note and coin has a value"
+      },
+      {
+        "n": 2,
+        "win": "the sky blue count rises with each tap, the green total rises by one jump, and the tray settles on the full amount",
+        "does": "taps the pieces into the tray one at a time and counts along in jumps of the value, then types the total",
+        "goal": "notes or coins of one kind are counted in jumps of their value, and the total is the value counted once for each piece",
+        "says": "Tap them in one at a time. Count in jumps of the value.",
+        "check": "Away from the screen: 5 coins of Rs 2 lie in a row. Count in jumps of the value with your finger. How much is that?",
+        "feels": "the total stepping up by the same jump each time a piece lands",
+        "hands": "Line up dummy notes of one kind on a desk, touch each one in turn and count aloud in jumps of its value, writing each running total on a card.",
+        "tries": "First rung: say the value of one piece. Second rung: count in jumps of that value as the pieces go in one at a time. Third rung: the same task with two pieces only, before more are added.",
+        "wrong": [
+          {
+            "why": "the two numbers are on the screen together and are easy to add by mistake",
+            "move": "adds the number of pieces to the value",
+            "screen": "the pieces go into the tray one at a time and the green total rises by one whole jump of the value for each, so the jumps are counted again from nought"
+          },
+          {
+            "why": "counting things one by one is the habit a child already has",
+            "move": "counts the pieces and says that number as the amount",
+            "screen": "the sky blue count tag is lit beside the amber value tag, the two are kept apart, and the green total is shown as the value counted that many times"
+          }
+        ],
+        "screen": "the tray with one kind of note waiting in a row beside it, a sky blue count tag and a green total tag both empty",
+        "soWhat": "notes or coins of one kind are counted in jumps of their value",
+        "concept": "Counting notes or coins of one kind"
+      },
+      {
+        "n": 3,
+        "win": "each kind slides into its own row and the green total steps up kind by kind to the amount in the purse",
+        "does": "drags the kinds into the tray from the biggest value down, says the total after each kind, then types the last total",
+        "goal": "a mixed handful is counted one kind at a time, starting with the biggest value, and each kind is added to the total so far",
+        "says": "Begin with the biggest value. Add one kind at a time. What is the total now?",
+        "check": "Away from the screen: a purse holds 1 note of Rs 20 and 2 coins of Rs 5. Which kind do you count first, and what is the total?",
+        "feels": "the total growing one kind at a time from the biggest value down",
+        "hands": "Tip a purse of dummy money onto a desk, sort it into kinds, and count it from the biggest kind down, saying the total after each kind.",
+        "tries": "First rung: point to the kind with the biggest value. Second rung: say the total after that kind and after the next. Third rung: the same task with two kinds only, before the rest return.",
+        "wrong": [
+          {
+            "why": "the small coins are the ones nearest to hand",
+            "move": "starts with the smallest coins and loses count",
+            "screen": "the kinds slide into rows from the biggest value down, and the green total steps up one kind at a time so no total is lost"
+          },
+          {
+            "why": "a kind lying apart on the counter is easy to forget",
+            "move": "leaves one kind of money out of the total",
+            "screen": "the kinds not yet counted stay lit on the counter, and the Total tag will not take an answer until every kind has gone into the tray"
+          }
+        ],
+        "screen": "a purse tipped out so its notes and coins lie apart on the counter, and the tray empty with a green total at nought",
+        "soWhat": "a mixed handful is counted one kind at a time, starting with the biggest value",
+        "concept": "Counting a mixed handful"
+      },
+      {
+        "n": 4,
+        "win": "the tray rings green when the money is worth exactly the price, and the two ways stand side by side with the same total",
+        "does": "fills the tray until the money is worth the price, presses Pay again, and pays the same price another way",
+        "goal": "one price can be paid with different notes and coins, and every way that adds up to the price pays it",
+        "says": "Pay the price on the tag. Can you pay it a different way?",
+        "check": "Away from the screen: a pen costs Rs 15. Show two different ways to pay it with dummy coins.",
+        "feels": "the tray ringing green as soon as the money in it is worth the price",
+        "hands": "Give each pair a price card and a purse of dummy money, ask one child to pay the price, and ask the partner to pay the same price with different notes and coins.",
+        "tries": "First rung: say the price and how much money is in the tray now. Second rung: say whether the tray needs more or less. Third rung: the same task with a price that two coins can pay, before larger prices return.",
+        "wrong": [
+          {
+            "why": "the first set that works feels like the right set",
+            "move": "stops at one way and says it is the only way",
+            "screen": "the Pay again button empties the tray and the price tag stays lit, and a second set pays it while the first set waits beside it with the same total"
+          },
+          {
+            "why": "the child fills the tray by feel and does not compare with the price",
+            "move": "puts in too much or too little money and does not look at the tag",
+            "screen": "the Total tag stays amber against the price tag until the two are equal, and then the green ring runs round the tray"
+          }
+        ],
+        "screen": "a price tag with an amount at the right of the counter, an empty tray, and the purse full of notes and coins",
+        "soWhat": "one price can be paid with different notes and coins, and every way that adds up to the price pays it",
+        "concept": "One amount, many ways to pay"
+      }
+    ],
+    "delight": "On the second phase, as each piece lands in the tray the green total steps up by one jump of the value with a soft chime, and the last piece makes the whole row glow for a moment. On the fourth phase, when the money in the tray is worth exactly the price, the green ring runs once round the tray and the price tag tips its amount down onto the Total.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet counted. On the first phase the six notes and five coins lie in two rows beside an empty tray, each with its value in large type. On the second a row of one kind of note waits beside the tray, with an empty sky blue count tag and an empty green total tag. On the third a purse has been tipped out so its notes and coins lie apart on the counter, and the tray is empty with a green total at nought. On the fourth a price tag hangs at the right of the counter, the tray is empty and the purse is full. One thing moves, once: the first piece of money gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any notes and coins into the tray, with the tags, the total, the price tag and the plain list all open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the value of a note or a coin, counting one kind, counting a mixed handful and paying a price, each in a small real scene.",
+    "voiceLines": [
+      "A purse, a tray and a row of notes and coins, all waiting to be counted.",
+      "Look at the number on each one. Which is worth the most?",
+      "Tap them in one at a time. Count in jumps of the value.",
+      "Begin with the biggest value. Add one kind at a time. What is the total now?",
+      "Pay the price on the tag. Can you pay it a different way?",
+      "New money on the counter. Which piece will you count first?",
+      "Free play. Put any money in the tray and count it as you like.",
+      "Look at the number on each piece again. Count the jumps one at a time.",
+      "You counted every group by its values."
+    ],
+    "observations": [
+      {
+        "why": "the number on a note or a coin is its value, and it does not depend on what the money looks like.",
+        "soWhat": "a note and a coin with the same number are worth the same.",
+        "observe": "A Rs 10 note and a Rs 10 coin gave the same amber value tag when they were tapped, and the same step in the sorted row."
+      },
+      {
+        "why": "every piece of one kind has the same value, so each piece adds the same amount.",
+        "soWhat": "notes or coins of one kind are counted in jumps of their value.",
+        "observe": "Pieces of one kind went into the tray one at a time and the green total rose by the same jump each time."
+      },
+      {
+        "why": "the big values are easy to hold in mind, and each smaller kind is then added to a total already known.",
+        "soWhat": "a mixed handful is counted one kind at a time, biggest value first.",
+        "observe": "A handful counted from the biggest kind down reached the same total as one counted in any other order, but with fewer slips."
+      },
+      {
+        "why": "only the value of the money matters, and different notes and coins can add to the same value.",
+        "soWhat": "one amount can be paid in many ways.",
+        "observe": "The tray rang green for two different sets of money that were worth the same as the price on the tag."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a shop counter with the six notes and five coins in two rows beside an empty tray",
+        "win": "a tapped note or coin lights its value in amber, and the sorted row reads from the least to the greatest",
+        "traceback": "The two pieces ring their numbers; the sorted row is made again from the numbers and stops one note short.",
+        "ladder": [
+          "Tap each piece and read the number on it.",
+          "Find the note with the smallest number first.",
+          "Read the number on each piece, not how it looks.",
+          "Put the two pieces side by side and compare their numbers.",
+          "Ignore the colour and the shine, and read only the big number."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the tray with one kind of note waiting in a row beside it, a sky blue count tag and a green total tag both empty",
+        "win": "the sky blue count rises with each tap, the green total rises by one jump, and the tray settles on the full amount",
+        "traceback": "The counter empties and the pieces land again, one jump each, stopping one jump before the total.",
+        "ladder": [
+          "Read the number on a note, then count on from it.",
+          "Count the coins by their value, not by how many there are.",
+          "Compare the two totals, pile against pile.",
+          "Say the value of one piece, then count on by that much.",
+          "Count the pieces one by one, with one jump for each."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a purse tipped out so its notes and coins lie apart on the counter, and the tray empty with a green total at nought",
+        "win": "each kind slides into its own row and the green total steps up kind by kind to the amount in the purse",
+        "traceback": "The tray fills again and the rows are counted from the top, stopping one row before the total.",
+        "ladder": [
+          "Look at the numbers and start with the largest one.",
+          "Keep the total so far in your head as each row is counted.",
+          "Count how many pieces of each kind there are, too.",
+          "Point to the row with the biggest value and count it first.",
+          "Say the total after that row and after the next one."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a price tag with an amount at the right of the counter, an empty tray, and the purse full of notes and coins",
+        "win": "the tray rings green when the money is worth exactly the price, and the two ways stand side by side with the same total",
+        "traceback": "The Total stays amber against the price until the two are equal; a first way waits beside the tray.",
+        "ladder": [
+          "Press Pay again after one way, then find a second way.",
+          "Compare the Total tag with the price tag.",
+          "Count the notes and the coin you have used so far.",
+          "Say the price and what the tray holds, then compare them.",
+          "The Total must equal the price, with any notes and coins."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "scene": "A shop counter: an open purse at the bottom left, the notes and coins lying on the counter to its right, the money tray in the centre with one row per denomination (value chip, pieces, sky-blue count, green subtotal) and a separate Total line, and, in the paying phase and Free play, one price tag showing the amount to pay. No hands, people or faces; nothing is completed for the child.",
+    "notes": [
+      500,
+      200,
+      100,
+      50,
+      20,
+      10
+    ],
+    "coins": [
+      20,
+      10,
+      5,
+      2,
+      1
+    ],
+    "freePrices": [
+      30,
+      85,
+      130,
+      175
+    ],
+    "trays": {
+      "M1.S1.T2.C6:5": {
+        "a": 600,
+        "b": 700
+      }
+    },
+    "prices": {
+      "M1.S1.T2.C8:CM4": 130,
+      "M1.S1.T2.C8:4": 85,
+      "M1.S1.T2.C8:8": 175
+    },
+    "ways": {
+      "M1.S1.T2.C8:CM4": [
+        "n100,n20,c10",
+        "n50x2,n20,c10"
+      ],
+      "M1.S1.T2.C8:4": [
+        "n50,n20,c10,c5"
+      ],
+      "M1.S1.T2.C8:8": [
+        "n100,n50,n20,c5"
+      ]
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C5:CM1",
+        "kind": "pair",
+        "sc": {
+          "a": "n20",
+          "b": "c20"
+        },
+        "answer": 20,
+        "win": "Yes, each piece is worth what is printed on it."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T2.C5:1",
+        "kind": "order",
+        "pad": "enter",
+        "sc": {
+          "ids": [
+            "n200",
+            "n10",
+            "n500",
+            "n50"
+          ]
+        },
+        "answer": "least-to-greatest",
+        "win": "Yes, the notes now go from the least to the greatest."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": null,
+        "kind": "pair",
+        "sc": {
+          "a": "n10",
+          "b": "c10"
+        },
+        "answer": "same",
+        "win": "Yes, the note and the coin are worth exactly the same."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:CM2",
+        "kind": "pile",
+        "sc": {
+          "kind": "n50",
+          "n": 4
+        },
+        "answer": 200,
+        "win": "Yes, each note added the same amount to the total."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T2.C6:2",
+        "kind": "pile",
+        "sc": {
+          "kind": "c2",
+          "n": 7
+        },
+        "answer": 14,
+        "win": "Yes, seven coins of the same value make that much."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T2.C6:5",
+        "kind": "trays",
+        "sc": {
+          "a": {
+            "kind": "n200",
+            "n": 3
+          },
+          "b": {
+            "kind": "n100",
+            "n": 7
+          }
+        },
+        "answer": 100,
+        "win": "Yes, the bigger pile holds that much more."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C7:CM3",
+        "kind": "purse",
+        "sc": {
+          "has": {
+            "n100": 2,
+            "n20": 1,
+            "c10": 1,
+            "c5": 2
+          }
+        },
+        "answer": 240,
+        "win": "Yes, every kind is in the total."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T2.C7:3",
+        "kind": "purse",
+        "sc": {
+          "has": {
+            "n50": 1,
+            "n10": 1,
+            "c2": 3
+          }
+        },
+        "answer": 66,
+        "win": "Yes, the notes and coins all count."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T2.C7:7",
+        "kind": "purse",
+        "sc": {
+          "has": {
+            "n500": 1,
+            "n50": 3,
+            "c10": 4,
+            "c2": 5
+          }
+        },
+        "answer": 700,
+        "win": "Yes, nothing was left out of the total."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T2.C8:CM4",
+        "kind": "pay",
+        "pad": "enter",
+        "sc": {
+          "price": 130,
+          "mode": "two"
+        },
+        "answer": "pay-two-ways",
+        "win": "Yes, both ways pay the same price.",
+        "ladder": [
+          "Each way must make the Total equal to the price.",
+          "A second way uses different notes and coins, so press Pay again first."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T2.C8:4",
+        "kind": "pay",
+        "pad": "enter",
+        "sc": {
+          "price": 85,
+          "mode": "one"
+        },
+        "answer": "pay-exactly",
+        "win": "Yes, that money pays the amount on the tag."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T2.C8:8",
+        "kind": "pay",
+        "pad": "enter",
+        "sc": {
+          "price": 175,
+          "mode": "three1"
+        },
+        "answer": "pay-3-notes-1-coin",
+        "win": "Yes, the tag is paid with just those pieces.",
+        "ladder": [
+          "Start with the biggest note that fits under the price.",
+          "Add up the notes first, then pick one coin to finish."
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The two pieces ring their numbers; the sorted row is made again from the numbers and stops one note short.",
+      "Phase 2: The counter empties and the pieces land again, one jump each, stopping one jump before the total.",
+      "Phase 3: The tray fills again and the rows are counted from the top, stopping one row before the total.",
+      "Phase 4: The Total stays amber against the price until the two are equal; a first way waits beside the tray."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A shop counter, an open purse and a tray for the money.",
+    "onFreePlay": "Free play. Tap the price tag to change the amount, then pay it.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You counted every group by its values.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C5:CM1",
+            "worked": false,
+            "kind": "pair",
+            "planQuestion": "A money box holds a note with 20 on it and a coin with 20 on it. Are the two worth the same? What is the value of each?",
+            "question": {
+              "en": "Looking at the number on each piece, what is each one worth in rupees?"
+            },
+            "ask": {
+              "en": "Each is worth?"
+            },
+            "answer": 20,
+            "planAnswer": "Yes. Each is worth Rs 20, because the number on a note or a coin is its value.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T2.C5:1",
+            "worked": false,
+            "kind": "order",
+            "planQuestion": "A shopkeeper keeps four notes in a drawer: Rs 200, Rs 10, Rs 500 and Rs 50. Put them in order from the least value to the greatest value.",
+            "question": {
+              "en": "Tap the four notes in order, from the least to the greatest."
+            },
+            "ask": {
+              "en": "Least to greatest"
+            },
+            "answer": "n10,n50,n200,n500",
+            "planAnswer": "Rs 10, Rs 50, Rs 200, Rs 500",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "pair",
+            "planQuestion": null,
+            "question": {
+              "en": "Which is worth more, this note or this coin?"
+            },
+            "ask": {
+              "en": "Which is worth more?"
+            },
+            "answer": "same",
+            "planAnswer": null,
+            "choices": [
+              "note",
+              "coin",
+              "same"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T2.C6:CM2",
+            "worked": false,
+            "kind": "pile",
+            "planQuestion": "A tray holds 4 notes of Rs 50. How much money is in the tray?",
+            "question": {
+              "en": "Tap the notes on the counter, then type the money there."
+            },
+            "ask": {
+              "en": "Money on the counter?"
+            },
+            "answer": 200,
+            "planAnswer": "Rs 200",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T2.C6:2",
+            "worked": false,
+            "kind": "pile",
+            "planQuestion": "A money box has 7 coins of Rs 2. How much money is in the money box?",
+            "question": {
+              "en": "Now tap the coins on the counter, then type how much they make."
+            },
+            "ask": {
+              "en": "Total of the coins?"
+            },
+            "answer": 14,
+            "planAnswer": "Rs 14, because 7 coins of Rs 2 make Rs 14",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T2.C6:5",
+            "worked": false,
+            "kind": "trays",
+            "planQuestion": "One tray holds 3 notes of Rs 200. Another tray holds 7 notes of Rs 100. Which tray has more money, and how much more?",
+            "question": {
+              "en": "Tap every note onto the counter, then type how much more the bigger pile has."
+            },
+            "ask": {
+              "en": "How much more?"
+            },
+            "answer": 100,
+            "planAnswer": "The tray with 7 notes of Rs 100. 7 notes of Rs 100 make Rs 700 and 3 notes of Rs 200 make Rs 600. Rs 700 minus Rs 600 is Rs 100, so it holds Rs 100 more",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C7:CM3",
+            "worked": false,
+            "kind": "purse",
+            "planQuestion": "A purse holds 2 notes of Rs 100, 1 note of Rs 20, 1 coin of Rs 10 and 2 coins of Rs 5. How much money is in the purse?",
+            "question": {
+              "en": "Move every piece into the tray, count the rows, then type the total."
+            },
+            "ask": {
+              "en": "Money in the purse?"
+            },
+            "answer": 240,
+            "planAnswer": "Rs 240",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T2.C7:3",
+            "worked": false,
+            "kind": "purse",
+            "planQuestion": "A purse holds 1 note of Rs 50, 1 note of Rs 10 and 3 coins of Rs 2. How much money is in the purse?",
+            "question": {
+              "en": "Add each piece to the tray, then count the rows and type the purse total."
+            },
+            "ask": {
+              "en": "Purse total?"
+            },
+            "answer": 66,
+            "planAnswer": "Rs 66, because Rs 50 plus Rs 10 is Rs 60 and Rs 60 plus Rs 6 is Rs 66",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T2.C7:7",
+            "worked": false,
+            "kind": "purse",
+            "planQuestion": "A money box holds 1 note of Rs 500, 3 notes of Rs 50, 4 coins of Rs 10 and 5 coins of Rs 2. How much money is in the money box?",
+            "question": {
+              "en": "Fill the tray, tap the rows from the top, then type what the purse holds."
+            },
+            "ask": {
+              "en": "How much inside?"
+            },
+            "answer": 700,
+            "planAnswer": "Rs 700, because Rs 500 plus Rs 150 is Rs 650, Rs 650 plus Rs 40 is Rs 690 and Rs 690 plus Rs 10 is Rs 700",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T2.C8:CM4",
+            "worked": false,
+            "kind": "pay",
+            "planQuestion": "A school fair stall asks for Rs 130. Show two different ways to pay it with notes and coins.",
+            "question": {
+              "en": "Pay the amount on the tag, press Pay again, then pay it another way."
+            },
+            "ask": {
+              "en": "Pay it two ways"
+            },
+            "answer": "n100,n20,c10|n50x2,n20,c10",
+            "planAnswer": "Way 1: 1 note of Rs 100, 1 note of Rs 20 and 1 coin of Rs 10. Way 2: 2 notes of Rs 50, 1 note of Rs 20 and 1 coin of Rs 10. Both ways pay Rs 130.",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T2.C8:4",
+            "worked": false,
+            "kind": "pay",
+            "planQuestion": "A kite costs Rs 85. Name one way to pay for it with notes and coins.",
+            "question": {
+              "en": "Look at the price tag and pay that amount with notes and coins."
+            },
+            "ask": {
+              "en": "Pay the amount"
+            },
+            "answer": "n50,n20,c10,c5",
+            "planAnswer": "One way is 1 note of Rs 50, 1 note of Rs 20, 1 coin of Rs 10 and 1 coin of Rs 5. Another way is 4 notes of Rs 20 and 1 coin of Rs 5",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T2.C8:8",
+            "worked": false,
+            "kind": "pay",
+            "planQuestion": "A toy costs Rs 175. Pay for it with exactly 3 notes and 1 coin. Which notes and which coin do you use?",
+            "question": {
+              "en": "Pay the tag amount with exactly 3 notes and 1 coin."
+            },
+            "ask": {
+              "en": "3 notes, 1 coin"
+            },
+            "answer": "n100,n50,n20,c5",
+            "planAnswer": "1 note of Rs 100, 1 note of Rs 50, 1 note of Rs 20 and 1 coin of Rs 5, because Rs 100 plus Rs 50 is Rs 150, Rs 150 plus Rs 20 is Rs 170 and Rs 170 plus Rs 5 is Rs 175",
+            "madeOn": "working area"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S1.T2.C8:6"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "count_the_money",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "count_the_money",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Every note and coin has a value",
+        "conceptId": "M1.S1.T2.C5",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C5:CM1",
+          "M1.S1.T2.C5:1",
+          "M1.S1.T2.C8.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Counting notes or coins of one kind",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C6:CM2",
+          "M1.S1.T2.C6:2",
+          "M1.S1.T2.C6:5"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Counting a mixed handful",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C7:CM3",
+          "M1.S1.T2.C7:3",
+          "M1.S1.T2.C7:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "One amount, many ways to pay",
+        "conceptId": "M1.S1.T2.C8",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C8:CM4",
+          "M1.S1.T2.C8:4",
+          "M1.S1.T2.C8:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "tray",
+    "total",
+    "ways",
+    "counted"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), complete, tray, total, ways, counted",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "count_the_money"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C8.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A purse, a tray and a row of notes and coins, all waiting to be counted."
+    },
+    {
+      "en": "Look at the number on each one. Which is worth the most?"
+    },
+    {
+      "en": "Tap them in one at a time. Count in jumps of the value."
+    },
+    {
+      "en": "Begin with the biggest value. Add one kind at a time. What is the total now?"
+    },
+    {
+      "en": "Pay the price on the tag. Can you pay it a different way?"
+    },
+    {
+      "en": "New money on the counter. Which piece will you count first?"
+    },
+    {
+      "en": "Free play. Put any money in the tray and count it as you like."
+    },
+    {
+      "en": "Look at the number on each piece again. Count the jumps one at a time."
+    },
+    {
+      "en": "You counted every group by its values."
+    }
+  ],
+  "build": {
+    "source": "74355364:802247",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-11T13:56:56.536Z",
+    "checks": {
+      "pass": 97,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-11-11T13:56:56.398Z"
+    },
+    "tsxBytes": 723231,
+    "tsxMd5": "23d038205ab2c0ce5d4b01959016d63e",
+    "handEdited": true
+  }
+}

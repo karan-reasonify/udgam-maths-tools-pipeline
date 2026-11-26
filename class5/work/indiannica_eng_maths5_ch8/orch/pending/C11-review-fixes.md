@@ -1,0 +1,11 @@
+C11 Square and Triangle — REVIEW-ROUND FIXES. Read FIRST: orch/review-fix-rules.md (shared rules). Then read these 5 reports and fix every finding: orch/reports/visual-reviewer-1.7.md (start+P1), visual-reviewer-1.8.md (P2), visual-reviewer-1.9.md (P3), visual-reviewer-1.17.md (P4+summary+free), play-tester-1.7.md.
+C11-specific decisions:
+- Labels: clamp the left/right/top/bottom side labels so the whole string (longest language: hi) stays >= 12 px inside the squared paper in BOTH the shut and open layouts (P1, P2 Q3 '65 cm', P3 breadth, P4 '3.4 m'/'12 सेमी'); lift the top label clear of the vermilion edge by 14-16 px.
+- Pictures are too small on most screens (P1 square, P2 triangle/strip panel, P3 Perimeter panel, P4 pond): scale the paper+figure up toward 900x520 and grow the strip/panel type to >= 40 (rule 5), keeping ONE size and place shut/open.
+- The squared paper's 30 px cell is not 1 cm: make the grid a faint hairline backdrop (lower contrast) so nothing invites counting.
+- Add the written "Boundary" label (hi सीमा, gu સીમા) on the lit vermilion boundary (rule 4).
+- Summary thumbnails (P4): add the unit (cm / m) to 92 / 245 / 16 / 31.2 (hi/gu units via TR).
+- P4 lens: shorten/turn the handle so its tip stays inside the paper and clear of the Laps panel border and the Lap key.
+- P1 hint says "card" for a square tile: reword to "tile"/"square" (hi कार्ड, gu કાર્ડ too).
+- Play tester findings (decisions): (1) P4 Q3 typed "31.20" (also 31.200, 031.2): ACCEPT any numerically equal value (like Q1 accepts 68.0 and 68.), so the child meets ONE rule; (2) for the tenths-as-metres slip (312 / 680) put the rung "Ten tenths make one metre, so divide by ten." FIRST, then "Read each side ... in tenths"; (3) gate desync: when the question changes (toolApi.gotoStep/next/prev, enterItem) reset gate.current / re-apply api.lock(want) on EVERY run when ek changes, and make an act's end() not release an unarmed gate (the action kit's lockNow(false)): an untouched question reached by gotoStep must still lock after the first act press until all acts are done; (4) drop the Lap key while the correction plays (P4 Q1 after 680); (5) the Hint (bulb) key on a locked question must re-show the QUESTION (clear the nudge line).
+- Not for you (runtime): Escape/digits not ending the party; hi summary rows; star-row centring; the emptied slot after a miss.

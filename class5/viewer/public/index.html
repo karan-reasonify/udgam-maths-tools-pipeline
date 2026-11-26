@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tool viewer</title>
 <link rel="stylesheet" href="bundle.css">
+<script>
+  /* in the hub's iframe the viewer wears the hub's theme: ?theme= for the first paint, then a postMessage from the hub (same origin, it proxies this page).
+     Opened on its own it stays light unless a theme was saved for this origin. */
+  (function () {
+    var t = new URLSearchParams(location.search).get("theme");
+    if (t !== "dark" && t !== "light") { try { t = localStorage.getItem("udgam:theme"); } catch (e) { /* storage blocked */ } }
+    document.documentElement.dataset.theme = t === "dark" ? "dark" : "light";
+    addEventListener("message", function (e) {
+      var d = e.data;
+      if (e.origin === location.origin && e.source === parent && d && d.type === "udgam-viewer:theme" && (d.theme === "dark" || d.theme === "light")) document.documentElement.dataset.theme = d.theme;
+    });
+  })();
+</script>
 </head>
 <body>
 <div id="root"></div>

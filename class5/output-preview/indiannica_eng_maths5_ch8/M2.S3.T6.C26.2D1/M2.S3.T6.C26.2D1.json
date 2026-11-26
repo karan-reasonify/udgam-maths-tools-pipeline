@@ -1,0 +1,1027 @@
+{
+  "slotId": "M2.S3.T6.C26.2D1",
+  "mediaId": "M2.S3.T6.C26.2D1",
+  "toolId": "work_back_area",
+  "title": "Work Back and Split",
+  "component": "M2.S3.T6.C26.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch8_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_8/2dtool/M2.S3.T6.C28.2D1/M2.S3.T6.C28.2D1.tsx",
+  "description": "Work back to a square's side from its area or perimeter, find a missing breadth, and cut an L-shape into two rectangles or lay equal squares together.",
+  "conceptIds": [
+    "M2.S3.T6.C25",
+    "M2.S3.T6.C26",
+    "M2.S3.T6.C27",
+    "M2.S3.T6.C28"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Work back to the side of a square from its area or its perimeter, find a missing breadth from an area and a length, and find the area of a figure built from rectangles or equal squares.",
+    "look": "A target card over the working area, a square that grows with the Try dial, a perimeter string on the second phase, a rectangle with the Breadth dial on the third, and an L-shape with the Cut tool on the last.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Work Back and Split' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of tries made. It is never a score. The working area is 1086 by 528 at x 64, y 202. The target card stands at x 120, y 220, 300 by 90, deep blue, labelled Given. The figure lies below it at x 120, y 330 inside a box 600 by 360, drawn to one scale on squared paper. The Try dial and the Breadth dial are round dials at x 800, y 260; each try draws its rows in violet, labelled Row, against the target's near-black outline, and rows that fall short leave the outline showing while rows that spill past it are lit amber. The Fold in four button stands at x 800, y 360. The Check line runs along y 700 from x 120. On the fourth phase the Cut tool snaps a dashed line along a grid line, the two rectangles slide apart by 60 with their sides labelled, and the Join button at x 800, y 450 slides them back. The Copies control stands at x 800, y 540. The answer reached is green. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with cm, m, sq. cm and sq. m keys. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the ten tools of this chapter share them. The lengths the question gives, as a side, a length, a breadth, a height, an edge or a base area, are deep blue, labelled Given or by their own name. The perimeter, area, volume or missing side the working reaches is green, labelled Answer. The boundary that a perimeter walks round is vermilion, labelled Boundary. The unit being counted, one unit square, one unit cube, one row or one layer, is violet, labelled Unit square, Unit cube, Row or Layer. The part squares of an estimate and the space left over where no whole cube fits are rose, labelled More than half, Half or Left over. The side, square, cube, layer or step being worked on now is amber. Grey is kept for a zero holding a place open, and nothing on this stage is ever grey. A square or cube that is not being counted stays warm white inside its near-black outline, grid lines, unit words and signs are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of them, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last figure stays drawn with its rows, the working line under it ending on the answer in green, and the check line beside it.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the try of sixteen fills the outline exactly, the line reads 16 x 16 = 256, and 16 cm lands green",
+        "does": "turns the Try dial side by side, watching each square fall short or spill past, and types the side",
+        "goal": "the side of a square is the number that times itself gives its area",
+        "says": "What number times itself fills the target?",
+        "check": "Away from the screen: which number times itself gives forty-nine?",
+        "feels": "a try landing on the outline exactly after one too small and one too big",
+        "hands": "Build squares from paper squares, one side longer each time, and count each square until one matches a given count.",
+        "tries": "First rung: try a small side and compare its square with the target. Second rung: try one bigger. Third rung: the same task on a small target, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "halving is a way of making a number smaller that has worked before",
+            "move": "types half the area as the side",
+            "screen": "a square of that side is drawn in steps, spilling far past the outline, and the outline is lit amber while the child's number stays in the slot"
+          },
+          {
+            "why": "the square looks nearly full",
+            "move": "stops the Try dial on a side whose square falls just short",
+            "screen": "the empty strip round the try is lit amber, and the rows are counted beside the target in steps"
+          }
+        ],
+        "screen": "a target card reading Area 256 sq. cm and an empty square outline, with the Try dial",
+        "soWhat": "the side of a square is the number that times itself gives its area",
+        "concept": "A side from an area"
+      },
+      {
+        "n": 2,
+        "win": "each fold reads 21 m, the line reads 21 x 21 = 441, and 441 sq. m lands green",
+        "does": "taps Fold in four to find the side, then fills the square with rows and types the area",
+        "goal": "from a square's perimeter, find the side first, then the area",
+        "says": "Side first. Then the area.",
+        "check": "Away from the screen: a square's perimeter is twenty centimetres. How long is one side?",
+        "feels": "the string folding into four equal sides and the square filling behind them",
+        "hands": "Take a loop of string of known length, fold it into four equal parts, and use one part as the side of a square drawn on squared paper.",
+        "tries": "First rung: fold the string into four and read one side. Second rung: multiply the side by itself. Third rung: the same task on a smaller perimeter, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "multiplying by itself was the move for a square's area",
+            "move": "types the perimeter times itself",
+            "screen": "the string is folded into four in steps, and one side is lit amber before any rows are laid"
+          },
+          {
+            "why": "finding the side feels like the end of the task",
+            "move": "types the side and stops",
+            "screen": "the question's word area is lit amber, and the empty square waits for its rows beside the child's side"
+          }
+        ],
+        "screen": "a vermilion string labelled 84 m round an empty square, and the Fold in four button",
+        "soWhat": "from a square's perimeter, find the side first, then the area",
+        "concept": "From perimeter to area"
+      },
+      {
+        "n": 3,
+        "win": "eight rows meet the target, the breadth reads 8 cm, and the Check line reads 19 x 8 = 152",
+        "does": "turns the Breadth dial until the rows meet the area, then taps Check",
+        "goal": "a missing breadth is the number that times the length gives the area, checked by multiplying back",
+        "says": "What times the length gives the area?",
+        "check": "Away from the screen: how would you check a breadth you worked out?",
+        "feels": "the Check line landing exactly on the area",
+        "hands": "Lay a paper strip of known length and stack rows of squares on it until a given number of squares is used. Count the rows.",
+        "tries": "First rung: stack one row on the length. Second rung: keep stacking until the count reaches the area. Third rung: the same task with a smaller area, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "taking away is a way of working back that has worked before",
+            "move": "types the area take away the length",
+            "screen": "rows are stacked on the length in steps until the target is met, and the row count is shown beside the child's number"
+          },
+          {
+            "why": "the rows look close to the target",
+            "move": "stops the Breadth dial one row short",
+            "screen": "the Check line multiplies the child's breadth back, and the gap between it and the target is lit amber"
+          }
+        ],
+        "screen": "a rectangle with its length labelled 19 cm, a target card reading Area 152 sq. cm, and the Breadth dial",
+        "soWhat": "a missing breadth is the number that times the length gives the area, checked by multiplying back",
+        "concept": "A missing breadth"
+      },
+      {
+        "n": 4,
+        "win": "the parts read 84 sq. m and 24 sq. m, they slide together, and 108 sq. m lands green",
+        "does": "snaps a cut along a grid line, finds each rectangle's area, and taps Join to add them",
+        "goal": "an L-shape is cut into two rectangles whose areas add, and equal squares add by count times one square",
+        "says": "Cut it into two rectangles. Find each one, then add.",
+        "check": "Away from the screen: can an L-shape be cut into rectangles in two different ways?",
+        "feels": "two rectangles sliding apart, each with its own area, and back together",
+        "hands": "Draw an L-shape along the grid lines, cut it into two rectangles with scissors, find each area, and add. Count every square to check.",
+        "tries": "First rung: snap one cut along a grid line. Second rung: find one part's area. Third rung: the same task on a smaller L-shape, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "that worked for a rectangle, and the L-shape has a long side and a tall side",
+            "move": "multiplies the two longest outside sides",
+            "screen": "a rectangle with those sides is drawn in outline over the L in steps, and the corner it adds that is not part of the floor is lit amber"
+          },
+          {
+            "why": "the first rectangle looks like the floor",
+            "move": "snaps a cut and finds only one part's area",
+            "screen": "the second part is lit amber where it sits apart, and the Join button pulses"
+          }
+        ],
+        "screen": "an L-shaped floor on squared paper, its outside sides labelled, and the Cut tool",
+        "soWhat": "an L-shape is cut into two rectangles whose areas add, and equal squares add by count times one square",
+        "concept": "Split and add"
+      }
+    ],
+    "delight": "On the fourth phase, when Join slides the two rectangles back together, the dashed cut line fades away and the floor gives one small bounce, whole again.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet tried. On the first phase a target card and an empty square outline wait beside the Try dial. On the second a vermilion string lies round an empty square with the Fold in four button. On the third a rectangle with its length labelled waits beside a target card and the Breadth dial. On the fourth an L-shaped floor lies on squared paper with the Cut tool. One thing moves, once: the Try dial, the Fold in four button, the Breadth dial or the Cut tool gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any square, rectangle or L-shape, tried, folded, cut or copied. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on sides from areas, perimeter to area, a missing breadth, L-shapes and equal squares.",
+    "voiceLines": [
+      "A target, and a shape to find.",
+      "What number times itself fills the target?",
+      "Side first. Then the area.",
+      "What times the length gives the area?",
+      "Cut it into two rectangles. Find each one, then add.",
+      "A new target. Try a side and see.",
+      "Free play. Set a target, try sides, or cut a shape.",
+      "Look at the rows against the outline. Too few, or too many?",
+      "You worked back to a side and put areas together."
+    ],
+    "observations": [
+      {
+        "why": "the side of a square is the number that times itself gives its area.",
+        "soWhat": "try numbers in turn until one times itself gives the area.",
+        "observe": "Tries that were too small left part of the outline empty, and tries too big spilled past it."
+      },
+      {
+        "why": "a square's perimeter is four equal sides.",
+        "soWhat": "from a perimeter to an area always goes through the side.",
+        "observe": "The folded string gave the side before any squares were laid."
+      },
+      {
+        "why": "the breadth is the number that times the length gives the area.",
+        "soWhat": "multiply back to check any side worked back.",
+        "observe": "The Check line multiplied the found breadth back and landed on the area."
+      },
+      {
+        "why": "the two parts cover the same floor however the cut is made.",
+        "soWhat": "cut into rectangles, find each area, and add.",
+        "observe": "Cutting the L-shape a different way gave two different rectangles but the same total."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a target card reading Area 256 sq. cm and an empty square outline, with the Try dial",
+        "win": "the try of sixteen fills the outline exactly, the line reads 16 x 16 = 256, and 16 cm lands green",
+        "traceback": "the child's side is drawn as a try square against the target outline, then the try that fills it exactly, side x side = area, the side in green",
+        "ladder": [
+          "Try sides on the dial until the square fills the outline.",
+          "Start small and try a side of 2, then 3.",
+          "A side is never half the area, so try the dial.",
+          "Try a side, then multiply it by itself.",
+          "If the square spills past, move the side the other way."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a vermilion string labelled 84 m round an empty square, and the Fold in four button",
+        "win": "each fold reads 21 m, the line reads 21 x 21 = 441, and 441 sq. m lands green",
+        "traceback": "the string folds into four equal sides, the square fills with rows, side x side = area in green",
+        "ladder": [
+          "Now find the area of the square you folded.",
+          "Four equal sides make the perimeter, so one side is a quarter of it.",
+          "Find the side first, then the area of that square.",
+          "Multiply one side by itself to get the area.",
+          "Area is one side times the same side again."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a rectangle with its length labelled 19 cm, a target card reading Area 152 sq. cm, and the Breadth dial",
+        "win": "eight rows meet the target, the breadth reads 8 cm, and the Check line reads 19 x 8 = 152",
+        "traceback": "rows are stacked on the length from the child's breadth to the right one, length x breadth = area, the breadth in green",
+        "ladder": [
+          "Stack rows until the total reaches the Area.",
+          "Do not take the length away from the area.",
+          "Check your breadth against the rows on the board.",
+          "Each row adds one length of squares to the area.",
+          "Try a row count, then multiply it by the length."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "an L-shaped floor on squared paper, its outside sides labelled, and the Cut tool",
+        "win": "the parts read 84 sq. m and 24 sq. m, they slide together, and 108 sq. m lands green",
+        "traceback": "the L is cut across into two rectangles that slide apart with their areas, then slide back with the sum in green (equal squares: count x one square)",
+        "ladder": [
+          "Find each part's area, then add them.",
+          "Count five lots of 9.",
+          "Part of the big rectangle is not part of the patch.",
+          "Length times breadth gives each part's area.",
+          "Never multiply the two longest sides."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "warm": {
+      "1": {
+        "kind": "square",
+        "area": 36,
+        "unit": "cm",
+        "start": 4
+      },
+      "2": {
+        "kind": "fold",
+        "per": 20,
+        "unit": "cm"
+      },
+      "3": {
+        "kind": "rows",
+        "len": 6,
+        "area": 24,
+        "unit": "cm"
+      },
+      "4": {
+        "kind": "lshape",
+        "W": 6,
+        "Hb": 2,
+        "w": 3,
+        "h": 2,
+        "unit": "m"
+      }
+    },
+    "free": {
+      "kind": "lshape",
+      "W": 14,
+      "Hb": 6,
+      "w": 8,
+      "h": 3,
+      "unit": "m"
+    },
+    "unused": [
+      "M2.S3.T6.C28:8"
+    ],
+    "answerGate": {
+      "note": "The Answer key and the pad stay disabled in user mode, after a real tap, until the act is done; a correction that has run counts as the act.",
+      "acts": {
+        "square": "one try on the Try dial (plus or minus)",
+        "rows": "one try on the Breadth dial (plus or minus)",
+        "fold": "Fold",
+        "lshape": "a cut (Cut across or Cut down)",
+        "copies": "reach 5 squares on the Copies dial"
+      },
+      "ungated": []
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T6.C25:WB1",
+        "kind": "square",
+        "area": 256,
+        "unit": "cm",
+        "start": 10,
+        "answer": 16,
+        "win": "Yes, 16 × 16 = 256, so each side is 16 cm."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T6.C25:1",
+        "kind": "square",
+        "area": 16,
+        "unit": "cm",
+        "start": 1,
+        "answer": 4,
+        "win": "Right, 4 × 4 = 16, so the side is 4 cm."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S3.T6.C25:4",
+        "kind": "square",
+        "area": 225,
+        "unit": "m",
+        "start": 10,
+        "answer": 15,
+        "win": "Yes, 15 × 15 = 225, so each side is 15 m."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T6.C26:WB2",
+        "kind": "fold",
+        "per": 84,
+        "unit": "m",
+        "answer": 441,
+        "win": "Yes, the side is 21 m and 21 × 21 = 441 square metres."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T6.C26:5",
+        "kind": "fold",
+        "per": 40,
+        "unit": "cm",
+        "answer": 100,
+        "win": "Right, a side of 10 cm gives 10 × 10 = 100 square centimetres."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": null,
+        "kind": "fold",
+        "per": 48,
+        "unit": "m",
+        "answer": 144,
+        "win": "Yes, 12 × 12 = 144 square metres."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T6.C27:WB3",
+        "kind": "rows",
+        "len": 19,
+        "area": 152,
+        "unit": "cm",
+        "answer": 8,
+        "win": "Yes, 19 × 8 = 152, so the breadth is 8 cm."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T6.C27:2",
+        "kind": "rows",
+        "len": 9,
+        "area": 27,
+        "unit": "m",
+        "answer": 3,
+        "win": "Right, 9 × 3 = 27, so it is 3 m wide."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T6.C27:6",
+        "kind": "rows",
+        "len": 14,
+        "area": 98,
+        "unit": "cm",
+        "answer": 7,
+        "win": "Yes, 14 × 7 = 98, so the breadth is 7 cm."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T6.C28:WB4",
+        "kind": "lshape",
+        "W": 14,
+        "Hb": 6,
+        "w": 8,
+        "h": 3,
+        "unit": "m",
+        "answer": 108,
+        "win": "Yes, the two parts add up to 108 square metres."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T6.C28:3",
+        "kind": "copies",
+        "count": 5,
+        "each": 9,
+        "unit": "cm",
+        "answer": 45,
+        "ladder": [
+          "Each square adds 9 square centimetres to the area.",
+          "Multiply the number of squares by one square's area."
+        ],
+        "win": "Right, 5 × 9 = 45 square centimetres."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T6.C28:7",
+        "kind": "lshape",
+        "W": 16,
+        "Hb": 5,
+        "w": 9,
+        "h": 2,
+        "unit": "m",
+        "thing": "patch",
+        "answer": 98,
+        "win": "Yes, the patch covers 98 square metres."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: the child's side is drawn as a try square against the target outline, then the try that fills it exactly, side x side = area, the side in green",
+      "Phase 2: the string folds into four equal sides, the square fills with rows, side x side = area in green",
+      "Phase 3: rows are stacked on the length from the child's breadth to the right one, length x breadth = area, the breadth in green",
+      "Phase 4: the L is cut across into two rectangles that slide apart with their areas, then slide back with the sum in green (equal squares: count x one square)"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A target, and a shape to find.",
+    "onFreePlay": "Free play. Cut the floor across or down, and add the two areas.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You worked back to a side and put areas together.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T6.C25:WB1",
+            "worked": false,
+            "kind": "square",
+            "planQuestion": "A square has an area of 256 sq. cm. How long is each side?",
+            "question": {
+              "en": "A square has an area of 256 square centimetres, so how long is each side?"
+            },
+            "ask": {
+              "en": "Side of the square?"
+            },
+            "answer": 16,
+            "planAnswer": "16 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T6.C25:1",
+            "worked": false,
+            "kind": "square",
+            "planQuestion": "A square has an area of 16 sq. cm. How long is each side?",
+            "question": {
+              "en": "Another square covers 16 square centimetres; find the length of its side."
+            },
+            "ask": {
+              "en": "Side?"
+            },
+            "answer": 4,
+            "planAnswer": "4 cm, because 4 x 4 = 16",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S3.T6.C25:4",
+            "worked": false,
+            "kind": "square",
+            "planQuestion": "A square has an area of 225 sq. m. How long is each side?",
+            "question": {
+              "en": "Find each side of a square plot that covers 225 square metres."
+            },
+            "ask": {
+              "en": "Side of the plot?"
+            },
+            "answer": 15,
+            "planAnswer": "15 m, because 15 x 15 = 225",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T6.C26:WB2",
+            "worked": false,
+            "kind": "fold",
+            "planQuestion": "A square yard has a perimeter of 84 m. What is its area?",
+            "question": {
+              "en": "A square yard has a perimeter of 84 m; what is its area?"
+            },
+            "ask": {
+              "en": "Area of the yard?"
+            },
+            "answer": 441,
+            "planAnswer": "441 sq. m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T6.C26:5",
+            "worked": false,
+            "kind": "fold",
+            "planQuestion": "A square card has a perimeter of 40 cm. What is its area?",
+            "question": {
+              "en": "A square card has a perimeter of 40 cm; find its area."
+            },
+            "ask": {
+              "en": "Area of the card?"
+            },
+            "answer": 100,
+            "planAnswer": "4 x 10 = 40, so each side is 10 cm. The area of a square of side 10 cm is 10 x 10 = 100 sq. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "fold",
+            "planQuestion": null,
+            "question": {
+              "en": "A square garden is 48 m all the way round; how much area does it cover?"
+            },
+            "ask": {
+              "en": "Area of the garden?"
+            },
+            "answer": 144,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T6.C27:WB3",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "A rectangle has an area of 152 sq. cm and a length of 19 cm. How wide is it?",
+            "question": {
+              "en": "How wide is a 19 cm long rectangle of 152 square centimetres?"
+            },
+            "ask": {
+              "en": "Breadth?"
+            },
+            "answer": 8,
+            "planAnswer": "8 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T6.C27:2",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "A rectangle has an area of 27 sq. m and a length of 9 m. How wide is it?",
+            "question": {
+              "en": "A rectangle 9 m long covers 27 square metres; find its breadth."
+            },
+            "ask": {
+              "en": "How wide?"
+            },
+            "answer": 3,
+            "planAnswer": "9 x 3 = 27, so the breadth is 3 m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T6.C27:6",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "A rectangle has an area of 98 sq. cm and a length of 14 cm. How wide is it?",
+            "question": {
+              "en": "Find the breadth of a 14 cm long rectangle of 98 square centimetres."
+            },
+            "ask": {
+              "en": "Missing breadth?"
+            },
+            "answer": 7,
+            "planAnswer": "14 x 7 = 98, so the breadth is 7 cm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T6.C28:WB4",
+            "worked": false,
+            "kind": "lshape",
+            "planQuestion": "An L-shaped floor is cut into a 14 m by 6 m rectangle and an 8 m by 3 m rectangle. What is its area?",
+            "question": {
+              "en": "What is the area of this L-shaped floor?"
+            },
+            "ask": {
+              "en": "Area of the floor?"
+            },
+            "answer": 108,
+            "planAnswer": "108 sq. m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T6.C28:3",
+            "worked": false,
+            "kind": "copies",
+            "planQuestion": "5 equal squares each have an area of 9 sq. cm. What area do they cover together?",
+            "question": {
+              "en": "5 equal squares of 9 square centimetres each; what area do they cover?"
+            },
+            "ask": {
+              "en": "Area of 5 squares?"
+            },
+            "answer": 45,
+            "planAnswer": "5 x 9 = 45, so 45 sq. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T6.C28:7",
+            "worked": false,
+            "kind": "lshape",
+            "planQuestion": "An L-shaped patch is cut into a 16 m by 5 m rectangle and a 9 m by 2 m rectangle. What is its area?",
+            "question": {
+              "en": "What area does this L-shaped patch cover?"
+            },
+            "ask": {
+              "en": "Area of the patch?"
+            },
+            "answer": 98,
+            "planAnswer": "The first part is 16 x 5 = 80 sq. m. The second part is 9 x 2 = 18 sq. m. 80 + 18 = 98, so the patch is 98 sq. m",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M2.S3.T6.C28:8"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "work_back_area",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "work_back_area",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "A side from an area",
+        "conceptId": "M2.S3.T6.C25",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S3.T6.C25:WB1",
+          "M2.S3.T6.C25:1",
+          "M2.S3.T6.C25:4"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "From perimeter to area",
+        "conceptId": "M2.S3.T6.C26",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S3.T6.C26:WB2",
+          "M2.S3.T6.C26:5",
+          "M2.S3.T6.C26.2D1:p2_3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "A missing breadth",
+        "conceptId": "M2.S3.T6.C27",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S3.T6.C27:WB3",
+          "M2.S3.T6.C27:2",
+          "M2.S3.T6.C27:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Split and add",
+        "conceptId": "M2.S3.T6.C28",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S3.T6.C28:WB4",
+          "M2.S3.T6.C28:3",
+          "M2.S3.T6.C28:7"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "target",
+    "area",
+    "per",
+    "tries",
+    "side",
+    "side",
+    "folded",
+    "breadth",
+    "rows",
+    "cut",
+    "split",
+    "copies",
+    "copies"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), target, area, per, tries, side, side, folded, breadth, rows, cut, split, copies, copies, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "work_back_area"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T6.C26.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A target, and a shape to find."
+    },
+    {
+      "en": "What number times itself fills the target?"
+    },
+    {
+      "en": "Side first. Then the area."
+    },
+    {
+      "en": "What times the length gives the area?"
+    },
+    {
+      "en": "Cut it into two rectangles. Find each one, then add."
+    },
+    {
+      "en": "A new target. Try a side and see."
+    },
+    {
+      "en": "Free play. Set a target, try sides, or cut a shape."
+    },
+    {
+      "en": "Look at the rows against the outline. Too few, or too many?"
+    },
+    {
+      "en": "You worked back to a side and put areas together."
+    }
+  ],
+  "build": {
+    "source": "8a253027:643457",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-18T10:25:15.062Z",
+    "checks": {
+      "pass": 97,
+      "warn": 1,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-11-18T10:25:14.898Z"
+    },
+    "tsxBytes": 566972,
+    "tsxMd5": "585e5a32039803a84b83189af3ac50ed"
+  }
+}

@@ -1,0 +1,15 @@
+STATUS: fixes-needed
+SLOTS: M3.S5.T10.C46.2D1 (Box Packer, re-look, changed chunk 4: phase 4 + summary + free play)
+FILES: none edited (report-only); my play-vr177-* frames and scratch deleted
+CHECKS: 36 changed pack frames en/hi/gu (all but choice-line-hi, ask-shut-gu, party-hi opened) + real-input playkit (guide steps, Q1 per Pack edge, wrong/right in en/gu/hi, summary, free play en)
+REPORT:
+VISUAL RE-LOOK, C46 Box Packer chunk 4, vs visual-reviewer-1.38 and builder 1.46. Verdict: ISSUES (0 must-fix, 3 should-fix, 2 questions).
+FIXED: (1) was must-fix, green "5x3x2=30" line cut by the "Yes, no gap" chip: FIXED (choice-wrong/end/party en+hi+gu: inert Pack edge key gone, line y~459-490, chip y~518-570, ~28 px clear). (2) chip wider than its column hi/gu: FIXED (hi 275 px, gu 285 px, inside the 290 column, 39-43 px from keypad/Summary key). (3) hi/gu "2 semi"/"5 semi" pills nearly touching: FIXED (17 px gap; gu 4/9 27 px). (4) amber strip: FIXED (now the next row's true one-cube-wide footprint, whole edge long; after the first real Pack edge it lights the empty floor where the next cubes go, not a thin bar). (5) free-play keys: FIXED (labels ~11 px clear each side, not clipped, en/hi/gu). (6) summary thumbs: FIXED (hi/gu no English, none blank; raised solid, joined cubes, packed box + tick).
+[should-fix] p4 step 1 after the first Pack edge (real input), en/hi/gu - the "Left over" pill no longer hangs past the box or nears the Divide card, but its right end is 7 px from the box's right rim and its top-right corner sits on the rim line (rim vanishes behind it). Fix: end the pill >=12 px before the rim, below the rim line.
+[should-fix] p4 Q1 and Q3 after all three Pack edges (real input, 1 cm height leftover), en/hi/gu - the "Left over" pill (en x515-715, gu 497-733, y165-215) straddles the box's back apex: top corners stand outside the box on white and the rim lines run behind it (rule 1). Fix: put it fully inside the pink wedge/box or beside it on a leader, >=12 px clear of the rim; gu widest.
+[should-fix] p4 free, en/hi/gu - picture still small (NOT FIXED, builder declined): tile ~365x222 at height 0, ~365x350 at 4 layers, in the 1520x548 area, ~500 px empty left, unlabelled tick ruler floating beside it; no keypad in free play so it could grow (LAYOUT s3: about a third).
+[question] p4 Q1 after the 2nd Pack edge (real input) - a thin amber wedge on the back-top of the box (the height edge's 1 cm remainder) reads as a stray sliver; keep or drop?
+[question] p4 summary en/hi/gu - rows 1 (135) and 2 (9) draw the same raised-solid picture; row 2 (height worked back) could show the dial or a solid with a ruler.
+CLEAN: all hi/gu bubbles (2-3 lines, no matra on outline or line above, hints fit), keyOnly hints, Kiko thinking in ask frames, Answer dim in real Q1 until packed then berry, Summary/Free play keys berry, cube/carton skins, Left over slab in win/wrong frames, correction lines, party frames (Kiko cheering in his box, cones at his hand and above the pills, sparkles clear of the bubble). Not re-raised: two invites at Q2/Q3 (KEEP rule 6).
+RISKS: disk 99%.
+ESCALATE: none

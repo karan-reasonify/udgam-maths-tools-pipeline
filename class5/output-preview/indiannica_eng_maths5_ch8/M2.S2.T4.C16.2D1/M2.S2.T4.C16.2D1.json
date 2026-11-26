@@ -1,0 +1,1076 @@
+{
+  "slotId": "M2.S2.T4.C16.2D1",
+  "mediaId": "M2.S2.T4.C16.2D1",
+  "toolId": "square_cover",
+  "title": "Square Cover",
+  "component": "M2.S2.T4.C16.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch8_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_8/2dtool/M2.S2.T4.C18.2D1/M2.S2.T4.C18.2D1.tsx",
+  "description": "Cover a surface with unit squares row by row and count them, pick the unit square that fits, and compare two patches counted in squares of one size.",
+  "conceptIds": [
+    "M2.S2.T4.C15",
+    "M2.S2.T4.C16",
+    "M2.S2.T4.C17",
+    "M2.S2.T4.C18"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Tell area, the surface a figure covers, from perimeter, the length of its boundary; pick the unit square that fits; count unit squares by rows; and compare areas only in squares of one size.",
+    "look": "A figure on plain paper with a tray of violet unit squares under it, a string for the edge, a unit shelf on the second phase and two patches side by side on the last.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Square Cover' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of unit squares laid. It is never a score. The working area is 1086 by 528 at x 64, y 202. The figure lies at x 120, y 230 inside a box 620 by 360, drawn to one scale, its given sides labelled deep blue. The tray of violet unit squares, each labelled Unit square, runs along y 640 from x 120. The Lay a row button stands at x 800, y 250. The string, when laid, runs once round the figure's edge in vermilion, labelled Boundary, with its length written in ink beside the top edge. On the second phase the unit shelf stands at x 800, y 330 with three squares labelled by their sides, and the picture card sits at x 120, y 230. On the fourth phase Patch A stands at x 120, y 250 and Patch B at x 480, y 250, each with a counter under it, and the Bigger squares switch sits at x 800, y 420. The area reached is green. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with sq. cm, sq. m and sq. km keys. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the ten tools of this chapter share them. The lengths the question gives, as a side, a length, a breadth, a height, an edge or a base area, are deep blue, labelled Given or by their own name. The perimeter, area, volume or missing side the working reaches is green, labelled Answer. The boundary that a perimeter walks round is vermilion, labelled Boundary. The unit being counted, one unit square, one unit cube, one row or one layer, is violet, labelled Unit square, Unit cube, Row or Layer. The part squares of an estimate and the space left over where no whole cube fits are rose, labelled More than half, Half or Left over. The side, square, cube, layer or step being worked on now is amber. Grey is kept for a zero holding a place open, and nothing on this stage is ever grey. A square or cube that is not being counted stays warm white inside its near-black outline, grid lines, unit words and signs are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of them, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last figure stays covered in violet squares with the string round its edge, and the area in green with its square unit.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the string reads 16 cm along the boundary and the squares count 15, labelled Area 15 sq. cm",
+        "does": "lays the string once round the edge, then covers the card with squares, and says which number is which",
+        "goal": "the area is the surface a figure covers, and the perimeter is the length of its boundary",
+        "says": "The string goes round the edge. The squares cover the inside.",
+        "check": "Away from the screen: does a tablecloth measure the edge of a table or its surface?",
+        "feels": "the squares filling the inside that the string only went round",
+        "hands": "Lay a string once round a postcard, then cover the same postcard with paper squares. Say which one measured the edge and which the surface.",
+        "tries": "First rung: lay the string, then say what it measured. Second rung: cover just one row with squares. Third rung: the same task on a smaller card, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the edge is where the string went, so the squares seem to belong there too",
+            "move": "lays squares only along the edge of the card",
+            "screen": "the empty middle of the card is lit amber, and a ghost row is drawn across it in steps while the child's squares stay"
+          },
+          {
+            "why": "both numbers describe the same card",
+            "move": "types the length of the string as the area",
+            "screen": "the string is lit vermilion with the word Length beside it, and the squares are lit violet with the word Surface beside them"
+          }
+        ],
+        "screen": "a card drawn on the paper, a string beside it and the tray of unit squares",
+        "soWhat": "the area is the surface a figure covers, and the perimeter is the length of its boundary",
+        "concept": "The surface covered"
+      },
+      {
+        "n": 2,
+        "win": "the 1 m square settles on the playground card and the unit reads sq. m",
+        "does": "drags the unit square that fits onto the picture card",
+        "goal": "a unit square with sides of 1 cm has an area of 1 sq. cm, and bigger surfaces use sq. m or sq. km",
+        "says": "Is this surface small, large or very large?",
+        "check": "Away from the screen: which unit fits a table top, and which fits a whole town?",
+        "feels": "a unit that fits the surface settling on it",
+        "hands": "Draw a square with sides of one centimetre, and with a friend mark out a square with sides of one metre on the floor in chalk.",
+        "tries": "First rung: say whether the surface is small, large or very large. Second rung: pick between two of the three units. Third rung: the same task on a smaller thing, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "a playground feels very big",
+            "move": "drags the square with sides of one kilometre onto a playground",
+            "screen": "the picture card of a city is drawn beside the playground card for a moment, and the square with sides of one metre is lit amber"
+          },
+          {
+            "why": "the smallest square seems safest",
+            "move": "drags the square with sides of one centimetre onto a floor",
+            "screen": "a row of tiny squares starts across the floor card in steps and barely moves, and the square with sides of one metre is lit amber"
+          }
+        ],
+        "screen": "the unit shelf with squares of side 1 cm, 1 m and 1 km, and a picture card of a school playground",
+        "soWhat": "a unit square with sides of 1 cm has an area of 1 sq. cm, and bigger surfaces use sq. m or sq. km",
+        "concept": "The unit square"
+      },
+      {
+        "n": 3,
+        "win": "four rows of nine fill the rectangle, the count reads 36, and the slot reads 36 sq. cm in green",
+        "does": "taps Lay a row until the rectangle is covered, then types the count",
+        "goal": "the number of unit squares that cover a surface is its area, counted by rows",
+        "says": "Lay a row along the length. How many rows fill it?",
+        "check": "Away from the screen: a patch has three rows of six squares. How many squares cover it?",
+        "feels": "row after row clicking into place until no paper shows",
+        "hands": "Cover a rectangle drawn on squared paper by colouring one row along the length, then the next row, and so on, and count the rows.",
+        "tries": "First rung: lay one row along the length and count it. Second rung: lay the next row and add. Third rung: the same task on a rectangle with fewer rows, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the last row is thin and easy to miss",
+            "move": "stops laying rows one row short and types that count",
+            "screen": "the uncovered strip is lit amber, and a ghost row is drawn into it in steps while the child's rows stay"
+          },
+          {
+            "why": "the squares look close enough to the gap",
+            "move": "drops a square on top of another",
+            "screen": "the doubled square is lit amber and slides off to the gap beside it, while every other square stays"
+          }
+        ],
+        "screen": "a rectangle 9 cm long and 4 cm wide on the paper, empty, with the tray and the Lay a row button",
+        "soWhat": "the number of unit squares that cover a surface is its area, counted by rows",
+        "concept": "Counting the squares"
+      },
+      {
+        "n": 4,
+        "win": "Patch B lights green with 21 squares against 20, and the bigger squares switch dims the counts to half strength until the sizes match",
+        "does": "counts both patches, taps the one that covers more, then tries the Bigger squares switch",
+        "goal": "two areas are compared by their counts only when the squares are the same size",
+        "says": "Count both. Are the squares the same size?",
+        "check": "Away from the screen: could a patch of ten big squares cover more than a patch of twelve small ones?",
+        "feels": "two counts side by side, and the fair one winning",
+        "hands": "Cover two trays, one with small paper squares and one with bigger ones. Count each, then cover both with the same small squares and count again.",
+        "tries": "First rung: count the first patch. Second rung: count the second patch. Third rung: the same task on two smaller patches, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "a patch that stretches further looks bigger",
+            "move": "taps the longer patch as the one that covers more",
+            "screen": "both counters are drawn in steps under their patches, and the greater count is lit amber"
+          },
+          {
+            "why": "a count looks like a count",
+            "move": "compares counts after switching one patch to bigger squares",
+            "screen": "both counts dim to half strength, the two square sizes are drawn side by side, and the switch is lit amber"
+          }
+        ],
+        "screen": "Patch A, 10 squares by 2 squares, beside Patch B, 7 squares by 3 squares, both uncounted",
+        "soWhat": "two areas are compared by their counts only when the squares are the same size",
+        "concept": "Comparing by counting"
+      }
+    ],
+    "delight": "On the third phase, when the last row settles into place, the covered rectangle gives one soft ripple from corner to corner, like a tiled floor being finished.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet laid. On the first phase a card lies on the paper with a string coiled beside it and the tray of squares below. On the second the unit shelf stands beside a picture card of a surface. On the third an empty rectangle waits with the Lay a row button. On the fourth two patches stand side by side, uncounted. One thing moves, once: the tray, the unit shelf or the Lay a row button gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any rectangle along the grid, covered square by square or row by row, with the string round its edge. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on area and perimeter, units of area, counting by rows and comparing counts.",
+    "voiceLines": [
+      "A shape, a string and a tray of squares.",
+      "The string goes round the edge. The squares cover the inside.",
+      "Is this surface small, large or very large?",
+      "Lay a row along the length. How many rows fill it?",
+      "Count both. Are the squares the same size?",
+      "A new surface. Cover it row by row.",
+      "Free play. Cover any shape you like with squares.",
+      "Look at the squares. Is there a gap, an overlap or a row missing?",
+      "You measured a surface by the squares that cover it."
+    ],
+    "observations": [
+      {
+        "why": "the perimeter is the length of the boundary, and the area is the surface inside it.",
+        "soWhat": "keep the two measures apart: a length in cm and a surface in sq. cm.",
+        "observe": "The string went only round the edge, while the squares filled the inside."
+      },
+      {
+        "why": "a rectangle is the same length all the way across.",
+        "soWhat": "count one row and the number of rows, and the count follows.",
+        "observe": "Every row along the length held the same number of squares."
+      },
+      {
+        "why": "a count means something only for squares of one size.",
+        "soWhat": "compare two areas by counting only when the squares are the same size.",
+        "observe": "A patch of bigger squares had a smaller count but did not cover less."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a card drawn on the paper, a string beside it and the tray of unit squares",
+        "win": "the string reads 16 cm along the boundary and the squares count 15, labelled Area 15 sq. cm",
+        "traceback": "The string is lit with the word Length, the squares with the word Surface, and the squares are numbered one by one to the whole area in sq. cm.",
+        "ladder": [
+          "The string tells the edge; count the squares inside.",
+          "Think where the fence stands in the garden.",
+          "This card's string is long; look at its squares instead.",
+          "Count the squares you laid, one row at a time.",
+          "Add the rows together: how many squares in all?"
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the unit shelf with squares of side 1 cm, 1 m and 1 km, and a picture card of a school playground",
+        "win": "the 1 m square settles on the playground card and the unit reads sq. m",
+        "traceback": "The unit square that fits is lit amber and laid on the picture card, its unit written under the card.",
+        "ladder": [
+          "Is a playground small, large or very large?",
+          "Area is counted in square units, not in m.",
+          "How big is a stamp next to your hand?",
+          "Try each unit square on the card to see which fits.",
+          "Which square, laid again and again, would cover it best?"
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a rectangle 9 cm long and 4 cm wide on the paper, empty, with the tray and the Lay a row button",
+        "win": "four rows of nine fill the rectangle, the count reads 36, and the slot reads 36 sq. cm in green",
+        "traceback": "The rows light one by one with the running count at each row's end, ending on the whole area in sq. cm.",
+        "ladder": [
+          "Count the inside squares too, not just the edge ones.",
+          "Count the squares in both rows.",
+          "Every one of the 3 rows is full; count the middle row too.",
+          "Now count how many rows you laid.",
+          "Add one row's count for every row: what is the total?"
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "Patch A, 10 squares by 2 squares, beside Patch B, 7 squares by 3 squares, both uncounted",
+        "win": "Patch B lights green with 21 squares against 20, and the bigger squares switch dims the counts to half strength until the sizes match",
+        "traceback": "Both counters are drawn row by row under their patches and the greater count is lit amber; for mixed sizes the big squares are redrawn in small ones.",
+        "ladder": [
+          "Look at A and B: count their squares first.",
+          "Count every row of each patch, then compare.",
+          "Think about what each number counts.",
+          "Count the squares of each patch, row by row.",
+          "Which patch has more squares?"
+        ]
+      }
+    ]
+  },
+  "model": {
+    "warm": {
+      "1": {
+        "l": 3,
+        "b": 2
+      },
+      "3": {
+        "l": 5,
+        "b": 2
+      },
+      "4": {
+        "A": [
+          4,
+          1
+        ],
+        "B": [
+          3,
+          2
+        ]
+      }
+    },
+    "units": [
+      {
+        "id": "u_cm",
+        "side": "1 cm",
+        "rank": 0,
+        "s": 48
+      },
+      {
+        "id": "u_m",
+        "side": "1 m",
+        "rank": 1,
+        "s": 78
+      },
+      {
+        "id": "u_km",
+        "side": "1 km",
+        "rank": 2,
+        "s": 102
+      }
+    ],
+    "free": [
+      [
+        4,
+        3
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "answerGate": "Answer key and pad stay off after the child's first real touch (a tap on a key or piece, or a real Enter on a guide step) until the act is done: 1.1 and 1.3 lay the string and cover the card; 3.1-3.3 every row laid; 4.1 and 4.2 both patches counted; 4.3 Same size pressed; 2.1 and 2.3 one unit square tried on the card. Ungated: 1.2 (fence) and 2.2 (the 1 m square). A tap or a hardware digit or Enter on the locked key shows the nudge for the act left; toolApi and AI mode are never gated.",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S2.T4.C15:SC1",
+        "kind": "card",
+        "l": 5,
+        "b": 3,
+        "answer": 15,
+        "win": "Yes, its area is 15 square centimetres."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S2.T4.C15:1",
+        "kind": "fence",
+        "answer": "m_per",
+        "ladder": [
+          "Run your finger along the fence: does it go round or across?",
+          "Perimeter runs round the edge; area covers the inside."
+        ],
+        "win": "Yes, a fence measures the perimeter."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": null,
+        "kind": "card",
+        "l": 6,
+        "b": 2,
+        "answer": 12,
+        "win": "Yes, 12 square centimetres, with the same string."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S2.T4.C16:SC2",
+        "kind": "unit",
+        "surf": "playground",
+        "fit": "u_m",
+        "answer": "u_m",
+        "win": "Yes, a playground is measured in square metres."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S2.T4.C16:2",
+        "kind": "sq1m",
+        "answer": "sq1m",
+        "ladder": [
+          "Lay one 1 m square on the floor: how much floor does it cover?",
+          "Its sides are in m, so what kind of square unit is it?"
+        ],
+        "win": "Yes, its area is 1 square metre."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S2.T4.C16:4",
+        "kind": "unit",
+        "surf": "stamp",
+        "fit": "u_cm",
+        "answer": "u_cm",
+        "win": "Yes, a stamp is small: square centimetres fit it."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S2.T4.C17:SC3",
+        "kind": "rect",
+        "l": 9,
+        "b": 4,
+        "answer": 36,
+        "win": "Yes, 4 rows of 9 make 36 square centimetres."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S2.T4.C17:3",
+        "kind": "rect",
+        "l": 8,
+        "b": 2,
+        "answer": 16,
+        "win": "Yes, 8 + 8 = 16 squares cover it."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S2.T4.C17:5",
+        "kind": "rect",
+        "l": 13,
+        "b": 3,
+        "answer": 39,
+        "win": "Yes, 13 + 13 + 13 = 39 square centimetres."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S2.T4.C18:SC4",
+        "kind": "compare",
+        "A": [
+          10,
+          2
+        ],
+        "B": [
+          7,
+          3
+        ],
+        "answer": "p_b",
+        "win": "Yes, Patch B covers 21 squares, A only 20."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S2.T4.C18:6",
+        "kind": "compare",
+        "A": [
+          9,
+          3
+        ],
+        "B": [
+          6,
+          4
+        ],
+        "answer": "p_a",
+        "win": "Yes, Patch A covers 27 squares and B 24."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S2.T4.C18:7",
+        "kind": "sizes",
+        "A": [
+          5,
+          4
+        ],
+        "B": [
+          4,
+          3
+        ],
+        "k": 2,
+        "answer": "y_no",
+        "ladder": [
+          "How many small squares fit in one big square?",
+          "With both in small squares, which patch has more?"
+        ],
+        "win": "Right, the squares differ, so counts cannot tell."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The string is lit with the word Length, the squares with the word Surface, and the squares are numbered one by one to the whole area in sq. cm.",
+      "Phase 2: The unit square that fits is lit amber and laid on the picture card, its unit written under the card.",
+      "Phase 3: The rows light one by one with the running count at each row's end, ending on the whole area in sq. cm.",
+      "Phase 4: Both counters are drawn row by row under their patches and the greater count is lit amber; for mixed sizes the big squares are redrawn in small ones."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A card, a string and a tray of squares.",
+    "onFreePlay": "Free play. Pick a shape and cover it with rows of squares.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You measured a surface by the squares that cover it.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S2.T4.C15:SC1",
+            "worked": false,
+            "kind": "card",
+            "planQuestion": "A card is covered by 15 unit squares of side 1 cm, and a string laid once round its edge is 16 cm long. Which number gives its area, and which gives its perimeter?",
+            "question": {
+              "en": "Lay the string, cover the card, then type its area in square centimetres."
+            },
+            "ask": {
+              "en": "Area in sq. cm?"
+            },
+            "answer": 15,
+            "planAnswer": "The area is 15 sq. cm and the perimeter is 16 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S2.T4.C15:1",
+            "worked": false,
+            "kind": "fence",
+            "planQuestion": "Does a fence round a garden measure its perimeter or its area?",
+            "question": {
+              "en": "Does a fence round a garden measure its perimeter or its area?"
+            },
+            "ask": {
+              "en": "A fence measures?"
+            },
+            "answer": "m_per",
+            "planAnswer": "Its perimeter, the length of the boundary",
+            "choices": [
+              "m_area",
+              "m_per"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "card",
+            "planQuestion": null,
+            "question": {
+              "en": "Cover this new card too, then type its area in square centimetres."
+            },
+            "ask": {
+              "en": "Area in sq. cm?"
+            },
+            "answer": 12,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S2.T4.C16:SC2",
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": "Which unit fits the area of a school playground: sq. cm, sq. m or sq. km?",
+            "question": {
+              "en": "Which unit square fits the area of a school playground?"
+            },
+            "ask": {
+              "en": "Unit for it?"
+            },
+            "answer": "u_m",
+            "planAnswer": "sq. m",
+            "choices": [
+              "u_cm",
+              "u_m",
+              "u_km"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S2.T4.C16:2",
+            "worked": false,
+            "kind": "sq1m",
+            "planQuestion": "What is the area of one unit square with sides of 1 m?",
+            "question": {
+              "en": "What is the area of one unit square with sides of 1 m?"
+            },
+            "ask": {
+              "en": "Area of it?"
+            },
+            "answer": "sq1m",
+            "planAnswer": "1 sq. m",
+            "choices": [
+              "len4m",
+              "sq1cm",
+              "sq1m"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S2.T4.C16:4",
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": "Which unit fits the area of a postage stamp: sq. cm, sq. m or sq. km?",
+            "question": {
+              "en": "And which unit fits the area of a postage stamp?"
+            },
+            "ask": {
+              "en": "Unit for it?"
+            },
+            "answer": "u_cm",
+            "planAnswer": "sq. cm",
+            "choices": [
+              "u_cm",
+              "u_m",
+              "u_km"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S2.T4.C17:SC3",
+            "worked": false,
+            "kind": "rect",
+            "planQuestion": "A rectangle 9 cm long and 4 cm wide is covered with 1 cm squares. How many squares cover it, and what is its area?",
+            "question": {
+              "en": "Cover this 9 cm by 4 cm rectangle, then type its area in square centimetres."
+            },
+            "ask": {
+              "en": "Area in sq. cm?"
+            },
+            "answer": 36,
+            "planAnswer": "36 squares, so 36 sq. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S2.T4.C17:3",
+            "worked": false,
+            "kind": "rect",
+            "planQuestion": "A rectangle is 8 cm long and 2 cm wide. How many 1 cm squares cover it?",
+            "question": {
+              "en": "How many 1 cm squares cover a rectangle 8 cm long and 2 cm wide?"
+            },
+            "ask": {
+              "en": "Squares in all?"
+            },
+            "answer": 16,
+            "planAnswer": "2 rows of 8 squares: 8 + 8 = 16, so 16 squares",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S2.T4.C17:5",
+            "worked": false,
+            "kind": "rect",
+            "planQuestion": "A rectangle 13 cm long and 3 cm wide is covered with 1 cm squares. What is its area?",
+            "question": {
+              "en": "What is the area of a 13 cm by 3 cm rectangle, in square centimetres?"
+            },
+            "ask": {
+              "en": "Area in sq. cm?"
+            },
+            "answer": 39,
+            "planAnswer": "3 rows of 13: 13 + 13 + 13 = 39, so 39 sq. cm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S2.T4.C18:SC4",
+            "worked": false,
+            "kind": "compare",
+            "planQuestion": "Patch A is 10 squares by 2 squares. Patch B is 7 squares by 3 squares. All the squares are the same size. Which patch covers more?",
+            "question": {
+              "en": "Patch A is 10 by 2 squares and Patch B is 7 by 3; which covers more?"
+            },
+            "ask": {
+              "en": "Which covers more?"
+            },
+            "answer": "p_b",
+            "planAnswer": "Patch B",
+            "choices": [
+              "p_a",
+              "p_b"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S2.T4.C18:6",
+            "worked": false,
+            "kind": "compare",
+            "planQuestion": "Patch A is 9 squares by 3 squares. Patch B is 6 squares by 4 squares. The squares are the same size. Which covers more?",
+            "question": {
+              "en": "Now count these two new patches: which one covers more?"
+            },
+            "ask": {
+              "en": "Which covers more?"
+            },
+            "answer": "p_a",
+            "planAnswer": "Patch A covers 27 squares and Patch B covers 24, so Patch A covers more",
+            "choices": [
+              "p_a",
+              "p_b"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S2.T4.C18:7",
+            "worked": false,
+            "kind": "sizes",
+            "planQuestion": "One patch is covered by 20 small squares and another by 12 big squares. Can the counts alone say which covers more?",
+            "question": {
+              "en": "Can 20 small squares and 12 big squares alone say which patch covers more?"
+            },
+            "ask": {
+              "en": "Are counts enough?"
+            },
+            "answer": "y_no",
+            "planAnswer": "No. Counts can be compared only when the squares are the same size",
+            "choices": [
+              "y_yes",
+              "y_no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M2.S2.T4.C17:8"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "square_cover",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "square_cover",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "The surface covered",
+        "conceptId": "M2.S2.T4.C15",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M2.S2.T4.C15:SC1",
+          "M2.S2.T4.C15:1",
+          "M2.S2.T4.C16.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "The unit square",
+        "conceptId": "M2.S2.T4.C16",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M2.S2.T4.C16:SC2",
+          "M2.S2.T4.C16:2",
+          "M2.S2.T4.C16:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Counting the squares",
+        "conceptId": "M2.S2.T4.C17",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M2.S2.T4.C17:SC3",
+          "M2.S2.T4.C17:3",
+          "M2.S2.T4.C17:5"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Comparing by counting",
+        "conceptId": "M2.S2.T4.C18",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M2.S2.T4.C18:SC4",
+          "M2.S2.T4.C18:6",
+          "M2.S2.T4.C18:7"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "rows_laid",
+    "string_laid",
+    "unit_picked",
+    "screen",
+    "patch_a",
+    "patch_b",
+    "bigger",
+    "same"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, rows_laid, string_laid, unit_picked, screen, patch_a, patch_b, bigger, same, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "square_cover"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S2.T4.C16.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A shape, a string and a tray of squares."
+    },
+    {
+      "en": "The string goes round the edge. The squares cover the inside."
+    },
+    {
+      "en": "Is this surface small, large or very large?"
+    },
+    {
+      "en": "Lay a row along the length. How many rows fill it?"
+    },
+    {
+      "en": "Count both. Are the squares the same size?"
+    },
+    {
+      "en": "A new surface. Cover it row by row."
+    },
+    {
+      "en": "Free play. Cover any shape you like with squares."
+    },
+    {
+      "en": "Look at the squares. Is there a gap, an overlap or a row missing?"
+    },
+    {
+      "en": "You measured a surface by the squares that cover it."
+    }
+  ],
+  "build": {
+    "source": "023e7ffa:651776",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-18T12:40:54.972Z",
+    "checks": {
+      "pass": 98,
+      "warn": 1,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-11-18T12:40:54.852Z"
+    },
+    "tsxBytes": 575722,
+    "tsxMd5": "da183160cb56d9526448a6e8af4d8f37"
+  }
+}

@@ -1,0 +1,17 @@
+STATUS: fixes-needed (1 must-fix = KEEP-list regression W1, 4 should-fix)
+SLOTS: M2.S3.T7.C31.2D1 (visual FINAL VERIFY of builder 1.60)
+FILES: none edited (report only; my scratch PNGs removed)
+CHECKS: playkit real input en/hi/gu: P4 hand + stone, P2 Q1 win/wrong/12-taps-then-12, P2 Q3 cup win/wrong/14-taps-then-miss, P3 i1/i3; pixel masks; DOM English scan; 33 changed pack frames
+ESCALATE: no
+RISKS: W1 hides the child wrong mark under the correction chip
+visual-reviewer-1.96 | C31 Part Squares FINAL VERIFY of builder 1.60 | en/hi/gu | VERDICT: ISSUES (1 must-fix = KEEP-list regression "wrong-letter-vs-chip separation", 3 should-fix, residuals). Measured with playkit real input + pixel masks (glyph ink vs traced path / frame / grid line, px edge to edge; builder's figures read higher). Pack: the 33 changed frames (p2-p4) + extra states below; p1 unchanged since 1.84.
+(1) p4 stone H: en min 13.0 ok; hi 2 of 6 under 12 (0.0 right half-square, 11.1); gu 2 of 6 (4.1, 9.8). Was hi 1.5 / gu 4.2. (2) hand thumb-side L: frame gap hi 22/22, gu 19/19, en 35/21 = FIXED; they now lie ON the thumb loop (ink overlaps the path, halo carves it; en 8.8/10.7), क/ઓ still readable. Other hand letters (55-unit limit) under 12 from the outline: en 9/24 (min 2.0), hi 20/26, gu 20/26.
+(3) p2 wrong: corner L chips 18.1/18.1/15.3 (en/hi/gu), gu TR 12.0 = FIXED; win corner letters en 29-39, hi 18-28, gu 18.8-24.5 = FIXED. Open: gu win tip ઓ 3.0 from the leaf tip (frame 11; hi 13.3/15, en 22/22); tip chip outline/frame en 11.1/13, hi 8.5/12, gu 9.4/7 (was frame 9/7/5). Child's bare wrong sliver letters (12 taps, then 12): hi 16-26, gu 13.6-30 from the outline; en 1.8 (tip), 7.1, 7.9, 9.3, 9.8.
+(4) hi 'अनुमान' ink to tally border (p4-wrong) 14 px (was 7-8; en/gu 25) = FIXED. (5) cup correction chips: top-middle 14 from frame / 13.0 from outline (en/hi/gu; was 7 under the frame) = FIXED; all 14 chips >=13.0 / >=14.
+WORST 5:
+W1 [MUST-FIX, NEW, KEEP-list regression; the pack cannot show it] child marks every edge square M, then answers wrong (the lesson's own misconception). Q1 hi+gu: the wrong letter in the 4 corner sliver squares is 88-92% HIDDEN under the L chip; gu tip 'વ' 19% under 'ઓ' (tail pokes out); the row-0/row-2 col-2 M squares show a 12 px stray glyph fragment beside the chip (hi 48%, gu 40% covered). Q3 cup (14 taps, then a miss): wrong letters under their L chip en 4 of 7 (43-48%), hi 7 of 7 (30-93%), gu 7 of 7 (43-91%). 1.84 verified ink gap 14-23 (Q1). Fix by square type: true-M square = chip and letter in ONE box (no fragment); L square = wrong letter in the inside sliver, chip in the outside corner (as 1.84).
+W2 [should-fix] p2 win/end gu tip ઓ 3.0 px from the outline (was 8.8): put it top-right of its cell as en/hi do.
+W3 [should-fix] p2 wrong tip chip: gu 7 px from the frame and 9.4 from the leaf, hi 8.5 / en 11.1 from the leaf.
+W4 [should-fix] p4 stone hi आ 0.0 (touches the closing hook, halo carves it), gu 4.1; p2 en child tip M 1.8 (1.84: en sliver letters 5-6).
+W5 [should-fix] letters now hug the thin grid lines (psSpot 2 px margin): 1.84 had p3 letters 6-9 px off the line, now <=2 px (p3 en 9/9, hi 8/10; stone en 17/20, hand en 20/24; gu cup top-row ઓ ink -1 = crosses the line, halo erases it; gu cup side ઓ 11-12 from the frame). Legible, but the grid breaks beside each letter.
+Clean: no text under 28 (letters 28-36), no English in hi/gu (DOM text scan, phases 1-4 ask/wrong/win), nothing red or crossed after a miss (amber/rose only), bubbles/hints fit two lines.

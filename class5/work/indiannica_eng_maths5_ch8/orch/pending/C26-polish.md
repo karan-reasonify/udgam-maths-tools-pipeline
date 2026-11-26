@@ -1,0 +1,7 @@
+C26 polish (maths-reviewer-1.15 re-look, 2026-11-16): 0 must-fix. Apply BEFORE the Gemini pass:
+1. P2 2.1 miss "Find each side first, then the area." does not start after the act and is near-identical to 2.3 and the closing: use "Now find the area of the square you folded." (2.2 "share it by 4" and ladder[1] restate the Fold printout: reword lightly).
+2. P4 Q3 miss "Multiply each part's sides, then add the two areas." is ladder[0]+ladder[1] glued: Q3 miss -> "Part of the big rectangle is not floor." (ties to the amber label); ladder[1] -> "Never multiply the two longest sides."
+3. P1 Q1 miss "Try sides on the dial until the square fills the outline." ~ ladder[1] "Keep trying sides until side x side equals the area.": give ladder[1] a new idea, e.g. "Too big or too small? Move the side the other way."
+4. P3 Q3 miss "Multiply back: the length x your breadth must give the area." = ladder[1] = closing idea: miss -> "Check your breadth against the rows on the board." P1 hints 1.1 and 1.2 both say where plus is: vary; P4 hints still restate their step ("Tap the Cut across key.", "The Join key puts the parts back."): say where, not what.
+5. Language pass: the five nudges are built inside nudgeLine(), invisible to tr-coverage: list every nudge string and add its TR key by hand; also the 'Not floor' label fit in hi/gu at 28 px in the 16x7 corner (161x46) — check the fit sheets.
+6. Add MODEL.answerGate: square/rows items one try on the dial; fold items Fold; L items a cut; Copies item reach 5 squares; none ungated.

@@ -1,0 +1,22 @@
+STATUS: fixes-needed
+SLOTS: M2.S2.T4.C16.2D1
+FILES: none edited (report-only)
+CHECKS: 39 pack frames + real-flow probes
+FAILURES: 0 must-fix, 4 should-fix, 2 questions
+REPORT:
+VISUAL REVIEW, chunk 2 of 3, M2.S2.T4.C16.2D1 Square Cover (phases 2 and 3), en/hi/gu, visual-reviewer-1.19. Verdict: ISSUES (0 must-fix, 4 should-fix, 2 questions).
+Looked at: all 39 pack frames at full size (p2 open/ask-shut/ask-open/wrong/win/end and p3 step1/stepwrong/ask-shut/ask-open/wrong/win/end, each in en, hi, gu). Extra frames made with playkit (real flow, deleted after): p3 cover rows, a ring answer 22 with motion on, real win/end in en/hi/gu, the p2 gate.
+PACK CAVEAT (not a tool defect): p3 ask-shut/ask-open show a live berry Answer key and p3 win/end show an EMPTY rectangle under "Area 36 sq. cm". The pack types the answer without laying rows. In the real flow Answer is dimmed (answer-open disabled) until the rectangle is covered, and win/end show the covered grid. The gate is right. I judged those states on real-flow frames; the pack's p3 ask/win/end are not evidence for them.
+[should-fix] phase 3, win/end/wrong, en+hi+gu, real flow (pack p3-wrong shows the same grid flat violet, no skin) — the 36/16/39-tile grids wear the tile skin but read dusty mauve/rose, not the chapter's violet unit colour (rose is reserved for More than half / Left over), and they differ from the clean violet squares on the p2 shelf and the p2 win row — retint the tile skin so it reads violet and match the pack path to it.
+[should-fix] phase 2, ask-shut, ask-open, wrong, en+hi+gu — the 1 km square (x333-462) is wider than its shelf tile (x337-455): it overhangs about 5 px each side and its right edge touches the pink invite ring (x462) — make the km square narrower than its tile or widen the tile.
+[should-fix] phase 2, ask-shut and ask-open, en+hi+gu — two invites at once: the pink ring round the whole unit shelf AND the berry Answer key (real flow: unit-cm/m/km are tappable and Answer is enabled). The ring stays on with the pad open — keep one (quiet the ring, or keep Answer flat until a unit is tapped).
+[should-fix] phase 3, step1 and stepwrong, en+hi+gu — the 5 x 2 warm-up rectangle is only 550 x 222 at x258-810 (about 15% of the area, right half empty) while the questions use 676 x 300 — scale it to the same room (cell about 135) so the guide steps are not small.
+[question] phase 2, end, en+hi+gu — the Postage stamp is drawn in the amber dashed wash with a red disc; amber means "the square being worked on now" in this chapter and nothing is being worked on at the phase end — intended as the stamp's own colour, or should it be a neutral paper tone?
+[question] phase 3, wrong/win/end, hi — the green label "क्षेत्रफल 36 वर्ग सेमी" sits about 5 px under the grid's bottom outline (clear, not touching; en and gu have more air) — add a few px of gap in hi?
+clean: p2 open en/hi/gu (shelf labels 1 सेमी / 1 मी / 1 किमी, ચો. keys, Playground / मैदान / મેદાન captions all fit; header title and phase title fit one line; Answer dimmed on the open screen; no ring until a question).
+clean: p2 wrong en/hi/gu (slot empty, 1 m square amber, first row of the playground card ghosted, answer sq. m / वर्ग मी / ચો. મી in green under the card; hint replaces the question by keyOnly design, no pinned pair expected).
+clean: p2 win/end en/hi/gu (violet unit square settles on the card; closing line 3 lines in en fits, 2 lines hi/gu; Next / Next phase / आगे / अगला चरण / આગળ / આગલો તબક્કો keys berry and fit).
+clean: p3 ring correction, verified with motion on (answer 22): the inside 7 x 2 block lights amber at 350 ms, then rows light amber one by one with the running count 9 / 18 / 27 / 36; it settles to the full grid and Area label. Settled/reduced-motion frames never show the amber, by design.
+clean: p3 wrong en/hi/gu: row counts 9/18/27/36 are 40 px, dark, clear of the pad; grid keeps the same size and place with the pad shut and open (x195-875, y195-497); every box has a dark outline; 36 and 39 cells are under the 40-skin cap; nothing under the key corner; Enter key berry only on the open pad.
+clean: Kiko thinking at every ask and miss frame, standing in guide steps and wins, no puff (keyOnly); bubble text never touches the outline in hi/gu (gu p3 ask-shut/open runs three lines, about 20 px clear at the top, at the limit but fine); no English word left on screen in hi/gu.
+not looked at (chunks 1 and 3): phase 1, phase 4, start page, summary, free play, party frames; p3 Delight ripple not checked.

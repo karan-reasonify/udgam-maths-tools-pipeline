@@ -1,0 +1,1087 @@
+{
+  "slotId": "M3.S5.T11.C51.2D1",
+  "mediaId": "M3.S5.T11.C51.2D1",
+  "toolId": "three_measures",
+  "title": "Three Measures",
+  "component": "M3.S5.T11.C53.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch8_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_8/2dtool/M3.S5.T11.C53.2D1/M3.S5.T11.C53.2D1.tsx",
+  "description": "Sort measures into length, surface and space with their units, build every cuboid of a set of cubes once, and compare volumes by rising water, floaters pushed fully under.",
+  "conceptIds": [
+    "M3.S5.T11.C50",
+    "M3.S5.T11.C51",
+    "M3.S5.T11.C52",
+    "M3.S5.T11.C53"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Tell perimeter, area and volume apart by what they measure and by their units, find every cuboid of a set of cubes once, and compare volumes by rising water with every object fully under.",
+    "look": "Three measure bins with their units on the first phase, a cube tray and a cuboid shelf on the second, and equal jars of water with the Push stick on the last two.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Three Measures' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of cards sorted, cuboids shelved or levels marked. It is never a score. The working area is 1086 by 528 at x 64, y 202. On the first phase the three bins stand along y 480 at x 120, x 440 and x 760, each 280 by 200, labelled Length, Surface and Space in ink with their units under them; the cards wait in a row along y 230, and the unit tiles in a tray along y 700. On the second phase the heap of violet unit cubes, labelled Unit cube, lies at x 120, y 560, the tray for building at x 120, y 260, the Turn button at x 540, y 260, and the shelf runs along y 400 from x 600, 480 long; a turned copy set on the shelf slides onto its twin and the two are labelled Same cuboid. On the last two phases the equal clear jars stand at x 200 and x 560, each 220 by 380, with a near-black line at the starting level; Mark level draws the new line and the rise between the two is lit green. The Push stick is a thin rod at x 900, y 260 that the child drags onto a floating object to hold it fully under. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with unit keys for cm, sq. cm and cu. cm. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the ten tools of this chapter share them. The lengths the question gives, as a side, a length, a breadth, a height, an edge or a base area, are deep blue, labelled Given or by their own name. The perimeter, area, volume or missing side the working reaches is green, labelled Answer. The boundary that a perimeter walks round is vermilion, labelled Boundary. The unit being counted, one unit square, one unit cube, one row or one layer, is violet, labelled Unit square, Unit cube, Row or Layer. The part squares of an estimate and the space left over where no whole cube fits are rose, labelled More than half, Half or Left over. The side, square, cube, layer or step being worked on now is amber. Grey is kept for a zero holding a place open, and nothing on this stage is ever grey. A square or cube that is not being counted stays warm white inside its near-black outline, grid lines, unit words and signs are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of them, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The bins stay filled with their cards and units, the shelf with its cuboids, and the jars with their marked levels.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the fence sits under Length with m, the grass under Surface with sq. m, and the water under Space with cu. m",
+        "does": "drags each card into its bin and a unit tile onto each",
+        "goal": "a perimeter is a length in cm or m, an area a surface in square units, and a volume a space in cubic units",
+        "says": "Is it a length, a surface or a space? Then pick its unit.",
+        "check": "Away from the screen: is the paint on a wall a length, a surface or a space?",
+        "feels": "each card dropping into the bin that fits it",
+        "hands": "Make flashcards for the chapter's words, one side the word and the other what it measures. Sort them into three piles: length, surface and space.",
+        "tries": "First rung: say whether one card is a length, a surface or a space. Second rung: drop it in its bin. Third rung: the same task with just two bins, before the whole row returns.",
+        "wrong": [
+          {
+            "why": "the grass is inside a fence, and the fence is a length",
+            "move": "drags the grass card into the Length bin",
+            "screen": "the grass card is shaded over its whole surface in steps, and the Surface bin is lit amber while the card stays where the child put it"
+          },
+          {
+            "why": "sq. cm was the unit for so many pages",
+            "move": "drags the sq. cm tile onto the water card",
+            "screen": "the water card fills up like a box in steps, and the Space bin's units are lit amber"
+          }
+        ],
+        "screen": "the three bins, and cards for a fence round a field, the grass inside it and the water in a tank",
+        "soWhat": "a perimeter is a length in cm or m, an area a surface in square units, and a volume a space in cubic units",
+        "concept": "Which measure, which unit"
+      },
+      {
+        "n": 2,
+        "win": "the shelf holds four cuboids, and every turned copy set on it has slid onto its twin, labelled Same cuboid",
+        "does": "builds cuboids, turns each one, and sets on the shelf only the ones not already there",
+        "goal": "every cuboid of a set of cubes is found once, and a turned cuboid is the same cuboid",
+        "says": "Build a cuboid, then turn it. Is it new, or the same one turned?",
+        "check": "Away from the screen: a brick lying flat and the same brick standing up. Is that one brick or two?",
+        "feels": "a turned copy sliding home onto its twin",
+        "hands": "Take some unit cubes and build every cuboid you can with all of them. Turn each one onto another face and check whether it is really new.",
+        "tries": "First rung: build a single row of all the cubes. Second rung: build one cuboid with two rows. Third rung: the same task with fewer cubes, before the question's own count returns.",
+        "wrong": [
+          {
+            "why": "standing on another face, the cuboid looks different",
+            "move": "sets a turned copy on the shelf as another cuboid",
+            "screen": "the copy slides along the shelf onto its twin in steps, and the label Same cuboid is lit amber while the rest of the shelf stays"
+          },
+          {
+            "why": "a neat cuboid feels finished even with cubes left over",
+            "move": "builds a cuboid that leaves some cubes out of the heap",
+            "screen": "the cubes still in the heap are lit amber, and the count on the tray is set beside the count in the heap"
+          }
+        ],
+        "screen": "a heap of eighteen unit cubes, the tray, the Turn button and an empty shelf",
+        "soWhat": "every cuboid of a set of cubes is found once, and a turned cuboid is the same cuboid",
+        "concept": "The same cuboid, turned"
+      },
+      {
+        "n": 3,
+        "win": "the stone's jar shows the higher green rise, and the stone lights green, labelled Greater volume",
+        "does": "lowers the key into one jar and the stone into the other, taps Mark level on each, and taps the greater volume",
+        "goal": "a solid fully under water raises the water by as much space as it takes up",
+        "says": "Watch the water. Which one pushes more water out of its way?",
+        "check": "Away from the screen: why must both jars start with the same amount of water?",
+        "feels": "the water climbing the glass as the object goes in",
+        "hands": "Fill two equal jars to the same line, lower a stone into one and a key into the other, and mark the new levels with a pen.",
+        "tries": "First rung: lower one object and mark the level. Second rung: lower the other and mark it. Third rung: the same task with two objects very different in size, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "a longer thing looks bigger",
+            "move": "taps the longer object as the greater volume",
+            "screen": "both new levels are marked again in steps, and the higher rise is lit amber"
+          },
+          {
+            "why": "the water is already moving and seems to have risen",
+            "move": "marks a level before the object is fully in the water",
+            "screen": "the object sinks the rest of the way in steps, and the new line is drawn above the child's mark"
+          }
+        ],
+        "screen": "two equal jars filled to one line, a key and a stone",
+        "soWhat": "a solid fully under water raises the water by as much space as it takes up",
+        "concept": "Water makes room"
+      },
+      {
+        "n": 4,
+        "win": "the second mark stands above the first, and the rise from the line to the second mark is lit green",
+        "does": "marks the level with the cork floating, then pushes it fully under with the stick and marks it again",
+        "goal": "a floating object is pushed fully under before the rise is read, in equal jars with equal water",
+        "says": "Is all of it under the water? Push it down, then read the rise.",
+        "check": "Away from the screen: why does a floating ball not show its whole volume until it is pushed under?",
+        "feels": "the water rising again as the floater goes fully under",
+        "hands": "Float a cork or a ball in a jar of water, not yet pushed under, and mark the level. Push it fully under with a pencil and mark the level again.",
+        "tries": "First rung: push the object down until the top is level with the water. Second rung: push it fully under and mark the level. Third rung: the same task with a smaller floater, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the cork is in the water, so the rise seems to be its whole volume",
+            "move": "marks the level while the cork floats, not yet under, and reads that rise",
+            "screen": "the part of the cork above the water is lit amber, and the Push stick pulses beside it while the child's mark stays"
+          },
+          {
+            "why": "most of it is under, and that feels like enough",
+            "move": "pushes the cork only part of the way under",
+            "screen": "the part still above the water is lit amber, and the level line waits unmarked"
+          }
+        ],
+        "screen": "a jar filled to its line with a cork bobbing at the top, and the Push stick",
+        "soWhat": "a floating object is pushed fully under before the rise is read, in equal jars with equal water",
+        "concept": "Push it fully under"
+      }
+    ],
+    "delight": "On the second phase, when a turned copy slides onto its twin on the shelf, the two give a little bump together like old friends meeting.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet moved. On the first phase the three bins stand across the working area with the cards in a row above them. On the second a heap of unit cubes waits beside the tray and an empty shelf. On the third two equal jars stand filled to one line with two objects beside them. On the fourth a jar stands filled to its line with a cork bobbing at the top and the Push stick beside it. One thing moves, once: the first card, the heap of cubes or the water in the jars gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any card sorted, any cuboid built and turned, and any object lowered or pushed under. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on which measure and unit, cuboids of a set of cubes, rising water and floaters.",
+    "voiceLines": [
+      "Three bins, some cubes and some jars of water.",
+      "Is it a length, a surface or a space? Then pick its unit.",
+      "Build a cuboid, then turn it. Is it new, or the same one turned?",
+      "Watch the water. Which one pushes more water out of its way?",
+      "Is all of it under the water? Push it down, then read the rise.",
+      "Something new to sort, build or lower in.",
+      "Free play. Sort, build and lower anything you like.",
+      "Look again. Is it a length, a surface or a space?",
+      "You told the three measures apart and read the water."
+    ],
+    "observations": [
+      {
+        "why": "a length, a surface and a space are three different measures.",
+        "soWhat": "name what is measured first, then pick its unit.",
+        "observe": "Every card went into exactly one bin, and each bin had its own kind of unit."
+      },
+      {
+        "why": "turning a cuboid onto another face does not change its length, breadth or height, only which way it stands.",
+        "soWhat": "each cuboid is counted once, and a turned cuboid is the same cuboid.",
+        "observe": "A turned cuboid set on the shelf slid onto a cuboid already there."
+      },
+      {
+        "why": "an object fully under pushes aside as much water as the space it takes up.",
+        "soWhat": "in equal jars with equal water, the greater rise shows the greater volume.",
+        "observe": "The water rose more for the bigger object."
+      },
+      {
+        "why": "a floating cork is only partly under the water, so it pushes aside less.",
+        "soWhat": "push a floating object fully under before reading the rise.",
+        "observe": "The cork's rise grew when it was pushed fully under."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the three bins, and cards for a fence round a field, the grass inside it and the water in a tank",
+        "win": "the fence sits under Length with m, the grass under Surface with sq. m, and the water under Space with cu. m",
+        "traceback": "Each card's boundary, surface or space is shown in steps with its bin lit amber, then each bin shows its right card and unit.",
+        "ladder": [
+          "For each card, ask: is it a line round the edge, a cover or a filling?",
+          "Look at the bin your box card is in: what fills the inside of a box?",
+          "Look again at the grass card: is it the edge, the ground or a space?",
+          "Drop each card into the bin that answers that question.",
+          "Then give each card a tile whose unit is a line, a square or a cube."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a heap of eighteen unit cubes, the tray, the Turn button and an empty shelf",
+        "win": "the shelf holds four cuboids, and every turned copy set on it has slid onto its twin, labelled Same cuboid",
+        "traceback": "Turned copies on the shelf are lit amber as Same cuboid, the missing cuboids appear in the empty places, and the count of different cuboids is shown.",
+        "ladder": [
+          "Look at your shelf: did a turned copy slide onto a cuboid already there?",
+          "Its cubes did not change, only the face it stands on.",
+          "Count each shape once; a turned copy is not new, and a cube counts too.",
+          "Tap Wide and High in turn, and shelve every shape that uses all the cubes.",
+          "Now count the places on the shelf, not the copies stacked on them."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "two equal jars filled to one line, a key and a stone",
+        "win": "the stone's jar shows the higher green rise, and the stone lights green, labelled Greater volume",
+        "traceback": "Each jar's rise is lit amber in turn and the object with the higher rise is labelled Greater volume; on the scaled jar the rise is counted cm by cm and the volume shown.",
+        "ladder": [
+          "The key is long, but read the water, not the length.",
+          "Read how far each jar's water climbed, not how heavy each one feels.",
+          "Read how far the water rose on the ruler, then use the whole base.",
+          "Put a finger on each start line and slide it up to the new line.",
+          "Compare the two green bands and find the taller one."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a jar filled to its line with a cork bobbing at the top, and the Push stick",
+        "win": "the second mark stands above the first, and the rise from the line to the second mark is lit green",
+        "traceback": "The floating rise is lit amber with the part above the water, then the full rise with the object fully under is lit green and the right reason is shown.",
+        "ladder": [
+          "Which mark came with the whole cork under the water?",
+          "Compare where the water stood before the push with where it is now.",
+          "Look at the ball: is all of it under the water?",
+          "Look back at your first mark: was any of the cork above the water then?",
+          "Compare the rise with the cork floating and with it held under."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "cards": {
+      "fence": "length, m",
+      "grass": "surface, sq. m",
+      "water": "space, cu. m",
+      "box": "space, cu. cm"
+    },
+    "cubes": {
+      "warm": 6,
+      "tm2": 18,
+      "turn": [
+        5,
+        2,
+        1
+      ],
+      "p7": 8
+    },
+    "jars": {
+      "equal": true,
+      "cmPerUnit": 32,
+      "calc": {
+        "base": 20,
+        "rise": 3,
+        "volume": 60
+      }
+    },
+    "answerGate": {
+      "1.1": "drag (or tap) the fence, grass and water cards into bins and a unit tile onto each; Enter opens when all six are placed",
+      "1.2": "drop the box card into a bin",
+      "1.3": "drop the grass card into a bin",
+      "2.1": "set at least one cuboid of all 18 cubes on the shelf",
+      "2.2": "tap Turn to stand the cuboid on its end",
+      "2.3": "set at least one cuboid of all 8 cubes on the shelf",
+      "3.1": "lower the key and the stone into the jars and tap Mark level on each",
+      "3.2": "lower the marble and the lemon and tap Mark level on each",
+      "3.3": "lower the stone and tap Mark level",
+      "4.1": "tap Mark level with the cork floating, push it fully under with the Push stick, then tap Mark level again",
+      "4.2": "push the ball fully under with the Push stick",
+      "4.3": "tap Mark level with the ball floating",
+      "ungated": "none: every question has an act on the board"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M3.S5.T11.C50:TM1",
+        "kind": "sort",
+        "pad": "enter",
+        "answer": "fence=length,m;grass=surface,sqm;water=space,cum",
+        "near": "fence=length,m;grass=length,m;water=space,cum",
+        "win": "Yes, the fence is a length, the grass a surface and the water a space.",
+        "winMs": 4960
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M3.S5.T11.C50:1",
+        "kind": "pick",
+        "card": "box",
+        "answer": "cucm",
+        "near": "sqcm",
+        "ladder": [
+          "Picture filling the box: with lines, with flat squares or with small cubes?",
+          "Read each key and find the one named after what fills a box."
+        ],
+        "win": "Yes, a box holds a space, so it takes cubic centimetres.",
+        "winMs": 4008
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M3.S5.T11.C50:4",
+        "kind": "pick",
+        "card": "grass",
+        "answer": "area",
+        "near": "perimeter",
+        "ladder": [
+          "Trace round the field, then across the grass: which one is the grass?",
+          "Look along the keys for the measure of a covered surface."
+        ],
+        "win": "Yes, grass is an area.",
+        "winMs": 2400
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M3.S5.T11.C51:TM2",
+        "kind": "count",
+        "cubes": 18,
+        "answer": 4,
+        "near": 6,
+        "win": "Yes, 18 cubes make 4 different cuboids.",
+        "winMs": 2852
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M3.S5.T11.C51:2",
+        "kind": "turn",
+        "answer": "no",
+        "near": "yes",
+        "ladder": [
+          "Count its long, wide and high edges before and after the turn.",
+          "Tap Turn twice more and watch it come back to where it began."
+        ],
+        "win": "Right, it is the same cuboid, turned.",
+        "winMs": 2716
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M3.S5.T11.C51:7",
+        "kind": "count",
+        "cubes": 8,
+        "answer": 3,
+        "near": 4,
+        "ladder": [
+          "Set the keys to 2 wide and 2 high and look at the tray.",
+          "Add that cube to the shelf, then count the shelf places."
+        ],
+        "win": "Yes, 8 cubes make 3 different cuboids, and one is a cube.",
+        "winMs": 4076
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M3.S5.T11.C52:TM3",
+        "kind": "jars2",
+        "objs": [
+          "key",
+          "stone"
+        ],
+        "answer": "stone",
+        "near": "key",
+        "win": "Yes, the stone pushed more water up, so it has the greater volume.",
+        "winMs": 4688
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M3.S5.T11.C52:3",
+        "kind": "jars2",
+        "objs": [
+          "lemon",
+          "marble"
+        ],
+        "answer": "lemon",
+        "near": "marble",
+        "ladder": [
+          "Which jar's water climbed past more of the glass?",
+          "Now name the object that sits in that jar."
+        ],
+        "win": "Yes, the lemon's jar rose more.",
+        "winMs": 2400
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": null,
+        "kind": "calc",
+        "objs": [
+          "stone"
+        ],
+        "base": 20,
+        "rise": 3,
+        "answer": 60,
+        "near": 3,
+        "ladder": [
+          "Picture the risen water as a slab 3 cm high on a base of 20 square centimetres.",
+          "Multiply that rise by the base, 20, to get the cubic centimetres."
+        ],
+        "win": "Yes, 3 centimetres times 20 square centimetres is 60 cubic centimetres.",
+        "winMs": 5028
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M3.S5.T11.C53:TM4",
+        "kind": "cork",
+        "obj": "cork",
+        "answer": "push",
+        "near": "float",
+        "win": "Yes, the water rose more once the cork was fully under.",
+        "winMs": 3940
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M3.S5.T11.C53:6",
+        "kind": "ballpush",
+        "obj": "ball",
+        "answer": "part",
+        "near": "all",
+        "ladder": [
+          "Find the part of the ball that stayed above the water before the push.",
+          "Ask which part of the floating ball pushed any water up."
+        ],
+        "win": "Yes, only part of the ball was under while it floated.",
+        "winMs": 3872
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M3.S5.T11.C53:8",
+        "kind": "ballmark",
+        "obj": "ball",
+        "answer": "no",
+        "near": "yes",
+        "ladder": [
+          "Look at the line on the ball where the water meets it.",
+          "Picture the stick pushing it under: where would the water go?"
+        ],
+        "win": "Right, that small rise shows only the part under the water.",
+        "winMs": 4212
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: Each card's boundary, surface or space is shown in steps with its bin lit amber, then each bin shows its right card and unit.",
+      "Phase 2: Turned copies on the shelf are lit amber as Same cuboid, the missing cuboids appear in the empty places, and the count of different cuboids is shown.",
+      "Phase 3: Each jar's rise is lit amber in turn and the object with the higher rise is labelled Greater volume; on the scaled jar the rise is counted cm by cm and the volume shown.",
+      "Phase 4: The floating rise is lit amber with the part above the water, then the full rise with the object fully under is lit green and the right reason is shown."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Three bins, some cubes and some jars of water.",
+    "onFreePlay": "Free play. Lower anything into a jar, push it under and mark the level.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You told the three measures apart and read the water.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M3.S5.T11.C50:TM1",
+            "worked": false,
+            "kind": "sort",
+            "planQuestion": "Which unit fits each: the fence round a field, the grass inside it, and the water in a tank?",
+            "question": {
+              "en": "Sort the fence, the grass and the tank water, and give each its unit."
+            },
+            "ask": {
+              "en": "Bin and unit for each?"
+            },
+            "answer": "fence=length,m;grass=surface,sqm;water=space,cum",
+            "planAnswer": "The fence in m, the grass in sq. m, and the water in cu. m",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M3.S5.T11.C50:1",
+            "worked": false,
+            "kind": "pick",
+            "planQuestion": "Is the space inside a box measured in cm, sq. cm or cu. cm?",
+            "question": {
+              "en": "Is a box's space in centimetres, square centimetres or cubic centimetres?"
+            },
+            "ask": {
+              "en": "Unit for the space?"
+            },
+            "answer": "cucm",
+            "planAnswer": "cu. cm, because a volume is a space",
+            "choices": [
+              "cm",
+              "cucm",
+              "sqcm"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M3.S5.T11.C50:4",
+            "worked": false,
+            "kind": "pick",
+            "planQuestion": "Is the grass inside a fence a perimeter, an area or a volume?",
+            "question": {
+              "en": "Is the grass inside a fence a perimeter, an area or a volume?"
+            },
+            "ask": {
+              "en": "Grass: which measure?"
+            },
+            "answer": "area",
+            "planAnswer": "An area, measured in square units such as sq. m",
+            "choices": [
+              "perimeter",
+              "area",
+              "volume"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M3.S5.T11.C51:TM2",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "How many different cuboids can 18 unit cubes make?",
+            "question": {
+              "en": "How many different cuboids can you make with 18 unit cubes?"
+            },
+            "ask": {
+              "en": "Different cuboids?"
+            },
+            "answer": 4,
+            "planAnswer": "4 different cuboids",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M3.S5.T11.C51:2",
+            "worked": false,
+            "kind": "turn",
+            "planQuestion": "A cuboid 5 long, 2 wide and 1 high is stood on its end. Is it a new cuboid?",
+            "question": {
+              "en": "Is a cuboid 5 long, 2 wide and 1 high a new cuboid when it is stood on its end?"
+            },
+            "ask": {
+              "en": "New cuboid?"
+            },
+            "answer": "no",
+            "planAnswer": "No. It is the same cuboid, turned",
+            "choices": [
+              "no",
+              "yes"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M3.S5.T11.C51:7",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "How many different cuboids can 8 unit cubes make?",
+            "question": {
+              "en": "Using all 8 unit cubes each time, how many different cuboids can you find?"
+            },
+            "ask": {
+              "en": "Cuboids from 8?"
+            },
+            "answer": 3,
+            "planAnswer": "3. One is 8 long, 1 wide and 1 high. One is 4 long, 2 wide and 1 high. One is 2 long, 2 wide and 2 high, which is a cube",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M3.S5.T11.C52:TM3",
+            "worked": false,
+            "kind": "jars2",
+            "planQuestion": "Two equal jars hold equal water. A key goes into one and a stone into the other, both fully under. The stone's jar rises more. Which has the greater volume?",
+            "question": {
+              "en": "Key or stone, both fully under in equal jars: which has the greater volume?"
+            },
+            "ask": {
+              "en": "Greater volume?"
+            },
+            "answer": "stone",
+            "planAnswer": "The stone",
+            "choices": [
+              "key",
+              "stone"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M3.S5.T11.C52:3",
+            "worked": false,
+            "kind": "jars2",
+            "planQuestion": "Two equal jars hold equal water. A marble goes into one, and a lemon, pushed fully under, into the other. The lemon's jar rises more. Which has the greater volume?",
+            "question": {
+              "en": "A marble and a lemon held fully under: which has the greater volume?"
+            },
+            "ask": {
+              "en": "Bigger volume?"
+            },
+            "answer": "lemon",
+            "planAnswer": "The lemon",
+            "choices": [
+              "lemon",
+              "marble"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "calc",
+            "planQuestion": null,
+            "question": {
+              "en": "Base 20 square centimetres: how many cubic centimetres is the stone?"
+            },
+            "ask": {
+              "en": "Stone's volume?"
+            },
+            "answer": 60,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M3.S5.T11.C53:TM4",
+            "worked": false,
+            "kind": "cork",
+            "planQuestion": "A cork floats in a jar of water. How can the rise show its volume?",
+            "question": {
+              "en": "A cork floats in a jar of water, so how can the rise show its volume?"
+            },
+            "ask": {
+              "en": "Show its volume?"
+            },
+            "answer": "push",
+            "planAnswer": "Push it fully under with a thin stick, then read the rise",
+            "choices": [
+              "push",
+              "float"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M3.S5.T11.C53:6",
+            "worked": false,
+            "kind": "ballpush",
+            "planQuestion": "Why is a floating ball pushed fully under before the rise is read?",
+            "question": {
+              "en": "Why push a floating ball under before reading?"
+            },
+            "ask": {
+              "en": "Why push it under?"
+            },
+            "answer": "part",
+            "planAnswer": "A floating ball is only partly under the water. Only when it is fully under does the rise show all the space it takes up",
+            "choices": [
+              "all",
+              "part"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M3.S5.T11.C53:8",
+            "worked": false,
+            "kind": "ballmark",
+            "planQuestion": "Two equal jars hold equal water. A plastic ball floats in one, not held under, and the water rises only a little. Does that small rise show the ball's volume?",
+            "question": {
+              "en": "A ball floats, not held under; does its small rise show its volume?"
+            },
+            "ask": {
+              "en": "Shows its volume?"
+            },
+            "answer": "no",
+            "planAnswer": "No. The ball is only partly under the water. Push it fully under, then read the rise",
+            "choices": [
+              "no",
+              "yes"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M3.S5.T11.C51:5"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "three_measures",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "three_measures",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Which measure, which unit",
+        "conceptId": "M3.S5.T11.C50",
+        "objectiveIds": [
+          "O19"
+        ],
+        "items": [
+          "M3.S5.T11.C50:TM1",
+          "M3.S5.T11.C50:1",
+          "M3.S5.T11.C50:4"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "The same cuboid, turned",
+        "conceptId": "M3.S5.T11.C51",
+        "objectiveIds": [
+          "O19"
+        ],
+        "items": [
+          "M3.S5.T11.C51:TM2",
+          "M3.S5.T11.C51:2",
+          "M3.S5.T11.C51:7"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Water makes room",
+        "conceptId": "M3.S5.T11.C52",
+        "objectiveIds": [
+          "O20"
+        ],
+        "items": [
+          "M3.S5.T11.C52:TM3",
+          "M3.S5.T11.C52:3",
+          "M3.S5.T11.C51.2D1:p3_3"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Push it fully under",
+        "conceptId": "M3.S5.T11.C53",
+        "objectiveIds": [
+          "O20"
+        ],
+        "items": [
+          "M3.S5.T11.C53:TM4",
+          "M3.S5.T11.C53:6",
+          "M3.S5.T11.C53:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "cards_sorted",
+    "length",
+    "units_placed",
+    "length",
+    "shelf",
+    "e",
+    "jar_levels",
+    "J",
+    "j",
+    "start",
+    "level",
+    "marks"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, cards_sorted, length, units_placed, length, shelf, e, jar_levels, J, j, start, level, marks",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "three_measures"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M3.S5.T11.C51.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Three bins, some cubes and some jars of water."
+    },
+    {
+      "en": "Is it a length, a surface or a space? Then pick its unit."
+    },
+    {
+      "en": "Build a cuboid, then turn it. Is it new, or the same one turned?"
+    },
+    {
+      "en": "Watch the water. Which one pushes more water out of its way?"
+    },
+    {
+      "en": "Is all of it under the water? Push it down, then read the rise."
+    },
+    {
+      "en": "Something new to sort, build or lower in."
+    },
+    {
+      "en": "Free play. Sort, build and lower anything you like."
+    },
+    {
+      "en": "Look again. Is it a length, a surface or a space?"
+    },
+    {
+      "en": "You told the three measures apart and read the water."
+    }
+  ],
+  "build": {
+    "source": "c19ce937:698175",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-16T16:55:08.309Z",
+    "checks": {
+      "pass": 99,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-11-16T16:55:08.171Z"
+    },
+    "tsxBytes": 623286,
+    "tsxMd5": "c0cb2606ab85d310e280477a5ac85709"
+  }
+}

@@ -1,0 +1,1179 @@
+{
+  "slotId": "M1.S2.T4.C15.2D1",
+  "mediaId": "M1.S2.T4.C15.2D1",
+  "toolId": "smaller_to_bigger",
+  "title": "Small to Big Converter",
+  "component": "M1.S2.T4.C15.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch10_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_10/2dtool/M1.S2.T4.C18.2D1/M1.S2.T4.C18.2D1.tsx",
+  "description": "Group a smaller unit of time into piles of 24 or 60, lift each full pile to the bigger unit, keep the remainder in the smaller unit, and regroup a leftover part that is too big.",
+  "conceptIds": [
+    "M1.S2.T4.C15",
+    "M1.S2.T4.C16",
+    "M1.S2.T4.C17",
+    "M1.S2.T4.C18"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Change hours into days, minutes into hours and seconds into minutes by dividing by 24 or 60 and keeping the remainder in the smaller unit, and regroup a leftover part that is too big.",
+    "look": "A unit ladder of four rungs, a tray of deep blue blocks, a Group button that sweeps them into piles, and a bundle for a leftover part that is too big.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Small to Big Converter' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of piles made. It is never a score. The working area is 1086 by 528 at x 64, y 202. The unit ladder of four rungs, days, hours, minutes and seconds, stands down the left of the area at x 90 from y 230 to y 690, each rung 115 tall, with the unit fact beside each step in violet, labelled Regroup. The tray stands at x 520, y 240, 500 by 260, and the blocks the question gives lie in it in deep blue, labelled Given, in rows of the same length. The Group button stands at x 900, y 230, and each press sweeps the blocks into piles of twenty-four or sixty, each full pile lifting to the next rung up as one bar of the bigger unit. The blocks that cannot fill a pile stay behind in the tray under the smaller rung, amber while the child counts them. The division is written in ink under the ladder along y 620, with its quotient and its remainder, and the answer is read in green, labelled Answer, at x 520, y 680 as the bigger unit and the smaller unit together. On the fourth phase the Bundle button stands at x 900, y 330 and wraps 60 of the leftover minutes into a violet tile, labelled Carry, that is dragged to the hours column. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a delete key, and keys for days, h, min and s. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. What the question gives, as a clock time, a length of time, a start date or a number of days, is deep blue, labelled Given or Start. What the working reaches, as an end time, a length of time, a converted time or a date, is green, labelled Answer, End or How long. The thin second hand and the seconds it counts are vermilion, labelled Second hand. One jump along a time line, and one regrouped unit carried or borrowed, are violet, labelled Jump, Carry or Regroup. On a day bar the half from noon until just before midnight is rose, labelled p.m., and the half from midnight until just before noon stays warm white inside its outline, labelled a.m. The hand, digit, column, jump or date being worked on now is amber. Grey is kept for a zero holding a place open, labelled Place holder, and for nothing else. The hour hand and the minute hand, dials, tick marks, time lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last tray stays on the stage with its piles lifted to the bigger rung, the blocks left over in the smaller rung and the answer beside them in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the days and the leftover hours are read together and turn green",
+        "does": "presses Group to sweep the hour blocks into piles of twenty-four, lifts each full pile to the days rung, and counts the blocks left over",
+        "goal": "1 day is 24 h, so divide the hours by 24; the quotient counts days and the remainder stays in hours",
+        "says": "How many hours fill one day? What is left over?",
+        "check": "Away from the screen: if some blocks are left over, which unit are they counted in?",
+        "feels": "the blocks sweeping into piles, the piles lifting, and a few blocks staying behind",
+        "hands": "Count out counters on a desk and push them into heaps of twenty-four, one heap for each day. Count the heaps, then look at the counters that are left.",
+        "tries": "First rung: group just one day's worth of blocks and count what is left. Second rung: group two days' worth with a few over. Third rung: the same task with exactly enough blocks and none over, before the question's own blocks return.",
+        "wrong": [
+          {
+            "why": "the days are the big number, and the few leftover hours look like nothing",
+            "move": "gives the quotient with no remainder, so the leftover hours vanish",
+            "screen": "the answer stays in the slot, the blocks left in the tray are lit amber under the hours rung, and they are counted in ink as hours"
+          },
+          {
+            "why": "ten was the number for changing units in the last chapter, and the habit carries over",
+            "move": "divides by ten, as on the chart of metric units",
+            "screen": "the blocks are swept again with twenty-four in each pile, and the child's piles are laid beside them, far too many"
+          }
+        ],
+        "screen": "a tray of hour blocks in deep blue, and the ladder with its days rung empty",
+        "soWhat": "1 day is 24 h, so divide the hours by 24; the quotient counts days, and the remainder stays in hours",
+        "concept": "Hours into days"
+      },
+      {
+        "n": 2,
+        "win": "the hours and the leftover minutes are read together and turn green",
+        "does": "sweeps the minute blocks into piles of sixty, lifts each full pile to the hours rung, and counts the blocks left over",
+        "goal": "1 h is 60 min, so divide the minutes by 60; the quotient counts hours and the remainder stays in minutes",
+        "says": "Sixty minutes fill an hour. How many piles, and what is left?",
+        "check": "Away from the screen: multiply the hours by sixty and add the minutes left over. Do you get back to where you began?",
+        "feels": "piles of sixty lifting to the hours rung one after another",
+        "hands": "Lay minute cards in a row and sweep them into piles of sixty. Lift each pile to a card marked for one hour, and keep the minute cards that are left in a small heap.",
+        "tries": "First rung: sweep just one hour's worth of minute blocks and count what is left. Second rung: sweep two hours' worth with some over. Third rung: the same task with a heap that needs many piles, before the question's own blocks return.",
+        "wrong": [
+          {
+            "why": "a number of hundreds looks as if it should be shared into hundreds",
+            "move": "divides by a hundred because the number has three digits",
+            "screen": "the blocks are swept again with sixty in each pile, and the child's piles are laid beside them, far too few"
+          },
+          {
+            "why": "the pile count and the block count are both numbers, and they swap easily",
+            "move": "says the leftover blocks make the hours and the piles make the minutes",
+            "screen": "the piles are lit amber under the hours rung and the leftover blocks under the minutes rung, each labelled, beside the child's answer"
+          }
+        ],
+        "screen": "a tray of minute blocks in deep blue, and the ladder with its hours rung empty",
+        "soWhat": "1 h is 60 min, so divide the minutes by 60; the quotient counts hours, and the remainder stays in minutes",
+        "concept": "Minutes into hours"
+      },
+      {
+        "n": 3,
+        "win": "the minutes and the leftover seconds are read together and turn green",
+        "does": "sweeps the second blocks into piles of sixty, lifts each full pile to the minutes rung, and counts the blocks left over",
+        "goal": "1 min is 60 s, so divide the seconds by 60; the quotient counts minutes and the remainder stays in seconds",
+        "says": "Sixty seconds fill a minute. Which unit does the leftover part stay in?",
+        "check": "Away from the screen: why can the seconds left over never make a whole pile?",
+        "feels": "piles of sixty lifting to the minutes rung and a few seconds left in the tray",
+        "hands": "Watch the second hand of a real clock go round several times, counting the turns. Then lay out second cards and sweep them into piles of sixty, one pile for each turn.",
+        "tries": "First rung: sweep a few seconds into one pile and see what is left. Second rung: sweep enough for several piles. Third rung: the same task with a big heap of seconds, before the question's own blocks return.",
+        "wrong": [
+          {
+            "why": "a leftover part looks like something that belongs after a point",
+            "move": "writes the remainder as a decimal part of a minute",
+            "screen": "the leftover blocks are counted in ink one at a time as whole seconds in the tray, lit amber under the seconds rung, beside the child's answer"
+          },
+          {
+            "why": "the last heap looks like a pile too",
+            "move": "counts the last short heap as another pile",
+            "screen": "the last heap is shown short of a full pile, with a gap lit amber at its end, and it stays in the tray"
+          }
+        ],
+        "screen": "a tray of second blocks in deep blue, and the ladder with its minutes rung empty",
+        "soWhat": "1 min is 60 s, so divide the seconds by 60; the quotient counts minutes, and the remainder stays in seconds",
+        "concept": "Seconds into minutes"
+      },
+      {
+        "n": 4,
+        "win": "the minutes are fewer than sixty and the whole length turns green",
+        "does": "bundles 60 of the minutes into a pile, carries it to the hours as a violet tile, and reads the length again",
+        "goal": "a leftover part of 60 or more is regrouped as one of the bigger unit, so the part left over is always fewer than 60",
+        "says": "Are there a whole sixty minutes in the leftover part? Bundle them and carry.",
+        "check": "Away from the screen: can the minutes left over ever be sixty or more once a length is written in the best way?",
+        "feels": "sixty small blocks folding into one violet tile and the minutes left settling below sixty",
+        "hands": "Put out a heap of minute cards with more than sixty in it, beside the hour cards. Wrap sixty of them in a paper band, move the band to the hour cards, and read the two heaps again.",
+        "tries": "First rung: bundle one band of sixty and carry it. Second rung: carry it and read the length again. Third rung: the same task with a leftover part that holds two bands, before the question's own length returns.",
+        "wrong": [
+          {
+            "why": "each number is right on its own, so the length seems finished",
+            "move": "leaves a leftover part of more than sixty minutes as it stands",
+            "screen": "the full pile hiding among the minutes is outlined amber, and a violet bundle waits beside it, labelled Regroup, ready to be carried"
+          },
+          {
+            "why": "the tile looks finished once it has moved",
+            "move": "carries the bundle but forgets to add it to the hours",
+            "screen": "the carry tile is lit amber where it landed, and the hours column is drawn again with the tile added, beside the child's answer"
+          }
+        ],
+        "screen": "a length in hours and minutes whose minutes are 60 or more, in deep blue, with a full pile showing among the minutes",
+        "soWhat": "a leftover part of 60 or more is regrouped as one of the bigger unit, so the part left over is always fewer than 60",
+        "concept": "A leftover part too big"
+      }
+    ],
+    "delight": "On the fourth phase, as the last bundle is wrapped, sixty small blocks fold into one violet tile that slides across to the hours column, and the minutes left over shrink to fewer than sixty.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet grouped. On the first phase a tray of deep blue hour blocks lies in rows of the same length beside the ladder, with its days rung empty. On the second the tray holds minute blocks and the hours rung is empty, and on the third it holds second blocks and the minutes rung is empty. On the fourth a length in hours and minutes stands in deep blue with more than sixty minutes in it. One thing moves, once: the Group button or the full pile among the minutes gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any number of blocks set in the tray and grouped into piles of any size, and any leftover part bundled and carried. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on hours into days, minutes into hours, seconds into minutes and a leftover part that is too big.",
+    "voiceLines": [
+      "A tray of blocks, waiting to be swept into piles.",
+      "How many hours fill one day? What is left over?",
+      "Sixty minutes fill an hour. How many piles, and what is left?",
+      "Sixty seconds fill a minute. Which unit does the leftover part stay in?",
+      "Are there a whole sixty minutes in the leftover part? Bundle them and carry.",
+      "A new tray of blocks. Sweep it into piles the same way.",
+      "Free play. Put any blocks in the tray and group them as you like.",
+      "Count the blocks left in the tray again. Do they fill a pile?",
+      "You grouped a smaller unit into a bigger one and kept the remainder."
+    ],
+    "observations": [
+      {
+        "why": "a pile holds exactly as many blocks as make one of the bigger unit.",
+        "soWhat": "the number of piles is the number of the bigger unit.",
+        "observe": "Every full pile of blocks lifted to the bigger rung as one bar."
+      },
+      {
+        "why": "they are fewer than one of the bigger unit.",
+        "soWhat": "the remainder stays in the smaller unit, so the answer has two parts.",
+        "observe": "The blocks that could not fill a pile stayed in the tray under the smaller rung."
+      },
+      {
+        "why": "100 divided by 24 is 4, remainder 4, and that is not one number of days and hours.",
+        "soWhat": "say the division and its remainder first, then read the answer, and check by multiplying back and adding the remainder.",
+        "observe": "The division was written with its remainder, and the answer was read after it."
+      },
+      {
+        "why": "60 min make 1 h, so a leftover part of that size holds a whole hour it has not yet made.",
+        "soWhat": "the part left over is always fewer than one of the bigger unit.",
+        "observe": "A leftover part of more than sixty minutes was bundled and carried to the hours."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a tray of hour blocks in deep blue, and the ladder with its days rung empty",
+        "win": "the days and the leftover hours are read together and turn green",
+        "traceback": "the blocks are grouped in piles of 24 and lifted to the days rung, the hours left are lit amber, then the division and the answer in days and hours are written in green",
+        "ladder": [
+          "Both boxes matter: days from the shelf and hours from the tray.",
+          "Each tile on the shelf is one day, and each block in the tray is one hour.",
+          "The shelf tiles stand in fives, so read the days there.",
+          "Count the tiles on the days shelf, then count the hours left in the tray.",
+          "Divide the hours by 24: the piles are days and the remainder is hours."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a tray of minute blocks in deep blue, and the ladder with its hours rung empty",
+        "win": "the hours and the leftover minutes are read together and turn green",
+        "traceback": "the blocks are grouped in piles of 60 and lifted to the hours rung, the minutes left are lit amber, then the division and the answer in hours and minutes are written in green",
+        "ladder": [
+          "An hour is 60 min, so each pile holds 60 blocks.",
+          "Two numbers are needed, the whole hours and the minutes left.",
+          "Each tile on the shelf is one hour; the blocks in the tray are minutes.",
+          "Count the tiles on the hours shelf, then count the minutes left in the tray.",
+          "Divide the minutes by 60: the piles are hours and the remainder is minutes."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a tray of second blocks in deep blue, and the ladder with its minutes rung empty",
+        "win": "the minutes and the leftover seconds are read together and turn green",
+        "traceback": "the blocks are grouped in piles of 60 and lifted to the minutes rung, the seconds left are lit amber and counted as whole seconds, then the division and the answer are written in green",
+        "ladder": [
+          "Read the minutes on the shelf and the seconds still in the tray.",
+          "Each tile on the shelf is one minute, and each block in the tray is one second.",
+          "Read the minutes from the shelf tiles, five at a time.",
+          "Count the tiles on the minutes shelf, then count the seconds left in the tray.",
+          "Divide the seconds by 60: the piles are minutes and the remainder is seconds."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a length in hours and minutes whose minutes are 60 or more, in deep blue, with a full pile showing among the minutes",
+        "win": "the minutes are fewer than sixty and the whole length turns green",
+        "traceback": "every full row of 60 minutes is bundled into a violet tile and carried to the hours, the minutes left are lit amber, then the length is written again in green",
+        "ladder": [
+          "The 60 min you bundle become 1 h, so the hours go up too.",
+          "The answer needs the hours on the shelf and fewer than 60 minutes in the tray.",
+          "200 min holds more than one pile of 60.",
+          "Count the hour tiles after the carry, then count the minutes left.",
+          "Each 60 min is 1 h, so add every bundle to the hours."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "rungs": [
+      "days",
+      "hours",
+      "minutes",
+      "seconds"
+    ],
+    "facts": [
+      "1 day: 24 h",
+      "1 h: 60 min",
+      "1 min: 60 s"
+    ],
+    "units": {
+      "1": {
+        "g": 24,
+        "bigRung": 0,
+        "big": "days",
+        "bigU": "days",
+        "small": "hours",
+        "smallU": "h",
+        "a1": "group",
+        "a2": "lift"
+      },
+      "2": {
+        "g": 60,
+        "bigRung": 1,
+        "big": "hours",
+        "bigU": "h",
+        "small": "minutes",
+        "smallU": "min",
+        "a1": "group",
+        "a2": "lift"
+      },
+      "3": {
+        "g": 60,
+        "bigRung": 2,
+        "big": "minutes",
+        "bigU": "min",
+        "small": "seconds",
+        "smallU": "s",
+        "a1": "group",
+        "a2": "lift"
+      },
+      "4": {
+        "g": 60,
+        "bigRung": 1,
+        "big": "hours",
+        "bigU": "h",
+        "small": "minutes",
+        "smallU": "min",
+        "a1": "bundle",
+        "a2": "carry"
+      }
+    },
+    "freeCap": 288,
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T4.C15:SB1",
+        "kind": "convert",
+        "amt": 150,
+        "parts": [
+          {
+            "label": "days"
+          },
+          {
+            "label": "h"
+          }
+        ],
+        "answer": [
+          6,
+          6
+        ],
+        "near": "6|0",
+        "win": "150 ÷ 24 is 6, remainder 6, so 150 h is 6 days 6 h."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T4.C15:1",
+        "kind": "convert",
+        "amt": 55,
+        "parts": [
+          {
+            "label": "days"
+          },
+          {
+            "label": "h"
+          }
+        ],
+        "answer": [
+          2,
+          7
+        ],
+        "near": "2|0",
+        "win": "55 ÷ 24 is 2, remainder 7, so 55 h is 2 days 7 h."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T4.C15:5",
+        "kind": "convert",
+        "amt": 290,
+        "parts": [
+          {
+            "label": "days"
+          },
+          {
+            "label": "h"
+          }
+        ],
+        "answer": [
+          12,
+          2
+        ],
+        "near": "12|0",
+        "win": "290 ÷ 24 is 12, remainder 2, so 290 h is 12 days 2 h."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T4.C16:SB2",
+        "kind": "convert",
+        "amt": 395,
+        "parts": [
+          {
+            "label": "h"
+          },
+          {
+            "label": "min"
+          }
+        ],
+        "answer": [
+          6,
+          35
+        ],
+        "near": "3|95",
+        "win": "395 ÷ 60 is 6, remainder 35, so 395 min is 6 h 35 min."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T4.C16:2",
+        "kind": "convert",
+        "amt": 130,
+        "parts": [
+          {
+            "label": "h"
+          },
+          {
+            "label": "min"
+          }
+        ],
+        "answer": [
+          2,
+          10
+        ],
+        "near": "1|30",
+        "win": "130 ÷ 60 is 2, remainder 10, so 130 min is 2 h 10 min."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T4.C16:6",
+        "kind": "convert",
+        "amt": 470,
+        "parts": [
+          {
+            "label": "h"
+          },
+          {
+            "label": "min"
+          }
+        ],
+        "answer": [
+          7,
+          50
+        ],
+        "near": "4|70",
+        "win": "470 ÷ 60 is 7, remainder 50, so 470 min is 7 h 50 min."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T4.C17:SB3",
+        "kind": "convert",
+        "amt": 725,
+        "parts": [
+          {
+            "label": "min"
+          },
+          {
+            "label": "s"
+          }
+        ],
+        "answer": [
+          12,
+          5
+        ],
+        "near": "13|0",
+        "win": "725 ÷ 60 is 12, remainder 5, so 725 s is 12 min 5 s."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T4.C17:3",
+        "kind": "convert",
+        "amt": 190,
+        "parts": [
+          {
+            "label": "min"
+          },
+          {
+            "label": "s"
+          }
+        ],
+        "answer": [
+          3,
+          10
+        ],
+        "near": "4|0",
+        "win": "190 ÷ 60 is 3, remainder 10, so 190 s is 3 min 10 s."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T4.C17:7",
+        "kind": "convert",
+        "amt": 2000,
+        "parts": [
+          {
+            "label": "min"
+          },
+          {
+            "label": "s"
+          }
+        ],
+        "answer": [
+          33,
+          20
+        ],
+        "near": "34|0",
+        "win": "2,000 ÷ 60 is 33, remainder 20, so 2,000 s is 33 min 20 s."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T4.C18:SB4",
+        "kind": "regroup",
+        "h0": 6,
+        "amt": 70,
+        "parts": [
+          {
+            "label": "h"
+          },
+          {
+            "label": "min"
+          }
+        ],
+        "answer": [
+          7,
+          10
+        ],
+        "near": "6|70",
+        "win": "70 min is 1 h 10 min, so 6 h 70 min is 7 h 10 min."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T4.C18:4",
+        "kind": "regroup",
+        "h0": 4,
+        "amt": 75,
+        "parts": [
+          {
+            "label": "h"
+          },
+          {
+            "label": "min"
+          }
+        ],
+        "answer": [
+          5,
+          15
+        ],
+        "near": "4|75",
+        "win": "75 min is 1 h 15 min, so 4 h 75 min is 5 h 15 min."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T4.C18:8",
+        "kind": "regroup",
+        "h0": 2,
+        "amt": 200,
+        "parts": [
+          {
+            "label": "h"
+          },
+          {
+            "label": "min"
+          }
+        ],
+        "answer": [
+          5,
+          20
+        ],
+        "near": "2|200",
+        "win": "200 min is 3 h 20 min, so 2 h 200 min is 5 h 20 min."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it. CLUE FIRST (educator, 2026-11-18): the first and the second wrong answer show only a clue (the item's own miss line, then the phase's first ladder rung) with the pad open and empty again and nothing changed on the board; only from the THIRD wrong answer does the traceback run, showing the right answer and its steps.",
+    "tracebacks": [
+      "Phase 1: the blocks are grouped in piles of 24 and lifted to the days rung, the hours left are lit amber, then the division and the answer in days and hours are written in green",
+      "Phase 2: the blocks are grouped in piles of 60 and lifted to the hours rung, the minutes left are lit amber, then the division and the answer in hours and minutes are written in green",
+      "Phase 3: the blocks are grouped in piles of 60 and lifted to the minutes rung, the seconds left are lit amber and counted as whole seconds, then the division and the answer are written in green",
+      "Phase 4: every full row of 60 minutes is bundled into a violet tile and carried to the hours, the minutes left are lit amber, then the length is written again in green"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A tray of blocks, waiting to be swept into piles.",
+    "onFreePlay": "Free play. Add hour blocks to the tray and group them into days.",
+    "onMiss": "the item's own miss line on the first wrong answer, the phase's first ladder rung on the second, the second rung together with the traceback (the right answer and its steps) from the third; shown UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You grouped a smaller unit into a bigger one and kept the remainder.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T4.C15:SB1",
+            "worked": false,
+            "kind": "convert",
+            "planQuestion": "How many days and hours are there in 150 h?",
+            "question": {
+              "en": "How many days and hours are there in 150 h?"
+            },
+            "ask": {
+              "en": "150 h in days and hours"
+            },
+            "answer": [
+              6,
+              6
+            ],
+            "planAnswer": "6 days 6 h.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T4.C15:1",
+            "worked": false,
+            "kind": "convert",
+            "planQuestion": "How many days and hours are there in 55 h?",
+            "question": {
+              "en": "Now change 55 h into days and hours."
+            },
+            "ask": {
+              "en": "55 h in days and hours"
+            },
+            "answer": [
+              2,
+              7
+            ],
+            "planAnswer": "2 days 7 h, because 55 divided by 24 is 2, remainder 7",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T4.C15:5",
+            "worked": false,
+            "kind": "convert",
+            "planQuestion": "How many days and hours are there in 290 h?",
+            "question": {
+              "en": "What is 290 h in days and hours?"
+            },
+            "ask": {
+              "en": "290 h in days and hours"
+            },
+            "answer": [
+              12,
+              2
+            ],
+            "planAnswer": "12 days 2 h, because 290 divided by 24 is 12, remainder 2",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T4.C16:SB2",
+            "worked": false,
+            "kind": "convert",
+            "planQuestion": "How many hours and minutes are there in 395 min?",
+            "question": {
+              "en": "How many hours and minutes are there in 395 min?"
+            },
+            "ask": {
+              "en": "395 min in hours and minutes"
+            },
+            "answer": [
+              6,
+              35
+            ],
+            "planAnswer": "6 h 35 min.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T4.C16:2",
+            "worked": false,
+            "kind": "convert",
+            "planQuestion": "How many hours and minutes are there in 130 min?",
+            "question": {
+              "en": "Now change 130 min into hours and minutes."
+            },
+            "ask": {
+              "en": "130 min in hours and minutes"
+            },
+            "answer": [
+              2,
+              10
+            ],
+            "planAnswer": "2 h 10 min, because 130 divided by 60 is 2, remainder 10",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T4.C16:6",
+            "worked": false,
+            "kind": "convert",
+            "planQuestion": "How many hours and minutes are there in 470 min?",
+            "question": {
+              "en": "What is 470 min in hours and minutes?"
+            },
+            "ask": {
+              "en": "470 min in hours and minutes"
+            },
+            "answer": [
+              7,
+              50
+            ],
+            "planAnswer": "7 h 50 min, because 470 divided by 60 is 7, remainder 50",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T4.C17:SB3",
+            "worked": false,
+            "kind": "convert",
+            "planQuestion": "How many minutes and seconds are there in 725 s?",
+            "question": {
+              "en": "How many minutes and seconds are there in 725 s?"
+            },
+            "ask": {
+              "en": "725 s in minutes and seconds"
+            },
+            "answer": [
+              12,
+              5
+            ],
+            "planAnswer": "12 min 5 s.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T4.C17:3",
+            "worked": false,
+            "kind": "convert",
+            "planQuestion": "How many minutes and seconds are there in 190 s?",
+            "question": {
+              "en": "Now change 190 s into minutes and seconds."
+            },
+            "ask": {
+              "en": "190 s in minutes and seconds"
+            },
+            "answer": [
+              3,
+              10
+            ],
+            "planAnswer": "3 min 10 s, because 190 divided by 60 is 3, remainder 10",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T4.C17:7",
+            "worked": false,
+            "kind": "convert",
+            "planQuestion": "How many minutes and seconds are there in 2000 s?",
+            "question": {
+              "en": "What is 2,000 s in minutes and seconds?"
+            },
+            "ask": {
+              "en": "2,000 s in minutes and seconds"
+            },
+            "answer": [
+              33,
+              20
+            ],
+            "planAnswer": "33 min 20 s, because 2000 divided by 60 is 33, remainder 20",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T4.C18:SB4",
+            "worked": false,
+            "kind": "regroup",
+            "planQuestion": "Write 6 h 70 min in the best way.",
+            "question": {
+              "en": "Write 6 h 70 min with fewer than 60 minutes."
+            },
+            "ask": {
+              "en": "6 h 70 min, under 60 min"
+            },
+            "answer": [
+              7,
+              10
+            ],
+            "planAnswer": "7 h 10 min.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T4.C18:4",
+            "worked": false,
+            "kind": "regroup",
+            "planQuestion": "Write 4 h 75 min in the best way.",
+            "question": {
+              "en": "Now write 4 h 75 min so it has fewer than 60 minutes."
+            },
+            "ask": {
+              "en": "4 h 75 min, under 60 min"
+            },
+            "answer": [
+              5,
+              15
+            ],
+            "planAnswer": "5 h 15 min, because 75 min is 1 h 15 min",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T4.C18:8",
+            "worked": false,
+            "kind": "regroup",
+            "planQuestion": "Write 2 h 200 min in the best way.",
+            "question": {
+              "en": "How do you write 2 h 200 min with fewer than 60 minutes?"
+            },
+            "ask": {
+              "en": "2 h 200 min, under 60 min"
+            },
+            "answer": [
+              5,
+              20
+            ],
+            "planAnswer": "5 h 20 min, because 200 min is 3 h 20 min",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "smaller_to_bigger",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "smaller_to_bigger",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Hours into days",
+        "conceptId": "M1.S2.T4.C15",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C15:SB1",
+          "M1.S2.T4.C15:1",
+          "M1.S2.T4.C15:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Minutes into hours",
+        "conceptId": "M1.S2.T4.C16",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C16:SB2",
+          "M1.S2.T4.C16:2",
+          "M1.S2.T4.C16:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Seconds into minutes",
+        "conceptId": "M1.S2.T4.C17",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C17:SB3",
+          "M1.S2.T4.C17:3",
+          "M1.S2.T4.C17:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A leftover part too big",
+        "conceptId": "M1.S2.T4.C18",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C18:SB4",
+          "M1.S2.T4.C18:4",
+          "M1.S2.T4.C18:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "amount",
+    "piles",
+    "remainder",
+    "rem",
+    "carry",
+    "lifted",
+    "answer"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, amount, piles, remainder, rem, carry, lifted, answer, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "smaller_to_bigger"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T4.C15.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A tray of blocks, waiting to be swept into piles."
+    },
+    {
+      "en": "How many hours fill one day? What is left over?"
+    },
+    {
+      "en": "Sixty minutes fill an hour. How many piles, and what is left?"
+    },
+    {
+      "en": "Sixty seconds fill a minute. Which unit does the leftover part stay in?"
+    },
+    {
+      "en": "Are there a whole sixty minutes in the leftover part? Bundle them and carry."
+    },
+    {
+      "en": "A new tray of blocks. Sweep it into piles the same way."
+    },
+    {
+      "en": "Free play. Put any blocks in the tray and group them as you like."
+    },
+    {
+      "en": "Count the blocks left in the tray again. Do they fill a pile?"
+    },
+    {
+      "en": "You grouped a smaller unit into a bigger one and kept the remainder."
+    }
+  ],
+  "build": {
+    "source": "61d44197:641794",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-16T18:53:06.212Z",
+    "checks": {
+      "pass": 97,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-11-16T18:53:05.951Z"
+    },
+    "tsxBytes": 564913,
+    "tsxMd5": "c1718db1122a149b5646cbc671b13d77",
+    "handEdited": true
+  }
+}

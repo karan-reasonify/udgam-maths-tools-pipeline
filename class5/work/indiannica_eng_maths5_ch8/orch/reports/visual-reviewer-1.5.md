@@ -1,0 +1,21 @@
+STATUS: fixes-needed
+SLOTS: M1.S1.T2.C6.2D1
+FILES: none
+CHECKS: 21 pack frames of chunk 2 read at full size (en/hi/gu), 2 extra playkit frames (deleted)
+FAILURES: 1 must-fix, 5 should-fix, 3 questions
+DECISIONS: none
+RISKS: p2 q2/q3 win and end picture print the unconverted sum (122 / 332) in green after a right answer typed without Write in cm
+ESCALATE: no
+REPORT: work/indiannica_eng_maths5_ch8/orch/reports/visual-reviewer-1.5.md
+visual-reviewer-1.5 · M1.S1.T2.C6.2D1 Edge Walker · chunk 2 (phase 2) · en/hi/gu · Verdict: ISSUES (1 must-fix, 5 should-fix, 3 questions)
+Looked at: all 21 pack frames of chunk 2 at 1600x900 (p2 step1, stepwrong, ask-shut, ask-open, wrong, win, end x en, hi, gu; none sameAs/carried). Extra: playkit frames of p2 q2 and q3 after typing the RIGHT answer with no Write in cm (deleted).
+[must-fix] phase 2, end (p2-end-en/hi/gu) and the win of items 2-3, all langs - the settled picture keeps the metre sides as "1 m" and the Sum strip reads "1 + 60 + 1 + 60 = 122 cm" in answer-GREEN (q2: "2 + 150 + 180 = 332 cm") under the lit boundary and the Next phase key, while the bubble says 320 / 530. That is the misconception the phase breaks, printed as the result (a child who types 320 straight away sees it; q1's pack win looks right only because the pack used the Write in cm act) - on a right answer the win/end state must convert the metre sides (100 cm labels, "100 + 60 + 100 + 60 = 320 cm").
+[should-fix] phase 2, step1 / stepwrong / wrong, hi (gu touches) - the "1 मी = 100 सेमी" chip runs under the Write in cm key's pink ring: its right end is covered and the text ends flush with the edge (en has a 9px gap) - shrink/shorten the chip in hi/gu or move it 16px+ clear of the key.
+[should-fix] phase 2, step1 + stepwrong, en/hi/gu - the "1 m = 100 cm" chip is already on screen before Write in cm is tapped (brief note: chip only after the act; ask frames do hide it) and it repeats the bubble line - show it only after the act, or confirm the guide step may show it.
+[should-fix] phase 2, every frame, all langs - bottom side labels (1 m / 80 cm / 100 cm) straddle the squared paper's bottom edge and end 2px above the Sum strip's outline, so pill, paper edge and strip merge; the top labels (90 cm, 1 m in the end frame) hug the paper's top edge (2-4px) - keep labels inside the paper with 12px+ and move the strip down about 14px (there is 90px of empty room under it).
+[should-fix] phase 2, ask/wrong/win/end, hi (gu lighter) - the Devanagari headline strokes and matra tops of "90 सेमी", "75 सेमी", "60 सेमी", "1 मी" touch the pill's top outline; "350 सेमी" in the strip also sits right at the strip's top line - add 6-8px top padding / a taller pill in hi and gu.
+[should-fix] phase 2, wrong, en/hi/gu - after the miss the traceback has already written 100 cm, but the Write in cm key keeps its pink invite ring, inviting a spent act next to the live Enter key - drop the ring once the correction has rewritten the side.
+[question] phase 2, ask-shut vs ask-open, all langs - the whole picture (same size) slides 286px left when the panel opens (paper x 390-1210 -> 104-924); rule 12 says a grid keeps its place shut and open. Fine if the board's re-centre is accepted for a figure on squared paper.
+[question] phase 2, items 2-3 (extra frames) - the garden bed and the photo frame are bare outlines; images.json has only bed, mat and ant and gives no reason for plain. Intended?
+[question] phase 2, win/wrong/end - the vermilion boundary has no written "Boundary" label (same in p1-win); the stage text says labelled Boundary, colour-only otherwise. Confirm it is dropped on purpose.
+clean: p2-step1 and p2-stepwrong layout (Answer key flat and quiet in a guide step, Kiko standing, ring only on Write in cm, triangle 60/80/1 m is a true 3-4-5 shape); mat skin reads as a woven mat, dark outline, 75/85/90 labels clear of the edge, ant clear; Kiko thinking at ask and after a miss; header buttons, berry Answer/Enter/Next keys; slot "perimeter | cm" and keypad; hint drawn alone in 2 lines in hi and gu with no matra touching the bubble; no English left in hi/gu; no giveaway before the answer; the correction ends on the whole right sum for q1 (100 + 85 + 90 + 75 = 350) with the slot empty.

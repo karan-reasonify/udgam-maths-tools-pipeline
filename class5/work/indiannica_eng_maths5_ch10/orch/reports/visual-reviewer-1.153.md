@@ -1,0 +1,6 @@
+STATUS: ok (0 must-fix, 0 should-fix, 0 questions)
+Slot C19 Day Bar Clocks, gu, round-6 re-look. Looked at (1600x900): the changed gu pack frames p1 step1/stepwrong/ask-shut/ask-open/win/hintkey/end, p2-wrong, p3-wrong/win, p4-end, p1/p4 party, plus live playkit frames (p1 q2,q3; p3 q2,q3; p4 q3: shut/open/win). Unchanged since 1.144: every other frame.
+1 OK p2-wrong: "આપેલું" pill outline to the amber "6" box 4 px clear (rows 179-182; was 2; at the >=4 floor, not ~6); box to violet "+ 12" chip 6 px; colon 4 px beside the box; chip 9 px above the card outline. p1-wrong untouched.
+2 OK Given leader (0715, 0925, 0450, 0005, pad shut and open): leaves the pill's left end horizontally from its outline (starts ON the end, looks clean, no stray mark), corner to nearest ink 17.0 px (0715/0925/0005; last digit's top right) and 19.8 (0450); hour word's ink 9 px right of the corner; 9 px under the "આપેલું" pill outline; 12 px above the digit tops; the stub ends 6 px above the first zero. One clean line pill to zero.
+2b OK Answer-card leader (p1-end, p3-wrong, p3-win, live 0640/0000): starts on the pill's rounded-end outline, runs 8 px above the digit boxes, stub 3 px above box 1; clean.
+3 OK no regression: no leader in p1/p2-wrong, no text collision; party frames show only the known runtime confetti and cone. Scratch PNGs and scripts deleted.

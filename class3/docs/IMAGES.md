@@ -120,7 +120,7 @@ hit costs nothing), so keep the `object` and `style` words the same across a cha
   plate or objects in the hands: the maths objects are separate skins), one person only, plain white background; no "warm colours only", no "no people". The tool draws
   it ONCE per person with `<Skin name="child_a" x y w h />` in a box with the aspect of the MADE size (`made.w` x `made.h` in images.json, e.g. 72 x 240; `<Skin>` slices, so
   any other box crops the head or feet); never clipped, never stretched. Different children are different keys (`child_a` ... `child_d`) whose `object` words differ (the
-  library key). A figure never sets the keypad theme. Real photographs may be supplied later; there is no file import yet.
+  library key). A figure never sets the keypad theme. The owner's own real pictures are imported as they are with `source` (section 5, class 3 only, 2026-11-06).
 - **strip** (kept, rarely right): the largest rectangle INSIDE a long object, inset 6 %, opaque. **Why it loses**:
   what makes a bar read as chocolate is its edge, bevel and gloss; an interior crop throws all three away and
   leaves a flat brown gradient (a decimals tool's first `bar`, 2026-10-07). Use it only for a texture that is the
@@ -169,6 +169,12 @@ had before (STYLE + the chapter's `style`), byte for byte.
 - `maxKB` (optional): a smaller budget than 25 KB (30 KB for a photo object) for this skin.
 - `look` (optional, an image or the whole plan): `photo` or `cartoon` (§4, "Look"); a new plan is photo and gets `"look": "photo"` written on its first make.
 - `reference` (optional, the plan or one image): a reference photograph under the class folder, e.g. `assets/refs/roti.png` (§4, "Look").
+- `source` (optional, a tile, class 3 only, 2026-11-06, owner decision: the real Indian rupee notes): a png, jpg or webp under the class folder, e.g. `assets/refs/notes/rs50.png`
+  (validated like `reference`), IMPORTED as it is: `images make` calls no Gemini and does no cut (the file's own alpha is kept), fits it inside `px` keeping its own aspect, WebP-encodes it
+  from q 0.78 down to `maxKB` (5 to 10 KB for a note at 220 wide) and registers it like any skin. It is keyed by the file's sha1 (`import|<sha1>`; `IMPORT_CUT` in the skin key),
+  so it costs $0, is re-made only when the file changes and is a free library hit on a re-run. `prompt` is not needed. An imported skin is NOT counted against `MAX_SKINS_PER_SLOT`
+  nor the slot byte budget (the 12 object skins and the 60 KB are for generated pictures); it is still checked against its own `maxKB`. The six rupee notes are
+  `assets/refs/notes/rs10.png` ... `rs500.png` (the owner's pictures, front only, perspective-straightened, edges trimmed, corners rounded with alpha), the skins `note10` ... `note500`.
 - `prompt`: one or two plain sentences about the object: what it is, its warm colour, its surface, its edge.
   **The CLI adds every rule** (style, top-down view, plain white background, the negatives in
   `lib/images/rules.mjs`; for strip and disc also "no cut lines, segments, slices", for a tile "only one piece");

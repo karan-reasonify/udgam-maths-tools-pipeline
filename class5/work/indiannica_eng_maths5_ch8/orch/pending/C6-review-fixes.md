@@ -1,0 +1,10 @@
+C6 Edge Walker — REVIEW-ROUND FIXES (builder tool-builder-1.37). Read FIRST: orch/review-fix-rules.md (shared rules). Then read these 5 reports (each <= 40 lines) and fix every finding: orch/reports/visual-reviewer-1.4.md (start+P1), visual-reviewer-1.5.md (P2), visual-reviewer-1.6.md (P3), visual-reviewer-1.16.md (P4+summary+free), play-tester-1.2.md.
+C6-specific decisions:
+- MUST-FIX (real bug, found by BOTH a visual reviewer and the play tester): P2 Q1-Q3 and P4 Q3 typed right answer WITHOUT the Write in cm act (keyboard-only, gotoStep, classroom) shows a green win picture with the metre sides still "1 m" and the wrong total ("1 + 85 + 90 + 75 = 251 cm", "2 x (250 + 1) = 502 cm"): in Work, `conv` is only S.conv or a traceback: make it true when `won` (isConv), and check P2 Q2/Q3 too (not played).
+- Implement "Enter on a guide step = touch" the safe way (trusted Enter only, user mode), so a keyboard-only child meets Q1 locked; hardware Enter on a locked pad shows the nudge; clear the stale "Put the Length tag on first." nudge after a wrong tag (it stays while a Length tag sits on the short side: say "Tap a longer side first." at once); no nudge while the ant is walking.
+- Tray "Length"/"Breadth" pills (P3): they look draggable/tappable but ignore taps: restyle them as flat non-button tags (the act is tapping a longer side). After a RIGHT tag ignore taps on the shorter sides (the tag stays).
+- Add the written "Boundary" label (hi सीमा, gu સીમા) on the lit vermilion boundary in P1-P4 (rule 4), clear of the side labels; start page: put the "Boundary" chip ON the bed's outline with a short leader or drop it.
+- The paper grid must not invite counting: make the paper a faint plain backdrop or scale it to cm (reviewers on C11 raised it; do the light option: lower contrast hairline).
+- Garden bed and photo frame stay plain (no picture made): leave.
+- Focus after an act falls to BODY: keep focus on the act key where cheap; not required.
+- Not for you (runtime): the Hint key/Escape not cutting the celebration; the hi summary rows; the emptied slot.

@@ -1,0 +1,1142 @@
+{
+  "slotId": "M3.S5.T9.C30.2D1",
+  "mediaId": "M3.S5.T9.C30.2D1",
+  "toolId": "date_counter",
+  "title": "Date Counter",
+  "component": "M3.S5.T9.C30.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch10_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_10/2dtool/M3.S5.T9.C43.2D1/M3.S5.T9.C43.2D1.tsx",
+  "description": "Count the days between two dates on a calendar, both days included, across a month end, find a finish date, and add days or a fortnight to a date.",
+  "conceptIds": [
+    "M3.S5.T9.C40",
+    "M3.S5.T9.C41",
+    "M3.S5.T9.C42",
+    "M3.S5.T9.C43"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Count the days from one date to another, counting both days, across a month end as well, find a finish date from a start date and a number of days, and find a date some days after or a fortnight later.",
+    "look": "A month calendar, or two months side by side, with a run of shaded day cells, a counter that says whether both end days are included, and a violet jump of days.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Date Counter' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of days counted. It is never a score. The working area is 1086 by 528 at x 64, y 202. The month calendar fills the left of the area at x 90, y 230, 700 wide, in seven columns each 100 wide, with the dates in rows beneath, each row 64 tall. When a run crosses a month end, two months stand side by side, each 340 wide, with the last day of the first month marked in ink. The start date is set on it in deep blue, labelled Start, and the end date, or the number of days, beside it in deep blue, labelled Given. The days between them are shaded as a run of cells and counted one by one. The day counter stands at x 850, y 240 and says whether the first day and the last day are included. The count is green, labelled Answer, at x 850, y 560, and a last day found is green, labelled End. The Cut handle stands at x 850, y 340 and splits a run at the last day of the first month. A violet jump of days, labelled Jump, is dragged along the calendar from a date, and a jump of 14 days stands for a fortnight. The date being counted is amber. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a delete key, and keys for days and the month names. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. What the question gives, as a clock time, a length of time, a start date or a number of days, is deep blue, labelled Given or Start. What the working reaches, as an end time, a length of time, a converted time or a date, is green, labelled Answer, End or How long. The thin second hand and the seconds it counts are vermilion, labelled Second hand. One jump along a time line, and one regrouped unit carried or borrowed, are violet, labelled Jump, Carry or Regroup. On a day bar the half from noon until just before midnight is rose, labelled p.m., and the half from midnight until just before noon stays warm white inside its outline, labelled a.m. The hand, digit, column, jump or date being worked on now is amber. Grey is kept for a zero holding a place open, labelled Place holder, and for nothing else. The hour hand and the minute hand, dials, tick marks, time lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last run stays shaded on the calendar with its cut, its counts by cells and by the rule, and its answer beside them in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the count by cells and the count by the rule agree, and turn green",
+        "does": "counts the shaded cells with both end cells included, then takes the start date from the end date and adds 1, and shades a range that leaves both end dates out",
+        "goal": "counting both days, the number of days from one date to another is the end date minus the start date, then add 1",
+        "says": "Count the first day and the last day. Then take one date from the other and add one.",
+        "check": "Away from the screen: why do the first day and the last day both count when a fair is open on both?",
+        "feels": "the count by cells and the count by the rule landing on the same number",
+        "hands": "Mark two dates on a real wall calendar with two stickers and put a sticker on every date between them. Count the stickers with both end dates, then take the start date from the end date and add one.",
+        "tries": "First rung: count the cells of a short run with both end days. Second rung: check by taking one date from the other and adding one. Third rung: the same task on a longer run, before the question's own dates return.",
+        "wrong": [
+          {
+            "why": "taking one date from another looks like the whole sum",
+            "move": "takes the start date from the end date and stops",
+            "screen": "the count stays, the first cell of the run is lit amber, and the cells are counted again with it included"
+          },
+          {
+            "why": "between sounds like the space between two dates",
+            "move": "counts only the days between the two dates, leaving both end days out, when the question says to count both",
+            "screen": "the two end cells are lit amber and the count is made again with them in"
+          }
+        ],
+        "screen": "one month calendar with a start date and an end date set on it, and the days between them shaded",
+        "soWhat": "counting both days, the number of days from one date to another is the end date minus the start date, then add 1",
+        "concept": "Counting both days"
+      },
+      {
+        "n": 2,
+        "win": "the two parts are added and the whole run turns green",
+        "does": "cuts the run at the last day of the first month, counts each part with both end days, and adds the two",
+        "goal": "across a month end, count to the last day of the month first, then on into the next month, and add the two parts",
+        "says": "Where does the first month end? Count that part, then the rest.",
+        "check": "Away from the screen: why can the dates of two different months not be taken apart as one?",
+        "feels": "a run of days breaking at the month end and the two parts joining into one count",
+        "hands": "Mark a run of days that crosses a month end on two paper months set side by side. Cut the run with a pencil line at the last day of the first month, count each part, and add the two.",
+        "tries": "First rung: count only the part in the first month. Second rung: count the part in the second month as well and add. Third rung: the same task with a month of thirty days, before the question's own dates return.",
+        "wrong": [
+          {
+            "why": "the two months look like one long strip of days",
+            "move": "takes the start date from the end date across the two months as if they were one month",
+            "screen": "the run is cut at the last day of the first month and each part is counted in ink, while the child's number stays in the slot"
+          },
+          {
+            "why": "the last day of a month is easy to forget when the count starts from the start date",
+            "move": "counts the first month one day short",
+            "screen": "the last cell of the first month is lit amber, and that part is counted again with it in"
+          },
+          {
+            "why": "thirty is a number that fits most months",
+            "move": "uses thirty days for every month end, whatever the month",
+            "screen": "the month's own number of days is counted in ink along the strip, and its last day is marked, lit amber, before the run is cut"
+          }
+        ],
+        "screen": "two months side by side with a run of days crossing from the first into the second",
+        "soWhat": "across a month end, count to the last day of the month first, then on into the next month, and add the two parts",
+        "concept": "Across a month end"
+      },
+      {
+        "n": 3,
+        "win": "the last day is marked in green, labelled End, and the count back from it agrees",
+        "does": "counts the days out along the calendar, the start date being day 1, and marks the last day",
+        "goal": "a finish date is found by adding to the start date one day fewer than the number of days, because the start date is day 1 and both days are counted",
+        "says": "The first day is day one. On which date does the last day fall?",
+        "check": "Away from the screen: a fair lasts some days, beginning on a date you pick. How do you find its last day?",
+        "feels": "the count reaching its last day and the count back from it agreeing",
+        "hands": "Mark a start date on a real calendar as day one, and put a sticker on each day out from it until the number asked for is reached. Then count back from the last sticker to check.",
+        "tries": "First rung: count out a short run from a start date and mark its last day. Second rung: count back from the last day to check. Third rung: the same task with a run that crosses a month end, before the question's own dates return.",
+        "wrong": [
+          {
+            "why": "the start date does not look like a day of the count",
+            "move": "counts the number of days on from the start date, so the last day comes a day too late",
+            "screen": "the count is made again with the start date as day 1, the child's date is lit amber one cell past the last day, and the last day is drawn one cell before it"
+          },
+          {
+            "why": "the count runs on past the last cell, and the number keeps growing",
+            "move": "gives a finish date larger than the number of days in the month",
+            "screen": "the last day of the month is marked, the extra days run on into the next month in violet jumps, and the child's number stays"
+          }
+        ],
+        "screen": "a month calendar with a start date and a number of days set in deep blue",
+        "soWhat": "a finish date is found by adding to the start date one day fewer than the number of days, because the start date is day 1 and both days are counted",
+        "concept": "Finding the last day"
+      },
+      {
+        "n": 4,
+        "win": "the jump lands on a date that turns green",
+        "does": "drags the jump along the calendar from the date, without counting the first day again, and reads the date it lands on",
+        "goal": "after and a fortnight later add the days to the date, and the first day is not counted again; a fortnight is 14 days",
+        "says": "After means add the days. Do you count the first day again?",
+        "check": "Away from the screen: does a date some days after count the date you start from?",
+        "feels": "the jump landing on a date that turns green",
+        "hands": "Put a sticker on a start date. Jump along the calendar with a paper strip as long as the number of days after, without counting the date under the sticker, and read the date where the strip ends.",
+        "tries": "First rung: jump a few days after a date. Second rung: jump a fortnight. Third rung: the same task across a month end, before the question's own date returns.",
+        "wrong": [
+          {
+            "why": "counting starts on the first cell the finger touches",
+            "move": "counts the start date as the first of the days after, so the date is a day too early",
+            "screen": "the jump is dragged again from the cell after the start date, the first cell is lit amber, and the child's date stays"
+          },
+          {
+            "why": "a week is the length said most often, and the two words sound alike",
+            "move": "takes a fortnight for a week",
+            "screen": "the jump of a fortnight is drawn as two rows of seven cells and counted in ink, and the child's date stays"
+          },
+          {
+            "why": "the two questions look alike, both giving a date and a number of days",
+            "move": "counts both days for a date after, as for a run of days",
+            "screen": "the two questions are set side by side on the calendar, one shaded as a run and one dragged as a jump, with the words after and counting both days lit amber above them"
+          }
+        ],
+        "screen": "a month calendar with a date set on it and a violet jump of some days waiting",
+        "soWhat": "after and a fortnight later add the days to the date, and the first day is not counted again; a fortnight is 14 days",
+        "concept": "Days after and a fortnight later"
+      }
+    ],
+    "delight": "On the first phase, when the count by cells and the count by the rule land on the same number, the two counters flip over together and turn green at once.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet counted. On the first phase one month calendar stands with a start date and an end date set on it in deep blue and no cell shaded. On the second two months stand side by side with a start date in the first and an end date in the second. On the third a month calendar holds a start date and a number of days in deep blue. On the fourth a date is set on the calendar with a violet jump of some days waiting beside it. One thing moves, once: the start date, the first cell of the run or the jump gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any two dates set on the calendar and counted, any run cut at a month end, and any jump of days dragged from a date. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on counting both days, a run across a month end, a finish date and dates some days after.",
+    "voiceLines": [
+      "A calendar with two dates marked, waiting to be counted.",
+      "Count the first day and the last day. Then take one date from the other and add one.",
+      "Where does the first month end? Count that part, then the rest.",
+      "The first day is day one. On which date does the last day fall?",
+      "After means add the days. Do you count the first day again?",
+      "A new pair of dates. Count them the same way.",
+      "Free play. Mark any two dates and count the days between.",
+      "Count the cells again. Did you count the first day and the last day?",
+      "You counted the days between dates and found a date some days after."
+    ],
+    "observations": [
+      {
+        "why": "the cells include both the first day and the last day, and taking one date from the other leaves one of them out.",
+        "soWhat": "counting both days, the number of days is the end date minus the start date, then add 1.",
+        "observe": "The cells counted one by one and the sum taken from the end date agreed once 1 was added."
+      },
+      {
+        "why": "the two months have different numbers of days, so their dates cannot be taken apart as if they were one month.",
+        "soWhat": "count to the last day of the month first, then on into the next month, and add the two parts.",
+        "observe": "A run across a month end split into two parts at the last day of the first month."
+      },
+      {
+        "why": "the first day is day 1, so it is already counted.",
+        "soWhat": "the last day is found by adding to the start date one day fewer than the number of days.",
+        "observe": "The last day of a course came one day fewer than its number of days after the first day."
+      },
+      {
+        "why": "after means add the days, and the date the jump starts from is not one of them.",
+        "soWhat": "a fortnight later is 14 days after, and the two kinds of question, how many days and on which date, are kept apart.",
+        "observe": "The jump of days never counted the date it started from."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "one month calendar with a start date and an end date set on it, and the days between them shaded",
+        "win": "the count by cells and the count by the rule agree, and turn green",
+        "traceback": "Each shaded day is counted from 1, the first day included, and end date minus start date plus 1 is written below.",
+        "ladder": [
+          "The first day of the fair, 8 September, is counted too.",
+          "Both 2 October and 7 October are counted as days.",
+          "After a date leaves that date out, and so does before.",
+          "Count the shaded cells again, and do not skip the first one.",
+          "Say 1 on the start date and keep counting up to the end date."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "two months side by side with a run of days crossing from the first into the second",
+        "win": "the two parts are added and the whole run turns green",
+        "traceback": "The run is cut at the last day of the first month, each part is counted from 1, and the two parts are added.",
+        "ladder": [
+          "Count from 27 July to the last day of July first.",
+          "Count the last day of the first month, then the first days of the next.",
+          "August has 31 days, so count up to the 31st first.",
+          "The second part starts on the 1st of the next month.",
+          "Last day of the first month minus the start date, plus 1, gives the first part."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a month calendar with a start date and a number of days set in deep blue",
+        "win": "the last day is marked in green, labelled End, and the count back from it agrees",
+        "traceback": "The days are counted from the start date as day 1 to the last day, which turns green.",
+        "ladder": [
+          "22 November is day 1, so count on from there.",
+          "Start on 10 October as day 1 and count to day 6.",
+          "10 August is day 40, so count back to day 1.",
+          "The start date is day 1, not day 0.",
+          "If the days run past the month's last day, go on from the 1st."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a month calendar with a date set on it and a violet jump of some days waiting",
+        "win": "the jump lands on a date that turns green",
+        "traceback": "Jumps are counted from the day after the date, and the date the last jump lands on turns green.",
+        "ladder": [
+          "12 April is not counted again; the first day after is 13 April.",
+          "Jump from 6 October; the first jump lands on 7 October.",
+          "A fortnight is longer than one week of jumps.",
+          "Count the jumps, not the cells, starting after the given date.",
+          "If the days run past the month's last day, go on from the 1st."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "monthDays": {
+      "January": 31,
+      "February": 28,
+      "March": 31,
+      "April": 30,
+      "May": 31,
+      "June": 30,
+      "July": 31,
+      "August": 31,
+      "September": 30,
+      "October": 31,
+      "November": 30,
+      "December": 31
+    },
+    "cell": {
+      "w2": 61.142857142857146,
+      "w1": 88.57142857142857,
+      "h": 66
+    },
+    "rows": 5,
+    "row": {
+      "y": 424,
+      "h": 88
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M3.S5.T9.C40:DC1",
+        "kind": "count",
+        "m": [
+          "September"
+        ],
+        "s": [
+          0,
+          8
+        ],
+        "e": [
+          0,
+          16
+        ],
+        "answer": 9,
+        "near": 8,
+        "win": "Yes, the fair is open for 9 days."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M3.S5.T9.C40:1",
+        "kind": "count",
+        "m": [
+          "October"
+        ],
+        "s": [
+          0,
+          2
+        ],
+        "e": [
+          0,
+          7
+        ],
+        "answer": 6,
+        "near": 5,
+        "win": "Yes, that is 6 days with both ends."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M3.S5.T9.C40:5",
+        "kind": "share",
+        "m": [
+          "May"
+        ],
+        "ra": [
+          7,
+          10
+        ],
+        "rb": [
+          9,
+          11
+        ],
+        "tags": [
+          [
+            "Friend 1",
+            "after 6th,",
+            "before 11th"
+          ],
+          [
+            "Friend 2",
+            "after 8th,",
+            "before 12th"
+          ]
+        ],
+        "parts": [
+          {
+            "label": "first date"
+          },
+          {
+            "label": "last date"
+          }
+        ],
+        "answer": [
+          9,
+          10
+        ],
+        "near": "8|10",
+        "ladder": [
+          "List the dates for each friend, then keep the dates in both lists.",
+          "The dates shaded twice are in both lists."
+        ],
+        "win": "Yes, the visit was on the 9th or the 10th."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M3.S5.T9.C41:DC2",
+        "kind": "cross",
+        "m": [
+          "July",
+          "August"
+        ],
+        "s": [
+          0,
+          27
+        ],
+        "e": [
+          1,
+          8
+        ],
+        "answer": 13,
+        "near": 12,
+        "win": "Yes, 5 days in July and 8 in August make 13."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M3.S5.T9.C41:2",
+        "kind": "cross",
+        "m": [
+          "October",
+          "November"
+        ],
+        "s": [
+          0,
+          29
+        ],
+        "e": [
+          1,
+          2
+        ],
+        "answer": 5,
+        "near": 4,
+        "win": "Yes, 3 days and 2 days make 5."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M3.S5.T9.C41:6",
+        "kind": "cross",
+        "m": [
+          "August",
+          "September"
+        ],
+        "s": [
+          0,
+          22
+        ],
+        "e": [
+          1,
+          5
+        ],
+        "answer": 15,
+        "near": 14,
+        "win": "Yes, 10 days and 5 days make 15."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M3.S5.T9.C42:DC3",
+        "kind": "finish",
+        "m": [
+          "November",
+          "December"
+        ],
+        "s": [
+          0,
+          22
+        ],
+        "days": 16,
+        "month": "December",
+        "answer": "7 December",
+        "near": "8 December",
+        "win": "Yes, day 16 falls on 7 December."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M3.S5.T9.C42:3",
+        "kind": "finish",
+        "m": [
+          "October",
+          "November"
+        ],
+        "s": [
+          0,
+          10
+        ],
+        "days": 6,
+        "month": "October",
+        "answer": "15 October",
+        "near": "16 October",
+        "win": "Yes, the fair ends on 15 October."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M3.S5.T9.C42:7",
+        "kind": "begin",
+        "m": [
+          "July",
+          "August"
+        ],
+        "e": [
+          1,
+          10
+        ],
+        "days": 40,
+        "month": "July",
+        "answer": "2 July",
+        "near": "1 July",
+        "ladder": [
+          "Count back to the start of August, then on into the month before.",
+          "Day 1 comes 39 days before 10 August."
+        ],
+        "win": "Yes, the course began on 2 July."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M3.S5.T9.C43:DC4",
+        "kind": "after",
+        "m": [
+          "April",
+          "May"
+        ],
+        "s": [
+          0,
+          12
+        ],
+        "days": 25,
+        "month": "May",
+        "answer": "7 May",
+        "near": "6 May",
+        "win": "Yes, 25 days after 12 April is 7 May."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M3.S5.T9.C43:4",
+        "kind": "after",
+        "m": [
+          "October",
+          "November"
+        ],
+        "s": [
+          0,
+          6
+        ],
+        "days": 10,
+        "month": "October",
+        "answer": "16 October",
+        "near": "15 October",
+        "win": "Yes, 10 days after 6 October is 16 October."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M3.S5.T9.C43:8",
+        "kind": "after",
+        "m": [
+          "October",
+          "November"
+        ],
+        "s": [
+          0,
+          27
+        ],
+        "days": 14,
+        "fort": true,
+        "month": "November",
+        "answer": "10 November",
+        "near": "3 November",
+        "ladder": [
+          "Past the month's last day, the jumps carry on from the 1st.",
+          "A fortnight is two weeks."
+        ],
+        "win": "Yes, a fortnight after 27 October is 10 November."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: Each shaded day is counted from 1, the first day included, and end date minus start date plus 1 is written below.",
+      "Phase 2: The run is cut at the last day of the first month, each part is counted from 1, and the two parts are added.",
+      "Phase 3: The days are counted from the start date as day 1 to the last day, which turns green.",
+      "Phase 4: Jumps are counted from the day after the date, and the date the last jump lands on turns green."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A calendar with two dates marked, waiting to be counted.",
+    "onFreePlay": "Free play. Move the start and end dates and count the days between.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You counted the days between dates and found a date some days after.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M3.S5.T9.C40:DC1",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A book fair is open from 8 September to 16 September. For how many days is it open?",
+            "question": {
+              "en": "A book fair is open from 8 to 16 September; how many days, both days counted?"
+            },
+            "ask": {
+              "en": "Days the fair is open?"
+            },
+            "answer": 9,
+            "planAnswer": "9 days.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M3.S5.T9.C40:1",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "From 2 October to 7 October, counting both days, how many days is that?",
+            "question": {
+              "en": "From 2 October to 7 October, counting both days, how many days is that?"
+            },
+            "ask": {
+              "en": "Days, both counted?"
+            },
+            "answer": 6,
+            "planAnswer": "6 days, because 7 - 2 + 1 = 6",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M3.S5.T9.C40:5",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "One person says a visit was after the 6th but before the 11th of a month. Another says it was after the 8th but before the 12th. If both are right, on which dates could the visit be?",
+            "question": {
+              "en": "Two friends say when the visit was; on which dates could it be?"
+            },
+            "ask": {
+              "en": "Dates in both lists?"
+            },
+            "answer": [
+              9,
+              10
+            ],
+            "planAnswer": "The 9th and the 10th, because those are the dates after the 8th and before the 11th",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M3.S5.T9.C41:DC2",
+            "worked": false,
+            "kind": "cross",
+            "planQuestion": "A camp runs from 27 July to 8 August. For how many days does it run?",
+            "question": {
+              "en": "A camp runs from 27 July to 8 August; how many days, both days counted?"
+            },
+            "ask": {
+              "en": "Days of the camp?"
+            },
+            "answer": 13,
+            "planAnswer": "13 days.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M3.S5.T9.C41:2",
+            "worked": false,
+            "kind": "cross",
+            "planQuestion": "From 29 October to 2 November, counting both days, how many days is that?",
+            "question": {
+              "en": "From 29 October to 2 November, counting both days, how many days is that?"
+            },
+            "ask": {
+              "en": "Days across the month end?"
+            },
+            "answer": 5,
+            "planAnswer": "5 days, because 3 days are in October and 2 days are in November",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M3.S5.T9.C41:6",
+            "worked": false,
+            "kind": "cross",
+            "planQuestion": "From 22 August to 5 September, counting both days, how many days is that?",
+            "question": {
+              "en": "How many days are there from 22 August to 5 September, with both days counted?"
+            },
+            "ask": {
+              "en": "Days, August to September?"
+            },
+            "answer": 15,
+            "planAnswer": "15 days, because 10 days are in August and 5 days are in September",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M3.S5.T9.C42:DC3",
+            "worked": false,
+            "kind": "finish",
+            "planQuestion": "A 16-day course begins on 22 November. On which date does it end?",
+            "question": {
+              "en": "A 16-day course begins on 22 November; on which date does it end?"
+            },
+            "ask": {
+              "en": "Last day of the course?"
+            },
+            "answer": "7 December",
+            "planAnswer": "7 December.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M3.S5.T9.C42:3",
+            "worked": false,
+            "kind": "finish",
+            "planQuestion": "A 6-day fair begins on 10 October. On which date does it end?",
+            "question": {
+              "en": "A fair of 6 days starts on 10 October; what is its last day?"
+            },
+            "ask": {
+              "en": "Last day of the fair?"
+            },
+            "answer": "15 October",
+            "planAnswer": "15 October, because 5 days after 10 October is 15 October",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M3.S5.T9.C42:7",
+            "worked": false,
+            "kind": "begin",
+            "planQuestion": "A 40-day course ended on 10 August. On which date did it begin, counting both days?",
+            "question": {
+              "en": "A 40-day course ended on 10 August; when did it begin, both days counted?"
+            },
+            "ask": {
+              "en": "First day of the course?"
+            },
+            "answer": "2 July",
+            "planAnswer": "2 July, because 39 days before 10 August is 2 July",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M3.S5.T9.C43:DC4",
+            "worked": false,
+            "kind": "after",
+            "planQuestion": "A plant is watered on 12 April and again 25 days after. On which date is it watered the second time?",
+            "question": {
+              "en": "A plant is watered on 12 April and again 25 days after; on which date is that?"
+            },
+            "ask": {
+              "en": "Second watering?"
+            },
+            "answer": "7 May",
+            "planAnswer": "7 May.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M3.S5.T9.C43:4",
+            "worked": false,
+            "kind": "after",
+            "planQuestion": "What date is 10 days after 6 October?",
+            "question": {
+              "en": "What date is 10 days after 6 October?"
+            },
+            "ask": {
+              "en": "Date 10 days on?"
+            },
+            "answer": "16 October",
+            "planAnswer": "16 October",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M3.S5.T9.C43:8",
+            "worked": false,
+            "kind": "after",
+            "planQuestion": "A jar is filled on 27 October and opened a fortnight later. On which date is it opened?",
+            "question": {
+              "en": "A jar is filled on 27 October and opened a fortnight later; which date?"
+            },
+            "ask": {
+              "en": "A fortnight after?"
+            },
+            "answer": "10 November",
+            "planAnswer": "10 November, because 14 days after 27 October is 10 November",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "date_counter",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "date_counter",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Counting both days",
+        "conceptId": "M3.S5.T9.C40",
+        "objectiveIds": [
+          "O15"
+        ],
+        "items": [
+          "M3.S5.T9.C40:DC1",
+          "M3.S5.T9.C40:1",
+          "M3.S5.T9.C40:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Across a month end",
+        "conceptId": "M3.S5.T9.C41",
+        "objectiveIds": [
+          "O15"
+        ],
+        "items": [
+          "M3.S5.T9.C41:DC2",
+          "M3.S5.T9.C41:2",
+          "M3.S5.T9.C41:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Finding the last day",
+        "conceptId": "M3.S5.T9.C42",
+        "objectiveIds": [
+          "O16"
+        ],
+        "items": [
+          "M3.S5.T9.C42:DC3",
+          "M3.S5.T9.C42:3",
+          "M3.S5.T9.C42:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Days after and a fortnight later",
+        "conceptId": "M3.S5.T9.C43",
+        "objectiveIds": [
+          "O16"
+        ],
+        "items": [
+          "M3.S5.T9.C43:DC4",
+          "M3.S5.T9.C43:4",
+          "M3.S5.T9.C43:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "kind",
+    "kind",
+    "shaded",
+    "cut",
+    "jump",
+    "month"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, kind, kind, shaded, cut, jump, month, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "date_counter"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M3.S5.T9.C30.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A calendar with two dates marked, waiting to be counted."
+    },
+    {
+      "en": "Count the first day and the last day. Then take one date from the other and add one."
+    },
+    {
+      "en": "Where does the first month end? Count that part, then the rest."
+    },
+    {
+      "en": "The first day is day one. On which date does the last day fall?"
+    },
+    {
+      "en": "After means add the days. Do you count the first day again?"
+    },
+    {
+      "en": "A new pair of dates. Count them the same way."
+    },
+    {
+      "en": "Free play. Mark any two dates and count the days between."
+    },
+    {
+      "en": "Count the cells again. Did you count the first day and the last day?"
+    },
+    {
+      "en": "You counted the days between dates and found a date some days after."
+    }
+  ],
+  "build": {
+    "source": "7553dc88:636710",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-16T18:25:32.224Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-11-16T18:25:32.092Z"
+    },
+    "tsxBytes": 559744,
+    "tsxMd5": "a83fc5d3c72c3d4ccff3676ab43ecca3"
+  }
+}

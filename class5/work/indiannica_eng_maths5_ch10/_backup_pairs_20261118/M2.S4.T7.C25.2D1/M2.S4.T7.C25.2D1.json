@@ -1,0 +1,1139 @@
+{
+  "slotId": "M2.S4.T7.C25.2D1",
+  "mediaId": "M2.S4.T7.C25.2D1",
+  "toolId": "time_line_jumps",
+  "title": "Time Line Jumper",
+  "component": "M2.S4.T7.C25.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch10_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_10/2dtool/M2.S4.T7.C33.2D1/M2.S4.T7.C33.2D1.tsx",
+  "description": "Find how long, an end time or a start on a time line by taking clock times after midnight and by jumping, across noon and 12 midnight, and see why a slow clock shows an earlier time.",
+  "conceptIds": [
+    "M2.S4.T7.C30",
+    "M2.S4.T7.C31",
+    "M2.S4.T7.C32",
+    "M2.S4.T7.C33"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find how long an activity lasts by taking clock times after midnight, find an end time and a start by jumping along a time line, and carry a journey past 12 midnight into the next day.",
+    "look": "One time line with a mark for every hour, 12 noon and 12 midnight marked on their own, and violet jumps that are dragged along it.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Time Line Jumper' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of jumps made. It is never a score. The working area is 1086 by 528 at x 64, y 202. The time line runs across the middle of the area along y 420 from x 90 to x 1130, with a mark for every hour in near-black ink. The 12 noon mark and the 12 midnight mark are drawn taller as marks of their own, and after a 12 midnight mark the words the next day are written above the line in ink. The times the question gives are set on the line in deep blue, labelled Start where a journey begins and Given otherwise, with the 12-hour time above each mark along y 350 and the hours and minutes after midnight below it along y 500. A jump is violet, labelled Jump, with its length written on it, and it is dragged along the line, the whole hours first and then the minutes. The mark a jump reaches is green, labelled End, and the length found is green, labelled How long, at x 120, y 650. On the third phase the slow clock stands at x 900, y 230, showing a time behind the true one. The jump being placed is amber. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a delete key, and keys for h, min, a.m. and p.m. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. What the question gives, as a clock time, a length of time, a start date or a number of days, is deep blue, labelled Given or Start. What the working reaches, as an end time, a length of time, a converted time or a date, is green, labelled Answer, End or How long. The thin second hand and the seconds it counts are vermilion, labelled Second hand. One jump along a time line, and one regrouped unit carried or borrowed, are violet, labelled Jump, Carry or Regroup. On a day bar the half from noon until just before midnight is rose, labelled p.m., and the half from midnight until just before noon stays warm white inside its outline, labelled a.m. The hand, digit, column, jump or date being worked on now is amber. Grey is kept for a zero holding a place open, labelled Place holder, and for nothing else. The hour hand and the minute hand, dials, tick marks, time lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last line stays as the child left it, with its jumps drawn, its start and end marked and the length beside them in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the length between the two marks turns green",
+        "does": "reads each time as hours and minutes after midnight, takes the earlier from the later, and finds the length on the line",
+        "goal": "how long is the later time minus the earlier time, both written as the hours and minutes after midnight",
+        "says": "How long after midnight is each time? Now take one from the other.",
+        "check": "Away from the screen: how many hours after midnight is 12 noon?",
+        "feels": "the two marks joined by a length that lights up on the line",
+        "hands": "Write two clock times on paper strips. Under each, write the hours and minutes after midnight, and take the earlier from the later. Lay the two strips on a paper time line to check the length.",
+        "tries": "First rung: set two times in the same hour and find how long. Second rung: set two times in different hours. Third rung: the same task across noon, before the question's own times return.",
+        "wrong": [
+          {
+            "why": "the hour number of an afternoon time is small, and a small number feels early",
+            "move": "takes the earlier time from the later as they stand on the 12-hour clock, so the afternoon time looks smaller",
+            "screen": "the answer stays in the slot, both times are drawn again with their hours and minutes after midnight beneath them, and the smaller of the two lengths after midnight lights amber"
+          },
+          {
+            "why": "the columns are worked separately, and the smaller number of minutes looks as if it can be taken from the larger",
+            "move": "takes the minutes from the minutes without regrouping when the minutes on top are too few",
+            "screen": "the answer stays, the length between the two marks is shown on the line, and the minutes column is lit amber with 1 h broken into 60 min"
+          }
+        ],
+        "screen": "the time line with a start and an end set on it in deep blue, and the hours and minutes after midnight beneath each",
+        "soWhat": "a clock time is the hours and minutes after midnight, so how long is the later time taken from the earlier one",
+        "concept": "How long, through the 24-hour clock"
+      },
+      {
+        "n": 2,
+        "win": "the mark reached turns green, labelled End",
+        "does": "drags a violet jump of whole hours, then a jump of minutes, and reads the mark reached",
+        "goal": "an end time is found by jumping from the start, whole hours first and then the minutes",
+        "says": "Jump the whole hours first. Then how many minutes are left to jump?",
+        "check": "Away from the screen: from any start time, which jump do you make first, the hours or the minutes?",
+        "feels": "the jumps landing one after another on the line, the hours first and then the minutes",
+        "hands": "Draw a time line on a paper strip with a mark for every hour, and put a start on it. Cut two paper jumps, one of whole hours and one of minutes, and lay them end to end from the start to find the end.",
+        "tries": "First rung: jump whole hours only. Second rung: jump whole hours and then a few minutes. Third rung: the same task with minutes that pass the next hour mark, before the question's own start returns.",
+        "wrong": [
+          {
+            "why": "the minutes are added like any numbers, and sixty does not stand out",
+            "move": "adds the minutes to the start and stops, even when they pass the next hour",
+            "screen": "the child's time stays, the jump of minutes is lit amber where it passes the next hour mark, and the hour is moved on in steps"
+          },
+          {
+            "why": "the jump has a number written on it, and the number looks like a time",
+            "move": "types the length of the jump as the end time",
+            "screen": "the jump stays, the mark it reaches is lit amber and read out as a clock time in green, labelled End, beside the child's answer"
+          }
+        ],
+        "screen": "the time line with a start set on it and a length of time to jump",
+        "soWhat": "an end time is found by jumping from the start, the whole hours first and then the minutes",
+        "concept": "Jumps to an end time"
+      },
+      {
+        "n": 3,
+        "win": "the start turns green, and the forward jump lands on the end",
+        "does": "drags the jumps back along the line, then checks by jumping forward again, and sets the slow clock behind the true time",
+        "goal": "a start is found by jumping back from the end; a slow clock shows a time behind the true time",
+        "says": "Which way do you jump to find a start? Check by jumping forward.",
+        "check": "Away from the screen: if a clock is slow, does it show a time before or after the true time?",
+        "feels": "the jump back and the jump forward meeting at the same mark",
+        "hands": "Put an end time on the paper time line and jump back to a start with the same two paper jumps, then jump forward again to see whether you land on the end. Hold a real clock a few minutes slow and find the true time.",
+        "tries": "First rung: jump back whole hours from an end. Second rung: jump back hours and then minutes, and check by jumping forward. Third rung: the same task with a slow clock, before the question's own end returns.",
+        "wrong": [
+          {
+            "why": "most jumps go forward, so forward comes first",
+            "move": "jumps forward from the end to find a start",
+            "screen": "the child's start stays, it is drawn later than its own end on the line, and the end it was worked from is lit amber beside it"
+          },
+          {
+            "why": "a clock face is trusted as the time",
+            "move": "takes the time on a slow clock for the true time",
+            "screen": "the slow clock is set beside the true time, the gap between them is drawn as a jump in violet, labelled Jump, and the child's answer stays"
+          }
+        ],
+        "screen": "the time line with an end set on it, a length of time to jump back, and a slow clock beside the line",
+        "soWhat": "a start is found by jumping back from the end and is checked by jumping forward again, and a slow clock shows a time behind the true time",
+        "concept": "Working back to a start"
+      },
+      {
+        "n": 4,
+        "win": "the two jumps are added, the words the next day light up, and the length turns green",
+        "does": "drags a jump to the 12 midnight mark, drags a second jump on from it, and adds the two lengths",
+        "goal": "a journey that passes 12 midnight is jumped to 12 midnight first, then on, and is written with the next day",
+        "says": "Stop at midnight first. What day is it after that?",
+        "check": "Away from the screen: a journey ends after 12 midnight. Does it end on the day it began, or the next?",
+        "feels": "the line folding at 12 midnight and the two jumps joining into one length",
+        "hands": "Fold a paper time line so that it has two days, one on each side of a 12 midnight mark. Jump to the mark, jump on from it, and write the next day on the second part.",
+        "tries": "First rung: jump to 12 midnight only. Second rung: jump on from 12 midnight to an end. Third rung: the same task with a start in the 12 o'clock hour after noon, before the question's own start returns.",
+        "wrong": [
+          {
+            "why": "the two times are on the same clock face, so they look like two times of one day",
+            "move": "takes a night time from a morning time as they stand, without going through 12 midnight",
+            "screen": "the two marks are drawn on two days of the line, the 12 midnight mark between them is lit amber, and the words the next day are written in ink beside the second day"
+          },
+          {
+            "why": "the length is the answer that was asked for, so the day feels like a detail",
+            "move": "adds the two jumps but leaves out the words the next day",
+            "screen": "the words the next day are lit amber over the line after 12 midnight, and the end time is drawn there"
+          }
+        ],
+        "screen": "the time line with the 12 midnight mark drawn on its own and the words the next day waiting after it",
+        "soWhat": "a journey that passes 12 midnight is jumped to 12 midnight first, then on, and is written with the next day",
+        "concept": "Past midnight"
+      }
+    ],
+    "delight": "On the fourth phase, as the second jump crosses 12 midnight, the words the next day rise over the far side of the line and the two jumps slide together into one length.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet jumped. On the first phase the time line runs across the area with two clock times set on it in deep blue, each with the hours and minutes after midnight beneath it. On the second a start is set on the line with a length of time waiting to be jumped. On the third an end is set on the line with a length of time to jump back, and a slow clock stands beside the line. On the fourth the 12 midnight mark is drawn on its own with the words the next day waiting after it. One thing moves, once: the first mark, the first jump or the slow clock gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any two times set on the line and jumped between in either direction, past noon and past 12 midnight. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on how long, an end time, a start, a slow clock and a journey past midnight.",
+    "voiceLines": [
+      "A time line with a peg for every hour.",
+      "How long after midnight is each time? Now take one from the other.",
+      "Jump the whole hours first. Then how many minutes are left to jump?",
+      "Which way do you jump to find a start? Check by jumping forward.",
+      "Stop at midnight first. What day is it after that?",
+      "A new journey on the line. Jump it the same way.",
+      "Free play. Set any two times and jump between them.",
+      "Look along the line again. Which jump have you not made yet?",
+      "You found how long, an end and a start, and you crossed midnight."
+    ],
+    "observations": [
+      {
+        "why": "a time of day is a length of time after midnight.",
+        "soWhat": "how long is the later time taken from the earlier one, both after midnight.",
+        "observe": "Each clock time sat on the line with its hours and minutes after midnight beneath it."
+      },
+      {
+        "why": "whole hours land on a mark of the line, so the minutes left are easy to see.",
+        "soWhat": "jump the whole hours first, then the minutes.",
+        "observe": "The jump of whole hours was dragged before the jump of minutes."
+      },
+      {
+        "why": "going back and going forward are the same length in opposite directions.",
+        "soWhat": "check an end or a start by jumping the other way.",
+        "observe": "A start found by jumping back could be checked by jumping forward again."
+      },
+      {
+        "why": "12 midnight ends one day and begins the next.",
+        "soWhat": "a journey that passes 12 midnight is jumped to 12 midnight first, then on, and is written with the next day.",
+        "observe": "The jump stopped at 12 midnight, and the words the next day lit up after it."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the time line with a start and an end set on it in deep blue, and the hours and minutes after midnight beneath each",
+        "win": "the length between the two marks turns green",
+        "traceback": "both times are shown as hours and minutes after midnight, the earlier is taken from the later (1 h changed into 60 min where the minutes are too few), and the length between the marks turns green",
+        "ladder": [
+          "After noon, add 12 to the hours to get the time after midnight.",
+          "Both are morning times, so take 9 h 10 min away from 11 h 40 min.",
+          "15 h 5 min after midnight is the time 3:05 p.m.",
+          "Read both times as hours after midnight, as the cards show.",
+          "Take minutes from minutes first, then hours from hours."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the time line with a start set on it and a length of time to jump",
+        "win": "the mark reached turns green, labelled End",
+        "traceback": "the hour jump and the minute jump are drawn from the start, the mark they reach turns green with its time, and the right half (a.m. or p.m.) is ringed on the card",
+        "ladder": [
+          "Read the time at the mark where the minute jump lands.",
+          "A jump of whole hours moves only the hour.",
+          "50 min and 35 min pass the next hour mark.",
+          "Jump the whole hours, then add the minutes to the minutes.",
+          "When the minutes pass 60, move on 1 hour and keep the rest."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the time line with an end set on it, a length of time to jump back, and a slow clock beside the line",
+        "win": "the start turns green, and the forward jump lands on the end",
+        "traceback": "the jumps back are drawn from the end, the start turns green with its time and a forward jump lands on the end; for the slow clock the minutes it loses each hour are counted, it is jumped back from the true time and its hands are set",
+        "ladder": [
+          "A start comes before its end, so jump back, not forward.",
+          "Going back 30 min from 25 past the hour crosses the hour mark.",
+          "A slow clock is behind the true time, never ahead.",
+          "Jump back the hours first, then the minutes.",
+          "Check it by jumping forward from your start to land on the end."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the time line with the 12 midnight mark drawn on its own and the words the next day waiting after it",
+        "win": "the two jumps are added, the words the next day light up, and the length turns green",
+        "traceback": "the jump to 12 midnight and the jump on are drawn, the words the next day light up, and the length or the end time turns green with a.m. and the next day ringed on the cards",
+        "ladder": [
+          "Do not take one time from the other; go through 12 midnight.",
+          "First find how long it is to 12 midnight from 11:50 p.m.",
+          "Part of the flight is before 12 midnight and the rest is after it.",
+          "Read the length written on each jump.",
+          "Add the two jumps: hours to hours, minutes to minutes."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "timeLine": "a day band with a mark for every hour (12 noon and 12 midnight taller), a.m. warm white and p.m. rose",
+    "free": {
+      "start": 480,
+      "jumps": [
+        60,
+        10
+      ]
+    },
+    "answers": "durations as hours | minutes; a 12-hour time as hour | minutes plus the a.m. / p.m. card (and the day card past midnight)",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T7.C30:TJ1",
+        "near": "6|45",
+        "kind": "long",
+        "s": 500,
+        "e": 815,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          5,
+          15
+        ],
+        "win": "Yes, 5 h 15 min passes from 8:20 a.m., to 1:35 p.m."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T7.C30:1",
+        "kind": "long",
+        "s": 550,
+        "e": 700,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          2,
+          30
+        ],
+        "win": "Yes, that is 2 h 30 min."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T7.C30:5",
+        "near": "5|20",
+        "kind": "long",
+        "s": 625,
+        "e": 905,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          4,
+          40
+        ],
+        "ladder": [
+          "5 min is too few to take 25 min from, so change 1 h into 60 min.",
+          "15 h 5 min is the same as 14 h 65 min."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T7.C31:TJ2",
+        "near": "12|65|pm",
+        "kind": "end",
+        "s": 670,
+        "d": 115,
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          1,
+          5,
+          "pm"
+        ],
+        "win": "Yes, the show is over at 1:05 p.m."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T7.C31:2",
+        "kind": "end",
+        "s": 800,
+        "d": 120,
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          3,
+          20,
+          "pm"
+        ],
+        "win": "Yes, it is 3:20 p.m., 2 h after 1:20 p.m."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T7.C31:6",
+        "near": "6|85|pm",
+        "kind": "end",
+        "s": 1010,
+        "d": 155,
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          7,
+          25,
+          "pm"
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T7.C32:TJ3",
+        "near": "12|15|am",
+        "kind": "start",
+        "e": 1310,
+        "d": 145,
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          7,
+          25,
+          "pm"
+        ],
+        "win": "Yes, at 7:25 p.m., it started, and 2 h 25 min later it is 9:50 p.m."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T7.C32:3",
+        "near": "9|55|pm",
+        "kind": "start",
+        "e": 1225,
+        "d": 90,
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          6,
+          55,
+          "pm"
+        ],
+        "win": "Yes, the film began at 6:55 p.m."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T7.C32:7",
+        "near": "11|00|am",
+        "kind": "slow",
+        "s": 420,
+        "e": 660,
+        "rate": 3,
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          10,
+          48,
+          "am"
+        ],
+        "ladder": [
+          "It loses 3 min in each hour from 7:00 a.m., to 11:00 a.m.",
+          "Find how many minutes it is behind, then jump back from 11:00 a.m."
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T7.C33:TJ4",
+        "near": "5|45",
+        "kind": "night",
+        "s": 1340,
+        "e": 1715,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          6,
+          15
+        ],
+        "win": "Yes, 6 h 15 min in all."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T7.C33:4",
+        "near": "12|20|am|same",
+        "kind": "nightEnd",
+        "s": 1430,
+        "d": 30,
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          12,
+          20,
+          "am",
+          "next"
+        ],
+        "ladder": [
+          "What does a clock read just after 12 midnight, and on which day?",
+          "Take the 10 min to midnight off the 30 min."
+        ],
+        "win": "Yes, it is the next day at 12:20 a.m."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T7.C33:8",
+        "near": "3|15|am|same",
+        "kind": "nightEnd",
+        "s": 1400,
+        "d": 235,
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          3,
+          15,
+          "am",
+          "next"
+        ],
+        "ladder": [
+          "How much of the 3 h 55 min is left after the jump to midnight?",
+          "Take 40 min off 3 h 55 min, then count that on from 12 midnight."
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: both times are shown as hours and minutes after midnight, the earlier is taken from the later (1 h changed into 60 min where the minutes are too few), and the length between the marks turns green",
+      "Phase 2: the hour jump and the minute jump are drawn from the start, the mark they reach turns green with its time, and the right half (a.m. or p.m.) is ringed on the card",
+      "Phase 3: the jumps back are drawn from the end, the start turns green with its time and a forward jump lands on the end; for the slow clock the minutes it loses each hour are counted, it is jumped back from the true time and its hands are set",
+      "Phase 4: the jump to 12 midnight and the jump on are drawn, the words the next day light up, and the length or the end time turns green with a.m. and the next day ringed on the cards"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A time line with a peg for every hour.",
+    "onFreePlay": "Free play: from 8:00 a.m., jump forward or back and read the time.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You found how long, an end and a start, and you crossed midnight.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T7.C30:TJ1",
+            "worked": false,
+            "kind": "long",
+            "planQuestion": "How long is it from 8:20 a.m. to 1:35 p.m.?",
+            "question": {
+              "en": "From 8:20 a.m., how long is it to 1:35 p.m.?"
+            },
+            "ask": {
+              "en": "8:20 a.m. to 1:35 p.m.?"
+            },
+            "answer": [
+              5,
+              15
+            ],
+            "planAnswer": "5 h 15 min.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T7.C30:1",
+            "worked": false,
+            "kind": "long",
+            "planQuestion": "How long is it from 9:10 a.m. to 11:40 a.m.?",
+            "question": {
+              "en": "Starting at 9:10 a.m., how long is it until 11:40 a.m.?"
+            },
+            "ask": {
+              "en": "9:10 a.m. to 11:40 a.m.?"
+            },
+            "answer": [
+              2,
+              30
+            ],
+            "planAnswer": "2 h 30 min",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T7.C30:5",
+            "worked": false,
+            "kind": "long",
+            "planQuestion": "How long is it from 10:25 a.m. to 3:05 p.m.?",
+            "question": {
+              "en": "A trip starts at 10:25 a.m., and ends at 3:05 p.m., so how long is it?"
+            },
+            "ask": {
+              "en": "10:25 a.m. to 3:05 p.m.?"
+            },
+            "answer": [
+              4,
+              40
+            ],
+            "planAnswer": "4 h 40 min",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T7.C31:TJ2",
+            "worked": false,
+            "kind": "end",
+            "planQuestion": "A puppet show starts at 11:10 a.m. and lasts 1 h 55 min. When does it end?",
+            "question": {
+              "en": "At 11:10 a.m., a puppet show starts and lasts 1 h 55 min, so when does it end?"
+            },
+            "ask": {
+              "en": "Show ends at?"
+            },
+            "answer": "1|05|pm",
+            "planAnswer": "1:05 p.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T7.C31:2",
+            "worked": false,
+            "kind": "end",
+            "planQuestion": "What time is 2 h after 1:20 p.m.?",
+            "question": {
+              "en": "What time is it 2 h after 1:20 p.m.?"
+            },
+            "ask": {
+              "en": "2 h after 1:20 p.m.?"
+            },
+            "answer": "3|20|pm",
+            "planAnswer": "3:20 p.m., because 2 h after 1:20 p.m. is 3:20 p.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T7.C31:6",
+            "worked": false,
+            "kind": "end",
+            "planQuestion": "A show starts at 4:50 p.m. and lasts 2 h 35 min. When does it end?",
+            "question": {
+              "en": "A show starts at 4:50 p.m., and runs 2 h 35 min, so what time is it over?"
+            },
+            "ask": {
+              "en": "Show over at?"
+            },
+            "answer": "7|25|pm",
+            "planAnswer": "7:25 p.m., because 2 h 35 min after 4:50 p.m. is 7:25 p.m.",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T7.C32:TJ3",
+            "worked": false,
+            "kind": "start",
+            "planQuestion": "A concert ends at 9:50 p.m. after 2 h 25 min. When did it start?",
+            "question": {
+              "en": "A show lasts 2 h 25 min and ends at 9:50 p.m., so when did it start?"
+            },
+            "ask": {
+              "en": "Show began at?"
+            },
+            "answer": "7|25|pm",
+            "planAnswer": "7:25 p.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T7.C32:3",
+            "worked": false,
+            "kind": "start",
+            "planQuestion": "A film ends at 8:25 p.m. after 1 h 30 min. When did it start?",
+            "question": {
+              "en": "A film ends at 8:25 p.m., after 1 h 30 min, so what time did it begin?"
+            },
+            "ask": {
+              "en": "Film began at?"
+            },
+            "answer": "6|55|pm",
+            "planAnswer": "6:55 p.m., because 1 h 30 min before 8:25 p.m. is 6:55 p.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T7.C32:7",
+            "worked": false,
+            "kind": "slow",
+            "planQuestion": "A clock runs slow by 3 min every hour. It is set right at 7:00 a.m. What does it show when the true time is 11:00 a.m.?",
+            "question": {
+              "en": "A clock loses 3 min an hour from 7:00 a.m., so what does it show at 11:00 a.m.?"
+            },
+            "ask": {
+              "en": "Slow clock shows?"
+            },
+            "answer": "10|48|am",
+            "planAnswer": "10:48 a.m., because in 4 h it runs slow by 4 x 3 = 12 min, and 12 min before 11:00 a.m. is 10:48 a.m.",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T7.C33:TJ4",
+            "worked": false,
+            "kind": "night",
+            "planQuestion": "A night ferry leaves at 10:20 p.m. and arrives at 4:35 a.m. How long is the journey?",
+            "question": {
+              "en": "At 10:20 p.m., a ferry leaves, and at 4:35 a.m., it lands, so how long is it?"
+            },
+            "ask": {
+              "en": "Ferry journey?"
+            },
+            "answer": [
+              6,
+              15
+            ],
+            "planAnswer": "6 h 15 min.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T7.C33:4",
+            "worked": false,
+            "kind": "nightEnd",
+            "planQuestion": "What time is 30 min after 11:50 p.m.? Say the day.",
+            "question": {
+              "en": "What time is it 30 min after 11:50 p.m., and on which day?"
+            },
+            "ask": {
+              "en": "30 min after 11:50 p.m.?"
+            },
+            "answer": "12|20|am|next",
+            "planAnswer": "12:20 a.m. the next day, because 30 min after 11:50 p.m. is 12:20 a.m. the next day",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T7.C33:8",
+            "worked": false,
+            "kind": "nightEnd",
+            "planQuestion": "A night flight leaves at 11:20 p.m. and lasts 3 h 55 min. When does it land? Say the day.",
+            "question": {
+              "en": "A 3 h 55 min flight leaves at 11:20 p.m., so when and on which day does it land?"
+            },
+            "ask": {
+              "en": "Flight lands at?"
+            },
+            "answer": "3|15|am|next",
+            "planAnswer": "3:15 a.m. the next day, because 3 h 55 min after 11:20 p.m. is 3:15 a.m. the next day",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "time_line_jumps",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "time_line_jumps",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "How long, through the 24-hour clock",
+        "conceptId": "M2.S4.T7.C30",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C30:TJ1",
+          "M2.S4.T7.C30:1",
+          "M2.S4.T7.C30:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Jumps to an end time",
+        "conceptId": "M2.S4.T7.C31",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S4.T7.C31:TJ2",
+          "M2.S4.T7.C31:2",
+          "M2.S4.T7.C31:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Working back to a start",
+        "conceptId": "M2.S4.T7.C32",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C32:TJ3",
+          "M2.S4.T7.C32:3",
+          "M2.S4.T7.C32:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Past midnight",
+        "conceptId": "M2.S4.T7.C33",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S4.T7.C33:TJ4",
+          "M2.S4.T7.C33:4",
+          "M2.S4.T7.C33:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "markers",
+    "x",
+    "jumps",
+    "a",
+    "direction",
+    "next_day",
+    "slow_clock"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, markers, x, jumps, a, direction, next_day, slow_clock, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "time_line_jumps"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T7.C25.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A time line with a peg for every hour."
+    },
+    {
+      "en": "How long after midnight is each time? Now take one from the other."
+    },
+    {
+      "en": "Jump the whole hours first. Then how many minutes are left to jump?"
+    },
+    {
+      "en": "Which way do you jump to find a start? Check by jumping forward."
+    },
+    {
+      "en": "Stop at midnight first. What day is it after that?"
+    },
+    {
+      "en": "A new journey on the line. Jump it the same way."
+    },
+    {
+      "en": "Free play. Set any two times and jump between them."
+    },
+    {
+      "en": "Look along the line again. Which jump have you not made yet?"
+    },
+    {
+      "en": "You found how long, an end and a start, and you crossed midnight."
+    }
+  ],
+  "build": {
+    "source": "1d59c21a:678794",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-16T21:12:37.485Z",
+    "checks": {
+      "pass": 97,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-11-16T21:12:37.356Z"
+    },
+    "tsxBytes": 603490,
+    "tsxMd5": "8cac6b0662150cc3a30d6db20dc41e8a"
+  }
+}

@@ -1,0 +1,19 @@
+STATUS: fixes-needed (1 must-fix, 3 should-fix, 4 nits; 14 of 17 visual claims FIXED)
+SLOTS: M3.S5.T11.C51.2D1 (C51 Three Measures) FINAL VERIFY, visual-reviewer-1.87, report-only
+Looked at: pack frames p1-choice/choice-line/choice-wrong/hintkey hi + en/gu, p2-step1/stepwrong/ask-shut/ask-open/wrong/win/end en/hi/gu, p3-ask-shut/ask-open/wrong/win en/hi/gu, p3-step1/stepwrong gu, p4-ask-open/wrong/win/free hi+gu+en, plus real-input playkit frames (own play-vr187-* files, deleted at the end): Q2 correction (yes) en/hi/gu + Q2 win en, P3 Q3 wrong-3 correction and 60 win en/hi/gu, P3 Q3.2 lemon win en, P2 Q3 Wide x2 left-over en/hi/gu. Pixel gaps measured. Pack current (22:03 vs tool 21:49). Console errors 0.
+FIXED (item: proof)
+1 hi box label: ink 197 vs box outline bottom 190 = 6 px (was 1); en 13, gu 10; same in choice-line/choice-wrong/hintkey. (hi still < 12, card limit; accept)
+2 gu Wide/High: key 133 wide, text clear L/R gu Wide 13/15, High 24/25, hi 21/23 and 22/24, en 17/18 in step1, stepwrong, ask-shut, ask-open. See nit N1 for Wide 3.
+3 Q2 correction pill (real input, miss 'A new one'): pill 256x54, text clear L/R en 19/20, hi 51/51, gu 46/46; shelf piece top 13 px below pill in en/hi/gu; also the win pill (violet) en. Not touching.
+4 P3 Q3 ticks (real, after wrong 3 and after win 60): digits 2 and 1 plus '3 cm / 3 सेमी / 3 સેમી' once on top, no stacked matras; gap to the cards en 28, hi 12, gu 25 (both layouts).
+5 gold key: ring box 974-1149, bow 21 px from the ring left, 29 right, 45 top/bottom, ring under the picture (p3-ask-shut and ask-open, en/hi/gu).
+6 chips: en 'Same cuboid, turned' 22/23 clear; en '4 different cuboids' 39/38; hi chip 54/51 at 40, gu 68/66 at 40; Left over label under key row en 19, gu 15, hi 11 (a 8 px mark top, visual ~17); pair 36 -> ~45 px (tray 55: partly). hi 'लंबाई N': see S3.
+7 gu 'વધુ ઘનફળ' 175 px wide (was 131); Mark level gu 44 (text 44/42 clear sides); Given card gu two lines fit; winning object green ring: stone (p3-win/p3-wrong, all langs) and lemon (real Q3.2 win en).
+8 gu 2.1 win: 'છે.' gone but line 2 is still one word 'બને.' (cosmetic, PARTLY).
+9 P2 warm-up hints match the 2x2 (Wide top-left, High top-right, Turn bottom-left, Shelf bottom-right): 'Shelf is on the right of Turn.' / 'Wide is the top left key.' / 'The Shelf key sits next to Turn.' / 'Turn is the bottom left key.' / 'Shelf is the bottom right key.' + hi/gu TR present; p2-stepwrong-hi shows the step-1 hint.
+[must-fix] p2-win, p2-wrong, p2-end, gu — the answer chip '4 જુદા લંબઘન' (now 40): the tail of 'જુ' (x 735-752, y 152-163) ends on the row directly above the pill's bottom outline (rows 164-167): 0-1 px, top gap 7 (hi 13/10, en 16/11) — lift the text ~8 px or make the pill ~16 px taller.
+[should-fix] p3-win, p3-wrong, all langs — the green ring round the stone: its bottom edge (rows 541-546) sits straight on the jar's base outline (547-548): 0 px — shrink/lift the ring >= 12 px (sides are 18 px clear).
+[should-fix] p3-win gu — 'વધુ ઘનફળ' (44) top is 7 px under the jar base (en 13, hi 12): nudge it ~6 px down (43 px free below).
+[should-fix] p2-step1/stepwrong/ask-shut/ask-open — 'Long N' chip: en 'g' descender 1 px above the bottom outline (T9/B1); hi 'लंबाई 18' bindu 5-6 px under the top outline (was ~3, still < 12): chip 1.45em tall or lower the text a few px.
+[nit] N1 real Q3 (Wide 2 -> 3) gu 'પહોળાઈ 3' text 10/11 px from the key edges (1: 13/15); en 13/14. N2 p4-win gu bubble 'ચઢ્યું.' alone on line 2. N3 hi tick labels exactly 12 px from the Given card. N4 hi Left over label 11 px (mark tip) under the key row.
+Spot-check clean (no new collisions, nothing red or crossed after a miss, no English left in hi/gu): phase 1 en/hi/gu (choice-wrong); phase 2 en/hi/gu; phase 3 en/hi/gu; phase 4 en/hi/gu (ask-open, win, free). Unchanged frames not re-looked: p1 start/step/ask/wrong/win/end, p4 step/summary/party (not in the changed list).

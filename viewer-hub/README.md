@@ -15,8 +15,20 @@ or closed is remembered): the tools of the chosen chapter, or of every chapter u
 Sidecar, and on the right the checks, the Pipeline tab with Re-run check, and Live. The page remembers your last class in this
 browser, and a link like `http://localhost:5170/#/5/indiannica_eng_maths5_ch5/M1.S1.T2.C4.2D1` opens that tool.
 
-**Look:** the hub is always light, whatever the system theme (the class viewer below has no dark mode, so a dark bar over it
-clashed and hid the buttons). The header and both side panels are a slightly darker slate tint than the white content, the
+**Light and dark (the owner, 2026-11-22; Preview and Editor).** The sun/moon button at the end of the header switches both pages and the
+embedded class viewer. With no saved choice the page follows the system setting (and follows it live); a press is remembered in this browser
+(`localStorage` key `udgam:theme`) and a small script in `<head>` paints it on the first frame, so a reload does not flash white. The palette is
+Tool_Pipeline's preview dark palette (`preview/src/theme.css`) under the hub's own token names (`:root[data-theme="dark"]` in `index.html`);
+every colour on the page, the Editor's queue, feedback cards, diff, dialogs and toasts included, is a token, so a new rule uses `var(--...)`, never a hex.
+The tool itself (the viewer's device frame, the Editor's Before / After renders, a pasted screenshot) keeps its own light canvas in both themes: it is
+the product, not chrome. The viewer takes the theme from the hub: `?theme=dark|light` in its iframe URL for the first paint, then a
+`{ type: "udgam-viewer:theme", theme }` postMessage on every press (the hub proxies the viewer, so it is the same origin; the listener and the
+first-paint script are in `class<N>/viewer/public/index.html`, the palette in `class<N>/viewer/src/styles.css`). Opened on its own the viewer stays
+light unless a theme was saved for its origin. A class whose viewer predates this (it never reads `?theme=`) simply stays light inside a dark hub:
+bring it up with `node classctl.mjs sync --from 5 --to N --only code --keep-target "lib/**,runtime/**,viewer/public/bundle.*"` (the viewer's
+four files; the bundle is rebuilt when its viewer starts).
+
+**Look:** the header and both side panels are a slightly darker slate tint than the white content (light), the
 Previous / Tool 2 of 5 / Next group is outlined in the accent colour, and the selected tool is a white card with a blue edge.
 Labels, buttons, chapter headings and tool names in the header and the left panel are semi-bold (600, the selected tool 700).
 The right panel is the class viewer's own; it takes the tint only when embedded (`.app.embed` in `viewer/src/styles.css`), so the
@@ -75,7 +87,9 @@ feedback loop as Tool_Pipeline's preview Editor, run on THIS pipeline:
 
 - **Review queue**: the pending rows of the `toolfeedback` table (what educators file from the Content-Validator) for every chapter
   that has a `class<N>/work/<chapter_id>/` folder, filtered by board, medium, publication, subject, std and chapter, and in the
-  filter popup by date and teacher. Copy puts every filtered item (with its screenshot) on the clipboard. Times are shown (and the
+  filter popup by date and teacher. Copy (the icon in the queue header) puts every filtered item (with its screenshot) on the clipboard;
+  each feedback item of the selected tool also has its own copy icon (top right of the item) that copies just that one in the same
+  format (chapter, `slot -> text`, the screenshot inlined as HTML plus a plain-text copy) and shows a tick for a moment. Times are shown (and the
   date filter reads days) in **IST**; the table keeps them in UTC.
   **Feedback never depends on the tool's id.** Teachers file it under the LIVE plan's media id, and a re-keyed plan renames mounts
   (class 4 ch 10: live v6 `C14` / `C19`, work folder still v3's `C15` / `C20`) while keeping each mount's `2d_tool_url`. The list
@@ -90,7 +104,8 @@ feedback loop as Tool_Pipeline's preview Editor, run on THIS pipeline:
 - **Apply feedback in the IDE / In a terminal**: writes `work/<ch>/<id>/_feedback/REVISE_PROMPT.md` (the feedback, the downloaded
   screenshots, the udgam steps: edit `tool.tsx` -> `check`, which ports on a pass; never publish), snapshots the baseline
   (`_feedback/tool.before.tsx` + `port.before.tsx`, write-once) and hands a Claude Code session to you, started at the pipeline root.
-- **Diff + Before / After**: `tool.tsx` against the baseline, and the ported tool before and after, rendered with the class
+- **Diff + Before / After** (layout as in Tool_Pipeline's preview Editor: a slim header, ONE left column holding the tool's feedback and
+  then the diff, and the render on the far right): `tool.tsx` against the baseline, and the ported tool before and after, rendered with the class
   viewer's own libraries and host template, at Mobile / Web / Smartboard and in EN / हिं / ગુ. Both follow the disk every 3 s.
 - **Discard** puts `tool.tsx` (and the ported pair) back from the baseline. **Approve & publish** and **Publish local changes**
   open one dialog: tick tools, **Dry run** (`node cli.mjs publish <chapter_id>/<id>`, writes nothing) or **Publish**

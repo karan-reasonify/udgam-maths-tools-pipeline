@@ -153,7 +153,9 @@ ${silent
   const shared = (() => { const mm = /api\.share\(\{([\s\S]*?)\}\)/.exec(fs.readFileSync(path.join(dir, "tool.tsx"), "utf8")); return mm ? [...mm[1].matchAll(/([A-Za-z_]\w*)\s*:/g)].map((x) => x[1]) : []; })();
   // both files are named by the slot id: the plan's mount id, the JSON's slotId, the last part of its 2d_tool_url
   if (slot.id && slot.id !== id) throw new Error(`the folder ${id} is not the plan's slot id ${slot.id}`);
-  if (slot["2d_tool_url"] && !slot["2d_tool_url"].endsWith(`/${id}/${id}.tsx`)) throw new Error(`the plan's 2d_tool_url does not end in /${id}/${id}.tsx: ${slot["2d_tool_url"]}`);
+  // a RE-KEYED plan (class 5 ch 10 v3: new ids, old urls) names the old id's object; publish.mjs mountTarget uploads there, the pair stays <id>
+  const urlStem = slot["2d_tool_url"] && (/\/([^/]+)\/\1\.tsx$/.exec(slot["2d_tool_url"]) || [])[1];
+  if (slot["2d_tool_url"] && !(urlStem === id || /^M\d+\.S\d+\.T\d+\.C\d+\.2D\d+$/.test(urlStem || ""))) throw new Error(`the plan's 2d_tool_url does not end in /${id}/${id}.tsx (or a re-keyed /<media id>/<media id>.tsx): ${slot["2d_tool_url"]}`);
   const out = outDir(dir);
   fs.mkdirSync(out, { recursive: true });
   const tsxFile = path.join(out, `${id}.tsx`), jsonFile = path.join(out, `${id}.json`);

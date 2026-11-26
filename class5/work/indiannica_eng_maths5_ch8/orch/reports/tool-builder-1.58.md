@@ -1,0 +1,4 @@
+STATUS: done. C21 Rows Times Squares, the two last nits only (tool.tsx). Quick 33/0/0; full 98 pass / 0 warn / 0 fail (motion-on rows and reduced-motion renders); PORTED.
+1 Side-length pills: the rotated pill now stands at max(38, 15 + h/2) from the grid's right edge, so hi/gu sit 2 px further out (12 clear) and en is unchanged. While the boundary traceback plays it moves 5 more, clearing the 9-wide orange outline by 12; that shift applies in all languages, en too.
+2 Row chip in hi/gu: it now needs row - 12 >= 28 type at 1.35 em, so on the 16x7 garden (row 47.5) the chip is skipped in hi/gu, as the verifier offered; en keeps it. On rows where it does show (9x5, 8x6, 9x6) its cap is row - 12, 6 clear top and bottom. The gu ask sheet shows P2 with no chip and P1 with the chip inside its row.
+Nothing else changed. The play tester's play-G3/G4 PNGs are left for the clean step.

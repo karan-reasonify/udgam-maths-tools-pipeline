@@ -1,0 +1,12 @@
+STATUS: ISSUES (0 must-fix, 1 should-fix, 1 questions)
+visual-reviewer-1.101 · class 5 ch 10 · M1.S1.T2.C8.2D1 Three Hands Clock · Hindi only · round 6 · pack 16:13, r66
+Looked at (hi, full 1600x900, all 10 frames flagged changed): p2-step1, p2-stepwrong, p2-ask-shut, p2-ask-open, p2-wrong, p2-win, p2-choice, p2-choice-line, p2-choice-wrong, p2-end. Measured from pixels, edge to edge (antialiased half rows counted 0.5). No English left on screen except digits.
+Unchanged since round 5 (not looked at): start, every p1/p3/p4 hi frame, p4-summary, p1-again, p4-free, p1-party, p4-party.
+Round-5 items:
+1 OK (p2-ask-shut, p2-ask-open): card 120..221; line 1 ink 130..161, line 2 ink 172..203 = 10 px clear between lines (>= 8); matras 6 px under the card's inner top edge; centred by the head lines (13 px above / 14 px below). p2-step1 card (8 बजे / सुबह): 18 px between lines, ु 7 px over the outline.
+2 OK (p2-step1, p2-stepwrong, p2-wrong): strip outline's lower edge 584.5, caption matra tips at 590 = 5.5 px (6 px from the stroke core); head line 13 px; clear of the divider and of each other.
+3 PARTLY (p2-wrong): ring top 4.0 px under the strip's top outline (OK, target 4); ring-to-card 10.0 px (11.5 from the ring's centre line; target 11, 1 short); card body ends 573, strip bottom outline begins 581.5 = 8.5 px (10.0 to its centre line; target 10, 1.5 short): both look clearly separate. Chips: NOT FIXED (finding).
+4 No new defect in the 10 frames beyond the chip below.
+[should-fix] phase 2, all 10 hi frames above (every one with the strip) — the "पूर्वाह्न" chip (60 tall, text 42): its ink is 54 tall (reph top to ू foot), so the ू foot FUSES into the chip's bottom outline (ink runs on into the outline rows 463-465: 0 px clear, target 4) and the reph is 2.5 px under the top outline (target 4); ink also sits 1 px low. The "अपराह्न" chip is fine (14.5 top / 7.5 bottom clear). — fix: Devanagari ink here = 1.29 x font size; for >= 4 px each side plus the 3 px stroke use text 36 in a 60 chip, or keep 42 and make the chip >= 66 tall; centre the reph-to-ू ink, not the em box.
+[question] p2-wrong, hi — ring-to-card and card-to-strip-bottom are 1 and 1.5 px short of the stated 11 and 10 (edge to edge), clear by eye. Accept, or re-measure after the chip fix (a taller chip moves both)?
+Not rated again (runtime-drawn, as listed): answer-box labels with the pad open, summary size, orphan words, two invites, hint-only bubble, party cone.

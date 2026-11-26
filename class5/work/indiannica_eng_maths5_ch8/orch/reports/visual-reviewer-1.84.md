@@ -1,0 +1,21 @@
+STATUS: fixes-needed
+SLOTS: M2.S3.T7.C31.2D1 (visual FINAL VERIFY of C31-final-fixes, builder 1.49)
+FILES: none edited (report only; my play-vr184-* PNGs and scratch removed)
+CHECKS: frames opened at full size: p1 en ask-open / hi win / gu wrong / hi party; p2 en+hi+gu wrong, hi win, hi step1, gu stepwrong; p3 en+hi+gu win and end, en+gu wrong, gu step1; p4 hi win/wrong/free, gu open/end/summary/party, en end (stone). The other changed frames only numerically (violet sampling, ink gaps). playkit real input en/hi/gu: P2 Q1 12 taps then 12, typed 7 with no tap, 12 taps then 7, Q2/Q3 corrections; DOM ink-box vs traced-path gaps for P2 win, P3 win, P4 hand + stone.
+VERDICT: ISSUES (0 must-fix, 5 should-fix, 1 nit; the checklist items are fixed or partly fixed, no blocker)
+CHECKLIST (FIXED / PARTLY):
+2 child's wrong letter vs correction chip: FIXED. P2 Q1 all-M then 12 (en/hi/gu): the bare wrong letter (M / अ / વ) sits in the inside part, the L chip in the outside corner, ink gap 14-23 px (en 14.0-21.3, hi 14.0-19.1, gu 18.0-23.4).
+3 rings only on wrong squares: FIXED. Typed 7, no tap: 0 amber-ring pixels (en/hi/gu); 12 taps then 7: exactly 5 ring boxes on the five L squares, none on the 7 right M squares (en/hi/gu; ring rgb 230,159,0).
+7 counted tiles violet: FIXED. Tiles rgb 151,130,235 hue 252 sat 0.45 in p1-p4 win/end/wrong, en/hi/gu (5th percentile 0.40-0.44; was 0.33); Whole swatch 143,123,240 = 0.49.
+4 hi 'अनुमान' clear of the sum row: FIXED. 20 px win/end, 18 px wrong (was 3-4); en 12-16, gu 16-18.
+5 P3 H letters: FIXED on the checklist wording. Size en 30 / hi 28 / gu 28 (never under 28), hi आ ink 22 px in the 52 px half, no halo on the heavy cut line or the diagonal. Bracket ends read clear by eye; DOM nearest-path gap to the wedge letters hi 8 / gu 11.7 / en 12.4 px (was touching). Info only: letters sit 6-9 px from the thin grid line beside their half.
+6 L chips off the outline: PARTLY. en corners 14.9/14.8 and tip 12.0 are fine; hi/gu top-left and bottom-left chips are 9.2 px from the outline (wider chip grows toward the leaf); gu tip chip is now 12 px from the leaf tip (was 4); cup row-2 L chips about 30 px clear of the arc (FIXED).
+4 P4 letters off the outline: the outline is now drawn UNDER the letters and carved by their halo (the checklist's alternative), so no glyph is struck through. Hand (known 55-unit limit, info): en 20 of 26 letters under 12 px (min 2.0 bottom-row H, 3.3 thumb-row M, 5.6 thumb L), hi 26 of 26, gu 24 of 26. STONE board is not covered by that limit: PARTLY (see S1).
+NEW / REMAINING
+[should-fix S1] p4 stone board (p4-end/win, en/hi/gu): H letters under 12 px from the outline: en 4 of 20 (min 8.4), hi 6 (min 1.5), gu 6 (min 4.2); move each toward the centre of its part.
+[should-fix S2] p4-open/ask-shut/ask-open/wrong/win, hi + gu hand board: the two thumb-side L letters क / ઓ (x 206-242, y 340-365 and 415-445) lie ON the board's left frame (frame erased ~25 px under each halo; the ઓ top touches the thumb loop). en L is 7 px clear. Fix: move both >= 12 px right of the frame or right-align at 28 px.
+[should-fix S3] p2 win/wrong, hi + gu: TL/BL corner L chips 9.2 px from the outline; gu win letters ઓ bottom-left 8.1, tip 8.8, bottom-right 10.1 px (hi min 12.6); tip chip right edge 9 (en) / 7 (hi) / 5 (gu) px from the board frame (inner edge x 726). The child's own bare wrong M letters in the five sliver squares sit 4-11 px from the outline (en 5-6, hi 4-7, gu 5-11; a small sliver inside part).
+[should-fix S4] p4-wrong-hi: 'अनुमान' ink bottom y 521, tally card border y 529: 7-8 px (en/gu 18). Fix: raise the sum block 6-8 px or drop it to 30.
+[should-fix S5] p2 Q3 cup correction en/hi/gu: the top-middle L chip is 7 px under the board's top frame (y 130 vs inner edge 123); side chips 13-18 px, fine.
+[nit] p3 win/end hi/gu: letters 6-9 px from the thin grid line beside their half (not a rule-1 edge).
+clean in the frames opened (every phase in en, hi and gu): no English left in hi/gu, nothing red or crossed after a miss (amber/orange only), no clipped text, Kiko/bubble/keys/summary thumbnails fine; the new hints ("Join the halves two at a time.", "Look at the ringed square again.") fit two lines in en/hi/gu.

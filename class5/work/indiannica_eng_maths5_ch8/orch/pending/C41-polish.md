@@ -1,0 +1,5 @@
+C41 polish (maths-reviewer-1.15 re-look, 2026-11-16): 0 must-fix. Apply BEFORE the Gemini pass:
+1. P3 Q1/Q2 misses ("Look at the bottom layer: 9 by 9 cubes, with 9 layers in all." / "Find one layer of 10 by 10 first, then count 10 layers.") say the same as ladder[0]: misses name only the layer ("Look at the bottom layer: 9 by 9 cubes."), ladder[0] adds the layers.
+2. P4 Q3 miss "The lens found tenths on two edges, not on just one." repeats ladder[0], ladder[1] and the row "Two edges in tenths": make the miss a board cue "Count the edges the lens read in tenths."; the say dropped "its volume": "A box is 4 cm by 2.5 cm by 1.5 cm; can tenths times whole numbers give its volume?" (one sentence).
+3. Language pass: the 7 nudges are built inside nudge(): list every nudge string and add its TR keys by hand; nudges on the locked Yes/No questions (P3 Q3, P4 Q3) rely on the dimmed Answer key (r66): real-click them and replay P4 Q3's lens flow.
+4. Add MODEL.answerGate: P1 stack to the full height; P2 fill the box to the lid; P3 all three bead runs; P4 Q1-2 Multiply then the lens; P4 Q3 lens over both tenths edges; none ungated.

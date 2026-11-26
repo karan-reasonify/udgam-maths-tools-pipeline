@@ -1,0 +1,1585 @@
+{
+  "slotId": "M1.S1.T2.C6.2D1",
+  "mediaId": "M1.S1.T2.C6.2D1",
+  "toolId": "edge_walker",
+  "title": "Edge Walker",
+  "component": "M1.S1.T2.C8.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch8_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_8/2dtool/M1.S1.T2.C8.2D1/M1.S1.T2.C8.2D1.tsx",
+  "description": "Walk an ant round a figure and add each side as it is walked, in one unit, then fold a rectangle's four sides into 2 x (length + breadth).",
+  "conceptIds": [
+    "M1.S1.T2.C5",
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7",
+    "M1.S1.T2.C8"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find a perimeter as the length of a boundary by adding every side once, in one unit, name the longer side of a rectangle its length, and fold its four sides into 2 x (length + breadth).",
+    "look": "A figure on squared paper with its sides labelled, an ant at one corner, a Sum strip along the foot of the working area, and on the later phases the Length and Breadth tags and the Two lots button.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Edge Walker' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of sides walked out of the number the figure has. It is never a score. The working area is 1086 by 528 at x 64, y 202. The figure lies on squared paper at x 120, y 230, inside a box 620 by 380, drawn to one scale, each side labelled deep blue with its length and unit. The ant is a small drawn figure 40 across that the child drags along the boundary; each side it walks lights vermilion, labelled Boundary. The Sum strip runs along y 650 from x 120, 900 long, and takes each side's length as a tile in the order walked. The Write in cm tile waits at x 800, y 250, and the unit fact it writes appears in ink beside the side it lands on. The Length and Breadth tags wait at x 800, y 340, each a rounded label. The Two lots button stands at x 800, y 430, and the line it writes, 2 x (length + breadth), sits above the Sum strip at y 600. The perimeter reached is green. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a point key, a cm key and an m key. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the ten tools of this chapter share them. The lengths the question gives, as a side, a length, a breadth, a height, an edge or a base area, are deep blue, labelled Given or by their own name. The perimeter, area, volume or missing side the working reaches is green, labelled Answer. The boundary that a perimeter walks round is vermilion, labelled Boundary. The unit being counted, one unit square, one unit cube, one row or one layer, is violet, labelled Unit square, Unit cube, Row or Layer. The part squares of an estimate and the space left over where no whole cube fits are rose, labelled More than half, Half or Left over. The side, square, cube, layer or step being worked on now is amber. Grey is kept for a zero holding a place open, and nothing on this stage is ever grey. A square or cube that is not being counted stays warm white inside its near-black outline, grid lines, unit words and signs are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of them, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last figure stays drawn with its boundary vermilion, the Sum strip under it and the perimeter in green with its unit.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the whole boundary glows vermilion, the strip reads 14 + 9 + 11 + 7 + 10 = 51, and the answer slot reads 51 m in green",
+        "does": "drags the ant once round the boundary, watching each side drop into the Sum strip, and types the total",
+        "goal": "the perimeter is the length of the boundary, found by walking every side once and adding",
+        "says": "Walk the ant all the way round. Every side, once.",
+        "check": "Away from the screen: run a finger round a book. How many sides did your finger travel along?",
+        "feels": "the ant closing the loop and the whole edge glowing",
+        "hands": "Lay a string once round the edge of a book, cut it, and straighten it along a ruler. Then measure each side and add them, and compare.",
+        "tries": "First rung: walk just the first two sides and add them. Second rung: walk one more side and add it on. Third rung: the same task on a figure with fewer sides, before the question's figure returns.",
+        "wrong": [
+          {
+            "why": "the ant went back along a side to reach the corner it wanted",
+            "move": "walks one side twice before closing the boundary",
+            "screen": "the repeated tile on the Sum strip is lit amber, and the ant replays the walk in steps beside the strip with each side lighting once"
+          },
+          {
+            "why": "counting the sides feels like measuring the shape",
+            "move": "types the number of sides as the perimeter",
+            "screen": "the Sum strip is shown under the answer slot with its lengths, and the word Length is written in ink over the strip"
+          }
+        ],
+        "screen": "a five-sided flower bed with its sides labelled 14 m, 9 m, 11 m, 7 m and 10 m, and the ant at one corner",
+        "soWhat": "the perimeter is the length of the boundary, found by walking every side once and adding",
+        "concept": "Perimeter is a length"
+      },
+      {
+        "n": 2,
+        "win": "the side reads 100 cm beside the unit fact, and the strip reads 100 + 85 + 90 + 75 = 350 with 350 cm in green",
+        "does": "drags the Write in cm tile onto the side in metres, then walks the ant round and types the total",
+        "goal": "write every side in the same unit before adding, saying the unit fact",
+        "says": "One side is in metres. Make every side centimetres first.",
+        "check": "Away from the screen: how many centimetres are in one metre and a half?",
+        "feels": "a small-looking side growing into a big number the moment it becomes centimetres",
+        "hands": "Measure a mat or a sheet with a metre scale, write one side in metres and the rest in centimetres, then rewrite the metre side in centimetres before adding.",
+        "tries": "First rung: rewrite only the side in metres. Second rung: add two of the sides, now in one unit. Third rung: the same task with every side a whole number of metres, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the four numbers look ready to add as they stand",
+            "move": "walks the ant round before using the Write in cm tile",
+            "screen": "the tile for the side in metres is lit amber on the Sum strip, and the unit fact is written beside it in ink while the rest of the child's sum stays"
+          },
+          {
+            "why": "every side feels like it needs changing",
+            "move": "drops the Write in cm tile on a side already in centimetres",
+            "screen": "that side keeps its number, the tile slides back to its place, and the side in metres is lit amber"
+          }
+        ],
+        "screen": "a mat with one side labelled 1 m and three labelled 85 cm, 90 cm and 75 cm, and the Write in cm tile",
+        "soWhat": "write every side in the same unit before adding, saying the unit fact",
+        "concept": "One unit for every side"
+      },
+      {
+        "n": 3,
+        "win": "the tags sit on the right sides, the opposite sides copy their labels, and the strip reads 11 + 6 + 11 + 6 = 34",
+        "does": "drags Length onto the longer side and Breadth onto the shorter, then walks the ant round",
+        "goal": "the longer side of a rectangle is its length and the shorter is its breadth, and opposite sides are equal",
+        "says": "Which side is longer? That one is the length.",
+        "check": "Away from the screen: a door is taller than it is wide. Which side is its length?",
+        "feels": "the tags clicking onto the right sides and their opposites lighting to match",
+        "hands": "Measure the two sides of a book that meet at a corner. Put a sticky note saying length on the longer one and breadth on the shorter one.",
+        "tries": "First rung: point to the longer of the two sides. Second rung: tag it Length and tag the other Breadth. Third rung: the same task on a rectangle much longer than it is wide, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the shorter side is drawn along the top, and the top side feels like the length",
+            "move": "drags the Length tag onto the shorter side",
+            "screen": "both sides are measured again by a ruler drawn along them in steps, and the longer one is lit amber while the child's tag stays where it was put"
+          },
+          {
+            "why": "only two numbers are printed on the rectangle",
+            "move": "walks only the two labelled sides and types their sum",
+            "screen": "the two unlabelled sides copy their opposite sides' labels in steps, and the ant walks on from where the child stopped"
+          }
+        ],
+        "screen": "a rectangle with one side labelled 11 cm and the side next to it 6 cm, and the Length and Breadth tags",
+        "soWhat": "the longer side of a rectangle is its length and the shorter is its breadth, and opposite sides are equal",
+        "concept": "Length and breadth"
+      },
+      {
+        "n": 4,
+        "win": "the line reads 2 x (15 + 8) = 46 above the strip, and the four sides added give the same 46 m",
+        "does": "taps Two lots, watches one length and one breadth slide together and double, and types the perimeter",
+        "goal": "length + breadth + length + breadth is two lots of one length and one breadth, 2 x (length + breadth)",
+        "says": "Add one length and one breadth. Then take two lots.",
+        "check": "Away from the screen: why does half of a rectangle's perimeter give one length and one breadth?",
+        "feels": "one length and one breadth sliding together and doubling into the whole edge",
+        "hands": "Cut one strip the length of a card and one the breadth, lay them end to end, then lay a second pair beside them. Two pairs make the whole edge.",
+        "tries": "First rung: add one length and one breadth. Second rung: take two lots of that sum. Third rung: the same task on a small rectangle, checked by walking all four sides, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the two is written next to the length, so it seems to belong to the length alone",
+            "move": "builds a line that doubles only the length and then adds one breadth",
+            "screen": "the brackets are drawn round length + breadth in steps, the missing breadth is lit amber on the rectangle, and the child's line stays above for comparison"
+          },
+          {
+            "why": "the sum of the pair looks like the answer",
+            "move": "adds one length and one breadth and stops there",
+            "screen": "the ant walks the first half of the boundary, stops at the far corner, and the second half is lit amber"
+          }
+        ],
+        "screen": "a rectangle 15 m long and 8 m wide with its tags on, and the Two lots button lit",
+        "soWhat": "length + breadth + length + breadth is two lots of one length and one breadth, 2 x (length + breadth)",
+        "concept": "Two lots of length and breadth"
+      }
+    ],
+    "delight": "When the ant closes the boundary on the first phase, it gives a small hop at the corner where it started, and the whole vermilion path glows once before the sum lands.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet walked. On the first phase the five-sided bed lies on the squared paper with the ant at one corner and the Sum strip empty. On the second the mat lies there with one side in metres and the Write in cm tile waiting beside it. On the third a rectangle lies with the Length and Breadth tags in their tray. On the fourth a tagged rectangle lies with the Two lots button lit. One thing moves, once: the ant, or the Two lots button on the fourth phase, gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any figure the child draws along the grid lines, walked by the ant, with sides in cm or m. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on adding sides, writing sides in one unit, naming the length and using the formula.",
+    "voiceLines": [
+      "A shape, and an ant at one corner.",
+      "Walk the ant all the way round. Every side, once.",
+      "One side is in metres. Make every side centimetres first.",
+      "Which side is longer? That one is the length.",
+      "Add one length and one breadth. Then take two lots.",
+      "A new shape. Walk it all the way round.",
+      "Free play. Draw a shape and walk the ant round it.",
+      "Walk it again with the ant. Did every side go in once?",
+      "You measured the length of the boundary, one side at a time."
+    ],
+    "observations": [
+      {
+        "why": "the perimeter is the length of the boundary, made of every side once.",
+        "soWhat": "walk every side once, and add them all.",
+        "observe": "Every side lit vermilion as the ant walked it, and its length joined the sum."
+      },
+      {
+        "why": "one metre is a hundred centimetres, so the same side has a much bigger number in centimetres.",
+        "soWhat": "put every side in one unit before adding, and say the unit fact.",
+        "observe": "A side in metres looked small on the strip until the Write in cm tile rewrote it."
+      },
+      {
+        "why": "opposite sides of a rectangle are equal.",
+        "soWhat": "a rectangle has two lengths and two breadths, and the longer side is the length.",
+        "observe": "Once Length went on one side, the opposite side copied its label."
+      },
+      {
+        "why": "length + breadth + length + breadth is two lots of one length and one breadth.",
+        "soWhat": "the formula is a quicker walk, and the walk checks it.",
+        "observe": "The Two lots line and the four sides added ended on the same perimeter."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a five-sided flower bed with its sides labelled 14 m, 9 m, 11 m, 7 m and 10 m, and the ant at one corner",
+        "win": "the whole boundary glows vermilion, the strip reads 14 + 9 + 11 + 7 + 10 = 51, and the answer slot reads 51 m in green",
+        "traceback": "each side lights in turn as its length joins the sum, ending on the whole perimeter in green",
+        "ladder": [
+          "Add the first two sides, 14 and 9, then keep adding.",
+          "Start with 9 + 7, then add the other two sides.",
+          "Count the badge's sides, then add 7 for each one.",
+          "Check the sum: is every side's length in it?",
+          "Every side is a length to add, so never just count the sides."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a mat with one side labelled 1 m and three labelled 85 cm, 90 cm and 75 cm, and the Write in cm tile",
+        "win": "the side reads 100 cm beside the unit fact, and the strip reads 100 + 85 + 90 + 75 = 350 with 350 cm in green",
+        "traceback": "the metre sides are rewritten in cm, then each side lights as it joins the sum, ending on the perimeter in cm",
+        "ladder": [
+          "Write 1 m as centimetres before you add the sides.",
+          "How many centimetres make 2 m?",
+          "Both of the 1 m sides need writing as 100 cm.",
+          "Look at each side: is it in cm yet?",
+          "Then add all the cm lengths, one side at a time, round the shape."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a rectangle with one side labelled 11 cm and the side next to it 6 cm, and the Length and Breadth tags",
+        "win": "the tags sit on the right sides, the opposite sides copy their labels, and the strip reads 11 + 6 + 11 + 6 = 34",
+        "traceback": "each of the four sides lights as it joins the sum (or the two longer sides light for the length), ending on the answer in green",
+        "ladder": [
+          "Opposite sides are equal, so all four sides go in the sum.",
+          "The length is the longer side, not the shorter one.",
+          "Add 17 + 7, and then the two opposite sides as well.",
+          "Count what you added: four sides, not two.",
+          "Write it as length + breadth + length + breadth, then add."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a rectangle 15 m long and 8 m wide with its tags on, and the Two lots button lit",
+        "win": "the line reads 2 x (15 + 8) = 46 above the strip, and the four sides added give the same 46 m",
+        "traceback": "length + breadth is added, then taken twice, ending on the perimeter in green",
+        "ladder": [
+          "Find 15 + 8 first, then the formula doubles that.",
+          "First 21 + 14, then take two lots of that.",
+          "Write 1 m as 100 cm before you take two lots.",
+          "Two lots means the whole bracket times 2, not just the length times 2.",
+          "You can check it by adding all four sides."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "figs": {
+      "tri1": {
+        "pts": [
+          [
+            0,
+            3
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "sides": [
+          "4 cm",
+          "5 cm",
+          "3 cm"
+        ]
+      },
+      "bed": {
+        "skin": "bed",
+        "pts": [
+          [
+            0,
+            10
+          ],
+          [
+            14,
+            10
+          ],
+          [
+            16,
+            1.5
+          ],
+          [
+            5.5,
+            -1.5
+          ],
+          [
+            -1.5,
+            1
+          ]
+        ],
+        "sides": [
+          "14 m",
+          "9 m",
+          "11 m",
+          "7 m",
+          "10 m"
+        ]
+      },
+      "card": {
+        "pts": [
+          [
+            0,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            8.5,
+            0
+          ],
+          [
+            0.6,
+            0.4
+          ]
+        ],
+        "sides": [
+          "9 cm",
+          "7 cm",
+          "8 cm",
+          "6 cm"
+        ]
+      },
+      "badge": {
+        "pts": [
+          [
+            3.5,
+            4.817336721649108
+          ],
+          [
+            -3.4999999999999996,
+            4.817336721649108
+          ],
+          [
+            -5.663118960624632,
+            -1.8400588924169694
+          ],
+          [
+            -1.0938341291224559e-15,
+            -5.95455565846428
+          ],
+          [
+            5.663118960624632,
+            -1.8400588924169687
+          ]
+        ],
+        "sides": [
+          "7 cm",
+          "7 cm",
+          "7 cm",
+          "7 cm",
+          "7 cm"
+        ]
+      },
+      "tri2": {
+        "pts": [
+          [
+            0,
+            60
+          ],
+          [
+            80,
+            60
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "sides": [
+          "80 cm",
+          "1 m",
+          "60 cm"
+        ]
+      },
+      "mat": {
+        "skin": "mat",
+        "pts": [
+          [
+            0,
+            80
+          ],
+          [
+            100,
+            80
+          ],
+          [
+            95,
+            -5
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "sides": [
+          "1 m",
+          "85 cm",
+          "90 cm",
+          "75 cm"
+        ]
+      },
+      "garden": {
+        "pts": [
+          [
+            0,
+            130
+          ],
+          [
+            200,
+            130
+          ],
+          [
+            124.75,
+            0
+          ]
+        ],
+        "sides": [
+          "2 m",
+          "150 cm",
+          "180 cm"
+        ]
+      },
+      "frame": {
+        "rect": [
+          "1 m",
+          "60 cm"
+        ],
+        "portrait": false,
+        "pts": [
+          [
+            0,
+            0
+          ],
+          [
+            166.66666666666669,
+            0
+          ],
+          [
+            166.66666666666669,
+            100
+          ],
+          [
+            0,
+            100
+          ]
+        ],
+        "sides": [
+          "1 m",
+          "60 cm",
+          "1 m",
+          "60 cm"
+        ],
+        "long": [
+          0,
+          2
+        ]
+      },
+      "r9x4": {
+        "rect": [
+          "9 cm",
+          "4 cm"
+        ],
+        "portrait": false,
+        "pts": [
+          [
+            0,
+            0
+          ],
+          [
+            220.00000000000003,
+            0
+          ],
+          [
+            220.00000000000003,
+            100
+          ],
+          [
+            0,
+            100
+          ]
+        ],
+        "sides": [
+          "9 cm",
+          "4 cm",
+          "9 cm",
+          "4 cm"
+        ],
+        "long": [
+          0,
+          2
+        ]
+      },
+      "r11x6": {
+        "rect": [
+          "11 cm",
+          "6 cm"
+        ],
+        "portrait": false,
+        "pts": [
+          [
+            0,
+            0
+          ],
+          [
+            183.33333333333331,
+            0
+          ],
+          [
+            183.33333333333331,
+            100
+          ],
+          [
+            0,
+            100
+          ]
+        ],
+        "sides": [
+          "11 cm",
+          "6 cm",
+          "11 cm",
+          "6 cm"
+        ],
+        "long": [
+          0,
+          2
+        ]
+      },
+      "r12x5": {
+        "rect": [
+          "12 cm",
+          "5 cm"
+        ],
+        "portrait": true,
+        "pts": [
+          [
+            0,
+            0
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            130
+          ],
+          [
+            0,
+            130
+          ]
+        ],
+        "sides": [
+          "5 cm",
+          "12 cm",
+          "5 cm",
+          "12 cm"
+        ],
+        "long": [
+          1,
+          3
+        ]
+      },
+      "r17x7": {
+        "rect": [
+          "17 cm",
+          "7 cm"
+        ],
+        "portrait": false,
+        "pts": [
+          [
+            0,
+            0
+          ],
+          [
+            220.00000000000003,
+            0
+          ],
+          [
+            220.00000000000003,
+            100
+          ],
+          [
+            0,
+            100
+          ]
+        ],
+        "sides": [
+          "17 cm",
+          "7 cm",
+          "17 cm",
+          "7 cm"
+        ],
+        "long": [
+          0,
+          2
+        ]
+      },
+      "r8x6": {
+        "rect": [
+          "8 m",
+          "6 m"
+        ],
+        "portrait": false,
+        "pts": [
+          [
+            0,
+            0
+          ],
+          [
+            133.33333333333331,
+            0
+          ],
+          [
+            133.33333333333331,
+            100
+          ],
+          [
+            0,
+            100
+          ]
+        ],
+        "sides": [
+          "8 m",
+          "6 m",
+          "8 m",
+          "6 m"
+        ],
+        "long": [
+          0,
+          2
+        ]
+      },
+      "r15x8": {
+        "rect": [
+          "15 m",
+          "8 m"
+        ],
+        "portrait": false,
+        "pts": [
+          [
+            0,
+            0
+          ],
+          [
+            187.5,
+            0
+          ],
+          [
+            187.5,
+            100
+          ],
+          [
+            0,
+            100
+          ]
+        ],
+        "sides": [
+          "15 m",
+          "8 m",
+          "15 m",
+          "8 m"
+        ],
+        "long": [
+          0,
+          2
+        ]
+      },
+      "r21x14": {
+        "rect": [
+          "21 m",
+          "14 m"
+        ],
+        "portrait": false,
+        "pts": [
+          [
+            0,
+            0
+          ],
+          [
+            150,
+            0
+          ],
+          [
+            150,
+            100
+          ],
+          [
+            0,
+            100
+          ]
+        ],
+        "sides": [
+          "21 m",
+          "14 m",
+          "21 m",
+          "14 m"
+        ],
+        "long": [
+          0,
+          2
+        ]
+      },
+      "r250x1": {
+        "rect": [
+          "250 cm",
+          "1 m"
+        ],
+        "portrait": false,
+        "pts": [
+          [
+            0,
+            0
+          ],
+          [
+            220.00000000000003,
+            0
+          ],
+          [
+            220.00000000000003,
+            100
+          ],
+          [
+            0,
+            100
+          ]
+        ],
+        "sides": [
+          "250 cm",
+          "1 m",
+          "250 cm",
+          "1 m"
+        ],
+        "long": [
+          0,
+          2
+        ]
+      }
+    },
+    "freeFigs": [
+      "tri1",
+      "bed",
+      "card",
+      "badge",
+      "r11x6",
+      "r15x8"
+    ],
+    "colours": {
+      "given": "#0072B2",
+      "answer": "#009E73",
+      "walk": "#D55E00",
+      "now": "#E69F00",
+      "line": "#2B2B2B",
+      "grid": "#C9DDEC"
+    },
+    "answerGate": {
+      "phase1": "Walk (the ant walks the boundary while the pencil writes the sum)",
+      "phase2": "Write in cm, then Walk",
+      "phase3": "Q1 and Q3: tap a longer side (the Length tag), then Walk; a wrong tag shows the correction and keeps Walk shut until a longer side is tapped. Q2: place the Length tag, then Enter",
+      "phase4": "Q1 and Q2: Two lots; Q3: Write in cm, then Two lots",
+      "ungated": "none; the gate arms after a real tap on a key or piece of the phase, or a real Enter on a guide step (user mode; the question after the steps); typing before that is not gated, and after a miss the gate stands down",
+      "nudge": "while gated, a press on the Answer key or a keypad key, a typed digit or a hardware Enter says what is still to do (never while an act plays)"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C5:EW1",
+        "kind": "walk",
+        "fig": "bed",
+        "parts": [
+          {
+            "label": "perimeter",
+            "unit": "m"
+          }
+        ],
+        "answer": [
+          51
+        ],
+        "nm": 5,
+        "win": "Yes, the boundary is 51 m long."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T2.C5:1",
+        "kind": "walk",
+        "fig": "card",
+        "parts": [
+          {
+            "label": "perimeter",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          30
+        ],
+        "nm": 4,
+        "win": "Right, the card's edge is 30 cm."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S1.T2.C5:4",
+        "kind": "walk",
+        "fig": "badge",
+        "parts": [
+          {
+            "label": "perimeter",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          35
+        ],
+        "nm": 5,
+        "win": "Yes, the badge is 35 cm round."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:EW2",
+        "kind": "conv",
+        "fig": "mat",
+        "parts": [
+          {
+            "label": "perimeter",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          350
+        ],
+        "nm": 251,
+        "win": "Yes, the mat is 350 cm round."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T2.C6:3",
+        "kind": "conv",
+        "fig": "garden",
+        "parts": [
+          {
+            "label": "perimeter",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          530
+        ],
+        "nm": 332,
+        "win": "Right, that bed is 530 cm round."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T2.C6:5",
+        "kind": "conv",
+        "fig": "frame",
+        "parts": [
+          {
+            "label": "perimeter",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          320
+        ],
+        "nm": 122,
+        "win": "Yes, the frame is 320 cm round."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C7:EW3",
+        "kind": "tag",
+        "fig": "r11x6",
+        "parts": [
+          {
+            "label": "perimeter",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          34
+        ],
+        "nm": 17,
+        "win": "Yes, the perimeter is 34 cm."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T2.C7:2",
+        "kind": "taglen",
+        "fig": "r12x5",
+        "pad": "enter",
+        "answer": "s1",
+        "nm": "s2",
+        "ladder": [
+          "Look at the two numbers on the sides and pick the bigger one.",
+          "Opposite sides match, so you may tag either side of the pair."
+        ],
+        "win": "Right, the 12 cm side is the length."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T2.C7:6",
+        "kind": "tag",
+        "fig": "r17x7",
+        "parts": [
+          {
+            "label": "perimeter",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          48
+        ],
+        "nm": 24,
+        "win": "Yes, the boundary is 48 cm."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T2.C8:EW4",
+        "kind": "lots",
+        "fig": "r15x8",
+        "parts": [
+          {
+            "label": "perimeter",
+            "unit": "m"
+          }
+        ],
+        "answer": [
+          46
+        ],
+        "nm": 38,
+        "win": "Yes, two lots of 23 make 46 m."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T2.C8:7",
+        "kind": "lots",
+        "fig": "r21x14",
+        "parts": [
+          {
+            "label": "perimeter",
+            "unit": "m"
+          }
+        ],
+        "answer": [
+          70
+        ],
+        "nm": 35,
+        "win": "Right, 2 × 35 is 70 m."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T2.C8:8",
+        "kind": "lotsconv",
+        "fig": "r250x1",
+        "parts": [
+          {
+            "label": "perimeter",
+            "unit": "cm"
+          }
+        ],
+        "answer": [
+          700
+        ],
+        "nm": 502,
+        "win": "Yes, 2 × 350 is 700 cm."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: each side lights in turn as its length joins the sum, ending on the whole perimeter in green",
+      "Phase 2: the metre sides are rewritten in cm, then each side lights as it joins the sum, ending on the perimeter in cm",
+      "Phase 3: each of the four sides lights as it joins the sum (or the two longer sides light for the length), ending on the answer in green",
+      "Phase 4: length + breadth is added, then taken twice, ending on the perimeter in green"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A shape, and an ant at one corner.",
+    "onFreePlay": "Free play. Tap Shape for a new shape, then walk the ant round it.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You measured the length of the boundary, one side at a time.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C5:EW1",
+            "worked": false,
+            "kind": "walk",
+            "planQuestion": "A five-sided flower bed has sides of 14 m, 9 m, 11 m, 7 m and 10 m. What is its perimeter?",
+            "question": {
+              "en": "Walk the ant round this flower bed and find its perimeter."
+            },
+            "ask": {
+              "en": "Flower bed's perimeter?"
+            },
+            "answer": [
+              51
+            ],
+            "planAnswer": "51 m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T2.C5:1",
+            "worked": false,
+            "kind": "walk",
+            "planQuestion": "A four-sided card has sides of 9 cm, 7 cm, 8 cm and 6 cm. What is its perimeter?",
+            "question": {
+              "en": "How long is the boundary of this card, in cm?"
+            },
+            "ask": {
+              "en": "Card's perimeter?"
+            },
+            "answer": [
+              30
+            ],
+            "planAnswer": "9 + 7 + 8 + 6 = 30, so 30 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S1.T2.C5:4",
+            "worked": false,
+            "kind": "walk",
+            "planQuestion": "A five-sided badge has every side 7 cm long. What is its perimeter?",
+            "question": {
+              "en": "Each side of this badge is 7 cm, so how far is it round the badge?"
+            },
+            "ask": {
+              "en": "Badge's perimeter?"
+            },
+            "answer": [
+              35
+            ],
+            "planAnswer": "7 + 7 + 7 + 7 + 7 = 35, so 35 cm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T2.C6:EW2",
+            "worked": false,
+            "kind": "conv",
+            "planQuestion": "A mat has sides of 1 m, 85 cm, 90 cm and 75 cm. What is its perimeter in cm?",
+            "question": {
+              "en": "Write this mat's sides in cm, walk round it and find its perimeter."
+            },
+            "ask": {
+              "en": "Mat in cm?"
+            },
+            "answer": [
+              350
+            ],
+            "planAnswer": "350 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T2.C6:3",
+            "worked": false,
+            "kind": "conv",
+            "planQuestion": "A three-sided garden bed has sides of 2 m, 150 cm and 180 cm. What is its perimeter in cm?",
+            "question": {
+              "en": "What is the perimeter of this garden bed in centimetres?"
+            },
+            "ask": {
+              "en": "Garden bed in cm?"
+            },
+            "answer": [
+              530
+            ],
+            "planAnswer": "2 m = 200 cm, and 200 + 150 + 180 = 530, so 530 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T2.C6:5",
+            "worked": false,
+            "kind": "conv",
+            "planQuestion": "A frame has sides of 1 m, 1 m, 60 cm and 60 cm. What is its perimeter in cm?",
+            "question": {
+              "en": "This photo frame has two sides of 1 m, so how far is it round in cm?"
+            },
+            "ask": {
+              "en": "Frame in cm?"
+            },
+            "answer": [
+              320
+            ],
+            "planAnswer": "1 m = 100 cm, and 100 + 100 + 60 + 60 = 320, so 320 cm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C7:EW3",
+            "worked": false,
+            "kind": "tag",
+            "planQuestion": "A rectangle has sides of 11 cm and 6 cm. Which side is its length, and what is its perimeter?",
+            "question": {
+              "en": "Tag this rectangle's length, then walk round to find its perimeter."
+            },
+            "ask": {
+              "en": "Rectangle's perimeter?"
+            },
+            "answer": [
+              34
+            ],
+            "planAnswer": "The length is 11 cm, and the perimeter is 34 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T2.C7:2",
+            "worked": false,
+            "kind": "taglen",
+            "planQuestion": "A rectangle has sides of 12 cm and 5 cm. Which side is its length?",
+            "question": {
+              "en": "Put the Length tag on the side of this rectangle that is its length."
+            },
+            "ask": {
+              "en": "Tag the length"
+            },
+            "answer": "s1",
+            "planAnswer": "The 12 cm side, because the longer side is the length",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T2.C7:6",
+            "worked": false,
+            "kind": "tag",
+            "planQuestion": "A rectangle is 17 cm long and 7 cm wide. Add its four sides to find its perimeter.",
+            "question": {
+              "en": "This rectangle is 17 cm long and 7 cm wide, so how long is its boundary?"
+            },
+            "ask": {
+              "en": "Perimeter, 17 by 7?"
+            },
+            "answer": [
+              48
+            ],
+            "planAnswer": "The perimeter of a rectangle 17 cm long and 7 cm wide is 17 + 7 + 17 + 7 = 48 cm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T2.C8:EW4",
+            "worked": false,
+            "kind": "lots",
+            "planQuestion": "A rectangle is 15 m long and 8 m wide. Find its perimeter by the formula.",
+            "question": {
+              "en": "Use Two lots to find the perimeter of this rectangle by the formula."
+            },
+            "ask": {
+              "en": "By the formula?"
+            },
+            "answer": [
+              46
+            ],
+            "planAnswer": "46 m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T2.C8:7",
+            "worked": false,
+            "kind": "lots",
+            "planQuestion": "Use the formula to find the perimeter of a rectangle 21 m long and 14 m wide.",
+            "question": {
+              "en": "Find the perimeter of a rectangle 21 m long and 14 m wide by the formula."
+            },
+            "ask": {
+              "en": "21 m by 14 m?"
+            },
+            "answer": [
+              70
+            ],
+            "planAnswer": "The perimeter of a rectangle 21 m long and 14 m wide is 2 x (21 + 14) = 70 m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T2.C8:8",
+            "worked": false,
+            "kind": "lotsconv",
+            "planQuestion": "A rectangle is 250 cm long and 1 m wide. Find its perimeter in cm by the formula.",
+            "question": {
+              "en": "This rectangle is 250 cm long and 1 m wide, so find its perimeter in cm."
+            },
+            "ask": {
+              "en": "250 cm by 1 m?"
+            },
+            "answer": [
+              700
+            ],
+            "planAnswer": "1 m = 100 cm, and 2 x (250 + 100) = 700, so 700 cm",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "edge_walker",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "edge_walker",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Perimeter is a length",
+        "conceptId": "M1.S1.T2.C5",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C5:EW1",
+          "M1.S1.T2.C5:1",
+          "M1.S1.T2.C5:4"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "One unit for every side",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C6:EW2",
+          "M1.S1.T2.C6:3",
+          "M1.S1.T2.C6:5"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Length and breadth",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C7:EW3",
+          "M1.S1.T2.C7:2",
+          "M1.S1.T2.C7:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Two lots of length and breadth",
+        "conceptId": "M1.S1.T2.C8",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C8:EW4",
+          "M1.S1.T2.C8:7",
+          "M1.S1.T2.C8:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "sides_walked",
+    "units_same",
+    "length_tag",
+    "two_lots",
+    "working_shown"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), sides_walked, units_same, length_tag, two_lots, working_shown, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "edge_walker"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C6.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A shape, and an ant at one corner."
+    },
+    {
+      "en": "Walk the ant all the way round. Every side, once."
+    },
+    {
+      "en": "One side is in metres. Make every side centimetres first."
+    },
+    {
+      "en": "Which side is longer? That one is the length."
+    },
+    {
+      "en": "Add one length and one breadth. Then take two lots."
+    },
+    {
+      "en": "A new shape. Walk it all the way round."
+    },
+    {
+      "en": "Free play. Draw a shape and walk the ant round it."
+    },
+    {
+      "en": "Walk it again with the ant. Did every side go in once?"
+    },
+    {
+      "en": "You measured the length of the boundary, one side at a time."
+    }
+  ],
+  "build": {
+    "source": "529ab2f6:696355",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-17T08:23:07.756Z",
+    "checks": {
+      "pass": 97,
+      "warn": 1,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-11-17T08:23:07.626Z"
+    },
+    "tsxBytes": 619028,
+    "tsxMd5": "7b44fdd09006b2622d6687807339983a"
+  }
+}

@@ -1,0 +1,18 @@
+STATUS: ISSUES (0 must-fix, 3 should-fix, 1 question)
+C19 Day Bar Clocks, GUJARATI re-look after rounds 1+2, visual-reviewer-1.63. Looked at ALL 34 gu frames at 1600x900 (start, p1-p4 step1/stepwrong/ask-shut/ask-open/wrong/win/end, p1 hintkey, p4 summary/free, p1+p4 party; p1-again = sameAs p1-step1, skipped), zoomed crops 2-6x on pills, chips, amber, thumbs. Extra frames (playkit, gu): the 4 locked nudges, the P3 four-digit hint, a free-play 0510 time. Nothing unchanged-since-round: every frame was re-looked.
+VERIFY LIST
+1 Half labels on paper pills: OK in the lesson. Pills sit inside the bar (p1-end pill 6 px from the bar's left end), clear of the marker, the pole never strikes a label; the ૂ hook and the ્ન foot clear the pill outline (p1-step1, p1-end, p2-ask-shut, p4-end). One free-play edge: see S3.
+2 "Place holder" chip (સ્થાનધારક): PARTLY. One chip on the Answer card (p1-end, p3-wrong/win, p4-end) and one with a dotted leader on the Given card's grey 0 (p1-step1/ask, p4-end/party, free 0510); clear of "આપેલું"/"જવાબ" pills, the 24-કલાક chip and the digits; contrast 5.9:1. BUT its text is 28 px (T.micro), not >= 32 (see S1).
+3 Amber behind the 24-hour digits: OK. p1-wrong "09" of 0925 on a pale amber box, both digits fully inside (grey 0 on amber 3.2:1, large bold text, fine). Nit p2-wrong: the amber box edge touches the ":" of 6:20.
+4 P4: OK. Answer row starts left in p4-ask-shut/ask-open/wrong/win/end (12 px left, 20 px right, was 5-6 px right); scale labels 0000/0600/12 3 6 9 are 32 px (cap height 22-23 px); closings dark ink on white.
+5 0000/1200 hints: OK. p3-ask-shut/ask-open hide 0000, 1200, 0000 (0600, 1800 stay); p3-step1/stepwrong/win/end show them. p2-ask hides only 1800 (its answer's hour), p2-win shows it.
+6 Nudges: OK. p1 "પહેલાં ખસેડો દબાવો." 1 line; p2/p3 "પહેલાં 12 કલાકની ટાઇલ દબાવો." 1 line; p4 tile-first and half-tag nudges 2 lines each, clean breaks. P3 four-digit hint ("24-કલાકના સમયમાં ચાર અંક હોય: ...") 2 lines. Gated ask frames: Answer key flat, no ring.
+7 gu terms: OK. Cards read well (આપેલું, જવાબ, ખસેડો, 12 કલાક tile, પૂર્વાહ્ન/અપરાહ્ન), "6 કલાક 40 મિનિટ" and "ક." fixed, no English left except digits and +/-, no accidental wraps, no red/cross after a miss, nothing under the open pad.
+SHOULD-FIX
+S1 [should-fix] p1-step1/ask, p1-end, p3-wrong/win, p4-end/party, p4-free, gu: Place holder chip text is 28 px (tool.tsx ~841/845 and ~945/949, fontSize T.micro) while every other chip is 32 (T.label): set T.label, width dbcEm*32+28, height 44; at 32 px the Answer chip is ~187 wide, still clear of "જવાબ" (655) in the open card.
+S2 [should-fix] p2-wrong-gu (+ 12) and p4-wrong-gu / extra p4 nudge frame (- 12): the landed chip's bottom edge sits ON the Given card's bottom outline (p2: overlaps the rounded corner at x 92-197; p4: 2-3 px): lift the chip ~12 px or push the card bottom (en too).
+S3 [should-fix, free play only] extra frame, gu, marker at 0510 (about 4:53-5:36 a.m.): the a.m. pill falls back to centre 600 and spans x 635-825, crossing the noon line (x 800) into the p.m. half. Use centre <= 560 or clamp the pill to its own half (halfTag at ~880: candidates [300,150,480,600]). No lesson item hits that band (0450 clears).
+QUESTION (new native-reader terms)
+Q1 નિશાન for the a.m./p.m. tag (replaced ટેગ), સૂચક for the marker, રાખોડી શૂન્ય for the grey zero and ક. for કલાક in the answer slot: do they read naturally to a Gujarati 5th grader? Still open from round 1, not gu-specific: p3-end closing talks of 12:50 a.m. = 0050 while the screen holds 12:50 p.m. = 1250.
+Not re-rated (known): pad entry-box labels, summary "You learned" size/rows, orphan words (p1-wrong "છે."), two invites, party cone vs pills.
+Scratch (play-vr163-*.png, my probe scripts) removed.

@@ -1,0 +1,16 @@
+STATUS: fixes-needed
+SLOTS: M1.S1.T2.C6.2D1
+FILES: none
+CHECKS: 21 changed pack frames of chunk 2 read at full size (en/hi/gu, all CHANGED, none sameAs/carried) + 6 playkit real-input runs (own play-vr152-* PNGs deleted)
+FAILURES: 0 must-fix, 3 should-fix, 0 questions
+DECISIONS: none
+RISKS: lit-boundary labels sit 6px from the stroke (rule says 12); one hanging "=" in the en phase-end bubble
+ESCALATE: no
+REPORT: work/indiannica_eng_maths5_ch8/orch/reports/visual-reviewer-1.52.md
+visual-reviewer-1.52 · M1.S1.T2.C6.2D1 Edge Walker · chunk 2 (phase 2, re-look vs visual-reviewer-1.5 + tool-builder-1.37) · en/hi/gu · Verdict: ISSUES (0 must-fix, 3 should-fix)
+fixed: MUST-FIX (win/end unconverted metre sides + wrong green total) FIXED; hi chip under the key ring FIXED; chip before Write in cm FIXED; labels vs paper edge and Sum strip FIXED; hi/gu matras in the pills FIXED; spent ring after a miss FIXED; "Boundary"/सीमा/સીમા label now written in win, wrong and end (was a question) FIXED.
+SPECIAL (real input via playkit): (a) Q1 reached by real taps (Write in cm, Walk) then keys-only 350 + Enter -> refused by the gate, bubble "Tap Write in cm first.", slot empty, no wrong mark. (b) Q1 reached ungated (dev did cm/walk), keys-only 350 + Enter, no Write in cm -> win: labels 100 cm / 85 / 90 / 75, strip "100+85+90+75=350cm" (DOM text and frame), bubble "Yes, the mat is 350 cm round.", console clean. (c) Q2 530 -> "200+150+180=530cm"; Q3 320 -> "100+60+100+60=320cm"; hi and gu Q1 -> same sum with सेमी/સેમી and सीमा/સીમા. The pack win/end frames agree (q1 350 en/hi/gu, end = q3 320 en/hi/gu): the MUST-FIX is closed.
+[should-fix] phase 2, win/wrong/end, en/hi/gu - the top and bottom side pills sit 6px from the lit orange stroke's outer edge (pixel rows: end-en pill 174 -> stroke 181, stroke 390 -> pill 397; same 6px in hi/gu) and the en "Boundary" pill is 10px from the mat's stroke each side (pill 195 of 235px); rule 1 asks 12+ in the longest language - shrink the lit figure about 12px in height (or the Boundary chip a size) so every gap is 12px+.
+[should-fix] phase 2, end (and Q3 win), en - the bubble breaks after the sign: "...using 1 m =" / "100 cm." on a third line (rule 2: no hanging sign); also step1 breaks the key name "Write in / cm" - put no-break spaces in "1 m = 100 cm" and "Write in cm" (hi/gu lines read fine).
+[should-fix] phase 2, win/end, hi (gu ok) - PARTLY fixed: the strip text "350 सेमी / 320 सेमी" now has 5px between the strip's top border and the matra tops (rows 474 -> 480) but 18px under the baseline (ink ends 521, border 539) - sit it about 6px lower so it is centred.
+clean: step1 and stepwrong (no chip before the act, Answer key flat, ring only on Write in cm, hint alone in 2 lines in hi/gu); ask-shut/ask-open (mat skin, dark outline, 90/75/85/1 m labels 12px inside the paper and 12px above the strip, slot "perimeter | cm", keypad, berry Answer/Enter); wrong (traceback 100+85+90+75, chip left of the Write in cm key, no ring, Kiko thinking); hi/gu pill tops 8px clear of the ink; no English left in hi/gu; header buttons; Q2 corner "Boundary" chip + dashed leader clear of the 180 cm label. Kept per rule 6, not re-raised: panel slide 286px shut vs open, bare bed/frame outlines.

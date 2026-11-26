@@ -1,5 +1,7 @@
-/* clean: when a tool is made, drop what was only there to review it. Run by the main session at the end of a chapter
- * (runbook step 8: `node cli.mjs clean --ch N` for every slot of the chapter, `node cli.mjs clean <MEDIA_ID>` for one).
+/* clean: drop what was only there to review a tool. THE RULE (the owner, 2026-11-20): the review images stay until the tool is
+ * published, and `publish --upload` runs cleanSlot itself right after a VERIFIED upload (lib/ship/publish.mjs), so a published slot
+ * keeps no PNG. Nothing runs it before the upload any more: the reviewers' sheets and packs are needed until then.
+ * `node cli.mjs clean --ch N` / `clean <MEDIA_ID>` stay as the hand tool (a published slot that still has images, or disk space).
  *   removed: review artefacts that every `shots` / `check` / `approve` run makes again: sheet-*.png, phase-*.png, contrast-*.png,
  *            approve-*.png (approve's frames of a hand-edited pair, lib/check/approve.mjs),
  *            any other image (png, jpg, webp, gif: images-preview.png goes here), .build/ (bundles, sheets,

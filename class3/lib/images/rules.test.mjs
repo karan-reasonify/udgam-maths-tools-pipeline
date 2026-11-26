@@ -125,3 +125,17 @@ assert.ok(validatePlan(plan([{ ...hl, kind: "disc", px: [200, 200], cut: "holes"
 assert.ok(validatePlan(plan([{ ...hl, cut: "other" }])).errors.some((e) => /cut must be/.test(e)));
 assert.notEqual(skinHash("r", { ...sk, cut: "holes" }), skinHash("r", sk)); assert.notEqual(skinHash("r", { ...sk, cut: "holes" }), skinHash("r", { ...sk, cut: "joined" })); assert.notEqual(skinHash("r", { ...sk, cut: "holes" }), skinHash("r", { ...sk, cut: "glass" }));
 console.log("holes cut option: ok");
+
+// class 3 only (2026-11-06, the owner's real rupee notes): `source` is an imported file (no Gemini, no cut): a tile only, a file under the class folder, keyed by its sha1,
+// outside the object cap and the byte budget; every other key is unchanged
+const im = { key: "note50", object: "real Indian rupee note, front", kind: "tile", source: "assets/refs/notes/rs50.png", px: [220, 110], maxKB: 10, why: "w" };
+const imv = validatePlan(plan([im]));
+assert.deepEqual(imv.errors, []); assert.match(imv.images[0].srcSha, /^[0-9a-f]{40}$/);
+assert.equal(rawKey(plan([]), imv.images[0]), sha1(`import|${imv.images[0].srcSha}`));
+assert.notEqual(skinHash("r", { ...sk, source: "x" }), skinHash("r", sk));
+assert.deepEqual(validatePlan(plan([...objs(MAX_SKINS_PER_SLOT), im])).errors, []);   /* imported: not counted */
+assert.equal(slotBudget([...three, imv.images[0]]), slotBudget(three));
+assert.ok(validatePlan(plan([{ ...im, source: "assets/refs/notes/nope.png" }])).errors.some((e) => /must be a png, jpg or webp file under the class folder/.test(e)));
+assert.ok(validatePlan(plan([{ ...im, source: "../../../etc/passwd" }])).errors.some((e) => /under the class folder/.test(e)));
+assert.ok(validatePlan(plan([{ ...im, kind: "disc", px: [200, 200] }])).errors.some((e) => /tile only/.test(e)));
+console.log("imported source: ok");

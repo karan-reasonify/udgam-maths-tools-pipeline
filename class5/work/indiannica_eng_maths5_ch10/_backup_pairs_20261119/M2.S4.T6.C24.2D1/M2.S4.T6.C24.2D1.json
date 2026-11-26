@@ -1,0 +1,1375 @@
+{
+  "slotId": "M2.S4.T6.C24.2D1",
+  "mediaId": "M2.S4.T6.C24.2D1",
+  "toolId": "time_columns",
+  "title": "Time Column Adder",
+  "component": "M2.S4.T6.C24.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch10_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_10/2dtool/M2.S4.T6.C28.2D1/M2.S4.T6.C28.2D1.tsx",
+  "description": "Add and take away lengths of time in columns of hours, minutes and seconds, carry and borrow sixty and never ten, and line up seconds with their hundredths.",
+  "conceptIds": [
+    "M2.S4.T6.C25",
+    "M2.S4.T6.C26",
+    "M2.S4.T6.C27",
+    "M2.S4.T6.C28"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Add lengths of time in columns and carry at sixty, take one length from another and borrow at sixty, and line up seconds with their hundredths, so that any two lengths of time can be added, taken away, compared or shared.",
+    "look": "A frame of hours, minutes and seconds columns with lengths of time stacked in it, carry and borrow tiles that are dragged across, and on the last phase seconds with two places for hundredths.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Time Column Adder' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of columns worked. It is never a score. The working area is 1086 by 528 at x 64, y 202. The frame of three columns, hours, minutes and seconds, stands at x 90, y 240, each column 200 wide and 340 tall, headed by its unit name in ink, with the column of the smaller unit at the right. The lengths of time the question gives are stacked in it in deep blue, labelled Given, one under another, and the right-hand column is lit amber until it is worked. The Regroup button stands at x 780, y 240 and the Break button under it at x 780, y 330. When a column reaches sixty, Regroup wraps the sixty into one of the next unit, 60 min into 1 h and 60 s into 1 min, as a violet tile, labelled Carry, and the child drags it into the next column to the left along y 215. Break turns 1 h into 60 min, or 1 min into 60 s, as a violet tile, labelled Regroup, and the part taken away is crossed out as it goes. On the fourth phase the seconds column grows a point and two places for hundredths, a thin ink rule locks the points of the two times in one line, and a grey zero, labelled Place holder, holds any empty place. Every answer is green, labelled Answer, with its units, along y 640. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a point key, a delete key, and keys for h, min and s. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. What the question gives, as a clock time, a length of time, a start date or a number of days, is deep blue, labelled Given or Start. What the working reaches, as an end time, a length of time, a converted time or a date, is green, labelled Answer, End or How long. The thin second hand and the seconds it counts are vermilion, labelled Second hand. One jump along a time line, and one regrouped unit carried or borrowed, are violet, labelled Jump, Carry or Regroup. On a day bar the half from noon until just before midnight is rose, labelled p.m., and the half from midnight until just before noon stays warm white inside its outline, labelled a.m. The hand, digit, column, jump or date being worked on now is amber. Grey is kept for a zero holding a place open, labelled Place holder, and for nothing else. The hour hand and the minute hand, dials, tick marks, time lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last working stays in the frame, with its carry or borrow tile where the child dropped it and the answer in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the total turns green with its units",
+        "does": "adds the minutes column, then the hours column, and reads the total",
+        "goal": "add hours to hours, minutes to minutes and seconds to seconds, right-hand column first",
+        "says": "Minutes with minutes, hours with hours. Which column goes first?",
+        "check": "Away from the screen: why can hours not be added straight to minutes?",
+        "feels": "the columns adding one after another and the total turning green",
+        "hands": "Write two lengths of time on strips of paper, one under the other, with the hours under the hours and the minutes under the minutes. Add the minutes first, then the hours.",
+        "tries": "First rung: add just the minutes of the two lengths. Second rung: add the hours as well. Third rung: the same task with three lengths of time, before the question's own lengths return.",
+        "wrong": [
+          {
+            "why": "all the numbers in the frame are numbers, and a sum joins them",
+            "move": "adds the hours to the minutes",
+            "screen": "the columns stay, each unit is lit amber in turn, and the child's total is drawn again in two parts, hours and minutes, beside it"
+          },
+          {
+            "why": "an empty column looks as if it can be skipped",
+            "move": "leaves out a column that holds nothing in one of the lengths",
+            "screen": "the empty column is lit amber and its place is drawn as a zero, and the sum is worked again with it in place"
+          }
+        ],
+        "screen": "a frame of hours and minutes columns with two lengths of time stacked in deep blue",
+        "soWhat": "add hours to hours and minutes to minutes, right-hand column first",
+        "concept": "Hours with hours, minutes with minutes"
+      },
+      {
+        "n": 2,
+        "win": "the carry lands in the hours column, the minutes are fewer than sixty, and the sum turns green",
+        "does": "presses Regroup on the full minutes column, wraps 60 min as 1 h, and drags the tile to the hours column as a carry",
+        "goal": "60 min make 1 h and 60 s make 1 min, so carry at sixty and never at ten",
+        "says": "Is there a whole hour in the minutes? Wrap it and carry it.",
+        "check": "Away from the screen: when the minutes reach sixty, what do you carry, and where does it go?",
+        "feels": "sixty small cells folding into one tile that slides across into the hours column",
+        "hands": "Cut strips of paper marked in minutes and lay them end to end in a row until they make sixty. Wrap the row in a paper band and move it to a card marked for one hour.",
+        "tries": "First rung: wrap one band of sixty minutes and carry it. Second rung: add two lengths whose minutes pass sixty. Third rung: the same task with seconds carried into minutes, before the question's own lengths return.",
+        "wrong": [
+          {
+            "why": "in an ordinary sum a column is carried when it reaches ten, and the habit carries over",
+            "move": "carries at ten and leaves a minutes total of sixty or more in the minutes column",
+            "screen": "the minutes total stays, lit amber, and sixty small cells inside it are outlined as one bundle, ready to become 1 h"
+          },
+          {
+            "why": "the tile has just left the minutes, and the child's eye stays on that column",
+            "move": "adds the carried hour to the minutes instead of the hours",
+            "screen": "the carry tile is lit amber in the minutes column, and it is dragged on to the hours column, where the hours are added again"
+          }
+        ],
+        "screen": "two lengths of time whose minutes total more than sixty, stacked in the frame, with a Regroup button",
+        "soWhat": "60 min make 1 h and 60 s make 1 min, so carry at sixty and never at ten",
+        "concept": "Carrying an hour"
+      },
+      {
+        "n": 3,
+        "win": "the part taken away is crossed out, and what is left turns green",
+        "does": "breaks 1 h into 60 min, drags them across to the minutes column, then takes away column by column",
+        "goal": "when the column above is too small to take from, regroup 1 h as 60 min first, then take away",
+        "says": "Not enough minutes on top. What can you break to get more?",
+        "check": "Away from the screen: 1 h is broken into 60 min. Which column gets the hour, and which gets the minutes?",
+        "feels": "an hour breaking into minutes and dropping across so the column can be taken from",
+        "hands": "Take a paper strip marked as one hour and mark sixty small marks along it. Use it to show why 1 h can be broken into 60 min when there are too few minutes on top to take from.",
+        "tries": "First rung: break 1 h into minutes and count the cells. Second rung: drag the minutes across and take away. Third rung: the same task with a minute broken into seconds, before the question's own lengths return.",
+        "wrong": [
+          {
+            "why": "in every column met before, the smaller number was taken from the larger",
+            "move": "takes the smaller number of minutes from the larger, whichever is on top",
+            "screen": "the answer stays in the slot, the top column is shown too short beside the part to be taken away, both lit amber, and the tile of 1 h waits to be broken"
+          },
+          {
+            "why": "a borrow in ordinary numbers adds ten, and the habit carries over",
+            "move": "borrows an hour but adds only ten minutes to the minutes column",
+            "screen": "the borrow tile is broken again, slowly, into sixty small cells, and all of them are counted while the child's total stays beside it"
+          },
+          {
+            "why": "the tile has moved across, so the hours column looks finished",
+            "move": "adds the borrowed minutes but forgets to take the hour from the hours column",
+            "screen": "the hours column is lit amber with a crossed-out place waiting for the 1 h that was taken"
+          }
+        ],
+        "screen": "a length of time and a smaller one to take away, with fewer minutes on top than below",
+        "soWhat": "when the column above is too small to take from, regroup 1 h as 60 min first, then take away",
+        "concept": "Borrowing an hour"
+      },
+      {
+        "n": 4,
+        "win": "the answer turns green with its points still in line",
+        "does": "works the hundredths, then the seconds, then the minutes, with the points in a line, and shares a team time only after saying whether every runner took the same time",
+        "goal": "seconds with hundredths are lined up by their points and added or taken away like any decimals; a team's time is shared equally only if each runner takes the same time",
+        "says": "Points in a line. Would every runner take the same time?",
+        "check": "Away from the screen: why can a relay team's time not always be shared equally among its runners?",
+        "feels": "the two points staying in one line as the hundredths, the seconds and the minutes are worked",
+        "hands": "Time two short runs on a stopwatch that shows hundredths of a second. Write the two times under each other with the points in a line, and work the hundredths first.",
+        "tries": "First rung: lock the points of the two times and read the hundredths. Second rung: add or take away the hundredths and then the seconds. Third rung: the same task with a hundredths place left empty, before the question's own times return.",
+        "wrong": [
+          {
+            "why": "in every sum before, the last digits met at the right",
+            "move": "lines the digits up from the right and not by the points",
+            "screen": "the two points are lit amber and locked in a line, and the child's digits are drawn again against them, hundredths under hundredths"
+          },
+          {
+            "why": "a team time looks like one number to divide, and four runners look like four equal parts",
+            "move": "shares a team's time equally without asking about the runners",
+            "screen": "the question whether every runner would take the same time is lit amber beside the child's share, and the share is marked as true only if each took the same time"
+          },
+          {
+            "why": "a zero in front of a digit looks as if it can be dropped",
+            "move": "writes five hundredths of a second as five tenths",
+            "screen": "a grey zero, labelled Place holder, is set in the tenths place and the time is written again beside the child's"
+          }
+        ],
+        "screen": "two race times in minutes and seconds with hundredths of a second, the points locked in a line, and a grey zero holding any empty place",
+        "soWhat": "seconds with hundredths are lined up by their points and added or taken away like any decimals, and a team's time is shared equally only if each runner takes the same time",
+        "concept": "Seconds and hundredths"
+      }
+    ],
+    "delight": "On the second phase, as the minutes column fills to sixty, the sixty small cells fold into one violet tile that slides across into the hours column, and the minutes column starts again with what was left.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet worked. On the first phase the frame holds two lengths of time in hours and minutes, stacked in deep blue, with the minutes column lit amber. On the second the minutes of the two lengths add to more than sixty and the Regroup button waits beside the frame. On the third a length of time and a smaller one to take away are stacked with fewer minutes on top than below, and the Break button waits. On the fourth two race times in minutes and seconds with hundredths stand side by side, points not yet locked. One thing moves, once: the minutes column, the Break button or the seconds column gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any lengths of time stacked in the frame and added or taken away, with any two times set side by side. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on adding, carrying an hour, borrowing an hour and seconds with hundredths.",
+    "voiceLines": [
+      "Columns of hours, minutes and seconds, ready to be added.",
+      "Minutes with minutes, hours with hours. Which column goes first?",
+      "Is there a whole hour in the minutes? Wrap it and carry it.",
+      "Not enough minutes on top. What can you break to get more?",
+      "Points in a line. Would every runner take the same time?",
+      "A new sum of times. Work the right-hand column first.",
+      "Free play. Stack any lengths of time and work them column by column.",
+      "Look at the columns again. Has any column got to sixty?",
+      "You added and took away lengths of time and carried at sixty."
+    ],
+    "observations": [
+      {
+        "why": "the smaller unit stands at the right, as the ones stand at the right of a number.",
+        "soWhat": "line up the units, and work the right-hand column first.",
+        "observe": "The minutes column was added first, and the hours column after it."
+      },
+      {
+        "why": "60 min make 1 h and 60 s make 1 min.",
+        "soWhat": "carry at sixty and never at ten, so 75 min is 1 h 15 min.",
+        "observe": "The tile that was carried held sixty, never ten."
+      },
+      {
+        "why": "there were too few minutes on top to take from, and 1 h is 60 min.",
+        "soWhat": "regroup 1 h as 60 min when the column is too small, and then take away.",
+        "observe": "An hour was broken into minutes and dragged across before anything was taken away."
+      },
+      {
+        "why": "seconds with hundredths are lined up like any decimals, and a team's time belongs to the whole team.",
+        "soWhat": "line up the points, and share a team's time equally only if each runner takes the same time.",
+        "observe": "The points of two times stayed in one line, and a shared time asked a question first."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a frame of hours and minutes columns with two lengths of time stacked in deep blue",
+        "win": "the total turns green with its units",
+        "traceback": "each column is lit amber in turn from the right and its total is written in green under it, ending on the whole answer with its units",
+        "ladder": [
+          "Minutes add only to minutes here.",
+          "Hours go with hours, never with minutes.",
+          "Hours, minutes and seconds each add on their own.",
+          "Add each column as its own sum.",
+          "Type each column's total in its own box."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "two lengths of time whose minutes total more than sixty, stacked in the frame, with a Regroup button",
+        "win": "the carry lands in the hours column, the minutes are fewer than sixty, and the sum turns green",
+        "traceback": "each column is lit amber in turn from the right, the carried tile stays in the next column, and the totals are written in green, ending on the whole answer",
+        "ladder": [
+          "What is left in the minutes after the carry?",
+          "Write the minutes that stay, then count the hours.",
+          "Check both columns that reached 60: each needs its carry tile.",
+          "Take 60 away from any column that reached 60 or more, to find what stays.",
+          "The carry tile joins the next column, then add that column."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a length of time and a smaller one to take away, with fewer minutes on top than below",
+        "win": "the part taken away is crossed out, and what is left turns green",
+        "traceback": "the broken hour and its 60 minutes stay in place, each column is lit amber in turn from the right and what is left is written in green, ending on the whole answer",
+        "ladder": [
+          "Take the minutes from the new top in the minutes column.",
+          "How many minutes make 1 h?",
+          "Use the new tops the pencil wrote, then take away.",
+          "Is the new top now bigger than the minutes you take away?",
+          "Then take away the hours, using the hours left after the break."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "two race times in minutes and seconds with hundredths of a second, the points locked in a line, and a grey zero holding any empty place",
+        "win": "the answer turns green with its points still in line",
+        "traceback": "the two points are locked in a line, each column is lit amber in turn from the right and the answer is written in green with its point in line; a shared time is dealt lane by lane",
+        "ladder": [
+          "Use the new top that the pencil wrote in the seconds column.",
+          "Add the hundredths first, then the seconds.",
+          "Sixty seconds make a minute: write the whole minutes in the minutes box.",
+          "Take away the hundredths first, then the whole seconds.",
+          "The two minutes match now, so the answer is only seconds."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "radix": 60,
+    "columns": [
+      "h",
+      "min",
+      "s"
+    ],
+    "frame": {
+      "left": 20,
+      "op": 64,
+      "col": 176,
+      "decCol": 300,
+      "rows": {
+        "head": 40,
+        "lane": 86,
+        "carry": 156,
+        "given1": 218,
+        "given2": 300,
+        "rule": 346,
+        "answer": 392
+      }
+    },
+    "share": {
+      "runners": 4,
+      "team": {
+        "min": 4,
+        "s": 20
+      }
+    },
+    "free": [
+      {
+        "op": "+",
+        "cols": [
+          "h",
+          "min"
+        ],
+        "a": {
+          "h": 1,
+          "min": 45
+        },
+        "b": {
+          "h": 2,
+          "min": 30
+        }
+      },
+      {
+        "op": "-",
+        "cols": [
+          "h",
+          "min"
+        ],
+        "a": {
+          "h": 5,
+          "min": 15
+        },
+        "b": {
+          "h": 2,
+          "min": 40
+        }
+      },
+      {
+        "op": "+",
+        "cols": [
+          "h",
+          "min",
+          "s"
+        ],
+        "a": {
+          "h": 2,
+          "min": 35,
+          "s": 40
+        },
+        "b": {
+          "h": 1,
+          "min": 20,
+          "s": 35
+        }
+      },
+      {
+        "op": "-",
+        "cols": [
+          "min",
+          "s"
+        ],
+        "a": {
+          "min": 4,
+          "s": 10
+        },
+        "b": {
+          "min": 1,
+          "s": 45
+        }
+      }
+    ],
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S4.T6.C25:TC1",
+        "kind": "add",
+        "prob": {
+          "op": "+",
+          "cols": [
+            "h",
+            "min"
+          ],
+          "a": {
+            "h": 4,
+            "min": 10
+          },
+          "b": {
+            "h": 3,
+            "min": 25
+          }
+        },
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          7,
+          35
+        ],
+        "near": "0|42",
+        "win": "Yes, 7 h 35 min, each column added on its own."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S4.T6.C25:1",
+        "kind": "add",
+        "prob": {
+          "op": "+",
+          "cols": [
+            "h",
+            "min"
+          ],
+          "a": {
+            "h": 2,
+            "min": 10
+          },
+          "b": {
+            "h": 4,
+            "min": 20
+          }
+        },
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          6,
+          30
+        ],
+        "near": "0|36",
+        "win": "Yes, 6 h 30 min, hours with hours."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S4.T6.C25:5",
+        "kind": "add",
+        "prob": {
+          "op": "+",
+          "cols": [
+            "h",
+            "min",
+            "s"
+          ],
+          "a": {
+            "h": 5,
+            "min": 15,
+            "s": 20
+          },
+          "b": {
+            "h": 2,
+            "min": 10,
+            "s": 30
+          }
+        },
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          },
+          {
+            "label": "seconds"
+          }
+        ],
+        "answer": [
+          7,
+          25,
+          50
+        ],
+        "near": "0|32|50",
+        "win": "Yes, 7 h 25 min 50 s, three columns."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S4.T6.C26:TC2",
+        "kind": "add",
+        "prob": {
+          "op": "+",
+          "cols": [
+            "h",
+            "min"
+          ],
+          "a": {
+            "h": 2,
+            "min": 50
+          },
+          "b": {
+            "h": 2,
+            "min": 35
+          }
+        },
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          5,
+          25
+        ],
+        "near": "4|85",
+        "win": "Yes, 5 h 25 min, with 1 h carried."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S4.T6.C26:2",
+        "kind": "add",
+        "prob": {
+          "op": "+",
+          "cols": [
+            "h",
+            "min"
+          ],
+          "a": {
+            "min": 35
+          },
+          "b": {
+            "min": 50
+          }
+        },
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          1,
+          25
+        ],
+        "near": "0|85",
+        "win": "Yes, 1 h 25 min, not 85 min."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S4.T6.C26:6",
+        "kind": "add",
+        "prob": {
+          "op": "+",
+          "cols": [
+            "h",
+            "min",
+            "s"
+          ],
+          "a": {
+            "h": 3,
+            "min": 45,
+            "s": 50
+          },
+          "b": {
+            "h": 2,
+            "min": 30,
+            "s": 40
+          }
+        },
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          },
+          {
+            "label": "seconds"
+          }
+        ],
+        "answer": [
+          6,
+          16,
+          30
+        ],
+        "near": "5|75|90",
+        "win": "Yes, 6 h 16 min 30 s, two carries."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S4.T6.C27:TC3",
+        "kind": "sub",
+        "prob": {
+          "op": "-",
+          "cols": [
+            "h",
+            "min"
+          ],
+          "a": {
+            "h": 8,
+            "min": 5
+          },
+          "b": {
+            "h": 3,
+            "min": 30
+          }
+        },
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          4,
+          35
+        ],
+        "near": "5|25",
+        "win": "Yes, 4 h 35 min, after breaking 1 h."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S4.T6.C27:3",
+        "kind": "sub",
+        "prob": {
+          "op": "-",
+          "cols": [
+            "h",
+            "min"
+          ],
+          "a": {
+            "h": 2,
+            "min": 10
+          },
+          "b": {
+            "min": 25
+          }
+        },
+        "noGate": true,
+        "parts": [
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          60
+        ],
+        "near": "100",
+        "win": "Yes, 1 h is regrouped as 60 min.",
+        "ladder": [
+          "Think how far the minute hand goes round in 1 h.",
+          "Count the minute marks once round a clock face."
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S4.T6.C27:7",
+        "kind": "sub",
+        "prob": {
+          "op": "-",
+          "cols": [
+            "h",
+            "min"
+          ],
+          "a": {
+            "h": 6,
+            "min": 20
+          },
+          "b": {
+            "h": 2,
+            "min": 55
+          }
+        },
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "minutes"
+          }
+        ],
+        "answer": [
+          3,
+          25
+        ],
+        "near": "4|35",
+        "win": "Yes, 3 h 25 min left."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S4.T6.C28:TC4",
+        "kind": "sub",
+        "prob": {
+          "op": "-",
+          "cols": [
+            "min",
+            "s"
+          ],
+          "a": {
+            "min": 3,
+            "s": 420
+          },
+          "b": {
+            "min": 2,
+            "s": 5175
+          },
+          "dec": true,
+          "line": true
+        },
+        "answer": "12.45",
+        "near": "52.45",
+        "win": "Yes, 12.45 s, after borrowing 1 min."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S4.T6.C28:4",
+        "kind": "add",
+        "prob": {
+          "op": "+",
+          "cols": [
+            "min",
+            "s"
+          ],
+          "a": {
+            "s": 325
+          },
+          "b": {
+            "s": 450
+          },
+          "dec": true,
+          "line": true
+        },
+        "answer": "7.75",
+        "near": "7.30",
+        "ladder": [
+          "Keep the point of the answer under the two points.",
+          "Read 4.50 as 4 s and 50 hundredths."
+        ],
+        "win": "Yes, 7.75 s, hundredths under hundredths."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S4.T6.C28:8",
+        "kind": "share",
+        "parts": [
+          {
+            "label": "minutes"
+          },
+          {
+            "label": "seconds"
+          }
+        ],
+        "answer": [
+          1,
+          5
+        ],
+        "near": "0|65",
+        "ladder": [
+          "Equally means every runner gets a pile the same size.",
+          "Think: 4 times what number makes 20?"
+        ],
+        "win": "Yes, 1 min 5 s each, but only if all ran the same."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it. CLUE FIRST (educator, 2026-11-18): the first and the second wrong answer show only a clue (the item's own miss line, then the phase's first ladder rung) with the pad open and empty again and nothing changed on the board; only from the THIRD wrong answer does the traceback run, showing the right answer and its steps.",
+    "tracebacks": [
+      "Phase 1: each column is lit amber in turn from the right and its total is written in green under it, ending on the whole answer with its units",
+      "Phase 2: each column is lit amber in turn from the right, the carried tile stays in the next column, and the totals are written in green, ending on the whole answer",
+      "Phase 3: the broken hour and its 60 minutes stay in place, each column is lit amber in turn from the right and what is left is written in green, ending on the whole answer",
+      "Phase 4: the two points are locked in a line, each column is lit amber in turn from the right and the answer is written in green with its point in line; a shared time is dealt lane by lane"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "Columns of hours, minutes and seconds, ready to be added.",
+    "onFreePlay": "Free play: work any sum column by column, then tap New sum.",
+    "onMiss": "the item's own miss line on the first wrong answer, the phase's first ladder rung on the second, the second rung together with the traceback (the right answer and its steps) from the third; shown UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You added and took away lengths of time and carried at sixty.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S4.T6.C25:TC1",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "What is 4 h 10 min + 3 h 25 min?",
+            "question": {
+              "en": "What is 4 h 10 min + 3 h 25 min?"
+            },
+            "ask": {
+              "en": "4 h 10 min + 3 h 25 min"
+            },
+            "answer": [
+              7,
+              35
+            ],
+            "planAnswer": "7 h 35 min.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S4.T6.C25:1",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "Add 2 h 10 min and 4 h 20 min.",
+            "question": {
+              "en": "Add 2 h 10 min and 4 h 20 min."
+            },
+            "ask": {
+              "en": "2 h 10 min + 4 h 20 min"
+            },
+            "answer": [
+              6,
+              30
+            ],
+            "planAnswer": "6 h 30 min",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S4.T6.C25:5",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "Add 5 h 15 min 20 s and 2 h 10 min 30 s.",
+            "question": {
+              "en": "Add 5 h 15 min 20 s and 2 h 10 min 30 s."
+            },
+            "ask": {
+              "en": "5 h 15 min 20 s + 2 h 10 min 30 s"
+            },
+            "answer": [
+              7,
+              25,
+              50
+            ],
+            "planAnswer": "7 h 25 min 50 s",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S4.T6.C26:TC2",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "What is 2 h 50 min + 2 h 35 min?",
+            "question": {
+              "en": "What is 2 h 50 min + 2 h 35 min?"
+            },
+            "ask": {
+              "en": "2 h 50 min + 2 h 35 min"
+            },
+            "answer": [
+              5,
+              25
+            ],
+            "planAnswer": "5 h 25 min.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S4.T6.C26:2",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "Add 35 min and 50 min. Write the answer in hours and minutes.",
+            "question": {
+              "en": "Add 35 min and 50 min and write it in hours and minutes."
+            },
+            "ask": {
+              "en": "35 min + 50 min"
+            },
+            "answer": [
+              1,
+              25
+            ],
+            "planAnswer": "1 h 25 min, because 35 + 50 = 85 and 85 min is 1 h 25 min",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S4.T6.C26:6",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "Add 3 h 45 min 50 s and 2 h 30 min 40 s.",
+            "question": {
+              "en": "Add 3 h 45 min 50 s and 2 h 30 min 40 s."
+            },
+            "ask": {
+              "en": "3 h 45 min 50 s + 2 h 30 min 40 s"
+            },
+            "answer": [
+              6,
+              16,
+              30
+            ],
+            "planAnswer": "6 h 16 min 30 s",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S4.T6.C27:TC3",
+            "worked": false,
+            "kind": "sub",
+            "planQuestion": "What is 8 h 5 min - 3 h 30 min?",
+            "question": {
+              "en": "What is 8 h 5 min - 3 h 30 min?"
+            },
+            "ask": {
+              "en": "8 h 5 min - 3 h 30 min"
+            },
+            "answer": [
+              4,
+              35
+            ],
+            "planAnswer": "4 h 35 min.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S4.T6.C27:3",
+            "worked": false,
+            "kind": "sub",
+            "planQuestion": "To take 25 min from 2 h 10 min, 1 h is regrouped as how many minutes?",
+            "question": {
+              "en": "To take 25 min from 2 h 10 min, 1 h is regrouped as how many minutes?"
+            },
+            "ask": {
+              "en": "1 h is how many min?"
+            },
+            "answer": [
+              60
+            ],
+            "planAnswer": "60 min, so 2 h 10 min becomes 1 h 70 min",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S4.T6.C27:7",
+            "worked": false,
+            "kind": "sub",
+            "planQuestion": "Take 2 h 55 min from 6 h 20 min.",
+            "question": {
+              "en": "Take 2 h 55 min from 6 h 20 min."
+            },
+            "ask": {
+              "en": "6 h 20 min - 2 h 55 min"
+            },
+            "answer": [
+              3,
+              25
+            ],
+            "planAnswer": "3 h 25 min",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S4.T6.C28:TC4",
+            "worked": false,
+            "kind": "sub",
+            "planQuestion": "What is 3 min 4.20 s - 2 min 51.75 s?",
+            "question": {
+              "en": "What is 3 min 4.20 s - 2 min 51.75 s?"
+            },
+            "ask": {
+              "en": "3 min 4.20 s - 2 min 51.75 s"
+            },
+            "answer": "12.45",
+            "planAnswer": "12.45 s.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S4.T6.C28:4",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "Add 3.25 s and 4.50 s.",
+            "question": {
+              "en": "Add 3.25 s and 4.50 s."
+            },
+            "ask": {
+              "en": "3.25 s + 4.50 s"
+            },
+            "answer": "7.75",
+            "planAnswer": "7.75 s",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S4.T6.C28:8",
+            "worked": false,
+            "kind": "share",
+            "planQuestion": "A relay team of four ran for 4 min 20 s in all. If each runner took the same time, how long did each take?",
+            "question": {
+              "en": "If 4 runners shared 4 min 20 s equally, how long did each run?"
+            },
+            "ask": {
+              "en": "4 min 20 s shared by 4"
+            },
+            "answer": [
+              1,
+              5
+            ],
+            "planAnswer": "1 min 5 s each, if each runner took the same time, because 4 min 20 s is 260 s and 260 divided by 4 is 65 s",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "time_columns",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "time_columns",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Hours with hours, minutes with minutes",
+        "conceptId": "M2.S4.T6.C25",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S4.T6.C25:TC1",
+          "M2.S4.T6.C25:1",
+          "M2.S4.T6.C25:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Carrying an hour",
+        "conceptId": "M2.S4.T6.C26",
+        "objectiveIds": [
+          "O9"
+        ],
+        "items": [
+          "M2.S4.T6.C26:TC2",
+          "M2.S4.T6.C26:2",
+          "M2.S4.T6.C26:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Borrowing an hour",
+        "conceptId": "M2.S4.T6.C27",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S4.T6.C27:TC3",
+          "M2.S4.T6.C27:3",
+          "M2.S4.T6.C27:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Seconds and hundredths",
+        "conceptId": "M2.S4.T6.C28",
+        "objectiveIds": [
+          "O10"
+        ],
+        "items": [
+          "M2.S4.T6.C28:TC4",
+          "M2.S4.T6.C28:4",
+          "M2.S4.T6.C28:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "stack",
+    "columns",
+    "cols",
+    "actsDone",
+    "acts",
+    "carry",
+    "borrow",
+    "points",
+    "lined"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, stack, columns, cols, actsDone, acts, carry, borrow, points, lined, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "time_columns"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S4.T6.C24.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Columns of hours, minutes and seconds, ready to be added."
+    },
+    {
+      "en": "Minutes with minutes, hours with hours. Which column goes first?"
+    },
+    {
+      "en": "Is there a whole hour in the minutes? Wrap it and carry it."
+    },
+    {
+      "en": "Not enough minutes on top. What can you break to get more?"
+    },
+    {
+      "en": "Points in a line. Would every runner take the same time?"
+    },
+    {
+      "en": "A new sum of times. Work the right-hand column first."
+    },
+    {
+      "en": "Free play. Stack any lengths of time and work them column by column."
+    },
+    {
+      "en": "Look at the columns again. Has any column got to sixty?"
+    },
+    {
+      "en": "You added and took away lengths of time and carried at sixty."
+    }
+  ],
+  "build": {
+    "source": "fb56a520:663714",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-16T20:37:20.083Z",
+    "checks": {
+      "pass": 95,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-11-16T20:37:19.961Z"
+    },
+    "tsxBytes": 577594,
+    "tsxMd5": "b8e6aced6a5a2cadd9434015738a07b6",
+    "handEdited": true
+  }
+}

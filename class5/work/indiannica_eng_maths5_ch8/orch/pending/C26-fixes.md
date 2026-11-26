@@ -1,0 +1,10 @@
+C26 maths-review fixes (maths-reviewer-1.3, 2026-11-16) — send to tool-builder-1.5 when an Opus slot is free
+SHOULD-FIX:
+1. Phases 1 and 3, items 2-3: hide the live product line ("10 x 10 = 100", "19 x 0 = 0") under the Try / Breadth dials; keep outline fit / amber rows and the side labels; print the product only at the win and in the correction. Keep it in the warm-up and item 1.
+2. Phase 4 items 1 and 3 traceback "box" step: label the amber corner "Not floor" (tx + TR) and write the child's own "14 x 9" (no result) in the right column in that step.
+3. Miss lines that repeat the act the gate already forced — start AFTER the act: 2.1 -> "Find each side first, then the area."; 4.1 -> "Find each part's area, then add them."; 4.3 -> "Find each part's area, then add them."; 4.2 -> "Count five lots of 9."; 2.3 "Never multiply the perimeter by itself; find a side." -> "Find the side first, then the area of that square."; 3.1 "...until the check line reaches the area" -> "Stack rows until the total reaches the Area."
+4. Guide step 1.3 "watch the rows spill past" names the result -> "Tap plus once more and look at the outline." with a new hint (not a repeat of step 1.1); phase 2 hints must not restate their step ("The Fill key lays the rows."): say where the key is.
+5. Bubble repeats: phase 1 ladder[0] vs closing -> ladder[0] "Try a side, then multiply it by itself."; phase 3 ladder[1] vs closing -> "Try a row count, then multiply it by the length."
+6. learned (phase 2) -> "You learned: from a square's perimeter, find the side, then the area."
+7. Gate nudge (PATTERNS 19 side effect 1): one number-free line per kind while the Answer key is locked ("Tap plus to try a side." / "Tap Fold." / "Cut the floor." / "Lay the squares.") with hi/gu TR later; restore the question after the act (PATTERNS 889).
+MAIN-SESSION DECISIONS: keep "square cm / square m" in the bubble (runtime gap logged); keep 98 appearing in P3 and as P4 Q3's answer (plan numbers); Copies question kept; phase 4 item 1 "3 m"/"6 m" labels and the nearly empty phase 3 opening go to the visual reviewer.

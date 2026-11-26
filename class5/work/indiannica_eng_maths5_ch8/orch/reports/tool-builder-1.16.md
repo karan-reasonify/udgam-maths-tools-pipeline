@@ -1,0 +1,17 @@
+STATUS: done · SLOTS: M3.S4.T9.C41.2D1 · CHECKS: full 98 PASS / 0 WARN / 0 FAIL (2 full runs for this fix message), ported
+C41 Layer Stacker: C41-fixes.md applied (S1-S7 + main-session decisions).
+S1 Every miss now points at the board (P1 "Look at the bottom layer only: 7 rows of 5 cubes." / "This bottom layer is just 7 long and 2 wide." / "Three layers stand here, each one like the bottom one."; P2 bottom layer / floor of the box / 2 layers of 11 by 5; P3 "Look at the bottom layer: 9 by 9 cubes, with 9 layers in all.", Q3 "Read the three edge labels on the solid: 6 cm, 6 cm and 4 cm."; P4 misses start after the act: "Multiply the 35 tenths by 16, then change the tenths back.", "Work out 25 × 24 tenths, then write them as cubic centimetres.", "The lens found tenths on two edges, not on just one."). Ladders: one new idea per rung (P1 repeated addition, P2 units of the volume, P3 layers then "same number three times", P4 "product counts tenths" then write-back). P3 Q3 and P4 Q3 have their own item ladders. side × side × side is now only in the P3 closing.
+S2 Nudge on a tap at the locked Answer key: P1 "Stack the layers up to the dashed top first.", P2 "...up to the top of the box first.", P3 "Run the bead along all three edges first.", P4 Q1-2 "Tap Multiply and the Tenths lens first." -> "Hold the Tenths lens over the edge in tenths first." / "Tap Multiply first." (names only what is still live), P4 Q3 "Hold the lens over each edge in tenths first.". When the act completes the question is said again.
+S3 Enter on a guide step calls markReal() (user mode). The gate engages only after a real tap on a piece of THAT question's board. Reason: a mount-wide latch locked Q1 for a keyboard-only child and failed the full-check rows hint-key, hint-ladder-monotonic and keyboard.
+S4 P2 Units switch is now a read-out chip "units: cm/m" (no pointer events); the toggle is live only in free play.
+S5 P2 Q3 "tank" -> "box" (say, miss, win).
+S6 P4 Q3 say: "A box is 4 cm by 2.5 cm by 1.5 cm; can we multiply tenths by whole numbers only?" (one sentence: keyOnly needs one); correction rows: "Two edges in tenths" + "No: a step for later" (P3 Q3 row is now "No: edges not equal").
+S7 Free play: Wider never passes Longer; Longer, Wider and the Height handle stop at their maximum (disabled there, no wrap, no shortening).
+Decision: every P3 solid is now plain tinted faces (warm white, violet layers in the correction, amber edges, green result). The cube skin remains only on the P1 base cubes and the start page. The bead stays a plain circle: I added no extra unit-cube picture in P3.
+Extra rules: a wrong answer before the act runs the traceback, which completes the acts, so nothing stays locked. No undo key. The lock follows only taps on the tool's pieces.
+playkit REAL clicks (all passed, no console errors):
+ (A) P2 keyboard-only warm-up (Enter on both steps), then Q1: key live -> 1 lift -> locked -> tap Answer = nudge -> 3 lifts -> question back and key live.
+ (B) P2 wrong typed answer (66) with no board tap: correction, layers 4, keypad live, a later tap does not re-lock, 264 wins.
+ (C) P4 Q1: lens only -> nudge "Tap Multiply first." -> Multiply -> question back and key live.
+To add in the language pass: the 7 nudge lines live inside nudgeLine(), not as api.say literals, so tr-coverage cannot list them. They need TR by hand.
+Not done: no spin delight (as before); P4 Q3 lens flow not replayed with real clicks this round.

@@ -1,0 +1,21 @@
+STATUS: ISSUES (0 must-fix, 6 should-fix, 2 questions)
+C29 Month Calendar, GUJARATI, round 3 re-look, visual-reviewer-1.78. Widths measured from the 1600x900 pixels.
+Looked at (gu, flagged changed): p1 step1 stepwrong ask-shut ask-open wrong win hintkey end; p2 wrong win choice-wrong end; p3 step1 stepwrong ask-shut ask-open wrong win end; p4 step1 stepwrong ask-shut ask-open wrong win end summary free; party p1+p4. Extra frames: p3 correction played by playkit (4 frames + a 30 ms in-page DOM poll), p1 Q3 with the pad open (clean: rows end 965, pad 980, tray cards 25 px above the canvas bottom).
+Unchanged since round 2 (not looked at): start; p2 step1 stepwrong ask-shut ask-open choice choice-line; p1-again (sameAs p1-step1).
+Round-3 fixes:
+M1 OK: pill face 46 tall (+ rim = 48); tail of ૂ ends y326, face ends y331 = 5 px clear (p3 step1/ask-shut).
+M2 OK: P3/P4 names top clear 6-7 px, બુધ/ગુરુ/શુક્ર 5 px above the bottom rule (+1 aa); P1 top 7, bottom 11 (4 px to the pink ring); મંગળ 8 px side air in P4.
+3 NOT FIXED (vertical): the Jump pill sits under the date, but its ring is 66 tall in a 68 cell, so top and bottom touch the row rules (0-1 px, needed >= 6). Sides 11-13 px, date digit 28 px clear.
+4 PARTLY: one 4 px arc per jump, date to date, end dot, "+7" in the next column 15+ px off the rules: OK. Not OK: correction step 1 (see 1 below); landed cells are violet only while the trace runs, settled p3-wrong/win are teal (153,216,199) in a 2 px violet frame (p3-end Sunday cells solid violet).
+5 PARTLY: all names one size, air min 8 px (ઑક્ટો, 8 R / 9 L), others 14-40; "જવાબ" legend beside the "7 મહિના" chip OK; badges 7 px under the content top (115 vs 108) OK; badge 7 is 49 px from the open pad OK, but see 5 below. Names are abbreviations, not whole (see question 2).
+6 PARTLY: P2 chips 26 px (win) / 32 px (choice-wrong) above the strip OK; 29th-cell ring inside the grid (cell left = grid left 82, ring 4 px inside the outline) OK; leap rings separate OK; thumbs "2050 ના" one line at 28, air 22 top / 24 bottom OK. P3 legend NOT FIXED (2); P3 ગુરુવાર chip NOT FIXED (3).
+Findings:
+[should-fix] p3, wrong/step1 correction, gu — the amber ring is not alone as correction step 1: 32 ms after the miss the dashed amber ring around row 1 appears TOGETHER with the whole violet column, the four arcs and the four "+7"; it stays 0.64 s, then the dates drop in one by one every 0.65 s. Probe: solve guide, nearMiss(), submit(), poll DOM. Not a pack state. Fix: draw the ring first, the column/arcs/"+7" after it.
+[should-fix] p3, ask-shut/ask-open/step1/stepwrong, gu — legend gaps are 15 px (આપેલું to કૂદ) and 40 px (કૂદ to જવાબ), not equal 24; first entry at x418 (= stage 352 OK). Fix: lay the three entries out by measured width with equal 24 gaps.
+[should-fix] p3, end, gu — ગુરુવાર chip is 57 tall in a 66 cell: 4 px under the header rule, 5-6 px over the row rule (2 px to the dashed edge); needed >= 8. Fix: chip <= 50 tall, centred.
+[should-fix] p3, wrong/win, gu — arc end dot is 2.8 px from 22 and 29 (5 px from 15) and the arc bow rides on the column rule (x303-307 over the 2 px rule at 303-304). Fix: end the arc 8+ px before the digit and keep the bow inside the cell.
+[should-fix] p3, ask-shut/ask-open/step1/stepwrong, gu — Jump pill ring touches the cell rules top and bottom (item 3). Fix: ring <= 54 tall (or pill/ring smaller) so >= 6 px stays clear.
+[should-fix] p1, end, gu — month badges (outline y115-152) sit with 0-1 px gap on the row-1 frame (y153), 2 px above the card tops. Fix: raise the badges 8-12 px or move the strip down.
+[question] p3, wrong/win, gu — the round note says landed cells are violet in correction/win; settled they are teal with a violet frame (the brief says the dates "turn green"). Keep teal, or hold violet?
+[question] p1, end, gu — the fix says "whole names"; the cards show abbreviations (જાન્યુ ફેબ્રુ એપ્રિ સપ્ટે ઑગ ઑક્ટો નવે ડિસે), none clipped. Is that intended (a 100 px card cannot hold the whole names at 32)?
+Also fine: no red/cross after a miss, no English left, digits Latin, nothing under the open pad (p1/p2/p3/p4 ask-open, Q3 probe), summary rows/thumbs/keys clear (the "2050   ના" thumb has a 40 px hole between its two words: cosmetic), party frames festive and the cheer reads (cone/pills not rated).

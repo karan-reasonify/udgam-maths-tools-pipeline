@@ -1,0 +1,235 @@
+{
+ "round": 1,
+ "at": "2026-11-12T09:17:02.620Z",
+ "roles": {
+  "maths-reviewer": [
+   {
+    "slot": "M1.S1.T2.C8.2D1",
+    "scope": "whole tool (digest + brief)",
+    "why": "round 1: every tool"
+   },
+   {
+    "slot": "M1.S2.T3.C13.2D1",
+    "scope": "whole tool (digest + brief)",
+    "why": "round 1: every tool"
+   },
+   {
+    "slot": "M1.S2.T4.C18.2D1",
+    "scope": "whole tool (digest + brief)",
+    "why": "round 1: every tool"
+   },
+   {
+    "slot": "M2.S3.T5.C23.2D1",
+    "scope": "whole tool (digest + brief)",
+    "why": "round 1: every tool"
+   },
+   {
+    "slot": "M2.S3.T6.C28.2D1",
+    "scope": "whole tool (digest + brief)",
+    "why": "round 1: every tool"
+   },
+   {
+    "slot": "M2.S4.T7.C33.2D1",
+    "scope": "whole tool (digest + brief)",
+    "why": "round 1: every tool"
+   }
+  ],
+  "language-agent": [
+   {
+    "slot": "M1.S1.T2.C8.2D1",
+    "scope": "orch digest --strings",
+    "why": "never passed"
+   },
+   {
+    "slot": "M1.S2.T3.C13.2D1",
+    "scope": "orch digest --strings",
+    "why": "never passed"
+   },
+   {
+    "slot": "M1.S2.T4.C18.2D1",
+    "scope": "orch digest --strings",
+    "why": "never passed"
+   },
+   {
+    "slot": "M2.S3.T5.C23.2D1",
+    "scope": "orch digest --strings",
+    "why": "never passed"
+   },
+   {
+    "slot": "M2.S3.T6.C28.2D1",
+    "scope": "orch digest --strings",
+    "why": "never passed"
+   },
+   {
+    "slot": "M2.S4.T7.C33.2D1",
+    "scope": "orch digest --strings",
+    "why": "never passed"
+   }
+  ],
+  "visual-reviewer": [
+   {
+    "slot": "M1.S1.T2.C8.2D1",
+    "mode": "full",
+    "pack": true,
+    "why": "new pattern representative"
+   },
+   {
+    "slot": "M1.S2.T3.C13.2D1",
+    "mode": "full",
+    "pack": false,
+    "why": "upgraded: "
+   },
+   {
+    "slot": "M1.S2.T4.C18.2D1",
+    "mode": "full",
+    "pack": false,
+    "why": "upgraded: "
+   },
+   {
+    "slot": "M2.S3.T5.C23.2D1",
+    "mode": "full",
+    "pack": false,
+    "why": "upgraded: "
+   },
+   {
+    "slot": "M2.S3.T6.C28.2D1",
+    "mode": "full",
+    "pack": false,
+    "why": "upgraded: new-picture:p:grid"
+   },
+   {
+    "slot": "M2.S4.T7.C33.2D1",
+    "mode": "full",
+    "pack": false,
+    "why": "upgraded: "
+   }
+  ],
+  "play-tester": [
+   {
+    "slot": "M1.S1.T2.C8.2D1",
+    "scope": "full play",
+    "why": "new pattern representative"
+   }
+  ]
+ },
+ "skipped": [
+  {
+   "role": "play-tester",
+   "slot": "M1.S2.T3.C13.2D1",
+   "reason": "repeat of an unchanged pattern (plain); the full check's real-input drives cover it",
+   "estTokens": 2536860
+  },
+  {
+   "role": "play-tester",
+   "slot": "M1.S2.T4.C18.2D1",
+   "reason": "repeat of an unchanged pattern (plain); the full check's real-input drives cover it",
+   "estTokens": 2536860
+  },
+  {
+   "role": "play-tester",
+   "slot": "M2.S3.T5.C23.2D1",
+   "reason": "repeat of an unchanged pattern (plain); the full check's real-input drives cover it",
+   "estTokens": 2536860
+  },
+  {
+   "role": "play-tester",
+   "slot": "M2.S3.T6.C28.2D1",
+   "reason": "repeat of an unchanged pattern (plain); the full check's real-input drives cover it",
+   "estTokens": 2536860
+  },
+  {
+   "role": "play-tester",
+   "slot": "M2.S4.T7.C33.2D1",
+   "reason": "repeat of an unchanged pattern (plain); the full check's real-input drives cover it",
+   "estTokens": 2536860
+  }
+ ],
+ "blocked": [
+  {
+   "slot": "M2.S4.T8.C38.2D1",
+   "why": "no full check yet (orch checks --tier 2)"
+  }
+ ],
+ "batches": {
+  "maths-reviewer": [
+   [
+    "M1.S1.T2.C8.2D1",
+    "M1.S2.T3.C13.2D1",
+    "M1.S2.T4.C18.2D1",
+    "M2.S3.T5.C23.2D1"
+   ],
+   [
+    "M2.S3.T6.C28.2D1",
+    "M2.S4.T7.C33.2D1"
+   ]
+  ],
+  "language-agent": [
+   [
+    "M1.S1.T2.C8.2D1",
+    "M1.S2.T3.C13.2D1",
+    "M1.S2.T4.C18.2D1",
+    "M2.S3.T5.C23.2D1"
+   ],
+   [
+    "M2.S3.T6.C28.2D1",
+    "M2.S4.T7.C33.2D1"
+   ]
+  ],
+  "visual-reviewer": [
+   {
+    "slots": [
+     "M1.S1.T2.C8.2D1"
+    ],
+    "mode": "full",
+    "chunks": 3
+   },
+   {
+    "slots": [
+     "M1.S2.T3.C13.2D1"
+    ],
+    "mode": "full",
+    "chunks": 3
+   },
+   {
+    "slots": [
+     "M1.S2.T4.C18.2D1"
+    ],
+    "mode": "full",
+    "chunks": 3
+   },
+   {
+    "slots": [
+     "M2.S3.T5.C23.2D1"
+    ],
+    "mode": "full",
+    "chunks": 3
+   },
+   {
+    "slots": [
+     "M2.S3.T6.C28.2D1"
+    ],
+    "mode": "full",
+    "chunks": 3
+   },
+   {
+    "slots": [
+     "M2.S4.T7.C33.2D1"
+    ],
+    "mode": "full",
+    "chunks": 3
+   }
+  ],
+  "play-tester": [
+   [
+    "M1.S1.T2.C8.2D1"
+   ]
+  ]
+ },
+ "needsPack": [
+  "M1.S2.T3.C13.2D1",
+  "M1.S2.T4.C18.2D1",
+  "M2.S3.T5.C23.2D1",
+  "M2.S3.T6.C28.2D1",
+  "M2.S4.T7.C33.2D1"
+ ]
+}

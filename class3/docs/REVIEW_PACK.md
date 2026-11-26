@@ -90,8 +90,8 @@ neighbours in the same phase). Without `--changed` the command prints the frame 
 - **One `--pack` run per review round.** The baseline is "the pack before this run": a second run in the same round
   (nothing changed) reports 0 and moves the baseline, so a change nobody has reviewed yet would no longer show as changed. The
   main session runs `--pack --changed` once after the fixes and hands the list to the reviewers.
-- `clean` removes the frames (`pack/*.png`) and keeps `pack.json` and `pack.prev.json`, so a round after the end-of-chapter
-  tidy still knows what changed: the next `--pack --changed` rebuilds the frames and flags the differences against the kept
+- `clean` (run by `publish --upload` after a verified upload) removes the frames (`pack/*.png`) and keeps `pack.json` and `pack.prev.json`, so a round after the upload's
+  cleanup still knows what changed: the next `--pack --changed` rebuilds the frames and flags the differences against the kept
   pack.json.
 
 ## How a reviewer uses it

@@ -1,0 +1,16 @@
+STATUS: ok
+SLOTS: M1.S1.T2.C6.2D1 (FINAL VERIFY of orch/pending/C6-final-fixes.md, visual items)
+FILES: none edited (report only)
+CHECKS: pack rebuilt 19:53 after tool.tsx 19:40 / preview 19:41; all 4 changed chunks are whole (every p1-p4 frame CHANGED, en/hi/gu); pixel scans of the frames + real-input playkit probes en/hi/gu (C4_CHROME_POOL=1, 0 console errors)
+FAILURES: 0 must-fix, 0 should-fix, 0 questions
+VERDICT: CLEAN
+CHECKLIST
+1 FIXED (short-side tag + strip colour). Real flow P3 Q1 en/hi/gu (guide taps, Walk, then tap the 6 cm side): at +0.3 s AND +2.2 s the bubble reads "Tap a longer side first." / "पहले एक लंबी भुजा दबाओ।" / "પહેલાં એક લાંબી બાજુ દબાવો." (before: no hint at 0.4/3/7 s). Figure: the wrong "Length 6 cm" pill shows for ~1.5 s beside the hint, at +2.2 s it is gone (plain "6 cm", Length/Breadth tray back, long pair stays amber). Strip "Length = 11 cm" sampled (0,86,134) = deep-blue given ink; the answer green is (0,119,86) (p3-win-en). Residual: the 1.5 s pill/strip contradiction is the fix's own design (hint beside it): accepted.
+2 FIXED (Q2 portrait ~28%). gotoStep(7) en/hi/gu: rectangle 279 x 360 = 100,440 px2 in the paper 819 x 427 = 349,713 -> 28.7% (was ~10%). "5 cm" pill inside, 19 px under the top stroke; two-line "Length 12 cm" / "लंबाई 12 सेमी" / "લંબાઈ 12 સેમી" pill 16 px off the right stroke, matras inside the outline.
+3 FIXED (side pills >= 12 px). Nearest-pixel scans of all 18 lit P3 + P4 frames (wrong/win/end x en/hi/gu): pill-to-lit-stroke = 13 px on BOTH sides in every one (was 7-8); P1 and P2 lit frames >= 13 (slanted figures, nearest distance), none narrower.
+4 FIXED (ring vs "9 cm"). p3-step1 and p3-stepwrong en/hi/gu: the ring now rings the BOTTOM side; the "9 cm" pill is 146-162 px away, the "4 cm" pill 25-33 px (nearest-pixel); no flush ends, number clean, ant clear of the ring.
+5 not judged (focus is not visual; play tester's).
+6 FIXED (nudge wording). Real flow en/hi/gu, Answer pressed before tagging, at Q1 and at Q3 (reached by real taps): bubble "Tap the side that is the length first." / "पहले वह भुजा दबाओ जो लंबाई है।" / "પહેલાં લંબાઈવાળી બાજુ દબાવો." - fits (hi: the final "है।" sits alone on line 2, cosmetic), nothing English left in hi/gu, old "Put the Length tag on first." still prints only at Q2 (right there).
+SPOT CHECK for NEW collisions (full-size frames, en + hi + gu in every phase): P1 ask-open en, wrong hi, end gu; P2 ask-shut en, wrong hi, end gu; P3 step1 en/hi, stepwrong gu, ask-shut gu, ask-open hi, wrong en, win en, end hi, Q1 short-tap and Q2/Q3 real-flow frames; P4 wrong hi, end en, free gu, ask-shut gu, summary hi, party gu. No clipped text, nothing within 12 px of a lit stroke or ring, hi/gu two-line pills inside their outlines, no English left in hi/gu, nothing red or crossed after a miss, berry Answer/Next/Summary/Next-phase keys, Kiko thinking at asks and cheering in the party, header discs intact.
+Not re-raised (KEEP / unchanged since earlier rounds): berry Answer live at the opening, ring on one long side only, emptied slot after a miss, hi summary row pitch, hi/gu bubble orphan words, paper shift when the pad opens.
+Temp files: my play-vr182-*.png (own prefix) and scratchpad probes deleted.

@@ -1,0 +1,18 @@
+STATUS: ISSUES (2 must-fix, 3 should-fix, 1 question)
+Class 5 ch10 M3.S5.T8.C29.2D1, Hindi, round 5 (visual-reviewer-1.127). All numbers measured from the 1600x900 pixels. No English left on any changed hi frame (digits only); nothing red or crossed after a miss; nothing under the open pad.
+Looked at: the 16 changed hi frames (p1-end; p2-wrong/win/choice-wrong/end; p3-step1/stepwrong/ask-shut/ask-open/wrong/win/end; p4-wrong/win/end/summary), p1+p4 party, neighbours p1-win, p4-ask-open, p4-free. Live (motion on): 22-shot burst of the P3 Jump ring, 75-shot burst of a real P3 miss.
+Unchanged since round 4 (not re-judged): start, p1 step1/stepwrong/ask-shut/ask-open/wrong/hintkey, p2 step1/stepwrong/ask-shut/ask-open/choice/choice-line, p4 step1/stepwrong/ask-shut.
+VERIFY (round-5 changes):
+M1 PARTLY: p3-end "गुरुवार" chip: feet of ु 6 px above the outline (was 0), ink-centred: OK. But chip outer is 52 tall, so only 7 px above / 8 px below to the row rules (need >=10), and it is 136 wide in a 126 column, overlapping the neighbours' dashed ghost-cell edges by 4 px each side.
+2 OK: pill 62 wide, word 46: 7-8 px each side; ring box constant 68x50 over a full ~1.6 s cycle (opacity only, never grows); ring 8 px above / 9 below the row rules, 27 from the column rules; ू tail 5 px above the purple rim; P3 columns 126.
+3 NOT FIXED: P4 header "मंगल" ink is 6 px left / 7 px right of the rules on every P4 frame, identical to round 4 (the P4 ask frames did not even change). Rendered size is 28 (the floor) for all seven names, so one size, never under 28: OK; the widest name draws 76 wide in the 90 column (7 each side). P4 free-play legend ends x970, keys x935, pad opens x980: clear.
+4 OK (real Enter): amber counted-row ring alone until ~1.3 s, arc 1 at ~1.31 s, arcs 2/3/4 at ~2.0/2.6/3.3 s (0.62-0.69 apart), green cells ~3.9 s; nothing red.
+5 OK: P1 badges r17, 24 px from the canvas top line, 8 px above the lane rim; summary week-strip thumbs 9 px top / 9 px bottom in the 62 px card, word centred +-2 px; P3 legend glyph bottoms y135 vs title digits y133.
+6 OK: P4 arc tips 13-14 px above the digit tops (head ~13 px wide, small but reads as a landing); P3 last-column "+7" at x782-815, table edge 954 < pad 980.
+FINDINGS:
+[must-fix] p4-wrong, p4-win, p4-party, hi - answer chip "सोमवार" (x733-880, y379-430): the ो tip fuses with the chip's top outline (0 px air) and 18 px sit empty below, the word rides ~9 px high. "बुधवार" (p4-end) is fine (6/8), so every word with a TOP matra (ो ि ी ं) fails - centre by the real ink box, >=4 px both sides, as done for the P3 chip; check मंगलवार, शनिवार, रविवार.
+[must-fix] p2-wrong, p2-win, hi - green box "366 दिन" (x623-965, y369-430): the ि hook is 2 px under the top outline, 23 px empty below - same fix.
+[should-fix] p1-end, p1-party, hi "7 महीने" box: matra tip 5 px under the top outline, 27 below; p2-end, p2-choice-wrong "लीप वर्ष नहीं": 6 px above, 24 below - same ink-centring (one helper for every Devanagari word in a box).
+[should-fix] all p4 frames, hi - header "मंगल" 6/7 px from the rules (76 wide in 90): the size is already at the 28 floor, so the 9 px pad cannot be met by fitting; it needs ROOM, columns >= 94 (then the legend column moves ~+12; it has room before the pad at x980).
+[should-fix] p3-end, hi - "गुरुवार" chip: outer <=48 tall (>=10 px above/below) and <=126 wide so it stops on the dashed cell edges.
+[question] p3-wrong, hi - the amber counted-row ring vanishes the moment arc 1 lands (7066 -> 0 amber px at ~1.3 s) and the settled frame has no amber; the brief's wrong path keeps the counted row lit amber. Intended (timeline as specified) or should it stay beside the hops?

@@ -1,0 +1,1157 @@
+{
+  "slotId": "M1.S2.T5.C24.2D1",
+  "mediaId": "M1.S2.T5.C24.2D1",
+  "toolId": "money_columns",
+  "title": "Money Columns",
+  "component": "M1.S2.T5.C24.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch11",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch11_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_11/2dtool/M1.S2.T5.C24.2D1/M1.S2.T5.C24.2D1.tsx",
+  "description": "Set amounts in a Rupees column and a Paise column, carry or borrow a rupee for a hundred paise, and find the total, what is left and the change.",
+  "conceptIds": [
+    "M1.S2.T5.C21",
+    "M1.S2.T5.C22",
+    "M1.S2.T5.C23",
+    "M1.S2.T5.C24"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Set two amounts one under the other with the dots in a line, add them by carrying one rupee for a hundred paise, subtract them by borrowing one rupee as a hundred paise, and turn a money story into one of the two sums.",
+    "look": "A board ruled into a deep blue Rupees column and a vermilion Paise column, an amber shelf of price tags, a green answer row, the Carry, Borrow and Plain columns buttons, and the number pad down the right of the canvas.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Money Columns' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many amounts have been worked out. It is never a score. The working area is 1086 by 528 at x 64, y 202. A plain wall fills the working area. The board stands at x 100, y 226, 640 by 450, a cream card with a thin near-black outline. A Rupees heading in deep blue stands over its left part and a Paise heading in vermilion over its right part, at y 238. A thin vertical dot line at x 520 runs the height of the board and every dot stands on it. The first amount is written at y 306 and the second at y 396, each digit in its own square cell 56 across, the rupees cells in deep blue and the paise cells in vermilion, with the operation sign alone at x 126, y 396 in near-black. A rule runs under the second row at y 462, and the answer row stands under it at y 480 in a thick green outline. A round carry cell, 44 across, sits above the Rupees column at x 380, y 262, and a borrow strip, 300 by 36, above the first row at x 190, y 268. The amber price tags hang on a shelf at x 790, y 226, 300 by 230, one tag for each amount. The Carry button stands at x 100, y 692, 160 by 56, the Borrow button at x 280, y 692, 160 by 56, the Show tags button at x 460, y 692, 190 by 56 and the Plain columns button at x 670, y 692, 220 by 56, each labelled in words. In a story the board sits in a small scene drawn behind it: a school fair stall, a shop counter, a purse or a money box, with a bill slip and a plain flat note or two beside it. In the Plain columns view the same board is drawn alone with no scene. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys, a dot key and a clear key, for typing the rupees, the dot and the paise of the answer into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours. The whole rupees of an amount are deep blue and the paise are vermilion everywhere, in a column heading, a tag and a label. The value written on one note or coin, and the price of one thing, is amber. How many notes, coins or things there are is sky blue. A total, a change, a converted amount and the answer are green. A note is a plain flat rectangle in its own colour and a coin a plain round disc, each with its value in large near-black type, so a value is read from the number and never from the colour. Anything dimmed fades to half strength rather than turning grey, and chrome never borrows one of the five. Each reading survives with the colour taken away, because an amount is told by its written label before it is told by its colour.",
+    "finish": "The board shows the last sum with its carry or its borrow, and the answer row reads the amount in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the dots fall into one line, the two headings light in their own colours, and a whole amount shows its two zeros",
+        "does": "drags each part of both amounts into its column, checks that the dots line up, and writes two zeros after a whole amount",
+        "goal": "rupees stand under rupees, paise under paise, the dots make one straight line, and a whole number of rupees takes two zeros",
+        "says": "Which column does each part belong in? Do the dots stand in one straight line?",
+        "check": "Away from the screen: write Rs 8 and Rs 19.60 one under the other. What do you write after the dot of Rs 8?",
+        "feels": "the digits sliding into their columns until every dot stands on the same line",
+        "hands": "Give each pair two paper price tags and a sheet ruled into a Rupees column and a Paise column, and ask them to write the rupees under the rupees and the paise under the paise.",
+        "tries": "First rung: say which part of the amount is the rupees. Second rung: slide the digits until the dots touch the dot line. Third rung: the same task with the whole amount set first, before the second amount returns.",
+        "wrong": [
+          {
+            "why": "whole numbers are lined up on the right, so the same habit is brought to money",
+            "move": "lines the amounts up on the right edge so the paise sit under the rupees",
+            "screen": "the Rupees and Paise headings stay lit, the dot line is drawn through the board, and the digits are slid back until every dot stands on it"
+          },
+          {
+            "why": "an amount with no paise looks complete without them",
+            "move": "leaves out the zeros of a whole amount, so the paise column is empty",
+            "screen": "the paise cells of that amount blink once and two zeros are written in, so the whole amount is read as rupees and no paise"
+          }
+        ],
+        "screen": "the empty board at a fair stall with two price tags waiting on the shelf and the dot line drawn between the columns",
+        "soWhat": "rupees go under rupees, paise go under paise, and the dots stand in one straight line",
+        "concept": "Rupees under rupees, paise under paise"
+      },
+      {
+        "n": 2,
+        "win": "a bundle of a hundred paise slides across and lands as one rupee, and the answer row lights green",
+        "does": "adds the paise, presses Carry when they reach a hundred, adds the rupees with the carried one, and types the answer",
+        "goal": "the paise are added first, and a hundred paise or more send one rupee across to the rupees column",
+        "says": "Add the paise first. Do they make a hundred or more?",
+        "check": "Away from the screen: 70 paise plus 60 paise. How many paise are left under Paise, and how many rupees do you carry?",
+        "feels": "a hundred paise sliding across the board and landing as a single rupee",
+        "hands": "Add the paise first on a sheet ruled into two columns, and when they make a hundred or more, trade a hundred paise for a Rs 1 coin and put the coin in the rupees column.",
+        "tries": "First rung: add only the paise and say the total. Second rung: say how many hundreds are in the total. Third rung: the same task with the paise adding to just over a hundred, before bigger totals return.",
+        "wrong": [
+          {
+            "why": "the paise were added correctly, but the hundred is left where it was made",
+            "move": "writes all the paise of the sum under Paise, so the paise column has three digits",
+            "screen": "the Paise column holds only two cells, so the extra hundred paise rise out of it as a bundle and slide over to the carry cell as one rupee"
+          },
+          {
+            "why": "the carry is written small and is easy to pass over",
+            "move": "adds the rupees and forgets the carried rupee",
+            "screen": "the carry cell glows deep blue until it is added, and the rupees are counted again with the carried one included"
+          }
+        ],
+        "screen": "the board with two amounts set, a plus sign at the left of the second row, and a round carry cell above the rupees",
+        "soWhat": "add the paise first, and carry one rupee to the rupees for every hundred paise",
+        "concept": "Adding: a hundred paise carry one rupee"
+      },
+      {
+        "n": 3,
+        "win": "one rupee breaks into a hundred paise, the rupees drop by one, and the answer row lights green",
+        "does": "looks at the paise, presses Borrow when they are too few, takes away the paise and then the rupees, and types the answer",
+        "goal": "the smaller amount goes below the bigger, and when the top paise are too few one rupee breaks into a hundred paise",
+        "says": "Look at the top paise. Are there enough to take away?",
+        "check": "Away from the screen: you borrow Rs 1 and the top paise were 20. How many paise are there now, and what happened to the rupees?",
+        "feels": "one rupee breaking into a hundred paise and the rupees column dropping by one",
+        "hands": "Hold a Rs 1 coin over the rupees column, and when the top paise are too few, swap it for a hundred paise and put the paise in the paise column.",
+        "tries": "First rung: compare the top paise with the paise to take away. Second rung: press Borrow and say how many paise there are now. Third rung: the same task with a whole amount on top, before the paise appear on top.",
+        "wrong": [
+          {
+            "why": "taking the smaller digit from the bigger always works in a single column",
+            "move": "takes the smaller paise from the bigger paise the wrong way round",
+            "screen": "the paise are shown in a row with the top amount first, the borrow strip opens, and the paise to take away are counted from the top amount only"
+          },
+          {
+            "why": "borrowing ten is the habit from whole numbers, where the next place is worth ten",
+            "move": "borrows ten paise instead of a hundred",
+            "screen": "the borrowed rupee breaks into a hundred small paise, counted in tens across the cells, so ten tens fill the paise column"
+          }
+        ],
+        "screen": "the board with a bigger amount above a smaller one, a minus sign at the left, and a borrow strip above the top row",
+        "soWhat": "borrow one rupee, count it as a hundred paise, take the paise, and then take the rupees",
+        "concept": "Subtracting: one rupee borrowed is a hundred paise"
+      },
+      {
+        "n": 4,
+        "win": "the amounts settle into the columns, the answer lights green, and the bill and the note show the same amounts",
+        "does": "reads the story, chooses to add or to subtract, sets the amounts in columns, works them and types the answer",
+        "goal": "a story that puts money together is added, and a story about what is left, the change or how much more is subtracted",
+        "says": "Read the story. Do we put money together or take money away?",
+        "check": "Away from the screen: Rs 50 is in a purse and Rs 18 is spent. Do you add or take away, and what is left?",
+        "feels": "the story settling into the columns and the right sign taking its place",
+        "hands": "Read a short story aloud and ask whether the money is put together or taken away, and then act it out with dummy notes and coins on the counter.",
+        "tries": "First rung: say in your own words what the story asks. Second rung: say whether the money is put together or taken away. Third rung: the same story with one amount only, before the second amount returns.",
+        "wrong": [
+          {
+            "why": "two amounts are named and adding is the first thing that comes to mind",
+            "move": "adds the note and the bill to find the change",
+            "screen": "the note and the bill are laid side by side on the counter, the bill is taken from the note, and the change is what is left"
+          },
+          {
+            "why": "the story names a purse and a change, so taking away seems right",
+            "move": "subtracts the two prices when the story asks how much in all",
+            "screen": "the two prices slide together onto one bill slip and the board switches to an adding sum, with the plus sign at the left"
+          }
+        ],
+        "screen": "a shop counter with a bill, a note and a purse beside the board, and a short money story written above it",
+        "soWhat": "add to find how much in all, and subtract to find how much is left, the change or how much more",
+        "concept": "Money problems: how much in all, how much left, how much change"
+      }
+    ],
+    "delight": "On the second phase, as the paise are added, the bundle of a hundred paise slides across the board so slowly that it seems to hesitate, and when it lands in the carry cell it turns into a single rupee coin and the answer row lights green. On the third phase, one rupee coin breaks into a hundred small paise that rain softly into the paise cells.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet typed. On the first phase the empty board stands at a fair stall with the dot line drawn between the two columns and two amber price tags on the shelf. On the second a plus sign stands at the left of the second row with both amounts already set, the paise column lit first and a round carry cell empty above the rupees. On the third a minus sign stands at the left, the bigger amount is above the smaller, and a borrow strip waits above the top row. On the fourth a shop counter holds a bill, a note and a purse beside the board, with a short money story above it. One thing moves, once: the dot line gives one slow pulse while the voice speaks its opening line, and a finger on a digit is the whole way in.",
+    "freePlay": "Any two amounts on the board, with the carry and borrow buttons, the tags shelf and the plain columns view all open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on setting amounts in columns, adding with a carry, subtracting with a borrow and money stories, each in a small real scene.",
+    "voiceLines": [
+      "A board with two columns, and two price tags waiting to be set.",
+      "Which column does each part belong in? Do the dots stand in one straight line?",
+      "Add the paise first. Do they make a hundred or more?",
+      "Look at the top paise. Are there enough to take away?",
+      "Read the story. Do we put money together or take money away?",
+      "A new sum. Which part will you work first?",
+      "Free play. Set any two amounts and work them as you like.",
+      "Look at the dots again. Do the rupees and the paise stand in their own columns?",
+      "You kept the dots in one line and worked the paise first."
+    ],
+    "observations": [
+      {
+        "why": "the dot is the mark that divides every amount into rupees and paise, so it is what the amounts line up on.",
+        "soWhat": "rupees go under rupees, paise go under paise, and the dots make one straight line.",
+        "observe": "When the amounts were set one under the other, the dots stood in one straight line only when the rupees were under the rupees and the paise under the paise."
+      },
+      {
+        "why": "a hundred paise are one rupee, so every full hundred of paise moves across as a single one.",
+        "soWhat": "add the paise first, write the paise that are left, and carry one rupee for each hundred.",
+        "observe": "When the paise made a hundred or more, a bundle of a hundred paise slid over to the rupees column and landed as exactly one rupee."
+      },
+      {
+        "why": "one rupee is worth a hundred paise, so what leaves the rupees arrives in the paise as a hundred.",
+        "soWhat": "borrow one rupee, count it as a hundred paise, take the paise and then the rupees.",
+        "observe": "When the top paise were too few, one rupee broke into a hundred paise and the rupees column dropped by exactly one."
+      },
+      {
+        "why": "the same board answers how much in all, how much is left and how much change, depending on what the story asks.",
+        "soWhat": "add to find how much in all, and take away to find how much is left, the change or how much more.",
+        "observe": "A story that put money together was set as an adding sum, and a story about what was left or the change was set as a taking away sum."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the empty board at a fair stall with two price tags waiting on the shelf and the dot line drawn between the columns",
+        "win": "the dots fall into one line, the two headings light in their own colours, and a whole amount shows its two zeros",
+        "traceback": "The dot line lights, then the Rupees column, then the Paise column (a whole amount's paise cells blink); the child writes the amount.",
+        "ladder": [
+          "The rupees go left of the dot and the paise go right of it.",
+          "Rs 9 is all rupees, so what goes in the paise cells?",
+          "Count the rupee cells from the dot, not from the left edge.",
+          "Rupees stay left of the dot line and paise stay right of it.",
+          "Type the two paise digits first, then the rupees, then press Enter."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the board with two amounts set, a plus sign at the left of the second row, and a round carry cell above the rupees",
+        "win": "a bundle of a hundred paise slides across and lands as one rupee, and the answer row lights green",
+        "traceback": "The paise column lights; when the paise make 100 or more a bundle of 100 paise slides over and the pencil writes the carried 1; the rupees light; the child writes the sum.",
+        "ladder": [
+          "Count again: 30 paise and 85 paise make how many paise?",
+          "Add the paise, then the rupees, each in its own column.",
+          "Add the paise first: 90 paise and 65 paise make how many paise?",
+          "Work one column at a time from the right and type its whole sum.",
+          "A sum of 10 or more sends its 1 up to the next column when you press Enter."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the board with a bigger amount above a smaller one, a minus sign at the left, and a borrow strip above the top row",
+        "win": "one rupee breaks into a hundred paise, the rupees drop by one, and the answer row lights green",
+        "traceback": "The paise column lights; when the top paise are too few a Rs 1 coin breaks into 100 paise and the pencil writes the new rupees and paise above; the rupees light; the child writes the difference.",
+        "ladder": [
+          "10 paise cannot give 35 paise, so the rupees must help.",
+          "Take the bottom paise from the top paise, then the rupees.",
+          "The top has 00 paise, so borrow Rs 1 as 100 paise.",
+          "Work one column at a time from the right, top take away bottom.",
+          "Compare the top paise with the bottom paise before you take away."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a shop counter with a bill, a note and a purse beside the board, and a short money story written above it",
+        "win": "the amounts settle into the columns, the answer lights green, and the bill and the note show the same amounts",
+        "traceback": "A wrong sign is written again as the right one; the paise column lights; a carry or a borrow is shown; the rupees light; the child writes the answer.",
+        "ladder": [
+          "Change means take the bill away from the note.",
+          "Money left means take the price away from the purse money.",
+          "A bill puts all the prices together.",
+          "Choose Add to put money together, or Take away for what is left.",
+          "Type the paise answer first, then each rupee column from the right."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "cell": 66,
+    "rupeeCells": 3,
+    "paiseCells": 2,
+    "partsOrder": "paise, rupees",
+    "colours": {
+      "rupees": "#1F4FA3",
+      "paise": "#E2531A",
+      "price": "#E69F00",
+      "answer": "#0B8A5F"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T5.C21:MC1",
+        "kind": "write",
+        "a": "13.40",
+        "b": "7.85",
+        "na": "doll",
+        "nb": "kite",
+        "ka": "tag",
+        "kb": "tag",
+        "parts": [
+          {
+            "label": "paise",
+            "at": "dpart"
+          },
+          {
+            "label": "rupees",
+            "at": "dwhole"
+          }
+        ],
+        "cardName": "answer",
+        "answer": [
+          "85",
+          "7"
+        ],
+        "near": "78.5",
+        "win": "Yes, the kite's dot stands right under the doll's dot.",
+        "winMs": 3672
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T5.C21:1",
+        "kind": "write",
+        "a": "23.45",
+        "b": "9",
+        "na": "mask",
+        "nb": "balloon",
+        "ka": "tag",
+        "kb": "tag",
+        "parts": [
+          {
+            "label": "paise",
+            "at": "dpart"
+          },
+          {
+            "label": "rupees",
+            "at": "dwhole"
+          }
+        ],
+        "cardName": "answer",
+        "answer": [
+          "00",
+          "9"
+        ],
+        "near": "9.0",
+        "win": "Yes, Rs 9 is written with two zeros after the dot.",
+        "winMs": 3400
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T5.C21:5",
+        "kind": "write",
+        "a": "126.05",
+        "b": "6.40",
+        "na": "game",
+        "nb": "cap",
+        "ka": "tag",
+        "kb": "tag",
+        "parts": [
+          {
+            "label": "paise",
+            "at": "dpart"
+          },
+          {
+            "label": "rupees",
+            "at": "dwhole"
+          }
+        ],
+        "cardName": "answer",
+        "answer": [
+          "40",
+          "6"
+        ],
+        "near": "64.0",
+        "win": "Yes, the 6 stands under the last rupee digit of 126.",
+        "winMs": 3536
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T5.C22:MC2",
+        "kind": "add",
+        "a": "15.30",
+        "b": "22.85",
+        "op": "+",
+        "na": "fish bowl",
+        "nb": "fish food",
+        "ka": "tag",
+        "kb": "tag",
+        "pad": "enter",
+        "answer": [
+          "15",
+          "38"
+        ],
+        "near": "37.15",
+        "win": "Yes, 100 paise went over to the rupees as Rs 1.",
+        "winMs": 3196
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T5.C22:2",
+        "kind": "add",
+        "a": "31.20",
+        "b": "14.35",
+        "op": "+",
+        "na": "bus",
+        "nb": "train",
+        "ka": "tag",
+        "kb": "tag",
+        "pad": "enter",
+        "answer": [
+          "55",
+          "45"
+        ],
+        "near": "46.55",
+        "win": "Yes, these paise made less than 100, so nothing was carried.",
+        "winMs": 4080
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T5.C22:6",
+        "kind": "add",
+        "a": "57.90",
+        "b": "26.65",
+        "op": "+",
+        "na": "toys",
+        "nb": "books",
+        "ka": "bill",
+        "kb": "bill",
+        "pad": "enter",
+        "answer": [
+          "55",
+          "84"
+        ],
+        "near": "83.55",
+        "win": "Yes, the carried 1 joined the rupees column.",
+        "winMs": 2992
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T5.C23:MC3",
+        "kind": "sub",
+        "a": "80.10",
+        "b": "41.35",
+        "op": "-",
+        "na": "pencil box",
+        "nb": "ruler",
+        "ka": "tag",
+        "kb": "tag",
+        "pad": "enter",
+        "answer": [
+          "75",
+          "38"
+        ],
+        "near": "39.75",
+        "win": "Yes, the borrowed rupee gave the paise 100 more.",
+        "winMs": 3264
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T5.C23:3",
+        "kind": "sub",
+        "a": "38.90",
+        "b": "13.50",
+        "op": "-",
+        "na": "scarf",
+        "nb": "cap",
+        "ka": "tag",
+        "kb": "tag",
+        "pad": "enter",
+        "answer": [
+          "40",
+          "25"
+        ],
+        "near": "24.40",
+        "win": "Yes, 90 paise were enough, so nothing was borrowed.",
+        "winMs": 3468
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T5.C23:7",
+        "kind": "sub",
+        "a": "50.00",
+        "b": "17.60",
+        "op": "-",
+        "na": "toy car",
+        "nb": "toy bus",
+        "ka": "tag",
+        "kb": "tag",
+        "pad": "enter",
+        "answer": [
+          "40",
+          "32"
+        ],
+        "near": "33.40",
+        "win": "Yes, 50 rupees became 49 rupees and 100 paise.",
+        "winMs": 3128
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T5.C24:MC4",
+        "kind": "story",
+        "a": "100",
+        "b": "65.75",
+        "op": "-",
+        "na": "note",
+        "nb": "bill",
+        "ka": "note",
+        "kb": "bill",
+        "pad": "enter",
+        "answer": [
+          "25",
+          "34"
+        ],
+        "near": "165.75",
+        "win": "Yes, the bill taken from the note leaves the change.",
+        "winMs": 3536
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T5.C24:4",
+        "kind": "story",
+        "a": "86.50",
+        "b": "32.25",
+        "op": "-",
+        "na": "purse",
+        "nb": "puzzle",
+        "ka": "purse",
+        "kb": "tag",
+        "pad": "enter",
+        "answer": [
+          "25",
+          "54"
+        ],
+        "near": "118.75",
+        "win": "Yes, taking the price away leaves the rest in the purse.",
+        "winMs": 3808
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T5.C24:8",
+        "kind": "story",
+        "a": "98.75",
+        "b": "47.50",
+        "op": "+",
+        "na": "bag",
+        "nb": "bottle",
+        "ka": "tag",
+        "kb": "tag",
+        "pad": "enter",
+        "answer": [
+          "25",
+          "146"
+        ],
+        "near": "51.25",
+        "win": "Yes, 125 paise gave Rs 1 to the rupees, and the bill is complete.",
+        "winMs": 4420
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The dot line lights, then the Rupees column, then the Paise column (a whole amount's paise cells blink); the child writes the amount.",
+      "Phase 2: The paise column lights; when the paise make 100 or more a bundle of 100 paise slides over and the pencil writes the carried 1; the rupees light; the child writes the sum.",
+      "Phase 3: The paise column lights; when the top paise are too few a Rs 1 coin breaks into 100 paise and the pencil writes the new rupees and paise above; the rupees light; the child writes the difference.",
+      "Phase 4: A wrong sign is written again as the right one; the paise column lights; a carry or a borrow is shown; the rupees light; the child writes the answer."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A board with two columns, and two price tags waiting to be set.",
+    "onFreePlay": "Free play. Tap New prices, choose Add or Take away, then carry or borrow.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You kept the dots in one line and worked the paise first.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T5.C21:MC1",
+            "worked": false,
+            "kind": "write",
+            "planQuestion": "A fair stall shows two prices, Rs 13.40 and Rs 7.85. Set them one under the other in a Rupees column and a Paise column. Where does the 7 go, and where do the dots go?",
+            "question": {
+              "en": "Write the kite's price under the doll's price."
+            },
+            "ask": {
+              "en": "Kite's price in columns?"
+            },
+            "answer": [
+              "85",
+              "7"
+            ],
+            "planAnswer": "The 7 goes under the 3 of 13, in the Rupees column. The dots make one straight line.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T5.C21:1",
+            "worked": false,
+            "kind": "write",
+            "planQuestion": "A fair stall sells a balloon for Rs 9 and a mask for Rs 23.45. Write both prices in columns. What goes under Paise for the balloon?",
+            "question": {
+              "en": "Now write the balloon's price under the mask's price."
+            },
+            "ask": {
+              "en": "Balloon's price?"
+            },
+            "answer": [
+              "00",
+              "9"
+            ],
+            "planAnswer": "Two zeros, 00. The balloon is Rs 9.00, with its dot in line with the dot of Rs 23.45",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T5.C21:5",
+            "worked": false,
+            "kind": "write",
+            "planQuestion": "Write Rs 6.40 and Rs 126.05 in columns. How many digits does each amount have in the Rupees column, and where does the 6 of Rs 6.40 stand?",
+            "question": {
+              "en": "Write the cap's price under Rs 126.05, the dots in one line."
+            },
+            "ask": {
+              "en": "Cap's price?"
+            },
+            "answer": [
+              "40",
+              "6"
+            ],
+            "planAnswer": "Rs 126.05 has three digits and Rs 6.40 has one. The 6 stands under the last digit of 126, so the dots line up",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T5.C22:MC2",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "At a pet shop, a fish bowl costs Rs 15.30 and fish food costs Rs 22.85. How much do they cost in all?",
+            "question": {
+              "en": "Fish food is Rs 22.85 and a fish bowl Rs 15.30, so how much in all?"
+            },
+            "ask": {
+              "en": "Bowl and food in all?"
+            },
+            "answer": [
+              "15",
+              "38"
+            ],
+            "planAnswer": "Rs 38.15",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T5.C22:2",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "A bus ticket costs Rs 31.20 and a train ticket costs Rs 14.35. How much do the two tickets cost together?",
+            "question": {
+              "en": "A bus ticket is Rs 31.20 and a train ticket Rs 14.35: add them in the columns."
+            },
+            "ask": {
+              "en": "Two tickets together?"
+            },
+            "answer": [
+              "55",
+              "45"
+            ],
+            "planAnswer": "Rs 45.55",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T5.C22:6",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "Two shop bills come to Rs 57.90 and Rs 26.65. What is the total of the two bills?",
+            "question": {
+              "en": "What is the total of the two bills, Rs 57.90 and Rs 26.65?"
+            },
+            "ask": {
+              "en": "Total of the bills?"
+            },
+            "answer": [
+              "55",
+              "84"
+            ],
+            "planAnswer": "Rs 84.55, because 90 paise and 65 paise make more than a hundred, so write 55 and carry Rs 1",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T5.C23:MC3",
+            "worked": false,
+            "kind": "sub",
+            "planQuestion": "A pencil box costs Rs 80.10 and a ruler costs Rs 41.35. How much more does the pencil box cost?",
+            "question": {
+              "en": "A pencil box is Rs 80.10 and a ruler Rs 41.35: how much more is the box?"
+            },
+            "ask": {
+              "en": "How much more?"
+            },
+            "answer": [
+              "75",
+              "38"
+            ],
+            "planAnswer": "Rs 38.75",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T5.C23:3",
+            "worked": false,
+            "kind": "sub",
+            "planQuestion": "A scarf costs Rs 38.90 and a cap costs Rs 13.50. Take Rs 13.50 from Rs 38.90 in columns. Do you need to borrow?",
+            "question": {
+              "en": "From Rs 38.90, take away Rs 13.50 in the columns."
+            },
+            "ask": {
+              "en": "Rs 38.90 take Rs 13.50?"
+            },
+            "answer": [
+              "40",
+              "25"
+            ],
+            "planAnswer": "No. The answer is Rs 25.40, because 90 paise is more than 50 paise",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T5.C23:7",
+            "worked": false,
+            "kind": "sub",
+            "planQuestion": "A toy car costs Rs 50. A toy bus costs Rs 17.60. How much more does the car cost? Write Rs 50 with two zeros after the dot first.",
+            "question": {
+              "en": "A toy car costs Rs 50 and a toy bus Rs 17.60, so how much more is the car?"
+            },
+            "ask": {
+              "en": "Car costs how much more?"
+            },
+            "answer": [
+              "40",
+              "32"
+            ],
+            "planAnswer": "Rs 32.40. Rs 50.00 has no paise to take 60 from, so borrow Rs 1: 100 paise minus 60 paise is 40 paise, and Rs 49 minus Rs 17 is Rs 32",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T5.C24:MC4",
+            "worked": false,
+            "kind": "story",
+            "planQuestion": "A child buys a notebook for Rs 46.50 and a pen for Rs 19.25. She pays with a Rs 100 note. How much does she spend in all, and how much change does she get?",
+            "question": {
+              "en": "Mina pays for Rs 65.75 with a Rs 100 note, so how much change does she get?"
+            },
+            "ask": {
+              "en": "Change from Rs 100?"
+            },
+            "answer": [
+              "25",
+              "34"
+            ],
+            "planAnswer": "She spends Rs 65.75 and gets Rs 34.25 change.",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T5.C24:4",
+            "worked": false,
+            "kind": "story",
+            "planQuestion": "A girl has Rs 86.50 in her purse. She buys a puzzle for Rs 32.25. How much money is left?",
+            "question": {
+              "en": "A girl has Rs 86.50 and buys a puzzle for Rs 32.25, so how much money is left?"
+            },
+            "ask": {
+              "en": "Money left?"
+            },
+            "answer": [
+              "25",
+              "54"
+            ],
+            "planAnswer": "Rs 54.25",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T5.C24:8",
+            "worked": false,
+            "kind": "story",
+            "planQuestion": "A child pays with a Rs 200 note for a bag at Rs 98.75 and a water bottle at Rs 47.50. How much is the bill, and how much change does the child get?",
+            "question": {
+              "en": "A bag costs Rs 98.75 and a bottle Rs 47.50, so how much is the bill?"
+            },
+            "ask": {
+              "en": "How much is the bill?"
+            },
+            "answer": [
+              "25",
+              "146"
+            ],
+            "planAnswer": "The bill is Rs 146.25 and the change is Rs 53.75",
+            "madeOn": "working area"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "money_columns",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "money_columns",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Rupees under rupees, paise under paise",
+        "conceptId": "M1.S2.T5.C21",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M1.S2.T5.C21:MC1",
+          "M1.S2.T5.C21:1",
+          "M1.S2.T5.C21:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Adding: a hundred paise carry one rupee",
+        "conceptId": "M1.S2.T5.C22",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M1.S2.T5.C22:MC2",
+          "M1.S2.T5.C22:2",
+          "M1.S2.T5.C22:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Subtracting: one rupee borrowed is a hundred paise",
+        "conceptId": "M1.S2.T5.C23",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M1.S2.T5.C23:MC3",
+          "M1.S2.T5.C23:3",
+          "M1.S2.T5.C23:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Money problems: in all, left, change",
+        "conceptId": "M1.S2.T5.C24",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M1.S2.T5.C24:MC4",
+          "M1.S2.T5.C24:4",
+          "M1.S2.T5.C24:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "top",
+    "bottom",
+    "operation",
+    "carried",
+    "borrowed",
+    "plainColumns"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, top, bottom, operation, carried, borrowed, plainColumns, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "money_columns"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T5.C24.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A board with two columns, and two price tags waiting to be set."
+    },
+    {
+      "en": "Which column does each part belong in? Do the dots stand in one straight line?"
+    },
+    {
+      "en": "Add the paise first. Do they make a hundred or more?"
+    },
+    {
+      "en": "Look at the top paise. Are there enough to take away?"
+    },
+    {
+      "en": "Read the story. Do we put money together or take money away?"
+    },
+    {
+      "en": "A new sum. Which part will you work first?"
+    },
+    {
+      "en": "Free play. Set any two amounts and work them as you like."
+    },
+    {
+      "en": "Look at the dots again. Do the rupees and the paise stand in their own columns?"
+    },
+    {
+      "en": "You kept the dots in one line and worked the paise first."
+    }
+  ],
+  "build": {
+    "source": "51b9be9e:743722",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-16T13:53:49.146Z",
+    "checks": {
+      "pass": 98,
+      "warn": 0,
+      "fail": 0,
+      "info": 5,
+      "at": "2026-11-16T13:53:49.001Z"
+    },
+    "tsxBytes": 670327,
+    "tsxMd5": "de6358a05746f3c3e0732d9421d28cdc"
+  }
+}

@@ -346,15 +346,10 @@ runtime and checker; it ports on a pass), one after another with `C4_CHROME_POOL
 
 **7. Audit.** Launch `<pfx>-upload-auditor` for the chapter (live dry run for every tool).
 
-**8. Clean and report.** The pipeline tidies itself when the chapter is done: `node cli.mjs clean --ch <n>` ONCE
-for the whole chapter (add `--dry` first to see the list). It removes the least important files, the review
-artefacts every `shots` / `check` run makes again: PNG sheets and other images, `.build/`, logs and editor
-leftovers. It tidies only a slot whose last check passed and is still fresh (a failing, stale or unchecked slot keeps
-its sheets: they may be all that shows what is wrong; `--force` overrides). It keeps the source, `voice.tsx`,
-`images.tsx` and `images.json`, `brief.md`, `slot.json`, `status.json`, the ported pair in `output-preview/` and the
-preview page (`<slot>.preview.html`, check's own page, which the owner opens to review; `--html` drops it too).
-`clean <slot_id> --ch <n>` does one slot. Run it after the reviewers and the audit, never before: they look at the
-sheets. The user reviews the TSX + JSON pair in the viewer. Start it in the background
+**8. Report (no clean here).** **The review images stay until the upload (the owner, 2026-11-20): do NOT run `clean` before it.**
+The sheets, pack frames, `approve-*.png`, `images-preview.png`, `.build/` and logs every `shots` / `check` run makes are the
+reviewers' evidence and the owner's way to see what is wrong, and they are all git-ignored (`class*/work/**/*.png`) so they never
+reach a commit. They go in step 10, by themselves. The user reviews the TSX + JSON pair in the viewer. Start it in the background
 (`node cli.mjs view`; the port is `viewerPort` in the class's config, class 4 http://localhost:5183; or `node viewhub.mjs` from the
 pipeline root for every class on one page, http://localhost:5170: Class and Chapter dropdowns, a tool list) and report to the user:
 - a table: tool (linked to its `output-preview/<chapter_id>/<slot_id>/<slot_id>.tsx`) · what the child does,
@@ -373,6 +368,13 @@ the live URLs.
 A verified upload stamps `status.published` (the time, the plan, the md5s of the pair), so the viewer's tool list, preview bar and
 side panel, the hub and `node cli.mjs status` all say "Published <time>" for it (amber "edited since" if the pair is changed afterwards;
 `class<N>/viewer/README.md`, "Published, and when"). Look for it after an upload; a dry run never sets it.
+**The upload then cleans the slot itself (the owner, 2026-11-20):** `publish --upload` runs `lib/finish/clean.mjs` on the slot right after
+the verified upload (the report line `cleaned  N review file(s) removed, X MB freed`): every PNG/JPG/WEBP/GIF in the slot folder, the
+review pack's frames, `approve-*`/`sheet-*`/`phase-*` frames, `.build/`, `tool.tsx.pre-design`, logs and editor leftovers go; the
+source (`tool.tsx`), `voice.tsx`, `images.tsx` + `images.json`, `brief.md`, `slot.json`, `status.json` (with `published`),
+`pack/pack.json` + `pack.prev.json`, the preview page and the ported pair stay. A dry run and a FAILED upload clean nothing. It never
+touches `assets/` (the skin and reference libraries) or `.images-cache/` (the paid Gemini cache). `clean` by hand is only for a
+published slot that still has images or for disk space.
 
 ## Small changes to one tool: edit the pair (the owner's rule, 2026-10-16)
 
@@ -384,7 +386,7 @@ do not run `check` for it. **Making, generating or remaking** a tool still follo
   every phase in the host emulator, drives every phase in English, Hindi and Gujarati through the host's loader (Start, the guide
   steps, the question, a wrong answer, a digit key, every question right), fails on a page error, a blank render, a state it cannot
   reach or anything of the working area under the key's corner, prints the bubble's text in each state (read them) and saves
-  `approve-*.png` in the slot's `work/` folder (`clean` removes them). Run it with `CHROME_PATH` set to a Chrome that answers
+  `approve-*.png` in the slot's `work/` folder (the upload's cleanup removes them, step 10). Run it with `CHROME_PATH` set to a Chrome that answers
   `--dump-dom` (on Linux Playwright's chrome-headless-shell: `/opt/google/chrome/chrome` drives over DevTools but hangs on
   `--dump-dom`) and `C4_FONTCONFIG` (or `fontconfig` in `pipeline.config.json`) naming a fontconfig file that adds Poppins.
 - A pass records `status.handEdit` (both md5s, the date, every note). `status` shows the slot as "hand-edited (approved <date>)" or

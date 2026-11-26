@@ -1,0 +1,983 @@
+{
+  "slotId": "M2.S2.T5.C21.2D1",
+  "mediaId": "M2.S2.T5.C21.2D1",
+  "toolId": "rows_times_squares",
+  "title": "Rows Times Squares",
+  "component": "M2.S2.T5.C21.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch8_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_8/2dtool/M2.S2.T5.C23.2D1/M2.S2.T5.C23.2D1.tsx",
+  "description": "Stack rows of squares on a rectangle to see length x breadth, make a square for side x side, and split a length into three to find a breadth given as one third of it.",
+  "conceptIds": [
+    "M2.S2.T5.C20",
+    "M2.S2.T5.C21",
+    "M2.S2.T5.C22",
+    "M2.S2.T5.C23"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "See that rows times the squares in a row give the count, so the area of a rectangle is length x breadth and a square's is side x side, and find a breadth from a clue before multiplying.",
+    "look": "A rectangle on squared paper with one row laid, the Rows handle up its breadth and the record card at the right; the Square switch on the third phase and the length strip with the Split button on the last.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Rows Times Squares' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of squares laid. It is never a score. The working area is 1086 by 528 at x 64, y 202. The rectangle lies on squared paper at x 120, y 250, drawn to one scale inside a box 620 by 400, its length along the bottom and labelled deep blue. The first row of violet squares, labelled Row, lies along the length. The Rows handle is a round grip at the rectangle's right edge that the child drags upward; each row it stacks lights amber for a moment. The record card stands at x 800, y 230, 300 by 260, with the columns Along the length, Along the breadth, Product and Count. The Units switch and the Square switch sit at x 800, y 520 and x 800, y 580. On the fourth phase the length strip lies at x 120, y 220, and the Split button at x 800, y 640 cuts it into three equal parts with two thin ink lines; one part drops down to stand as the breadth. The area reached is green. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with sq. cm and sq. m keys. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the ten tools of this chapter share them. The lengths the question gives, as a side, a length, a breadth, a height, an edge or a base area, are deep blue, labelled Given or by their own name. The perimeter, area, volume or missing side the working reaches is green, labelled Answer. The boundary that a perimeter walks round is vermilion, labelled Boundary. The unit being counted, one unit square, one unit cube, one row or one layer, is violet, labelled Unit square, Unit cube, Row or Layer. The part squares of an estimate and the space left over where no whole cube fits are rose, labelled More than half, Half or Left over. The side, square, cube, layer or step being worked on now is amber. Grey is kept for a zero holding a place open, and nothing on this stage is ever grey. A square or cube that is not being counted stays warm white inside its near-black outline, grid lines, unit words and signs are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of them, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last rectangle stays filled with its rows, the record card beside it, and the area in green with its square unit.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "five rows fill it, the running count reads 45, and the record card reads 9 x 5 = 45 beside the count",
+        "does": "drags the Rows handle up one row at a time, then types the count and the product on the record card",
+        "goal": "squares along the length x squares along the breadth gives the count",
+        "says": "One row is laid. How many rows fill it?",
+        "check": "Away from the screen: a chocolate bar has four rows of five pieces. How many pieces are there?",
+        "feels": "the rows stacking up and the count jumping a whole row at a time",
+        "hands": "On squared paper, colour one row of a rectangle, count it, then count the rows. Check by counting every square one by one.",
+        "tries": "First rung: count one row. Second rung: count the rows. Third rung: the same task on a rectangle with fewer rows, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "two numbers are on the edges, and adding them is the first thing to try",
+            "move": "types the squares along the length added to the squares along the breadth",
+            "screen": "the rows are stacked again in steps, one row's worth at a time, and the running count is shown beside the child's number"
+          },
+          {
+            "why": "the last row sits right at the top edge and is easy to miss",
+            "move": "stops the Rows handle one row short",
+            "screen": "the empty strip at the top is lit amber, and the ghost of the missing row is drawn in it while the child's rows stay"
+          }
+        ],
+        "screen": "a rectangle 9 squares along its length and 5 along its breadth, with one row of nine laid",
+        "soWhat": "squares along the length x squares along the breadth gives the count",
+        "concept": "Rows times squares in a row"
+      },
+      {
+        "n": 2,
+        "win": "the line reads 16 x 7 = 112 and the slot reads 112 sq. m in green",
+        "does": "stacks the rows, reads the product as length x breadth, and types the area with its unit",
+        "goal": "the area of a rectangle is length x breadth, with the longer side as the length",
+        "says": "The longer side is the length. Multiply it by the breadth.",
+        "check": "Away from the screen: a garden is six metres long and four metres wide. In what unit is its area?",
+        "feels": "the product and the count agreeing the first time they are set side by side",
+        "hands": "Measure the length and breadth of a book in centimetres, multiply, and check by covering it with centimetre squares on a transparent sheet.",
+        "tries": "First rung: name the length and the breadth. Second rung: multiply them. Third rung: the same task on a smaller rectangle, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "adding the two sides was right for a perimeter",
+            "move": "types length + breadth as the area",
+            "screen": "the sum is drawn as a single line along the edge in steps, labelled Length, while the rows fill the surface beside it"
+          },
+          {
+            "why": "the sides were in metres",
+            "move": "gives the area in m, not sq. m",
+            "screen": "one unit square with sides of one metre is drawn in a corner of the rectangle, and the unit key sq. m is lit amber"
+          }
+        ],
+        "screen": "a garden 16 m long and 7 m wide, its length along the bottom, and the Units switch on metres",
+        "soWhat": "the area of a rectangle is length x breadth, with the longer side as the length",
+        "concept": "Length times breadth"
+      },
+      {
+        "n": 3,
+        "win": "the board becomes a square of side 15 cm, the line reads 15 x 15 = 225, and 225 sq. cm lands green",
+        "does": "taps the Square switch, watches the breadth grow to 15 cm, and types the area",
+        "goal": "a square is a rectangle whose length and breadth are equal, so its area is side x side",
+        "says": "In a square, the length and the breadth are the same.",
+        "check": "Away from the screen: is a square a kind of rectangle? Why?",
+        "feels": "the rectangle stretching into a square and the two numbers matching",
+        "hands": "Draw a square on squared paper, count the squares along one side, and multiply that number by itself. Check by counting.",
+        "tries": "First rung: say the side. Second rung: multiply the side by itself. Third rung: the same task on a smaller square, counted to check, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "four equal sides were added for the perimeter of a square",
+            "move": "types four lots of the side as the area",
+            "screen": "the four sides light vermilion with the word Length beside them in steps, and then the rows fill the square beside them"
+          },
+          {
+            "why": "a square has one side length, and doubling feels like using it twice",
+            "move": "types two lots of the side as the area",
+            "screen": "rows are stacked up the square in steps until it is full, and the row count is shown beside the child's number"
+          }
+        ],
+        "screen": "a board 15 cm long and 9 cm wide, and the Square switch",
+        "soWhat": "a square is a rectangle whose length and breadth are equal, so its area is side x side",
+        "concept": "Side times side"
+      },
+      {
+        "n": 4,
+        "win": "one part reads 9 cm and becomes the breadth, and the line reads 27 x 9 = 243 with 243 sq. cm in green",
+        "does": "taps Split, drags one part down as the breadth, then stacks rows and types the area",
+        "goal": "find the breadth from a clue such as one third of the length, then multiply",
+        "says": "Split the length into three equal parts. One part is the breadth.",
+        "check": "Away from the screen: what is one third of a strip thirty centimetres long?",
+        "feels": "one part of the split strip dropping into place as the breadth",
+        "hands": "Cut a paper strip the length of a rectangle. Fold it into three equal parts, and use one part as the breadth.",
+        "tries": "First rung: split the length into three equal parts. Second rung: use one part as the breadth. Third rung: the same task on a shorter length, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the clue has a three in it, and multiplying is what the chapter has been doing",
+            "move": "multiplies the length by three to find the breadth",
+            "screen": "a breadth three times the length is drawn standing beside the rectangle in steps, much longer than the length, and the clue card is lit amber"
+          },
+          {
+            "why": "the length is already there, ready to use",
+            "move": "multiplies before finding the breadth",
+            "screen": "the Split button pulses, and the empty breadth side of the rectangle is lit amber"
+          }
+        ],
+        "screen": "a length strip labelled 27 cm, a clue card reading one third of the length, and the Split button",
+        "soWhat": "find the breadth from a clue such as one third of the length, then multiply",
+        "concept": "A breadth from a clue"
+      }
+    ],
+    "delight": "On the fourth phase, when the split part drops down beside the rectangle, the other two parts give a small nod, as if to say they are the same size.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet stacked. On the first phase a rectangle lies on squared paper with one row laid along its length and the Rows handle at its side. On the second a garden lies with its sides in metres and the Units switch set. On the third a board lies with the Square switch beside it. On the fourth a length strip lies above an empty rectangle, with a clue card and the Split button. One thing moves, once: the Rows handle, the Square switch or the Split button gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any rectangle, stacked row by row, turned into a square, or given a breadth by the Split button. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on rows times squares, length x breadth, side x side and a breadth from a clue.",
+    "voiceLines": [
+      "A rectangle, and one row of squares along it.",
+      "One row is laid. How many rows fill it?",
+      "The longer side is the length. Multiply it by the breadth.",
+      "In a square, the length and the breadth are the same.",
+      "Split the length into three equal parts. One part is the breadth.",
+      "A new rectangle. Find the length first.",
+      "Free play. Stack rows on any rectangle you like.",
+      "Count the rows again. How many squares are in each row?",
+      "You turned counting squares into length times breadth."
+    ],
+    "observations": [
+      {
+        "why": "every row along the length holds the same number of squares.",
+        "soWhat": "rows times the squares in a row gives the count, the same as counting one by one.",
+        "observe": "Each row stacked added the same number of squares to the count."
+      },
+      {
+        "why": "multiplying is a quicker way of adding equal rows.",
+        "soWhat": "the area of a rectangle is length x breadth.",
+        "observe": "The product on the record card always matched the count."
+      },
+      {
+        "why": "a square's length and breadth are equal.",
+        "soWhat": "the area of a square is side x side.",
+        "observe": "When the Square switch pulled the breadth up, the two numbers in the product became the same."
+      },
+      {
+        "why": "one third of a length is the length split into three equal parts.",
+        "soWhat": "find the breadth from the clue first, then multiply.",
+        "observe": "The split part stood beside the rectangle, much shorter than the length."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a rectangle 9 squares along its length and 5 along its breadth, with one row of nine laid",
+        "win": "five rows fill it, the running count reads 45, and the record card reads 9 x 5 = 45 beside the count",
+        "traceback": "The rows light up again one at a time beside the count, and the line ends on length x breadth = the count.",
+        "ladder": [
+          "Each row holds 9 squares, so count the rows.",
+          "Count the squares in one row, then count the rows.",
+          "There are 8 rows, and each is as long as the length.",
+          "Find the squares in one row and the number of rows.",
+          "Multiply the squares in one row by the number of rows."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a garden 16 m long and 7 m wide, its length along the bottom, and the Units switch on metres",
+        "win": "the line reads 16 x 7 = 112 and the slot reads 112 sq. m in green",
+        "traceback": "The rows of unit squares light up again, then the line ends on length x breadth = the area with its square unit.",
+        "ladder": [
+          "Adding the sides gives a length, not a surface.",
+          "Think of the card covered in rows of unit squares.",
+          "Each of the 9 rows holds 14 squares of one metre.",
+          "Look at the two side numbers on the picture.",
+          "Multiply the two side numbers to count the unit squares."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a board 15 cm long and 9 cm wide, and the Square switch",
+        "win": "the board becomes a square of side 15 cm, the line reads 15 x 15 = 225, and 225 sq. cm lands green",
+        "traceback": "The rows of the square light up again, then the line ends on side x side = the area in sq. cm.",
+        "ladder": [
+          "Adding the four sides gives the way round the edge, not the area.",
+          "Count the rows of the stamp and the squares in each row.",
+          "The tile has 20 rows, and each row holds 20 squares.",
+          "Read the side number under the square.",
+          "Multiply the side number by the same number again."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a length strip labelled 27 cm, a clue card reading one third of the length, and the Split button",
+        "win": "one part reads 9 cm and becomes the breadth, and the line reads 27 x 9 = 243 with 243 sq. cm in green",
+        "traceback": "The split part stands as the breadth and the rows light up again, then the line ends on length x breadth = the area.",
+        "ladder": [
+          "Is the breadth three times the length, or one third of it?",
+          "Split 24 into three equal parts before you multiply.",
+          "One part of the three is the breadth, so find it first.",
+          "Read the number on one cut part of the strip.",
+          "Ask what number times 3 gives the length, then multiply."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "unusedQuestionIds": [
+      "M2.S2.T5.C20:4"
+    ],
+    "cellMax": 72,
+    "answerGate": {
+      "1": "Stack rows, one tap stacks every row; the pad opens when the sweep ends",
+      "2": "Fill",
+      "3": "Square on the learn item (15 x 9 board); Fill on items 2 and 3 (they open square)",
+      "4": "Split, then Drop, then Fill",
+      "lockedAfter": "a real tap on an act key or a real Enter on a guide step (user mode); the agent's check() does the act at once",
+      "nudge": "a number-free line names the act key while locked; the act brings the question back"
+    },
+    "room": {
+      "x0": 70,
+      "x1": 830,
+      "y0": 12,
+      "y1": 368
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S2.T5.C20:RS1",
+        "kind": "count",
+        "L": 9,
+        "B": 5,
+        "unit": "",
+        "answer": 45,
+        "win": "Yes, 5 rows of 9 squares make 45 squares."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S2.T5.C20:1",
+        "kind": "count",
+        "L": 6,
+        "B": 4,
+        "unit": "",
+        "answer": 24,
+        "win": "Yes, 6 × 4 = 24 squares."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M2.S2.T5.C20:8",
+        "kind": "count",
+        "L": 12,
+        "B": 8,
+        "unit": "",
+        "answer": 96,
+        "win": "Yes, 12 × 8 = 96 squares."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S2.T5.C21:RS2",
+        "kind": "rect",
+        "L": 16,
+        "B": 7,
+        "unit": "m",
+        "answer": 112,
+        "obj": "garden",
+        "win": "Yes, 16 × 7 = 112 square metres."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S2.T5.C21:2",
+        "kind": "rect",
+        "L": 8,
+        "B": 6,
+        "unit": "cm",
+        "answer": 48,
+        "win": "Yes, 8 × 6 = 48 square centimetres."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S2.T5.C21:5",
+        "kind": "rect",
+        "L": 14,
+        "B": 9,
+        "unit": "m",
+        "answer": 126,
+        "win": "Yes, 14 × 9 = 126 square metres."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S2.T5.C22:RS3",
+        "kind": "square",
+        "L": 15,
+        "b0": 9,
+        "unit": "cm",
+        "answer": 225,
+        "win": "Yes, 15 × 15 = 225 square centimetres."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S2.T5.C22:3",
+        "kind": "square",
+        "L": 4,
+        "b0": 4,
+        "unit": "cm",
+        "answer": 16,
+        "win": "Yes, 4 × 4 = 16 square centimetres."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S2.T5.C22:6",
+        "kind": "square",
+        "L": 20,
+        "b0": 20,
+        "unit": "cm",
+        "answer": 400,
+        "win": "Yes, 20 × 20 = 400 square centimetres."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S2.T5.C23:RS4",
+        "kind": "clue",
+        "L": 27,
+        "unit": "cm",
+        "answer": 243,
+        "win": "Yes, 27 × 9 = 243 square centimetres."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": null,
+        "kind": "clue",
+        "L": 24,
+        "unit": "cm",
+        "answer": 192,
+        "win": "Yes, 24 × 8 = 192 square centimetres."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S2.T5.C23:7",
+        "kind": "clue",
+        "L": 33,
+        "unit": "m",
+        "answer": 363,
+        "win": "Yes, 33 × 11 = 363 square metres."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The rows light up again one at a time beside the count, and the line ends on length x breadth = the count.",
+      "Phase 2: The rows of unit squares light up again, then the line ends on length x breadth = the area with its square unit.",
+      "Phase 3: The rows of the square light up again, then the line ends on side x side = the area in sq. cm.",
+      "Phase 4: The split part stands as the breadth and the rows light up again, then the line ends on length x breadth = the area."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A rectangle, and one row of squares along it.",
+    "onFreePlay": "Free play. Change the length and the breadth, then stack the rows.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You turned counting squares into length times breadth.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S2.T5.C20:RS1",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A rectangle on squared paper has 9 squares along its length and 5 along its breadth. How many squares does it cover?",
+            "question": {
+              "en": "Stack the rows, then say how many squares cover this 9 by 5 rectangle."
+            },
+            "ask": {
+              "en": "Squares in all?"
+            },
+            "answer": 45,
+            "planAnswer": "45 squares",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S2.T5.C20:1",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A rectangle on squared paper has 6 squares along its length and 4 along its breadth. How many squares does it cover?",
+            "question": {
+              "en": "Now stack the rows of a 6 by 4 rectangle and find how many squares it covers."
+            },
+            "ask": {
+              "en": "Squares in all?"
+            },
+            "answer": 24,
+            "planAnswer": "6 x 4 = 24, so 24 squares",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M2.S2.T5.C20:8",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A rectangle on squared paper has 12 squares along its length and 8 along its breadth. How many squares does it cover?",
+            "question": {
+              "en": "How many squares cover a rectangle 12 squares long and 8 squares wide?"
+            },
+            "ask": {
+              "en": "Squares in all?"
+            },
+            "answer": 96,
+            "planAnswer": "12 x 8 = 96, so 96 squares",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S2.T5.C21:RS2",
+            "worked": false,
+            "kind": "rect",
+            "planQuestion": "A garden is 16 m long and 7 m wide. What is its area?",
+            "question": {
+              "en": "Fill this 16 m by 7 m garden and find its area in square metres."
+            },
+            "ask": {
+              "en": "Area in sq. m?"
+            },
+            "answer": 112,
+            "planAnswer": "112 sq. m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S2.T5.C21:2",
+            "worked": false,
+            "kind": "rect",
+            "planQuestion": "A card is 8 cm long and 6 cm wide. What is its area?",
+            "question": {
+              "en": "A card is 8 cm long and 6 cm wide, so what is its area in square centimetres?"
+            },
+            "ask": {
+              "en": "Area in sq. cm?"
+            },
+            "answer": 48,
+            "planAnswer": "8 x 6 = 48, so the area of an 8 cm by 6 cm rectangle is 48 sq. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S2.T5.C21:5",
+            "worked": false,
+            "kind": "rect",
+            "planQuestion": "A floor is 14 m long and 9 m wide. What is its area?",
+            "question": {
+              "en": "Find the area in square metres of a floor 14 m long and 9 m wide."
+            },
+            "ask": {
+              "en": "Area in sq. m?"
+            },
+            "answer": 126,
+            "planAnswer": "14 x 9 = 126, so the area of a 14 m by 9 m rectangle is 126 sq. m",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S2.T5.C22:RS3",
+            "worked": false,
+            "kind": "square",
+            "planQuestion": "A square board has sides of 15 cm. What is its area?",
+            "question": {
+              "en": "Turn the board into a 15 cm square; what is its area in square centimetres?"
+            },
+            "ask": {
+              "en": "Area in sq. cm?"
+            },
+            "answer": 225,
+            "planAnswer": "225 sq. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S2.T5.C22:3",
+            "worked": false,
+            "kind": "square",
+            "planQuestion": "A square stamp has sides of 4 cm. What is its area?",
+            "question": {
+              "en": "This stamp is a square of side 4 cm; what is its area in square centimetres?"
+            },
+            "ask": {
+              "en": "Area in sq. cm?"
+            },
+            "answer": 16,
+            "planAnswer": "4 x 4 = 16, so the area of a square of side 4 cm is 16 sq. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S2.T5.C22:6",
+            "worked": false,
+            "kind": "square",
+            "planQuestion": "A square tile has sides of 20 cm. What is its area?",
+            "question": {
+              "en": "What is the area in square centimetres of a square tile with sides of 20 cm?"
+            },
+            "ask": {
+              "en": "Area in sq. cm?"
+            },
+            "answer": 400,
+            "planAnswer": "20 x 20 = 400, so 400 sq. cm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S2.T5.C23:RS4",
+            "worked": false,
+            "kind": "clue",
+            "planQuestion": "A rectangle is 27 cm long, and its breadth is one third of its length. What is its area?",
+            "question": {
+              "en": "Its length is 27 cm and its breadth one third of that; find the area."
+            },
+            "ask": {
+              "en": "Area in sq. cm?"
+            },
+            "answer": 243,
+            "planAnswer": "243 sq. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": null,
+            "worked": false,
+            "kind": "clue",
+            "planQuestion": null,
+            "question": {
+              "en": "Now the length is 24 cm and the breadth is a third of it; what is the area?"
+            },
+            "ask": {
+              "en": "Area in sq. cm?"
+            },
+            "answer": 192,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S2.T5.C23:7",
+            "worked": false,
+            "kind": "clue",
+            "planQuestion": "A rectangle is 33 m long, and its breadth is one third of its length. What is its area?",
+            "question": {
+              "en": "A rectangle is 33 m long and one third of that wide; what is its area?"
+            },
+            "ask": {
+              "en": "Area in sq. m?"
+            },
+            "answer": 363,
+            "planAnswer": "One third of 33 m is 11 m, because 3 x 11 = 33. The area of a 33 m by 11 m rectangle is 33 x 11 = 363 sq. m",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M2.S2.T5.C20:4"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "rows_times_squares",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "rows_times_squares",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Rows times squares in a row",
+        "conceptId": "M2.S2.T5.C20",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S2.T5.C20:RS1",
+          "M2.S2.T5.C20:1",
+          "M2.S2.T5.C20:8"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Length times breadth",
+        "conceptId": "M2.S2.T5.C21",
+        "objectiveIds": [
+          "O7"
+        ],
+        "items": [
+          "M2.S2.T5.C21:RS2",
+          "M2.S2.T5.C21:2",
+          "M2.S2.T5.C21:5"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Side times side",
+        "conceptId": "M2.S2.T5.C22",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S2.T5.C22:RS3",
+          "M2.S2.T5.C22:3",
+          "M2.S2.T5.C22:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "A breadth from a clue",
+        "conceptId": "M2.S2.T5.C23",
+        "objectiveIds": [
+          "O8"
+        ],
+        "items": [
+          "M2.S2.T5.C23:RS4",
+          "M2.S2.T5.C21.2D1:p4_2",
+          "M2.S2.T5.C23:7"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "along_length",
+    "rows",
+    "square",
+    "L",
+    "split",
+    "breadth",
+    "B"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, along_length, rows, square, L, split, breadth, B, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "rows_times_squares"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S2.T5.C21.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A rectangle, and one row of squares along it."
+    },
+    {
+      "en": "One row is laid. How many rows fill it?"
+    },
+    {
+      "en": "The longer side is the length. Multiply it by the breadth."
+    },
+    {
+      "en": "In a square, the length and the breadth are the same."
+    },
+    {
+      "en": "Split the length into three equal parts. One part is the breadth."
+    },
+    {
+      "en": "A new rectangle. Find the length first."
+    },
+    {
+      "en": "Free play. Stack rows on any rectangle you like."
+    },
+    {
+      "en": "Count the rows again. How many squares are in each row?"
+    },
+    {
+      "en": "You turned counting squares into length times breadth."
+    }
+  ],
+  "build": {
+    "source": "376ed4af:650653",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-18T10:17:40.755Z",
+    "checks": {
+      "pass": 97,
+      "warn": 1,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-11-18T10:17:40.556Z"
+    },
+    "tsxBytes": 575614,
+    "tsxMd5": "c9a1919c70729738c29c3fb0871e0647"
+  }
+}

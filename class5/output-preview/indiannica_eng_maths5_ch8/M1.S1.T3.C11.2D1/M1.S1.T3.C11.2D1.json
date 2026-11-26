@@ -1,0 +1,1061 @@
+{
+  "slotId": "M1.S1.T3.C11.2D1",
+  "mediaId": "M1.S1.T3.C11.2D1",
+  "toolId": "square_and_triangle",
+  "title": "Square and Triangle",
+  "component": "M1.S1.T3.C11.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch8_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_8/2dtool/M1.S1.T3.C13.2D1/M1.S1.T3.C13.2D1.tsx",
+  "description": "Fold a square's four equal sides into 4 x side, add a triangle's three sides, halve a perimeter to work back to a side, and count laps of a side in tenths.",
+  "conceptIds": [
+    "M1.S1.T3.C10",
+    "M1.S1.T3.C11",
+    "M1.S1.T3.C12",
+    "M1.S1.T3.C13"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find the perimeter of a square as 4 x side and of a triangle as the sum of its sides, work back to a rectangle's length by halving its perimeter, and find the distance of several laps, with a side in tenths read as tenths.",
+    "look": "A square, a triangle or a rectangle on squared paper, a Sum strip under it, a perimeter string on the third phase, and a square path with a lap counter and the Tenths lens on the last.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Square and Triangle' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of sides added, or on the last phase the laps walked. It is never a score. The working area is 1086 by 528 at x 64, y 202. The figure lies on squared paper at x 120, y 230 inside a box 560 by 380, drawn to one scale, its given sides labelled deep blue. The Copy side and Times 4 buttons stand at x 760, y 250 and x 760, y 330. The ant walks the boundary, each side lighting vermilion, labelled Boundary, and dropping its length into the Sum strip along y 650 from x 120. On the third phase the perimeter string lies straight at y 600, 820 long, vermilion, and the Halve button at x 760, y 420 folds it; the half lays itself along one length and one breadth of the rectangle, and the Take away tile at x 760, y 500 lifts the breadth off, leaving the length green. On the fourth phase the Tenths lens is a round glass 90 across that shows a side as a count of tenths, and the Lap button and lap counter stand at x 760, y 420. The answer reached is green. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a point key, a cm key and an m key. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the ten tools of this chapter share them. The lengths the question gives, as a side, a length, a breadth, a height, an edge or a base area, are deep blue, labelled Given or by their own name. The perimeter, area, volume or missing side the working reaches is green, labelled Answer. The boundary that a perimeter walks round is vermilion, labelled Boundary. The unit being counted, one unit square, one unit cube, one row or one layer, is violet, labelled Unit square, Unit cube, Row or Layer. The part squares of an estimate and the space left over where no whole cube fits are rose, labelled More than half, Half or Left over. The side, square, cube, layer or step being worked on now is amber. Grey is kept for a zero holding a place open, and nothing on this stage is ever grey. A square or cube that is not being counted stays warm white inside its near-black outline, grid lines, unit words and signs are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of them, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last figure stays drawn with its boundary vermilion, and the working line under it ends on the answer in green with its unit.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "all four sides read 19 cm, the line reads 4 x 19 = 76, and 76 cm lands green in the slot",
+        "does": "taps Copy side to label the other three, then Times 4, and types the perimeter",
+        "goal": "a square has four equal sides, so its perimeter is 4 x side",
+        "says": "All four sides of a square are equal. How many lots of one side?",
+        "check": "Away from the screen: a square has a side of ten centimetres. How many sides do you add?",
+        "feels": "four equal strips lining up and folding into one short line of working",
+        "hands": "Cut four equal paper strips for the sides of a square. Lay them end to end in a line and measure the line, then measure one strip and count the strips.",
+        "tries": "First rung: label all four sides. Second rung: add the first two sides. Third rung: the same task on a square with a small whole-number side, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "a rectangle's formula doubled something, so doubling feels right",
+            "move": "types two lots of the side",
+            "screen": "the ant walks the square, stopping after two sides, and the two sides not yet walked are lit amber"
+          },
+          {
+            "why": "the blank sides look like they might be different",
+            "move": "taps Times 4 before copying the side onto the other three",
+            "screen": "the Copy side button pulses, and the three blank sides fill in one at a time while the child's line stays"
+          }
+        ],
+        "screen": "a square tile with one side labelled 19 cm and the other three blank, and the Copy side button",
+        "soWhat": "a square has four equal sides, so its perimeter is 4 x side",
+        "concept": "Four equal sides"
+      },
+      {
+        "n": 2,
+        "win": "the strip reads 13 + 15 + 17 = 45, and the triangle's boundary glows vermilion",
+        "does": "walks the ant round the three sides and types the sum",
+        "goal": "the perimeter of a triangle is the sum of its three sides, in one unit",
+        "says": "Walk all three sides and add them.",
+        "check": "Away from the screen: does a triangle need a formula, or just adding?",
+        "feels": "the third side closing the triangle and the sum landing",
+        "hands": "Make a triangle from three straws of different lengths. Measure each straw and add the three lengths.",
+        "tries": "First rung: add the two shortest sides. Second rung: add the third side on. Third rung: the same task on a triangle with all three sides in the same small unit, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the ant is back near where it started after two sides",
+            "move": "walks two sides and types their sum",
+            "screen": "the ant walks on along the third side in steps, and that side is lit amber while the child's sum stays on the strip"
+          },
+          {
+            "why": "every number on the triangle looks like it belongs in the sum",
+            "move": "adds a side in metres to sides in centimetres",
+            "screen": "the side in the other unit is lit amber, and the unit fact is written beside it in ink"
+          }
+        ],
+        "screen": "a triangle with sides labelled 13 cm, 15 cm and 17 cm, and the ant at one corner",
+        "soWhat": "the perimeter of a triangle is the sum of its three sides, in one unit",
+        "concept": "Three sides of a triangle"
+      },
+      {
+        "n": 3,
+        "win": "the half reads 18 cm, the breadth lifts off, and the length reads 11 cm in green; the check line reads 2 x (11 + 7) = 36",
+        "does": "taps Halve, watches the half lie along one length and one breadth, then drags Take away onto the breadth",
+        "goal": "half the perimeter is one length and one breadth together, so the length is half take away the breadth",
+        "says": "Fold the string in half. The half goes along one length and one breadth.",
+        "check": "Away from the screen: a rectangle's perimeter is twenty centimetres. What do one length and one breadth make together?",
+        "feels": "the folded string fitting one length and one breadth exactly",
+        "hands": "Tie a loop of string round a rectangle drawn on paper. Fold the string in half and lay the half along one length and one breadth.",
+        "tries": "First rung: halve the perimeter. Second rung: take the breadth away from the half. Third rung: the same task on a smaller rectangle, checked by walking it, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "taking the breadth away first feels like the quickest route",
+            "move": "drags Take away onto the whole string before tapping Halve",
+            "screen": "the string is laid round the rectangle in steps, showing that the whole string still holds two lengths and a breadth, and the Halve button is lit amber"
+          },
+          {
+            "why": "the half looks like one side",
+            "move": "types the half of the perimeter as the length",
+            "screen": "the half is laid along the rectangle, one length and one breadth, with the breadth part lit amber"
+          }
+        ],
+        "screen": "a rectangle with its breadth labelled 7 cm and its length blank, and a perimeter string of 36 cm beside it",
+        "soWhat": "half the perimeter is one length and one breadth together, so the length is half take away the breadth",
+        "concept": "Working back to a side"
+      },
+      {
+        "n": 4,
+        "win": "the lens reads thirty-four tenths, one lap reads 136 tenths, which is 13.6 m, and five laps read 68 m in green",
+        "does": "holds the Tenths lens over a side, finds one lap in tenths, then taps Lap for each lap and types the distance",
+        "goal": "several laps are one lap multiplied, and a side in tenths is multiplied as a count of tenths",
+        "says": "Find one lap first. Then count the laps.",
+        "check": "Away from the screen: how many tenths of a metre are in two point five metres?",
+        "feels": "the lap counter ticking up by the same amount each time",
+        "hands": "Chalk a square on the ground, measure one side in metres and tenths, and walk one lap. Count how many laps a friend walks, and multiply.",
+        "tries": "First rung: read one side through the lens as tenths. Second rung: find one lap in tenths. Third rung: the same task for two laps of a smaller square, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the lens shows a whole number, and whole numbers feel like metres",
+            "move": "types the count of tenths as metres",
+            "screen": "the lens is shown again over the side, with the word tenths lit amber under the number, and the child's answer stays in the slot"
+          },
+          {
+            "why": "going round feels like one side times the laps",
+            "move": "multiplies the side by the number of laps and skips one lap's four sides",
+            "screen": "the ant walks one full lap in steps, lighting all four sides, and the lap counter reads one before the laps are counted"
+          }
+        ],
+        "screen": "a square pond path with each side labelled 3.4 m, the Tenths lens and the Lap button",
+        "soWhat": "several laps are one lap multiplied, and a side in tenths is multiplied as a count of tenths",
+        "concept": "Laps and tenths"
+      }
+    ],
+    "delight": "On the third phase, when the halved string settles along one length and one breadth, the folded half gives a small wave along its whole length and then lies still.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet tapped. On the first phase a square lies with one side labelled and three blank, the Copy side button beside it. On the second a triangle lies with its three sides labelled and the ant at a corner. On the third a rectangle lies with its breadth labelled, its length blank, and a vermilion perimeter string laid out beside it. On the fourth a square path lies with the Tenths lens and the Lap button beside it. One thing moves, once: the Copy side button, the ant, the string or the Lap button gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any square, triangle or rectangle along the grid lines, halved, lapped or read through the Tenths lens. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on squares, triangles, a length worked back from a perimeter, and laps.",
+    "voiceLines": [
+      "A shape on squared paper, ready to walk.",
+      "All four sides of a square are equal. How many lots of one side?",
+      "Walk all three sides and add them.",
+      "Fold the string in half. The half goes along one length and one breadth.",
+      "Find one lap first. Then count the laps.",
+      "A new shape. Look at its sides first.",
+      "Free play. Make squares, triangles and laps of your own.",
+      "Walk it once more. Did every side, or every lap, go in?",
+      "You added equal sides quickly and worked back to a side."
+    ],
+    "observations": [
+      {
+        "why": "all four sides of a square are equal.",
+        "soWhat": "four lots of one side is the perimeter of a square.",
+        "observe": "Copying one side of the square onto the other three made four equal lengths."
+      },
+      {
+        "why": "a rectangle's boundary is two lengths and two breadths, so half of it is one of each.",
+        "soWhat": "halve the perimeter first, then take the breadth away to find the length.",
+        "observe": "The halved string lay exactly along one length and one breadth."
+      },
+      {
+        "why": "every lap of the same path is the same length.",
+        "soWhat": "find one lap first, then multiply by the number of laps.",
+        "observe": "Each tap of Lap added the same amount again."
+      },
+      {
+        "why": "each whole metre is ten tenths, and the digit after the point counts tenths.",
+        "soWhat": "multiply the count of tenths by a whole number, then write the answer back in metres.",
+        "observe": "Through the lens, a side with a point in it became a whole number of tenths."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a square tile with one side labelled 19 cm and the other three blank, and the Copy side button",
+        "win": "all four sides read 19 cm, the line reads 4 x 19 = 76, and 76 cm lands green in the slot",
+        "traceback": "the four sides light one by one, the sum strip reads side + side + side + side, then 4 × side and the perimeter in green",
+        "ladder": [
+          "Walk all four sides of the tile, not two.",
+          "Every side of the square is 9 cm, so count them all.",
+          "Four lots of 23 cm go round the frame.",
+          "Add two sides, then add the other two.",
+          "Double the side, then double that again."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a triangle with sides labelled 13 cm, 15 cm and 17 cm, and the ant at one corner",
+        "win": "the strip reads 13 + 15 + 17 = 45, and the triangle's boundary glows vermilion",
+        "traceback": "the ant's sides light one by one into the sum strip (a side in metres is lit amber and written in centimetres), ending on the sum in green",
+        "ladder": [
+          "Did the ant walk the third side too?",
+          "Add every number on the strip.",
+          "Change 1 m into centimetres first.",
+          "Add the two shorter sides first.",
+          "Then add the longest side to that sum."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a rectangle with its breadth labelled 7 cm and its length blank, and a perimeter string of 36 cm beside it",
+        "win": "the half reads 18 cm, the breadth lifts off, and the length reads 11 cm in green; the check line reads 2 x (11 + 7) = 36",
+        "traceback": "the string is halved along one length and one breadth, the breadth is lit amber and taken away, the length lands green and is checked by 2 × (length + breadth)",
+        "ladder": [
+          "Halve the perimeter before you take away.",
+          "The half holds one length and one breadth.",
+          "Take the breadth away from half of 50 m.",
+          "What number added to the breadth makes the half?",
+          "Check: 2 × (length + breadth) must give the perimeter."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a square pond path with each side labelled 3.4 m, the Tenths lens and the Lap button",
+        "win": "the lens reads thirty-four tenths, one lap reads 136 tenths, which is 13.6 m, and five laps read 68 m in green",
+        "traceback": "the lens reads the side in tenths (the word tenths lit amber), the ant walks one lap lighting four sides, then laps × one lap in tenths and the distance in metres in green",
+        "ladder": [
+          "Find one lap in tenths before the laps.",
+          "Each lap adds 45 m again.",
+          "Read each side as 26 tenths first.",
+          "Work one lap, then all the laps.",
+          "Change tenths back into metres at the end."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "warm": {
+      "1": {
+        "kind": "sq",
+        "side": 12
+      },
+      "2": {
+        "kind": "tri",
+        "sides": [
+          6,
+          8,
+          10
+        ],
+        "units": [
+          "cm",
+          "cm",
+          "cm"
+        ]
+      },
+      "3": {
+        "kind": "rect",
+        "per": 30,
+        "br": 5,
+        "u": "cm"
+      },
+      "4": {
+        "kind": "path",
+        "side": "2.3",
+        "laps": 1
+      }
+    },
+    "answerGate": {
+      "phase 1 (Q1-Q3)": "Copy side, then Times 4",
+      "phase 2 (Q1-Q3)": "three Walk taps (one side each)",
+      "phase 3 (Q1-Q3)": "Halve, then Take away",
+      "phase 4 Q1, Q3 (square path)": "Lens, then ONE lap (more laps optional)",
+      "phase 4 Q2 (field)": "ONE lap (more laps optional)",
+      "ungated": "none"
+    },
+    "acts": {
+      "sq": [
+        "copy",
+        "times"
+      ],
+      "tri": [
+        "walk",
+        "walk",
+        "walk"
+      ],
+      "rect": [
+        "halve",
+        "take"
+      ],
+      "path": [
+        "lens",
+        "lap x laps"
+      ],
+      "field": [
+        "lap x laps"
+      ]
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T3.C10:ST1",
+        "kind": "sq",
+        "side": 19,
+        "obj": "tile",
+        "answer": 76,
+        "win": "Yes, 4 × 19 = 76, so the tile is 76 cm round."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T3.C10:1",
+        "kind": "sq",
+        "side": 9,
+        "obj": "card",
+        "answer": 36,
+        "win": "Yes, 4 × 9 = 36, so the card is 36 cm round."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S1.T3.C10:4",
+        "kind": "sq",
+        "side": 23,
+        "obj": "frame",
+        "answer": 92,
+        "win": "Yes, 4 × 23 = 92 cm round the frame."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T3.C11:ST2",
+        "kind": "tri",
+        "sides": [
+          13,
+          15,
+          17
+        ],
+        "units": [
+          "cm",
+          "cm",
+          "cm"
+        ],
+        "answer": 45,
+        "win": "Yes, 13 + 15 + 17 = 45 cm."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T3.C11:2",
+        "kind": "tri",
+        "sides": [
+          5,
+          7,
+          9
+        ],
+        "units": [
+          "cm",
+          "cm",
+          "cm"
+        ],
+        "answer": 21,
+        "win": "Yes, 5 + 7 + 9 = 21 cm."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T3.C11:5",
+        "kind": "tri",
+        "sides": [
+          1,
+          80,
+          65
+        ],
+        "units": [
+          "m",
+          "cm",
+          "cm"
+        ],
+        "answer": 245,
+        "ladder": [
+          "One metre is 100 centimetres.",
+          "Add the three sides once they are all in cm."
+        ],
+        "win": "Yes, 100 + 80 + 65 = 245 cm."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T3.C12:ST3",
+        "kind": "rect",
+        "per": 36,
+        "br": 7,
+        "u": "cm",
+        "answer": 11,
+        "win": "Yes, 18 − 7 = 11, so it is 11 cm long."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T3.C12:3",
+        "kind": "rect",
+        "per": 20,
+        "br": 3,
+        "u": "cm",
+        "answer": 7,
+        "win": "Yes, 10 − 3 = 7, so the length is 7 cm."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T3.C12:7",
+        "kind": "rect",
+        "per": 50,
+        "br": 9,
+        "u": "m",
+        "answer": 16,
+        "win": "Yes, 25 − 9 = 16 m."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T3.C13:ST4",
+        "kind": "path",
+        "side": "3.4",
+        "laps": 5,
+        "obj": "pond",
+        "answer": 68,
+        "slip": "Your answer counts tenths; divide by ten for metres.",
+        "ladder": [
+          "Multiply a side's tenths by 4, then by the laps.",
+          "Ten tenths make one metre, so divide by ten."
+        ],
+        "win": "Yes, 680 tenths of a metre is 68 m."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T3.C13:6",
+        "kind": "field",
+        "lap": 45,
+        "laps": 3,
+        "obj": "field",
+        "answer": 135,
+        "ladder": [
+          "Multiply 45 by the number of laps.",
+          "Work 3 × 40 and 3 × 5, then add them."
+        ],
+        "win": "Yes, 3 × 45 = 135 m."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T3.C13:8",
+        "kind": "path",
+        "side": "2.6",
+        "laps": 3,
+        "obj": "path",
+        "answer": "31.2",
+        "slip": "That is a count of tenths; divide it by ten for metres.",
+        "ladder": [
+          "Times 4 gives one lap, then times 3 gives three laps.",
+          "Your count is in tenths; ten tenths make a metre."
+        ],
+        "win": "Yes, 312 tenths of a metre is 31.2 m."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: the four sides light one by one, the sum strip reads side + side + side + side, then 4 × side and the perimeter in green",
+      "Phase 2: the ant's sides light one by one into the sum strip (a side in metres is lit amber and written in centimetres), ending on the sum in green",
+      "Phase 3: the string is halved along one length and one breadth, the breadth is lit amber and taken away, the length lands green and is checked by 2 × (length + breadth)",
+      "Phase 4: the lens reads the side in tenths (the word tenths lit amber), the ant walks one lap lighting four sides, then laps × one lap in tenths and the distance in metres in green"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A shape on squared paper, ready for the ant to walk round.",
+    "onFreePlay": "Free play. Make squares, triangles and laps of your own.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You added equal sides quickly and worked back to a side.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T3.C10:ST1",
+            "worked": false,
+            "kind": "sq",
+            "planQuestion": "A square tile has sides of 19 cm. What is its perimeter?",
+            "question": {
+              "en": "What is the perimeter of a square tile with sides of 19 cm?"
+            },
+            "ask": {
+              "en": "Perimeter of the tile?"
+            },
+            "answer": 76,
+            "planAnswer": "76 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T3.C10:1",
+            "worked": false,
+            "kind": "sq",
+            "planQuestion": "A square card has sides of 9 cm. What is its perimeter?",
+            "question": {
+              "en": "A square card has sides of 9 cm; find its perimeter."
+            },
+            "ask": {
+              "en": "Perimeter of the card?"
+            },
+            "answer": 36,
+            "planAnswer": "4 x 9 = 36, so 36 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S1.T3.C10:4",
+            "worked": false,
+            "kind": "sq",
+            "planQuestion": "A square frame has sides of 23 cm. What is its perimeter?",
+            "question": {
+              "en": "How far is it round a square frame with sides of 23 cm?"
+            },
+            "ask": {
+              "en": "Round the frame?"
+            },
+            "answer": 92,
+            "planAnswer": "4 x 23 = 92, so 92 cm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T3.C11:ST2",
+            "worked": false,
+            "kind": "tri",
+            "planQuestion": "A triangle has sides of 13 cm, 15 cm and 17 cm. What is its perimeter?",
+            "question": {
+              "en": "A triangle has sides of 13 cm, 15 cm and 17 cm; what is its perimeter?"
+            },
+            "ask": {
+              "en": "Perimeter?"
+            },
+            "answer": 45,
+            "planAnswer": "45 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T3.C11:2",
+            "worked": false,
+            "kind": "tri",
+            "planQuestion": "A triangle has sides of 5 cm, 7 cm and 9 cm. What is its perimeter?",
+            "question": {
+              "en": "Find the perimeter of a triangle with sides of 5 cm, 7 cm and 9 cm."
+            },
+            "ask": {
+              "en": "All three sides?"
+            },
+            "answer": 21,
+            "planAnswer": "5 + 7 + 9 = 21, so 21 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T3.C11:5",
+            "worked": false,
+            "kind": "tri",
+            "planQuestion": "A triangle has sides of 1 m, 80 cm and 65 cm. What is its perimeter in cm?",
+            "question": {
+              "en": "What is the perimeter in cm of a triangle with sides of 1 m, 80 cm and 65 cm?"
+            },
+            "ask": {
+              "en": "Perimeter in cm?"
+            },
+            "answer": 245,
+            "planAnswer": "1 m = 100 cm, and 100 + 80 + 65 = 245, so 245 cm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T3.C12:ST3",
+            "worked": false,
+            "kind": "rect",
+            "planQuestion": "A rectangle has a perimeter of 36 cm and a breadth of 7 cm. How long is it?",
+            "question": {
+              "en": "A rectangle has a perimeter of 36 cm and a breadth of 7 cm; how long is it?"
+            },
+            "ask": {
+              "en": "How long?"
+            },
+            "answer": 11,
+            "planAnswer": "11 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T3.C12:3",
+            "worked": false,
+            "kind": "rect",
+            "planQuestion": "A rectangle has a perimeter of 20 cm and a breadth of 3 cm. How long is it?",
+            "question": {
+              "en": "How long is a rectangle with a perimeter of 20 cm and a breadth of 3 cm?"
+            },
+            "ask": {
+              "en": "Its length?"
+            },
+            "answer": 7,
+            "planAnswer": "Half of 20 is 10, and 10 - 3 = 7, so the length is 7 cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T3.C12:7",
+            "worked": false,
+            "kind": "rect",
+            "planQuestion": "A rectangle has a perimeter of 50 m and a breadth of 9 m. How long is it?",
+            "question": {
+              "en": "A rectangle's perimeter is 50 m and its breadth is 9 m; find its length."
+            },
+            "ask": {
+              "en": "Length in m?"
+            },
+            "answer": 16,
+            "planAnswer": "Half of 50 is 25, and 25 - 9 = 16, so the length is 16 m",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T3.C13:ST4",
+            "worked": false,
+            "kind": "path",
+            "planQuestion": "A square pond path has sides of 3.4 m. How far is 5 times round it?",
+            "question": {
+              "en": "A square pond path has sides of 3.4 m; how far is 5 times round it?"
+            },
+            "ask": {
+              "en": "5 laps?"
+            },
+            "answer": 68,
+            "planAnswer": "68 m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T3.C13:6",
+            "worked": false,
+            "kind": "field",
+            "planQuestion": "One lap round a field is 45 m. How far are 3 laps?",
+            "question": {
+              "en": "One lap round a field is 45 m; how far are 3 laps?"
+            },
+            "ask": {
+              "en": "3 laps?"
+            },
+            "answer": 135,
+            "planAnswer": "3 x 45 = 135, so 135 m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T3.C13:8",
+            "worked": false,
+            "kind": "path",
+            "planQuestion": "A square path has sides of 2.6 m. How far is 3 times round it?",
+            "question": {
+              "en": "How far do you walk going 3 times round a square path with sides of 2.6 m?"
+            },
+            "ask": {
+              "en": "3 laps?"
+            },
+            "answer": "31.2",
+            "planAnswer": "2.6 m is 26 tenths. One lap is 4 x 26 = 104 tenths, which is 10.4 m. Three laps are 3 x 104 = 312 tenths, which is 31.2 m",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "square_and_triangle",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "square_and_triangle",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Four equal sides",
+        "conceptId": "M1.S1.T3.C10",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S1.T3.C10:ST1",
+          "M1.S1.T3.C10:1",
+          "M1.S1.T3.C10:4"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Three sides of a triangle",
+        "conceptId": "M1.S1.T3.C11",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S1.T3.C11:ST2",
+          "M1.S1.T3.C11:2",
+          "M1.S1.T3.C11:5"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Working back to a side",
+        "conceptId": "M1.S1.T3.C12",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S1.T3.C12:ST3",
+          "M1.S1.T3.C12:3",
+          "M1.S1.T3.C12:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Laps and tenths",
+        "conceptId": "M1.S1.T3.C13",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S1.T3.C13:ST4",
+          "M1.S1.T3.C13:6",
+          "M1.S1.T3.C13:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "acts_done",
+    "acts",
+    "laps",
+    "halved",
+    "breadth_taken",
+    "working_shown",
+    "L"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, acts_done, acts, laps, halved, breadth_taken, working_shown, L, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "square_and_triangle"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T3.C11.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A shape on squared paper, ready to walk."
+    },
+    {
+      "en": "All four sides of a square are equal. How many lots of one side?"
+    },
+    {
+      "en": "Walk all three sides and add them."
+    },
+    {
+      "en": "Fold the string in half. The half goes along one length and one breadth."
+    },
+    {
+      "en": "Find one lap first. Then count the laps."
+    },
+    {
+      "en": "A new shape. Look at its sides first."
+    },
+    {
+      "en": "Free play. Make squares, triangles and laps of your own."
+    },
+    {
+      "en": "Walk it once more. Did every side, or every lap, go in?"
+    },
+    {
+      "en": "You added equal sides quickly and worked back to a side."
+    }
+  ],
+  "build": {
+    "source": "d8334681:670604",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-18T10:26:40.585Z",
+    "checks": {
+      "pass": 97,
+      "warn": 1,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-11-18T10:26:40.437Z"
+    },
+    "tsxBytes": 579783,
+    "tsxMd5": "dbdcb91dbb72ecad9146bd4213257805"
+  }
+}

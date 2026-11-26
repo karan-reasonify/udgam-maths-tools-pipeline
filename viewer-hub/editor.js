@@ -1,8 +1,8 @@
 /* The Editor: educator feedback -> a Claude Code fix -> check -> publish, for the Udgam tools.
  *
  * Review queue (every udgam chapter with pending feedback, filtered by board / medium / publication / subject / std /
- * chapter, and by date / teacher in the filter popup) | the tool's feedback and its actions | the diff beside a live
- * Before/After render. It implements none of the pipeline: every button calls the hub (viewer-hub/editor-api.mjs),
+ * chapter, and by date / teacher in the filter popup) | the tool's actions over [its feedback, then the diff, in one column | a live
+ * Before/After render on the right]. It implements none of the pipeline: every button calls the hub (viewer-hub/editor-api.mjs),
  * which runs the class's own CLI. The only writes to production are "Mark solved" (a feedback row's status) and the
  * publish dialog's Publish button (`node cli.mjs publish --upload`), each behind its own confirm step.
  */
@@ -199,17 +199,20 @@
     const revised = !!t?.before;
     if (!$("edHead") || m.dataset.key !== keyOf()) {
       m.dataset.key = keyOf();
-      m.innerHTML = `<div class="ed-top"><header class="ed-head" id="edHead"></header><div id="edNotes"></div><div class="ed-fb" id="edFb"></div><div id="edTerm"></div></div>
-        <div class="ed-split"><section class="ed-pane"><div class="ed-pane-head"><span class="ed-title" style="flex:1">Diff</span><span id="edDiffCounts"></span></div><div class="ed-pane-body" id="edDiff"></div></section>
+      /* the same split as Tool_Pipeline's preview Editor: a slim header, then ONE left column (what the educator asked for, then the
+         diff, scrolling together) and the live render on the right, wider, at full height */
+      m.innerHTML = `<header class="ed-head" id="edHead"></header>
+        <div class="ed-body"><div class="ed-left"><div id="edNotes"></div><div class="ed-fb" id="edFb"></div><div id="edTerm"></div>
+          <section class="ed-pane ed-diff"><div class="ed-pane-head"><span class="ed-title" style="flex:1">Diff</span><span id="edDiffCounts"></span></div><div class="ed-pane-body" id="edDiff"></div></section></div>
         <section class="ed-pane"><div class="ed-pane-head"><span class="ed-title" style="flex:1">Before / After</span><span class="seg" id="edLangs"></span><span class="seg" id="edDevices"></span></div><div class="ed-pane-body ed-renders" id="edRenders"></div></section></div>`;
       $("edFb").innerHTML = cur.items.map((it, i) => `<div class="fb-item"><div class="fb-n">${i + 1}</div><div style="min-width:0;flex:1">
         <div class="fb-text">${esc(it.text) || '<em class="muted">(no text)</em>'}</div>
         <div class="fb-meta">${esc(it.teacher || "unknown")} · ${esc(istStamp(it.created_at))}${it.filed_as && it.filed_as !== cur.slot ? ` · filed as <code>${esc(it.filed_as)}</code>` : ""}</div>
         ${it.image_url ? `<a class="fb-shot" href="/api/feedback/shot?url=${encodeURIComponent(it.image_url)}" target="_blank" rel="noopener"><img alt="Annotated screenshot ${i + 1}" src="/api/feedback/shot?url=${encodeURIComponent(it.image_url)}" onerror="this.parentNode.outerHTML='<div class=&quot;fb-missing&quot;>&#9888; the screenshot could not be read from GCS: check the class&rsquo;s config.json key</div>'"></a>` : ""}
-      </div></div>`).join("");
+      </div><button class="icon-btn sm fb-copy" type="button" data-act="copyOne" data-i="${i}" title="Copy this feedback item (text and screenshot), same format as the copy-all icon" aria-label="Copy feedback ${i + 1}">&#10697;</button></div>`).join("");
       S.renderKey = "";
     }
-    $("edHead").innerHTML = `<div style="min-width:0;flex:1"><div class="ed-h1">${esc(cur.title)}</div><div class="ed-meta">${esc(cur.chapter)} · ${esc(cur.slot)}${cur.class ? ` · class ${cur.class}` : ""}</div></div>
+    $("edHead").innerHTML = `<div><div class="ed-h1">${esc(cur.title)}</div><div class="ed-meta">${esc(cur.chapter)} · ${esc(cur.slot)}${cur.class ? ` · class ${cur.class}` : ""}</div></div>
       <div class="ed-actions">
         <button class="btn" data-act="resolveTool" type="button"${busy ? " disabled" : ""} title="Mark this tool's feedback solved: no publish, just off the queue">&#10003; Mark solved</button>
         <button class="btn" data-act="resolveChapter" type="button"${busy ? " disabled" : ""} title="Mark EVERY pending feedback item in this chapter solved: no publish">&#10003; Mark chapter solved</button>
@@ -297,6 +300,7 @@
     edShowAll: () => { for (const [k] of FIELDS) S.f[k] = ""; S.f.chapter = ""; store.set("ed.filters", S.f); render(); },
     edFilter: () => filterPopup(),
     edCopy: () => copyAll(),
+    copyOne: (b) => copyOne(b),
     device: (b) => { S.device = b.dataset.v; store.set("ed.device", S.device); renderRenders(); },
     lang: (b) => { S.lang = b.dataset.v; store.set("ed.lang", S.lang); renderRenders(); },
     dismissTerm: () => { S.term = null; renderTerm(); },
@@ -487,12 +491,23 @@
   window.udgamPublish = (from) => publishDialog(false, from).catch((e) => toast(`Could not open the publish dialog: ${e.message}`, "err"));
   window.udgamPublishLogs = () => logDialog();
 
-  /* Copy every filtered feedback item: chapter, then "slot -> text" with the screenshot inlined (HTML), and a
-     plain-text copy beside it for targets that cannot take HTML */
-  async function copyAll() {
-    const list = filtered();
+  /* Copy feedback: chapter, then "slot -> text" with the screenshot inlined (HTML), and a plain-text copy beside it
+     for targets that cannot take HTML. `list` is [{chapter, slot, items}]: copyAll sends every filtered item (the
+     icon in the queue header), copyOne sends the one item whose icon was pressed, in the same format.
+     Resolves true once something was put on the clipboard. */
+  const copyAll = () => copyRows(filtered());
+  async function copyOne(btn) {
+    const cur = current(), it = cur?.items[Number(btn.dataset.i)];
+    if (!it) { toast("That feedback is no longer in the queue: reload it", "warn"); return; }
+    if (await copyRows([{ chapter: cur.chapter, slot: cur.slot, items: [it] }], `feedback ${Number(btn.dataset.i) + 1} of ${cur.items.length}`)) {
+      const was = btn.innerHTML; btn.innerHTML = "&#10003;"; btn.classList.add("done");
+      setTimeout(() => { btn.innerHTML = was; btn.classList.remove("done"); }, 1400);
+    }
+  }
+  async function copyRows(list, what) {
     const total = list.reduce((n, i) => n + i.items.length, 0);
-    if (!total) return;
+    what = what || `${total} feedback item(s)`;
+    if (!total) return false;
     const groups = new Map();
     for (const i of list) { if (!groups.has(i.chapter)) groups.set(i.chapter, []); groups.get(i.chapter).push(i); }
     const text = [...groups].map(([ch, rows]) => `${ch}\n${rows.flatMap((r) => r.items.map((it) => `  ${r.slot} -> ${it.text || "(no text)"}${it.image_url ? `\n  image: ${it.image_url}` : ""}`)).join("\n")}`).join("\n\n");
@@ -503,10 +518,11 @@
         return `<div style="margin:4px 0 8px 16px"><code>${esc(r.slot)}</code> &rarr; ${esc(it.text) || "<em>(no text)</em>"}${img ? `<br><img src="${img}" style="max-width:420px;display:block;margin:4px 0 0 16px;border:1px solid #ddd">` : ""}</div>`;
       })))).join("")}</div>`))).join("");
       await navigator.clipboard.write([new ClipboardItem({ "text/html": new Blob([`<div>${html}</div>`], { type: "text/html" }), "text/plain": new Blob([text], { type: "text/plain" }) })]);
-      toast(`Copied ${total} feedback item(s) to the clipboard`, "ok");
+      toast(`Copied ${what} to the clipboard`, "ok");
+      return true;
     } catch {
-      try { await navigator.clipboard.writeText(text); toast(`Copied ${total} feedback item(s) as text (images unsupported here)`, "warn"); }
-      catch (e) { toast(`Could not copy: ${e.message}`, "err"); }
+      try { await navigator.clipboard.writeText(text); toast(`Copied ${what} as text (images unsupported here)`, "warn"); return true; }
+      catch (e) { toast(`Could not copy: ${e.message}`, "err"); return false; }
     }
   }
 

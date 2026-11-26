@@ -1,0 +1,1935 @@
+{
+ "version": 1,
+ "class": 4,
+ "chapter": "indiannica_eng_maths4_ch12",
+ "build": 3,
+ "phase": "plan",
+ "round": 1,
+ "createdAt": "2026-11-12T08:14:38.616Z",
+ "updatedAt": "2026-11-16T12:38:30.053Z",
+ "agents": [
+  {
+   "id": "image-agent-2.1",
+   "role": "image-agent",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-image-agent",
+   "slots": [],
+   "mode": null,
+   "startedAt": "2026-11-12T08:15:28.736Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T08:20:50.788Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-2.1",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M1.S1.T2.C8.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T08:15:34.004Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-14T09:23:05.362Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-2.2",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M1.S2.T3.C13.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T08:15:34.043Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-14T09:23:05.147Z",
+   "escalate": {
+    "trigger": "owner",
+    "why": "is label-only enough for phases 3-4, or should the time be typed too once the runtime takes parts+choices?"
+   }
+  },
+  {
+   "id": "tool-builder-2.3",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M1.S2.T4.C18.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T08:15:34.082Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-14T09:23:05.180Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-2.4",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S3.T5.C23.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T08:15:34.118Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-14T09:23:05.218Z",
+   "escalate": {
+    "trigger": "question",
+    "why": "question - phases 1-3 are effectively ungated (Slide is the only control); add a second board control, or accept?"
+   }
+  },
+  {
+   "id": "tool-builder-2.5",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S3.T6.C28.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T08:15:34.152Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-14T09:23:05.256Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-2.6",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S4.T7.C33.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T08:40:17.086Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-14T09:23:05.292Z",
+   "escalate": null
+  },
+  {
+   "id": "maths-reviewer-2.1",
+   "role": "maths-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-maths-reviewer",
+   "slots": [
+    "M1.S1.T2.C8.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T08:40:17.132Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T08:43:24.860Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-2.7",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T08:47:38.909Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-14T09:23:05.326Z",
+   "escalate": null
+  },
+  {
+   "id": "maths-reviewer-2.2",
+   "role": "maths-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-maths-reviewer",
+   "slots": [
+    "M1.S2.T4.C18.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T08:47:38.947Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T08:51:01.872Z",
+   "escalate": null
+  },
+  {
+   "id": "maths-reviewer-2.3",
+   "role": "maths-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-maths-reviewer",
+   "slots": [
+    "M1.S2.T3.C13.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T08:54:05.382Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T08:57:16.012Z",
+   "escalate": null
+  },
+  {
+   "id": "maths-reviewer-2.4",
+   "role": "maths-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-maths-reviewer",
+   "slots": [
+    "M2.S3.T5.C23.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T08:58:47.824Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T09:01:44.583Z",
+   "escalate": null
+  },
+  {
+   "id": "language-agent-2.1",
+   "role": "language-agent",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-language-agent",
+   "slots": [
+    "M1.S1.T2.C8.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T09:06:52.236Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T09:17:24.802Z",
+   "escalate": null
+  },
+  {
+   "id": "maths-reviewer-2.5",
+   "role": "maths-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-maths-reviewer",
+   "slots": [
+    "M2.S3.T6.C28.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T09:13:07.231Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T09:17:24.763Z",
+   "escalate": null
+  },
+  {
+   "id": "maths-reviewer-2.6",
+   "role": "maths-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-maths-reviewer",
+   "slots": [
+    "M2.S4.T7.C33.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T09:14:45.406Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T09:18:24.804Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-2.1",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M1.S1.T2.C8.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-11-12T09:17:31.241Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T09:35:22.879Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-2.1",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M1.S1.T2.C8.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T09:17:31.289Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T09:35:22.646Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-2.2",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M1.S2.T3.C13.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-11-12T09:29:49.052Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T09:50:01.773Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-2.2",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M1.S2.T3.C13.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-11-12T09:29:49.093Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T09:50:01.736Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-2.3",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M1.S2.T4.C18.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-11-12T09:32:23.959Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T09:48:08.081Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-2.3",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M1.S2.T4.C18.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-11-12T09:32:24.015Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T09:48:08.017Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-2.4",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S3.T5.C23.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-11-12T09:41:15.318Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T09:53:22.355Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-2.4",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M2.S3.T5.C23.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-11-12T09:41:15.362Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T09:53:22.320Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-2.5",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S4.T7.C33.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-11-12T09:43:25.259Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T10:00:21.336Z",
+   "escalate": null
+  },
+  {
+   "id": "maths-reviewer-2.7",
+   "role": "maths-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-maths-reviewer",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-12T09:50:18.150Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T09:53:50.485Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-2.6",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M1.S1.T2.C8.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T10:03:45.026Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T10:07:12.877Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-2.7",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M1.S2.T3.C13.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T10:07:05.101Z",
+   "status": "done",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-12T10:12:30.640Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-2.5",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M1.S2.T3.C13.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T10:07:05.136Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "visual-reviewer-2.8",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S3.T6.C28.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-11-12T10:08:42.771Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "play-tester-2.6",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M2.S3.T6.C28.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-11-12T10:08:42.809Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "visual-reviewer-2.9",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M1.S2.T4.C18.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T10:16:19.666Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "play-tester-2.7",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M1.S2.T4.C18.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T10:16:19.723Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "visual-reviewer-2.10",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S4.T7.C33.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T10:18:07.260Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "play-tester-2.8",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M2.S4.T7.C33.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T10:18:07.332Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "visual-reviewer-2.11",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M1.S2.T3.C13.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T10:23:34.432Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "visual-reviewer-2.12",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-11-12T10:25:43.628Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "play-tester-2.9",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": "full",
+   "startedAt": "2026-11-12T10:25:43.686Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "visual-reviewer-2.13",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S3.T5.C23.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T10:27:37.805Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "play-tester-2.10",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M2.S3.T5.C23.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T10:27:37.853Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "visual-reviewer-2.14",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T10:50:52.373Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "visual-reviewer-2.15",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S3.T6.C28.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T10:58:26.743Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "play-tester-2.11",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M2.S3.T6.C28.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T10:58:26.796Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "visual-reviewer-2.16",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M1.S2.T4.C18.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T11:10:48.558Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "play-tester-2.12",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M1.S2.T4.C18.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T11:10:48.608Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "visual-reviewer-2.17",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S3.T6.C28.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T11:14:24.410Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "visual-reviewer-2.18",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T11:18:54.870Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "play-tester-2.13",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-12T11:18:54.905Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "play-tester-2.14",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M1.S1.T2.C8.2D1",
+    "M1.S2.T3.C13.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-14T08:32:06.541Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "play-tester-2.15",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M2.S3.T5.C23.2D1",
+    "M2.S4.T7.C33.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-14T08:32:06.611Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "play-tester-2.16",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M2.S3.T6.C28.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-14T08:32:06.650Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "play-tester-2.17",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-14T08:32:18.530Z",
+   "status": "running",
+   "build": 2,
+   "round": 1,
+   "escalation": null,
+   "over": null
+  },
+  {
+   "id": "tool-builder-3.1",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M1.S2.T3.C13.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T09:11:01.516Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T09:26:01.578Z",
+   "escalate": {
+    "trigger": "no.",
+    "why": "no. Not published."
+   }
+  },
+  {
+   "id": "tool-builder-3.2",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S3.T5.C23.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T09:11:01.552Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T09:48:08.622Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.3",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S3.T6.C28.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T09:11:01.591Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T09:48:08.686Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.4",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T09:11:01.626Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T09:48:08.737Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.5",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S4.T7.C33.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T09:11:01.660Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T09:48:08.788Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.6",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M1.S2.T4.C18.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T09:26:01.619Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T09:54:21.367Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.7",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M1.S1.T2.C8.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T09:29:28.647Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T09:48:08.841Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.8",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T09:55:52.028Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T10:22:46.639Z",
+   "escalate": {
+    "trigger": "two",
+    "why": "two questions (see below)"
+   }
+  },
+  {
+   "id": "play-tester-3.1",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M1.S1.T2.C8.2D1",
+    "M1.S2.T3.C13.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-16T09:56:25.256Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T10:41:03.135Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-3.2",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M2.S3.T5.C23.2D1",
+    "M2.S4.T7.C33.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-16T09:56:25.293Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T10:42:06.251Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-3.3",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M2.S3.T6.C28.2D1",
+    "M1.S2.T4.C18.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-16T09:56:25.331Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T11:01:51.548Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-3.1",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S3.T5.C23.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-16T09:57:09.419Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T10:02:15.425Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-3.2",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S3.T5.C23.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-16T09:57:09.459Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T10:04:28.907Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-3.3",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S3.T5.C23.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-16T09:57:09.501Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T10:03:19.580Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-3.4",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S3.T6.C28.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-16T09:57:09.576Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T10:03:08.126Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-3.5",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-16T10:25:15.537Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T10:47:51.273Z",
+   "escalate": null
+  },
+  {
+   "id": "play-tester-3.4",
+   "role": "play-tester",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-play-tester",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-16T10:25:15.604Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T10:59:03.443Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.9",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M1.S1.T2.C8.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T10:42:06.299Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T10:58:05.413Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.10",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M1.S2.T3.C13.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T10:42:06.343Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T11:16:06.413Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.11",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S3.T5.C23.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T10:42:06.392Z",
+   "status": "fail",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T11:16:06.467Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.12",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S4.T7.C33.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T10:42:06.447Z",
+   "status": "fail",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T11:16:06.510Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.13",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T10:59:03.483Z",
+   "status": "fail",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T11:16:06.583Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.14",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S3.T6.C28.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T11:01:51.589Z",
+   "status": "fail",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T11:16:06.643Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.15",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M1.S2.T4.C18.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T11:14:41.007Z",
+   "status": "fail",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T11:16:15.843Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.16",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M1.S2.T4.C18.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T11:16:06.695Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T11:34:06.722Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.17",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S3.T5.C23.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T11:16:06.775Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T11:38:52.727Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.18",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S3.T6.C28.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T11:16:06.845Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T11:40:40.069Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.19",
+   "role": "tool-builder",
+   "tier": "base",
+   "model": "opus",
+   "file": "udgam-tool-builder",
+   "slots": [
+    "M2.S4.T7.C33.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T11:16:06.891Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T11:40:40.106Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.20",
+   "role": "tool-builder",
+   "tier": "escalated",
+   "model": "opus",
+   "file": "udgam-tool-builder-escalated",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T11:16:29.685Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": "cap-reached: builder 3.13 was stopped mid-edit when the owner closed a duplicate VS Code window of this conversation, not a failed attempt; the work list is unchanged",
+   "over": null,
+   "endedAt": "2026-11-16T11:48:06.778Z",
+   "escalate": null
+  },
+  {
+   "id": "visual-reviewer-3.6",
+   "role": "visual-reviewer",
+   "tier": "base",
+   "model": "sonnet",
+   "file": "udgam-visual-reviewer",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": "changed",
+   "startedAt": "2026-11-16T11:49:51.983Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": null,
+   "over": null,
+   "endedAt": "2026-11-16T12:02:56.870Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.21",
+   "role": "tool-builder",
+   "tier": "escalated",
+   "model": "opus",
+   "file": "udgam-tool-builder-escalated",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T12:02:56.915Z",
+   "status": "fail",
+   "build": 3,
+   "round": 1,
+   "escalation": "cap-reached: three small hi/gu spacing items and one ring question from the final visual re-look (visual-reviewer-3.6), after the previous builder finished its list",
+   "over": null,
+   "endedAt": "2026-11-16T12:07:52.457Z",
+   "escalate": null
+  },
+  {
+   "id": "tool-builder-3.22",
+   "role": "tool-builder",
+   "tier": "escalated",
+   "model": "opus",
+   "file": "udgam-tool-builder-escalated",
+   "slots": [
+    "M2.S4.T8.C38.2D1"
+   ],
+   "mode": null,
+   "startedAt": "2026-11-16T12:08:03.322Z",
+   "status": "done",
+   "build": 3,
+   "round": 1,
+   "escalation": "cap-reached: builder 3.21 died on an API billing error (HTTP 403 oauth_org_not_allowed) before any edit; retrying the same three small items on a Sonnet model",
+   "over": null,
+   "endedAt": "2026-11-16T12:38:30.053Z",
+   "escalate": null
+  }
+ ],
+ "slots": {
+  "M1.S1.T2.C8.2D1": {
+   "stage": "new",
+   "decisions": [],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {},
+   "retries": {
+    "tool-builder": 1
+   },
+   "escalations": 0,
+   "history": [
+    "tool-builder-2.1 ok",
+    "maths-reviewer-2.1 ok",
+    "language-agent-2.1 ok",
+    "play-tester-2.1 ok",
+    "visual-reviewer-2.1 ok",
+    "visual-reviewer-2.6 ok",
+    "tool-builder-2.1 ok",
+    "tool-builder-3.7 ok",
+    "play-tester-3.1 ok",
+    "tool-builder-3.9 ok"
+   ],
+   "launches": {
+    "tool-builder": 2,
+    "play-tester": 1
+   },
+   "quickChecks": 17,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 96,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-11-16T10:57:16.221Z"
+   },
+   "fullChecks": 2
+  },
+  "M1.S2.T3.C13.2D1": {
+   "stage": "new",
+   "decisions": [],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {},
+   "retries": {
+    "tool-builder": 1
+   },
+   "escalations": 0,
+   "history": [
+    "tool-builder-2.2 ok",
+    "maths-reviewer-2.3 ok",
+    "tool-builder-2.2 ok",
+    "play-tester-2.2 ok",
+    "visual-reviewer-2.2 ok",
+    "visual-reviewer-2.7 ok",
+    "tool-builder-2.2 ok",
+    "tool-builder-2.2 ok",
+    "tool-builder-3.1 ok",
+    "play-tester-3.1 ok",
+    "tool-builder-3.10 ok",
+    "tool-builder-3.10 ok"
+   ],
+   "launches": {
+    "tool-builder": 2,
+    "play-tester": 1
+   },
+   "quickChecks": 23,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 97,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-11-16T11:13:00.183Z"
+   },
+   "fullChecks": 3
+  },
+  "M1.S2.T4.C18.2D1": {
+   "stage": "new",
+   "decisions": [],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {},
+   "retries": {
+    "tool-builder": 2
+   },
+   "escalations": 0,
+   "history": [
+    "maths-reviewer-2.2 ok",
+    "tool-builder-2.3 ok",
+    "play-tester-2.3 ok",
+    "visual-reviewer-2.3 ok",
+    "tool-builder-2.3 ok",
+    "tool-builder-2.3 ok",
+    "tool-builder-2.3 ok",
+    "tool-builder-2.3 ok",
+    "tool-builder-3.6 ok",
+    "play-tester-3.3 ok",
+    "tool-builder-3.15 fail",
+    "tool-builder-3.16 ok"
+   ],
+   "launches": {
+    "tool-builder": 3,
+    "play-tester": 1
+   },
+   "quickChecks": 30,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 98,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-11-16T11:32:56.964Z"
+   },
+   "fullChecks": 4
+  },
+  "M2.S3.T5.C23.2D1": {
+   "stage": "new",
+   "decisions": [],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {},
+   "retries": {
+    "visual-reviewer": 2,
+    "tool-builder": 2
+   },
+   "escalations": 0,
+   "history": [
+    "tool-builder-2.4 ok",
+    "play-tester-2.4 ok",
+    "visual-reviewer-2.4 ok",
+    "tool-builder-2.4 ok",
+    "tool-builder-2.4 ok",
+    "tool-builder-3.2 ok",
+    "visual-reviewer-3.1 ok",
+    "visual-reviewer-3.3 ok",
+    "visual-reviewer-3.2 ok",
+    "play-tester-3.2 ok",
+    "tool-builder-3.11 fail",
+    "tool-builder-3.17 ok"
+   ],
+   "launches": {
+    "tool-builder": 3,
+    "play-tester": 1,
+    "visual-reviewer": 3
+   },
+   "quickChecks": 34,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 97,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-11-16T11:36:41.382Z"
+   },
+   "fullChecks": 4
+  },
+  "M2.S3.T6.C28.2D1": {
+   "stage": "new",
+   "decisions": [],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {},
+   "retries": {
+    "tool-builder": 2
+   },
+   "escalations": 0,
+   "history": [
+    "tool-builder-2.5 ok",
+    "maths-reviewer-2.5 ok",
+    "tool-builder-2.5 ok",
+    "tool-builder-2.5 ok",
+    "tool-builder-2.5 ok",
+    "tool-builder-2.5 ok",
+    "tool-builder-3.3 ok",
+    "visual-reviewer-3.4 ok",
+    "play-tester-3.3 ok",
+    "tool-builder-3.14 fail",
+    "tool-builder-3.18 ok"
+   ],
+   "launches": {
+    "tool-builder": 3,
+    "play-tester": 1,
+    "visual-reviewer": 1
+   },
+   "quickChecks": 30,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 97,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-11-16T11:36:54.953Z"
+   },
+   "fullChecks": 3
+  },
+  "M2.S4.T7.C33.2D1": {
+   "stage": "new",
+   "decisions": [],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {},
+   "retries": {
+    "tool-builder": 2
+   },
+   "escalations": 0,
+   "history": [
+    "tool-builder-2.6 ok",
+    "maths-reviewer-2.6 ok",
+    "tool-builder-2.6 ok",
+    "visual-reviewer-2.5 ok",
+    "tool-builder-2.6 ok",
+    "tool-builder-2.6 ok",
+    "tool-builder-3.5 ok",
+    "tool-builder-3.5 ok",
+    "play-tester-3.2 ok",
+    "tool-builder-3.12 fail",
+    "tool-builder-3.19 ok"
+   ],
+   "launches": {
+    "tool-builder": 3,
+    "play-tester": 1
+   },
+   "quickChecks": 26,
+   "lastCheck": {
+    "render": true,
+    "pass": true,
+    "summary": {
+     "pass": 96,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-11-16T11:38:54.849Z"
+   },
+   "fullChecks": 4
+  },
+  "M2.S4.T8.C38.2D1": {
+   "stage": "new",
+   "decisions": [],
+   "fails": [],
+   "fixes": [],
+   "risks": [],
+   "reviews": {},
+   "retries": {
+    "tool-builder": 5,
+    "visual-reviewer": 1
+   },
+   "escalations": 3,
+   "history": [
+    "tool-builder-2.7 ok",
+    "tool-builder-2.7 ok",
+    "tool-builder-2.7 ok",
+    "tool-builder-3.4 ok",
+    "tool-builder-3.8 ok",
+    "visual-reviewer-3.5 ok",
+    "play-tester-3.4 ok",
+    "tool-builder-3.13 fail",
+    "tool-builder-3.20 ok",
+    "visual-reviewer-3.6 ok",
+    "tool-builder-3.21 fail",
+    "tool-builder-3.22 ok"
+   ],
+   "launches": {
+    "tool-builder": 6,
+    "visual-reviewer": 2,
+    "play-tester": 1
+   },
+   "quickChecks": 41,
+   "lastCheck": {
+    "render": false,
+    "pass": true,
+    "summary": {
+     "pass": 32,
+     "warn": 0,
+     "fail": 0
+    },
+    "at": "2026-11-16T12:37:06.805Z"
+   },
+   "fullChecks": 5
+  }
+ },
+ "freezes": [
+  {
+   "op": "freeze",
+   "gate": "step6",
+   "version": "r31",
+   "made": true,
+   "at": "2026-11-14T07:52:37.447Z",
+   "build": 2
+  }
+ ],
+ "pins": [
+  {
+   "op": "pin",
+   "gate": "prereview",
+   "version": "r30",
+   "made": false,
+   "at": "2026-11-12T08:14:38.616Z",
+   "build": 1
+  },
+  {
+   "op": "pin",
+   "gate": "step6",
+   "version": "r31",
+   "made": false,
+   "at": "2026-11-14T07:52:48.435Z",
+   "build": 2
+  }
+ ],
+ "skipped": [
+  {
+   "what": "play-tester",
+   "slot": "M1.S2.T3.C13.2D1",
+   "reason": "repeat of an unchanged pattern (plain); the full check's real-input drives cover it",
+   "estTokens": 2536860,
+   "at": "2026-11-12T09:17:02.622Z",
+   "round": 1
+  },
+  {
+   "what": "play-tester",
+   "slot": "M1.S2.T4.C18.2D1",
+   "reason": "repeat of an unchanged pattern (plain); the full check's real-input drives cover it",
+   "estTokens": 2536860,
+   "at": "2026-11-12T09:17:02.622Z",
+   "round": 1
+  },
+  {
+   "what": "play-tester",
+   "slot": "M2.S3.T5.C23.2D1",
+   "reason": "repeat of an unchanged pattern (plain); the full check's real-input drives cover it",
+   "estTokens": 2536860,
+   "at": "2026-11-12T09:17:02.622Z",
+   "round": 1
+  },
+  {
+   "what": "play-tester",
+   "slot": "M2.S3.T6.C28.2D1",
+   "reason": "repeat of an unchanged pattern (plain); the full check's real-input drives cover it",
+   "estTokens": 2536860,
+   "at": "2026-11-12T09:17:02.622Z",
+   "round": 1
+  },
+  {
+   "what": "play-tester",
+   "slot": "M2.S4.T7.C33.2D1",
+   "reason": "repeat of an unchanged pattern (plain); the full check's real-input drives cover it",
+   "estTokens": 2536860,
+   "at": "2026-11-12T09:17:02.622Z",
+   "round": 1
+  }
+ ],
+ "questions": [],
+ "gaps": [],
+ "counters": {
+  "fullChecks": 123,
+  "quickChecks": 201,
+  "cachedChecks": 0,
+  "packs": 0,
+  "escalations": 0
+ },
+ "session": {},
+ "newBuildWhy": "educator feedback round 2026-11-16: no drawn hand in any tool, C23 centre, C28/C33 carry-60 hint, C38 countable days + real hints (tools are live; fix locally)",
+ "planAt": "2026-11-12T08:15:22.990Z"
+}

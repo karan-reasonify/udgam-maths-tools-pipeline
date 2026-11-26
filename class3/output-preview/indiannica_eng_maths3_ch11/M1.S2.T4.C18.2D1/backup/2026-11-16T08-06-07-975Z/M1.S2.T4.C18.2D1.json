@@ -1,0 +1,999 @@
+{
+  "slotId": "M1.S2.T4.C18.2D1",
+  "mediaId": "M1.S2.T4.C18.2D1",
+  "toolId": "rupees_and_paise_converter",
+  "title": "Rupees and Paise Converter",
+  "component": "M1.S2.T4.C18.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch11",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch11_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_11/2dtool/M1.S2.T4.C18.2D1/M1.S2.T4.C18.2D1.tsx",
+  "description": "Break a rupee into a hundred paise, gather a hundred paise into a rupee, and say which of two amounts is more.",
+  "conceptIds": [
+    "M1.S2.T4.C15",
+    "M1.S2.T4.C16",
+    "M1.S2.T4.C17",
+    "M1.S2.T4.C18"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Change rupees and paise into paise by opening each rupee into a hundred paise, change paise into rupees and paise with the dot two digits from the right, and choose the larger of two amounts after writing both in one unit.",
+    "look": "A Rupees tray in deep blue and a Paise tray in vermilion, a paise meter below them, a price tag on a small shelf at the right, the Break, Gather, Same unit and Plain figures buttons, and the number pad down the right of the canvas.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Rupees and Paise Converter' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many amounts have been changed. It is never a score. The working area is 1086 by 528 at x 64, y 202. A plain shop shelf fills the working area. The Rupees tray stands at x 84, y 214, 300 by 330, headed Rupees in deep blue, and holds up to nine flat rupee tiles marked Rs 1 in a grid of three across. The Paise tray stands at x 596, y 214, 300 by 330, headed Paise in vermilion, and holds the paise bars that an opened tile makes, ten flat bars of ten small squares marked 10 paise, and up to nine loose paise squares. Between the trays the Break a rupee button stands at x 400, y 330, 180 by 64, and the Gather a hundred button at x 400, y 410, 180 by 64, each labelled in words. The paise meter runs along the foot at x 84, y 560, 812 by 70, marked in hundreds and climbing by a hundred for each tile opened, in vermilion, and its full count in green. The price tags hang on the shelf at the right, the first at x 920, y 230, 220 by 120 and the second at x 920, y 380, 220 by 120, each an amber price tag with its rupees in deep blue, its dot in near-black and its paise in vermilion. Tapping a tag changes it: a tag in rupees and paise drops its Rs and its dot, and a tag in paise takes its dot back two digits from the right with a 0 filled in where the paise are few. The Same unit switch stands at x 84, y 650, 190 by 60 and the Plain figures button at x 290, y 650, 190 by 60. With the switch on, the trays slide away and the two tags become two bars of one scale, one above the other from the same start line, at x 84 and y 250 and y 400, each ending in its amount, and the longer bar is ringed green. In the Plain figures view the same working is drawn as bare numbers with no trays. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys and a clear key, for typing the paise or the rupees of an amount into the answer slot, and a dot key that places the dot in an answer in rupees. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours. The whole rupees of an amount are deep blue and the paise are vermilion everywhere, in a column heading, a tag and a label. The value written on one note or coin, and the price of one thing, is amber. How many notes, coins or things there are is sky blue. A total, a change, a converted amount and the answer are green. A note is a plain flat rectangle in its own colour and a coin a plain round disc, each with its value in large near-black type, so a value is read from the number and never from the colour. Anything dimmed fades to half strength rather than turning grey, and chrome never borrows one of the five. Each reading survives with the colour taken away, because an amount is told by its written label before it is told by its colour.",
+    "finish": "The trays and the tag show the last amount in both units, with the meter at its full count and the dot in its place.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the meter stops, a green tag joins the rupees to the paise, and the answer slot fills",
+        "does": "taps the rupee tiles open one at a time, watches the meter climb by a hundred, and types the paise",
+        "goal": "one rupee is a hundred paise, so any number of rupees is that many hundreds of paise",
+        "says": "Open one rupee at a time. How many paise does each rupee hold?",
+        "check": "Away from the screen: a money box holds five Rs 1 coins. How many paise is that? Say it by counting in hundreds.",
+        "feels": "each rupee tile opening into a hundred paise and the meter climbing by a hundred",
+        "hands": "Cut a paper rupee strip into a hundred small squares, put a few strips and the squares in a box, and ask each pair to count the squares in two, three and four strips.",
+        "tries": "First rung: say how many paise one rupee holds. Second rung: open the tiles one at a time and read the meter after each. Third rung: the same task with one tile only, before more tiles are added.",
+        "wrong": [
+          {
+            "why": "the number on the coin is the first number seen, and rupee and paise sound alike",
+            "move": "says the number of rupees as the number of paise",
+            "screen": "the tile opens into ten bars of ten paise, the meter climbs by a hundred, and the tag reads the paise as the meter's count"
+          },
+          {
+            "why": "the bars are counted one by one and each looks like a single thing",
+            "move": "counts the ten bars as ten paise in all",
+            "screen": "each bar is lit and labelled ten paise as it is counted, so ten bars add up by tens to a hundred, and the meter agrees"
+          }
+        ],
+        "screen": "the Rupees tray with whole rupee tiles, an empty Paise tray and the paise meter at nothing",
+        "soWhat": "one rupee is a hundred paise, and rupees change into paise by multiplying by a hundred",
+        "concept": "Rupees into paise: multiply by a hundred"
+      },
+      {
+        "n": 2,
+        "win": "the tag becomes a tag in paise and its figures match the meter exactly",
+        "does": "opens the rupees, adds the loose paise to the meter, then taps the tag to let Rs and the dot fall away",
+        "goal": "break the rupees into paise first, add the loose paise, and see that the shortcut drops Rs and the dot",
+        "says": "Break the rupees first. Then add the loose paise. What do you get?",
+        "check": "Away from the screen: a tag says Rs 3.40. Say how many hundreds and how many loose paise it holds, and then say it in paise.",
+        "feels": "the loose paise squares joining the hundreds on the meter, and the Rs and the dot falling away",
+        "hands": "Make an amount with paper strips and loose squares, such as three strips and forty squares, count the strips in hundreds and then the squares, and write the whole as paise.",
+        "tries": "First rung: say how many rupees and how many paise the tag holds. Second rung: open the rupees and read the meter, then add the loose paise. Third rung: the same task with no loose paise, before the paise return.",
+        "wrong": [
+          {
+            "why": "both numbers sit on the tag, so they look as if they can just be joined",
+            "move": "adds the rupees to the paise without changing the rupees first",
+            "screen": "the rupees are opened into hundreds first and the meter shows them, and only then do the loose paise squares join the count"
+          },
+          {
+            "why": "a zero looks like nothing at all, so it seems safe to leave out",
+            "move": "drops the zero from a small paise part and writes too few digits",
+            "screen": "the tag shows the paise as two boxes, and a 0 stays in the first box when the paise are fewer than ten, so the paise number keeps its two digits"
+          }
+        ],
+        "screen": "a price tag in rupees and paise on the shelf, the Rupees tray with a few tiles and a few loose paise",
+        "soWhat": "change the rupees to paise first, add the loose paise, and the shortcut drops Rs and the dot",
+        "concept": "Rupees and paise into paise: the shortcut"
+      },
+      {
+        "n": 3,
+        "win": "the dot drops into place, two digits from the right, and the tag reads in rupees and paise",
+        "does": "gathers ten bars at a time into rupee tiles, reads what is left, then taps the tag to place the dot",
+        "goal": "gather every hundred paise into a rupee, keep the rest as loose paise, and put the dot two digits from the right",
+        "says": "Gather every hundred paise into a rupee. What is left over, and where does the dot go?",
+        "check": "Away from the screen: say 8 paise in rupees. How many digits do the paise take, and what stands before the dot?",
+        "feels": "ten bars closing into a rupee tile, and the dot dropping into its place two digits from the right",
+        "hands": "Hand over a number of paper paise squares, ask the pair to bundle every hundred into a strip, and write what is left as loose paise, then write the whole as rupees.",
+        "tries": "First rung: say how many full hundreds the paise hold. Second rung: say which two digits are the paise that are left over. Third rung: the same task with a number of paise over a hundred, before the small amounts return.",
+        "wrong": [
+          {
+            "why": "the dot is placed after the last number that was said, instead of after two digits",
+            "move": "puts the dot one digit from the right",
+            "screen": "the tag marks the last two digits in vermilion as the paise, so the dot has to sit in front of both of them"
+          },
+          {
+            "why": "there are no rupees, so the rupees part seems to be missing altogether",
+            "move": "writes a small amount of paise with no zero before the dot",
+            "screen": "the rupees box stays on the tag with a 0 in it, so the amount reads zero rupees and so many paise, and the paise keep their two digits"
+          }
+        ],
+        "screen": "a tag in paise on the shelf, a full meter and the Paise tray holding bars and loose paise",
+        "soWhat": "gather every hundred paise into a rupee, and put the dot two digits from the right, with a zero before it when there are fewer than a hundred paise",
+        "concept": "Paise into rupees: two digits after the dot"
+      },
+      {
+        "n": 4,
+        "win": "the two bars line up from the same start and the longer one is ringed green",
+        "does": "switches to one unit, watches both tags become bars of one scale, and picks the longer bar",
+        "goal": "two amounts in different units are changed to one unit before the larger is chosen",
+        "says": "Are both amounts in the same unit? Change one of them, then choose.",
+        "check": "Away from the screen: which is more, Rs 2 or 190 paise? Say both in paise first, then choose.",
+        "feels": "two tags becoming two bars of one scale, and the longer bar being plain at once",
+        "hands": "Lay two paper strips side by side, one cut into hundred-paise squares and one drawn in paise, and ask which holds more only after both are measured in squares.",
+        "tries": "First rung: say which unit each amount is in. Second rung: change the rupee amount to paise and read both numbers. Third rung: the same task with both amounts already in paise, before the two units return.",
+        "wrong": [
+          {
+            "why": "the numbers are on the tags and look like they can be compared as they stand",
+            "move": "picks the larger number although one amount is in rupees and one is in paise",
+            "screen": "the Same unit switch turns both tags into bars of one scale, and the shorter bar is the one with the smaller amount, whatever its number"
+          },
+          {
+            "why": "one change seems enough, and the other already looks ready",
+            "move": "changes one amount but not the other before comparing",
+            "screen": "the switch stays off until both tags are in the same unit, and a note says which tag is still in a different unit"
+          }
+        ],
+        "screen": "two tags on the shelf, one in rupees and one in paise, and the Same unit switch off",
+        "soWhat": "change both amounts to the same unit, paise or rupees, before choosing the larger",
+        "concept": "Which amount is more?"
+      }
+    ],
+    "delight": "On the first phase, each rupee tile that opens makes the paise meter tick up by exactly a hundred, and when the last tile has opened the meter glows green. On the third phase, when the last hundred paise gather into a rupee, the dot drops into its place on the tag with a small bounce and the two paise digits turn vermilion.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet typed. On the first phase the Rupees tray holds a few whole rupee tiles, the Paise tray is empty and the paise meter stands at nothing. On the second a price tag in rupees and paise hangs on the shelf, with a few rupee tiles and a few loose paise squares in the trays. On the third a tag in paise hangs on the shelf with the meter full and the Paise tray holding bars and loose paise. On the fourth two tags hang on the shelf, one in rupees and one in paise, with the Same unit switch off and the trays slid to the side. One thing moves, once: the first tile gives one slow pulse while the voice speaks its opening line, and a finger on it is the whole way in.",
+    "freePlay": "Any amount in either tray, with the meter, the shortcut tag and the Same unit scale all open, and the plain figures one tap away. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on rupees into paise, rupees and paise into paise, paise into rupees and which amount is more, each as a small price or a purse.",
+    "voiceLines": [
+      "Two trays and a price tag, ready for money to change places.",
+      "Open one rupee at a time. How many paise does each rupee hold?",
+      "Break the rupees first. Then add the loose paise. What do you get?",
+      "Gather every hundred paise into a rupee. What is left over, and where does the dot go?",
+      "Are both amounts in the same unit? Change one of them, then choose.",
+      "A new amount. Which unit is it in?",
+      "Free play. Open, gather and compare as you like.",
+      "Look again at the two trays. Which part is the rupees, and which part is the paise?",
+      "You changed every amount and kept the dot where it belongs."
+    ],
+    "observations": [
+      {
+        "why": "one rupee is a hundred paise, so every rupee adds a hundred to the count.",
+        "soWhat": "to change rupees into paise, multiply the rupees by a hundred.",
+        "observe": "Each rupee tile that opened made the paise meter climb by one hundred, and the meter stopped at a number of hundreds equal to the number of rupees."
+      },
+      {
+        "why": "the rupees were changed into hundreds of paise and the loose paise were added on after them.",
+        "soWhat": "the shortcut works because rupees times a hundred plus paise is the whole number of paise.",
+        "observe": "A tag in rupees and paise lost its Rs and its dot and the figures that were left were exactly the meter's count."
+      },
+      {
+        "why": "paise are always two digits, so the last two digits of a number of paise are the paise part.",
+        "soWhat": "count two digits from the right and put the dot there, with a zero before the dot when there are fewer than a hundred paise.",
+        "observe": "When ten bars were gathered into a rupee tile, the dot on the tag landed two digits from the right, and a small number of paise took a zero before the dot."
+      },
+      {
+        "why": "a number of rupees and a number of paise are counted in different units, so their numbers cannot be set against each other.",
+        "soWhat": "change both amounts to the same unit before choosing the larger.",
+        "observe": "A tag in rupees and a tag in paise could not be told apart by their numbers, but as two bars of one scale the longer bar was plain."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the Rupees tray with whole rupee tiles, an empty Paise tray and the paise meter at nothing",
+        "win": "the meter stops, a green tag joins the rupees to the paise, and the answer slot fills",
+        "traceback": "the opened coins light one by one and the working line shows the rupees times 100 paise; the child writes the product",
+        "ladder": [
+          "Count the 10 p bars in one opened coin first.",
+          "Each coin opened into ten bars of 10 p.",
+          "How many paise does each opened block hold?",
+          "One coin opens into ten 10 p bars, and that is 100 paise.",
+          "Count the opened coins in hundreds: 100, 200, 300 and on."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a price tag in rupees and paise on the shelf, the Rupees tray with a few tiles and a few loose paise",
+        "win": "the tag becomes a tag in paise and its figures match the meter exactly",
+        "traceback": "the opened hundreds light one by one and the working line shows the rupees times 100 plus the loose paise; the child adds them",
+        "ladder": [
+          "Change the 9 rupees into paise before you add the 15 paise.",
+          "How many paise are the 8 opened coins, before the loose 30?",
+          "Count the opened hundreds first, then add the loose piece.",
+          "Each rupee coin is 100 paise, then add the loose paise.",
+          "Shortcut: take away Rs and the dot from the tag, keeping every digit."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a tag in paise on the shelf, a full meter and the Paise tray holding bars and loose paise",
+        "win": "the dot drops into place, two digits from the right, and the tag reads in rupees and paise",
+        "traceback": "the gathered coins light one by one and the tag marks its last two digits in vermilion as the paise; the child places the dot",
+        "ladder": [
+          "The last two digits are paise, so the dot sits just before them.",
+          "With no full hundred, the rupees part is 0.",
+          "Look at the loose pieces, then count two places after the dot.",
+          "The gathered coins tell you the rupees, before the dot.",
+          "Count two digits from the right and put the dot there."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "two tags on the shelf, one in rupees and one in paise, and the Same unit switch off",
+        "win": "the two bars line up from the same start and the longer one is ringed green",
+        "traceback": "both bars light in turn from the same start line, each with its amount in paise; nothing is ringed",
+        "ladder": [
+          "Is 410 in rupees or in paise?",
+          "Rs 5 is not 5 paise: change it to paise first.",
+          "Read the bars, not the bigger number on the tags.",
+          "Change the rupee amount into paise, then read both numbers.",
+          "Now both are in paise: the longer bar is the bigger amount."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "colours": {
+      "rupees": "deep blue",
+      "paise": "vermilion",
+      "value": "amber",
+      "total": "green"
+    },
+    "pieces": {
+      "coin": "Rs 1 coin (photo skin, deep-blue ring)",
+      "block": "100 p = ten 10 p bars",
+      "bar": "10 p",
+      "five": "5 p"
+    },
+    "acts": {
+      "1": "Open (one coin), then Open all",
+      "2": "Open all",
+      "3": "Gather",
+      "4": "Same unit"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T4.C15:CP1",
+        "kind": "open",
+        "r": 7,
+        "p": 0,
+        "answer": 700,
+        "win": "Yes, 7 rupees open into 700 paise."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T4.C15:1",
+        "kind": "open",
+        "r": 6,
+        "p": 0,
+        "answer": 600,
+        "win": "Yes, 6 rupees are 600 paise."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T4.C15:5",
+        "kind": "open",
+        "r": 11,
+        "p": 0,
+        "answer": 1100,
+        "win": "Yes, 11 rupees are 1,100 paise."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T4.C16:CP2",
+        "kind": "openall",
+        "r": 9,
+        "p": 15,
+        "answer": 915,
+        "win": "Yes, Rs 9.15 is 915 paise."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T4.C16:2",
+        "kind": "openall",
+        "r": 8,
+        "p": 30,
+        "answer": 830,
+        "win": "Yes, Rs 8.30 is 830 paise."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T4.C16:6",
+        "kind": "openall",
+        "r": 14,
+        "p": 5,
+        "answer": 1405,
+        "win": "Yes, Rs 14.05 is 1,405 paise."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T4.C17:CP3",
+        "kind": "gather",
+        "tp": 960,
+        "answer": "9.60",
+        "win": "Yes, 960 paise is Rs 9.60."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T4.C17:3",
+        "kind": "gather",
+        "tp": 45,
+        "answer": "0.45",
+        "ladder": [
+          "Write 0, then the dot, then the paise.",
+          "Paise always take two places after the dot."
+        ],
+        "win": "Yes, 45 paise is Rs 0.45."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T4.C17:7",
+        "kind": "gather",
+        "tp": 705,
+        "answer": "7.05",
+        "win": "Yes, 705 paise is Rs 7.05."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T4.C18:CP4",
+        "kind": "same",
+        "a": {
+          "u": "rs",
+          "v": 420
+        },
+        "b": {
+          "u": "p",
+          "v": 410
+        },
+        "answer": "tagA",
+        "win": "Yes, 420 paise is more than 410 paise."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T4.C18:4",
+        "kind": "same",
+        "a": {
+          "u": "p",
+          "v": 480
+        },
+        "b": {
+          "u": "rs",
+          "v": 500
+        },
+        "answer": "tagB",
+        "win": "Yes, Rs 5 is 500 paise, more than 480."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T4.C18:8",
+        "kind": "same",
+        "a": {
+          "u": "rs",
+          "v": 800
+        },
+        "b": {
+          "u": "p",
+          "v": 650
+        },
+        "answer": "tagA",
+        "win": "Yes, Rs 8 is 800 paise, more than 650."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: the opened coins light one by one and the working line shows the rupees times 100 paise; the child writes the product",
+      "Phase 2: the opened hundreds light one by one and the working line shows the rupees times 100 plus the loose paise; the child adds them",
+      "Phase 3: the gathered coins light one by one and the tag marks its last two digits in vermilion as the paise; the child places the dot",
+      "Phase 4: both bars light in turn from the same start line, each with its amount in paise; nothing is ringed"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A Rupees tray and a Paise tray, ready for money to change places.",
+    "onFreePlay": "Free play: open rupee coins and gather paise as you like.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You changed every amount and kept the dot where it belongs.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T4.C15:CP1",
+            "worked": false,
+            "kind": "open",
+            "planQuestion": "A child keeps seven Rs 1 coins in a money box. How many paise is that in all? Open one rupee at a time.",
+            "question": {
+              "en": "Open all 7 rupee coins from the money box: how many paise is that?"
+            },
+            "ask": {
+              "en": "7 coins in paise?"
+            },
+            "answer": 700,
+            "planAnswer": "700 paise",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T4.C15:1",
+            "worked": false,
+            "kind": "open",
+            "planQuestion": "A purse has six Rs 1 coins in it. How many paise is that?",
+            "question": {
+              "en": "A purse holds 6 Rs 1 coins; open them, then say how many paise they make."
+            },
+            "ask": {
+              "en": "6 coins in paise?"
+            },
+            "answer": 600,
+            "planAnswer": "600 paise, because 6 times 100 paise is 600 paise",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T4.C15:5",
+            "worked": false,
+            "kind": "open",
+            "planQuestion": "A shopkeeper keeps eleven Rs 1 coins in a bowl. How many paise are in the bowl?",
+            "question": {
+              "en": "Open the 11 Rs 1 coins in the shopkeeper's bowl: how many paise are there?"
+            },
+            "ask": {
+              "en": "11 coins in paise?"
+            },
+            "answer": 1100,
+            "planAnswer": "1100 paise, because 11 times 100 paise is 1100 paise",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T4.C16:CP2",
+            "worked": false,
+            "kind": "openall",
+            "planQuestion": "A pencil box costs Rs 9.15. How many paise is that? Break the rupees first, then add the loose paise.",
+            "question": {
+              "en": "A pencil box costs Rs 9.15: open the coins, then find how many paise that is."
+            },
+            "ask": {
+              "en": "Rs 9.15 in paise?"
+            },
+            "answer": 915,
+            "planAnswer": "915 paise",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T4.C16:2",
+            "worked": false,
+            "kind": "openall",
+            "planQuestion": "A ruler costs Rs 8.30. How many paise is that?",
+            "question": {
+              "en": "A ruler costs Rs 8.30; open its rupees and write the cost in paise."
+            },
+            "ask": {
+              "en": "Rs 8.30 in paise?"
+            },
+            "answer": 830,
+            "planAnswer": "830 paise, because 8 times 100 paise is 800 paise and 800 paise plus 30 paise is 830 paise",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T4.C16:6",
+            "worked": false,
+            "kind": "openall",
+            "planQuestion": "A kite costs Rs 14.05. How many paise is that? Mind the paise: 5 paise is written 05.",
+            "question": {
+              "en": "A kite costs Rs 14.05: after Open all, how many paise does it cost?"
+            },
+            "ask": {
+              "en": "Rs 14.05 in paise?"
+            },
+            "answer": 1405,
+            "planAnswer": "1405 paise, because 14 times 100 paise is 1400 paise and 1400 paise plus 5 paise is 1405 paise",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T4.C17:CP3",
+            "worked": false,
+            "kind": "gather",
+            "planQuestion": "A notebook costs 960 paise. Write its cost in rupees.",
+            "question": {
+              "en": "A notebook costs 960 paise: gather the hundreds, then write the cost in rupees."
+            },
+            "ask": {
+              "en": "960 paise in Rs?"
+            },
+            "answer": "9.60",
+            "planAnswer": "Rs 9.60",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T4.C17:3",
+            "worked": false,
+            "kind": "gather",
+            "planQuestion": "A sweet costs 275 paise. Write its cost in rupees, with Rs and a dot.",
+            "question": {
+              "en": "A sweet costs 45 paise: what is that in rupees?"
+            },
+            "ask": {
+              "en": "45 paise in Rs?"
+            },
+            "answer": "0.45",
+            "planAnswer": "Rs 2.75, because 275 paise is 2 hundreds and 75 paise",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T4.C17:7",
+            "worked": false,
+            "kind": "gather",
+            "planQuestion": "A toy costs 705 paise and a sticker costs 9 paise. Write each cost in rupees.",
+            "question": {
+              "en": "A toy costs 705 paise: after Gather, what is that in rupees?"
+            },
+            "ask": {
+              "en": "705 paise in Rs?"
+            },
+            "answer": "7.05",
+            "planAnswer": "The toy is Rs 7.05 and the sticker is Rs 0.09, because 705 paise is Rs 7.05, and 9 paise is Rs 0.09",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T4.C18:CP4",
+            "worked": false,
+            "kind": "same",
+            "planQuestion": "Which is more, Rs 4.20 or 410 paise?",
+            "question": {
+              "en": "Which is more: Rs 4.20 or 410 paise?"
+            },
+            "ask": {
+              "en": "Which is more?"
+            },
+            "answer": "tagA",
+            "planAnswer": "Rs 4.20 is more, because 420 paise is more than 410 paise",
+            "choices": [
+              "tagA",
+              "tagB"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T4.C18:4",
+            "worked": false,
+            "kind": "same",
+            "planQuestion": "Which is more, Rs 5 or 480 paise?",
+            "question": {
+              "en": "Put 480 paise and Rs 5 in the same unit: which is the bigger amount?"
+            },
+            "ask": {
+              "en": "Bigger amount?"
+            },
+            "answer": "tagB",
+            "planAnswer": "Rs 5 is more, because Rs 5 is 500 paise and 500 is more than 480",
+            "choices": [
+              "tagA",
+              "tagB"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T4.C18:8",
+            "worked": false,
+            "kind": "same",
+            "planQuestion": "One child gives 4600 paise to a school fund. Another gives Rs 45.50. Who gives more?",
+            "question": {
+              "en": "A child has Rs 8 and a friend has 650 paise: who has more?"
+            },
+            "ask": {
+              "en": "Who has more?"
+            },
+            "answer": "tagA",
+            "planAnswer": "The first child, because 4600 paise is more than 4550 paise, and Rs 45.50 is 4550 paise",
+            "choices": [
+              "tagA",
+              "tagB"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "rupees_and_paise_converter",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "rupees_and_paise_converter",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Rupees into paise: multiply by a hundred",
+        "conceptId": "M1.S2.T4.C15",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C15:CP1",
+          "M1.S2.T4.C15:1",
+          "M1.S2.T4.C15:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Rupees and paise into paise: the shortcut",
+        "conceptId": "M1.S2.T4.C16",
+        "objectiveIds": [
+          "O5"
+        ],
+        "items": [
+          "M1.S2.T4.C16:CP2",
+          "M1.S2.T4.C16:2",
+          "M1.S2.T4.C16:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Paise into rupees: two digits after the dot",
+        "conceptId": "M1.S2.T4.C17",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C17:CP3",
+          "M1.S2.T4.C17:3",
+          "M1.S2.T4.C17:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Which amount is more?",
+        "conceptId": "M1.S2.T4.C18",
+        "objectiveIds": [
+          "O6"
+        ],
+        "items": [
+          "M1.S2.T4.C18:CP4",
+          "M1.S2.T4.C18:4",
+          "M1.S2.T4.C18:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "act",
+    "null",
+    "actDone",
+    "unit"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), complete, phase, act, null, actDone, unit",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "rupees_and_paise_converter"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T4.C18.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Two trays and a price tag, ready for money to change places."
+    },
+    {
+      "en": "Open one rupee at a time. How many paise does each rupee hold?"
+    },
+    {
+      "en": "Break the rupees first. Then add the loose paise. What do you get?"
+    },
+    {
+      "en": "Gather every hundred paise into a rupee. What is left over, and where does the dot go?"
+    },
+    {
+      "en": "Are both amounts in the same unit? Change one of them, then choose."
+    },
+    {
+      "en": "A new amount. Which unit is it in?"
+    },
+    {
+      "en": "Free play. Open, gather and compare as you like."
+    },
+    {
+      "en": "Look again at the two trays. Which part is the rupees, and which part is the paise?"
+    },
+    {
+      "en": "You changed every amount and kept the dot where it belongs."
+    }
+  ],
+  "build": {
+    "source": "bebfab59:667186",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-16T07:38:39.216Z",
+    "checks": {
+      "pass": 97,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-11-16T07:38:39.045Z"
+    },
+    "tsxBytes": 586127,
+    "tsxMd5": "e35a5209839efa4b18f02e3e65e762d4"
+  }
+}

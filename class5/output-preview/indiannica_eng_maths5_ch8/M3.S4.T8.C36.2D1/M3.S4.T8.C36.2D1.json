@@ -1,0 +1,1068 @@
+{
+  "slotId": "M3.S4.T8.C36.2D1",
+  "mediaId": "M3.S4.T8.C36.2D1",
+  "toolId": "cube_counter",
+  "title": "Cube Counter",
+  "component": "M3.S4.T8.C36.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch8_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_8/2dtool/M3.S4.T8.C38.2D1/M3.S4.T8.C38.2D1.tsx",
+  "description": "Fill solids with unit cubes, pick the unit cube that fits, count cubes by rows, and lift a stack apart layer by layer to count the hidden cubes.",
+  "conceptIds": [
+    "M3.S4.T8.C35",
+    "M3.S4.T8.C36",
+    "M3.S4.T8.C37",
+    "M3.S4.T8.C38"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Meet volume as the space a solid takes up, pick the unit cube that fits, find a volume by counting unit cubes by rows, and count the cubes hidden in a stack.",
+    "look": "Solids drawn in three faces with a tray of violet unit cubes under them, a unit shelf on the second phase, and the Lift layer control and See-through switch on the last two.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Cube Counter' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of cubes counted. It is never a score. The working area is 1086 by 528 at x 64, y 202. The solids stand on a table top drawn along y 640, in three visible faces at x 160, y 260 inside a box 600 by 380, every unit cube 44 across. The tray of violet unit cubes, each labelled Unit cube, runs along y 680 from x 120. On the first phase the two open boxes stand at x 160 and x 480 with a counter under each, and the Fill button at x 820, y 250. On the second phase the unit shelf stands at x 820, y 330 with three cubes labelled by their edges, beside a picture card at x 160, y 260. On the later phases a tapped row lights amber as it is counted; the Lift layer control at x 820, y 420 lifts the top layer up and to the right, lit amber and labelled Layer; and the See-through switch at x 820, y 500 draws every cube in outline. The volume reached is green. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with cu. mm, cu. cm and cu. m keys. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the ten tools of this chapter share them. The lengths the question gives, as a side, a length, a breadth, a height, an edge or a base area, are deep blue, labelled Given or by their own name. The perimeter, area, volume or missing side the working reaches is green, labelled Answer. The boundary that a perimeter walks round is vermilion, labelled Boundary. The unit being counted, one unit square, one unit cube, one row or one layer, is violet, labelled Unit square, Unit cube, Row or Layer. The part squares of an estimate and the space left over where no whole cube fits are rose, labelled More than half, Half or Left over. The side, square, cube, layer or step being worked on now is amber. Grey is kept for a zero holding a place open, and nothing on this stage is ever grey. A square or cube that is not being counted stays warm white inside its near-black outline, grid lines, unit words and signs are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of them, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last solid stands rebuilt with every cube counted, and the volume in green with its cubic unit.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the shoebox's counter runs far past the pencil box's, and the shoebox lights green, labelled Greater volume",
+        "does": "fills each box with cubes and taps the one that takes up more space",
+        "goal": "the volume of a solid is the amount of space it takes up",
+        "says": "Fill them both. Which one holds more cubes?",
+        "check": "Away from the screen: which takes up more space in your bag, your lunch box or your pencil?",
+        "feels": "one box filling long after the other has stopped",
+        "hands": "Fill a small box and a bigger box with the same cubes, or the same beans, and count each. Which took up more space?",
+        "tries": "First rung: fill the smaller box. Second rung: fill the bigger one. Third rung: the same task with two boxes very different in size, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "taller things look bigger",
+            "move": "taps the taller box as the one that takes up more space",
+            "screen": "both boxes are filled again in steps side by side, and the counter with the greater count is lit amber"
+          },
+          {
+            "why": "the first few cubes seem to say which is bigger",
+            "move": "taps before either box is full",
+            "screen": "the box that is not yet full is lit amber, and the Fill button pulses once"
+          }
+        ],
+        "screen": "an open shoebox and an open pencil box side by side, both empty, and the Fill button",
+        "soWhat": "the volume of a solid is the amount of space it takes up",
+        "concept": "Space taken up"
+      },
+      {
+        "n": 2,
+        "win": "the 1 m cube settles on the classroom card and the unit reads cu. m",
+        "does": "drags the unit cube that fits onto the picture card",
+        "goal": "a unit cube with edges of 1 cm has a volume of 1 cu. cm, and other things use cu. mm or cu. m",
+        "says": "Is this very small, small or large?",
+        "check": "Away from the screen: which unit fits a matchbox, and which fits a water tank?",
+        "feels": "a cube that fits the thing settling onto it",
+        "hands": "Hold a sugar cube, a die and a picture of a room. Say which unit cube fits each: one millimetre, one centimetre or one metre on every edge.",
+        "tries": "First rung: say whether the thing is very small, small or large. Second rung: choose between two of the units. Third rung: the same task on a smaller thing, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the centimetre cube is the one met first, and it feels like the usual unit",
+            "move": "drags the cube with edges of one centimetre onto the classroom",
+            "screen": "cubes of that size start to fill the classroom card in a row in steps and barely cross it, and the cube with edges of one metre is lit amber"
+          },
+          {
+            "why": "the biggest cube seems the most important one",
+            "move": "drags the cube with edges of one metre onto a grain of sugar",
+            "screen": "the metre cube is drawn beside the grain, far too big to be a unit for it, and the cube with edges of one millimetre is lit amber"
+          }
+        ],
+        "screen": "the unit shelf with cubes of edge 1 mm, 1 cm and 1 m, and a picture card of a classroom",
+        "soWhat": "a unit cube with edges of 1 cm has a volume of 1 cu. cm, and other things use cu. mm or cu. m",
+        "concept": "The unit cube"
+      },
+      {
+        "n": 3,
+        "win": "the running count reads 18, and 18 cu. cm lands green",
+        "does": "taps each row to count it and types the volume",
+        "goal": "the number of unit cubes that fill a solid is its volume, counted by rows",
+        "says": "Count one row. How many rows are there?",
+        "check": "Away from the screen: why count cubes and not the faces you can see?",
+        "feels": "row after row lighting up and the count climbing",
+        "hands": "Build a solid from sugar cubes in rows, count one row, count the rows, and count every cube to check.",
+        "tries": "First rung: count the front row. Second rung: count the row behind it. Third rung: the same task on a solid of two short rows, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the faces are what the drawing shows",
+            "move": "counts the faces that can be seen",
+            "screen": "the See-through switch turns on in steps, each cube's outline lights once as it is counted, and the child's number stays beside the count"
+          },
+          {
+            "why": "one row looks like the whole solid from the front",
+            "move": "counts one row and stops",
+            "screen": "the next row is lit amber behind the first, and the Row tap pulses on it"
+          }
+        ],
+        "screen": "a solid of unit cubes of 1 cm, 9 in a row and 2 rows side by side, one cube high",
+        "soWhat": "the number of unit cubes that fill a solid is its volume, counted by rows",
+        "concept": "Counting cubes"
+      },
+      {
+        "n": 4,
+        "win": "four lifted layers of six stand in a row, the count reads 24, and 24 cu. cm lands green",
+        "does": "taps Lift layer again and again, counting each layer as it comes into view, and types the volume",
+        "goal": "cubes hidden behind or under others take up space and are counted",
+        "says": "Some cubes are hiding. Lift the layers and count them all.",
+        "check": "Away from the screen: a stack has cubes you cannot see. How can you be sure of the count?",
+        "feels": "hidden cubes coming into view as each layer lifts away",
+        "hands": "One child builds a stack behind a card. The other guesses from the front, then lifts it apart layer by layer and counts.",
+        "tries": "First rung: count the top layer. Second rung: lift it and count the next. Third rung: the same task on a stack of two layers, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "hidden cubes cannot be seen, so they do not seem to be there",
+            "move": "counts only the cubes seen from the front",
+            "screen": "the Lift layer control lifts the top layer in steps, and the cubes that were hidden light amber as they come into view"
+          },
+          {
+            "why": "the lifted layer is still on the stage beside the stack",
+            "move": "counts the top layer twice after lifting it",
+            "screen": "the lifted layer carries a small label Counted in ink, and the layer beneath is lit amber"
+          }
+        ],
+        "screen": "a stack 4 layers high with 6 cubes in each layer, only its front faces showing",
+        "soWhat": "cubes hidden behind or under others take up space and are counted",
+        "concept": "Hidden cubes count too"
+      }
+    ],
+    "delight": "On the fourth phase, when the last layer is lifted, the lifted layers stand in a neat row and each one gives a small hop as its count is added.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet counted. On the first phase two open boxes stand side by side, empty, with the Fill button. On the second the unit shelf stands beside a picture card. On the third a solid of unit cubes stands on the table top, its rows uncounted. On the fourth a stack stands with only its front faces showing and the Lift layer control beside it. One thing moves, once: the Fill button, the unit shelf or the Lift layer control gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any solid built from the tray, filled, lifted apart or seen through. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on space taken up, units of volume, counting cubes by rows and counting hidden cubes.",
+    "voiceLines": [
+      "Some solids, and a tray of unit cubes.",
+      "Fill them both. Which one holds more cubes?",
+      "Is this very small, small or large?",
+      "Count one row. How many rows are there?",
+      "Some cubes are hiding. Lift the layers and count them all.",
+      "A new solid. Count it row by row.",
+      "Free play. Build a stack and count every cube.",
+      "Lift the layers and look again. Did every cube get counted once?",
+      "You measured space by the cubes that fill it, hidden ones too."
+    ],
+    "observations": [
+      {
+        "why": "it takes up more space.",
+        "soWhat": "the volume of a solid is the amount of space it takes up.",
+        "observe": "The bigger box held many more cubes before it was full."
+      },
+      {
+        "why": "the unit should fit the size of the thing measured.",
+        "soWhat": "use cu. mm for very small things, cu. cm for small ones and cu. m for large ones.",
+        "observe": "A unit cube too small for a big thing would take a very long time to count."
+      },
+      {
+        "why": "cubes behind and under others still take up space.",
+        "soWhat": "count every cube, seen or hidden, layer by layer.",
+        "observe": "Lifting the top layer showed cubes that could not be seen from the front."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "an open shoebox and an open pencil box side by side, both empty, and the Fill button",
+        "win": "the shoebox's counter runs far past the pencil box's, and the shoebox lights green, labelled Greater volume",
+        "traceback": "Both solids fill again side by side, the greater count lights amber and the greater solid turns green, Greater volume.",
+        "ladder": [
+          "Look at how many cubes each box held.",
+          "Count the cubes in each, not how far it reaches.",
+          "Count the cubes inside, not the height.",
+          "The box that holds more cubes takes up more space.",
+          "Read the number beside each box, then tap the box with the greater number."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the unit shelf with cubes of edge 1 mm, 1 cm and 1 m, and a picture card of a classroom",
+        "win": "the 1 m cube settles on the classroom card and the unit reads cu. m",
+        "traceback": "Cubes of the chosen size are set against the thing, the cube that fits lights amber and settles on the card, its unit in green.",
+        "ladder": [
+          "Compare the cube's edge with the size of the room.",
+          "Look at how long each edge is.",
+          "Compare the cube's edge with the size of the grain.",
+          "Think whether it is very small, small or very large.",
+          "Tiny things take tiny unit cubes, and huge things take huge ones."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a solid of unit cubes of 1 cm, 9 in a row and 2 rows side by side, one cube high",
+        "win": "the running count reads 18, and 18 cu. cm lands green",
+        "traceback": "Each row lights amber in turn with its count, then every cube turns green and the volume is written in green.",
+        "ladder": [
+          "Count both rows, not only the front one.",
+          "Every cube in the row is 1 cubic centimetre.",
+          "There are more rows behind the front one.",
+          "Add the cubes of every row.",
+          "Every row holds the same number of cubes, so add it once for each row."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a stack 4 layers high with 6 cubes in each layer, only its front faces showing",
+        "win": "four lifted layers of six stand in a row, the count reads 24, and 24 cu. cm lands green",
+        "traceback": "The layers stand apart in a row, each lights amber with its count, then every cube turns green and the volume is written in green.",
+        "ladder": [
+          "Add up the cubes of all 4 layers.",
+          "Every layer holds the same number of cubes.",
+          "Count every layer, not only one.",
+          "Count one layer, then count how many layers there are.",
+          "Multiply the cubes in one layer by the number of layers."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "cubeEdge": "1 cm",
+    "layoutWidth": 900,
+    "shelf": [
+      {
+        "unit": "cu. mm",
+        "edge": "1 mm"
+      },
+      {
+        "unit": "cu. cm",
+        "edge": "1 cm"
+      },
+      {
+        "unit": "cu. m",
+        "edge": "1 m"
+      }
+    ],
+    "free": {
+      "kind": "stack",
+      "P": 3,
+      "Q": 2,
+      "L": 4
+    },
+    "answerGate": {
+      "1": "Q1.1-1.3: the Answer/Enter key waits until both solids are filled (Fill, twice); the box is then tapped and Enter sends it.",
+      "2": "Q2.1 and Q2.3: the carried cube is the answer (no lock; Enter blinks once a cube is on the card). Q2.2: ungated, a choice with no act.",
+      "3": "Q3.1-3.3: the Answer key waits until every row is counted (Count row).",
+      "4": "Q4.1-4.3: the Answer key waits until every layer is lifted apart (Lift layer).",
+      "rule": "Locks only after a real tap on a key or piece (or a real Enter on a guide step) in user mode; toolApi and the agent are never gated; a correction that has run counts as the act."
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M3.S4.T8.C35:CC1",
+        "kind": "fill",
+        "pad": "enter",
+        "answer": "shoebox",
+        "bx": [
+          {
+            "id": "shoebox",
+            "name": "Shoebox",
+            "d": [
+              4,
+              3,
+              2
+            ]
+          },
+          {
+            "id": "pencilbox",
+            "name": "Pencil box",
+            "d": [
+              6,
+              1,
+              1
+            ]
+          }
+        ],
+        "win": "Yes, the shoebox. That space is called its volume.",
+        "winMs": 3500
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M3.S4.T8.C35:1",
+        "kind": "fill",
+        "pad": "enter",
+        "answer": "schoolbag",
+        "bx": [
+          {
+            "id": "pencil",
+            "name": "Pencil",
+            "d": [
+              5,
+              1,
+              1
+            ],
+            "ghost": true
+          },
+          {
+            "id": "schoolbag",
+            "name": "School bag",
+            "d": [
+              3,
+              2,
+              3
+            ],
+            "ghost": true
+          }
+        ],
+        "win": "Yes, the school bag: a long thin solid can take up less space.",
+        "winMs": 4200
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": null,
+        "kind": "fill",
+        "pad": "enter",
+        "answer": "widebox",
+        "bx": [
+          {
+            "id": "widebox",
+            "name": "Wide box",
+            "d": [
+              4,
+              3,
+              1
+            ]
+          },
+          {
+            "id": "tallbox",
+            "name": "Tall box",
+            "d": [
+              2,
+              1,
+              4
+            ]
+          }
+        ],
+        "win": "Yes, the wide box holds more cubes though it is not as tall.",
+        "winMs": 4200
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M3.S4.T8.C36:CC2",
+        "kind": "unit",
+        "pad": "enter",
+        "answer": "cu. m",
+        "thing": "classroom",
+        "metres": 8,
+        "win": "Yes, a classroom is measured in cubic metres.",
+        "winMs": 3200
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M3.S4.T8.C36:2",
+        "kind": "unitq",
+        "edge": "m",
+        "answer": "1 cu. m",
+        "ladder": [
+          "Its edges are measured in metres, not centimetres.",
+          "The unit of the volume follows the unit of the edges."
+        ],
+        "win": "Yes, its volume is 1 cubic metre.",
+        "winMs": 2400
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M3.S4.T8.C36:4",
+        "kind": "unit",
+        "pad": "enter",
+        "answer": "cu. mm",
+        "thing": "sugar",
+        "metres": 0.0005,
+        "win": "Yes, a grain of sugar is measured in cubic millimetres.",
+        "winMs": 3800
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M3.S4.T8.C37:CC3",
+        "kind": "rows",
+        "I": 9,
+        "J": 2,
+        "unit": "cu. cm",
+        "answer": 18,
+        "win": "Yes, 2 rows of 9 cubes make 18 cubic centimetres.",
+        "winMs": 3400
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M3.S4.T8.C37:3",
+        "kind": "rows",
+        "I": 7,
+        "J": 1,
+        "unit": "cu. cm",
+        "answer": 7,
+        "win": "Yes, 7 cubes make 7 cubic centimetres.",
+        "winMs": 2700
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M3.S4.T8.C37:8",
+        "kind": "rows",
+        "I": 9,
+        "J": 4,
+        "unit": "cu. cm",
+        "answer": 36,
+        "win": "Yes, 4 rows of 9 cubes make 36 cubic centimetres.",
+        "winMs": 3400
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M3.S4.T8.C38:CC4",
+        "kind": "stack",
+        "P": 3,
+        "Q": 2,
+        "L": 4,
+        "unit": "cu. cm",
+        "answer": 24,
+        "win": "Yes, 4 layers of 6 cubes make 24 cubic centimetres.",
+        "winMs": 3600
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M3.S4.T8.C38:6",
+        "kind": "stack",
+        "P": 3,
+        "Q": 3,
+        "L": 3,
+        "unit": "unit cubes",
+        "answer": 27,
+        "win": "Yes, 3 layers of 9 cubes make 27 unit cubes.",
+        "winMs": 3100
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M3.S4.T8.C38:7",
+        "kind": "stack",
+        "P": 6,
+        "Q": 2,
+        "L": 2,
+        "gap": true,
+        "unit": "unit cubes",
+        "answer": 22,
+        "win": "Yes, 2 layers of 11 cubes make 22 unit cubes.",
+        "winMs": 3200
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: Both solids fill again side by side, the greater count lights amber and the greater solid turns green, Greater volume.",
+      "Phase 2: Cubes of the chosen size are set against the thing, the cube that fits lights amber and settles on the card, its unit in green.",
+      "Phase 3: Each row lights amber in turn with its count, then every cube turns green and the volume is written in green.",
+      "Phase 4: The layers stand apart in a row, each lights amber with its count, then every cube turns green and the volume is written in green."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": null,
+    "onFreePlay": "Free play. Lift the layers and count every cube.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You measured space by the cubes that fill it, hidden ones too.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M3.S4.T8.C35:CC1",
+            "worked": false,
+            "kind": "fill",
+            "planQuestion": "A shoebox and a pencil box sit side by side. Which takes up more space, and what is that space called?",
+            "question": {
+              "en": "Fill both boxes with cubes, then tap the one that takes up more space."
+            },
+            "ask": {
+              "en": "Which takes more space?"
+            },
+            "answer": "shoebox",
+            "planAnswer": "The shoebox. The space a solid takes up is its volume",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M3.S4.T8.C35:1",
+            "worked": false,
+            "kind": "fill",
+            "planQuestion": "Which takes up more space: a school bag or a pencil?",
+            "question": {
+              "en": "Now fill the pencil and the school bag; which one takes up more space?"
+            },
+            "ask": {
+              "en": "Bag or pencil?"
+            },
+            "answer": "schoolbag",
+            "planAnswer": "The school bag. It has the greater volume",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "fill",
+            "planQuestion": null,
+            "question": {
+              "en": "Which takes up more space, the wide box or the tall box?"
+            },
+            "ask": {
+              "en": "Wide or tall?"
+            },
+            "answer": "widebox",
+            "planAnswer": null,
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M3.S4.T8.C36:CC2",
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": "Which unit fits the volume of a classroom: cu. mm, cu. cm or cu. m?",
+            "question": {
+              "en": "Tap the unit cube you would use to measure a classroom."
+            },
+            "ask": {
+              "en": "Unit for a classroom?"
+            },
+            "answer": "cu. m",
+            "planAnswer": "cu. m",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M3.S4.T8.C36:2",
+            "worked": false,
+            "kind": "unitq",
+            "planQuestion": "What is the volume of a unit cube whose edges are 1 m long?",
+            "question": {
+              "en": "A unit cube has edges 1 m long, so what is its volume?"
+            },
+            "ask": {
+              "en": "Volume of this cube?"
+            },
+            "answer": "1 cu. m",
+            "planAnswer": "1 cu. m",
+            "choices": [
+              "1 cu. mm",
+              "1 cu. cm",
+              "1 cu. m"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M3.S4.T8.C36:4",
+            "worked": false,
+            "kind": "unit",
+            "planQuestion": "Which unit fits the volume of a grain of sugar: cu. mm, cu. cm or cu. m?",
+            "question": {
+              "en": "Now pick the unit cube that suits a grain of sugar."
+            },
+            "ask": {
+              "en": "Unit for sugar?"
+            },
+            "answer": "cu. mm",
+            "planAnswer": "cu. mm",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M3.S4.T8.C37:CC3",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "A solid is built from unit cubes of 1 cm: 9 in a row, and 2 such rows side by side, one cube high. What is its volume?",
+            "question": {
+              "en": "Each cube is 1 cm, so count the rows and find the volume of this solid."
+            },
+            "ask": {
+              "en": "Volume in cu. cm?"
+            },
+            "answer": 18,
+            "planAnswer": "18 cu. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M3.S4.T8.C37:3",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "A row of 7 unit cubes of 1 cm lies on a desk. What is its volume?",
+            "question": {
+              "en": "A single row of these cubes lies on a desk; what is its volume?"
+            },
+            "ask": {
+              "en": "Volume of the row?"
+            },
+            "answer": 7,
+            "planAnswer": "7 cu. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M3.S4.T8.C37:8",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "A solid is built from 4 rows of 9 unit cubes of 1 cm, side by side. What is its volume?",
+            "question": {
+              "en": "Count the rows of this bigger solid and find its volume."
+            },
+            "ask": {
+              "en": "Volume in cu. cm?"
+            },
+            "answer": 36,
+            "planAnswer": "9 + 9 + 9 + 9 = 36, so 36 cu. cm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M3.S4.T8.C38:CC4",
+            "worked": false,
+            "kind": "stack",
+            "planQuestion": "A stack has 4 layers with 6 cubes of 1 cm in each layer. Some cubes are hidden. What is its volume?",
+            "question": {
+              "en": "This stack has 4 layers of 1 cm cubes; lift them and find its volume."
+            },
+            "ask": {
+              "en": "Volume in cu. cm?"
+            },
+            "answer": 24,
+            "planAnswer": "24 cu. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M3.S4.T8.C38:6",
+            "worked": false,
+            "kind": "stack",
+            "planQuestion": "A stack has 3 layers with 9 cubes in each layer. How many unit cubes fill it?",
+            "question": {
+              "en": "What is the volume of this stack in unit cubes?"
+            },
+            "ask": {
+              "en": "How many unit cubes?"
+            },
+            "answer": 27,
+            "planAnswer": "3 x 9 = 27, so 27 unit cubes",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M3.S4.T8.C38:7",
+            "worked": false,
+            "kind": "stack",
+            "planQuestion": "A stack is 2 layers high with 11 cubes in each layer, and some are hidden. How many unit cubes fill it?",
+            "question": {
+              "en": "This stack is 2 layers high; how many unit cubes fill it?"
+            },
+            "ask": {
+              "en": "How many unit cubes?"
+            },
+            "answer": 22,
+            "planAnswer": "2 x 11 = 22, so 22 unit cubes, hidden ones included",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M3.S4.T8.C37:5"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "cube_counter",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "cube_counter",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Space taken up",
+        "conceptId": "M3.S4.T8.C35",
+        "objectiveIds": [
+          "O13"
+        ],
+        "items": [
+          "M3.S4.T8.C35:CC1",
+          "M3.S4.T8.C35:1",
+          "M3.S4.T8.C36.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "The unit cube",
+        "conceptId": "M3.S4.T8.C36",
+        "objectiveIds": [
+          "O13"
+        ],
+        "items": [
+          "M3.S4.T8.C36:CC2",
+          "M3.S4.T8.C36:2",
+          "M3.S4.T8.C36:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Counting cubes",
+        "conceptId": "M3.S4.T8.C37",
+        "objectiveIds": [
+          "O14"
+        ],
+        "items": [
+          "M3.S4.T8.C37:CC3",
+          "M3.S4.T8.C37:3",
+          "M3.S4.T8.C37:8"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Hidden cubes count too",
+        "conceptId": "M3.S4.T8.C38",
+        "objectiveIds": [
+          "O14"
+        ],
+        "items": [
+          "M3.S4.T8.C38:CC4",
+          "M3.S4.T8.C38:6",
+          "M3.S4.T8.C38:7"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "solid",
+    "filled",
+    "unit_picked",
+    "rows_counted",
+    "layers_lifted",
+    "see_through"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), solid, filled, unit_picked, rows_counted, layers_lifted, see_through",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "cube_counter"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M3.S4.T8.C36.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "Some solids, and a tray of unit cubes."
+    },
+    {
+      "en": "Fill them both. Which one holds more cubes?"
+    },
+    {
+      "en": "Is this very small, small or large?"
+    },
+    {
+      "en": "Count one row. How many rows are there?"
+    },
+    {
+      "en": "Some cubes are hiding. Lift the layers and count them all."
+    },
+    {
+      "en": "A new solid. Count it row by row."
+    },
+    {
+      "en": "Free play. Build a stack and count every cube."
+    },
+    {
+      "en": "Lift the layers and look again. Did every cube get counted once?"
+    },
+    {
+      "en": "You measured space by the cubes that fill it, hidden ones too."
+    }
+  ],
+  "build": {
+    "source": "8a634911:651311",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-18T10:18:09.557Z",
+    "checks": {
+      "pass": 97,
+      "warn": 1,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-11-18T10:18:09.370Z"
+    },
+    "tsxBytes": 571052,
+    "tsxMd5": "45e5076731b84a3461283c6cc4b7723b"
+  }
+}

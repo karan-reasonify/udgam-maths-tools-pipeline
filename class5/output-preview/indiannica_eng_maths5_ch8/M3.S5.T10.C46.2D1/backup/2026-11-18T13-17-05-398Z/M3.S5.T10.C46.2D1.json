@@ -1,0 +1,1012 @@
+{
+  "slotId": "M3.S5.T10.C46.2D1",
+  "mediaId": "M3.S5.T10.C46.2D1",
+  "toolId": "box_packer",
+  "title": "Box Packer",
+  "component": "M3.S5.T10.C48.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch8_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_8/2dtool/M3.S5.T10.C48.2D1/M3.S5.T10.C48.2D1.tsx",
+  "description": "Raise a base into a solid for base area x height, work back to a height, build a block from equal cubes, and pack small cubes edge by edge to see how many really fit.",
+  "conceptIds": [
+    "M3.S5.T10.C45",
+    "M3.S5.T10.C46",
+    "M3.S5.T10.C47",
+    "M3.S5.T10.C48"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Find a volume as base area x height, work back to a height from a volume and a base area, find a block's volume from equal cubes, and check how many small cubes really fit along each edge of a box.",
+    "look": "A base tile that rises into a solid, a volume card and Height dial on the second phase, a row of equal cubes on the third, and an open box with small cubes and the Divide card on the last.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Box Packer' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of small cubes packed or joined. It is never a score. The working area is 1086 by 528 at x 64, y 202. The base tile lies at x 160, y 520, 400 by 120, deep blue, labelled Given with its area. The Height handle is a round grip at its right edge; each unit of height it raises adds one base's worth to the running volume, written beside the solid at x 600, y 300. The volume card and the Height dial stand at x 820, y 250 and x 820, y 340, and the Check line runs along y 690 from x 120. On the third phase the row of equal cubes lies along y 500 from x 160, and the Join button stands at x 820, y 420. On the fourth phase the open box stands in three visible faces at x 160, y 260 inside a box 600 by 400 with its edges labelled; the Pack edge button at x 820, y 420 lays whole cubes along one edge at a time, and any space too small for a whole cube turns rose, labelled Left over. The Divide card stands at x 820, y 520. The answer reached is green. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with cm, sq. cm and cu. cm keys. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the ten tools of this chapter share them. The lengths the question gives, as a side, a length, a breadth, a height, an edge or a base area, are deep blue, labelled Given or by their own name. The perimeter, area, volume or missing side the working reaches is green, labelled Answer. The boundary that a perimeter walks round is vermilion, labelled Boundary. The unit being counted, one unit square, one unit cube, one row or one layer, is violet, labelled Unit square, Unit cube, Row or Layer. The part squares of an estimate and the space left over where no whole cube fits are rose, labelled More than half, Half or Left over. The side, square, cube, layer or step being worked on now is amber. Grey is kept for a zero holding a place open, and nothing on this stage is ever grey. A square or cube that is not being counted stays warm white inside its near-black outline, grid lines, unit words and signs are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of them, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last box stays packed with its whole cubes and its rose Left over strip, and the answer in green beside the Divide card.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the line reads 24 x 7 = 168, and 168 cu. cm lands green",
+        "does": "drags the handle up seven steps, one base's worth each, and types the volume",
+        "goal": "the volume of a cuboid is base area x height",
+        "says": "The base is already length times breadth. Now raise it.",
+        "check": "Away from the screen: why is base area times height the same as length times breadth times height?",
+        "feels": "a flat tile rising into a solid, a layer at a time",
+        "hands": "Draw a base on card, cut out several copies, and stack them. Each card is one layer of the base's area.",
+        "tries": "First rung: raise the base by one unit and read the volume. Second rung: raise it to the full height. Third rung: the same task on a smaller base, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "two numbers are given, and adding them comes first to mind",
+            "move": "types the base area added to the height",
+            "screen": "the solid rises again in steps, one base's worth at a time, and the running volume is shown beside the child's number"
+          },
+          {
+            "why": "the top of the solid is close to the height mark",
+            "move": "stops the Height handle one unit short",
+            "screen": "the gap under the height mark is lit amber, and the missing layer is drawn as a ghost while the child's solid stays"
+          }
+        ],
+        "screen": "a base tile labelled 24 sq. cm, flat on the table top, and the Height handle",
+        "soWhat": "the volume of a cuboid is base area x height",
+        "concept": "Base area times height"
+      },
+      {
+        "n": 2,
+        "win": "the dial stops at six, the Check line reads 34 x 6 = 204, and 6 m lands green",
+        "does": "turns the Height dial until the solid meets the card, then taps Check",
+        "goal": "a height is the number that times the base area gives the volume",
+        "says": "What times the base gives the volume?",
+        "check": "Away from the screen: how would you check a height you worked out?",
+        "feels": "the dial stopping just where the solid meets the card",
+        "hands": "Fill a small box with cubes layer by layer, knowing how many cubes make one layer, and count how many layers a given number of cubes makes.",
+        "tries": "First rung: try a small height and read the volume. Second rung: try one more. Third rung: the same task with a smaller volume card, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "multiplying worked for the last phase",
+            "move": "types the volume times the base area",
+            "screen": "the Height dial raises the solid in steps to the child's number, spilling far past the volume card, and the card is lit amber"
+          },
+          {
+            "why": "the solid looks nearly full",
+            "move": "stops the Height dial where the solid falls short of the card",
+            "screen": "the Check line multiplies the child's height back, and the gap between it and the volume card is lit amber"
+          }
+        ],
+        "screen": "a base tile labelled 34 sq. m, a volume card reading 204 cu. m, and the Height dial",
+        "soWhat": "a height is the number that times the base area gives the volume",
+        "concept": "A height worked back"
+      },
+      {
+        "n": 3,
+        "win": "the cubes slide into a block, the line reads 6 x 125 = 750, and 750 cu. cm lands green",
+        "does": "finds one cube's volume, taps Join, and types the block's volume",
+        "goal": "a block made of equal cubes has the count times one cube's volume",
+        "says": "Find one cube first. How many cubes make the block?",
+        "check": "Away from the screen: if one cube is a small box of sweets, what is a block of five cubes?",
+        "feels": "equal cubes sliding together into one block",
+        "hands": "Build a block from equal wooden cubes, find the volume of one cube, and count the cubes.",
+        "tries": "First rung: find one cube's volume. Second rung: count the cubes. Third rung: the same task with fewer cubes, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the edge is the number written on each cube",
+            "move": "types the count times the edge",
+            "screen": "one cube is filled with tiny unit cubes in steps to show its volume, and that volume is lit amber beside the child's number"
+          },
+          {
+            "why": "the block looks like one big cube",
+            "move": "types one cube's volume as the block's",
+            "screen": "the Join button pulls the cubes apart again in steps, and the count is lit amber"
+          }
+        ],
+        "screen": "a row of six equal cubes, each with an edge of 5 cm, and the Join button",
+        "soWhat": "a block made of equal cubes has the count times one cube's volume",
+        "concept": "Small cubes make a block"
+      },
+      {
+        "n": 4,
+        "win": "three cubes go along one edge, two along the next and one up the last with a rose Left over strip, and six lands green beside the Divide card's eight",
+        "does": "reads the Divide card, then taps Pack edge along each edge in turn and types how many whole cubes fit",
+        "goal": "check how many small cubes fit along each edge; space left over means fewer fit than a division gives",
+        "says": "Pack one edge at a time. Is any space left over?",
+        "check": "Away from the screen: a box edge is seven centimetres long. How many whole two centimetre cubes go along it?",
+        "feels": "the last whole cube going in, and a thin strip of space left over",
+        "hands": "Measure a small box and one cube. Divide the volumes and write the number down. Then pack whole cubes edge by edge and count them.",
+        "tries": "First rung: pack one edge and count the whole cubes. Second rung: pack the next edge. Third rung: the same task on a smaller box, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "dividing the volumes looks like the whole answer",
+            "move": "types the Divide card's number as the answer without packing the box",
+            "screen": "the box is packed in steps, one edge at a time, the rose Left over strip is lit, and the packed count is set beside the Divide card's number"
+          },
+          {
+            "why": "one edge seems enough to go on",
+            "move": "packs one edge and multiplies by the Divide card",
+            "screen": "the other two edges light amber one after another, waiting to be packed"
+          }
+        ],
+        "screen": "an open box 9 cm by 6 cm by 4 cm, a heap of 3 cm cubes, and the Divide card",
+        "soWhat": "check how many small cubes fit along each edge; space left over means fewer fit than a division gives",
+        "concept": "Cubes that really fit"
+      }
+    ],
+    "delight": "On the fourth phase, when the last whole cube goes in, the Divide card gives a small shrug beside the packed box, and the rose Left over strip glows once.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet raised or packed. On the first phase a base tile lies flat with its area written on it and the Height handle beside it. On the second a base tile lies beside a volume card with the Height dial. On the third a row of equal cubes waits apart, with the Join button. On the fourth an open box stands empty with a heap of small cubes and the Divide card. One thing moves, once: the Height handle, the Height dial, the Join button or the Pack edge button gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any base raised to any height, any row of equal cubes joined, and any box packed edge by edge. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on base area x height, a height worked back, blocks of equal cubes and cubes that really fit.",
+    "voiceLines": [
+      "A base, a box and some cubes.",
+      "The base is already length times breadth. Now raise it.",
+      "What times the base gives the volume?",
+      "Find one cube first. How many cubes make the block?",
+      "Pack one edge at a time. Is any space left over?",
+      "A new box. Look at the base first.",
+      "Free play. Raise a base or pack a box of your own.",
+      "Pack that edge again, one whole cube at a time.",
+      "You checked every edge before trusting a division."
+    ],
+    "observations": [
+      {
+        "why": "the base area is one layer, and the height counts the layers.",
+        "soWhat": "the volume of a cuboid is base area x height.",
+        "observe": "Each unit of height added one whole base's worth to the volume."
+      },
+      {
+        "why": "the height is the number that times the base area gives the volume.",
+        "soWhat": "multiply back to check a height worked back.",
+        "observe": "The Check line multiplied the found height back and landed on the volume."
+      },
+      {
+        "why": "that edge is not a whole number of cube edges long.",
+        "soWhat": "check how many cubes fit along each edge before trusting a division of volumes.",
+        "observe": "Along one edge a thin rose strip was left where no whole cube would go."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a base tile labelled 24 sq. cm, flat on the table top, and the Height handle",
+        "win": "the line reads 24 x 7 = 168, and 168 cu. cm lands green",
+        "traceback": "The solid rises again layer by layer, then base area × height = volume is written, ending on the answer.",
+        "ladder": [
+          "One layer 1 cm high is 24 cubic centimetres.",
+          "Every 1 m layer of this box is 20 cubic metres.",
+          "Stack 3 layers of 45 cubic metres.",
+          "The height tells you how many layers the box holds.",
+          "Multiply, never add, a flat area and a length."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a base tile labelled 34 sq. m, a volume card reading 204 cu. m, and the Height dial",
+        "win": "the dial stops at six, the Check line reads 34 x 6 = 204, and 6 m lands green",
+        "traceback": "The dial raises the solid to the child's height and multiplies it back, then to the right height, ending on base area × height = volume.",
+        "ladder": [
+          "Set it up as 34 times a missing number makes 204.",
+          "Say the 14 times table until you reach 56.",
+          "Count up in 13s until you reach 117.",
+          "Use your times tables to find the missing factor.",
+          "Multiply your height back by the base area to check it."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a row of six equal cubes, each with an edge of 5 cm, and the Join button",
+        "win": "the cubes slide into a block, the line reads 6 x 125 = 750, and 750 cu. cm lands green",
+        "traceback": "One cube's volume is written, the cubes are joined, then the count × one cube's volume ends on the block's volume.",
+        "ladder": [
+          "One 5 cm cube is 5×5×5 cubic centimetres.",
+          "Multiply 8 cubic centimetres by the number of cubes.",
+          "First find the volume of one 3 cm cube.",
+          "Add one cube's volume once for every cube in the block.",
+          "Multiplying the count by the edge gives a length, not a volume."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "an open box 9 cm by 6 cm by 4 cm, a heap of 3 cm cubes, and the Divide card",
+        "win": "three cubes go along one edge, two along the next and one up the last with a rose Left over strip, and six lands green beside the Divide card's eight",
+        "traceback": "The box is packed one edge at a time, the left over space turns rose, and the whole cubes along the edges are multiplied.",
+        "ladder": [
+          "How many whole 3 cm cubes fit along the 9 cm edge?",
+          "How many 2 cm cubes fit along the 3 cm edge?",
+          "Divide each edge by 3 and look for a remainder.",
+          "Multiply the whole cubes along the three edges.",
+          "A division of volumes counts parts of cubes, but only whole cubes go in."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "warm": {
+      "1": {
+        "base": 10,
+        "ht": 2,
+        "unit": "cm"
+      },
+      "2": {
+        "base": 5,
+        "vol": 15,
+        "unit": "m"
+      },
+      "3": {
+        "cnt": 3,
+        "edge": 2,
+        "nx": 3,
+        "ny": 1
+      },
+      "4": {
+        "bx": [
+          5,
+          4,
+          2
+        ],
+        "cube": 2
+      }
+    },
+    "free": {
+      "bases": [
+        12,
+        20,
+        24,
+        30,
+        45
+      ],
+      "maxLayers": 8,
+      "unit": "cm"
+    },
+    "dialMax": 10,
+    "answerGate": "Phase 1: locked after the child's first real tap until Raise has stacked the box to its full height (7 or 3 layers). Phase 2: ungated (the typed height is the child's own work; the dial and Check are an optional try-it aid; the pencil multiplies back after the answer). Phase 3: locked until Join has pushed the cubes into one block. Phase 4: locked until three Pack edge taps have packed the three edges (question 3, Yes/No: the choice keys likewise). A tap on the locked key or a typed digit shows a nudge naming the live key; the question returns when the act is done. A trusted Enter or tap on a guide step counts as the first touch for question 1.",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M3.S5.T10.C45:BP1",
+        "kind": "raise",
+        "base": 24,
+        "ht": 7,
+        "unit": "cm",
+        "answer": 168,
+        "win": "Yes, 24 × 7 = 168 cubic centimetres."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M3.S5.T10.C45:1",
+        "kind": "raise",
+        "base": 20,
+        "ht": 3,
+        "unit": "m",
+        "answer": 60,
+        "win": "Right, 20 × 3 = 60 cubic metres."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M3.S5.T10.C45:4",
+        "kind": "raise",
+        "base": 45,
+        "ht": 3,
+        "unit": "m",
+        "answer": 135,
+        "win": "Yes, 45 × 3 = 135 cubic metres."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M3.S5.T10.C46:BP2",
+        "kind": "dial",
+        "base": 34,
+        "vol": 204,
+        "unit": "m",
+        "answer": 6,
+        "win": "Yes, 34 × 6 = 204, so the box is 6 m high."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M3.S5.T10.C46:3",
+        "kind": "dial",
+        "base": 14,
+        "vol": 56,
+        "unit": "cm",
+        "answer": 4,
+        "win": "Right, 14 × 4 = 56, so the box is 4 cm high."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M3.S5.T10.C46:5",
+        "kind": "dial",
+        "base": 13,
+        "vol": 117,
+        "unit": "cm",
+        "answer": 9,
+        "win": "Yes, 13 × 9 = 117, so it is 9 cm high."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M3.S5.T10.C47:BP3",
+        "kind": "join",
+        "cnt": 6,
+        "edge": 5,
+        "nx": 3,
+        "ny": 2,
+        "answer": 750,
+        "win": "Yes, 6 × 125 = 750 cubic centimetres."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M3.S5.T10.C47:2",
+        "kind": "join",
+        "cnt": 10,
+        "each": 8,
+        "nx": 5,
+        "ny": 2,
+        "answer": 80,
+        "win": "Right, 10 × 8 = 80 cubic centimetres."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M3.S5.T10.C47:6",
+        "kind": "join",
+        "cnt": 4,
+        "edge": 3,
+        "nx": 2,
+        "ny": 2,
+        "answer": 108,
+        "win": "Yes, 4 × 27 = 108 cubic centimetres."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M3.S5.T10.C48:BP4",
+        "kind": "pack",
+        "bx": [
+          9,
+          6,
+          4
+        ],
+        "cube": 3,
+        "answer": 6,
+        "win": "Right, 3 × 2 × 1 = 6 whole cubes fit."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M3.S5.T10.C48:7",
+        "kind": "pack",
+        "bx": [
+          10,
+          4,
+          3
+        ],
+        "cube": 2,
+        "answer": 10,
+        "win": "Correct, 5 × 2 × 1 = 10 cubes, not 15."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M3.S5.T10.C48:8",
+        "kind": "pack",
+        "bx": [
+          15,
+          9,
+          6
+        ],
+        "cube": 3,
+        "answer": "yes",
+        "win": "They fill it: 5 × 3 × 2 = 30 cubes, no gap."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The solid rises again layer by layer, then base area × height = volume is written, ending on the answer.",
+      "Phase 2: The dial raises the solid to the child's height and multiplies it back, then to the right height, ending on base area × height = volume.",
+      "Phase 3: One cube's volume is written, the cubes are joined, then the count × one cube's volume ends on the block's volume.",
+      "Phase 4: The box is packed one edge at a time, the left over space turns rose, and the whole cubes along the edges are multiplied."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A base, a box and some cubes.",
+    "onFreePlay": "Free play. Pick a base and raise it as high as you like.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You checked every edge before trusting a division.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M3.S5.T10.C45:BP1",
+            "worked": false,
+            "kind": "raise",
+            "planQuestion": "A box has a base of 24 sq. cm and a height of 7 cm. What is its volume?",
+            "question": {
+              "en": "Raise the 24 square centimetre base to 7 cm, then find the volume of the box."
+            },
+            "ask": {
+              "en": "Volume of the box?"
+            },
+            "answer": 168,
+            "planAnswer": "168 cu. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M3.S5.T10.C45:1",
+            "worked": false,
+            "kind": "raise",
+            "planQuestion": "A box has a base of 20 sq. m and a height of 3 m. What is its volume?",
+            "question": {
+              "en": "Raise a 20 square metre base to 3 m and find the volume of that box."
+            },
+            "ask": {
+              "en": "Volume of the box?"
+            },
+            "answer": 60,
+            "planAnswer": "20 x 3 = 60, so 60 cu. m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M3.S5.T10.C45:4",
+            "worked": false,
+            "kind": "raise",
+            "planQuestion": "A tank has a base of 45 sq. m and a height of 3 m. What is its volume?",
+            "question": {
+              "en": "A box has a 45 square metre base and is 3 m high, so what is its volume?"
+            },
+            "ask": {
+              "en": "What volume?"
+            },
+            "answer": 135,
+            "planAnswer": "45 x 3 = 135, so 135 cu. m",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M3.S5.T10.C46:BP2",
+            "worked": false,
+            "kind": "dial",
+            "planQuestion": "A tank has a volume of 204 cu. m and a base of 34 sq. m. How high is it?",
+            "question": {
+              "en": "How high is a 204 cubic metre box on a 34 square metre base?"
+            },
+            "ask": {
+              "en": "How high?"
+            },
+            "answer": 6,
+            "planAnswer": "6 m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M3.S5.T10.C46:3",
+            "worked": false,
+            "kind": "dial",
+            "planQuestion": "A box has a volume of 56 cu. cm and a base of 14 sq. cm. How high is it?",
+            "question": {
+              "en": "A 56 cubic centimetre box has a 14 square centimetre base, so how tall is it?"
+            },
+            "ask": {
+              "en": "Height of the box?"
+            },
+            "answer": 4,
+            "planAnswer": "14 x 4 = 56, so it is 4 cm high",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M3.S5.T10.C46:5",
+            "worked": false,
+            "kind": "dial",
+            "planQuestion": "A box has a volume of 117 cu. cm and a base of 13 sq. cm. How high is it?",
+            "question": {
+              "en": "How high is a box of 117 cubic centimetres on a base of 13 square centimetres?"
+            },
+            "ask": {
+              "en": "Height of the box?"
+            },
+            "answer": 9,
+            "planAnswer": "13 x 9 = 117, so it is 9 cm high",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M3.S5.T10.C47:BP3",
+            "worked": false,
+            "kind": "join",
+            "planQuestion": "A block is cut into 6 equal cubes of edge 5 cm. What is the volume of the block?",
+            "question": {
+              "en": "Join the 6 cubes with 5 cm edges and find the volume of the block."
+            },
+            "ask": {
+              "en": "Volume of the block?"
+            },
+            "answer": 750,
+            "planAnswer": "750 cu. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M3.S5.T10.C47:2",
+            "worked": false,
+            "kind": "join",
+            "planQuestion": "A block is made of 10 equal cubes, each with a volume of 8 cu. cm. What is its volume?",
+            "question": {
+              "en": "Join 10 cubes of 8 cubic centimetres each and give the block's volume."
+            },
+            "ask": {
+              "en": "Volume of the block?"
+            },
+            "answer": 80,
+            "planAnswer": "10 x 8 = 80, so 80 cu. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M3.S5.T10.C47:6",
+            "worked": false,
+            "kind": "join",
+            "planQuestion": "A block is made of 4 equal cubes of edge 3 cm. What is its volume?",
+            "question": {
+              "en": "What is the volume of a block of 4 equal cubes with 3 cm edges?"
+            },
+            "ask": {
+              "en": "Volume of the block?"
+            },
+            "answer": 108,
+            "planAnswer": "One cube is 3 x 3 x 3 = 27 cu. cm. The block is 4 x 27 = 108 cu. cm",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M3.S5.T10.C48:BP4",
+            "worked": false,
+            "kind": "pack",
+            "planQuestion": "How many 3 cm cubes really fit in a box 9 cm by 6 cm by 4 cm?",
+            "question": {
+              "en": "How many 3 cm cubes really fit in a box 9 cm by 6 cm by 4 cm?"
+            },
+            "ask": {
+              "en": "Whole cubes that fit?"
+            },
+            "answer": 6,
+            "planAnswer": "6",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M3.S5.T10.C48:7",
+            "worked": false,
+            "kind": "pack",
+            "planQuestion": "How many 2 cm cubes really fit in a box 10 cm by 4 cm by 3 cm?",
+            "question": {
+              "en": "Pack 2 cm cubes in a box 10 cm by 4 cm by 3 cm: how many whole ones fit?"
+            },
+            "ask": {
+              "en": "Whole cubes that fit?"
+            },
+            "answer": 10,
+            "planAnswer": "Along the 10 cm edge 5 fit. Along the 4 cm edge 2 fit. Along the 3 cm edge only 1 fits, with 1 cm left over. So 5 x 2 x 1 = 10 whole cubes fit, not the 15 that dividing the volumes gives",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M3.S5.T10.C48:8",
+            "worked": false,
+            "kind": "pack",
+            "planQuestion": "Do 3 cm cubes fill a box 15 cm by 9 cm by 6 cm with no space left over?",
+            "question": {
+              "en": "Do 3 cm cubes fill a box 15 cm by 9 cm by 6 cm with no space left over?"
+            },
+            "ask": {
+              "en": "Is the box full?"
+            },
+            "answer": "yes",
+            "planAnswer": "Yes. Along the edges 5, 3 and 2 cubes fit, with nothing left over. So 5 x 3 x 2 = 30 cubes fill it",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "box_packer",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "box_packer",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Base area times height",
+        "conceptId": "M3.S5.T10.C45",
+        "objectiveIds": [
+          "O17"
+        ],
+        "items": [
+          "M3.S5.T10.C45:BP1",
+          "M3.S5.T10.C45:1",
+          "M3.S5.T10.C45:4"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "A height worked back",
+        "conceptId": "M3.S5.T10.C46",
+        "objectiveIds": [
+          "O17"
+        ],
+        "items": [
+          "M3.S5.T10.C46:BP2",
+          "M3.S5.T10.C46:3",
+          "M3.S5.T10.C46:5"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Small cubes make a block",
+        "conceptId": "M3.S5.T10.C47",
+        "objectiveIds": [
+          "O18"
+        ],
+        "items": [
+          "M3.S5.T10.C47:BP3",
+          "M3.S5.T10.C47:2",
+          "M3.S5.T10.C47:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Cubes that really fit",
+        "conceptId": "M3.S5.T10.C48",
+        "objectiveIds": [
+          "O18"
+        ],
+        "items": [
+          "M3.S5.T10.C48:BP4",
+          "M3.S5.T10.C48:7",
+          "M3.S5.T10.C48:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "layers",
+    "dial",
+    "checks",
+    "cubes_joined",
+    "packed_edges"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), complete, layers, dial, checks, cubes_joined, packed_edges",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "box_packer"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M3.S5.T10.C46.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A base, a box and some cubes."
+    },
+    {
+      "en": "The base is already length times breadth. Now raise it."
+    },
+    {
+      "en": "What times the base gives the volume?"
+    },
+    {
+      "en": "Find one cube first. How many cubes make the block?"
+    },
+    {
+      "en": "Pack one edge at a time. Is any space left over?"
+    },
+    {
+      "en": "A new box. Look at the base first."
+    },
+    {
+      "en": "Free play. Raise a base or pack a box of your own."
+    },
+    {
+      "en": "Pack that edge again, one whole cube at a time."
+    },
+    {
+      "en": "You checked every edge before trusting a division."
+    }
+  ],
+  "build": {
+    "source": "7663e261:652153",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-16T17:37:56.769Z",
+    "checks": {
+      "pass": 99,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-11-16T17:37:56.634Z"
+    },
+    "tsxBytes": 572763,
+    "tsxMd5": "8a15f92cee82730ccab31defc3429dfc"
+  }
+}

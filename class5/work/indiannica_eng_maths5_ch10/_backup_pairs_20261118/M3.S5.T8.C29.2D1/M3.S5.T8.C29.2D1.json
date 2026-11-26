@@ -1,0 +1,1151 @@
+{
+  "slotId": "M3.S5.T8.C29.2D1",
+  "mediaId": "M3.S5.T8.C29.2D1",
+  "toolId": "month_calendar",
+  "title": "Month Calendar",
+  "component": "M3.S5.T8.C29.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch10_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_10/2dtool/M3.S5.T8.C38.2D1/M3.S5.T8.C38.2D1.tsx",
+  "description": "Build a month calendar of seven columns, count weeks, fortnights and months, tell a leap year by its February, and carry the days of the week on into the next month.",
+  "conceptIds": [
+    "M3.S5.T8.C35",
+    "M3.S5.T8.C36",
+    "M3.S5.T8.C37",
+    "M3.S5.T8.C38"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Use the days of a week, a fortnight and the months, tell a leap year by its February, read the dates and days of a month's calendar, and carry the days of the week on into the next month.",
+    "look": "A month calendar of seven columns from Monday to Sunday, a year strip of twelve month cards, a February card that gains a 29th cell, and a violet jump that goes down a column.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Month Calendar' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of dates placed. It is never a score. The working area is 1086 by 528 at x 64, y 202. The month calendar fills the left of the area at x 90, y 230, 700 wide, in seven columns each 100 wide, headed Monday to Sunday in ink, with the dates in rows beneath, each row 64 tall. A date the question gives is dropped into its cell in deep blue, labelled Given, and the column of a date is lit amber. A violet jump, labelled Jump, is dragged down a column from one date to the date 7 days on. On the first phase the year strip of twelve month cards runs along y 650, each card 90 wide, and a card is tapped to show whether its month has 31 days or 30. On the second phase the February card of 28 cells stands at x 850, y 240 and a 29th cell is added to it for a leap year, the strip of the years between 2000 and 2099 runs along y 650, and the century bar stands at x 850, y 460. On the fourth phase the Next month button stands at x 850, y 230 and the calendar of the next month lies after the first, its first row carrying on from the last row above it. A day of the week or a date found is green, labelled Answer, at x 850, y 620. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a delete key, and a key for each day name. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. What the question gives, as a clock time, a length of time, a start date or a number of days, is deep blue, labelled Given or Start. What the working reaches, as an end time, a length of time, a converted time or a date, is green, labelled Answer, End or How long. The thin second hand and the seconds it counts are vermilion, labelled Second hand. One jump along a time line, and one regrouped unit carried or borrowed, are violet, labelled Jump, Carry or Regroup. On a day bar the half from noon until just before midnight is rose, labelled p.m., and the half from midnight until just before noon stays warm white inside its outline, labelled a.m. The hand, digit, column, jump or date being worked on now is amber. Grey is kept for a zero holding a place open, labelled Place holder, and for nothing else. The hour hand and the minute hand, dials, tick marks, time lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The calendar stays as the child left it, with its dates placed, its jumps drawn down the columns and the day of the week beside the answer in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the week and the fortnight are counted and the month cards sort into their two groups",
+        "does": "counts the days of a week and a fortnight along the rows, and taps each month card to see whether it has 31 days or 30",
+        "goal": "1 week is 7 days, a fortnight is 14 days, and the months have 31 days or 30 days, with February the odd one out",
+        "says": "Count along the row. Which months have thirty days?",
+        "check": "Away from the screen: which months have thirty days, and which month is the odd one out?",
+        "feels": "the month cards sorting into two groups and one odd card",
+        "hands": "Count along one row of a real wall calendar and say how many days make a week, then count along two rows for a fortnight. Say the months aloud and tap a knuckle for each month with 31 days.",
+        "tries": "First rung: count the days of one week along a row. Second rung: count a fortnight along two rows. Third rung: sort just the months with thirty days, before the question's own months return.",
+        "wrong": [
+          {
+            "why": "the start of the word sounds like four",
+            "move": "takes a fortnight for four weeks",
+            "screen": "two rows of the calendar are outlined amber and their days counted in ink, and the child's answer stays in the slot"
+          },
+          {
+            "why": "February is short, and short months look like the months of thirty days",
+            "move": "sorts February with the months of thirty days",
+            "screen": "the February card stays in the group the child chose, its cells are counted in ink, and it is lit amber as the odd one out with a place of its own"
+          }
+        ],
+        "screen": "a row of seven day cells for a week, two rows for a fortnight, and a year strip of twelve month cards",
+        "soWhat": "1 week is 7 days, a fortnight is 14 days, and the months have 31 days or 30 days, with February the odd one out",
+        "concept": "Weeks, fortnights and months"
+      },
+      {
+        "n": 2,
+        "win": "the leap year gains its extra cell and turns green, and the others keep twenty-eight",
+        "does": "picks a year on the strip, reads its February, and adds the 29th cell where the year is a leap year",
+        "goal": "a leap year has 366 days, with 29 February as the extra day; between 2000 and 2099, every fourth year is a leap year, and 100 years make a century",
+        "says": "Look at the February. Has it a twenty-ninth cell?",
+        "check": "Away from the screen: look at February on a wall calendar. How many cells has it, and is the year a leap year?",
+        "feels": "the February card gaining a 29th cell in a leap year and staying as it was in the others",
+        "hands": "Fold a paper card for February with four rows of seven cells. Tape on a 29th cell when the year is a leap year. Look at a real calendar for a leap year and for an ordinary year, and count the cells of each February.",
+        "tries": "First rung: count the cells of an ordinary February. Second rung: add the 29th cell for a leap year. Third rung: the same task with a year picked on the strip, before the question's own year returns.",
+        "wrong": [
+          {
+            "why": "leap years seem to come regularly, and every other year seems regular enough",
+            "move": "calls every even year a leap year",
+            "screen": "the strip stays as the child marked it, the years between the leap years are counted in ink, and the February of one of the even years the child marked is drawn with only twenty-eight cells"
+          },
+          {
+            "why": "one day more is easy to lose in a whole year",
+            "move": "gives a leap year the same number of days as an ordinary year",
+            "screen": "the February card gains its 29th cell, lit amber, and the two years are counted side by side, one day apart"
+          }
+        ],
+        "screen": "a February card of 28 cells, a strip of the years between 2000 and 2099, and a century bar",
+        "soWhat": "a leap year has one more day, 29 February, and between 2000 and 2099 every fourth year is a leap year",
+        "concept": "Leap years"
+      },
+      {
+        "n": 3,
+        "win": "the dates of the column turn green, all seven apart",
+        "does": "fills the month in from that date, drags a jump down a column, and reads the dates and the day of the week",
+        "goal": "each column of a calendar is one day of the week, so the dates in a column are 7 apart",
+        "says": "Which column is the date in? How far apart are the dates down it?",
+        "check": "Away from the screen: on a wall calendar, which date is a week after the date you pick?",
+        "feels": "the dates of a column lighting up together, all 7 apart",
+        "hands": "Fill a blank calendar of seven columns from one date and its day of the week. Write each date in its column, then read down one column and say how far apart the dates are.",
+        "tries": "First rung: drag one jump down a column and read the date. Second rung: drag two jumps and read both. Third rung: the same task from a date in another column, before the question's own date returns.",
+        "wrong": [
+          {
+            "why": "along a row the dates go up by one, and that is the pattern that is easiest to see",
+            "move": "counts the dates along the row and says the next date in the column is one more",
+            "screen": "the jump is dragged down the column in violet, labelled Jump, 7 days at a time, and the row the child counted along is lit amber"
+          },
+          {
+            "why": "the first date of a month can fall under any day, and the child starts under the first column",
+            "move": "puts a date under the wrong day of the week",
+            "screen": "the date stays where it was dropped, and the column it belongs to is lit amber with its day name written above it in ink"
+          }
+        ],
+        "screen": "a month calendar with one date placed in deep blue under its day of the week",
+        "soWhat": "each column of a calendar is one day of the week, so the dates in a column are 7 apart, and a day of the week is answered with a day name",
+        "concept": "Reading a month's calendar"
+      },
+      {
+        "n": 4,
+        "win": "the first of the next month lands under its day of the week and the day name turns green",
+        "does": "counts whole weeks off the month, jumps the days that are left, and places the first date of the next month under its day",
+        "goal": "a month of 31 days is 4 weeks 3 days, so the next month begins 3 days on in the week; a question about the day of the week is answered with a day name",
+        "says": "Take away whole weeks. How many days are left to carry on?",
+        "check": "Away from the screen: a month ends on a Saturday. On which day of the week does the next month begin?",
+        "feels": "the last row running on into the first row of the next month",
+        "hands": "Write a month's last date on the paper calendar, count the whole weeks off the month, and jump the days left over across the row into the next month.",
+        "tries": "First rung: cut the whole weeks off a month and say what is left. Second rung: carry the days left on across the row. Third rung: the same task with a month of thirty days, before the question's own month returns.",
+        "wrong": [
+          {
+            "why": "counting on feels safe, but it is easy to lose count",
+            "move": "counts every day of the month round the week one at a time",
+            "screen": "the whole weeks are cut off the month in ink, four bars of seven, and only the days left over are counted, lit amber"
+          },
+          {
+            "why": "the last date is the cell the finger rests on, so the count starts there",
+            "move": "starts the count on the last date of the month instead of the day after it",
+            "screen": "the last date is lit amber and the count starts one cell after it, the leftover days counted along the row in violet jumps"
+          },
+          {
+            "why": "the calendar is all dates, and a date is what the eye looks for",
+            "move": "answers a question about the day of the week with a date",
+            "screen": "the cell is lit amber with its column's day name written above it, and the child's answer stays in the slot"
+          }
+        ],
+        "screen": "a month calendar with a Next month button, and the calendar of the next month waiting after it",
+        "soWhat": "a month of 31 days is 4 weeks 3 days, so the next month begins 3 days on in the week, and a question about the day of the week is answered with a day name",
+        "concept": "Into the next month"
+      }
+    ],
+    "delight": "On the fourth phase, when the Next month button is pressed, the last row of the month slides left and the first date of the next month drops in under its day, so the calendar seems to run on like a page turning.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet placed. On the first phase one row of seven day cells lies above a year strip of twelve month cards, all face up and unsorted. On the second a February card of 28 cells stands beside a strip of the years between 2000 and 2099. On the third a month calendar of seven columns holds one date in deep blue under its day of the week. On the fourth the calendar of a month stands with the Next month button beside it and the next month's calendar waiting after it. One thing moves, once: the first row of cells, the February card, the date in deep blue or the Next month button gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any month set up from any date, any year picked on the strip, and the next month laid after it. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on weeks, fortnights and months, leap years, reading a month's calendar and carrying on into the next month.",
+    "voiceLines": [
+      "A month calendar, with seven columns waiting for dates.",
+      "Count along the row. Which months have thirty days?",
+      "Look at the February. Has it a twenty-ninth cell?",
+      "Which column is the date in? How far apart are the dates down it?",
+      "Take away whole weeks. How many days are left to carry on?",
+      "A new month. Fill it in the same way.",
+      "Free play. Set any month and lay the next one after it.",
+      "Look down the column again. How far apart are the dates?",
+      "You built a calendar, found a leap year and carried the days on."
+    ],
+    "observations": [
+      {
+        "why": "1 week is 7 days, and each column is one day of the week.",
+        "soWhat": "the dates down one column are 7 apart, and a fortnight is 14 days.",
+        "observe": "Every row of the calendar held seven dates, and the same day of the week sat in the same column."
+      },
+      {
+        "why": "some months have 31 days, some have 30 days, and February has 28 days or 29.",
+        "soWhat": "seven months have 31 days, four months have 30 days, and February is the odd one out.",
+        "observe": "Tapping the month cards sorted them into two groups and one odd card."
+      },
+      {
+        "why": "a leap year has one more day than an ordinary year, and it is the extra day of 29 February.",
+        "soWhat": "between 2000 and 2099, every fourth year is a leap year, and a year's February can be read for its 28 days or 29.",
+        "observe": "The February card gained a 29th cell in some years and not in others."
+      },
+      {
+        "why": "a month is a whole number of weeks and some days over, and the days over carry on.",
+        "soWhat": "a month of 31 days is 4 weeks 3 days, so the next month begins 3 days on in the week.",
+        "observe": "The next month began under a different day of the week from the one before."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a row of seven day cells for a week, two rows for a fortnight, and a year strip of twelve month cards",
+        "win": "the week and the fortnight are counted and the month cards sort into their two groups",
+        "traceback": "Each row is outlined amber and counted in ink at its end, then the counts are added to the whole number of days.",
+        "ladder": [
+          "Add the two full rows, then the 3 days in the last row.",
+          "Count every row, and each row is a week.",
+          "Count the cards in the 31 days row.",
+          "Each full row is one whole week.",
+          "Add the numbers written at the end of the rows."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a February card of 28 cells, a strip of the years between 2000 and 2099, and a century bar",
+        "win": "the leap year gains its extra cell and turns green, and the others keep twenty-eight",
+        "traceback": "The year's February is read with its cells, the 29th day lit amber, and the year's days are added up to the whole answer.",
+        "ladder": [
+          "Read the February of 2044 on the card.",
+          "Count the cells on the February card you just made.",
+          "Count on in fours from 2044 along the strip.",
+          "A leap year's February has a 29th day.",
+          "Add 1 day to an ordinary year for a leap year."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a month calendar with one date placed in deep blue under its day of the week",
+        "win": "the dates of the column turn green, all seven apart",
+        "traceback": "The row counted along is lit amber, then the violet jump goes down the column 7 days at a time, each date written in its cell, ending on the dates asked for.",
+        "ladder": [
+          "The Tuesdays all sit in one column, not along a row.",
+          "The next row down is one week later.",
+          "Jump down to the Sunday just before the 19th, then count along.",
+          "Each jump down the column adds 7 to the date.",
+          "Start from the blue date and add 7 for each jump you made."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a month calendar with a Next month button, and the calendar of the next month waiting after it",
+        "win": "the first of the next month lands under its day of the week and the day name turns green",
+        "traceback": "The whole weeks are cut off in ink, the hand jumps the days left over, lit amber and counted, and the next day is lit green with its day name.",
+        "ladder": [
+          "You do not need all 31 days, only the ones left over.",
+          "Start on Monday and move on one day for each day left.",
+          "29 days is 4 weeks and 1 day.",
+          "28 days is 4 whole weeks, so look at the days after them.",
+          "The next month begins on the day after the last day you jumped."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "months": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "monthDays": [
+      31,
+      28,
+      31,
+      30,
+      31,
+      30,
+      31,
+      31,
+      30,
+      31,
+      30,
+      31
+    ],
+    "jump": 7,
+    "week": 7,
+    "fortnight": 14,
+    "year": 365,
+    "leapYear": 366,
+    "century": 100,
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M3.S5.T8.C35:MC1",
+        "kind": "rows",
+        "rows": [
+          7,
+          7,
+          3
+        ],
+        "nm": 15,
+        "unit": "days",
+        "nudge": "Tap each blue row to count it first.",
+        "answer": 17,
+        "ladder": [
+          "Read the number written at the end of each row.",
+          "Add the fortnight's two counts, then the 3 more days."
+        ],
+        "winLine": "Yes, 7 + 7 + 3 makes 17 days."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M3.S5.T8.C35:1",
+        "kind": "rows",
+        "rows": [
+          7,
+          7,
+          7
+        ],
+        "nm": 10,
+        "unit": "days",
+        "nudge": "Count each row with a tap first.",
+        "answer": 21,
+        "ladder": [
+          "Three rows means three weeks of the same count.",
+          "Add the same row count three times over."
+        ],
+        "winLine": "Yes, 3 weeks make 21 days."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M3.S5.T8.C35:5",
+        "kind": "cards",
+        "nm": 6,
+        "unit": "months",
+        "nudge": "Tap the month cards until all 12 are sorted.",
+        "answer": 7,
+        "ladder": [
+          "Point at each card in the top row as you count.",
+          "The 30 days row has 4 cards, and February sits alone."
+        ],
+        "winLine": "Yes, 7 months have 31 days, and February has 28 or 29."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M3.S5.T8.C36:MC2",
+        "kind": "year",
+        "from": 2040,
+        "yr": 2044,
+        "nm": 365,
+        "unit": "days",
+        "nudge": "Tap 2044 on the strip first.",
+        "answer": 366,
+        "winLine": "Yes, 2044 gets 29 February, so it has 366 days."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M3.S5.T8.C36:2",
+        "kind": "add",
+        "nm": "365|365",
+        "nudge": "Tap Add 29 Feb first.",
+        "parts": [
+          {
+            "label": "year",
+            "unit": "days"
+          },
+          {
+            "label": "leap year",
+            "unit": "days"
+          }
+        ],
+        "answer": [
+          365,
+          366
+        ],
+        "winLine": "Yes, 365 days, and one more day in a leap year."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M3.S5.T8.C36:6",
+        "kind": "year",
+        "from": 2044,
+        "yr": 2050,
+        "nm": "yes",
+        "answer": "no",
+        "ladder": [
+          "Leap years come every fourth year, like 2044 and 2048.",
+          "After 2048 the next leap year is 4 years on, not 2."
+        ],
+        "winLine": "Right, 2050 has an ordinary February of 28 days."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M3.S5.T8.C37:MC3",
+        "kind": "jump",
+        "title": "September 2026",
+        "len": 30,
+        "st": 1,
+        "from": 1,
+        "need": 4,
+        "nm": "1|2|3|4|5",
+        "nudge": "Drag the Jump down the Tuesday column first.",
+        "parts": [
+          {
+            "label": "1st"
+          },
+          {
+            "label": "2nd"
+          },
+          {
+            "label": "3rd"
+          },
+          {
+            "label": "4th"
+          },
+          {
+            "label": "5th"
+          }
+        ],
+        "answer": [
+          1,
+          8,
+          15,
+          22,
+          29
+        ],
+        "winLine": "Yes, the Tuesdays are 1, 8, 15, 22 and 29 September."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M3.S5.T8.C37:3",
+        "kind": "jump",
+        "title": "August 2026",
+        "len": 31,
+        "st": 5,
+        "from": 12,
+        "need": 1,
+        "nm": 13,
+        "nudge": "Drag the Jump down one row first.",
+        "answer": 19,
+        "winLine": "Yes, 12 + 7 = 19."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M3.S5.T8.C37:7",
+        "kind": "jump",
+        "title": "August 2027",
+        "len": 31,
+        "st": 6,
+        "from": 1,
+        "need": 2,
+        "nm": "sun",
+        "nudge": "Drag the Jump down the Sunday column first.",
+        "answer": "thu",
+        "ladder": [
+          "15 August is a Sunday, so count on from there.",
+          "Count 16, 17, 18 and 19 along the row from Sunday."
+        ],
+        "winLine": "Yes, 19 August 2027 is a Thursday."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M3.S5.T8.C38:MC4",
+        "kind": "weeks",
+        "title": "January 2027",
+        "len": 31,
+        "st": 4,
+        "nm": "sun",
+        "nudge": "Tap Weeks, then Jump.",
+        "answer": "mon",
+        "winLine": "Yes, February 2027 begins on a Monday."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M3.S5.T8.C38:4",
+        "kind": "weeks",
+        "title": "31 days",
+        "len": 31,
+        "st": 0,
+        "nm": "wed",
+        "nudge": "Cut the weeks, then jump the days left.",
+        "answer": "thu",
+        "winLine": "Yes, the next month begins on a Thursday."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M3.S5.T8.C38:8",
+        "kind": "weeks",
+        "title": "February 2028",
+        "len": 29,
+        "st": 1,
+        "nm": "tue",
+        "nudge": "Use Weeks, then Jump, on this month first.",
+        "answer": "wed",
+        "winLine": "Yes, March 2028 begins on a Wednesday."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: Each row is outlined amber and counted in ink at its end, then the counts are added to the whole number of days.",
+      "Phase 2: The year's February is read with its cells, the 29th day lit amber, and the year's days are added up to the whole answer.",
+      "Phase 3: The row counted along is lit amber, then the violet jump goes down the column 7 days at a time, each date written in its cell, ending on the dates asked for.",
+      "Phase 4: The whole weeks are cut off in ink, the hand jumps the days left over, lit amber and counted, and the next day is lit green with its day name."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A month calendar, with seven columns waiting for dates.",
+    "onFreePlay": "Free play. Change the days and the first day, then cut the weeks and jump on.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You built a calendar, found a leap year and carried the days on.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M3.S5.T8.C35:MC1",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "How many days make a fortnight and 3 more days?",
+            "question": {
+              "en": "Count the rows: how many days make a fortnight and 3 more days?"
+            },
+            "ask": {
+              "en": "Fortnight and 3 days?"
+            },
+            "answer": 17,
+            "planAnswer": "17 days.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M3.S5.T8.C35:1",
+            "worked": false,
+            "kind": "rows",
+            "planQuestion": "How many days make 3 weeks?",
+            "question": {
+              "en": "Count the rows again: how many days make 3 weeks?"
+            },
+            "ask": {
+              "en": "Days in 3 weeks?"
+            },
+            "answer": 21,
+            "planAnswer": "21 days, because 3 x 7 = 21",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M3.S5.T8.C35:5",
+            "worked": false,
+            "kind": "cards",
+            "planQuestion": "How many months of a year have 31 days, and which month has only 28 or 29 days?",
+            "question": {
+              "en": "Tap a card and the hand carries it to its lane; how many months have 31 days?"
+            },
+            "ask": {
+              "en": "Months of 31 days?"
+            },
+            "answer": 7,
+            "planAnswer": "Seven months have 31 days, and February has 28 or 29 days",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M3.S5.T8.C36:MC2",
+            "worked": false,
+            "kind": "year",
+            "planQuestion": "Is 2044 a leap year, and how many days does that year have?",
+            "question": {
+              "en": "Tap 2044 on the strip, then find how many days the year 2044 has."
+            },
+            "ask": {
+              "en": "Days in 2044?"
+            },
+            "answer": 366,
+            "planAnswer": "Yes, 2044 is a leap year, and it has 366 days.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M3.S5.T8.C36:2",
+            "worked": false,
+            "kind": "add",
+            "planQuestion": "How many days does a year have, and how many does a leap year have?",
+            "question": {
+              "en": "Tap Add 29 Feb, then type how many days a year and a leap year have."
+            },
+            "ask": {
+              "en": "A year, a leap year?"
+            },
+            "answer": [
+              365,
+              366
+            ],
+            "planAnswer": "365 days, and 366 days in a leap year",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M3.S5.T8.C36:6",
+            "worked": false,
+            "kind": "year",
+            "planQuestion": "Between 2000 and 2099, is 2050 a leap year?",
+            "question": {
+              "en": "Between 2000 and 2099, is 2050 a leap year?"
+            },
+            "ask": {
+              "en": "Is 2050 a leap year?"
+            },
+            "answer": "no",
+            "planAnswer": "No. Between 2000 and 2099 the leap years come every fourth year, 2048 and then 2052, so 2050 is not a leap year",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M3.S5.T8.C37:MC3",
+            "worked": false,
+            "kind": "jump",
+            "planQuestion": "1 September 2026 is under Tuesday on a calendar. On which dates are the Tuesdays of September 2026?",
+            "question": {
+              "en": "1 September 2026 is a Tuesday, so on which dates are the Tuesdays of that month?"
+            },
+            "ask": {
+              "en": "Tuesdays of September?"
+            },
+            "answer": [
+              1,
+              8,
+              15,
+              22,
+              29
+            ],
+            "planAnswer": "1, 8, 15, 22 and 29 September 2026.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M3.S5.T8.C37:3",
+            "worked": false,
+            "kind": "jump",
+            "planQuestion": "A calendar has 12 under Wednesday. Which date is under Wednesday in the next row?",
+            "question": {
+              "en": "12 is under Wednesday, so which date is under Wednesday in the next row?"
+            },
+            "ask": {
+              "en": "Next Wednesday?"
+            },
+            "answer": 19,
+            "planAnswer": "19, because the dates in one column are 7 apart and 12 + 7 = 19",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M3.S5.T8.C37:7",
+            "worked": false,
+            "kind": "jump",
+            "planQuestion": "1 August 2027 is a Sunday. Which day of the week is 19 August 2027?",
+            "question": {
+              "en": "1 August 2027 is a Sunday, so which day of the week is 19 August 2027?"
+            },
+            "ask": {
+              "en": "19 August 2027?"
+            },
+            "answer": "thu",
+            "planAnswer": "A Thursday, because 15 August 2027 is a Sunday and 19 August 2027 is 4 days on",
+            "choices": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M3.S5.T8.C38:MC4",
+            "worked": false,
+            "kind": "weeks",
+            "planQuestion": "January 2027 has 31 days and begins on a Friday. On which day of the week does February 2027 begin?",
+            "question": {
+              "en": "January 2027 starts on a Friday with 31 days, so which day starts February?"
+            },
+            "ask": {
+              "en": "February 2027 begins?"
+            },
+            "answer": "mon",
+            "planAnswer": "Monday.",
+            "choices": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M3.S5.T8.C38:4",
+            "worked": false,
+            "kind": "weeks",
+            "planQuestion": "A month of 31 days begins on a Monday. On which day of the week does the next month begin?",
+            "question": {
+              "en": "A 31 day month starts on a Monday, so on which day does the next month start?"
+            },
+            "ask": {
+              "en": "Next month begins?"
+            },
+            "answer": "thu",
+            "planAnswer": "Thursday, because 31 days is 4 weeks 3 days, and 3 days on from a Monday is a Thursday",
+            "choices": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M3.S5.T8.C38:8",
+            "worked": false,
+            "kind": "weeks",
+            "planQuestion": "February 2028 begins on a Tuesday and has 29 days. On which day of the week does March 2028 begin?",
+            "question": {
+              "en": "February 2028 starts on a Tuesday with 29 days, so which day starts March?"
+            },
+            "ask": {
+              "en": "March 2028 begins?"
+            },
+            "answer": "wed",
+            "planAnswer": "A Wednesday, because 29 days is 4 weeks 1 day, and 1 March 2028 is a Wednesday",
+            "choices": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "month_calendar",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "month_calendar",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Weeks, fortnights and months",
+        "conceptId": "M3.S5.T8.C35",
+        "objectiveIds": [
+          "O13"
+        ],
+        "items": [
+          "M3.S5.T8.C35:MC1",
+          "M3.S5.T8.C35:1",
+          "M3.S5.T8.C35:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Leap years",
+        "conceptId": "M3.S5.T8.C36",
+        "objectiveIds": [
+          "O13"
+        ],
+        "items": [
+          "M3.S5.T8.C36:MC2",
+          "M3.S5.T8.C36:2",
+          "M3.S5.T8.C36:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Reading a month's calendar",
+        "conceptId": "M3.S5.T8.C37",
+        "objectiveIds": [
+          "O14"
+        ],
+        "items": [
+          "M3.S5.T8.C37:MC3",
+          "M3.S5.T8.C37:3",
+          "M3.S5.T8.C37:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Into the next month",
+        "conceptId": "M3.S5.T8.C38",
+        "objectiveIds": [
+          "O14"
+        ],
+        "items": [
+          "M3.S5.T8.C38:MC4",
+          "M3.S5.T8.C38:4",
+          "M3.S5.T8.C38:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "month",
+    "year",
+    "null",
+    "dates",
+    "jumps",
+    "jumps",
+    "leap",
+    "next_month",
+    "cut",
+    "answer",
+    "answer"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, month, year, null, dates, jumps, jumps, leap, next_month, cut, answer, answer, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "month_calendar"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M3.S5.T8.C29.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A month calendar, with seven columns waiting for dates."
+    },
+    {
+      "en": "Count along the row. Which months have thirty days?"
+    },
+    {
+      "en": "Look at the February. Has it a twenty-ninth cell?"
+    },
+    {
+      "en": "Which column is the date in? How far apart are the dates down it?"
+    },
+    {
+      "en": "Take away whole weeks. How many days are left to carry on?"
+    },
+    {
+      "en": "A new month. Fill it in the same way."
+    },
+    {
+      "en": "Free play. Set any month and lay the next one after it."
+    },
+    {
+      "en": "Look down the column again. How far apart are the dates?"
+    },
+    {
+      "en": "You built a calendar, found a leap year and carried the days on."
+    }
+  ],
+  "build": {
+    "source": "a9a8bb5f:655808",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-17T07:18:36.951Z",
+    "checks": {
+      "pass": 96,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-11-17T07:18:36.764Z"
+    },
+    "tsxBytes": 581149,
+    "tsxMd5": "d26e3cd96f16e200c76c709f763cc608"
+  }
+}

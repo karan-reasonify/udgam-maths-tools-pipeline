@@ -59,7 +59,43 @@ function chamfer(bgArr, W, H) {
   return D;
 }
 
+/* an IMPORTED file (OPT.imported, class 3, 2026-11-06, the owner's real rupee notes): no background flood, no cut, its own alpha kept; fitted inside px keeping its aspect, then the same WebP step-down */
+function importRun() {
+  const W = img.naturalWidth, H = img.naturalHeight, [TW, TH] = OPT.px, k = Math.min(TW / W, TH / H);
+  const ow = Math.max(1, Math.round(W * k)), oh = Math.max(1, Math.round(H * k)), warnings = [];
+  const sized = (tw, th) => {
+    let src = img, sw = W, sh = H;
+    while (sw > tw * 2.2 && sh > th * 2.2) {
+      const mm = document.createElement("canvas"); mm.width = Math.round(sw / 2); mm.height = Math.round(sh / 2);
+      const mg = mm.getContext("2d"); mg.imageSmoothingEnabled = true; mg.imageSmoothingQuality = "high";
+      mg.drawImage(src, 0, 0, sw, sh, 0, 0, mm.width, mm.height); src = mm; sw = mm.width; sh = mm.height;
+    }
+    const o = document.createElement("canvas"); o.width = tw; o.height = th;
+    const og = o.getContext("2d", { willReadFrequently: true }); og.imageSmoothingEnabled = true; og.imageSmoothingQuality = "high";
+    og.drawImage(src, 0, 0, sw, sh, 0, 0, tw, th); return o;
+  };
+  if (k > 1) warnings.push("upscaled " + k.toFixed(2) + "x: the file (" + W + "x" + H + ") is smaller than the target " + ow + "x" + oh);
+  let canvas = sized(ow, oh), enc = null, w = ow, h = oh;
+  const od = canvas.getContext("2d").getImageData(0, 0, ow, oh).data; let n = 0, sr = 0, sg = 0, sb = 0;
+  for (let i = 0; i < od.length; i += 4) if (od[i + 3] > 128) { n++; sr += od[i]; sg += od[i + 1]; sb += od[i + 2]; }
+  n = Math.max(1, n);
+  for (let shrink = 0; shrink <= 3 && !enc; shrink++) {
+    if (shrink) { w = Math.max(1, Math.round(ow * Math.pow(0.9, shrink))); h = Math.max(1, Math.round(oh * Math.pow(0.9, shrink))); canvas = sized(w, h); }
+    for (let qq = OPT.q0; qq >= 0.299; qq = Math.round((qq - 0.06) * 100) / 100) {
+      const url = canvas.toDataURL("image/webp", qq);
+      if (!/^data:image\/webp/.test(url)) return { error: "this Chrome did not encode WebP" };
+      if (url.length <= OPT.budget) { enc = { url, q: qq }; break; }
+      if (shrink === 3 && qq - 0.06 < 0.299) enc = { url, q: qq, over: true };
+    }
+  }
+  const reasons = enc.over ? ["still over the budget at q 0.30 and 73% size (" + enc.url.length + " bytes)"] : [];
+  if (w !== ow) warnings.push("shrunk to " + w + "x" + h + " to fit the budget");
+  return { ok: !reasons.length, reasons, warnings, cut: "import", src: { w: W, h: H }, bg: null, crop: { x: 0, y: 0, w: W, h: H },
+    stats: { mean: [sr / n, sg / n, sb / n].map(Math.round), opaque: +(n / (ow * oh)).toFixed(3) }, url: enc.url, q: enc.q, w, h };
+}
+
 function run() {
+  if (OPT.imported) return importRun();
   const W = img.naturalWidth, H = img.naturalHeight, N = W * H;
   const c = document.createElement("canvas"); c.width = W; c.height = H;
   const g = c.getContext("2d", { willReadFrequently: true }); g.drawImage(img, 0, 0);
@@ -399,12 +435,12 @@ export function stripIcc(buf) {
 }
 
 /* raw bytes -> { ok, reasons, warnings, webp (Buffer), uri, w, h, q, bytes, uriBytes, crop, stats, ... } */
-export async function makeSkin(raw, mime, { kind, px, inset, maxKB, look, tool = false, glass = false, joined = false, holes = false, label = "skin" }) {
+export async function makeSkin(raw, mime, { kind, px, inset, maxKB, look, tool = false, glass = false, joined = false, holes = false, imported = false, label = "skin" }) {
   const tmp = fromRoot(".build");
   fs.mkdirSync(tmp, { recursive: true });
   const page = path.join(tmp, `skin-${process.pid}-${Math.random().toString(36).slice(2, 8)}.html`);
   const budget = skinBudget(kind, maxKB, look);
-  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS, tool: !!tool || !!glass, glass: !!glass, joined: !!joined, holes: !!holes, photo: look === "photo" && kind !== "figure" && !glass };
+  const opt = { kind, cut: (KINDS[kind] || {}).cut || "interior", px, inset, budget, q0: Q_START, limits: LIMITS, tool: !!tool || !!glass, glass: !!glass, joined: !!joined, holes: !!holes, imported: !!imported, photo: look === "photo" && kind !== "figure" && !glass };
   fs.writeFileSync(page, `<!doctype html><meta charset="utf-8"><body><pre id="out">pending</pre>`
     + `<script id="raw">window.__RAW = "data:${mime || "image/png"};base64,${raw.toString("base64")}"; window.__OPT = ${JSON.stringify(opt)};</script>`
     + `<script>${PAGE}</script></body>`);

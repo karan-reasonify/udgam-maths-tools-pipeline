@@ -1,0 +1,2240 @@
+{
+  "slotId": "M2.S3.T7.C31.2D1",
+  "mediaId": "M2.S3.T7.C31.2D1",
+  "toolId": "part_squares",
+  "title": "Part Squares",
+  "component": "M2.S3.T7.C33.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch8_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_8/2dtool/M2.S3.T7.C33.2D1/M2.S3.T7.C33.2D1.tsx",
+  "description": "Number the whole squares inside a traced shape, mark each part square by its kind, pair the half squares, and give the area as an estimate with about.",
+  "conceptIds": [
+    "M2.S3.T7.C30",
+    "M2.S3.T7.C31",
+    "M2.S3.T7.C32",
+    "M2.S3.T7.C33"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        1086,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Estimate the area of a curved or irregular shape on squared paper: number the whole squares, count a square more than half covered as one and leave out one less than half covered, pair the half squares, and give the total with about.",
+    "look": "A traced outline on squared paper with every square it touches waiting to be marked, and a tally card at the right that ends on about.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Part Squares' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of squares marked. It is never a score. The working area is 1086 by 528 at x 64, y 202. The squared paper fills a box 640 by 440 at x 120, y 230, each cell 40 across, with the traced outline in near-black ink. A whole square takes its number in violet, labelled Unit square. A square more than half inside turns rose with the words More than half written in it; a square cut in half turns a paler rose with the word Half; a square less than half inside stays warm white with the words Less than half in small ink. No square is ever marked with a cross. The Pair button stands at x 820, y 250, and a pair is drawn as a thin ink bracket joining two Half squares. The tally card stands at x 820, y 330, 280 by 300, with the lines Whole, More than half, Half pairs and Left out, and a total line that begins with the word about. The estimate reached is green. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with an sq. cm key. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the ten tools of this chapter share them. The lengths the question gives, as a side, a length, a breadth, a height, an edge or a base area, are deep blue, labelled Given or by their own name. The perimeter, area, volume or missing side the working reaches is green, labelled Answer. The boundary that a perimeter walks round is vermilion, labelled Boundary. The unit being counted, one unit square, one unit cube, one row or one layer, is violet, labelled Unit square, Unit cube, Row or Layer. The part squares of an estimate and the space left over where no whole cube fits are rose, labelled More than half, Half or Left over. The side, square, cube, layer or step being worked on now is amber. Grey is kept for a zero holding a place open, and nothing on this stage is ever grey. A square or cube that is not being counted stays warm white inside its near-black outline, grid lines, unit words and signs are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of them, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last outline stays with every square marked by its kind, and the tally card beside it ends on about and the area in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the last whole square reads 18, and the tally's Whole line reads 18",
+        "does": "taps each whole square in turn, row by row, and types the last number written",
+        "goal": "count the whole squares inside an outline first, numbering each one so none is counted twice",
+        "says": "Tap each whole square once. Give it a number as you go.",
+        "check": "Away from the screen: why does writing a number in each square stop you counting one twice?",
+        "feels": "the numbers marching across the leaf row by row",
+        "hands": "Trace a leaf on squared paper and write a number in each whole square inside it, row by row. The last number is the count.",
+        "tries": "First rung: number the whole squares of the first row only. Second rung: number the next row, carrying on from the last number. Third rung: the same task on a smaller outline, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "moving to the next row, the child loses track of where the last row ended",
+            "move": "taps a whole square that already has a number",
+            "screen": "the square keeps its first number, and that number is lit amber for a moment while the running count stays as it was"
+          },
+          {
+            "why": "a square that is nearly inside the line looks whole",
+            "move": "taps an edge square as whole",
+            "screen": "the edge square is shaded to show how much of it lies inside, the uncovered sliver is lit amber, and the child's mark stays"
+          }
+        ],
+        "screen": "a traced leaf with rows of 2, 7, 5 and 4 whole squares inside it, none numbered",
+        "soWhat": "count the whole squares inside an outline first, numbering each one so none is counted twice",
+        "concept": "Trace and count"
+      },
+      {
+        "n": 2,
+        "win": "seven squares read More than half and count as seven, and three read Less than half and stay out of the tally",
+        "does": "taps each edge square to mark it More than half or Less than half, in words",
+        "goal": "a square more than half covered counts as one whole square, and one less than half covered is left out",
+        "says": "Is more than half of this square inside the line?",
+        "check": "Away from the screen: if the line cuts off just a corner of a square, is that square counted?",
+        "feels": "each edge square being weighed by eye and sorted",
+        "hands": "Colour the edge squares of a traced leaf: one colour for more than half inside, and leave the rest white. Count the coloured ones.",
+        "tries": "First rung: look at one edge square and say more or less than half. Second rung: mark three edge squares. Third rung: the same task on a shape with fewer edge squares, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "every touched square seems to be part of the shape",
+            "move": "marks every square the outline touches as More than half",
+            "screen": "the square in question is shaded to show how much of it lies inside, and the part outside the line is lit amber while the child's mark stays"
+          },
+          {
+            "why": "the outline runs close to its corner and makes it look cut off",
+            "move": "marks a square that is mostly inside as Less than half",
+            "screen": "the part of the square inside the line is shaded and measured against a half line drawn across the square in ink"
+          }
+        ],
+        "screen": "the leaf's edge squares, ten of them, none marked",
+        "soWhat": "a square more than half covered counts as one whole square, and one less than half covered is left out",
+        "concept": "More than half or less than half"
+      },
+      {
+        "n": 3,
+        "win": "five pairs are bracketed, and the tally's Half pairs line reads five",
+        "does": "marks each one Half, then taps Pair until every half has a partner",
+        "goal": "two half squares count as one whole square. A square cut from corner to corner is cut exactly in half",
+        "says": "Two halves make one whole. Pair them up.",
+        "check": "Away from the screen: cut a square from corner to corner. Are the two pieces the same size?",
+        "feels": "two halves clicking together into one whole",
+        "hands": "Cut paper squares in half, some straight across and some from corner to corner, and put two halves together to make one whole square.",
+        "tries": "First rung: find two Half squares and pair them. Second rung: pair the rest. Third rung: the same task with fewer half squares, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "each half square is a square on the paper",
+            "move": "adds each Half square to the tally as one whole",
+            "screen": "two Half squares are bracketed in steps and the tally's Half pairs line counts them as one, while the child's number stays in the slot"
+          },
+          {
+            "why": "the slanting cut makes one side look bigger",
+            "move": "marks a square cut from corner to corner as More than half",
+            "screen": "the square is folded along the cut in steps, and the two halves are shown lying one on the other, the same size"
+          }
+        ],
+        "screen": "a shape whose outline cuts ten squares exactly in half, two of them from corner to corner",
+        "soWhat": "two half squares count as one whole square, and a cut from corner to corner makes two equal halves",
+        "concept": "Two halves make one"
+      },
+      {
+        "n": 4,
+        "win": "the total line reads about 33 sq. cm in green, with the word estimate under it",
+        "does": "checks the tally, pairs the halves, and types the total",
+        "goal": "add the kinds by the rules, and say the total with about, because it is an estimate",
+        "says": "Add them by the rules. Then say about.",
+        "check": "Away from the screen: could two careful children get slightly different areas for the same leaf? Why?",
+        "feels": "the tally adding up and the word about landing in front of it",
+        "hands": "Trace your hand with the fingers together, sort its squares by kind, add them by the rules, and write the area with about.",
+        "tries": "First rung: add the whole squares and the more-than-half squares. Second rung: add the paired halves. Third rung: the same task on a smaller traced shape, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "every square on the tally card feels like it belongs in the sum",
+            "move": "adds the Left out squares into the total",
+            "screen": "the Left out line dims to half strength, and the total is rebuilt in steps from the other three lines beside the child's number"
+          },
+          {
+            "why": "a number from counting looks like the answer",
+            "move": "types the total without saying about",
+            "screen": "the child's number stays in the slot, and the word about is lit amber at the front of the total line"
+          }
+        ],
+        "screen": "a traced hand with its squares all marked: 21 whole, 9 more than half and 6 half",
+        "soWhat": "add the kinds by the rules, and say the total with about, because it is an estimate",
+        "concept": "An estimate, not exact"
+      }
+    ],
+    "delight": "On the fourth phase, when the total lands, the word about gives a small bow before it, and the traced hand gives a little wave.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet marked. On the first phase a traced leaf lies on squared paper with its whole squares blank. On the second the same leaf's edge squares wait unmarked. On the third a shape lies whose outline cuts squares in half, with the Pair button beside it. On the fourth a traced hand lies with its squares already marked and the tally card waiting. One thing moves, once: the first square to be tapped, or the tally card on the fourth phase, gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any traced outline, or a figure along the grid lines, marked square by square and tallied. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on whole squares, the rules for part squares, pairing halves and estimates.",
+    "voiceLines": [
+      "A traced shape on squared paper.",
+      "Tap each whole square once. Give it a number as you go.",
+      "Is more than half of this square inside the line?",
+      "Two halves make one whole. Pair them up.",
+      "Add them by the rules. Then say about.",
+      "A new shape. Start with the whole squares.",
+      "Free play. Trace any shape and sort its squares.",
+      "Look at that square again. How much of it is inside the line?",
+      "You estimated an area, and said about."
+    ],
+    "observations": [
+      {
+        "why": "a number already written shows that square has been counted.",
+        "soWhat": "count the whole squares first, numbering each one.",
+        "observe": "Numbering each whole square as it was tapped meant none was tapped twice."
+      },
+      {
+        "why": "an outline that is not along the grid lines cuts squares by different amounts.",
+        "soWhat": "a square more than half covered counts as one, and one less than half covered is left out.",
+        "observe": "Some edge squares were mostly inside the line and some were mostly outside."
+      },
+      {
+        "why": "two halves of equal squares make one whole square.",
+        "soWhat": "pair the half squares before adding.",
+        "observe": "Two Half squares joined by a bracket made one whole on the tally."
+      },
+      {
+        "why": "the part squares were rounded to one or to nothing, so the total is near the area.",
+        "soWhat": "an area from part squares is an estimate, said with about.",
+        "observe": "The total line always started with about."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a traced leaf with rows of 2, 7, 5 and 4 whole squares inside it, none numbered",
+        "win": "the last whole square reads 18, and the tally's Whole line reads 18",
+        "traceback": "each row of whole squares is lit in turn with its count, and the Whole line of the tally ends on the total",
+        "ladder": [
+          "Count only the squares that have a pencil number.",
+          "The squares the line cuts have no number, so leave them out.",
+          "Count the numbers on this small leaf row by row.",
+          "Point at each pencil number in turn, starting from 1.",
+          "Find the biggest number the pencil wrote on the leaf."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the leaf's edge squares, ten of them, none marked",
+        "win": "seven squares read More than half and count as seven, and three read Less than half and stay out of the tally",
+        "traceback": "each edge square shows the part inside the line against a half line, and gets its right letter; the M count ends the tally",
+        "ladder": [
+          "Look at the edge squares the leaf only just touches.",
+          "Look at the ringed square again.",
+          "Look at the squares round the cup that the line cuts.",
+          "Look again at each square you marked L: is most of it outside?",
+          "Put a finger on each M square and count."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a shape whose outline cuts ten squares exactly in half, two of them from corner to corner",
+        "win": "five pairs are bracketed, and the tally's Half pairs line reads five",
+        "traceback": "a corner-cut square folds along its cut onto its other half, then the pairs are bracketed in turn and the Half pairs line ends on the total",
+        "ladder": [
+          "Join the halves two at a time.",
+          "The tally says how many halves; how many pairs is that?",
+          "Fold a corner-cut square along its cut in your mind.",
+          "Point at each bracket and count it.",
+          "Halve the number on the Half line of the tally."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a traced hand with its squares all marked: 21 whole, 9 more than half and 6 half",
+        "win": "the total line reads about 33 sq. cm in green, with the word estimate under it",
+        "traceback": "the Left out line dims, and the total is rebuilt in steps from the Whole, More than half and Half pairs lines",
+        "ladder": [
+          "Look at the Left out line: does it belong in the total?",
+          "Is the Half line counted as halves, or as pairs?",
+          "Check each line of the tally against the squares.",
+          "Add the Whole line and the More than half line first.",
+          "Then add the Half pairs line, never the Left out line."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "unit": "1 square = 1 sq. cm",
+    "sheets": {
+      "w1": {
+        "c": 5,
+        "r": 3,
+        "look": "leaf",
+        "sp": [
+          [
+            4.507,
+            1.165
+          ],
+          [
+            4.54,
+            1.435
+          ],
+          [
+            4.398,
+            1.721
+          ],
+          [
+            4.05,
+            2.001
+          ],
+          [
+            3.466,
+            2.217
+          ],
+          [
+            2.714,
+            2.321
+          ],
+          [
+            1.93,
+            2.262
+          ],
+          [
+            1.254,
+            2.078
+          ],
+          [
+            0.771,
+            1.807
+          ],
+          [
+            0.532,
+            1.487
+          ],
+          [
+            0.536,
+            1.165
+          ],
+          [
+            0.724,
+            0.871
+          ],
+          [
+            1.074,
+            0.623
+          ],
+          [
+            1.55,
+            0.437
+          ],
+          [
+            2.122,
+            0.337
+          ],
+          [
+            2.714,
+            0.329
+          ],
+          [
+            3.258,
+            0.404
+          ],
+          [
+            3.716,
+            0.538
+          ],
+          [
+            4.076,
+            0.715
+          ],
+          [
+            4.344,
+            0.924
+          ]
+        ],
+        "k": "LMMML/LWWWL/.LLL."
+      },
+      "la": {
+        "c": 9,
+        "r": 6,
+        "look": "leaf",
+        "sp": [
+          [
+            8.209,
+            3.045
+          ],
+          [
+            7.96,
+            3.591
+          ],
+          [
+            7.629,
+            4.088
+          ],
+          [
+            7.37,
+            4.62
+          ],
+          [
+            6.86,
+            5.08
+          ],
+          [
+            6.078,
+            5.319
+          ],
+          [
+            5.292,
+            5.469
+          ],
+          [
+            4.49,
+            5.493
+          ],
+          [
+            3.699,
+            5.435
+          ],
+          [
+            2.955,
+            5.243
+          ],
+          [
+            2.338,
+            4.906
+          ],
+          [
+            1.847,
+            4.499
+          ],
+          [
+            1.482,
+            4.044
+          ],
+          [
+            1.188,
+            3.565
+          ],
+          [
+            0.951,
+            3.045
+          ],
+          [
+            0.623,
+            2.436
+          ],
+          [
+            0.791,
+            1.816
+          ],
+          [
+            1.693,
+            1.506
+          ],
+          [
+            2.503,
+            1.327
+          ],
+          [
+            3.182,
+            1.172
+          ],
+          [
+            3.768,
+            0.863
+          ],
+          [
+            4.49,
+            0.544
+          ],
+          [
+            5.313,
+            0.558
+          ],
+          [
+            6.081,
+            0.766
+          ],
+          [
+            6.71,
+            1.125
+          ],
+          [
+            7.291,
+            1.505
+          ],
+          [
+            7.94,
+            1.94
+          ],
+          [
+            8.21,
+            2.45
+          ]
+        ],
+        "k": "...LLLL../LLMMWWML./LWWWWWWWL/LMWWWWWML/.LMWWWWL./..LLLLL.."
+      },
+      "lb": {
+        "c": 8,
+        "r": 5,
+        "look": "leaf",
+        "sp": [
+          [
+            7.64,
+            2.929
+          ],
+          [
+            7.442,
+            3.423
+          ],
+          [
+            7.13,
+            3.9
+          ],
+          [
+            6.62,
+            4.23
+          ],
+          [
+            5.985,
+            4.424
+          ],
+          [
+            5.376,
+            4.563
+          ],
+          [
+            4.777,
+            4.625
+          ],
+          [
+            4.196,
+            4.622
+          ],
+          [
+            3.634,
+            4.57
+          ],
+          [
+            3.086,
+            4.466
+          ],
+          [
+            2.548,
+            4.307
+          ],
+          [
+            2.024,
+            4.084
+          ],
+          [
+            1.533,
+            3.784
+          ],
+          [
+            1.146,
+            3.393
+          ],
+          [
+            0.915,
+            2.929
+          ],
+          [
+            0.86,
+            2.43
+          ],
+          [
+            1,
+            1.97
+          ],
+          [
+            1.645,
+            1.573
+          ],
+          [
+            2.157,
+            1.225
+          ],
+          [
+            2.708,
+            0.869
+          ],
+          [
+            3.405,
+            0.62
+          ],
+          [
+            4.196,
+            0.493
+          ],
+          [
+            5.027,
+            0.503
+          ],
+          [
+            5.828,
+            0.67
+          ],
+          [
+            6.511,
+            0.994
+          ],
+          [
+            7.058,
+            1.407
+          ],
+          [
+            7.447,
+            1.885
+          ],
+          [
+            7.644,
+            2.404
+          ]
+        ],
+        "k": "..LLMLL./.LMWWWML/LWWWWWWM/LMWWWWWL/.LLMMML."
+      },
+      "lc": {
+        "c": 7,
+        "r": 6,
+        "look": "leaf",
+        "sp": [
+          [
+            5.955,
+            2.935
+          ],
+          [
+            5.856,
+            3.499
+          ],
+          [
+            5.573,
+            4.017
+          ],
+          [
+            5.141,
+            4.451
+          ],
+          [
+            4.606,
+            4.782
+          ],
+          [
+            4.007,
+            4.998
+          ],
+          [
+            3.384,
+            5.103
+          ],
+          [
+            2.765,
+            5.103
+          ],
+          [
+            2.171,
+            5.018
+          ],
+          [
+            1.621,
+            4.835
+          ],
+          [
+            1.15,
+            4.555
+          ],
+          [
+            0.782,
+            4.2
+          ],
+          [
+            0.538,
+            3.793
+          ],
+          [
+            0.444,
+            3.359
+          ],
+          [
+            0.484,
+            2.935
+          ],
+          [
+            0.631,
+            2.545
+          ],
+          [
+            0.819,
+            2.185
+          ],
+          [
+            1.023,
+            1.824
+          ],
+          [
+            1.254,
+            1.419
+          ],
+          [
+            1.582,
+            0.97
+          ],
+          [
+            2.125,
+            0.691
+          ],
+          [
+            2.765,
+            0.582
+          ],
+          [
+            3.43,
+            0.605
+          ],
+          [
+            4.068,
+            0.77
+          ],
+          [
+            4.626,
+            1.068
+          ],
+          [
+            5.117,
+            1.435
+          ],
+          [
+            5.534,
+            1.868
+          ],
+          [
+            5.827,
+            2.376
+          ]
+        ],
+        "k": ".LLLL../LMWWML./LWWWWM./MWWWWM./LMWWML./..LL..."
+      },
+      "w2": {
+        "c": 4,
+        "r": 3,
+        "look": "leaf",
+        "el": [
+          1.5,
+          1.5,
+          0.74,
+          0.48,
+          48
+        ],
+        "k": "..../LML./...."
+      },
+      "ld": {
+        "c": 7,
+        "r": 3,
+        "look": "leaf",
+        "sp": [
+          [
+            6.38,
+            1.5
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            5,
+            2.55
+          ],
+          [
+            4.4,
+            2.74
+          ],
+          [
+            3.5,
+            2.78
+          ],
+          [
+            2.6,
+            2.76
+          ],
+          [
+            2,
+            2.72
+          ],
+          [
+            1.3,
+            2
+          ],
+          [
+            1.15,
+            1.5
+          ],
+          [
+            1.3,
+            1
+          ],
+          [
+            2,
+            0.28
+          ],
+          [
+            2.6,
+            0.24
+          ],
+          [
+            3.5,
+            0.22
+          ],
+          [
+            4.4,
+            0.26
+          ],
+          [
+            5,
+            0.45
+          ],
+          [
+            6,
+            1
+          ]
+        ],
+        "k": ".LMMML./.MWWWWL/.LMMML."
+      },
+      "cup": {
+        "c": 5,
+        "r": 5,
+        "look": "cup",
+        "el": [
+          2.5,
+          2.825,
+          2.3,
+          2.162,
+          72
+        ],
+        "k": ".LLL./LMWML/MWWWM/MWWWM/LMMML"
+      },
+      "w3": {
+        "h": 1,
+        "c": 4,
+        "r": 3,
+        "look": "plain",
+        "pg": [
+          [
+            1,
+            1
+          ],
+          [
+            3.5,
+            1
+          ],
+          [
+            3.5,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "k": "..../.HWH/...."
+      },
+      "t10": {
+        "h": 1,
+        "c": 6,
+        "r": 4,
+        "look": "plain",
+        "pg": [
+          [
+            1,
+            0.5
+          ],
+          [
+            5,
+            0.5
+          ],
+          [
+            5,
+            3.5
+          ],
+          [
+            1,
+            3.5
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "k": ".HHHH./HWWWW./HWWWW./.HHHH."
+      },
+      "t14": {
+        "h": 1,
+        "c": 7,
+        "r": 4,
+        "look": "plain",
+        "pg": [
+          [
+            1,
+            0.5
+          ],
+          [
+            6,
+            0.5
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            6,
+            3.5
+          ],
+          [
+            1,
+            3.5
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "k": ".HHHHH./HWWWWWH/HWWWWWH/.HHHHH."
+      },
+      "x6": {
+        "h": 1,
+        "c": 5,
+        "r": 4,
+        "look": "plain",
+        "pg": [
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "k": "HWWH./WWWWH/WWWWH/HWWH."
+      },
+      "hand": {
+        "h": 1,
+        "c": 7,
+        "r": 9,
+        "look": "hand",
+        "sp": [
+          [
+            2,
+            0.5
+          ],
+          [
+            3,
+            0.27
+          ],
+          [
+            4,
+            0.28
+          ],
+          [
+            4.9,
+            0.45
+          ],
+          [
+            5.28,
+            1.1
+          ],
+          [
+            5.3,
+            2.3
+          ],
+          [
+            5.3,
+            3.5
+          ],
+          [
+            5.3,
+            5
+          ],
+          [
+            5.45,
+            5.9
+          ],
+          [
+            5.5,
+            6.6
+          ],
+          [
+            5.5,
+            7.8
+          ],
+          [
+            5.5,
+            8.5
+          ],
+          [
+            4,
+            8.5
+          ],
+          [
+            2.6,
+            8.5
+          ],
+          [
+            1.1,
+            8.5
+          ],
+          [
+            1.1,
+            8
+          ],
+          [
+            1.15,
+            7.4
+          ],
+          [
+            1.3,
+            6.5
+          ],
+          [
+            1.3,
+            5.85
+          ],
+          [
+            0.75,
+            5.5
+          ],
+          [
+            0.45,
+            4.9
+          ],
+          [
+            0.55,
+            4.35
+          ],
+          [
+            0.95,
+            4.3
+          ],
+          [
+            1.4,
+            4.65
+          ],
+          [
+            1.28,
+            3.4
+          ],
+          [
+            1.25,
+            2.3
+          ],
+          [
+            1.78,
+            1.4
+          ]
+        ],
+        "k": ".LMMML./.LWWWL./.MWWWL./.MWWWL./LMWWWL./LMWWWL./.MWWWH./.MWWWH./.HHHHL."
+      },
+      "lf": {
+        "h": 1,
+        "c": 7,
+        "r": 5,
+        "look": "leaf",
+        "sp": [
+          [
+            0.35,
+            2.45
+          ],
+          [
+            0.9,
+            1.6
+          ],
+          [
+            1.7,
+            0.9
+          ],
+          [
+            2.5,
+            0.55
+          ],
+          [
+            3.5,
+            0.32
+          ],
+          [
+            4.5,
+            0.35
+          ],
+          [
+            5.35,
+            0.6
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            6.5,
+            2.5
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            5.4,
+            4.52
+          ],
+          [
+            4.5,
+            4.72
+          ],
+          [
+            3.5,
+            4.74
+          ],
+          [
+            2.6,
+            4.45
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            1.75,
+            3.5
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0.55,
+            2.85
+          ]
+        ],
+        "k": ".LHMML./LMWWWWL/HWWWWWH/.LWWWWL/..LMMH."
+      },
+      "stone": {
+        "h": 1,
+        "c": 7,
+        "r": 6,
+        "look": "stone",
+        "sp": [
+          [
+            2.5,
+            0.5
+          ],
+          [
+            3.5,
+            0.3
+          ],
+          [
+            4.5,
+            0.5
+          ],
+          [
+            5.4,
+            0.95
+          ],
+          [
+            5.97,
+            2
+          ],
+          [
+            6.3,
+            2.6
+          ],
+          [
+            6.45,
+            3.5
+          ],
+          [
+            6.2,
+            4.4
+          ],
+          [
+            5.5,
+            5
+          ],
+          [
+            4.5,
+            5.45
+          ],
+          [
+            3.5,
+            5.7
+          ],
+          [
+            2.6,
+            5.58
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            1.3,
+            4.62
+          ],
+          [
+            0.5,
+            4
+          ],
+          [
+            0.2,
+            3.3
+          ],
+          [
+            0.5,
+            2.45
+          ],
+          [
+            0.9,
+            1.6
+          ],
+          [
+            1.6,
+            0.95
+          ]
+        ],
+        "k": ".LHMHL./LMWWWM./HWWWWWL/MWWWWWH/LMWWWML/..HMHL."
+      },
+      "rect": {
+        "c": 6,
+        "r": 5,
+        "look": "plain",
+        "pg": [
+          [
+            1,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            1,
+            4
+          ]
+        ],
+        "k": "....../.WWWW./.WWWW./.WWWW./......"
+      }
+    },
+    "pairs": {
+      "w3": [
+        [
+          [
+            3,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "t10": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        [
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        [
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            3
+          ]
+        ]
+      ],
+      "t14": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        [
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        [
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            6,
+            2
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        [
+          [
+            4,
+            3
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        [
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      ],
+      "x6": [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      ],
+      "hand": [
+        [
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        [
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        [
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      ],
+      "lf": [
+        [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            6,
+            2
+          ],
+          [
+            5,
+            4
+          ]
+        ]
+      ],
+      "stone": [
+        [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            4,
+            0
+          ],
+          [
+            6,
+            3
+          ]
+        ],
+        [
+          [
+            2,
+            5
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      ]
+    },
+    "answerGate": {
+      "acts": {
+        "phase 1, questions 1-3": "number every whole square (a tap on each; the pencil writes its number)",
+        "phase 2, questions 1 and 3": "mark every edge square M or L (a tap on each)",
+        "phase 3, questions 1-3": "pair every half square (the Pair key, once a pair)",
+        "phase 4, questions 1-3": "pair every half square (the Pair key, once a pair)"
+      },
+      "ungated": [
+        "phase 2, question 2 (C31:2): a recall about the ringed square, nothing to do on the paper"
+      ],
+      "nudge": "while shut the bubble says the phase's nudge line once, and the question again when the act is done",
+      "agent": "the agent's check() does the act at once, so AI mode and toolApi runs are never gated"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M2.S3.T7.C30:PS1",
+        "kind": "count",
+        "sheet": "la",
+        "near": 19,
+        "win": "Yes, 18 whole squares, each numbered once.",
+        "answer": 18
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M2.S3.T7.C30:1",
+        "kind": "count",
+        "sheet": "lb",
+        "near": 15,
+        "win": "Yes, 14 whole squares.",
+        "answer": 14
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": null,
+        "kind": "count",
+        "sheet": "lc",
+        "near": 13,
+        "win": "Yes, 12 whole squares.",
+        "answer": 12
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M2.S3.T7.C31:PS2",
+        "kind": "mark",
+        "sheet": "ld",
+        "near": 12,
+        "win": "Yes, the 7 M squares add 7 whole squares.",
+        "answer": 7
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M2.S3.T7.C31:2",
+        "kind": "ring",
+        "sheet": "ld",
+        "ring": [
+          3,
+          0
+        ],
+        "near": 0,
+        "win": "Yes, it counts as 1 whole square.",
+        "answer": 1,
+        "ladder": [
+          "Is the leaf in more than half of the ringed square?",
+          "Look at the letter in the ringed square."
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M2.S3.T7.C31:4",
+        "kind": "mark",
+        "sheet": "cup",
+        "near": 16,
+        "win": "Yes, the cup's edge squares add 9.",
+        "answer": 9
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M2.S3.T7.C32:PS3",
+        "kind": "half",
+        "sheet": "t10",
+        "near": 10,
+        "win": "Yes, 5 pairs make 5 whole squares.",
+        "answer": 5
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M2.S3.T7.C32:3",
+        "kind": "half",
+        "sheet": "t14",
+        "near": 14,
+        "win": "Yes, 14 halves make 7 whole squares.",
+        "answer": 7
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M2.S3.T7.C32:5",
+        "kind": "half",
+        "sheet": "x6",
+        "near": 6,
+        "win": "Yes, 6 halves make 3 whole squares.",
+        "answer": 3
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M2.S3.T7.C33:PS4",
+        "kind": "total",
+        "sheet": "hand",
+        "near": 44,
+        "win": "Yes, the hand covers about 33 squares.",
+        "answer": 33
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M2.S3.T7.C33:6",
+        "kind": "total",
+        "sheet": "lf",
+        "near": 27,
+        "win": "Yes, the leaf covers about 20 squares.",
+        "answer": 20
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M2.S3.T7.C33:8",
+        "kind": "total",
+        "sheet": "stone",
+        "near": 33,
+        "win": "Yes, the stone covers about 26 squares.",
+        "answer": 26
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: each row of whole squares is lit in turn with its count, and the Whole line of the tally ends on the total",
+      "Phase 2: each edge square shows the part inside the line against a half line, and gets its right letter; the M count ends the tally",
+      "Phase 3: a corner-cut square folds along its cut onto its other half, then the pairs are bracketed in turn and the Half pairs line ends on the total",
+      "Phase 4: the Left out line dims, and the total is rebuilt in steps from the Whole, More than half and Half pairs lines"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A traced shape on squared paper.",
+    "onFreePlay": "Free play. Pick a shape and tap its squares: once M, twice H, three times L.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You estimated an area, and said about.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M2.S3.T7.C30:PS1",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A traced leaf has rows of 2, 7, 5 and 4 whole squares. How many whole squares does it hold?",
+            "question": {
+              "en": "How many whole squares does this leaf hold, if you number each as you tap it?"
+            },
+            "ask": {
+              "en": "How many whole squares?"
+            },
+            "answer": 18,
+            "planAnswer": "18 whole squares",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M2.S3.T7.C30:1",
+            "worked": false,
+            "kind": "count",
+            "planQuestion": "A traced shape has rows of 3, 6 and 5 whole squares. How many whole squares is that?",
+            "question": {
+              "en": "How many whole squares does this second leaf hold?"
+            },
+            "ask": {
+              "en": "Whole squares here?"
+            },
+            "answer": 14,
+            "planAnswer": "3 + 6 + 5 = 14, so 14 whole squares",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": null,
+            "worked": false,
+            "kind": "count",
+            "planQuestion": null,
+            "question": {
+              "en": "How many whole squares are inside this small leaf?"
+            },
+            "ask": {
+              "en": "Whole squares inside?"
+            },
+            "answer": 12,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M2.S3.T7.C31:PS2",
+            "worked": false,
+            "kind": "mark",
+            "planQuestion": "Round a traced shape, 7 squares are more than half covered and 3 are less than half covered. How many whole squares do they add?",
+            "question": {
+              "en": "Tap once for M, twice for L; how many whole squares do the M squares add?"
+            },
+            "ask": {
+              "en": "Edge squares add?"
+            },
+            "answer": 7,
+            "planAnswer": "7",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M2.S3.T7.C31:2",
+            "worked": false,
+            "kind": "ring",
+            "planQuestion": "A square on the outline is more than half covered. How is it counted?",
+            "question": {
+              "en": "How many whole squares is the ringed square counted as?"
+            },
+            "ask": {
+              "en": "Ringed square counts?"
+            },
+            "answer": 1,
+            "planAnswer": "As 1 whole square",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M2.S3.T7.C31:4",
+            "worked": false,
+            "kind": "mark",
+            "planQuestion": "Round a traced cup, 9 squares are more than half covered and 5 are less than half covered. How many whole squares do they add?",
+            "question": {
+              "en": "How many whole squares do the edge squares round this traced cup count for?"
+            },
+            "ask": {
+              "en": "Cup edge squares add?"
+            },
+            "answer": 9,
+            "planAnswer": "9. The 9 count as 9, and the 5 less-than-half squares are left out",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M2.S3.T7.C32:PS3",
+            "worked": false,
+            "kind": "half",
+            "planQuestion": "An outline cuts 10 squares exactly in half. How many whole squares do they make?",
+            "question": {
+              "en": "How many whole squares do the half squares of this shape make?"
+            },
+            "ask": {
+              "en": "Halves make?"
+            },
+            "answer": 5,
+            "planAnswer": "5",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M2.S3.T7.C32:3",
+            "worked": false,
+            "kind": "half",
+            "planQuestion": "How many whole squares do 14 half squares make?",
+            "question": {
+              "en": "This outline cuts 14 squares in half, so how many whole squares is that?"
+            },
+            "ask": {
+              "en": "14 halves make?"
+            },
+            "answer": 7,
+            "planAnswer": "7, because two half squares make 1 whole square",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M2.S3.T7.C32:5",
+            "worked": false,
+            "kind": "half",
+            "planQuestion": "A square is cut from corner to corner by the outline. How is it counted?",
+            "question": {
+              "en": "How many whole squares do these 6 corner to corner halves come to?"
+            },
+            "ask": {
+              "en": "Corner cuts make?"
+            },
+            "answer": 3,
+            "planAnswer": "As a half square, because a cut from corner to corner splits it exactly in half",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M2.S3.T7.C33:PS4",
+            "worked": false,
+            "kind": "total",
+            "planQuestion": "A traced hand has 21 whole squares, 9 more-than-half squares and 6 half squares. What is its area?",
+            "question": {
+              "en": "After pairing the halves, what is the area of this traced hand in squares?"
+            },
+            "ask": {
+              "en": "Area of the hand?"
+            },
+            "answer": 33,
+            "planAnswer": "About 33 sq. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M2.S3.T7.C33:6",
+            "worked": false,
+            "kind": "total",
+            "planQuestion": "A traced leaf has 13 whole squares, 5 more-than-half squares and 4 half squares. What is its area?",
+            "question": {
+              "en": "Once its halves are paired, roughly what area does this leaf cover?"
+            },
+            "ask": {
+              "en": "Area of the leaf?"
+            },
+            "answer": 20,
+            "planAnswer": "The 4 half squares make 2. 13 + 5 + 2 = 20, so the leaf is about 20 sq. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M2.S3.T7.C33:8",
+            "worked": false,
+            "kind": "total",
+            "planQuestion": "A traced stone has 16 whole squares, 7 more-than-half squares, 6 half squares and 4 less-than-half squares. What is its area?",
+            "question": {
+              "en": "About how many squares does this traced stone cover?"
+            },
+            "ask": {
+              "en": "Area of the stone?"
+            },
+            "answer": 26,
+            "planAnswer": "The 6 half squares make 3, and the 4 less-than-half squares are left out. 16 + 7 + 3 = 26, so the stone is about 26 sq. cm",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M2.S3.T7.C33:7"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "part_squares",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "part_squares",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Trace and count",
+        "conceptId": "M2.S3.T7.C30",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S3.T7.C30:PS1",
+          "M2.S3.T7.C30:1",
+          "M2.S3.T7.C31.2D1:p1_3"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "More than half or less than half",
+        "conceptId": "M2.S3.T7.C31",
+        "objectiveIds": [
+          "O11"
+        ],
+        "items": [
+          "M2.S3.T7.C31:PS2",
+          "M2.S3.T7.C31:2",
+          "M2.S3.T7.C31:4"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Two halves make one",
+        "conceptId": "M2.S3.T7.C32",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S3.T7.C32:PS3",
+          "M2.S3.T7.C32:3",
+          "M2.S3.T7.C32:5"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "An estimate, not exact",
+        "conceptId": "M2.S3.T7.C33",
+        "objectiveIds": [
+          "O12"
+        ],
+        "items": [
+          "M2.S3.T7.C33:PS4",
+          "M2.S3.T7.C33:6",
+          "M2.S3.T7.C33:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "outline",
+    "marks",
+    "numbered",
+    "pairs",
+    "whole",
+    "nW",
+    "more_than_half",
+    "nM",
+    "half",
+    "nH",
+    "left_out",
+    "nL"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), outline, marks, numbered, pairs, whole, nW, more_than_half, nM, half, nH, left_out, nL",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "part_squares"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M2.S3.T7.C31.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A traced shape on squared paper."
+    },
+    {
+      "en": "Tap each whole square once. Give it a number as you go."
+    },
+    {
+      "en": "Is more than half of this square inside the line?"
+    },
+    {
+      "en": "Two halves make one whole. Pair them up."
+    },
+    {
+      "en": "Add them by the rules. Then say about."
+    },
+    {
+      "en": "A new shape. Start with the whole squares."
+    },
+    {
+      "en": "Free play. Trace any shape and sort its squares."
+    },
+    {
+      "en": "Look at that square again. How much of it is inside the line?"
+    },
+    {
+      "en": "You estimated an area, and said about."
+    }
+  ],
+  "build": {
+    "source": "a6947826:669108",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-17T10:06:22.292Z",
+    "checks": {
+      "pass": 98,
+      "warn": 0,
+      "fail": 0,
+      "info": 4,
+      "at": "2026-11-17T10:06:22.141Z"
+    },
+    "tsxBytes": 589184,
+    "tsxMd5": "514e875f986f04cd100b2c7095c97b8d"
+  }
+}

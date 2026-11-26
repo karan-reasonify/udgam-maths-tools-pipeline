@@ -116,7 +116,7 @@
   rewrites (the one whole-file rewrite is the Gemini design pass, runbook step 4b, which runs after the maths review and the image pass and designs around the real-object pictures (`class<N>/docs/IMAGES.md` §12): it costs no Claude tokens and the builder does not
   read the result back whole, only its quick check and `shots`); its inner loop is `check --no-render`, then one full `check`. Reviewers run in a staged order (maths, then the language
   pass, then visual + play once) and the visual reviewer works from the review pack (`node cli.mjs shots <slot> --pack`: every
-  frame at full 1600x900 in en, hi, gu; `--changed` on a re-review looks only at what changed). `clean --ch N` tidies at the end.
+  frame at full 1600x900 in en, hi, gu; `--changed` on a re-review looks only at what changed). **The review images stay until the upload; `publish --upload` then removes the slot's PNGs, pack frames, `.build/` and logs itself (the owner, 2026-11-20); never run `clean` before it.**
 - Session hygiene (measured: `node usage.mjs session`; what a role loads: `node usage.mjs static --class <N>`). A session re-reads
   its whole context on every call, so what a big read leaves in it is paid for on every later call. Never read a generated
   bundle (`*.preview.html`, `.build/`: the `chapter-fence` hook refuses it; `fence --off` is the deliberate look); read the

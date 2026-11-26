@@ -1,0 +1,19 @@
+STATUS: ISSUES (0 must-fix, 4 should-fix, 1 question)
+visual-reviewer-1.80 · class 5 ch 10 · M1.S1.T2.C8.2D1 Three Hands Clock · HINDI only · round 5 (pack r66, 105 of 108 frames rebuilt; measured from the 1600x900 pixels)
+Looked at (hi, changed): p2 step1 stepwrong ask-shut ask-open wrong win choice choice-line choice-wrong end; p3 step1 stepwrong ask-shut ask-open wrong win; p4 step1 stepwrong ask-shut ask-open wrong win free. Also looked at (unchanged, for fix 4 / party rule): p3-end, p4-end, p4-party.
+Unchanged since round 4 (not looked at): start-hi, p1 step1/stepwrong/ask-shut/ask-open/wrong/win/hintkey/end/again(sameAs p1-step1)/party, p4-summary.
+No English on screen (digits only), no red/cross after a miss, nothing under the open pad (work ends x 955, pad starts x 980), nothing clipped.
+ROUND-4 FIXES
+1 OK p3 and p4 step1/stepwrong/ask-shut/ask-open/wrong: ring r22 round the knob at 12 = 10 px under the "12" disc and ~21 px under the glyph (same on all 10 frames, pad shut and open); "12" whole. p4-free at the 2: knob 13 px from the 2's disc, at the 12 20 px from the disc.
+2 PARTLY p2-wrong/win: correction card ends 10 px above the strip bottom outline (OK, exactly the floor). Dashed ring to the card = 10 px (asked 11: 1 short, cosmetic). Chips are 64 tall (66 with stroke): reph 6 px from the top outline, ू 6 px from the bottom (OK, >= 4); अपराह्न 17 / 10 px.
+3 OK p4-wrong/win: hour-hand amber halo 13.4 px (wrong) and 12.5 px (win) from the amber ring on the 8; black hand tip 7 px.
+4 OK green answer panel text centred, gaps left/right: p3-wrong 22/21, p3-win 22/21, p3-end 23/21, p4-end 24/23 (p4-win and p4-wrong 26/27).
+5 OK knobs read and look tappable (invite ring 44 px across at the ask/step frames); hands still read as hands.
+FINDINGS (frame — what — fix)
+[should-fix] p2 ask-shut, ask-open, step1-style card, hi — the card "2 बजकर 20 मिनट / दोपहर बाद" (x 638-941, y 128-214): its two lines are 2 px apart (line 1 lowest ink row 164, line 2 headline row 167) and the block sits 6 px under the card's top edge but 13 px above the bottom; in the strip copy (p2-wrong, p2-win) the gap is 3 px. Lines look glued. Fix: +3 px line gap and centre the block (or a card 6 px taller); the one-line cards ("8 बजे सुबह") have 10 px and are fine.
+[should-fix] p2 step1, stepwrong, wrong, hi — the captions under the strip ("आधी रात से दोपहर से पहले तक", "दोपहर से आधी रात से पहले तक"): the े / ि tops start 3 px under the strip's bottom outline (ink row 587, outline rows 582-583); needs >= 4. 22 px free below them: move the captions down 6 px.
+[should-fix] p2-wrong, hi — the dashed ring round the पूर्वाह्न chip: its top dashes touch the strip's top outline (0 px, rows 395-398 against the outline ending at 394), so the ring looks fused to the strip; bottom is 10 px from the correction card (asked 11). Fix: ring 3 px smaller at the top (or 3 px tighter all round) so it has >= 3 px air under the outline and the card gap is 11.
+[should-fix] pad-open frames p2/p3/p4 ask-open + wrong, hi (runtime-drawn answer-box labels) — the label matras ride the box outline: मिनट in the ACTIVE box (thick brown outline rows 196-199): the ि touches it (ink starts row 200, 0 px); घंटा 2 px, सेकंड / के बाद 2 px, मिनट in an idle box 1 px. Fix in the runtime (log on the runtime-gap list): label top padding +4 px; not a blocker.
+[question] p4-free, hi — the free-play knobs are drawn ~26 px across (white dot with outline, at 12 and at the 2) against the 44 px invite ring of the other frames: is their hit area also >= 44 px? Looks easy to see; I cannot tell the tap area from a still.
+Known/unchanged items not rated again: summary size/spacing, orphan last words, two invites before first touch, hint-only bubble after a miss, party cone vs the pills, hour hand held at 4:35 in p3 ask. Minute-hand tip touching the 2's disc in p4-free is the hand pointing at it: fine.
+PNGs left in place; my scratch files are deleted.

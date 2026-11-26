@@ -1,0 +1,1307 @@
+{
+  "slotId": "M1.S1.T2.C8.2D1",
+  "mediaId": "M1.S1.T2.C8.2D1",
+  "toolId": "clock_hands",
+  "title": "Three Hands Clock",
+  "component": "M1.S1.T2.C8.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch10_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_10/2dtool/M1.S1.T2.C8.2D1/M1.S1.T2.C8.2D1.tsx",
+  "description": "Turn the three hands of one clock together, sort times into a.m. and p.m. on a day bar, and read the hour, the minute and the thin second hand to the second.",
+  "conceptIds": [
+    "M1.S1.T2.C5",
+    "M1.S1.T2.C6",
+    "M1.S1.T2.C7",
+    "M1.S1.T2.C8"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Name the units of time and how they fit, sort times into a.m. and p.m. by the half of the day they fall in, read the minute hand and the hour hand together, and read a clock to the second with the thin second hand.",
+    "look": "One round clock face with three hands, a day bar under it split at noon, and a tally of the turns of the hands.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Three Hands Clock' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of clock readings made. It is never a score. The working area is 1086 by 528 at x 64, y 202. One round clock face stands at the left of the area at x 90, y 220, 380 by 380, with twelve numbers and sixty small marks in near-black ink. The hour hand is short and thick and the minute hand is long, both near-black ink, and the thin second hand is longer than both, vermilion, labelled Second hand. Every hand's name is written outside the dial at its rim, so no label line crosses the face. The turning handle stands under the dial at x 200, y 650. The tally stands beside the clock at x 520, y 230, three counters for minutes, hours and days, and each full turn of a hand adds one to the counter of the next. The day bar runs along y 320 from x 520 to x 1110 and is 90 tall: its half from midnight until just before noon stays warm white inside its outline, labelled a.m., its half from noon until just before midnight is rose, labelled p.m., and 12 noon is marked where the halves meet. The time cards wait in a tray at x 520, y 450, each deep blue, labelled Given, and a card lands on the half it is dropped on. On the third phase the number under the minute hand lights amber, and a violet tag beside the dial counts 5 min for each number passed. On the fourth phase a vermilion tag counts 5 s for each number the thin second hand passes, and the reading is built up in green, labelled Answer, at x 520, y 650. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a delete key, and keys for h, min and s. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. What the question gives, as a clock time, a length of time, a start date or a number of days, is deep blue, labelled Given or Start. What the working reaches, as an end time, a length of time, a converted time or a date, is green, labelled Answer, End or How long. The thin second hand and the seconds it counts are vermilion, labelled Second hand. One jump along a time line, and one regrouped unit carried or borrowed, are violet, labelled Jump, Carry or Regroup. On a day bar the half from noon until just before midnight is rose, labelled p.m., and the half from midnight until just before noon stays warm white inside its outline, labelled a.m. The hand, digit, column, jump or date being worked on now is amber. Grey is kept for a zero holding a place open, labelled Place holder, and for nothing else. The hour hand and the minute hand, dials, tick marks, time lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The clock stays set to the last time read, with its three hands where the child put them and the reading beside it in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the hour hand has gone twice round and the tally shows 1 day is 24 h",
+        "does": "turns the thin second hand once round, then the minute hand, then the hour hand twice, and watches the next hand move on each time",
+        "goal": "60 s make 1 min, 60 min make 1 h, and 1 day is 24 h",
+        "says": "Turn the thin hand once round. What has the next hand done?",
+        "check": "Away from the screen: how many small marks does the minute hand pass in one full turn?",
+        "feels": "the three hands clicking on together, each turn of one hand moving the next hand one step",
+        "hands": "Cut a round clock face from card and pin three paper hands to its middle. Turn the thin hand once round while you count aloud, then turn the minute hand once round, and say what the next hand has done each time.",
+        "tries": "First rung: turn only the thin hand once round and watch the next hand. Second rung: turn the minute hand once round as well. Third rung: the same task with the hour hand and the minute hand only, before the question's own clock returns.",
+        "wrong": [
+          {
+            "why": "the clock shows only twelve numbers, so one turn of the hour hand feels like all the hours there are",
+            "move": "says the hour hand goes once round the clock in a whole day",
+            "screen": "the answer stays in the slot, the day bar lights amber under the clock, and the hour hand is turned round a second time so that the two turns are counted against the one day"
+          },
+          {
+            "why": "a hundred is the number that groups are usually made of, so it feels natural",
+            "move": "writes a hundred for the minutes in an hour",
+            "screen": "the answer stays in the slot, the minute hand is turned once round again, and the sixty small marks are counted out in a violet tag beside it"
+          }
+        ],
+        "screen": "one clock face with all three hands at 12, and a tally beside it for minutes, hours and days",
+        "soWhat": "60 s make 1 min, 60 min make 1 h, and 1 day is 24 h, so the hour hand goes twice round the clock in a day",
+        "concept": "Seconds, minutes, hours and days"
+      },
+      {
+        "n": 2,
+        "win": "every card sits in its own half of the day bar with the right label",
+        "does": "drops each time card on the half of the day bar where the time belongs, and writes a.m. or p.m. after it",
+        "goal": "a.m. runs from midnight until just before noon, and p.m. from noon until just before midnight; noon and midnight are written 12 noon and 12 midnight",
+        "says": "Drop the card on the bar. Which half of the day does it land in?",
+        "check": "Away from the screen: is the time just before noon a.m. or p.m., and what about the time just after it?",
+        "feels": "the cards settling into the two halves of the day bar, warm white and rose",
+        "hands": "Lay a long strip of paper on a desk as a day and fold it at the middle. Write a.m. on the first half and p.m. on the second, and put 12 noon at the fold. Set cut-out cards of breakfast, lunch and bedtime on the halves.",
+        "tries": "First rung: drop just two cards, one early in the day and one late. Second rung: add the card that belongs at noon. Third rung: the same task with three times from your own day, before the question's own times return.",
+        "wrong": [
+          {
+            "why": "the day begins at 12 midnight, so it feels as if a.m. goes on all day",
+            "move": "writes a.m. after a time in the afternoon",
+            "screen": "the card stays where it was dropped, the rose p.m. half lights amber, and the words from noon until just before midnight are written in ink under it"
+          },
+          {
+            "why": "noon sits right beside the a.m. half, so it feels like part of it",
+            "move": "gives 12 noon an a.m. or a p.m. label",
+            "screen": "the card stays, the 12 noon mark lights amber where the two halves meet, and the words 12 noon are written in ink beside it with no a.m. or p.m."
+          }
+        ],
+        "screen": "the day bar under the clock, its a.m. half warm white and its p.m. half rose, with 12 noon marked between them, and a tray of time cards",
+        "soWhat": "a.m. runs from midnight until just before noon, and p.m. from noon until just before midnight, and noon and midnight are written 12 noon and 12 midnight",
+        "concept": "a.m. and p.m."
+      },
+      {
+        "n": 3,
+        "win": "the minutes and the hour are read together and turn green, as 35 min past 4",
+        "does": "sets the minute hand on a number, counts 5 min for each number, and checks that the hour hand has moved on from its number",
+        "goal": "the minute hand moves 5 min from one number to the next, and the hour hand moves on as the minutes pass, so it has passed its number",
+        "says": "Which number is the long hand on? Count five for every number.",
+        "check": "Away from the screen: at a quarter past the hour, is the hour hand still on its number or a little past it?",
+        "feels": "the hour hand creeping on as the minute hand goes round",
+        "hands": "Set a paper clock so that the minute hand points at a number. Count 5 min for each number from the top, say the minutes, and then look at where the hour hand has got to.",
+        "tries": "First rung: read a time when the minute hand points at the top number. Second rung: move the minute hand a few numbers round and watch the hour hand move on. Third rung: the same task with the minute hand near the bottom, before the question's own time returns.",
+        "wrong": [
+          {
+            "why": "the hour hand looks as if it points at the number just ahead of it",
+            "move": "reads the hour from the number the hour hand is nearest to, so a time past the hour is called the next hour",
+            "screen": "the hour hand is drawn again at the hour it has just passed, the small step it has still to take is lit amber, and the reading stays in the slot"
+          },
+          {
+            "why": "the number is the first thing to read, and it looks like the answer",
+            "move": "reads the number the minute hand points at as the minutes",
+            "screen": "the minute hand is walked round from the top in fives, a violet tag counting 5 min for each number, while the reading stays in the slot"
+          },
+          {
+            "why": "the two hands feel like two separate things",
+            "move": "moves the minute hand and leaves the hour hand where it was",
+            "screen": "the hour hand is drawn moving on a little with each number the minute hand passes, and the step it has taken is lit amber"
+          }
+        ],
+        "screen": "the clock face with the hour hand and the minute hand near-black, and a time to set",
+        "soWhat": "the minute hand moves 5 min from one number to the next, and the hour hand moves on as the minutes pass, so it has passed its number",
+        "concept": "Hour hand and minute hand"
+      },
+      {
+        "n": 4,
+        "win": "the reading turns green, as 20 min 35 s past 9",
+        "does": "counts aloud while the thin second hand goes once round, counts 5 s for each number, then reads the whole clock, and drags a missing second hand to its number",
+        "goal": "the thin second hand moves 5 s from one number to the next, and a clock is read to the second as minutes and seconds past the hour",
+        "says": "Where is the thin hand? Count five seconds for each number.",
+        "check": "Away from the screen: how many seconds does the thin hand count from one number to the next?",
+        "feels": "the reading turning green with its minutes and its seconds together",
+        "hands": "Watch the thin second hand of a real clock go once round, counting five for each number. Then write the whole reading as minutes and seconds past the hour.",
+        "tries": "First rung: read only the minute hand and the hour hand. Second rung: add the thin hand and count in fives. Third rung: the same task with the thin hand exactly on a number, before the question's own reading returns.",
+        "wrong": [
+          {
+            "why": "the thin hand is as long as the minute hand and points at the same numbers",
+            "move": "reads the number the thin second hand points at as minutes",
+            "screen": "the thin hand is drawn again in vermilion with the label Second hand written outside the dial, and a vermilion tag counts 5 s for each number while the reading stays in the slot"
+          },
+          {
+            "why": "the two thick hands feel like the whole clock",
+            "move": "reads the hour and the minutes and leaves the seconds off",
+            "screen": "the thin hand is lit amber and its number is counted in fives in vermilion, waiting to be added to the reading"
+          }
+        ],
+        "screen": "the clock face with all three hands, the thin second hand longer than both and vermilion, and a tray of readings",
+        "soWhat": "the thin second hand moves 5 s from one number to the next, a clock is read to the second as minutes and seconds past the hour, and the second is the smallest unit this chapter uses",
+        "concept": "The second hand"
+      }
+    ],
+    "delight": "On the first phase, as the thin second hand finishes its first turn, the minute hand steps on by one small mark, and when the minute hand finishes its turn the hour hand steps on by one number, so the three hands click on together like the wheels of a music box.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet turned. On the first phase one clock face stands with all three hands at the top and a tally beside it for minutes, hours and days. On the second the day bar lies under the clock, its a.m. half warm white and its p.m. half rose, with a tray of time cards beside it. On the third the clock shows a time to set, with the hour hand and the minute hand near-black ink. On the fourth the thin second hand, vermilion and longer than both, is on the clock, and a tray of readings waits below it. One thing moves, once: the turning handle, the first time card, the minute hand or the thin second hand gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any time set by turning the hands, any time card dropped on the day bar, and the thin second hand set on any number. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the units of time, a.m. and p.m., the minute hand and the hour hand, and the thin second hand.",
+    "voiceLines": [
+      "A round clock with three hands, waiting to be turned.",
+      "Turn the thin hand once round. What has the next hand done?",
+      "Drop the card on the bar. Which half of the day does it land in?",
+      "Which number is the long hand on? Count five for every number.",
+      "Where is the thin hand? Count five seconds for each number.",
+      "A new time on the clock. Read it the same way.",
+      "Free play. Turn the hands and drop times on the day bar.",
+      "Look at all three hands again. What does each one count?",
+      "You turned the three hands together and read a clock to the second."
+    ],
+    "observations": [
+      {
+        "why": "each hand counts one unit, and 60 s make 1 min while 60 min make 1 h.",
+        "soWhat": "the units of time fit into one another, and the hour hand goes twice round the clock in a day, because 1 day is 24 h.",
+        "observe": "One turn of the thin second hand moved the minute hand on by a small mark, and one turn of the minute hand moved the hour hand on by a number."
+      },
+      {
+        "why": "a.m. runs from midnight until just before noon, and p.m. from noon until just before midnight.",
+        "soWhat": "noon and midnight are written 12 noon and 12 midnight, never with a.m. or p.m.",
+        "observe": "Every card stayed in the half of the day bar it was dropped on, and 12 noon sat where the two halves met."
+      },
+      {
+        "why": "each number the minute hand passes is 5 min, and the hour hand moves on as the minutes pass.",
+        "soWhat": "read the minutes from the minute hand first, then say the hour the hour hand has just passed.",
+        "observe": "The hour hand had moved on from its number whenever the minute hand was on a number."
+      },
+      {
+        "why": "the thin second hand goes once round in 1 min, and each number is 5 s.",
+        "soWhat": "a clock is read as minutes and seconds past the hour, as in 20 min 35 s past 9.",
+        "observe": "The thin second hand counted in fives too, and its name was written outside the dial."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "one clock face with all three hands at 12, and a tally beside it for minutes, hours and days",
+        "win": "the hour hand has gone twice round and the tally shows 1 day is 24 h",
+        "traceback": "The hand is turned round again, its hours or minutes counted in a tag, and the reading ends on the whole answer.",
+        "ladder": [
+          "One turn of the hour hand passes all 12 numbers.",
+          "Count 5 min for every number the long hand passes.",
+          "The hour hand needs 12 h for each trip round.",
+          "Watch which hand moved, and how far it went.",
+          "A full turn of one hand moves the next hand on."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the day bar under the clock, its a.m. half warm white and its p.m. half rose, with 12 noon marked between them, and a tray of time cards",
+        "win": "every card sits in its own half of the day bar with the right label",
+        "traceback": "The right half of the day bar lights amber with its span written under it, and the time is written with a.m. or p.m.",
+        "ladder": [
+          "Which half of the day is the afternoon in?",
+          "Is the morning before or after 12 noon?",
+          "Look at the point where the two halves of the bar meet.",
+          "Think of where the sun is at that time of day.",
+          "Morning and afternoon sit on different halves."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the clock face with the hour hand and the minute hand near-black, and a time to set",
+        "win": "the minutes and the hour are read together and turn green, as 35 min past 4",
+        "traceback": "A violet minute hand walks round from the top in fives with a tag counting 5 min a number, the hour the hand has passed lights amber, and the reading ends on the whole answer.",
+        "ladder": [
+          "Count 5 min for each number the minute hand has passed.",
+          "Each number is 5 min for the minute hand, not 1 min.",
+          "Read the minutes from the long hand and the hour from the short hand.",
+          "Look at both hands before you write.",
+          "The short hand creeps on as the long hand goes round."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the clock face with all three hands, the thin second hand longer than both and vermilion, and a tray of readings",
+        "win": "the reading turns green, as 20 min 35 s past 9",
+        "traceback": "A vermilion second hand walks round in fives with a tag counting 5 s a number, then the minutes are counted in violet, and the reading ends on the whole answer.",
+        "ladder": [
+          "The thin hand counts seconds, 5 s for each number.",
+          "This thin hand is the second hand, so count seconds, not minutes.",
+          "Each of the two long hands counts in fives, in its own unit.",
+          "Find the thin hand first: it counts seconds.",
+          "Count every hand in fives, each in its own unit."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "warm": {
+      "1": {
+        "kind": "turn",
+        "hand": "s",
+        "turns": 1
+      },
+      "2": {
+        "kind": "half",
+        "h": 8,
+        "m": 0,
+        "half": "am",
+        "card": [
+          "8 o'clock",
+          "morning"
+        ]
+      },
+      "3": {
+        "kind": "setm",
+        "h": 6,
+        "to": 3
+      },
+      "4": {
+        "kind": "sets",
+        "h": 7,
+        "m": 0,
+        "to": 3
+      }
+    },
+    "clock": {
+      "bigCase": 250,
+      "smallCase": 112,
+      "face": 0.78
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T2.C5:HC1",
+        "kind": "turn",
+        "hand": "h",
+        "turns": 2,
+        "parts": [
+          {
+            "label": "hours",
+            "unit": "h"
+          },
+          {
+            "label": "days"
+          }
+        ],
+        "answer": [
+          24,
+          1
+        ],
+        "near": [
+          24,
+          2
+        ],
+        "ladder": [
+          "The hour hand moves 1 h from one number to the next.",
+          "Add the hours of both turns, then say how many days that is."
+        ],
+        "win": "Yes, two turns of 12 h make 24 h, which is 1 day.",
+        "show": [
+          "24 h, 1 day"
+        ],
+        "thumb": [
+          "12+12=24"
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T2.C5:1",
+        "kind": "turn",
+        "hand": "m",
+        "turns": 1,
+        "parts": [
+          {
+            "label": "minutes",
+            "unit": "min"
+          },
+          {
+            "label": "hours",
+            "unit": "h"
+          }
+        ],
+        "answer": [
+          60,
+          1
+        ],
+        "near": [
+          100,
+          1
+        ],
+        "ladder": [
+          "There are 12 numbers on the clock, and each one is 5 min.",
+          "Look where the hour hand moved to after that one turn."
+        ],
+        "win": "Yes, one turn of the minute hand is 60 min, which is 1 h.",
+        "show": [
+          "60 min, 1 h"
+        ],
+        "thumb": [
+          "12×5=60"
+        ]
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S1.T2.C5:5",
+        "kind": "recall",
+        "answer": 2,
+        "near": 1,
+        "ladder": [
+          "How many hours make 1 day?",
+          "Find how many 12 h turns fit into one whole day."
+        ],
+        "win": "Yes, the hour hand goes twice round in 1 day.",
+        "show": [
+          "2 turns, 1 day"
+        ],
+        "thumb": [
+          "2×12=24"
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T2.C6:HC2",
+        "kind": "half",
+        "h": 2,
+        "m": 20,
+        "half": "pm",
+        "card": [
+          "20 min past 2",
+          "afternoon"
+        ],
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes",
+            "unit": "min"
+          }
+        ],
+        "answer": [
+          2,
+          20
+        ],
+        "near": "2|20|am",
+        "forms": [
+          "2:20 p.m."
+        ],
+        "ladder": [
+          "Afternoon times come after 12 noon.",
+          "Type the hour in the first box and the minutes in the next."
+        ],
+        "win": "Yes, the afternoon is p.m., so it is 2:20 p.m.",
+        "show": [
+          "2:20 p.m."
+        ],
+        "thumb": [
+          "2:20"
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T2.C6:2",
+        "kind": "half",
+        "h": 5,
+        "m": 20,
+        "half": "am",
+        "card": [
+          "20 min past 5",
+          "morning"
+        ],
+        "parts": [
+          {
+            "label": "hour"
+          },
+          {
+            "label": "minutes",
+            "unit": "min"
+          }
+        ],
+        "answer": [
+          5,
+          20
+        ],
+        "near": "5|20|pm",
+        "forms": [
+          "5:20 a.m."
+        ],
+        "ladder": [
+          "The first half of the day starts at 12 midnight.",
+          "Hour first, then the minutes, in the two boxes."
+        ],
+        "win": "Yes, the morning is a.m., so it is 5:20 a.m.",
+        "show": [
+          "5:20 a.m."
+        ],
+        "thumb": [
+          "5:20"
+        ]
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T2.C6:6",
+        "kind": "noon",
+        "answer": "noon",
+        "near": "pm",
+        "forms": [
+          "12 noon"
+        ],
+        "ladder": [
+          "Its name is a word, not one of the two half labels.",
+          "Read the words at the two ends of the bar."
+        ],
+        "win": "Yes, it is 12 noon, never written 12 p.m.",
+        "show": [
+          "12 noon"
+        ],
+        "thumb": [
+          "12:00"
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T2.C7:HC3",
+        "kind": "setm",
+        "h": 4,
+        "to": 7,
+        "put": "Put the minute hand on 7.",
+        "parts": [
+          {
+            "label": "minutes",
+            "unit": "min"
+          },
+          {
+            "label": "past"
+          }
+        ],
+        "answer": [
+          35,
+          4
+        ],
+        "near": [
+          35,
+          5
+        ],
+        "ladder": [
+          "Find the number the short hand has already passed.",
+          "Write the minutes first, then the hour they are past."
+        ],
+        "win": "Yes, it is 35 min past 4.",
+        "show": [
+          "35 min past 4"
+        ],
+        "thumb": [
+          "7×5=35"
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T2.C7:3",
+        "kind": "setm",
+        "h": 7,
+        "to": 4,
+        "put": "Put the minute hand on 4.",
+        "answer": 20,
+        "near": 4,
+        "ladder": [
+          "Count in fives from the top, one five for every number.",
+          "Multiply the number it points to by 5."
+        ],
+        "win": "Yes, 4 numbers of 5 min make 20 min.",
+        "show": [
+          "20 min"
+        ],
+        "thumb": [
+          "4×5=20"
+        ]
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T2.C7:7",
+        "kind": "setm",
+        "h": 3,
+        "to": 6,
+        "put": "Put the minute hand on 6.",
+        "parts": [
+          {
+            "label": "minutes",
+            "unit": "min"
+          },
+          {
+            "label": "past"
+          }
+        ],
+        "answer": [
+          30,
+          3
+        ],
+        "near": [
+          30,
+          4
+        ],
+        "ladder": [
+          "Halfway round the clock, the minute hand has passed 6 numbers.",
+          "Fives up to the 6 give the minutes; the hour goes in the second box."
+        ],
+        "win": "Yes, it is 30 min past 3.",
+        "show": [
+          "30 min past 3"
+        ],
+        "thumb": [
+          "6×5=30"
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T2.C8:HC4",
+        "kind": "sets",
+        "h": 8,
+        "m": 10,
+        "to": 9,
+        "put": "Put the thin hand on 9.",
+        "parts": [
+          {
+            "label": "minutes",
+            "unit": "min"
+          },
+          {
+            "label": "seconds",
+            "unit": "s"
+          },
+          {
+            "label": "past"
+          }
+        ],
+        "answer": [
+          10,
+          45,
+          8
+        ],
+        "near": [
+          10,
+          0,
+          8
+        ],
+        "ladder": [
+          "Read the minutes from the long hand, then read the seconds from the thin hand.",
+          "Write minutes, then seconds, then the hour they are past."
+        ],
+        "win": "Yes, it is 10 min 45 s past 8.",
+        "show": [
+          "10 min 45 s",
+          "past 8"
+        ],
+        "thumb": [
+          "9×5=45"
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T2.C8:4",
+        "kind": "sets",
+        "h": 2,
+        "m": 0,
+        "to": 6,
+        "put": "Put the thin hand on 6.",
+        "answer": 30,
+        "near": 6,
+        "ladder": [
+          "Count in fives from the top, a five for every number it passes.",
+          "Six numbers of 5 s: work it out."
+        ],
+        "win": "Yes, 6 numbers of 5 s make 30 s.",
+        "show": [
+          "30 s"
+        ],
+        "thumb": [
+          "6×5=30"
+        ]
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T2.C8:8",
+        "kind": "sets",
+        "h": 11,
+        "m": 45,
+        "to": 4,
+        "put": "Put the thin hand on 4.",
+        "parts": [
+          {
+            "label": "minutes",
+            "unit": "min"
+          },
+          {
+            "label": "seconds",
+            "unit": "s"
+          },
+          {
+            "label": "past"
+          }
+        ],
+        "answer": [
+          45,
+          20,
+          11
+        ],
+        "near": [
+          45,
+          0,
+          11
+        ],
+        "ladder": [
+          "The hand on 9 shows minutes; the thin one on 4 shows seconds.",
+          "Three boxes: the long hand, the thin hand, then the hour."
+        ],
+        "win": "Yes, it is 45 min 20 s past 11.",
+        "show": [
+          "45 min 20 s",
+          "past 11"
+        ],
+        "thumb": [
+          "4×5=20"
+        ]
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The hand is turned round again, its hours or minutes counted in a tag, and the reading ends on the whole answer.",
+      "Phase 2: The right half of the day bar lights amber with its span written under it, and the time is written with a.m. or p.m.",
+      "Phase 3: A violet minute hand walks round from the top in fives with a tag counting 5 min a number, the hour the hand has passed lights amber, and the reading ends on the whole answer.",
+      "Phase 4: A vermilion second hand walks round in fives with a tag counting 5 s a number, then the minutes are counted in violet, and the reading ends on the whole answer."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A round clock with three hands, waiting to be turned.",
+    "onFreePlay": "Free play. Tap Turn, or drag the long hand and the thin hand round the clock.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You turned the three hands together and read a clock to the second.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T2.C5:HC1",
+            "worked": false,
+            "kind": "turn",
+            "planQuestion": "The hour hand goes round the clock face twice from one 12 midnight to the next. How many hours is that, and how many days?",
+            "question": {
+              "en": "Tap Turn to send the hour hand twice round; how many hours and days is that?"
+            },
+            "ask": {
+              "en": "Hours? Days?"
+            },
+            "answer": [
+              24,
+              1
+            ],
+            "planAnswer": "24 h, which is 1 day.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T2.C5:1",
+            "worked": false,
+            "kind": "turn",
+            "planQuestion": "The minute hand goes once round the clock face. How many minutes is that, and how many hours?",
+            "question": {
+              "en": "Tap Turn: the minute hand goes once round, so how many minutes and hours?"
+            },
+            "ask": {
+              "en": "Minutes? Hours?"
+            },
+            "answer": [
+              60,
+              1
+            ],
+            "planAnswer": "60 min, which is 1 h",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S1.T2.C5:5",
+            "worked": false,
+            "kind": "recall",
+            "planQuestion": "How many times does the hour hand go round the clock face in 1 day?",
+            "question": {
+              "en": "How many times does the hour hand go round the clock in 1 day?"
+            },
+            "ask": {
+              "en": "Turns in a day?"
+            },
+            "answer": 2,
+            "planAnswer": "Twice, because 1 day is 24 h and one turn of the hour hand is 12 h",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T2.C6:HC2",
+            "worked": false,
+            "kind": "half",
+            "planQuestion": "Is 20 min past 2 in the afternoon a.m. or p.m.? Write the time.",
+            "question": {
+              "en": "Drop the card 20 min past 2 in the afternoon on its half, then write the time."
+            },
+            "ask": {
+              "en": "The time?"
+            },
+            "answer": [
+              2,
+              20
+            ],
+            "planAnswer": "p.m., so 2:20 p.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T2.C6:2",
+            "worked": false,
+            "kind": "half",
+            "planQuestion": "Is 20 min past 5 in the morning a.m. or p.m.? Write the time.",
+            "question": {
+              "en": "Now place the card 20 min past 5 in the morning and write that time."
+            },
+            "ask": {
+              "en": "That time?"
+            },
+            "answer": [
+              5,
+              20
+            ],
+            "planAnswer": "a.m., so 5:20 a.m.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T2.C6:6",
+            "worked": false,
+            "kind": "noon",
+            "planQuestion": "At which time does the a.m. half of the day end and the p.m. half begin? Write it.",
+            "question": {
+              "en": "Which time ends the first half of the day bar and starts the second half?"
+            },
+            "ask": {
+              "en": "Where a.m. ends?"
+            },
+            "answer": "noon",
+            "planAnswer": "12 noon. a.m. runs from midnight until just before noon, and p.m. from noon until just before midnight",
+            "choices": [
+              "noon",
+              "pm",
+              "midnight"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T2.C7:HC3",
+            "worked": false,
+            "kind": "setm",
+            "planQuestion": "The minute hand points to 7 and the hour hand is just past 4. What time does the clock show?",
+            "question": {
+              "en": "Drag the minute hand to 7; what time is it?"
+            },
+            "ask": {
+              "en": "What time?"
+            },
+            "answer": [
+              35,
+              4
+            ],
+            "planAnswer": "35 min past 4.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T2.C7:3",
+            "worked": false,
+            "kind": "setm",
+            "planQuestion": "The minute hand points to 4. How many minutes past the hour is that?",
+            "question": {
+              "en": "Drag the minute hand to 4; how many minutes past the hour is that?"
+            },
+            "ask": {
+              "en": "Minutes past?"
+            },
+            "answer": 20,
+            "planAnswer": "20 min, because 4 x 5 = 20",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T2.C7:7",
+            "worked": false,
+            "kind": "setm",
+            "planQuestion": "The hour hand is halfway between 3 and 4, and the minute hand points to 6. What time is it?",
+            "question": {
+              "en": "Now set the minute hand on 6 and read the time."
+            },
+            "ask": {
+              "en": "What time now?"
+            },
+            "answer": [
+              30,
+              3
+            ],
+            "planAnswer": "30 min past 3, because 6 x 5 = 30",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T2.C8:HC4",
+            "worked": false,
+            "kind": "sets",
+            "planQuestion": "The minute hand is on 2, the hour hand is just past 8, and the thin second hand is on 9. What does the clock show?",
+            "question": {
+              "en": "Drag the thin hand to 9; with the minute hand on 2, what does the clock show?"
+            },
+            "ask": {
+              "en": "What time?"
+            },
+            "answer": [
+              10,
+              45,
+              8
+            ],
+            "planAnswer": "10 min 45 s past 8.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T2.C8:4",
+            "worked": false,
+            "kind": "sets",
+            "planQuestion": "The thin second hand points to 6. How many seconds is that?",
+            "question": {
+              "en": "Drag the thin hand to 6; how many seconds is that?"
+            },
+            "ask": {
+              "en": "Seconds?"
+            },
+            "answer": 30,
+            "planAnswer": "30 s, because 6 x 5 = 30",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T2.C8:8",
+            "worked": false,
+            "kind": "sets",
+            "planQuestion": "The minute hand is on 9, the thin second hand is on 4, and the hour hand is just past 11. What does the clock show?",
+            "question": {
+              "en": "Drag the thin hand to 4, with the minute hand on 9; what does the clock show?"
+            },
+            "ask": {
+              "en": "Read it all?"
+            },
+            "answer": [
+              45,
+              20,
+              11
+            ],
+            "planAnswer": "45 min 20 s past 11, because 9 x 5 = 45 and 4 x 5 = 20",
+            "madeOn": "keypad"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "clock_hands",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "clock_hands",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Seconds, minutes, hours and days",
+        "conceptId": "M1.S1.T2.C5",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C5:HC1",
+          "M1.S1.T2.C5:1",
+          "M1.S1.T2.C5:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "a.m. and p.m.",
+        "conceptId": "M1.S1.T2.C6",
+        "objectiveIds": [
+          "O1"
+        ],
+        "items": [
+          "M1.S1.T2.C6:HC2",
+          "M1.S1.T2.C6:2",
+          "M1.S1.T2.C6:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Hour hand and minute hand",
+        "conceptId": "M1.S1.T2.C7",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C7:HC3",
+          "M1.S1.T2.C7:3",
+          "M1.S1.T2.C7:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "The second hand",
+        "conceptId": "M1.S1.T2.C8",
+        "objectiveIds": [
+          "O2"
+        ],
+        "items": [
+          "M1.S1.T2.C8:HC4",
+          "M1.S1.T2.C8:4",
+          "M1.S1.T2.C8:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "hands",
+    "hour",
+    "minute",
+    "second",
+    "tally",
+    "cards",
+    "half",
+    "reading"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), hands, hour, minute, second, tally, cards, half, reading, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "clock_hands"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T2.C8.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A round clock with three hands, waiting to be turned."
+    },
+    {
+      "en": "Turn the thin hand once round. What has the next hand done?"
+    },
+    {
+      "en": "Drop the card on the bar. Which half of the day does it land in?"
+    },
+    {
+      "en": "Which number is the long hand on? Count five for every number."
+    },
+    {
+      "en": "Where is the thin hand? Count five seconds for each number."
+    },
+    {
+      "en": "A new time on the clock. Read it the same way."
+    },
+    {
+      "en": "Free play. Turn the hands and drop times on the day bar."
+    },
+    {
+      "en": "Look at all three hands again. What does each one count?"
+    },
+    {
+      "en": "You turned the three hands together and read a clock to the second."
+    }
+  ],
+  "build": {
+    "source": "c1feeb58:658043",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-16T19:07:10.738Z",
+    "checks": {
+      "pass": 98,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-11-16T19:07:10.578Z"
+    },
+    "tsxBytes": 582058,
+    "tsxMd5": "733bf9a77b74a2f87d27c806578594db"
+  }
+}

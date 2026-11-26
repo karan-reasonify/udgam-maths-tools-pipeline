@@ -1,0 +1,1171 @@
+{
+  "slotId": "M1.S1.T3.C13.2D1",
+  "mediaId": "M1.S1.T3.C13.2D1",
+  "toolId": "write_the_money",
+  "title": "Write the Money",
+  "component": "M1.S1.T3.C13.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 3,
+  "chapter": "indiannica_eng_maths3_ch11",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths3_ch11_v1",
+  "planVersion": 1,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_3/mathematics/ch_11/2dtool/M1.S1.T3.C13.2D1/M1.S1.T3.C13.2D1.tsx",
+  "description": "Fill the rupees box and the paise box of a price tag, put the dot between them, and write each amount in figures and in words.",
+  "conceptIds": [
+    "M1.S1.T3.C10",
+    "M1.S1.T3.C11",
+    "M1.S1.T3.C12",
+    "M1.S1.T3.C13"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Name the rupees and the paise of a price and see that a hundred paise make a rupee, write an amount with a dot between the rupees and the paise, keep the paise to two digits, and turn an amount from words into figures and from figures into words.",
+    "look": "A price tag on a real shop thing with a deep blue Rupees box, a dot and a vermilion Paise box of two cells, a bar of ten blocks beside a Rs 1 coin, a words card, the Words and figures switch, and the number pad down the right of the canvas.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Write the Money' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: how many amounts have been written. It is never a score. The working area is 1086 by 528 at x 64, y 202. A plain shop shelf wall fills the working area. The price tag hangs at x 110, y 214, 470 by 250, from a short string tied to a real thing on the shelf, a ruler, a glue stick, a notebook, a marker or a pencil box. Across the tag run the letters Rs in near-black, the Rupees box in deep blue 150 by 110, a round near-black dot and the Paise box in vermilion, two square cells side by side 70 by 110 each, with the headings Rupees and Paise over the boxes in their own colours. The flat Rs 1 coin stands at x 110, y 520, 120 across, and the bar of ten equal vermilion blocks runs beside it from x 260 to x 620, 60 high, filling one block at a time toward the coin. The words card stands at x 640, y 214, 400 by 130, and says the amount aloud and in writing, such as twelve rupees sixty paise. A green Answer tag at x 640, y 370, 260 by 70, holds the amount the child has typed. In a task the tag sits in a small scene drawn behind it, a classroom shelf, a school fair stall, a stationery shop or a bookstall. The Words and figures switch stands at x 640, y 650, 250 by 60, and the Bar button at x 910, y 650, 130 by 60, each labelled in words. With the switch on, the tag becomes a shop board holding the amount in words, and back. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys, a clear key and a box key that moves the typing between the Rupees box and the Paise box, for typing the rupees and then the paise of an amount into the answer slot. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Real objects keep their own natural colours. The whole rupees of an amount are deep blue and the paise are vermilion everywhere, in a column heading, a tag and a label. The value written on one note or coin, and the price of one thing, is amber. How many notes, coins or things there are is sky blue. A total, a change, a converted amount and the answer are green. A note is a plain flat rectangle in its own colour and a coin a plain round disc, each with its value in large near-black type, so a value is read from the number and never from the colour. Anything dimmed fades to half strength rather than turning grey, and chrome never borrows one of the five. Each reading survives with the colour taken away, because an amount is told by its written label before it is told by its colour.",
+    "finish": "The tag shows the last amount, with the words card saying it aloud and in writing and the shop board beside it.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the rupees box lights deep blue, the paise box lights vermilion, and the full bar settles on the coin",
+        "does": "taps the rupees part and the paise part of the tag, and fills the bar block by block to the coin",
+        "goal": "a price has a rupees part and a paise part, and a hundred paise make one rupee",
+        "says": "Which part of this price is the rupees? Which part is the paise?",
+        "check": "Away from the screen: a tag says 8 rupees and 20 paise. Which part is the paise, and is it more or less than one rupee?",
+        "feels": "the bar filling block by block until it settles on the coin, one rupee made of a hundred paise",
+        "hands": "Hand each child a paper price tag with a price on it and two crayons, and ask them to colour the whole part of the price blue and the small part red.",
+        "tries": "First rung: point to the whole part of the price. Second rung: fill the bar and see it settle on the coin. Third rung: the same task with the boxes already coloured, before the colours are taken away.",
+        "wrong": [
+          {
+            "why": "35 looks bigger than 7, so it seems to be worth more",
+            "move": "reads the paise as the bigger part because its number is bigger",
+            "screen": "the bar of ten blocks fills the coin and the paise box shows that the paise are only a part of one rupee, while the rupees box counts whole coins"
+          },
+          {
+            "why": "the first number read is taken to be the small one",
+            "move": "says the number before the dot is the paise",
+            "screen": "the rupees box lights deep blue and the paise box vermilion, and the words card says the rupees first and the paise after"
+          }
+        ],
+        "screen": "a price tag on a ruler on a shop shelf, with a Rs 1 coin and a bar of ten blocks under it",
+        "soWhat": "a price has a rupees part and a paise part, and a hundred paise make one rupee",
+        "concept": "Rupees and paise: a hundred paise make a rupee"
+      },
+      {
+        "n": 2,
+        "win": "the dot lights between the boxes, the words card says the amount aloud and a green tag holds it",
+        "does": "types the rupees, then moves to the paise and types them, and watches the dot sit between the boxes",
+        "goal": "an amount is written Rs, the rupees, a dot and the paise, and the dot keeps the two parts apart",
+        "says": "Fill the rupees box, then the paise box. Where does the dot go?",
+        "check": "Away from the screen: write 14 rupees and 25 paise in figures on your tag, then cover the dot and ask a partner what is missing.",
+        "feels": "the dot dropping into its place between the two boxes as soon as both are filled",
+        "hands": "On a paper tag with two boxes and a dot drawn on it, write the rupees in the first box, the paise in the second, and say the amount aloud.",
+        "tries": "First rung: say which box is for the rupees. Second rung: type the rupees, then use the box key and type the paise. Third rung: the same task with only the rupees to type, before the paise return.",
+        "wrong": [
+          {
+            "why": "two numbers written together look like one big number",
+            "move": "writes the rupees and the paise side by side with no dot",
+            "screen": "the two boxes are shown apart with the dot lit between them, and the words card reads the amount as one number and then as rupees and paise"
+          },
+          {
+            "why": "the word is said at the end, so it feels as if it is written there too",
+            "move": "writes the word paise at the end of the amount",
+            "screen": "the Paise heading stays over the second box, so the word is already written there, and the amount on the green tag ends with its last digit"
+          }
+        ],
+        "screen": "a price tag on a notebook with two empty boxes, and the dot waiting between them",
+        "soWhat": "an amount is written Rs, the rupees, a dot and the paise, and the dot keeps the two parts apart",
+        "concept": "The dot between the rupees and the paise"
+      },
+      {
+        "n": 3,
+        "win": "the 0 slides in, both cells glow vermilion, and the words card says the amount",
+        "does": "types a paise number of one digit, and watches a 0 slide into the empty cell in front of it",
+        "goal": "the paise of an amount always take two digits, so a single digit has a 0 in front of it",
+        "says": "How many digits do the paise take? Fill both cells.",
+        "check": "Away from the screen: write 3 rupees and 8 paise on your tag. How many cells do the paise fill?",
+        "feels": "the 0 sliding in from the left until both paise cells are full",
+        "hands": "On a paper tag with two cells drawn in the paise box, write the paise of a price that is under ten and see that the first cell is left empty.",
+        "tries": "First rung: count the cells of the paise box. Second rung: type the paise and watch for the 0. Third rung: the same task with paise of two digits already, before the single digits return.",
+        "wrong": [
+          {
+            "why": "one digit seems enough to say the number of paise",
+            "move": "types a single digit of paise and leaves the second cell empty",
+            "screen": "a 0 slides into the first cell and both cells fill vermilion, and the words card says the amount aloud with its paise"
+          },
+          {
+            "why": "a 0 at the end looks like nothing, so it seems safe to leave out",
+            "move": "drops the 0 at the end of the paise, writing forty paise as 4",
+            "screen": "the second cell stays filled with its 0, and the words card says forty paise and not four paise"
+          }
+        ],
+        "screen": "a price tag on a pencil box whose paise box has two cells, one filled and one waiting",
+        "soWhat": "the paise of an amount always take two digits, so a single digit has a 0 in front of it",
+        "concept": "Two digits for paise"
+      },
+      {
+        "n": 4,
+        "win": "the tag fills, the words and the figures agree, and a green tag holds the amount",
+        "does": "writes an amount given in words as figures on the tag, and turns a filled tag into words on the board",
+        "goal": "an amount said in words and an amount written in figures are one amount, even for whole rupees and for less than a rupee",
+        "says": "Say the amount aloud, then write it on the tag.",
+        "check": "Away from the screen: say Rs 15.00 in words. Then write sixty paise in figures and say how many rupees it has.",
+        "feels": "the words and the figures agreeing, the same amount said on the board and written on the tag",
+        "hands": "Write an amount in words on a card, swap cards with a partner, and write the other's amount in figures on a paper tag.",
+        "tries": "First rung: say the rupees first and then the paise. Second rung: write the rupees, the dot and the paise one box at a time. Third rung: the same task with the rupees already in the box, before it is left empty.",
+        "wrong": [
+          {
+            "why": "there are no rupees to say, so it feels as if there is nothing to write",
+            "move": "writes an amount under one rupee with no rupees digit, as .85",
+            "screen": "the Rupees box shows a 0 and the dot stays lit, and the words card says no rupees and eighty-five paise"
+          },
+          {
+            "why": "the extra zeros look like extra money",
+            "move": "thinks a tag with two zeros after the dot is a different price from the whole rupees",
+            "screen": "the tag and the shop board show the same amount, and the bar shows the paise part empty, so the price is whole rupees"
+          }
+        ],
+        "screen": "a shop board holding an amount in words beside an empty price tag, and a filled tag beside an empty board",
+        "soWhat": "an amount said in words and an amount written in figures are one amount, whole rupees have no paise and an amount under a rupee has 0 rupees",
+        "concept": "Saying and writing an amount in words and in figures"
+      }
+    ],
+    "delight": "On the third phase, when a single digit is typed into the paise box, a vermilion 0 slides in from the left and settles in the first cell, and both cells glow for a moment as the words card says the amount. On the fourth phase, when the tag is filled, it swings once on its string and the shop board beside it fills with the same amount in words.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet typed. On the first phase a price tag hangs from a ruler on a shop shelf with both boxes filled and unlabelled, and a Rs 1 coin and a bar of ten empty blocks stand under it. On the second the tag hangs from a notebook with two empty boxes and the dot waiting between them. On the third the tag hangs from a pencil box and the Paise box shows two empty cells. On the fourth a shop board holds an amount in words beside an empty tag, and the words card is blank. One thing moves, once: the dot gives one slow pulse while the voice speaks its opening line, and a finger on a box is the whole way in.",
+    "freePlay": "Any amount in the two boxes, with the bar, the words card and the words and figures switch open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the rupees and the paise, the dot, the two digits of paise, whole rupees, amounts under a rupee and words and figures, each on a small real price tag.",
+    "voiceLines": [
+      "A price tag with two boxes and a dot between them, waiting to be filled.",
+      "Which part of this price is the rupees? Which part is the paise?",
+      "Fill the rupees box, then the paise box. Where does the dot go?",
+      "How many digits do the paise take? Fill both cells.",
+      "Say the amount aloud, then write it on the tag.",
+      "A new tag. Which part of the price is the rupees?",
+      "Free play. Fill the boxes with any price you like.",
+      "Look at the paise again. How many cells do they fill?",
+      "You wrote every amount with the dot in the right place."
+    ],
+    "observations": [
+      {
+        "why": "a price has a whole part and a small part, and a hundred paise make one rupee.",
+        "soWhat": "the rupees are the whole part, the paise are the small part, and a hundred paise make a rupee.",
+        "observe": "The rupees box lit deep blue beside the whole part of the price and the paise box lit vermilion beside the small part, and the bar of ten blocks filled the Rs 1 coin."
+      },
+      {
+        "why": "the dot is the mark that keeps the rupees and the paise apart.",
+        "soWhat": "an amount is written Rs, the rupees, a dot and the paise.",
+        "observe": "A dot lit between the two boxes once both were filled, and the words card said the rupees and then the paise."
+      },
+      {
+        "why": "the paise of an amount always fill two cells.",
+        "soWhat": "paise always take two digits, so a single digit has a 0 in front of it.",
+        "observe": "A single digit typed into the paise box had a 0 slide in front of it, so both cells were always full."
+      },
+      {
+        "why": "an amount is one amount whether it is said or written, and whole rupees have no paise.",
+        "soWhat": "an amount is turned from words into figures and back by saying the rupees first and then the paise.",
+        "observe": "The tag and the shop board showed the same amount, one in figures and one in words, and an amount of whole rupees showed two zeros after the dot."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a price tag on a ruler on a shop shelf, with a Rs 1 coin and a bar of ten blocks under it",
+        "win": "the rupees box lights deep blue, the paise box lights vermilion, and the full bar settles on the coin",
+        "traceback": "The paise of the price fill the row of 10 p tiles, less than the Rs 1 coin, and the dot pulses; no box is lit.",
+        "ladder": [
+          "The rupees are the whole coins of the price.",
+          "The paise are the small part of the price.",
+          "85 paise is less than one whole rupee.",
+          "Look at the dot: it keeps the two parts apart.",
+          "Rupees are whole coins and paise are small pieces, less than one coin."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a price tag on a notebook with two empty boxes, and the dot waiting between them",
+        "win": "the dot lights between the boxes, the words card says the amount aloud and a green tag holds it",
+        "traceback": "The deep blue box glows, the dot pulses, then both paise cells light, empty, for the child to fill.",
+        "ladder": [
+          "Write all of the paise in the orange-red box.",
+          "The rupees go in the deep blue box.",
+          "The dot keeps the 9 rupees apart from the paise.",
+          "Type the rupees, then tap the paise box and type the paise.",
+          "Read the price as rupees first, then paise."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a price tag on a pencil box whose paise box has two cells, one filled and one waiting",
+        "win": "the 0 slides in, both cells glow vermilion, and the words card says the amount",
+        "traceback": "The deep blue box glows, the dot pulses, then both paise cells light: the paise always fill two cells.",
+        "ladder": [
+          "Count the cells: the paise always fill both.",
+          "Five paise is far less than fifty paise.",
+          "Look at the paise cells: 50 paise is five tens.",
+          "Type the paise and look at both cells.",
+          "Each paise cell needs a digit, even a 0."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a shop board holding an amount in words beside an empty price tag, and a filled tag beside an empty board",
+        "win": "the tag fills, the words and the figures agree, and a green tag holds the amount",
+        "traceback": "The deep blue box glows, then the vermilion box: the rupees are read first, then the paise; the child's own tiles stay.",
+        "ladder": [
+          "Ten paise is written with two digits.",
+          "Say the rupees first, then the paise.",
+          "Two zeros after the dot mean no paise at all.",
+          "Look at the colours: rupees in deep blue, paise in orange-red.",
+          "Read the deep blue box first, then the orange-red box."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "tag": "Rs [rupees] . [paise, two cells]",
+    "colours": {
+      "rupees": "#1D4E89",
+      "paise": "#D2541E",
+      "answer": "#2E7D32"
+    },
+    "paiseTile": "10 p",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S1.T3.C10:WM1",
+        "kind": "tap",
+        "side": "r",
+        "amt": [
+          7,
+          35
+        ],
+        "obj": "ruler",
+        "pad": "enter",
+        "answer": 7,
+        "near": 35,
+        "win": "Yes, 7 is the rupees part of the price."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S1.T3.C10:1",
+        "kind": "tap",
+        "side": "p",
+        "amt": [
+          23,
+          50
+        ],
+        "obj": "pencilbox",
+        "pad": "enter",
+        "answer": 50,
+        "near": 23,
+        "win": "Yes, 50 is the paise part."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S1.T3.C13:7",
+        "kind": "tap",
+        "side": "r",
+        "amt": [
+          0,
+          85
+        ],
+        "obj": "notebook",
+        "pad": "enter",
+        "answer": 0,
+        "near": 85,
+        "win": "Yes, no whole rupee, only 85 paise."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S1.T3.C11:WM2",
+        "kind": "type",
+        "amt": [
+          16,
+          80
+        ],
+        "obj": "gluestick",
+        "parts": [
+          {
+            "label": "rupees",
+            "at": "dwhole"
+          },
+          {
+            "label": "paise",
+            "at": "dpart"
+          }
+        ],
+        "cardName": "price tag",
+        "zero": "Write 16, with no zero in front.",
+        "answer": [
+          "16",
+          "80"
+        ],
+        "near": "16|8",
+        "given": "board",
+        "win": "Yes, Rs 16.80 has its dot between the boxes."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S1.T3.C11:2",
+        "kind": "type",
+        "amt": [
+          11,
+          40
+        ],
+        "obj": "marker",
+        "parts": [
+          {
+            "label": "rupees",
+            "at": "dwhole"
+          },
+          {
+            "label": "paise",
+            "at": "dpart"
+          }
+        ],
+        "cardName": "price tag",
+        "zero": "Write 11, with no zero in front.",
+        "answer": [
+          "11",
+          "40"
+        ],
+        "near": "40|11",
+        "win": "Yes, the marker costs Rs 11.40."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S1.T3.C11:5",
+        "kind": "type",
+        "amt": [
+          9,
+          20
+        ],
+        "obj": "notebook",
+        "parts": [
+          {
+            "label": "rupees",
+            "at": "dwhole"
+          },
+          {
+            "label": "paise",
+            "at": "dpart"
+          }
+        ],
+        "cardName": "price tag",
+        "zero": "Write 9, with no zero in front.",
+        "answer": [
+          "9",
+          "20"
+        ],
+        "near": "92|0",
+        "given": "slip",
+        "slip": "920",
+        "win": "Yes, the dot is back in its place."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S1.T3.C12:WM3",
+        "kind": "type",
+        "amt": [
+          8,
+          5
+        ],
+        "obj": "pencilbox",
+        "parts": [
+          {
+            "label": "rupees",
+            "at": "dwhole"
+          },
+          {
+            "label": "paise",
+            "at": "dpart"
+          }
+        ],
+        "cardName": "price tag",
+        "zero": "Write 8, with no zero in front.",
+        "answer": [
+          "8",
+          "05"
+        ],
+        "near": "8|5",
+        "win": "Yes, Rs 8.05: both paise cells are full."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S1.T3.C12:3",
+        "kind": "type",
+        "amt": [
+          6,
+          5
+        ],
+        "obj": "ruler",
+        "parts": [
+          {
+            "label": "rupees",
+            "at": "dwhole"
+          },
+          {
+            "label": "paise",
+            "at": "dpart"
+          }
+        ],
+        "cardName": "price tag",
+        "zero": "Write 6, with no zero in front.",
+        "answer": [
+          "6",
+          "05"
+        ],
+        "near": "6|5",
+        "win": "Yes, Rs 6.05 has a 0 before the 5."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S1.T3.C12:6",
+        "kind": "type",
+        "amt": [
+          5,
+          50
+        ],
+        "obj": "gluestick",
+        "parts": [
+          {
+            "label": "rupees",
+            "at": "dwhole"
+          },
+          {
+            "label": "paise",
+            "at": "dpart"
+          }
+        ],
+        "cardName": "price tag",
+        "zero": "Write 5, with no zero in front.",
+        "answer": [
+          "5",
+          "50"
+        ],
+        "near": "5|5",
+        "given": "slip",
+        "slip": "Rs 5.5",
+        "win": "Yes, Rs 5.50 has two digits of paise."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S1.T3.C13:WM4",
+        "kind": "type",
+        "amt": [
+          48,
+          10
+        ],
+        "obj": "notebook",
+        "parts": [
+          {
+            "label": "rupees",
+            "at": "dwhole"
+          },
+          {
+            "label": "paise",
+            "at": "dpart"
+          }
+        ],
+        "cardName": "price tag",
+        "zero": "Write 48, with no zero in front.",
+        "answer": [
+          "48",
+          "10"
+        ],
+        "near": "48|1",
+        "given": "board",
+        "win": "Yes, the board and the tag both say Rs 48.10."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S1.T3.C13:4",
+        "kind": "tiles",
+        "amt": [
+          30,
+          60
+        ],
+        "obj": "marker",
+        "pad": "enter",
+        "answer": "thirty rupees sixty paise",
+        "near": "thirty rupees six paise",
+        "tiles": [
+          "sixty",
+          "rupees",
+          "six",
+          "thirty",
+          "paise"
+        ],
+        "ladder": [
+          "6 paise and 60 paise are different: which tile says 60?",
+          "Read both digits of the paise together, a 6 and a 0."
+        ],
+        "win": "Yes, thirty rupees sixty paise."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S1.T3.C13:8",
+        "kind": "tiles",
+        "amt": [
+          36,
+          0
+        ],
+        "obj": "pencilbox",
+        "pad": "enter",
+        "answer": "thirty-six rupees",
+        "near": "thirty-six paise",
+        "tiles": [
+          "rupees",
+          "six",
+          "paise",
+          "thirty-six",
+          "three"
+        ],
+        "win": "Yes, thirty-six rupees and no paise."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The paise of the price fill the row of 10 p tiles, less than the Rs 1 coin, and the dot pulses; no box is lit.",
+      "Phase 2: The deep blue box glows, the dot pulses, then both paise cells light, empty, for the child to fill.",
+      "Phase 3: The deep blue box glows, the dot pulses, then both paise cells light: the paise always fill two cells.",
+      "Phase 4: The deep blue box glows, then the vermilion box: the rupees are read first, then the paise; the child's own tiles stay."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A price tag with two boxes and a dot between them, waiting to be filled.",
+    "onFreePlay": "Free play: tap a box and type any price you like.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You wrote every amount with the dot in the right place.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S1.T3.C10:WM1",
+            "worked": false,
+            "kind": "tap",
+            "planQuestion": "The price tag on a ruler says 7 rupees and 35 paise. Which number is the rupees and which is the paise? How many paise make 1 rupee?",
+            "question": {
+              "en": "Tap the box that shows the rupees of this ruler's price."
+            },
+            "ask": {
+              "en": "Which box is the rupees?"
+            },
+            "answer": "rupees box (7)",
+            "planAnswer": "7 is the rupees and 35 is the paise. 100 paise make 1 rupee.",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S1.T3.C10:1",
+            "worked": false,
+            "kind": "tap",
+            "planQuestion": "The price tag on a pencil box says 23 rupees and 50 paise. Which number is the rupees? Which number is the paise?",
+            "question": {
+              "en": "Now tap the box that shows the paise of the pencil box's price."
+            },
+            "ask": {
+              "en": "Which box is the paise?"
+            },
+            "answer": "paise box (50)",
+            "planAnswer": "23 is the rupees and 50 is the paise",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S1.T3.C13:7",
+            "worked": false,
+            "kind": "tap",
+            "planQuestion": "A small eraser costs only 85 paise. Starting with Rs, write its price in figures. How many rupees are there?",
+            "question": {
+              "en": "This notebook costs only 85 paise, so tap the box that shows its rupees."
+            },
+            "ask": {
+              "en": "How many rupees?"
+            },
+            "answer": "rupees box (0)",
+            "planAnswer": "Rs 0.85, because 85 paise is Rs 0.85. There are 0 rupees",
+            "madeOn": "working area"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S1.T3.C11:WM2",
+            "worked": false,
+            "kind": "type",
+            "planQuestion": "A glue stick costs 16 rupees and 80 paise. Write the price in figures with Rs and a dot.",
+            "question": {
+              "en": "The board shows the glue stick's price in words, so write it on the tag."
+            },
+            "ask": {
+              "en": "Glue stick price?"
+            },
+            "answer": [
+              "16",
+              "80"
+            ],
+            "planAnswer": "Rs 16.80",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S1.T3.C11:2",
+            "worked": false,
+            "kind": "type",
+            "planQuestion": "A marker costs 11 rupees and 40 paise. Write the price in figures with Rs and a dot.",
+            "question": {
+              "en": "A marker costs 11 rupees and 40 paise, so write it in figures."
+            },
+            "ask": {
+              "en": "Marker price?"
+            },
+            "answer": [
+              "11",
+              "40"
+            ],
+            "planAnswer": "Rs 11.40, because Rs 11 and 40 paise is Rs 11.40",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S1.T3.C11:5",
+            "worked": false,
+            "kind": "type",
+            "planQuestion": "A child writes 9 rupees and 20 paise as 920. What is missing? Write the price correctly.",
+            "question": {
+              "en": "A child wrote 9 rupees 20 paise as 920, so write it again with the dot."
+            },
+            "ask": {
+              "en": "9 rupees 20 paise?"
+            },
+            "answer": [
+              "9",
+              "20"
+            ],
+            "planAnswer": "The dot is missing. The price is Rs 9.20, because Rs 9 and 20 paise is Rs 9.20",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S1.T3.C12:WM3",
+            "worked": false,
+            "kind": "type",
+            "planQuestion": "A sticker costs 4 rupees and 9 paise. Write the price in figures.",
+            "question": {
+              "en": "A pencil box costs 8 rupees and 5 paise, so write its price on the tag."
+            },
+            "ask": {
+              "en": "8 rupees 5 paise?"
+            },
+            "answer": [
+              "8",
+              "05"
+            ],
+            "planAnswer": "Rs 4.09",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S1.T3.C12:3",
+            "worked": false,
+            "kind": "type",
+            "planQuestion": "A candy costs 2 rupees and 7 paise. Write the price in figures.",
+            "question": {
+              "en": "A ruler costs 6 rupees and 5 paise, so fill both paise cells."
+            },
+            "ask": {
+              "en": "6 rupees 5 paise?"
+            },
+            "answer": [
+              "6",
+              "05"
+            ],
+            "planAnswer": "Rs 2.07, because 7 paise is written 07",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S1.T3.C12:6",
+            "worked": false,
+            "kind": "type",
+            "planQuestion": "At the school fair a child writes 13 rupees and 6 paise as 13.6. What is wrong? Write the price correctly.",
+            "question": {
+              "en": "A child wrote 5 rupees 50 paise as Rs 5.5, so write it correctly."
+            },
+            "ask": {
+              "en": "Write it right"
+            },
+            "answer": [
+              "5",
+              "50"
+            ],
+            "planAnswer": "The paise must take two digits. 6 paise is written 06, so the price is Rs 13.06",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S1.T3.C13:WM4",
+            "worked": false,
+            "kind": "type",
+            "planQuestion": "A shop board says forty-eight rupees ten paise. Write the amount in figures.",
+            "question": {
+              "en": "The board says the notebook's price in words, so write it on the tag."
+            },
+            "ask": {
+              "en": "Notebook price?"
+            },
+            "answer": [
+              "48",
+              "10"
+            ],
+            "planAnswer": "Rs 48.10",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S1.T3.C13:4",
+            "worked": false,
+            "kind": "tiles",
+            "planQuestion": "A board in a stationery shop says thirty rupees sixty paise. Write the amount in figures.",
+            "question": {
+              "en": "Tap the word tiles in order to say the marker's price."
+            },
+            "ask": {
+              "en": "Say it in words"
+            },
+            "answer": "thirty rupees sixty paise",
+            "planAnswer": "Rs 30.60",
+            "madeOn": "working area"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S1.T3.C13:8",
+            "worked": false,
+            "kind": "tiles",
+            "planQuestion": "A tag on a bookstall shelf says Rs 36.00. How many paise are in the price? Write the same price with no dot.",
+            "question": {
+              "en": "Now say this whole rupee price with the tiles."
+            },
+            "ask": {
+              "en": "Whole rupees in words"
+            },
+            "answer": "thirty-six rupees",
+            "planAnswer": "There are no paise. The price is Rs 36, because Rs 36.00 is Rs 36",
+            "madeOn": "working area"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "write_the_money",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "write_the_money",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Rupees and paise: a hundred paise make a rupee",
+        "conceptId": "M1.S1.T3.C10",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S1.T3.C10:WM1",
+          "M1.S1.T3.C10:1",
+          "M1.S1.T3.C13:7"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "The dot between the rupees and the paise",
+        "conceptId": "M1.S1.T3.C11",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S1.T3.C11:WM2",
+          "M1.S1.T3.C11:2",
+          "M1.S1.T3.C11:5"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Two digits for paise",
+        "conceptId": "M1.S1.T3.C12",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S1.T3.C12:WM3",
+          "M1.S1.T3.C12:3",
+          "M1.S1.T3.C12:6"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Saying and writing an amount in words and in figures",
+        "conceptId": "M1.S1.T3.C13",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S1.T3.C13:WM4",
+          "M1.S1.T3.C13:4",
+          "M1.S1.T3.C13:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "rupees",
+    "tr",
+    "r",
+    "paise",
+    "tp",
+    "p",
+    "dotLit",
+    "picked",
+    "pick",
+    "words",
+    "j",
+    "barBlocks",
+    "answer"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), complete, rupees, tr, r, paise, tp, p, dotLit, picked, pick, words, j, barBlocks, answer",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "write_the_money"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S1.T3.C13.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A price tag with two boxes and a dot between them, waiting to be filled."
+    },
+    {
+      "en": "Which part of this price is the rupees? Which part is the paise?"
+    },
+    {
+      "en": "Fill the rupees box, then the paise box. Where does the dot go?"
+    },
+    {
+      "en": "How many digits do the paise take? Fill both cells."
+    },
+    {
+      "en": "Say the amount aloud, then write it on the tag."
+    },
+    {
+      "en": "A new tag. Which part of the price is the rupees?"
+    },
+    {
+      "en": "Free play. Fill the boxes with any price you like."
+    },
+    {
+      "en": "Look at the paise again. How many cells do they fill?"
+    },
+    {
+      "en": "You wrote every amount with the dot in the right place."
+    }
+  ],
+  "build": {
+    "source": "94c34278:660648",
+    "runtime": "class3/runtime/frozen/r3/runtime.tsx",
+    "runtimeVersion": "r3",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-12T11:02:26.249Z",
+    "checks": {
+      "pass": 96,
+      "warn": 0,
+      "fail": 0,
+      "info": 5,
+      "at": "2026-11-12T11:02:26.052Z"
+    },
+    "tsxBytes": 583808,
+    "tsxMd5": "0cc95fd1c3e3cceefbedc5dfd847539c"
+  }
+}

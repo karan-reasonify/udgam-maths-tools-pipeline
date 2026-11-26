@@ -1,0 +1,1049 @@
+{
+  "slotId": "M1.S2.T3.C13.2D1",
+  "mediaId": "M1.S2.T3.C13.2D1",
+  "toolId": "day_dial",
+  "title": "Day Dial",
+  "component": "M1.S2.T3.C13.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 4,
+  "chapter": "indiannica_eng_maths4_ch12",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths4_ch12_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_4/mathematics/ch_12/2dtool/M1.S2.T3.C13.2D1/M1.S2.T3.C13.2D1.tsx",
+  "description": "Slide a marker along a strip of the whole day, watch the hour hand go round twice, write a.m. or p.m., and hop hours across noon and midnight.",
+  "conceptIds": [
+    "M1.S2.T3.C10",
+    "M1.S2.T3.C11",
+    "M1.S2.T3.C12",
+    "M1.S2.T3.C13"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        1086,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Tell the two halves of a day apart, write a.m. or p.m. after a time, and count hours forward or back across noon and midnight.",
+    "look": "A strip from one midnight to the next with a sun on the noon post, a clock whose hour hand turns with a marker, and a tray of day cards.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Day Dial' in ink at the far left, a small dot set clear of the name by measuring it, the phase title beside the dot on the same line, the host's navigation, and again, sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at 64,108 and 330 by 76, sits the running count: the laps, cards or hops done against what this phase holds, two numbers in ink, the first climbing by one as the hour hand finishes a lap, a card settles or the hopper lands, and the second fixed at what this phase holds. Nothing in it ever counts down and nothing in it ever reads as a score. The working area is 1086 by 528 at 64,202. The clock stands at the top left of the working area, a face 220 across centred at 196,330, with its twelve numbers, sixty marks, a deep blue minute hand and a vermilion hour hand geared to the marker. The lap counter sits beside it, 200 by 56 at 340,236, reading first lap or second lap, and the day counter under it, 200 by 56 at 340,306. The tray of day cards stands at the top right, 560 by 150 at 580,226, each card 130 by 64 with a small picture of the activity and its time in ink and no label. The day strip runs across the lower half, 1056 by 100 at 80,540, twenty-four hour blocks of 44 each from the left-hand midnight post to the right-hand one: the twelve blocks before the noon post are sky blue and labelled a.m. under them, and the twelve after it are amber and labelled p.m. Each midnight post carries a moon and the noon post, at 608, carries a sun, and all three posts are near-black and stand taller than the strip. The marker is a near-black pin with a tag above it that carries its time with a.m. or p.m., and on a post the tag reads 12 noon or 12 midnight. The hopper works in the band over the strip, 1056 by 70 at 80,450, and draws each hop of one whole hour as a green arc from landing to landing, with the time written at each landing; a hop that crosses a post lights that post as it passes. Past the right-hand midnight post the strip slides left, the next day's strip slides in, and the day counter goes up by one; hopping back past the left-hand post brings in the day before. A pale pin can stand on the strip beside the marker to show where a child's answer would be. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at 1186,250 (356 by 92) that holds what the child has given, and under it the pad at 1170,368 (388 by 363). The pad is twelve keys three across, the ten digits, a colon and a clear key, with two keys over it reading a.m. and p.m., and the answer slot holds a time with a label box after it that must be filled. On the first phase the slot takes a number alone; on the second the child drops each card and then fills its label. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own and are the pictures' colours too. The hour hand, every hour tile and hour cell, the hours column, and the hours of a time the stage splits into hours and minutes are vermilion. The minute hand, every minute tile and minute cell, the minutes column and the minutes of a split time are deep blue. The second hand, every second cell and the seconds column are reddish purple. The a.m. half of the day, from midnight to noon, is sky blue on every strip, timeline and track, and the p.m. half, from noon to midnight, is amber, so the label changes where the colour does. Time counted between a start and an end, every hop and total on a track, and the days counted between two dates are green. An hour or a minute carried or broken, with the digits it strikes and rewrites, is wine. A calendar day, week or year picked out or ticked, a month on its bar and a day tile are olive. The days left over beyond whole weeks, and the twenty-ninth of February in a leap year, are yellow outlined in near-black. Chrome never borrows one of those and none of them is ever used for chrome: every clock rim, minute mark, clock number, hub, rule, tick, post, bracket, guide line and panel edge is near-black. Every reading survives with the colour taken away, because an hour hand is told from a minute hand by its length, a column by its heading, a half of the day by its label, and a counted day from one left out by being filled rather than outlined, before any of them is told by a colour. A figure that goes down by one is struck through once with the new figure written above it, and never rubbed out. The label on the marker's tag changes only when the marker crosses the noon post or a midnight post, and on the posts themselves the tag reads 12 noon or 12 midnight. The clock above shows the same face at a time and at the time twelve hours on, so the strip, not the clock, says which half of the day it is.",
+    "finish": "The card shows the day strip with every hop the child made drawn over it, the noon and midnight posts they crossed lit, and the last time written with its label.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the lap counter reaches two, and two places light on the strip where the clock shows the same time, one in each half",
+        "does": "slides the marker along the whole strip, counts the laps of the hour hand, then finds the two places on the strip where the clock shows the same time",
+        "goal": "a day has twenty-four hours and a clock shows twelve, so the hour hand goes round twice a day",
+        "says": "Slide from one midnight to the next. How many times does the hour hand go round?",
+        "check": "Away from the screen: the classroom clock shows three o'clock. Name something that could be happening at each of the two times it could be.",
+        "feels": "the whole strip is two laps of the same face, one in each half of the day",
+        "hands": "Lay a paper strip along the board marked midnight, noon and midnight again, with a moon at each end and a sun in the middle. Walk a card clock along it with the class, turning its hour hand one number for each hour, and count the laps aloud. Stop at seven in the morning and at seven in the evening, and hold the clock up both times.",
+        "tries": "A miss is answered three ways at once and none of them is the answer. First rung, from the item's own miss line: how many hours are there in one day? Second rung, the phase's: how many hours does one lap of the hour hand take? Third rung: the strip is cut to its morning half, from midnight to noon, and the child counts the laps on it before the whole day comes back. The pad stays open behind all three rungs.",
+        "wrong": [
+          {
+            "why": "the face has every hour on it once, and one lap of the face looks like the whole day.",
+            "move": "says the hour hand goes round once a day, so a clock showing seven can mean only one time.",
+            "screen": "the marker slides from the left-hand midnight post, and at the noon post the lap counter reads one lap done with half the strip still ahead. The marker goes on to the right-hand post and the counter reaches two. The hour hand is then set at seven, and two places light on the strip, one in each half. The child's answer stays in the slot, nothing marked."
+          },
+          {
+            "why": "twenty-four is the number that belongs to a day, and a lap for each hour sounds like counting the hours.",
+            "move": "says the hour hand goes round twenty-four times a day, once for each hour.",
+            "screen": "the marker crosses one hour block and the hour hand moves on by one number, a twelfth of a lap and not a whole one. The marker is run on block by block, and the lap counter reaches its first lap only when the hand has passed all twelve numbers. The child's twenty-four stays in the slot beside the counter."
+          }
+        ],
+        "screen": "the clock above the day strip, with the marker on the left-hand midnight post and the lap counter at nought",
+        "soWhat": "The hour hand goes round twice a day, so a clock showing seven can mean seven in the morning or seven in the evening.",
+        "concept": "Twice round in a day"
+      },
+      {
+        "n": 2,
+        "win": "every card settles in its half, and a.m. or p.m. is written after its time",
+        "does": "drops each card into the half of the day where it happens, then writes a.m. or p.m. after its time",
+        "goal": "times after midnight and before noon are a.m., and times after noon and before midnight are p.m.",
+        "says": "Does this happen before noon or after noon? Put it in that half.",
+        "check": "Write a.m. or p.m. for a school assembly at 9:10 and for an evening walk at 6:25.",
+        "feels": "the half of the day decides the label, and the number on the clock does not",
+        "hands": "Give each child a strip and six blank cards. Each writes a time and a thing done at it, such as brushing teeth or dinner, with no a.m. or p.m., and places the cards on the strip. Then they write the labels, reading the half each card sits in and not the size of its number.",
+        "tries": "First rung, from the item: does this happen before noon or after noon? Second rung, the phase's: which half of the strip is that? Third rung: the tray is cut to two cards, one plainly in the morning and one plainly at night, before the rest come back. The a.m. and p.m. keys stay open.",
+        "wrong": [
+          {
+            "why": "the morning half begins with the small numbers after midnight, so a small number feels early.",
+            "move": "writes 1:15 a.m. for lunch, because one is a small number and small numbers seem to come in the morning.",
+            "screen": "the card settles where the child put it, an hour and a quarter after the left-hand midnight post, near the moon in the sky blue half. The same time after the noon post lights beside it in the amber half, and the card's word, lunch, is read aloud. The child's label stays on the card, nothing marked."
+          },
+          {
+            "why": "on the face the big numbers come last, so a big number feels like the end of the day.",
+            "move": "writes 11:40 p.m. for a snack in the late morning, because eleven is a big number and big numbers seem to come late.",
+            "screen": "the card settles where the child put it, twenty minutes before the right-hand midnight post, near the moon in the amber half. The same time twenty minutes before the noon post lights beside it in the sky blue half, under the sun, and the card's words are read aloud. The child's label stays on the card."
+          }
+        ],
+        "screen": "the day strip with its a.m. and p.m. halves, and a tray of day cards whose times carry no label",
+        "soWhat": "Times from midnight to noon are a.m., and times from noon to midnight are p.m.",
+        "concept": "Before noon and after noon"
+      },
+      {
+        "n": 3,
+        "win": "the label changes from a.m. to p.m. on the hop that crosses the noon post, and the end time is written",
+        "does": "hops the marker forward one hour at a time, reading the label at each landing, then hops back from an afternoon time",
+        "goal": "a count of hours that passes 12 noon changes a.m. to p.m., and a count back past noon changes p.m. to a.m.",
+        "says": "Hop one hour at a time. What happens to the label when you pass noon?",
+        "check": "What time is five hours after 9:40 a.m.? Say which hop crossed noon.",
+        "feels": "the label holds steady hop after hop in the morning, and turns over on the hop that crosses the sun",
+        "hands": "Mark a paper strip of the day in hours and stand a counter at 9 a.m. Have a child move it one hour at a time for five hours while the class says each time with its label. Stop at the noon post and ask what the next hop's label will be before anyone moves.",
+        "tries": "First rung, from the item: where does the count start, and which way does it go? Second rung, the phase's: which hop crosses the noon post? Third rung: the count is cut to one hop that crosses noon, from an hour before it, before the longer count comes back. The pad and the label keys stay open.",
+        "wrong": [
+          {
+            "why": "the start had a.m. on it, and nothing in adding hours seems to touch the label.",
+            "move": "keeps the a.m. label after the count passes noon, and writes 2:25 a.m. for six hours after 8:25 a.m.",
+            "screen": "the hopper runs the six hops again one at a time, and the tag reads each landing aloud: 9:25 a.m., 10:25 a.m. and 11:25 a.m., then the fourth hop arcs over the noon post, which lights, and lands on 12:25 p.m. in the amber half. Two more hops land on 1:25 p.m. and 2:25 p.m. A pale pin shows the child's 2:25 a.m. near the moon in the sky blue half, and the child's answer stays in the slot."
+          },
+          {
+            "why": "one o'clock is where the numbers start again, so it feels like the place where the afternoon begins.",
+            "move": "writes 12:25 a.m. for the landing one hour after 11:25 a.m., waiting for one o'clock before changing the label.",
+            "screen": "the hop from 11:25 a.m. arcs over the noon post, which lights, and lands twenty-five minutes into the amber half, where the tag reads 12:25 p.m. A pale pin shows the child's 12:25 a.m. twenty-five minutes after the left-hand midnight post, at night, and the child's answer stays in the slot."
+          },
+          {
+            "why": "the start was p.m., and counting back feels like staying in the same afternoon.",
+            "move": "keeps p.m. when counting four hours back from 2:35 p.m., and writes 10:35 p.m.",
+            "screen": "the hopper turns and hops back one hour at a time, to 1:35 p.m. and 12:35 p.m., then over the noon post, which lights, to 11:35 a.m. in the sky blue half, and one more to 10:35 a.m. A pale pin shows the child's 10:35 p.m. late in the amber half, and the child's answer stays in the slot."
+          }
+        ],
+        "screen": "the marker at a morning time, the hopper set to a number of hours, and the noon post lit",
+        "soWhat": "A count of hours that passes 12 noon changes a.m. to p.m., and a count back past noon changes p.m. to a.m.",
+        "concept": "Counting past noon"
+      },
+      {
+        "n": 4,
+        "win": "the next day's strip slides in, the day counter goes up by one, and the label reads twelve and some minutes a.m.",
+        "does": "hops the marker past midnight into the next day, reads the new label, then hops back across midnight",
+        "goal": "the a.m. hours start at midnight, so twelve and a few minutes a.m. is just after midnight, at the start of a new day",
+        "says": "Hop past midnight. Is the new time just after noon, or just after midnight?",
+        "check": "What time is three hours after 10:20 p.m.? Say which day it falls on.",
+        "feels": "one hop over the midnight post turns the night into a new day and the label back to a.m.",
+        "hands": "Stand a counter on a paper strip at 11 p.m. and move it one hour on, past the midnight post onto a second strip laid beside the first. Ask what the time is and which day it is now. Then move it back an hour and ask again.",
+        "tries": "First rung, from the item: which post does the count cross? Second rung, the phase's: what label do the times just after midnight carry? Third rung: the count is cut to one hop from an hour before midnight, before the longer count comes back. The pad and the label keys stay open.",
+        "wrong": [
+          {
+            "why": "the start was p.m. and the count went forward, so it feels as if the evening is still going on.",
+            "move": "keeps p.m. after passing midnight, and writes 1:35 p.m. for two hours after 11:35 p.m.",
+            "screen": "the hopper runs the two hops again. The first arcs over the right-hand midnight post, which lights, the next day's strip slides in, the day counter goes up by one, and the tag reads 12:35 a.m. The second lands on 1:35 a.m. near the moon. A pale pin shows the child's 1:35 p.m. just past the sun on the new day's strip, and the child's answer stays in the slot."
+          },
+          {
+            "why": "twelve is the number on the noon post, and noon is the twelve o'clock a child is awake for.",
+            "move": "reads 12:25 a.m. as twenty-five minutes after noon, because twelve o'clock sounds like the middle of the day.",
+            "screen": "the marker is set at 12:25 a.m. and stands twenty-five minutes after the left-hand midnight post, near the moon, in the sky blue half. A pale pin stands twenty-five minutes after the noon post, where the tag would read 12:25 p.m., and both stay lit side by side with the child's answer in the slot."
+          },
+          {
+            "why": "the start was a.m., and going back an hour seems only to change the hour.",
+            "move": "counts one hour back from 12:40 a.m. and writes 11:40 a.m., keeping the a.m. label.",
+            "screen": "the hopper turns and hops back over the left-hand midnight post, which lights, the strip of the day before slides in from the left, and the tag reads 11:40 p.m. in the amber half, near the moon. A pale pin shows the child's 11:40 a.m. just before the sun, and the child's answer stays in the slot."
+          }
+        ],
+        "screen": "the marker near the right-hand end of the strip late at night, with the next day's strip waiting",
+        "soWhat": "A count that passes 12 midnight changes p.m. to a.m., and the time moves into the next day.",
+        "concept": "Just after midnight"
+      }
+    ],
+    "delight": "The first phase, when the marker reaches the noon post. The hour hand has come back to the twelve with one lap done, and a thread is drawn from each morning hour block to the afternoon block the hour hand points the same way for, twelve threads arching over the sun. As the marker goes on into the afternoon each thread lights in turn when the marker reaches its far end, and the clock face above looks exactly as it did twelve hours before. It can be run as often as a finger likes, nothing is marked, and the voice says nothing at all while it happens.",
+    "opening": "Every mount comes up already furnished for its phase with nothing in front of it. On the first phase the marker stands on the left-hand midnight post under its moon, the hour hand of the clock above points at the twelve, and the lap counter reads nought. On the second the tray of day cards sits above the strip, each card an activity with a time and no label. On the third the marker stands at a morning time, the hopper is set to a number of hours, and the noon post is lit under its sun. On the fourth the marker stands late at night near the right-hand midnight post, with the edge of the next day's strip just showing past it. The running count at the top left holds the laps, the cards or the hops done against what this phase holds, and the answer slot and the pad stand empty down the right. One thing moves, once: the marker, or the top card, or the hopper, or the right-hand midnight post, gives one slow pulse while the voice asks which half of the day it is. That pulse is the only invitation, and a finger on it is the whole way in.",
+    "freePlay": "The whole strip and the next day's strip, the hopper both ways, the clock and the tray of day cards all open. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on the two laps of the hour hand, writing a.m. or p.m., counting hours across noon, and times just after midnight.",
+    "voiceLines": [
+      "A whole day on one strip, and a clock above it. Which half of the day are you in?",
+      "Slide from one midnight to the next. How many times does the hour hand go round?",
+      "Does this happen before noon or after noon? Put it in that half.",
+      "Hop one hour at a time. What happens to the label when you pass noon?",
+      "Hop past midnight. Is the new time just after noon, or just after midnight?",
+      "A new time. Find its half of the day before you hop.",
+      "Free play. The whole strip and the next day, with the hopper and the cards open.",
+      "Hop one hour at a time, and read the label at every landing.",
+      "Each card in its half, and each label changed on the hop that crossed a post."
+    ],
+    "observations": [
+      {
+        "why": "A day has twenty-four hours and the clock face shows twelve, so the hour hand needs two laps to get through one day.",
+        "soWhat": "The hour hand goes round twice a day, so a clock showing seven can mean seven in the morning or seven in the evening.",
+        "observe": "The lap counter reached two as the marker crossed from one midnight to the next, and two places lit on the strip where the clock looked the same."
+      },
+      {
+        "why": "a.m. names the half from midnight to noon and p.m. the half from noon to midnight, whatever the number on the card.",
+        "soWhat": "Times from midnight to noon are a.m., and times from noon to midnight are p.m.",
+        "observe": "Each card settled in the half of the strip where its activity happens, and its label matched the colour under it."
+      },
+      {
+        "why": "Every landing before the post is in the morning half, and the first landing after it is in the afternoon half.",
+        "soWhat": "A count of hours that passes 12 noon changes a.m. to p.m., and a count back past noon changes p.m. to a.m.",
+        "observe": "The label on the tag turned from a.m. to p.m. on the hop that crossed the noon post, and on none of the hops before it."
+      },
+      {
+        "why": "The a.m. hours start at midnight, so the first hour of the new day is twelve and some minutes a.m.",
+        "soWhat": "A count that passes 12 midnight changes p.m. to a.m., and the time moves into the next day.",
+        "observe": "One hop past the right-hand midnight post brought in the next day's strip and a tag reading twelve and some minutes a.m."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the clock above the day strip, with the marker on the left-hand midnight post and the lap counter at nought",
+        "win": "the lap counter reaches two, and two places light on the strip where the clock shows the same time, one in each half",
+        "traceback": "The marker slides again hour by hour, the hour hand turning, and the hours and laps are written in a green chip.",
+        "ladder": [
+          "Count the hour blocks the marker passed, one block for each hour.",
+          "Count the hour blocks of the whole strip, then the laps of the hand.",
+          "Look at the clock face at both places: does it change?",
+          "How many hours does one lap of the hour hand take?",
+          "One lap of the hour hand passes every number on the face once."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the day strip with its a.m. and p.m. halves, and a tray of day cards whose times carry no label",
+        "win": "every card settles in its half, and a.m. or p.m. is written after its time",
+        "traceback": "The card's own time lights in its true half with its label, beside where the child put it.",
+        "ladder": [
+          "Does lunch come before noon or after noon?",
+          "Is the morning before the sun or after it?",
+          "Is the evening in the sky blue half or the amber half?",
+          "Which half of the strip is that, before the sun or after it?",
+          "Sky blue runs from midnight to noon, and amber from noon to midnight."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the marker at a morning time, the hopper set to a number of hours, and the noon post lit",
+        "win": "the label changes from a.m. to p.m. on the hop that crosses the noon post, and the end time is written",
+        "traceback": "The hops run again one at a time, the noon post lights as one crosses it, and the landing tag shows the time with its label; a pale pin shows the child's label.",
+        "ladder": [
+          "Which of your hops passes the sun on the noon post?",
+          "Count the hops one by one: which one passes the sun?",
+          "Hopping back, which hop passes the sun?",
+          "Is the marker now on the same side of the sun as where it started?",
+          "Sky blue is before noon and amber is after noon: where did the marker land?"
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "the marker near the right-hand end of the strip late at night, with the next day's strip waiting",
+        "win": "the next day's strip slides in, the day counter goes up by one, and the label reads twelve and some minutes a.m.",
+        "traceback": "The hops run again, the midnight post lights as one crosses it and the day changes, and the landing tag shows the time with its label; a pale pin shows the child's label.",
+        "ladder": [
+          "Which post does the count cross?",
+          "In which half of the strip are the times marked a.m.?",
+          "Which way does this count go, and which post does it cross?",
+          "Which post did your hops cross?",
+          "Look at what is printed on the half the marker landed in."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "dayMinutes": 1440,
+    "halfMinutes": 720,
+    "hourMinutes": 60,
+    "blocks": 24,
+    "colours": {
+      "am": "#9BD3F2",
+      "pm": "#F5C26B",
+      "hop": "#009E73",
+      "hourHand": "#D55E00",
+      "minuteHand": "#0072B2",
+      "post": "#2B2B2B"
+    },
+    "unused": [
+      "M1.S2.T3.C12:7"
+    ],
+    "answerGate": "P1 Q1 Slide to noon, Q2 Slide twice to the next midnight, Q3 Find both sevens; P2 every question: tap a half of the strip (the card is carried there); P3 every question: every hop (6, 3, 4 back); P4 Q1 two hops, Q3 one hop back; P4 Q2 (12:25 a.m., a reading) is ungated.",
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": null,
+        "kind": "slide",
+        "goal": 720,
+        "answer": 12,
+        "win": "Right, midnight to noon is 12 hours, one lap of the hour hand.",
+        "winMs": 4600
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T3.C10:1",
+        "kind": "slide",
+        "goal": 1440,
+        "parts": [
+          {
+            "label": "hours"
+          },
+          {
+            "label": "laps"
+          }
+        ],
+        "answer": [
+          24,
+          2
+        ],
+        "win": "Right, a day has 24 hours and the hour hand goes round twice.",
+        "winMs": 4500
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T3.C10:ML1",
+        "kind": "find",
+        "answer": "ans-no",
+        "ladder": [
+          "Is one seven in the sky blue half and one in the amber half?",
+          "Look at the two sevens you found: is the clock face different?"
+        ],
+        "win": "Right, the clock alone cannot tell, because seven o'clock comes twice a day."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T3.C11:ML2",
+        "kind": "card",
+        "word": "lunch",
+        "t": 795,
+        "answer": "lab-pm",
+        "win": "Right, lunch at 1:15 is after noon, so it is 1:15 p.m.",
+        "winMs": 4100
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T3.C11:2",
+        "kind": "card",
+        "word": "shop opens",
+        "t": 630,
+        "answer": "lab-am",
+        "win": "Right, half past ten in the morning is 10:30 a.m.",
+        "winMs": 3800
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T3.C11:3",
+        "kind": "card",
+        "word": "dinner",
+        "t": 1235,
+        "answer": "lab-pm",
+        "win": "Right, dinner at 8:35 in the evening is 8:35 p.m."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T3.C12:ML3",
+        "kind": "hop",
+        "start": 505,
+        "hops": 6,
+        "answer": "lab-pm",
+        "win": "Right, six hours on from 8:25 lands on 2:25 p.m.",
+        "winMs": 3700
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T3.C12:4",
+        "kind": "hop",
+        "start": 650,
+        "hops": 3,
+        "answer": "lab-pm",
+        "win": "Right, three hours on from 10:50 lands on 1:50 p.m.",
+        "winMs": 3900
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T3.C12:5",
+        "kind": "hop",
+        "start": 875,
+        "hops": -4,
+        "answer": "lab-am",
+        "win": "Right, four hours back from 2:35 lands on 10:35 a.m."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T3.C13:ML4",
+        "kind": "hop",
+        "start": 1415,
+        "hops": 2,
+        "answer": "lab-am",
+        "win": "Right, two hours on from 11:35 at night is 1:35 a.m., the next day.",
+        "winMs": 4900
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T3.C13:6",
+        "kind": "read",
+        "answer": "lab-mid",
+        "ladder": [
+          "Which post is 25 minutes before the time 12:25 a.m.?",
+          "Look at where the strip starts: what is printed on its first half?"
+        ],
+        "win": "Right, it is 25 minutes after midnight, at the start of a new day.",
+        "winMs": 4800
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T3.C13:8",
+        "kind": "hop",
+        "start": 40,
+        "hops": -1,
+        "answer": "lab-pm",
+        "ladder": [
+          "Which half lies just before the midnight post?",
+          "Look at the end of the strip: what is printed there?"
+        ],
+        "win": "Right, one hour back from 12:40 at night lands on 11:40 p.m."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: The marker slides again hour by hour, the hour hand turning, and the hours and laps are written in a green chip.",
+      "Phase 2: The card's own time lights in its true half with its label, beside where the child put it.",
+      "Phase 3: The hops run again one at a time, the noon post lights as one crosses it, and the landing tag shows the time with its label; a pale pin shows the child's label.",
+      "Phase 4: The hops run again, the midnight post lights as one crosses it and the day changes, and the landing tag shows the time with its label; a pale pin shows the child's label."
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A whole day on one strip, and a clock above it. Which half of the day are you in?",
+    "onFreePlay": "Free play: hop the marker on or back, past noon and past midnight.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "Each card in its half, and each label changed on the hop that crossed a post.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": null,
+            "worked": false,
+            "kind": "slide",
+            "planQuestion": null,
+            "question": {
+              "en": "Slide the marker from midnight to noon: how many hours does it pass?"
+            },
+            "ask": {
+              "en": "Hours to noon?"
+            },
+            "answer": 12,
+            "planAnswer": null,
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T3.C10:1",
+            "worked": false,
+            "kind": "slide",
+            "planQuestion": "How many hours are there in one day, and how many times does the hour hand go round in that time?",
+            "question": {
+              "en": "Slide through a whole day: count its hours and the laps of the hour hand."
+            },
+            "ask": {
+              "en": "Hours and laps?"
+            },
+            "answer": [
+              24,
+              2
+            ],
+            "planAnswer": "Twenty-four hours, and the hour hand goes round twice",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T3.C10:ML1",
+            "worked": false,
+            "kind": "find",
+            "planQuestion": "A wall clock shows seven o'clock. Can you tell from the clock alone whether it is morning or evening?",
+            "question": {
+              "en": "Find both sevens: can the clock alone tell you if it is morning or evening?"
+            },
+            "ask": {
+              "en": "Can the clock alone tell?"
+            },
+            "answer": "ans-no",
+            "planAnswer": "No. The hour hand goes round twice a day, so the clock shows seven o'clock once in the morning and once in the evening",
+            "choices": [
+              "ans-yes",
+              "ans-no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T3.C11:ML2",
+            "worked": false,
+            "kind": "card",
+            "planQuestion": "A child wakes up at 6:10 and eats lunch at 1:15. Write a.m. or p.m. after each time.",
+            "question": {
+              "en": "A child eats lunch at 1:15: tap its half of the strip, then choose the label."
+            },
+            "ask": {
+              "en": "Lunch at 1:15?"
+            },
+            "answer": "lab-pm",
+            "planAnswer": "6:10 a.m. and 1:15 p.m.",
+            "choices": [
+              "lab-am",
+              "lab-pm"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T3.C11:2",
+            "worked": false,
+            "kind": "card",
+            "planQuestion": "A shop opens at half past ten in the morning. Write the time with a.m. or p.m.",
+            "question": {
+              "en": "The shop opens at half past ten in the morning: which half, which label?"
+            },
+            "ask": {
+              "en": "Shop at 10:30?"
+            },
+            "answer": "lab-am",
+            "planAnswer": "10:30 a.m.",
+            "choices": [
+              "lab-am",
+              "lab-pm"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T3.C11:3",
+            "worked": false,
+            "kind": "card",
+            "planQuestion": "A family eats dinner at 8:35 in the evening. Write the time with a.m. or p.m.",
+            "question": {
+              "en": "A family eats dinner at 8:35 in the evening: put the card in its half and pick."
+            },
+            "ask": {
+              "en": "Dinner at 8:35?"
+            },
+            "answer": "lab-pm",
+            "planAnswer": "8:35 p.m.",
+            "choices": [
+              "lab-am",
+              "lab-pm"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T3.C12:ML3",
+            "worked": false,
+            "kind": "hop",
+            "planQuestion": "What time is six hours after 8:25 a.m.?",
+            "question": {
+              "en": "Hop six hours on from 8:25 a.m., then choose the label of the new time."
+            },
+            "ask": {
+              "en": "6 hours after 8:25?"
+            },
+            "answer": "lab-pm",
+            "planAnswer": "2:25 p.m.",
+            "choices": [
+              "lab-am",
+              "lab-pm"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T3.C12:4",
+            "worked": false,
+            "kind": "hop",
+            "planQuestion": "What time is three hours after 10:50 a.m.?",
+            "question": {
+              "en": "Now three hours on from 10:50 a.m.: which label does the landing get?"
+            },
+            "ask": {
+              "en": "3 hours after 10:50?"
+            },
+            "answer": "lab-pm",
+            "planAnswer": "1:50 p.m., because the count passes 12 noon",
+            "choices": [
+              "lab-am",
+              "lab-pm"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T3.C12:5",
+            "worked": false,
+            "kind": "hop",
+            "planQuestion": "What time is four hours before 2:35 p.m.?",
+            "question": {
+              "en": "This time hop back four hours from 2:35 p.m.: which label does it land on?"
+            },
+            "ask": {
+              "en": "4 hours before 2:35?"
+            },
+            "answer": "lab-am",
+            "planAnswer": "10:35 a.m., because counting back past 12 noon changes p.m. to a.m.",
+            "choices": [
+              "lab-am",
+              "lab-pm"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T3.C13:ML4",
+            "worked": false,
+            "kind": "hop",
+            "planQuestion": "What time is two hours after 11:35 p.m.?",
+            "question": {
+              "en": "Hop two hours on from 11:35 p.m., then choose the label of the new time."
+            },
+            "ask": {
+              "en": "2 hours after 11:35?"
+            },
+            "answer": "lab-am",
+            "planAnswer": "1:35 a.m. on the next day",
+            "choices": [
+              "lab-am",
+              "lab-pm"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T3.C13:6",
+            "worked": false,
+            "kind": "read",
+            "planQuestion": "Is 12:25 a.m. just after noon or just after midnight?",
+            "question": {
+              "en": "Is the time 12:25 a.m., just after noon or just after midnight?"
+            },
+            "ask": {
+              "en": "12:25 a.m.?"
+            },
+            "answer": "lab-mid",
+            "planAnswer": "Just after midnight. It is twenty-five minutes into a new day",
+            "choices": [
+              "lab-noon",
+              "lab-mid"
+            ],
+            "madeOn": "choices"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T3.C13:8",
+            "worked": false,
+            "kind": "hop",
+            "planQuestion": "What time is one hour before 12:40 a.m.?",
+            "question": {
+              "en": "Now hop back one hour from 12:40 a.m.: which label does it land on?"
+            },
+            "ask": {
+              "en": "1 hour before 12:40?"
+            },
+            "answer": "lab-pm",
+            "planAnswer": "11:40 p.m. on the day before, because counting back past midnight changes a.m. to p.m.",
+            "choices": [
+              "lab-am",
+              "lab-pm"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [
+    "M1.S2.T3.C12:7"
+  ],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "day_dial",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "day_dial",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Twice round in a day",
+        "conceptId": "M1.S2.T3.C10",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C13.2D1:p1_1",
+          "M1.S2.T3.C10:1",
+          "M1.S2.T3.C10:ML1"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Before noon and after noon",
+        "conceptId": "M1.S2.T3.C11",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C11:ML2",
+          "M1.S2.T3.C11:2",
+          "M1.S2.T3.C11:3"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Counting past noon",
+        "conceptId": "M1.S2.T3.C12",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C12:ML3",
+          "M1.S2.T3.C12:4",
+          "M1.S2.T3.C12:5"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Just after midnight",
+        "conceptId": "M1.S2.T3.C13",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C13:ML4",
+          "M1.S2.T3.C13:6",
+          "M1.S2.T3.C13:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "markerTime",
+    "null",
+    "half",
+    "lap",
+    "hops",
+    "dayCount",
+    "cardsPlaced"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, markerTime, null, half, lap, hops, dayCount, cardsPlaced, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "day_dial"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T3.C13.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A whole day on one strip, and a clock above it. Which half of the day are you in?"
+    },
+    {
+      "en": "Slide from one midnight to the next. How many times does the hour hand go round?"
+    },
+    {
+      "en": "Does this happen before noon or after noon? Put it in that half."
+    },
+    {
+      "en": "Hop one hour at a time. What happens to the label when you pass noon?"
+    },
+    {
+      "en": "Hop past midnight. Is the new time just after noon, or just after midnight?"
+    },
+    {
+      "en": "A new time. Find its half of the day before you hop."
+    },
+    {
+      "en": "Free play. The whole strip and the next day, with the hopper and the cards open."
+    },
+    {
+      "en": "Hop one hour at a time, and read the label at every landing."
+    },
+    {
+      "en": "Each card in its half, and each label changed on the hop that crossed a post."
+    }
+  ],
+  "build": {
+    "source": "cbdd0694:677417",
+    "runtime": "class4/runtime/frozen/r31/runtime.tsx",
+    "runtimeVersion": "r31",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-16T11:12:57.746Z",
+    "checks": {
+      "pass": 97,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-11-16T11:12:57.543Z"
+    },
+    "tsxBytes": 597653,
+    "tsxMd5": "2760f16b36fed7546379ea28ebc481bc"
+  }
+}

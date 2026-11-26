@@ -124,7 +124,7 @@ export function SidebarPipeline({
           <ul className="finding-list">
             {hostsimRun.result.results.map((r) => (
               <li key={r.n} className="finding-row" data-level={r.ok ? "pass" : "fail"}>
-                <span className="finding-dot" style={{ background: r.ok ? "#1a7f37" : "#cf222e" }} />
+                <span className="finding-dot" style={{ background: r.ok ? "var(--pass)" : "var(--fail)" }} />
                 <span className="finding-id">phase {r.n} ({r.mode})</span>
                 <span className="finding-msg">{r.ok ? "plays and finishes" : r.problems.join("; ")}</span>
               </li>
@@ -146,7 +146,7 @@ export function SidebarPipeline({
                 ? <ul className="finding-list">
                     {checkRun.result.ported.hostsimResults.map((r) => (
                       <li key={r.n} className="finding-row" data-level={r.ok ? "pass" : "fail"}>
-                        <span className="finding-dot" style={{ background: r.ok ? "#1a7f37" : "#cf222e" }} />
+                        <span className="finding-dot" style={{ background: r.ok ? "var(--pass)" : "var(--fail)" }} />
                         <span className="finding-id">phase {r.n} ({r.mode})</span>
                         <span className="finding-msg">{r.ok ? "plays and finishes" : r.problems.join("; ")}</span>
                       </li>

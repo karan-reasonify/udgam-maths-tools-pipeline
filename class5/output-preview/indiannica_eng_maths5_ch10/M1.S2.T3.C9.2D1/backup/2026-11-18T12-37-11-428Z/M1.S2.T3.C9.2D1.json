@@ -1,0 +1,1132 @@
+{
+  "slotId": "M1.S2.T3.C9.2D1",
+  "mediaId": "M1.S2.T3.C9.2D1",
+  "toolId": "bigger_to_smaller",
+  "title": "Big to Small Converter",
+  "component": "M1.S2.T3.C13.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch10",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch10_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_10/2dtool/M1.S2.T3.C13.2D1/M1.S2.T3.C13.2D1.tsx",
+  "description": "Break a bigger unit of time into the next smaller one by multiplying by 24 or 60, add the leftover smaller part, and turn a fraction of an hour into minutes.",
+  "conceptIds": [
+    "M1.S2.T3.C10",
+    "M1.S2.T3.C11",
+    "M1.S2.T3.C12",
+    "M1.S2.T3.C13"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "Change days into hours, hours into minutes and minutes into seconds by multiplying by 24 or 60 and adding the leftover part, and change a fraction of an hour into minutes.",
+    "look": "A unit ladder of four rungs with deep blue bars on it, a Break down button, a tray for the leftover part and, on the last phase, a bar of one hour cut into sixty cells.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Big to Small Converter' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of bars broken down. It is never a score. The working area is 1086 by 528 at x 64, y 202. The unit ladder of four rungs, days, hours, minutes and seconds, stands down the left of the area at x 90 from y 230 to y 690, each rung 115 tall, with the unit fact beside each step in violet, labelled Regroup. The bars the question gives are deep blue, labelled Given, on the rung they use, one for each whole unit, with the leftover smaller part waiting in a small tray at x 520, y 240. The Break down button stands at x 900, y 230, and each press splits every bar of the bigger unit into that many bars of the next rung down, which slide across the working area in rows of the same length. The multiplication is written in ink under the rows along y 620 as the bars are made. The leftover tray is dragged in among the new bars, amber while it is being added, and the total is read in green, labelled Answer, at x 520, y 680 with its unit. On the fourth phase the bar of one hour, 720 wide, lies along y 300 cut into sixty minute cells, and the cells of the fraction the child shades are amber while they are counted. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a delete key, and keys for days, h, min and s. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the nine tools of this chapter share them. What the question gives, as a clock time, a length of time, a start date or a number of days, is deep blue, labelled Given or Start. What the working reaches, as an end time, a length of time, a converted time or a date, is green, labelled Answer, End or How long. The thin second hand and the seconds it counts are vermilion, labelled Second hand. One jump along a time line, and one regrouped unit carried or borrowed, are violet, labelled Jump, Carry or Regroup. On a day bar the half from noon until just before midnight is rose, labelled p.m., and the half from midnight until just before noon stays warm white inside its outline, labelled a.m. The hand, digit, column, jump or date being worked on now is amber. Grey is kept for a zero holding a place open, labelled Place holder, and for nothing else. The hour hand and the minute hand, dials, tick marks, time lines, arrows, operation signs and step labels are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of the content colours, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last length of time stays on the ladder with its bars broken down, the leftover part dropped in and the total beside it in green.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the hour bars are counted and the total turns green, with its unit",
+        "does": "presses Break down to split each day bar into twenty-four hour bars, then drops the leftover hours in and adds",
+        "goal": "1 day is 24 h, so multiply the days by 24 and add the leftover hours",
+        "says": "How many hours in one day? Break down every day bar.",
+        "check": "Away from the screen: how many hours are there in two days, and which unit fact do you say first?",
+        "feels": "each bar breaking into a row of shorter bars and the row counting up",
+        "hands": "Cut a paper strip for one day and a shorter strip for one hour. Fold the day strip until it holds as many hour strips as a day has, count them, then lay the leftover hour strips beside them.",
+        "tries": "First rung: break one day into hours and count them. Second rung: break two days and add a few leftover hours. Third rung: the same task with three days and a few hours, before the question's own length returns.",
+        "wrong": [
+          {
+            "why": "twenty-four is the number in the unit fact, and adding is the first way to join two numbers",
+            "move": "adds the number of days to twenty-four instead of multiplying",
+            "screen": "the answer stays in the slot, the day bars are broken down one at a time, and the rows of hour bars are counted in ink beside it, far more than the child's total"
+          },
+          {
+            "why": "sixty is the number for changing hours and minutes, and it is easy to reach for it again",
+            "move": "breaks each day bar into sixty bars",
+            "screen": "the child's bars stay, the unit fact for a day is lit in violet beside the days rung, labelled Regroup, and the number of bars a day needs is lit amber"
+          }
+        ],
+        "screen": "the ladder with days and hours, and a length of time in days and hours set in deep blue bars",
+        "soWhat": "1 day is 24 h, so multiply the days by 24, then add the leftover hours",
+        "concept": "Days into hours"
+      },
+      {
+        "n": 2,
+        "win": "the minute bars and the leftover minutes are added and the total turns green",
+        "does": "splits each hour bar into sixty minute bars, then drops the leftover minutes in and adds",
+        "goal": "1 h is 60 min, so multiply the hours by 60 and add the leftover minutes",
+        "says": "Sixty minutes to an hour. Break down each bar, then drop in the minutes left over.",
+        "check": "Away from the screen: why do the leftover minutes not need to be multiplied?",
+        "feels": "the hour bars breaking into rows of minute bars and the leftover minutes dropping in to make the total",
+        "hands": "Use a real clock. Watch the minute hand go once round and say how many minutes an hour holds, then count on for two hours and a few more minutes, saying each total aloud.",
+        "tries": "First rung: break one hour into minutes and count them. Second rung: break two hours and add a leftover part. Third rung: the same task with more hours and a bigger leftover part, before the question's own length returns.",
+        "wrong": [
+          {
+            "why": "the metric units were changed by ten in the last chapter, and the habit carries over",
+            "move": "multiplies the hours by ten, as on the chart of metric units",
+            "screen": "the child's number stays, the hour bars are broken into minute bars in steps, and sixty bars are counted in ink for each hour"
+          },
+          {
+            "why": "the whole hours make most of the answer, so the small tray looks finished",
+            "move": "leaves the leftover minutes out of the total",
+            "screen": "the total stays, and the leftover tray is lit amber, still full, beside the minute bars"
+          }
+        ],
+        "screen": "the ladder with hours and minutes, and a length of time in hours and minutes set in deep blue bars",
+        "soWhat": "1 h is 60 min, so multiply the whole hours by 60, then add the leftover minutes",
+        "concept": "Hours into minutes"
+      },
+      {
+        "n": 3,
+        "win": "the second bars and the leftover seconds are added and the total turns green",
+        "does": "splits each minute bar into sixty second bars, adds the leftover seconds, and for a length in hours changes to minutes first",
+        "goal": "1 min is 60 s, so multiply the minutes by 60 and add the leftover seconds; a length in hours can be changed one step at a time",
+        "says": "Sixty seconds to a minute. Do you need the minutes first?",
+        "check": "Away from the screen: to find the seconds in a length given in hours, which unit do you go through first?",
+        "feels": "a chain of bars breaking down twice, from hours to minutes and from minutes to seconds",
+        "hands": "Watch the second hand of a real clock go once round and count how many seconds it takes. Then write a few minutes and some seconds on a card, change the minutes to seconds, and add the leftover seconds.",
+        "tries": "First rung: change a few whole minutes to seconds. Second rung: add a leftover part of seconds. Third rung: the same task on a length in hours and minutes, before the question's own length returns.",
+        "wrong": [
+          {
+            "why": "the hours and the seconds are far apart, and one step looks like enough",
+            "move": "changes a length in hours to seconds by multiplying by sixty only once",
+            "screen": "the hour bars are broken into minute bars, and the minute bars still waiting to be broken into seconds are lit amber beside the child's answer"
+          },
+          {
+            "why": "every number in the question looks as if it needs the same step",
+            "move": "multiplies the leftover seconds by sixty as well",
+            "screen": "the leftover tray stays where the child put it and is lit amber, and the total waits, showing that the leftover seconds are already seconds"
+          }
+        ],
+        "screen": "the ladder with minutes and seconds, and a length of time in minutes and seconds set in deep blue bars",
+        "soWhat": "1 min is 60 s, so multiply the minutes by 60, then add the leftover seconds, and change a length in hours one step at a time",
+        "concept": "Minutes into seconds"
+      },
+      {
+        "n": 4,
+        "win": "the shaded cells and the whole hours are added, and the minutes turn green",
+        "does": "shades the fraction of the hour's cells, counts them as minutes, and adds them to the minutes in the whole hours",
+        "goal": "a fraction of an hour is that fraction of 60 min, and to change a bigger unit into a smaller one we multiply",
+        "says": "Shade the part of the hour. How many minute cells is that?",
+        "check": "Away from the screen: how many minutes are half an hour, and how many are a quarter of an hour?",
+        "feels": "the shaded cells counting up as minutes and joining the minutes of the whole hours",
+        "hands": "Cut a paper bar for one hour and fold it into four equal parts. Count the minutes in one part, then in two parts and in three, and add the minutes of the whole hours.",
+        "tries": "First rung: shade half of the bar of one hour and count the cells. Second rung: shade a quarter. Third rung: the same task with whole hours and a fraction together, before the question's own mixed number returns.",
+        "wrong": [
+          {
+            "why": "the whole number and the fraction sit next to each other and look like one number",
+            "move": "puts the two numbers of the mixed number side by side and reads them as minutes",
+            "screen": "the bar of one hour is cut into sixty cells, the fraction of them is shaded, and the shaded cells are counted in ink beside the child's answer"
+          },
+          {
+            "why": "the shaded cells are the part that is easiest to see",
+            "move": "gives the minutes of the fraction and leaves out the whole hours",
+            "screen": "the whole hours are lit amber beside the shaded cells, waiting to be broken into minutes and added"
+          }
+        ],
+        "screen": "a bar of one hour cut into sixty minute cells, and a mixed number of hours set in deep blue",
+        "soWhat": "a fraction of an hour is that fraction of 60 min, and the whole hours are changed into minutes by multiplying by 60",
+        "concept": "Part of an hour"
+      }
+    ],
+    "delight": "On the first phase, as the Break down button is pressed, each day bar splits into hour bars that slide apart and settle into rows of the same length, and the total counts up in green as the last bar lands.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet broken down. On the first phase the ladder holds a length in days and hours as deep blue bars, with the Break down button beside it and the leftover hours waiting in a small tray. On the second the ladder holds a length in hours and minutes, and on the third a length in minutes and seconds. On the fourth a bar of one hour lies whole above the ladder beside a mixed number of hours in deep blue. One thing moves, once: the Break down button or the bar of one hour gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any length of time set on the ladder and broken down to any smaller rung, and any fraction of an hour shaded. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on days into hours, hours into minutes, minutes into seconds and a part of an hour.",
+    "voiceLines": [
+      "A bar of time on a ladder, ready to break down.",
+      "How many hours in one day? Break down every day bar.",
+      "Sixty minutes to an hour. Break down each bar, then drop in the minutes left over.",
+      "Sixty seconds to a minute. Do you need the minutes first?",
+      "Shade the part of the hour. How many minute cells is that?",
+      "A new length of time. Break it down the same way.",
+      "Free play. Set any length of time and break it down.",
+      "Count the new bars again. Did any bar stay unbroken?",
+      "You broke bigger units into smaller ones and added the leftover part."
+    ],
+    "observations": [
+      {
+        "why": "1 day is 24 h, and the same number fits into every day.",
+        "soWhat": "multiply the days by 24, then add the leftover hours.",
+        "observe": "Every day bar broke into the same number of hour bars."
+      },
+      {
+        "why": "the leftover part is already in minutes, so it needs no breaking down.",
+        "soWhat": "multiply only the whole hours by 60, then add the leftover minutes.",
+        "observe": "The leftover minutes dropped in beside the new minute bars and were counted once."
+      },
+      {
+        "why": "1 h is 60 min and 1 min is 60 s, and the ladder has a rung for each unit.",
+        "soWhat": "change one step at a time, and the answer is a bigger number than the one given.",
+        "observe": "A length in hours turned into minutes before it turned into seconds."
+      },
+      {
+        "why": "a fraction of an hour is that fraction of 60 min.",
+        "soWhat": "the whole hours give their minutes, the shaded part gives the rest, and the two are added.",
+        "observe": "The shaded cells of the hour bar were counted as minutes and joined the minutes of the whole hours."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "the ladder with days and hours, and a length of time in days and hours set in deep blue bars",
+        "win": "the hour bars are counted and the total turns green, with its unit",
+        "traceback": "every day bar breaks into a row of 24 hour bars, the leftover hours drop in, and days × 24 + leftover = the hours, in green",
+        "ladder": [
+          "Each day bar made 24 hour bars, so multiply 9 by 24.",
+          "Two rows of 24 hours, and then the 6 leftover hours.",
+          "Multiply 12 by 24 first, then add the 20 hours.",
+          "1 day is 24 h, so the days are multiplied by 24, never added to 24.",
+          "Write days × 24 first, then add the leftover hours to that product."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "the ladder with hours and minutes, and a length of time in hours and minutes set in deep blue bars",
+        "win": "the minute bars and the leftover minutes are added and the total turns green",
+        "traceback": "every hour bar breaks into a row of 60 minute bars, the leftover minutes drop in, and hours × 60 + leftover = the minutes, in green",
+        "ladder": [
+          "Each hour bar made 60 minute bars, not 10.",
+          "Four rows of 60 minutes, and then the 10 leftover minutes.",
+          "Did the 45 leftover minutes go into the total?",
+          "1 h is 60 min, so the hours are multiplied by 60, not by 10.",
+          "Write hours × 60 first, then add the leftover minutes once."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "the ladder with minutes and seconds, and a length of time in minutes and seconds set in deep blue bars",
+        "win": "the second bars and the leftover seconds are added and the total turns green",
+        "traceback": "the minute bars break into rows of 60 second bars (hours first into minutes), the leftover seconds drop in once, and the seconds show in green",
+        "ladder": [
+          "Multiply 26 by 60, then add the 15 seconds just once.",
+          "Six rows of 60 seconds, with nothing left over.",
+          "1 h 5 min is 65 min, and each minute is 60 seconds.",
+          "Minutes × 60 gives seconds, and hours go to minutes first.",
+          "Add any leftover just once, in its own unit."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a bar of one hour cut into sixty minute cells, and a mixed number of hours set in deep blue",
+        "win": "the shaded cells and the whole hours are added, and the minutes turn green",
+        "traceback": "the whole hours break into rows of 60 minute cells, the hour bar is cut and the part shaded, and the minutes show in green",
+        "ladder": [
+          "3/4 of 60 is not 34, so count the shaded minute cells.",
+          "Count the minute cells in 1 of the 5 equal parts.",
+          "Change 2 and 3/4 h to minutes, then compare it with 150.",
+          "A part of an hour is that part of the 60 minute cells.",
+          "Whole hours × 60, then add the minutes in the shaded part."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "units": [
+      "days",
+      "hours",
+      "minutes",
+      "seconds"
+    ],
+    "warm": {
+      "1": {
+        "kind": "conv",
+        "u": 0,
+        "big": 2,
+        "left": 4
+      },
+      "2": {
+        "kind": "conv",
+        "u": 1,
+        "big": 2,
+        "left": 15
+      },
+      "3": {
+        "kind": "conv",
+        "u": 2,
+        "big": 3,
+        "left": 20
+      },
+      "4": {
+        "kind": "frac",
+        "whole": 0,
+        "num": 1,
+        "den": 2
+      }
+    },
+    "free": {
+      "kind": "conv",
+      "u": 0,
+      "big": 3,
+      "left": 0
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M1.S2.T3.C10:BS1",
+        "kind": "conv",
+        "u": 0,
+        "big": 9,
+        "left": 5,
+        "parts": [
+          {
+            "label": "total",
+            "unit": "h"
+          }
+        ],
+        "answer": [
+          221
+        ],
+        "win": "Yes, 9 days 5 h is 221 h."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M1.S2.T3.C10:1",
+        "kind": "conv",
+        "u": 0,
+        "big": 2,
+        "left": 6,
+        "parts": [
+          {
+            "label": "total",
+            "unit": "h"
+          }
+        ],
+        "answer": [
+          54
+        ],
+        "win": "Right, 2 days 6 h makes 54 h."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M1.S2.T3.C10:5",
+        "kind": "conv",
+        "u": 0,
+        "big": 12,
+        "left": 20,
+        "parts": [
+          {
+            "label": "total",
+            "unit": "h"
+          }
+        ],
+        "answer": [
+          308
+        ],
+        "win": "Well done, the trip is 308 h long."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M1.S2.T3.C11:BS2",
+        "kind": "conv",
+        "u": 1,
+        "big": 5,
+        "left": 50,
+        "parts": [
+          {
+            "label": "total",
+            "unit": "min"
+          }
+        ],
+        "answer": [
+          350
+        ],
+        "win": "Yes, 5 h 50 min is 350 min."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M1.S2.T3.C11:2",
+        "kind": "conv",
+        "u": 1,
+        "big": 4,
+        "left": 10,
+        "parts": [
+          {
+            "label": "total",
+            "unit": "min"
+          }
+        ],
+        "answer": [
+          250
+        ],
+        "win": "Right, 4 h 10 min makes 250 min."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M1.S2.T3.C11:6",
+        "kind": "conv",
+        "u": 1,
+        "big": 6,
+        "left": 45,
+        "parts": [
+          {
+            "label": "total",
+            "unit": "min"
+          }
+        ],
+        "answer": [
+          405
+        ],
+        "win": "Well done, the ride is 405 min long."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M1.S2.T3.C12:BS3",
+        "kind": "conv",
+        "u": 2,
+        "big": 26,
+        "left": 15,
+        "parts": [
+          {
+            "label": "total",
+            "unit": "s"
+          }
+        ],
+        "answer": [
+          1575
+        ],
+        "win": "Yes, 26 min 15 s is 1,575 s."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M1.S2.T3.C12:3",
+        "kind": "conv",
+        "u": 2,
+        "big": 6,
+        "left": 0,
+        "parts": [
+          {
+            "label": "total",
+            "unit": "s"
+          }
+        ],
+        "answer": [
+          360
+        ],
+        "ladder": [
+          "Each minute bar became a row of 60 second bars.",
+          "Find 6 groups of 60, since nothing is left over."
+        ],
+        "win": "Right, 6 min makes 360 s."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M1.S2.T3.C12:7",
+        "kind": "chain",
+        "u": 1,
+        "big": 1,
+        "left": 5,
+        "parts": [
+          {
+            "label": "total",
+            "unit": "s"
+          }
+        ],
+        "answer": [
+          3900
+        ],
+        "win": "Well done, 1 h 5 min is 3,900 s."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M1.S2.T3.C13:BS4",
+        "kind": "frac",
+        "whole": 3,
+        "num": 3,
+        "den": 4,
+        "parts": [
+          {
+            "label": "total",
+            "unit": "min"
+          }
+        ],
+        "answer": [
+          225
+        ],
+        "win": "Yes, 3 and 3/4 h is 225 min."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M1.S2.T3.C13:4",
+        "kind": "frac",
+        "whole": 0,
+        "num": 1,
+        "den": 5,
+        "parts": [
+          {
+            "label": "total",
+            "unit": "min"
+          }
+        ],
+        "answer": [
+          12
+        ],
+        "ladder": [
+          "Equal parts hold the same number of cells.",
+          "Share 60 minutes equally into 5 parts and count one part."
+        ],
+        "win": "Right, 1/5 h makes 12 min."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M1.S2.T3.C13:8",
+        "kind": "frac",
+        "whole": 2,
+        "num": 3,
+        "den": 4,
+        "vs": 150,
+        "answer": "h",
+        "ladder": [
+          "2 and 3/4 h is 2 hours and 3/4 of an hour, so change both to minutes.",
+          "Write both lengths in the same unit, then compare."
+        ],
+        "win": "Well done, 165 min is longer than 150 min."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: every day bar breaks into a row of 24 hour bars, the leftover hours drop in, and days × 24 + leftover = the hours, in green",
+      "Phase 2: every hour bar breaks into a row of 60 minute bars, the leftover minutes drop in, and hours × 60 + leftover = the minutes, in green",
+      "Phase 3: the minute bars break into rows of 60 second bars (hours first into minutes), the leftover seconds drop in once, and the seconds show in green",
+      "Phase 4: the whole hours break into rows of 60 minute cells, the hour bar is cut and the part shaded, and the minutes show in green"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A bar of time on a ladder, ready to break down.",
+    "onFreePlay": "Free play. Pick a unit and a number of bars, then break them down.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You broke bigger units into smaller ones and added the leftover part.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M1.S2.T3.C10:BS1",
+            "worked": false,
+            "kind": "conv",
+            "planQuestion": "How many hours are there in 9 days 5 h?",
+            "question": {
+              "en": "How many hours are there in 9 days 5 h?"
+            },
+            "ask": {
+              "en": "9 days 5 h in hours?"
+            },
+            "answer": [
+              221
+            ],
+            "planAnswer": "221 h.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M1.S2.T3.C10:1",
+            "worked": false,
+            "kind": "conv",
+            "planQuestion": "How many hours are there in 2 days 6 h?",
+            "question": {
+              "en": "Change 2 days 6 h into hours."
+            },
+            "ask": {
+              "en": "2 days 6 h in hours?"
+            },
+            "answer": [
+              54
+            ],
+            "planAnswer": "54 h, because 2 x 24 = 48 and 48 + 6 = 54",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M1.S2.T3.C10:5",
+            "worked": false,
+            "kind": "conv",
+            "planQuestion": "How many hours are there in 12 days 20 h?",
+            "question": {
+              "en": "A trip lasts 12 days 20 h, so how many hours is that?"
+            },
+            "ask": {
+              "en": "12 days 20 h in hours?"
+            },
+            "answer": [
+              308
+            ],
+            "planAnswer": "308 h, because 12 x 24 = 288 and 288 + 20 = 308",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M1.S2.T3.C11:BS2",
+            "worked": false,
+            "kind": "conv",
+            "planQuestion": "How many minutes are there in 5 h 50 min?",
+            "question": {
+              "en": "How many minutes are there in 5 h 50 min?"
+            },
+            "ask": {
+              "en": "5 h 50 min in minutes?"
+            },
+            "answer": [
+              350
+            ],
+            "planAnswer": "350 min.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M1.S2.T3.C11:2",
+            "worked": false,
+            "kind": "conv",
+            "planQuestion": "How many minutes are there in 4 h 10 min?",
+            "question": {
+              "en": "Write 4 h 10 min in minutes."
+            },
+            "ask": {
+              "en": "4 h 10 min in minutes?"
+            },
+            "answer": [
+              250
+            ],
+            "planAnswer": "250 min, because 4 x 60 = 240 and 240 + 10 = 250",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M1.S2.T3.C11:6",
+            "worked": false,
+            "kind": "conv",
+            "planQuestion": "How many minutes are there in 6 h 45 min?",
+            "question": {
+              "en": "A train ride takes 6 h 45 min, so how many minutes is that?"
+            },
+            "ask": {
+              "en": "6 h 45 min in minutes?"
+            },
+            "answer": [
+              405
+            ],
+            "planAnswer": "405 min, because 6 x 60 = 360 and 360 + 45 = 405",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M1.S2.T3.C12:BS3",
+            "worked": false,
+            "kind": "conv",
+            "planQuestion": "How many seconds are there in 26 min 15 s?",
+            "question": {
+              "en": "How many seconds are there in 26 min 15 s?"
+            },
+            "ask": {
+              "en": "26 min 15 s in seconds?"
+            },
+            "answer": [
+              1575
+            ],
+            "planAnswer": "1575 s.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M1.S2.T3.C12:3",
+            "worked": false,
+            "kind": "conv",
+            "planQuestion": "How many seconds are there in 6 min?",
+            "question": {
+              "en": "Change 6 min into seconds."
+            },
+            "ask": {
+              "en": "6 min in seconds?"
+            },
+            "answer": [
+              360
+            ],
+            "planAnswer": "360 s, because 6 x 60 = 360",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M1.S2.T3.C12:7",
+            "worked": false,
+            "kind": "chain",
+            "planQuestion": "How many seconds are there in 1 h 5 min? Change the hours to minutes first.",
+            "question": {
+              "en": "How many seconds are there in 1 h 5 min, changing the hours to minutes first?"
+            },
+            "ask": {
+              "en": "1 h 5 min in seconds?"
+            },
+            "answer": [
+              3900
+            ],
+            "planAnswer": "3900 s, because 1 h 5 min is 65 min and 65 x 60 = 3900",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M1.S2.T3.C13:BS4",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "How many minutes are there in 3 3/4 h?",
+            "question": {
+              "en": "How many minutes are there in 3 and 3/4 h?"
+            },
+            "ask": {
+              "en": "3 and 3/4 h in minutes?"
+            },
+            "answer": [
+              225
+            ],
+            "planAnswer": "225 min.",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M1.S2.T3.C13:4",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "How many minutes is 1/5 h?",
+            "question": {
+              "en": "Write 1/5 h in minutes."
+            },
+            "ask": {
+              "en": "1/5 h in minutes?"
+            },
+            "answer": [
+              12
+            ],
+            "planAnswer": "12 min, because 1/5 of 60 is 12",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M1.S2.T3.C13:8",
+            "worked": false,
+            "kind": "frac",
+            "planQuestion": "Which is longer, 2 3/4 h or 150 min?",
+            "question": {
+              "en": "Which is longer, 150 min or 2 and 3/4 h?"
+            },
+            "ask": {
+              "en": "Which is longer?"
+            },
+            "answer": "h",
+            "planAnswer": "2 3/4 h, because 2 3/4 h is 165 min, and that is more than 150 min",
+            "choices": [
+              "h",
+              "min"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "bigger_to_smaller",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "bigger_to_smaller",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Days into hours",
+        "conceptId": "M1.S2.T3.C10",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C10:BS1",
+          "M1.S2.T3.C10:1",
+          "M1.S2.T3.C10:5"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Hours into minutes",
+        "conceptId": "M1.S2.T3.C11",
+        "objectiveIds": [
+          "O3"
+        ],
+        "items": [
+          "M1.S2.T3.C11:BS2",
+          "M1.S2.T3.C11:2",
+          "M1.S2.T3.C11:6"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "Minutes into seconds",
+        "conceptId": "M1.S2.T3.C12",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C12:BS3",
+          "M1.S2.T3.C12:3",
+          "M1.S2.T3.C12:7"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "Part of an hour",
+        "conceptId": "M1.S2.T3.C13",
+        "objectiveIds": [
+          "O4"
+        ],
+        "items": [
+          "M1.S2.T3.C13:BS4",
+          "M1.S2.T3.C13:4",
+          "M1.S2.T3.C13:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "amount",
+    "short",
+    "rung",
+    "bars",
+    "leftover",
+    "fraction",
+    "den",
+    "acts",
+    "actsNeeded"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, amount, short, rung, bars, leftover, fraction, den, acts, actsNeeded, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "bigger_to_smaller"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M1.S2.T3.C9.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A bar of time on a ladder, ready to break down."
+    },
+    {
+      "en": "How many hours in one day? Break down every day bar."
+    },
+    {
+      "en": "Sixty minutes to an hour. Break down each bar, then drop in the minutes left over."
+    },
+    {
+      "en": "Sixty seconds to a minute. Do you need the minutes first?"
+    },
+    {
+      "en": "Shade the part of the hour. How many minute cells is that?"
+    },
+    {
+      "en": "A new length of time. Break it down the same way."
+    },
+    {
+      "en": "Free play. Set any length of time and break it down."
+    },
+    {
+      "en": "Count the new bars again. Did any bar stay unbroken?"
+    },
+    {
+      "en": "You broke bigger units into smaller ones and added the leftover part."
+    }
+  ],
+  "build": {
+    "source": "2c8f7e39:643914",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-16T18:22:17.895Z",
+    "checks": {
+      "pass": 99,
+      "warn": 0,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-11-16T18:22:17.765Z"
+    },
+    "tsxBytes": 564691,
+    "tsxMd5": "2ca56450e13468fa8e1474309e5d5879"
+  }
+}

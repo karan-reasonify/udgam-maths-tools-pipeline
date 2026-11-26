@@ -1,0 +1,1055 @@
+{
+  "slotId": "M3.S4.T9.C41.2D1",
+  "mediaId": "M3.S4.T9.C41.2D1",
+  "toolId": "layer_stacker",
+  "title": "Layer Stacker",
+  "component": "M3.S4.T9.C41.2D1.tsx",
+  "subtype": "simulation",
+  "grade": 5,
+  "chapter": "indiannica_eng_maths5_ch8",
+  "publication": "indiannica",
+  "planId": "indiannica_eng_maths5_ch8_v3",
+  "planVersion": 3,
+  "url": "https://media.singularity-learn.com/learning_plan_assets/V2/cbse/indiannica/english/class_5/mathematics/ch_8/2dtool/M3.S4.T9.C43.2D1/M3.S4.T9.C43.2D1.tsx",
+  "description": "Stack layers of cubes to see length x breadth x height, check whether all its edges are equal, and multiply an edge in tenths by whole numbers.",
+  "conceptIds": [
+    "M3.S4.T9.C40",
+    "M3.S4.T9.C41",
+    "M3.S4.T9.C42",
+    "M3.S4.T9.C43"
+  ],
+  "languages": [
+    "en",
+    "hi",
+    "gu"
+  ],
+  "modes": "none. One flow, one phase at a time. The host mounts a phase (phase prop). With navigableDots true, or no phase, the child may jump phases with the dots (user mode); otherwise the dots show progress and the teacher agent drives window.toolApi (AI mode). The last phase, and a whole lesson, end on the summary page, where Free play and Play again sit. With navDots the dots are controls in AI mode too: a tap on a dot starts that phase.",
+  "stage": {
+    "viewBox": "0 0 1600 900",
+    "margin": 40,
+    "sizing": "the frame is min(100vw, 177.78vh) wide and min(100vh, 56.25vw) tall (dvh where supported); the svg fills it. Nothing scrolls.",
+    "bands": {
+      "header": "0 to 80. One line: the tool name, a measured dot, the phase concept; Hint, sound and restart as round controls far right.",
+      "canvas": "92 to 640. One rounded card holding the key at its top right (Answer, Close, Enter, Next, or the Yes / No keys; no question bar), the working area (the whole card until Answer is tapped) and the answer drawer that slides in from the right; the summary page covers it at the end.",
+      "footer": "652 to 900. The mascot at the far left on its ground line, the speech bubble beside it (y 656 to 892, the question and every line, printed), one small dot per phase at the right."
+    },
+    "zones": {
+      "header": [
+        0,
+        0,
+        1600,
+        80
+      ],
+      "canvas": [
+        40,
+        92,
+        1520,
+        548
+      ],
+      "runs": [
+        64,
+        110,
+        330,
+        76
+      ],
+      "phase": [
+        64,
+        108,
+        1472,
+        520
+      ],
+      "phaseWithPanel": [
+        64,
+        108,
+        900,
+        520
+      ],
+      "ask": [
+        1254,
+        108,
+        282,
+        88
+      ],
+      "slot": [
+        1180,
+        198,
+        340,
+        92
+      ],
+      "pad": [
+        1180,
+        298,
+        340,
+        318
+      ],
+      "drawer": [
+        1164,
+        108,
+        372,
+        520
+      ],
+      "layout": "board, key only: no question bar, only its key at the right end of the top row (the question is on the bubble); the working area is the whole card (64, 108, 1472 x 520) until the child taps Answer, when the answer drawer (as tall as the working area, the key on its top row reading Close) slides in from the right",
+      "voice": [
+        28,
+        704,
+        204,
+        194
+      ],
+      "mascot": [
+        28,
+        738,
+        204,
+        160
+      ],
+      "bubble": [
+        343,
+        656,
+        913,
+        236
+      ],
+      "bar": [
+        1276,
+        738,
+        288,
+        72
+      ],
+      "controls": "circles r 28 at cx 1388, 1460, 1532, cy 40: Hint (data-control again), sound, restart; 72-unit finger boxes",
+      "dots": "one small dot per phase at the footer's right (72-unit finger boxes, centred on the bubble), no text; in user AND AI mode each is a button (data-control phase-dot, data-phase k) that starts its phase"
+    },
+    "noSidebar": "There is no sidebar. The canvas takes every unit the chrome can spare.",
+    "noScoreBox": "There is no score box on the stage. The score leaves on finished and onComplete and is shown once, as stars on the summary page."
+  },
+  "writeup": {
+    "why": "See that the cubes in a layer times the number of layers give the count, so the volume of a cuboid is length x breadth x height; tell a cube by all its edges equal; and multiply an edge in tenths by whole numbers.",
+    "look": "A base layer of violet cubes with the Height handle beside it, the Edge checker on the third phase and the Tenths lens on the last.",
+    "stage": "Three bands across 1600 by 900. The header runs 0 to 80 and is one line only: 'Layer Stacker' in ink at the far left, a small dot set clear of the name, the phase title beside the dot on the same line, the host's navigation, and sound and restart as three round controls at the far right. The canvas runs 92 to 746, one rounded card on the paper colour. At its top left, at x 64, y 108 and 330 by 76, sits the running count: the number of cubes stacked. It is never a score. The working area is 1086 by 528 at x 64, y 202. The solid stands in three visible faces at x 160, y 260 inside a box 600 by 400, every unit cube 40 across, its length and breadth labelled deep blue along the base. The base layer is violet, labelled Layer. The Height handle is a round grip at the solid's right edge that the child drags upward; each layer it stacks lights amber for a moment. The Units switch stands at x 820, y 250. The Edge checker's bead runs along the length, the breadth and the height in turn, and the label Cube or Cuboid appears under the solid in ink. The Tenths lens is a round glass 90 across at x 820, y 400 that rewrites an edge in tenths as a count of tenths; a card at x 820, y 500 reads Taught later when two edges have tenths. The working line runs along y 690 from x 120. The volume reached is green. Down the right of the canvas, in the same rectangle on every phase and never animated in or out, the question sits above the answer slot at x 1186, y 250 (356 by 92) that holds what the child has given, and under it the pad at x 1170, y 368 (388 by 363). The pad is ten number keys with a point key and cu. cm and cu. m keys. The footer runs 758 to 900: the voice caption at the far left with its speaking dot beside it, measuring its own wrap and dropping a type size rather than spilling, and the phase bar at the right with the question count under it. There is no sidebar and no score box anywhere, and nothing is ever written over the working area. Content colours are the chapter's own, and the ten tools of this chapter share them. The lengths the question gives, as a side, a length, a breadth, a height, an edge or a base area, are deep blue, labelled Given or by their own name. The perimeter, area, volume or missing side the working reaches is green, labelled Answer. The boundary that a perimeter walks round is vermilion, labelled Boundary. The unit being counted, one unit square, one unit cube, one row or one layer, is violet, labelled Unit square, Unit cube, Row or Layer. The part squares of an estimate and the space left over where no whole cube fits are rose, labelled More than half, Half or Left over. The side, square, cube, layer or step being worked on now is amber. Grey is kept for a zero holding a place open, and nothing on this stage is ever grey. A square or cube that is not being counted stays warm white inside its near-black outline, grid lines, unit words and signs are near-black ink, and anything dimmed fades to half strength. Chrome never borrows one of them, and each reading survives with the colour taken away, because a part is told by its written label before it is told by its colour.",
+    "finish": "The last solid stands stacked with its layers, labelled Cube or Cuboid, and the volume in green with its cubic unit.",
+    "phases": [
+      {
+        "n": 1,
+        "win": "the line reads 2 x 35 = 70, and the running count reads 70",
+        "does": "counts the base layer, drags the handle up two layers, and types the count",
+        "goal": "one layer has length x breadth cubes, and the layers times that give the count",
+        "says": "Count one layer. Then count the layers.",
+        "check": "Away from the screen: a stack has three layers of ten cubes. How many cubes are there?",
+        "feels": "the count jumping a whole layer at a time as the stack grows",
+        "hands": "Lay one layer of sugar cubes in a rectangle, count it, then stack a second and a third layer on top, counting a layer at a time.",
+        "tries": "First rung: count one layer. Second rung: count the layers. Third rung: the same task with a base of fewer cubes, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "three numbers are on the edges, and adding them comes first to mind",
+            "move": "types the three edge counts added together",
+            "screen": "the layers are stacked again in steps, one layer's worth at a time, and the running count is shown beside the child's number"
+          },
+          {
+            "why": "the base is the part that was counted",
+            "move": "types the cubes in one layer as the answer",
+            "screen": "the layers above the base are lit amber one after another while the child's number stays in the slot"
+          }
+        ],
+        "screen": "a base layer 7 cubes long and 5 cubes wide, and the Height handle",
+        "soWhat": "one layer has length x breadth cubes, and the layers times that give the count",
+        "concept": "Layers of cubes"
+      },
+      {
+        "n": 2,
+        "win": "the line reads 11 x 6 x 4 = 264, and 264 cu. cm lands green",
+        "does": "stacks the layers, reads the product, and types the volume with its unit",
+        "goal": "the volume of a cuboid is length x breadth x height",
+        "says": "Length, then breadth, then height. Multiply all three.",
+        "check": "Away from the screen: why is a volume in cubic units and not square units?",
+        "feels": "the box filling up to its lid as the three numbers multiply",
+        "hands": "Measure the length, breadth and height of a small box in centimetres, and multiply the three.",
+        "tries": "First rung: multiply the length and the breadth. Second rung: multiply that by the height. Third rung: the same task on a smaller box, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "length x breadth was the area, and it looks finished",
+            "move": "multiplies only the length and the breadth",
+            "screen": "the base layer is lit amber alone, and the layers above it stack in steps until the box is full"
+          },
+          {
+            "why": "the top layer sits level with the lid line and is easy to miss",
+            "move": "stops the Height handle one layer short of the height",
+            "screen": "the empty space under the lid line is lit amber, and the missing layer is drawn there as a ghost while the child's layers stay"
+          }
+        ],
+        "screen": "a box 11 cm long, 6 cm wide and 4 cm high, and the Units switch on centimetres",
+        "soWhat": "the volume of a cuboid is length x breadth x height",
+        "concept": "Length times breadth times height"
+      },
+      {
+        "n": 3,
+        "win": "all three edges light together, the label reads Cube, and 9 x 9 x 9 = 729 gives 729 cu. cm",
+        "does": "runs the Edge checker along the three edges, then types the volume",
+        "goal": "a cube is a cuboid with all its edges equal, so its volume is side x side x side",
+        "says": "Are all the edges the same? Then it is a cube.",
+        "check": "Away from the screen: a box has a square bottom but is taller than it is wide. Is it a cube?",
+        "feels": "three edges lighting at once, and the word Cube appearing",
+        "hands": "Measure the edges of a die and of a matchbox. Which has all its edges equal? That one is a cube.",
+        "tries": "First rung: run the checker along two edges. Second rung: run it along the third. Third rung: the same task on a small cube, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "a square face looks like the sign of a cube",
+            "move": "types side x side x side for a solid with a square top but a different height",
+            "screen": "the Edge checker's bead runs up the height in steps, and the edge that differs is lit amber while the label reads Cuboid"
+          },
+          {
+            "why": "side x side was the area of a square, and it looks finished",
+            "move": "types side x side as the volume",
+            "screen": "the bottom layer of the cube is lit amber, labelled Layer, and the layers above it stack in steps until the cube is full"
+          }
+        ],
+        "screen": "a solid with edges of 9 cm, 9 cm and 9 cm, and the Edge checker",
+        "soWhat": "a cube is a cuboid with all its edges equal, so its volume is side x side x side",
+        "concept": "A cube has equal edges"
+      },
+      {
+        "n": 4,
+        "win": "the lens reads thirty-five tenths, the line reads 35 x 16 = 560 tenths, and 56 cu. cm lands green",
+        "does": "multiplies the whole-number edges, holds the lens over the edge in tenths, and types the volume",
+        "goal": "an edge in tenths is multiplied as a count of tenths by the whole-number edges",
+        "says": "Whole numbers first. Then the tenths.",
+        "check": "Away from the screen: how many tenths of a centimetre are in four point five centimetres?",
+        "feels": "an awkward edge turning into a whole number of tenths",
+        "hands": "Measure a box with one edge that is not a whole number of centimetres. Write that edge in tenths, and multiply by the other two edges.",
+        "tries": "First rung: multiply the two whole-number edges. Second rung: read the edge in tenths through the lens. Third rung: the same task on a box with smaller edges, before the question's own returns.",
+        "wrong": [
+          {
+            "why": "the lens showed a whole number, and whole numbers feel like centimetres",
+            "move": "types the count of tenths times the other edges as the volume in cu. cm",
+            "screen": "the word tenths is lit amber under the product, and the answer is written back in steps beside the child's number"
+          },
+          {
+            "why": "the lens worked on one edge, so it seems it should work on both",
+            "move": "holds the lens over a second edge in tenths",
+            "screen": "the lens stays dark over the second edge, and the card Taught later is lit amber"
+          }
+        ],
+        "screen": "a box 8 cm long, 3.5 cm wide and 2 cm high, and the Tenths lens",
+        "soWhat": "an edge in tenths is multiplied as a count of tenths by the whole-number edges",
+        "concept": "An edge in tenths"
+      }
+    ],
+    "delight": "On the third phase, when all three edges light together, the solid gives a little spin on the spot and settles with the word Cube under it.",
+    "opening": "Every mount comes up already furnished for its phase with nothing yet stacked. On the first phase a base layer of cubes lies on the table top with the Height handle beside it. On the second a box lies with its edges labelled and the Units switch set. On the third a solid stands with the Edge checker's bead at one corner. On the fourth a box stands with one edge in tenths and the Tenths lens beside it. One thing moves, once: the Height handle, the Edge checker's bead or the Tenths lens gives one slow pulse while the voice speaks its opening line.",
+    "freePlay": "Any base, stacked to any height, checked for equal edges or read through the Tenths lens. Nothing to get right, no target and no timer. The child is left with the same stage and every control unlocked.",
+    "practice": "Eight items over the four phases, easy first, on layers, length x breadth x height, cubes and edges in tenths.",
+    "voiceLines": [
+      "A layer of cubes, ready to stack.",
+      "Count one layer. Then count the layers.",
+      "Length, then breadth, then height. Multiply all three.",
+      "Are all the edges the same? Then it is a cube.",
+      "Whole numbers first. Then the tenths.",
+      "A new box. Find one layer first.",
+      "Free play. Stack layers on any base you like.",
+      "Count one layer, then count the layers again.",
+      "You turned stacking layers into length times breadth times height."
+    ],
+    "observations": [
+      {
+        "why": "each layer is the same base of length x breadth cubes.",
+        "soWhat": "the cubes in one layer times the number of layers is the volume.",
+        "observe": "Every layer stacked added the same number of cubes."
+      },
+      {
+        "why": "a cube has all its edges equal, and a cuboid need not.",
+        "soWhat": "tell a cube by its edges, not by one square face.",
+        "observe": "The Edge checker lit all three edges together only for some solids."
+      },
+      {
+        "why": "each whole centimetre is ten tenths.",
+        "soWhat": "multiply the tenths by the whole-number edges, then write the answer back.",
+        "observe": "Through the lens, an edge with a point in it became a whole number of tenths."
+      },
+      {
+        "why": "multiplying tenths by tenths is a step taught later.",
+        "soWhat": "a box with two edges in tenths is left for a later chapter.",
+        "observe": "The lens stayed dark when two edges had tenths."
+      }
+    ]
+  },
+  "writeupDetail": {
+    "phases": [
+      {
+        "n": 1,
+        "screen": "a base layer 7 cubes long and 5 cubes wide, and the Height handle",
+        "win": "the line reads 2 x 35 = 70, and the running count reads 70",
+        "traceback": "the base layer lights amber with length x breadth, then each layer above it lights in turn and the count ends green",
+        "ladder": [
+          "Look at the bottom layer only: 7 rows of 5 cubes.",
+          "This bottom layer is just 7 long and 2 wide.",
+          "Three layers stand here, each one like the bottom one.",
+          "Multiply the cubes in one layer by the number of layers.",
+          "Add one layer's cubes once for every layer in the stack."
+        ]
+      },
+      {
+        "n": 2,
+        "screen": "a box 11 cm long, 6 cm wide and 4 cm high, and the Units switch on centimetres",
+        "win": "the line reads 11 x 6 x 4 = 264, and 264 cu. cm lands green",
+        "traceback": "the base layer lights amber with length x breadth, the layers stack in steps to the lid and length x breadth x height ends green",
+        "ladder": [
+          "Look at the bottom layer: 11 cubes along, 6 rows deep.",
+          "The floor of this box holds 9 rows of 7 cubes.",
+          "This box is 2 layers high, and each layer is 11 by 5.",
+          "Multiply the length and the breadth, then multiply that by the height.",
+          "Edges in metres give cubic metres; edges in centimetres give cubic centimetres."
+        ]
+      },
+      {
+        "n": 3,
+        "screen": "a solid with edges of 9 cm, 9 cm and 9 cm, and the Edge checker",
+        "win": "all three edges light together, the label reads Cube, and 9 x 9 x 9 = 729 gives 729 cu. cm",
+        "traceback": "volume: the bottom layer lights amber with side x side, the layers light up in steps and side x side x side ends green; cube: the bead runs up the height, the unequal edge lights amber and Cuboid ends green",
+        "ladder": [
+          "Look at the bottom layer: 9 by 9 cubes.",
+          "One layer of this cube is 10 by 10 cubes.",
+          "Read the three edge labels: 6 cm, 6 cm and 4 cm.",
+          "Find the cubes in one layer, then multiply by the layers standing on it.",
+          "Length, breadth and height are equal here, so use that number three times."
+        ]
+      },
+      {
+        "n": 4,
+        "screen": "a box 8 cm long, 3.5 cm wide and 2 cm high, and the Tenths lens",
+        "win": "the lens reads thirty-five tenths, the line reads 35 x 16 = 560 tenths, and 56 cu. cm lands green",
+        "traceback": "the word tenths lights amber under the product and the count of tenths is written back as cubic centimetres in green; two edges in tenths: the lens stays dark and Taught later lights amber",
+        "ladder": [
+          "Look at the lens: what unit is that edge in?",
+          "Check the unit the lens shows before you multiply.",
+          "Count the edges the lens read in tenths.",
+          "Your product counts tenths of a cubic centimetre, not whole ones.",
+          "Ten tenths make one, so divide the count of tenths by 10 to write it back."
+        ]
+      }
+    ]
+  },
+  "model": {
+    "warm": [
+      {
+        "kind": "stack",
+        "l": 4,
+        "b": 3,
+        "h": 2,
+        "u": ""
+      },
+      {
+        "kind": "box",
+        "l": 5,
+        "b": 3,
+        "h": 2,
+        "u": "cm"
+      },
+      {
+        "kind": "edges",
+        "l": 3,
+        "b": 3,
+        "h": 3,
+        "u": "cm"
+      },
+      {
+        "kind": "tenths",
+        "l": 5,
+        "b": 1.5,
+        "h": 2,
+        "u": "cm",
+        "t": [
+          "b"
+        ]
+      }
+    ],
+    "free": {
+      "maxL": 8,
+      "maxB": 6,
+      "maxH": 5
+    },
+    "answerGate": {
+      "1": "stack the layers to the full height (Height handle: a tap per layer, or drag up)",
+      "2": "fill the box layer by layer to its lid (Height handle)",
+      "3": "run the Edge checker's bead along all three edges",
+      "4 Q1-Q2": "tap Multiply (the whole-number edges), then hold the Tenths lens over the edge in tenths",
+      "4 Q3": "hold the Tenths lens over both edges in tenths",
+      "ungated": "none"
+    },
+    "items": [
+      {
+        "phase": 1,
+        "item": 1,
+        "qid": "M3.S4.T9.C40:LS1",
+        "kind": "stack",
+        "l": 7,
+        "b": 5,
+        "h": 2,
+        "u": "",
+        "answer": 70,
+        "win": "Yes, 2 layers of 35 cubes make 70."
+      },
+      {
+        "phase": 1,
+        "item": 2,
+        "qid": "M3.S4.T9.C40:1",
+        "kind": "stack",
+        "l": 7,
+        "b": 2,
+        "h": 2,
+        "u": "",
+        "answer": 28,
+        "win": "Right, 2 layers of 14 make 28 cubes."
+      },
+      {
+        "phase": 1,
+        "item": 3,
+        "qid": "M3.S4.T9.C40:6",
+        "kind": "stack",
+        "l": 9,
+        "b": 2,
+        "h": 3,
+        "u": "",
+        "answer": 54,
+        "win": "Yes, 3 layers of 18 make 54 cubes."
+      },
+      {
+        "phase": 2,
+        "item": 1,
+        "qid": "M3.S4.T9.C41:LS2",
+        "kind": "box",
+        "l": 11,
+        "b": 6,
+        "h": 4,
+        "u": "cm",
+        "answer": 264,
+        "win": "Yes, 264 cubic centimetres fill the box."
+      },
+      {
+        "phase": 2,
+        "item": 2,
+        "qid": "M3.S4.T9.C41:2",
+        "kind": "box",
+        "l": 9,
+        "b": 7,
+        "h": 2,
+        "u": "cm",
+        "answer": 126,
+        "win": "Right, that is 126 cubic centimetres."
+      },
+      {
+        "phase": 2,
+        "item": 3,
+        "qid": "M3.S4.T9.C41:5",
+        "kind": "box",
+        "l": 11,
+        "b": 5,
+        "h": 2,
+        "u": "m",
+        "answer": 110,
+        "win": "Yes, the box holds 110 cubic metres."
+      },
+      {
+        "phase": 3,
+        "item": 1,
+        "qid": "M3.S4.T9.C42:LS3",
+        "kind": "edges",
+        "l": 9,
+        "b": 9,
+        "h": 9,
+        "u": "cm",
+        "answer": 729,
+        "win": "Yes, a cube of 729 cubic centimetres."
+      },
+      {
+        "phase": 3,
+        "item": 2,
+        "qid": "M3.S4.T9.C42:3",
+        "kind": "edges",
+        "l": 10,
+        "b": 10,
+        "h": 10,
+        "u": "m",
+        "answer": 1000,
+        "win": "Right, that is 1,000 cubic metres."
+      },
+      {
+        "phase": 3,
+        "item": 3,
+        "qid": "M3.S4.T9.C42:4",
+        "kind": "edges",
+        "l": 6,
+        "b": 6,
+        "h": 4,
+        "u": "cm",
+        "answer": "no",
+        "ladder": [
+          "Compare all three edges; a cube has every edge equal.",
+          "One edge that is different makes the solid a cuboid, not a cube."
+        ],
+        "win": "Right, unequal edges make a cuboid."
+      },
+      {
+        "phase": 4,
+        "item": 1,
+        "qid": "M3.S4.T9.C43:LS4",
+        "kind": "tenths",
+        "l": 8,
+        "b": 3.5,
+        "h": 2,
+        "u": "cm",
+        "t": [
+          "b"
+        ],
+        "answer": 56,
+        "win": "Yes, 560 tenths is 56 cubic centimetres."
+      },
+      {
+        "phase": 4,
+        "item": 2,
+        "qid": "M3.S4.T9.C43:7",
+        "kind": "tenths",
+        "l": 6,
+        "b": 2.5,
+        "h": 4,
+        "u": "cm",
+        "t": [
+          "b"
+        ],
+        "answer": 60,
+        "win": "Right, 600 tenths is 60 cubic centimetres."
+      },
+      {
+        "phase": 4,
+        "item": 3,
+        "qid": "M3.S4.T9.C43:8",
+        "kind": "tenths",
+        "l": 4,
+        "b": 2.5,
+        "h": 1.5,
+        "u": "cm",
+        "t": [
+          "b",
+          "h"
+        ],
+        "answer": "no",
+        "ladder": [
+          "Tenths times whole numbers works when only one edge has tenths.",
+          "Two edges in tenths need tenths times tenths, a step for later."
+        ],
+        "win": "Right, that needs a step taught later."
+      }
+    ]
+  },
+  "onWrong": {
+    "marks": "Nothing is marked, no colour means good or bad. The miss empties the answer slot at once (every digit, every box, a picked choice), so it is empty through the traceback; the pad re-opens empty after it.",
+    "tracebacks": [
+      "Phase 1: the base layer lights amber with length x breadth, then each layer above it lights in turn and the count ends green",
+      "Phase 2: the base layer lights amber with length x breadth, the layers stack in steps to the lid and length x breadth x height ends green",
+      "Phase 3: volume: the bottom layer lights amber with side x side, the layers light up in steps and side x side x side ends green; cube: the bead runs up the height, the unequal edge lights amber and Cuboid ends green",
+      "Phase 4: the word tenths lights amber under the product and the count of tenths is written back as cubic centimetres in green; two edges in tenths: the lens stays dark and Taught later lights amber"
+    ]
+  },
+  "voice": {
+    "silent": true,
+    "rate": 0.92,
+    "pitch": 1.06,
+    "opening": "A layer of cubes, ready to stack.",
+    "onFreePlay": "Free play. Stack layers on any base you like.",
+    "onMiss": "the item's own miss line, then the phase's two ladder rungs, shown at once UNDER the pinned instruction and kept until the child acts again",
+    "onFinish": "You turned stacking layers into length times breadth times height.",
+    "rules": "Silent: nothing is spoken (no device speech, no recorded clips, no Tap to start cover). The speech bubble is the guide: every instruction and hint is one printed page, numbers as words. The lesson is action-driven in every mode: a guide step's instruction stays until the child does the act it names; a wrong act shows that step's hint under the pinned instruction, a wrong answer the next rung of its ladder, and the hint stays unchanged until the child acts again; a right answer's next question, a phase's next phase and the summary's rows follow by themselves after a short celebration. The header's Hint key shows the step's hint or the next rung on demand. What is heard is sound effects (Web Audio), switched by the sound button, on in every mode. In classroom mode nothing waits for a tap except the pieces of a long line (the blinking arrow; a tap, Enter, Space, ArrowRight or PageDown on the bubble shows the next piece), and a tap on the bubble when nothing waits is the teacher's skip."
+  },
+  "guide": {
+    "tour": [],
+    "playsOn": "guide steps on phase 1, 2, 3, 4: the phase opens on its first instruction and waits for the child's act (getState guideStep, guideSteps, guideOn); the agent's check() performs the current step; the last act opens the first question. Other phases open on their printed teach lines, and a demo phase waits for the child's own act."
+  },
+  "palette": {
+    "content": {
+      "hundred": "#0072B2",
+      "ten": "#E69F00",
+      "one": "#009E73",
+      "bead": "#CC79A7",
+      "pointer": "#D55E00",
+      "line": "#2B2B2B"
+    },
+    "chrome": {
+      "dim": "#9AA4AC",
+      "ink": "#2B2B2B",
+      "rule": "#C9BCA6",
+      "panel": "#F2E4CE",
+      "paper": "#FFFDF7",
+      "accent": "#5B6770"
+    },
+    "rule": "A content colour fills countable things only and chrome never borrows one; coloured numerals and words take a deeper ink of their colour (4.5:1)."
+  },
+  "toolQuestions": {
+    "source": "props.questions ?? props.additionalProps?.questions is read; the authored rows below keep their stage (fitHost returns null).",
+    "itemsPerPhase": 3,
+    "authoredFallback": [
+      {
+        "phase": 1,
+        "items": [
+          {
+            "id": "p1_1",
+            "question_id": "M3.S4.T9.C40:LS1",
+            "worked": false,
+            "kind": "stack",
+            "planQuestion": "A cuboid is 7 cubes long, 5 cubes wide and 2 cubes high. How many cubes build it?",
+            "question": {
+              "en": "A cuboid is 7 cubes long, 5 wide and 2 high; how many cubes build it?"
+            },
+            "ask": {
+              "en": "Cubes in all?"
+            },
+            "answer": 70,
+            "planAnswer": "70 cubes",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_2",
+            "question_id": "M3.S4.T9.C40:1",
+            "worked": false,
+            "kind": "stack",
+            "planQuestion": "A cuboid is 7 cubes long, 2 cubes wide and 2 cubes high. How many cubes build it?",
+            "question": {
+              "en": "Stack a cuboid 7 cubes long, 2 wide and 2 high; how many cubes is that?"
+            },
+            "ask": {
+              "en": "Cubes in all?"
+            },
+            "answer": 28,
+            "planAnswer": "One layer has 7 x 2 = 14 cubes, and 2 x 14 = 28, so 28 cubes",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p1_3",
+            "question_id": "M3.S4.T9.C40:6",
+            "worked": false,
+            "kind": "stack",
+            "planQuestion": "A cuboid is 9 cubes long, 2 cubes wide and 3 cubes high. How many cubes build it?",
+            "question": {
+              "en": "This one is 9 cubes long, 2 wide and 3 high; how many cubes fill it?"
+            },
+            "ask": {
+              "en": "Cubes in all?"
+            },
+            "answer": 54,
+            "planAnswer": "One layer has 9 x 2 = 18 cubes, and 3 x 18 = 54, so 54 cubes",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "items": [
+          {
+            "id": "p2_1",
+            "question_id": "M3.S4.T9.C41:LS2",
+            "worked": false,
+            "kind": "box",
+            "planQuestion": "A box is 11 cm long, 6 cm wide and 4 cm high. What is its volume?",
+            "question": {
+              "en": "Find the cubic centimetres in a box 11 cm long, 6 cm wide, 4 cm high."
+            },
+            "ask": {
+              "en": "Volume in cubic cm?"
+            },
+            "answer": 264,
+            "planAnswer": "264 cu. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_2",
+            "question_id": "M3.S4.T9.C41:2",
+            "worked": false,
+            "kind": "box",
+            "planQuestion": "A box is 9 cm long, 7 cm wide and 2 cm high. What is its volume?",
+            "question": {
+              "en": "How many cubic centimetres fill a box 9 cm by 7 cm by 2 cm?"
+            },
+            "ask": {
+              "en": "Volume in cubic cm?"
+            },
+            "answer": 126,
+            "planAnswer": "The volume of a cuboid 9 cm long, 7 cm wide and 2 cm high is 9 x 7 x 2 = 126 cu. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p2_3",
+            "question_id": "M3.S4.T9.C41:5",
+            "worked": false,
+            "kind": "box",
+            "planQuestion": "A tank is 11 m long, 5 m wide and 2 m high. What is its volume?",
+            "question": {
+              "en": "A box is 11 m long, 5 m wide and 2 m high; find its volume in cubic metres."
+            },
+            "ask": {
+              "en": "Volume in cubic m?"
+            },
+            "answer": 110,
+            "planAnswer": "The volume of a cuboid 11 m long, 5 m wide and 2 m high is 11 x 5 x 2 = 110 cu. m",
+            "madeOn": "keypad"
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "items": [
+          {
+            "id": "p3_1",
+            "question_id": "M3.S4.T9.C42:LS3",
+            "worked": false,
+            "kind": "edges",
+            "planQuestion": "A solid has edges of 9 cm, 9 cm and 9 cm. Is it a cube, and what is its volume?",
+            "question": {
+              "en": "A solid's edges are 9 cm, 9 cm and 9 cm; how many cubic centimetres is it?"
+            },
+            "ask": {
+              "en": "Volume in cubic cm?"
+            },
+            "answer": 729,
+            "planAnswer": "Yes, it is a cube, and its volume is 729 cu. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_2",
+            "question_id": "M3.S4.T9.C42:3",
+            "worked": false,
+            "kind": "edges",
+            "planQuestion": "A cube has edges of 10 m. What is its volume?",
+            "question": {
+              "en": "A cube has edges of 10 m; what is its volume in cubic metres?"
+            },
+            "ask": {
+              "en": "Volume in cubic m?"
+            },
+            "answer": 1000,
+            "planAnswer": "The volume of a cube of edge 10 m is 10 x 10 x 10 = 1000 cu. m",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p3_3",
+            "question_id": "M3.S4.T9.C42:4",
+            "worked": false,
+            "kind": "edges",
+            "planQuestion": "A solid is 6 cm by 6 cm by 4 cm. Is it a cube?",
+            "question": {
+              "en": "A solid is 6 cm by 6 cm by 4 cm; is it a cube?"
+            },
+            "ask": {
+              "en": "Is it a cube?"
+            },
+            "answer": "no",
+            "planAnswer": "No. Its edges are not all equal, so it is a cuboid, not a cube",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "items": [
+          {
+            "id": "p4_1",
+            "question_id": "M3.S4.T9.C43:LS4",
+            "worked": false,
+            "kind": "tenths",
+            "planQuestion": "A box is 8 cm long, 3.5 cm wide and 2 cm high. What is its volume?",
+            "question": {
+              "en": "A box is 8 cm by 3.5 cm by 2 cm; how many cubic centimetres is its volume?"
+            },
+            "ask": {
+              "en": "Volume in cubic cm?"
+            },
+            "answer": 56,
+            "planAnswer": "56 cu. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_2",
+            "question_id": "M3.S4.T9.C43:7",
+            "worked": false,
+            "kind": "tenths",
+            "planQuestion": "A box is 6 cm long, 2.5 cm wide and 4 cm high. What is its volume?",
+            "question": {
+              "en": "Find the volume of a box 6 cm by 2.5 cm by 4 cm in cubic centimetres."
+            },
+            "ask": {
+              "en": "Volume in cubic cm?"
+            },
+            "answer": 60,
+            "planAnswer": "6 x 4 = 24. 2.5 cm is 25 tenths, and 25 x 24 = 600, so 600 tenths, which is 60 cu. cm",
+            "madeOn": "keypad"
+          },
+          {
+            "id": "p4_3",
+            "question_id": "M3.S4.T9.C43:8",
+            "worked": false,
+            "kind": "tenths",
+            "planQuestion": "A cuboid is 4 cm long, 2.5 cm wide and 1.5 cm high. Can its volume be found by multiplying tenths by whole numbers alone?",
+            "question": {
+              "en": "A box 4 cm by 2.5 cm by 1.5 cm: can tenths times whole numbers give its volume?"
+            },
+            "ask": {
+              "en": "Tenths times whole numbers?"
+            },
+            "answer": "no",
+            "planAnswer": "No. Two of its edges have tenths, so it needs a decimal times a decimal, a step taught later",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "madeOn": "choices"
+          }
+        ]
+      }
+    ]
+  },
+  "unusedQuestionIds": [],
+  "scoring": {
+    "pointsPerCorrect": 5,
+    "scorableItems": 12,
+    "maxScore": 60,
+    "wrong": "costs nothing, never marked, counted only for first try accuracy",
+    "stars": "one for finishing, two at sixty per cent right first time, three at ninety; hidden with the first-try line by showScore false",
+    "phaseMount": "a mount scores every phase it plays, from its phase to the last (+5 a question; phases of 3, 3, 3, 3 questions)",
+    "finishCard": "stars and the Right first time line under the phase rows on the summary page"
+  },
+  "hostContract": {
+    "props": [
+      "phase",
+      "navigableDots",
+      "soundDefault",
+      "muted",
+      "audience",
+      "showScore",
+      "questions",
+      "learnQuestions",
+      "onProgress",
+      "onComplete",
+      "onPrevious",
+      "onExit"
+    ],
+    "phase": "absent (not a finite number): the whole lesson, phases one to 4 in a row, the summary page at the end, finished once. Present: rounded and clamped to one to 4; the tool starts at that phase and, as the NCERT tools do, walks on by itself after each phase's last question (its closing line, then 1.4 s), in user and AI mode alike, through phase 4 to the summary page (a tool with nextKey, runtime r48+: in user mode it waits for the child's blinking Next key instead, after every question and every phase, and the last phase's key opens the summary; AI mode, and a host that mounts one phase without navigableDots, walk on by themselves); finished once, from the summary page.",
+    "navigableDots": "true (or no phase): user mode, the phase dots are controls; otherwise AI mode, the dots show progress and the agent drives window.toolApi.",
+    "audience": "accepted and not acted on",
+    "onProgress": {
+      "activity": "layer_stacker",
+      "done": "questions right so far in this phase",
+      "total": "questions in this phase",
+      "phase": "1-4",
+      "conceptId": "from phaseMap",
+      "objectiveIds": "from phaseMap"
+    },
+    "onCompleteResult": {
+      "id": "layer_stacker",
+      "fields": [
+        "score",
+        "maxScoreThisPhase",
+        "correctFirstTry",
+        "itemsAnswered",
+        "stars",
+        "phase",
+        "conceptId",
+        "objectiveIds",
+        "phases (summary of several phases)",
+        "maxScore (the same)"
+      ]
+    },
+    "emits": "every event is dispatched on window and, when framed, posted to window.parent as { type: 'event', name, detail }",
+    "noStorage": true,
+    "noNetwork": true
+  },
+  "phaseMap": {
+    "phases": [
+      {
+        "n": 1,
+        "concept": "Layers of cubes",
+        "conceptId": "M3.S4.T9.C40",
+        "objectiveIds": [
+          "O15"
+        ],
+        "items": [
+          "M3.S4.T9.C40:LS1",
+          "M3.S4.T9.C40:1",
+          "M3.S4.T9.C40:6"
+        ]
+      },
+      {
+        "n": 2,
+        "concept": "Length times breadth times height",
+        "conceptId": "M3.S4.T9.C41",
+        "objectiveIds": [
+          "O15"
+        ],
+        "items": [
+          "M3.S4.T9.C41:LS2",
+          "M3.S4.T9.C41:2",
+          "M3.S4.T9.C41:5"
+        ]
+      },
+      {
+        "n": 3,
+        "concept": "A cube has equal edges",
+        "conceptId": "M3.S4.T9.C42",
+        "objectiveIds": [
+          "O16"
+        ],
+        "items": [
+          "M3.S4.T9.C42:LS3",
+          "M3.S4.T9.C42:3",
+          "M3.S4.T9.C42:4"
+        ]
+      },
+      {
+        "n": 4,
+        "concept": "An edge in tenths",
+        "conceptId": "M3.S4.T9.C43",
+        "objectiveIds": [
+          "O16"
+        ],
+        "items": [
+          "M3.S4.T9.C43:LS4",
+          "M3.S4.T9.C43:7",
+          "M3.S4.T9.C43:8"
+        ]
+      }
+    ]
+  },
+  "shared_state": [
+    "phase",
+    "stage",
+    "item",
+    "typed",
+    "complete",
+    "phase",
+    "base_length",
+    "base_breadth",
+    "layers",
+    "h",
+    "count",
+    "vol",
+    "units",
+    "edges_equal",
+    "isCube",
+    "tenths",
+    "lens",
+    "answer",
+    "answer"
+  ],
+  "getState": "toolId, mediaId, mode, mountPhase, phase, phases, conceptId, objectiveIds, step, steps, item, items, stage (teach, demo, ask, win, idle, summary, free), question, questionText, choices, typed, keypadOpen, tries, answered, firstTry, score, maxScore, answerShown (only after the answer), complete, questionCount, muted (the sound effects), speaking (always false: the lesson is silent), voice (\"silent\"), mascot, summaryRow, played, classroom, held (a classroom's parked piece of a long line), instruction (the pinned line), hint (the hint under it, or null), guideStep / guideSteps / guideOn (a guide-steps phase only), phase, base_length, base_breadth, layers, h, count, vol, units, edges_equal, isCube, tenths, lens, answer, answer, complete",
+  "valid_ids": {
+    "highlightTargets": [
+      "header",
+      "runs",
+      "work",
+      "slot",
+      "pad",
+      "voice",
+      "bubble",
+      "bar"
+    ],
+    "params": [
+      "phase",
+      "muted"
+    ]
+  },
+  "windowMethods": [
+    "getState",
+    "gotoStep",
+    "say",
+    "answer",
+    "check",
+    "reset",
+    "next",
+    "prev",
+    "highlight",
+    "setParam",
+    "playDemo"
+  ],
+  "windowAliases": [
+    "toolApi",
+    "layer_stacker"
+  ],
+  "events": [
+    "answer_checked",
+    "question_done",
+    "finished"
+  ],
+  "terminalEvent": {
+    "name": "finished",
+    "doneId": "M3.S4.T9.C41.2D1.DONE",
+    "fires": "once per mount, from the summary page after the last phase, 5 s after the page opens (its lines may still be going on); one-shot guarded and re-armed by restart or Play again; never sent at the end of an earlier phase (the tool walks on), and never if Free play or Play again is tapped first",
+    "detail": [
+      "toolId",
+      "mediaId",
+      "doneId",
+      "phase",
+      "conceptId",
+      "objectiveIds",
+      "score",
+      "maxScoreThisPhase",
+      "correctFirstTry",
+      "itemsAnswered",
+      "stars",
+      "phases",
+      "maxScore"
+    ]
+  },
+  "imagePrompts": {},
+  "soundPrompts": {},
+  "sounds": "Web Audio, no files, on in every mode (the sound button switches them): correct, wrong (soft), win at a phase end, cheer at the last, a tick when a piece snaps, and cut, settle and trade where the picture moves",
+  "mascotPoses": {},
+  "mascot": {
+    "inline": true,
+    "type": "image/webp",
+    "width": 281,
+    "height": 420,
+    "source": "kiko.svg",
+    "fallback": "drawn speaking dot"
+  },
+  "voiceLines": [
+    {
+      "en": "A layer of cubes, ready to stack."
+    },
+    {
+      "en": "Count one layer. Then count the layers."
+    },
+    {
+      "en": "Length, then breadth, then height. Multiply all three."
+    },
+    {
+      "en": "Are all the edges the same? Then it is a cube."
+    },
+    {
+      "en": "Whole numbers first. Then the tenths."
+    },
+    {
+      "en": "A new box. Find one layer first."
+    },
+    {
+      "en": "Free play. Stack layers on any base you like."
+    },
+    {
+      "en": "Count one layer, then count the layers again."
+    },
+    {
+      "en": "You turned stacking layers into length times breadth times height."
+    }
+  ],
+  "build": {
+    "source": "050c264d:652413",
+    "runtime": "class5/runtime/frozen/r66/runtime.tsx",
+    "runtimeVersion": "r66",
+    "library": "@use-gesture/react@10.3.1",
+    "builtAt": "2026-11-18T12:48:41.562Z",
+    "checks": {
+      "pass": 98,
+      "warn": 1,
+      "fail": 0,
+      "info": 3,
+      "at": "2026-11-18T12:48:41.425Z"
+    },
+    "tsxBytes": 575936,
+    "tsxMd5": "aa0a436b0fda66ae543e7fdbab142d65"
+  }
+}

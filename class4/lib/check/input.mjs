@@ -980,11 +980,13 @@ async function actionAnimRun(base, N) {
     const replay = async (t) => (t.how === "enter" ? s.key("Enter", "Enter", 13) : s.click(t.sel));
     const out = { tries: [] };
     let found = null;
-    for (let n = 1; n <= N && !found && out.tries.length < 8; n++) {
+    for (let n = 1; n <= N && !found && out.tries.length < 24; n++) { /* 2026-11-16: 8 tries a PHASE, 24 in all (was 8 in all): a tool with no drawn hand has its only act (the pencil) in a later phase */
       if (!(await load(n))) return { error: `phase ${n}: the tool did not mount` };
       await s.ev(ACT_REC);
       const tried = new Set();
-      while (out.tries.length < 8) {
+      let phaseTries = 0;
+      while (phaseTries < 8 && out.tries.length < 24) {
+        phaseTries++;
         const before = await s.ev(ACT_STATE);
         await s.ev("(() => { window.__actRec.t0 = 0; window.__actRec.seen = null; window.__actRec.gone = null; window.__actRec.samples = 0; window.__actRec.pen = false; return true; })()");
         const t = await press(tried);

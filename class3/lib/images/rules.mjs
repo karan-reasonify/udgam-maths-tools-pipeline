@@ -90,7 +90,7 @@ export const kitPrompt = (style, img) => [STYLE, style ? `Look: ${String(style).
 /* budgets count the data-URI length, which is what lands in images.tsx; the WebP file is about 3/4 of it.
    An image may ask for less (`maxKB` in images.json), never more. */
 export const BUDGET = { skin: 25 * 1024, photo: 30 * 1024, slot: 60 * 1024, photoShare: 10 * 1024, figure: 20 * 1024, figureShare: 20 * 1024 };
-const isPhotoObject = (i) => i.kind !== "figure" && i.look === "photo";
+const isPhotoObject = (i) => i.kind !== "figure" && i.look === "photo" && !i.source;
 /* a slot's budget: 60 KB for its object skins, plus 10 KB for each photo object skin (3 photos: 90 KB) and 20 KB for each figure (a photograph compresses worse than a cartoon) */
 export const slotBudget = (images = []) => BUDGET.slot + BUDGET.photoShare * images.filter(isPhotoObject).length + BUDGET.figureShare * images.filter((i) => i.kind === "figure").length;
 /* one picture's cap: 25 KB for a cartoon object skin, 30 KB for a photo one, 20 KB for a figure; an image may ask for less (`maxKB`), never more */
@@ -134,9 +134,10 @@ export const rawHash = ({ object, kind, style, aspect, look, ref, view, colours 
   /* class 3 only (2026-10-28): `view: "side"` and `colours: "natural"` are in a key only when set, so no earlier picture is re-keyed */
   ...(view === "side" ? ["view:side"] : []), ...(colours === "natural" ? ["colours:natural"] : [])].join("|"));
 /* the one way every caller keys a validated image (validatePlan fills look and refSha) */
-export const rawKey = (plan, img) => rawHash({ object: img.object, kind: img.kind, style: plan.style, aspect: img.aspect, look: img.look, ref: img.refSha, view: img.view, colours: img.colours });
-export const skinHash = (raw, { kind, px, inset, maxKB, tool, cut }) => sha1(["skin", `cut${CUT_VERSION}`, (KINDS[kind] || {}).cut, raw,
-  `${px[0]}x${px[1]}`, Number(inset).toFixed(3), maxKB || "", ...(tool || cut === "glass" ? [`tool${TOOL_CUT}`] : []), ...(cut === "glass" ? [`glass${GLASS_CUT}`] : []), ...(cut === "joined" ? [`joined${JOINED_CUT}`] : []), ...(cut === "holes" ? [`holes${HOLES_CUT}`] : []), ...(kind === "figure" ? [`fig${FIGURE_CUT}`] : [])].join("|"));
+export const rawKey = (plan, img) => img.srcSha ? sha1(`import|${img.srcSha}`) : rawHash({ object: img.object, kind: img.kind, style: plan.style, aspect: img.aspect, look: img.look, ref: img.refSha, view: img.view, colours: img.colours });
+export const IMPORT_CUT = 1;   /* class 3 only (2026-11-06): a skin made from the owner's own file (`source`), resized and encoded, never cut; in a key only when set */
+export const skinHash = (raw, { kind, px, inset, maxKB, tool, cut, source }) => sha1(["skin", `cut${CUT_VERSION}`, (KINDS[kind] || {}).cut, raw,
+  `${px[0]}x${px[1]}`, Number(inset).toFixed(3), maxKB || "", ...(tool || cut === "glass" ? [`tool${TOOL_CUT}`] : []), ...(cut === "glass" ? [`glass${GLASS_CUT}`] : []), ...(cut === "joined" ? [`joined${JOINED_CUT}`] : []), ...(cut === "holes" ? [`holes${HOLES_CUT}`] : []), ...(kind === "figure" ? [`fig${FIGURE_CUT}`] : []), ...(source ? [`import${IMPORT_CUT}`] : [])].join("|"));
 
 export function buildPrompt(plan, img) {
   const k = KINDS[img.kind];
@@ -190,7 +191,7 @@ export function validatePlan(plan, slotId) {
   if (plan.look !== undefined && !LOOKS.includes(plan.look)) errors.push(`look must be one of ${LOOKS.join(", ")}`);
   const planLook = plan.look || (isNew ? "photo" : "cartoon");
   if (!plan.look && isNew) plan = { ...plan, look: "photo" };
-  const nFig = list.filter((i) => i && i.kind === "figure").length, nObj = list.length - nFig;
+  const nFig = list.filter((i) => i && i.kind === "figure").length, nObj = list.length - nFig - list.filter((i) => i && i.source && i.kind !== "figure").length;   /* an imported file (`source`) is the owner's own picture: not counted against the object cap */
   if (nObj > MAX_SKINS_PER_SLOT) errors.push(`${nObj} object skins; at most ${MAX_SKINS_PER_SLOT} a slot (one skin is reused for every piece and state; figures are counted apart)`);
   if (nFig > MAX_FIGURES_PER_SLOT) errors.push(`${nFig} figures; at most ${MAX_FIGURES_PER_SLOT} a slot (one per distinct person shown)`);
   const figSeen = new Set();
@@ -222,6 +223,14 @@ export function validatePlan(plan, slotId) {
       if (!abs.startsWith(ROOT + path.sep) || !/\.(png|jpe?g|webp)$/i.test(abs) || !fs.existsSync(abs)) errors.push(`${at}: reference "${ref}" must be a png, jpg or webp file under the class folder (e.g. assets/refs/roti.png)`);
       else { img.refFile = abs; img.refSha = crypto.createHash("sha1").update(fs.readFileSync(abs)).digest("hex"); }
     } else if (img.reference) warnings.push(`${at}: reference is used by a photo object skin only; ignored`);
+    /* class 3 only (2026-11-06, the owner's real rupee notes): `source` is a png, jpg or webp under the class folder, taken as it is (no Gemini, no cut): resized to `px` keeping its aspect, WebP-encoded, keyed by its sha1; $0 */
+    delete img.srcFile; delete img.srcSha;
+    if (img.source !== undefined) {
+      const abs = path.resolve(ROOT, String(img.source));
+      if (img.kind !== "tile") errors.push(`${at}: source is for a tile only`);
+      else if (!abs.startsWith(ROOT + path.sep) || !/\.(png|jpe?g|webp)$/i.test(abs) || !fs.existsSync(abs)) errors.push(`${at}: source "${img.source}" must be a png, jpg or webp file under the class folder (e.g. assets/refs/notes/rs50.png)`);
+      else { img.srcFile = abs; img.srcSha = crypto.createHash("sha1").update(fs.readFileSync(abs)).digest("hex"); }
+    }
     if (!ASPECTS.includes(img.aspect)) errors.push(`${at}: aspect ${img.aspect} is not one Gemini makes (${ASPECTS.join(", ")})`);
     img.px = Array.isArray(img.px) && img.px.length === 2 ? img.px.map(Number) : [...K.px];
     if (!img.px.every((n) => Number.isInteger(n) && n >= 16)) errors.push(`${at}: px must be [width, height] in whole pixels`);
@@ -234,7 +243,7 @@ export function validatePlan(plan, slotId) {
     img.inset = Number.isFinite(Number(img.inset)) ? Number(img.inset) : K.inset;
     if (img.inset < 0 || img.inset > 0.25) errors.push(`${at}: inset ${img.inset} is outside 0 to 0.25`);
     if (!String(img.object || "").trim()) errors.push(`${at}: object is empty (name the everyday object, e.g. "milk chocolate bar"; for a figure, the person with the look that tells them apart)`);
-    if (!String(img.prompt || "").trim()) errors.push(`${at}: prompt is empty (one or two plain sentences about the object; the CLI adds the rules)`);
+    if (!img.source && !String(img.prompt || "").trim()) errors.push(`${at}: prompt is empty (one or two plain sentences about the object; the CLI adds the rules)`);
     if (!String(img.why || "").trim()) warnings.push(`${at}: no "why" (quote the brief's words that ask for this object)`);
     for (const w of lintPrompt(img.prompt || "", img.kind)) warnings.push(`${at}: prompt ${w}`);
     return img;

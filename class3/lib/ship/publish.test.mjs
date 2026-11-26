@@ -6,6 +6,10 @@ import { pairProblems, mountTarget, rekeySidecar } from "./publish.mjs";
 import { handEditOf, handEditLine, md5 } from "./port.mjs";
 import { wrongOf } from "../check/approve.mjs";
 import { publishedRecord, publishedOf } from "./published.mjs";
+import { cleanSlot } from "../finish/clean.mjs";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 
 const id = "M1.S1.T2.C4.2D1", hash = "ec8ee32d:417752";
 const ported = Buffer.from(`/* ${id} */ export default Tool;`), edited = Buffer.from(`/* ${id} hand edit */ export default Tool;`);
@@ -130,5 +134,20 @@ t("not published: a dry run only, a failed upload, a tool never uploaded", () =>
   assert.equal(publishedOf({ stage: "ported", publish: { at: AT, ok: false, dry: false, problems: ["x"] } }), null);
   assert.equal(publishedOf({ stage: "draft" }), null);
   assert.equal(publishedOf(null), null);
+});
+t("after a verified upload, publish's cleanSlot drops the review images and keeps the product, the sources and the published record", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "udgam-clean-"));
+  try {
+    const w = (f, c = "x") => { fs.mkdirSync(path.dirname(path.join(dir, f)), { recursive: true }); fs.writeFileSync(path.join(dir, f), c); };
+    for (const f of ["tool.tsx", "images.tsx", "images.json", "brief.md", "slot.json", "pack/pack.json", "pack/pack.prev.json", "S.preview.html"]) w(f);
+    for (const f of ["sheet-1.png", "approve-1.png", "images-preview.png", "pack/en-1.png", ".build/check.json", "run.log"]) w(f);
+    w("status.json", JSON.stringify({ stage: "published", published: { at: AT } }));
+    const r = cleanSlot(path.join(dir, "."));
+    assert.deepEqual(fs.readdirSync(dir).sort(), ["S.preview.html", "brief.md", "images.json", "images.tsx", "pack", "slot.json", "status.json", "tool.tsx"]);
+    assert.deepEqual(fs.readdirSync(path.join(dir, "pack")).sort(), ["pack.json", "pack.prev.json"]);
+    const st = JSON.parse(fs.readFileSync(path.join(dir, "status.json"), "utf8"));
+    assert.equal(st.stage, "published"); assert.equal(st.published.at, AT); assert.ok(st.cleanedAt);
+    assert.ok(r.removed.length >= 6);
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });
 console.log(`\n${n} passed`);

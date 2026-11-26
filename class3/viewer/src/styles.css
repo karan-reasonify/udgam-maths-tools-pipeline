@@ -9,7 +9,23 @@
   --warn: #9a6700;
   --fail: #cf222e;
   --info: #57606a;
+  /* every other colour is a token too, so the hub's sun/moon button can turn the viewer dark (hub: ?theme= and a postMessage, public/index.html) */
+  --chrome: #e4e9f0; --chrome-border: #c5cdd9; --chrome-hover: #d6dde8; --btn-border: #b8c0cc; --ink-2: #3f4856;
+  --hover: #f0f2f5; --row-hover: #f6f7f9; --selected: #e8effd; --stage: #eef0f3; --badge-off: #c9cdd3; --code-bg: #f6f7f9;
+  --pub-bg: #e6f4ea; --pub-warn-bg: #fff4d6; --on-pass: #fff;
+  --cnt-pass: #dafbe1; --cnt-warn: #fff8c5; --cnt-fail: #ffebe9; --cnt-info: #eef1f4;
+  color-scheme: light;
   font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+}
+/* the dark palette of Tool_Pipeline's preview (preview/src/theme.css). The tool itself (.frame-shell, the iframe) keeps its own light canvas. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0d0f12; --panel: #14171c; --border: #262b33; --ink: #e9ecf1; --muted: #a2aab6; --accent: #6b97f5;
+  --pass: #4ade80; --warn: #fbbf24; --fail: #f87171; --info: #a2aab6;
+  --chrome: #1a1e24; --chrome-border: #313843; --chrome-hover: #242a32; --btn-border: #3a414c; --ink-2: #c3cad4;
+  --hover: #1e2229; --row-hover: #1e2229; --selected: #1b2640; --stage: #0a0c0f; --badge-off: #4a525e; --code-bg: #1a1e24;
+  --pub-bg: #10251a; --pub-warn-bg: #2a2011; --on-pass: #0d0f12;
+  --cnt-pass: #10251a; --cnt-warn: #2a2011; --cnt-fail: #2c1517; --cnt-info: #1e2229;
 }
 
 * { box-sizing: border-box; }
@@ -57,14 +73,14 @@ body { background: var(--bg); color: var(--ink); font-size: 14px; }
   display: flex; align-items: center; gap: 8px; width: 100%; text-align: left;
   padding: 8px; border: none; border-radius: 6px; background: none; cursor: pointer;
 }
-.tool-list-item:hover { background: #f0f2f5; }
-.tool-list-item.selected { background: #e8effd; }
+.tool-list-item:hover { background: var(--hover); }
+.tool-list-item.selected { background: var(--selected); }
 .tool-list-item:disabled { opacity: .5; cursor: not-allowed; }
 .tool-list-item-text { display: flex; flex-direction: column; min-width: 0; }
 .tool-list-item-title { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tool-list-item-id { font-size: 11px; color: var(--muted); }
 
-.tool-badge { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; background: #c9cdd3; }
+.tool-badge { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; background: var(--badge-off); }
 .tool-badge.pass { background: var(--pass); }
 .tool-badge.warn { background: var(--warn); }
 .tool-badge.fail { background: var(--fail); }
@@ -74,13 +90,13 @@ body { background: var(--bg); color: var(--ink); font-size: 14px; }
    amber when the pair was edited after it went up */
 .tool-list-item-pub { font-size: 11px; color: var(--pass); }
 .tool-list-item-pub.changed { color: var(--warn); }
-.pub-chip { display: inline-flex; align-items: center; gap: 5px; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 500; color: var(--pass); background: #e6f4ea; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-.pub-chip.changed { color: var(--warn); background: #fff4d6; }
+.pub-chip { display: inline-flex; align-items: center; gap: 5px; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 500; color: var(--pass); background: var(--pub-bg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.pub-chip.changed { color: var(--warn); background: var(--pub-warn-bg); }
 .tabs .tabs-end { margin-left: auto; align-self: center; }
 .pub-line { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
-.pub-dot { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 22px; height: 22px; border-radius: 50%; color: #fff; background: var(--pass); }
+.pub-dot { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 22px; height: 22px; border-radius: 50%; color: var(--on-pass); background: var(--pass); }
 .pub-dot.changed { background: var(--warn); }
-.pub-dot.off { background: transparent; box-shadow: inset 0 0 0 2px #c9cdd3; }
+.pub-dot.off { background: transparent; box-shadow: inset 0 0 0 2px var(--badge-off); }
 .pub-title { font-weight: 600; line-height: 22px; }
 .pub-warn { color: var(--warn); }
 
@@ -115,7 +131,7 @@ body { background: var(--bg); color: var(--ink); font-size: 14px; }
 .devicebar { display: flex; align-items: center; align-self: center; gap: 10px; flex-wrap: wrap; }
 .devicebar-sep { width: 1px; height: 22px; background: var(--border); }
 
-.tool-frame-stage { position: relative; flex: 1; min-height: 0; background: #eef0f3; display: flex; align-items: center; justify-content: center; overflow: auto; }
+.tool-frame-stage { position: relative; flex: 1; min-height: 0; background: var(--stage); display: flex; align-items: center; justify-content: center; overflow: auto; }
 /* the shell is the scaled size of the device; the iframe inside is the TRUE device size, scaled from the top left (ToolFrame.tsx) */
 .frame-shell { flex: none; position: relative; overflow: hidden; border-radius: 6px; background: #f8fafc; box-shadow: 0 0 0 1px var(--border), 0 4px 16px rgba(16, 24, 40, .12); }
 .tool-iframe { position: absolute; top: 0; left: 0; transform-origin: 0 0; border: none; background: #f8fafc; }
@@ -126,23 +142,23 @@ body { background: var(--bg); color: var(--ink); font-size: 14px; }
   margin: 0; padding: 14px; font-family: ui-monospace, Consolas, "SFMono-Regular", monospace;
   font-size: 12.5px; line-height: 1.5; white-space: pre-wrap; word-break: break-word;
 }
-.code-block.small { font-size: 11.5px; padding: 8px; background: #f6f7f9; border-radius: 6px; max-height: 340px; overflow: auto; }
+.code-block.small { font-size: 11.5px; padding: 8px; background: var(--code-bg); border-radius: 6px; max-height: 340px; overflow: auto; }
 
 .btn { padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--panel); cursor: pointer; font-size: 13px; }
-.btn:hover:not(:disabled) { background: #f0f2f5; }
+.btn:hover:not(:disabled) { background: var(--hover); }
 .btn:disabled { opacity: .6; cursor: not-allowed; }
 .btn-row { display: flex; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
 
 .finding-counts { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
 .count { font-size: 11px; padding: 2px 8px; border-radius: 999px; font-weight: 600; }
-.count.pass { background: #dafbe1; color: var(--pass); }
-.count.warn { background: #fff8c5; color: var(--warn); }
-.count.fail { background: #ffebe9; color: var(--fail); }
-.count.info { background: #eef1f4; color: var(--info); }
+.count.pass { background: var(--cnt-pass); color: var(--pass); }
+.count.warn { background: var(--cnt-warn); color: var(--warn); }
+.count.fail { background: var(--cnt-fail); color: var(--fail); }
+.count.info { background: var(--cnt-info); color: var(--info); }
 
 .finding-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; }
 .finding-row { display: flex; align-items: flex-start; gap: 7px; padding: 5px 4px; border-radius: 4px; font-size: 12.5px; }
-.finding-row:hover { background: #f6f7f9; }
+.finding-row:hover { background: var(--row-hover); }
 .finding-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
 .finding-id { font-family: ui-monospace, Consolas, monospace; color: var(--muted); flex-shrink: 0; white-space: nowrap; }
 .finding-msg { color: var(--ink); }
@@ -163,13 +179,13 @@ body { background: var(--bg); color: var(--ink); font-size: 14px; }
 
 /* inside the hub (?embed=1, viewhub.mjs): the bar and the right panel are a notch darker than the content, like the hub's own
    header and tool panel, so they read as chrome. The viewer on its own keeps its plain white. */
-.app.embed .app-header { background: #e4e9f0; border-bottom-color: #c5cdd9; }
-.app.embed .app-current { font-weight: 600; color: #3f4856; }
-.app.embed .rail-right { background: #e4e9f0; border-left-color: #c5cdd9; }
-.app.embed .rail-right .tabs { background: #e4e9f0; border-bottom-color: #c5cdd9; }
-.app.embed .rail-right .finding-row:hover { background: #d6dde8; }
-.app.embed .rail-right .count.info { background: #fff; }
-.app.embed .rail-right .btn, .app.embed .icon-btn { border-color: #b8c0cc; }
+.app.embed .app-header { background: var(--chrome); border-bottom-color: var(--chrome-border); }
+.app.embed .app-current { font-weight: 600; color: var(--ink-2); }
+.app.embed .rail-right { background: var(--chrome); border-left-color: var(--chrome-border); }
+.app.embed .rail-right .tabs { background: var(--chrome); border-bottom-color: var(--chrome-border); }
+.app.embed .rail-right .finding-row:hover { background: var(--chrome-hover); }
+.app.embed .rail-right .count.info { background: var(--panel); }
+.app.embed .rail-right .btn, .app.embed .icon-btn { border-color: var(--btn-border); }
 
 /* a phone: one column for the tool; each side panel slides in over it (closed at start, App.tsx NARROW, the same width) */
 .scrim { display: none; }

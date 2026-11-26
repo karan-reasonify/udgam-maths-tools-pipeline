@@ -72,9 +72,9 @@ function resolveSlot(dir, { force = false, only = null, recut = null, log }) {
     /* `recut`: raw pictures that were just replaced (a batch apply), so their library skins are stale */
     const skin = force || (recut && recut.has(rh)) ? null : getSkin(sh);
     const raw = findRaw(rh);
-    const how = skin ? "library" : raw && (!force || (recut && recut.has(rh))) ? "recut" : "generate";
+    const how = skin ? "library" : img.srcFile ? "import" : raw && (!force || (recut && recut.has(rh))) ? "recut" : "generate";
     const from = how === "library" ? skin.from : how === "recut" ? raw.from : undefined;
-    return { dir, who, img, rh, sh, how, from, prompt: buildPrompt(p.plan, img), style: p.plan.style };
+    return { dir, who, img, rh, sh, how, from, prompt: img.srcFile ? "" : buildPrompt(p.plan, img), style: p.plan.style };
   });
   return { dir, who, plan: p.plan, images: p.images, items };
 }
@@ -113,7 +113,7 @@ async function generateGroup(group, { models, log, lane = "inline" }) {
   return last || { ok: false, error: `no attempts left this run (${MAX_ATTEMPTS} per picture)` };
 }
 
-const cutOpts = (it) => ({ kind: it.img.kind, px: it.img.px, inset: it.img.inset, maxKB: it.img.maxKB, look: it.img.look, tool: !!it.img.tool || it.img.cut === "glass", glass: it.img.cut === "glass", joined: it.img.cut === "joined", holes: it.img.cut === "holes", label: `skin ${it.img.key}` });
+const cutOpts = (it) => ({ kind: it.img.kind, px: it.img.px, inset: it.img.inset, maxKB: it.img.maxKB, look: it.img.look, tool: !!it.img.tool || it.img.cut === "glass", glass: it.img.cut === "glass", joined: it.img.cut === "joined", holes: it.img.cut === "holes", imported: !!it.img.srcFile, label: `skin ${it.img.key}` });
 
 async function cutAll(group, buf, mime) {
   const cuts = new Map();
@@ -146,7 +146,7 @@ async function run(slotDirs, { force, only, dry, models, log, noGenerate = false
   const est = [...groups.values()].reduce((n, g) => n + price(firstModel(g)), 0);
 
   if (dry) {
-    for (const it of all) log(`  ${pad(it.who.split("/")[1] + ":" + it.img.key, 26)}${pad(it.img.object, 28)}${pad(it.img.kind, 7)}${pad(it.img.px.join("x"), 9)}${it.how === "generate" ? (groups.get(it.rh)[0] === it ? `generate (${usd(price(firstModel(groups.get(it.rh))))} on ${firstModel(groups.get(it.rh))})` : "generate (shared with an earlier key)") : it.how === "library" ? `library hit${fromNote(it)} (free)` : `re-cut the cached raw${fromNote(it)} (free)`}`);
+    for (const it of all) log(`  ${pad(it.who.split("/")[1] + ":" + it.img.key, 26)}${pad(it.img.object, 28)}${pad(it.img.kind, 7)}${pad(it.img.px.join("x"), 9)}${it.how === "generate" ? (groups.get(it.rh)[0] === it ? `generate (${usd(price(firstModel(groups.get(it.rh))))} on ${firstModel(groups.get(it.rh))})` : "generate (shared with an earlier key)") : it.how === "library" ? `library hit${fromNote(it)} (free)` : it.how === "import" ? `import ${path.relative(process.cwd(), it.img.srcFile)} (free)` : `re-cut the cached raw${fromNote(it)} (free)`}`);
     log(`  dry run: ${groups.size} new picture(s), about ${usd(est)} inline (${usd(est / 2)} by batch); nothing was called`);
     for (const g of groups.values()) log(`\n  prompt for ${g[0].img.key}:\n    ${g[0].prompt}`);
     return { slots, spent: 0, planned: groups.size };
@@ -167,6 +167,11 @@ async function run(slotDirs, { force, only, dry, models, log, noGenerate = false
         if (it.how === "library") {
           const sk = getSkin(it.sh);
           line = { it, ok: true, note: `library hit${fromNote(sk)}, free`, skin: sk };
+        } else if (it.how === "import") {   /* the owner's own file (docs/IMAGES.md section 5, `source`): no Gemini, no cut, $0 */
+          const cut = await makeSkin(fs.readFileSync(it.img.srcFile), /\.png$/i.test(it.img.srcFile) ? "image/png" : /\.webp$/i.test(it.img.srcFile) ? "image/webp" : "image/jpeg", cutOpts(it));
+          if (!cut.ok) { line.note = `REJECTED import: ${cut.reasons.join("; ")}`; line.cut = cut; results.push(line); continue; }
+          storeSkin(it, cut, "import");
+          line = { it, ok: true, note: `imported from ${path.relative(process.cwd(), it.img.srcFile)}, free`, skin: getSkin(it.sh) };
         } else if (it.how === "recut" || (noGenerate && findRaw(it.rh))) {
           const raw = findRaw(it.rh);
           if (!raw) { line.note = "no raw picture (batch outstanding?)"; results.push(line); continue; }
@@ -219,7 +224,7 @@ async function run(slotDirs, { force, only, dry, models, log, noGenerate = false
     const em = emitSlot(s.dir, s.plan, final, themed);
     pruneUsed(s.who, Object.fromEntries(final.map((e) => [e.key, e.hash])));
     s.emitted = em;
-    s.total = final.reduce((n, e) => n + e.uriBytes, 0);
+    s.total = final.reduce((n, e) => ((s.images.find((i) => i.key === e.key) || {}).source ? n : n + e.uriBytes), 0);   /* an imported file is outside the slot byte budget */
   }
 
   for (const l of results) {
@@ -347,7 +352,7 @@ function status(a, log) {
     for (const d of rows) {
       const p = readPlan(d);
       const em = readEmitted(d) || {};
-      const total = Object.values(em).reduce((n, v) => n + v, 0);
+      const total = Object.entries(em).reduce((n, [k, v]) => ((p.images || []).find((i) => i.key === k && i.source) ? n : n + v), 0);
       const keys = (p.images || []).map((img) => `${img.key}${em[img.key] ? ` ${kb(em[img.key])}${em[img.key] > budgetOf(img) ? ` OVER ${kb(budgetOf(img))}` : ""}` : " (not made)"}`);
       log(`  ${pad(idOf(d), 20)}${keys.length ? keys.join(" · ") : "no skins (the agent decided none)"}  ·  ${kb(total)} of ${kb(slotBudget(p.images))}${total > slotBudget(p.images) ? " OVER" : ""}${readTheme(d) ? `  ·  theme: ${(p.plan.themeMade && p.plan.themeMade.from) || "yes"}` : ""}`);
     }

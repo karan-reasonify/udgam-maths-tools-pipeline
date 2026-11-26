@@ -1,0 +1,20 @@
+STATUS: ok
+SLOTS: M2.S4.T8.C38.2D1 (calendar_counter, Calendar Counter)
+FILES: class4/work/indiannica_eng_maths4_ch12/M2.S4.T8.C38.2D1/tool.tsx · ported pair class4/output-preview/indiannica_eng_maths4_ch12/M2.S4.T8.C38.2D1/M2.S4.T8.C38.2D1.tsx + .json
+CHECKS: full check 96 pass / 0 warn / 0 fail / 6 info (5 full runs of 6), ported; quick 31/0/0; host emulator plays every phase to the end
+FAILURES: none
+DECISIONS: silent r30, keyOnly + navDots + bigPad + nextKey; scene in x 0-900 open or shut; calendar_page <Skin> on all 12 wall cards and every month page (plain page + orange band under it); dates, S M T W T F S, bars, ruler, gate, switches, writer in code
+RISKS: TR empty (language pass); win lines, month names (tx(CC_MON[m])), weekday keys "Sun".."Sat" (hi/gu header letters) and "Yes"/"No"/"Leap year" are dynamic, so tr-coverage cannot list them: add them by hand. No guide.answerGate in the sidecar (port writes none, same as C8/C18)
+ESCALATE: no
+REPORT:
+Preview: class4/work/indiannica_eng_maths4_ch12/M2.S4.T8.C38.2D1/M2.S4.T8.C38.2D1.preview.html
+P1 (wall of 12 month cards across the top): steps tap Jan then Feb, each opens its page. Q1 Sort: the hand stands every month up as a bar of its days (cells in tens), equal bars together -> June | August boxes [30, 31]. Q2 Weeks: 365 days fill 4 blocks of 13 weeks plus one yellow day -> weeks | days left [52, 1]. Q3 March 2026 page, third Saturday -> 21.
+P2 (leap year gate: ÷4? / Century year? / ÷400?, one column per year): steps Run 2026 (stops at No) and Run 1900 (Yes, Yes, No). The pencil marks each box it asks, Yes/No printed; the verdict stays hidden until the win. Q1 1996/1700/1600 = 4 choices ("1996 and 1600"); Q2 2028 February days (29, Feb page grows a yellow 29th at the win); Q3 1800 Yes/No (No).
+P3 (two month pages, First day / Last day switches Counts/Left out, Count key): warm-up 28 Jun-2 Jul both counted (5). Count lights the days green month by month, a left-out end outlined, and the pencil writes the parts ("Sep 12 + Oct 6 = ?"). Q 18 Sep-7 Oct both out (18); 12 Nov-3 Dec both in (22); 16-day tournament from 22 Mar as day one -> "Mar 10 + Apr ? = 16", April date 6.
+P4 (date in words, writer with Day 2 + Month 2 + Year 4 places, marks key Dots/Slashes/Dashes): steps Write 15 August 2026 (pencil), then switch to slashes. Answer = three parts boxes Day/Month/Year; typed digits mirror into the writer; win shows the date with dots, slashes and dashes.
+Answer gate (proved with real clicks: Answer disabled before Run, opens after): P1 Q1 Sort, Q2 Weeks; P2 all three Run; P3 all three Count (Count stays disabled until the needed switches are set). UNGATED: P1 Q3 (reading the page) and all of P4 (writing is the answer).
+Tracebacks (unmarked, pointer-free): bars re-stand with Jul/Aug/Jun ringed and numbered; ruler refills with "52 weeks + 1 day"; Saturday column lit with 7 -> 14 -> 21 ringed; gate re-run with verdicts and Feb 28/29; right switches, days relit, total written; date read back ("= 1 March 2027"), then right digits with the missed 0 places lit yellow.
+Departures: practice 7 (15 Aug-2 Sep) UNUSED (three a phase; same ends as ML3; needs the holiday shelf, which is dropped); practice 8 kept as P3 Q3, asking only the April date (the play-time half is the clock's). P4 Q3 AUTHORED: 9 October 2025 (the textbook's 09.10.2025, the nought in the day). ML2's three years become 4 combination choices; practice 2 drops "and why" (the gate shows why). Rack = upright bars rather than three trays (12 named cards did not fit at the 28 floor); no runs box (keyOnly); year dial only in free play (questions fix the year). FREE_LINE cut to what free play has: dial, wall (weekdays shift when the year turns), gate.
+Runtime gaps: none new. The logged leading-zero gap is worked round: P4 judge compares slotPartsOf digit strings (3|1|2027 is a miss); 3 parts boxes with a 4-digit year work on r30.
+Not run: Gemini design pass (as told).
+Question: is 4-choice for "which were leap years" right for class 4, or should the child mark each year Leap/Not on its column (a working-area answer)?
